@@ -1,0 +1,2 @@
+target/
+templater/src/main/resources/templates/*.tar.gz

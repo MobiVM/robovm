@@ -57,9 +57,7 @@ public class TemplateChooser {
     }
 
     private static final Template[] TEMPLATES = {
-        new Template("single-view", IOSTarget.TYPE, "RoboVM iOS Single View App",
-                "Creates a basic single view app using storyboards"),
-        new Template("default", IOSTarget.TYPE, "RoboVM iOS App without storyboards",
+        new Template("ios-single-view-no-ib", IOSTarget.TYPE, "RoboVM iOS App without storyboards",
                 "Creates a basic single view app without storyboards"),
         new Template("console", ConsoleTarget.TYPE, "RoboVM Console App", "Creates a console app for Mac OS X or Linux")
     };
