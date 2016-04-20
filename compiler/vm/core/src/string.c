@@ -1,0 +1,340 @@
+/*
+ * Copyright (C) 2012 RoboVM AB
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+#include <robovm.h>
+#include <string.h>
+#include <stddef.h>
+#include "private.h"
+#include "uthash.h"
+
+#define LOG_TAG "core.string"
+
+static uint32_t cacheEntryGCKind;
+static const jchar EMPTY_JCHARS = 0;
+
+// TODO: Restrict the number of bytes stored in the cache instead of the number of String objects.
+#define MAX_CACHE_SIZE 10000
+
+// GC descriptor specifying which words in a CacheEntry that should be scanned 
+// for heap pointers. The hh.hashv value in particular must not be scanned since
+// it often can be mistaken for a pointer.
+#define CACHE_ENTRY_GC_BITMAP (MAKE_GC_BITMAP(offsetof(CacheEntry, key)) \
+                              |MAKE_GC_BITMAP(offsetof(CacheEntry, string)) \
+                              |MAKE_GC_BITMAP(offsetof(CacheEntry, hh.next)))
+
+typedef struct CacheEntry {
+    const char* key; // The string in modified UTF-8
+    Object* string;  // The java.lang.String object.
+    UT_hash_handle hh;
+} CacheEntry;
+static CacheEntry* internedStrings = NULL;
+static Mutex internedStringsLock;
+
+static inline void obtainInternedStringsLock() {
+    rvmLockMutex(&internedStringsLock);
+}
+
+static inline void releaseInternedStringsLock() {
+    rvmUnlockMutex(&internedStringsLock);
+}
+
+/**
+ * Finds an interned string in the interned strings key. If found the string
+ * will be "touched", i.e. marked as most recently used. The internedStringsLock
+ * MUST be held when calling this function.
+ */
+static Object* findInternedString(Env* env, const char* s) {
+    CacheEntry* cacheEntry;
+    HASH_FIND_STR(internedStrings, s, cacheEntry);
+    if (cacheEntry) {
+        // Touch the string
+        HASH_DELETE(hh, internedStrings, cacheEntry);
+        HASH_ADD_KEYPTR(hh, internedStrings, cacheEntry->key, strlen(cacheEntry->key), cacheEntry);
+        return cacheEntry->string;
+    }
+    return NULL;
+}
+
+/**
+ * Adds a string to the cache of interned string. The string must not already be
+ * interned.  The internedStringsLock MUST be held when calling this function.
+ */
+static jboolean addInternedString(Env* env, const char* s,  Object* string) {
+    CacheEntry* cacheEntry = allocateMemoryOfKind(env, sizeof(CacheEntry), cacheEntryGCKind);
+    if (!cacheEntry) {
+        return FALSE;
+    }
+
+    cacheEntry->key = s;
+    cacheEntry->string = string;
+    HASH_ADD_KEYPTR(hh, internedStrings, cacheEntry->key, strlen(cacheEntry->key), cacheEntry);
+
+    // prune the cache to MAX_CACHE_SIZE
+    if (HASH_COUNT(internedStrings) >= MAX_CACHE_SIZE) {
+        CacheEntry* tmpEntry;
+        HASH_ITER(hh, internedStrings, cacheEntry, tmpEntry) {
+            // prune the first entry (loop is based on insertion order so this deletes the oldest item)
+            HASH_DELETE(hh, internedStrings, cacheEntry);
+            break;
+        }
+    }
+
+    return TRUE;
+}
+
+// TODO: Return the same instance for strings of length == 0?
+
+/* 
+ * Determines the number of Java chars needed to store the 
+ * specified modified UTF-8 string.
+ * Copied from Harmony (vm_strings.cpp).
+ */
+static jint getUnicodeLengthOfUtf8(const char* utf8) {
+    jint len = 0;
+    unsigned char ch;
+    unsigned char ch2;
+    unsigned char ch3;
+    while ((ch = *utf8++)) {
+        len++;
+        if (ch & 0x80) { // 2 or 3 byte encoding
+            if (! (ch & 0x40))
+                return -1;
+            ch2 = *utf8++;
+            if (ch & 0x20) { // 3 byte encoding
+                ch3 = *utf8++;
+                if ((ch  & 0xf0) != 0xe0  ||  // check first byte high bits
+                    (ch2 & 0xc0) != 0x80  ||  // check second byte high bits
+                    (ch3 & 0xc0) != 0x80)     // check third byte high bits
+                    return -1;
+            } else {    // 2 byte encoding
+                if ((ch2 & 0xc0) != 0x80)     // check second byte high bits
+                    return -1;
+            }
+        } 
+    }
+    return len;
+}
+
+static jint getUtf8LengthOfUnicode(const jchar* unicode, jint unicodeLength) {
+    jint length = 0;
+    jint i;
+    for (i = 0; i < unicodeLength; i++) {
+        jchar ch = unicode[i];
+        if (ch == 0) {
+            length += 2;
+        } else if (ch < 0x80) {
+            length += 1;
+        } else if (ch < 0x800) {
+            length += 2;
+        } else {
+            length += 3;
+        }
+    }
+    return length;
+}
+
+/* 
+ * Converts a null terminated string of modified UTF-8 
+ * characters into a string of UTF-16 Java chars.
+ * Copied from Harmony (vm_strings.cpp).
+ */
+static void utf8ToUnicode(jchar* unicode, const char* utf8String) {
+    const unsigned char* utf8 = (const unsigned char*) utf8String;
+    jchar ch;
+    while ((ch = (jchar) *utf8++)) {
+        if (ch & 0x80) {
+//            assert(ch & 0x40);
+            if (ch & 0x20) {
+                jchar x = ch;
+                jchar y = (jchar) *utf8++;
+                jchar z = (jchar) *utf8++;
+                *unicode++ = (jchar) (((0x0f & x) << 12) + ((0x3f & y) << 6) + ((0x3f & z)));
+            } else {
+                jchar x = ch;
+                jchar y = (jchar) *utf8++;
+                *unicode++ = (jchar) (((0x1f & x) << 6) + (0x3f & y));
+            }
+        } else {
+            *unicode++ = ch;
+        }
+    }
+}
+
+static void unicodeToUtf8(char* utf8String, const jchar* unicode, jint unicodeLength) {
+    char *s = utf8String;
+    jint i;
+    for (i = 0; i < unicodeLength; i++) {
+        jint ch = unicode[i];
+        if (ch == 0) {
+            *s++ = (char)0xc0;
+            *s++ = (char)0x80;
+        } else if (ch < 0x80) {
+            *s++ = (char)ch;
+        } else if(ch < 0x800) {
+            unsigned b5_0 = ch & 0x3f;
+            unsigned b10_6 = (ch >> 6) & 0x1f;
+            *s++ = (char)(0xc0 | b10_6);
+            *s++ = (char)(0x80 | b5_0);
+        } else {
+            unsigned b5_0 = ch & 0x3f;
+            unsigned b11_6 = (ch >> 6) & 0x3f;
+            unsigned b15_12 = (ch >> 12) & 0xf;
+            *s++ = (char)(0xe0 | b15_12);
+            *s++ = (char)(0x80 | b11_6);
+            *s++ = (char)(0x80 | b5_0);
+        }
+    }
+    *s = 0;
+}
+
+static inline Object* newString(Env* env, CharArray* value, jint offset, jint length) {
+    return rvmRTNewString(env, value, offset, length);
+}
+
+jboolean rvmInitStrings(Env* env) {
+    if (rvmInitMutex(&internedStringsLock) != 0) {
+        return FALSE;
+    }
+
+    gcAddRoot(&internedStrings);
+    cacheEntryGCKind = gcNewDirectBitmapKind(CACHE_ENTRY_GC_BITMAP);
+
+    return TRUE;
+}
+
+Object* rvmNewStringNoCopy(Env* env, CharArray* value, jint offset, jint length) {
+    return newString(env, value, offset, length);
+}
+
+Object* rvmNewStringAscii(Env* env, const char* s, jint length) {
+    if (length == 0) s = "";
+    if (!s) return NULL;
+    length = (length == -1) ? strlen(s) : length;
+    CharArray* value = rvmNewCharArray(env, length);
+    if (!value) return NULL;
+    jint i;
+    for (i = 0; i < length; i++) {
+        value->values[i] = (jchar) (s[i] & 0xff);
+    }
+    return newString(env, value, 0, length);
+}
+
+Object* rvmNewStringUTF(Env* env, const char* s, jint length) {
+    if (length == 0) s = "";
+    if (!s) return NULL;
+    length = (length == -1) ? getUnicodeLengthOfUtf8(s) : length;
+    CharArray* value = rvmNewCharArray(env, length);
+    if (!value) return NULL;
+    utf8ToUnicode(value->values, s);
+    return newString(env, value, 0, length);
+}
+
+Object* rvmNewString(Env* env, const jchar* chars, jint length) {
+    if (length == 0) chars = &EMPTY_JCHARS;
+    if (!chars) return NULL;
+    CharArray* value = rvmNewCharArray(env, length);
+    if (!value) return NULL;
+    memcpy(value->values, chars, sizeof(jchar) * length);
+    return newString(env, value, 0, length);
+}
+
+Object* rvmNewInternedStringUTF(Env* env, const char* s, jint length) {
+    if (length == 0) s = "";
+    if (!s) return NULL;
+
+    obtainInternedStringsLock();
+
+    // Check the cache first.
+    Object* string = findInternedString(env, s);
+    if (!string) {
+        length = (length == -1) ? getUnicodeLengthOfUtf8(s) : length;
+        CharArray* value = rvmNewCharArray(env, length);
+        if (value) {
+            utf8ToUnicode(value->values, s);
+            Object* str = newString(env, value, 0, length);
+            if (str && addInternedString(env, s, str)) {
+                string = str;
+            }
+        }
+    }
+
+    releaseInternedStringsLock();
+
+    return string;
+}
+
+Object* rvmInternString(Env* env, Object* str) {
+    if (!str) return NULL;
+
+    obtainInternedStringsLock();
+
+    Object* string = NULL;
+
+    char* s = rvmGetStringUTFChars(env, str);
+    if (s) {
+        // Check the cache first.
+        string = findInternedString(env, s);
+        if (!string) {
+            if (addInternedString(env, s, str)) {
+                string = str;
+            }
+        }
+    }
+
+    releaseInternedStringsLock();
+
+    return string;
+}
+
+jint rvmGetStringLength(Env* env, Object* str) {
+    return rvmRTGetStringLength(env, str);
+}
+
+jchar* rvmGetStringChars(Env* env, Object* str) {
+    return rvmRTGetStringChars(env, str);
+}
+
+jint rvmGetStringUTFLength(Env* env, Object* str) {
+    jchar* chars = rvmGetStringChars(env, str);
+    jint count = rvmGetStringLength(env, str);
+    return getUtf8LengthOfUnicode(chars, count);
+}
+
+char* rvmGetStringUTFChars(Env* env, Object* str) {
+    jchar* chars = rvmGetStringChars(env, str);
+    jint count = rvmGetStringLength(env, str);
+    jint length = getUtf8LengthOfUnicode(chars, count);
+
+    char* result = rvmAllocateMemoryAtomic(env, length + 1);
+    if (!result) return NULL;
+
+    unicodeToUtf8(result, chars, count);
+    return result;
+}
+
+void rvmGetStringRegion(Env* env, Object* str, jint start, jint len, jchar* buf) {
+    // TODO: Check bounds
+    jchar* chars = rvmGetStringChars(env, str);
+    //jint count = rvmGetStringLength(env, str);
+    memcpy(buf, chars + start, sizeof(jchar) * len);
+}
+
+void rvmGetStringUTFRegion(Env *env, Object* str, jint start, jint len, char* buf) {
+    // TODO: Check bounds
+    jchar* chars = rvmGetStringChars(env, str);
+    //jint count = rvmGetStringLength(env, str);
+    unicodeToUtf8(buf, chars + start, len);
+}
+

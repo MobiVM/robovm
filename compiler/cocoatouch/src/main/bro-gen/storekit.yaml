@@ -1,0 +1,205 @@
+package: org.robovm.apple.storekit
+include: [foundation.yaml, uikit.yaml]
+library: StoreKit
+framework: StoreKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/StoreKit.framework/Headers/StoreKit.h
+    - /System/Library/Frameworks/StoreKit.framework/Headers/StoreKitDefines.h
+typedefs:
+    'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
+    
+enums:
+    SKDownloadState: {first: SKDownloadStateWaiting, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    SKPaymentTransactionState: {first: SKPaymentTransactionStatePurchasing, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    SKErrorCode: {first: SKErrorUnknown}
+
+classes:
+    SKError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+
+    SKDownload: {} # DONE
+    SKMutablePayment: {} # DONE
+    SKPayment: # DONE
+        skip_handle_constructor: false
+        methods:
+            '+paymentWithProduct:':
+                name: create
+                constructor: true
+    SKPaymentQueue: # DONE
+        properties:
+            'transactions':
+                type: NSArray<SKPaymentTransaction>
+        methods:
+            '-addPayment:':
+                trim_after_first_colon: true
+            '-restoreCompletedTransactionsWithApplicationUsername:':
+                name: restoreCompletedTransactions
+            '-finishTransaction:':
+                trim_after_first_colon: true
+            '-startDownloads:':
+                trim_after_first_colon: true
+                parameters:
+                    downloads:
+                        type: NSArray<SKDownload>
+            '-pauseDownloads:':
+                trim_after_first_colon: true
+                parameters:
+                    downloads:
+                        type: NSArray<SKDownload>
+            '-resumeDownloads:':
+                trim_after_first_colon: true
+                parameters:
+                    downloads:
+                        type: NSArray<SKDownload>
+            '-cancelDownloads:':
+                trim_after_first_colon: true
+                parameters:
+                    downloads:
+                        type: NSArray<SKDownload>
+            '-addTransactionObserver:':
+                trim_after_first_colon: true
+            '-removeTransactionObserver:':
+                trim_after_first_colon: true
+            '+defaultQueue':
+                name: getDefaultQueue
+    SKPaymentTransaction: # DONE
+        properties:
+            'downloads':
+                type: NSArray<SKDownload>
+    SKProduct: # DONE
+        properties:
+            'downloadContentLengths':
+                type: NSArray<NSNumber>
+    SKProductsRequest: # DONE
+        methods:
+            '-initWithProductIdentifiers:':
+                name: init
+                parameters:
+                    productIdentifiers:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String>'
+    SKProductsResponse: # DONE
+        properties:
+            'products':
+                type: NSArray<SKProduct>
+            'invalidProductIdentifiers':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+    SKReceiptRefreshRequest: # DONE
+        properties:
+            'receiptProperties':
+                name: receiptProperties
+                type: SKReceiptRefreshRequestOptions
+        methods:
+            '-initWithReceiptProperties:':
+                name: init
+                parameters:
+                    properties:
+                        type: SKReceiptRefreshRequestOptions
+    SKRequest: {} # DONE
+    SKStoreProductViewController: # DONE
+        methods:
+            '-loadProductWithParameters:completionBlock:':
+                name: loadProduct
+                parameters:
+                    parameters:
+                        type: SKStoreProductParameters
+
+protocols:
+    SKPaymentTransactionObserver: # DONE
+        methods:
+            '-paymentQueue:updatedTransactions:':
+                name: updatedTransactions
+                parameters:
+                    queue: {}
+                    transactions:
+                        type: NSArray<SKPaymentTransaction>
+            '-paymentQueue:removedTransactions:':
+                name: removedTransactions
+                parameters:
+                    queue: {}
+                    transactions:
+                        type: NSArray<SKPaymentTransaction>
+            '-paymentQueue:restoreCompletedTransactionsFailedWithError:':
+                name: restoreCompletedTransactionsFailed
+            '-paymentQueueRestoreCompletedTransactionsFinished:':
+                name: restoreCompletedTransactionsFinished
+            '-paymentQueue:updatedDownloads:':
+                name: updatedDownloads
+                parameters:
+                    queue: {}
+                    downloads:
+                        type: NSArray<SKDownload>
+    SKProductsRequestDelegate: # DONE
+        methods:
+            '-productsRequest:didReceiveResponse:':
+                name: didReceiveResponse
+    SKRequestDelegate: # DONE
+        methods:
+            '-requestDidFinish:':
+                name: didFinish
+            '-request:didFailWithError:':
+                name: didFail
+    SKStoreProductViewControllerDelegate: # DONE
+        methods:
+            '-productViewControllerDidFinish:':
+                name: didFinish
+
+functions:
+    SK(TerminateForInvalidReceipt):
+        class: SKReceiptRefreshRequest
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?SK.*):
+        class: StoreKit
+        name: 'Function__#{g[0]}'
+
+values: 
+    SKErrorDomain:
+        class: SKError
+        name: getClassDomain
+        
+    SKDownload(TimeRemainingUnknown):
+        name: getRemainingTimeUnknown
+        class: SKDownload
+        readonly: true
+        
+    SKReceiptProperty(.*):
+        dictionary: SKReceiptRefreshRequestOptions
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            IsExpired:
+                name: expired
+                type: boolean
+            IsRevoked:
+                name: revoked
+                type: boolean
+            IsVolumePurchase:
+                name: volumePurchase
+                type: boolean
+    SKStoreProductParameter(.*):
+        dictionary: SKStoreProductParameters
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            ITunesItemIdentifier:
+                type: long
+            AffiliateToken:
+                type: String
+            CampaignToken:
+                type: String
+            ProviderToken:
+                type: String
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?SK.*):
+        class: StoreKit
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?SK.*):
+        class: StoreKit
+        name: 'Constant__#{g[0]}'

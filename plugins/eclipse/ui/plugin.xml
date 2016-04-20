@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension point="org.eclipse.ui.startup">
+  <!-- our plugin implements IStartup -->     
+  </extension>
+  <extension point="org.eclipse.ui.newWizards">
+    <category id="org.robovm.eclipse.wizards.category" name="RoboVM"/>
+    <wizard
+      canFinishEarly="false"
+      category="org.robovm.eclipse.wizards.category"
+      class="org.robovm.eclipse.internal.NewProjectWizard"
+      finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+      hasPages="true"
+      icon="icons/new_robovm_console_project.png"
+      id="org.robovm.eclipse.NewProjectWizard"
+      name="RoboVM Console Project"
+      preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
+      project="true"/>
+  </extension>
+  <extension point="org.eclipse.ui.newWizards">
+    <category id="org.robovm.eclipse.wizards.category" name="RoboVM"/>
+    <wizard
+      canFinishEarly="false"
+      category="org.robovm.eclipse.wizards.category"
+      class="org.robovm.eclipse.internal.NewCocoaTouchProjectWizard"
+      finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+      hasPages="true"
+      icon="icons/new_robovm_ios_project.png"
+      id="org.robovm.eclipse.NewCocoaTouchProjectWizard"
+      name="RoboVM iOS Project"
+      preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
+      project="true"/>
+  </extension>
+  <extension point="org.eclipse.ui.newWizards">
+    <category id="org.robovm.eclipse.wizards.category" name="RoboVM"/>
+    <wizard
+      canFinishEarly="false"
+      category="org.robovm.eclipse.wizards.category"
+      class="org.robovm.eclipse.internal.ib.NewStoryboardWizard"
+      finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+      hasPages="true"
+      icon="icons/new_robovm_ios_storyboard.png"
+      id="org.robovm.eclipse.ib.NewStoryboardWizard"
+      name="iOS Storyboard"
+      preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
+      project="false"/>
+  </extension>
+<!--  <extension point="org.eclipse.ui.newWizards">
+    <category id="org.robovm.eclipse.wizards.category" name="RoboVM"/>
+    <wizard
+      canFinishEarly="false"
+      category="org.robovm.eclipse.wizards.category"
+      class="org.robovm.eclipse.internal.ib.NewViewControllerWizard"
+      finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+      hasPages="true"
+      icon="icons/new_robovm_ios_view_controller.png"
+      id="org.robovm.eclipse.ib.NewViewControllerWizard"
+      name="iOS View Controller"
+      preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
+      project="false"/>
+  </extension>
+  <extension point="org.eclipse.ui.newWizards">
+    <category id="org.robovm.eclipse.wizards.category" name="RoboVM"/>
+    <wizard
+      canFinishEarly="false"
+      category="org.robovm.eclipse.wizards.category"
+      class="org.robovm.eclipse.internal.ib.NewViewWizard"
+      finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+      hasPages="true"
+      icon="icons/new_robovm_ios_view.png"
+      id="org.robovm.eclipse.ib.NewViewWizard"
+      name="iOS View"
+      preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
+      project="false"/>
+  </extension> -->
+  <extension point="org.eclipse.ui.perspectiveExtensions">
+    <perspectiveExtension targetID="org.eclipse.jdt.ui.JavaPerspective">
+      <newWizardShortcut id="org.robovm.eclipse.NewProjectWizard" />
+      <newWizardShortcut id="org.robovm.eclipse.NewCocoaTouchProjectWizard" />
+    </perspectiveExtension>
+  </extension>  
+  <extension point="org.eclipse.jdt.core.classpathContainerInitializer">
+    <classpathContainerInitializer
+      class="org.robovm.eclipse.internal.RoboVMClasspathContainerInitializer"
+      id="org.robovm.eclipse.ROBOVM_CONTAINER">
+    </classpathContainerInitializer>
+  </extension>
+  <extension point="org.eclipse.jdt.core.classpathContainerInitializer">
+    <classpathContainerInitializer
+      class="org.robovm.eclipse.internal.RoboVMCocoaTouchClasspathContainerInitializer"
+      id="org.robovm.eclipse.ROBOVM_COCOA_TOUCH_CONTAINER">
+    </classpathContainerInitializer>
+  </extension>
+  <extension point="org.eclipse.jdt.ui.classpathContainerPage">
+    <classpathContainerPage
+      id="org.robovm.eclipse.ROBOVM_CONTAINER"
+      name="RoboVM Runtime Library"
+      class="org.robovm.eclipse.internal.RoboVMClasspathContainerPage">
+    </classpathContainerPage>
+  </extension>
+  <extension point="org.eclipse.jdt.ui.classpathContainerPage">
+    <classpathContainerPage
+      id="org.robovm.eclipse.ROBOVM_COCOA_TOUCH_CONTAINER"
+      name="RoboVM CocoaTouch Library"
+      class="org.robovm.eclipse.internal.RoboVMCocoaTouchClasspathContainerPage">
+    </classpathContainerPage>
+  </extension>
+  <extension
+    id="org.robovm.eclipse.RoboVMClassBuilder"
+    name="RoboVM Class Builder"
+    point="org.eclipse.core.resources.builders">
+    <builder hasNature="true">
+      <run class="org.robovm.eclipse.internal.RoboVMClassBuilder" />
+    </builder>
+  </extension>
+  <extension
+    id="org.robovm.eclipse.RoboVMNature"
+    name="RoboVM Project Nature"
+    point="org.eclipse.core.resources.natures">
+    <runtime>
+      <run class="org.robovm.eclipse.internal.RoboVMNature" />
+    </runtime>
+    <builder id="org.robovm.eclipse.RoboVMClassBuilder" />
+    <requires-nature id="org.eclipse.jdt.core.javanature"/>
+  </extension>
+  <extension point="org.eclipse.debug.core.launchConfigurationTypes">
+    <launchConfigurationType
+      id="org.robovm.eclipse.ConsoleLaunchConfigurationType"
+      delegate="org.robovm.eclipse.internal.ConsoleLaunchConfigurationDelegate"
+      delegateName="RoboVM Console Launcher"
+      modes="debug, run"
+      name="Console Application"
+      public="true"
+      sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+      sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
+    </launchConfigurationType>
+    <launchConfigurationType
+      id="org.robovm.eclipse.ConsoleJUnitLaunchConfigurationType"
+      delegate="org.robovm.eclipse.internal.junit.ConsoleJUnitLaunchConfigurationDelegate"
+      delegateName="RoboVM Console JUnit Test Launcher"
+      modes="debug, run"
+      name="Console JUnit Test"
+      public="true"
+      sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+      sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
+    </launchConfigurationType>
+    <launchConfigurationType
+      id="org.robovm.eclipse.IOSSimulatorLaunchConfigurationType"
+      delegate="org.robovm.eclipse.internal.IOSSimulatorLaunchConfigurationDelegate"
+      delegateName="iOS Simulator Launcher"
+      modes="debug, run"
+      name="iOS Simulator App"
+      public="true"
+      sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+      sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
+    </launchConfigurationType>
+    <launchConfigurationType
+      id="org.robovm.eclipse.IOSSimulatorJUnitLaunchConfigurationType"
+      delegate="org.robovm.eclipse.internal.junit.IOSSimulatorJUnitLaunchConfigurationDelegate"
+      delegateName="iOS Simulator JUnit Test Launcher"
+      modes="debug, run"
+      name="iOS Simulator JUnit Test"
+      public="true"
+      sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+      sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
+    </launchConfigurationType>
+    <launchConfigurationType
+      id="org.robovm.eclipse.IOSDeviceLaunchConfigurationType"
+      delegate="org.robovm.eclipse.internal.IOSDeviceLaunchConfigurationDelegate"
+      delegateName="iOS Device Launcher"
+      modes="debug, run"
+      name="iOS Device App"
+      public="true"
+      sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+      sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
+    </launchConfigurationType>
+  </extension>
+  <extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+    <launchConfigurationTypeImage
+      id="org.robovm.eclipse.ConsoleLaunchConfigurationTypeImage"
+      icon="icons/robovm_console_launcher.png"
+      configTypeID="org.robovm.eclipse.ConsoleLaunchConfigurationType">
+    </launchConfigurationTypeImage>
+    <launchConfigurationTypeImage
+      id="org.robovm.eclipse.ConsoleJUnitLaunchConfigurationTypeImage"
+      icon="icons/robovm_console_junit_launcher.png"
+      configTypeID="org.robovm.eclipse.ConsoleJUnitLaunchConfigurationType">
+    </launchConfigurationTypeImage>
+    <launchConfigurationTypeImage
+      id="org.robovm.eclipse.IOSSimulatorLaunchConfigurationTypeImage"
+      icon="icons/robovm_simulator_launcher.png"
+      configTypeID="org.robovm.eclipse.IOSSimulatorLaunchConfigurationType">
+    </launchConfigurationTypeImage>
+    <launchConfigurationTypeImage
+      id="org.robovm.eclipse.IOSSimulatorJUnitLaunchConfigurationTypeImage"
+      icon="icons/robovm_simulator_junit_launcher.png"
+      configTypeID="org.robovm.eclipse.IOSSimulatorJUnitLaunchConfigurationType">
+    </launchConfigurationTypeImage>
+    <launchConfigurationTypeImage
+      id="org.robovm.eclipse.IOSDeviceLaunchConfigurationTypeImage"
+      icon="icons/robovm_device_launcher.png"
+      configTypeID="org.robovm.eclipse.IOSDeviceLaunchConfigurationType">
+    </launchConfigurationTypeImage>
+  </extension>
+  <extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+    <launchConfigurationTabGroup
+        class="org.robovm.eclipse.internal.ConsoleLaunchConfigurationTabGroup"
+        description="Console Application"
+        id="org.robovm.eclipse.ConsoleLaunchConfigurationTabGroup"
+        type="org.robovm.eclipse.ConsoleLaunchConfigurationType" />
+    <launchConfigurationTabGroup
+        class="org.robovm.eclipse.internal.junit.ConsoleJUnitLaunchConfigurationTabGroup"
+        description="Console JUnit Test"
+        id="org.robovm.eclipse.ConsoleJUnitLaunchConfigurationTabGroup"
+        type="org.robovm.eclipse.ConsoleJUnitLaunchConfigurationType" />
+    <launchConfigurationTabGroup
+        class="org.robovm.eclipse.internal.IOSSimulatorLaunchConfigurationTabGroup"
+        description="iOS Simulator App"
+        id="org.robovm.eclipse.IOSSimulatorLaunchConfigurationTabGroup"
+        type="org.robovm.eclipse.IOSSimulatorLaunchConfigurationType" />
+    <launchConfigurationTabGroup
+        class="org.robovm.eclipse.internal.junit.IOSSimulatorJUnitLaunchConfigurationTabGroup"
+        description="iOS Simulator JUnit Test"
+        id="org.robovm.eclipse.IOSSimulatorJUnitLaunchConfigurationTabGroup"
+        type="org.robovm.eclipse.IOSSimulatorJUnitLaunchConfigurationType" />
+    <launchConfigurationTabGroup
+        class="org.robovm.eclipse.internal.IOSDeviceLaunchConfigurationTabGroup"
+        description="iOS Device App"
+        id="org.robovm.eclipse.IOSDeviceLaunchConfigurationTabGroup"
+        type="org.robovm.eclipse.IOSDeviceLaunchConfigurationType" />
+  </extension>
+  <extension point="org.eclipse.debug.ui.launchShortcuts">
+    <shortcut
+        class="org.robovm.eclipse.internal.ConsoleLaunchShortcut"
+        id="org.robovm.eclipse.ConsoleLaunchShortcut"
+        icon="icons/robovm_console_launcher.png"
+        label="Console Application"
+        modes="run, debug">
+      <contextualLaunch>
+        <enablement>
+          <with variable="selection">
+            <count value="1"/>
+            <iterate>
+              <and>
+                <adapt type="org.eclipse.jdt.core.IJavaElement">
+                  <test property="org.eclipse.jdt.core.isInJavaProject"/>
+                </adapt>
+                <or>
+                  <test property="org.eclipse.jdt.launching.hasMain"/>
+                  <test property="org.eclipse.jdt.launching.isContainer"/>
+                  <test property="org.eclipse.jdt.launching.isPackageFragment"/>
+                  <test property="org.eclipse.jdt.launching.isPackageFragmentRoot"/>
+                </or>
+              </and>
+            </iterate>
+          </with>
+        </enablement>
+      </contextualLaunch>
+    </shortcut>
+    <shortcut
+        class="org.robovm.eclipse.internal.junit.ConsoleJUnitLaunchShortcut"
+        id="org.robovm.eclipse.ConsoleJUnitLaunchShortcut"
+        icon="icons/robovm_console_junit_launcher.png"
+        label="Console JUnit Test"
+        modes="run, debug">
+      <contextualLaunch>
+        <enablement>
+          <with variable="selection">
+            <count value="1" />
+            <iterate>
+              <adapt type="org.eclipse.jdt.core.IJavaElement">
+                <test property="org.eclipse.jdt.core.isInJavaProject"/>
+                <test property="org.eclipse.jdt.core.hasTypeOnClasspath" value="junit.framework.Test"/>
+                <test property="org.eclipse.jdt.junit.canLaunchAsJUnit" forcePluginActivation="true"/>
+              </adapt>
+            </iterate>
+          </with>
+        </enablement>
+      </contextualLaunch>
+    </shortcut>
+    <shortcut
+        class="org.robovm.eclipse.internal.IPhoneSimulatorLaunchShortcut"
+        id="org.robovm.eclipse.IPhoneSimulatorLaunchShortcut"
+        icon="icons/robovm_simulator_launcher.png"
+        label="iOS Simulator App (iPhone)"
+        modes="run, debug">
+      <contextualLaunch>
+        <enablement>
+          <with variable="selection">
+            <count value="1"/>
+            <iterate>
+              <and>
+                <test property="org.eclipse.jdt.launching.isContainer"/>
+                <test property="org.eclipse.jdt.launching.hasProjectNature" args="org.robovm.eclipse.RoboVMNature"/>
+                <or>
+                  <instanceof value="org.eclipse.jdt.core.IJavaProject"/>
+                  <instanceof value="org.eclipse.core.resources.IProject"/>
+                </or>
+              </and>
+            </iterate>
+          </with>
+        </enablement>
+      </contextualLaunch>
+    </shortcut>
+    <shortcut
+        class="org.robovm.eclipse.internal.IPadSimulatorLaunchShortcut"
+        id="org.robovm.eclipse.IPadSimulatorLaunchShortcut"
+        icon="icons/robovm_simulator_launcher.png"
+        label="iOS Simulator App (iPad)"
+        modes="run, debug">
+      <contextualLaunch>
+        <enablement>
+          <with variable="selection">
+            <count value="1"/>
+            <iterate>
+              <and>
+                <test property="org.eclipse.jdt.launching.isContainer"/>
+                <test property="org.eclipse.jdt.launching.hasProjectNature" args="org.robovm.eclipse.RoboVMNature"/>
+                <or>
+                  <instanceof value="org.eclipse.jdt.core.IJavaProject"/>
+                  <instanceof value="org.eclipse.core.resources.IProject"/>
+                </or>
+              </and>
+            </iterate>
+          </with>
+        </enablement>
+      </contextualLaunch>
+    </shortcut>
+    <shortcut
+        class="org.robovm.eclipse.internal.junit.IOSSimulatorJUnitLaunchShortcut"
+        id="org.robovm.eclipse.IOSSimulatorJUnitLaunchShortcut"
+        icon="icons/robovm_simulator_junit_launcher.png"
+        label="iOS Simulator JUnit Test"
+        modes="run, debug">
+      <contextualLaunch>
+        <enablement>
+          <with variable="selection">
+            <count value="1" />
+            <iterate>
+              <adapt type="org.eclipse.jdt.core.IJavaElement">
+                <test property="org.eclipse.jdt.core.isInJavaProject"/>
+                <test property="org.eclipse.jdt.core.hasTypeOnClasspath" value="junit.framework.Test"/>
+                <test property="org.eclipse.jdt.junit.canLaunchAsJUnit" forcePluginActivation="true"/>
+                <test property="org.eclipse.jdt.launching.hasProjectNature" args="org.robovm.eclipse.RoboVMNature"/>
+              </adapt>
+            </iterate>
+          </with>
+        </enablement>
+      </contextualLaunch>
+    </shortcut>
+    <shortcut
+        class="org.robovm.eclipse.internal.IOSDeviceLaunchShortcut"
+        id="org.robovm.eclipse.IOSDeviceLaunchShortcut"
+        icon="icons/robovm_device_launcher.png"
+        label="iOS Device App"
+        modes="run, debug">
+      <contextualLaunch>
+        <enablement>
+          <with variable="selection">
+            <count value="1"/>
+            <iterate>
+              <and>
+                <test property="org.eclipse.jdt.launching.isContainer"/>
+                <test property="org.eclipse.jdt.launching.hasProjectNature" args="org.robovm.eclipse.RoboVMNature"/>
+                <or>
+                  <instanceof value="org.eclipse.jdt.core.IJavaProject"/>
+                  <instanceof value="org.eclipse.core.resources.IProject"/>
+                </or>
+              </and>
+            </iterate>
+          </with>
+        </enablement>
+      </contextualLaunch>
+    </shortcut>
+  </extension>
+  <extension point="org.eclipse.ui.commands">
+    <category
+            name="Category name"
+            description="Category description"
+            id="org.eclipse.ui.examples.contributions.commands.category">
+    </category>
+    <command
+            categoryId="org.eclipse.ui.examples.contributions.commands.category"
+            id="org.eclipse.ui.examples.contributions.view.count"
+            description="Foo bar desc"
+            name="Foo bar">
+    </command>
+  </extension>
+  <extension point="org.eclipse.ui.popupMenus">
+    <objectContribution
+        id="org.robovm.eclipse.contribution2"
+        nameFilter="*"
+        objectClass="org.eclipse.core.resources.IProject"
+        adaptable="true">
+      <filter name="projectNature" value="org.robovm.eclipse.RoboVMNature"/>
+      <action
+            class="org.robovm.eclipse.internal.ib.OpenXcodeAction"
+            enablesFor="1"
+            id="org.robovm.eclipse.OpenXcodeAction"
+            label="Open Xcode Project">
+      </action>
+    </objectContribution>
+    <objectContribution
+        id="org.robovm.eclipse.contribution2"
+        nameFilter="*"
+        objectClass="org.eclipse.core.resources.IProject"
+        adaptable="true">
+      <menu
+          id="org.robovm.eclipse.RoboVMTools"
+          label="RoboVM Tools"
+          path="additions">
+        <separator name="group1" />
+        <separator name="group2" />
+        <separator name="group3" />
+        <separator name="group4" />
+      </menu>
+      <filter name="projectNature" value="org.robovm.eclipse.RoboVMNature"/>
+      <action
+            class="org.robovm.eclipse.internal.actions.CreateIPAAction"
+            enablesFor="1"
+            id="org.robovm.eclipse.CreateIPAAction"
+            label="Package for App Store/Ad-Hoc distribution..."
+            menubarPath="org.robovm.eclipse.RoboVMTools/group1"
+            tooltip="Packages an iOS app in an IPA archive for App Store or Ad-Hoc distribution">
+      </action>
+    </objectContribution>
+  </extension>
+  <extension point="org.eclipse.ui.commands">
+    <command id="org.robovm.eclipse.OpenLicenseManager"
+          defaultHandler="org.robovm.eclipse.OpenLicenseManagerHandler"
+          name="RoboVM License Manager"/>
+  </extension>
+  <extension point="org.eclipse.ui.commands">
+    <command id="org.robovm.eclipse.ClearRoboVMCache"
+          defaultHandler="org.robovm.eclipse.ClearRoboVMCacheHandler"
+          name="RoboVM License Manager"/>
+  </extension>
+  <extension point="org.eclipse.ui.menus">
+    <menuContribution locationURI="menu:org.eclipse.ui.main.menu?before=window">
+      <menu id="robovmMenu" label="RoboVM">
+        <command commandId="org.robovm.eclipse.OpenLicenseManager"
+              label="License Manager"/>
+      </menu>
+    </menuContribution>
+    <menuContribution locationURI="menu:org.eclipse.ui.main.menu?before=window">
+      <menu id="robovmMenu" label="RoboVM">
+        <command commandId="org.robovm.eclipse.ClearRoboVMCache"
+              label="Clear RoboVM Cache"/>
+      </menu>
+    </menuContribution>
+  </extension>
+  <extension point="org.eclipse.ui.editors">
+    <editor id="org.robovm.eclipse.ib.StoryboardEditor"
+               name="iOS Storyboard Editor"
+               icon="icons/ios_storyboard_file.png"
+               extensions="storyboard"
+               launcher="org.robovm.eclipse.internal.ib.XcodeLauncher">
+    </editor>
+    <editor id="org.robovm.eclipse.ib.WindowEditor"
+               name="iOS XIB Editor"
+               icon="icons/ios_xib_file.png"
+               extensions="xib"
+               launcher="org.robovm.eclipse.internal.ib.XcodeLauncher">
+    </editor>
+  </extension>
+</plugin>

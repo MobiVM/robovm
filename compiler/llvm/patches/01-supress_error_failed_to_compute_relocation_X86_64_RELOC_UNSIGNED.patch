@@ -1,0 +1,16 @@
+diff --git a/lib/DebugInfo/DWARFContext.cpp b/lib/DebugInfo/DWARFContext.cpp
+index 37ba43f..d45618e 100644
+--- a/lib/DebugInfo/DWARFContext.cpp
++++ b/lib/DebugInfo/DWARFContext.cpp
+@@ -668,8 +668,10 @@ DWARFContextInMemory::DWARFContextInMemory(const object::ObjectFile &Obj)
+           if (ec) {
+             errs() << "Aaaaaa! Nameless relocation! Aaaaaa!\n";
+           }
+-          errs() << "error: failed to compute relocation: "
+-                 << Name << "\n";
++          // RoboVM note: This happens for RoboVM compiled code and also with code compiled with clang.
++          //              Prevent this from being written to stderr.
++          //errs() << "error: failed to compute relocation: "
++          //       << Name << "\n";
+           continue;
+         }

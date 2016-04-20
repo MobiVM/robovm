@@ -1,0 +1,2986 @@
+package: org.robovm.apple.avfoundation
+include: [foundation.yaml, corefoundation.yaml, dispatch.yaml, coreanimation.yaml, coreimage.yaml, coregraphics.yaml, coreaudio.yaml, coremedia.yaml, corevideo.yaml, mediatoolbox.yaml, audiotoolbox.yaml, audiounit.yaml ]
+library: AVFoundation
+framework: AVFoundation
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/AVFoundation.framework/Headers/AVFoundation.h
+    - /System/Library/Frameworks/AVFoundation.framework/Headers/AVBase.h
+    - /System/Library/Frameworks/AVFoundation.framework/Headers/AVFAudio.h
+typedefs:
+    'void (^)(CMSampleBufferRef, NSError *)': '@Block VoidBlock2<CMSampleBuffer, NSError>'
+    'void (^)(CMTime)': '@Block VoidBlock1<CMTime>'
+    'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
+    'void (^)(CMSampleBufferRef, AVCaptureBracketedStillImageSettings *, NSError *)': '@Block VoidBlock3<CMSampleBuffer, AVCaptureBracketedStillImageSettings, NSError>'
+    
+enums:
+    AVAssetReferenceRestrictions: { first: AVAssetReferenceRestrictionForbidNone }
+    AVAssetExportSessionStatus: { first: AVAssetExportSessionStatusUnknown }
+    AVAssetImageGeneratorResult: { first: AVAssetImageGeneratorSucceeded }
+    AVAssetReaderStatus: { first: AVAssetReaderStatusUnknown }
+    AVAssetWriterStatus: { first: AVAssetWriterStatusUnknown }
+    AVAudio3DMixingRenderingAlgorithm: {}
+    AVAudioCommonFormat: { suffix: Format }
+    AVAudioConverterInputStatus: {}
+    AVAudioConverterOutputStatus: {}
+    AVAudioConverterPrimeMethod: {}
+    AVAudioEnvironmentDistanceAttenuationModel: {}
+    AVAudioPlayerNodeBufferOptions: {}
+    AVAudioSessionInterruptionOptions: { prefix: AVAudioSessionInterruptionOption }
+    AVAudioSessionSetActiveOptions: { prefix: AVAudioSessionSetActiveOption }
+    AVAudioSessionPortOverride: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    AVAudioSessionRouteChangeReason: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    AVAudioSessionCategoryOptions: {}
+    AVAudioSessionInterruptionType: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    AVAudioSessionErrorCode: { prefix: AVAudioSessionErrorCode, AVAudioSessionErrorInsufficientPriority: InsufficientPriority }
+    AVAudioSessionRecordPermission: {}
+    AVAudioSessionSilenceSecondaryAudioHintType: {}
+    AVAudioQuality: { first: AVAudioQualityMin }
+    AVAudioUnitReverbPreset: {}
+    AVAudioUnitEQFilterType: {}
+    AVAudioUnitDistortionPreset: {}
+    AVAuthorizationStatus: {}
+    AVCaptureDevicePosition: {}
+    AVCaptureFlashMode: {}
+    AVCaptureTorchMode: {}
+    AVCaptureFocusMode: {}
+    AVCaptureAutoFocusRangeRestriction: {}
+    AVCaptureAutoFocusSystem: {}
+    AVCaptureExposureMode: {}
+    AVCaptureDeviceTransportControlsPlaybackMode: {}
+    AVCaptureSessionInterruptionReason: {}
+    AVCaptureVideoOrientation: {}
+    AVCaptureVideoStabilizationMode: {}
+    AVCaptureWhiteBalanceMode: {}
+    AVErrorCode: { first: AVErrorUnknown, prefix: AVError, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    AVKeyValueStatus: { first: AVKeyValueStatusUnknown }
+    AVMusicSequenceLoadOptions: {skip_none: true}
+    AVPlayerStatus: { first: AVPlayerStatusUnknown }
+    AVPlayerActionAtItemEnd: { first: AVPlayerActionAtItemEndAdvance }
+    AVPlayerItemStatus: { first: AVPlayerItemStatusUnknown }
+    AVQueuedSampleBufferRenderingStatus: {}
+    AVSampleBufferDisplayLayerQueueManagement: {}
+    AVSpeechBoundary: {}
+    AVSpeechSynthesisVoiceQuality: {}
+    AVVideoFieldMode: {}
+    
+categories:
+    NSValueAVFoundationExtensions: # DONE
+        methods:
+            '+valueWith.*':
+                name: create
+    AVTimeCoding: # DONE
+        methods:
+            '-encodeCMTime:forKey:':
+                trim_after_first_colon: true
+            '-decodeCMTimeForKey:':
+                name: decodeCMTime
+            '-encodeCMTimeRange:forKey:':
+                trim_after_first_colon: true
+            '-decodeCMTimeRangeForKey:':
+                name: decodeCMTimeRange
+            '-encodeCMTimeMapping:forKey:':
+                trim_after_first_colon: true
+            '-decodeCMTimeMappingForKey:':
+                name: decodeCMTimeMapping
+classes:
+    # Structs
+    AVAudio3DAngularOrientation: {}
+    AVAudio3DPoint: {}
+    AVAudio3DVector: {}
+    AVAudio3DVectorOrientation: {}
+    AVAudioConverterPrimeInfo: {}
+    AVBeatRange: {}
+    AVCaptureWhiteBalanceGains: {}
+    AVCaptureWhiteBalanceChromaticityValues: {}
+    AVCaptureWhiteBalanceTemperatureAndTintValues: {}
+    AVEdgeWidths: {}
+    AVPixelAspectRatio: {}
+    
+    AVError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+
+    AVAsset: # DONE
+        skip_handle_constructor: false
+        properties:
+            'tracks':
+                type: 'NSArray<? extends AVAssetTrack>'
+            'trackGroups':
+                type: NSArray<AVAssetTrackGroup>
+            'commonMetadata':
+                type: NSArray<AVMetadataItem>
+            'metadata':
+                type: NSArray<AVMetadataItem>
+            'hasProtectedContent':
+                omit_prefix: true
+            'availableMetadataFormats':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(AVMetadataFormat.AsListMarshaler.class) List<AVMetadataFormat>'
+            'availableChapterLocales':
+                type: NSArray<NSLocale>
+            'availableMediaCharacteristicsWithMediaSelectionOptions':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(AVMediaCharacteristic.AsListMarshaler.class) List<AVMediaCharacteristic>'
+        methods:
+            '+assetWithURL:':
+                name: create
+                constructor: true                
+            '-trackWithTrackID:':
+                name: getTrack
+            '-tracksWithMediaType:':
+                name: getTracksWithType
+                return_type: NSArray<AVAssetTrack>
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '-tracksWithMediaCharacteristic:':
+                name: getTracksWithCharacteristic
+                return_type: NSArray<AVAssetTrack>
+                parameters:
+                    mediaCharacteristic:
+                        type: AVMediaCharacteristic
+            '-metadataForFormat:':
+                name: getMetadata
+                return_type: NSArray<AVMetadataItem>
+                parameters:
+                    format:
+                        type: AVMetadataFormat
+            '-chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:':
+                name: getChapterMetadataGroupsContainingItemsWithCommonKeys
+                return_type: NSArray<AVTimedMetadataGroup>
+                parameters:
+                    commonKeys:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(AVMetadataKey.AsListMarshaler.class) List<AVMetadataKey>'
+            '-chapterMetadataGroupsBestMatchingPreferredLanguages:':
+                name: getChapterMetadataGroupsBestMatchingPreferredLanguages
+                return_type: NSArray<AVTimedMetadataGroup>
+                parameters:
+                    preferredLanguages:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '-mediaSelectionGroupForMediaCharacteristic:':
+                name: getMediaSelectionGroup
+                parameters:
+                    mediaCharacteristic:
+                        type: AVMediaCharacteristic
+            '-unusedTrackID':
+                property: true
+    AVAssetDownloadTask: # DONE
+        properties:
+            'options':
+                type: AVAssetDownloadTaskOptions
+            'loadedTimeRanges':
+                type: List<CMTimeRange>
+                marshaler: CMTimeRange.AsValuedListMarshaler
+    AVAssetDownloadURLSession: # DONE
+        methods:
+            '-assetDownloadTaskWithURLAsset:destinationURL:options:':
+                name: newAssetDownloadTask
+                parameters:
+                    options:
+                        type: AVAssetDownloadTaskOptions
+            '-dataTaskWith.*':
+                name: newDataTask
+            '-uploadTaskWith.*':
+                name: newUploadTask
+            '-downloadTaskWith.*':
+                name: newDownloadTask
+            '+sharedSession':
+                property: true
+            '+sessionWith.*':
+                name: create
+                constructor: true
+    AVAssetExportSession: # DONE
+        properties:
+            'presetName':
+                type: AVAssetExportPreset
+            'outputFileType':
+                type: String
+            'supportedFileTypes':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            'metadata':
+                type: NSArray<AVMetadataItem>
+            'audioTimePitchAlgorithm':
+                type: AVAudioTimePitchAlgorithm
+        methods:
+            '-initWithAsset:presetName:':
+                name: init
+                parameters:
+                    presetName:
+                        type: AVAssetExportPreset
+            '-determineCompatibleFileTypesWithCompletionHandler:':
+                name: determineCompatibleFileTypes
+                parameters:
+                    handler:
+                        type: '@Block VoidBlock1<NSArray<NSString>>' # TODO asStringListMarshaler
+            '-exportAsynchronouslyWithCompletionHandler:':
+                name: exportAsynchronously
+            '+allExportPresets':
+                property: true
+                return_type: '@org.robovm.rt.bro.annotation.Marshaler(AVAssetExportPreset.AsListMarshaler.class) List<AVAssetExportPreset>'
+            '+exportPresetsCompatibleWithAsset:':
+                name: getCompatibleExportPresets
+                return_type: '@org.robovm.rt.bro.annotation.Marshaler(AVAssetExportPreset.AsListMarshaler.class) List<AVAssetExportPreset>'
+            '+determineCompatibilityOfExportPreset:withAsset:outputFileType:completionHandler:':
+                name: determineCompatibilityOfExportPreset
+                parameters:
+                    presetName:
+                        type: AVAssetExportPreset
+            '+exportSessionWithAsset:presetName:':
+                exclude: true
+    AVAssetImageGenerator: # DONE
+        properties:
+            'apertureMode':
+                type: AVAssetImageGeneratorApertureMode
+        methods:
+            '-initWithAsset:':
+                name: init
+            '-copyCGImageAtTime:actualTime:error:':
+                name: getCGImageAtTime
+                throws: NSErrorException
+                return_marshaler: CFType.NoRetainMarshaler
+                annotations: ['@WeaklyLinked']
+            '-generateCGImagesAsynchronouslyForTimes:completionHandler:':
+                name: generateCGImagesAsynchronously
+                parameters:
+                    requestedTimes:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(CMTime.AsValuedListMarshaler.class) List<CMTime>'
+                    handler: 
+                        type: '@Block VoidBlock5<CMTime, CGImage, CMTime, AVAssetImageGeneratorResult, NSError>'
+            '+assetImageGeneratorWithAsset:':
+                exclude: true
+    AVAssetReader: # DONE
+        properties:
+            'outputs':
+                type: NSArray<AVAssetReaderOutput>
+        methods:
+            '-initWithAsset:error:':
+                name: init
+                throws: NSErrorException
+            '-canAddOutput:':
+                trim_after_first_colon: true
+            '-addOutput:':
+                trim_after_first_colon: true
+            '+assetReaderWithAsset:error:':
+                exclude: true
+    AVAssetReaderAudioMixOutput: # DONE
+        properties:
+            'audioTracks':
+                type: NSArray<AVAssetTrack>
+            'audioSettings':
+                type: AVAudioSettings
+            'audioTimePitchAlgorithm':
+                type: AVAudioTimePitchAlgorithm
+        methods:
+            '-initWithAudioTracks:audioSettings:':
+                name: init
+                parameters:
+                    audioTracks:
+                        type: NSArray<AVAssetTrack>
+                    audioSettings:
+                        type: AVAudioSettings
+            '+assetReaderAudioMixOutputWithAudioTracks:audioSettings:':
+                exclude: true
+    AVAssetReaderOutput: # DONE
+        properties:
+            'mediaType':
+                type: AVMediaType
+        methods:
+            '-copyNextSampleBuffer':
+                name: getNextSampleBuffer
+                return_marshaler: CFType.NoRetainMarshaler
+                annotations: ['@WeaklyLinked']
+            '-resetForReadingTimeRanges:':
+                trim_after_first_colon: true
+                parameters:
+                    timeRanges:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(CMTimeRange.AsValuedListMarshaler.class) List<CMTimeRange>'
+    AVAssetReaderOutputMetadataAdaptor: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '+assetReaderOutputMetadataAdaptorWithAssetReaderTrackOutput:':
+                exclude: true
+    AVAssetReaderSampleReferenceOutput: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '+assetReaderSampleReferenceOutputWithTrack:':
+                exclude: true
+    AVAssetReaderTrackOutput: # DONE
+        properties:
+            'outputSettings':
+                visibility: protected
+            'audioTimePitchAlgorithm':
+                type: AVAudioTimePitchAlgorithm
+        methods:
+            '-initWithTrack:outputSettings:':
+                name: init
+                constructor: false
+            '+assetReaderTrackOutputWithTrack:outputSettings:':
+                exclude: true
+    AVAssetReaderVideoCompositionOutput: # DONE
+        properties:
+            'videoTracks':
+                type: NSArray<AVAssetTrack>
+            'videoSettings':
+                name: videoSettings0
+                visibility: protected
+        methods:
+            '-initWithVideoTracks:videoSettings:':
+                name: init
+                constructor: false
+                parameters:
+                    videoTracks:
+                        type: NSArray<AVAssetTrack>
+            '+assetReaderVideoCompositionOutputWithVideoTracks:videoSettings:':
+                exclude: true
+    AVAssetResourceLoader: # DONE
+        properties:
+            'delegateQueue':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-setDelegate:queue:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
+    AVAssetResourceLoadingContentInformationRequest: {} # DONE
+    AVAssetResourceLoadingDataRequest: # DONE
+        methods:
+            '-respondWithData:':
+                trim_after_first_colon: true
+    AVAssetResourceLoadingRequest: # DONE
+        properties:
+            'cancelled':
+                name: isCancelled
+        methods:
+            '-finishLoadingWithError:':
+                name: finishLoading
+            '-streamingContentKeyRequestDataForApp:contentIdentifier:options:error:':
+                name: getStreamingContentKeyRequestData
+                throws: NSErrorException
+                parameters:
+                    options:
+                        type: AVAssetResourceLoadingRequestOptions
+            '-persistentContentKeyFromKeyVendorResponse:options:error:':
+                name: getPersistentContentKey
+                throws: NSErrorException
+                parameters:
+                    options:
+                        type: AVAssetResourceLoadingRequestOptions
+            '-finishLoadingWithResponse:data:redirect:':
+                name: finishLoading
+    AVAssetResourceRenewalRequest: {} # DONE
+    AVAssetTrack: # DONE
+        properties:
+            'formatDescriptions':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<CMFormatDescription>'
+            'segments':
+                type: NSArray<AVAssetTrackSegment>
+            'commonMetadata':
+                type: NSArray<AVMetadataItem>
+            'availableMetadataFormats':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(AVMetadataFormat.AsListMarshaler.class) List<AVMetadataFormat>'
+            'availableTrackAssociationTypes':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(AVTrackAssociationType.AsListMarshaler.class) List<AVTrackAssociationType>'
+            'metadata':
+                type: NSArray<AVMetadataItem>
+        methods:
+            '-hasMediaCharacteristic:':
+                trim_after_first_colon: true
+                parameters:
+                    mediaCharacteristic:
+                        type: AVMediaCharacteristic
+            '-segmentForTrackTime:':
+                name: getSegment
+            '-samplePresentationTimeForTrackTime:':
+                name: getSamplePresentationTime
+            '-metadataForFormat:':
+                name: getMetadataForFormat
+                return_type: NSArray<AVMetadataItem>
+                parameters:
+                    format:
+                        type: AVMetadataFormat
+            '-associatedTracksOfType:':
+                name: getAssociatedTracksOfType
+                return_type: NSArray<AVAssetTrack>
+                parameters:
+                    trackAssociationType:
+                        type: AVTrackAssociationType
+    AVAssetTrackGroup: # DONE
+        properties:
+            'trackIDs':
+                type: NSArray<NSNumber>
+    AVAssetTrackSegment: {} # DONE
+    AVAssetWriter: # DONE
+        properties:
+            'availableMediaTypes':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(AVMediaType.AsListMarshaler.class) List<AVMediaType>'
+            'metadata':
+                type: NSArray<AVMetadataItem>
+            'inputs':
+                type: NSArray<AVAssetWriterInput>
+            'inputGroups':
+                type: NSArray<AVAssetWriterInputGroup>
+        methods:
+            '-initWithURL:fileType:error:':
+                name: init
+                throws: NSErrorException
+            '-canApplyOutputSettings:forMediaType:':
+                trim_after_first_colon: true
+                visibility: protected # can be either AVAudioSettings or AVVideoSettings
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '-canAddInput:':
+                trim_after_first_colon: true
+            '-addInput:':
+                trim_after_first_colon: true
+            '-startSessionAtSourceTime:':
+                name: startSession
+            '-endSessionAtSourceTime:':
+                name: endSession
+            '-finishWritingWithCompletionHandler:':
+                name: finishWriting
+            '+assetWriterWithURL:fileType:error:':
+                exclude: true
+            '-canAddInputGroup:':
+                trim_after_first_colon: true
+            '-addInputGroup:':
+                trim_after_first_colon: true
+    AVAssetWriterInput: # DONE
+        properties:
+            'outputSettings':
+                visibility: protected # can be either AVAudioSettings or AVVideoSettings
+            'metadata':
+                type: NSArray<AVMetadataItem>
+            'mediaType':
+                type: AVMediaType
+            'canPerformMultiplePasses':
+                omit_prefix: true
+        methods:
+            '-initWithMediaType:outputSettings:':
+                name: init
+                constructor: false # can be either AVAudioSettings or AVVideoSettings
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '-initWithMediaType:outputSettings:sourceFormatHint:':
+                name: init
+                constructor: false # can be either AVAudioSettings or AVVideoSettings
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '-requestMediaDataWhenReadyOnQueue:usingBlock:':
+                name: requestMediaDataWhenReady
+                annotations: ['@WeaklyLinked']
+            '-appendSampleBuffer:':
+                trim_after_first_colon: true
+            '+assetWriterInputWithMediaType:outputSettings:':
+                exclude: true
+            '+assetWriterInputWithMediaType:outputSettings:sourceFormatHint:':
+                exclude: true
+            '-canAddTrackAssociationWithTrackOfInput:type:':
+                name: canAddTrackAssociation
+                parameters:
+                    trackAssociationType:
+                        type: AVTrackAssociationType
+            '-addTrackAssociationWithTrackOfInput:type:':
+                name: addTrackAssociation   
+                parameters:
+                    trackAssociationType:
+                        type: AVTrackAssociationType
+            '-respondToEachPassDescriptionOnQueue:usingBlock:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
+    AVAssetWriterInputGroup: # DONE
+        properties:
+            'inputs':
+                type: NSArray<AVAssetWriterInput>
+        methods:
+            '-initWithInputs:defaultInput:':
+                name: init
+                parameters:
+                    inputs:
+                        type: NSArray<AVAssetWriterInput>
+            '+assetWriterInputGroupWithInputs:defaultInput:':
+                exclude: true
+    AVAssetWriterInputMetadataAdaptor: # DONE
+        methods:
+            '-initWithAssetWriterInput:':
+                name: init
+            '-appendTimedMetadataGroup:':
+                trim_after_first_colon: true
+            '+assetWriterInputMetadataAdaptorWithAssetWriterInput:':
+                exclude: true
+    AVAssetWriterInputPassDescription: # DONE
+        properties:
+            'sourceTimeRanges':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(CMTimeRange.AsValuedListMarshaler.class) List<CMTimeRange>'
+    AVAssetWriterInputPixelBufferAdaptor: # DONE
+        properties:
+            'sourcePixelBufferAttributes':
+                type: CVPixelBufferAttributes
+                annotations: ['@WeaklyLinked']
+            'pixelBufferPool':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-initWithAssetWriterInput:sourcePixelBufferAttributes:':
+                name: init
+                annotations: ['@WeaklyLinked']
+                parameters:
+                    sourcePixelBufferAttributes:
+                        type: CVPixelBufferAttributes
+            '-appendPixelBuffer:withPresentationTime:':
+                name: appendPixelBuffer
+                annotations: ['@WeaklyLinked']
+            '+assetWriterInputPixelBufferAdaptorWithAssetWriterInput:sourcePixelBufferAttributes:':
+                exclude: true
+    AVAsynchronousCIImageFilteringRequest: # DONE
+        methods:
+            '-finish.*':
+                name: finish
+    AVAsynchronousVideoCompositionRequest: # DONE
+        properties:
+            'sourceTrackIDs':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+        methods:
+            '-sourceFrameByTrackID:':
+                name: getSourceFrame
+                annotations: ['@WeaklyLinked']
+            '-finishWithComposedVideoFrame:':
+                name: finish
+                annotations: ['@WeaklyLinked']
+            '-finishWithError:':
+                name: finish
+    AVAudioBuffer: # DONE
+        properties:
+            '(audioBufferList|mutableAudioBufferList)':
+                annotations: ['@WeaklyLinked']
+    AVAudioChannelLayout: # DONE
+        properties:
+            'layout':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-initWithLayout:':
+                name: init
+                annotations: ['@WeaklyLinked']
+            '-init.*':
+                name: init
+            '-isEqual:':
+                name: equalsTo
+                parameters:
+                    object:
+                        type: AVAudioChannelLayout
+            '+layoutWith.*':
+                exclude: true
+    AVAudioCompressedBuffer: # DONE
+        properties:
+            'data':
+                name: dataPointer
+                type: '@Pointer long'
+        methods:
+            '-init.*':
+                name: init
+    AVAudioConnectionPoint: # DONE
+        methods:
+            '-initWithNode:bus:':
+                name: init
+    AVAudioConverter: # DONE
+        properties:
+            'channelMap':
+                type: List<Integer>
+                marshaler: NSArray.AsIntegerListMarshaler
+            'sampleRateConverterQuality':
+                type: AVAudioQuality
+            'sampleRateConverterAlgorithm':
+                type: AVSampleRateConverterAlgorithm
+            'bitRateStrategy':
+                type: AVAudioBitRateStrategy
+            '(availableEncodeBitRates|applicableEncodeBitRates)':
+                type: List<Integer>
+                marshaler: NSArray.AsIntegerListMarshaler
+            '(availableEncodeSampleRates|applicableEncodeSampleRates)':
+                type: List<Integer>
+                marshaler: NSArray.AsIntegerListMarshaler
+            'availableEncodeChannelLayoutTags':
+                type: List<Integer>
+                marshaler: NSArray.AsIntegerListMarshaler
+        methods:
+            '-initFromFormat:toFormat:':
+                name: init
+            '-convertToBuffer:fromBuffer:error:':
+                name: convert
+                throws: NSErrorException
+            '-convertToBuffer:error:withInputFromBlock:':
+                name: convert
+                visibility: protected
+                parameters:
+                    inputBlock:
+                        type: '@Block Block2<Integer, MachineSizedSIntPtr, AVAudioBuffer>'
+    AVAudioEngine: # DONE
+        properties:
+            'musicSequence':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-init':
+                exclude: true
+            '-attachNode:':
+                trim_after_first_colon: true
+            '-detachNode:':
+                trim_after_first_colon: true
+            '-connect:to:fromBus:toBus:format:':
+                trim_after_first_colon: true
+            '-connect:to:format:':
+                trim_after_first_colon: true
+            '-connect:toConnectionPoints:fromBus:format:':
+                trim_after_first_colon: true
+                parameters:
+                    destNodes:
+                        type: NSArray<AVAudioConnectionPoint>
+            '-disconnectNodeInput:bus:':
+                trim_after_first_colon: true
+            '-disconnectNodeInput:':
+                trim_after_first_colon: true
+            '-disconnectNodeOutput:bus:':
+                trim_after_first_colon: true
+            '-disconnectNodeOutput:':
+                trim_after_first_colon: true
+            '-startAndReturnError:':
+                name: start
+                throws: NSErrorException
+            '-inputConnectionPointForNode:inputBus:':
+                name: getInputConnectionPoint
+            '-outputConnectionPointsForNode:outputBus:':
+                name: getOutputConnectionPoints
+                return_type: NSArray<AVAudioConnectionPoint>
+    AVAudioEnvironmentDistanceAttenuationParameters: {} # DONE
+    AVAudioEnvironmentNode: # DONE
+        properties:
+            'applicableRenderingAlgorithms':
+                type: List<AVAudio3DMixingRenderingAlgorithm>
+                marshaler: AVAudio3DMixingRenderingAlgorithm.AsListMarshaler
+    AVAudioEnvironmentReverbParameters: # DONE
+        methods:
+            '-loadFactoryReverbPreset:':
+                trim_after_first_colon: true
+    AVAudioFile: # DONE
+        methods:
+            '-init.*':
+                name: init
+                throws: NSErrorException
+                parameters:
+                    settings:
+                        type: AVAudioSettings
+            '-readIntoBuffer:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-readIntoBuffer:frameCount:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-writeFromBuffer:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+    AVAudioFormat: # DONE
+        properties:
+            'settings':
+                type: AVAudioSettings
+            'streamDescription':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-initWithStreamDescription:':
+                name: init
+                annotations: ['@WeaklyLinked']
+            '-initWithSettings:':
+                name: init
+                parameters:
+                    settings:
+                        type: AVAudioSettings
+            '-init.*':
+                name: init
+            '-isEqual:':
+                name: equalsTo
+                parameters:
+                    object:
+                        type: AVAudioFormat
+    AVAudioIONode: # DONE
+        properties:
+            'audioUnit':
+                annotations: ['@WeaklyLinked']
+    AVAudioInputNode: {} # DONE
+    AVAudioOutputNode: {} # DONE
+    AVAudioMixerNode: {} # DONE
+    AVAudioMix: # DONE
+        properties:
+            'inputParameters':
+                type: NSArray<AVAudioMixInputParameters>
+    AVAudioMixInputParameters: # DONE
+        skip_handle_constructor: false
+        properties:
+            'audioTimePitchAlgorithm':
+                type: AVAudioTimePitchAlgorithm
+            'audioTapProcessor':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-getVolumeRampForTime:startVolume:endVolume:timeRange:':
+                name: getVolumeRamp
+                visibility: protected
+                parameters:
+                    timeRange:
+                        type: CMTimeRange.CMTimeRangePtr
+    AVAudioMixingDestination: {} # DONE
+    AVAudioNode: # DONE
+        methods:
+            '-inputFormatForBus:':
+                name: getInputFormatForBus
+            '-outputFormatForBus:':
+                name: getOutputFormatForBus
+            '-nameForInputBus:':
+                name: getNameForInputBus
+            '-nameForOutputBus:':
+                name: getNameForOutputBus
+            '-installTapOnBus:bufferSize:format:block:':
+                trim_after_first_colon: true
+                parameters:
+                    tapBlock:
+                        type: '@Block VoidBlock2<AVAudioPCMBuffer, AVAudioTime>'
+            '-removeTapOnBus:':
+                trim_after_first_colon: true
+    AVAudioPCMBuffer: # DONE
+        methods:
+            '-initWithPCMFormat:frameCapacity:':
+                name: init
+    AVAudioPlayer: # DONE
+        properties:
+            'settings':
+                type: AVAudioSettings
+            'channelAssignments':
+                type: NSArray<AVAudioSessionChannelDescription>
+            'enableRate':
+                name: rateEnabled
+        methods:
+            '-init.*':
+                name: init
+                throws: NSErrorException
+            '-playAtTime:':
+                trim_after_first_colon: true
+            '-peakPowerForChannel:':
+                name: getPeakPowerForChannel
+            '-averagePowerForChannel:':
+                name: getAveragePowerForChannel
+    AVAudioPlayerNode: # DONE
+        methods:
+            '-scheduleBuffer:completionHandler:':
+                trim_after_first_colon: true
+            '-scheduleBuffer:atTime:options:completionHandler:':
+                trim_after_first_colon: true
+            '-scheduleFile:atTime:completionHandler:':
+                trim_after_first_colon: true
+            '-scheduleSegment:startingFrame:frameCount:atTime:completionHandler:':
+                trim_after_first_colon: true
+            '-prepareWithFrameCount:':
+                name: prepare
+            '-playAtTime:':
+                trim_after_first_colon: true
+            '-nodeTimeForPlayerTime:':
+                name: convertPlayerTimeToNodeTime
+            '-playerTimeForNodeTime:':
+                name: convertNodeTimeToPlayerTime
+    AVAudioRecorder: # DONE
+        properties:
+            'settings':
+                type: AVAudioSettings
+            'channelAssignments':
+                type: NSArray<AVAudioSessionChannelDescription>
+        methods:
+            '-initWithURL:settings:error:':
+                name: init
+                throws: NSErrorException
+                parameters:
+                    settings:
+                        type: AVAudioSettings
+            '-recordAtTime:':
+                trim_after_first_colon: true
+            '-recordForDuration:':
+                name: record
+            '-recordAtTime:forDuration:':
+                trim_after_first_colon: true
+            '-peakPowerForChannel:':
+                name: getPeakPowerForChannel
+            '-averagePowerForChannel:':
+                name: getAveragePowerForChannel
+    AVAudioSequencer: # DONE
+        properties:
+            'tracks':
+                type: NSArray<AVMusicTrack>
+            'userInfo':
+                type: 'NSDictionary<NSString, ?>'
+        methods:
+            '-initWithAudioEngine:':
+                name: init
+            '-loadFrom.*':
+                name: load
+                throws: NSErrorException
+            '-writeToURL:SMPTEResolution:replaceExisting:error:':
+                name: write
+                throws: NSErrorException
+            '-dataWithSMPTEResolution:error:':
+                name: getData
+                throws: NSErrorException
+            '-secondsForBeats:':
+                name: convertBeatsToSeconds
+            '-beatsForSeconds:':
+                name: convertSecondsToBeats
+            '-hostTimeForBeats:error:':
+                name: convertBeatsToHostTime
+                throws: NSErrorException
+                parameters:
+                    inBeats:
+                        name: beats
+            '-beatsForHostTime:error:':
+                name: convertHostTimeToBeats
+                throws: NSErrorException
+                parameters:
+                    inHostTime:
+                        name: hostTime
+            '-startAndReturnError:':
+                name: start
+                throws: NSErrorException
+    AVAudioSession: # DONE
+        properties:
+            'availableCategories':
+                type: List<AVAudioSessionCategory>
+                marshaler: AVAudioSessionCategory.AsListMarshaler
+            'category':
+                type: AVAudioSessionCategory
+            'availableModes':
+                type: List<AVAudioSessionMode>
+                marshaler: AVAudioSessionMode.AsListMarshaler
+            'mode':
+                type: AVAudioSessionMode
+            'inputIsAvailable':
+                exclude: true
+            'availableInputs':
+                type: NSArray<AVAudioSessionPortDescription>
+            'inputDataSources':
+                type: NSArray<AVAudioSessionDataSourceDescription>
+            'outputDataSources':
+                type: NSArray<AVAudioSessionDataSourceDescription>
+            'secondaryAudioShouldBeSilencedHint':
+                omit_prefix: true
+        methods:
+            '-setActive:.*':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-setCategory:.*':
+                trim_after_first_colon: true
+                throws: NSErrorException
+                parameters:
+                    category:
+                        type: AVAudioSessionCategory
+            '-recordPermission':
+                property: true
+            '-requestRecordPermission:':
+                trim_after_first_colon: true
+                parameters:
+                    response:
+                        type: '@Block VoidBooleanBlock'
+            '-setMode:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+                parameters:
+                    mode:
+                        type: AVAudioSessionMode
+            '-overrideOutputAudioPort:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-setPreferredInput:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '+sharedInstance':
+                return_type: AVAudioSession
+                property: true
+            '-setPreferredSampleRate:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-setPreferredIOBufferDuration:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-setPreferredInputNumberOfChannels:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-setPreferredOutputNumberOfChannels:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-setInputGain:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-setInputDataSource:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-setOutputDataSource:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-setPreferredHardwareSampleRate:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+    AVAudioSessionChannelDescription: {} # DONE
+    AVAudioSessionDataSourceDescription: # DONE
+        properties:
+            'location':
+                type: AVAudioSessionLocation
+            'orientation':
+                type: AVAudioSessionOrientation
+            'supportedPolarPatterns':
+                type:  '@org.robovm.rt.bro.annotation.Marshaler(AVAudioSessionPolarPattern.AsListMarshaler.class) List<AVAudioSessionPolarPattern>'
+            '(selectedPolarPattern|preferredPolarPattern)':
+                type: AVAudioSessionPolarPattern
+        methods:
+            '-setPreferredPolarPattern:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+                parameters:
+                    pattern:
+                        type: AVAudioSessionPolarPattern
+    AVAudioSessionPortDescription: # DONE
+        properties:
+            'portType':
+                type: AVAudioSessionPort
+            'channels':
+                type: NSArray<AVAudioSessionChannelDescription>
+            'dataSources':
+                type: NSArray<AVAudioSessionDataSourceDescription>
+        methods:
+            '-setPreferredDataSource:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+    AVAudioSessionRouteDescription: # DONE
+        properties:
+            'inputs':
+                type: NSArray<AVAudioSessionPortDescription>
+            'outputs':
+                type: NSArray<AVAudioSessionPortDescription>
+    AVAudioTime: # DONE
+        properties:
+            'audioTimeStamp':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-initWithAudioTimeStamp:sampleRate:':
+                name: init
+                annotations: ['@WeaklyLinked']
+            '-init.*':
+                name: init
+            '-extrapolateTimeFromAnchor:':
+                trim_after_first_colon: true
+            '+timeWith.*':
+                exclude: true
+            '+hostTimeForSeconds:':
+                name: convertSecondsToHostTime
+            '+secondsForHostTime:':
+                name: convertHostTimeToSeconds
+    AVAudioUnit: # DONE
+        properties:
+            '(audioComponentDescription|audioUnit)':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-loadAudioUnitPresetAtURL:error:':
+                name: loadAudioUnitPreset
+                throws: NSErrorException
+            '+instantiateWithComponentDescription:options:completionHandler:':
+                name: instantiate
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<AVAudioUnit, NSError>'
+    AVAudioUnitComponent: # DONE
+        properties:
+            'allTagNames':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+    AVAudioUnitComponentManager: # DONE
+        properties:
+            '(tagNames|standardLocalizedTagNames)':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+        methods:
+            '-componentsMatchingPredicate:':
+                name: getComponentsMatchingPredicate
+                return_type: NSArray<AVAudioUnitComponent>
+            '-componentsPassingTest:':
+                name: getComponentsPassingTest
+                return_type: NSArray<AVAudioUnitComponent>
+                parameters:
+                    testHandler:
+                        type: '@Block Block2<AVAudioUnitComponent, BooleanPtr, Boolean>'
+            '-componentsMatchingDescription:':
+                name: getComponentsMatchingDescription
+                return_type: NSArray<AVAudioUnitComponent>
+            '+sharedAudioUnitComponentManager':
+                property: true
+    AVAudioUnitDelay: {} # DONE
+    AVAudioUnitDistortion: # DONE
+        methods:
+            '-loadFactoryPreset:':
+                trim_after_first_colon: true
+    AVAudioUnitEQ: # DONE
+        properties:
+            'bands':
+                type: AVAudioUnitEQFilterParameters
+        methods:
+            '-initWithNumberOfBands:':
+                name: init
+    AVAudioUnitEQFilterParameters: {} # DONE
+    AVAudioUnitEffect: # DONE
+        methods:
+            '-initWithAudioComponentDescription:':
+                name: init
+                annotations: ['@WeaklyLinked']
+    AVAudioUnitGenerator: # DONE
+        methods:
+            '-initWithAudioComponentDescription:':
+                name: init
+                annotations: ['@WeaklyLinked']
+    AVAudioUnitMIDIInstrument: # DONE
+        methods:
+            '-initWithAudioComponentDescription:':
+                name: init
+                annotations: ['@WeaklyLinked']
+            '-startNote:withVelocity:onChannel:':
+                trim_after_first_colon: true
+            '-stopNote:onChannel:':
+                trim_after_first_colon: true
+            '-sendController:withValue:onChannel:':
+                trim_after_first_colon: true
+            '-sendPitchBend:onChannel:':
+                trim_after_first_colon: true
+            '-sendPressure:onChannel:':
+                trim_after_first_colon: true
+            '-sendPressureForKey:withValue:onChannel:':
+                name: sendPressure
+            '-sendProgramChange:onChannel:':
+                trim_after_first_colon: true
+            '-sendProgramChange:bankMSB:bankLSB:onChannel:':
+                trim_after_first_colon: true
+            '-sendMIDIEvent:data1:data2:':
+                trim_after_first_colon: true
+            '-sendMIDIEvent:data1:':
+                trim_after_first_colon: true
+            '-sendMIDISysExEvent:':
+                trim_after_first_colon: true
+    AVAudioUnitReverb: # DONE
+        methods:
+            '-loadFactoryPreset:':
+                trim_after_first_colon: true
+    AVAudioUnitSampler: # DONE
+        methods:
+            '-loadSoundBankInstrumentAtURL:program:bankMSB:bankLSB:error:':
+                name: loadSoundBankInstrument
+                throws: NSErrorException
+            '-loadInstrumentAtURL:error:':
+                name: loadInstrument
+                throws: NSErrorException
+            '-loadAudioFilesAtURLs:error:':
+                name: loadAudioFiles
+                throws: NSErrorException
+                parameters:
+                    audioFiles:
+                        type: NSArray<NSURL>
+    AVAudioUnitTimeEffect: # DONE
+        methods:
+            '-initWithAudioComponentDescription:':
+                name: init
+                annotations: ['@WeaklyLinked']
+    AVAudioUnitTimePitch: {} # DONE
+    AVAudioUnitVarispeed: {} # DONE
+    AVCaptureAudioChannel: {} # DONE
+    AVCaptureAudioDataOutput: # DONE
+        properties:
+            'sampleBufferCallbackQueue':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-setSampleBufferDelegate:queue:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
+            '-recommendedAudioSettingsForAssetWriterWithOutputFileType:':
+                name: getRecommendedAudioSettings
+                return_type: AVAudioSettings
+    AVCaptureAutoExposureBracketedStillImageSettings: # DONE
+        methods:
+            '+autoExposureSettingsWithExposureTargetBias:':
+                name: create
+                constructor: true
+    AVCaptureBracketedStillImageSettings: # DONE
+        skip_handle_constructor: false
+    AVCaptureConnection: # DONE
+        properties:
+            'inputPorts':
+                type: NSArray<AVCaptureInputPort>
+            'audioChannels':
+                type: NSArray<AVCaptureAudioChannel>
+        methods:
+            '-initWithInputPorts:output:':
+                name: init
+                parameters:
+                    ports:
+                        type: NSArray<AVCaptureInputPort>
+            '-initWithInputPort:videoPreviewLayer:':
+                name: init
+            '+connectionWithInputPorts:output:':
+                exclude: true
+            '+connectionWithInputPort:videoPreviewLayer:':
+                exclude: true
+    AVCaptureDevice: # DONE
+        properties:
+            'formats':
+                type: NSArray<AVCaptureDeviceFormat>
+            '(hasFlash|hasTorch)':
+                omit_prefix: true
+        methods:
+            '-hasMediaType:':
+                trim_after_first_colon: true
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '-lockForConfiguration:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-supportsAVCaptureSessionPreset:':
+                trim_after_first_colon: true
+                parameters:
+                    preset:
+                        type: AVCaptureSessionPreset
+            '+devices':
+                name: getDevices
+                return_type: NSArray<AVCaptureDevice>
+            '+devicesWithMediaType:':
+                name: getDevicesForMediaType
+                return_type: NSArray<AVCaptureDevice>
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '+defaultDeviceWithMediaType:':
+                name: getDefaultDeviceForMediaType
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '+deviceWithUniqueID:':
+                name: getDeviceWithUniqueID
+            '-isFlashModeSupported:':
+                trim_after_first_colon: true
+            '-isTorchModeSupported:':
+                trim_after_first_colon: true
+            '-setTorchModeOnWithLevel:error:':
+                name: setTorchModeOn
+                throws: NSErrorException
+            '-isFocusModeSupported:':
+                trim_after_first_colon: true
+            '-setFocusModeLockedWithLensPosition:completionHandler:':
+                name: setFocusModeLocked
+            '-isExposureModeSupported:':
+                trim_after_first_colon: true
+            '-setExposureModeCustomWithDuration:ISO:completionHandler:':
+                name: setExposureModeCustom
+            '-setExposureTargetBias:completionHandler:':
+                trim_after_first_colon: true
+            '-isWhiteBalanceModeSupported:':
+                trim_after_first_colon: true
+            '-setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:':
+                name: setWhiteBalanceModeLocked
+            '-rampToVideoZoomFactor:withRate:':
+                trim_after_first_colon: true
+            '+authorizationStatusForMediaType:':
+                name: getAuthorizationStatusForMediaType
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '+requestAccessForMediaType:completionHandler:':
+                trim_after_first_colon: true
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '-chromaticityValuesForDeviceWhiteBalanceGains:':
+                name: convertDeviceWhiteBalanceGainsToChromaticityValues
+            '-deviceWhiteBalanceGainsForChromaticityValues:':
+                name: convertChromaticityValuesToDeviceWhiteBalanceGains
+            '-temperatureAndTintValuesForDeviceWhiteBalanceGains:':
+                name: convertDeviceWhiteBalanceGainsToTemperatureAndTintValues
+            '-deviceWhiteBalanceGainsForTemperatureAndTintValues:':
+                name: convertTemperatureAndTintValuesToDeviceWhiteBalanceGains
+    AVCaptureDeviceFormat: # DONE
+        properties:
+            'mediaType':
+                type: AVMediaType
+            'videoSupportedFrameRateRanges':
+                type: NSArray<AVFrameRateRange>
+        methods:
+            '-isVideoStabilizationModeSupported:':
+                trim_after_first_colon: true
+    AVCaptureDeviceInput: # DONE
+        methods:
+            '-initWithDevice:error:':
+                name: init
+                throws: NSErrorException
+            '+deviceInputWithDevice:error:':
+                exclude: true
+    AVCaptureDeviceInputSource: {} # DONE
+    AVCaptureFileOutput: # DONE
+        methods:
+            '-startRecordingToOutputFileURL:recordingDelegate:':
+                name: startRecording
+    AVCaptureInput: # DONE
+        properties:
+            'ports':
+                type: NSArray<AVCaptureInputPort>
+    AVCaptureInputPort: # DONE
+        properties:
+            'mediaType':
+                type: AVMediaType
+    AVCaptureManualExposureBracketedStillImageSettings: # DONE
+        methods:
+            '+manualExposureSettingsWithExposureDuration:ISO:':
+                name: create
+                constructor: true
+    AVCaptureMetadataInput: # DONE
+        methods:
+            '-initWithFormatDescription:clock:':
+                name: init
+            '-appendTimedMetadataGroup:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '+metadataInputWithFormatDescription:clock:':
+                exclude: true
+    AVCaptureMetadataOutput: # DONE
+        properties:
+            'availableMetadataObjectTypes':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(AVMetadataObjectType.AsListMarshaler.class) List<AVMetadataObjectType>'
+            'metadataObjectTypes':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(AVMetadataObjectType.AsListMarshaler.class) List<AVMetadataObjectType>'
+            'metadataObjectsCallbackQueue':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-setMetadataObjectsDelegate:queue:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
+    AVCaptureMovieFileOutput: # DONE
+        properties:
+            'metadata':
+                type: NSArray<AVMetadataItem>
+        methods:
+            '-recordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection:':
+                name: recordsVideoOrientationAndMirroringChangesAsMetadataTrack
+            '-setRecordsVideoOrientationAndMirroringChanges:asMetadataTrackForConnection:':
+                name: setRecordsVideoOrientationAndMirroringChangesAsMetadataTrack
+    AVCaptureOutput: # DONE
+        properties:
+            'connections':
+                type: NSArray<AVCaptureConnection>
+        methods:
+            '-connectionWithMediaType:':
+                name: getConnection
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '-transformedMetadataObjectForMetadataObject:connection:':
+                name: getTransformedMetadataObject
+            '-metadataOutputRectOfInterestForRect:':
+                name: getRectOfInterestInOutputCoordinates
+            '-rectForMetadataOutputRectOfInterest:':
+                name: getRectOfInterestInMetadataOutputCoordinates
+    AVCaptureSession: # DONE
+        properties:
+            'sessionPreset':
+                type: AVCaptureSessionPreset
+            'inputs':
+                type: NSArray<AVCaptureInput>
+            'outputs':
+                type: NSArray<AVCaptureOutput>
+        methods:
+            '-canSetSessionPreset:':
+                trim_after_first_colon: true
+                parameters:
+                    preset:
+                        type: AVCaptureSessionPreset
+            '-canAddInput:':
+                trim_after_first_colon: true
+            '-addInput:':
+                trim_after_first_colon: true
+            '-removeInput:':
+                trim_after_first_colon: true
+            '-canAddOutput:':
+                trim_after_first_colon: true
+            '-addOutput:':
+                trim_after_first_colon: true
+            '-removeOutput:':
+                trim_after_first_colon: true
+            '-addInputWithNoConnections:':
+                trim_after_first_colon: true
+            '-addOutputWithNoConnections:':
+                trim_after_first_colon: true
+            '-canAddConnection:':
+                trim_after_first_colon: true
+            '-addConnection:':
+                trim_after_first_colon: true
+            '-removeConnection:':
+                trim_after_first_colon: true
+    AVCaptureStillImageOutput: # DONE
+        properties:
+            'outputSettings':
+                name: outputSettings0
+                visibility: protected
+            'availableImageDataCVPixelFormatTypes':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(CVPixelFormatType.AsListMarshaler.class) List<CVPixelFormatType>'
+            'availableImageDataCodecTypes':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(CMVideoCodecType.AsListMarshaler.class) List<CMVideoCodecType>'
+        methods:
+            '-captureStillImageAsynchronouslyFromConnection:completionHandler:':
+                name: captureStillImageAsynchronously
+            '+jpegStillImageNSDataRepresentation:':
+                name: createJPEGStillImageNSDataRepresentation
+            '-prepareToCaptureStillImageBracketFromConnection:withSettingsArray:completionHandler:':
+                name: prepareToCaptureStillImageBracket
+                parameters:
+                    settings:
+                        type: NSArray<AVCaptureBracketedStillImageSettings>
+            '-captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler:':
+                name: captureStillImageBracketAsynchronously
+                parameters:
+                    settings:
+                        type: NSArray<AVCaptureBracketedStillImageSettings>
+    AVCaptureVideoDataOutput: # DONE
+        properties:
+            'videoSettings':
+                name: videoSettings0
+                visibility: protected
+            'availableVideoCVPixelFormatTypes':
+                type: List<CVPixelFormatType>
+                marshaler: CVPixelFormatType.AsListMarshaler
+                annotations: ['@WeaklyLinked']
+            'availableVideoCodecTypes':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(CMVideoCodecType.AsListMarshaler.class) List<CMVideoCodecType>'
+            'sampleBufferCallbackQueue':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-setSampleBufferDelegate:queue:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
+            '-recommendedVideoSettingsForAssetWriterWithOutputFileType:':
+                name: getRecommendedVideoSettings0
+                visibility: protected
+                parameters:
+                    outputFileType:
+                        type: String
+    AVCaptureVideoPreviewLayer: # DONE
+        properties:
+            'videoGravity':
+                type: AVLayerVideoGravity
+        methods:
+            '-initWithSessionWithNoConnection:':
+                name: initWithNoConnection
+                constructor: false
+            '-initWithSession:':
+                name: init
+            '-captureDevicePointOfInterestForPoint:':
+                name: captureDevicePointOfInterest
+            '-pointForCaptureDevicePointOfInterest:':
+                name: getDevicePointOfInterest
+            '-metadataOutputRectOfInterestForRect:':
+                name: getRectOfInterestInLayerCoordinates
+            '-rectForMetadataOutputRectOfInterest:':
+                name: getRectOfInterestInMetadataOutputCoordinates
+            '-transformedMetadataObjectForMetadataObject:':
+                name: getTransformedMetadataObject
+            '+layerWithSession.*':
+                exclude: true
+    AVComposition: # DONE
+        skip_handle_constructor: false
+        properties:
+            'tracks':
+                type: NSArray<AVAssetTrack>
+            'URLAssetInitializationOptions':
+                type: AVURLAssetOptions
+        methods:
+            '-trackWithTrackID:':
+                name: getTrack
+            '-tracksWithMediaType:':
+                name: getTracksForMediaType
+                return_type: NSArray<AVCompositionTrack>
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '-tracksWithMediaCharacteristic:':
+                name: getTracksForMediaCharacteristic
+                return_type: NSArray<AVCompositionTrack>
+                parameters:
+                    mediaCharacteristic:
+                        type: AVMediaCharacteristic
+    AVCompositionTrack: # DONE
+        properties:
+            'segments':
+                type: NSArray<AVAssetTrackSegment>
+    AVCompositionTrackSegment: # DONE
+        methods:
+            '-initWithURL:trackID:sourceTimeRange:targetTimeRange:':
+                name: init
+            '-initWithTimeRange:':
+                name: init
+            '+compositionTrackSegmentWith.*':
+                exclude: true
+    AVDateRangeMetadataGroup: # DONE
+        properties:
+            'items':
+                type: NSArray<AVMetadataItem>
+        methods:
+            '-initWithItems:startDate:endDate:':
+                name: init
+                parameters:
+                    items:
+                        type: NSArray<AVMetadataItem>
+    AVFragmentedAsset: # DONE
+        properties:
+            'tracks':
+                type: NSArray<AVFragmentedAssetTrack>
+        methods:
+            '+fragmentedAssetWithURL:options:':
+                name: create
+                constructor: true
+                parameters:
+                    options:
+                        type: AVURLAssetOptions
+            '-trackWithTrackID:':
+                name: getTrack
+            '-tracksWithMediaType:':
+                name: getTracksForMediaType
+                return_type: NSArray<AVFragmentedAssetTrack>
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '-tracksWithMediaCharacteristic:':
+                name: getTracksForMediaCharacteristic
+                return_type: NSArray<AVFragmentedAssetTrack>
+                parameters:
+                    mediaCharacteristic:
+                        type: AVMediaCharacteristic
+    AVFragmentedAssetTrack: {} # DONE
+    AVFrameRateRange: {} # DONE
+    AVMediaSelection: # DONE
+        methods:
+            '-selectedMediaOptionInMediaSelectionGroup:':
+                name: getSelectedMediaOptionInMediaSelectionGroup
+            '-mediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup:':
+                trim_after_first_colon: true
+    AVMediaSelectionGroup: # DONE
+        properties:
+            'options':
+                type: NSArray<AVMediaSelectionOption>
+        methods:
+            '-mediaSelectionOptionWithPropertyList:':
+                name: getMediaSelectionOption
+                parameters:
+                    plist:
+                        type: NSPropertyList
+            '+playableMediaSelectionOptionsFromArray:':
+                name: filterPlayableMediaSelectionOptions
+                return_type: NSArray<AVMediaSelectionOption>
+                parameters:
+                    mediaSelectionOptions:
+                        type: NSArray<AVMediaSelectionOption>
+            '+mediaSelectionOptionsFromArray:filteredAndSortedAccordingToPreferredLanguages:':
+                name: filterMediaSelectionOptionsByPreferredLanguages
+                return_type: NSArray<AVMediaSelectionOption>
+                parameters:
+                    mediaSelectionOptions:
+                        type: NSArray<AVMediaSelectionOption>
+                    preferredLanguages:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '+mediaSelectionOptionsFromArray:withLocale:':
+                name: filterMediaSelectionOptionsByLocale
+                return_type: NSArray<AVMediaSelectionOption>
+                parameters:
+                    mediaSelectionOptions:
+                        type: NSArray<AVMediaSelectionOption>
+            '+mediaSelectionOptionsFromArray:withMediaCharacteristics:':
+                name: filterMediaSelectionOptionsWithMediaCharacteristics
+                return_type: NSArray<AVMediaSelectionOption>
+                parameters:
+                    mediaSelectionOptions:
+                        type: NSArray<AVMediaSelectionOption>
+                    mediaCharacteristics:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(AVMediaCharacteristic.AsListMarshaler.class) List<AVMediaCharacteristic>'
+            '+mediaSelectionOptionsFromArray:withoutMediaCharacteristics:':
+                name: filterMediaSelectionOptionsWithoutMediaCharacteristics
+                return_type: NSArray<AVMediaSelectionOption>
+                parameters:
+                    mediaSelectionOptions:
+                        type: NSArray<AVMediaSelectionOption>
+                    mediaCharacteristics:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(AVMediaCharacteristic.AsListMarshaler.class) List<AVMediaCharacteristic>'
+    AVMediaSelectionOption: # DONE
+        properties:
+            'mediaType':
+                type: AVMediaType
+            'mediaSubTypes':
+                type: "NSArray<NSNumber>"
+            'commonMetadata':
+                type: NSArray<AVMetadataItem>
+            'availableMetadataFormats':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(AVMetadataFormat.AsListMarshaler.class) List<AVMetadataFormat>'
+        methods:
+            '-hasMediaCharacteristic:':
+                trim_after_first_colon: true
+                parameters:
+                    mediaCharacteristic:
+                        type: AVMediaCharacteristic
+            '-metadataForFormat:':
+                name: getMetadata
+                parameters:
+                    format:
+                        type: AVMetadataFormat
+                return_type: NSArray<AVMetadataItem>
+            '-associatedMediaSelectionOptionInMediaSelectionGroup:':
+                name: getAssociatedMediaSelectionOption
+            '-propertyList':
+                property: true
+                return_type: NSPropertyList
+            '-displayNameWithLocale:':
+                name: getDisplayName
+    AVMetadataFaceObject: {} # DONE
+    AVMetadataGroup: # DONE
+        properties:
+            'items':
+                type: NSArray<AVMetadataItem>
+    AVMetadataItem: # DONE
+        properties:
+            'identifier':
+                type: AVMetadataIdentifier
+            'key':
+                type: AVMetadataKey
+            'commonKey':
+                type: AVMetadataKeyCommon
+            'keySpace':
+                type: AVMetadataKeySpace
+            'dataType':
+                type: CMMetadataDataType
+            'value':
+                type: NSObject
+            'extraAttributes':
+                type: AVMetadataExtraAttributes
+        methods:
+            '-statusOfValueForKey:error:':
+                name: getStatusOfValue
+                throws: NSErrorException
+                parameters:
+                    key:
+                        type: AVMetadataKey
+            '-loadValuesAsynchronouslyForKeys:completionHandler:':
+                name: loadValuesAsynchronously
+                parameters:
+                    keys:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(AVMetadataKey.AsListMarshaler.class) List<AVMetadataKey>'
+            '+metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:':
+                name: filterMetadataItemsByPreferredLanguages
+                return_type: NSArray<AVMetadataItem>
+                parameters:
+                    metadataItems:
+                        type: NSArray<AVMetadataItem>
+                    preferredLanguages:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '+metadataItemsFromArray:withLocale:':
+                name: filterMetadataItemsByLocale
+                return_type: NSArray<AVMetadataItem>
+                parameters:
+                    metadataItems:
+                        type: NSArray<AVMetadataItem>
+            '+metadataItemsFromArray:withKey:keySpace:':
+                name: filterMetadataItemsByKey
+                return_type: NSArray<AVMetadataItem>
+                parameters:
+                    metadataItems:
+                        type: NSArray<AVMetadataItem>
+                    key:
+                        type: AVMetadataKey
+                    keySpace:
+                        type: AVMetadataKeySpace
+            '+metadataItemsFromArray:filteredByMetadataItemFilter:':
+                name: filterMetadataItems
+                return_type: NSArray<AVMetadataItem>
+                parameters:
+                    metadataItems:
+                        type: NSArray<AVMetadataItem>
+            '+metadataItemsFromArray:filteredByIdentifier:':
+                name: filterMetadataItemsByIdentifier
+                return_type: NSArray<AVMetadataItem>
+                parameters:
+                    metadataItems:
+                        type: NSArray<AVMetadataItem>
+                    identifier:
+                        type: AVMetadataIdentifier
+            '+identifierForKey:keySpace:':
+                name: getIdentifierForKey
+                return_type: AVMetadataIdentifier
+                parameters:
+                    key:
+                        type: AVMetadataKey
+                    keySpace:
+                        type: AVMetadataKeySpace
+            '+keySpaceForIdentifier:':
+                name: getKeySpaceForIdentifier
+                return_type: AVMetadataKeySpace
+                parameters:
+                    identifier:
+                        type: AVMetadataIdentifier
+            '+keyForIdentifier:':
+                name: getKeyForIdentifier
+                return_type: AVMetadataKey
+                parameters:
+                    identifier:
+                        type: AVMetadataIdentifier
+            '+metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:':
+                name: create
+                constructor: true
+                parameters:
+                    handler:
+                        type: '@Block VoidBlock1<AVMetadataItemValueRequest>'
+    AVMetadataItemFilter: # DONE
+        methods:
+            '+metadataItemFilterForSharing':
+                name: getSharingFilter
+    AVMetadataItemValueRequest: # DONE
+        methods:
+            '-respondWithValue:':
+                name: respond
+                return_type: void
+                parameters:
+                    value:
+                        type: NSObject
+            '-respondWithError:':
+                name: respond
+    AVMetadataMachineReadableCodeObject: # DONE
+        properties:
+            'corners':
+                type: 'NSArray<NSDictionary<?, ?>>'
+    AVMetadataObject: # DONE
+        properties:
+            'type':
+                type: AVMetadataObjectType
+    AVMIDIPlayer: # DONE
+        methods:
+            '-init.*':
+                name: init
+                throws: NSErrorException
+            '-play:':
+                trim_after_first_colon: true
+    AVMusicTrack: {} # DONE
+    AVMutableAudioMix: # DONE
+        properties:
+            'inputParameters':
+                type: NSArray<AVAudioMixInputParameters>
+        methods:
+            '+audioMix':
+                exclude: true
+    AVMutableAudioMixInputParameters: # DONE
+        properties:
+            'audioTimePitchAlgorithm':
+                type: AVAudioTimePitchAlgorithm
+            'audioTapProcessor':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-setVolumeRampFromStartVolume:toEndVolume:timeRange:':
+                name: setVolumeRamp
+            '-setVolume:atTime:':
+                trim_after_first_colon: true
+            '+audioMixInputParametersWithTrack:':
+                name: create
+                constructor: true
+            '+audioMixInputParameters':
+                exclude: true
+    AVMutableComposition: # DONE
+        properties:
+            'tracks':
+                type: NSArray<AVAssetTrack>
+        methods:
+            '+composition':
+                exclude: true
+            '+compositionWithURLAssetInitializationOptions:':
+                name: create
+                constructor: true
+                parameters:
+                    URLAssetInitializationOptions:
+                        name: urlAssetInitializationOptions
+                        type: AVURLAssetOptions
+            '-insertTimeRange:ofAsset:atTime:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-insertEmptyTimeRange:':
+                trim_after_first_colon: true
+            '-removeTimeRange:':
+                trim_after_first_colon: true
+            '-scaleTimeRange:toDuration:':
+                trim_after_first_colon: true
+            '-addMutableTrackWithMediaType:preferredTrackID:':
+                name: addMutableTrack
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '-removeTrack:':
+                trim_after_first_colon: true
+            '-mutableTrackCompatibleWithTrack:':
+                name: getCompatibleMutableTrack
+            '-trackWithTrackID:':
+                name: getTrack
+            '-tracksWithMediaType:':
+                name: getTracksForMediaType
+                return_type: NSArray<AVCompositionTrack>
+                parameters:
+                    mediaType:
+                        type: AVMediaType
+            '-tracksWithMediaCharacteristic:':
+                name: getTracksForMediaCharacteristic
+                return_type: NSArray<AVCompositionTrack>
+                parameters:
+                    mediaCharacteristic:
+                        type: AVMediaCharacteristic
+                
+                
+    AVMutableCompositionTrack: # DONE
+        properties:
+            'segments':
+                type: NSArray<AVAssetTrackSegment>
+        methods:
+            '-insertTimeRange:ofTrack:atTime:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-insertTimeRanges:ofTracks:atTime:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+                parameters:
+                    timeRanges:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(CMTimeRange.AsValuedListMarshaler.class) List<CMTimeRange>'
+                    tracks:
+                        type: NSArray<AVAssetTrack>
+            '-insertEmptyTimeRange:':
+                trim_after_first_colon: true
+            '-removeTimeRange:':
+                trim_after_first_colon: true
+            '-scaleTimeRange:toDuration:':
+                trim_after_first_colon: true
+            '-validateTrackSegments:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+                parameters:
+                    trackSegments:
+                        type: NSArray<AVCompositionTrackSegment>
+    AVMutableDateRangeMetadataGroup: # DONE
+        properties:
+            'items':
+                type: NSArray<AVMetadataItem>
+    AVMutableMediaSelection: # DONE
+        methods:
+            '-selectMediaOption:inMediaSelectionGroup:':
+                trim_after_first_colon: true
+    AVMutableMetadataItem: # DONE
+        properties:
+            'identifier':
+                type: AVMetadataIdentifier
+            'dataType':
+                type: CMMetadataDataType
+            'key':
+                type: AVMetadataKey
+            'keySpace':
+                type: AVMetadataKeySpace
+            'value':
+                type: NSObject
+            'extraAttributes':
+                type: AVMetadataExtraAttributes
+        methods:
+            '+metadataItem':
+                exclude: true
+    AVMutableTimedMetadataGroup: # DONE
+        properties:
+            'items':
+                type: NSArray<AVMetadataItem>
+    AVMutableVideoComposition: # DONE
+        properties:
+            'customVideoCompositorClass':
+                type: 'Class<? extends AVVideoCompositing>'
+            'instructions':
+                type: NSArray<AVVideoCompositionInstruction>
+        methods:
+            '+videoComposition':
+                exclude: true
+            '+videoCompositionWithPropertiesOfAsset:':
+                name: create
+                constructor: true
+            '+videoCompositionWithAsset:applyingCIFiltersWithHandler:':
+                name: create
+                constructor: true
+                parameters:
+                    applier:
+                        name: ciFiltersApplier
+                        type: '@Block VoidBlock1<AVAsynchronousCIImageFilteringRequest>'
+    AVMutableVideoCompositionInstruction: # DONE
+        properties:
+            'layerInstructions':
+                type: NSArray<AVVideoCompositionLayerInstruction>
+            'enablePostProcessing':
+                name: postProcessingEnabled
+        methods:
+            '+videoCompositionInstruction':
+                exclude: true
+    AVMutableVideoCompositionLayerInstruction: # DONE
+        methods:
+            '-setTransformRampFromStartTransform:toEndTransform:timeRange:':
+                name: setTransformRamp
+            '-setTransform:atTime:':
+                trim_after_first_colon: true
+            '-setOpacityRampFromStartOpacity:toEndOpacity:timeRange:':
+                name: setOpacityRamp
+            '-setOpacity:atTime:':
+                trim_after_first_colon: true
+            '-setCropRectangleRampFromStartCropRectangle:toEndCropRectangle:timeRange:':
+                name: setCropRectangleRamp
+            '-setCropRectangle:atTime:':
+                trim_after_first_colon: true
+            '+videoCompositionLayerInstructionWithAssetTrack:':
+                name: create
+                constructor: true
+            '+videoCompositionLayerInstruction':
+                exclude: true
+    AVOutputSettingsAssistant: # DONE
+        properties:
+            'audioSettings':
+                type: AVAudioSettings
+            'videoSettings':
+                type: AVVideoSettings
+        methods:
+            '+availableOutputSettingsPresets':
+                name: getAvailableOutputSettingsPresets
+                return_type: '@org.robovm.rt.bro.annotation.Marshaler(AVOutputSettingsPreset.AsListMarshaler.class) List<AVOutputSettingsPreset>'
+            '+outputSettingsAssistantWithPreset:':
+                name: create
+                constructor: true
+                parameters:
+                    presetIdentifier:
+                        type: AVOutputSettingsPreset
+    AVPlayer: # DONE
+        properties:
+            'outputObscuredDueToInsufficientExternalProtection':
+                omit_prefix: true
+        methods:
+            '-initWithURL:':
+                name: init
+            '-initWithPlayerItem:':
+                name: init
+            '+playerWithURL:':
+                exclude: true
+            '+playerWithPlayerItem:':
+                exclude: true
+            '-replaceCurrentItemWithPlayerItem:':
+                name: replaceCurrentItem
+            '-currentTime':
+                property: true
+            '-seekToDate:':
+                trim_after_first_colon: true
+            '-seekToDate:completionHandler:':
+                trim_after_first_colon: true
+            '-seekToTime.*':
+                trim_after_first_colon: true
+            '-setRate:time:atHostTime:':
+                trim_after_first_colon: true
+            '-prerollAtRate:completionHandler:':
+                trim_after_first_colon: true
+            '-addPeriodicTimeObserverForInterval:queue:usingBlock:':
+                name: addPeriodicTimeObserver
+                annotations: ['@WeaklyLinked']
+            '-addBoundaryTimeObserverForTimes:queue:usingBlock:':
+                name: addBoundaryTimeObserver
+                annotations: ['@WeaklyLinked']
+                parameters:
+                    times:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(CMTime.AsValuedListMarshaler.class) List<CMTime>'
+            '-removeTimeObserver:':
+                trim_after_first_colon: true
+            '-setMediaSelectionCriteria:forMediaCharacteristic:':
+                trim_after_first_colon: true
+            '-mediaSelectionCriteriaForMediaCharacteristic:':
+                name: getMediaSelectionCriteria
+    AVPlayerItem: # DONE
+        properties:
+            'tracks':
+                type: NSArray<AVPlayerItemTrack>
+            'timedMetadata':
+                type: NSArray<AVMetadataItem>
+            'automaticallyLoadedAssetKeys':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            'seekableTimeRanges':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(CMTimeRange.AsValuedListMarshaler.class) List<CMTimeRange>'
+            'textStyleRules':
+                type: NSArray<AVTextStyleRule>
+            'loadedTimeRanges':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(CMTimeRange.AsValuedListMarshaler.class) List<CMTimeRange>'
+            'outputs':
+                type: NSArray<AVPlayerItemOutput>
+            'seekingWaitsForVideoCompositionRendering':
+                omit_prefix: true
+        methods:
+            '-initWithURL:':
+                name: init
+            '-initWithAsset:':
+                name: init
+            '-initWithAsset:automaticallyLoadedAssetKeys:':
+                name: init
+                parameters:
+                    automaticallyLoadedAssetKeys:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '+playerItemWith.*':
+                exclude: true
+            '-currentTime':
+                property: true
+            '-seekToTime.*':
+                trim_after_first_colon: true
+            '-currentDate':
+                property: true
+            '-seekToDate.*':
+                trim_after_first_colon: true
+            '-stepByCount:':
+                trim_after_first_colon: true
+            '-selectMediaOption:inMediaSelectionGroup:':
+                trim_after_first_colon: true
+            '-selectMediaOptionAutomaticallyInMediaSelectionGroup:':
+                name: selectMediaOptionAutomatically
+            '-selectedMediaOptionInMediaSelectionGroup:':
+                name: getSelectedMediaOption
+            '-accessLog':
+                property: true
+            '-errorLog':
+                property: true
+            '-addOutput:':
+                trim_after_first_colon: true
+            '-removeOutput:':
+                trim_after_first_colon: true
+    AVPlayerItemAccessLog: # DONE
+        properties:
+            'events':
+                type: NSArray<AVPlayerItemAccessLogEvent>
+        methods:
+            '-extendedLogData':
+                property: true
+    AVPlayerItemAccessLogEvent: {} # DONE
+    AVPlayerItemErrorLog: # DONE
+        properties:
+            'events':
+                type: NSArray<AVPlayerItemErrorLogEvent>
+        methods:
+            '-extendedLogData':
+                property: true
+    AVPlayerItemErrorLogEvent: {} # DONE
+    AVPlayerItemLegibleOutput: # DONE
+        properties:
+            'delegateQueue':
+                annotations: ['@WeaklyLinked']
+            'textStylingResolution':
+                type: AVPlayerItemLegibleOutputTextStylingResolution
+        methods:
+            '-setDelegate:queue:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
+            '-initWithMediaSubtypesForNativeRepresentation:':
+                name: init
+                parameters:
+                    subtypes:
+                        type: "NSArray<NSNumber>"
+    AVPlayerItemMetadataOutput: # DONE
+        properties:
+            'delegateQueue':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-initWithIdentifiers:':
+                name: init
+                parameters:
+                    identifiers:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(AVMetadataIdentifier.AsListMarshaler.class) List<AVMetadataIdentifier>'
+            '-setDelegate:queue:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
+    AVPlayerItemOutput: # DONE
+        methods:
+            '-itemTimeForHostTime:':
+                name: getItem
+            '-itemTimeForMachAbsoluteTime:':
+                name: getItem
+    AVPlayerItemTrack: {} # DONE
+    AVPlayerItemVideoOutput: # DONE
+        properties:
+            'delegateQueue':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-initWithPixelBufferAttributes:':
+                name: init
+                annotations: ['@WeaklyLinked']
+                parameters:
+                    pixelBufferAttributes:
+                        type: CVPixelBufferAttributes
+            '-hasNewPixelBufferForItemTime:':
+                trim_after_first_colon: true
+            '-copyPixelBufferForItemTime:itemTimeForDisplay:':
+                name: getPixelBufferForItemTime
+                return_marshaler: CFType.NoRetainMarshaler
+                annotations: ['@WeaklyLinked']
+            '-setDelegate:queue:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
+            '-requestNotificationOfMediaDataChangeWithAdvanceInterval:':
+                name: requestNotificationOfMediaDataChange
+    AVPlayerLayer: # DONE
+        annotations: ['@WeaklyLinked']
+        properties:
+            'videoGravity':
+                type: AVLayerVideoGravity
+            'pixelBufferAttributes':
+                type: CVPixelBufferAttributes
+        methods:
+            '+playerLayerWithPlayer:':
+                name: create
+                constructor: true
+    AVPlayerMediaSelectionCriteria: # DONE
+        properties:
+            'preferredLanguages':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            'preferredMediaCharacteristics':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(AVMediaCharacteristic.AsListMarshaler.class) List<AVMediaCharacteristic>'
+        methods:
+            '-initWithPreferredLanguages:preferredMediaCharacteristics:':
+                name: init
+                parameters:
+                    preferredLanguages:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                    preferredMediaCharacteristics:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(AVMediaCharacteristic.AsListMarshaler.class) List<AVMediaCharacteristic>'
+    AVQueuePlayer: # DONE
+        methods:
+            '-initWithItems:':
+                name: init
+                parameters:
+                    items:
+                        type: NSArray<AVPlayerItem>
+            '-items':
+                property: true
+                return_type: NSArray<AVPlayerItem>
+            '-canInsertItem:afterItem:':
+                trim_after_first_colon: true
+            '-insertItem:afterItem:':
+                trim_after_first_colon: true
+            '-removeItem:':
+                trim_after_first_colon: true
+            '+queuePlayerWithItems:':
+                exclude: true
+    AVSampleBufferDisplayLayer: # DONE
+        annotations: ['@WeaklyLinked']
+        properties:
+            'videoGravity':
+                type: AVLayerVideoGravity
+        methods:
+            '-enqueueSampleBuffer:':
+                trim_after_first_colon: true
+            '-requestMediaDataWhenReadyOnQueue:usingBlock:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
+    AVSpeechSynthesisVoice: # DONE
+        methods:
+            '+speechVoices':
+                name: getSpeechVoices
+                return_type: NSArray<AVSpeechSynthesisVoice>
+            '+currentLanguageCode':
+                name: getCurrentLanguageCode
+            '+voiceWithLanguage:':
+                name: create
+                constructor: true
+            '+voiceWithIdentifier:':
+                name: create
+                constructor: true
+                parameters:
+                    identifier:
+                        type: AVSpeechSynthesisVoiceIdentifier
+    AVSpeechSynthesizer: # DONE
+        methods:
+            '-speakUtterance:':
+                name: enqueueSpeakUtterance
+            '-stopSpeakingAtBoundary:':
+                name: stopSpeaking
+            '-pauseSpeakingAtBoundary:':
+                name: pauseSpeaking
+    AVSpeechUtterance: # DONE
+        methods:
+            '-initWithString:':
+                name: init
+            '+speechUtteranceWithString:':
+                exclude: true
+    AVSynchronizedLayer: # DONE
+        annotations: ['@WeaklyLinked']
+        methods:
+            '+synchronizedLayerWithPlayerItem:':
+                name: create
+                constructor: true
+    AVTextStyleRule: # DONE
+        properties:
+            'textMarkupAttributes':
+                type: CMTextMarkupAttributes
+        methods:
+            '-init.*':
+                name: init
+                parameters:
+                    textMarkupAttributes:
+                        type: CMTextMarkupAttributes
+            '+propertyListForTextStyleRules:':
+                name: createPropertyList
+                return_type: NSPropertyList
+                parameters:
+                    textStyleRules:
+                        type: NSArray<AVTextStyleRule>
+            '+textStyleRulesFromPropertyList:':
+                name: createTextStyleRulesArray
+                return_type: NSArray<AVTextStyleRule>
+                parameters:
+                    plist:
+                        type: NSPropertyList
+            '+textStyleRuleWith.*':
+                exclude: true
+    AVTimedMetadataGroup: # DONE
+        properties:
+            'items':
+                type: NSArray<AVMetadataItem>
+        methods:
+            '-initWithItems:timeRange:':
+                name: init
+                parameters:
+                    items:
+                        type: NSArray<AVMetadataItem>
+            '-init.*':
+                name: init
+            '-copyFormatDescription':
+                name: getFormatDescription
+                return_marshaler: CFType.NoRetainMarshaler
+                annotations: ['@WeaklyLinked']
+    AVURLAsset: # DONE
+        skip_handle_constructor: false
+        methods:
+            '-initWithURL:options:':
+                name: init
+                parameters:
+                    options:
+                        type: AVURLAssetOptions
+            '+audiovisualTypes':
+                property: true
+                return_type: List<String>
+                return_marshaler: NSArray.AsStringListMarshaler
+            '+audiovisualMIMETypes':
+                property: true
+                return_type: List<String>
+                return_marshaler: NSArray.AsStringListMarshaler
+            '+isPlayableExtendedMIMEType:':
+                trim_after_first_colon: true
+            '+URLAssetWithURL:options:':
+                exclude: true
+            '-compatibleTrackForCompositionTrack:':
+                name: getCompatibleTrack
+    AVVideoComposition: # DONE
+        skip_handle_constructor: false
+        properties:
+            'instructions':
+                type: NSArray<AVVideoCompositionInstruction>
+            'customVideoCompositorClass':
+                type: 'Class<? extends AVVideoCompositing>'
+        methods:
+            '+videoCompositionWithPropertiesOfAsset:':
+                name: create
+                constructor: true
+            '+videoCompositionWithAsset:applyingCIFiltersWithHandler:':
+                name: create
+                constructor: true
+                parameters:
+                    applier:
+                        name: ciFiltersApplier
+                        type: '@Block VoidBlock1<AVAsynchronousCIImageFilteringRequest>'
+            '-isValidForAsset:timeRange:validationDelegate:':
+                name: isValid
+    AVVideoCompositionCoreAnimationTool: # DONE
+        methods:
+            '+videoCompositionCoreAnimationToolWithAdditionalLayer:asTrackID:':
+                name: create
+                constructor: true
+                annotations: ['@WeaklyLinked']
+            '+videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:inLayer:':
+                name: create
+                constructor: true
+                annotations: ['@WeaklyLinked']
+            '+videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers:inLayer:':
+                name: create
+                constructor: true
+                annotations: ['@WeaklyLinked']
+                parameters:
+                    videoLayers:
+                        type: NSArray<CALayer>
+    AVVideoCompositionInstruction: # DONE
+        properties:
+            'enablePostProcessing':
+                name: postProcessingEnabled
+            'layerInstructions':
+                type: NSArray<AVVideoCompositionLayerInstruction>
+            'requiredSourceTrackIDs':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsIntegerListMarshaler.class) List<Integer>'
+    AVVideoCompositionLayerInstruction: # DONE
+        skip_handle_constructor: false
+        methods:
+            '-getTransformRampForTime:startTransform:endTransform:timeRange:':
+                name: getTransformRamp
+                visibility: protected
+                parameters:
+                    startTransform:
+                        type: CGAffineTransform.CGAffineTransformPtr
+                    endTransform:
+                        type: CGAffineTransform.CGAffineTransformPtr
+                    timeRange:
+                        type: CMTimeRange.CMTimeRangePtr
+            '-getOpacityRampForTime:startOpacity:endOpacity:timeRange:':
+                name: getOpacityRamp
+                visibility: protected
+                parameters:
+                    timeRange:
+                        type: CMTimeRange.CMTimeRangePtr
+            '-getCropRectangleRampForTime:startCropRectangle:endCropRectangle:timeRange:':
+                name: getCropRectangleRamp
+                visibility: protected
+                parameters:
+                    startCropRectangle:
+                        type: CGRect.CGRectPtr
+                    endCropRectangle:
+                        type: CGRect.CGRectPtr
+                    timeRange:
+                        type: CMTimeRange.CMTimeRangePtr
+    AVVideoCompositionRenderContext: # DONE
+        methods:
+            '-newPixelBuffer':
+                return_marshaler: CFType.NoRetainMarshaler
+                annotations: ['@WeaklyLinked']
+
+protocols:
+    AVAssetDownloadDelegate: # DONE
+        methods:
+            '-URLSession:assetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:':
+                name: didLoadTimeRange
+                parameters:
+                    loadedTimeRanges:
+                        type: List<CMTimeRange>
+                        marshaler: CMTimeRange.AsValuedListMarshaler
+            '-URLSession:assetDownloadTask:didResolveMediaSelection:':
+                name: didResolveMediaSelection
+    AVAssetResourceLoaderDelegate: # DONE
+        methods:
+            '-resourceLoader:shouldWaitForLoadingOfRequestedResource:':
+                name: shouldWaitForLoadingOfRequestedResource
+            '-resourceLoader:shouldWaitForRenewalOfRequestedResource:':
+                name: shouldWaitForRenewalOfRequestedResource
+            '-resourceLoader:didCancelLoadingRequest:':
+                name: didCancelLoadingRequest
+            '-resourceLoader:shouldWaitForResponseToAuthenticationChallenge:':
+                name: shouldWaitForResponseToAuthenticationChallenge
+            '-resourceLoader:didCancelAuthenticationChallenge:':
+                name: didCancelAuthenticationChallenge
+    AVAsynchronousKeyValueLoading: # DONE
+        methods: 
+            '-loadValuesAsynchronouslyForKeys:completionHandler:':
+                name: loadValuesAsynchronously
+                parameters:
+                    keys:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(AVMetadataKey.AsListMarshaler.class) List<AVMetadataKey>'
+            '-statusOfValueForKey:error:':
+                name: getStatusOfValue
+                parameters:
+                    key:
+                        type: AVMetadataKey
+    AVAudio3DMixing: {} # DONE
+    AVAudioMixing: # DONE
+        methods:
+            '-destinationForMixer:bus:':
+                name: getDestinationForMixer
+    AVAudioStereoMixing: {}
+    AVAudioPlayerDelegate: # DONE
+        methods:
+            '-audioPlayerDidFinishPlaying:successfully:':
+                name: didFinishPlaying
+            '-audioPlayerDecodeErrorDidOccur:error:':
+                name: decodeErrorDidOccur
+            '-audioPlayerBeginInterruption:':
+                name: beginInterruption
+            '-audioPlayerEndInterruption:withOptions:':
+                name: endInterruption
+            '-audioPlayerEndInterruption:withFlags:':
+                name: endInterruption
+            '-audioPlayerEndInterruption:':
+                name: endInterruption
+    AVAudioRecorderDelegate: # DONE
+        methods:
+            '-audioRecorderDidFinishRecording:successfully:':
+                name: didFinishRecording
+            '-audioRecorderEncodeErrorDidOccur:error:':
+                name: encodeErrorDidOccur
+            '-audioRecorderBeginInterruption:':
+                name: beginInterruption
+            '-audioRecorderEndInterruption:withOptions:':
+                name: endInterruption
+            '-audioRecorderEndInterruption:withFlags:':
+                name: endInterruption
+            '-audioRecorderEndInterruption:':
+                name: endInterruption
+    AVAudioSessionDelegate: # DONE
+        methods:
+            '-endInterruptionWithFlags:':
+                name: endInterruption
+                parameters:
+                    flags:
+                        type: AVAudioSessionInterruptionOptions
+            '-inputIsAvailableChanged:':
+                name: inputAvailabilityChanged
+    AVCaptureAudioDataOutputSampleBufferDelegate: # DONE
+        methods:
+            '-captureOutput:didOutputSampleBuffer:fromConnection:':
+                name: didOutputSampleBuffer  
+    AVCaptureFileOutputRecordingDelegate: # DONE
+        methods:
+            '-captureOutput:didStartRecordingToOutputFileAtURL:fromConnections:':
+                name: didStartRecording
+                parameters:
+                    connections:
+                        type: NSArray<AVCaptureConnection>
+            '-captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:':
+                name: didFinishRecording
+                parameters:
+                    connections:
+                        type: NSArray<AVCaptureConnection>
+    AVCaptureMetadataOutputObjectsDelegate: # DONE
+        methods:
+            '-captureOutput:didOutputMetadataObjects:fromConnection:':
+                name: didOutputMetadataObjects
+                parameters:
+                    metadataObjects:
+                        type: NSArray<AVMetadataObject>
+    AVCaptureVideoDataOutputSampleBufferDelegate: # DONE
+        methods:
+            '-captureOutput:didOutputSampleBuffer:fromConnection:':
+                name: didOutputSampleBuffer
+            '-captureOutput:didDropSampleBuffer:fromConnection:':
+                name: didDropSampleBuffer
+    AVFragmentMinding: # DONE
+        skip_adapter: true
+    AVPlayerItemLegibleOutputPushDelegate: # DONE
+        methods:
+            '-legibleOutput:didOutputAttributedStrings:nativeSampleBuffers:forItemTime:':
+                name: didOutputAttributedStrings
+                parameters:
+                    strings:
+                        type: NSArray<NSAttributedString>
+                    nativeSamples:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<CMSampleBuffer>'
+    AVPlayerItemMetadataOutputPushDelegate: # DONE
+        methods:
+            '-metadataOutput:didOutputTimedMetadataGroups:fromPlayerItemTrack:':
+                name: didOutputTimedMetadataGroups
+                parameters:
+                    groups:
+                        type: NSArray<AVTimedMetadataGroup>
+    AVPlayerItemOutputPullDelegate: # DONE
+        methods:
+            '-outputMediaDataWillChange:':
+                name: mediaDataWillChange
+            '-outputSequenceWasFlushed:':
+                name: sequenceWasFlushed
+    AVPlayerItemOutputPushDelegate: # DONE
+        methods:
+            '-outputSequenceWasFlushed:':
+                name: wasFlushed
+    AVSpeechSynthesizerDelegate: # DONE
+        methods:
+            '-speechSynthesizer:didStartSpeechUtterance:':
+                name: didStartSpeechUtterance
+            '-speechSynthesizer:didFinishSpeechUtterance:':
+                name: didFinishSpeechUtterance
+            '-speechSynthesizer:didPauseSpeechUtterance:':
+                name: didPauseSpeechUtterance
+            '-speechSynthesizer:didContinueSpeechUtterance:':
+                name: didContinueSpeechUtterance
+            '-speechSynthesizer:didCancelSpeechUtterance:':
+                name: didCancelSpeechUtterance
+            '-speechSynthesizer:willSpeakRangeOfSpeechString:utterance:':
+                name: willSpeak
+    AVVideoCompositionValidationHandling: # DONE
+        methods:
+            '-videoComposition:shouldContinueValidatingAfterFindingInvalidValueForKey:':
+                name: shouldContinueValidatingAfterFindingInvalidValue
+            '-videoComposition:shouldContinueValidatingAfterFindingEmptyTimeRange:':
+                name: shouldContinueValidatingAfterFindingEmptyTimeRange
+            '-videoComposition:shouldContinueValidatingAfterFindingInvalidTimeRangeInInstruction:':
+                name: shouldContinueValidatingAfterFindingInvalidTimeRange
+            '-videoComposition:shouldContinueValidatingAfterFindingInvalidTrackIDInInstruction:layerInstruction:asset:':
+                name: shouldContinueValidatingAfterFindingInvalidTrackID
+    AVVideoCompositing: # DONE
+        properties:
+            'sourcePixelBufferAttributes':
+                type: CVPixelBufferAttributes
+                annotations: ['@WeaklyLinked']
+            'requiredPixelBufferAttributesForRenderContext':
+                type: CVPixelBufferAttributes
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-renderContextChanged:':
+                trim_after_first_colon: true
+            '-startVideoCompositionRequest:':
+                trim_after_first_colon: true
+
+functions:
+    AVMake(RectWithAspectRatioInsideRect):
+        class: AVFoundation
+        name: 'create#{g[0]}'
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?AV.*):
+        class: AVFoundation
+        name: 'Function__#{g[0]}'
+
+values:
+    AVFoundationErrorDomain:
+        class: AVError
+        name: getClassDomain     
+    AVError(.*)Key:
+        enum: AVErrorUserInfoKey
+        name: '#{g[0]}'
+        type: NSString
+        extends: NSErrorUserInfoKey
+
+    AV(CoreAnimationBeginTimeAtZero):
+        class: AVFoundation
+        name: '#{g[0]}'
+
+    # AVAsset
+    AVAsset((Duration|ChapterMetadataGroups|MediaSelectionGroups)DidChangeNotification):
+        class: AVAsset
+        name: '#{g[0]}'
+        type: NSString
+
+    # AVAssetDownloadURLSession
+    AVAssetDownloadTask(.*)Key:
+        dictionary: AVAssetDownloadTaskOptions
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            MinimumRequiredMediaBitrate:
+                type: long
+            MediaSelection:
+                type: AVMediaSelection
+
+    # AVAssetExportSession
+    AVAssetExportPreset(640x480|960x540|1280x720|1920x1080):
+        enum: AVAssetExportPreset
+        name: 'Size#{g[0]}'
+        type: NSString
+    AVAssetExportPreset(.*):
+        enum: AVAssetExportPreset
+        name: '#{g[0]}'
+        type: NSString
+
+    # AVAssetImageGenerator
+    AVAssetImageGeneratorApertureMode(.*):
+        enum: AVAssetImageGeneratorApertureMode
+        name: '#{g[0]}'
+        type: NSString
+
+    # AVFragmentedAssetTrack
+    AVAssetTrack((TimeRange|Segments)DidChangeNotification):
+        class: AVFragmentedAssetTrack
+        name: '#{g[0]}'
+        type: NSString
+
+    # AVAssetResourceLoadingRequest
+    AVAssetResourceLoadingRequest(StreamingContentKeyRequestRequiresPersistentKey):
+        dictionary: AVAssetResourceLoadingRequestOptions
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            StreamingContentKeyRequestRequiresPersistentKey:
+                name: requiresPersistentKey
+                type: boolean
+
+    # AVAssetTrack
+    AVTrackAssociationType(.*):
+        enum: AVTrackAssociationType
+        name: '#{g[0]}'
+        type: NSString
+    AVAssetTrack(.*Notification):
+        class: AVAssetTrack
+        name: '#{g[0]}'
+        type: NSString
+
+    # AVAudioUnitComponent
+    AVAudioUnitComponent(TagsDidChangeNotification):
+        class: AVAudioUnitComponent
+        name: '#{g[0]}'
+        type: NSString
+
+    # AVAudioEngine
+    AVAudioEngine(.*Notification):
+        class: AVAudioEngine
+        name: '#{g[0]}'
+        type: NSString
+    
+    # AVAudioSession
+    AVAudioSessionCategory(.*):
+        enum: AVAudioSessionCategory
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioSessionLocation(.*):
+        enum: AVAudioSessionLocation
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioSessionMode(.*):
+        enum: AVAudioSessionMode
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioSessionOrientation(.*):
+        enum: AVAudioSessionOrientation
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioSessionPolarPattern(.*):
+        enum: AVAudioSessionPolarPattern
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioSessionPort(.*):
+        enum: AVAudioSessionPort
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioSession(.*Notification):
+        class: AVAudioSession
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioSessionInterruption(.*)Key:
+        dictionary: AVAudioSessionInterruptionNotification
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            Type:
+                type: AVAudioSessionInterruptionType
+            Option:
+                name: options
+                type: AVAudioSessionInterruptionOptions
+    AVAudioSessionRouteChange(.*)Key:
+        dictionary: AVAudioSessionRouteChangeNotification
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            Reason:
+                type: AVAudioSessionRouteChangeReason
+            PreviousRoute:
+                type: AVAudioSessionRouteDescription
+    AVAudioSession(SilenceSecondaryAudioHintTypeKey):
+        class: AVAudioSession
+        name: '#{g[0]}'
+        type: NSString
+        visibility: protected
+
+    # AVAudioUnit
+    AVAudioUnitType(.*):
+        enum: AVAudioUnitType
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioUnitManufacturerName(.*):
+        enum: AVAudioUnitManufacturerName
+        name: '#{g[0]}'
+        type: NSString
+
+    # AVCaptureDevice
+    AVCaptureDevice(.*Notification):
+        class: AVCaptureDevice
+        name: '#{g[0]}'
+        type: NSString
+    AVCapture(MaxAvailableTorchLevel|LensPositionCurrent|ExposureDurationCurrent|ISOCurrent|ExposureTargetBiasCurrent|WhiteBalanceGainsCurrent):
+        class: AVCaptureDevice
+        name: 'get#{g[0]}'
+
+    # AVCaptureInputPort
+    AVCaptureInputPort(FormatDescriptionDidChangeNotification):
+        class: AVCaptureInputPort
+        name: '#{g[0]}'
+        type: NSString
+
+    # AVCaptureSession
+    AVCaptureSessionPreset(352x288|640x480|1280x720|1920x1080):
+        enum: AVCaptureSessionPreset
+        name: 'Size#{g[0]}'
+        type: NSString
+    AVCaptureSessionPreset(.*):
+        enum: AVCaptureSessionPreset
+        name: '#{g[0]}'
+        type: NSString
+    AVCaptureSession(.*Notification):
+        class: AVCaptureSession
+        name: '#{g[0]}'
+        type: NSString
+    AVCaptureSession((Error|InterruptionReason)Key):
+        class: AVCaptureSession
+        name: 'Notification#{g[0]}'
+        type: NSString
+        visibility: protected
+
+    # AVLayer
+    AVLayerVideoGravity(.*):
+        enum: AVLayerVideoGravity
+        name: '#{g[0]}'
+        type: NSString
+
+    # AVMedia
+    AVMediaCharacteristic(.*):
+        enum: AVMediaCharacteristic
+        name: '#{g[0]}'
+        type: NSString
+
+    # AVMetadataItem
+    AVMetadataCommonIdentifier(.*):
+        enum: AVMetadataIdentifierCommon
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataIdentifier
+    AVMetadataIdentifier3GPUserData(.*):
+        enum: AVMetadataIdentifier3GPUserData
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataIdentifier
+    AVMetadataIdentifierISOUserData(.*):
+        enum: AVMetadataIdentifierISOUserData
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataIdentifier
+    AVMetadataIdentifierQuickTimeUserData(.*):
+        enum: AVMetadataIdentifierQuickTimeUserData
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataIdentifier
+    AVMetadataIdentifierIcyMetadata(.*):
+        enum: AVMetadataIdentifierIcyMetadata
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataIdentifier
+    AVMetadataIdentifierID3Metadata(.*):
+        enum: AVMetadataIdentifierID3Metadata
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataIdentifier
+    AVMetadataIdentifieriTunesMetadata(.*):
+        enum: AVMetadataIdentifieriTunesMetadata
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataIdentifier
+    AVMetadataIdentifierQuickTimeMetadata(.*):
+        enum: AVMetadataIdentifierQuickTimeMetadata
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataIdentifier
+    AVMetadataObjectType(.*):
+        enum: AVMetadataObjectType
+        name: '#{g[0]}'
+        type: NSString
+    AVMetadataKeySpace(.*):
+        enum: AVMetadataKeySpace
+        name: '#{g[0]}'
+        type: NSString
+    AVMetadataFormat(.*):
+        enum: AVMetadataFormat
+        name: '#{g[0]}'
+        type: NSString
+    AVMetadataCommonKey(.*):
+        enum: AVMetadataKeyCommon
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataKey
+    AVMetadata3GPUserDataKey(.*):
+        enum: AVMetadataKey3GPUserData
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataKey
+    AVMetadataIcyMetadataKey(.*):
+        enum: AVMetadataKeyIcyMetadata
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataKey
+    AVMetadataID3MetadataKey(.*):
+        enum: AVMetadataKeyID3Metadata
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataKey
+    AVMetadataISOUserDataKey(.*):
+        enum: AVMetadataKeyISOUserData
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataKey
+    AVMetadataiTunesMetadataKey(.*):
+        enum: AVMetadataKeyiTunesMetadata
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataKey
+    AVMetadataQuickTimeMetadataKey(.*):
+        enum: AVMetadataKeyQuickTimeMetadata
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataKey
+    AVMetadataQuickTimeUserDataKey(.*):
+        enum: AVMetadataKeyQuickTimeUserData
+        name: '#{g[0]}'
+        type: NSString
+        extends: AVMetadataKey
+    AVMetadataExtraAttribute(.*)Key:
+        dictionary: AVMetadataExtraAttributes
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            ValueURI:
+                type: String
+            BaseURI:
+                type: String
+            Info:
+                type: String
+
+    # AVOutputSettingsAssistant
+    AVOutputSettingsPreset(.*):
+        enum: AVOutputSettingsPreset
+        name: 'Size#{g[0]}'
+        type: NSString
+
+    # AVPlayerItem
+    AVPlayerItem(.*Notification):
+        class: AVPlayerItem
+        name: '#{g[0]}'
+        type: NSString
+    AVPlayerItem(FailedToPlayToEndTimeErrorKey):
+        class: AVPlayerItem
+        name: '#{g[0]}'
+        type: NSString
+        visibility: protected
+
+    # AVPlayerItemLegibleOutput
+    AVPlayerItemLegibleOutputTextStylingResolution(.*):
+        enum: AVPlayerItemLegibleOutputTextStylingResolution
+        name: '#{g[0]}'
+        type: NSString
+
+    # AVSampleBufferDisplayLayer
+    AVSampleBufferDisplayLayer(.*Notification):
+        class: AVSampleBufferDisplayLayer
+        name: '#{g[0]}'
+        type: NSString
+    AVSampleBufferDisplayLayer(FailedToDecodeNotificationErrorKey):
+        class: AVSampleBufferDisplayLayer
+        name: '#{g[0]}'
+        type: NSString
+        visibility: protected
+
+    # AVSpeechSynthesis
+    AVSpeechSynthesisVoiceIdentifier(.*):
+        enum: AVSpeechSynthesisVoiceIdentifier
+        name: '#{g[0]}'
+        type: NSString
+
+    # AVSpeechUtterance
+    AVSpeechUtterance(.*):
+        class: AVSpeechUtterance
+        name: 'get#{g[0]}'
+
+    # AVURLAsset
+    AVURLAsset(.*)Key:
+        dictionary: AVURLAssetOptions
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            PreferPreciseDurationAndTiming:
+                name: prefersPreciseDurationAndTiming
+                type: boolean
+            ReferenceRestrictions:
+                type: AVAssetReferenceRestrictions
+            HTTPCookies:
+                type: NSArray<NSHTTPCookie>
+
+    # Constants
+    AV(StreamingKeyDelivery(PersistentContent|Content)Key)Type:
+        enum: AVFileType
+        name: '#{g[0]}'
+        type: NSString
+    AVFileType(3.*):
+        enum: AVFileType
+        name: '_#{g[0]}'
+        type: NSString
+    AVFileType(.*):
+        enum: AVFileType
+        name: '#{g[0]}'
+        type: NSString
+
+    # AudioSettings
+    AVAudioBitRateStrategy_(.*):
+        enum: AVAudioBitRateStrategy
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioTimePitchAlgorithm(.*):
+        enum: AVAudioTimePitchAlgorithm
+        name: '#{g[0]}'
+        type: NSString
+    AVSampleRateConverter(.*)Key:
+        dictionary: AVSampleRateConverterSettings
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            Algorithm:
+                type: AVSampleRateConverterAlgorithm
+            AudioQuality:
+                type: AVAudioQuality
+    AVSampleRateConverterAlgorithm_(.*):
+        enum: AVSampleRateConverterAlgorithm
+        name: '#{g[0]}'
+        type: NSString
+    AVEncoder(.*)Key:
+        dictionary: AVAudioEncoderSettings
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            AudioQuality:
+                type: AVAudioQuality
+            AudioQualityForVBR:
+                type: AVAudioQuality
+            BitRate:
+                type: int
+            BitRatePerChannel:
+                type: int
+            BitRateStrategy:
+                type: AVAudioBitRateStrategy
+            BitDepthHint:
+                type: int
+    AV(ChannelLayout|FormatID|SampleRate|NumberOfChannels)Key:
+        dictionary: AVAudioSettings
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            FormatID:
+                name: format
+                type: AudioFormat
+                annotations: ['@WeaklyLinked']
+            SampleRate:
+                type: double
+            NumberOfChannels:
+                type: int
+            BitDepth:
+                name: linearPCMBitDepth
+                type: int
+            IsBigEndian:
+                name: linearPCMBigEndian
+                type: boolean
+            IsFloat:
+                name: linearPCMFloat
+                type: boolean
+            IsNonInterleaved:
+                name: linearPCMNonInterleaved
+                type: boolean
+            ChannelLayout:
+                type: AudioChannelLayout
+                annotations: ['@WeaklyLinked']
+    AVLinearPCM(.*).*:
+        dictionary: AVAudioSettings
+        name: '#{g[0]}'
+        type: NSString
+
+    # VideoSettings
+    AVMediaType(.*):
+        enum: AVMediaType
+        name: '#{g[0]}'
+        type: NSString
+    AVVideoCleanAperture(.+)Key:
+        dictionary: AVVideoCleanAperture
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            Width:
+                type: long
+            Height:
+                type: long
+            HorizontalOffset:
+                type: long
+            VerticalOffset:
+                type: long
+    AVVideo(AverageBitRate|Quality|MaxKeyFrameInterval|MaxKeyFrameIntervalDuration)Key:
+        dictionary: AVVideoCompressionSettings
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            AverageBitRate:
+                type: double
+            Quality:
+                type: double
+            MaxKeyFrameInterval:
+                type: double
+            MaxKeyFrameIntervalDuration:
+                type: double
+    AVVideoPixelAspectRatio(.+)Key:
+        class: AVPixelAspectRatio
+        name: '#{g[0]}'
+        type: NSString
+        visibility: protected
+    AVVideo(.*)Key:
+        dictionary: AVVideoSettings
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            Codec:
+                type: CMVideoCodecType
+                annotations: ['@WeaklyLinked']
+            Width:
+                type: long
+            Height:
+                type: long
+            CleanAperture:
+                type: AVVideoCleanAperture
+            ScalingMode:
+                type: AVVideoScalingMode
+            CompressionSettings:
+                type: AVVideoCompressionSettings
+            AllowFrameReordering:
+                name: allowsFrameReordering
+                type: boolean
+            ProfileLevel:
+                type: AVVideoProfileLevel
+            H264EntropyMode:
+                type: AVVideoH264EntropyMode
+            ExpectedSourceFrameRate:
+                type: double
+            AverageNonDroppableFrameRate:
+                type: double
+    AVVideoCodec(.*):
+        exclude: true
+    AVVideoScalingMode(.*):
+        enum: AVVideoScalingMode
+        name: '#{g[0]}'
+        type: NSString
+    AVVideoProfileLevel(.*):
+        enum: AVVideoProfileLevel
+        name: '#{g[0]}'
+        type: NSString
+    AVVideoH264EntropyMode(.*):
+        enum: AVVideoH264EntropyMode
+        name: '#{g[0]}'
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?AV.*):
+        class: AVFoundation
+        name: 'Value__#{g[0]}'
+
+constants:
+    AVAudioSessionInterruptionFlags_ShouldResume:
+        exclude: true
+    AVAudioSessionSetActiveFlags_NotifyOthersOnDeactivation:
+        exclude: true
+
+    AVMusicTrack(LoopCountForever):
+        exclude: true
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?AV.*):
+        class: AVFoundation
+        name: 'Constant__#{g[0]}'

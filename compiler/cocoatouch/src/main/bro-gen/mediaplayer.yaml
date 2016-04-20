@@ -1,0 +1,433 @@
+package: org.robovm.apple.mediaplayer
+include: [foundation.yaml, uikit.yaml, coregraphics.yaml]
+library: MediaPlayer
+framework: MediaPlayer
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/MediaPlayer.framework/Headers/MediaPlayer.h
+typedefs:
+    'void (^)(NSString *, id, BOOL *)': '@Block VoidBlock3<NSString, NSObject, BooleanPtr>'
+    'MPRemoteCommandHandlerStatus (^)(MPRemoteCommandEvent *)': '@Block Block1<MPRemoteCommandEvent, MPRemoteCommandHandlerStatus>'
+
+enums:
+    MPMediaGrouping: {first: MPMediaGroupingTitle, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMediaPlaylistAttribute: {first: MPMediaPlaylistAttributeNone, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
+    MPMediaPredicateComparison: {first: MPMediaPredicateComparisonEqualTo, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMediaType: {}
+    MPMovieControlStyle: {first: MPMovieControlStyleNone, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMovieFinishReason: {first: MPMovieFinishReasonPlaybackEnded, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMovieLoadState: {first: MPMovieLoadStateUnknown, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
+    MPMovieMediaTypeMask: {first: MPMovieMediaTypeMaskNone, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
+    MPMoviePlaybackState: {first: MPMoviePlaybackStateStopped, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMovieRepeatMode: {first: MPMovieRepeatModeNone, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMovieScalingMode: {first: MPMovieScalingModeNone, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMovieSourceType: {first: MPMovieSourceTypeUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMovieTimeOption: {first: MPMovieTimeOptionNearestKeyFrame, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMusicPlaybackState: {first: MPMusicPlaybackStateStopped, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMusicRepeatMode: {first: MPMusicRepeatModeDefault, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMusicShuffleMode: {first: MPMusicShuffleModeDefault, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPRemoteCommandHandlerStatus: {}
+    MPSeekCommandEventType: {}
+
+categories:
+    UIViewController: # DONE
+        methods:
+            '-presentMoviePlayerViewControllerAnimated:':
+                name: presentMoviePlayerViewController
+            '-dismissMoviePlayerViewControllerAnimated':
+                name: dismissMoviePlayerViewController
+
+classes:
+    MPChangePlaybackRateCommand: # DONE
+        properties:
+            supportedPlaybackRates:
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsDoubleListMarshaler.class) List<Double>'
+    MPChangePlaybackRateCommandEvent: {} # DONE
+    MPContentItem: # DONE
+        methods:
+            '-init.*':
+                name: init
+    MPFeedbackCommand: {} # DONE
+    MPFeedbackCommandEvent: {} # DONE
+    MPMediaEntity: # DONE
+        methods:
+            '-valueForProperty:':
+                name: getValue
+                parameters:
+                    property:
+                        type: MPMediaEntityProperty
+            '-enumerateValuesForProperties:usingBlock:':
+                name: enumerateValues
+                visibility: protected
+                parameters:
+                    properties:
+                        type: NSSet<NSString>
+            '-objectForKeyedSubscript:':
+                exclude: true
+            '+canFilterByProperty:':
+                trim_after_first_colon: true
+                parameters:
+                    property:
+                        type: MPMediaEntityProperty
+    MPMediaItem: # DONE
+        methods:
+            '+persistentIDPropertyForGroupingType:':
+                name: getPersistentIDProperty
+                return_type: MPMediaEntityProperty
+            '+titlePropertyForGroupingType:':
+                name: getTitleProperty
+                return_type: MPMediaEntityProperty
+    MPMediaItemArtwork: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '-imageWithSize:':
+                name: getImage
+    MPMediaItemCollection: # DONE
+        properties:
+            'items':
+                type: NSArray<MPMediaItem>
+        methods:
+            '+collectionWithItems:':
+                exclude: true
+            '-initWithItems:':
+                name: init
+                parameters:
+                    items:
+                        type: NSArray<MPMediaItem>
+    MPMediaLibrary: # DONE
+        methods:
+            '+defaultMediaLibrary':
+                name: getDefaultMediaLibrary
+    MPMediaPickerController: # DONE
+        skip_def_constructor: true
+        methods:
+            '-init.*':
+                name: init
+    MPMediaPlaylist: # DONE
+        properties:
+            'seedItems':
+                type: NSArray<MPMediaItem>
+    MPMediaPredicate: {} # DONE
+    MPMediaPropertyPredicate: # DONE
+        properties:
+            property:
+                name: propertyName
+                type: NSString
+        methods:
+            '+predicateWithValue:forProperty:':
+                name: create
+                visibility: protected
+                parameters:
+                    property:
+                        type: NSString
+            '+predicateWithValue:forProperty:comparisonType:':
+                name: create
+                visibility: protected
+                parameters:
+                    property:
+                        type: NSString
+    MPMediaQuery: # DONE
+        skip_def_constructor: true
+        properties:
+            collections:
+                type: NSArray<MPMediaItemCollection>
+            collectionSections:
+                type: NSArray<MPMediaQuerySection>
+            filterPredicates:
+                type: NSSet<MPMediaPredicate>
+            items:
+                type: NSArray<MPMediaItem>
+            itemSections:
+                type: NSArray<MPMediaQuerySection>
+        methods:
+            '+(albums|artists|songs|playlists|podcasts|audiobooks|compilations|composers|genres)Query':
+                name: 'create#{g[0][0].upcase}#{g[0][1..-1]}Query'
+            '-initWithFilterPredicates:':
+                name: init
+                parameters:
+                    filterPredicates:
+                        type: NSSet<MPMediaPredicate>
+            '-addFilterPredicate:':
+                trim_after_first_colon: true
+            '-removeFilterPredicate:':
+                trim_after_first_colon: true
+
+    MPMediaQuerySection: {} # DONE
+    MPMovieAccessLog: # DONE
+        properties:
+            events:
+                type: NSArray<MPMovieAccessLogEvent>
+    MPMovieAccessLogEvent: {} # DONE
+    MPMovieErrorLog: # DONE
+        properties:
+            events:
+                type: NSArray<MPMovieErrorLogEvent>
+    MPMovieErrorLogEvent: {} # DONE
+    MPMoviePlayerController: # DONE
+        properties:
+            'timedMetadata':
+                type: NSArray<MPTimedMetadata>
+            'useApplicationAudioSession':
+                name: usesApplicationAudioSession
+        methods:
+            '-init.*':
+                name: init
+            '-setFullscreen:animated:':
+                trim_after_first_colon: true
+            '-thumbnailImageAtTime:timeOption:':
+                name: getThumbnailImage
+            '-requestThumbnailImagesAtTimes:timeOption:':
+                name: requestThumbnailImages
+                parameters:
+                    playbackTimes:
+                        type: NSArray<NSNumber>
+    MPMoviePlayerViewController: # DONE
+        methods:
+            '-init.*':
+                name: init
+    MPMusicPlayerController: # DONE
+        methods:
+            '+applicationMusicPlayer':
+                property: true
+            '+systemMusicPlayer':
+                property: true
+            '+iPodMusicPlayer':
+                property: true
+            '-setQueueWithQuery:':
+                name: setQueue
+            '-setQueueWithItemCollection:':
+                name: setQueue
+    MPNowPlayingInfoCenter: # DONE
+        properties:
+            'nowPlayingInfo':
+                type: MPNowPlayingInfo
+        methods:
+            '+defaultCenter':
+                property: true
+    MPPlayableContentManager: # DONE
+        methods:
+            '+sharedContentManager':
+                property: true
+    MPPlayableContentManagerContext: {} # DONE
+    MPRatingCommand: {} # DONE
+    MPRatingCommandEvent: {} # DONE
+    MPRemoteCommand: # DONE
+        methods:
+            '-addTarget:action:':
+                trim_after_first_colon: true
+            '-removeTarget:action:':
+                trim_after_first_colon: true
+            '-removeTarget:':
+                trim_after_first_colon: true
+            '-addTargetWithHandler:':
+                name: addTarget
+    MPRemoteCommandCenter: # DONE
+        methods:
+            '+sharedCommandCenter':
+                property: true
+    MPRemoteCommandEvent: {} # DONE
+    MPSeekCommandEvent: {} # DONE
+    MPSkipIntervalCommand: # DONE
+        properties:
+            'preferredIntervals':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsDoubleListMarshaler.class) List<Double>'
+    MPSkipIntervalCommandEvent: {} # DONE
+    MPTimedMetadata: {} # DONE
+    MPVolumeView: # DONE
+        properties:
+            'wirelessRoutesAvailable':
+                name: areWirelessRoutesAvailable
+        methods:
+            '-maximumVolumeSliderImageForState:':
+                name: getMaximumVolumeSliderImage
+            '-minimumVolumeSliderImageForState:':
+                name: getMinimumVolumeSliderImage
+            '-setMaximumVolumeSliderImage:forState:':
+                trim_after_first_colon: true
+            '-setMinimumVolumeSliderImage:forState:':
+                trim_after_first_colon: true
+            '-routeButtonImageForState:':
+                name: getRouteButtonImage
+            '-routeButtonRectForBounds:':
+                name: getRouteButtonRect
+            '-volumeThumbImageForState:':
+                name: getVolumeThumbImage
+            '-volumeSliderRectForBounds:':
+                name: getVolumeSliderRect
+            '-setRouteButtonImage:forState:':
+                trim_after_first_colon: true
+            '-setVolumeThumbImage:forState:':
+                trim_after_first_colon: true
+            '-volumeThumbRectForBounds:volumeSliderRect:value:':
+                name: getVolumeThumbRect
+
+protocols:
+    MPMediaPickerControllerDelegate: # DONE
+        methods:
+            '-mediaPicker:didPickMediaItems:':
+                name: didPickMediaItems
+            '-mediaPickerDidCancel:':
+                name: didCancel
+    MPMediaPlayback: {} # DONE
+    MPPlayableContentDataSource: # DONE
+        methods:
+            '-beginLoadingChildItemsAtIndexPath:completionHandler:':
+                name: beginLoadingChildItems
+            '-childItemsDisplayPlaybackProgressAtIndexPath:':
+                name: childItemsDisplayPlaybackProgress
+            '-childItemsDisplayPlaybackProgressAtIndexPath:':
+                name: childItemsDisplayPlaybackProgress
+            '-numberOfChildItemsAtIndexPath:':
+                name: getNumberOfChildItems
+            '-contentItemAtIndexPath:':
+                name: getContentItem
+    MPPlayableContentDelegate: # DONE
+        methods:
+            '-playableContentManager:initiatePlaybackOfContentItemAtIndexPath:completionHandler:':
+                name: initiatePlayback
+            '-playableContentManager:didUpdateContext:':
+                name: didUpdateContext
+
+functions:
+    MPVolumeSettingsAlert(Show|Hide):
+        class: MPVolumeSettings
+        name: '#{g[0]}Alert'
+    MPVolumeSettingsAlertIsVisible:
+        class: MPVolumeSettings
+        name: isAlertVisible
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (MP.*):
+        class: MediaPlayer
+        name: 'Function__#{g[0]}'
+
+values:
+    MPMediaEntityPropertyPersistentID:
+        enum: MPMediaEntityProperty
+        name: EntityPersistentID
+        type: NSString
+    MPMediaEntityProperty(.*):
+        enum: MPMediaEntityProperty
+        name: '#{g[0]}'
+        type: NSString
+    
+    MPMediaItemPropertyPersistentID:
+        enum: MPMediaItemProperty
+        name: ItemPersistentID
+        type: NSString
+        extends: MPMediaEntityProperty
+    MPMediaItemProperty(.*):
+        enum: MPMediaItemProperty
+        name: '#{g[0]}'
+        type: NSString
+        extends: MPMediaEntityProperty
+        
+    MPMediaPlaylistPropertyPersistentID:
+        enum: MPMediaPlaylistProperty
+        name: PlaylistPersistendID
+        type: NSString
+        extends: MPMediaEntityProperty
+    MPMediaPlaylistProperty(.*):
+        enum: MPMediaPlaylistProperty
+        name: '#{g[0]}'
+        type: NSString
+        extends: MPMediaEntityProperty
+
+    MPNowPlayingInfoProperty(.*):
+        dictionary: MPNowPlayingInfo
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            ElapsedPlaybackTime:
+                type: double
+            PlaybackRate:
+                type: double
+            PlaybackQueueIndex:
+                type: int
+            PlaybackQueueCount:
+                type: int
+            ChapterNumber:
+                type: int
+            ChapterCount:
+                type: int
+            DefaultPlaybackRate:
+                type: double
+        
+    MPMoviePlayerTimedMetadataKey(.*):
+        class: MPTimedMetadata
+        name: '#{g[0]}'
+        type: NSString
+        visibility: protected
+
+    MPMediaLibrary(DidChangeNotification):
+        class: MPMediaLibrary
+        name: '#{g[0]}'
+        type: NSString
+    MPMediaPlayback(IsPreparedToPlayDidChangeNotification):
+        class: MPMusicPlayerController
+        name: '#{g[0]}'
+        type: NSString
+    MPMoviePlayerContentPreloadDidFinishNotification:
+        exclude: true
+    MPMoviePlayer(.*Notification):
+        class: MPMoviePlayerController
+        name: '#{g[0]}'
+        type: NSString
+    MPMovie(.*Notification):
+        class: MPMoviePlayerController
+        name: '#{g[0]}'
+        type: NSString
+    MPMusicPlayerController(.*Notification):
+        class: MPMusicPlayerController
+        name: '#{g[0]}'
+        type: NSString
+    MPVolumeView(.*Notification):
+        class: MPVolumeView
+        name: '#{g[0]}'
+        type: NSString
+        
+    MPMoviePlayer(PlaybackDidFinishReasonUserInfoKey):
+        class: MPMoviePlayerController
+        name: '#{g[0]}'
+        type: NSString
+        visibility: protected
+    MPMoviePlayer(TimedMetadataUserInfoKey):
+        class: MPMoviePlayerController
+        name: '#{g[0]}'
+        type: NSString
+        visibility: protected
+    MPMoviePlayerThumbnail(.*)Key:
+        dictionary: MPMoviePlayerThumbnailRequest
+        name: '#{g[0]}'
+        type: NSString
+        mutable: false
+        methods:
+            Image:
+                type: UIImage
+            Time:
+                type: double
+            Error:
+                type: NSError
+    MPMoviePlayerFullscreenAnimation(.*)UserInfoKey:
+        dictionary: MPMoviePlayerFullscreenAnimation
+        name: '#{g[0]}'
+        type: NSString
+        mutable: false
+        methods:
+            Duration:
+                type: double
+            Curve:
+                type: UIViewAnimationCurve
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?MP.*):
+        class: MediaPlayer
+        name: 'Value__#{g[0]}'
+
+constants:
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?MP.*):
+        class: MediaPlayer
+        name: 'Constant__#{g[0]}'

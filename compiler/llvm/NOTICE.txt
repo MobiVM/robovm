@@ -1,0 +1,12 @@
+RoboVM LLVM Bindings
+Copyright (C) 2013-2014 RoboVM AB
+For license information see the LICENSE.txt file which accompanies this
+NOTICE.txt file.
+
+Third party libraries
+---------------------
+
+RoboVM LLVM Bindings includes code from the LLVM project which is copyright
+University of Illinois at Urbana-Champaign and released under the University of
+Illinois/NCSA Open Source License
+http://llvm.org

@@ -1,0 +1,10 @@
+.classpath
+.project
+.settings/
+.gradle
+.DS_Store
+/out
+/build
+/bin/
+.idea/
+robovm-gradle-plugin.iml

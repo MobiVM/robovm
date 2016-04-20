@@ -1,0 +1,67 @@
+RoboVM compiler
+Copyright (C) 2012-2014 RoboVM AB
+For license information see the LICENSE.txt file which accompanies this
+NOTICE.txt file.
+
+Third party libraries
+---------------------
+
+The RoboVM compiler includes the com.dd.plist library. This library is
+copyright 2011, Daniel Dreibrodt and released under the MIT license.
+https://code.google.com/p/plist/
+
+The MurmurHash3 algorithm in MurmurHash3.java was created by Austin Appleby and
+ported to Java by Yonik Seeley. The original C code and the Java port are placed
+into the public domain. Both authors disclaim copyright to the source code.
+http://code.google.com/p/smhasher/
+https://github.com/yonik/java_util
+
+The RoboVM compiler uses Soot which is copyright Sable Research Group and
+various contributors. Please see http://www.sable.mcgill.ca/soot/credits for a
+full list of contributors. LGPL 2.1 license. http://www.sable.mcgill.ca/soot/
+
+The RoboVM compiler includes Apache Commons IO which is copyright 2001-2008, the
+Apache Software Foundation and released under the Apache License 2.0.
+http://commons.apache.org/io/
+
+The RoboVM compiler includes Apache Commons Exec which is copyright 2005-2009,
+The Apache Software Foundation and released under the Apache License 2.0.
+http://commons.apache.org/exec/
+
+The RoboVM compiler includes code from the Apache Camel project which is 
+copyright The Apache Software Foundation and released under the Apache License 
+2.0. http://camel.apache.org/
+
+The RoboVM compiler includes code from the Spring Framework project which is 
+copyright 2002-2013 by several authors and released under the Apache License
+2.0. http://www.springsource.org/spring-framework
+
+The RoboVM compiler includes the JSON.simple JSON library which is copyright 
+2009, Fang Yidong and Chris Nokleberg and released under the Apache License 2.0.
+http://code.google.com/p/json-simple
+
+The RoboVM compiler includes the ASM Java bytecode manipulation framework which
+is copyright 2000-2011 INRIA, France Telecom and released under the 3-clause BSD
+license.
+http://asm.ow2.org/
+
+The RoboVM compiler uses the ZeroTurnaround ZIP Library which is copyright 2012,
+ZeroTurnaround LLC and released under the Apache License 2.0.
+https://github.com/zeroturnaround/zt-zip
+
+The RoboVM compiler includes the Simple XML serialization framework which is 
+copyright Niall Gallagher and released under the Apache License 2.0.
+http://simple.sourceforge.net
+
+The RoboVM compiler includes the Bouncy Castle Crypto APIs for Java which is 
+copyright 2000 - 2013, The Legion of the Bouncy Castle Inc. and released under 
+the MIT license.
+http://www.bouncycastle.org
+
+The RoboVM compiler uses hfscompressor which is copyright 2015 RoboVM AB and
+released under the GNU General Public License version 2.
+https://github.com/robovm/hfscompressor
+
+The RoboVM compiler uses the libarchive library. This library is copyright
+2003-2009 Tim Kientzle and released under the 2-clause BSD license.
+http://www.libarchive.org

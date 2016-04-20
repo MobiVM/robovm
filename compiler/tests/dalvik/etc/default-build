@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+# Copyright (C) 2008 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Stop if something fails.
+set -e
+
+if [ "x$BASE" == 'x' ]; then
+    echo "BASE not set"
+    exit 1
+fi
+
+mkdir classes
+${JAVAC} -d classes `find src -name '*.java'`
+
+if [ -r src2 ]; then
+    ${JAVAC} -d classes `find src2 -name '*.java'`
+fi
+
+cp=classes
+if [ -r src-ex ]; then
+    mkdir classes-ex
+    ${JAVAC} -d classes-ex -cp classes `find src-ex -name '*.java'`
+    cp=classes:classes-ex
+fi
+
+$BASE/tests/dalvik/robovm-builder -forcelinkclasses '##.#' -cp "$cp" Main > robovm.log 2>&1

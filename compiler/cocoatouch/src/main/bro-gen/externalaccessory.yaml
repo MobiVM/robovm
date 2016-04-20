@@ -1,0 +1,115 @@
+package: org.robovm.apple.externalaccessory
+include: [foundation.yaml, dispatch.yaml, uikit.yaml]
+library: ExternalAccessory
+framework: ExternalAccessory
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/ExternalAccessory.framework/Headers/ExternalAccessory.h
+    - /System/Library/Frameworks/ExternalAccessory.framework/Headers/ExternalAccessoryDefines.h
+typedefs: {}
+    
+enums:
+    EABluetoothAccessoryPickerErrorCode: { first: EABluetoothAccessoryPickerAlreadyConnected, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    EAWiFiUnconfiguredAccessoryProperties: {}
+    EAWiFiUnconfiguredAccessoryBrowserState: {}
+    EAWiFiUnconfiguredAccessoryConfigurationStatus: {}
+        
+classes:
+    EABluetoothAccessoryPickerError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+
+    EAAccessory: # DONE
+        properties:
+            'protocolStrings':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+    EAAccessoryManager: # DONE
+        properties:
+            'connectedAccessories':
+                type: NSArray<EAAccessory>
+        methods:
+            '-showBluetoothAccessoryPickerWithNameFilter:completion:':
+                name: showBluetoothAccessoryPicker
+                parameters:
+                    completion:
+                        type: '@Block VoidBlock1<NSError>'
+            '+sharedAccessoryManager':
+                property: true
+    EASession: # DONE
+        methods:
+            '-init.*':
+                name: init
+    EAWiFiUnconfiguredAccessory: {} # DONE
+    EAWiFiUnconfiguredAccessoryBrowser: # DONE
+        properties:
+            'unconfiguredAccessories':
+                type: NSSet<EAWiFiUnconfiguredAccessory>
+        methods:
+            '-initWithDelegate:queue:':
+                name: init
+                annotations: ['@WeaklyLinked']
+            '-startSearchingForUnconfiguredAccessoriesMatchingPredicate:':
+                name: startSearchingForUnconfiguredAccessories
+            '-configureAccessory:withConfigurationUIOnViewController:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
+
+protocols:
+    EAAccessoryDelegate: # DONE
+        methods:
+            '-accessoryDidDisconnect:':
+                name: didDisconnect
+    EAWiFiUnconfiguredAccessoryBrowserDelegate: # DONE
+        methods:
+            '-accessoryBrowser:didUpdateState:':
+                name: didUpdateState
+            '-accessoryBrowser:didFindUnconfiguredAccessories:':
+                name: didFindUnconfiguredAccessories
+                parameters:
+                    accessories:
+                        type: NSSet<EAWiFiUnconfiguredAccessory>
+            '-accessoryBrowser:didRemoveUnconfiguredAccessories:':
+                name: didRemoveUnconfiguredAccessories
+                parameters:
+                    accessories:
+                        type: NSSet<EAWiFiUnconfiguredAccessory>
+            '-accessoryBrowser:didFinishConfiguringAccessory:withStatus:':
+                name: didFinishConfiguringAccessory
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?EA.*):
+        class: ExternalAccessory
+        name: 'Function__#{g[0]}'
+
+values:
+    EABluetoothAccessoryPickerErrorDomain:
+        class: EABluetoothAccessoryPickerError
+        name: getClassDomain
+
+    # EAAccessoryManager
+    EA(Accessory.*Notification):
+        class: EAAccessoryManager
+        name: '#{g[0]}'
+        type: NSString
+    EA(Accessory.*Key):
+        class: EAAccessoryManager
+        name: '#{g[0]}'
+        type: NSString
+        visibility: protected
+   
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?EA.*):
+        class: ExternalAccessory
+        name: 'Value__#{g[0]}'
+
+constants:
+    EA(ConnectionIDNone):
+        class: EAAccessory
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?EA.*):
+        class: ExternalAccessory
+        name: 'Constant__#{g[0]}'

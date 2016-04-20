@@ -1,0 +1,833 @@
+package: org.robovm.apple.gamekit
+include: [foundation.yaml, uikit.yaml]
+library: GameKit
+framework: GameKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/GameKit.framework/Headers/GameKit.h
+typedefs:
+    'void (^)(UIImage *, NSError *)': '@Block VoidBlock2<UIImage, NSError>'
+    'void (^)(NSArray *, NSArray *, NSError *)': '@Block VoidBlock3<NSArray<NSString>, NSArray<NSString>, NSError>'
+    'void (^)(NSString *, NSError *)': '@Block VoidBlock2<String, NSError>'
+    'void (^)(NSURL *, NSData *, NSData *, uint64_t, NSError *)': '@Block VoidBlock5<NSURL, NSData, NSData, Long, NSError>'
+    'void (^)(UIViewController *, NSError *)': '@Block VoidBlock2<UIViewController, NSError>'
+    'void (^)(NSString *)': '@Block VoidBlock1<String>'
+    'void (^)(GKMatch *, NSError *)': '@Block VoidBlock2<GKMatch, NSError>'
+    'void (^)(NSString *, GKInviteeResponse)': '@Block VoidBlock2<String, GKInviteeResponse>'
+    'void (^)(NSInteger, NSError *)': '@Block("(@MachineSizedSInt,)") VoidBlock2<Long, NSError>'
+    'void (^)(NSString *, BOOL)': '@Block VoidBlock2<String, Boolean>'
+    'void (^)(GKInvite *, NSArray *)': '@Block VoidBlock2<GKInvite, NSArray<NSString>>'
+    'void (^)(GKTurnBasedMatch *, NSError *)': '@Block VoidBlock2<GKTurnBasedMatch, NSError>'
+    'void (^)(NSData *, NSError *)': '@Block VoidBlock2<NSData, NSError>'
+    'void (^)(GKTurnBasedExchange *, NSError *)': '@Block VoidBlock2<GKTurnBasedExchange, NSError>'
+    'void (^)(NSString *, GKVoiceChatPlayerState)': '@Block VoidBlock2<String, GKVoiceChatPlayerState>'
+    'void (^)(GKSavedGame *, NSError *)': '@Block VoidBlock2<GKSavedGame, NSError>'
+    'void (^)(GKPlayer *)': '@Block VoidBlock1<GKPlayer>'
+    'void (^)(GKPlayer *, GKInviteRecipientResponse)': '@Block VoidBlock2<GKPlayer, GKInviteRecipientResponse>'
+    'void (^)(GKPlayer *, BOOL)': '@Block VoidBlock2<GKPlayer, Boolean>'
+    'void (^)(GKPlayer *, GKVoiceChatPlayerState)': '@Block VoidBlock2<GKPlayer, GKInviteRecipientResponse>'
+
+enums:
+    GKErrorCode: { first: GKErrorUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKChallengeState: { marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    GKGameCenterViewControllerState: { marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    GKLeaderboardTimeScope: { first: GKLeaderboardTimeScopeToday, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKLeaderboardPlayerScope: { first: GKLeaderboardPlayerScopeGlobal, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKMatchSendDataMode: { first: GKMatchSendDataReliable, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKPlayerConnectionState: { first: GKPlayerStateUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKPhotoSize: { first: GKPhotoSizeSmall, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKSendDataMode: { first: GKSendDataReliable, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKInviteeResponse: { first: GKInviteeResponseAccepted, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKInviteRecipientResponse: {}
+    GKSessionMode: { first: GKSessionModeServer, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKSessionErrorCode: { first: GKSessionInvalidParameterError, suffix: Error, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKMatchType: { first: GKMatchTypePeerToPeer, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    GKPeerConnectionState: { first: GKPeerStateAvailable, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKPeerPickerConnectionType: { first: GKPeerPickerConnectionTypeOnline, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    GKTurnBasedExchangeStatus: { first: GKTurnBasedExchangeStatusUnknown, marshaler: ValuedEnum.AsSignedByteMarshaler }
+    GKTurnBasedMatchStatus: { first: GKTurnBasedMatchStatusUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKTurnBasedParticipantStatus: { first: GKTurnBasedParticipantStatusUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKTurnBasedMatchOutcome: { first: GKTurnBasedMatchOutcomeNone, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKVoiceChatPlayerState: { first: GKVoiceChatPlayerConnected, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKVoiceChatServiceErrorCode: { first: GKVoiceChatServiceInternalError, suffix: Error, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+        
+classes:
+    GKError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+    GKSessionError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+    GKVoiceChatServiceError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+        
+    GKAchievement: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '-reportAchievementWithCompletionHandler:':
+                name: reportAchievement
+            '+reportAchievements:withCompletionHandler:':
+                name: reportAchievements
+                parameters:
+                    achievements:
+                        type: NSArray<GKAchievement>
+            '+loadAchievementsWithCompletionHandler:':
+                name: loadAchievements
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<GKAchievement>, NSError>'
+            '+resetAchievementsWithCompletionHandler:':
+                name: resetAchievements
+            '-reportAchievements:withCompletionHandler:':
+                trim_after_first_colon: true
+            '-challengeComposeControllerWithMessage:players:completionHandler:':
+                name: getChallengeComposeController
+                parameters:
+                    players:
+                        type: NSArray<GKPlayer>
+                    completionHandler:
+                        type: '@Block VoidBlock3<UIViewController, Boolean, NSArray<GKPlayer>>'
+            '-challengeComposeControllerWithPlayers:message:completionHandler:':
+                name: getChallengeComposeController
+                parameters:
+                    playerIDs:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                    completionHandler:
+                        type: '@Block VoidBlock3<UIViewController, Boolean, NSArray<NSString>>' # TODO asStringListMarshaler
+            '-selectChallengeablePlayers:withCompletionHandler:':
+                trim_after_first_colon: true
+                parameters:
+                    players:
+                        type: NSArray<GKPlayer>
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<GKPlayer>, NSError>'
+            '-selectChallengeablePlayerIDs:withCompletionHandler:':
+                trim_after_first_colon: true
+                parameters:
+                    playerIDs:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<NSString>, NSError>' # TODO asStringListMarshaler
+            '+reportAchievements:withEligibleChallenges:withCompletionHandler:':
+                trim_after_first_colon: true
+                parameters:
+                    achievements:
+                        type: NSArray<GKAchievement>
+                    challenges:
+                        type: NSArray<GKChallenge>
+            '-issueChallengeToPlayers:message:':
+                trim_after_first_colon: true
+                parameters:
+                    playerIDs:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+    GKAchievementChallenge: {} # DONE
+    GKAchievementDescription: # DONE
+         methods:
+            '+loadAchievementDescriptionsWithCompletionHandler:':
+                name: loadAchievementDescriptions
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<GKAchievementDescription>, NSError>'
+            '-loadImageWithCompletionHandler:':
+                name: loadImage
+            '+incompleteAchievementImage':
+                name: getIncompleteAchievementImage
+            '+placeholderCompletedAchievementImage':
+                name: getPlaceholderCompletedAchievementImage
+    GKAchievementViewController: {} # DONE
+    GKChallenge: # DONE
+        methods:
+            '+loadReceivedChallengesWithCompletionHandler:':
+                name: loadReceivedChallenges
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<GKChallenge>, NSError>'
+    GKChallengeEventHandler: # DONE
+        methods:
+            '+challengeEventHandler':
+                name: getChallengeEventHandler
+    GKFriendRequestComposeViewController: # DONE
+        methods:
+            '-addRecipientPlayers:':
+                trim_after_first_colon: true
+                parameters:
+                    players:
+                        type: NSArray<GKPlayer>
+            '-addRecipientsWithPlayerIDs:':
+                trim_after_first_colon: true
+                parameters:
+                    playerIDs:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '-addRecipientsWithEmailAddresses:':
+                trim_after_first_colon: true
+                parameters:
+                    emailAddresses:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '+maxNumberOfRecipients':
+                name: getMaxNumberOfRecipients
+    GKGameCenterViewController: {} # DONE
+    GKInvite: {} # DONE
+    GKLeaderboard: # DONE
+        properties:
+            'scores':
+                type: NSArray<GKScore>
+        methods:
+            '-init':
+                exclude: true
+            '-initWithPlayerIDs:':
+                name: init
+                parameters:
+                    playerIDs:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '-initWithPlayers:':
+                name: init
+                parameters:
+                    players:
+                        type: NSArray<GKPlayer>
+            '-loadScoresWithCompletionHandler:':
+                name: loadScores
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<GKScore>, NSError>' # TODO asStringListMarshaler
+            '+loadCategoriesWithCompletionHandler:':
+                name: loadCategories
+            '+loadLeaderboardsWithCompletionHandler:':
+                name: loadLeaderboards
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<GKLeaderboard>, NSError>' # TODO asStringListMarshaler
+            '-loadImageWithCompletionHandler:':
+                name: loadImage
+            '+setDefaultLeaderboard:withCompletionHandler:':
+                trim_after_first_colon: true
+    GKLeaderboardSet: # DONE
+        methods:
+            '+loadLeaderboardSetsWithCompletionHandler:':
+                name: loadLeaderboardSets
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<GKLeaderboardSet, NSError>'
+            '-loadLeaderboardsWithCompletionHandler:':
+                name: loadLeaderboards
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<GKLeaderboard, NSError>'
+            '-loadImageWithCompletionHandler:':
+                name: loadImage
+    GKLeaderboardViewController: {} # DONE
+    GKLocalPlayer: # DONE
+        properties:
+            'friends':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+        methods:
+            '-loadFriendPlayersWithCompletionHandler:':
+                name: loadFriendPlayers
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<GKPlayer>, NSError>'
+            '-loadFriendsWithCompletionHandler:':
+                name: loadFriends
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<NSString>, NSError>' # TODO asStringListMarshaler
+            '-setDefaultLeaderboardIdentifier:completionHandler:':
+                trim_after_first_colon: true
+            '-loadDefaultLeaderboardIdentifierWithCompletionHandler:':
+                name: loadDefaultLeaderboardIdentifier
+            '-generateIdentityVerificationSignatureWithCompletionHandler:':
+                name: generateIdentityVerificationSignature
+            '-authenticateWithCompletionHandler:':
+                name: authenticate
+            '+localPlayer':
+                property: true
+            '-registerListener:':
+                trim_after_first_colon: true
+            '-unregisterListener:':
+                trim_after_first_colon: true
+            '-setDefaultLeaderboardCategoryID:completionHandler:':
+                trim_after_first_colon: true
+            '-loadDefaultLeaderboardCategoryIDWithCompletionHandler:':
+                name: loadDefaultLeaderboardCategoryID
+            '-fetchSavedGamesWithCompletionHandler:':
+                name: fetchSavedGames
+                parameters:
+                    handler:
+                        type: '@Block VoidBlock2<NSArray<GKSavedGame>, NSError>'
+            '-saveGameData:withName:completionHandler:':
+                trim_after_first_colon: true
+            '-deleteSavedGamesWithName:completionHandler:':
+                name: deleteSavedGames
+            '-resolveConflictingSavedGames:withData:completionHandler:':
+                trim_after_first_colon: true
+                parameters:
+                    conflictingSavedGames:
+                        type: NSArray<GKSavedGame>
+                    handler:
+                        type: '@Block VoidBlock2<NSArray<GKSavedGame>, NSError>'
+    GKMatch: # DONE
+        properties:
+            'players':
+                type: NSArray<GKPlayer>
+            'playerIDs':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+        methods:
+            '-sendData:toPlayers:dataMode:error:':
+                name: sendDataToPlayers
+                throws: NSErrorException
+                parameters:
+                    players:
+                        type: NSArray<GKPlayer>
+            '-sendData:toPlayers:withDataMode:error:':
+                name: sendDataToPlayers
+                throws: NSErrorException
+                parameters:
+                    playerIDs:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '-sendDataToAllPlayers:withDataMode:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-voiceChatWithName:':
+                name: getVoiceChat
+            '-chooseBestHostingPlayerWithCompletionHandler:':
+                name: chooseBestHostingPlayer
+            '-chooseBestHostPlayerWithCompletionHandler:':
+                name: chooseBestHostPlayer
+            '-rematchWithCompletionHandler:':
+                name: rematch
+    GKMatchmaker: # DONE
+        methods:
+            '-matchForInvite:completionHandler:':
+                name: match
+            '-findMatchForRequest:withCompletionHandler:':
+                name: findMatch
+            '-findPlayersForHostedRequest:withCompletionHandler:':
+                trim_after_first_colon: true
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<GKPlayer>, NSError>'
+            '-findPlayersForHostedMatchRequest:withCompletionHandler:':
+                name: findPlayers
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<NSString>, NSError>' # TODO asStringListMarshaler
+            '-addPlayersToMatch:matchRequest:completionHandler:':
+                trim_after_first_colon: true
+            '-cancelInviteToPlayer:':
+                name: cancelInvite
+            '-cancelPendingInviteToPlayer:':
+                name: cancelPendingInvite
+            '-finishMatchmakingForMatch:':
+                name: finishMatchmaking
+            '-queryPlayerGroupActivity:withCompletionHandler:':
+                trim_after_first_colon: true
+            '-queryActivityWithCompletionHandler:':
+                name: queryActivity
+            '-startBrowsingForNearbyPlayersWithReachableHandler:':
+                name: startBrowsingForNearbyPlayers
+            '-startBrowsingForNearbyPlayersWithHandler:':
+                name: startNearbyPlayersBrowsing
+            '+sharedMatchmaker':
+                property: true
+    GKMatchmakerViewController: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '-addPlayersToMatch:':
+                trim_after_first_colon: true
+            '-setHostedPlayer:connected:':
+                trim_after_first_colon: true
+            '-setHostedPlayer:didConnect:':
+                trim_after_first_colon: true
+    GKMatchRequest: # DONE
+        properties:
+            'recipients':
+                type: NSArray<GKPlayer>
+            'playersToInvite':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+        methods:
+            '+maxPlayersAllowedForMatchOfType:':
+                name: getMaxPlayersAllowedForMatchType
+    GKNotificationBanner: # DONE 
+        methods:
+            '+showBannerWithTitle:message:completionHandler:':
+                name: showBanner
+            '+showBannerWithTitle:message:duration:completionHandler:':
+                name: showBanner
+    GKPeerPickerController: {} # DONE
+    GKPlayer: # DONE
+        methods:
+            '+loadPlayersForIdentifiers:withCompletionHandler:':
+                name: loadPlayers
+                parameters:
+                    identifiers:
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<GKPlayer>, NSError>'
+            '-loadPhotoForSize:withCompletionHandler:':
+                name: loadPhoto
+            '+anonymousGuestPlayerWithIdentifier:':
+                name: getAnonymousGuestPlayer
+    GKSavedGame: # DONE
+        methods:
+            '-loadDataWithCompletionHandler:':
+                name: loadData
+    GKScore: # DONE
+        methods:
+            '-initWithCategory:':
+                exclude: true
+            '-init.*':
+                name: init
+            '-reportScoreWithCompletionHandler:':
+                name: reportScore
+            '+reportScores:withCompletionHandler:':
+                trim_after_first_colon: true
+                parameters:
+                    scores:
+                        type: NSArray<GKScore>
+            '-challengeComposeControllerWithMessage:players:completionHandler:':
+                name: getChallengeComposeController
+                parameters:
+                    players:
+                        type: NSArray<GKPlayer>
+                    completionHandler:
+                        type: '@Block VoidBlock3<UIViewController, Boolean, NSArray<GKPlayer>>'
+            '-challengeComposeControllerWithPlayers:message:completionHandler:':
+                name: getChallengeComposeController
+                parameters:
+                    playerIDs:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                    completionHandler:
+                        type: '@Block VoidBlock3<UIViewController, Boolean, NSArray<NSString>>' # TODO asStringListMarshaler
+            '-issueChallengeToPlayers:message:':
+                trim_after_first_colon: true
+                parameters:
+                    playerIDs:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '+reportScores:withEligibleChallenges:withCompletionHandler:':
+                trim_after_first_colon: true
+                parameters:
+                    scores:
+                        type: NSArray<GKScore>
+                    challenges:
+                        type: NSArray<GKChallenge>
+    GKScoreChallenge: {} # DONE
+    GKSession: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '-displayNameForPeer:':
+                name: getDisplayName
+            '-sendData:toPeers:withDataMode:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+                parameters:
+                    peers:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '-sendDataToAllPeers:withDataMode:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-setDataReceiveHandler:withContext:':
+                trim_after_first_colon: true
+                visibility: protected
+                parameters:
+                    context:
+                        type: '@Pointer long'
+            '-connectToPeer:withTimeout:':
+                name: connect
+            '-cancelConnectToPeer:':
+                name: cancelConnect
+            '-acceptConnectionFromPeer:error:':
+                name: acceptConnection
+                throws: NSErrorException
+            '-denyConnectionFromPeer:':
+                name: denyConnection
+            '-disconnectPeerFromAllPeers:':
+                name: disconnectPeer
+            '-peersWithConnectionState:':
+                name: getPeers
+                return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+    GKTurnBasedEventHandler: # DONE
+        methods:
+            '+sharedTurnBasedEventHandler':
+                property: true
+    GKTurnBasedExchange: # DONE
+        properties:
+            'recipients':
+                type: NSArray<GKTurnBasedParticipant>
+            'replies':
+                type: NSArray<GKTurnBasedExchangeReply>
+        methods:
+            '-cancelWithLocalizableMessageKey:arguments:completionHandler:':
+                name: cancel
+                parameters:
+                    arguments:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '-replyWithLocalizableMessageKey:arguments:data:completionHandler:':
+                name: reply
+                parameters:
+                    arguments:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+    GKTurnBasedExchangeReply: {} # DONE
+    GKTurnBasedMatch: # DONE
+        properties:
+            'participants':
+                type: NSArray<GKTurnBasedParticipant>
+            'exchanges|activeExchanges|completedExchanges':
+                type: NSArray<GKTurnBasedExchange>
+        methods:
+            '-setLocalizableMessageWithKey:arguments:':
+                name: setLocalizableMessage
+                parameters:
+                    arguments:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '-rematchWithCompletionHandler:':
+                name: rematch
+            '-acceptInviteWithCompletionHandler:':
+                name: acceptInvite
+            '-declineInviteWithCompletionHandler:':
+                name: declineInvite
+            '-removeWithCompletionHandler:':
+                name: remove
+            '-loadMatchDataWithCompletionHandler:':
+                name: loadMatchData
+            '-endTurnWithNextParticipants:turnTimeout:matchData:completionHandler:':
+                name: endTurn
+                parameters:
+                    nextParticipants:
+                        type: NSArray<GKTurnBasedParticipant>
+            '-participantQuitInTurnWithOutcome:nextParticipants:turnTimeout:matchData:completionHandler:':
+                name: participantQuitInTurn
+                parameters:
+                    nextParticipants:
+                        type: NSArray<GKTurnBasedParticipant>
+            '-participantQuitOutOfTurnWithOutcome:withCompletionHandler:':
+                name: participantQuitOutOfTurn
+            '-endMatchInTurnWithMatchData:completionHandler:':
+                name: endMatch
+            '-endMatchInTurnWithMatchData:scores:achievements:completionHandler:':
+                name: endMatch
+                parameters:
+                    scores:
+                        type: NSArray<GKScore>
+                    achievements:
+                        type: NSArray<GKAchievement>
+            '-saveCurrentTurnWithMatchData:completionHandler:':
+                name: saveCurrentTurn
+            '-saveMergedMatchData:withResolvedExchanges:completionHandler:':
+                trim_after_first_colon: true
+                parameters:
+                    exchanges:
+                        type: NSArray<GKTurnBasedExchange>
+            '-sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:':
+                name: sendExchange
+                parameters:
+                    participants:
+                        type: NSArray<GKTurnBasedParticipant>
+                    arguments:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '-sendReminderToParticipants:localizableMessageKey:arguments:completionHandler:':
+                name: sendReminder
+                parameters:
+                    participants:
+                        type: NSArray<GKTurnBasedParticipant>
+                    arguments:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '-endTurnWithNextParticipant:matchData:completionHandler:':
+                name: endTurn
+            '-participantQuitInTurnWithOutcome:nextParticipant:matchData:completionHandler:':
+                name: participantQuitInTurn
+            '+findMatchForRequest:withCompletionHandler:':
+                name: findMatch
+            '+loadMatchesWithCompletionHandler:':
+                name: loadMatches
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSArray<GKTurnBasedMatch>, NSError>'
+            '+loadMatchWithID:withCompletionHandler:':
+                name: loadMatches
+    GKTurnBasedMatchmakerViewController: # DONE
+        properties:
+            'showExistingMatches':
+                name: showsExistingMatches
+        methods:
+            '-init.*':
+                name: init
+    GKTurnBasedParticipant: {} # DONE
+    GKVoiceChat: # DONE
+        properties:
+            'playerIDs':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            'players':
+                type: NSArray<GKPlayer>
+        methods:
+            '-setMute:forPlayer:':
+                name: setMuteForPlayer
+            '-setPlayer:muted:':
+                name: setPlayerMuted
+    GKVoiceChatService: # DONE
+        methods:
+            '-startVoiceChatWithParticipantID:error:':
+                name: startVoiceChat
+                throws: NSErrorException
+            '-stopVoiceChatWithParticipantID:':
+                name: stopVoiceChat
+            '-acceptCallID:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-denyCallID:':
+                trim_after_first_colon: true
+            '-receivedRealTimeData:fromParticipantID:':
+                trim_after_first_colon: true
+            '-receivedData:fromParticipantID:':
+                trim_after_first_colon: true
+            '+defaultVoiceChatService':
+                property: true
+
+protocols:
+    GKAchievementViewControllerDelegate: # DONE
+        methods:
+            '-achievementViewControllerDidFinish:':
+                name: didFinish
+    GKChallengeEventHandlerDelegate: # DONE
+        methods:
+            '-localPlayerDidSelectChallenge:':
+                trim_after_first_colon: true
+            '-shouldShowBannerForLocallyReceivedChallenge:':
+                trim_after_first_colon: true
+            '-localPlayerDidReceiveChallenge:':
+                trim_after_first_colon: true
+            '-shouldShowBannerForLocallyCompletedChallenge:':
+                trim_after_first_colon: true
+            '-localPlayerDidCompleteChallenge:':
+                trim_after_first_colon: true
+            '-shouldShowBannerForRemotelyCompletedChallenge:':
+                trim_after_first_colon: true
+            '-remotePlayerDidCompleteChallenge:':
+                trim_after_first_colon: true
+    GKChallengeListener: # DONE
+        methods:
+            '-player:wantsToPlayChallenge:':
+                name: wantsToPlayChallenge
+            '-player:didReceiveChallenge:':
+                name: didReceiveChallenge
+            '-player:didCompleteChallenge:issuedByFriend:':
+                name: didCompleteChallenge
+            '-player:issuedChallengeWasCompleted:byFriend:':
+                name: issuedChallengeWasCompleted
+    GKFriendRequestComposeViewControllerDelegate: # DONE
+        methods:
+            '-friendRequestComposeViewControllerDidFinish:':
+                name: didFinish
+    GKGameCenterControllerDelegate: # DONE
+        methods:
+            '-gameCenterViewControllerDidFinish:':
+                name: didFinish
+    GKInviteEventListener: # DONE
+        methods:
+            '-player:didAcceptInvite:':
+                name: didAcceptInvite
+            '-player:didRequestMatchWithRecipients:':
+                name: didRequestMatch
+                parameters:
+                    recipientPlayers:
+                        type: NSArray<GKPlayer>
+            '-player:didRequestMatchWithPlayers:':
+                name: didRequestMatch
+                parameters:
+                    playerIDsToInvite:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+    GKLeaderboardViewControllerDelegate: # DONE
+        methods:
+            '-leaderboardViewControllerDidFinish:':
+                name: didFinish
+    GKLocalPlayerListener: {} # DONE
+    GKMatchDelegate: # DONE
+        methods:
+            '-match:didReceiveData:fromRemotePlayer:':
+                name: didReceiveData
+            '-match:didReceiveData:forRecipient:fromRemotePlayer:':
+                name: didReceiveData
+            '-match:didReceiveData:fromPlayer:':
+                name: didReceiveData
+            '-match:player:didChangeState:':
+                name: didChangeState
+            '-match:player:didChangeConnectionState:':
+                name: didChangeConnectionState
+            '-match:didFailWithError:':
+                name: didFail
+            '-match:shouldReinvitePlayer:':
+                name: shouldReinvitePlayer
+            '-match:shouldReinviteDisconnectedPlayer:':
+                name: shouldReinviteDisconnectedPlayer
+    GKMatchmakerViewControllerDelegate: # DONE
+        methods:
+            '-matchmakerViewControllerWasCancelled:':
+                name: wasCancelled
+            '-matchmakerViewController:didFailWithError:':
+                name: didFail
+            '-matchmakerViewController:didFindMatch:':
+                name: didFindMatch
+            '-matchmakerViewController:didFindHostedPlayers:':
+                name: didFindHostedPlayers
+                parameters:
+                    players:
+                        type: NSArray<GKPlayer>
+            '-matchmakerViewController:didFindPlayers:':
+                name: didFindPlayers
+                parameters:
+                    playerIDs:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '-matchmakerViewController:didReceiveAcceptFromHostedPlayer:':
+                name: didReceiveAccept
+            '-matchmakerViewController:hostedPlayerDidAccept:':
+                name: hostedPlayerDidAccept
+    GKPeerPickerControllerDelegate: # DONE
+        methods:
+            '-peerPickerController:didSelectConnectionType:':
+                name: didSelectConnectionType
+            '-peerPickerController:sessionForConnectionType:':
+                name: getSession
+            '-peerPickerController:didConnectPeer:toSession:':
+                name: didConnectPeer
+            '-peerPickerControllerDidCancel:':
+                name: didCancel
+    GKSavedGameListener: # DONE
+        methods:
+            '-player:didModifySavedGame:':
+                name: didModifySavedGame
+            '-player:hasConflictingSavedGames:':
+                name: hasConflictingSavedGames
+                parameters:
+                    savedGames:
+                        type: NSArray<GKSavedGame>
+    GKSessionDelegate: # DONE
+        methods:
+            '-session:peer:didChangeState:':
+                name: didChangeState
+            '-session:didReceiveConnectionRequestFromPeer:':
+                name: didReceiveConnectionRequest
+            '-session:connectionWithPeerFailed:withError:':
+                name: connectionWithPeerFailed
+            '-session:didFailWithError:':
+                name: didFail
+    GKTurnBasedEventHandlerDelegate: # DONE
+        methods:
+            '-handleInviteFromGameCenter:':
+                name: handleInvite
+                parameters:
+                    playersToInvite:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '-handleTurnEventForMatch:didBecomeActive:':
+                name: handleTurnEvent
+            '-handleTurnEventForMatch:':
+                name: handleTurnEvent
+            '-handleMatchEnded:':
+                trim_after_first_colon: true
+    GKTurnBasedEventListener: # DONE
+        methods:
+            '-player:didRequestMatchWithPlayers:':
+                name: didRequestMatch
+                parameters:
+                    playerIDsToInvite:
+                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '-player:receivedTurnEventForMatch:didBecomeActive:':
+                name: receivedTurnEvent
+            '-player:matchEnded:':
+                name: matchEnded
+            '-player:receivedExchangeRequest:forMatch:':
+                name: receivedExchangeRequest
+            '-player:receivedExchangeCancellation:forMatch:':
+                name: receivedExchangeCancellation
+            '-player:receivedExchangeReplies:forCompletedExchange:forMatch:':
+                name: receivedExchangeReplies
+                parameters:
+                    replies:
+                        type: NSArray<GKTurnBasedExchange>
+            '-player:wantsToQuitMatch:':
+                name: wantsToQuitMatch
+            '-player:didRequestMatchWithOtherPlayers:':
+                name: didRequestMatch
+                parameters:
+                    playersToInvite:
+                        type: NSArray<GKPlayer>
+    GKTurnBasedMatchmakerViewControllerDelegate: # DONE
+        methods:
+            '-turnBasedMatchmakerViewControllerWasCancelled:':
+                name: wasCancelled
+            '-turnBasedMatchmakerViewController:didFailWithError:':
+                name: didFail
+            '-turnBasedMatchmakerViewController:didFindMatch:':
+                name: didFindMatch
+            '-turnBasedMatchmakerViewController:playerQuitForMatch:':
+                name: playerQuit
+    GKVoiceChatClient: # DONE
+        methods:
+            '-voiceChatService:sendData:toParticipantID:':
+                name: sendData
+            '-participantID':
+                property: true
+            '-voiceChatService:sendRealTimeData:toParticipantID:':
+                name: sendRealTimeData
+            '-voiceChatService:didStartWithParticipantID:':
+                name: didStart
+            '-voiceChatService:didNotStartWithParticipantID:error:':
+                name: didNotStart
+            '-voiceChatService:didStopWithParticipantID:error:':
+                name: didStop
+            '-voiceChatService:didReceiveInvitationFromParticipantID:callID:':
+                name: didReceiveInvitation
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (GK.*):
+        class: GameKit
+        name: 'Function__#{g[0]}'
+
+values: 
+    GKErrorDomain:
+        class: GKError
+        name: getClassDomain
+        readonly: true
+    GKSessionErrorDomain:
+        class: GKSessionError
+        name: getClassDomain
+        readonly: true
+    GKVoiceChatServiceErrorDomain:
+        class: GKVoiceChatServiceError
+        name: getClassDomain
+        readonly: true
+        
+    GKTurnTimeout(.*):
+        class: GKTurnBasedMatch
+        name: 'get#{g[0]}Timeout'
+        readonly: true
+    GKExchangeTimeout(.*):
+        class: GKTurnBasedExchange
+        name: 'get#{g[0]}Timeout'
+        readonly: true
+
+    # GKPlayer
+    GKPlayer(AuthenticationDidChangeNotification)Name:
+        class: GKLocalPlayer
+        name: '#{g[0]}'
+        type: NSString
+        readonly: true
+    GKPlayer(DidChangeNotification)Name:
+        class: GKPlayer
+        name: '#{g[0]}'
+        type: NSString
+        readonly: true
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?GK.*):
+        class: GameKit
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?GK.*):
+        class: GameKit
+        name: 'Constant__#{g[0]}'

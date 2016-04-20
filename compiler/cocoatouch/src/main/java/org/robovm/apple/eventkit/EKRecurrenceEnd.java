@@ -1,0 +1,69 @@
+/*
+ * Copyright (C) 2013-2015 RoboVM AB
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.robovm.apple.eventkit;
+
+/*<imports>*/
+import java.io.*;
+import java.nio.*;
+import java.util.*;
+import org.robovm.objc.*;
+import org.robovm.objc.annotation.*;
+import org.robovm.objc.block.*;
+import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
+import org.robovm.rt.bro.*;
+import org.robovm.rt.bro.annotation.*;
+import org.robovm.rt.bro.ptr.*;
+import org.robovm.apple.foundation.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.corelocation.*;
+import org.robovm.apple.addressbook.*;
+import org.robovm.apple.mapkit.*;
+/*</imports>*/
+
+/*<javadoc>*/
+/**
+ * @since Available in iOS 4.0 and later.
+ */
+/*</javadoc>*/
+/*<annotations>*/@Library("EventKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/EKRecurrenceEnd/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
+
+    /*<ptr>*/public static class EKRecurrenceEndPtr extends Ptr<EKRecurrenceEnd, EKRecurrenceEndPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(EKRecurrenceEnd.class); }/*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    public EKRecurrenceEnd() {}
+    protected EKRecurrenceEnd(SkipInit skipInit) { super(skipInit); }
+    public EKRecurrenceEnd(NSDate endDate) { super(create(endDate)); retain(getHandle()); }
+    public EKRecurrenceEnd(@MachineSizedUInt long occurrenceCount) { super(create(occurrenceCount)); retain(getHandle()); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "endDate")
+    public native NSDate getEndDate();
+    @Property(selector = "occurrenceCount")
+    public native @MachineSizedUInt long getOccurrenceCount();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @Method(selector = "recurrenceEndWithEndDate:")
+    private static native @Pointer long create(NSDate endDate);
+    @Method(selector = "recurrenceEndWithOccurrenceCount:")
+    private static native @Pointer long create(@MachineSizedUInt long occurrenceCount);
+    /*</methods>*/
+}

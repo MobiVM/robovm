@@ -1,0 +1,99 @@
+package: org.robovm.apple.social
+include: [foundation.yaml, uikit.yaml, coregraphics.yaml, accounts.yaml]
+library: Social
+framework: Social
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/Social.framework/Headers/Social.h
+    - /System/Library/Frameworks/Social.framework/Headers/SocialDefines.h
+typedefs: {}
+
+enums: 
+    SLComposeViewControllerResult: {}
+    SLRequestMethod: {}
+
+classes: 
+    SLComposeServiceViewController: # DONE
+        methods:
+            '-configurationItems':
+                property: true
+                return_type: NSArray<SLComposeSheetConfigurationItem>
+            '-pushConfigurationViewController:':
+                trim_after_first_colon: true
+    SLComposeSheetConfigurationItem: # DONE
+        methods:
+            '-init':
+                exclude: true
+    SLComposeViewController: # DONE
+        properties:
+            'completionHandler':
+                type: '@Block VoidBlock1<SLComposeViewControllerResult>'
+            'serviceType':
+                type: SLServiceType
+        methods:
+            '-setInitialText:':
+                trim_after_first_colon: true
+            '-addImage:':
+                trim_after_first_colon: true
+            '-addURL:':
+                trim_after_first_colon: true
+            '+isAvailableForServiceType:':
+                name: isAvailable
+                parameters:
+                    serviceType:
+                        type: SLServiceType
+            '+composeViewControllerForServiceType:':
+                name: create
+                constructor: true
+                parameters:
+                    serviceType:
+                        type: SLServiceType
+    SLRequest: # DONE
+        properties:
+            'parameters':
+                type: 'NSDictionary<NSString, ?>'
+            'account':
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-addMultipartData:withName:type:filename:':
+                trim_after_first_colon: true
+            '-preparedURLRequest':
+                name: getPreparedURLRequest
+            '-performRequestWithHandler:':
+                name: performRequest
+                parameters:
+                    handler:
+                        type: '@Block VoidBlock3<NSData, NSHTTPURLResponse, NSError>'
+            '+requestForServiceType:requestMethod:URL:parameters:':
+                name: create
+                constructor: true
+                parameters:
+                    serviceType:
+                        type: SLServiceType
+                    parameters:
+                        type: 'NSDictionary<NSString, ?>'
+
+protocols: {}
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (SL.*):
+        class: Social
+        name: 'Function__#{g[0]}'
+
+values:
+    SLServiceType(.*):
+        enum: SLServiceType
+        name: '#{g[0]}'
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (SL.*):
+        class: Social
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (SL.*):
+        class: Social
+        name: 'Constant__#{g[0]}'

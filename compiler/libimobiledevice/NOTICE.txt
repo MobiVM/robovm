@@ -1,0 +1,16 @@
+RoboVM libimobiledevice Bindings
+Copyright (C) 2013-2014 RoboVM AB
+For license information see the LICENSE.txt file which accompanies this
+NOTICE.txt file.
+
+Third party libraries
+---------------------
+
+RoboVM libimobiledevice Bindings includes code from the libimobiledevice project
+which is copyright various contributors and released under the GNU Lesser
+General Public License 2.1.
+http://www.libimobiledevice.org
+
+RoboVM libimobiledevice Bindings includes the com.dd.plist library which is
+copyright 2011, Daniel Dreibrodt and released under the MIT license.
+https://code.google.com/p/plist/

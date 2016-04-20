@@ -1,0 +1,140 @@
+package: org.robovm.apple.iad
+include: [foundation.yaml, uikit.yaml, mediaplayer.yaml, coregraphics.yaml, avkit.yaml]
+library: iAd
+framework: iAd
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/iAd.framework/Headers/iAd.h
+typedefs:
+    'void (^)(NSDate *, NSDate *)': '@Block VoidBlock2<NSDate, NSDate>'
+
+enums:
+    ADErrorCode: {first: ADErrorUnknown}
+    ADClientErrorCode: {first: ADClientErrorUnknown}
+    ADAdType: {}
+    ADInterstitialPresentationPolicy: {}
+
+categories:
+    iAdPreroll@AVPlayerViewController: # DONE
+        annotations: ['@WeaklyLinked']
+        methods:
+            '-playPrerollAdWithCompletionHandler:':
+                name: playPrerollAd
+    iAdPreroll@MPMoviePlayerController: # DONE
+        annotations: ['@WeaklyLinked']
+        methods:
+            '-playPrerollAdWithCompletionHandler:':
+                name: playPrerollAd
+    iAdAdditions: # DONE
+        properties:
+            'shouldPresentInterstitialAd':
+                omit_prefix: true
+    
+classes:
+    ADError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+    ADClientError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+
+    ADBannerView: # DONE
+        properties:
+            'requiredContentSizeIdentifiers':
+                type: List<ADBannerContentSizeIdentifier>
+                marshaler: ADBannerContentSizeIdentifier.AsListMarshaler
+            'currentContentSizeIdentifier':
+                type: ADBannerContentSizeIdentifier
+        methods:
+            '-initWithAdType:':
+                name: init
+            '+sizeFromBannerContentSizeIdentifier:':
+                name: getSizeForIdentifier
+                visibility: protected
+                annotations: ['@WeaklyLinked']
+                parameters:
+                    contentSizeIdentifier:
+                        type: NSString
+    ADClient: # DONE
+        skip_def_constructor: true
+        methods:
+            '+sharedClient':
+                name: getSharedClient
+            '-determineAppInstallationAttributionWithCompletionHandler:':
+                name: determineAppInstallationAttribution
+            '-lookupAdConversionDetails:':
+                trim_after_first_colon: true
+            '-requestAttributionDetailsWithBlock:':
+                name: requestAttributionDetails
+                parameters:
+                    completionHandler:
+                        type: '@Block VoidBlock2<NSDictionary<?, ?>, NSError>'
+            '-addClientToSegments:replaceExisting:':
+                trim_after_first_colon: true
+                parameters:
+                    segmentIdentifiers:
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
+    ADInterstitialAd: # DONE
+        visibility: 'public final'
+        methods:
+            '-presentInView:':
+                name: present
+
+protocols:
+    ADBannerViewDelegate: # DONE
+        methods:
+            '-bannerViewWillLoadAd:':
+                name: willLoadAd
+            '-bannerViewDidLoadAd:':
+                name: didLoadAd
+            '-bannerView:didFailToReceiveAdWithError:':
+                name: didFailToReceiveAd
+            '-bannerViewActionShouldBegin:willLeaveApplication:':
+                name: actionShouldBegin
+            '-bannerViewActionDidFinish:':
+                name: actionDidFinish
+    ADInterstitialAdDelegate: # DONE
+        methods:
+            '-interstitialAdDidUnload:':
+                name: didUnload
+            '-interstitialAd:didFailWithError:':
+                name: didFail
+            '-interstitialAdWillLoad:':
+                name: willLoad
+            '-interstitialAdDidLoad:':
+                name: didLoad
+            '-interstitialAdActionShouldBegin:willLeaveApplication:':
+                name: actionShouldBegin
+            '-interstitialAdActionDidFinish:':
+                name: actionDidFinish
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (AD.*):
+        class: IAd
+        name: 'Function__#{g[0]}'
+
+values:
+    ADErrorDomain:
+        class: ADError
+        name: getClassDomain
+    ADClientErrorDomain:
+        class: ADClientError
+        name: getClassDomain
+
+    ADBannerContentSizeIdentifier(.*):
+        enum: ADBannerContentSizeIdentifier
+        name: '#{g[0]}'
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (AD.*):
+        class: IAd
+        name: 'Value__#{g[0]}'   
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (AD.*):
+        class: IAd
+        name: 'Constant__#{g[0]}'

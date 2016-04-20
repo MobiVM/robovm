@@ -1,0 +1,238 @@
+package: org.robovm.apple.assetslibrary
+include: [foundation.yaml, coregraphics.yaml, imageio.yaml]
+library: AssetsLibrary
+framework: AssetsLibrary
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/AssetsLibrary.framework/Headers/AssetsLibrary.h
+typedefs: {}
+enums:
+    ALAssetOrientation: {first: ALAssetOrientationUp}
+    ALAssetsGroupType: {first: ALAssetsGroupLibrary, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
+    ALAuthorizationStatus: {first: ALAuthorizationStatusNotDetermined}
+    ALAssetsLibraryErrorCode: {first: ALAssetsLibraryUnknownError, suffix: Error}
+    
+classes:
+    ALAssetsLibraryError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+
+    ALAsset: # DONE
+        methods:
+            '-valueForProperty:':
+                name: getValue
+                parameters:
+                    property:
+                        type: ALAssetProperty
+            '-(thumbnail|aspectRatioThumbnail)':
+                property: true 
+                annotations: ['@WeaklyLinked']
+            '-defaultRepresentation':
+                property: true
+            '-representationForUTI:':
+                name: getRepresentation
+            '-writeModifiedImageDataToSavedPhotosAlbum:metadata:completionBlock:':
+                name: writeModifiedImageData
+                annotations: ['@WeaklyLinked']
+                parameters:
+                    metadata:
+                        type: CGImageProperties
+                    completionBlock: 
+                        type: '@Block VoidBlock2<NSURL, NSError>'
+            '-writeModifiedVideoAtPathToSavedPhotosAlbum:completionBlock:':
+                name: writeModifiedVideo
+                parameters:
+                    completionBlock: 
+                        type: '@Block VoidBlock2<NSURL, NSError>'
+            '-setImageData:metadata:completionBlock:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
+                parameters:
+                    metadata:
+                        type: CGImageProperties
+                    completionBlock: 
+                        type: '@Block VoidBlock2<NSURL, NSError>'
+            '-setVideoAtPath:completionBlock:':
+                name: setVideo
+                parameters:
+                    completionBlock: 
+                        type: '@Block VoidBlock2<NSURL, NSError>'
+    ALAssetRepresentation: # DONE
+        methods:
+            '-(UTI|size|url|orientation|scale|filename)':
+                property: true
+            '-(dimensions|fullResolutionImage|fullScreenImage)':
+                property: true
+                annotations: ['@WeaklyLinked']
+            '-metadata':
+                property: true
+                return_type: CGImageProperties
+                annotations: ['@WeaklyLinked']
+            '-getBytes:fromOffset:length:error:':
+                name: getBytes
+                visibility: protected # throws NSErrorException
+                parameters:
+                    buffer:
+                        type: '@Pointer long'
+            '-CGImageWithOptions:':
+                name: getCGImage
+                annotations: ['@WeaklyLinked']
+                parameters:
+                    options:
+                        type: CGImageSourceOptions
+
+    ALAssetsFilter: {} # DONE
+    ALAssetsGroup: # DONE
+        methods:
+            '-valueForProperty:':
+                name: getValue
+                parameters:
+                    property:
+                        type: ALAssetsGroupProperty
+            '-posterImage':
+                property: true
+                annotations: ['@WeaklyLinked']
+            '-numberOfAssets':
+                property: true
+            '-enumerateAssetsUsingBlock:':
+                name: enumerateAssets
+                parameters:
+                    enumerationBlock:
+                        type: '@Block("(,@MachineSizedUInt,)") VoidBlock3<ALAsset, Long, BooleanPtr>'
+            '-enumerateAssetsWithOptions:usingBlock:':
+                name: enumerateAssets
+                parameters:
+                    enumerationBlock:
+                        type: '@Block("(,@MachineSizedUInt,)") VoidBlock3<ALAsset, Long, BooleanPtr>'
+            '-enumerateAssetsAtIndexes:options:usingBlock:':
+                name: enumerateAssets
+                parameters:
+                    enumerationBlock:
+                        type: '@Block("(,@MachineSizedUInt,)") VoidBlock3<ALAsset, Long, BooleanPtr>'
+            '-addAsset:':
+                trim_after_first_colon: true
+    ALAssetsLibrary: # DONE
+        methods:
+            '-enumerateGroupsWithTypes:usingBlock:failureBlock:':
+                name: enumerateGroups
+                parameters:
+                    enumerationBlock:
+                        type: '@Block VoidBlock2<ALAssetsGroup, BooleanPtr>'
+                    failureBlock:
+                        type: '@Block VoidBlock1<NSError>'
+            '-assetForURL:resultBlock:failureBlock:':
+                name: getAsset
+                parameters:
+                    resultBlock:
+                        type: '@Block VoidBlock1<ALAsset>'
+                    failureBlock:
+                        type: '@Block VoidBlock1<NSError>'
+            '-groupForURL:resultBlock:failureBlock:':
+                name: getGroup
+                parameters:
+                    resultBlock:
+                        type: '@Block VoidBlock1<ALAssetsGroup>'
+                    failureBlock:
+                        type: '@Block VoidBlock1<NSError>'
+            '-addAssetsGroupAlbumWithName:resultBlock:failureBlock:':
+                name: addAssetsGroupAlbum
+                parameters:
+                    resultBlock:
+                        type: '@Block VoidBlock1<ALAssetsGroup>'
+                    failureBlock:
+                        type: '@Block VoidBlock1<NSError>'
+            '-writeImageToSavedPhotosAlbum:orientation:completionBlock:':
+                name: writeImageToSavedPhotosAlbum
+                annotations: ['@WeaklyLinked']
+                parameters:
+                    completionBlock:
+                        type: '@Block VoidBlock2<NSURL, NSError>'
+            '-writeImageToSavedPhotosAlbum:metadata:completionBlock:':
+                name: writeImageToSavedPhotosAlbum
+                annotations: ['@WeaklyLinked']
+                parameters:
+                    metadata:
+                        type: CGImageProperties
+                    completionBlock:
+                        type: '@Block VoidBlock2<NSURL, NSError>'
+            '-writeImageDataToSavedPhotosAlbum:metadata:completionBlock:':
+                name: writeImageDataToSavedPhotosAlbum
+                annotations: ['@WeaklyLinked']
+                parameters:
+                    metadata:
+                        type: CGImageProperties
+                    completionBlock:
+                        type: '@Block VoidBlock2<NSURL, NSError>'
+            '-writeVideoAtPathToSavedPhotosAlbum:completionBlock:':
+                name: writeVideoToSavedPhotosAlbum
+                parameters:
+                    completionBlock:
+                        type: '@Block VoidBlock2<NSURL, NSError>'
+            '-videoAtPathIsCompatibleWithSavedPhotosAlbum:':
+                name: isVideoCompatibleWithSavedPhotosAlbum
+            '+authorizationStatus':
+                property: true
+
+protocols: {}
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?AL.*):
+        class: AssetsLibrary
+        name: 'Function__#{g[0]}'
+
+values:
+    ALAssetsLibraryErrorDomain:
+        class: ALAssetsLibraryError
+        name: getClassDomain
+
+    # ALAsset
+    ALAssetProperty(.*):
+        enum: ALAssetProperty
+        name: '#{g[0]}'
+        type: NSString
+    ALAssetType(.*):
+        enum: ALAssetType
+        name: '#{g[0]}'
+        type: NSString
+    ALError(InvalidProperty):
+        class: ALAsset
+        name: 'get#{g[0]}'
+        type: NSString
+
+    # ALAssetsGroup
+    ALAssetsGroupProperty(.*):
+        enum: ALAssetsGroupProperty
+        name: '#{g[0]}'
+        type: NSString
+
+    # ALAssetsLibrary
+    ALAssetsLibrary(ChangedNotification):
+        class: ALAssetsLibrary
+        name: '#{g[0]}'
+        type: NSString
+    ALAssetLibrary(.*)Key:
+        dictionary: ALAssetsLibraryChangedNotification
+        name: '#{g[0]}'
+        type: NSString
+        mutable: false
+        methods:
+            UpdatedAssets:
+                type: NSSet<NSURL>
+            InsertedAssetGroups:
+                type: NSSet<NSURL>
+            UpdatedAssetGroups:
+                type: NSSet<NSURL>
+            DeletedAssetGroups:
+                type: NSSet<NSURL>
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?AL.*):
+        class: AssetsLibrary
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?AL.*):
+        class: AssetsLibrary
+        name: 'Constant__#{g[0]}'

@@ -1,0 +1,480 @@
+package: org.robovm.apple.homekit
+include: [foundation.yaml, corelocation.yaml]
+library: HomeKit
+framework: HomeKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/HomeKit.framework/Headers/HomeKit.h
+typedefs:
+    'void (^)(HMUser *, NSError *)': '@Block VoidBlock2<HMUser, NSError>'
+    'void (^)(HMRoom *, NSError *)': '@Block VoidBlock2<HMRoom, NSError>'
+    'void (^)(HMZone *, NSError *)': '@Block VoidBlock2<HMZone, NSError>'
+    'void (^)(HMServiceGroup *, NSError *)': '@Block VoidBlock2<HMServiceGroup, NSError>'
+    'void (^)(HMActionSet *, NSError *)': '@Block VoidBlock2<HMActionSet, NSError>'
+    'void (^)(HMHome *, NSError *)': '@Block VoidBlock2<HMHome, NSError>'
+private_typedefs:
+    TriggerValueType: T
+    TargetValueType: T
+    
+enums:
+    HMAccessoryCategoryType: {}
+    HMActionSetType: {}
+    HMCharacteristicValueAirParticulateSize: {}
+    HMCharacteristicValueAirQuality: {}
+    HMCharacteristicValueCurrentSecuritySystemState: {}
+    HMCharacteristicValueDoorState: {}
+    HMCharacteristicValueHeatingCooling: {}
+    HMCharacteristicValuePositionState: {}
+    HMCharacteristicValueRotationDirection: {prefix: HMCharacteristicValueRotationDirection}
+    HMCharacteristicValueTargetSecuritySystemState: {}
+    HMCharacteristicValueTemperatureUnit: {}
+    HMCharacteristicValueLockMechanismState: {}
+    HMCharacteristicValueLockMechanismLastKnownAction: {}
+    HMErrorCode: {}
+        
+classes:
+    HMError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+    
+    HMAccessory: # DONE
+        properties:
+            '(identifiersForBridgedAccessories|uniqueIdentifiersForBridgedAccessories)':
+                type: NSArray<NSUUID>
+            'services':
+                type: NSArray<HMService>
+        methods:
+            '-updateName:completionHandler:':
+                trim_after_first_colon: true
+            '-identifyWithCompletionHandler:':
+                name: identify
+    HMAccessoryBrowser: # DONE
+        properties:
+            'discoveredAccessories':
+                type: NSArray<HMAccessory>
+    HMAccessoryCategory: # DONE
+        properties:
+            'categoryType':
+                type: HMAccessoryCategoryType
+    HMAction: {} # DONE
+    HMActionSet: # DONE
+        skip_def_constructor: true
+        properties:
+            'actions':
+                type: NSArray<HMAction>
+            'actionSetType':
+                type: HMActionSetType
+        methods:
+            '-updateName:completionHandler:':
+                trim_after_first_colon: true
+            '-addAction:completionHandler:':
+                trim_after_first_colon: true
+            '-removeAction:completionHandler:':
+                trim_after_first_colon: true
+    HMCharacteristicEvent: # DONE
+        skip_def_constructor: true
+        methods:
+            '-initWithCharacteristic:triggerValue:':
+                name: init
+            '-updateTriggerValue:completionHandler:':
+                trim_after_first_colon: true
+    HMCharacteristicWriteAction: # DONE
+        skip_def_constructor: true
+        methods:
+            '-initWithCharacteristic:targetValue:':
+                name: init
+            '-updateTargetValue:completionHandler:':
+                trim_after_first_colon: true
+    HMCharacteristic: # DONE
+        properties:
+            'characteristicType':
+                type: HMCharacteristicType
+            'properties':
+                type: List<HMCharacteristicProperty>
+                marshaler: HMCharacteristicProperty.AsListMarshaler
+        methods:
+            '-writeValue:completionHandler:':
+                trim_after_first_colon: true
+            '-readValueWithCompletionHandler:':
+                name: readValue
+            '-enableNotification:completionHandler:':
+                trim_after_first_colon: true
+            '-updateAuthorizationData:completionHandler:':
+                trim_after_first_colon: true
+    HMCharacteristicMetadata: # DONE
+        properties:
+            'format':
+                type: HMCharacteristicMetadataFormat
+            'units':
+                type: HMCharacteristicMetadataUnits
+    HMEvent: {} # DONE
+    HMEventTrigger: # DONE
+        skip_def_constructor: true
+        properties:
+            'events':
+                type: NSArray<HMEvent>
+        methods:
+            '-initWithName:events:predicate:':
+                name: init
+                parameters:
+                    events:
+                        type: NSArray<HMEvent>
+            '-addEvent:completionHandler:':
+                trim_after_first_colon: true
+            '-removeEvent:completionHandler:':
+                trim_after_first_colon: true
+            '-updatePredicate:completionHandler:':
+                trim_after_first_colon: true
+            '+predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:applyingOffset:':
+                name: getPredicateForEvaluatingTriggerOccurringBeforeSignificantEvent
+                parameters:
+                    significantEvent:
+                        type: HMSignificantEvent
+            '+predicateForEvaluatingTriggerOccurringAfterSignificantEvent:applyingOffset:':
+                name: getPredicateForEvaluatingTriggerOccurringAfterSignificantEvent
+                parameters:
+                    significantEvent:
+                        type: HMSignificantEvent
+            '+predicateForEvaluatingTriggerOccurringBeforeDateWithComponents:':
+                name: getPredicateForEvaluatingTriggerOccurringBeforeDate
+            '+predicateForEvaluatingTriggerOccurringOnDateWithComponents:':
+                name: getPredicateForEvaluatingTriggerOccurringOnDate
+            '+predicateForEvaluatingTriggerOccurringAfterDateWithComponents:':
+                name: getPredicateForEvaluatingTriggerOccurringAfterDate
+            '+predicateForEvaluatingTriggerWithCharacteristic:relatedBy:toValue:':
+                name: getPredicateForEvaluatingTrigger
+    HMHome: # DONE
+        skip_def_constructor: true
+        properties:
+            'accessories':
+                type: NSArray<HMAccessory>
+            'users':
+                type: NSArray<HMUser>
+            'rooms':
+                type: NSArray<HMRoom>
+            'zones':
+                type: NSArray<HMZone>
+            'serviceGroups':
+                type: NSArray<HMServiceGroup>
+            'actionSets':
+                type: NSArray<HMActionSet>
+            'triggers':
+                type: NSArray<HMTrigger>
+        methods:
+            '-updateName:completionHandler:':
+                trim_after_first_colon: true
+            '-addAccessory:completionHandler:':
+                trim_after_first_colon: true
+            '-removeAccessory:completionHandler:':
+                trim_after_first_colon: true
+            '-assignAccessory:toRoom:completionHandler:':
+                name: assignAccessoryToRoom
+            '-servicesWithTypes:':
+                name: getServicesWithTypes
+                return_type: NSArray<HMService>
+                parameters:
+                    serviceTypes:
+                        type: List<HMServiceType>
+                        marshaler: HMServiceType.AsListMarshaler
+            '-unblockAccessory:completionHandler:':
+                trim_after_first_colon: true
+            '-addUserWithCompletionHandler:':
+                name: addUser
+            '-removeUser:completionHandler:':
+                trim_after_first_colon: true
+            '-manageUsersWithCompletionHandler:':
+                name: manageUsers
+            '-addRoomWithName:completionHandler:':
+                name: addRoom
+            '-removeRoom:completionHandler:':
+                trim_after_first_colon: true
+            '-roomForEntireHome':
+                property: true
+            '-addZoneWithName:completionHandler:':
+                name: addZone
+            '-removeZone:completionHandler:':
+                trim_after_first_colon: true
+            '-homeAccessControlForUser:':
+                name: getHomeAccessControlForUser
+            '-addServiceGroupWithName:completionHandler:':
+                name: addServiceGroup
+            '-removeServiceGroup:completionHandler:':
+                trim_after_first_colon: true
+            '-addActionSetWithName:completionHandler:':
+                name: addActionSet
+            '-removeActionSet:completionHandler:':
+                trim_after_first_colon: true
+            '-executeActionSet:completionHandler:':
+                trim_after_first_colon: true
+            '-builtinActionSetOfType:':
+                name: getBuiltinActionSet
+                parameters:
+                    actionSetType:
+                        type: HMActionSetType
+            '-addTrigger:completionHandler:':
+                trim_after_first_colon: true
+            '-removeTrigger:completionHandler:':
+                trim_after_first_colon: true
+    HMHomeAccessControl: # DONE
+        skip_def_constructor: true
+    HMHomeManager: # DONE
+        properties:
+            'homes':
+                type: NSArray<HMHome>
+        methods:
+            '-updatePrimaryHome:completionHandler:':
+                trim_after_first_colon: true
+            '-addHomeWithName:completionHandler:':
+                name: addHome
+            '-removeHome:completionHandler:':
+                trim_after_first_colon: true
+    HMLocationEvent: # DONE
+        skip_def_constructor: true
+        methods:
+            '-initWithRegion:':
+                name: init
+            '-updateRegion:completionHandler:':
+                trim_after_first_colon: true
+    HMRoom: # DONE
+        skip_def_constructor: true
+        properties:
+            'accessories':
+                type: NSArray<HMAccessory>
+        methods:
+            '-updateName:completionHandler:':
+                trim_after_first_colon: true
+    HMService: # DONE
+        properties:
+            'serviceType':
+                type: HMServiceType
+            'associatedServiceType':
+                type: HMServiceType
+            'characteristics':
+                type: NSArray<HMCharacteristic>
+        methods:
+            '-updateName:completionHandler:':
+                trim_after_first_colon: true
+            '-updateAssociatedServiceType:completionHandler:':
+                trim_after_first_colon: true
+                parameters:
+                    serviceType:
+                        type: HMServiceType
+    HMServiceGroup: # DONE
+        skip_def_constructor: true
+        properties:
+            'services':
+                type: NSArray<HMService>
+        methods:
+            '-updateName:completionHandler:':
+                trim_after_first_colon: true
+            '-addService:completionHandler:':
+                trim_after_first_colon: true
+            '-removeService:completionHandler:':
+                trim_after_first_colon: true
+    HMTrigger: # DONE
+        skip_def_constructor: true
+        properties:
+            'actionSets':
+                type: NSArray<HMActionSet>
+        methods:
+            '-updateName:completionHandler:':
+                trim_after_first_colon: true
+            '-addActionSet:completionHandler:':
+                trim_after_first_colon: true
+            '-removeActionSet:completionHandler:':
+                trim_after_first_colon: true
+            '-enable:completionHandler:':
+                trim_after_first_colon: true
+    HMTimerTrigger: # DONE
+        skip_def_constructor: true
+        methods:
+            '-initWithName:fireDate:timeZone:recurrence:recurrenceCalendar:':
+                name: init
+            '-updateFireDate:completionHandler:':
+                trim_after_first_colon: true
+            '-updateTimeZone:completionHandler:':
+                trim_after_first_colon: true
+            '-updateRecurrence:completionHandler:':
+                trim_after_first_colon: true
+    HMUser: # DONE
+        skip_def_constructor: true
+    HMZone: # DONE
+        skip_def_constructor: true
+        properties:
+            'rooms':
+                type: NSArray<HMRoom>
+        methods:
+            '-updateName:completionHandler:':
+                trim_after_first_colon: true
+            '-addRoom:completionHandler:':
+                trim_after_first_colon: true
+            '-removeRoom:completionHandler:':
+                trim_after_first_colon: true
+
+protocols:
+    HMAccessoryBrowserDelegate: # DONE
+        methods:
+            '-accessoryBrowser:didFindNewAccessory:':
+                name: didFindNewAccessory
+            '-accessoryBrowser:didRemoveNewAccessory:':
+                name: didRemoveNewAccessory
+    HMAccessoryDelegate: # DONE
+        methods:
+            '-accessoryDidUpdateName:':
+                name: didUpdateName
+            '-accessory:didUpdateNameForService:':
+                name: didUpdateServiceName
+            '-accessory:didUpdateAssociatedServiceTypeForService:':
+                name: didUpdateAssociatedServiceType
+            '-accessoryDidUpdateServices:':
+                name: didUpdateServices
+            '-accessoryDidUpdateReachability:':
+                name: didUpdateReachability
+            '-accessory:service:didUpdateValueForCharacteristic:':
+                name: didUpdateCharacteristicValue
+    HMHomeDelegate: # DONE
+        methods:
+            '-homeDidUpdateName:':
+                name: didUpdateName
+            '-home:didAddAccessory:':
+                name: didAddAccessory
+            '-home:didRemoveAccessory:':
+                name: didRemoveAccessory
+            '-home:didAddUser:':
+                name: didAddUser
+            '-home:didRemoveUser:':
+                name: didRemoveUser
+            '-home:didUpdateRoom:forAccessory:':
+                name: didUpdateRoom
+            '-home:didAddRoom:':
+                name: didAddRoom
+            '-home:didRemoveRoom:':
+                name: didRemoveRoom
+            '-home:didUpdateNameForRoom:':
+                name: didUpdateRoomName
+            '-home:didAddZone:':
+                name: didAddZone
+            '-home:didRemoveZone:':
+                name: didRemoveZone
+            '-home:didUpdateNameForZone:':
+                name: didUpdateZoneName
+            '-home:didAddRoom:toZone:':
+                name: didAddRoomToZone
+            '-home:didRemoveRoom:fromZone:':
+                name: didRemoveRoomFromZone
+            '-home:didAddServiceGroup:':
+                name: didAddServiceGroup
+            '-home:didRemoveServiceGroup:':
+                name: didRemoveServiceGroup
+            '-home:didUpdateNameForServiceGroup:':
+                name: didUpdateServiceGroupName
+            '-home:didAddService:toServiceGroup:':
+                name: didAddServiceToServiceGroup
+            '-home:didRemoveService:fromServiceGroup:':
+                name: didRemoveServiceFromServiceGroup
+            '-home:didAddActionSet:':
+                name: didAddActionSet
+            '-home:didRemoveActionSet:':
+                name: didRemoveActionSet
+            '-home:didUpdateNameForActionSet:':
+                name: didUpdateActionSetName
+            '-home:didUpdateActionsForActionSet:':
+                name: didUpdateActions
+            '-home:didAddTrigger:':
+                name: didAddTrigger
+            '-home:didRemoveTrigger:':
+                name: didRemoveTrigger
+            '-home:didUpdateNameForTrigger:':
+                name: didUpdateTriggerName
+            '-home:didUpdateTrigger:':
+                name: didUpdateTrigger
+            '-home:didUnblockAccessory:':
+                name: didUnblockAccessory
+            '-home:didEncounterError:forAccessory:':
+                name: didEncounterError
+    HMHomeManagerDelegate: # DONE
+        methods:
+            '-homeManagerDidUpdateHomes:':
+                name: didUpdateHomes
+            '-homeManagerDidUpdatePrimaryHome:':
+                name: didUpdatePrimaryHome
+            '-homeManager:didAddHome:':
+                name: didAddHome
+            '-homeManager:didRemoveHome:':
+                name: didRemoveHome
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?HM.*):
+        class: HomeKit
+        name: 'Function__#{g[0]}'
+
+values:
+    HMErrorDomain:
+        class: HMError
+        name: getClassDomain
+    HMUser(FailedAccessories)Key:
+        enum: HMErrorUserInfoKey
+        name: '#{g[0]}'
+        type: NSString
+        extends: NSErrorUserInfoKey
+
+    # HMAccessoryCategory
+    HMAccessoryCategoryType(.*):
+        enum: HMAccessoryCategoryType
+        name: '#{g[0]}'
+        type: NSString
+
+    # HMActionSet
+    HMActionSetType(.*):
+        enum: HMActionSetType
+        name: '#{g[0]}'
+        type: NSString
+
+    # HMCharacteristic
+    HMCharacteristicProperty(.*):
+        enum: HMCharacteristicProperty
+        name: '#{g[0]}'
+        type: NSString
+    HMCharacteristicType(.*):
+        enum: HMCharacteristicType
+        name: '#{g[0]}'
+        type: NSString
+    
+    # HMCharacteristicMetadata
+    HMCharacteristicMetadataFormat(.*):
+        enum: HMCharacteristicMetadataFormat
+        name: '#{g[0]}'
+        type: NSString
+    HMCharacteristicMetadataUnits(.*):
+        enum: HMCharacteristicMetadataUnits
+        name: '#{g[0]}'
+        type: NSString
+
+    # HMEventTrigger
+    HMSignificantEvent(.*):
+        enum: HMSignificantEvent
+        name: '#{g[0]}'
+        type: NSString
+    HM(.*)KeyPath:
+        enum: HMPredicateKeyPath
+        name: '#{g[0]}'
+        type: NSString
+        extends: NSPredicateKeyPath
+
+    # HMService
+    HMServiceType(.*):
+        enum: HMServiceType
+        name: '#{g[0]}'
+        type: NSString
+   
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?HM.*):
+        class: HomeKit
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?HM.*):
+        class: HomeKit
+        name: 'Constant__#{g[0]}'

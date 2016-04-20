@@ -1,0 +1,242 @@
+package: org.robovm.apple.corelocation
+include: [foundation.yaml, addressbook.yaml, corebluetooth.yaml]
+library: CoreLocation
+framework: CoreLocation
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/CoreLocation.framework/Headers/CoreLocation.h
+typedefs:
+    CLGeocodeCompletionHandler: '@Block VoidBlock2<NSArray<CLPlacemark>, NSError>'
+enums:
+    CLActivityType: {first: CLActivityTypeOther, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    CLAuthorizationStatus: {first: kCLAuthorizationStatusNotDetermined}
+    CLDeviceOrientation: {first: CLDeviceOrientationUnknown}
+    CLErrorCode: {first: kCLErrorLocationUnknown}
+    CLProximity: {}
+    CLRegionState: {}
+
+classes:
+    CLError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+
+    # Structs
+    CLLocationCoordinate2D: {}
+
+    # Classes
+    CLBeacon: {} # DONE
+    CLBeaconRegion: # DONE
+        properties:
+            'notifyEntryStateOnDisplay':
+                name: notifiesEntryStateOnDisplay
+        methods:
+            '-init.*':
+                name: init
+            '-peripheralDataWithMeasuredPower:':
+                name: getPeripheralData
+                return_type: CBAdvertisementData
+                annotations: ['@WeaklyLinked']
+    CLCircularRegion: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '-containsCoordinate:': # Overrides a method in CLRegion
+                exclude: true
+    CLFloor: {} # DONE
+    CLGeocoder: # DONE
+        methods:
+            '-reverseGeocodeLocation:completionHandler:':
+                trim_after_first_colon: true
+            '-geocodeAddressDictionary:completionHandler:':
+                name: geocodeAddress
+                annotations: ['@WeaklyLinked']
+                parameters:
+                    addressDictionary:
+                        type: ABPersonAddress
+            '-geocodeAddressString:completionHandler:':
+                name: geocodeAddress
+            '-geocodeAddressString:inRegion:completionHandler:':
+                name: geocodeAddress
+    CLHeading: # DONE
+        properties:
+            'description':
+                exclude: true
+    CLLocation: # DONE
+        properties:
+            'description':
+                exclude: true
+        methods:
+            '-init.*':
+                name: init
+            '-getDistanceFrom:':
+                exclude: true
+            '-distanceFromLocation:':
+                name: getDistanceTo
+    CLLocationManager: # DONE
+        properties:
+            'headingAvailable': # Deprecated in iOS 4. Conflicts with the class method with the same name.
+                exclude: true
+            'locationServicesEnabled': # Deprecated in iOS 4. Conflicts with the class method with the same name.
+                exclude: true
+            'monitoredRegions':
+                type: NSSet<CLRegion>
+            'rangedRegions':
+                type: NSSet<CLBeaconRegion>
+        methods:
+            '+locationServicesEnabled':
+                name: isLocationServicesEnabled
+            '+headingAvailable':
+                name: isHeadingAvailable
+            '+significantLocationChangeMonitoringAvailable':
+                name: isSignificantLocationChangeMonitoringAvailable
+            '+isMonitoringAvailableForClass:':
+                name: isMonitoringAvailable
+                parameters:
+                    regionClass:
+                        type: 'Class<? extends CLRegion>'
+            '+regionMonitoringAvailable':
+                name: isRegionMonitoringAvailable
+            '+regionMonitoringEnabled': # Deprecated in iOS 6, replaced by regionMonitoringAvailable
+                exclude: true
+            '+authorizationStatus':
+                name: getAuthorizationStatus
+            '+deferredLocationUpdatesAvailable':
+                name: isDeferredLocationUpdatesAvailable
+            '-startMonitoringForRegion:desiredAccuracy:':
+                name: startMonitoring
+            '-stopMonitoringForRegion:':
+                name: stopMonitoring
+            '-startMonitoringForRegion:':
+                name: startMonitoring
+            '-requestStateForRegion:':
+                name: requestState
+            '-startRangingBeaconsInRegion:':
+                name: startRangingBeacons
+            '-stopRangingBeaconsInRegion:':
+                name: stopRangingBeacons
+            '-allowDeferredLocationUpdatesUntilTraveled:timeout:':
+                name: allowDeferredLocationUpdatesUntil
+    CLPlacemark: # DONE
+        skip_def_constructor: true
+        properties:
+            'areasOfInterest':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            'addressDictionary':
+                name: address
+                type: ABPersonAddress
+                annotations: ['@WeaklyLinked']
+        methods:
+            '-init.*':
+                name: init
+    CLRegion: # DONE
+        properties:
+            'notifyOnEntry':
+                name: notifiesOnEntry
+            'notifyOnExit':
+                name: notifiesOnExit
+        methods:
+            '-init.*':
+                name: init
+            '-containsCoordinate:':
+                trim_after_first_colon: true
+    CLVisit: {} # DONE
+
+protocols:
+    CLLocationManagerDelegate: # DONE
+        methods:
+            '-locationManager:didUpdateToLocation:fromLocation:':
+                name: didUpdateToLocation
+            '-locationManager:didUpdateLocations:':
+                name: didUpdateLocations
+                parameters:
+                    locations:
+                        type: NSArray<CLLocation>
+            '-locationManager:didUpdateHeading:':
+                name: didUpdateHeading
+            '-locationManagerShouldDisplayHeadingCalibration:':
+                name: shouldDisplayHeadingCalibration
+            '-locationManager:didDetermineState:forRegion:':
+                name: didDetermineState
+            '-locationManager:didRangeBeacons:inRegion:':
+                name: didRangeBeacons
+            '-locationManager:rangingBeaconsDidFailForRegion:withError:':
+                name: rangingBeaconsDidFail
+            '-locationManager:didEnterRegion:':
+                name: didEnterRegion
+            '-locationManager:didExitRegion:':
+                name: didExitRegion
+            '-locationManager:didFailWithError:':
+                name: didFail
+            '-locationManager:monitoringDidFailForRegion:withError:':
+                name: monitoringDidFail
+            '-locationManager:didChangeAuthorizationStatus:':
+                name: didChangeAuthorizationStatus
+            '-locationManager:didStartMonitoringForRegion:':
+                name: didStartMonitoring
+            '-locationManagerDidPauseLocationUpdates:':
+                name: didPauseLocationUpdates
+            '-locationManagerDidResumeLocationUpdates:':
+                name: didResumeLocationUpdates
+            '-locationManager:didFinishDeferredUpdatesWithError:':
+                name: didFinishDeferredUpdates
+            '-locationManager:didVisit:':
+                name: didVisit
+
+functions:
+    CLLocationCoordinate2DMake:
+        exclude: true
+
+    CLLocationCoordinate2D(IsValid):
+        class: CLLocationCoordinate2D
+        static: true
+        visibility: private
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (CL.*):
+        class: CoreLocation
+        name: 'Function__#{g[0]}'
+
+values:
+    kCLErrorDomain:
+        class: CLError
+        name: getClassDomain
+    kCLErrorUserInfo(.*)Key:
+        enum: CLErrorUserInfoKey
+        name: '#{g[0]}'
+        type: NSString
+        extends: NSErrorUserInfoKey
+
+    kCLLocationAccuracy(.*):
+        class: CLLocationAccuracy
+        name: '#{g[0]}Value'
+        visibility: protected
+
+    CL(LocationDistanceMax):
+        class: CLLocation
+        name: 'get#{g[0]}'
+    CL(TimeIntervalMax):
+        class: CLLocationManager
+        name: 'get#{g[0]}'
+    kCL(DistanceFilterNone):
+        class: CLLocationManager
+        name: 'get#{g[0]}'
+    kCL(HeadingFilterNone):
+        class: CLLocationManager
+        name: 'get#{g[0]}'
+
+    kCLLocationCoordinate2D(Invalid):
+        class: CLLocationCoordinate2D
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?CL.*):
+        class: CoreLocation
+        name: 'Value__#{g[0]}'
+
+constants:
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?CL.*):
+        class: CoreLocation
+        name: 'Constant__#{g[0]}'

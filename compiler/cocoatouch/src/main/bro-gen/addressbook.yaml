@@ -1,0 +1,515 @@
+package: org.robovm.apple.addressbook
+include: [foundation.yaml, corefoundation.yaml]
+library: AddressBook
+framework: AddressBook
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/AddressBook.framework/Headers/AddressBook.h
+    - /System/Library/Frameworks/AddressBook.framework/Headers/AddressBookDefines.h
+typedefs:
+    ABAddressBookRef: ABAddressBook
+    ABRecordRef: ABRecord
+    ABMultiValueRef: ABMultiValue
+    ABMutableMultiValueRef: ABMutableMultiValue
+private_typedefs:
+    '__CFString *': String
+    '__CFString **': NSString.NSStringPtr
+    '__CFData *': NSData
+    '__CFURL *': NSURL
+    '__CFDictionary *': NSDictionary
+    '__CFArray *': NSArray<?>
+    __CFError: NSError
+
+enums:
+    ABAddressBookErrorCode: { first: kABOperationNotPermittedByStoreError, suffix: Error }
+    ABAuthorizationStatus: {}
+    ABRecordType: { first: kABPersonType, prefix: kAB, suffix: Type, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    ABPropertyType: { first: kABInvalidPropertyType, bits: true, suffix: PropertyType, marshaler: Bits.AsMachineSizedIntMarshaler }
+    ABPersonSortOrdering: { first: kABPersonSortByFirstName, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    ABPersonCompositeNameFormat: { first: kABPersonCompositeNameFormatFirstNameFirst, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    ABPersonImageFormat: { first: kABPersonImageFormatThumbnail }
+    ABSourceType: { first: kABSourceTypeLocal, bits: true, skip_none: true }
+    
+classes:
+    ABAddressBookError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+
+    # Opaque Types
+    ABAddressBook:
+        extends: CFType
+    ABMultiValue:
+        extends: CFType
+    ABMutableMultiValue:
+        extends: ABMultiValue
+    ABRecord:
+        extends: CFType
+        
+    ABGroup:
+        extends: ABRecord
+    ABPerson:
+        extends: ABRecord
+    ABSource:
+        extends: ABRecord
+        
+    ABProperty: {}
+    ABPersonProperty:
+        extends: ABProperty
+    ABGroupProperty:
+        extends: ABProperty
+    ABSourceProperty:
+        extends: ABProperty
+        
+    ABPropertyLabel: {}
+    ABPersonPhoneLabel:
+        extends: ABPropertyLabel
+    ABPersonDateLabel:
+        extends: ABPropertyLabel
+    ABPersonURLLabel:
+        extends: ABPropertyLabel
+    ABPersonRelatedNameLabel:
+        extends: ABPropertyLabel
+
+functions:
+    # ABAddressBook
+    ABAddressBook(Create)WithOptions:
+        class: ABAddressBook
+        name: '#{g[0]}'
+        throws: NSErrorException
+        return_marshaler: CFType.NoRetainMarshaler
+    ABAddressBook(RequestAccess)WithCompletion:
+        class: ABAddressBook
+        name: '#{g[0]}'
+        parameters:
+            completion:
+                type: '@Block RequestAccessCompletionHandler'
+    ABAddressBook(Save|AddRecord|RemoveRecord):
+        class: ABAddressBook
+        name: '#{g[0]}'
+        throws: NSErrorException
+    ABAddressBookCopy(LocalizedLabel):
+        class: ABAddressBook
+        name: 'get#{g[0]}'
+        return_marshaler: CFString.AsStringNoRetainMarshaler
+    ABAddressBookCopy(DefaultSource):
+        class: ABAddressBook
+        name: 'get#{g[0]}'
+        return_type: ABSource
+        return_marshaler: ABRecord.NoRetainMarshaler
+    ABAddressBook(RegisterExternalChangeCallback|UnregisterExternalChangeCallback):
+        class: ABAddressBook
+        name: '#{g[0]}'
+        visibility: protected
+        parameters:
+            context:
+                type: '@Pointer long'
+    ABAddressBook(GetSource)WithRecordID:
+        class: ABAddressBook
+        name: '#{g[0]}'
+        return_type: ABSource
+    ABAddressBook(GetPerson)WithRecordID:
+        class: ABAddressBook
+        name: '#{g[0]}'
+        return_type: ABPerson
+    ABAddressBookCopyArrayOf(AllSources):
+        class: ABAddressBook
+        name: 'get#{g[0]}'
+        return_type: List<ABSource>
+        return_marshaler: ABSource.AsListMarshaler
+    ABAddressBookCopyArrayOf(AllPeople):
+        class: ABAddressBook
+        name: 'get#{g[0]}'
+        return_type: List<ABPerson>
+        return_marshaler: ABPerson.AsListMarshaler
+    ABAddressBookCopyArrayOf(AllPeopleInSource).*:
+        class: ABAddressBook
+        name: 'get#{g[0]}'
+        return_type: List<ABPerson>
+        return_marshaler: ABPerson.AsListMarshaler
+        parameters:
+            source:
+                type: ABSource
+    ABAddressBookCopy(People)WithName:
+        class: ABAddressBook
+        name: 'get#{g[0]}'
+        return_type: List<ABPerson>
+        return_marshaler: ABPerson.AsListMarshaler
+    ABAddressBook(GetGroup)WithRecordID:
+        class: ABAddressBook
+        name: '#{g[0]}'
+        return_type: ABGroup
+    ABAddressBookCopyArrayOf(AllGroups):
+        class: ABAddressBook
+        name: 'get#{g[0]}'
+        return_type: List<ABGroup>
+        return_marshaler: ABGroup.AsListMarshaler
+    ABAddressBookCopyArrayOf(AllGroupsInSource).*:
+        class: ABAddressBook
+        name: 'get#{g[0]}'
+        return_type: List<ABGroup>
+        return_marshaler: ABGroup.AsListMarshaler
+        parameters:
+            source:
+                type: ABSource
+    ABAddressBook(.*):
+        class: ABAddressBook
+        name: '#{g[0]}'
+
+    # ABRecord
+    ABRecordCopy(Value):
+        class: ABRecord
+        name: 'get#{g[0]}'
+        return_marshaler: CFType.NoRetainMarshaler
+        parameters:
+            property:
+                type: ABProperty
+    ABRecord(SetValue): 
+        class: ABRecord
+        name: '#{g[0]}'
+        throws: NSErrorException
+        parameters:
+            property:
+                type: ABProperty
+    ABRecord(RemoveValue):
+        class: ABRecord
+        name: '#{g[0]}'
+        throws: NSErrorException
+        parameters:
+            property:
+                type: ABProperty
+    ABRecordCopy(CompositeName):
+        class: ABRecord
+        name: 'get#{g[0]}'
+        return_marshaler: CFString.AsStringNoRetainMarshaler
+    ABRecord(.*):
+        class: ABRecord
+        name: '#{g[0]}'
+
+    # ABGroup
+    ABGroup(Create).*:
+        class: ABGroup
+        name: '#{g[0]}'
+        return_type: ABGroup
+        return_marshaler: ABRecord.NoRetainMarshaler
+        parameters:
+            source:
+                type: ABSource
+    ABGroupCopy(Source):
+        class: ABGroup
+        name: 'get#{g[0]}'
+        return_type: ABSource
+        return_marshaler: ABRecord.NoRetainMarshaler
+        parameters:
+            group:
+                type: ABGroup
+    ABGroupCopyArrayOf(AllMembers).*:
+        class: ABGroup
+        name: 'get#{g[0]}'
+        return_type: List<ABPerson>
+        return_marshaler: ABPerson.AsListMarshaler
+        parameters:
+            group:
+                type: ABGroup
+    ABGroup(AddMember|RemoveMember):
+        class: ABGroup
+        name: '#{g[0]}'
+        throws: NSErrorException
+        parameters:
+            group:
+                type: ABGroup
+            member:
+                type: ABPerson
+            person:
+                type: ABPerson
+    ABGroup(.*):
+        class: ABGroup
+        name: '#{g[0]}'
+
+    # ABMultiValue
+    ABMultiValueCopyValueAtIndex:
+        class: ABMultiValue
+        name: getValue
+        return_marshaler: CFType.NoRetainMarshaler
+    ABMultiValueCopyArrayOfAllValues:
+        class: ABMultiValue
+        name: getAllValues
+        return_type: List<CFType>
+        return_marshaler: CFType.AsListMarshaler
+    ABMultiValueCopyLabelAtIndex:
+        class: ABMultiValue
+        name: getLabel
+        return_type: CFString
+        return_marshaler: CFType.NoRetainMarshaler
+    ABMultiValue(GetIndex)ForIdentifier:
+        class: ABMultiValue
+        name: indexOf
+    ABMultiValue(GetIdentifier)AtIndex:
+        class: ABMultiValue
+        name: '#{g[0]}'
+    ABMultiValueGetFirstIndexOfValue:
+        class: ABMultiValue
+        name: indexOf
+    ABMultiValue(Create)Mutable.*:
+        class: ABMutableMultiValue
+        name: '#{g[0]}'
+        return_marshaler: CFType.NoRetainMarshaler
+    ABMultiValue(AddValueAndLabel):
+        class: ABMutableMultiValue
+        name: '#{g[0]}'
+        visibility: protected
+        parameters:
+            label:
+                type: CFString
+    ABMultiValue(InsertValueAndLabel)AtIndex:
+        class: ABMutableMultiValue
+        name: '#{g[0]}'
+        visibility: protected
+        parameters:
+            label:
+                type: CFString
+    ABMultiValue(RemoveValueAndLabel)AtIndex:
+        class: ABMutableMultiValue
+        name: '#{g[0]}'
+        parameters:
+            label:
+                type: CFString
+    ABMultiValue(ReplaceValue)AtIndex:
+        class: ABMutableMultiValue
+        name: '#{g[0]}'
+    ABMultiValue(ReplaceLabel)AtIndex:
+        class: ABMutableMultiValue
+        name: '#{g[0]}'
+        visibility: protected
+        parameters:
+            label:
+                type: CFString
+    ABMultiValue(.*):
+        class: ABMultiValue
+        name: '#{g[0]}'
+
+    # ABPerson
+    ABPersonGetTypeOfProperty:
+        class: ABPersonProperty
+        name: getType
+        visibility: protected
+    ABPersonCopy(LocalizedPropertyName):
+        class: ABPersonProperty
+        name: 'get#{g[0]}'
+        visibility: protected
+    
+    ABPerson(Create):
+        class: ABPerson
+        name: '#{g[0]}'
+        return_type: ABPerson
+        return_marshaler: ABRecord.NoRetainMarshaler
+    ABPerson(Create)InSource:
+        class: ABPerson
+        name: '#{g[0]}'
+        return_type: ABPerson
+        return_marshaler: ABRecord.NoRetainMarshaler
+        parameters:
+            source:
+                type: ABSource
+    ABPersonCopy(Source):
+        class: ABPerson
+        name: 'get#{g[0]}'
+        return_type: ABSource
+        return_marshaler: ABRecord.NoRetainMarshaler
+        parameters:
+            person:
+                type: ABPerson
+    ABPersonCopyArrayOf(AllLinkedPeople):
+        class: ABPerson
+        name: 'get#{g[0]}'
+        return_type: List<ABPerson>
+        return_marshaler: ABPerson.AsListMarshaler
+        parameters:
+            person:
+                type: ABPerson
+    ABPersonGet(CompositeNameFormat):
+        class: ABPerson
+        name: 'getConstant#{g[0]}'
+    ABPerson(GetCompositeNameFormat)ForRecord:
+        class: ABPerson
+        name: '#{g[0]}'
+        parameters:
+            record:
+                type: ABPerson
+    ABPersonCopy(CompositeNameDelimiter)ForRecord:
+        class: ABPerson
+        name: 'get#{g[0]}'
+        return_marshaler: CFString.AsStringNoRetainMarshaler
+        parameters:
+            record:
+                type: ABPerson
+    ABPerson(SetImageData):
+        class: ABPerson
+        name: '#{g[0]}'
+        throws: NSErrorException
+        parameters:
+            person:
+                type: ABPerson
+    ABPersonCopy(ImageData).*:
+        class: ABPerson
+        name: 'get#{g[0]}'
+        return_marshaler: NSObject.NoRetainMarshaler
+        parameters:
+            person:
+                type: ABPerson
+    ABPerson(HasImageData):
+        class: ABPerson
+        name: '#{g[0]}'
+        parameters:
+            person:
+                type: ABPerson
+    ABPerson(RemoveImageData):
+        class: ABPerson
+        name: '#{g[0]}'
+        throws: NSErrorException
+        parameters:
+            person:
+                type: ABPerson
+    ABPersonComparePeopleByName:
+        class: ABPerson
+        name: compareTo
+        parameters:
+            person1:
+                type: ABPerson
+    ABPerson(CreatePeople)InSource(WithVCardRepresentation):
+        class: ABPerson
+        name: '#{g[0]}#{g[1]}'
+        return_type: List<ABPerson>
+        return_marshaler: ABPerson.AsListMarshaler
+        parameters:
+            source:
+                type: ABSource
+    ABPerson(CreateVCardRepresentationWithPeople):
+        class: ABPerson
+        name: '#{g[0]}'
+        return_marshaler: NSObject.NoRetainMarshaler
+        parameters:
+            people:
+                type: List<ABPerson>
+                marshaler: ABPerson.AsListMarshaler
+    ABPerson(.*):
+        class: ABPerson
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?AB.*):
+        class: AddressBook
+        name: 'Function__#{g[0]}'
+
+values:
+    ABAddressBookErrorDomain:
+        class: ABAddressBookError
+        name: getClassDomain
+
+    # Properties
+    kABPerson(.*)Property:
+        class: ABPersonProperty
+        name: '#{g[0]}Value'
+        visibility: protected
+    kABGroup(.*)Property:
+        class: ABGroupProperty
+        name: '#{g[0]}Value'
+        visibility: protected
+    kABSource(.*)Property:
+        class: ABSourceProperty
+        name: '#{g[0]}Value'
+        visibility: protected
+
+    # Keys
+    kABPersonAddress(.*)Key:
+        enum: ABPersonAddressPart
+        name: '#{g[0]}'
+        type: CFString
+    kABPersonInstantMessage(.*Key):
+        class: ABPersonInstantMessageAccount
+        name: '#{g[0]}'
+        visibility: protected
+        type: CFString
+    kABPersonSocialProfile(.*Key):
+        class: ABPersonSocialProfile
+        name: '#{g[0]}'
+        visibility: protected
+        type: CFString
+    kABPersonAlternateBirthday(.*Key):
+        class: ABPersonAlternateBirthday
+        name: '#{g[0]}'
+        visibility: protected
+        type: CFString
+    kABPersonKind(.*):
+        enum: ABPersonKind
+        name: '#{g[0]}'
+        type: CFNumber    
+    kABPersonInstantMessageService(.*):
+        enum: ABPersonInstantMessageService
+        name: '#{g[0]}'
+        type: CFString
+    kABPersonSocialProfileService(.*):
+        enum: ABPersonSocialProfileService
+        name: '#{g[0]}'
+        type: CFString
+    
+    # Labels
+    # Generic labels
+    kAB(WorkLabel):
+        class: ABPropertyLabel
+        name: '#{g[0]}'
+        visibility: protected
+        type: CFString
+    kAB(HomeLabel):
+        class: ABPropertyLabel
+        name: '#{g[0]}'
+        visibility: protected
+        type: CFString
+    kAB(OtherLabel):
+        class: ABPropertyLabel
+        name: '#{g[0]}'
+        visibility: protected
+        type: CFString
+    # Specific labels
+    kABPersonPhone(.*Label):
+        class: ABPersonPhoneLabel
+        name: '#{g[0]}'
+        visibility: protected
+        type: CFString
+    kABPerson(AnniversaryLabel):
+        class: ABPersonDateLabel
+        name: '#{g[0]}'
+        visibility: protected
+        type: CFString
+    kABPerson(HomePageLabel):
+        class: ABPersonURLLabel
+        name: '#{g[0]}'
+        visibility: protected
+        type: CFString
+    kABPerson(.*Label):
+        class: ABPersonRelatedNameLabel
+        name: '#{g[0]}'
+        visibility: protected
+        type: CFString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?AB.*):
+        class: AddressBook
+        name: 'Value__#{g[0]}'
+
+constants:
+    kABRecord(InvalidID):
+        class: ABRecord
+        name: '#{g[0]}'
+    kABProperty(InvalidID):
+        class: ABProperty
+        name: '#{g[0]}'
+    kABSourceTypeSearchableMask:
+        exclude: true
+    kABMultiValue(.*):
+        class: ABMultiValue
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?AB.*):
+        class: AddressBook
+        name: 'Constant__#{g[0]}'

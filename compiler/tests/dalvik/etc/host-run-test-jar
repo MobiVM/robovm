@@ -1,0 +1,90 @@
+#!/bin/sh
+#
+# Run the code in test.jar using the host-mode virtual machine. The jar should
+# contain a top-level class named Main to run.
+#
+# Options:
+#   --quiet       -- don't chatter
+#   --fast        -- use the fast interpreter (the default)
+#   --jit         -- use the jit
+#   --portable    -- use the portable interpreter
+#   --debug       -- wait for debugger to attach
+#   --valgrind    -- use valgrind
+#   --no-verify   -- turn off verification (on by default)
+#   --no-optimize -- turn off optimization (on by default)
+
+msg() {
+    if [ "$QUIET" = "n" ]; then
+        echo "$@"
+    fi
+}
+
+INTERP=""
+DEBUG="n"
+GDB="n"
+VERIFY="y"
+OPTIMIZE="y"
+VALGRIND="n"
+DEV_MODE="n"
+QUIET="n"
+PRECISE="y"
+
+while true; do
+    if [ "x$1" = "x--quiet" ]; then
+        QUIET="y"
+        shift
+    elif [ "x$1" = "x--jit" ]; then
+        INTERP="jit"
+        msg "Using jit"
+        shift
+    elif [ "x$1" = "x--fast" ]; then
+        INTERP="fast"
+        msg "Using fast interpreter"
+        shift
+    elif [ "x$1" = "x--portable" ]; then
+        INTERP="portable"
+        msg "Using portable interpreter"
+        shift
+    elif [ "x$1" = "x--debug" ]; then
+        DEBUG="y"
+        shift
+    elif [ "x$1" = "x--gdb" ]; then
+        GDB="y"
+        shift
+    elif [ "x$1" = "x--valgrind" ]; then
+        VALGRIND="y"
+        shift
+    elif [ "x$1" = "x--dev" ]; then
+        DEV_MODE="y"
+        shift
+    elif [ "x$1" = "x--no-verify" ]; then
+        VERIFY="n"
+        shift
+    elif [ "x$1" = "x--no-optimize" ]; then
+        OPTIMIZE="n"
+        shift
+    elif [ "x$1" = "x--no-precise" ]; then
+        PRECISE="n"
+        shift
+    elif [ "x$1" = "x--" ]; then
+        shift
+        break
+    elif expr "x$1" : "x--" >/dev/null 2>&1; then
+        echo "unknown option: $1" 1>&2
+        exit 1
+    else
+        break
+    fi
+done
+
+if [ "x$BASE" = 'x' ]; then
+    echo "BASE not set"
+    exit 1
+fi
+
+$BASE/tests/dalvik/robovm-runner "$(pwd)/test.out" -rvm:log=silent -rvm:mx256M $@
+#cp=classes
+#if [ -r classes-ex ]; then
+#    cp=classes:classes-ex
+#fi
+#java -cp $cp Main

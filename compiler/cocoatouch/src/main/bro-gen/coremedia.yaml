@@ -1,0 +1,1346 @@
+package: org.robovm.apple.coremedia
+include: [foundation.yaml, corefoundation.yaml, dispatch.yaml, coreaudio.yaml, coregraphics.yaml, corevideo.yaml, audiotoolbox.yaml]
+library: CoreMedia
+framework: CoreMedia
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/CoreMedia.framework/Headers/CoreMedia.h
+    - /System/Library/Frameworks/CoreMedia.framework/Headers/CMBase.h
+typedefs:
+    CMTimeCodeFormatDescriptionRef: CMTimeCodeFormatDescription
+    CMAudioFormatDescriptionRef: CMAudioFormatDescription
+    CMVideoFormatDescriptionRef: CMVideoFormatDescription
+    CMTextFormatDescriptionRef: CMTextFormatDescription
+    OS_dispatch_source: DispatchSource
+private_typedefs:
+    '__CFString *': String
+    '__CFString **': NSString.NSStringPtr
+    '__CFData *': NSData
+    '__CFURL *': NSURL
+    '__CFDictionary *': NSDictionary
+    '__CFArray *': NSArray<?>
+    '__CFRunLoopTimer *': NSTimer
+    '__CFRunLoop *': NSRunLoop
+
+enums:
+    CMAttachmentMode: { first: kCMAttachmentMode_ShouldNotPropagate, prefix: kCMAttachmentMode_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMClockErrorCode: { first: kCMClockError_MissingRequiredParameter, prefix: kCMClockError_ }
+    CMTimebaseErrorCode: { first: kCMTimebaseError_MissingRequiredParameter, prefix: kCMTimebaseError_ }
+    CMSyncErrorCode: { first: kCMSyncError_MissingRequiredParameter, prefix: kCMSyncError_ }
+    CMBlockBufferErrorCode: { first: kCMBlockBufferNoErr, prefix: kCMBlockBuffer, suffix: Err }
+    CMBlockBufferFlags: { first: kCMBlockBufferAssureMemoryNowFlag, prefix: kCMBlockBuffer, suffix: Flag, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    CMBufferQueueErrorCode: { first: kCMBufferQueueError_AllocationFailed, prefix: kCMBufferQueueError_ }
+    CMBufferQueueTriggerCondition: { first: kCMBufferQueueTrigger_WhenDurationBecomesLessThan, prefix: kCMBufferQueueTrigger_ }
+    CMFormatDescriptionErrorCode: { first: kCMFormatDescriptionError_InvalidParameter, prefix: kCMFormatDescriptionError_ }
+    CMMediaType: { first: kCMMediaType_Video, prefix: kCMMediaType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMAudioCodecType: { first: kCMAudioCodecType_AAC_LCProtected, prefix: kCMAudioCodecType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMAudioFormatDescriptionMask: { first: kCMAudioFormatDescriptionMask_StreamBasicDescription, prefix: kCMAudioFormatDescriptionMask_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    CMPixelFormatType: { first: kCMPixelFormat_32ARGB, prefix: kCMPixelFormat_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMVideoCodecType: { first: kCMVideoCodecType_422YpCbCr8, prefix: kCMVideoCodecType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMMPEG2VideoProfile: { first: kCMMPEG2VideoProfile_HDV_720p30, prefix: kCMMPEG2VideoProfile_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMMuxedStreamType: { first: kCMMuxedStreamType_MPEG1System, prefix: kCMMuxedStreamType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMClosedCaptionFormatType: { first: kCMClosedCaptionFormatType_CEA608, prefix: kCMClosedCaptionFormatType, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMTextFormatType: { first: kCMTextFormatType_QTText, prefix: kCMTextFormatType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMTextDisplayFlags: { first: kCMTextDisplayFlag_scrollIn, prefix: kCMTextDisplayFlag_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    CMTextJustification: { first: kCMTextJustification_left_top, prefix: kCMTextJustification_, kCMTextJustification_left_top: LeftTop, kCMTextJustification_centered: Centered, kCMTextJustification_bottom_right: BottomRight }
+    CMSubtitleFormatType: { first: kCMSubtitleFormatType_3GText, prefix: kCMSubtitleFormatType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMTimeCodeFormatType: { first: kCMTimeCodeFormatType_TimeCode32, prefix: kCMTimeCodeFormatType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMTimeCodeFlags: { first: kCMTimeCodeFlag_DropFrame, prefix: kCMTimeCodeFlag_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    CMMetadataFormatType: { first: kCMMetadataFormatType_ICY, prefix: kCMMetadataFormatType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMSampleBufferErrorCode: { first: kCMSampleBufferError_AllocationFailed, prefix: kCMSampleBufferError_ }
+    CMSampleBufferFlags: { first: kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment, prefix: kCMSampleBufferFlag_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    CMSimpleQueueErrorCode: { first: kCMSimpleQueueError_AllocationFailed, prefix: kCMSimpleQueueError_ }
+    CMTimeFlags: { first: kCMTimeFlags_Valid, prefix: kCMTimeFlags_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    CMTimeRoundingMethod: { first: kCMTimeRoundingMethod_RoundHalfAwayFromZero, prefix: kCMTimeRoundingMethod_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMFormatDescriptionBridgeErrorCode: { first: kCMFormatDescriptionBridgeError_InvalidParameter }
+    CMMetadataIdentifierErrorCode: { first: kCMMetadataIdentifierError_AllocationFailed }
+    CMMetadataDataTypeRegistryErrorCode: { first: kCMMetadataDataTypeRegistryError_AllocationFailed }
+
+classes:
+    # Opaque Types
+    CMAttachmentBearer:
+        extends: CFType
+    CMAttachmentBearerRef:
+        name: CMAttachmentBearer
+        extends: CFType
+    CMBlockBuffer:
+        extends: CFType
+    OpaqueCMBlockBuffer:
+        name: CMBlockBuffer
+        extends: CFType
+    CMBufferQueue:
+        extends: CFType
+    opaqueCMBufferQueue:
+        name: CMBufferQueue
+        extends: CFType
+    CMClockOrTimebase:
+        extends: CFType
+    CMClock:
+        extends: CMClockOrTimebase
+    OpaqueCMClock:
+        name: CMClock
+        extends: CMClockOrTimebase
+    CMFormatDescription:
+        extends: CFType
+    opaqueCMFormatDescription:
+        name: CMFormatDescription
+        extends: CFType
+    CMAudioFormatDescription:
+        extends: CMFormatDescription
+        annotations: ['@WeaklyLinked']
+        add_ptr: true
+    CMClosedCaptionFormatDescription:
+        extends: CMFormatDescription
+        add_ptr: true
+    CMMetadataFormatDescription:
+        extends: CMFormatDescription
+        add_ptr: true
+    CMMuxedFormatDescription:
+        extends: CMFormatDescription
+        add_ptr: true
+    CMTextFormatDescription:
+        extends: CMFormatDescription
+        add_ptr: true
+    CMTimeCodeFormatDescription:
+        extends: CMFormatDescription
+        add_ptr: true
+    CMVideoFormatDescription:
+        extends: CMFormatDescription
+        annotations: ['@WeaklyLinked']
+        add_ptr: true
+    CMSampleBuffer:
+        extends: CFType
+        implements: CMBuffer
+    opaqueCMSampleBuffer:
+        name: CMSampleBuffer
+        extends: CFType
+        implements: CMBuffer
+    CMTime:
+        extends: CFType
+    CMTimebase:
+        extends: CMClockOrTimebase
+    OpaqueCMTimebase:
+        name: CMTimebase
+        extends: CMClockOrTimebase
+    CMTimeRange:
+        extends: CFType
+    CMMemoryPool:
+        extends: CFType
+    OpaqueCMMemoryPool:
+        name: CMMemoryPool
+        extends: CFType
+    CMSimpleQueue:
+        extends: CFType
+    opaqueCMSimpleQueue:
+        name: CMSimpleQueue
+        extends: CFType
+
+    # Structs
+    CMBlockBufferCustomBlockSource: {}
+    CMBufferCallbacks:
+        name: CMBufferCallbacksStruct
+        refcon:
+            type: '@Pointer long'
+        visibility: ''
+    CMBufferQueueTriggerToken: {}
+    opaqueCMBufferQueueTriggerToken:
+        name: CMBufferQueueTriggerToken
+    CMVideoDimensions: {}
+    CMSampleTimingInfo: {}
+    CMTime:
+        add_ptr: true
+    CMTimeRange: {}
+    CMTimeMapping: {}
+
+protocols: {}
+
+functions:
+    (CM.*)GetTypeID:
+        class: '#{g[0]}'
+        name: getClassTypeID
+
+    # CMAttachmentBearer
+    CMCopyDictionaryOf(Attachments):
+        class: CMAttachmentBearer
+        name: 'get#{g[0]}'
+        visibility: private
+        return_type: CFDictionary
+        return_marshaler: CFType.NoRetainMarshaler
+        static: true
+        parameters:
+            target:
+                type: CFType
+    CM(GetAttachment):
+        class: CMAttachmentBearer
+        name: '#{g[0]}'
+        visibility: private
+        static: true
+        parameters:
+            target:
+                type: CFType
+    CM(SetAttachments): 
+        class: CMAttachmentBearer
+        name: '#{g[0]}'
+        static: true
+        parameters:
+            target:
+                type: CFType
+            theAttachments:
+                type: CFDictionary
+    CM(.*Attachment.?):
+        class: CMAttachmentBearer
+        name: '#{g[0]}'
+        static: true
+        parameters:
+            target:
+                type: CFType
+
+    # CMAudioFormatDescription
+    CMAudioFormatDescription(Create):
+        class: CMAudioFormatDescription
+        name: '#{g[0]}0'
+        visibility: protected
+        annotations: ['@WeaklyLinked']
+    CMAudioFormatDescription(CreateSummary):
+        class: CMAudioFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+        parameters:
+            formatDescriptionArray:
+                type: List<CMAudioFormatDescription>
+                marshaler: CFType.AsListMarshaler
+    CMAudioFormatDescription(GetChannelLayout):
+        class: CMAudioFormatDescription
+        name: '#{g[0]}0'
+        visibility: private      
+        annotations: ['@WeaklyLinked']
+    CMAudioFormatDescription(GetFormatList|GetMagicCookie):
+        class: CMAudioFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+    CMAudioFormatDescriptionEqual:
+        class: CMAudioFormatDescription
+        name: equalsTo0
+        visibility: private
+    CMAudioFormatDescription(Create.*):
+        class: CMAudioFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+        parameters:
+            soundDescriptionFlavor:
+                type: CMSoundDescriptionFlavor
+    CMAudioFormatDescription(CopyAsBigEndianSoundDescriptionBlockBuffer):
+        class: CMAudioFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+        parameters:
+            soundDescriptionFlavor:
+                type: CMSoundDescriptionFlavor
+    CMAudioFormatDescription(GetStreamBasicDescription):
+        class: CMAudioFormatDescription
+        name: '#{g[0]}'
+        annotations: ['@WeaklyLinked']
+    CMAudioFormatDescription(.*):
+        class: CMAudioFormatDescription
+        name: '#{g[0]}'
+
+    # CMBlockBuffer
+    CMBlockBuffer(Create).*:
+        class: CMBlockBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            flags:
+                type: CMBlockBufferFlags
+    CMBlockBuffer(AppendMemoryBlock|CMBlockBufferAppendBufferReference):
+        class: CMBlockBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            flags:
+                type: CMBlockBufferFlags
+    CMBlockBuffer(AccessDataBytes|ReplaceDataBytes|FillDataBytes|):
+        class: CMBlockBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+        static: true
+    CMBlockBuffer(GetDataLength|IsRangeContiguous|IsEmpty):
+        class: CMBlockBuffer
+        name: '#{g[0]}'
+    CMBlockBuffer(.*):
+        class: CMBlockBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+
+    # CMBufferQueue
+    CMBufferQueue(GetCallbacks.*):
+        class: CMBufferQueue
+        name: '#{g[0]}'
+        exclude: true
+    CMBufferQueue(Create):
+        class: CMBufferQueue
+        name: '#{g[0]}0'
+        visibility: protected
+    CMBufferQueue(Enqueue|MarkEndOfData|Reset|RemoveTrigger|TestTrigger):
+        class: CMBufferQueue
+        name: '#{g[0]}0'
+        visibility: protected
+    CMBufferQueue(Reset)WithCallback:
+        class: CMBufferQueue
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            refcon:
+                type: '@Pointer long'
+    CMBufferQueue(InstallTrigger).*:
+        class: CMBufferQueue
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            triggerRefcon:
+                type: '@Pointer long'
+    CMBufferQueue(CallForEachBuffer):
+        class: CMBufferQueue
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            refcon:
+                type: '@Pointer long'
+    CMBufferQueue(SetValidationCallback):
+        class: CMBufferQueue
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            validationRefCon:
+                type: '@Pointer long'
+    CMBufferQueue(.*):
+        class: CMBufferQueue
+        name: '#{g[0]}'
+
+    # CMClock
+    CMClock(GetHostTimeClock):
+        class: CMClock
+        name: '#{g[0]}'
+    CMClock(ConvertHostTimeToSystemUnits):
+        class: CMClock
+        name: '#{g[0]}'
+    CMClockMakeHostTimeFromSystemUnits:
+        class: CMClock
+        name: createHostTimeFromSystemUnits
+    CMClock(GetAnchorTime):
+        class: CMClock
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            outClockTime:
+                type: CMTime.CMTimePtr
+            outReferenceClockTime:
+                type: CMTime.CMTimePtr
+    CMClock(.*):
+        class: CMClock
+        name: '#{g[0]}'
+    CMAudioClockCreate:
+        class: CMClock
+        name: createAudioClock0
+        visibility: protected
+
+    # CMClockOrTimebase
+    CMSync(GetRelativeRateAndAnchorTime):
+        class: CMClockOrTimebase
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            ofClockOrTimebase:
+                type: CMClockOrTimebase
+            relativeToClockOrTimebase:
+                type: CMClockOrTimebase
+            outOfClockOrTimebaseAnchorTime:
+                type: CMTime.CMTimePtr
+            outRelativeToClockOrTimebaseAnchorTime:
+                type: CMTime.CMTimePtr
+    CMSync(GetTime):
+        class: CMClockOrTimebase
+        name: '#{g[0]}'
+        parameters:
+            clockOrTimebase:
+                type: CMClockOrTimebase
+    CMSync(MightDrift):
+        class: CMClockOrTimebase
+        name: '#{g[0]}'
+        parameters:
+            clockOrTimebase1:
+                type: CMClockOrTimebase
+            clockOrTimebase2:
+                type: CMClockOrTimebase
+    CMSync(GetRelativeRate):
+        class: CMClockOrTimebase
+        name: '#{g[0]}'
+        parameters:
+            ofClockOrTimebase:
+                type: CMClockOrTimebase
+            relativeToClockOrTimebase:
+                type: CMClockOrTimebase
+    CMSync(ConvertTime):
+        class: CMClockOrTimebase
+        name: '#{g[0]}'
+        parameters:
+            fromClockOrTimebase:
+                type: CMClockOrTimebase
+            toClockOrTimebase:
+                type: CMClockOrTimebase
+    CMSync(.*):
+        class: CMClockOrTimebase
+        name: '#{g[0]}'
+
+    # CMClosedCaptionFormatDescription
+    CMClosedCaptionFormatDescription(CreateFromBigEndian.*):
+        class: CMClosedCaptionFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+        parameters:
+            closedCaptionFormatDescriptionOut:
+                type: CMClosedCaptionFormatDescription.CMClosedCaptionFormatDescriptionPtr
+    CMClosedCaptionFormatDescription(CopyAsBigEndianClosedCaptionDescriptionBlockBuffer):
+        class: CMClosedCaptionFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+        parameters:
+            closedCaptionFormatDescription:
+                type: CMClosedCaptionFormatDescription
+
+    # CMFormatDescription
+    CMFormatDescription(Create):
+        class: CMFormatDescription
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            extensions:
+                type: CFDictionary
+    CMFormatDescription(GetExtensions):
+        class: CMFormatDescription
+        name: getExtensionDictionary
+        return_type: CFDictionary
+    CMFormatDescriptionEqualIgnoringExtensionKeys:
+        class: CMFormatDescription
+        name: equalsTo0
+        visibility: private
+    CMFormatDescriptionEqual.*:
+        class: CMFormatDescription
+        name: equalsTo
+    CMFormatDescription(.*):
+        class: CMFormatDescription
+        name: '#{g[0]}'
+
+    # CMMetadata
+    CMMetadata(CreateIdentifier)ForKeyAndKeySpace:
+        class: CMMetadataIdentifier
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            identifierOut:
+                type: CFString.CFStringPtr
+    CMMetadata(CreateKey)FromIdentifier:
+        class: CMMetadataIdentifier
+        name: '#{g[0]}0'
+        visibility: protected
+    CMMetadata(CreateKey)FromIdentifierAsCFData:
+        class: CMMetadataIdentifier
+        name: '#{g[0]}AsData0'
+        visibility: protected
+        parameters:
+            keyOut:
+                type: NSData.NSDataPtr
+    CMMetadata(CreateKeySpace)FromIdentifier:
+        class: CMMetadataIdentifier
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            keySpaceOut:
+                type: CFString.CFStringPtr
+
+    # CMMetadataDataType
+    CMMetadataDataTypeRegistry(RegisterDataType):
+        class: CMMetadataDataType
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            conformingDataTypes:
+                type: List<String>
+                marshaler: CFArray.AsStringListMarshaler
+    CMMetadataDataTypeRegistryDataTypeIsRegistered:
+        class: CMMetadataDataType
+        name: isDataTypeRegistered
+    CMMetadataDataTypeRegistry(GetConformingDataTypes):
+        class: CMMetadataDataType
+        name: '#{g[0]}'
+        return_type: List<String>
+        return_marshaler: CFArray.AsStringListMarshaler
+    CMMetadataDataTypeRegistryDataTypeConformsToDataType:
+        class: CMMetadataDataType
+        name: doesDataTypeConformToDataType
+    CMMetadataDataTypeRegistry(GetBaseDataTypes):
+        class: CMMetadataDataType
+        name: '#{g[0]}'
+        return_type: List<CMMetadataBaseDataType>
+        return_marshaler: CMMetadataBaseDataType.AsListMarshaler
+    CMMetadataDataTypeRegistryDataTypeIsBaseDataType:
+        class: CMMetadataDataType
+        name: isDataTypeBaseDataType
+    CMMetadataDataTypeRegistry(GetBaseDataTypeForConformingDataType):
+        class: CMMetadataDataType
+        name: '#{g[0]}'
+        return_type: CMMetadataBaseDataType
+    CMMetadataDataTypeRegistry(.*):
+        class: CMMetadataDataType
+        name: '#{g[0]}'
+
+    # CMMetadataFormatDescription
+    CMMetadataFormatDescription(CreateWithKeys):
+        class: CMMetadataFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+        parameters:
+            keys:
+                type: List<CMMetadataFormatDescriptionKey>
+                marshaler: CMMetadataFormatDescriptionKey.AsListMarshaler
+            outDesc:
+                type: CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr
+    CMMetadataFormatDescription(Create)WithMetadataFormatDescriptionAndMetadataSpecifications:
+        class: CMMetadataFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+        parameters:
+            srcDesc:
+                type: CMMetadataFormatDescription
+            metadataSpecifications:
+                type: List<CMMetadataFormatDescriptionMetadataSpecification>
+                marshaler: CMMetadataFormatDescriptionMetadataSpecification.AsListMarshaler
+            outDesc:
+                type: CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr
+    CMMetadataFormatDescription(CreateWithMetadataSpecifications):
+        class: CMMetadataFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+        parameters:
+            metadataSpecifications:
+                type: List<CMMetadataFormatDescriptionMetadataSpecification>
+                marshaler: CMMetadataFormatDescriptionMetadataSpecification.AsListMarshaler
+            outDesc:
+                type: CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr
+    CMMetadataFormatDescription(CreateByMerging)MetadataFormatDescriptions:
+        class: CMMetadataFormatDescription
+        name: '#{g[0]}FormatDescriptions0'
+        visibility: private
+        parameters:
+            srcDesc1:
+                type: CMMetadataFormatDescription
+            srcDesc2:
+                type: CMMetadataFormatDescription
+            outDesc:
+                type: CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr
+    CMMetadataFormatDescription(GetKey)WithLocalID:
+        class: CMMetadataFormatDescription
+        name: '#{g[0]}'
+        return_type: CMMetadataFormatDescriptionKey
+        parameters:
+            desc:
+                type: CMMetadataFormatDescription
+    CMMetadataFormatDescription(GetIdentifiers):
+        class: CMMetadataFormatDescription
+        name: '#{g[0]}'
+        return_type: List<String>
+        return_marshaler: CFArray.AsStringListMarshaler
+        parameters:
+            desc:
+                type: CMMetadataFormatDescription
+    CMMetadataFormatDescription(CreateFromBigEndian.*):
+        class: CMMetadataFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+        parameters:
+            metadataFormatDescriptionOut:
+                type: CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr
+    CMMetadataFormatDescription(CopyAsBigEndianMetadataDescriptionBlockBuffer):
+        class: CMMetadataFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+    CMMetadataFormatDescription(.*):
+        class: CMMetadataFormatDescription
+        name: '#{g[0]}'
+   
+    # CMMemoryPool
+    CMMemoryPool(Create):
+        class: CMMemoryPool
+        name: '#{g[0]}'
+        return_marshaler: CFType.NoRetainMarshaler
+        parameters:
+            options:
+                type: CMMemoryPoolOptions
+    CMMemoryPool(.*):
+        class: CMMemoryPool
+        name: '#{g[0]}'
+
+    # CMMuxedFormatDescription
+    CMMuxedFormatDescription(Create):
+        class: CMMuxedFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+        parameters:
+            extensions:
+                type: CMVideoFormatDescriptionExtension
+            outDesc:
+                type: CMMuxedFormatDescription.CMMuxedFormatDescriptionPtr
+    CMMuxedFormatDescription(.*):
+        class: CMMuxedFormatDescription
+        name: '#{g[0]}'
+
+    # CMSampleBuffer
+    CMSampleBuffer(Create.*):
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+        annotations: ['@WeaklyLinked']
+        parameters:
+            makeDataReadyRefcon:
+                type: '@Pointer long'
+    CMAudioSampleBufferCreate.*:
+        class: CMSampleBuffer
+        name: createAudioSampleBuffer0
+        visibility: protected
+        annotations: ['@WeaklyLinked']
+        parameters:
+            makeDataReadyRefcon:
+                type: '@Pointer long'
+    CMSampleBufferCopySampleBufferForRange:
+        class: CMSampleBuffer
+        name: createForRange0
+        visibility: protected
+    CMSampleBufferSetDataBufferFromAudioBufferList:
+        class: CMSampleBuffer
+        name: setAudioBufferList0
+        visibility: protected
+        annotations: ['@WeaklyLinked']
+        parameters:
+            flags:
+                type: CMSampleBufferFlags
+    CMSampleBuffer(GetAudioBufferList)WithRetainedBlockBuffer:
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+        annotations: ['@WeaklyLinked']
+        parameters:
+            flags:
+                type: CMSampleBufferFlags
+    CMSampleBuffer(GetAudioStreamPacketDescriptions):
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+        annotations: ['@WeaklyLinked']
+    CMSampleBufferDataIsReady:
+        class: CMSampleBuffer
+        name: isDataReady
+    CMSampleBuffer(SetDataFailed):
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+    CMSampleBuffer(HasDataFailed):
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+    CMSampleBuffer(SetDataBuffer):
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+    CMSampleBuffer(GetImageBuffer):
+        class: CMSampleBuffer
+        name: '#{g[0]}'
+        annotations: ['@WeaklyLinked']
+    CMSampleBufferGetAudioStreamPacketDescriptionsPtr:
+        exclude: true
+    CMSampleBuffer(CopyPCMDataIntoAudioBufferList):
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+        annotations: ['@WeaklyLinked']
+    CMSampleBuffer(SetDataReady|MakeDataReady|TrackDataReadiness|Invalidate|SetOutputPresentationTimeStamp):
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+    CMSampleBuffer(SetInvalidateHandler):
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            invalidateHandler:
+                type: '@Block VoidBlock1<CMSampleBuffer>'
+    CMSampleBuffer(SetInvalidateCallback):
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+    CMSampleBuffer(GetSampleTimingInfoArray|GetOutputSampleTimingInfoArray|GetSampleTimingInfo|GetSampleSizeArray):
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+    CMSampleBuffer(GetSampleAttachments)Array:
+        class: CMSampleBuffer
+        name: '#{g[0]}'
+        return_type: List<CMSampleAttachment>
+        return_marshaler: CMSampleAttachment.AsListMarshaler
+    CMSampleBuffer(CallForEachSample):
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            refcon:
+                type: '@Pointer long'
+    CMSampleBuffer(HasDataFailed):
+        class: CMSampleBuffer
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            statusOut:
+                type: IntPtr
+    CMSampleBufferCallBlockForEachSample:
+        class: CMSampleBuffer
+        name: callForEachSample0
+        visibility: protected
+        parameters:
+            handler:
+                type: '@Block Block2<CMSampleBuffer, Long, OSStatus>'
+    CMSampleBuffer(.*):
+        class: CMSampleBuffer
+        name: '#{g[0]}'
+
+    # CMSimpleQueue
+    CMSimpleQueue(Create):
+        class: CMSimpleQueue
+        name: create0
+        visibility: protected
+    CMSimpleQueue(Dequeue|GetHead):
+        class: CMSimpleQueue
+        name: '#{g[0]}'
+    CMSimpleQueue(Enqueue|Reset):
+        class: CMSimpleQueue
+        name: '#{g[0]}0'
+        visibility: protected
+    CMSimpleQueue(.*):
+        class: CMSimpleQueue
+        name: '#{g[0]}'
+
+    # CMTextFormatDescription
+    CMTextFormatDescription(GetDefaultTextBox):
+        class: CMTextFormatDescription
+        name: '#{g[0]}0'
+        visibility: protected
+        annotations: ['@WeaklyLinked']
+        parameters:
+            desc:
+                type: CMTextFormatDescription
+            outDefaultTextBox:
+                type: CGRect.CGRectPtr
+    CMTextFormatDescription(GetFontName):
+        class: CMTextFormatDescription
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            desc:
+                type: CMTextFormatDescription
+            outFontName:
+                type: CFString.CFStringPtr
+    CMTextFormatDescription(Get.*):
+        class: CMTextFormatDescription
+        name: '#{g[0]}0'
+        visibility: protected
+        parameters:
+            desc:
+                type: CMTextFormatDescription
+    CMTextFormatDescription(Create.*):
+        class: CMTextFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+    CMTextFormatDescription(CopyAsBigEndianTextDescriptionBlockBuffer):
+        class: CMTextFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+    CMTextFormatDescription(.*):
+        class: CMTextFormatDescription
+        name: '#{g[0]}'
+
+    # CMTimeCodeFormatDescription
+    CMTimeCodeFormatDescription(Create):
+        class: CMTimeCodeFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+        parameters:
+            tcFlags:
+                type: CMTimeCodeFlags
+            extensions:
+                type: CMTimeCodeFormatDescriptionExtension
+    CMTimeCodeFormatDescription(GetTimeCodeFlags):
+        class: CMTimeCodeFormatDescription
+        name: '#{g[0]}'
+        return_type: CMTimeCodeFlags
+    CMTimeCodeFormatDescription(CreateFromBigEndian.*):
+        class: CMTimeCodeFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+    CMTimeCodeFormatDescription(CopyAsBigEndianTimeCodeDescriptionBlockBuffer):
+        class: CMTimeCodeFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+    CMTimeCodeFormatDescription(.*):
+        class: CMTimeCodeFormatDescription
+        name: '#{g[0]}'
+
+    # CMTimebase
+    CMTimebase(Create)With.*:
+        class: CMTimebase
+        name: '#{g[0]}0'
+        visibility: protected
+    CMTimebase(GetTime)WithTimeScale:
+        class: CMTimebase
+        name: '#{g[0]}'
+    CMTimebaseGetTimeAndRate:
+        exclude: true
+    CMTimebase(GetMaster):
+        class: CMTimebase
+        name: '#{g[0]}'
+        return_type: CMTimebase
+    CMTimebase(Get.*):
+        class: CMTimebase
+        name: '#{g[0]}'
+    CMTimebase(.*TimerDispatchSource.*):
+        class: CMTimebase
+        name: '#{g[0]}0'
+        visibility: protected
+        annotations: ['@WeaklyLinked']
+    CMTimebase(.*):
+        class: CMTimebase
+        name: '#{g[0]}0'
+        visibility: protected
+
+    # CMTimeRange
+    CMTimeRangeMake.*:
+        class: CMTimeRange
+        name: create
+    CMTimeRangeGetUnion:
+        class: CMTimeRange
+        name: union
+    CMTimeRangeGetIntersection:
+        class: CMTimeRange
+        name: intersection
+    CMTimeRangeEqual:
+        class: CMTimeRange
+        name: equals
+    CMTimeRangeCopy(AsDictionary):
+        class: CMTimeRange
+        name: '#{g[0]}'
+    CMTimeRangeCopy(Description):
+        class: CMTimeRange
+        name: 'get#{g[0]}'
+        visibility: private
+    CMTimeRange(.*):
+        class: CMTimeRange
+        name: '#{g[0]}'
+
+    # CMTime
+    CMTimeMake.*:
+        class: CMTime
+        name: create
+    CMTimeCopy(AsDictionary):
+        class: CMTime
+        name: '#{g[0]}'
+    CMTimeCopy(Description):
+        class: CMTime
+        name: 'get#{g[0]}'
+        visibility: private
+    CMTime(.*):
+        class: CMTime
+        name: '#{g[0]}'
+
+    # CMVideoFormatDescription
+    CMVideoFormatDescription(GetExtensionKeysCommonWithImageBuffers):
+        class: CMVideoFormatDescription
+        name: '#{g[0]}'
+        return_type: List<String>
+        return_marshaler: CFArray.AsStringListMarshaler
+    CMVideoFormatDescriptionCreateFromH264ParameterSets:
+        exclude: true
+    CMVideoFormatDescription(GetH264ParameterSetAtIndex):
+        exclude: true
+    CMVideoFormatDescription(CreateFromBigEndian.*):
+        class: CMVideoFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+    CMVideoFormatDescription(Create).*:
+        class: CMVideoFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+        parameters:
+            extensions:
+                type: CMVideoFormatDescriptionExtension
+    CMVideoFormatDescription(CopyAsBigEndianImageDescriptionBlockBuffer):
+        class: CMVideoFormatDescription
+        name: '#{g[0]}0'
+        visibility: private
+    CMVideoFormatDescription(GetPresentationDimensions|GetCleanAperture):
+        class: CMVideoFormatDescription
+        name: '#{g[0]}'
+        annotations: ['@WeaklyLinked']
+    CMVideoFormatDescription(.*):
+        class: CMVideoFormatDescription
+        name: '#{g[0]}'
+
+    CMSwap.*:
+        exclude: true
+    CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout:
+        exclude: true
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?CM.*):
+        class: CoreMedia
+        name: 'Function__#{g[0]}'
+
+values:
+    # CMAudioFormatDescription
+    kCMSoundDescriptionFlavor_(.*):
+        enum: CMSoundDescriptionFlavor
+        name: '#{g[0]}'
+        type: CFString
+
+    # CMFormatDescription
+    kCMFormatDescriptionExtension_(OriginalCompressionSettings|SampleDescriptionExtensionAtoms|VerbatimSampleDescription|VerbatimISOSampleEntry):
+        dictionary: CMFormatDescriptionExtension
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            OriginalCompressionSettings:
+                type: 'NSDictionary<NSString, NSObject>'
+            SampleDescriptionExtensionAtoms:
+                type: 'NSDictionary<NSString, NSObject>'
+            VerbatimSampleDescription:
+                type: NSData
+            VerbatimISOSampleEntry:
+                type: NSData
+
+    # CMMemoryPool
+    kCMMemoryPoolOption_(.*):
+        dictionary: CMMemoryPoolOptions
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            AgeOutPeriod:
+                type: long
+
+    # CMMetadata
+    kCMMetadata.*DataType_(.*):
+        enum: CMMetadataBaseDataType
+        name: '#{g[0]}'
+        type: CFString
+    kCMMetadataKeySpace_(.*):
+        enum: CMMetadataKeySpace
+        name: '#{g[0]}'
+        type: CFString
+    kCMMetadataIdentifier_(.*):
+        enum: CMMetadataIdentifier
+        name: '#{g[0]}'
+        type: CFString
+
+    # CMMetadataFormatDescription
+    kCMFormatDescriptionExtensionKey_(MetadataKeyTable):
+        exclude: true
+    kCMMetadataFormatDescriptionMetadataSpecificationKey_(.*):
+        dictionary: CMMetadataFormatDescriptionMetadataSpecification
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            Identifier:
+                type: CFString
+            DataType:
+                type: CFString
+            ExtendedLanguageTag:
+                type: CFString
+    kCMMetadataFormatDescriptionKey_(.*):
+        dictionary: CMMetadataFormatDescriptionKey
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            Namespace:
+                type: long
+            Value:
+                type: NSData
+            LocalID:
+                type: long
+            DataType:
+                type: NSData
+            DataTypeNamespace:
+                type: long
+            ConformingDataTypes:
+                type: NSDictionary<NSData, NSNumber>
+            LanguageTag:
+                type: String
+
+    # CMSampleBuffer
+    kCMSampleAttachmentKey_(.*):
+        enum: CMSampleAttachmentKey
+        dictionary: CMSampleAttachment
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            NotSync:
+                type: boolean
+            PartialSync:
+                type: boolean
+            HasRedundantCoding:
+                type: boolean
+            IsDependedOnByOthers:
+                type: boolean
+            DependsOnOthers:
+                type: boolean
+            EarlierDisplayTimesAllowed:
+                name: allowsEarlierDisplayTimes
+                type: boolean
+            DisplayImmediately:
+                name: displaysImmediately
+                type: boolean
+            DoNotDisplay:
+                name: doesNotDisplay
+                type: boolean
+    kCMSampleBufferAttachmentKey_(.*):
+        enum: CMSampleBufferAttachmentKey
+        dictionary: CMSampleBufferAttachment
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            ResetDecoderBeforeDecoding:
+                name: shouldResetDecoderBeforeDecoding
+                type: boolean
+            DrainAfterDecoding:
+                name: shouldDrainAfterDecoding
+                type: boolean
+            PostNotificationWhenConsumed:
+                name: shouldPostNotificationWhenConsumed
+                type: 'Map<String, NSObject>'
+            ResumeOutput:
+                name: shouldResumeOutput
+                type: boolean
+            TransitionID:
+                type: long
+            TrimDurationAtStart:
+                type: CMTime
+            TrimDurationAtEnd:
+                type: CMTime
+            SpeedMultiplier:
+                type: double
+            Reverse:
+                name: shouldRevers
+                type: boolean
+            FillDiscontinuitiesWithSilence:
+                name: fillsDiscontinuitiesWithSilence
+                type: boolean
+            EmptyMedia:
+                type: boolean
+            PermanentEmptyMedia:
+                type: boolean
+            DisplayEmptyMediaImmediately:
+                name: displaysEmptyMediaImmediately
+                type: boolean
+            EndsPreviousSampleDuration:
+                name: endsPreviousSampleDuration
+                type: boolean
+            SampleReferenceURL:
+                type: NSURL
+            SampleReferenceByteOffset:
+                type: long
+            GradualDecoderRefresh:
+                type: long
+            DroppedFrameReason:
+                type: CMSampleBufferDroppedFrameReason
+            DroppedFrameReasonInfo:
+                type: CMSampleBufferDroppedFrameReasonInfo
+    kCMSampleBufferDroppedFrameReasonInfo_(.*):
+        enum: CMSampleBufferDroppedFrameReasonInfo
+        name: '#{g[0]}'
+        type: CFString
+    kCMSampleBufferDroppedFrameReason_(.*):
+        enum: CMSampleBufferDroppedFrameReason
+        name: '#{g[0]}'
+        type: CFString
+    kCMSampleBufferNotification_(.*):
+        class: CMSampleBuffer
+        name: '#{g[0]}Notification'
+        type: NSString
+    kCMSampleBufferNotificationParameter_(.*):
+        class: CMSampleBuffer
+        name: '#{g[0]}NotificationParameter'
+        type: NSString
+        visibility: protected
+    kCMSampleBufferConduitNotification_(.*):
+        class: CMSampleBuffer
+        name: '#{g[0]}ConduitNotification'
+        type: NSString
+    kCMSampleBufferConduitNotificationParameter_(.*):
+        class: CMSampleBuffer
+        name: '#{g[0]}ConduitNotificationParameter'
+        type: NSString
+        visibility: protected
+    kCMSampleBufferConsumerNotification_(.*):
+        class: CMSampleBuffer
+        name: '#{g[0]}ConsumerNotification'
+        type: NSString
+
+    # CMSampleTimingInfo
+    kCMTimingInfo(Invalid):
+        class: CMSampleTimingInfo
+        name: '#{g[0]}'
+
+    # CMTextFormatDescription
+    kCMTextFormatDescriptionExtension_(.*):
+        dictionary: CMTextFormatDescriptionExtension
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            DisplayFlags:
+                type: CMTextDisplayFlags
+            BackgroundColor:
+                type: CMTextFormatDescriptionColor
+            DefaultTextBox:
+                type: CMTextFormatDescriptionRect
+            DefaultStyle:
+                type: CMTextFormatDescriptionStyle
+            HorizontalJustification:
+                type: CMTextJustification
+            VerticalJustification:
+                type: CMTextJustification
+            FontTable:
+                type: 'Map<String, String>'
+            TextJustification:
+                type: CMTextJustification
+            DefaultFontName:
+                type: String
+    kCMTextFormatDescriptionRect_(.*):
+        dictionary: CMTextFormatDescriptionRect
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            Top:
+                type: short
+            Left:
+                type: short
+            Bottom:
+                type: short
+            Right:
+                type: short
+    kCMTextFormatDescriptionStyle_(.*):
+        dictionary: CMTextFormatDescriptionStyle
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            StartChar:
+                type: char
+            Font:
+                type: int
+            FontFace:
+                type: int
+            FontSize:
+                type: int
+            ForegroundColor:
+                type: CMTextFormatDescriptionColor
+            EndChar:
+                type: char
+            Height:
+                type: int
+            Ascent:
+                type: int
+    kCMTextFormatDescriptionColor_(.*):
+        dictionary: CMTextFormatDescriptionColor
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            Red:
+                type: short
+            Green:
+                type: short
+            Blue:
+                type: short
+            Alpha:
+                type: short
+
+    # CMTextMarkup
+    kCMTextMarkupAlignmentType_(.*):
+        enum: CMTextMarkupAlignmentType
+        name: '#{g[0]}'
+        type: CFString
+    kCMTextMarkupCharacterEdgeStyle_(.*):
+        enum: CMTextMarkupCharacterEdgeStyle
+        name: '#{g[0]}'
+        type: CFString
+    kCMTextMarkupGenericFontName_(.*):
+        enum: CMTextMarkupGenericFontName
+        name: '#{g[0]}'
+        type: CFString
+    kCMTextVerticalLayout_(.*):
+        enum: CMTextVerticalLayout
+        name: '#{g[0]}'
+        type: CFString
+    kCMTextMarkupAttribute_(.*):
+        enum: CMTextMarkupAttribute
+        dictionary: CMTextMarkupAttributes
+        constructor_visibility: public
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            ForegroundColorARGB:
+                type: NSArray<NSNumber>
+            BackgroundColorARGB:
+                type: NSArray<NSNumber>
+            CharacterBackgroundColorARGB:
+                type: NSArray<NSNumber>
+            BoldStyle:
+                name: bold
+                type: boolean
+            ItalicStyle:
+                name: italic
+                type: boolean
+            UnderlineStyle:
+                name: underline
+                type: boolean
+            FontFamilyName:
+                type: String
+            GenericFontFamilyName:
+                type: CMTextMarkupGenericFontName
+            BaseFontSizePercentageRelativeToVideoHeight:
+                type: double
+            RelativeFontSize:
+                type: double
+            VerticalLayout:
+                type: CMTextVerticalLayout
+            Alignment:
+                type: CMTextMarkupAlignmentType
+            TextPositionPercentageRelativeToWritingDirection:
+                type: double
+            OrthogonalLinePositionPercentageRelativeToWritingDirection:
+                type: double
+            WritingDirectionSizePercentage:
+                type: double
+            CharacterEdgeStyle:
+                type: CMTextMarkupCharacterEdgeStyle
+    # CMTimebase
+    kCMTimebaseNotificationKey_(.*):
+        class: CMTimebase
+        name: '#{g[0]}NotificationKey'
+        type: NSString
+        visibility: protected
+    kCMTimebaseNotification_(.*):
+        class: CMTimebase
+        name: '#{g[0]}Notification'
+        type: NSString
+
+    # CMTimeRange
+    kCMTime.*Key:
+        exclude: true
+    kCMTimeRange(.*):
+        class: CMTimeRange
+        name: '#{g[0]}'
+
+    # CMTimeCodeFormatDescription
+    kCMTimeCodeFormatDescriptionExtension_(.*):
+        dictionary: CMTimeCodeFormatDescriptionExtension
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            SourceReferenceName:
+                type: CMTimeCodeFormatDescriptionSourceReferenceName
+    kCMTimeCodeFormatDescriptionKey_(.*):
+        dictionary: CMTimeCodeFormatDescriptionSourceReferenceName
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            Value:
+                type: String
+            LangCode:
+                type: long
+
+    # CMTime
+    kCMTime(.*):
+        class: CMTime
+        name: '#{g[0]}'
+
+    # CMVideoFormatDescription
+    kCMImageDescriptionFlavor_(.*):
+        enum: CMImageDescriptionFlavor
+        name: '#{g[0]}'
+        type: CFString
+    kCMFormatDescriptionVendor_(.*):
+        enum: CMFormatDescriptionVendor
+        name: '#{g[0]}'
+        type: CFString
+    kCMFormatDescriptionExtension_(.*):
+        dictionary: CMVideoFormatDescriptionExtension
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            FormatName:
+                type: String
+            Depth:
+                type: int
+            FullRangeVideo:
+                type: boolean
+            ICCProfile:
+                type: NSData
+            BytesPerRow:
+                type: long
+            TemporalQuality:
+                type: int
+            SpatialQuality:
+                type: int
+            Version:
+                type: int
+            RevisionLevel:
+                type: int
+            Vendor:
+                type: CMFormatDescriptionVendor
+            CleanApertureWidthRational:
+                type: NSArray<NSNumber>
+            CleanApertureHeightRational:
+                type: NSArray<NSNumber>
+            CleanApertureHorizontalOffsetRational:
+                type: NSArray<NSNumber>
+            CleanApertureVerticalOffsetRational:
+                type: NSArray<NSNumber>
+            ConformsToMPEG2VideoProfile:
+                type: CMMPEG2VideoProfile
+    kCMFormatDescriptionKey_(.*):
+        dictionary: CMVideoFormatDescriptionExtension
+        name: '#{g[0]}'
+        type: CFString
+    kCMFormatDescription(ConformsToMPEG2VideoProfile):
+        dictionary: CMVideoFormatDescriptionExtension
+        name: '#{g[0]}'
+        type: CFString
+    kCMFormatDescriptionColorPrimaries_P22:
+        exclude: true
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?CM.*):
+        class: CoreMedia
+        name: 'Value__#{g[0]}'
+
+constants:
+    # CMBlockBuffer
+    kCMBlockBufferCustomBlockSource(Version):
+        class: CMBlockBufferCustomBlockSource
+        name: '#{g[0]}'
+
+    # CMTime
+    kCMTime(MaxTimescale):
+        class: CMTime
+        name: '#{g[0]}'
+
+    kCMPersistentTrackID_Invalid:
+        exclude: true
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?CM.*):
+        class: CoreMedia
+        name: 'Constant__#{g[0]}'

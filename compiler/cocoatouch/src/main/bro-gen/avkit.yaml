@@ -1,0 +1,83 @@
+package: org.robovm.apple.avkit
+include: [foundation.yaml, uikit.yaml, avfoundation.yaml, coregraphics.yaml, iad.yaml]
+library: AVKit
+framework: AVKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/AVKit.framework/Headers/AVKit.h
+typedefs: {}
+    
+enums:
+    AVKitErrorCode: {first: AVKitErrorUnknown}
+
+classes:
+    AVKitError: # DONE
+        annotations: ['@StronglyLinked']
+        extends: NSError
+
+    AVPictureInPictureController: # DONE
+        methods:
+            '-initWithPlayerLayer:':
+                name: init
+            '+pictureInPictureButtonStartImageCompatibleWithTraitCollection:':
+                name: getPictureInPictureButtonStartImage
+            '+pictureInPictureButtonStopImageCompatibleWithTraitCollection:':
+                name: getPictureInPictureButtonStopImage
+    AVPlayerViewController: # DONE
+        properties:
+            'videoGravity':
+                type: AVLayerVideoGravity
+
+protocols:
+    AVPictureInPictureControllerDelegate: # DONE
+        methods:
+            '-pictureInPictureControllerWillStartPictureInPicture:':
+                name: willStartPictureInPicture
+            '-pictureInPictureControllerDidStartPictureInPicture:':
+                name: didStartPictureInPicture
+            '-pictureInPictureController:failedToStartPictureInPictureWithError:':
+                name: failedToStartPictureInPicture
+            '-pictureInPictureControllerWillStopPictureInPicture:':
+                name: willStopPictureInPicture
+            '-pictureInPictureControllerDidStopPictureInPicture:':
+                name: didStopPictureInPicture
+            '-pictureInPictureController:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:':
+                name: restoreUserInterfaceForPictureInPictureStop
+    AVPlayerViewControllerDelegate: # DONE
+        methods:
+            '-playerViewControllerWillStartPictureInPicture:':
+                name: willStartPictureInPicture
+            '-playerViewControllerDidStartPictureInPicture:':
+                name: didStartPictureInPicture
+            '-playerViewController:failedToStartPictureInPictureWithError:':
+                name: failedToStartPictureInPicture
+            '-playerViewControllerWillStopPictureInPicture:':
+                name: willStopPictureInPicture
+            '-playerViewControllerDidStopPictureInPicture:':
+                name: didStopPictureInPicture
+            '-playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart:':
+                name: shouldAutomaticallyDismissAtPictureInPictureStart
+            '-playerViewController:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:':
+                name: restoreUserInterfaceForPictureInPictureStop
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?AV.*):
+        class: AVKit
+        name: 'Function__#{g[0]}'
+
+values:
+    AVKitErrorDomain:
+        class: AVKitError
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?AV.*):
+        class: AVKit
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?AV.*):
+        class: AVKit
+        name: 'Constant__#{g[0]}'

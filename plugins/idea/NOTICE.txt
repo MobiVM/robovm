@@ -1,0 +1,4 @@
+RoboVM for Intellij IDEA
+Copyright (C) 2012-2015 RoboVM AB
+For license information see the LICENSE.txt file which accompanies this
+NOTICE.txt file.

@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ActivationPolicy: lazy
+Bundle-Name: RoboVM Eclipse IDE Plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.jdt.ui,
+ org.eclipse.jdt.core,
+ org.eclipse.core.resources,
+ org.eclipse.ui.console,
+ org.eclipse.ui.ide,
+ org.eclipse.debug.core,
+ org.eclipse.debug.ui,
+ org.eclipse.jdt.debug,
+ org.eclipse.jdt.debug.ui,
+ org.eclipse.jdt.launching,
+ org.eclipse.jdt.junit,
+ org.eclipse.jdt.junit.runtime,
+ org.eclipse.jdt.junit4.runtime
+Bundle-Version: 2.0.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.robovm.eclipse.RoboVMPlugin
+Bundle-SymbolicName: org.robovm.eclipse.ui;singleton:=true
+Bundle-ClassPath: .,
+ lib/commons-compress.jar,
+ lib/robovm-dist-compiler.jar,
+ lib/robovm-templater.jar

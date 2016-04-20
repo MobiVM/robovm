@@ -1,0 +1,111 @@
+package: org.robovm.apple.messageui
+include: [foundation.yaml, uikit.yaml]
+library: MessageUI
+framework: MessageUI
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/MessageUI.framework/Headers/MessageUI.h
+typedefs: {}
+    
+enums:
+    MFMailComposeResult: {}
+    MFMailComposeErrorCode: {prefix: MFMailComposeErrorCode}
+    MFMessageComposeResult: {first: MessageComposeResultCancelled}
+
+classes:
+    MFMailComposeError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+
+    MFMailComposeViewController: # DONE
+        methods:
+            '-setMessageBody:isHTML:':
+                trim_after_first_colon: true
+            '-addAttachmentData:mimeType:fileName:':
+                trim_after_first_colon: true
+            '-setBccRecipients:':
+                parameters:
+                    bccRecipients:
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
+            '-setCcRecipients:':
+                parameters:
+                    ccRecipients:
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
+            '-setToRecipients:':
+                parameters:
+                    toRecipients:
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
+    MFMessageComposeViewController: # DONE
+        properties:
+            'recipients':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+            'attachments':
+                type: List<MFMessageComposeViewControllerAttachment>
+                marshaler: MFMessageComposeViewControllerAttachment.AsListMarshaler
+        methods:
+            '-addAttachmentURL:withAlternateFilename:':
+                name: addAttachment
+            '-addAttachmentData:typeIdentifier:filename:':
+                name: addAttachment
+            '+isSupportedAttachmentUTI:':
+                trim_after_first_colon: true
+
+protocols:
+    MFMailComposeViewControllerDelegate: # DONE
+        methods:
+            '-mailComposeController:didFinishWithResult:error:':
+                name: didFinish
+    MFMessageComposeViewControllerDelegate: # DONE
+        methods:
+            '-messageComposeViewController:didFinishWithResult:':
+                name: didFinish
+                parameters:
+                    result:
+                        type: MFMessageComposeResult
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?MF.*):
+        class: MessageUI
+        name: 'Function__#{g[0]}'
+
+values:
+    MFMailComposeErrorDomain:
+        class: MFMailComposeError
+        name: getClassDomain
+    
+    # MFMessageComposeViewController
+    MFMessageComposeViewController(TextMessageAvailabilityDidChangeNotification):
+        class: MFMessageComposeViewController
+        name: '#{g[0]}'
+        type: NSString
+    MFMessageComposeViewController(TextMessageAvailabilityKey):
+        class: MFMessageComposeViewController
+        name: '#{g[0]}'
+        type: NSString
+        visibility: protected
+    MFMessageComposeViewControllerAttachment(.*):
+        dictionary: MFMessageComposeViewControllerAttachment
+        name: '#{g[0]}'
+        type: NSString
+        mutable: false
+        methods:
+            URL:
+                type: String
+            AlternateFilename:
+                type: String
+    
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?MF.*):
+        class: MessageUI
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?MF.*):
+        class: MessageUI
+        name: 'Constant__#{g[0]}'

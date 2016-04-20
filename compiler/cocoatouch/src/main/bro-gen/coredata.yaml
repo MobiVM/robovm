@@ -1,0 +1,976 @@
+package: org.robovm.apple.coredata
+include: [foundation.yaml]
+library: CoreData
+framework: CoreData
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/CoreData.framework/Headers/CoreData.h
+typedefs: {}
+enums:
+    NSAttributeType: {first: NSUndefinedAttributeType, suffix: AttributeType, type: MachineUInt}
+    NSCoreDataErrorCode: {first: NSManagedObjectValidationError, suffix: Error}
+    NSDeleteRule: {first: NSNoActionDeleteRule, suffix: DeleteRule, type: MachineUInt}
+    NSEntityMappingType: {first: NSUndefinedEntityMappingType, suffix: EntityMappingType, type: MachineUInt}
+    NSFetchedResultsChangeType: {first: NSFetchedResultsChangeInsert, type: MachineUInt}
+    NSFetchRequestResultType: {first: NSManagedObjectResultType, skip_none: true, suffix: ResultType, type: MachineUInt}
+    NSManagedObjectContextConcurrencyType: {first: NSConfinementConcurrencyType, suffix: ConcurrencyType, type: MachineUInt}
+    NSMergePolicyType: {first: NSErrorMergePolicyType, suffix: MergePolicyType, type: MachineUInt}
+    NSPersistentStoreRequestType: {first: NSFetchRequestType, suffix: RequestType, type: MachineUInt}
+    NSPersistentStoreUbiquitousTransitionType: {}
+    NSSnapshotEventType: {first: NSSnapshotEventUndoInsertion, type: MachineUInt, bits: true}
+    NSBatchDeleteRequestResultType: {}
+    NSBatchUpdateRequestResultType: {}
+    NSBatchUpdateRequestType: {}
+    NSStatusOnlyResultType: {}
+    NSUpdatedObjectIDsResultType: {}
+    NSUpdatedObjectsCountResultType: {}
+
+    Ignored: {first: NSFetchRequestExpressionType, exclude: true}
+classes:
+    NSSQLiteError:
+        extends: NSError
+        annotations: ['@StronglyLinked']
+
+    NSAsynchronousFetchRequest: # DONE
+        properties:
+            'completionBlock':
+                type: '@Block VoidBlock1<NSAsynchronousFetchResult>'
+        methods:
+            '-initWithFetchRequest:completionBlock:':
+                name: init
+                parameters:
+                    blk:
+                        type: '@Block VoidBlock1<NSAsynchronousFetchResult>'
+    NSAsynchronousFetchResult: # DONE
+        properties:
+            'finalResult':
+                type: NSArray<NSManagedObject>
+    NSAtomicStore: # DONE
+        methods:
+            '-initWithPersistentStoreCoordinator:configurationName:URL:options:':
+                name: init
+                parameters:
+                    options:
+                        type: NSPersistentStoreOptions
+            '-load:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-save:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-newCacheNodeForManagedObject:':
+                name: newCacheNode
+                return_marshaler: NSObject.NoRetainMarshaler
+            '-updateCacheNode:fromManagedObject:':
+                name: updateCacheNode
+            '-cacheNodes':
+                property: true
+                return_type: NSSet<NSAtomicStoreCacheNode>
+            '-addCacheNodes:':
+                trim_after_first_colon: true
+                parameters:
+                    cacheNodes:
+                        type: NSSet<NSAtomicStoreCacheNode>
+            '-willRemoveCacheNodes:':
+                trim_after_first_colon: true
+                parameters:
+                    cacheNodes:
+                        type: NSSet<NSAtomicStoreCacheNode>
+            '-cacheNodeForObjectID:':
+                name: getCacheNode
+            '-objectIDForEntity:referenceObject:':
+                name: getObjectID
+            '-newReferenceObjectForManagedObject:':
+                name:  newReferenceObject
+                return_marshaler: NSObject.NoRetainMarshaler
+            '-referenceObjectForObjectID:':
+                name: getReferenceObject
+    NSAtomicStoreCacheNode: # DONE
+        properties:
+            'propertyCache':
+                type: 'NSDictionary<NSString, ?>'
+        methods:
+            '-initWithObjectID:':
+                name: init
+            '-valueForKey:':
+                name: getValue
+            '-setValue:forKey:':
+                name: setValue
+                visibility: private # arguments switched
+    NSAttributeDescription: {} # DONE
+    NSBatchDeleteRequest: # DONE
+        methods:
+            '-initWithFetchRequest:':
+                name: init
+            '-initWithObjectIDs:':
+                name: init
+                parameters:
+                    objects:
+                        type: NSArray<NSManagedObjectID>
+    NSBatchDeleteResult: {} # DONE
+    NSBatchUpdateRequest: # DONE
+        properties:
+            'propertiesToUpdate':
+                type: 'NSDictionary<NSString, NSExpression>'
+        methods:
+            '-init.*':
+                name: init
+            '+batchUpdateRequestWithEntityName:':
+                exclude: true
+    NSBatchUpdateResult: {} # DONE
+    NSConstraintConflict: # DONE
+        properties:
+            'constraint':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+            'conflictingObjects':
+                type: NSArray<NSManagedObject>
+            'conflictingSnapshots':
+                type: NSArray<NSDictionary>
+        methods:
+            '-initWithConstraint:databaseObject:databaseSnapshot:conflictingObjects:conflictingSnapshots:':
+                name: init
+                parameters:
+                    contraint:
+                        name: constraint
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
+                    conflictingObjects:
+                        type: NSArray<NSManagedObject>
+                    conflictingSnapshots:
+                        type: NSArray<NSDictionary>
+    NSEntityDescription: # DONE
+        properties:
+            'subentitiesByName':
+                type: 'NSDictionary<NSString, NSEntityDescription>'
+            'subentities':
+                type: NSArray<NSEntityDescription>
+            'propertiesByName':
+                type: 'NSDictionary<NSString, NSPropertyDescription>'
+            'properties':
+                type: NSArray<NSPropertyDescription>
+            'attributesByName':
+                type: 'NSDictionary<NSString, NSAttributeDescription>'
+            'relationshipsByName':
+                type: 'NSDictionary<NSString, NSRelationshipDescription>'
+            'compoundIndexes':
+                type: NSArray<NSArray<?>>
+            'uniquenessConstraints':
+                type: NSArray<NSArray<?>>
+        methods:
+            '-relationshipsWithDestinationEntity:':
+                name: getRelationshipsWithDestination
+                return_type: NSArray<NSRelationshipDescription>
+            '-isKindOfEntity:':
+                trim_after_first_colon: true
+            '+entityForName:inManagedObjectContext:':
+                name: getEntityByNameInContext
+            '+insertNewObjectForEntityForName:inManagedObjectContext:':
+                name: insertNewEntityInContext
+                return_type: NSEntityDescription
+    NSEntityMapping: # DONE
+        properties:
+            'attributeMappings':
+                type: NSArray<NSPropertyMapping>
+            'relationshipMappings':
+                type: NSArray<NSPropertyMapping>
+    NSEntityMigrationPolicy: # DONE
+        methods:
+            '-beginEntityMapping:manager:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-createDestinationInstancesForSourceInstance:entityMapping:manager:error:':
+                name: createDestinationInstances
+                throws: NSErrorException
+            '-endInstanceCreationForEntityMapping:manager:error:':
+                name: endInstanceCreation
+                throws: NSErrorException
+            '-createRelationshipsForDestinationInstance:entityMapping:manager:error:':
+                name: createRelationships
+                throws: NSErrorException
+            '-endRelationshipCreationForEntityMapping:manager:error:':
+                name: endRelationshipCreation
+                throws: NSErrorException
+            '-performCustomValidationForEntityMapping:manager:error:':
+                name: performCustomValidation
+                throws: NSErrorException
+            '-endEntityMapping:manager:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+    NSExpressionDescription: {} # DONE
+    NSFetchedPropertyDescription: {} # DONE
+    NSFetchedResultsController: # DONE
+        properties:
+            'sectionIndexTitles':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+            'sections':
+                type: List<NSFetchedResultsSectionInfo>
+                marshaler: NSArray.AsListMarshaler
+            'fetchedObjects':
+                type: NSArray<NSManagedObject>
+        methods:
+            '-initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:':
+                name: init
+            '-performFetch:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-objectAtIndexPath:':
+                name: getObjectAtIndexPath
+            '-indexPathForObject:':
+                name: getIndexPathForObject
+            '-sectionIndexTitleForSectionName:':
+                name: getSectionIndexTitleForSectionName
+            '-sectionForSectionIndexTitle:atIndex:':
+                name: getSectionForIndexTitle
+            '+deleteCacheWithName:':
+                name: deleteCache
+    NSFetchRequest: # DONE
+        properties:
+            'sortDescriptors':
+                type: NSArray<NSSortDescriptor>
+            'affectedStores':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+            'relationshipKeyPathsForPrefetching':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+            'propertiesToFetch':
+                type: NSArray<NSPropertyDescription>
+            'propertiesToGroupBy':
+                type: NSArray<NSPropertyDescription>
+        methods:
+            '-init':
+                exclude: true
+            '-initWithEntityName:':
+                name: init
+            '+fetchRequestWithEntityName:':
+                exclude: true
+    NSFetchRequestExpression: # DONE
+        methods:
+            '+expressionForFetch:context:countOnly:':
+                name: create
+                constructor: true
+    NSIncrementalStore: # DONE
+        methods:
+            '-loadMetadata:':
+                exclude: true
+            '-executeRequest:withContext:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-newValuesForObjectWithID:withContext:error:':
+                name: newValuesForObjectID
+                return_marshaler: NSObject.NoRetainMarshaler
+                throws: NSErrorException
+            '-newValueForRelationship:forObjectWithID:withContext:error:':
+                trim_after_first_colon: true
+                return_marshaler: NSObject.NoRetainMarshaler
+                throws: NSErrorException
+            '-obtainPermanentIDsForObjects:error:':
+                trim_after_first_colon: true
+                return_type: NSArray<NSManagedObjectID>
+                throws: NSErrorException
+                parameters:
+                    array:
+                        type: NSArray<NSManagedObject>
+            '-managedObjectContextDidRegisterObjectsWithIDs:':
+                name: didRegisterObjects
+                parameters:
+                    objectIDs:
+                        type: NSArray<NSManagedObjectID>
+            '-managedObjectContextDidUnregisterObjectsWithIDs:':
+                name: didUnregisterObjects
+                parameters:
+                    objectIDs:
+                        type: NSArray<NSManagedObjectID>
+            '-newObjectIDForEntity:referenceObject:':
+                trim_after_first_colon: true
+                return_marshaler: NSObject.NoRetainMarshaler
+            '-referenceObjectForObjectID:':
+                name: getReferenceObjectForID
+            '+identifierForNewStoreAtURL:':
+                name: getIdentifierForNewStore
+    NSIncrementalStoreNode: # DONE
+        methods:
+            '-initWithObjectID:withValues:version:':
+                name: init
+                parameters:
+                    values:
+                        type: 'NSDictionary<NSString, ?>'
+            '-updateWithValues:version:':
+                name: update
+                parameters:
+                    values:
+                        type: 'NSDictionary<NSString, ?>'
+            '-valueForPropertyDescription:':
+                name: getValue
+    NSManagedObject: # DONE
+        methods:
+            '-initWithEntity:insertIntoManagedObjectContext:':
+                name: init
+            '-hasFaultForRelationshipNamed:':
+                name: hasFaultForRelationship
+            '-willAccessValueForKey:':
+                name: willAccessValue
+            '-didAccessValueForKey:':
+                name: didAccessValue
+            '-willChangeValueForKey:':
+                name: willChangeValue
+            '-didChangeValueForKey:':
+                name: didChangeValue
+            '-willChangeValueForKey:withSetMutation:usingObjects:':
+                name: willChangeValue
+            '-didChangeValueForKey:withSetMutation:usingObjects:':
+                name: didChangeValue
+            '-awakeFromSnapshotEvents:':
+                trim_after_first_colon: true
+            '-valueForKey:':
+                name: getValue
+            '-setValue:forKey:':
+                trim_after_first_colon: true
+                visibility: private # switched arguments
+            '-primitiveValueForKey:':
+                name: getPrimitiveValue
+            '-setPrimitiveValue:forKey:':
+                name: setPrimitiveValue
+                visibility: private # switched arguments
+            '-objectIDsForRelationshipNamed:':
+                name: getObjectIDsForRelationship
+                return_type: NSArray<NSManagedObjectID>
+            '-committedValuesForKeys:':
+                name: getCommittedValues
+                return_type: 'NSDictionary<NSString, ?>'
+            '-changedValues':
+                property: true
+                return_type: 'NSDictionary<NSString, ?>'
+            '-changedValuesForCurrentEvent':
+                property: true
+                return_type: 'NSDictionary<NSString, ?>'
+            '-validateValue:forKey:error:':
+                name: validateValue
+                throws: NSErrorException
+                visibility: private # switched arguments
+            '-validateFor.*':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '+contextShouldIgnoreUnmodeledPropertyChanges':
+                name: shouldContextIgnoreUnmodeledPropertyChanges
+    NSManagedObjectContext: # DONE
+        properties:
+            '.*Objects':
+                type: NSSet<NSManagedObject>
+        methods:
+            '-init':
+                exclude: true
+            '-initWithConcurrencyType:':
+                name: init
+            '-performBlock:':
+                trim_after_first_colon: true
+            '-performBlockAndWait:':
+                trim_after_first_colon: true
+            '-objectRegisteredForID:':
+                name: getObjectRegisteredForID
+            '-objectWithID:':
+                name: getObjectWithId
+            '-existingObjectWithID:error:':
+                name: getExistingObjectWithID
+                throws: NSErrorException
+            '-executeFetchRequest:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+                return_type: NSArray<NSManagedObject>
+            '-countForFetchRequest:error:':
+                name: getCountForFetchRequest
+                throws: NSErrorException
+            '-executeRequest:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-insertObject:':
+                trim_after_first_colon: true
+            '-deleteObject:':
+                trim_after_first_colon: true
+            '-refreshObject:mergeChanges:':
+                trim_after_first_colon: true
+            '-detectConflictsForObject:':
+                name: detectConflicts
+            '-observeValueForKeyPath:ofObject:change:context:':
+                exclude: true # we have our own native version
+            '-assignObject:toPersistentStore:':
+                name: assignObjectToPersistentStore
+            '-save:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-obtainPermanentIDsForObjects:error:':
+                name: obtainPermanentIDsForObjects
+                throws: NSErrorException
+                parameters:
+                    objects:
+                        type: NSArray<NSManagedObject>
+            '-mergeChangesFromContextDidSaveNotification:':
+                trim_after_first_colon: true
+            '-shouldHandleInaccessibleFault:forObjectID:triggeredByProperty:':
+                trim_after_first_colon: true
+            '+new':
+                exclude: true
+            '+mergeChangesFromRemoteContextSave:intoContexts:':
+                trim_after_first_colon: true
+                parameters:
+                    contexts:
+                        type: NSArray<NSManagedObjectContext>
+    NSManagedObjectID: # DONE
+        methods:
+            '-URIRepresentation':
+                property: true
+    NSManagedObjectModel: # DONE
+        properties:
+            'entitiesByName':    
+                type: 'NSDictionary<NSString, NSEntityDescription>'
+            'entities':
+                type: NSArray<NSEntityDescription>
+            'configurations':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+            'localizationDictionary':
+                type: 'NSDictionary<NSString, NSString>'
+            'fetchRequestTemplatesByName':
+                type: 'NSDictionary<NSString, NSFetchRequest>'
+        methods:
+            '-init':
+                exclude: true
+            '-initWithContentsOfURL:':
+                name: init
+            '-entitiesForConfiguration:':
+                name: getEntitiesForConfiguration
+                return_type: NSArray<NSEntityDescription>
+            '-setEntities:forConfiguration:':
+                name: setEntitiesForConfiguration
+                parameters:
+                    entities:
+                        type: NSArray<NSEntityDescription>
+            '-setFetchRequestTemplate:forName:':
+                trim_after_first_colon: true
+            '-fetchRequestTemplateForName:':
+                name: getFetchRequestTemplate
+            '-fetchRequestFromTemplateWithName:substitutionVariables:':
+                name: getFetchRequestTemplate
+                parameters:
+                    variables:
+                        type: 'NSDictionary<NSString, ?>'
+            '-isConfiguration:compatibleWithStoreMetadata:':
+                name: isConfigurationCompatibleWithStoreMetadata
+                parameters:
+                    metadata:
+                        type: NSPersistentStoreMetadata
+            '+mergedModelFromBundles:':
+                name: createFromBundles
+                parameters:
+                    bundles:
+                        type: NSArray<NSBundle>
+            '+modelByMergingModels:':
+                name: createByMergingModels
+                parameters:
+                    models:
+                        type: NSArray<NSManagedObjectModel>
+            '+mergedModelFromBundles:forStoreMetadata:':
+                name: createFromBundles
+                parameters:
+                    bundles:
+                        type: NSArray<NSBundle>
+                    metadata:
+                        type: NSPersistentStoreMetadata
+            '+modelByMergingModels:forStoreMetadata:':
+                name: createByMergingModels
+                parameters:
+                    models:
+                        type: NSArray<NSManagedObjectModel>
+                    metadata:
+                        type: NSPersistentStoreMetadata
+    NSMappingModel: # DONE
+        properties:
+            'entityMappings':
+                type: NSArray<NSEntityMapping>
+            'entityMappingsByName':
+                type: 'NSDictionary<NSString, NSEntityMapping>'
+        methods:
+            '-initWithContentsOfURL:':
+                name: init
+            '+mappingModelFromBundles:forSourceModel:destinationModel:':
+                name: create
+                constructor: true
+                parameters:
+                    bundles:
+                        type: NSArray<NSBundle>
+            '+inferredMappingModelForSourceModel:destinationModel:error:':
+                name: createInferred
+                throws: NSErrorException
+                return_type: '@Pointer long'
+                visibility: protected
+    NSMergeConflict: # DONE
+        properties:
+            '.*Snapshot':
+                type: 'NSDictionary<NSString, ?>'
+        methods:
+            '-initWithSource:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:':
+                name: init
+                parameters:
+                    cachesnap:
+                        type: 'NSDictionary<NSString, ?>'
+                    persnap:
+                        type: 'NSDictionary<NSString, ?>'
+    NSMergePolicy: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '-resolveConflicts:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+                parameters:
+                    list:
+                        type: NSArray<NSMergeConflict>
+            '-resolveOptimisticLockingVersionConflicts:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+                parameters:
+                    list:
+                        type: NSArray<NSMergeConflict>
+            '-resolveConstraintConflicts:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+                parameters:
+                    list:
+                        type: NSArray<NSConstraintConflict>
+    NSMigrationManager: # DONE
+        methods:
+            '-initWithSourceModel:destinationModel:':
+                name: init
+            '-migrateStoreFromURL:type:options:withMappingModel:toDestinationURL:destinationType:destinationOptions:error:':
+                name: migrateStore
+                throws: NSErrorException
+                parameters:
+                    sOptions:
+                        type: NSPersistentStoreOptions
+                    dOptions:
+                        type: NSPersistentStoreOptions
+            '-sourceEntityForEntityMapping:':
+                name: getSourceEntity
+            '-destinationEntityForEntityMapping:':
+                name: getDestinationEntity
+            '-associateSourceInstance:withDestinationInstance:forEntityMapping:':
+                name: associateInstances
+            '-destinationInstancesForEntityMappingNamed:sourceInstances:':
+                name: getDestinationInstances
+                return_type: NSArray<NSEntityMapping>
+                parameters:
+                    sourceInstances:
+                        type: NSArray<NSEntityMapping>
+            '-sourceInstancesForEntityMappingNamed:destinationInstances:':
+                name: getSourceInstances
+                return_type: NSArray<NSEntityMapping>
+                parameters:
+                    destinationInstances:
+                        type: NSArray<NSEntityMapping>
+            '-cancelMigrationWithError:':
+                name: cancelMigration
+    NSPersistentStore: # DONE
+        properties:
+            'options':
+                type: NSPersistentStoreOptions
+            'metadata':
+                type: NSPersistentStoreMetadata
+        methods:
+            '-initWithPersistentStoreCoordinator:configurationName:URL:options:':
+                name: init
+                parameters:
+                    options:
+                        type: NSPersistentStoreOptions
+            '-loadMetadata:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-didAddToPersistentStoreCoordinator:':
+                trim_after_first_colon: true
+            '-willRemoveFromPersistentStoreCoordinator:':
+                trim_after_first_colon: true
+            '+metadataForPersistentStoreWithURL:error:':
+                name: getMetadataForPersistentStore
+                return_type: NSPersistentStoreMetadata
+                throws: NSErrorException
+            '+setMetadata:forPersistentStoreWithURL:error:':
+                name: setMetadataForPersistentStore
+                throws: NSErrorException
+                parameters:
+                    metadata:
+                        type: NSPersistentStoreMetadata
+            '+migrationManagerClass':
+                property: true
+                return_type: 'Class<? extends NSMigrationManager>'
+    NSPersistentStoreAsynchronousResult: {} # DONE
+    NSPersistentStoreCoordinator: # DONE
+        properties:
+            'persistentStores':
+                type: NSArray<NSPersistentStore>
+        methods:
+            '-initWithManagedObjectModel:':
+                name: init
+            '-persistentStoreForURL:':
+                name: getPersistentStoreForURL
+            '-URLForPersistentStore:':
+                name: getURLForPersistentStore
+            '-setURL:forPersistentStore:':
+                name: setURLForPersistentStore
+            '-addPersistentStoreWithType:configuration:URL:options:error:':
+                name: addPersistentStore
+                throws: NSErrorException
+                parameters:
+                    options:
+                        type: NSPersistentStoreOptions
+            '-removePersistentStore:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-setMetadata:forPersistentStore:':
+                name: setMetadataForPersistentStore
+                parameters:
+                    metadata:
+                        type: NSPersistentStoreMetadata
+            '-metadataForPersistentStore:':
+                name: getMetadataForPersistentStore
+            '-managedObjectIDForURIRepresentation:':
+                name: getManagedObjectIDForURIRepresentation
+            '-executeRequest:withContext:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-migratePersistentStore:toURL:options:withType:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+                parameters:
+                    options:
+                        type: NSPersistentStoreOptions
+            '-destroyPersistentStoreAtURL:withType:options:error:':
+                name: destroyPersistentStore
+                throws: NSErrorException
+                parameters:
+                    options:
+                        type: NSPersistentStoreOptions
+            '-replacePersistentStoreAtURL:destinationOptions:withPersistentStoreFromURL:sourceOptions:storeType:error:':
+                name: replacePersistentStore
+                throws: NSErrorException
+                parameters:
+                    destinationOptions:
+                        type: NSPersistentStoreOptions
+                    sourceOptions:
+                        type: NSPersistentStoreOptions
+            '-performBlock:':
+                trim_after_first_colon: true
+            '-performBlockAndWait:':
+                trim_after_first_colon: true
+            '+registeredStoreTypes':
+                property: true
+                return_type: 'NSDictionary<NSString, NSPersistentStore>'
+            '+registerStoreClass:forStoreType:':
+                name: registerStoreClassForType
+                parameters:
+                    storeClass:
+                        type: 'Class<? extends NSPersistentStore>'
+            '+metadataForPersistentStoreOfType:URL:options:error:':
+                name: getMetadataForPersistentStoreType
+                throws: NSErrorException
+                return_type: NSPersistentStoreMetadata
+                parameters:
+                    options:
+                        type: NSPersistentStoreOptions
+            '+setMetadata:forPersistentStoreOfType:URL:options:error:':
+                name: setMetadataForPersistentStoreType
+                throws: NSErrorException
+                parameters:
+                    metadata:
+                        type: NSPersistentStoreMetadata
+                    options:
+                        type: NSPersistentStoreOptions
+            '+metadataForPersistentStoreOfType:URL:error:':
+                name: getMetadataForPersistentStoreType
+                throws: NSErrorException
+                return_type: NSPersistentStoreMetadata
+            '+setMetadata:forPersistentStoreOfType:URL:error:':
+                name: setMetadataForPersistentStoreType
+                throws: NSErrorException
+                parameters:
+                    metadata:
+                        type: NSPersistentStoreMetadata
+            '+removeUbiquitousContentAndPersistentStoreAtURL:options:error:':
+                name: removeUbiquitousContentAndPersistentStore
+                throws: NSErrorException
+                parameters:
+                    options:
+                        type: NSPersistentStoreOptions
+    NSPersistentStoreRequest: # DONE
+        properties:
+            'affectedStores':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+    NSPersistentStoreResult: {} # DONE
+    NSPropertyDescription: # DONE
+        properties:
+            'validationPredicates':
+                type: NSArray<NSPredicate>
+            'validationWarnings':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+        methods:
+            '-setValidationPredicates:withValidationWarnings:':
+                name: setValidationPredicatesAndWarnings
+                parameters:
+                    validationPredicates:
+                        type: NSArray<NSPredicate>
+                    validationWarnings:
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
+    NSPropertyMapping: {} # DONE
+    NSRelationshipDescription: {} # DONE
+    NSSaveChangesRequest: # DONE
+        properties:
+            '.*Objects':
+                type: NSSet<NSManagedObject>
+        methods:
+            '-initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:':
+                name: init
+                parameters:
+                    insertedObjects:
+                        type: NSSet<NSManagedObject>
+                    updatedObjects:
+                        type: NSSet<NSManagedObject>
+                    deletedObjects:
+                        type: NSSet<NSManagedObject>
+                    lockedObjects:
+                        type: NSSet<NSManagedObject>
+
+protocols:
+    NSFetchedResultsControllerDelegate: # DONE
+        methods:
+            '-controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:':
+                name: didChangeObject
+            '-controller:didChangeSection:atIndex:forChangeType:':
+                name: didChangeSection
+            '-controllerWillChangeContent:':
+                name: willChangeContent
+            '-controllerDidChangeContent:':
+                name: didChangeContent
+            '-controller:sectionIndexTitleForSectionName:':
+                name: getSectionIndexTitle
+    NSFetchedResultsSectionInfo: # DONE
+        properties:
+            'objects':
+                type: NSArray<NSManagedObject>
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (NS.*):
+        class: CoreData
+        name: 'Function__#{g[0]}'
+
+values:
+    # CoreData
+    NSCoreDataVersionNumber:
+        class: CoreDataVersionNumber
+        name: 'getVersion'
+        readonly: true
+    
+    # Error
+    NSSQLiteErrorDomain:
+        class: NSSQLiteError
+        name: getClassDomain
+    NS(.*Error.?Key):
+        enum: NSCoreDataErrorUserInfoKey
+        name: '#{g[0]}'
+        type: NSString
+        extends: NSErrorUserInfoKey
+
+    # NSPersistentStoreCoordinator
+    NSPersistentStoreCoordinator(.*Notification):
+        class: NSPersistentStoreCoordinator
+        name: '#{g[0]}'
+        type: NSString
+    NSPersistentStore(DidImportUbiquitousContentChangesNotification):
+        class: NSPersistentStoreCoordinator
+        name: '#{g[0]}'
+        type: NSString
+    NS(.*)PersistentStoresKey:
+        dictionary: NSPersistentStoreCoordinatorChangeNotification
+        name: '#{g[0]}'
+        type: NSString
+        mutable: false
+        methods:
+            Added:
+                name: addedStores
+                type: NSArray<NSPersistentStore>
+            Removed:
+                name: removedStores
+                type: NSArray<NSPersistentStore>
+            UUIDChanged:
+                name: UUIDChangedStores
+                type: NSArray<NSPersistentStore>
+            UbiquitousTransitionType:
+                type: NSPersistentStoreUbiquitousTransitionType
+    NSPersistentStore(UbiquitousTransitionType)Key:
+        dictionary: NSPersistentStoreCoordinatorChangeNotification
+        name: '#{g[0]}'
+        type: NSString
+        mutable: false
+
+    # NSManagedObjectContext
+    NSManagedObjectContext(.*Notification):
+        class: NSManagedObjectContext
+        name: '#{g[0]}'
+        type: NSString
+    NS(.*Objects)Key:
+        dictionary: NSManagedObjectContextNotification
+        name: '#{g[0]}'
+        type: NSString
+        mutable: false
+        methods:
+            InsertedObjects:
+                type: NSSet<NSManagedObject>
+            UpdatedObjects:
+                type: NSSet<NSManagedObject>
+            DeletedObjects:
+                type: NSSet<NSManagedObject>
+            RefreshedObjects:
+                type: NSSet<NSManagedObject>
+            InvalidatedObjects:
+                type: NSSet<NSManagedObject>
+            InvalidatedAllObjects:
+                name: AllInvalidatedObjects
+                type: NSArray<NSManagedObjectID>
+
+    # NSMergePolicy
+    NS(.*MergePolicy):
+        class: NSMergePolicy
+        name: 'get#{g[0]}'
+        readonly: true
+        type: NSMergePolicy
+
+    # NSPersistentStoreCoordinator
+    NS(ReadOnly)PersistentStoreOption:
+        dictionary: NSPersistentStoreOptions
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            ReadOnly:
+                type: boolean
+            Timeout:
+                type: long
+            SQLitePragmas:
+                type: Map<String, NSObject>
+            SQLiteAnalyze:
+                name: SQLiteAnalyzeEnabled
+                type: boolean
+            SQLiteManualVacuum:
+                name: SQLiteManualVacuumEnabled
+                type: boolean
+            IgnorePersistentStoreVersioning:
+                name: ignoresPersistentStoreVersioning
+                type: boolean
+            MigratePersistentStoresAutomatically:
+                name: migratesPersistentStoresAutomatically
+                type: boolean
+            InferMappingModelAutomatically:
+                name: infersMappingModelAutomatically
+                type: boolean
+            UbiquitousContentName:
+                type: String
+            UbiquitousContentURL:
+                type: String
+            UbiquitousPeerToken:
+                type: String
+            RemoveUbiquitousMetadata:
+                name: shouldRemoveUbiquitousMetadata
+                type: boolean
+            UbiquitousContainerIdentifier:
+                type: String
+            RebuildFromUbiquitousContent:
+                name: shouldRebuildFromUbiquitousContent
+                type: boolean
+            FileProtection:
+                type: NSFileProtection
+                hint: GlobalValueEnumeration<NSString>
+            ForceDestroy:
+                type: boolean
+    NSPersistentStore(Timeout)Option:
+        dictionary: NSPersistentStoreOptions
+        name: '#{g[0]}'
+        type: NSString
+    NS(SQLite.*)Option:
+        dictionary: NSPersistentStoreOptions
+        name: '#{g[0]}'
+        type: NSString
+    NSPersistentStore(.*)Key:
+        dictionary: NSPersistentStoreOptions
+        name: '#{g[0]}'
+        type: NSString
+    NSPersistentStore(.*Ubiquitous.*)Option:
+        dictionary: NSPersistentStoreOptions
+        name: '#{g[0]}'
+        type: NSString
+    NS(IgnorePersistentStoreVersioning)Option:
+        dictionary: NSPersistentStoreOptions
+        name: '#{g[0]}'
+        type: NSString
+    NS(MigratePersistentStoresAutomatically)Option:
+        dictionary: NSPersistentStoreOptions
+        name: '#{g[0]}'
+        type: NSString
+    NS(InferMappingModelAutomatically)Option:
+        dictionary: NSPersistentStoreOptions
+        name: '#{g[0]}'
+        type: NSString
+    NSPersistentStore(ForceDestroy)Option:
+        dictionary: NSPersistentStoreOptions
+        name: '#{g[0]}'
+        type: NSString
+    NSStore(.*)Key:
+        dictionary: NSPersistentStoreMetadata
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            Type:
+                type: String
+            UUID:
+                type: NSUUID
+            ModelVersionHashes:
+                type: 'NSDictionary<?, ?>'
+                mutable: false
+            ModelVersionIdentifiers:
+                type: NSSet<?>
+                mutable: false
+            OSCompatibility:
+                type: long
+                mutable: false
+    NSPersistentStore(OSCompatibility):
+        dictionary: NSPersistentStoreMetadata
+        name: '#{g[0]}'
+        type: NSString
+    NS(.*)StoreType:
+        enum: NSPersistentStoreType
+        name: '#{g[0]}'
+        type: NSString
+
+    # NSExpression
+    NSMigration(.*):
+        enum: NSExpressionMigrationKey
+        name: '#{g[0]}'
+        type: NSString
+    NSFetchRequestExpressionType:
+        exclude: true
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?NS.*):
+        class: CoreData
+        name: 'Value__#{g[0]}'
+
+constants:
+    NSCoreDataVersionNumber(.*):
+        class: CoreDataVersionNumber
+        name: 'Version#{g[0]}'
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?NS.*):
+        class: CoreData
+        name: 'Constant__#{g[0]}'

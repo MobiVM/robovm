@@ -1,0 +1,508 @@
+package: org.robovm.apple.coreanimation
+include: [foundation.yaml, coregraphics.yaml, coreimage.yaml, coretext.yaml, opengles.yaml, metal.yaml]
+library: QuartzCore
+framework: QuartzCore
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.h
+    - /System/Library/Frameworks/QuartzCore.framework/Headers/CAMetalLayer.h
+typedefs: {}
+enums:
+    CAEdgeAntialiasingMask: {bits: true}
+
+categories:
+    NSValue: # DONE
+        methods:
+            '-CATransform3DValue':
+                name: getTransform3DValue
+            '+valueWithCATransform3D:':
+                name: create
+    CAAnimationDelegate@NSObject: {protocol: true}
+    CALayerDelegate@NSObject: {protocol: true}
+
+classes:
+    # Structs
+    CATransform3D: {}
+
+    CAAnimation: # DONE
+        skip_handle_constructor: false
+        properties:
+            'delegate':
+                type: CAAnimationDelegate
+        methods:
+            '-shouldArchiveValueForKey:':
+                name: shouldArchiveValue
+            '+animation':
+                exclude: true
+            '+defaultValueForKey:':
+                name: getDefaultValue
+    CAAnimationGroup: # DONE
+        properties:
+            'animations':
+                type: NSArray<CAAnimation>
+    CABasicAnimation: {} # DONE
+    CADisplayLink: # DONE
+        skip_def_constructor: true
+        methods:
+            '-addToRunLoop:forMode:':
+                trim_after_first_colon: true
+            '-removeFromRunLoop:forMode:':
+                trim_after_first_colon: true
+            '+displayLinkWithTarget:selector:':
+                name: create
+                constructor: true
+    CAEAGLLayer: # DONE
+        annotations: ['@WeaklyLinked']
+        protocols: [EAGLDrawable]
+    CAEmitterCell: # DONE
+        properties:
+            'emitterCells':
+                type: NSArray<CAEmitterCell>
+            'minificationFilter':
+                type: CAFilter
+            'magnificationFilter':
+                type: CAFilter
+        methods:
+            '-shouldArchiveValueForKey:':
+                name: shouldArchiveValue
+            '+emitterCell':
+                exclude: true
+            '+defaultValueForKey:':
+                name: getDefaultValue
+    CAEmitterLayer: # DONE
+        properties:
+            'emitterCells':
+                type: NSArray<CAEmitterCell>
+            'emitterShape':
+                type: CAEmitterShape
+            'emitterMode':
+                type: CAEmitterMode
+            'renderMode':
+                type: CAEmitterRenderMode
+    CAGradientLayer: # DONE
+        properties:
+            'colors':
+                type: List<CGColor>
+                marshaler: CGColor.AsListMarshaler
+            'locations':
+                type: NSArray<NSNumber>
+            'type':
+                type: CAGradientType
+    CAKeyframeAnimation: # DONE
+        properties:
+            'values':
+                type: NSArray<NSObject>
+            'keyTimes':
+                type: NSArray<NSNumber>
+            'timingFunctions':
+                type: NSArray<CAMediaTimingFunction>
+            'tensionValues':
+                type: NSArray<NSNumber>
+            'continuityValues':
+                type: NSArray<NSNumber>
+            'biasValues':
+                type: NSArray<NSNumber>
+            'calculationMode':
+                type: CAAnimationCalculationMode
+            'rotationMode':
+                type: CAAnimationRotationMode
+    CALayer: # DONE
+        skip_handle_constructor: false
+        properties:
+            'delegate':
+                type: CALayerDelegate
+            'edgeAntialiasingMask':
+                type: CAEdgeAntialiasingMask
+            'sublayers':
+                type: NSArray<CALayer>
+            'compositingFilter':
+                type: CIFilter
+                annotations: ['@WeaklyLinked']
+            'filters':
+                type: NSArray<CIFilter>
+                annotations: ['@WeaklyLinked']
+            'backgroundFilters':
+                type: NSArray<CIFilter>
+                annotations: ['@WeaklyLinked']
+            'actions':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, CAAction>'
+            'minificationFilter':
+                type: CAFilter
+            'magnificationFilter':
+                type: CAFilter
+            'contentsGravity':
+                type: CAGravity
+        methods:
+            '-init':
+                exclude: true
+            '-initWithLayer:':
+                name: init
+                parameters:
+                    layer:
+                        type: CALayer
+            '-presentationLayer':
+                property: true
+                return_type: CALayer
+            '-modelLayer':
+                property: true
+                return_type: CALayer
+            '-shouldArchiveValueForKey:':
+                name: shouldArchiveValue
+            '-affineTransform':
+                property: true
+            '-contentsAreFlipped':
+                name: areContentsFlipped
+            '-addSublayer:':
+                trim_after_first_colon: true
+            '-insertSublayer:atIndex:':
+                name: insertSublayerAt
+            '-insertSublayer:below:':
+                name: insertSublayerBelow
+            '-insertSublayer:above:':
+                name: insertSublayerAbove
+            '-replaceSublayer:with:':
+                trim_after_first_colon: true
+            '-convertPoint:fromLayer:':
+                name: convertPointFromLayer
+            '-convertPoint:toLayer:':
+                name: convertPointToLayer
+            '-convertRect:fromLayer:':
+                name: convertRectFromLayer
+            '-convertRect:toLayer:':
+                name: convertRectToLayer
+            '-convertTime:fromLayer:':
+                name: convertTimeFromLayer
+            '-convertTime:toLayer:':
+                name: convertTimeToLayer
+            '-hitTest:':
+                trim_after_first_colon: true
+            '-containsPoint:':
+                trim_after_first_colon: true
+            '-setNeedsDisplayInRect:':
+                name: setNeedsDisplay
+            '-drawInContext:':
+                name: draw
+            '-renderInContext:':
+                name: render
+            '-preferredFrameSize':
+                property: true
+            '-actionForKey:':
+                name: getAction
+            '-addAnimation:forKey:':
+                trim_after_first_colon: true
+            '-removeAnimationForKey:':
+                name: removeAnimation
+            '-animationKeys':
+                property: true
+                return_type: List<String>
+                return_marshaler: NSArray.AsStringListMarshaler
+            '-animationForKey:':
+                name: getAnimation
+            '+layer':
+                exclude: true
+            '+defaultValueForKey:':
+                name: getDefaultValue
+            '+needsDisplayForKey:':
+                name: needsDisplay
+            '+defaultActionForKey:':
+                name: getDefaultAction
+            '-scrollPoint:':
+                name: scrollTo
+            '-scrollRectToVisible:':
+                name: scrollTo
+    CAMediaTimingFunction: # DONE
+        methods:
+            '-initWithControlPoints::::':
+                name: init
+            '-getControlPointAtIndex:values:':
+                name: getControlPoint
+                visibility: protected
+            '+functionWithName:':
+                name: create
+                constructor: true
+                parameters:
+                    name:
+                        type: CAMediaTimingFunctionName
+            '+functionWithControlPoints::::':
+                exclude: true
+    CAMetalLayer: # DONE
+        properties:
+            '(device|pixelFormat)':
+                annotations: ['@WeaklyLinked']
+    CAPropertyAnimation: # DONE
+        skip_handle_constructor: false
+        methods:
+            '+animationWithKeyPath:':
+                name: create
+                constructor: true
+    CAReplicatorLayer: {} # DONE
+    CAScrollLayer: # DONE
+        properties:
+            'scrollMode':
+                type: CAScrollMode
+        methods:
+            '-scrollToPoint:':
+                name: scrollTo
+            '-scrollToRect:':
+                name: scrollTo
+    CAShapeLayer: # DONE
+        properties:
+            'lineDashPattern':
+                type: NSArray<NSNumber>
+            'fillRule':
+                type: CAShapeFillRule
+            'lineCap':
+                type: CALineCap
+            'lineJoin':
+                type: CALineJoin
+    CASpringAnimation: {} # DONE
+    CATextLayer: # DONE
+        properties:
+            'string':
+                name: stringPtr
+                type: '@Pointer long'
+                visibility: protected
+            'font':
+                name: fontPtr
+                type: '@Pointer long'
+                visibility: protected
+            'alignmentMode':
+                type: CATextAlignmentMode
+            'truncationMode':
+                type: CATextTruncationMode
+    CATiledLayer: # DONE
+        methods:
+            '+fadeDuration':
+                property: true
+    CATransaction: # DONE
+        methods:
+            '+animationDuration':
+                property: true
+            '+animationTimingFunction':
+                property: true
+            '+disableActions':
+                name: disablesActions
+            '+setDisableActions:':
+                name: setDisablesActions
+            '+completionBlock':
+                property: true
+            '+valueForKey:':
+                name: get
+                parameters:
+                    key:
+                        type: CATransactionProperty
+            '+setValue:forKey:':
+                name: set
+                visibility: protected
+                parameters:
+                    key:
+                        type: CATransactionProperty
+    CATransformLayer: {} # DONE
+    CATransition: # DONE
+        properties:
+            'filter':
+                type: CIFilter
+                annotations: ['@WeaklyLinked']
+            'type':
+                type: CATransitionType
+            'subtype':
+                type: CATransitionSubType
+    CAValueFunction: # DONE
+        skip_def_constructor: true
+        properties:
+            'name':
+                type: CAValueFunctionName
+        methods:
+            '+functionWithName:':
+                name: create
+                constructor: true
+                parameters:
+                    name:
+                        type: CAValueFunctionName
+
+protocols:
+    CAAction: # DONE
+        methods:
+            '-runActionForKey:object:arguments:':
+                name: runAction
+                parameters:
+                    key:
+                        type: NSString
+                    dict:
+                        type: 'NSDictionary<NSString, ?>'
+    CAMediaTiming: # DONE
+        properties:
+            'fillMode':
+                type: CAFillMode
+    CAAnimationDelegate: # DONE
+        methods:
+            '-animationDidStart:':
+                name: didStart
+            '-animationDidStop:finished:':
+                name: didStop
+    CALayerDelegate: # DONE
+        methods:
+            '-displayLayer:':
+                trim_after_first_colon: true
+            '-drawLayer:inContext:':
+                trim_after_first_colon: true
+            '-layoutSublayersOfLayer:':
+                name: layoutSublayers
+            '-actionForLayer:forKey:':
+                name: getAction
+    CAMetalDrawable: # DONE
+        properties:
+            'texture':
+                annotations: ['@WeaklyLinked']
+
+functions:
+    # CATransform3D
+    CATransform3DMake(.*):
+        class: CATransform3D
+        name: 'create#{g[0]}'
+    CATransform3DEqualToTransform:
+        class: CATransform3D
+        name: equalsTo
+    CATransform3D(.*):
+        class: CATransform3D
+        name: '#{g[0]}'
+
+    # CAAnimation
+    CA(CurrentMediaTime):
+        class: CAAnimation
+        name: 'get#{g[0]}'
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?CA.*):
+        class: CoreAnimation
+        name: 'Function__#{g[0]}'
+
+values:     
+    # CAEmitterBehavior
+    kCAEmitterBehavior.*: # exclude for now
+        exclude: true 
+
+    # CAEmitterLayer
+    kCAEmitterLayer(Point|Line|Rectangle|Cuboid|Circle|Sphere):
+        enum: CAEmitterShape
+        name: '#{g[0]}'
+        type: NSString
+    kCAEmitterLayer(Points|Outline|Surface|Volume):
+        enum: CAEmitterMode
+        name: '#{g[0]}'
+        type: NSString
+    kCAEmitterLayer(Unordered|OldestFirst|OldestLast|BackToFront|Additive):
+        enum: CAEmitterRenderMode
+        name: '#{g[0]}'
+        type: NSString
+
+    # CAGradientLayer
+    kCAGradientLayer(.*):
+        enum: CAGradientType
+        name: '#{g[0]}'
+        type: NSString
+
+    # CAKeyframeAnimation
+    kCAAnimationRotate(.*):
+        enum: CAAnimationRotationMode
+        name: '#{g[0]}'
+        type: NSString
+    kCAAnimation(.*):
+        enum: CAAnimationCalculationMode
+        name: '#{g[0]}'
+        type: NSString
+
+    # CALayer
+    kCAGravity(.*):
+        enum: CAGravity
+        name: '#{g[0]}'
+        type: NSString
+    kCAFilter(.*):
+        enum: CAFilter
+        name: '#{g[0]}'
+        type: NSString
+    kCA(OnOrderIn|OnOrderOut|Transition):
+        class: CAActionIdentifier
+        name: '#{g[0]}'
+
+    # CAMediaTiming
+    kCAFillMode(.*):
+        enum: CAFillMode
+        name: '#{g[0]}'
+        type: NSString
+
+    # CAMediaTimingFunction
+    kCAMediaTimingFunction(.*):
+        enum: CAMediaTimingFunctionName
+        name: '#{g[0]}'
+        type: NSString
+
+    # CAScrollLayer
+    kCAScroll(.*):
+        enum: CAScrollMode
+        name: '#{g[0]}'
+        type: NSString
+
+    # CAShapeLayer
+    kCAFillRule(.*):
+        enum: CAShapeFillRule
+        name: '#{g[0]}'
+        type: NSString
+    kCALineJoin(.*):
+        enum: CALineJoin
+        name: '#{g[0]}'
+        type: NSString
+    kCALineCap(.*):
+        enum: CALineCap
+        name: '#{g[0]}'
+        type: NSString
+
+    # CATextLayer
+    kCAAlignment(.*):
+        enum: CATextAlignmentMode
+        name: '#{g[0]}'
+        type: NSString
+    kCATruncation(.*):
+        enum: CATextTruncationMode
+        name: '#{g[0]}'
+        type: NSString
+
+    # CATransaction
+    kCATransaction(.*):
+        enum: CATransactionProperty
+        name: '#{g[0]}'
+        type: NSString
+
+    # CATransform3D
+    CATransform3D(Identity):
+        class: CATransform3D
+        name: '#{g[0]}'
+
+    # CATransition
+    kCATransition(From.*):
+        enum: CATransitionSubType
+        name: '#{g[0]}'
+        type: NSString
+    kCATransition(.*):
+        enum: CATransitionType
+        name: '#{g[0]}'
+        type: NSString
+
+    # CAValueFunction
+    kCAValueFunction(.*):
+        enum: CAValueFunctionName
+        name: '#{g[0]}'
+        type: NSString
+
+    k?CA(.*):
+        class: CoreAnimation
+        name: '#{g[0]}'
+
+constants:
+    CA_WARN_DEPRECATED:
+        exclude: true
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?CA.*):
+        class: CoreAnimation
+        name: 'Constant__#{g[0]}'

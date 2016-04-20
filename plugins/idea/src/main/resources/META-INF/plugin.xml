@@ -1,0 +1,58 @@
+<idea-plugin version="2" url="https://github.com/robovm/robovm-idea">
+    <id>com.mobidevelop.robovm.intellij</id>
+    <name>RoboVM Intellij IDEA Plugin</name>
+    <version>${project.version}</version>
+    <vendor email="robovm@mobidevelop.com" url="http://github.com/mobidevelop/robovm">mobidevelop</vendor>
+
+    <depends>org.jetbrains.plugins.gradle</depends>
+    <depends>org.jetbrains.android</depends>
+
+    <idea-version since-build="141.177"/>
+
+    <description><![CDATA[
+     <p>
+     RoboVM support for IntelliJ
+     </p>     
+    ]]></description>
+
+    <change-notes><![CDATA[
+
+    ]]>
+    </change-notes>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <configurationType implementation="org.robovm.idea.running.RoboVmIOSConfigurationType"/>
+        <configurationType implementation="org.robovm.idea.running.RoboVmConsoleConfigurationType"/>
+        <programRunner implementation="org.robovm.idea.running.RoboVmRunner"/>
+        <projectTemplatesFactory implementation="org.robovm.idea.builder.RoboVmTemplatesFactory"/>
+        <sdkType implementation="org.robovm.idea.sdk.RoboVmSdkType"/>
+        <buildProcess.parametersProvider implementation="org.robovm.idea.components.RoboVmBuildProcessParametersProvider"/>
+        <applicationConfigurable implementation="org.robovm.idea.config.RoboVmGlobalConfig"></applicationConfigurable>
+    </extensions>
+
+    <application-components>
+        <component>
+            <implementation-class>org.robovm.idea.components.RoboVmApplicationComponent</implementation-class>
+        </component>
+    </application-components>
+
+    <project-components>
+        <component>
+            <implementation-class>org.robovm.idea.components.RoboVmProjectComponent</implementation-class>
+        </component>
+    </project-components>
+
+    <module-components>
+        <component>
+            <implementation-class>org.robovm.idea.components.RoboVmSdkUpdateComponent</implementation-class>
+        </component>
+    </module-components>
+
+    <actions>
+        <action id="org.robovm.idea.create-ipa" class="org.robovm.idea.actions.CreateIpaAction" text="Create IPA"
+                description="Create an IPA for App Store or ad-hoc distribution">
+            <add-to-group group-id="BuildMenu" anchor="last"/>
+        </action>
+    </actions>
+
+</idea-plugin>

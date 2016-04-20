@@ -1,0 +1,4 @@
+RoboVM for Eclipse
+Copyright (C) 2012-2014 RoboVM AB
+For license information see the LICENSE.txt file which accompanies this
+NOTICE.txt file.
