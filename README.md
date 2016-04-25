@@ -32,6 +32,9 @@ will
  2. Put the IDEA plugin in `plugins/idea/target`
  3. Put the Eclipse plugin in `plugins/eclipse/update-site/target/site`
 
+## Communicating
+You can find us at our IRC channel #nullvm at irc.freenode.net.
+
 ## License
 See the LICENSE files in the various sub directories. Generally, RoboVM is GPL2,
 with the runtime code being Apache 2 for distribution on iOS.
