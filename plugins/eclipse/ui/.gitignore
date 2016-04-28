@@ -1,0 +1,3 @@
+/target/
+# The libraries are copied in by maven-dependency-plugin
+/lib/

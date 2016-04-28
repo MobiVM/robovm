@@ -1,5 +1,3 @@
-.DS_STORE
 /target/
+# This is copied in via maven-dependency-plugin
 /src/main/resources/robovm-dist
-/.idea/
-org.robovm.idea.iml
