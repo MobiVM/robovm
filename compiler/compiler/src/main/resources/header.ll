@@ -147,22 +147,6 @@ define private void @Env_gatewayFrames_store(%Env* %env, %GatewayFrame* %value) 
     ret void
 }
 
-define private void @Env_shadowFrame_push(%Env* %env, %ShadowFrame* %shadowFrame) alwaysinline {
-	%1 = getelementptr %Env, %Env* %env, i32 0, i32 9
-    %2 = load %ShadowFrame*, %ShadowFrame** %1
-	%3 = icmp eq %ShadowFrame* %2, null
-	br i1 %3, label setFrame, label hasPrevFrame
-
-hasPrevFrame:
-    %5 = bitcast %ShadowFrame* %shadowFrame to %ShadowFrame**
-    store %ShadowFrame* %2, %sShadowFrame** %5
-    br label setFrame
-
-setFrame:
-    store %ShadowFrame* %shadowFrame, %ShadowFrame** %1
-    ret void
-}
-
 define private %Class* @Object_class(%Object* %o) alwaysinline {
     %1 = getelementptr %Object* %o, i32 0, i32 0
     %2 = load volatile %Class** %1
