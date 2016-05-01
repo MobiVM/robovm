@@ -204,7 +204,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
 
                 Home home = RoboVMPlugin.getRoboVMHome();
                 if (home.isDev()) {
-                    configBuilder.useDebugLibs(Boolean.getBoolean("robovm.useDebugLibs"));
+                    configBuilder.useDebugLibs(true);
                     configBuilder.dumpIntermediates(true);
                 }
                 configBuilder.home(home);

@@ -1,7 +1,8 @@
 %GatewayFrame = type {i8*, i8*, i8*}
 %StackFrame = type {i8*, i8*}
+%ShadowFrame = type {i8*, i8*, i32}
 %Thread = type {i32} ; Incomplete. Just enough to get threadId
-%Env = type {i8*, i8*, i8*, %Thread*, i8*, i8*, %GatewayFrame*, i8*, i32}
+%Env = type {i8*, i8*, i8*, %Thread*, i8*, i8*, %GatewayFrame*, i8*, i32, %ShadowFrame*}
 %DebugEnv = type {%Env, i8*, i8*, i8*, i8*, i8, i8}
 %TypeInfo = type {i32, i32, i32, i32, i32, [0 x i32]}
 %VITable = type {i16, [0 x i8*]}
@@ -143,6 +144,22 @@ define private %GatewayFrame* @Env_gatewayFrames(%Env* %env) alwaysinline {
 define private void @Env_gatewayFrames_store(%Env* %env, %GatewayFrame* %value) alwaysinline {
     %1 = getelementptr %Env* %env, i32 0, i32 6 ; Env->gatewayFrames
     store volatile %GatewayFrame* %value, %GatewayFrame** %1
+    ret void
+}
+
+define private void @Env_shadowFrame_push(%Env* %env, %ShadowFrame* %shadowFrame) alwaysinline {
+	%1 = getelementptr %Env, %Env* %env, i32 0, i32 9
+    %2 = load %ShadowFrame*, %ShadowFrame** %1
+	%3 = icmp eq %ShadowFrame* %2, null
+	br i1 %3, label setFrame, label hasPrevFrame
+
+hasPrevFrame:
+    %5 = bitcast %ShadowFrame* %shadowFrame to %ShadowFrame**
+    store %ShadowFrame* %2, %sShadowFrame** %5
+    br label setFrame
+
+setFrame:
+    store %ShadowFrame* %shadowFrame, %ShadowFrame** %1
     ret void
 }
 
