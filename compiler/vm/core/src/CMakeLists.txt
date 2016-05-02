@@ -26,6 +26,7 @@ set(SRC
   trycatch-${OS_FAMILY}-${ARCH}.s
   unwind.c
   hooks.c
+  shadowframes.c
 )
 
 if(DARWIN)

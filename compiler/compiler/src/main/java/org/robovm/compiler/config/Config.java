@@ -228,8 +228,8 @@ public class Config {
                 new ObjCMemberPlugin(),
                 new ObjCBlockPlugin(),
                 new AnnotationImplPlugin(),
-                new LambdaPlugin()
-                //new ShadowFramePlugin()
+                new LambdaPlugin(),
+                new ShadowFramePlugin()
                 ));
         this.loadPluginsFromClassPath();
     }
