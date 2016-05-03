@@ -65,6 +65,7 @@ extern "C" {
 #include "robovm/hooks.h"
 #include "robovm/rt.h"
 #include "robovm/lazy_helpers.h"
+#include "robovm/shadowframes.h"
 
 #ifdef __cplusplus
 }

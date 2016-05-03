@@ -68,6 +68,8 @@ import soot.jimple.toolkits.typing.fast.BottomType;
  */
 public class Types {
 
+    public static final StructureType SHADOW_FRAME = new StructureType("ShadowFrame", I8_PTR, I8_PTR, I32);
+    public static final PointerType SHADOW_FRAME_PTR = new PointerType(SHADOW_FRAME);
     public static final StructureType GATEWAY_FRAME = new StructureType("GatewayFrame", I8_PTR, I8_PTR, I8_PTR);
     public static final Type GATEWAY_FRAME_PTR = new PointerType(GATEWAY_FRAME);
     // Dummy TrycatchContext type definition. The real one is in header-<os>-<arch>.ll
@@ -76,7 +78,7 @@ public class Types {
     public static final StructureType BC_TRYCATCH_CONTEXT = new StructureType("BcTrycatchContext", TRYCATCH_CONTEXT, I8_PTR);
     public static final Type BC_TRYCATCH_CONTEXT_PTR = new PointerType(BC_TRYCATCH_CONTEXT);
     public static final Type ENV_PTR = new PointerType(new StructureType("Env", I8_PTR, I8_PTR, I8_PTR, 
-            I8_PTR, I8_PTR, I8_PTR, I8_PTR, I8_PTR, I32));
+            I8_PTR, I8_PTR, I8_PTR, I8_PTR, I8_PTR, I32, SHADOW_FRAME_PTR));
     // Dummy Class type definition. The real one is in header.ll
     public static final StructureType CLASS = new StructureType("Class", I8_PTR);
     public static final Type CLASS_PTR = new PointerType(CLASS);
