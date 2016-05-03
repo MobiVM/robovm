@@ -44,4 +44,5 @@
     <classpathentry>foo1.jar</classpathentry>
     <classpathentry>/tmp/foo2.jar</classpathentry>
   </classpath>
+  <useLineNumbers>false</useLineNumbers>
 </config>
