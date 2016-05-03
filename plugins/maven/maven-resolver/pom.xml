@@ -20,23 +20,22 @@
   <version>2.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <url>https://github.com/robovm/robovm-maven-resolver</url>
+  <url>https://github.com/mobidevelop/robovm</url>
   <description>
     Maven resolver
   </description>
   <inceptionYear>2014</inceptionYear>
 
-  <organization>
-    <name>RoboVM AB</name>
-    <url>http://www.robovm.com</url>
-  </organization>
+  <scm>
+    <url>https://github.com/mobidevelop/robovm</url>
+    <connection>scm:git:git://github.com/mobidevelop/robovm.git</connection>
+    <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>    
+  </scm>
 
-  <mailingLists>
-    <mailingList>
-      <name>RoboVM Discussion</name>
-      <archive>https://groups.google.com/forum/#!forum/robovm</archive>
-    </mailingList>
-  </mailingLists>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/mobidevelop/robovm/issues</url>
+  </issueManagement>
 
   <licenses>
     <license>
@@ -45,17 +44,6 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-
-  <scm>
-    <connection>scm:git:git://github.com/robovm/robovm-maven-resolver.git</connection>
-    <developerConnection>scm:git:git@github.com:robovm/robovm-maven-resolver.git</developerConnection>
-    <url>https://github.com/robovm/robovm-maven-resolver.git</url>
-  </scm>
-
-  <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/robovm/robovm-maven-resolver/issues</url>
-  </issueManagement>
 
   <dependencies>
     <dependency>

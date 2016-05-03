@@ -20,23 +20,11 @@
   <name>RoboVM Maven</name>
   <packaging>pom</packaging>
 
-  <url>https://github.com/robovm/robovm-maven-plugin</url>
+  <url>https://github.com/mobidevelop/robovm</url>
   <description>
     Maven support for RoboVM
   </description>
   <inceptionYear>2013</inceptionYear>
-
-  <organization>
-    <name>RoboVM AB</name>
-    <url>http://www.robovm.com</url>
-  </organization>
-
-  <mailingLists>
-    <mailingList>
-      <name>RoboVM Discussion</name>
-      <archive>https://groups.google.com/forum/#!forum/robovm</archive>
-    </mailingList>
-  </mailingLists>
 
   <licenses>
     <license>
@@ -46,34 +34,15 @@
     </license>
   </licenses>
 
-  <developers>
-    <developer>
-      <id>ntherning</id>
-      <name>Niklas Therning</name>
-      <email>niklas@therning.org</email>
-      <roles>
-        <role>Project Lead</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>zonski</id>
-      <name>Daniel Zwolenski</name>
-      <email>zonski@gmail.com</email>
-      <roles>
-        <role>Developer</role>
-      </roles>
-    </developer>
-  </developers>
-
   <scm>
-    <connection>scm:git:git://github.com/robovm/robovm-maven-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:robovm/robovm-maven-plugin.git</developerConnection>
-    <url>https://github.com/robovm/robovm-maven-plugin.git</url>
+    <url>https://github.com/mobidevelop/robovm</url>
+    <connection>scm:git:git://github.com/mobidevelop/robovm.git</connection>
+    <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>    
   </scm>
 
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/robovm/robovm-maven-plugin/issues</url>
+    <url>https://github.com/mobidevelop/robovm/issues</url>
   </issueManagement>
 
   <build>

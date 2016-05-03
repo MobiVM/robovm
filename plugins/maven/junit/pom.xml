@@ -17,12 +17,17 @@
   <version>2.0.0-SNAPSHOT</version>
   <name>RoboVM Junit parent</name>
   <packaging>pom</packaging>
-
+  
   <scm>
-    <connection>scm:git:git://github.com/robovm/robovm-junit.git</connection>
-    <developerConnection>scm:git:git@github.com:robovm/robovm-junit.git</developerConnection>
-    <url>https://github.com/robovm/robovm-junit.git</url>
+    <url>https://github.com/mobidevelop/robovm</url>
+    <connection>scm:git:git://github.com/mobidevelop/robovm.git</connection>
+    <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>    
   </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/mobidevelop/robovm/issues</url>
+  </issueManagement>
 
   <licenses>
     <license>
