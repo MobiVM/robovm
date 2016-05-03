@@ -3,4 +3,5 @@
   <iosSdkVersion>6.1</iosSdkVersion>
   <iosInfoPList>Info.plist</iosInfoPList>
   <iosEntitlementsPList>entitlements.plist</iosEntitlementsPList>
+  <useLineNumbers>false</useLineNumbers>
 </config>
