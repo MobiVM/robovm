@@ -65,23 +65,24 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         //update line numbers for each new instruction
         int currentLineNumber = 0;
         for (BasicBlock bb : function.getBasicBlocks()) {
-        	for (int i = 0; i < bb.getInstructions().size(); i++) {
-        		Instruction instruction = bb.getInstructions().get(i);        	
-        		List<Object> units = instruction.getAttachments();
-        		for (Object object : units) {
-        			if (object instanceof Unit) {
-        				Unit unit = (Unit) object;
-        				LineNumberTag tag = (LineNumberTag) unit.getTag("LineNumberTag");
-        				if (tag != null) {
-	        				if (currentLineNumber == 0 || currentLineNumber != tag.getLineNumber()) {
-	        					currentLineNumber = tag.getLineNumber();
-	        					//push new line number
-	        			        bb.getInstructions().add(i, new Call(Functions.PUSH_SHADOW_LINE_NUMBER, env, new IntegerConstant(currentLineNumber)));
-	        				}
-        				}
-        			}
-        		}        		
-        	}
+            for (int i = 0; i < bb.getInstructions().size(); i++) {
+                Instruction instruction = bb.getInstructions().get(i);
+                List<Object> units = instruction.getAttachments();
+                for (Object object : units) {
+                    if (object instanceof Unit) {
+                        Unit unit = (Unit) object;
+                        LineNumberTag tag = (LineNumberTag) unit.getTag("LineNumberTag");
+                        if (tag != null) {
+                            if (currentLineNumber == 0 || currentLineNumber != tag.getLineNumber()) {
+                                currentLineNumber = tag.getLineNumber();
+                                // push new line number
+                                bb.getInstructions().add(i, new Call(Functions.PUSH_SHADOW_LINE_NUMBER, env,
+                                        new IntegerConstant(currentLineNumber)));
+                            }
+                        }
+                    }
+                }
+            }
         }
         
         // insert pops on returns
