@@ -1,6 +1,7 @@
 package org.robovm.compiler.plugin.shadowframe;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.robovm.compiler.Functions;
 import org.robovm.compiler.ModuleBuilder;
@@ -11,6 +12,8 @@ import org.robovm.compiler.llvm.Alloca;
 import org.robovm.compiler.llvm.BasicBlock;
 import org.robovm.compiler.llvm.Call;
 import org.robovm.compiler.llvm.Function;
+import org.robovm.compiler.llvm.Instruction;
+import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.PlainTextInstruction;
 import org.robovm.compiler.llvm.Ret;
 import org.robovm.compiler.llvm.Value;
@@ -19,6 +22,8 @@ import org.robovm.compiler.llvm.VariableRef;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 
 import soot.SootMethod;
+import soot.Unit;
+import soot.tagkit.LineNumberTag;
 
 public class ShadowFramePlugin extends AbstractCompilerPlugin {
     private static final String SHADOW_FRAME_VAR_NAME = "__shadowFrame";
@@ -43,10 +48,6 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         Alloca shadowAlloca = new Alloca(shadowVariable, Types.SHADOW_FRAME);
         entryBlock.getInstructions().add(0, shadowAlloca);
         
-        // push frame into Env        
-        Value env = function.getParameterRef(0);               
-        entryBlock.getInstructions().add(1, new Call(Functions.PUSH_SHADOW_FRAME, env, new VariableRef(shadowVariable)));
-        
         // initiate shadow frame with function address and dummy line number
         String functionSignature = function.getSignature();
         PlainTextInstruction initiateFrame = new PlainTextInstruction(                
@@ -55,9 +56,33 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
                 + "    store i8* %funcAddr, i8** %__shadowFrame_funcAddr\n"
                 + "    %__shadowFrame_lineNumber = getelementptr %ShadowFrame* %__shadowFrame, i32 0, i32 2\n"
                 + "    store i32 -1, i32* %__shadowFrame_lineNumber\n");        
-        entryBlock.getInstructions().add(2, initiateFrame);
+        entryBlock.getInstructions().add(1, initiateFrame);
         
-        // TODO: insert line updates
+        // push frame into Env        
+        Value env = function.getParameterRef(0);               
+        entryBlock.getInstructions().add(2, new Call(Functions.PUSH_SHADOW_FRAME, env, new VariableRef(shadowVariable)));
+        
+        //update line numbers for each new instruction
+        int currentLineNumber = 0;
+        for (BasicBlock bb : function.getBasicBlocks()) {
+        	for (int i = 0; i < bb.getInstructions().size(); i++) {
+        		Instruction instruction = bb.getInstructions().get(i);        	
+        		List<Object> units = instruction.getAttachments();
+        		for (Object object : units) {
+        			if (object instanceof Unit) {
+        				Unit unit = (Unit) object;
+        				LineNumberTag tag = (LineNumberTag) unit.getTag("LineNumberTag");
+        				if (tag != null) {
+	        				if (currentLineNumber == 0 || currentLineNumber != tag.getLineNumber()) {
+	        					currentLineNumber = tag.getLineNumber();
+	        					//push new line number
+	        			        bb.getInstructions().add(i, new Call(Functions.PUSH_SHADOW_LINE_NUMBER, env, new IntegerConstant(currentLineNumber)));
+	        				}
+        				}
+        			}
+        		}        		
+        	}
+        }
         
         // insert pops on returns
         // TODO: handle unwinding due to exception
