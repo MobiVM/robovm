@@ -159,7 +159,7 @@ public class Functions {
     public static final FunctionRef POP_NATIVE_FRAME = new FunctionRef("popNativeFrame", new FunctionType(VOID, ENV_PTR));
     public static final FunctionRef PUSH_SHADOW_FRAME = new FunctionRef("pushShadowFrame", new FunctionType(VOID, ENV_PTR, SHADOW_FRAME_PTR));
     public static final FunctionRef POP_SHADOW_FRAME = new FunctionRef("popShadowFrame", new FunctionType(VOID, ENV_PTR));
-    public static final FunctionRef PUSH_SHADOW_LINE_NUMBER = new FunctionRef("pushShadowFrameLineNumber", new FunctionType(VOID, ENV_PTR));
+    public static final FunctionRef PUSH_SHADOW_LINE_NUMBER = new FunctionRef("pushShadowFrameLineNumber", new FunctionType(VOID, SHADOW_FRAME_PTR, I32));
     public static final FunctionRef GETPC = new FunctionRef("getpc", new FunctionType(I8_PTR));
 
     public static FunctionRef getArrayLoad(soot.Type sootType) {
