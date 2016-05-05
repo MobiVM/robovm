@@ -60,7 +60,8 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         
         // push frame into Env        
         Value env = function.getParameterRef(0);               
-        entryBlock.getInstructions().add(2, new Call(Functions.PUSH_SHADOW_FRAME, env, new VariableRef(shadowVariable)));
+        VariableRef shadowFrameRef = new VariableRef(shadowVariable);
+        entryBlock.getInstructions().add(2, new Call(Functions.PUSH_SHADOW_FRAME, env, shadowFrameRef));
         
         //update line numbers for each new instruction
         int currentLineNumber = 0;
@@ -76,7 +77,7 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
                             if (currentLineNumber == 0 || currentLineNumber != tag.getLineNumber()) {
                                 currentLineNumber = tag.getLineNumber();
                                 // push new line number
-                                bb.getInstructions().add(i, new Call(Functions.PUSH_SHADOW_LINE_NUMBER, env,
+                                bb.getInstructions().add(i, new Call(Functions.PUSH_SHADOW_LINE_NUMBER, shadowFrameRef,
                                         new IntegerConstant(currentLineNumber)));
                             }
                         }
