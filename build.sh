@@ -1,6 +1,6 @@
 #/bin/sh
 set -e
-#compiler/vm/build.sh
+compiler/vm/build.sh
 mvn clean install
 mvn -f plugins/idea/pom.xml clean install
 mvn -f plugins/eclipse/pom.xml clean install
