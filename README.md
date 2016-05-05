@@ -1,6 +1,5 @@
 # RoboVM
 
-[![Join the chat at https://gitter.im/MobiDevelop/robovm](https://badges.gitter.im/MobiDevelop/robovm.svg)](https://gitter.im/MobiDevelop/robovm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 RoboVM is an ahead-of-time compiler for Java bytecode, targeting Linux, Mac OS X and iOS.
 
 This is a fork of the [last open-source release of RoboVM](https://github.com/robovm/robovm). The originally seperate repositories have been merged into a single repository.
@@ -35,7 +34,7 @@ will
  3. Put the Eclipse plugin in `plugins/eclipse/update-site/target/site`
 
 ## Communicating
-You can find us at our IRC channel #nullvm at irc.freenode.net.
+[![Join the chat at https://gitter.im/MobiDevelop/robovm](https://badges.gitter.im/MobiDevelop/robovm.svg)](https://gitter.im/MobiDevelop/robovm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## License
 See the LICENSE files in the various sub directories. Generally, RoboVM is GPL2,
