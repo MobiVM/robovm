@@ -37,9 +37,7 @@
   <modules>
     <module>compiler</module>
     <module>dist</module>
-    <module>plugins/templates</module>
-    <module>plugins/idea</module>
-    <module>plugins/eclipse</module>
+    <module>plugins/templates</module>    
   </modules>
 
 </project>

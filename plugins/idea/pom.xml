@@ -10,7 +10,7 @@
     <properties>
         <robovm.version>${project.version}</robovm.version>
         <ij.plugin>true</ij.plugin>
-        <idea.home>/Applications/IntelliJ IDEA.app/Contents/</idea.home>
+        <idea.home>/Applications/IntelliJ IDEA CE.app/Contents/</idea.home>
     </properties>
 
     <scm>
@@ -34,6 +34,9 @@
 
         <profile>
             <id>deployment</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
