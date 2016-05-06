@@ -7,15 +7,15 @@ To use the RoboVM plugin, include in your build script:
 ```groovy
 // Pull the plugin from Maven Central
 buildscript {
-    project.ext.roboVMVersion = "1.12.0"
-    project.ext.roboVMGradleVersion = "1.12.0"
+    project.ext.roboVMVersion = "2.0.0-SNAPSHOT"
+    project.ext.roboVMGradleVersion = "2.0.0-SNAPSHOT"
 
     repositories {
         mavenCentral()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
     dependencies {
-        classpath group: 'org.robovm', name: 'robovm-gradle-plugin', version: project.roboVMGradleVersion
+        classpath group: 'com.mobidevelop.robovm', name: 'robovm-gradle-plugin', version: project.roboVMGradleVersion
     }
 }
 
@@ -28,8 +28,8 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.robovm', name: 'robovm-rt', version: project.roboVMVersion
-    compile group: 'org.robovm', name: 'robovm-cocoatouch', version: project.roboVMVersion
+    compile group: 'com.mobidevelop.robovm', name: 'robovm-rt', version: project.roboVMVersion
+    compile group: 'com.mobidevelop.robovm', name: 'robovm-cocoatouch', version: project.roboVMVersion
 }
 
 robovm {
