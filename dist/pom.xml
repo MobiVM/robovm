@@ -11,7 +11,8 @@
   <groupId>com.mobidevelop.robovm</groupId>
   <artifactId>robovm-dist-parent</artifactId>
   <name>RoboVM Distribution</name>
-  <packaging>pom</packaging>  
+  <packaging>pom</packaging>
+  <version>2.0.0-SNAPSHOT</version> 
 
   <properties>
     <licenseTxtURL>file://${basedir}/../LICENSE.txt</licenseTxtURL>
