@@ -7,8 +7,7 @@
     <version>2.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <properties>
-        <robovm.version>${project.version}</robovm.version>
+    <properties> 
         <ij.plugin>true</ij.plugin>
         <idea.home>/Applications/IntelliJ IDEA CE.app/Contents/</idea.home>
     </properties>
@@ -27,7 +26,7 @@
                 <dependency>
                     <groupId>com.mobidevelop.robovm</groupId>
                     <artifactId>robovm-compiler</artifactId>
-                    <version>${robovm.version}</version>
+                    <version>${project.version}</version>
                 </dependency>                
             </dependencies>
         </profile>
@@ -89,7 +88,7 @@
                 <dependency>
                     <groupId>com.mobidevelop.robovm</groupId>
                     <artifactId>robovm-dist-compiler</artifactId>
-                    <version>${robovm.version}</version>
+                    <version>${project.version}</version>
                     <exclusions>
                         <exclusion>
                             <groupId>com.mobidevelop.robovm</groupId>
@@ -203,7 +202,7 @@
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-dist</artifactId>
-            <version>${robovm.version}</version>
+            <version>${project.version}</version>
             <classifier>nocompiler</classifier>
             <type>tar.gz</type>
             <scope>provided</scope>
@@ -233,7 +232,7 @@
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-templater</artifactId>
-            <version>${robovm.version}</version>
+            <version>${project.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.mobidevelop.robovm</groupId>
