@@ -22,19 +22,19 @@
       <dependency>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-dist-compiler</artifactId>
-        <version>${robovm.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-dist</artifactId>
-        <version>${robovm.version}</version>
+        <version>${project.version}</version>
         <classifier>nocompiler</classifier>
         <type>tar.gz</type>
       </dependency>
       <dependency>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-templater</artifactId>
-        <version>${robovm.version}</version>
+        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
