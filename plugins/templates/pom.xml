@@ -26,11 +26,6 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  
-  <properties>
-     <robovm.version>${project.version}</robovm.version>
-     <robovm.maven.version>${project.version}</robovm.maven.version>
-  </properties>
 
   <profiles>
     <profile>
@@ -58,7 +53,7 @@
         <plugin>
           <groupId>com.mobidevelop.robovm</groupId>
           <artifactId>robovm-maven-plugin</artifactId>
-          <version>${robovm.maven.version}</version>
+          <version>${project.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>

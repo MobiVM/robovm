@@ -12,10 +12,6 @@
     <name>RoboVM Template Generator</name>
     <packaging>jar</packaging>
 
-    <properties>
-        <robovm.version>${project.version}</robovm.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -36,13 +32,13 @@
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-templates-ios-single-view-no-ib</artifactId>
-            <version>${robovm.version}</version>
+            <version>${project.version}</version>
             <type>tar.gz</type>
         </dependency>    
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-templates-console</artifactId>
-            <version>${robovm.version}</version>
+            <version>${project.version}</version>
             <type>tar.gz</type>
         </dependency>        
     </dependencies>

@@ -14,8 +14,7 @@
   <packaging>pom</packaging>  
 
   <properties>
-    <licenseTxtURL>file://${basedir}/../LICENSE.txt</licenseTxtURL>
-    <robovm.version>${project.version}</robovm.version>
+    <licenseTxtURL>file://${basedir}/../LICENSE.txt</licenseTxtURL>    
     <release.arguments />
   </properties>
 

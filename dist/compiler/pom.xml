@@ -11,17 +11,17 @@
   <artifactId>robovm-dist-compiler</artifactId>
   <name>RoboVM Distribution (compiler jars)</name>
   <packaging>jar</packaging>
+  <version>2.0.0-SNAPSHOT</version>
 
   <properties>
     <robovmdir>${basedir}/../../compiler</robovmdir>
-    <robovm.version>${project.version}</robovm.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>com.mobidevelop.robovm</groupId>
       <artifactId>robovm-compiler</artifactId>
-      <version>${robovm.version}</version>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 
