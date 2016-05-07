@@ -9,7 +9,7 @@
   </parent>
 
   <properties>
-    <robovm.version>2.0.0-SNAPSHOT</robovm.version>
+    <robovm.version>${project.version}</robovm.version>
   </properties>
 
   <groupId>com.mobidevelop.robovm</groupId>
