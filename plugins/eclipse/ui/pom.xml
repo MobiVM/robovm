@@ -12,6 +12,10 @@
   <name>RoboVM for Eclipse Core and UI</name>
   <packaging>eclipse-plugin</packaging>
 
+  <properties>
+    <robovm.version>${project.version}</robovm.version>
+  </properties>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -22,19 +26,19 @@
       <dependency>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-dist-compiler</artifactId>
-        <version>${project.version}</version>
+        <version>${robovm.version}</version>
       </dependency>
       <dependency>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-dist</artifactId>
-        <version>${project.version}</version>
+        <version>${robovm.version}</version>
         <classifier>nocompiler</classifier>
         <type>tar.gz</type>
       </dependency>
       <dependency>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-templater</artifactId>
-        <version>${project.version}</version>
+        <version>${robovm.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
