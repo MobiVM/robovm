@@ -12,6 +12,10 @@
   <name>RoboVM for Eclipse Core and UI</name>
   <packaging>eclipse-plugin</packaging>
 
+  <properties>
+    <robovm.version>${project.version}</robovm.version>
+  </properties>
+
   <dependencyManagement>
     <dependencies>
       <dependency>

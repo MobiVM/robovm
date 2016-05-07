@@ -8,7 +8,7 @@
     <format>tar.gz</format>
   </formats>
   <includeBaseDirectory>true</includeBaseDirectory>
-  <baseDirectory>robovm-${robovm.version}</baseDirectory>
+  <baseDirectory>robovm-${project.version}</baseDirectory>
 
   <componentDescriptors>
     <componentDescriptor>src/main/assembly/dist-common.xml</componentDescriptor>

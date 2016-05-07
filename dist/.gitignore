@@ -1,2 +1,4 @@
 /compiler/target/
 /package/target/
+/target/
+release.properties

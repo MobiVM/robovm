@@ -118,6 +118,7 @@ declare void @_bcHookInstrumented(%Env*, i32, i32, i8*, i8*)
 
 declare void @rvmPushShadowFrame(%Env*, %ShadowFrame*)
 declare void @rvmPopShadowFrame(%Env*)
+declare void @rvmPushShadowFrameLineNumber(%ShadowFrame*, i32)
 
 declare i8* @llvm.frameaddress(i32) nounwind readnone
 declare void @llvm.memcpy.p0i8.p0i8.i32(i8*, i8*, i32, i32, i1)
@@ -1003,5 +1004,11 @@ define private void @popShadowFrame(%Env* %env) alwaysinline {
     %2 = getelementptr %ShadowFrame* %frame, i32 0, i32 0
     %prevFrame = load volatile %ShadowFrame** %2
     store %ShadowFrame* %prevFrame, %ShadowFrame** %1
+    ret void
+}
+
+define private void @pushShadowFrameLineNumber(%ShadowFrame* %frame, i32 %lineNumber) alwaysinline {
+    %__shadowFrame_lineNumber = getelementptr %ShadowFrame* %frame, i32 0, i32 2
+    store i32 %lineNumber, i32* %__shadowFrame_lineNumber
     ret void
 }

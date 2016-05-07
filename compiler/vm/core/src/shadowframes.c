@@ -10,3 +10,7 @@ void rvmPopShadowFrame(Env* env) {
         env->shadowFrame = env->shadowFrame->prev;
     }
 }
+
+void rvmPushShadowFrameLineNumber(ShadowFrame* frame, jint lineNumber) {
+    frame->lineNumber = lineNumber;
+}

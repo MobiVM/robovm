@@ -4,15 +4,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
+    <groupId>com.mobidevelop.robovm</groupId>
+    <artifactId>robovm-parent</artifactId>
+    <version>2.1.0-SNAPSHOT</version>
   </parent>
-
-  <groupId>com.mobidevelop.robovm</groupId>
-  <version>2.0.0-SNAPSHOT</version>
-  <artifactId>robovm-parent</artifactId>
-  <name>RoboVM</name>
+  
+  <artifactId>robovm-compiler-parent</artifactId>
+  <name>RoboVM Compiler Parent</name>
   <packaging>pom</packaging>
   <url>http://github.com/mobidevelop/robovm</url>
   <description>
@@ -20,18 +18,6 @@
     No interpreter or virtual machine involved.
   </description>
   <inceptionYear>2012</inceptionYear>
-
-
-  <scm>
-    <url>https://github.com/mobidevelop/robovm</url>
-    <connection>scm:git:git://github.com/mobidevelop/robovm.git</connection>
-    <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>    
-  </scm>
-
-  <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/mobidevelop/robovm/issues</url>
-  </issueManagement>
 
   <dependencies>
   </dependencies>

@@ -3,33 +3,18 @@
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
+    <groupId>com.mobidevelop.robovm</groupId>
+    <artifactId>robovm-parent</artifactId>
+    <version>2.1.0-SNAPSHOT</version>
+    <relativePath>../../</relativePath>
   </parent>
 
-  <prerequisites>
-    <maven>3.0</maven>
-  </prerequisites>
-
   <groupId>com.mobidevelop.robovm</groupId>
-  <artifactId>robovm-templates-parent</artifactId>
-  <version>2.0.0-SNAPSHOT</version>
+  <artifactId>robovm-templates-parent</artifactId>  
   <name>RoboVM Templates for Eclipse and Maven integration</name>
   <packaging>pom</packaging>
   <url>http://www.robovm.com</url>
   <inceptionYear>2015</inceptionYear>
-  
-  <scm>
-    <url>https://github.com/mobidevelop/robovm</url>
-    <connection>scm:git:git://github.com/mobidevelop/robovm.git</connection>
-    <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>
-  </scm>
-
-  <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/mobidevelop/robovm/issues</url>
-  </issueManagement>
 
   <licenses>
     <license>
@@ -38,11 +23,6 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  
-  <properties>
-     <robovm.version>${project.version}</robovm.version>
-     <robovm.maven.version>${project.version}</robovm.maven.version>
-  </properties>
 
   <profiles>
     <profile>
@@ -68,9 +48,9 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.robovm</groupId>
+          <groupId>com.mobidevelop.robovm</groupId>
           <artifactId>robovm-maven-plugin</artifactId>
-          <version>${robovm.maven.version}</version>
+          <version>${project.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
