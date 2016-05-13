@@ -20,46 +20,6 @@
     </license>
   </licenses>
 
-  <profiles>
-    <profile>
-      <id>doclint-java8-disable</id>
-      <activation>
-        <jdk>[1.8,)</jdk>
-      </activation>
-      <properties>
-        <javadoc.opts>-Xdoclint:none</javadoc.opts>
-      </properties>
-    </profile>
-    <profile>
-      <id>build-natives</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.5.0</version>
-            <executions>
-              <execution>
-                <id>build-vm-binaries</id>
-                <phase>process-resources</phase>
-                <goals>
-                  <goal>exec</goal>
-                </goals>
-                <configuration>
-                  <workingDirectory>${project.basedir}/../vm</workingDirectory>
-                  <executable>${project.basedir}/../vm/build.sh</executable>
-                  <arguments>
-                    <argument>--build=release</argument>
-                  </arguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
-
   <build>
     <resources>
       <resource><directory>robovm/src/main/resources</directory></resource>
@@ -210,7 +170,6 @@
           </dependency>
         </dependencies>
       </plugin>
-
     </plugins>
 
     <pluginManagement>

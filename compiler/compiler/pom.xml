@@ -174,6 +174,28 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.5.0</version>
+        <executions>
+          <execution>
+            <id>build-binaries</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <workingDirectory>${project.basedir}/../vm</workingDirectory>
+              <executable>${project.basedir}/../vm/build.sh</executable>
+              <arguments>
+                <argument>--build=release</argument>
+              </arguments>
+              <skip>${skipBuildBinaries}</skip>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
