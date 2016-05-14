@@ -29,7 +29,7 @@ import org.junit.Test;
 public class RoboVMResolverTest {
 
     File m2Repo = new File(System.getProperty("user.home"), ".m2/repository");
-    File distAlpha2Dir = new File(m2Repo, "com/mobidevelop/robovm/robovm-dist/2.0.0-SNAPSHOT/unpacked/robovm-2.0.0-SNAPSHOT");
+    File distAlpha2Dir = new File(m2Repo, "com/mobidevelop/robovm/robovm-dist/2.1.0-SNAPSHOT/unpacked/robovm-2.1.0-SNAPSHOT");
     
     @Before
     public void setup() throws Exception {
@@ -41,7 +41,7 @@ public class RoboVMResolverTest {
     @Test
     public void testResolveAndUnpackRoboVMDistArtifact() throws Exception {
         RoboVMResolver resolver = new RoboVMResolver();
-        File dir = resolver.resolveAndUnpackRoboVMDistArtifact("2.0.0-SNAPSHOT");
+        File dir = resolver.resolveAndUnpackRoboVMDistArtifact("2.1.0-SNAPSHOT");
         assertEquals(distAlpha2Dir, dir);
         assertTrue(new File(dir, "bin/ios-sim").canExecute());
 		
