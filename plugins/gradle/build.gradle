@@ -24,7 +24,7 @@ sourceCompatibility = '1.7'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 ext {
-                roboVMVersion = '2.2.0-SNAPSHOT'
+    roboVMVersion = '2.2.0-SNAPSHOT'
 }
 
 repositories {
@@ -34,8 +34,8 @@ repositories {
 }
 
 dependencies {
-    compile gradleApi()
-    compile localGroovy()
+    compileOnly gradleApi()
+    compileOnly localGroovy()
     compile "org.apache.commons:commons-compress:1.5"
     compile "com.mobidevelop.robovm:robovm-dist-compiler:${roboVMVersion}"
     compile 'org.sonatype.aether:aether:1.13.1'
@@ -82,7 +82,7 @@ modifyPom {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.10'
+    gradleVersion = '2.13'
 }
 
 // apply from: 'local.gradle'
@@ -94,10 +94,11 @@ jar {
 shadowJar {
     classifier = ''
     dependencies {
-        exclude(dependency("com.mobidevelop.robovm:robovm-dist-compiler:${roboVMVersion}"))
+        exclude(dependency("com.mobidevelop.robovm:robovm-dist-compiler:${roboVMVersion}"));
     }
     relocate 'org.apache.http', 'com.mobidevelop.robovm.org.apache.http'
     relocate 'org.apache.commons.io', 'com.mobidevelop.robovm.org.apache.commons.io'
+    relocate 'org.objectweb.asm', 'com.mobidevelop.robovm.asm'
 }
 
 assemble.dependsOn('shadowJar')
