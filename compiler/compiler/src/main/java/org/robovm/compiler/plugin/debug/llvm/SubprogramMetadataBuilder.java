@@ -7,8 +7,15 @@ import org.robovm.compiler.llvm.Function;
 import org.robovm.compiler.llvm.FunctionRef;
 import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.Metadata;
+import org.robovm.compiler.llvm.MetadataNode;
+import org.robovm.compiler.llvm.MetadataString;
 
 public class SubprogramMetadataBuilder extends BaseMetadataBuilder {
+    public static final int DW_VIRTUALITY_none = 0;
+    public static final int DW_VIRTUALITY_virtual = 1;
+    public static final int DW_VIRTUALITY_pure_virtual = 2;
+
+	
 	private Metadata contextDescriptor;
 	private Metadata name;
 	private Metadata displayName;
@@ -21,8 +28,8 @@ public class SubprogramMetadataBuilder extends BaseMetadataBuilder {
 	private IntegerConstant indexVirtualFunction;
 	private Metadata vtablePointer;
 	private IntegerConstant flags;
-	private Boolean isOptimized;
-	private FunctionRef function;
+	private BooleanConstant isOptimized;
+	private DebugFunctionRef function;
 	private Metadata listFunctionTemplateParameters;
 	private Metadata declarationDescriptor;
 	private Metadata variables;
@@ -31,8 +38,12 @@ public class SubprogramMetadataBuilder extends BaseMetadataBuilder {
 	public SubprogramMetadataBuilder(ModuleBuilder builder) {
 		super(builder);
 		tag = new IntegerConstant(46);
-		mipsLinkageName = EMPTY_NODE.ref();
-		
+		mipsLinkageName = new MetadataString("");
+		lineNumber = new IntegerConstant(0);
+		scopeLineNumber = new IntegerConstant(0);
+		notExtern = BooleanConstant.TRUE;
+		virtuality = new IntegerConstant(DW_VIRTUALITY_virtual);
+		indexVirtualFunction = new IntegerConstant(0);
 	}
 	
 	public SubprogramMetadataBuilder setSourceDirectory(Metadata sourceDirectory) {
@@ -49,14 +60,19 @@ public class SubprogramMetadataBuilder extends BaseMetadataBuilder {
 		this.name = name;
 		return this;
 	}
+	
+	public SubprogramMetadataBuilder setName(String name) {
+		this.name = new MetadataString(name);
+		return this;
+	}
 
 	public SubprogramMetadataBuilder setDisplayName(Metadata displayName) {
 		this.displayName = displayName;
 		return this;
 	}
-
-	public SubprogramMetadataBuilder setMipsLinkageName(Metadata mipsLinkageName) {
-		this.mipsLinkageName = mipsLinkageName;
+	
+	public SubprogramMetadataBuilder setDisplayName(String name) {
+		this.displayName = new MetadataString(name);
 		return this;
 	}
 
@@ -64,7 +80,12 @@ public class SubprogramMetadataBuilder extends BaseMetadataBuilder {
 		this.lineNumber = lineNumber;
 		return this;
 	}
-
+	
+	public SubprogramMetadataBuilder setLineNumber(int lineNumber) {
+		this.lineNumber = new IntegerConstant(lineNumber);
+		return this;
+	}
+	
 	public SubprogramMetadataBuilder setTypeDescriptor(Metadata typeDescriptor) {
 		this.typeDescriptor = typeDescriptor;
 		return this;
@@ -74,9 +95,19 @@ public class SubprogramMetadataBuilder extends BaseMetadataBuilder {
 		this.localToCompileUnit = localToCompileUnit;
 		return this;
 	}
+	
+	public SubprogramMetadataBuilder setLocalToCompileUnit(boolean localToCompileUnit) {
+		this.localToCompileUnit = localToCompileUnit ? BooleanConstant.TRUE : BooleanConstant.FALSE;
+		return this;
+	}
 
 	public SubprogramMetadataBuilder setNotExtern(BooleanConstant notExtern) {
 		this.notExtern = notExtern;
+		return this;
+	}
+	
+	public SubprogramMetadataBuilder setNotExtern(boolean notExtern) {
+		this.notExtern = notExtern ? BooleanConstant.TRUE : BooleanConstant.FALSE;
 		return this;
 	}
 
@@ -94,13 +125,23 @@ public class SubprogramMetadataBuilder extends BaseMetadataBuilder {
 		this.flags = flags;
 		return this;
 	}
+	
+	public SubprogramMetadataBuilder setFlags(int flags) {
+		this.flags = new IntegerConstant(flags);
+		return this;
+	}
+	
+	public SubprogramMetadataBuilder setVirtuality(int virtuality) {
+		this.virtuality = new IntegerConstant(virtuality);
+		return this;
+	}
 
-	public SubprogramMetadataBuilder setIsOptimized(Boolean isOptimized) {
+	public SubprogramMetadataBuilder setIsOptimized(BooleanConstant isOptimized) {
 		this.isOptimized = isOptimized;
 		return this;
 	}
 
-	public SubprogramMetadataBuilder setFunction(FunctionRef function) {
+	public SubprogramMetadataBuilder setFunction(DebugFunctionRef function) {
 		this.function = function;
 		return this;
 	}
@@ -118,6 +159,11 @@ public class SubprogramMetadataBuilder extends BaseMetadataBuilder {
 	public SubprogramMetadataBuilder setScopeLineNumber(IntegerConstant scopeLineNumber) {
 		this.scopeLineNumber = scopeLineNumber;
 		return this;
+	}
+	
+	public MetadataNode build() {
+		return new MetadataNode(tag, sourceDirectory, contextDescriptor, name, displayName, mipsLinkageName, 
+				lineNumber, typeDescriptor, localToCompileUnit, notExtern, virtuality, indexVirtualFunction, flags, isOptimized);
 	}
 	
 }
