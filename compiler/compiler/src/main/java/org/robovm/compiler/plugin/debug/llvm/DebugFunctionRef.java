@@ -8,12 +8,10 @@ public class DebugFunctionRef extends FunctionRef {
 
 	public DebugFunctionRef(Function f) {
 		super(f);
-		// TODO Auto-generated constructor stub
 	}
 
 	public DebugFunctionRef(String name, FunctionType type) {
 		super(name, type);
-		// TODO Auto-generated constructor stub
 	}
 
 	
