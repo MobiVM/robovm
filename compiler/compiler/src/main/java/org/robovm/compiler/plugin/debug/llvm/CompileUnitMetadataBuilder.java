@@ -25,23 +25,22 @@ public class CompileUnitMetadataBuilder extends BaseMetadataBuilder {
 	private Metadata imports;
 	private Metadata splitDebugFilename;
 	
-	public CompileUnitMetadataBuilder(ModuleBuilder builder) {
-		super(builder);
-		
+	public CompileUnitMetadataBuilder(UnnamedMetadata _emptyNode) {
+		super(_emptyNode);
 		tag = new IntegerConstant(17);
 		language = new IntegerConstant(39668);
 		producer = new MetadataString(("RoboVM " + Version.getVersion()).getBytes());
 		isOptimized = BooleanConstant.FALSE;
-		flags = EMPTY_NODE.ref();
+		flags = emptyNode.ref();
 		runtimeVersion = new IntegerConstant(0);
 				
-		sourceDirectory = EMPTY_NODE.ref();
-		enums = EMPTY_NODE.ref();
-		retainedTypes = EMPTY_NODE.ref();
-		subprograms = EMPTY_NODE.ref();
-		globals = EMPTY_NODE.ref();
-		imports = EMPTY_NODE.ref();
-		splitDebugFilename = EMPTY_NODE.ref();
+		sourceDirectory = emptyNode.ref();
+		enums = emptyNode.ref();
+		retainedTypes = emptyNode.ref();
+		subprograms = emptyNode.ref();
+		globals = emptyNode.ref();
+		imports = emptyNode.ref();
+		splitDebugFilename = emptyNode.ref();
 	}
 	
 	public CompileUnitMetadataBuilder setSourceDirectory(Metadata sourceDirectory) {
@@ -55,8 +54,8 @@ public class CompileUnitMetadataBuilder extends BaseMetadataBuilder {
 	}
 	
 	public MetadataNode build() {
-		return new MetadataNode(tag, language, producer, isOptimized, flags, runtimeVersion, 
-				sourceDirectory, enums, retainedTypes, subprograms, globals, imports, splitDebugFilename);
+		return new MetadataNode(tag, sourceDirectory, language, producer, isOptimized, flags, runtimeVersion, 
+				enums, retainedTypes, subprograms, globals, imports, splitDebugFilename);
 	}
 	
 }

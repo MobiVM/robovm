@@ -5,6 +5,7 @@ import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.Metadata;
 import org.robovm.compiler.llvm.MetadataNode;
 import org.robovm.compiler.llvm.MetadataString;
+import org.robovm.compiler.llvm.UnnamedMetadata;
 
 public class BasicTypeBuilder extends BaseMetadataBuilder {
 	Metadata contextDescriptor;
@@ -25,12 +26,12 @@ public class BasicTypeBuilder extends BaseMetadataBuilder {
 	public static final int DW_ATE_unsigned_char= 8;
 
 	
-	public BasicTypeBuilder(ModuleBuilder builder) {
-		this(builder, 36);
+	public BasicTypeBuilder(UnnamedMetadata emptyNode) {
+		this(36, emptyNode);
 	}
 	
-	public BasicTypeBuilder(ModuleBuilder builder, int tag) {
-		super(builder);
+	public BasicTypeBuilder(int tag, UnnamedMetadata _emptyNode) {
+		super(_emptyNode);
 		this.tag = new IntegerConstant(tag);
 		
 		line = new IntegerConstant(0);

@@ -33,6 +33,7 @@ import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.PluginArguments;
+import org.robovm.compiler.plugin.debug.llvm.BaseMetadataBuilder;
 import org.robovm.compiler.plugin.debug.llvm.BasicTypeBuilder;
 import org.robovm.compiler.plugin.debug.llvm.CompileUnitMetadataBuilder;
 import org.robovm.compiler.plugin.debug.llvm.CompositeTypeBuilder;
@@ -75,10 +76,17 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 	
 	private UnnamedMetadata fileContext;
 	private UnnamedMetadata sourceFileMeta;
+	
+	private UnnamedMetadata emptyNode;
+	private List<UnnamedMetadataRef> subprograms;
+    private UnnamedMetadata subprogramsMetadata;
     
+    /*
+     * TODO: Mhmm, this doesn't work this way. The plugin instance is shared between many classes that are compiled.
+     * 
+     */
     
     public DebugInformationPlugin() {
-		
 	}
     
     public PluginArguments getArguments() {
@@ -99,15 +107,21 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     public void beforeClass(Config config, Clazz clazz, ModuleBuilder moduleBuilder) throws IOException {
     	super.beforeClass(config, clazz, moduleBuilder);
     	
+    	subprograms = new ArrayList<>();
+    	
     	if (!config.isDebug()) {
     		return;
     	}
     	
+    	emptyNode = moduleBuilder.newUnnamedMetadata(new MetadataNode());
+    	
     	File sourceFile = getSourceFile(config, clazz);
     	sourceFileMeta = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[] {new MetadataString(sourceFile.getName()), new MetadataString(sourceFile.getParentFile().getAbsolutePath() + "/")}));
     	
-    	CompileUnitMetadataBuilder compileUnitBuilder = new CompileUnitMetadataBuilder(moduleBuilder);
-    	compileUnitBuilder.setSourceDirectory(sourceFileMeta.ref());
+    	subprogramsMetadata = moduleBuilder.newUnnamedMetadata();
+    	
+    	CompileUnitMetadataBuilder compileUnitBuilder = new CompileUnitMetadataBuilder(emptyNode);
+    	compileUnitBuilder.setSourceDirectory(sourceFileMeta.ref()).setSubprograms(subprogramsMetadata.ref());
   	        	
     	UnnamedMetadata dwarfVersion = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(2), new MetadataString("Dwarf Version"), new IntegerConstant(2) }));
     	UnnamedMetadata debugInfoVersion = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(2), new MetadataString("Debug Info Version"), new IntegerConstant(2) }));
@@ -120,75 +134,82 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     
     	long longSize = config.getArch().is32Bit() ? 32 : 64;
     	
-    	this.booleanTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(moduleBuilder)
+    	this.booleanTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(emptyNode)
     			.setName("boolean")
     			.setAlignmentInBits(8)
     			.setSizeInBits(8)
     			.setDwarfEncoding(BasicTypeBuilder.DW_ATE_boolean)
     			.build());
     	
-    	this.byteTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(moduleBuilder)
+    	this.byteTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(emptyNode)
     			.setName("byte")
     			.setAlignmentInBits(8)
     			.setSizeInBits(8)
     			.setDwarfEncoding(BasicTypeBuilder.DW_ATE_signed_char)
     			.build());
     	
-    	shortTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(moduleBuilder)
+    	shortTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(emptyNode)
     			.setName("short")
     			.setAlignmentInBits(16)
     			.setSizeInBits(16)
     			.setDwarfEncoding(BasicTypeBuilder.DW_ATE_signed)
     			.build());
     	
-    	charTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(moduleBuilder)
+    	charTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(emptyNode)
     			.setName("char")
     			.setAlignmentInBits(16)
     			.setSizeInBits(16)
     			.setDwarfEncoding(BasicTypeBuilder.DW_ATE_unsigned)
     			.build());
     	
-    	intTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(moduleBuilder)
+    	intTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(emptyNode)
     			.setName("int")
     			.setAlignmentInBits(32)
     			.setSizeInBits(32)
     			.setDwarfEncoding(BasicTypeBuilder.DW_ATE_signed)
     			.build());
     	
-    	longTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(moduleBuilder)
+    	longTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(emptyNode)
     			.setName("long")
     			.setAlignmentInBits(64)
     			.setSizeInBits(longSize)
     			.setDwarfEncoding(BasicTypeBuilder.DW_ATE_signed)
     			.build());
     	
-    	floatTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(moduleBuilder)
+    	floatTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(emptyNode)
     			.setName("float")
     			.setAlignmentInBits(32)
     			.setSizeInBits(32)
     			.setDwarfEncoding(BasicTypeBuilder.DW_ATE_float)
     			.build());
     	
-    	doubleTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(moduleBuilder)
+    	doubleTypeNode = moduleBuilder.newUnnamedMetadata(new BasicTypeBuilder(emptyNode)
     			.setName("double")
     			.setAlignmentInBits(64)
     			.setSizeInBits(longSize)
     			.setDwarfEncoding(BasicTypeBuilder.DW_ATE_float)
     			.build());
     	
-    	emptyEnvType = moduleBuilder.newUnnamedMetadata(new DerivedTagBuilder(moduleBuilder)
+    	emptyEnvType = moduleBuilder.newUnnamedMetadata(new DerivedTagBuilder(emptyNode)
     			.setName("")
     			.setAlignmentInBits(longSize)
     			.setSizeInBits(longSize)
     			.build());
     	
-    	objectTypeNode = moduleBuilder.newUnnamedMetadata(new DerivedTagBuilder(moduleBuilder)
+    	objectTypeNode = moduleBuilder.newUnnamedMetadata(new DerivedTagBuilder(emptyNode)
     			.setName("Object")
     			.setAlignmentInBits(longSize)
     			.setSizeInBits(longSize)
     			.build());
     	
     	
+    }
+    
+    @Override
+    public void afterClass(Config config, Clazz clazz, ModuleBuilder moduleBuilder) throws IOException {
+    	super.afterClass(config, clazz, moduleBuilder);
+    	
+    	subprogramsMetadata.setValue(new MetadataNode(subprograms));
     }
     
 
@@ -206,7 +227,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	}
     	
     	UnnamedMetadata methodTypesMeta = moduleBuilder.newUnnamedMetadata(new MetadataNode(methodTypes));
-    	CompositeTypeBuilder subRoutine = new CompositeTypeBuilder(moduleBuilder)
+    	CompositeTypeBuilder subRoutine = new CompositeTypeBuilder(emptyNode)
     			.setMemberDescriptors(methodTypesMeta.ref());
     			
     	UnnamedMetadata subRoutineMeta = moduleBuilder.newUnnamedMetadata(subRoutine.build());
@@ -229,7 +250,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                 }
             }
         }
-    	SubprogramMetadataBuilder sub = new SubprogramMetadataBuilder(moduleBuilder)
+    	SubprogramMetadataBuilder sub = new SubprogramMetadataBuilder(emptyNode)
     			.setContextDescriptor(this.fileContext.ref())
     			.setSourceDirectory(this.sourceFileMeta.ref())
     			.setName(name)
@@ -241,6 +262,8 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     			//.setVirtuality((method.getModifiers() & Modifier.FINAL) != 0 ? 0 : 1);
     	
     	UnnamedMetadata subModuleMeta = moduleBuilder.newUnnamedMetadata(sub.build());
+    	
+    	subprograms.add(subModuleMeta.ref());
     	
     }
     
@@ -284,10 +307,10 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	if (sourceFileTag == null) {
     		String className = clazz.getInternalName();
     		sourceFile = new File(className.substring(clazz.getInternalName().lastIndexOf("/") + 1) + ".java");
-    		
     	}
-    	
-    	sourceFile = new File(sourceFileTag.getSourceFile());
+    	else {
+    		sourceFile = new File(sourceFileTag.getSourceFile());
+    	}
     	if (!sourceFile.exists()) {
     		for (String dir : sourcePath) {
     			sourceFile = new File(dir + "/" + sourceFile.getName());

@@ -9,6 +9,7 @@ import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.Metadata;
 import org.robovm.compiler.llvm.MetadataNode;
 import org.robovm.compiler.llvm.MetadataString;
+import org.robovm.compiler.llvm.UnnamedMetadata;
 
 public class SubprogramMetadataBuilder extends BaseMetadataBuilder {
     public static final int DW_VIRTUALITY_none = 0;
@@ -35,8 +36,8 @@ public class SubprogramMetadataBuilder extends BaseMetadataBuilder {
 	private Metadata variables;
 	private IntegerConstant scopeLineNumber;
 	
-	public SubprogramMetadataBuilder(ModuleBuilder builder) {
-		super(builder);
+	public SubprogramMetadataBuilder(UnnamedMetadata _emptyNode) {
+		super(_emptyNode);
 		tag = new IntegerConstant(46);
 		mipsLinkageName = new MetadataString("");
 		lineNumber = new IntegerConstant(0);
@@ -163,7 +164,8 @@ public class SubprogramMetadataBuilder extends BaseMetadataBuilder {
 	
 	public MetadataNode build() {
 		return new MetadataNode(tag, sourceDirectory, contextDescriptor, name, displayName, mipsLinkageName, 
-				lineNumber, typeDescriptor, localToCompileUnit, notExtern, virtuality, indexVirtualFunction, flags, isOptimized);
+				lineNumber, typeDescriptor, localToCompileUnit, notExtern, virtuality, indexVirtualFunction, vtablePointer, 
+				flags, isOptimized, function, listFunctionTemplateParameters, declarationDescriptor, variables, lineNumber);
 	}
 	
 }

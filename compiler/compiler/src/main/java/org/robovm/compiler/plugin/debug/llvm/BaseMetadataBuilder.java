@@ -7,17 +7,12 @@ import org.robovm.compiler.llvm.MetadataNode;
 import org.robovm.compiler.llvm.UnnamedMetadata;
 
 public class BaseMetadataBuilder {
-	ModuleBuilder builder;
-	static UnnamedMetadata EMPTY_NODE;
+	UnnamedMetadata emptyNode;
 	
 	IntegerConstant tag;
 	Metadata sourceDirectory;
 	
-	public BaseMetadataBuilder(ModuleBuilder builder) {
-		this.builder = builder;
-		
-		if (EMPTY_NODE == null) {
-			EMPTY_NODE = this.builder.newUnnamedMetadata(new MetadataNode());
-		}
+	public BaseMetadataBuilder(UnnamedMetadata emptyNode) {
+		this.emptyNode = emptyNode;
 	}
 }

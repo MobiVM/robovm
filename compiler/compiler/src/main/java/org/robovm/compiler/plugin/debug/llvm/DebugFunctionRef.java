@@ -17,6 +17,6 @@ public class DebugFunctionRef extends FunctionRef {
 	
 	@Override
 	public String toString() {
-		return super.getType().toString() + " " + super.toString();
+		return super.toString();
 	}
 }
