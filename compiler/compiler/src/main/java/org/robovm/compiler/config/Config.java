@@ -231,9 +231,7 @@ public class Config {
                 new ObjCBlockPlugin(),
                 new AnnotationImplPlugin(),
                 new LambdaPlugin(),                
-                new ShadowFramePlugin(),
-                new DebugInformationPlugin(),
-                new DebugInstrumentPlugin()
+                new DebugInformationPlugin()
                 ));
         this.loadPluginsFromClassPath();
     }

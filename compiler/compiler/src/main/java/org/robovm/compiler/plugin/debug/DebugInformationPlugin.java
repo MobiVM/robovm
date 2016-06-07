@@ -1,10 +1,13 @@
 package org.robovm.compiler.plugin.debug;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import org.robovm.compiler.Functions;
 import org.robovm.compiler.ModuleBuilder;
@@ -14,6 +17,7 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Builder;
 import org.robovm.compiler.llvm.BasicBlock;
 import org.robovm.compiler.llvm.Call;
+import org.robovm.compiler.llvm.DebugMetadata;
 import org.robovm.compiler.llvm.Function;
 import org.robovm.compiler.llvm.FunctionDeclaration;
 import org.robovm.compiler.llvm.FunctionRef;
@@ -23,6 +27,7 @@ import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.Metadata;
 import org.robovm.compiler.llvm.MetadataNode;
 import org.robovm.compiler.llvm.MetadataString;
+import org.robovm.compiler.llvm.MetadataValue;
 import org.robovm.compiler.llvm.NamedMetadata;
 import org.robovm.compiler.llvm.StringConstant;
 import org.robovm.compiler.llvm.Type;
@@ -38,6 +43,7 @@ import org.robovm.compiler.plugin.debug.llvm.BasicTypeBuilder;
 import org.robovm.compiler.plugin.debug.llvm.CompileUnitMetadataBuilder;
 import org.robovm.compiler.plugin.debug.llvm.CompositeTypeBuilder;
 import org.robovm.compiler.plugin.debug.llvm.DebugFunctionRef;
+import org.robovm.compiler.plugin.debug.llvm.DebugMetadataNode;
 import org.robovm.compiler.plugin.debug.llvm.DerivedTagBuilder;
 import org.robovm.compiler.plugin.debug.llvm.SubprogramMetadataBuilder;
 import org.robovm.compiler.util.generic.SootMethodType;
@@ -233,20 +239,26 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	UnnamedMetadata subRoutineMeta = moduleBuilder.newUnnamedMetadata(subRoutine.build());
     	
     	int methodLineNumber = Integer.MAX_VALUE;
+    	Map<Instruction, Integer> lineNumberDebugInfo = new HashMap<>();
     	
     	//Taken from ShadowFramePlugin
         for (BasicBlock bb : function.getBasicBlocks()) {
             for (int i = 0; i < bb.getInstructions().size(); i++) {
                 Instruction instruction = bb.getInstructions().get(i);
                 List<Object> units = instruction.getAttachments();
+                int currentLineNumber = -1;
                 for (Object object : units) {
                     if (object instanceof Unit) {
                         Unit unit = (Unit) object;
                         LineNumberTag tag = (LineNumberTag) unit.getTag("LineNumberTag");
                         if (tag != null) {
-                        	methodLineNumber = Math.min(methodLineNumber, tag.getLineNumber());
+                        	currentLineNumber = tag.getLineNumber();
+                        	methodLineNumber = Math.min(methodLineNumber, currentLineNumber);
                         }
                     }
+                }
+                if (!lineNumberDebugInfo.containsKey(instruction) && currentLineNumber > -1) {
+                	lineNumberDebugInfo.put(instruction, currentLineNumber);
                 }
             }
         }
@@ -264,6 +276,16 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	UnnamedMetadata subModuleMeta = moduleBuilder.newUnnamedMetadata(sub.build());
     	
     	subprograms.add(subModuleMeta.ref());
+    	
+    	for (Entry<Instruction, Integer> entry : lineNumberDebugInfo.entrySet()) {
+    		UnnamedMetadata debugLine = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{
+    				new IntegerConstant(entry.getValue()),
+    				new IntegerConstant(0),
+    				subModuleMeta.ref(),
+    				null
+    			}));
+    		entry.getKey().addMetadata(new DebugMetadata(new DebugMetadataNode(debugLine.ref())));
+    	}
     	
     }
     
