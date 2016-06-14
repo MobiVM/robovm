@@ -26,7 +26,7 @@ You will need the following dependencies installed (iOS only, never tried Linux)
  * Maven
  * CMake
  * Xcode and command line tools
- * IntelliJ IDEA 15 or higher, stored under /Applications/IntelliJ IDEA.app
+ * IntelliJ IDEA 15 or higher, stored under /Applications/IntelliJ IDEA CE.app
 
 To build RoboVM locally, execute the `build.sh` script in the root folder. This
 will 
