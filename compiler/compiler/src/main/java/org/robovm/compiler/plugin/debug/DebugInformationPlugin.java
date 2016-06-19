@@ -3,6 +3,7 @@ package org.robovm.compiler.plugin.debug;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,8 +14,10 @@ import org.robovm.compiler.Functions;
 import org.robovm.compiler.ModuleBuilder;
 import org.robovm.compiler.Types;
 import org.robovm.compiler.clazz.Clazz;
+import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Builder;
+import org.robovm.compiler.llvm.Alloca;
 import org.robovm.compiler.llvm.BasicBlock;
 import org.robovm.compiler.llvm.Call;
 import org.robovm.compiler.llvm.DebugMetadata;
@@ -29,6 +32,7 @@ import org.robovm.compiler.llvm.MetadataNode;
 import org.robovm.compiler.llvm.MetadataString;
 import org.robovm.compiler.llvm.MetadataValue;
 import org.robovm.compiler.llvm.NamedMetadata;
+import org.robovm.compiler.llvm.Store;
 import org.robovm.compiler.llvm.StringConstant;
 import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.UnnamedMetadata;
@@ -38,15 +42,24 @@ import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.PluginArguments;
-import org.robovm.compiler.plugin.debug.llvm.BaseMetadataBuilder;
-import org.robovm.compiler.plugin.debug.llvm.BasicTypeBuilder;
-import org.robovm.compiler.plugin.debug.llvm.CompileUnitMetadataBuilder;
-import org.robovm.compiler.plugin.debug.llvm.CompositeTypeBuilder;
 import org.robovm.compiler.plugin.debug.llvm.DebugFunctionRef;
 import org.robovm.compiler.plugin.debug.llvm.DebugMetadataNode;
-import org.robovm.compiler.plugin.debug.llvm.DerivedTagBuilder;
-import org.robovm.compiler.plugin.debug.llvm.SubprogramMetadataBuilder;
+import org.robovm.compiler.plugin.debug.llvm.DwarfMetadataNode;
+import org.robovm.compiler.plugin.debug.llvm.builders.BaseMetadataBuilder;
+import org.robovm.compiler.plugin.debug.llvm.builders.BasicTypeBuilder;
+import org.robovm.compiler.plugin.debug.llvm.builders.CompileUnitMetadataBuilder;
+import org.robovm.compiler.plugin.debug.llvm.builders.CompositeTypeBuilder;
+import org.robovm.compiler.plugin.debug.llvm.builders.DerivedTagBuilder;
+import org.robovm.compiler.plugin.debug.llvm.builders.LocalVariableBuilder;
+import org.robovm.compiler.plugin.debug.llvm.builders.SubprogramMetadataBuilder;
 import org.robovm.compiler.util.generic.SootMethodType;
+import org.robovm.llvm.Context;
+import org.robovm.llvm.Module;
+import org.robovm.llvm.Target;
+import org.robovm.llvm.TargetMachine;
+import org.robovm.llvm.binding.CodeGenFileType;
+import org.robovm.llvm.binding.CodeGenOptLevel;
+import org.robovm.llvm.binding.RelocMode;
 
 import soot.BooleanType;
 import soot.ByteType;
@@ -54,20 +67,33 @@ import soot.CharType;
 import soot.DoubleType;
 import soot.FloatType;
 import soot.IntType;
+import soot.Local;
+import soot.LocalVariable;
 import soot.LongType;
 import soot.Modifier;
 import soot.ShortType;
 import soot.SootMethod;
 import soot.Unit;
+import soot.UnitBox;
 import soot.VoidType;
+import soot.jimple.AssignStmt;
+import soot.jimple.DefinitionStmt;
+import soot.jimple.IdentityStmt;
+import soot.jimple.internal.JimpleLocal;
 import soot.tagkit.LineNumberTag;
 import soot.tagkit.SourceFileTag;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 
 public class DebugInformationPlugin extends AbstractCompilerPlugin {
     private Logger log;
     private String[] sourcePath;
     
-    private static FunctionRef LLVM_DBG_DECLARE = new FunctionRef("llvm.dbg.declare", new FunctionType(Type.VOID, new Type[] { Type.METADATA, Type.METADATA }));
+    private static FunctionRef LLVM_DBG_DECLARE_FUN = new FunctionRef("llvm.dbg.declare", new FunctionType(Type.VOID, new Type[] { Type.METADATA, Type.METADATA }));
+    private static FunctionDeclaration LLVM_DBG_DECLARE_DECLARATION = new FunctionDeclaration(LLVM_DBG_DECLARE_FUN);
     
     private UnnamedMetadata booleanTypeNode;
     private UnnamedMetadata byteTypeNode;
@@ -122,21 +148,27 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	emptyNode = moduleBuilder.newUnnamedMetadata(new MetadataNode());
     	
     	File sourceFile = getSourceFile(config, clazz);
-    	sourceFileMeta = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[] {new MetadataString(sourceFile.getName()), new MetadataString(sourceFile.getParentFile().getAbsolutePath() + "/")}));
+    	
+    	DwarfMetadataNode sourceFileNode = new DwarfMetadataNode(new Value[] {new MetadataString(sourceFile.getName()), new MetadataString(sourceFile.getParentFile().getAbsolutePath() + "/")});
+    	sourceFileMeta = moduleBuilder.newUnnamedMetadata(sourceFileNode);
     	
     	subprogramsMetadata = moduleBuilder.newUnnamedMetadata();
     	
     	CompileUnitMetadataBuilder compileUnitBuilder = new CompileUnitMetadataBuilder(emptyNode);
-    	compileUnitBuilder.setSourceDirectory(sourceFileMeta.ref()).setSubprograms(subprogramsMetadata.ref());
+    	compileUnitBuilder.setSourceDirectory(sourceFileMeta.ref(), sourceFile.getAbsolutePath()).setSubprograms(subprogramsMetadata.ref());
   	        	
     	UnnamedMetadata dwarfVersion = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(2), new MetadataString("Dwarf Version"), new IntegerConstant(2) }));
     	UnnamedMetadata debugInfoVersion = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(2), new MetadataString("Debug Info Version"), new IntegerConstant(2) }));
     	
-    	fileContext = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[] {new IntegerConstant(41), sourceFileMeta.ref() }));
+    	DwarfMetadataNode fileContextNode = new DwarfMetadataNode(new Value[] {new MetadataString("0x" + Integer.toHexString(41)), sourceFileMeta.ref() });
+    	fileContextNode.setDwarfTag("DW_TAG_file_type");
+    	fileContextNode.setDwarfValues(new String[]{sourceFile.getAbsolutePath()});
+
+    	fileContext = moduleBuilder.newUnnamedMetadata(fileContextNode);
     	
     	moduleBuilder.addNamedMetadata(new NamedMetadata("llvm.dbg.cu", new UnnamedMetadata[] { moduleBuilder.newUnnamedMetadata(compileUnitBuilder.build()) }));
     	moduleBuilder.addNamedMetadata(new NamedMetadata("llvm.module.flags", new UnnamedMetadata[] { dwarfVersion, debugInfoVersion }));
-    	moduleBuilder.addFunctionDeclaration(new FunctionDeclaration(LLVM_DBG_DECLARE));
+    	moduleBuilder.addFunctionDeclaration(LLVM_DBG_DECLARE_DECLARATION);
     
     	long longSize = config.getArch().is32Bit() ? 32 : 64;
     	
@@ -208,7 +240,6 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     			.setSizeInBits(longSize)
     			.build());
     	
-    	
     }
     
     @Override
@@ -223,24 +254,51 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     public void afterMethod(Config config, Clazz clazz, SootMethod method, ModuleBuilder moduleBuilder,
     		Function function) throws IOException {
     	
+    	//local variables
+    	if (!method.hasActiveBody()) {
+    		return;
+    	}
+    	
     	String name = function.getName();
     	
+    	//add return value from soot
     	List<Metadata> methodTypes = new ArrayList<>();
     	methodTypes.add(getParameterMetadata(method.getReturnType()));
+    	
+    	//add default parameter types
+    	methodTypes.add(emptyEnvType.ref()); //*env
+    	methodTypes.add(objectTypeNode.ref()); //*object (this)
     	
     	for (int i=0;i<method.getParameterCount();i++) {
     		methodTypes.add(getParameterMetadata(method.getParameterType(i)));
     	}
     	
-    	UnnamedMetadata methodTypesMeta = moduleBuilder.newUnnamedMetadata(new MetadataNode(methodTypes));
-    	CompositeTypeBuilder subRoutine = new CompositeTypeBuilder(emptyNode)
-    			.setMemberDescriptors(methodTypesMeta.ref());
-    			
-    	UnnamedMetadata subRoutineMeta = moduleBuilder.newUnnamedMetadata(subRoutine.build());
     	
     	int methodLineNumber = Integer.MAX_VALUE;
     	Map<Instruction, Integer> lineNumberDebugInfo = new HashMap<>();
     	
+    	/*
+    	Map<DefinitionStmt, LocalDebugVariable> localVariables = new HashMap<>();
+        for (LocalVariable local : method.getActiveBody().getLocalVariables()) {
+        	for (UnitBox box : local.getUnitBoxes()) {
+        		Unit unit = box.getUnit();
+        		if (unit instanceof IdentityStmt || unit instanceof AssignStmt) {
+        			LocalDebugVariable debugVar = new LocalDebugVariable(local);
+        			localVariables.put((DefinitionStmt)unit, debugVar);
+        			LineNumberTag tag = (LineNumberTag) unit.getTag("LineNumberTag");
+                    if (tag != null) {
+                    	debugVar.lineNumber = tag.getLineNumber();
+                    }
+        		}
+        	}
+        }
+    	
+        System.out.println(function.getType().getParameterTypes());
+        */
+        //variables have circular reference on submodule, needs to be defined here
+        UnnamedMetadata subModuleMeta = moduleBuilder.newUnnamedMetadata();
+        List<UnnamedMetadataRef> localVarsMetadata = new ArrayList<>();
+        
     	//Taken from ShadowFramePlugin
         for (BasicBlock bb : function.getBasicBlocks()) {
             for (int i = 0; i < bb.getInstructions().size(); i++) {
@@ -250,6 +308,46 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                 for (Object object : units) {
                     if (object instanceof Unit) {
                         Unit unit = (Unit) object;
+                        //first tries for local variables debug info
+                        //not finished
+                        /*
+                        if (instruction instanceof Store) {
+	                        if (localVariables.containsKey(unit)) {
+	                        	LocalDebugVariable debugVar = localVariables.get(unit);
+	                        	
+	                        	//build this and env arg variable
+	                        	if (debugVar.variable.getName().equals("this")) {
+	                        		System.out.println("Found instruction for this variable: " + localVariables.get(unit));
+	                        		
+	                        		LocalVariableBuilder envVariable = new LocalVariableBuilder(LocalVariableBuilder.DW_TAG_arg_variable, emptyNode)
+	                        				.setName("env")
+	                        				.setContextDescriptor(subModuleMeta.ref())
+	                        				.setSourceDirectory(fileContext.ref())
+	                        				.setTypeDescriptor(this.emptyEnvType.ref())
+	                        				.setLineNumber(debugVar.lineNumber)
+	                        				.setArgumentNumber(1);
+	                        		
+	                        		
+	                        		LocalVariableBuilder thisVariable = new LocalVariableBuilder(LocalVariableBuilder.DW_TAG_arg_variable, emptyNode)
+	                        				.setName(debugVar.variable.getName())
+	                        				.setContextDescriptor(subModuleMeta.ref())
+	                        				.setSourceDirectory(fileContext.ref())
+	                        				.setTypeDescriptor(this.objectTypeNode.ref())
+	                        				.setLineNumber(debugVar.lineNumber)
+	                        				.setArgumentNumber(2);
+	                        		
+	                        		UnnamedMetadata envVariableMeta = moduleBuilder.newUnnamedMetadata(envVariable.build());
+	                        		UnnamedMetadata thisVariableMeta = moduleBuilder.newUnnamedMetadata(thisVariable.build());
+	                        		
+	                        		localVarsMetadata.add(envVariableMeta.ref());
+	                        		localVarsMetadata.add(thisVariableMeta.ref());
+	                        	}
+	                        	
+	                        }
+	                        else {
+	                        }
+                        }
+                        */
                         LineNumberTag tag = (LineNumberTag) unit.getTag("LineNumberTag");
                         if (tag != null) {
                         	currentLineNumber = tag.getLineNumber();
@@ -262,19 +360,32 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                 }
             }
         }
+        
+        UnnamedMetadata methodArgsMetadata = moduleBuilder.newUnnamedMetadata(new MetadataNode(localVarsMetadata));
+        
+        
+    	UnnamedMetadata methodTypesMeta = moduleBuilder.newUnnamedMetadata(new MetadataNode(methodTypes));
+    	CompositeTypeBuilder subRoutine = new CompositeTypeBuilder(emptyNode)
+    			.setMemberDescriptors(methodTypesMeta.ref());
+    			
+    	UnnamedMetadata subRoutineMeta = moduleBuilder.newUnnamedMetadata(subRoutine.build());
+
+        
     	SubprogramMetadataBuilder sub = new SubprogramMetadataBuilder(emptyNode)
     			.setContextDescriptor(this.fileContext.ref())
     			.setSourceDirectory(this.sourceFileMeta.ref())
     			.setName(name)
     			.setDisplayName(name)
-    			.setFlags(method.getModifiers())
+    			//.setFlags(method.getModifiers())
     			.setTypeDescriptor(subRoutineMeta.ref())
     			.setFunction(new DebugFunctionRef(function))
-    			.setLineNumber(methodLineNumber);
+    			.setLineNumber(methodLineNumber)
+    			.setVariables(methodArgsMetadata.ref());
     			//.setVirtuality((method.getModifiers() & Modifier.FINAL) != 0 ? 0 : 1);
     	
-    	UnnamedMetadata subModuleMeta = moduleBuilder.newUnnamedMetadata(sub.build());
+    	subModuleMeta.setValue(sub.build());
     	
+    	//crashes currently.
     	subprograms.add(subModuleMeta.ref());
     	
     	for (Entry<Instruction, Integer> entry : lineNumberDebugInfo.entrySet()) {
@@ -345,5 +456,55 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	return sourceFile;
     }
     
+    public static class LocalDebugVariable {
+    	UnnamedMetadataRef metadata;
+    	LocalVariable variable;
+    	int lineNumber;
+    	
+    	public LocalDebugVariable() {
+		
+		}
+    	
+    	
+    	
+		public LocalDebugVariable(LocalVariable variable) {
+			super();
+			this.variable = variable;
+		}
+
+
+
+		public LocalDebugVariable(UnnamedMetadataRef metadata, LocalVariable variable) {
+			super();
+			this.metadata = metadata;
+			this.variable = variable;
+		}
+    	
+    	
+    }
+    
+    public static void main(String[] args) throws IOException {
+		Context ctx = new Context();
+		Module module = Module.parseIR(ctx, new String(Files.readAllBytes(Paths.get("/Users/generalsolutions/.robovm/cache/macosx/x86_64/debug/Users/generalsolutions/Documents/runtime-EclipseApplication/RobovmConsole/bin/Main.class.ll"))), "Main.class.ll");
+	
+		String triple = "x86_64-unkown-macos";
+		
+		Target target = Target.lookupTarget(triple);
+		
+		TargetMachine targetMachine = target.createTargetMachine(triple,
+				Arch.x86_64.getLlvmCpu(), null, 
+                CodeGenOptLevel.CodeGenLevelNone,
+                RelocMode.RelocPIC, null);
+		
+            targetMachine.setAsmVerbosityDefault(true);
+            targetMachine.setFunctionSections(true);
+            targetMachine.setDataSections(true);
+            targetMachine.getOptions().setNoFramePointerElim(true);
+            targetMachine.getOptions().setPositionIndependentExecutable(false); // NOTE: Doesn't have any effect on x86. See #503.
+
+            ByteArrayOutputStream output = new ByteArrayOutputStream(256 * 1024);
+            targetMachine.emit(module, output, CodeGenFileType.AssemblyFile);
+
+    }
 
 }
