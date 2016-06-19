@@ -87,7 +87,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-
+/**
+ *
+ * @author Florianf
+ * This plugin adds LLVM / DWARF debug metadata when compiled in debug mode
+ *
+ */
 public class DebugInformationPlugin extends AbstractCompilerPlugin {
     private Logger log;
     private String[] sourcePath;
@@ -112,11 +117,6 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 	private UnnamedMetadata emptyNode;
 	private List<UnnamedMetadataRef> subprograms;
     private UnnamedMetadata subprogramsMetadata;
-    
-    /*
-     * TODO: Mhmm, this doesn't work this way. The plugin instance is shared between many classes that are compiled.
-     * 
-     */
     
     public DebugInformationPlugin() {
 	}
