@@ -91,7 +91,7 @@ import java.nio.file.Paths;
  *
  * @author Florianf
  * This plugin adds LLVM / DWARF debug metadata when compiled in debug mode
- *
+ * 
  */
 public class DebugInformationPlugin extends AbstractCompilerPlugin {
     private Logger log;
@@ -254,7 +254,6 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     public void afterMethod(Config config, Clazz clazz, SootMethod method, ModuleBuilder moduleBuilder,
     		Function function) throws IOException {
     	
-    	//local variables
     	if (!method.hasActiveBody()) {
     		return;
     	}
