@@ -385,7 +385,6 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	
     	subModuleMeta.setValue(sub.build());
     	
-    	//crashes currently.
     	subprograms.add(subModuleMeta.ref());
     	
     	for (Entry<Instruction, Integer> entry : lineNumberDebugInfo.entrySet()) {
