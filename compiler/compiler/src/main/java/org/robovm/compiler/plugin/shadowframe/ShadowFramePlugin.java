@@ -16,6 +16,7 @@ import org.robovm.compiler.llvm.Instruction;
 import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.PlainTextInstruction;
 import org.robovm.compiler.llvm.Ret;
+import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
@@ -40,7 +41,7 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         if (method.isNative() || method.isAbstract() || !method.hasActiveBody()) {
             return;
         }
-
+        
         // insert generation of shadow frame and wiring it up to previously set
         // shadow frame in the entry basic block
         BasicBlock entryBlock = function.getBasicBlocks().get(0);
@@ -48,20 +49,17 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         Alloca shadowAlloca = new Alloca(shadowVariable, Types.SHADOW_FRAME);
         entryBlock.getInstructions().add(0, shadowAlloca);
         
-        // initiate shadow frame with function address and dummy line number
+        // get functionsAddress for shadowframe
         String functionSignature = function.getSignature();
-        PlainTextInstruction initiateFrame = new PlainTextInstruction(                
-                  "%funcAddr = bitcast " + functionSignature + "* @\"" + function.getName() +"\" to i8*\n"
-                + "    %__shadowFrame_funcAddr = getelementptr %ShadowFrame* %__shadowFrame, i32 0, i32 1\n"
-                + "    store i8* %funcAddr, i8** %__shadowFrame_funcAddr\n"
-                + "    %__shadowFrame_lineNumber = getelementptr %ShadowFrame* %__shadowFrame, i32 0, i32 2\n"
-                + "    store i32 -1, i32* %__shadowFrame_lineNumber\n");        
-        entryBlock.getInstructions().add(1, initiateFrame);
+        PlainTextInstruction storeFunctionAddress = new PlainTextInstruction(                
+                  "%funcAddr = bitcast " + functionSignature + "* @\"" + function.getName() +"\" to i8*\n");        
+        entryBlock.getInstructions().add(1, storeFunctionAddress);
         
         // push frame into Env        
-        Value env = function.getParameterRef(0);               
-        VariableRef shadowFrameRef = new VariableRef(shadowVariable);
-        entryBlock.getInstructions().add(2, new Call(Functions.PUSH_SHADOW_FRAME, env, shadowFrameRef));
+        Value env = function.getParameterRef(0);         
+        VariableRef funcAddr = new VariableRef("funcAddr", Type.I8_PTR);
+        // memory is allocated in runtime on the heap
+        entryBlock.getInstructions().add(2, new Call(Functions.PUSH_SHADOW_FRAME, env, funcAddr));
         
         //update line numbers for each new instruction
         int currentLineNumber = 0;
@@ -77,7 +75,7 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
                             if (currentLineNumber == 0 || currentLineNumber != tag.getLineNumber()) {
                                 currentLineNumber = tag.getLineNumber();
                                 // push new line number
-                                bb.getInstructions().add(i, new Call(Functions.PUSH_SHADOW_LINE_NUMBER, shadowFrameRef,
+                                bb.getInstructions().add(i, new Call(Functions.PUSH_SHADOW_LINE_NUMBER, env,
                                         new IntegerConstant(currentLineNumber)));
                             }
                         }

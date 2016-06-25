@@ -66,8 +66,6 @@ import org.robovm.compiler.plugin.Plugin;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.TargetPlugin;
 import org.robovm.compiler.plugin.annotation.AnnotationImplPlugin;
-import org.robovm.compiler.plugin.debug.DebugInformationPlugin;
-import org.robovm.compiler.plugin.debug.DebugInstrumentPlugin;
 import org.robovm.compiler.plugin.lambda.LambdaPlugin;
 import org.robovm.compiler.plugin.objc.InterfaceBuilderClassesPlugin;
 import org.robovm.compiler.plugin.objc.ObjCBlockPlugin;
@@ -177,7 +175,7 @@ public class Config {
     private Tools tools;
     
     @Element(required = false)
-    private boolean useLineNumbers;
+    private boolean useLineNumbers = true;
 
     private SigningIdentity iosSignIdentity;
     private ProvisioningProfile iosProvisioningProfile;
@@ -230,8 +228,8 @@ public class Config {
                 new ObjCMemberPlugin(),
                 new ObjCBlockPlugin(),
                 new AnnotationImplPlugin(),
-                new LambdaPlugin(),                
-                new DebugInformationPlugin()
+                new LambdaPlugin(),         
+                new ShadowFramePlugin()
                 ));
         this.loadPluginsFromClassPath();
     }
