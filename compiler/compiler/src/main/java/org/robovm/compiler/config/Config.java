@@ -175,7 +175,7 @@ public class Config {
     private Tools tools;
     
     @Element(required = false)
-    private boolean useLineNumbers = true;
+    private boolean useLineNumbers;
 
     private SigningIdentity iosSignIdentity;
     private ProvisioningProfile iosProvisioningProfile;
