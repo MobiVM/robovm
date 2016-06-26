@@ -380,18 +380,6 @@ ObjectArray* rvmCallStackToStackTraceElements(Env* env, CallStack* callStack, ji
         return empty_java_lang_StackTraceElement_array;
     }
 
-    ShadowFrame* shadowFrame = env->shadowFrame;
-    while (shadowFrame != NULL) {
-      DEBUGF("Shadowframe lineNumber %d, address %d", shadowFrame->lineNumber, shadowFrame);
-      if (shadowFrame != shadowFrame->prev) {
-        shadowFrame = shadowFrame->prev;
-      }
-      else {
-        shadowFrame = NULL;
-      }
-
-    }
-
     // Count the number of methods
     jint index = first;
     jint length = 0;
