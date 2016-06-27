@@ -41,6 +41,8 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
             return;
         }
         
+        BasicBlock entryBlock = function.getBasicBlocks().get(0);
+
         // get functionsAddress for shadowframe
         String functionSignature = function.getSignature();
         PlainTextInstruction storeFunctionAddress = new PlainTextInstruction(                
