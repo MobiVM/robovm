@@ -36,7 +36,7 @@ static Method* java_lang_StackTraceElement_constructor = NULL;
 static ObjectArray* empty_java_lang_StackTraceElement_array = NULL;
 
 
-// A shared CallStack struct used by rvmCaptureCallStackForThread() that can store at most MAX_CALL_STACK_LENGTH 
+// A shared CallStack struct used by rvmCaptureCallStackForThread() that can store at most MAX_CALL_STACK_LENGTH
 // frames. dumpThreadStackTrace() assumes MAX_CALL_STACK_LENGTH.
 static CallStack* shared_callStack = NULL;
 
@@ -264,7 +264,7 @@ CallStack* rvmCaptureCallStackForThread(Env* env, Thread* thread) {
 
     // dumpThreadStackTrace() must not be called concurrently
     obtainThreadStackTraceLock();
-    
+
     if (!shared_callStack) {
         shared_callStack = rvmAllocateMemoryAtomicUncollectable(env, sizeof(CallStack) + sizeof(CallStackFrame) * MAX_CALL_STACK_LENGTH);
         if (!shared_callStack) {
@@ -356,7 +356,7 @@ static jint getLineNumber(CallStackFrame* frame) {
 
 CallStackFrame* rvmResolveCallStackFrame(Env* env, CallStackFrame* frame) {
     if (frame->pc == NULL && frame->method == NULL) {
-        // We've already tried to resolve this frame but 
+        // We've already tried to resolve this frame but
         // it doesn't correspond to any method
         return NULL;
     }
@@ -400,6 +400,7 @@ ObjectArray* rvmCallStackToStackTraceElements(Env* env, CallStack* callStack, ji
         jint i;
         for (i = 0; i < length; i++) {
             CallStackFrame* frame = rvmGetNextCallStackMethod(env, callStack, &index);
+
             Method* m = frame->method;
             args[0].l = (jobject) m->clazz;
             args[1].l = (jobject) rvmNewStringUTF(env, m->name, -1);
@@ -408,8 +409,18 @@ ObjectArray* rvmCallStackToStackTraceElements(Env* env, CallStack* callStack, ji
             if (rvmExceptionOccurred(env)) {
                 return NULL;
             }
-            args[3].i = frame->lineNumber;
-            array->values[i] = rvmNewObjectA(env, java_lang_StackTraceElement, 
+
+            //New method of getting lineNumbers via shadowframes
+            ShadowFrame* shadowFrame = env->shadowFrame;
+            while (shadowFrame != NULL) {
+                if (shadowFrame->functionAddress == m->impl) {
+                    args[3].i = shadowFrame->lineNumber;
+                    break;
+                }
+                shadowFrame = shadowFrame->prev;
+            }
+
+            array->values[i] = rvmNewObjectA(env, java_lang_StackTraceElement,
                 java_lang_StackTraceElement_constructor, args);
             if (!array->values[i]) return NULL;
         }
@@ -469,7 +480,7 @@ static void countArgs(Env* env, Method* method, ArgsCount* argsCount) {
     if (!(method->access & ACC_STATIC)) {
         // Non-static methods takes the receiver object (this) as arg 2
         ptrArgsCount++;
-    }    
+    }
 
     const char* desc = method->desc;
     const char* c;
@@ -509,7 +520,7 @@ static void setArgs(Env* env, Object* obj, Method* method, CallInfo* callInfo, j
     call0AddPtr(callInfo, env);
     if (!(method->access & ACC_STATIC)) {
         call0AddPtr(callInfo, obj);
-    }    
+    }
 
     const char* desc = method->desc;
     const char* c;
@@ -1457,4 +1468,3 @@ jboolean rvmLoadNativeLibrary(Env* env, const char* path, Object* classLoader) {
 
     return TRUE;
 }
-
