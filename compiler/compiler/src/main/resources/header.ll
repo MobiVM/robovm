@@ -985,3 +985,31 @@ define private void @popNativeFrame(%Env* %env) alwaysinline {
     call void @Env_gatewayFrames_store(%Env* %env, %GatewayFrame* %prev_gw)
     ret void
 }
+
+define private void @pushShadowFrame(%Env* %env, %ShadowFrame* %frame) alwaysinline {
+    ; Store Env->shadowFrame in shadowFrame->prev
+    %1 = getelementptr %Env* %env, i32 0, i32 9
+    %prevFrame = load volatile %ShadowFrame** %1
+    %2 = getelementptr %ShadowFrame* %frame, i32 0, i32 0
+    store volatile %ShadowFrame* %prevFrame, %ShadowFrame** %2
+
+    ; Store shadowFrame in Env->shadowFrame
+    store volatile %ShadowFrame* %frame, %ShadowFrame** %1
+    ret void
+}
+
+define private void @popShadowFrame(%Env* %env) alwaysinline {
+    %1 = getelementptr %Env* %env, i32 0, i32 9
+    %frame = load volatile %ShadowFrame** %1
+    %2 = getelementptr %ShadowFrame* %frame, i32 0, i32 0
+    %prevFrame = load volatile %ShadowFrame** %2
+    store %ShadowFrame* %prevFrame, %ShadowFrame** %1
+    ret void
+}
+
+define private void @pushShadowFrameLineNumber(%ShadowFrame* %frame, i32 %lineNumber) alwaysinline {
+    %__shadowFrame_lineNumber = getelementptr %ShadowFrame* %frame, i32 0, i32 2
+    store i32 %lineNumber, i32* %__shadowFrame_lineNumber
+    ret void
+}
+
