@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.robovm.compiler.Functions;
 import org.robovm.compiler.ModuleBuilder;
-import org.robovm.compiler.Types;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.llvm.BasicBlock;
@@ -17,7 +16,6 @@ import org.robovm.compiler.llvm.PlainTextInstruction;
 import org.robovm.compiler.llvm.Ret;
 import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
-import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 
@@ -42,6 +40,11 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         }
         
         BasicBlock entryBlock = function.getBasicBlocks().get(0);
+        
+        //Method has only a return null statement
+        if (entryBlock.getInstructions().size() == 1) {
+        	return;
+        }
 
         // get functionsAddress for shadowframe
         String functionSignature = function.getSignature();
