@@ -9,9 +9,9 @@
 package org.robovm.libimobiledevice.binding;
 
 public class PlistRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected PlistRef(long cPtr, boolean futureUse) {
+  protected PlistRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

@@ -16,8 +16,6 @@
  */
 package org.robovm.libimobiledevice;
 
-import static org.robovm.libimobiledevice.binding.LibIMobileDeviceConstants.*;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.concurrent.CountDownLatch;
@@ -197,16 +195,8 @@ public class InstallationProxyClient implements AutoCloseable {
     }
     
     private static void checkResult(InstProxyError result) {
-        switch (result) {
-        case INSTPROXY_E_SUCCESS: return;
-        case INSTPROXY_E_INVALID_ARG: throw new LibIMobileDeviceException(result.swigValue(), "INSTPROXY_E_INVALID_ARG");
-        case INSTPROXY_E_PLIST_ERROR: throw new LibIMobileDeviceException(result.swigValue(), "INSTPROXY_E_PLIST_ERROR");
-        case INSTPROXY_E_CONN_FAILED: throw new LibIMobileDeviceException(result.swigValue(), "INSTPROXY_E_CONN_FAILED");
-        case INSTPROXY_E_OP_IN_PROGRESS: throw new LibIMobileDeviceException(result.swigValue(), "INSTPROXY_E_OP_IN_PROGRESS");
-        case INSTPROXY_E_OP_FAILED: throw new LibIMobileDeviceException(result.swigValue(), "INSTPROXY_E_OP_FAILED");
-        case INSTPROXY_E_RECEIVE_TIMEOUT: throw new LibIMobileDeviceException(result.swigValue(), "INSTPROXY_E_RECEIVE_TIMEOUT");
-        case INSTPROXY_E_UNKNOWN_ERROR: throw new LibIMobileDeviceException(result.swigValue(), "INSTPROXY_E_UNKNOWN_ERROR");
-        default: throw new LibIMobileDeviceException(result.swigValue());
+        if (result != InstProxyError.INSTPROXY_E_SUCCESS) {
+            throw new LibIMobileDeviceException(result.swigValue(), result.name());
         }
     }
     

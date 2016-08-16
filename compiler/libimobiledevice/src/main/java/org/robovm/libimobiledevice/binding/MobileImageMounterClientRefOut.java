@@ -9,8 +9,8 @@
 package org.robovm.libimobiledevice.binding;
 
 public class MobileImageMounterClientRefOut {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected MobileImageMounterClientRefOut(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;

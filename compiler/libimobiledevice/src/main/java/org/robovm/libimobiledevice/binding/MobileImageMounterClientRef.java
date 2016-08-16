@@ -9,9 +9,9 @@
 package org.robovm.libimobiledevice.binding;
 
 public class MobileImageMounterClientRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected MobileImageMounterClientRef(long cPtr, boolean futureUse) {
+  protected MobileImageMounterClientRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

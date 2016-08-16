@@ -16,8 +16,6 @@
  */
 package org.robovm.libimobiledevice;
 
-import static org.robovm.libimobiledevice.binding.LibIMobileDeviceConstants.*;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -614,36 +612,8 @@ public class AfcClient implements AutoCloseable {
     }
     
     private static void checkResult(AfcError result) {
-        switch (result) {
-        case AFC_E_SUCCESS: return;
-        case AFC_E_UNKNOWN_ERROR: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_UNKNOWN_ERROR");
-        case AFC_E_OP_HEADER_INVALID: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_OP_HEADER_INVALID");
-        case AFC_E_NO_RESOURCES: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_NO_RESOURCES");
-        case AFC_E_READ_ERROR: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_READ_ERROR");
-        case AFC_E_WRITE_ERROR: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_WRITE_ERROR");
-        case AFC_E_UNKNOWN_PACKET_TYPE: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_UNKNOWN_PACKET_TYPE");
-        case AFC_E_INVALID_ARG: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_INVALID_ARG");
-        case AFC_E_OBJECT_NOT_FOUND: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_OBJECT_NOT_FOUND");
-        case AFC_E_OBJECT_IS_DIR: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_OBJECT_IS_DIR");
-        case AFC_E_PERM_DENIED: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_PERM_DENIED");
-        case AFC_E_SERVICE_NOT_CONNECTED: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_SERVICE_NOT_CONNECTED");
-        case AFC_E_OP_TIMEOUT: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_OP_TIMEOUT");
-        case AFC_E_TOO_MUCH_DATA: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_TOO_MUCH_DATA");
-        case AFC_E_END_OF_DATA: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_END_OF_DATA");
-        case AFC_E_OP_NOT_SUPPORTED: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_OP_NOT_SUPPORTED");
-        case AFC_E_OBJECT_EXISTS: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_OBJECT_EXISTS");
-        case AFC_E_OBJECT_BUSY: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_OBJECT_BUSY");
-        case AFC_E_NO_SPACE_LEFT: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_NO_SPACE_LEFT");
-        case AFC_E_OP_WOULD_BLOCK: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_OP_WOULD_BLOCK");
-        case AFC_E_IO_ERROR: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_IO_ERROR");
-        case AFC_E_OP_INTERRUPTED: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_OP_INTERRUPTED");
-        case AFC_E_OP_IN_PROGRESS: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_OP_IN_PROGRESS");
-        case AFC_E_INTERNAL_ERROR: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_INTERNAL_ERROR");
-        case AFC_E_MUX_ERROR: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_MUX_ERROR");
-        case AFC_E_NO_MEM: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_NO_MEM");
-        case AFC_E_NOT_ENOUGH_DATA: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_NOT_ENOUGH_DATA");
-        case AFC_E_DIR_NOT_EMPTY: throw new LibIMobileDeviceException(result.swigValue(), "AFC_E_DIR_NOT_EMPTY");
-        default: throw new LibIMobileDeviceException(result.swigValue());
+        if (result != AfcError.AFC_E_SUCCESS) {
+            throw new LibIMobileDeviceException(result.swigValue(), result.name());
         }
     }
     

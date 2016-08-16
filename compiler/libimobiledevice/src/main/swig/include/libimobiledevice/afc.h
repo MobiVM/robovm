@@ -3,8 +3,8 @@
  * @brief Access the filesystem on the device.
  * \internal
  *
- * Copyright (c) 2014 Martin Szulecki All Rights Reserved.
- * Copyright (c) 2009 Nikias Bassen All Rights Reserved.
+ * Copyright (c) 2010-2014 Martin Szulecki All Rights Reserved.
+ * Copyright (c) 2009-2010 Nikias Bassen All Rights Reserved.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -174,10 +174,7 @@ afc_error_t afc_get_file_info(afc_client_t client, const char *filename, char **
  *
  * @param client The client to use to open the file.
  * @param filename The file to open. (must be a fully-qualified path)
- * @param file_mode The mode to use to open the file. Can be AFC_FILE_READ or
- *        AFC_FILE_WRITE; the former lets you read and write, however, and the
- *        second one will *create* the file, destroying anything previously
- *        there.
+ * @param file_mode The mode to use to open the file.
  * @param handle Pointer to a uint64_t that will hold the handle of the file
  *
  * @return AFC_E_SUCCESS on success or an AFC_E_* error value.

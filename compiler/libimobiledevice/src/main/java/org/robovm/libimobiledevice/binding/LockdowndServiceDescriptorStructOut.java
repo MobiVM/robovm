@@ -9,8 +9,8 @@
 package org.robovm.libimobiledevice.binding;
 
 public class LockdowndServiceDescriptorStructOut {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected LockdowndServiceDescriptorStructOut(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;

@@ -44,10 +44,10 @@ Linux)
   ;;
 esac
 
-mkdir -p "$BASE/target/build"
+mkdir -p "$BASE/target-libimobiledevice/build"
 if [ "$CLEAN" = '1' ]; then
   for T in $TARGETS; do
-    rm -rf "$BASE/target/build/$T"
+    rm -rf "$BASE/target-libimobiledevice/build/$T"
   done
 fi
 
@@ -71,9 +71,9 @@ for T in $TARGETS; do
   OS=${T%%-*}
   ARCH=${T#*-}
   BUILD_TYPE=Release
-  mkdir -p "$BASE/target/build/$T"
+  mkdir -p "$BASE/target-libimobiledevice/build/$T"
   rm -rf "$BASE/binaries/$OS/$ARCH"
-  bash -c "cd '$BASE/target/build/$T'; cmake -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DOS=$OS -DARCH=$ARCH '$BASE'; make install/strip"
+  bash -c "cd '$BASE/target-libimobiledevice/build/$T'; cmake -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DOS=$OS -DARCH=$ARCH '$BASE'; make install/strip"
   R=$?
   if [[ $R != 0 ]]; then
     echo "$T build failed"

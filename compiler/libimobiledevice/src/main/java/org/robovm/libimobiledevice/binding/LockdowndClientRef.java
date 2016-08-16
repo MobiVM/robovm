@@ -9,9 +9,9 @@
 package org.robovm.libimobiledevice.binding;
 
 public class LockdowndClientRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected LockdowndClientRef(long cPtr, boolean futureUse) {
+  protected LockdowndClientRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

@@ -3,21 +3,23 @@
  * @brief Device/Connection handling and communication
  * \internal
  *
+ * Copyright (c) 2010-2014 Martin Szulecki All Rights Reserved.
+ * Copyright (c) 2014 Christophe Fergeau All Rights Reserved.
  * Copyright (c) 2008 Jonathan Beck All Rights Reserved.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA 
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
 #ifndef IMOBILEDEVICE_H
@@ -49,9 +51,6 @@ typedef idevice_private *idevice_t; /**< The device handle. */
 typedef struct idevice_connection_private idevice_connection_private;
 typedef idevice_connection_private *idevice_connection_t; /**< The connection handle. */
 
-/* generic */
-void idevice_set_debug_level(int level);
-
 /* discovery (events/asynchronous) */
 /** The event type for device add or removal */
 enum idevice_event_type {
@@ -74,6 +73,13 @@ typedef void (*idevice_event_cb_t) (const idevice_event_t *event, void *user_dat
 /* functions */
 
 /**
+ * Set the level of debugging.
+ *
+ * @param level Set to 0 for no debug output or 1 to enable debug output.
+ */
+void idevice_set_debug_level(int level);
+
+/**
  * Register a callback function that will be called when device add/remove
  * events occur.
  *
@@ -91,7 +97,7 @@ idevice_error_t idevice_event_subscribe(idevice_event_cb_t callback, void *user_
  *
  * @return IDEVICE_E_SUCCESS on success or an error value when an error occured.
  */
-idevice_error_t idevice_event_unsubscribe();
+idevice_error_t idevice_event_unsubscribe(void);
 
 /* discovery (synchronous) */
 
@@ -116,7 +122,7 @@ idevice_error_t idevice_get_device_list(char ***devices, int *count);
 idevice_error_t idevice_device_list_free(char **devices);
 
 /* device structure creation and destruction */
-	
+
 /**
  * Creates an idevice_t structure for the device specified by udid,
  *  if the device is available.
@@ -142,7 +148,7 @@ idevice_error_t idevice_new(idevice_t *device, const char *udid);
 idevice_error_t idevice_free(idevice_t device);
 
 /* connection/disconnection */
-	
+
 /**
  * Set up a connection to the given device.
  *
@@ -165,7 +171,7 @@ idevice_error_t idevice_connect(idevice_t device, uint16_t port, idevice_connect
 idevice_error_t idevice_disconnect(idevice_connection_t connection);
 
 /* communication */
-	
+
 /**
  * Send data to a device via the given connection.
  *
@@ -195,7 +201,7 @@ idevice_error_t idevice_connection_send(idevice_connection_t connection, const c
  * @return IDEVICE_E_SUCCESS if ok, otherwise an error code.
  */
 idevice_error_t idevice_connection_receive_timeout(idevice_connection_t connection, char *data, uint32_t len, uint32_t *recv_bytes, unsigned int timeout);
-	
+
 /**
  * Receive data from a device via the given connection.
  * This function is like idevice_connection_receive_timeout, but with a
@@ -210,7 +216,7 @@ idevice_error_t idevice_connection_receive_timeout(idevice_connection_t connecti
  * @return IDEVICE_E_SUCCESS if ok, otherwise an error code.
  */
 idevice_error_t idevice_connection_receive(idevice_connection_t connection, char *data, uint32_t len, uint32_t *recv_bytes);
-	
+
 /**
  * Enables SSL for the given connection.
  *
@@ -221,7 +227,7 @@ idevice_error_t idevice_connection_receive(idevice_connection_t connection, char
  *     SSL initialization, setup, or handshake fails.
  */
 idevice_error_t idevice_connection_enable_ssl(idevice_connection_t connection);
-	
+
 /**
  * Disable SSL for the given connection.
  *
@@ -233,13 +239,23 @@ idevice_error_t idevice_connection_enable_ssl(idevice_connection_t connection);
  */
 idevice_error_t idevice_connection_disable_ssl(idevice_connection_t connection);
 
+/**
+ * Get the underlying file descriptor for a connection
+ *
+ * @param connection The connection to get fd of
+ * @param fd Pointer to an int where the fd is stored
+ *
+ * @return IDEVICE_E_SUCCESS if ok, otherwise an error code.
+ */
+idevice_error_t idevice_connection_get_fd(idevice_connection_t connection, int *fd);
+
 /* misc */
-	
+
 /**
  * Gets the handle of the device. Depends on the connection type.
  */
 idevice_error_t idevice_get_handle(idevice_t device, uint32_t *handle);
-	
+
 /**
  * Gets the unique id for the device.
  */

@@ -9,9 +9,9 @@
 package org.robovm.libimobiledevice.binding;
 
 public class InstproxyClientRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected InstproxyClientRef(long cPtr, boolean futureUse) {
+  protected InstproxyClientRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 
