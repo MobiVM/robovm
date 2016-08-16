@@ -9,8 +9,8 @@
 package org.robovm.libimobiledevice.binding;
 
 public class IDeviceEvent {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected IDeviceEvent(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;

@@ -16,8 +16,6 @@
  */
 package org.robovm.libimobiledevice;
 
-import static org.robovm.libimobiledevice.binding.LibIMobileDeviceConstants.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -202,14 +200,8 @@ public class MobileImageMounterClient implements AutoCloseable {
     }
 
     private static void checkResult(MobileImageMounterError result) {
-        switch (result) {
-        case MOBILE_IMAGE_MOUNTER_E_SUCCESS: return;
-        case MOBILE_IMAGE_MOUNTER_E_CONN_FAILED: throw new LibIMobileDeviceException(result.swigValue(), "MOBILE_IMAGE_MOUNTER_E_CONN_FAILED");
-        case MOBILE_IMAGE_MOUNTER_E_INVALID_ARG: throw new LibIMobileDeviceException(result.swigValue(), "MOBILE_IMAGE_MOUNTER_E_INVALID_ARG");
-        case MOBILE_IMAGE_MOUNTER_E_PLIST_ERROR: throw new LibIMobileDeviceException(result.swigValue(), "MOBILE_IMAGE_MOUNTER_E_PLIST_ERROR");
-        case MOBILE_IMAGE_MOUNTER_E_COMMAND_FAILED: throw new LibIMobileDeviceException(result.swigValue(), "MOBILE_IMAGE_MOUNTER_E_COMMAND_FAILED");
-        case MOBILE_IMAGE_MOUNTER_E_UNKNOWN_ERROR: throw new LibIMobileDeviceException(result.swigValue(), "MOBILE_IMAGE_MOUNTER_E_UNKNOWN_ERROR");
-        default: throw new LibIMobileDeviceException(result.swigValue());
+        if (result != MobileImageMounterError.MOBILE_IMAGE_MOUNTER_E_SUCCESS) {
+            throw new LibIMobileDeviceException(result.swigValue(), result.name());
         }
     }
     

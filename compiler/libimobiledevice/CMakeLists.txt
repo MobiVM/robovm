@@ -16,7 +16,7 @@ elseif (ARCH STREQUAL "x86_64")
   set(X86_64 YES)
 endif()
 
-set(C_CXX_FLAGS "${C_CXX_FLAGS} -fdata-sections -ffunction-sections")
+set(C_CXX_FLAGS "${C_CXX_FLAGS} -fdata-sections -ffunction-sections -Wno-unused")
 if(MACOSX AND X86)
   set(C_CXX_FLAGS "${C_CXX_FLAGS} -arch i386 -mmacosx-version-min=10.6")
   set(LD_FLAGS "${LD_FLAGS} -arch i386 -mmacosx-version-min=10.6")
@@ -31,27 +31,35 @@ elseif(LINUX AND X86_64)
   set(LD_FLAGS "${LD_FLAGS} -m64")
 endif()
 
+set(EXTPREFIX "${CMAKE_BINARY_DIR}/ext")
+set(C_CXX_FLAGS "${C_CXX_FLAGS} -I${EXTPREFIX}/include -I/usr/local/include")
+set(EXTCFLAGS "-I${EXTPREFIX}/include/libusb-1.0 -I${EXTPREFIX}/include/libxml2 ${C_CXX_FLAGS}")
+set(LDFLAGS "-L${EXTPREFIX}/lib")
+
 if(MACOSX)
   exec_program(xcode-select ARGS --print-path OUTPUT_VARIABLE XCODE_PATH)
-  set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk")
+  set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk")
   if(NOT IS_DIRECTORY ${SYSROOT})
-    set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk")
+    set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk")
   endif()
   if(NOT IS_DIRECTORY ${SYSROOT})
     message(FATAL_ERROR "No supported MacOSX SDK found")
   endif()
+  if(NOT IS_DIRECTORY "/usr/local/opt/openssl/include")
+    message(FATAL_ERROR "No OpenSSL found")
+  endif()
   set(C_CXX_FLAGS "${C_CXX_FLAGS} -isysroot ${SYSROOT}")
+  set(EXTCFLAGS "${EXTCFLAGS} -I/usr/local/opt/openssl/include -isysroot ${SYSROOT}")
+  set(LDFLAGS "${LDFLAGS} -L/usr/local/opt/openssl/lib")
 endif()
 
-set(EXTPREFIX "${CMAKE_BINARY_DIR}/ext")
-set(EXTCFLAGS "${C_CXX_FLAGS} -I${EXTPREFIX}/include -I${EXTPREFIX}/include/libusb-1.0 -I${EXTPREFIX}/include/libxml2")
 ExternalProject_Add(extlibxml
   URL http://xmlsoft.org/sources/libxml2-2.9.1.tar.gz
   CONFIGURE_COMMAND bash -c "CC=${CMAKE_C_COMPILER} CFLAGS='${EXTCFLAGS}' ./configure --enable-shared=no --prefix=${EXTPREFIX} --with-minimum=on --without-python --without-ftp --without-http --without-html --without-docbook --without-xpath --without-xinclude --without-xptr --without-c14n --without-catalog --without-valid --without-schemas --without-schematron --without-modules --without-lzma --without-zlib"
   BUILD_IN_SOURCE 1
 )
 ExternalProject_Add(extlibusbx
-  URL http://cznic.dl.sourceforge.net/project/libusb/libusb-1.0/libusb-1.0.19/libusb-1.0.19.tar.bz2
+  URL http://www.mirrorservice.org/sites/downloads.sourceforge.net/l/li/libusb/libusb-1.0/libusb-1.0.19/libusb-1.0.19.tar.bz2
   CONFIGURE_COMMAND bash -c "CC=${CMAKE_C_COMPILER} CFLAGS='${EXTCFLAGS}' ./configure --enable-shared=no --enable-udev=no --prefix=${EXTPREFIX}"
   BUILD_IN_SOURCE 1
 )
@@ -72,8 +80,8 @@ if(MACOSX)
   set(LIBIMOBILEDEVICE_CFLAGS "${EXTCFLAGS} -std=gnu89")
 endif()
 ExternalProject_Add(extlibimobiledevice
-  URL http://www.libimobiledevice.org/downloads/libimobiledevice-1.1.7.tar.bz2
-  CONFIGURE_COMMAND bash -c "CC=${CMAKE_C_COMPILER} CFLAGS='${LIBIMOBILEDEVICE_CFLAGS}' LDFLAGS='-L${EXTPREFIX}/lib -lxml2' PKG_CONFIG_PATH='${EXTPREFIX}/lib/pkgconfig' ./configure --prefix ${EXTPREFIX} --enable-shared=no --without-cython"
+  GIT_REPOSITORY https://github.com/libimobiledevice/libimobiledevice.git
+  CONFIGURE_COMMAND bash -c "PKG_CONFIG_PATH='${EXTPREFIX}/lib/pkgconfig' ./autogen.sh && CC=${CMAKE_C_COMPILER} CFLAGS='${LIBIMOBILEDEVICE_CFLAGS}' LDFLAGS='${LDFLAGS} -lxml2' PKG_CONFIG_PATH='${EXTPREFIX}/lib/pkgconfig' ./configure --prefix ${EXTPREFIX} --enable-shared=no --without-cython"
   BUILD_IN_SOURCE 1
   DEPENDS extlibxml extlibplist extlibusbmuxd
 )
@@ -85,7 +93,6 @@ set(CMAKE_INSTALL_DO_STRIP YES)
 include_directories(${JAVA_INCLUDE_PATH} ${JAVA_INCLUDE_PATH2} ${EXTPREFIX}/include)
 
 set(LIBS -limobiledevice -lusbmuxd -lplist -lssl -lxml2 -lcrypto)
-set(LDFLAGS -L${EXTPREFIX}/lib)
 
 if(MACOSX)
   set(LIBS ${LIBS} -liconv)

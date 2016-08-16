@@ -16,8 +16,6 @@
  */
 package org.robovm.libimobiledevice;
 
-import static org.robovm.libimobiledevice.binding.LibIMobileDeviceConstants.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -195,15 +193,8 @@ public class IDevice implements AutoCloseable {
     }
 
     static void checkResult(IDeviceError result) {
-        switch (result) {
-        case IDEVICE_E_SUCCESS: return;
-        case IDEVICE_E_BAD_HEADER: throw new LibIMobileDeviceException(result.swigValue(), "IDEVICE_E_BAD_HEADER");
-        case IDEVICE_E_INVALID_ARG: throw new LibIMobileDeviceException(result.swigValue(), "IDEVICE_E_INVALID_ARG");
-        case IDEVICE_E_NO_DEVICE: throw new LibIMobileDeviceException(result.swigValue(), "IDEVICE_E_NO_DEVICE");
-        case IDEVICE_E_NOT_ENOUGH_DATA: throw new LibIMobileDeviceException(result.swigValue(), "IDEVICE_E_NOT_ENOUGH_DATA");
-        case IDEVICE_E_SSL_ERROR: throw new LibIMobileDeviceException(result.swigValue(), "IDEVICE_E_SSL_ERROR");
-        case IDEVICE_E_UNKNOWN_ERROR: throw new LibIMobileDeviceException(result.swigValue(), "IDEVICE_E_UNKNOWN_ERROR");
-        default: throw new LibIMobileDeviceException(result.swigValue());
+        if (result != IDeviceError.IDEVICE_E_SUCCESS) {
+            throw new LibIMobileDeviceException(result.swigValue(), result.name());
         }
     }
     

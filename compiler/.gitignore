@@ -3,6 +3,7 @@
 /cacerts/target/
 /cocoatouch/target/
 /libimobiledevice/target/
+/libimobiledevice/target-libimobiledevice/
 /llvm/target/
 /objc/target/
 /rt/target/

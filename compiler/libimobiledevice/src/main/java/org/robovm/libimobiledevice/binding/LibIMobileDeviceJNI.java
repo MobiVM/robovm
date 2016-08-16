@@ -72,7 +72,6 @@ public class LibIMobileDeviceJNI {
   public final static native long get_global_instproxy_status_cb();
   public final static native long get_global_idevice_event_cb();
   public final static native int upload_image(long jarg1, String jarg2, String jarg3, byte[] jarg4, long jarg5);
-  public final static native void idevice_set_debug_level(int jarg1);
   public final static native void IDeviceEvent_event_set(long jarg1, IDeviceEvent jarg1_, int jarg2);
   public final static native int IDeviceEvent_event_get(long jarg1, IDeviceEvent jarg1_);
   public final static native void IDeviceEvent_udid_set(long jarg1, IDeviceEvent jarg1_, String jarg2);
@@ -81,6 +80,7 @@ public class LibIMobileDeviceJNI {
   public final static native int IDeviceEvent_connectionType_get(long jarg1, IDeviceEvent jarg1_);
   public final static native long new_IDeviceEvent();
   public final static native void delete_IDeviceEvent(long jarg1);
+  public final static native void idevice_set_debug_level(int jarg1);
   public final static native int idevice_event_subscribe(long jarg1, int jarg2);
   public final static native int idevice_event_unsubscribe();
   public final static native int idevice_get_device_list(long jarg1, StringArrayOut jarg1_, long jarg2, IntOut jarg2_);
@@ -94,6 +94,7 @@ public class LibIMobileDeviceJNI {
   public final static native int idevice_connection_receive(long jarg1, byte[] jarg2, int jarg3, long jarg4, IntOut jarg4_);
   public final static native int idevice_connection_enable_ssl(long jarg1);
   public final static native int idevice_connection_disable_ssl(long jarg1);
+  public final static native int idevice_connection_get_fd(long jarg1, long jarg2, IntOut jarg2_);
   public final static native int idevice_get_handle(long jarg1, long jarg2, IntOut jarg2_);
   public final static native int idevice_get_udid(long jarg1, long jarg2, StringOut jarg2_);
   public final static native void LockdowndPairRecordStruct_device_certificate_set(long jarg1, LockdowndPairRecordStruct jarg1_, String jarg2);
@@ -128,6 +129,7 @@ public class LibIMobileDeviceJNI {
   public final static native int lockdownd_send(long jarg1, long jarg2);
   public final static native int lockdownd_receive(long jarg1, long jarg2, PlistRefOut jarg2_);
   public final static native int lockdownd_pair(long jarg1, long jarg2, LockdowndPairRecordStruct jarg2_);
+  public final static native int lockdownd_pair_with_options(long jarg1, long jarg2, LockdowndPairRecordStruct jarg2_, long jarg3, long jarg4, PlistRefOut jarg4_);
   public final static native int lockdownd_validate_pair(long jarg1, long jarg2, LockdowndPairRecordStruct jarg2_);
   public final static native int lockdownd_unpair(long jarg1, long jarg2, LockdowndPairRecordStruct jarg2_);
   public final static native int lockdownd_activate(long jarg1, long jarg2);
@@ -167,6 +169,8 @@ public class LibIMobileDeviceJNI {
   public final static native int instproxy_client_start_service(long jarg1, long jarg2, InstproxyClientRefOut jarg2_, String jarg3);
   public final static native int instproxy_client_free(long jarg1);
   public final static native int instproxy_browse(long jarg1, long jarg2, long jarg3, PlistRefOut jarg3_);
+  public final static native int instproxy_browse_with_callback(long jarg1, long jarg2, long jarg3, int jarg4);
+  public final static native int instproxy_lookup(long jarg1, long jarg2, StringArray jarg2_, long jarg3, long jarg4, PlistRefOut jarg4_);
   public final static native int instproxy_install(long jarg1, String jarg2, long jarg3, long jarg4, int jarg5);
   public final static native int instproxy_upgrade(long jarg1, String jarg2, long jarg3, long jarg4, int jarg5);
   public final static native int instproxy_uninstall(long jarg1, String jarg2, long jarg3, long jarg4, int jarg5);
@@ -174,7 +178,14 @@ public class LibIMobileDeviceJNI {
   public final static native int instproxy_archive(long jarg1, String jarg2, long jarg3, long jarg4, int jarg5);
   public final static native int instproxy_restore(long jarg1, String jarg2, long jarg3, long jarg4, int jarg5);
   public final static native int instproxy_remove_archive(long jarg1, String jarg2, long jarg3, long jarg4, int jarg5);
+  public final static native int instproxy_check_capabilities_match(long jarg1, long jarg2, StringArray jarg2_, long jarg3, long jarg4, PlistRefOut jarg4_);
+  public final static native void instproxy_command_get_name(long jarg1, long jarg2, StringOut jarg2_);
+  public final static native void instproxy_status_get_name(long jarg1, long jarg2, StringOut jarg2_);
+  public final static native int instproxy_status_get_error(long jarg1, long jarg2, StringOut jarg2_, long jarg3, StringOut jarg3_, long jarg4, LongOut jarg4_);
+  public final static native void instproxy_status_get_current_list(long jarg1, long jarg2, LongOut jarg2_, long jarg3, LongOut jarg3_, long jarg4, LongOut jarg4_, long jarg5, PlistRefOut jarg5_);
+  public final static native void instproxy_status_get_percent_complete(long jarg1, long jarg2, IntOut jarg2_);
   public final static native long instproxy_client_options_new();
+  public final static native void instproxy_client_options_set_return_attributes(long jarg1);
   public final static native void instproxy_client_options_free(long jarg1);
   public final static native int instproxy_client_get_path_for_bundle_identifier(long jarg1, String jarg2, long jarg3, StringOut jarg3_);
   public final static native int mobile_image_mounter_new(long jarg1, long jarg2, LockdowndServiceDescriptorStruct jarg2_, long jarg3, MobileImageMounterClientRefOut jarg3_);

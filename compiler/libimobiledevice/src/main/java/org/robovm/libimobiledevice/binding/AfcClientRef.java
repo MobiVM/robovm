@@ -9,9 +9,9 @@
 package org.robovm.libimobiledevice.binding;
 
 public class AfcClientRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected AfcClientRef(long cPtr, boolean futureUse) {
+  protected AfcClientRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

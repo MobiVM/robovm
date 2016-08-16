@@ -9,8 +9,8 @@
 package org.robovm.libimobiledevice.binding;
 
 public class LockdowndPairRecordStruct {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected LockdowndPairRecordStruct(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;

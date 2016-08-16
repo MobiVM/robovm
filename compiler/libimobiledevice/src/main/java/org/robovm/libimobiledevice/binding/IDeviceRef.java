@@ -9,9 +9,9 @@
 package org.robovm.libimobiledevice.binding;
 
 public class IDeviceRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected IDeviceRef(long cPtr, boolean futureUse) {
+  protected IDeviceRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

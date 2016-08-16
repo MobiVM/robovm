@@ -9,8 +9,8 @@
 package org.robovm.libimobiledevice.binding;
 
 public class ByteArray {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected ByteArray(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
