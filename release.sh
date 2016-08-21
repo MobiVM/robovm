@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 : ${RELEASE_VERSION?"Need to set env var RELEASE_VERSION, e.g. 2.0.0"}
 : ${DEVELOPMENT_VERSION?"Need to set env var DEVELOPMENT_VERSION for next development version, e.g. 2.1.0 (don't include SNAPSHOT)"}
 export RELEASE_VERSION=$RELEASE_VERSION
