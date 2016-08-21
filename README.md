@@ -50,7 +50,7 @@ with the runtime code being Apache 2 for distribution on iOS.
 Eclipse seems to be the easiest to setup to work on RoboVM. The general idea is to run the Eclipse plugin in a second Eclipse instance directly from your main Eclipse instance. This allows you to debug compiler internals as well as the Eclipse plugin. Here's the setup used so far, based on the [old hacking guide](https://github.com/robovm/robovm-docs/blob/13fc4c5ac5232a812767f28121479ef5c3ad836e/en/advanced-topics/hacking.md).
 
 ## Importing into Eclipse
-1. Install the Eclipse plugin development environment (Help -> Install New Software, select "The Eclipse Project Updates" update URL)
+1. Install the Eclipse plugin development tools (Help -> Install New Software, select "The Eclipse Project Updates" update URL)
 2. Build RoboVM via `build.sh` in the root folder, this will put all the required artifacts into your local `~/.m2` repository as well as jars that contain the RoboVM distribution used by the Eclipse plugin. They'll be written to `plugins/eclipse/libs` when the Eclipse plugin is build via Maven. If you don't perform this step, the Eclipse plugin can't be compiled in Eclipse!
 3. Import all projects into Eclipse via their Maven poms. You will be prompted to install a bunch of m2e connectors, install them all!
 

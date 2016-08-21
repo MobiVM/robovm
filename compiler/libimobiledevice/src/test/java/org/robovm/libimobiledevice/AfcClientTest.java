@@ -90,8 +90,7 @@ public class AfcClientTest {
         System.out.println(dirs);
         assertFalse(dirs.isEmpty());
         assertTrue(dirs.contains("Books"));
-        assertTrue(dirs.contains("DCIM"));
-        assertTrue(dirs.contains("Safari"));
+        assertTrue(dirs.contains("DCIM"));        
     }
 
     @Test
