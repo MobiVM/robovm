@@ -72,7 +72,7 @@ import org.robovm.apple.dispatch.*;
     }
     
     public NSMutableData append(ByteBuffer bytes) {
-        long handle = getEffectiveAddress(bytes) + bytes.position();
+        long handle = BufferMarshalers.BufferMarshaler.getBufferAddress(bytes) + bytes.position();
         appendBytes(handle, bytes.remaining());
         return this;
     }
@@ -103,7 +103,7 @@ import org.robovm.apple.dispatch.*;
     }
 
     public NSMutableData replace(NSRange range, ByteBuffer bytes) {
-        long handle = getEffectiveAddress(bytes) + bytes.position();
+        long handle = BufferMarshalers.BufferMarshaler.getBufferAddress(bytes) + bytes.position();
         replaceBytes(range, handle, bytes.remaining());
         return this;
     }

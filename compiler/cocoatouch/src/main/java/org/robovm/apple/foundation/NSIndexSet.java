@@ -70,6 +70,38 @@ import org.robovm.apple.dispatch.*;
         long l = getIndexes(ptr, maxIndexes, range);
         return ptr.toLongArray((int)l);
     }
+    
+    public void addIndexes(NSIndexSet indexSet) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void removeIndexes(NSIndexSet indexSet) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void removeAllIndexes() {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void addIndex(long value) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void removeIndex(long value) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void addIndexes(NSRange range) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void removeIndexes(NSRange range) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void shiftIndexes(long index, long delta) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
     /*<methods>*/
     @Method(selector = "initWithIndexesInRange:")
     protected native @Pointer long init(@ByVal NSRange range);

@@ -71,6 +71,11 @@ import org.robovm.apple.dispatch.*;
     public native String format(NSPersonNameComponents components);
     @Method(selector = "annotatedStringFromPersonNameComponents:")
     public native NSAttributedString formatAnnotated(NSPersonNameComponents components);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "personNameComponentsFromString:")
+    public native NSPersonNameComponents parse(String string);
     @Method(selector = "localizedStringFromPersonNameComponents:style:options:")
     public static native String formatLocalized(NSPersonNameComponents components, NSPersonNameComponentsFormatterStyle nameFormatStyle, NSPersonNameComponentsFormatterOptions nameOptions);
     /*</methods>*/

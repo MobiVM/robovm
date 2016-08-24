@@ -57,7 +57,20 @@ import org.robovm.apple.dispatch.*;
     public NSDecimalNumber(String numberValue, NSLocale locale) { super((SkipInit) null); initObject(init(numberValue, locale)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "zero")
+    public static native NSDecimalNumber zero();
+    @Property(selector = "one")
+    public static native NSDecimalNumber one();
+    @Property(selector = "minimumDecimalNumber")
+    public static native NSDecimalNumber getMin();
+    @Property(selector = "maximumDecimalNumber")
+    public static native NSDecimalNumber getMax();
+    @Property(selector = "notANumber")
+    public static native NSDecimalNumber getNaN();
+    @Property(selector = "defaultBehavior")
+    public static native NSDecimalNumberBehaviors getDefaultBehavior();
+    @Property(selector = "setDefaultBehavior:")
+    public static native void setDefaultBehavior(NSDecimalNumberBehaviors v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -95,19 +108,5 @@ import org.robovm.apple.dispatch.*;
     public native NSDecimalNumber multiplyByPowerOf10(short power, NSDecimalNumberBehaviors behavior);
     @Method(selector = "decimalNumberByRoundingAccordingToBehavior:")
     public native NSDecimalNumber round(NSDecimalNumberBehaviors behavior);
-    @Method(selector = "zero")
-    public static native NSDecimalNumber zero();
-    @Method(selector = "one")
-    public static native NSDecimalNumber one();
-    @Method(selector = "minimumDecimalNumber")
-    public static native NSDecimalNumber getMin();
-    @Method(selector = "maximumDecimalNumber")
-    public static native NSDecimalNumber getMax();
-    @Method(selector = "notANumber")
-    public static native NSDecimalNumber getNaN();
-    @Method(selector = "setDefaultBehavior:")
-    public static native void setDefaultBehavior(NSDecimalNumberBehaviors behavior);
-    @Method(selector = "defaultBehavior")
-    public static native NSDecimalNumberBehaviors getDefaultBehavior();
     /*</methods>*/
 }

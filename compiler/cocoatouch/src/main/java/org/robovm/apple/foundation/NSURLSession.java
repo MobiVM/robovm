@@ -59,6 +59,8 @@ import org.robovm.apple.dispatch.*;
     public NSURLSession(NSURLSessionConfiguration configuration, NSURLSessionDelegate delegate, NSOperationQueue queue) { super(create(configuration, delegate, queue)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "sharedSession")
+    public static native NSURLSession getSharedSession();
     @Property(selector = "delegateQueue")
     public native NSOperationQueue getDelegateQueue();
     @Property(selector = "delegate")
@@ -119,8 +121,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "streamTaskWithNetService:")
     public native NSURLSessionStreamTask newStreamTask(NSNetService service);
-    @Method(selector = "sharedSession")
-    public static native NSURLSession getSharedSession();
     @Method(selector = "sessionWithConfiguration:")
     protected static native @Pointer long create(NSURLSessionConfiguration configuration);
     @Method(selector = "sessionWithConfiguration:delegate:delegateQueue:")

@@ -48,27 +48,6 @@ import org.robovm.apple.dispatch.*;
 
     /*<ptr>*/public static class NSDataPtr extends Ptr<NSData, NSDataPtr> {}/*</ptr>*/
     
-    private static final int EFFECTIVE_DIRECT_ADDRESS_OFFSET;
-
-    static {
-        try {
-            java.lang.reflect.Field f1 = Buffer.class.getDeclaredField("effectiveDirectAddress");
-            if (f1.getType() != long.class) {
-                throw new Error("java.nio.Buffer.effectiveDirectAddress should be a long");
-            }
-            EFFECTIVE_DIRECT_ADDRESS_OFFSET = VM.getInstanceFieldOffset(VM.getFieldAddress(f1));
-        } catch (NoSuchFieldException e) {
-            throw new Error(e);
-        }
-    }
-    
-    static long getEffectiveAddress(ByteBuffer bytes) {
-        if (!bytes.isDirect()) {
-            throw new IllegalArgumentException("Direct ByteBuffer expected");
-        }
-        return VM.getLong(VM.getObjectAddress(bytes) + EFFECTIVE_DIRECT_ADDRESS_OFFSET);
-    }
-    
     /*<bind>*/static { ObjCRuntime.bind(NSData.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
@@ -90,7 +69,7 @@ import org.robovm.apple.dispatch.*;
         if (bytes == null) {
             throw new NullPointerException("bytes");
         }
-        long handle = getEffectiveAddress(bytes) + bytes.position();
+        long handle = BufferMarshalers.BufferMarshaler.getBufferAddress(bytes) + bytes.position();
         initObject(init(handle, bytes.remaining(), false));
         addStrongRef(bytes);
     }
@@ -128,6 +107,38 @@ import org.robovm.apple.dispatch.*;
         byte[] bytes = new byte[length];
         getBytes(VM.getArrayValuesAddress(bytes), length);
         return bytes;
+    }
+    
+    public int copy(ByteBuffer buffer, int dataOffset, int count) {
+        if (buffer == null) {
+            throw new NullPointerException("buffer");
+        } else if (dataOffset < 0 || count < 0) {
+            throw new IndexOutOfBoundsException();
+        } else if (dataOffset >= getLength() || !buffer.hasRemaining()) {
+            return -1;
+        } else if (count == 0) {
+            return 0;
+        } else {
+            int n = Math.min(count, Math.min(buffer.remaining(), (int) getLength() - dataOffset));
+            VM.memcpy(BufferMarshalers.BufferMarshaler.getBufferAddress(buffer) + buffer.position(), getBytes0() + dataOffset, n);
+            return n;
+        }
+    }
+    
+    public int copy(byte[] buffer, int bufferOffset, int dataOffset, int count) {
+        if (buffer == null) {
+            throw new NullPointerException("buffer");
+        } else if (bufferOffset < 0 || dataOffset < 0 || count < 0) {
+            throw new IndexOutOfBoundsException();
+        } else if (dataOffset >= getLength() || bufferOffset > buffer.length) {
+            return -1;
+        } else if (count == 0) {
+            return 0;
+        } else {
+            int n = Math.min(count, Math.min(buffer.length - bufferOffset, (int) getLength() - dataOffset));
+            VM.memcpy(VM.getArrayValuesAddress(buffer) + bufferOffset, getBytes0() + dataOffset, n);
+            return n;
+        }
     }
     
     public <T extends Struct<T>> T getStructData(Class<T> type) {

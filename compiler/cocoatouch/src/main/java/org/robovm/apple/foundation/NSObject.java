@@ -400,6 +400,10 @@ import org.robovm.apple.dispatch.*;
     public native NSObject copy();
     @Method(selector = "mutableCopy")
     public native NSObject mutableCopy();
+    @Method(selector = "performSelector:withObject:afterDelay:inModes:")
+    public final native void performSelector(Selector aSelector, NSObject anArgument, double delay, NSArray<?> modes);
+    @Method(selector = "performSelector:withObject:afterDelay:")
+    public final native void performSelector(Selector aSelector, NSObject anArgument, double delay);
     @Method(selector = "addObserver:forKeyPath:options:context:")
     private native void addObserver(NSObject observer, String keyPath, NSKeyValueObservingOptions options, VoidPtr context);
     /**
@@ -419,10 +423,6 @@ import org.robovm.apple.dispatch.*;
     public native void willChangeValue(String key, NSKeyValueSetMutationKind mutationKind, NSSet<?> objects);
     @Method(selector = "didChangeValueForKey:withSetMutation:usingObjects:")
     public native void didChangeValue(String key, NSKeyValueSetMutationKind mutationKind, NSSet<?> objects);
-    @Method(selector = "performSelector:withObject:afterDelay:inModes:")
-    public final native void performSelector(Selector aSelector, NSObject anArgument, double delay, NSArray<?> modes);
-    @Method(selector = "performSelector:withObject:afterDelay:")
-    public final native void performSelector(Selector aSelector, NSObject anArgument, double delay);
     @Method(selector = "performSelectorOnMainThread:withObject:waitUntilDone:modes:")
     public final native void performSelectorOnMainThread(Selector aSelector, NSObject arg, boolean wait, NSArray<?> array);
     @Method(selector = "performSelectorOnMainThread:withObject:waitUntilDone:")

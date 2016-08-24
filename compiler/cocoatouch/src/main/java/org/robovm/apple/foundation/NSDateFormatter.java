@@ -64,6 +64,10 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setFormattingContext:")
     public native void setFormattingContext(NSFormattingContext v);
+    @Property(selector = "defaultFormatterBehavior")
+    public static native NSDateFormatterBehavior getDefaultFormatterBehavior();
+    @Property(selector = "setDefaultFormatterBehavior:")
+    public static native void setDefaultFormatterBehavior(NSDateFormatterBehavior v);
     @Property(selector = "dateFormat")
     public native String getDateFormat();
     @Property(selector = "setDateFormat:")
@@ -308,9 +312,5 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "dateFormatFromTemplate:options:locale:")
     public static native String getDateFormatFromTemplate(String tmplate, @MachineSizedUInt long opts, NSLocale locale);
-    @Method(selector = "defaultFormatterBehavior")
-    public static native NSDateFormatterBehavior getDefaultFormatterBehavior();
-    @Method(selector = "setDefaultFormatterBehavior:")
-    public static native void setDefaultFormatterBehavior(NSDateFormatterBehavior behavior);
     /*</methods>*/
 }

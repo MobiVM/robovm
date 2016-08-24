@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextCheckingResult/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class NSTextCheckingResultPtr extends Ptr<NSTextCheckingResult, NSTextCheckingResultPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSTextCheckingResult.class); }/*</bind>*/
@@ -54,7 +54,6 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     public NSTextCheckingResult() {}
     protected NSTextCheckingResult(SkipInit skipInit) { super(skipInit); }
-    public NSTextCheckingResult(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "resultType")
@@ -167,9 +166,5 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "transitInformationCheckingResultWithRange:components:")
     public static native NSTextCheckingResult getTransitInformationCheckingResult(@ByVal NSRange range, NSTextCheckingTransitComponents components);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

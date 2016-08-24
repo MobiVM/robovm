@@ -58,6 +58,17 @@ public class BufferMarshalers {
             }
         }
         
+        public static long getBufferAddress(Buffer buffer) {
+            if (buffer.isDirect()) {
+                return VM.getLong(VM.getObjectAddress(buffer) + EFFECTIVE_DIRECT_ADDRESS_OFFSET);
+            } else {
+                Object array = buffer.array();
+                int offset = buffer.arrayOffset();
+                int shift = VM.getInt(VM.getObjectAddress(buffer) + _ELEMENT_SIZE_SHIFT_OFFSET);
+                return VM.getArrayValuesAddress(array) + (offset << shift);
+            }
+        }
+        
         @MarshalsPointer(supportedCallTypes = MarshalerFlags.CALL_TYPE_BRIDGE)
         public static long toNative(Buffer buffer, long flags) {
             if (buffer == null) {
@@ -75,14 +86,7 @@ public class BufferMarshalers {
                         + "java.nio.Buffers can be marshaled to pointers.");
             }
 
-            if (buffer.isDirect()) {
-                return VM.getLong(VM.getObjectAddress(buffer) + EFFECTIVE_DIRECT_ADDRESS_OFFSET);
-            } else {
-                Object array = buffer.array();
-                int offset = buffer.arrayOffset();
-                int shift = VM.getInt(VM.getObjectAddress(buffer) + _ELEMENT_SIZE_SHIFT_OFFSET);
-                return VM.getArrayValuesAddress(array) + (offset << shift);
-            }
+            return getBufferAddress(buffer);
         }
         
         private static void copyBuffer(Buffer buffer, long handle, long flags, int d1) {

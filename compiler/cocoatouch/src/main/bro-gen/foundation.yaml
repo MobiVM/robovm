@@ -1,5 +1,5 @@
 package: org.robovm.apple.foundation
-include: [corefoundation.yaml, uikit.yaml, coretext.yaml, coreanimation.yaml, coredata.yaml, coregraphics.yaml, coremedia.yaml, security.yaml, dispatch.yaml]
+include: [corefoundation, uikit, coretext, coreanimation, coredata, coregraphics, coremedia, security, dispatch]
 library: Foundation
 framework: Foundation
 path_match: ^.*/usr/include/objc/.*$
@@ -54,55 +54,58 @@ typedefs:
     'NSMutableOrderedSet *': NSMutableOrderedSet<?>
     'NSMutableOrderedSet **': NSMutableOrderedSet.NSMutableOrderedSetPtr<?>
     'NSEnumerator *': NSEnumerator<?>
-    'BOOL (^)(NSUInteger, BOOL *)': '@Block Block2<NSObject, BooleanPtr, Boolean>'
-    'BOOL (^)(NSURL *, NSError *)': '@Block Block2<NSURL, NSError, Boolean>'
-    'void (^)(NSCachedURLResponse *)': '@Block VoidBlock1<NSCachedURLResponse>'
-    'void (^)(NSData *)': '@Block VoidBlock1<NSData>'
-    'void (^)(NSData *, NSURLResponse *, NSError *)': '@Block VoidBlock3<NSData, NSURLResponse, NSError>'
+    'void (^)(NSUInteger, BOOL * _Nonnull)': '@Block("(@MachineSizedUInt,)") VoidBlock2<Long, BooleanPtr>'
+    'BOOL (^)(NSURL * _Nonnull, NSError * _Nonnull)': '@Block Block2<NSURL, NSError, Boolean>'
+    'void (^)(NSCachedURLResponse * _Nullable)': '@Block VoidBlock1<NSCachedURLResponse>'
+    'void (^)(NSData * _Nullable)': '@Block VoidBlock1<NSData>'
+    'void (^)(NSData * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable)': '@Block VoidBlock3<NSData, NSURLResponse, NSError>'
     'void (^)(NSDate *, BOOL, BOOL *)': '@Block VoidBlock3<NSDate, Boolean, BooleanPtr>'
-    'void (^)(NSError *)': '@Block VoidBlock1<NSError>'
-    'void (^)(NSFileHandle *)': '@Block VoidBlock1<NSFileHandle>'
-    'void (^)(NSInputStream *)': '@Block VoidBlock1<NSInputStream>'
-    'void (^)(NSNotification *)': '@Block VoidBlock1<NSNotification>'
-    'void (^)(NSRange, BOOL *)': '@Block("(@ByVal,)") VoidBlock2<NSRange, BooleanPtr>'
+    'void (^)(NSError * _Nullable)': '@Block VoidBlock1<NSError>'
+    'void (^)(NSFileHandle * _Nonnull)': '@Block VoidBlock1<NSFileHandle>'
+    'void (^)(NSInputStream * _Nullable)': '@Block VoidBlock1<NSInputStream>'
+    'void (^)(NSNotification * _Nonnull)': '@Block VoidBlock1<NSNotification>'
+    'void (^)(NSRange, BOOL * _Nonnull)': '@Block("(@ByVal,)") VoidBlock2<NSRange, BooleanPtr>'
     'void (^)(NSString *, BOOL *)': '@Block VoidBlock2<String, BooleanPtr>'
-    'void (^)(NSTextCheckingResult *, NSMatchingFlags, BOOL *)': '@Block VoidBlock3<NSTextCheckingResult, NSMatchingFlags, BooleanPtr>'
+    'void (^)(NSTextCheckingResult * _Nullable, NSMatchingFlags, BOOL * _Nonnull)': '@Block VoidBlock3<NSTextCheckingResult, NSMatchingFlags, BooleanPtr>'
     'void (^)(NSUInteger, BOOL *)': '@Block("(@MachineSizedUInt,)") VoidBlock2<Long, BooleanPtr>'
-    'void (^)(NSURL *)': '@Block VoidBlock1<NSURL>'
-    'void (^)(NSURL *, NSURL *)': '@Block VoidBlock2<NSURL, NSURL>'
-    'void (^)(NSURL *, NSURLResponse *, NSError *)': '@Block VoidBlock3<NSURL, NSURLResponse, NSError>'
-    'void (^)(NSURLRequest *)': '@Block VoidBlock1<NSURLRequest>'
-    'void (^)(NSURLResponse *, NSData *, NSError *)': '@Block VoidBlock3<NSURLResponse, NSData, NSError>'
-    'void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *)': '@Block VoidBlock2<NSURLSessionAuthChallengeDisposition, NSURLCredential>'
+    'void (^)(NSURL * _Nonnull)': '@Block VoidBlock1<NSURL>'
+    'void (^)(NSURL * _Nonnull, NSURL * _Nonnull)': '@Block VoidBlock2<NSURL, NSURL>'
+    'void (^)(NSURL * _Nullable, NSURLResponse * _Nullable, NSError * _Nullable)': '@Block VoidBlock3<NSURL, NSURLResponse, NSError>'
+    'void (^)(NSURLRequest * _Nullable)': '@Block VoidBlock1<NSURLRequest>'
+    'void (^)(NSURLResponse * _Nullable, NSData * _Nullable, NSError * _Nullable)': '@Block VoidBlock3<NSURLResponse, NSData, NSError>'
+    'void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable)': '@Block VoidBlock2<NSURLSessionAuthChallengeDisposition, NSURLCredential>'
     'void (^)(NSURLSessionResponseDisposition)': '@Block VoidBlock1<NSURLSessionResponseDisposition>'
-    'void (^)(void (^)(void))': '@Block("(@Block)") VoidBlock1<Runnable>'
-    'void (^)(NSInputStream *, NSOutputStream *, NSError *)': '@Block VoidBlock3<NSInputStream, NSOutputStream, NSError>'
-    'void (^)(NSURLCredential *)': '@Block VoidBlock1<NSURLCredential>'
+    'void (^)(void (^ _Nullable)(void))': '@Block("(@Block)") VoidBlock1<Runnable>'
+    'void (^)(void (^ _Nonnull)(void))': '@Block("(@Block)") VoidBlock1<Runnable>'
+    'void (^)(NSInputStream * _Nullable, NSOutputStream * _Nullable, NSError * _Nullable)': '@Block VoidBlock3<NSInputStream, NSOutputStream, NSError>'
+    'void (^)(NSURLCredential * _Nullable)': '@Block VoidBlock1<NSURLCredential>'
+    'void (^)(NSTimer * _Nonnull)': '@Block VoidBlock1<NSTimer>'
     NSPropertyListReadOptions: NSPropertyListMutabilityOptions
-    vector_uint2: VectorInt2
-    vector_int2: VectorInt2
+    vector_uint2: '@ByVal VectorInt2'
+    vector_int2: '@ByVal VectorInt2'
     'vector_int2 *': VectorInt2.VectorInt2Ptr
-    vector_uint3: VectorInt3
-    vector_int3: VectorInt3
+    vector_uint3: '@ByVal VectorInt3'
+    vector_int3: '@ByVal VectorInt3'
     'vector_int3 *': VectorInt3.VectorInt3Ptr
-    vector_uint4: VectorInt4
-    vector_int4: VectorInt4
+    vector_uint4: '@ByVal VectorInt4'
+    vector_int4: '@ByVal VectorInt4'
     'vector_int4 *': VectorInt4.VectorInt4Ptr
-    vector_float2: VectorFloat2
+    vector_float2: '@ByVal VectorFloat2'
     'vector_float2 *': VectorFloat2.VectorFloat2Ptr
-    vector_float3: VectorFloat3
+    vector_float3: '@ByVal VectorFloat3'
     'vector_float3 *': VectorFloat3.VectorFloat3Ptr
-    vector_float4: VectorFloat4
+    vector_float4: '@ByVal VectorFloat4'
     'vector_float4 *': VectorFloat4.VectorFloat4Ptr
-    matrix_float4x4: MatrixFloat4x4
+    matrix_float4x4: '@ByVal MatrixFloat4x4'
     'matrix_float4x4 *': MatrixFloat4x4.MatrixFloat4x4Ptr
 
 private_typedefs:
     ObjectType: NSObject
     KeyType: NSObject
-    'void (^)(id, NSRange, BOOL *)': '@Block("(,@ByVal,)") VoidBlock3<NSObject, NSRange, BooleanPtr>'
+    UnitType: T
+    'void (^)(id _Nullable, NSRange, BOOL * _Nonnull)': '@Block("(,@ByVal,)") VoidBlock3<NSObject, NSRange, BooleanPtr>'
     'void (^)(id, NSUInteger, BOOL *)': '@Block("(,@MachineSizedUInt,)") VoidBlock3<NSObject, Long, BooleanPtr>'
-    'void (^)(NSDictionary *, NSRange, BOOL *)': '@Block("(,@ByVal,)") VoidBlock3<NSDictionary<NSString, ?>, NSRange, BooleanPtr>'
+    'void (^)(NSDictionary<NSString *,id> * _Nonnull, NSRange, BOOL * _Nonnull)': '@Block("(,@ByVal,)") VoidBlock3<NSDictionary<NSString, ?>, NSRange, BooleanPtr>'
 
 enums:
     NSActivityOptions: {}
@@ -129,6 +132,7 @@ enums:
     NSDateFormatterBehavior: {}
     NSDateFormatterStyle: { suffix: Style }
     NSDateIntervalFormatterStyle: { suffix: Style }
+    NSDecodingFailurePolicy: {}
     NSDirectoryEnumerationOptions: {}
     NSEnergyFormatterUnit: {}
     NSEnumerationOptions: { first: NSEnumerationConcurrent, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
@@ -146,6 +150,7 @@ enums:
     NSHashTableOptions: { first: NSHashTableStrongMemory, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
     NSHTTPCookieAcceptPolicy: {}
     NSItemProviderErrorCode: { suffix: Error }
+    NSISO8601DateFormatOptions: {}
     NSJSONReadingOptions: {}
     NSJSONWritingOptions: { prefix: NSJSONWriting }
     NSKeyValueChange: {}
@@ -159,6 +164,7 @@ enums:
     NSMapTableOptions: { first: NSMapTableStrongMemory, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
     NSMatchingFlags: {}
     NSMatchingOptions: {}
+    NSMeasurementFormatterUnitOptions: {bits: true}
     NSNetServiceOptions: {}
     NSNetServiceErrorCode: { first: NSNetServicesUnknownError, suffix: Error }
     NSNotificationCoalescing: { bits: true }
@@ -204,6 +210,7 @@ enums:
     NSURLSessionAuthChallengeDisposition: {}
     NSURLSessionResponseDisposition: {}
     NSURLSessionTaskState: {}
+    NSURLSessionTaskMetricsResourceFetchType: {}
     NSVolumeEnumerationOptions: {}
     NSXMLParserErrorCode: { first: NSXMLParserInternalError, suffix: Error }
     NSXMLParserExternalEntityResolvingPolicy: {}
@@ -222,7 +229,6 @@ classes:
     # These classes do not exist in Foundation. We use them to hold global values related to the
     # NSKeyValueCoding and NSKeyValueObserving informal protocols.
     NSKeyValueOperator: { visibility: 'public final' }
-    NSKeyValueChangeKey: { visibility: 'public final' }
 
     NS.*Internal: { exclude: true }
         
@@ -383,12 +389,11 @@ classes:
                 marshaler: NSArray.AsStringListMarshaler
             '(infoDictionary|localizedInfoDictionary)':
                 type: 'NSDictionary<NSString, ?>'
+            '(allBundles|allFrameworks)':
+                type: NSArray<NSBundle>
         methods:
             '+mainBundle':
                 property: true
-            '+(allBundles|allFrameworks)':
-                property: true
-                return_type: NSArray<NSBundle>
             '+pathForResource:ofType:inDirectory:':
                 name: findResourcePathInBundle
             '+pathsForResourcesOfType:inDirectory:':
@@ -876,9 +881,25 @@ classes:
                 name: parse
             '-setLocalizedDateFormatFromTemplate:':
                 name: setLocalizedDateFormat
+    NSDateInterval: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '-compare:':
+                trim_after_first_colon: true
+            '-isEqualToDateInterval:':
+                name: equalsTo
+            '-intersectsDateInterval:':
+                name: intersects
+            '-intersectionWithDateInterval:':
+                name: getIntersection
+            '-containsDate:':
+                trim_after_first_colon: true
     NSDateIntervalFormatter: # DONE
         methods:
             '-stringFromDate:toDate:':
+                name: format
+            '-stringFromDateInterval:':
                 name: format
     NSDecimalNumber: # DONE
         skip_def_constructor: true
@@ -889,16 +910,18 @@ classes:
                 exclude: true
             'doubleValue':
                 exclude: true
+            'maximumDecimalNumber':
+                name: max
+            'minimumDecimalNumber':
+                name: min
+            'notANumber':
+                name: NaN
+            'zero':
+                getter: zero
+            'one':
+                getter: one
         methods:
             '+decimalNumber.*': {exclude: true}
-            '+defaultBehavior':
-                property: true
-            '+maximumDecimalNumber':
-                name: getMax
-            '+minimumDecimalNumber':
-                name: getMin
-            '+notANumber':
-                name: getNaN
             '-compare:': {exclude: true}
             '-descriptionWithLocale:': {exclude: true}
             '-decimalNumberByAdding:.*':
@@ -987,6 +1010,12 @@ classes:
                 name: toStringsFileFormat
             '+.*': {exclude: true}
             '-.*': {exclude: true}
+    NSDimension: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '+baseUnit':
+                property: true
     NSDirectoryEnumerator: # DONE
         skip_def_constructor: true
         properties:
@@ -1093,6 +1122,10 @@ classes:
             '+writingIntentWithURL:options:':
                 name: createWritingIntent
     NSFileCoordinator: # DONE
+        properties:
+            'filePresenters':
+                type: List<NSFilePresenter>
+                marshaler: NSArray.AsListMarshaler
         methods:
             '-init.*':
                 name: init
@@ -1129,10 +1162,10 @@ classes:
                 trim_after_first_colon: true
             '+removeFilePresenter:':
                 trim_after_first_colon: true
-            '+filePresenters':
-                property: true
-                return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSFilePresenter>'
     NSFileHandle: # DONE
+        properties:
+            'fileHandleWith(.*)':
+                name: '#{g[0]}'
         methods:
             '-init.*':
                 name: init
@@ -1144,9 +1177,6 @@ classes:
                 trim_after_first_colon: true
             '-truncateFileAtOffset:':
                 name: truncateFile
-            '+fileHandleWith(.*)':
-                name: 'get#{g[0]}'
-                return_type: NSFileHandle
             '+fileHandleForReadingAtPath:':
                 name: createForReading
                 return_type: NSFileHandle
@@ -1323,6 +1353,7 @@ classes:
             '-enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:':
                 name: getEnumeratorAtURL
                 visibility: protected
+                return_type: NSDirectoryEnumerator # no generics atm
                 parameters:
                     keys:
                         type: '@org.robovm.rt.bro.annotation.Marshaler(NSURLFileSystemProperty.AsListMarshaler.class) List<NSURLFileSystemProperty>'
@@ -1732,6 +1763,14 @@ classes:
         methods:
             '-init.*':
                 name: init
+    NSISO8601DateFormatter: # DONE
+        methods:
+            '-stringFromDate:':
+                name: format
+            '-dateFromString:':
+                name: parse
+            '+stringFromDate:timeZone:formatOptions:':
+                name: format
     NSItemProvider: # DONE
         properties:
             'registeredTypeIdentifiers':
@@ -1905,13 +1944,14 @@ classes:
                 return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTagScheme>'
     NSLocale: # DONE
         skip_def_constructor: true
+        properties:
+            '(localeIdentifier|languageCode|countryCode|scriptCode|variantCode|exemplarCharacterSet|collationIdentifier|usesMetricSystem|decimalSeparator|groupingSeparator|currencySymbol|currencyCode|collatorIdentifier|quotationBeginDelimiter|quotationEndDelimiter|alternateQuotationBeginDelimiter|alternateQuotationEndDelimiter)':
+                name: '#{g[0]}0'
+                visibility: private
+            '(ISO.*|availableLocaleIdentifiers|commonISOCurrencyCodes|preferredLanguages)':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
         methods:
-            '+(autoupdatingCurrent|current|system)Locale':
-                property: true
-                return_type: NSLocale
-            '+(ISO.*|availableLocaleIdentifiers|commonISOCurrencyCodes|preferredLanguages)':
-                property: true
-                return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
             '+canonical(.*Identifier)FromString:':
                 property: true
                 name: 'getCanonical#{g[0]}'
@@ -2023,6 +2063,24 @@ classes:
                 visibility: protected
             '-getObjectValue:forString:errorDescription:':
                 exclude: true
+    NSMeasurement: # DONE
+        methods:
+            '-initWithDoubleValue:unit:':
+                name: init
+            '-canBeConvertedToUnit:':
+                trim_after_first_colon: true
+            '-measurementByConvertingToUnit:':
+                name: convertToUnit
+            '-measurementByAddingMeasurement:':
+                name: add
+            '-measurementBySubtractingMeasurement:':
+                name: substract
+    NSMeasurementFormatter: # DONE
+        methods:
+            '-stringFromMeasurement:':
+                name: format
+            '-stringFromUnit:':
+                name: format
     NSMessagePort: {} # DONE
     NSMetadataItem: # DONE
         properties:
@@ -2539,6 +2597,8 @@ classes:
                 type: 'Class<? extends NSObject>'
             'classForKeyedArchiver':
                 type: 'Class<? extends NSObject>'
+            'accessInstanceVariablesDirectly':
+                exclude: true
         methods:
             '-init':
                 visibility: private
@@ -2732,6 +2792,8 @@ classes:
                 exclude: true
             '+localizedStringFromPersonNameComponents:style:options:':
                 name: formatLocalized
+            '-personNameComponentsFromString:':
+                name: parse
     NSPipe: # DONE
         methods:
             '+pipe':
@@ -2788,14 +2850,14 @@ classes:
                 type: '@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSObject>'
             'arguments':
                 type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            'processInfo':
+                name: sharedProcessInfo
         methods:
             '-operatingSystem':
                 property: true
                 return_type: NSOperatingSystem
             '-operatingSystemName':
                 property: true
-            '+processInfo':
-                name: getSharedProcessInfo
             '-beginActivityWithOptions:reason:':
                 name: beginActivity
             '-endActivity:':
@@ -2914,11 +2976,12 @@ classes:
             '-stringByReplacingMatchesInString:options:range:withTemplate:':
                 name: newStringByReplacingMatches
     NSRunLoop: # DONE
+        properties:
+            'currentRunLoop':
+                name: current
+            'mainRunLoop':
+                name: main
         methods:
-            '+currentRunLoop':
-                name: getCurrent
-            '+mainRunLoop':
-                name: getMain
             '-runMode:beforeDate:':
                 name: runUntil
             '-runUntilDate:':
@@ -2927,7 +2990,8 @@ classes:
                 name: perform
                 parameters:
                     modes:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
             '-cancelPerformSelectorsWithTarget:':
                 name: cancel
             '-cancelPerformSelector:target:argument:':
@@ -2948,6 +3012,14 @@ classes:
                 name: getDateLimit
             '-acceptInputForMode:beforeDate:':
                 name: acceptInputUntil
+            '-performBlock:':
+                name: perform
+            '-performInModes:block:':
+                name: perform
+                parameters:
+                    modes:
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
     NSScanner: # DONE
         properties:
             'locale':
@@ -3182,8 +3254,11 @@ classes:
                 exclude: true
             'cancelled':
                 name: isCancelled
+            'callStackReturnAddresses':
+                type: NSArray<NSNumber>
+            'callStackSymbols':
+                type: NSArray<NSString>
         methods:
-            '+(callStackReturnAddresses|callStackSymbols)': { exclude: true }
             '-init': {exclude: true}
             '-init.*':
                 name: init
@@ -3192,6 +3267,8 @@ classes:
             '+sleepUntilDate:':
                 name: sleep
             '+detachNewThreadSelector:toTarget:withObject:':
+                name: detachNewThread
+            '+detachNewThreadWithBlock:':
                 name: detachNewThread
             '+isMainThread':
                 name: isCurrentThreadMainThread
@@ -3220,6 +3297,8 @@ classes:
                         name: userInfo
                     rep:
                         name: repeats
+            '-initWithFireDate:interval:repeats:block:':
+                name: init
             '+timerWithTimeInterval:invocation:repeats:':
                 name: create
                 visibility: private
@@ -3264,10 +3343,24 @@ classes:
                         name: selector
                     yesOrNo:
                         name: repeats
+            '+timerWithTimeInterval:repeats:block:':
+                name: create
+                visibility: private
+                return_type: '@Pointer long'
+            '+scheduledTimerWithTimeInterval:repeats:block:':
+                name: createScheduled
+                visibility: private
+                return_type: '@Pointer long'
     NSTimeZone: # DONE
         properties:
             'description':
                 exclude: true
+            'knownTimeZoneNames':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+            'abbreviationDictionary':
+                type: Map<String, String>
+                marshaler: NSDictionary.AsStringStringMapMarshaler
         methods:
             '-init.*':
                 name: init
@@ -3285,18 +3378,10 @@ classes:
                 name: equalsTo
             '-localizedName:locale:':
                 name: getLocalizedName
+            '+abbreviationDictionary':
+                exclude: true
             '+(systemTimeZone|defaultTimeZone|localTimeZone|timeZoneDataVersion)':
                 property: true
-            '+knownTimeZoneNames':
-                property: true
-                return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
-            '+abbreviationDictionary':
-                property: true
-                return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String>'
-            '+setAbbreviationDictionary:':
-                parameters:
-                    dict:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String>'
             '+timeZoneWithName:.*':
                 name: fromName
                 return_type: NSTimeZone
@@ -3367,12 +3452,51 @@ classes:
                 name: getUndoMenuTitle
             '-redoMenuTitleForUndoActionName:':
                 name: getRedoMenuTitle
+    NSUnit: # DONE
+        methods:
+            '-init.*':
+                name: init
+    NSUnitAcceleration: {} # DONE
+    NSUnitAngle: {} # DONE
+    NSUnitArea: {} # DONE
+    NSUnitConcentrationMass: # DONE
+        methods:
+            '+millimolesPerLiterWithGramsPerMole:':
+                name: convertGramsPerMoleToMillimolesPerLiter
+    NSUnitConverter: # DONE
+        methods:
+            '-baseUnitValueFromValue:':
+                name: convertToBaseUnit
+            '-valueFromBaseUnitValue:':
+                name: convertFromBaseUnit
+    NSUnitConverterLinear: # DONE
+        methods:
+            '-init.*':
+                name: init
+    NSUnitDispersion: {} # DONE
+    NSUnitDuration: {} # DONE
+    NSUnitElectricCharge: {} # DONE
+    NSUnitElectricCurrent: {} # DONE
+    NSUnitElectricPotentialDifference: {} # DONE
+    NSUnitElectricResistance: {} # DONE
+    NSUnitEnergy: {} # DONE
+    NSUnitFrequency: {} # DONE
+    NSUnitFuelEfficiency: {} # DONE
+    NSUnitIlluminance: {} # DONE
+    NSUnitLength: {} # DONE
+    NSUnitMass: {} # DONE
+    NSUnitPower: {} # DONE
+    NSUnitPressure: {} # DONE
+    NSUnitSpeed: {} # DONE
+    NSUnitTemperature: {} # DONE
+    NSUnitVolume: {} # DONE
     NSURL: # DONE
         properties:
             'fileSystemRepresentation':
                 exclude: true
             'pathComponents':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
         methods:
             '+bookmarkDataWithContentsOfURL:error:':
                 name: createBookmarkData
@@ -3382,7 +3506,8 @@ classes:
                 return_type: NSURLProperties
                 parameters:
                     keys:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSURLProperty.AsListMarshaler.class) List<NSURLProperty>'
+                        type: List<NSURLProperty>
+                        marshaler: NSURLProperty.AsListMarshaler
             '+writeBookmarkData:toURL:options:error:':
                 trim_after_first_colon: true
                 throws: NSErrorException
@@ -3767,6 +3892,8 @@ classes:
             '-writeData:timeout:completionHandler:':
                 name: writeData
     NSURLSessionTask: {} # DONE
+    NSURLSessionTaskMetrics: {} # DONE
+    NSURLSessionTaskTransactionMetrics: {} # DONE
     NSURLSessionUploadTask: {} # DONE
     NSUserActivity: # DONE
         properties:
@@ -4282,6 +4409,8 @@ protocols:
                 name: didSendBodyData
             '-URLSession:task:didCompleteWithError:':
                 name: didComplete
+            '-URLSession:task:didFinishCollectingMetrics:':
+                name: didFinishCollectingMetrics
     NSUserActivityDelegate: # DONE
         methods:
             '-userActivityWillSave:':
@@ -5167,6 +5296,10 @@ values:
         type: NSString
 
     # NSUserDefaults
+    NSUbiquitousUserDefaults(.*Notification):
+        class: NSUserDefaults
+        name: '#{g[0]}'
+        type: NSString
     NSUserDefaults(.*Notification):
         class: NSUserDefaults
         name: '#{g[0]}'

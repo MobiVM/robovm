@@ -68,6 +68,8 @@ import org.robovm.apple.dispatch.*;
     protected NSFileManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "defaultManager")
+    public static native NSFileManager getDefaultManager();
     /**
      * @since Available in iOS 2.0 and later.
      */
@@ -85,6 +87,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "ubiquityIdentityToken")
     public native NSObject getUbiquityIdentityToken();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "temporaryDirectory")
+    public native NSURL getTemporaryDirectory();
     /*</properties>*/
     /*<members>*//*</members>*/
     public boolean isDirectoryAtPath(String path) {
@@ -570,7 +577,5 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "containerURLForSecurityApplicationGroupIdentifier:")
     public native NSURL getContainerURLForSecurityApplication(String groupIdentifier);
-    @Method(selector = "defaultManager")
-    public static native NSFileManager getDefaultManager();
     /*</methods>*/
 }

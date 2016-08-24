@@ -69,6 +69,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setRequiresSecureCoding:")
     public native void setRequiresSecureCoding(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "decodingFailurePolicy")
+    public native NSDecodingFailurePolicy getDecodingFailurePolicy();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setDecodingFailurePolicy:")
+    public native void setDecodingFailurePolicy(NSDecodingFailurePolicy v);
     /*</properties>*/
     /*<members>*//*</members>*/
     

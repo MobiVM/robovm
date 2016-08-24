@@ -83,8 +83,14 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 2.0 and later.
      */
     public NSThread(NSObject target, Selector selector, NSObject argument) { super((SkipInit) null); initObject(init(target, selector, argument)); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public NSThread(@Block Runnable block) { super((SkipInit) null); initObject(init(block)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "currentThread")
+    public static native NSThread getCurrentThread();
     @Property(selector = "threadDictionary")
     public native NSMutableDictionary<?, ?> getThreadDictionary();
     /**
@@ -97,6 +103,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setQualityOfService:")
     public native void setQualityOfService(NSQualityOfService v);
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Property(selector = "callStackReturnAddresses")
+    public static native NSArray<NSNumber> getCallStackReturnAddresses();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    @Property(selector = "callStackSymbols")
+    public static native NSArray<NSString> getCallStackSymbols();
     /**
      * @since Available in iOS 2.0 and later.
      */
@@ -122,6 +138,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "isMainThread")
     public native boolean isMainThread();
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Property(selector = "mainThread")
+    public static native NSThread getMainThread();
     /**
      * @since Available in iOS 2.0 and later.
      */
@@ -153,6 +174,11 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithTarget:selector:object:")
     protected native @Pointer long init(NSObject target, Selector selector, NSObject argument);
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithBlock:")
+    protected native @Pointer long init(@Block Runnable block);
+    /**
      * @since Available in iOS 2.0 and later.
      */
     @Method(selector = "cancel")
@@ -167,8 +193,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "main")
     public native void main();
-    @Method(selector = "currentThread")
-    public static native NSThread getCurrentThread();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "detachNewThreadWithBlock:")
+    public static native void detachNewThread(@Block Runnable block);
     @Method(selector = "detachNewThreadSelector:toTarget:withObject:")
     public static native void detachNewThread(Selector selector, NSObject target, NSObject argument);
     @Method(selector = "isMultiThreaded")
@@ -183,15 +212,5 @@ import org.robovm.apple.dispatch.*;
     public static native double getThreadPriority();
     @Method(selector = "setThreadPriority:")
     public static native boolean setThreadPriority(double p);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    @Method(selector = "isMainThread")
-    public static native boolean isCurrentThreadMainThread();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    @Method(selector = "mainThread")
-    public static native NSThread getMainThread();
     /*</methods>*/
 }

@@ -111,6 +111,14 @@ import org.robovm.apple.dispatch.*;
     public native NSData getAvailableData();
     @Property(selector = "offsetInFile")
     public native long getOffsetInFile();
+    @Property(selector = "fileHandleWithStandardInput")
+    public static native NSFileHandle getStandardInput();
+    @Property(selector = "fileHandleWithStandardOutput")
+    public static native NSFileHandle getStandardOutput();
+    @Property(selector = "fileHandleWithStandardError")
+    public static native NSFileHandle getStandardError();
+    @Property(selector = "fileHandleWithNullDevice")
+    public static native NSFileHandle getNullDevice();
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -198,14 +206,6 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(int fd, boolean closeopt);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
-    @Method(selector = "fileHandleWithStandardInput")
-    public static native NSFileHandle getStandardInput();
-    @Method(selector = "fileHandleWithStandardOutput")
-    public static native NSFileHandle getStandardOutput();
-    @Method(selector = "fileHandleWithStandardError")
-    public static native NSFileHandle getStandardError();
-    @Method(selector = "fileHandleWithNullDevice")
-    public static native NSFileHandle getNullDevice();
     @Method(selector = "fileHandleForReadingAtPath:")
     public static native NSFileHandle createForReading(String path);
     @Method(selector = "fileHandleForWritingAtPath:")

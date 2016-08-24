@@ -37,7 +37,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.security.*;
 import org.robovm.apple.dispatch.*;
 /*</imports>*/
-import org.robovm.apple.foundation.NSObject.SkipInit;
 
 /*<javadoc>*/
 
@@ -71,7 +70,7 @@ import org.robovm.apple.foundation.NSObject.SkipInit;
         if (bytes == null) {
             throw new NullPointerException("bytes");
         }
-        long handle = NSData.getEffectiveAddress(bytes) + bytes.position();
+        long handle = BufferMarshalers.BufferMarshaler.getBufferAddress(bytes) + bytes.position();
         initObject(init(handle, bytes.remaining()));
         addStrongRef(bytes);
     }
@@ -85,7 +84,7 @@ import org.robovm.apple.foundation.NSObject.SkipInit;
         return write(buffer.getHandle(), len);
     }
     public long write(ByteBuffer bytes) {
-        long handle = NSData.getEffectiveAddress(bytes) + bytes.position();
+        long handle = BufferMarshalers.BufferMarshaler.getBufferAddress(bytes) + bytes.position();
         return write(handle, bytes.remaining());
     }
     public long write(byte[] bytes) {

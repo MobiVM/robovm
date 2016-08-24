@@ -54,7 +54,8 @@ import org.robovm.apple.dispatch.*;
     public NSNotificationQueue(NSNotificationCenter notificationCenter) { super((SkipInit) null); initObject(init(notificationCenter)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "defaultQueue")
+    public static native NSNotificationQueue getDefaultQueue();
     /*</properties>*/
     /*<members>*//*</members>*/
     public void enqueueNotification(NSNotification notification, NSPostingStyle postingStyle, NSNotificationCoalescing coalesceMask, NSRunLoopMode...modes) {
@@ -73,7 +74,5 @@ import org.robovm.apple.dispatch.*;
     public native void enqueueNotification(NSNotification notification, NSPostingStyle postingStyle, NSNotificationCoalescing coalesceMask, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> modes);
     @Method(selector = "dequeueNotificationsMatching:coalesceMask:")
     public native void dequeueNotificationsMatching(NSNotification notification, NSNotificationCoalescing coalesceMask);
-    @Method(selector = "defaultQueue")
-    public static native NSNotificationQueue getDefaultQueue();
     /*</methods>*/
 }

@@ -185,6 +185,5 @@ import org.robovm.apple.dispatch.*;
         }
     }
     
-    /*<methods>*/
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
 }

@@ -64,6 +64,11 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setOutputFormat:")
     public native void setOutputFormat(NSPropertyListFormat v);
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "encodedData")
+    public native NSData getEncodedData();
+    /**
      * @since Available in iOS 6.0 and later.
      */
     @Property(selector = "requiresSecureCoding")

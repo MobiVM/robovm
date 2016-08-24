@@ -110,11 +110,102 @@ import org.robovm.apple.dispatch.*;
         return new ListAdapter<T>(this);
     }
     
-    public static NSArray<?> read(java.io.File file) {
-        return read(file.getAbsolutePath());
+    private void checkIndex(int index) {
+        int size = (int) getCount();
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("index = " + index + ", size = " + size);
+        }
+    }
+
+    public boolean add(boolean value) {
+        return add0(NSNumber.valueOf(value));
+    }
+
+    public void add(int index, boolean value) {
+        add0(index, NSNumber.valueOf(value));
+    }
+
+    public boolean add(Number value) {
+        return add0(NSNumber.valueOf(value));
+    }
+
+    public void add(int index, Number value) {
+        add0(index, NSNumber.valueOf(value));
+    }
+
+    public boolean add(String value) {
+        return add0(value != null?new NSString(value):null);
+    }
+
+    public void add(int index, String value) {
+        add0(index, value != null?new NSString(value):null);
+    }
+
+    private boolean add0(NSObject element) {
+        add0(size(), element);
+        return true;
+    }
+
+    private void add0(int index, NSObject element) {
+        checkNull(element);
+        if (index < 0 || index > getCount()) {
+            checkIndex(index);
+        }
+
+        if(element == null) {
+            element = NSNull.getNull();
+        }
+
+        insertObject((NSObject)element, index);
+    }
+
+    public Object set(int index, boolean element) {
+        checkNull(Boolean.valueOf(element));
+        checkIndex(index);
+        Object old = getObjectAt(index);
+        replaceObject(index, NSNumber.valueOf(element));
+        if (old instanceof NSNumber) {
+            old = Boolean.valueOf(((NSNumber)old).booleanValue());
+        }
+
+        return old;
     }
     
-    public static NSMutableArray<NSString> toNSMutableArray (String... strings) {
+    public Object set(int index, Number element) {
+        return set0(index, NSNumber.valueOf(element));
+    }
+    
+    public Object set(int index, String element) {
+        return set0(index, new NSString(element));
+    }
+    
+    private Object set0(int index, NSObject element) {
+        checkNull(element);
+        checkIndex(index);
+        Object old = getObjectAt(index);
+        replaceObject(index, element);
+        if(old instanceof NSString) {
+            old = old.toString();
+        } else if(old instanceof NSNumber) {
+            old = Double.valueOf(((NSNumber)old).doubleValue());
+        }
+
+        return old;
+    }
+    
+    public boolean remove(boolean element) {
+        return remove(NSNumber.valueOf(element));
+    }
+
+    public boolean remove(Number element) {
+        return remove(NSNumber.valueOf(element));
+    }
+
+    public boolean remove(String element) {
+        return remove(new NSString(element));
+    }
+    
+    public static NSMutableArray<NSString> fromStrings (String... strings) {
         int length = strings.length;
         NSString[] nsStrings = new NSString[length];
 
@@ -123,17 +214,19 @@ import org.robovm.apple.dispatch.*;
         }
         return new NSMutableArray<NSString>(nsStrings);
     }
-
-    public static NSMutableArray<NSString> toNSMutableArray (List<String> strings) {
+    public static NSMutableArray<NSString> fromStrings (List<String> strings) {
         int size = strings.size();
         NSString[] nsStrings = new NSString[size];
 
         for (int i = 0; i < size; i++) {
             nsStrings[i] = new NSString(strings.get(i));
         }
-        return new NSMutableArray<NSString>(nsStrings);
+        return new NSMutableArray<>(nsStrings);
     }
-
+    
+    public static NSArray<?> read(java.io.File file) {
+        return read(file.getAbsolutePath());
+    }
     @Method(selector = "arrayWithContentsOfFile:")
     protected static native NSArray<? extends NSObject> read(String path);
     @Method(selector = "arrayWithContentsOfURL:")

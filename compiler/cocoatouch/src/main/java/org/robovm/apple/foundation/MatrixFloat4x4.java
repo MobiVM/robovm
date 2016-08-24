@@ -35,32 +35,31 @@ import org.robovm.rt.bro.ptr.*;
     /*<constructors>*/
     public MatrixFloat4x4() {}
     public MatrixFloat4x4(VectorFloat4[] columns) {
-        this.setColumns(columns);
+        this.set(columns);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native @Array(4) VectorFloat4[] getColumns();
-    @StructMember(0) public native MatrixFloat4x4 setColumns(@Array(4) VectorFloat4[] columns);
+    @StructMember(0) public native @ByVal VectorFloat4 getC1();
+    @StructMember(0) public native MatrixFloat4x4 setC1(@ByVal VectorFloat4 column1);
+    @StructMember(1) public native @ByVal VectorFloat4 getC2();
+    @StructMember(1) public native MatrixFloat4x4 setC2(@ByVal VectorFloat4 column2);
+    @StructMember(2) public native @ByVal VectorFloat4 getC3();
+    @StructMember(2) public native MatrixFloat4x4 setC3(@ByVal VectorFloat4 column3);
+    @StructMember(3) public native @ByVal VectorFloat4 getC4();
+    @StructMember(3) public native MatrixFloat4x4 setC4(@ByVal VectorFloat4 column4);
     /*</members>*/
     public void set(VectorFloat4[] columns) {
-        setColumns(columns);
+        setC1(columns[0]);
+        setC2(columns[1]);
+        setC3(columns[2]);
+        setC4(columns[3]);
     }
     public void set(VectorFloat4 c1, VectorFloat4 c2, VectorFloat4 c3, VectorFloat4 c4) {
-        setColumns(new VectorFloat4[] {c1, c2, c3, c4});
-    }
-    
-    public VectorFloat4 getC1() {
-        return getColumns()[0];
-    }
-    public VectorFloat4 getC2() {
-        return getColumns()[1];
-    }
-    public VectorFloat4 getC3() {
-        return getColumns()[2];
-    }
-    public VectorFloat4 getC4() {
-        return getColumns()[3];
+        setC1(c1);
+        setC2(c2);
+        setC3(c3);
+        setC4(c4);
     }
     /*<methods>*//*</methods>*/
 }

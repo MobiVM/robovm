@@ -375,6 +375,10 @@ import org.robovm.apple.dispatch.*;
         return new EntrySet<K, V>(this);
     }
     @SuppressWarnings("unchecked")
+    public V get(String key) {
+        return (V) getObjectForKey(key);
+    }
+    @SuppressWarnings("unchecked")
     public V get(Object key) {
         return (V) getObjectForKey(key);
     }
@@ -391,6 +395,9 @@ import org.robovm.apple.dispatch.*;
         return getAllValues();
     }
     public void clear() {
+        throw new UnsupportedOperationException("NSDictionary is immutable");
+    }
+    public V put(String key, V value) {
         throw new UnsupportedOperationException("NSDictionary is immutable");
     }
     public V put(K key, V value) {
@@ -559,6 +566,9 @@ import org.robovm.apple.dispatch.*;
     public void put(Object key, double value) {
         throw new UnsupportedOperationException("NSDictionary is immutable");
     }
+    public void put(Object key, Number value) {
+        throw new UnsupportedOperationException("NSDictionary is immutable");
+    }
     public void put(Object key, String value) {
         throw new UnsupportedOperationException("NSDictionary is immutable");
     }
@@ -590,7 +600,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithDictionary:")
     protected native @Pointer long init(NSDictionary<?, ?> otherDictionary);
     @Method(selector = "initWithObjects:forKeys:")
-    protected native @Pointer long init(NSArray<?> objects, NSArray keys);
+    protected native @Pointer long init(NSArray<?> objects, NSArray<?> keys);
     @Method(selector = "dictionaryWithContentsOfFile:")
     protected static native NSDictionary<?, ?> read(String path);
     @Method(selector = "dictionaryWithContentsOfURL:")

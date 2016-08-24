@@ -65,6 +65,8 @@ import org.robovm.apple.dispatch.*;
     protected NSURLCredentialStorage(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "sharedCredentialStorage")
+    public static native NSURLCredentialStorage getSharedCredentialStorage();
     @Property(selector = "allCredentials")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSURLCredential> getAllCredentials();
     /*</properties>*/
@@ -88,8 +90,6 @@ import org.robovm.apple.dispatch.*;
     public native NSURLCredential getDefaultCredential(NSURLProtectionSpace space);
     @Method(selector = "setDefaultCredential:forProtectionSpace:")
     public native void setDefaultCredential(NSURLCredential credential, NSURLProtectionSpace space);
-    @Method(selector = "sharedCredentialStorage")
-    public static native NSURLCredentialStorage getSharedCredentialStorage();
     /**
      * @since Available in iOS 8.0 and later.
      */

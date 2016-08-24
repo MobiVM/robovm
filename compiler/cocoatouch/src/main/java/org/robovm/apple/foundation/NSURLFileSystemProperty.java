@@ -236,6 +236,10 @@ import org.robovm.apple.dispatch.*;
      */
     public static final NSURLFileSystemProperty Path = new NSURLFileSystemProperty("Path");
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final NSURLFileSystemProperty CanonicalPath = new NSURLFileSystemProperty("CanonicalPath");
+    /**
      * @since Available in iOS 5.0 and later.
      */
     public static final NSURLFileSystemProperty IsMountTrigger = new NSURLFileSystemProperty("IsMountTrigger");
@@ -265,7 +269,7 @@ import org.robovm.apple.dispatch.*;
     public static final NSURLFileSystemProperty FileProtection = new NSURLFileSystemProperty("FileProtection");
     /*</constants>*/
     
-    private static /*<name>*/NSURLFileSystemProperty/*</name>*/[] values = new /*<name>*/NSURLFileSystemProperty/*</name>*/[] {/*<value_list>*/Name, LocalizedName, IsRegularFile, IsDirectory, IsSymbolicLink, IsVolume, IsPackage, IsApplication, IsSystemImmutable, IsUserImmutable, IsHidden, HasHiddenExtension, CreationDate, ContentAccessDate, ContentModificationDate, AttributeModificationDate, LinkCount, ParentDirectoryURL, VolumeURL, TypeIdentifier, LocalizedTypeDescription, LabelNumber, LabelColor, LocalizedLabel, EffectiveIcon, CustomIcon, FileResourceIdentifier, VolumeIdentifier, PreferredIOBlockSize, IsReadable, IsWritable, IsExecutable, FileSecurity, IsExcludedFromBackup, Path, IsMountTrigger, GenerationIdentifier, DocumentIdentifier, AddedToDirectoryDate, FileResourceType, ThumbnailDictionary, FileProtection/*</value_list>*/};
+    private static /*<name>*/NSURLFileSystemProperty/*</name>*/[] values = new /*<name>*/NSURLFileSystemProperty/*</name>*/[] {/*<value_list>*/Name, LocalizedName, IsRegularFile, IsDirectory, IsSymbolicLink, IsVolume, IsPackage, IsApplication, IsSystemImmutable, IsUserImmutable, IsHidden, HasHiddenExtension, CreationDate, ContentAccessDate, ContentModificationDate, AttributeModificationDate, LinkCount, ParentDirectoryURL, VolumeURL, TypeIdentifier, LocalizedTypeDescription, LabelNumber, LabelColor, LocalizedLabel, EffectiveIcon, CustomIcon, FileResourceIdentifier, VolumeIdentifier, PreferredIOBlockSize, IsReadable, IsWritable, IsExecutable, FileSecurity, IsExcludedFromBackup, Path, CanonicalPath, IsMountTrigger, GenerationIdentifier, DocumentIdentifier, AddedToDirectoryDate, FileResourceType, ThumbnailDictionary, FileProtection/*</value_list>*/};
     
     /*<name>*/NSURLFileSystemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -463,6 +467,11 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="NSURLPathKey", optional=true)
         public static native NSString Path();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="NSURLCanonicalPathKey", optional=true)
+        public static native NSString CanonicalPath();
         /**
          * @since Available in iOS 5.0 and later.
          */

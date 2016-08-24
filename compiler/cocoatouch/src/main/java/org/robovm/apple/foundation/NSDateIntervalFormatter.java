@@ -85,5 +85,10 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "stringFromDate:toDate:")
     public native String format(NSDate fromDate, NSDate toDate);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "stringFromDateInterval:")
+    public native String format(NSDateInterval dateInterval);
     /*</methods>*/
 }

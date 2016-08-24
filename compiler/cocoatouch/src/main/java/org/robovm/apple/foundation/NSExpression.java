@@ -76,7 +76,7 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "operand")
     public native NSExpression getOperand();
     @Property(selector = "arguments")
-    public native NSArray<?> getArguments();
+    public native NSArray<NSExpression> getArguments();
     /**
      * @since Available in iOS 3.0 and later.
      */
@@ -180,7 +180,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 4.0 and later.
      */
     @Method(selector = "expressionForBlock:arguments:")
-    public static native NSExpression createForBlock(@Block Block3<NSObject, NSArray<NSExpression>, NSMutableDictionary<?, ?>, NSObject> block, NSArray<?> arguments);
+    public static native NSExpression createForBlock(@Block Block3<NSObject, NSArray<NSExpression>, NSMutableDictionary<?, ?>, NSObject> block, NSArray<NSExpression> arguments);
     /**
      * @since Available in iOS 9.0 and later.
      */

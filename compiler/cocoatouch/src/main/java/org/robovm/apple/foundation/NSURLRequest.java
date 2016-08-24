@@ -56,6 +56,8 @@ import org.robovm.apple.dispatch.*;
     public NSURLRequest(NSURL URL, NSURLRequestCachePolicy cachePolicy, double timeoutInterval) { super((SkipInit) null); initObject(init(URL, cachePolicy, timeoutInterval)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "URL")
     public native NSURL getURL();
     @Property(selector = "cachePolicy")
@@ -90,14 +92,68 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "HTTPShouldUsePipelining")
     public native boolean shouldUseHTTPPipelining();
     /*</properties>*/
+    
+    public void setURL(NSURL v) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void setCachePolicy(NSURLRequestCachePolicy v) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void setTimeoutInterval(double v) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void setMainDocumentURL(NSURL v) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void setNetworkServiceType(NSURLRequestNetworkServiceType v) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void setAllowsCellularAccess(boolean v) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void setHTTPMethod(String v) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void setAllHTTPHeaderFields(Map<String, String> v) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void setHTTPBody(NSData v) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void setHTTPBodyStream(NSInputStream v) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void setShouldHandleHTTPCookies(boolean v) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void setShouldUseHTTPPipelining(boolean v) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void setHTTPHeaderField(String field, String value) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
+
+    public void addHTTPHeaderField(String field, String value) {
+        throw new UnsupportedOperationException("NSURLRequest is immutable");
+    }
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithURL:")
     protected native @Pointer long init(NSURL URL);
     @Method(selector = "initWithURL:cachePolicy:timeoutInterval:")
     protected native @Pointer long init(NSURL URL, NSURLRequestCachePolicy cachePolicy, double timeoutInterval);
-    @Method(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
     @Method(selector = "valueForHTTPHeaderField:")
     public native String getHTTPHeaderFieldValue(String field);
     /*</methods>*/

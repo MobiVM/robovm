@@ -70,7 +70,7 @@ import org.robovm.apple.dispatch.*;
     }
 
     public long read(ByteBuffer bytes) {
-        long handle = NSData.getEffectiveAddress(bytes) + bytes.position();
+        long handle = BufferMarshalers.BufferMarshaler.getBufferAddress(bytes) + bytes.position();
         return read(handle, bytes.remaining());
     }
 
