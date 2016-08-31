@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSIndexSet() {}
+    protected NSIndexSet(Handle h, long handle) { super(h, handle); }
     protected NSIndexSet(SkipInit skipInit) { super(skipInit); }
     public NSIndexSet(@ByVal NSRange range) { super((SkipInit) null); initObject(init(range)); }
     public NSIndexSet(NSIndexSet indexSet) { super((SkipInit) null); initObject(init(indexSet)); }

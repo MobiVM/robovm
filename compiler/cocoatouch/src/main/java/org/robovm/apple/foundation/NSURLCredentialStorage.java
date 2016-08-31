@@ -62,6 +62,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSURLCredentialStorage() {}
+    protected NSURLCredentialStorage(Handle h, long handle) { super(h, handle); }
     protected NSURLCredentialStorage(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

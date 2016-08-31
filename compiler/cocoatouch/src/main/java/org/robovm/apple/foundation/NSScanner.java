@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSScanner() {}
+    protected NSScanner(Handle h, long handle) { super(h, handle); }
     protected NSScanner(SkipInit skipInit) { super(skipInit); }
     public NSScanner(String string) { super((SkipInit) null); initObject(init(string)); }
     /*</constructors>*/

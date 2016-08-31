@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSAttributedString() {}
+    protected NSAttributedString(Handle h, long handle) { super(h, handle); }
     protected NSAttributedString(SkipInit skipInit) { super(skipInit); }
     public NSAttributedString(String str) { super((SkipInit) null); initObject(init(str)); }
     public NSAttributedString(String str, NSDictionary<NSString, ?> attrs) { super((SkipInit) null); initObject(init(str, attrs)); }

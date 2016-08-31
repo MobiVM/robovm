@@ -56,6 +56,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     }
     /*<constructors>*/
     public NSURL() {}
+    protected NSURL(Handle h, long handle) { super(h, handle); }
     protected NSURL(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 2.0 and later.

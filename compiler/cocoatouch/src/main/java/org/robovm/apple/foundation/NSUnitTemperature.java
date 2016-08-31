@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitTemperature() {}
+    protected NSUnitTemperature(Handle h, long handle) { super(h, handle); }
     protected NSUnitTemperature(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

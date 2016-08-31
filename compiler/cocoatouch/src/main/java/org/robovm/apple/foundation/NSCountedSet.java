@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSCountedSet() {}
+    protected NSCountedSet(Handle h, long handle) { super(h, handle); }
     protected NSCountedSet(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

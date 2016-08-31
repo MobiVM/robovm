@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSNotificationCenter() {}
+    protected NSNotificationCenter(Handle h, long handle) { super(h, handle); }
     protected NSNotificationCenter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

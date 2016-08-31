@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSKeyedUnarchiver() {}
+    protected NSKeyedUnarchiver(Handle h, long handle) { super(h, handle); }
     protected NSKeyedUnarchiver(SkipInit skipInit) { super(skipInit); }
     public NSKeyedUnarchiver(NSData data) { super((SkipInit) null); initObject(init(data)); }
     /*</constructors>*/

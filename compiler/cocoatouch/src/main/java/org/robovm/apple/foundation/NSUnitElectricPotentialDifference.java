@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitElectricPotentialDifference() {}
+    protected NSUnitElectricPotentialDifference(Handle h, long handle) { super(h, handle); }
     protected NSUnitElectricPotentialDifference(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

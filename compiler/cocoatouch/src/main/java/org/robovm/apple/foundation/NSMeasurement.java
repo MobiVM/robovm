@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMeasurement() {}
+    protected NSMeasurement(Handle h, long handle) { super(h, handle); }
     protected NSMeasurement(SkipInit skipInit) { super(skipInit); }
     public NSMeasurement(double doubleValue, T unit) { super((SkipInit) null); initObject(init(doubleValue, unit)); }
     /*</constructors>*/

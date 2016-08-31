@@ -52,6 +52,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSPropertyListSerialization() {}
+    protected NSPropertyListSerialization(Handle h, long handle) { super(h, handle); }
     protected NSPropertyListSerialization(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

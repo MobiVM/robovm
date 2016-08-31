@@ -101,6 +101,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSFileHandle() {}
+    protected NSFileHandle(Handle h, long handle) { super(h, handle); }
     protected NSFileHandle(SkipInit skipInit) { super(skipInit); }
     public NSFileHandle(int fd, boolean closeopt) { super((SkipInit) null); initObject(init(fd, closeopt)); }
     public NSFileHandle(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }

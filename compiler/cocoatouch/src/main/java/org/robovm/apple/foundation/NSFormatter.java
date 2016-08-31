@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSFormatter() {}
+    protected NSFormatter(Handle h, long handle) { super(h, handle); }
     protected NSFormatter(SkipInit skipInit) { super(skipInit); }
     public NSFormatter(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/

@@ -67,6 +67,7 @@ import org.robovm.apple.dispatch.*;
     /*</constants>*/
     /*<constructors>*/
     public NSDate() {}
+    protected NSDate(Handle h, long handle) { super(h, handle); }
     protected NSDate(SkipInit skipInit) { super(skipInit); }
     public NSDate(double secs) { super((SkipInit) null); initObject(init(secs)); }
     /*</constructors>*/

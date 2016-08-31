@@ -111,6 +111,7 @@ import org.robovm.apple.dispatch.*;
     
     /*<constructors>*/
     public NSString() {}
+    protected NSString(Handle h, long handle) { super(h, handle); }
     protected NSString(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

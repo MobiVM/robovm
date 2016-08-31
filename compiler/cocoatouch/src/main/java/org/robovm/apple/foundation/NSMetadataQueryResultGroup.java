@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMetadataQueryResultGroup() {}
+    protected NSMetadataQueryResultGroup(Handle h, long handle) { super(h, handle); }
     protected NSMetadataQueryResultGroup(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

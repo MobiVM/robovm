@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitFuelEfficiency() {}
+    protected NSUnitFuelEfficiency(Handle h, long handle) { super(h, handle); }
     protected NSUnitFuelEfficiency(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

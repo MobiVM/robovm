@@ -64,6 +64,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSProcessInfo.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSProcessInfo(Handle h, long handle) { super(h, handle); }
     protected NSProcessInfo(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -190,6 +190,7 @@ import org.robovm.apple.dispatch.*;
     
     /*<constructors>*/
     public NSArray() {}
+    protected NSArray(Handle h, long handle) { super(h, handle); }
     protected NSArray(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     

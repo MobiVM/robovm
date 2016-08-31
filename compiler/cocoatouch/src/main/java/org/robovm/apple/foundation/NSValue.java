@@ -55,6 +55,7 @@ import org.robovm.apple.scenekit.SCNVector4;
     /*<bind>*/static { ObjCRuntime.bind(NSValue.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSValue(Handle h, long handle) { super(h, handle); }
     protected NSValue(SkipInit skipInit) { super(skipInit); }
     public NSValue(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/

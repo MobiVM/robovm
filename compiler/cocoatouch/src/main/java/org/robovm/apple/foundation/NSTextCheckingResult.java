@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSTextCheckingResult() {}
+    protected NSTextCheckingResult(Handle h, long handle) { super(h, handle); }
     protected NSTextCheckingResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

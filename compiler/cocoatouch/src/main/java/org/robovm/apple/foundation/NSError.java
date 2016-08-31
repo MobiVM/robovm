@@ -100,6 +100,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSError(Handle h, long handle) { super(h, handle); }
     protected NSError(SkipInit skipInit) { super(skipInit); }
     public NSError(String domain, @MachineSizedSInt long code, NSErrorUserInfo dict) { super((SkipInit) null); initObject(init(domain, code, dict)); }
     /*</constructors>*/

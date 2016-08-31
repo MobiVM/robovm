@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSDecimalNumber.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSDecimalNumber(Handle h, long handle) { super(h, handle); }
     protected NSDecimalNumber(SkipInit skipInit) { super(skipInit); }
     public NSDecimalNumber(long mantissa, short exponent, boolean flag) { super((SkipInit) null); initObject(init(mantissa, exponent, flag)); }
     public NSDecimalNumber(@ByVal NSDecimal dcm) { super((SkipInit) null); initObject(init(dcm)); }

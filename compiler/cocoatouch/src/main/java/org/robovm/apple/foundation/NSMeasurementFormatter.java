@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMeasurementFormatter() {}
+    protected NSMeasurementFormatter(Handle h, long handle) { super(h, handle); }
     protected NSMeasurementFormatter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

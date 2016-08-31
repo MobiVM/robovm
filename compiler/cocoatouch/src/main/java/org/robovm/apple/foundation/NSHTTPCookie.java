@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSHTTPCookie() {}
+    protected NSHTTPCookie(Handle h, long handle) { super(h, handle); }
     protected NSHTTPCookie(SkipInit skipInit) { super(skipInit); }
     public NSHTTPCookie(NSHTTPCookieAttributes properties) { super((SkipInit) null); initObject(init(properties)); }
     /*</constructors>*/

@@ -53,10 +53,11 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSURLSession() {}
-    protected NSURLSession(long handle) { super(handle); }
+    @Deprecated protected NSURLSession(long handle) { super(handle); }
+    protected NSURLSession(Handle h, long handle) { super(h, handle); }
     protected NSURLSession(SkipInit skipInit) { super(skipInit); }
-    public NSURLSession(NSURLSessionConfiguration configuration) { super(create(configuration)); retain(getHandle()); }
-    public NSURLSession(NSURLSessionConfiguration configuration, NSURLSessionDelegate delegate, NSOperationQueue queue) { super(create(configuration, delegate, queue)); retain(getHandle()); }
+    public NSURLSession(NSURLSessionConfiguration configuration) { super((Handle) null, create(configuration)); retain(getHandle()); }
+    public NSURLSession(NSURLSessionConfiguration configuration, NSURLSessionDelegate delegate, NSOperationQueue queue) { super((Handle) null, create(configuration, delegate, queue)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sharedSession")

@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSRunLoop() {}
+    protected NSRunLoop(Handle h, long handle) { super(h, handle); }
     protected NSRunLoop(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

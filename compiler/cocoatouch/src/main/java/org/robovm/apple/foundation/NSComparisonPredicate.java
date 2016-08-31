@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSComparisonPredicate() {}
+    protected NSComparisonPredicate(Handle h, long handle) { super(h, handle); }
     protected NSComparisonPredicate(SkipInit skipInit) { super(skipInit); }
     public NSComparisonPredicate(NSExpression lhs, NSExpression rhs, NSComparisonPredicateModifier modifier, NSPredicateOperatorType type, NSComparisonPredicateOptions options) { super((SkipInit) null); initObject(init(lhs, rhs, modifier, type, options)); }
     public NSComparisonPredicate(NSExpression lhs, NSExpression rhs, Selector selector) { super((SkipInit) null); initObject(init(lhs, rhs, selector)); }

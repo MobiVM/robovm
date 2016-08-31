@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSNotificationQueue.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSNotificationQueue(Handle h, long handle) { super(h, handle); }
     protected NSNotificationQueue(SkipInit skipInit) { super(skipInit); }
     public NSNotificationQueue(NSNotificationCenter notificationCenter) { super((SkipInit) null); initObject(init(notificationCenter)); }
     /*</constructors>*/

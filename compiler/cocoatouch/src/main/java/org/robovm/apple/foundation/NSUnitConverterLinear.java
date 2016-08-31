@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitConverterLinear() {}
+    protected NSUnitConverterLinear(Handle h, long handle) { super(h, handle); }
     protected NSUnitConverterLinear(SkipInit skipInit) { super(skipInit); }
     public NSUnitConverterLinear(double coefficient) { super((SkipInit) null); initObject(init(coefficient)); }
     public NSUnitConverterLinear(double coefficient, double constant) { super((SkipInit) null); initObject(init(coefficient, constant)); }

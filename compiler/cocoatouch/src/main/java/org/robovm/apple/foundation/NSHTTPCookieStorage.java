@@ -70,6 +70,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSHTTPCookieStorage() {}
+    protected NSHTTPCookieStorage(Handle h, long handle) { super(h, handle); }
     protected NSHTTPCookieStorage(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

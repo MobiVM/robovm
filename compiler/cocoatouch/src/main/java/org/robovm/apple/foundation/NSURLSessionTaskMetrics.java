@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSURLSessionTaskMetrics() {}
+    protected NSURLSessionTaskMetrics(Handle h, long handle) { super(h, handle); }
     protected NSURLSessionTaskMetrics(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

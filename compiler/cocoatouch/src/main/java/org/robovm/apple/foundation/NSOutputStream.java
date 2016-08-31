@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSOutputStream.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSOutputStream(Handle h, long handle) { super(h, handle); }
     protected NSOutputStream(SkipInit skipInit) { super(skipInit); }
     public NSOutputStream() { super((SkipInit) null); initObject(init()); }
     /**

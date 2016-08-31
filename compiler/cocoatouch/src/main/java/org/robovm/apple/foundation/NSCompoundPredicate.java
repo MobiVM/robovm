@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSCompoundPredicate() {}
+    protected NSCompoundPredicate(Handle h, long handle) { super(h, handle); }
     protected NSCompoundPredicate(SkipInit skipInit) { super(skipInit); }
     public NSCompoundPredicate(NSCompoundPredicateType type, NSArray<NSPredicate> subpredicates) { super((SkipInit) null); initObject(init(type, subpredicates)); }
     public NSCompoundPredicate(NSCoder coder) { super((SkipInit) null); initObject(initWithCoder$(coder)); }

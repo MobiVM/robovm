@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSHTTPURLResponse() {}
+    protected NSHTTPURLResponse(Handle h, long handle) { super(h, handle); }
     protected NSHTTPURLResponse(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 5.0 and later.

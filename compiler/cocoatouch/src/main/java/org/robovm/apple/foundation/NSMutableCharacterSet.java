@@ -51,10 +51,11 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMutableCharacterSet() {}
+    protected NSMutableCharacterSet(Handle h, long handle) { super(h, handle); }
     protected NSMutableCharacterSet(SkipInit skipInit) { super(skipInit); }
-    public NSMutableCharacterSet(@ByVal NSRange aRange) { super(create(aRange)); retain(getHandle()); }
-    public NSMutableCharacterSet(String aString) { super(create(aString)); retain(getHandle()); }
-    public NSMutableCharacterSet(NSData data) { super(create(data)); retain(getHandle()); }
+    public NSMutableCharacterSet(@ByVal NSRange aRange) { super((Handle) null, create(aRange)); retain(getHandle()); }
+    public NSMutableCharacterSet(String aString) { super((Handle) null, create(aString)); retain(getHandle()); }
+    public NSMutableCharacterSet(NSData data) { super((Handle) null, create(data)); retain(getHandle()); }
     /*</constructors>*/
     public NSMutableCharacterSet(File file) {
         super(createWithFile(file));

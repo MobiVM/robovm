@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSNetServiceBrowser() {}
+    protected NSNetServiceBrowser(Handle h, long handle) { super(h, handle); }
     protected NSNetServiceBrowser(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

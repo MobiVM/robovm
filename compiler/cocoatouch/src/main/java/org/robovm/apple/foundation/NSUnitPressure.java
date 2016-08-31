@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitPressure() {}
+    protected NSUnitPressure(Handle h, long handle) { super(h, handle); }
     protected NSUnitPressure(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

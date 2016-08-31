@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSNumber.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSNumber(Handle h, long handle) { super(h, handle); }
     protected NSNumber(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

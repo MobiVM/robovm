@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMetadataQueryAttributeValueTuple() {}
+    protected NSMetadataQueryAttributeValueTuple(Handle h, long handle) { super(h, handle); }
     protected NSMetadataQueryAttributeValueTuple(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

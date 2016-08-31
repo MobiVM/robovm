@@ -79,6 +79,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUbiquitousKeyValueStore() {}
+    protected NSUbiquitousKeyValueStore(Handle h, long handle) { super(h, handle); }
     protected NSUbiquitousKeyValueStore(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -177,6 +177,7 @@ import org.robovm.apple.foundation.NSObject.SkipInit;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMapTable() {}
+    protected NSMapTable(Handle h, long handle) { super(h, handle); }
     protected NSMapTable(SkipInit skipInit) { super(skipInit); }
     public NSMapTable(NSMapTableOptions keyOptions, NSMapTableOptions valueOptions, @MachineSizedUInt long initialCapacity) { super((SkipInit) null); initObject(init(keyOptions, valueOptions, initialCapacity)); }
     public NSMapTable(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }

@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMachPort() {}
+    protected NSMachPort(Handle h, long handle) { super(h, handle); }
     protected NSMachPort(SkipInit skipInit) { super(skipInit); }
     public NSMachPort(int machPort) { super((SkipInit) null); initObject(init(machPort)); }
     /**

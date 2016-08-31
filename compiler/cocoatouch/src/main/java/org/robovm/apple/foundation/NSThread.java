@@ -78,6 +78,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSThread() {}
+    protected NSThread(Handle h, long handle) { super(h, handle); }
     protected NSThread(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 2.0 and later.

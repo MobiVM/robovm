@@ -46,6 +46,7 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NSException.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSException(Handle h, long handle) { super(h, handle); }
     protected NSException(SkipInit skipInit) { super(skipInit); }
     public NSException(String aName, String aReason, NSDictionary<?, ?> aUserInfo) { super((SkipInit) null); initObject(init(aName, aReason, aUserInfo)); }
     public NSException(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }

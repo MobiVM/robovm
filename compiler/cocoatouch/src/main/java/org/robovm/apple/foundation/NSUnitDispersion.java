@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitDispersion() {}
+    protected NSUnitDispersion(Handle h, long handle) { super(h, handle); }
     protected NSUnitDispersion(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

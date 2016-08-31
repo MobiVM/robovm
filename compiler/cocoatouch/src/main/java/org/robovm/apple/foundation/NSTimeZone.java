@@ -65,6 +65,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSTimeZone() {}
+    protected NSTimeZone(Handle h, long handle) { super(h, handle); }
     protected NSTimeZone(SkipInit skipInit) { super(skipInit); }
     public NSTimeZone(String tzName) { super((SkipInit) null); initObject(init(tzName)); }
     public NSTimeZone(String tzName, NSData aData) { super((SkipInit) null); initObject(init(tzName, aData)); }

@@ -112,6 +112,7 @@ import org.robovm.apple.foundation.NSSet.SetAdapter;
     
     /*<constructors>*/
     public NSHashTable() {}
+    protected NSHashTable(Handle h, long handle) { super(h, handle); }
     protected NSHashTable(SkipInit skipInit) { super(skipInit); }
     public NSHashTable(NSHashTableOptions options, @MachineSizedUInt long initialCapacity) { super((SkipInit) null); initObject(init(options, initialCapacity)); }
     public NSHashTable(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }

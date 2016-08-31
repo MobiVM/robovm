@@ -83,6 +83,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSOrthography() {}
+    protected NSOrthography(Handle h, long handle) { super(h, handle); }
     protected NSOrthography(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.

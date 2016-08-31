@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSFileCoordinator() {}
+    protected NSFileCoordinator(Handle h, long handle) { super(h, handle); }
     protected NSFileCoordinator(SkipInit skipInit) { super(skipInit); }
     public NSFileCoordinator(NSFilePresenter filePresenterOrNil) { super((SkipInit) null); initObject(init(filePresenterOrNil)); }
     /*</constructors>*/

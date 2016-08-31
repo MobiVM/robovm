@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUUID() {}
+    protected NSUUID(Handle h, long handle) { super(h, handle); }
     protected NSUUID(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     

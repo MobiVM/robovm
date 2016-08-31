@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitElectricCharge() {}
+    protected NSUnitElectricCharge(Handle h, long handle) { super(h, handle); }
     protected NSUnitElectricCharge(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

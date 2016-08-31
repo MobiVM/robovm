@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitElectricResistance() {}
+    protected NSUnitElectricResistance(Handle h, long handle) { super(h, handle); }
     protected NSUnitElectricResistance(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

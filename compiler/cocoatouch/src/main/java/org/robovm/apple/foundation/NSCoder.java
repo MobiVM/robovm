@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSCoder() {}
+    protected NSCoder(Handle h, long handle) { super(h, handle); }
     protected NSCoder(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSMutableDictionary.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSMutableDictionary(Handle h, long handle) { super(h, handle); }
     protected NSMutableDictionary(SkipInit skipInit) { super(skipInit); }
     public NSMutableDictionary(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
     /*</constructors>*/

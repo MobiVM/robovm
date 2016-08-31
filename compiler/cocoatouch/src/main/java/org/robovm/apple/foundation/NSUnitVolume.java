@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitVolume() {}
+    protected NSUnitVolume(Handle h, long handle) { super(h, handle); }
     protected NSUnitVolume(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

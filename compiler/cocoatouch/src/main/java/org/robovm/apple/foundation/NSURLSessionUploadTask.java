@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSURLSessionUploadTask() {}
+    protected NSURLSessionUploadTask(Handle h, long handle) { super(h, handle); }
     protected NSURLSessionUploadTask(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

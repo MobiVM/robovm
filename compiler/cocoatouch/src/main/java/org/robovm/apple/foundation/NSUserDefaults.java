@@ -62,6 +62,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUserDefaults() {}
+    protected NSUserDefaults(Handle h, long handle) { super(h, handle); }
     protected NSUserDefaults(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

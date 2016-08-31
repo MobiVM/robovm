@@ -286,6 +286,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSDictionary() {}
+    protected NSDictionary(Handle h, long handle) { super(h, handle); }
     protected NSDictionary(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
 

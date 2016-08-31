@@ -126,6 +126,7 @@ import org.robovm.apple.dispatch.*;
 
     /*<constructors>*/
     public NSOrderedSet() {}
+    protected NSOrderedSet(Handle h, long handle) { super(h, handle); }
     protected NSOrderedSet(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     

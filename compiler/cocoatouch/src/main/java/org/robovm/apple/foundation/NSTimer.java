@@ -63,6 +63,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSTimer() {}
+    protected NSTimer(Handle h, long handle) { super(h, handle); }
     protected NSTimer(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 10.0 and later.

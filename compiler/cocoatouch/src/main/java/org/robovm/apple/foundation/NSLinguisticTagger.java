@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSLinguisticTagger() {}
+    protected NSLinguisticTagger(Handle h, long handle) { super(h, handle); }
     protected NSLinguisticTagger(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 5.0 and later.

@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitDuration() {}
+    protected NSUnitDuration(Handle h, long handle) { super(h, handle); }
     protected NSUnitDuration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

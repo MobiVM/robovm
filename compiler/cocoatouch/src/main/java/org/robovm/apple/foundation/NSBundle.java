@@ -70,6 +70,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSBundle() {}
+    protected NSBundle(Handle h, long handle) { super(h, handle); }
     protected NSBundle(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.

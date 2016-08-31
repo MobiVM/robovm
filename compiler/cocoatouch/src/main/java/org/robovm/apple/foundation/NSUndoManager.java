@@ -152,6 +152,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUndoManager() {}
+    protected NSUndoManager(Handle h, long handle) { super(h, handle); }
     protected NSUndoManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public void setRunLoopModes(NSRunLoopMode...modes) {

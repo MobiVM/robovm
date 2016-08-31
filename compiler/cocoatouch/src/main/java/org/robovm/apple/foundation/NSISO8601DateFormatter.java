@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSISO8601DateFormatter() {}
+    protected NSISO8601DateFormatter(Handle h, long handle) { super(h, handle); }
     protected NSISO8601DateFormatter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

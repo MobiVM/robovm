@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSDecimalNumberHandler.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSDecimalNumberHandler(Handle h, long handle) { super(h, handle); }
     protected NSDecimalNumberHandler(SkipInit skipInit) { super(skipInit); }
     public NSDecimalNumberHandler(NSRoundingMode roundingMode, short scale, boolean exact, boolean overflow, boolean underflow, boolean divideByZero) { super((SkipInit) null); initObject(init(roundingMode, scale, exact, overflow, underflow, divideByZero)); }
     public NSDecimalNumberHandler(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }

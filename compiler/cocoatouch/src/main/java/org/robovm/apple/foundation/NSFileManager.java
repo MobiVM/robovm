@@ -65,6 +65,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSFileManager() {}
+    protected NSFileManager(Handle h, long handle) { super(h, handle); }
     protected NSFileManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

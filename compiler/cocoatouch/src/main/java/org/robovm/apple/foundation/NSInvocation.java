@@ -51,8 +51,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSInvocation() {}
+    protected NSInvocation(Handle h, long handle) { super(h, handle); }
     protected NSInvocation(SkipInit skipInit) { super(skipInit); }
-    public NSInvocation(NSMethodSignature sig) { super(create(sig)); retain(getHandle()); }
+    public NSInvocation(NSMethodSignature sig) { super((Handle) null, create(sig)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "methodSignature")

@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitElectricCurrent() {}
+    protected NSUnitElectricCurrent(Handle h, long handle) { super(h, handle); }
     protected NSUnitElectricCurrent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

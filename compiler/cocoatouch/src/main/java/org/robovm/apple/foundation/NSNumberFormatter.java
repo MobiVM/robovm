@@ -52,6 +52,7 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSNumberFormatter() {}
+    protected NSNumberFormatter(Handle h, long handle) { super(h, handle); }
     protected NSNumberFormatter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     @WeaklyLinked

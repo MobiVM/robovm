@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSNotification.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSNotification(Handle h, long handle) { super(h, handle); }
     protected NSNotification(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.

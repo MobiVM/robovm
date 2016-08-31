@@ -64,6 +64,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSLocale.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSLocale(Handle h, long handle) { super(h, handle); }
     protected NSLocale(SkipInit skipInit) { super(skipInit); }
     public NSLocale(String string) { super((SkipInit) null); initObject(init(string)); }
     /*</constructors>*/

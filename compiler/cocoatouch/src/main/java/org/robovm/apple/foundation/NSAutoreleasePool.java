@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSAutoreleasePool() {}
+    protected NSAutoreleasePool(Handle h, long handle) { super(h, handle); }
     protected NSAutoreleasePool(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

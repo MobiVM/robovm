@@ -52,8 +52,9 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSBlockOperation.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSBlockOperation(Handle h, long handle) { super(h, handle); }
     protected NSBlockOperation(SkipInit skipInit) { super(skipInit); }
-    public NSBlockOperation(@Block Runnable block) { super(create(block)); retain(getHandle()); }
+    public NSBlockOperation(@Block Runnable block) { super((Handle) null, create(block)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     

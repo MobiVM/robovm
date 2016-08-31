@@ -53,12 +53,13 @@ import org.robovm.apple.dispatch.*;
     /*</constants>*/
     /*<constructors>*/
     public NSCharacterSet() {}
-    protected NSCharacterSet(long handle) { super(handle); }
+    @Deprecated protected NSCharacterSet(long handle) { super(handle); }
+    protected NSCharacterSet(Handle h, long handle) { super(h, handle); }
     protected NSCharacterSet(SkipInit skipInit) { super(skipInit); }
     public NSCharacterSet(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
-    public NSCharacterSet(@ByVal NSRange aRange) { super(create(aRange)); retain(getHandle()); }
-    public NSCharacterSet(String aString) { super(create(aString)); retain(getHandle()); }
-    public NSCharacterSet(NSData data) { super(create(data)); retain(getHandle()); }
+    public NSCharacterSet(@ByVal NSRange aRange) { super((Handle) null, create(aRange)); retain(getHandle()); }
+    public NSCharacterSet(String aString) { super((Handle) null, create(aString)); retain(getHandle()); }
+    public NSCharacterSet(NSData data) { super((Handle) null, create(data)); retain(getHandle()); }
     /*</constructors>*/
     public NSCharacterSet(File file) {
         super(createWithFile(file));

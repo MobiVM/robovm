@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitConcentrationMass() {}
+    protected NSUnitConcentrationMass(Handle h, long handle) { super(h, handle); }
     protected NSUnitConcentrationMass(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

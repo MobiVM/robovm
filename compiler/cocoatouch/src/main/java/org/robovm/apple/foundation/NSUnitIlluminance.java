@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitIlluminance() {}
+    protected NSUnitIlluminance(Handle h, long handle) { super(h, handle); }
     protected NSUnitIlluminance(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -54,6 +54,7 @@ import org.robovm.apple.coreservices.CFProxy;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSURLSessionConfiguration() {}
+    protected NSURLSessionConfiguration(Handle h, long handle) { super(h, handle); }
     protected NSURLSessionConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

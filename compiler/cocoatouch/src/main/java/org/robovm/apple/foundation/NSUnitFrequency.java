@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUnitFrequency() {}
+    protected NSUnitFrequency(Handle h, long handle) { super(h, handle); }
     protected NSUnitFrequency(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

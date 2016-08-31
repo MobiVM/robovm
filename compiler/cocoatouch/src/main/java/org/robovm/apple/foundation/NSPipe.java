@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSPipe() {}
+    protected NSPipe(Handle h, long handle) { super(h, handle); }
     protected NSPipe(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

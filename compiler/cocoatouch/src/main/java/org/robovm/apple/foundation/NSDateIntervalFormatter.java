@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSDateIntervalFormatter() {}
+    protected NSDateIntervalFormatter(Handle h, long handle) { super(h, handle); }
     protected NSDateIntervalFormatter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

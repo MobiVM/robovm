@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*</constants>*/
     /*<constructors>*/
     public NSDateComponents() {}
+    protected NSDateComponents(Handle h, long handle) { super(h, handle); }
     protected NSDateComponents(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

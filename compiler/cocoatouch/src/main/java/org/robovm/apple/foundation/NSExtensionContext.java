@@ -100,6 +100,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSExtensionContext() {}
+    protected NSExtensionContext(Handle h, long handle) { super(h, handle); }
     protected NSExtensionContext(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
