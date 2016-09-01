@@ -70,6 +70,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSBundle() {}
+    protected NSBundle(Handle h, long handle) { super(h, handle); }
     protected NSBundle(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.
@@ -83,6 +84,12 @@ import org.robovm.apple.dispatch.*;
     }
     
     /*<properties>*/
+    @Property(selector = "mainBundle")
+    public static native NSBundle getMainBundle();
+    @Property(selector = "allBundles")
+    public static native NSArray<NSBundle> getAllBundles();
+    @Property(selector = "allFrameworks")
+    public static native NSArray<NSBundle> getAllFrameworks();
     @Property(selector = "isLoaded")
     public native boolean isLoaded();
     /**
@@ -256,16 +263,10 @@ import org.robovm.apple.dispatch.*;
     public native NSObject getInfoDictionaryObject(String key);
     @Method(selector = "classNamed:")
     public native Class<?> getClassNamed(String className);
-    @Method(selector = "mainBundle")
-    public static native NSBundle getMainBundle();
     @Method(selector = "bundleForClass:")
     public static native NSBundle getBundle(Class<?> aClass);
     @Method(selector = "bundleWithIdentifier:")
     public static native NSBundle getBundle(String identifier);
-    @Method(selector = "allBundles")
-    public static native NSArray<NSBundle> getAllBundles();
-    @Method(selector = "allFrameworks")
-    public static native NSArray<NSBundle> getAllFrameworks();
     /**
      * @since Available in iOS 4.0 and later.
      */

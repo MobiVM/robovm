@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSKeyedUnarchiver() {}
+    protected NSKeyedUnarchiver(Handle h, long handle) { super(h, handle); }
     protected NSKeyedUnarchiver(SkipInit skipInit) { super(skipInit); }
     public NSKeyedUnarchiver(NSData data) { super((SkipInit) null); initObject(init(data)); }
     /*</constructors>*/
@@ -69,6 +70,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setRequiresSecureCoding:")
     public native void setRequiresSecureCoding(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "decodingFailurePolicy")
+    public native NSDecodingFailurePolicy getDecodingFailurePolicy();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setDecodingFailurePolicy:")
+    public native void setDecodingFailurePolicy(NSDecodingFailurePolicy v);
     /*</properties>*/
     /*<members>*//*</members>*/
     

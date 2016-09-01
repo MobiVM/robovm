@@ -100,6 +100,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMetadataQuery() {}
+    protected NSMetadataQuery(Handle h, long handle) { super(h, handle); }
     protected NSMetadataQuery(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

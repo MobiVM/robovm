@@ -65,6 +65,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSTimeZone() {}
+    protected NSTimeZone(Handle h, long handle) { super(h, handle); }
     protected NSTimeZone(SkipInit skipInit) { super(skipInit); }
     public NSTimeZone(String tzName) { super((SkipInit) null); initObject(init(tzName)); }
     public NSTimeZone(String tzName, NSData aData) { super((SkipInit) null); initObject(init(tzName, aData)); }
@@ -74,6 +75,31 @@ import org.robovm.apple.dispatch.*;
     public native String getName();
     @Property(selector = "data")
     public native NSData getData();
+    @Property(selector = "systemTimeZone")
+    public static native NSTimeZone getSystemTimeZone();
+    @Property(selector = "defaultTimeZone")
+    public static native NSTimeZone getDefaultTimeZone();
+    @Property(selector = "setDefaultTimeZone:")
+    public static native void setDefaultTimeZone(NSTimeZone v);
+    @Property(selector = "localTimeZone")
+    public static native NSTimeZone getLocalTimeZone();
+    @Property(selector = "knownTimeZoneNames")
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getKnownTimeZoneNames();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    @Property(selector = "abbreviationDictionary")
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> getAbbreviationDictionary();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    @Property(selector = "setAbbreviationDictionary:")
+    public static native void setAbbreviationDictionary(@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> v);
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    @Property(selector = "timeZoneDataVersion")
+    public static native String getTimeZoneDataVersion();
     @Property(selector = "secondsFromGMT")
     public native @MachineSizedSInt long getSecondsFromGMT();
     @Property(selector = "abbreviation")
@@ -122,30 +148,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "localizedName:locale:")
     public native String getLocalizedName(NSTimeZoneNameStyle style, NSLocale locale);
-    @Method(selector = "systemTimeZone")
-    public static native NSTimeZone getSystemTimeZone();
     @Method(selector = "resetSystemTimeZone")
     public static native void resetSystemTimeZone();
-    @Method(selector = "defaultTimeZone")
-    public static native NSTimeZone getDefaultTimeZone();
-    @Method(selector = "setDefaultTimeZone:")
-    public static native void setDefaultTimeZone(NSTimeZone aTimeZone);
-    @Method(selector = "localTimeZone")
-    public static native NSTimeZone getLocalTimeZone();
-    @Method(selector = "knownTimeZoneNames")
-    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getKnownTimeZoneNames();
-    @Method(selector = "abbreviationDictionary")
-    public static native @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> getAbbreviationDictionary();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @Method(selector = "setAbbreviationDictionary:")
-    public static native void setAbbreviationDictionary(@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> dict);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @Method(selector = "timeZoneDataVersion")
-    public static native String getTimeZoneDataVersion();
     @Method(selector = "initWithName:")
     protected native @Pointer long init(String tzName);
     @Method(selector = "initWithName:data:")

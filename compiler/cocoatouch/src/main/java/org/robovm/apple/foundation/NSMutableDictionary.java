@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSMutableDictionary.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSMutableDictionary(Handle h, long handle) { super(h, handle); }
     protected NSMutableDictionary(SkipInit skipInit) { super(skipInit); }
     public NSMutableDictionary(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
     /*</constructors>*/
@@ -105,7 +106,12 @@ import org.robovm.apple.dispatch.*;
         }
         return oldValue;
     }
-    
+    @Override
+    public V put(String key, V value) {
+        V oldValue = get(key);
+        putObject(key, value == null ? NSNull.getNull().getHandle() : value.getHandle());
+        return oldValue;
+    }
     @Override
     public V put(K key, V value) {
         checkNull(key, value);
@@ -138,39 +144,42 @@ import org.robovm.apple.dispatch.*;
     public static native NSMutableDictionary<?, ?> read(NSURL url);
     
     public void put(Object key, boolean value) {
-        putObject(key, NSNumber.valueOf(value));
+        putObject(key, NSNumber.pointerValueOf(value));
     }
     public void put(Object key, byte value) {
-        putObject(key, NSNumber.valueOf(value));
+        putObject(key, NSNumber.pointerValueOf(value));
     }
     public void put(Object key, short value) {
-        putObject(key, NSNumber.valueOf(value));
+        putObject(key, NSNumber.pointerValueOf(value));
     }
     public void put(Object key, char value) {
-        putObject(key, NSNumber.valueOf(value));
+        putObject(key, NSNumber.pointerValueOf(value));
     }
     public void put(Object key, int value) {
-        putObject(key, NSNumber.valueOf(value));
+        putObject(key, NSNumber.pointerValueOf(value));
     }
     public void put(Object key, long value) {
-        putObject(key, NSNumber.valueOf(value));
+        putObject(key, NSNumber.pointerValueOf(value));
     }
     public void put(Object key, float value) {
-        putObject(key, NSNumber.valueOf(value));
+        putObject(key, NSNumber.pointerValueOf(value));
     }
     public void put(Object key, double value) {
-        putObject(key, NSNumber.valueOf(value));
+        putObject(key, NSNumber.pointerValueOf(value));
+    }
+    public void put(Object key, Number value) {
+        putObject(key, NSNumber.pointerValueOf(value));
     }
     public void put(Object key, String value) {
-        putObject(key, new NSString(value));
+        putObject(key, value != null ? NSString.create(NSString.getChars(value), value.length()) : null);
     }
     public void put(Object key, NSObject value) {
-        putObject(key, value);
+        if (value == null) value = NSNull.getNull();
+        putObject(key, value.getHandle());
     }
     
-    protected void putObject(Object key, NSObject value) {
+    protected void putObject(Object key, long value) {
         if (key == null) throw new IllegalArgumentException("key cannot be null");
-        if (value == null) value = NSNull.getNull();
         if (key instanceof NSObject) {
             setObject$forKey$(value, ((NSObject)key).getHandle());
         } else {
@@ -180,7 +189,7 @@ import org.robovm.apple.dispatch.*;
     }
     
     @Method(selector = "setObject:forKey:")
-    private native void setObject$forKey$(NSObject object, @Pointer long key);
+    private native void setObject$forKey$(@Pointer long object, @Pointer long key);
     
     @Method(selector = "removeObjectForKey:")
     private native void removeObjectForKey$(@Pointer long key);

@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMetadataItem() {}
+    protected NSMetadataItem(Handle h, long handle) { super(h, handle); }
     protected NSMetadataItem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

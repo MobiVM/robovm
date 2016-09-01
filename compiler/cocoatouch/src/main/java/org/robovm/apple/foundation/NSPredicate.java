@@ -53,13 +53,14 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSPredicate() {}
+    protected NSPredicate(Handle h, long handle) { super(h, handle); }
     protected NSPredicate(SkipInit skipInit) { super(skipInit); }
-    public NSPredicate(String predicateFormat, NSArray<?> arguments) { super(create(predicateFormat, arguments)); retain(getHandle()); }
-    public NSPredicate(boolean value) { super(create(value)); retain(getHandle()); }
+    public NSPredicate(String predicateFormat, NSArray<?> arguments) { super((Handle) null, create(predicateFormat, arguments)); retain(getHandle()); }
+    public NSPredicate(boolean value) { super((Handle) null, create(value)); retain(getHandle()); }
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public NSPredicate(@Block Block2<NSObject, NSDictionary<NSString, ?>, Boolean> block) { super(create(block)); retain(getHandle()); }
+    public NSPredicate(@Block Block2<NSObject, NSDictionary<NSString, ?>, Boolean> block) { super((Handle) null, create(block)); retain(getHandle()); }
     /*</constructors>*/
     public NSPredicate(String predicateFormat, Object... arguments) {
         super(create(predicateFormat, arguments));

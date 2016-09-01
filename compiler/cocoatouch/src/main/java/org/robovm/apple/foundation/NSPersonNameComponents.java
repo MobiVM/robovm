@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSPersonNameComponents() {}
+    protected NSPersonNameComponents(Handle h, long handle) { super(h, handle); }
     protected NSPersonNameComponents(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

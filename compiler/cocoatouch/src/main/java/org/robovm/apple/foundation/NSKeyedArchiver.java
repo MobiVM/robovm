@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSKeyedArchiver() {}
+    protected NSKeyedArchiver(Handle h, long handle) { super(h, handle); }
     protected NSKeyedArchiver(SkipInit skipInit) { super(skipInit); }
     public NSKeyedArchiver(NSMutableData data) { super((SkipInit) null); initObject(init(data)); }
     /*</constructors>*/
@@ -63,6 +64,11 @@ import org.robovm.apple.dispatch.*;
     public native NSPropertyListFormat getOutputFormat();
     @Property(selector = "setOutputFormat:")
     public native void setOutputFormat(NSPropertyListFormat v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "encodedData")
+    public native NSData getEncodedData();
     /**
      * @since Available in iOS 6.0 and later.
      */

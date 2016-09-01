@@ -190,6 +190,7 @@ import org.robovm.apple.dispatch.*;
     
     /*<constructors>*/
     public NSArray() {}
+    protected NSArray(Handle h, long handle) { super(h, handle); }
     protected NSArray(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     
@@ -336,7 +337,151 @@ import org.robovm.apple.dispatch.*;
     }
     public <U> U[] toArray(U[] a) {
         return adapter.toArray(a);
-    }    
+    }
+    
+    public boolean getBoolean(int index) {
+        NSObject val = get(index);
+        if(val instanceof NSNumber) {
+            return ((NSNumber)val).booleanValue();
+        } else {
+            wrongType(index, val.getClass());
+            return false;
+        }
+    }
+
+    public byte getByte(int index) {
+        NSObject val = get(index);
+        if(val instanceof NSNumber) {
+            return ((NSNumber)val).byteValue();
+        } else {
+            wrongType(index, val.getClass());
+            return (byte)0;
+        }
+    }
+
+    public short getByte(short index) {
+        NSObject val = get(index);
+        if(val instanceof NSNumber) {
+            return ((NSNumber)val).shortValue();
+        } else {
+            wrongType(index, val.getClass());
+            return (short)0;
+        }
+    }
+
+    public int getInt(int index) {
+        NSObject val = get(index);
+        if(val instanceof NSNumber) {
+            return ((NSNumber)val).intValue();
+        } else {
+            wrongType(index, val.getClass());
+            return 0;
+        }
+    }
+
+    public long getLong(int index) {
+        NSObject val = get(index);
+        if(val instanceof NSNumber) {
+            return ((NSNumber)val).longValue();
+        } else {
+            wrongType(index, val.getClass());
+            return 0L;
+        }
+    }
+
+    public float getFloat(int index) {
+        NSObject val = get(index);
+        if(val instanceof NSNumber) {
+            return ((NSNumber)val).floatValue();
+        } else {
+            wrongType(index, val.getClass());
+            return 0.0F;
+        }
+    }
+
+    public double getDouble(int index) {
+        NSObject val = get(index);
+        if(val instanceof NSNumber) {
+            return ((NSNumber)val).doubleValue();
+        } else {
+            wrongType(index, val.getClass());
+            return 0.0D;
+        }
+    }
+
+    public String getString(int index) {
+        NSObject val = get(index);
+        if(val instanceof NSString) {
+            return val.toString();
+        } else {
+            wrongType(index, val.getClass());
+            return null;
+        }
+    }
+
+    private void wrongType(int index, Class<?> type) {
+        throw new ClassCastException("Wrong type at index " + index + ": " + type);
+    }
+
+    public boolean add(boolean value) {
+        throw new UnsupportedOperationException("NSArray is immutable");
+    }
+
+    public void add(int index, boolean value) {
+        throw new UnsupportedOperationException("NSArray is immutable");
+    }
+
+    public boolean add(Number value) {
+        throw new UnsupportedOperationException("NSArray is immutable");
+    }
+
+    public void add(int index, Number value) {
+        throw new UnsupportedOperationException("NSArray is immutable");
+    }
+
+    public boolean add(String value) {
+        throw new UnsupportedOperationException("NSArray is immutable");
+    }
+
+    public void add(int index, String value) {
+        throw new UnsupportedOperationException("NSArray is immutable");
+    }
+
+    public Object set(int index, boolean element) {
+        throw new UnsupportedOperationException("NSArray is immutable");
+    }
+
+    public Object set(int index, Number element) {
+        throw new UnsupportedOperationException("NSArray is immutable");
+    }
+
+    public Object set(int index, String element) {
+        throw new UnsupportedOperationException("NSArray is immutable");
+    }
+
+    public int indexOf(boolean element) {
+        return indexOf((Object)NSNumber.valueOf(element));
+    }
+
+    public int indexOf(Number element) {
+        return indexOf((Object)NSNumber.valueOf(element));
+    }
+
+    public int indexOf(String element) {
+        return indexOf((Object)(new NSString(element)));
+    }
+
+    public boolean remove(boolean element) {
+        throw new UnsupportedOperationException("NSArray is immutable");
+    }
+
+    public boolean remove(Number element) {
+        throw new UnsupportedOperationException("NSArray is immutable");
+    }
+
+    public boolean remove(String element) {
+        throw new UnsupportedOperationException("NSArray is immutable");
+    }
     
     public static NSArray<?> read(java.io.File file) {
         return readFile(file.getAbsolutePath());

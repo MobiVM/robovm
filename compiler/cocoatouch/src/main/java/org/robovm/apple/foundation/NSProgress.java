@@ -53,13 +53,14 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSProgress() {}
+    protected NSProgress(Handle h, long handle) { super(h, handle); }
     protected NSProgress(SkipInit skipInit) { super(skipInit); }
     public NSProgress(NSProgress parentProgressOrNil, NSProgressUserInfo userInfoOrNil) { super((SkipInit) null); initObject(init(parentProgressOrNil, userInfoOrNil)); }
-    public NSProgress(long unitCount) { super(create(unitCount)); retain(getHandle()); }
+    public NSProgress(long unitCount) { super((Handle) null, create(unitCount)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public NSProgress(long unitCount, NSProgress parent, long portionOfParentTotalUnitCount) { super(create(unitCount, parent, portionOfParentTotalUnitCount)); retain(getHandle()); }
+    public NSProgress(long unitCount, NSProgress parent, long portionOfParentTotalUnitCount) { super((Handle) null, create(unitCount, parent, portionOfParentTotalUnitCount)); retain(getHandle()); }
     /*</constructors>*/
     /**
      * @since Available in iOS 9.0 and later.

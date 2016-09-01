@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSXMLParser() {}
+    protected NSXMLParser(Handle h, long handle) { super(h, handle); }
     protected NSXMLParser(SkipInit skipInit) { super(skipInit); }
     public NSXMLParser(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     public NSXMLParser(NSData data) { super((SkipInit) null); initObject(init(data)); }

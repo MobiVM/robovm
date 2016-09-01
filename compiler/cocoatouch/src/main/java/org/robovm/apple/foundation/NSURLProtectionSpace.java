@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSURLProtectionSpace() {}
+    protected NSURLProtectionSpace(Handle h, long handle) { super(h, handle); }
     protected NSURLProtectionSpace(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

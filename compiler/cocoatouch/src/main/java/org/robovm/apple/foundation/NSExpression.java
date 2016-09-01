@@ -53,14 +53,15 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSExpression() {}
-    protected NSExpression(long handle) { super(handle); }
+    @Deprecated protected NSExpression(long handle) { super(handle); }
+    protected NSExpression(Handle h, long handle) { super(h, handle); }
     protected NSExpression(SkipInit skipInit) { super(skipInit); }
     public NSExpression(NSExpressionType type) { super((SkipInit) null); initObject(init(type)); }
     public NSExpression(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public NSExpression(String expressionFormat, NSArray<?> arguments) { super(create(expressionFormat, arguments)); retain(getHandle()); }
+    public NSExpression(String expressionFormat, NSArray<?> arguments) { super((Handle) null, create(expressionFormat, arguments)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "expressionType")
@@ -76,7 +77,7 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "operand")
     public native NSExpression getOperand();
     @Property(selector = "arguments")
-    public native NSArray<?> getArguments();
+    public native NSArray<NSExpression> getArguments();
     /**
      * @since Available in iOS 3.0 and later.
      */
@@ -180,7 +181,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 4.0 and later.
      */
     @Method(selector = "expressionForBlock:arguments:")
-    public static native NSExpression createForBlock(@Block Block3<NSObject, NSArray<NSExpression>, NSMutableDictionary<?, ?>, NSObject> block, NSArray<?> arguments);
+    public static native NSExpression createForBlock(@Block Block3<NSObject, NSArray<NSExpression>, NSMutableDictionary<?, ?>, NSObject> block, NSArray<NSExpression> arguments);
     /**
      * @since Available in iOS 9.0 and later.
      */

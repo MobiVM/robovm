@@ -67,6 +67,7 @@ import org.robovm.apple.dispatch.*;
     /*</constants>*/
     /*<constructors>*/
     public NSDate() {}
+    protected NSDate(Handle h, long handle) { super(h, handle); }
     protected NSDate(SkipInit skipInit) { super(skipInit); }
     public NSDate(double secs) { super((SkipInit) null); initObject(init(secs)); }
     /*</constructors>*/
@@ -81,6 +82,10 @@ import org.robovm.apple.dispatch.*;
     public native double getTimeIntervalSinceNow();
     @Property(selector = "timeIntervalSince1970")
     public native double getTimeIntervalSince1970();
+    @Property(selector = "distantFuture")
+    public static native NSDate getDistantFuture();
+    @Property(selector = "distantPast")
+    public static native NSDate getDistantPast();
     /*</properties>*/
     /*<members>*//*</members>*/
     public Date toDate() {
@@ -122,9 +127,5 @@ import org.robovm.apple.dispatch.*;
     public static native NSDate createWithTimeIntervalSince1970(double secs);
     @Method(selector = "dateWithTimeInterval:sinceDate:")
     public static native NSDate createWithTimeIntervalSinceDate(double secsToBeAdded, NSDate date);
-    @Method(selector = "distantFuture")
-    public static native NSDate getDistantFuture();
-    @Method(selector = "distantPast")
-    public static native NSDate getDistantPast();
     /*</methods>*/
 }

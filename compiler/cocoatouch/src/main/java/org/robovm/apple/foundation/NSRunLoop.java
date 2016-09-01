@@ -51,9 +51,17 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSRunLoop() {}
+    protected NSRunLoop(Handle h, long handle) { super(h, handle); }
     protected NSRunLoop(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "currentRunLoop")
+    public static native NSRunLoop getCurrent();
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Property(selector = "mainRunLoop")
+    public static native NSRunLoop getMain();
     @Property(selector = "currentMode")
     public native String getCurrentMode();
     /*</properties>*/
@@ -106,19 +114,22 @@ import org.robovm.apple.dispatch.*;
     public native NSDate getDateLimit(String mode);
     @Method(selector = "acceptInputForMode:beforeDate:")
     public native void acceptInputUntil(String mode, NSDate limitDate);
-    @Method(selector = "currentRunLoop")
-    public static native NSRunLoop getCurrent();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    @Method(selector = "mainRunLoop")
-    public static native NSRunLoop getMain();
     @Method(selector = "run")
     public native void run();
     @Method(selector = "runUntilDate:")
     public native void runUntil(NSDate limitDate);
     @Method(selector = "runMode:beforeDate:")
     public native boolean runUntil(String mode, NSDate limitDate);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "performInModes:block:")
+    public native void perform(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> modes, @Block Runnable block);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "performBlock:")
+    public native void perform(@Block Runnable block);
     @Method(selector = "performSelector:target:argument:order:modes:")
     public native void perform(Selector aSelector, NSObject target, NSObject arg, @MachineSizedUInt long order, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> modes);
     @Method(selector = "cancelPerformSelector:target:argument:")

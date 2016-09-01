@@ -52,8 +52,8 @@ import org.robovm.rt.bro.ptr.*;
     @StructMember(2) public native int getZ();
     @StructMember(2) public native VectorInt4 setZ(int z);
     
-    @StructMember(4) public native int getW();
-    @StructMember(4) public native VectorInt4 setW(int w);
+    @StructMember(3) public native int getW();
+    @StructMember(3) public native VectorInt4 setW(int w);
     /*</members>*/
     public void set(int x, int y, int z, int w) {
         setX(x);

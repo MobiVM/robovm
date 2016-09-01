@@ -64,9 +64,12 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSProcessInfo.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSProcessInfo(Handle h, long handle) { super(h, handle); }
     protected NSProcessInfo(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "processInfo")
+    public static native NSProcessInfo getSharedProcessInfo();
     @Property(selector = "environment")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSObject> getEnvironment();
     @Property(selector = "arguments")
@@ -141,8 +144,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "isOperatingSystemAtLeastVersion:")
     public native boolean isOperatingSystemAtLeastVersion(@ByVal NSOperatingSystemVersion version);
-    @Method(selector = "processInfo")
-    public static native NSProcessInfo getSharedProcessInfo();
     /**
      * @since Available in iOS 7.0 and later.
      */

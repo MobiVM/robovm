@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMutableAttributedString() {}
+    protected NSMutableAttributedString(Handle h, long handle) { super(h, handle); }
     protected NSMutableAttributedString(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     

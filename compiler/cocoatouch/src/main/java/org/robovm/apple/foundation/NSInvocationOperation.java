@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSInvocationOperation() {}
+    protected NSInvocationOperation(Handle h, long handle) { super(h, handle); }
     protected NSInvocationOperation(SkipInit skipInit) { super(skipInit); }
     public NSInvocationOperation(NSObject target, Selector sel, NSObject arg) { super((SkipInit) null); initObject(init(target, sel, arg)); }
     public NSInvocationOperation(NSInvocation inv) { super((SkipInit) null); initObject(init(inv)); }

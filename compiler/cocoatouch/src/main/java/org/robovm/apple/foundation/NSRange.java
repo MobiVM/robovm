@@ -46,6 +46,33 @@ import org.robovm.apple.dispatch.*;
     extends /*<extends>*/Struct<NSRange>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
+    public static class AsValuedListMarshaler {
+        @SuppressWarnings("unchecked")
+        @MarshalsPointer
+        public static List<NSRange> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+            NSArray<NSValue> o = (NSArray<NSValue>) NSObject.Marshaler.toObject(cls, handle, flags);
+            if (o == null) {
+                return null;
+            }
+            List<NSRange> list = new ArrayList<>();
+            for (NSValue v : o) {
+                list.add(v.rangeValue());
+            }
+            return list;
+        }
+        @MarshalsPointer
+        public static long toNative(List<NSRange> l, long flags) {
+            if (l == null) {
+                return 0L;
+            }
+            NSMutableArray<NSValue> array = new NSMutableArray<>();
+            for (NSRange i : l) {
+                array.add(NSValue.valueOf(i));
+            }
+            return NSObject.Marshaler.toNative(array, flags);
+        }
+    }
+    
     /*<ptr>*/public static class NSRangePtr extends Ptr<NSRange, NSRangePtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(NSRange.class); }/*</bind>*/
     /*<constants>*//*</constants>*/

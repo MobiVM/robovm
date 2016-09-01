@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSURLProtocol() {}
+    protected NSURLProtocol(Handle h, long handle) { super(h, handle); }
     protected NSURLProtocol(SkipInit skipInit) { super(skipInit); }
     public NSURLProtocol(NSURLRequest request, NSCachedURLResponse cachedResponse, NSURLProtocolClient client) { super((SkipInit) null); initObject(init(request, cachedResponse, client)); }
     /**

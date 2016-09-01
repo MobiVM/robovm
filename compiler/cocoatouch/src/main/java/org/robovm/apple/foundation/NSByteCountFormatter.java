@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSByteCountFormatter() {}
+    protected NSByteCountFormatter(Handle h, long handle) { super(h, handle); }
     protected NSByteCountFormatter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

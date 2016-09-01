@@ -219,9 +219,33 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 5.0 and later.
      */
     public static final NSURLVolumeProperty LocalizedName = new NSURLVolumeProperty("LocalizedName");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final NSURLVolumeProperty IsEncrypted = new NSURLVolumeProperty("IsEncrypted");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final NSURLVolumeProperty IsRootFileSystem = new NSURLVolumeProperty("IsRootFileSystem");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final NSURLVolumeProperty SupportsCompression = new NSURLVolumeProperty("SupportsCompression");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final NSURLVolumeProperty SupportsFileCloning = new NSURLVolumeProperty("SupportsFileCloning");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final NSURLVolumeProperty SupportsSwapRenaming = new NSURLVolumeProperty("SupportsSwapRenaming");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final NSURLVolumeProperty SupportsExclusiveRenaming = new NSURLVolumeProperty("SupportsExclusiveRenaming");
     /*</constants>*/
     
-    private static /*<name>*/NSURLVolumeProperty/*</name>*/[] values = new /*<name>*/NSURLVolumeProperty/*</name>*/[] {/*<value_list>*/LocalizedFormatDescription, TotalCapacity, AvailableCapacity, ResourceCount, SupportsPersistentIDs, SupportsSymbolicLinks, SupportsHardLinks, SupportsJournaling, IsJournaling, SupportsSparseFiles, SupportsZeroRuns, SupportsCaseSensitiveNames, SupportsCasePreservedNames, SupportsRootDirectoryDates, SupportsVolumeSizes, SupportsRenaming, SupportsAdvisoryFileLocking, SupportsExtendedSecurity, IsBrowsable, MaximumFileSize, IsEjectable, IsRemovable, IsInternal, IsAutomounted, IsLocal, IsReadOnly, CreationDate, URLForRemounting, UUIDString, Name, LocalizedName/*</value_list>*/};
+    private static /*<name>*/NSURLVolumeProperty/*</name>*/[] values = new /*<name>*/NSURLVolumeProperty/*</name>*/[] {/*<value_list>*/LocalizedFormatDescription, TotalCapacity, AvailableCapacity, ResourceCount, SupportsPersistentIDs, SupportsSymbolicLinks, SupportsHardLinks, SupportsJournaling, IsJournaling, SupportsSparseFiles, SupportsZeroRuns, SupportsCaseSensitiveNames, SupportsCasePreservedNames, SupportsRootDirectoryDates, SupportsVolumeSizes, SupportsRenaming, SupportsAdvisoryFileLocking, SupportsExtendedSecurity, IsBrowsable, MaximumFileSize, IsEjectable, IsRemovable, IsInternal, IsAutomounted, IsLocal, IsReadOnly, CreationDate, URLForRemounting, UUIDString, Name, LocalizedName, IsEncrypted, IsRootFileSystem, SupportsCompression, SupportsFileCloning, SupportsSwapRenaming, SupportsExclusiveRenaming/*</value_list>*/};
     
     /*<name>*/NSURLVolumeProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -399,6 +423,36 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="NSURLVolumeLocalizedNameKey", optional=true)
         public static native NSString LocalizedName();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeIsEncryptedKey", optional=true)
+        public static native NSString IsEncrypted();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeIsRootFileSystemKey", optional=true)
+        public static native NSString IsRootFileSystem();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeSupportsCompressionKey", optional=true)
+        public static native NSString SupportsCompression();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeSupportsFileCloningKey", optional=true)
+        public static native NSString SupportsFileCloning();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeSupportsSwapRenamingKey", optional=true)
+        public static native NSString SupportsSwapRenaming();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeSupportsExclusiveRenamingKey", optional=true)
+        public static native NSString SupportsExclusiveRenaming();
         /*</values>*/
     }
 }

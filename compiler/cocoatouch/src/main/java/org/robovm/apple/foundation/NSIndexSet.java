@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSIndexSet() {}
+    protected NSIndexSet(Handle h, long handle) { super(h, handle); }
     protected NSIndexSet(SkipInit skipInit) { super(skipInit); }
     public NSIndexSet(@ByVal NSRange range) { super((SkipInit) null); initObject(init(range)); }
     public NSIndexSet(NSIndexSet indexSet) { super((SkipInit) null); initObject(init(indexSet)); }
@@ -69,6 +70,38 @@ import org.robovm.apple.dispatch.*;
         MachineSizedUIntPtr ptr = Struct.allocate(MachineSizedUIntPtr.class, (int)maxIndexes);
         long l = getIndexes(ptr, maxIndexes, range);
         return ptr.toLongArray((int)l);
+    }
+    
+    public void addIndexes(NSIndexSet indexSet) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void removeIndexes(NSIndexSet indexSet) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void removeAllIndexes() {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void addIndex(long value) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void removeIndex(long value) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void addIndexes(NSRange range) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void removeIndexes(NSRange range) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
+    }
+
+    public void shiftIndexes(long index, long delta) {
+        throw new UnsupportedOperationException("NSIndexSet is immutable");
     }
     /*<methods>*/
     @Method(selector = "initWithIndexesInRange:")

@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSExtensionItem() {}
+    protected NSExtensionItem(Handle h, long handle) { super(h, handle); }
     protected NSExtensionItem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

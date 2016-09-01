@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSNumber.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSNumber(Handle h, long handle) { super(h, handle); }
     protected NSNumber(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -96,6 +97,49 @@ import org.robovm.apple.dispatch.*;
         }
         throw new IllegalArgumentException("value is not a supported number type: " + value.getClass());
     }
+    
+    @Method(selector = "numberWithChar:")
+    static native @Pointer long pointerValueOf(byte value);
+    
+    @Method(selector = "numberWithShort:")
+    static native @Pointer long pointerValueOf(short value);
+    
+    @Method(selector = "numberWithUnsignedShort:")
+    static native @Pointer long pointerValueOf(char value);
+    
+    @Method(selector = "numberWithInt:")
+    static native @Pointer long pointerValueOf(int value);
+    
+    @Method(selector = "numberWithLongLong:")
+    static native @Pointer long pointerValueOf(long value);
+    
+    @Method(selector = "numberWithFloat:")
+    static native @Pointer long pointerValueOf(float value);
+    
+    @Method(selector = "numberWithDouble:")
+    static native @Pointer long pointerValueOf(double value);
+    
+    @Method(selector = "numberWithBool:")
+    static native @Pointer long pointerValueOf(boolean value);
+    
+    static long pointerValueOf(Number value) {
+        if (value instanceof Byte) {
+            return pointerValueOf((byte)value);
+        } else if (value instanceof Short) {
+            return pointerValueOf((short)value);
+        } else if (value instanceof Integer) {
+            return pointerValueOf((int)value);
+        } else if (value instanceof Long) {
+            return pointerValueOf((long)value);
+        } else if (value instanceof Float) {
+            return pointerValueOf((float)value);
+        } else if (value instanceof Double) {
+            return pointerValueOf((double)value);
+        } else {
+            throw new IllegalArgumentException("value is not a supported number type: " + value.getClass());
+        }
+    }
+    
     /*<methods>*/
     @Method(selector = "compare:")
     public native NSComparisonResult compare(NSNumber otherNumber);

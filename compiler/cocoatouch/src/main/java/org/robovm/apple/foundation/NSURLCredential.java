@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSURLCredential() {}
+    protected NSURLCredential(Handle h, long handle) { super(h, handle); }
     protected NSURLCredential(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
     public NSURLCredential(String user, String password, NSURLCredentialPersistence persistence) { super((SkipInit) null); initObject(init(user, password, persistence)); }

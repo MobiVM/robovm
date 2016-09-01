@@ -52,6 +52,12 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
+    public static String getDocumentsDirectory() {
+        return getHomeDirectory() + "/Documents";
+    }
+    public static String getDocumentsDirectoryForUser(String userName) {
+        return getHomeDirectoryForUser(userName) + "/Documents";
+    }
     /*<methods>*/
     @Bridge(symbol="NSUserName", optional=true)
     public static native String getUserName();

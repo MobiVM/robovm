@@ -65,10 +65,18 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSCalendar() {}
+    protected NSCalendar(Handle h, long handle) { super(h, handle); }
     protected NSCalendar(SkipInit skipInit) { super(skipInit); }
     public NSCalendar(NSCalendarIdentifier ident) { super((SkipInit) null); initObject(init(ident)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "currentCalendar")
+    public static native NSCalendar getCurrentCalendar();
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Property(selector = "autoupdatingCurrentCalendar")
+    public static native NSCalendar getAutoupdatingCurrentCalendar();
     @Property(selector = "calendarIdentifier")
     public native NSCalendarIdentifier getCalendarIdentifier();
     @Property(selector = "locale")
@@ -239,12 +247,5 @@ import org.robovm.apple.dispatch.*;
     public native NSDate newDateByAddingComponents(NSDateComponents comps, NSDate date, NSCalendarOptions opts);
     @Method(selector = "components:fromDate:toDate:options:")
     public native NSDateComponents getComponents(NSCalendarUnit unitFlags, NSDate startingDate, NSDate resultDate, NSCalendarOptions opts);
-    @Method(selector = "currentCalendar")
-    public static native NSCalendar getCurrentCalendar();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    @Method(selector = "autoupdatingCurrentCalendar")
-    public static native NSCalendar getAutoupdatingCurrentCalendar();
     /*</methods>*/
 }

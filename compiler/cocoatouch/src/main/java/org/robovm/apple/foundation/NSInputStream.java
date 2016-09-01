@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSInputStream() {}
+    protected NSInputStream(Handle h, long handle) { super(h, handle); }
     protected NSInputStream(SkipInit skipInit) { super(skipInit); }
     public NSInputStream(NSData data) { super((SkipInit) null); initObject(init(data)); }
     /**
@@ -70,7 +71,7 @@ import org.robovm.apple.dispatch.*;
     }
 
     public long read(ByteBuffer bytes) {
-        long handle = NSData.getEffectiveAddress(bytes) + bytes.position();
+        long handle = BufferMarshalers.BufferMarshaler.getBufferAddress(bytes) + bytes.position();
         return read(handle, bytes.remaining());
     }
 

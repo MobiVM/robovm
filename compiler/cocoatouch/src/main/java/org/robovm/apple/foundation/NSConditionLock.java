@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSConditionLock() {}
+    protected NSConditionLock(Handle h, long handle) { super(h, handle); }
     protected NSConditionLock(SkipInit skipInit) { super(skipInit); }
     public NSConditionLock(@MachineSizedSInt long condition) { super((SkipInit) null); initObject(init(condition)); }
     /*</constructors>*/

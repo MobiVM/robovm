@@ -60,6 +60,7 @@ import org.robovm.apple.dispatch.*;
     }
     /*<constructors>*/
     public NSSortDescriptor() {}
+    protected NSSortDescriptor(Handle h, long handle) { super(h, handle); }
     protected NSSortDescriptor(SkipInit skipInit) { super(skipInit); }
     public NSSortDescriptor(String key, boolean ascending) { super((SkipInit) null); initObject(init(key, ascending)); }
     public NSSortDescriptor(String key, boolean ascending, Selector selector) { super((SkipInit) null); initObject(init(key, ascending, selector)); }

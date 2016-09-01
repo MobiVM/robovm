@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSRecursiveLock() {}
+    protected NSRecursiveLock(Handle h, long handle) { super(h, handle); }
     protected NSRecursiveLock(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

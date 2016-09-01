@@ -62,6 +62,11 @@ import org.robovm.apple.dispatch.*;
     void needNewBodyStream(NSURLSession session, NSURLSessionTask task, @Block VoidBlock1<NSInputStream> completionHandler);
     @Method(selector = "URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:")
     void didSendBodyData(NSURLSession session, NSURLSessionTask task, long bytesSent, long totalBytesSent, long totalBytesExpectedToSend);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "URLSession:task:didFinishCollectingMetrics:")
+    void didFinishCollectingMetrics(NSURLSession session, NSURLSessionTask task, NSURLSessionTaskMetrics metrics);
     @Method(selector = "URLSession:task:didCompleteWithError:")
     void didComplete(NSURLSession session, NSURLSessionTask task, NSError error);
     /*</methods>*/

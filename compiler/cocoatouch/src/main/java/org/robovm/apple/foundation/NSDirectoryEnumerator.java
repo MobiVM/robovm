@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSDirectoryEnumerator.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSDirectoryEnumerator(Handle h, long handle) { super(h, handle); }
     protected NSDirectoryEnumerator(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

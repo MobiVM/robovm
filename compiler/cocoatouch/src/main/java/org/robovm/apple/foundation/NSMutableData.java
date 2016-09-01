@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMutableData() {}
+    protected NSMutableData(Handle h, long handle) { super(h, handle); }
     protected NSMutableData(SkipInit skipInit) { super(skipInit); }
     public NSMutableData(@MachineSizedUInt long capacity) { super((SkipInit) null); initObject(init(capacity)); }
     /*</constructors>*/
@@ -72,7 +73,7 @@ import org.robovm.apple.dispatch.*;
     }
     
     public NSMutableData append(ByteBuffer bytes) {
-        long handle = getEffectiveAddress(bytes) + bytes.position();
+        long handle = BufferMarshalers.BufferMarshaler.getBufferAddress(bytes) + bytes.position();
         appendBytes(handle, bytes.remaining());
         return this;
     }
@@ -103,7 +104,7 @@ import org.robovm.apple.dispatch.*;
     }
 
     public NSMutableData replace(NSRange range, ByteBuffer bytes) {
-        long handle = getEffectiveAddress(bytes) + bytes.position();
+        long handle = BufferMarshalers.BufferMarshaler.getBufferAddress(bytes) + bytes.position();
         replaceBytes(range, handle, bytes.remaining());
         return this;
     }

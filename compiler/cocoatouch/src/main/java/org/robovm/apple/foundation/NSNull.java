@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSNull.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected NSNull(Handle h, long handle) { super(h, handle); }
     protected NSNull(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

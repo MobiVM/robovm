@@ -132,6 +132,7 @@ import org.robovm.apple.dispatch.*;
     
     /*<constructors>*/
     public NSSet() {}
+    protected NSSet(Handle h, long handle) { super(h, handle); }
     protected NSSet(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     

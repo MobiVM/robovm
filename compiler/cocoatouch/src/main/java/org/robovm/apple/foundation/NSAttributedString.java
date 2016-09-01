@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSAttributedString() {}
+    protected NSAttributedString(Handle h, long handle) { super(h, handle); }
     protected NSAttributedString(SkipInit skipInit) { super(skipInit); }
     public NSAttributedString(String str) { super((SkipInit) null); initObject(init(str)); }
     public NSAttributedString(String str, NSDictionary<NSString, ?> attrs) { super((SkipInit) null); initObject(init(str, attrs)); }
@@ -310,6 +311,54 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     public CGRect getBoundingRect(@ByVal CGSize size, NSStringDrawingOptions options, NSStringDrawingContext context) {
         return NSAttributedStringExtensions.getBoundingRect(this, size, options, context);
+    }
+    
+    public void replace(NSRange range, String str) {
+        throw new UnsupportedOperationException("NSAttributedString is immutable");
+    }
+
+    public void setAttributes(NSDictionary<NSString, ?> attrs, NSRange range) {
+        throw new UnsupportedOperationException("NSAttributedString is immutable");
+    }
+
+    public void addAttribute(NSString name, NSObject value, NSRange range) {
+        throw new UnsupportedOperationException("NSAttributedString is immutable");
+    }
+
+    public void addAttributes(NSDictionary<NSString, ?> attrs, NSRange range) {
+        throw new UnsupportedOperationException("NSAttributedString is immutable");
+    }
+
+    public void removeAttribute(NSString name, NSRange range) {
+        throw new UnsupportedOperationException("NSAttributedString is immutable");
+    }
+
+    public void replace(NSRange range, NSAttributedString attrString) {
+        throw new UnsupportedOperationException("NSAttributedString is immutable");
+    }
+
+    public void insert(NSAttributedString attrString, long loc) {
+        throw new UnsupportedOperationException("NSAttributedString is immutable");
+    }
+
+    public void append(NSAttributedString attrString) {
+        throw new UnsupportedOperationException("NSAttributedString is immutable");
+    }
+
+    public void delete(NSRange range) {
+        throw new UnsupportedOperationException("NSAttributedString is immutable");
+    }
+
+    public void setAttributedString(NSAttributedString attrString) {
+        throw new UnsupportedOperationException("NSAttributedString is immutable");
+    }
+
+    public void beginEditing() {
+        throw new UnsupportedOperationException("NSAttributedString is immutable");
+    }
+
+    public void endEditing() {
+        throw new UnsupportedOperationException("NSAttributedString is immutable");
     }
     /*<methods>*/
     @Method(selector = "attributesAtIndex:effectiveRange:")

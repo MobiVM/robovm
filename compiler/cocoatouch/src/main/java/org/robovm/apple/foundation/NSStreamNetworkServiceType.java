@@ -111,9 +111,13 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 5.0 and later.
      */
     public static final NSStreamNetworkServiceType Voice = new NSStreamNetworkServiceType("Voice");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final NSStreamNetworkServiceType CallSignaling = new NSStreamNetworkServiceType("CallSignaling");
     /*</constants>*/
     
-    private static /*<name>*/NSStreamNetworkServiceType/*</name>*/[] values = new /*<name>*/NSStreamNetworkServiceType/*</name>*/[] {/*<value_list>*/VoIP, Video, Background, Voice/*</value_list>*/};
+    private static /*<name>*/NSStreamNetworkServiceType/*</name>*/[] values = new /*<name>*/NSStreamNetworkServiceType/*</name>*/[] {/*<value_list>*/VoIP, Video, Background, Voice, CallSignaling/*</value_list>*/};
     
     /*<name>*/NSStreamNetworkServiceType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -156,6 +160,11 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="NSStreamNetworkServiceTypeVoice", optional=true)
         public static native NSString Voice();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="NSStreamNetworkServiceTypeCallSignaling", optional=true)
+        public static native NSString CallSignaling();
         /*</values>*/
     }
 }

@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMutableURLRequest() {}
+    protected NSMutableURLRequest(Handle h, long handle) { super(h, handle); }
     protected NSMutableURLRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

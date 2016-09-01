@@ -52,6 +52,7 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSNumberFormatter() {}
+    protected NSNumberFormatter(Handle h, long handle) { super(h, handle); }
     protected NSNumberFormatter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     @WeaklyLinked
@@ -627,6 +628,9 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     public native void setPartialStringValidationEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
+    public String format(Number number) {
+        return format(NSNumber.pointerValueOf(number));
+    }
     /*<methods>*/
     @Method(selector = "stringFromNumber:")
     public native String format(NSNumber number);

@@ -53,6 +53,7 @@ import org.robovm.apple.newsstandkit.NKAssetDownload;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSURLConnection() {}
+    protected NSURLConnection(Handle h, long handle) { super(h, handle); }
     protected NSURLConnection(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 2.0 and later.

@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSOperationQueue() {}
+    protected NSOperationQueue(Handle h, long handle) { super(h, handle); }
     protected NSOperationQueue(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -103,6 +104,16 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     @Property(selector = "setUnderlyingQueue:")
     public native void setUnderlyingQueue(DispatchQueue v);
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    @Property(selector = "currentQueue")
+    public static native NSOperationQueue getCurrentQueue();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    @Property(selector = "mainQueue")
+    public static native NSOperationQueue getMainQueue();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -125,15 +136,5 @@ import org.robovm.apple.dispatch.*;
     public native void cancelAllOperations();
     @Method(selector = "waitUntilAllOperationsAreFinished")
     public native void waitUntilAllOperationsAreFinished();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @Method(selector = "currentQueue")
-    public static native NSOperationQueue getCurrentQueue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @Method(selector = "mainQueue")
-    public static native NSOperationQueue getMainQueue();
     /*</methods>*/
 }

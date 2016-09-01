@@ -52,6 +52,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSPortMessage() {}
+    protected NSPortMessage(Handle h, long handle) { super(h, handle); }
     protected NSPortMessage(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

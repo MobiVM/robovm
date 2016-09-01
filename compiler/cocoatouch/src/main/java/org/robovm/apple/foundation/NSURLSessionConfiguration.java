@@ -54,9 +54,14 @@ import org.robovm.apple.coreservices.CFProxy;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSURLSessionConfiguration() {}
+    protected NSURLSessionConfiguration(Handle h, long handle) { super(h, handle); }
     protected NSURLSessionConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "defaultSessionConfiguration")
+    public static native NSURLSessionConfiguration getDefaultSessionConfiguration();
+    @Property(selector = "ephemeralSessionConfiguration")
+    public static native NSURLSessionConfiguration getEphemeralSessionConfiguration();
     @Property(selector = "identifier")
     public native String getIdentifier();
     @Property(selector = "requestCachePolicy")
@@ -174,10 +179,6 @@ import org.robovm.apple.coreservices.CFProxy;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "defaultSessionConfiguration")
-    public static native NSURLSessionConfiguration getDefaultSessionConfiguration();
-    @Method(selector = "ephemeralSessionConfiguration")
-    public static native NSURLSessionConfiguration getEphemeralSessionConfiguration();
     /**
      * @since Available in iOS 8.0 and later.
      */

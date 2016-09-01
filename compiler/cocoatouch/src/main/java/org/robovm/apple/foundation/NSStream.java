@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSStream() {}
+    protected NSStream(Handle h, long handle) { super(h, handle); }
     protected NSStream(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

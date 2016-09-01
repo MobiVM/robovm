@@ -246,7 +246,39 @@ public enum /*<name>*/NSCocoaErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 9.0 and later.
      */
-    BundleOnDemandResourceInvalidTag(4994L);
+    BundleOnDemandResourceInvalidTag(4994L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    CloudSharingNetworkFailure(5120L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    CloudSharingQuotaExceeded(5121L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    CloudSharingTooManyParticipants(5122L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    CloudSharingConflict(5123L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    CloudSharingNoPermission(5124L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    CloudSharingOther(5375L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    CloudSharingErrorMinimum(5120L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    CloudSharingErrorMaximum(5375L);
     /*</values>*/
 
     /*<bind>*/

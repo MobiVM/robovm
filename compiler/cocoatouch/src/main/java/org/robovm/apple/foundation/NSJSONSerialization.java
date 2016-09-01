@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSJSONSerialization() {}
+    protected NSJSONSerialization(Handle h, long handle) { super(h, handle); }
     protected NSJSONSerialization(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

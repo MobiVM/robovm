@@ -62,9 +62,12 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSUserDefaults() {}
+    protected NSUserDefaults(Handle h, long handle) { super(h, handle); }
     protected NSUserDefaults(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "standardUserDefaults")
+    public static native NSUserDefaults getStandardUserDefaults();
     @Property(selector = "volatileDomainNames")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getVolatileDomainNames();
     /*</properties>*/
@@ -133,6 +136,26 @@ import org.robovm.apple.dispatch.*;
         return isObjectForced(key, domain.value().toString());
     }
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @GlobalValue(symbol="NSUserDefaultsSizeLimitExceededNotification", optional=true)
+    public static native NSString SizeLimitExceededNotification();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @GlobalValue(symbol="NSUbiquitousUserDefaultsNoCloudAccountNotification", optional=true)
+    public static native NSString NoCloudAccountNotification();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @GlobalValue(symbol="NSUbiquitousUserDefaultsDidChangeAccountsNotification", optional=true)
+    public static native NSString DidChangeAccountsNotification();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @GlobalValue(symbol="NSUbiquitousUserDefaultsCompletedInitialSyncNotification", optional=true)
+    public static native NSString CompletedInitialSyncNotification();
     @GlobalValue(symbol="NSUserDefaultsDidChangeNotification", optional=true)
     public static native NSString DidChangeNotification();
     
@@ -211,8 +234,6 @@ import org.robovm.apple.dispatch.*;
     public native boolean isObjectForced(String key);
     @Method(selector = "objectIsForcedForKey:inDomain:")
     public native boolean isObjectForced(String key, String domain);
-    @Method(selector = "standardUserDefaults")
-    public static native NSUserDefaults getStandardUserDefaults();
     @Method(selector = "resetStandardUserDefaults")
     public static native void resetStandardUserDefaults();
     /*</methods>*/

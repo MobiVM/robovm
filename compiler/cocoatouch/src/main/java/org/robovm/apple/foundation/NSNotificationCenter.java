@@ -51,10 +51,12 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSNotificationCenter() {}
+    protected NSNotificationCenter(Handle h, long handle) { super(h, handle); }
     protected NSNotificationCenter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "defaultCenter")
+    public static native NSNotificationCenter getDefaultCenter();
     /*</properties>*/
     /*<members>*//*</members>*/
     public void addObserver(NSObject observer, Selector selector, String name, NSObject object) {
@@ -105,7 +107,5 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "addObserverForName:object:queue:usingBlock:")
     public native NSObject addObserver(NSString name, NSObject obj, NSOperationQueue queue, @Block VoidBlock1<NSNotification> block);
-    @Method(selector = "defaultCenter")
-    public static native NSNotificationCenter getDefaultCenter();
     /*</methods>*/
 }

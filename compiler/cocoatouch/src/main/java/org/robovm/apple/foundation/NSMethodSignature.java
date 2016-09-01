@@ -51,8 +51,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMethodSignature() {}
+    protected NSMethodSignature(Handle h, long handle) { super(h, handle); }
     protected NSMethodSignature(SkipInit skipInit) { super(skipInit); }
-    public NSMethodSignature(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsDefaultCharsetZMarshaler.class) String types) { super(create(types)); retain(getHandle()); }
+    public NSMethodSignature(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsDefaultCharsetZMarshaler.class) String types) { super((Handle) null, create(types)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "numberOfArguments")

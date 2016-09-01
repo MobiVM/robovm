@@ -48,7 +48,11 @@ public enum /*<name>*/NSURLRequestNetworkServiceType/*</name>*/ implements Value
     VoIP(1L),
     Video(2L),
     Background(3L),
-    Voice(4L);
+    Voice(4L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    CallSignaling(11L);
     /*</values>*/
 
     private final long n;

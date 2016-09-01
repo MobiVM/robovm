@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSCoder() {}
+    protected NSCoder(Handle h, long handle) { super(h, handle); }
     protected NSCoder(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -68,6 +69,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "allowedClasses")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<ObjCClass> getAllowedClasses();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "decodingFailurePolicy")
+    public native NSDecodingFailurePolicy getDecodingFailurePolicy();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "error")
+    public native NSError getError();
     /*</properties>*/
     /*<members>*//*</members>*/
     

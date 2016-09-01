@@ -70,9 +70,12 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSHTTPCookieStorage() {}
+    protected NSHTTPCookieStorage(Handle h, long handle) { super(h, handle); }
     protected NSHTTPCookieStorage(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "sharedHTTPCookieStorage")
+    public static native NSHTTPCookieStorage getSharedHTTPCookieStorage();
     @Property(selector = "cookies")
     public native NSArray<NSHTTPCookie> getCookies();
     @Property(selector = "cookieAcceptPolicy")
@@ -105,8 +108,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "sortedCookiesUsingDescriptors:")
     public native NSArray<NSHTTPCookie> getSortedCookies(NSArray<NSSortDescriptor> sortOrder);
-    @Method(selector = "sharedHTTPCookieStorage")
-    public static native NSHTTPCookieStorage getSharedHTTPCookieStorage();
     /**
      * @since Available in iOS 9.0 and later.
      */

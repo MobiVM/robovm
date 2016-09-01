@@ -51,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMutableString() {}
+    protected NSMutableString(Handle h, long handle) { super(h, handle); }
     protected NSMutableString(SkipInit skipInit) { super(skipInit); }
     public NSMutableString(@MachineSizedUInt long capacity) { super((SkipInit) null); initObject(init(capacity)); }
     /*</constructors>*/

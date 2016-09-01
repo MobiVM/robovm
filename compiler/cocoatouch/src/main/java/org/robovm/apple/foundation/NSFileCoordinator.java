@@ -53,10 +53,13 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSFileCoordinator() {}
+    protected NSFileCoordinator(Handle h, long handle) { super(h, handle); }
     protected NSFileCoordinator(SkipInit skipInit) { super(skipInit); }
     public NSFileCoordinator(NSFilePresenter filePresenterOrNil) { super((SkipInit) null); initObject(init(filePresenterOrNil)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "filePresenters")
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSFilePresenter> getFilePresenters();
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -179,7 +182,5 @@ import org.robovm.apple.dispatch.*;
     public static native void addFilePresenter(NSFilePresenter filePresenter);
     @Method(selector = "removeFilePresenter:")
     public static native void removeFilePresenter(NSFilePresenter filePresenter);
-    @Method(selector = "filePresenters")
-    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSFilePresenter> getFilePresenters();
     /*</methods>*/
 }

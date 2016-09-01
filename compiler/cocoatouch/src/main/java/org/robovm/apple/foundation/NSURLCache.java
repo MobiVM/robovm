@@ -51,10 +51,15 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSURLCache() {}
+    protected NSURLCache(Handle h, long handle) { super(h, handle); }
     protected NSURLCache(SkipInit skipInit) { super(skipInit); }
     public NSURLCache(@MachineSizedUInt long memoryCapacity, @MachineSizedUInt long diskCapacity, String path) { super((SkipInit) null); initObject(init(memoryCapacity, diskCapacity, path)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "sharedURLCache")
+    public static native NSURLCache getSharedURLCache();
+    @Property(selector = "setSharedURLCache:")
+    public static native void setSharedURLCache(NSURLCache v);
     @Property(selector = "memoryCapacity")
     public native @MachineSizedUInt long getMemoryCapacity();
     @Property(selector = "setMemoryCapacity:")
@@ -85,10 +90,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "removeCachedResponsesSinceDate:")
     public native void removeCachedResponsesSinceDate(NSDate date);
-    @Method(selector = "sharedURLCache")
-    public static native NSURLCache getSharedURLCache();
-    @Method(selector = "setSharedURLCache:")
-    public static native void setSharedURLCache(NSURLCache cache);
     /**
      * @since Available in iOS 8.0 and later.
      */

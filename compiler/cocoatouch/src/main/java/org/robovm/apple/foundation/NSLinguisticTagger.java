@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSLinguisticTagger() {}
+    protected NSLinguisticTagger(Handle h, long handle) { super(h, handle); }
     protected NSLinguisticTagger(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 5.0 and later.
@@ -153,12 +154,12 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "tagsInRange:scheme:options:tokenRanges:")
-    protected native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTag> getTags(@ByVal NSRange range, NSLinguisticTagScheme tagScheme, NSLinguisticTaggerOptions opts, NSArray.NSArrayPtr tokenRanges);
+    protected native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTag> getTags(@ByVal NSRange range, NSLinguisticTagScheme tagScheme, NSLinguisticTaggerOptions opts, NSArray.NSArrayPtr<?> tokenRanges);
     /**
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "possibleTagsAtIndex:scheme:tokenRange:sentenceRange:scores:")
-    protected native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTag> getPossibleTags(@MachineSizedUInt long charIndex, NSLinguisticTagScheme tagScheme, NSRange tokenRange, NSRange sentenceRange, NSArray.NSArrayPtr scores);
+    protected native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTag> getPossibleTags(@MachineSizedUInt long charIndex, NSLinguisticTagScheme tagScheme, NSRange tokenRange, NSRange sentenceRange, NSArray.NSArrayPtr<?> scores);
     /**
      * @since Available in iOS 5.0 and later.
      */

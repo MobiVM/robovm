@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSOrthography/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
     public static class LanguageMapMarshaler {
         @SuppressWarnings("unchecked")
@@ -83,6 +83,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSOrthography() {}
+    protected NSOrthography(Handle h, long handle) { super(h, handle); }
     protected NSOrthography(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.
@@ -130,7 +131,5 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "dominantLanguageForScript:")
     public native String getDominantLanguageForScript(String script);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
     /*</methods>*/
 }

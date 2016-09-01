@@ -48,7 +48,11 @@ public enum /*<name>*/NSDateComponentsFormatterUnitsStyle/*</name>*/ implements 
     Abbreviated(1L),
     Short(2L),
     Full(3L),
-    SpellOut(4L);
+    SpellOut(4L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Brief(5L);
     /*</values>*/
 
     /*<bind>*/
