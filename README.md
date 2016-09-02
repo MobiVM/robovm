@@ -8,7 +8,7 @@ RoboVM is an ahead-of-time compiler for Java bytecode, targeting Linux, Mac OS X
 
 There are pre-built plugins for Eclipse and IntelliJ IDEA, for installation take a look at the [homepage](http://robovm.mobidevelop.com/).
 
-For using the RoboVM Grade plugin, follow the [README in the repository](https://github.com/MobiDevelop/robovm/tree/master/plugins/gradle)
+For using the RoboVM Gradle plugin, follow the [README in the repository](https://github.com/MobiDevelop/robovm/tree/master/plugins/gradle)
 
 ## Project Structure
 
