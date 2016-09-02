@@ -4,11 +4,19 @@
 
 RoboVM is an ahead-of-time compiler for Java bytecode, targeting Linux, Mac OS X and iOS.
 
+## Using RoboVM
+
+There are pre-built plugins for Eclipse and IntelliJ IDEA, for installation take a look at the [homepage](http://robovm.mobidevelop.com/).
+
+For using the RoboVM Grade plugin, follow the [README in the repository](https://github.com/MobiDevelop/robovm/tree/master/plugins/gradle) 
+
+## Project Structure
+
 This is a fork of the [last open-source release of RoboVM](https://github.com/robovm/robovm). The originally seperate repositories have been merged into a single repository.
 
- * `compiler/` contains the compiler infrastructure and code to package and launch apps on 
+ * `compiler/` contains the compiler infrastructure and code to package and launch apps on
    Linux, Mac OS X and iOS. It also contains the native code of the VM.
- * `dist/` packages everything in `compiler/` into two artifacts used by IDE plugins and 
+ * `dist/` packages everything in `compiler/` into two artifacts used by IDE plugins and
    the Gradle plugin
  * `plugins/` contains the Gradle, Eclipse and IDEA plugins, as well as the templates
 
@@ -33,7 +41,7 @@ You will need the following dependencies installed (iOS only, never tried Linux)
  * libtool, install via `brew install libtool` on Mac OS X
 
 To build RoboVM locally, execute the `build.sh` script in the root folder. This
-will 
+will
 
  1. Generate Maven artifacts into your local Maven repository
  2. Put the IDEA plugin in `plugins/idea/target`
@@ -96,7 +104,7 @@ With the development setup so far, you can debug the Eclipse plugin but not the 
 2. Select `Java Build Path`, select the `Libraries` tab and remove `robovm-dist-compiler.jar` and `robovm-templater.jar`
 3. In the `Libraries` tab, click `Add external JARS`, then add `~/.m2/repository/commons-io/commons-io/2.4/commons-io-2.4.jar` (hit CMD + SHIFT + G to enter that file location)
 3. In the `Libraries` tab, click `Add external JARS`, then add `~/.m2/repository/org/apache/commons/commons-exec/1.0.1/commons-exec-1.0.1.jar`
-3. In the `Libraries` tab, click `Add external JARS`, then add `~/.m2/repository/com/googlecode/plist/dd-plist/1.16/dd-plist-1.16.jar` 
+3. In the `Libraries` tab, click `Add external JARS`, then add `~/.m2/repository/com/googlecode/plist/dd-plist/1.16/dd-plist-1.16.jar`
 4. Select the `Projects` tab and add all other RoboVM projects
 5. Modify the `MANIFEST.MF` file in `plugins/eclipse/ui/META-INF/` folder:
 
@@ -145,7 +153,7 @@ Bundle-ClassPath: .,
  external:/Users/nex/workspace/robovm/compiler/compiler/target/classes,
  external:/Users/nex/workspace/robovm/plugins/templates/templater/target/classes,
  external:/Users/nex/workspace/robovm/plugins/templates/console/target/classes,
- external:/Users/nex/workspace/robovm/plugins/templates/ios-single-view-no-ib//target/classes 
+ external:/Users/nex/workspace/robovm/plugins/templates/ios-single-view-no-ib//target/classes
 
 ```
 
