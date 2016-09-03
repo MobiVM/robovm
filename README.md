@@ -1,6 +1,9 @@
 # RoboVM
 
-[**Website**](http://robovm.mobidevelop.com) - [**Developer Guide**](https://github.com/florianf/robovm/wiki/Developer-Guide)
+[**Website**](http://robovm.mobidevelop.com) -
+[**Developer Guide**](https://github.com/MobiDevelop/robovm/wiki/Developer-Guide) -
+[**Changelog**](https://github.com/MobiDevelop/robovm/wiki/Changelog) -
+[**RoboPods**](https://github.com/MobiDevelop/robovm-robopods) -
 
 RoboVM is an ahead-of-time compiler for Java bytecode, targeting Linux, Mac OS X and iOS.
 
