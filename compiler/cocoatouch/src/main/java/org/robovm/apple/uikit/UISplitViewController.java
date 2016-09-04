@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UISplitViewController() {}
+    protected UISplitViewController(Handle h, long handle) { super(h, handle); }
     protected UISplitViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -95,6 +96,11 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @Property(selector = "displayModeButtonItem")
+    public native UIBarButtonItem getDisplayModeButtonItem();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "preferredPrimaryColumnWidthFraction")
     public native @MachineSizedFloat double getPreferredPrimaryColumnWidthFraction();
     /**
@@ -136,11 +142,6 @@ import org.robovm.apple.corelocation.*;
     @GlobalValue(symbol="UISplitViewControllerAutomaticDimension", optional=true)
     public static native @MachineSizedFloat double getAutomaticDimension();
     
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Method(selector = "displayModeButtonItem")
-    public native UIBarButtonItem getDisplayModeButtonItem();
     /**
      * @since Available in iOS 8.0 and later.
      */

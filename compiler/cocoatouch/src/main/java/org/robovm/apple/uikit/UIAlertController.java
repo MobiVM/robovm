@@ -51,8 +51,9 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIAlertController() {}
+    protected UIAlertController(Handle h, long handle) { super(h, handle); }
     protected UIAlertController(SkipInit skipInit) { super(skipInit); }
-    public UIAlertController(String title, String message, UIAlertControllerStyle preferredStyle) { super(create(title, message, preferredStyle)); retain(getHandle()); }
+    public UIAlertController(String title, String message, UIAlertControllerStyle preferredStyle) { super((Handle) null, create(title, message, preferredStyle)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "actions")

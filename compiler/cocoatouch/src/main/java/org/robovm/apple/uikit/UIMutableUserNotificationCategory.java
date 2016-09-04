@@ -39,7 +39,9 @@ import org.robovm.apple.corelocation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIMutableUserNotificationCategory/*</name>*/ 
@@ -51,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIMutableUserNotificationCategory() {}
+    protected UIMutableUserNotificationCategory(Handle h, long handle) { super(h, handle); }
     protected UIMutableUserNotificationCategory(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

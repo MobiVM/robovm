@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITextInputStringTokenizer() {}
+    protected UITextInputStringTokenizer(Handle h, long handle) { super(h, handle); }
     protected UITextInputStringTokenizer(SkipInit skipInit) { super(skipInit); }
     public UITextInputStringTokenizer(UITextInput textInput) { super((SkipInit) null); initObject(init(textInput)); }
     /*</constructors>*/

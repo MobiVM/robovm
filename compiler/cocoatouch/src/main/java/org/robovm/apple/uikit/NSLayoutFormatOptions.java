@@ -51,8 +51,8 @@ public final class /*<name>*/NSLayoutFormatOptions/*</name>*/ extends Bits</*<na
     public static final NSLayoutFormatOptions AlignAllTrailing = new NSLayoutFormatOptions(64L);
     public static final NSLayoutFormatOptions AlignAllCenterX = new NSLayoutFormatOptions(512L);
     public static final NSLayoutFormatOptions AlignAllCenterY = new NSLayoutFormatOptions(1024L);
-    public static final NSLayoutFormatOptions AlignAllBaseline = new NSLayoutFormatOptions(2048L);
     public static final NSLayoutFormatOptions AlignAllLastBaseline = new NSLayoutFormatOptions(2048L);
+    public static final NSLayoutFormatOptions AlignAllBaseline = new NSLayoutFormatOptions(2048L);
     /**
      * @since Available in iOS 8.0 and later.
      */

@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIStoryboardPopoverSegue() {}
+    protected UIStoryboardPopoverSegue(Handle h, long handle) { super(h, handle); }
     protected UIStoryboardPopoverSegue(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

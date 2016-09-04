@@ -52,6 +52,18 @@ public final class /*<name>*/UIDataDetectorTypes/*</name>*/ extends Bits</*<name
      * @since Available in iOS 4.0 and later.
      */
     public static final UIDataDetectorTypes CalendarEvent = new UIDataDetectorTypes(8L);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final UIDataDetectorTypes ShipmentTrackingNumber = new UIDataDetectorTypes(16L);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final UIDataDetectorTypes FlightNumber = new UIDataDetectorTypes(32L);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final UIDataDetectorTypes LookupSuggestion = new UIDataDetectorTypes(64L);
     public static final UIDataDetectorTypes None = new UIDataDetectorTypes(0L);
     public static final UIDataDetectorTypes All = new UIDataDetectorTypes(Bro.IS_32BIT ? 0xffffffffL : 0xffffffffffffffffL);
     /*</values>*/

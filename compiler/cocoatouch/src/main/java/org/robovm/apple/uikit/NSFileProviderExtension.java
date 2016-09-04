@@ -51,17 +51,17 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSFileProviderExtension() {}
+    protected NSFileProviderExtension(Handle h, long handle) { super(h, handle); }
     protected NSFileProviderExtension(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "providerIdentifier")
+    public native String getProviderIdentifier();
+    @Property(selector = "documentStorageURL")
+    public native NSURL getDocumentStorageURL();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "providerIdentifier")
-    public native String getProviderIdentifier();
-    @Method(selector = "documentStorageURL")
-    public native NSURL getDocumentStorageURL();
     @Method(selector = "URLForItemWithPersistentIdentifier:")
     public native NSURL getURLForItem(String identifier);
     @Method(selector = "persistentIdentifierForItemAtURL:")

@@ -51,8 +51,9 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UILayoutGuide() {}
+    protected UILayoutGuide(Handle h, long handle) { super(h, handle); }
     protected UILayoutGuide(SkipInit skipInit) { super(skipInit); }
-    public UILayoutGuide(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UILayoutGuide(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "layoutFrame")
@@ -85,12 +86,22 @@ import org.robovm.apple.corelocation.*;
     public native NSLayoutXAxisAnchor getCenterXAnchor();
     @Property(selector = "centerYAnchor")
     public native NSLayoutYAxisAnchor getCenterYAnchor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "hasAmbiguousLayout")
+    public native boolean hasAmbiguousLayout();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "constraintsAffectingLayoutForAxis:")
+    public native NSArray<NSLayoutConstraint> getConstraintsAffectingLayout(UILayoutConstraintAxis axis);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

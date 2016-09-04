@@ -51,11 +51,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIButton() {}
+    protected UIButton(Handle h, long handle) { super(h, handle); }
     protected UIButton(SkipInit skipInit) { super(skipInit); }
-    public UIButton(UIButtonType buttonType) { super(create0(buttonType)); retain(getHandle()); }
+    public UIButton(UIButtonType buttonType) { super((Handle) null, create0(buttonType)); retain(getHandle()); }
     /*</constructors>*/
     public UIButton(CGRect frame) {
         super(frame);
+    }
+    public UIButton(NSCoder decoder) {
+        super(decoder);
     }
     /*<properties>*/
     @Property(selector = "contentEdgeInsets")
@@ -167,11 +171,4 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "buttonWithType:")
     protected static native @Pointer long create0(UIButtonType buttonType);
     /*</methods>*/
-    /**
-     * @Deprecated Use the constructor instead.
-     */
-    @Deprecated
-    public static UIButton create(UIButtonType buttonType) {
-        return new UIButton(buttonType);
-    }
 }

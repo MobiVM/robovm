@@ -62,6 +62,11 @@ import org.robovm.apple.corelocation.*;
     public boolean shouldEndEditing(UITextField textField) { return true; }
     @NotImplemented("textFieldDidEndEditing:")
     public void didEndEditing(UITextField textField) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("textFieldDidEndEditing:reason:")
+    public void didEndEditing(UITextField textField, UITextFieldDidEndEditingReason reason) {}
     @NotImplemented("textField:shouldChangeCharactersInRange:replacementString:")
     public boolean shouldChangeCharacters(UITextField textField, @ByVal NSRange range, String string) { return true; }
     @NotImplemented("textFieldShouldClear:")

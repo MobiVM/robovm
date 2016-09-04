@@ -64,11 +64,14 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITextInputMode() {}
+    protected UITextInputMode(Handle h, long handle) { super(h, handle); }
     protected UITextInputMode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryLanguage")
     public native String getPrimaryLanguage();
+    @Property(selector = "activeInputModes")
+    public static native NSArray<UITextInputMode> getActiveInputModes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -85,7 +88,5 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "currentInputMode")
     public static native UITextInputMode getCurrentInputMode();
-    @Method(selector = "activeInputModes")
-    public static native NSArray<UITextInputMode> getActiveInputModes();
     /*</methods>*/
 }

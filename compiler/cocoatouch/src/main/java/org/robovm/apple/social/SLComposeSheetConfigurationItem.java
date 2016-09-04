@@ -48,6 +48,7 @@ import org.robovm.apple.accounts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SLComposeSheetConfigurationItem() {}
+    protected SLComposeSheetConfigurationItem(Handle h, long handle) { super(h, handle); }
     protected SLComposeSheetConfigurationItem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

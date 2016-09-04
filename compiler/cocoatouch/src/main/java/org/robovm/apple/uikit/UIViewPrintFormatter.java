@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIViewPrintFormatter() {}
+    protected UIViewPrintFormatter(Handle h, long handle) { super(h, handle); }
     protected UIViewPrintFormatter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

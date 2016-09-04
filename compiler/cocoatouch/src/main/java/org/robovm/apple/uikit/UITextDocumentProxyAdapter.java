@@ -54,6 +54,11 @@ import org.robovm.apple.corelocation.*;
     public String getDocumentContextBeforeInput() { return null; }
     @NotImplemented("documentContextAfterInput")
     public String getDocumentContextAfterInput() { return null; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("documentInputMode")
+    public UITextInputMode getDocumentInputMode() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

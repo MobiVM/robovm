@@ -59,6 +59,7 @@ import org.robovm.apple.coreimage.*;
         }
     }
     
+    private static final NSString APS = new NSString("aps");
     private static final NSString ALERT = new NSString("alert");
     private static final NSString BODY = new NSString("body");
     private static final NSString SHOW_VIEW = new NSString("show-view");
@@ -71,8 +72,9 @@ import org.robovm.apple.coreimage.*;
     static { Bro.bind(UIRemoteNotification.class); }
     
     public String getAlert() {
-        if (data.containsKey(ALERT)) {
-            NSObject val = data.get(ALERT);
+        NSDictionary<NSString, NSObject> aps = (NSDictionary<NSString, NSObject>) data.get(APS);
+        if (aps != null && aps.containsKey(ALERT)) {
+            NSObject val = aps.get(ALERT);
             if (val instanceof NSString) {
                 return val.toString();
             }
@@ -87,8 +89,9 @@ import org.robovm.apple.coreimage.*;
         return null;
     }
     public boolean isViewButtonShown() {
-        if (data.containsKey(ALERT)) {
-            NSObject val = data.get(ALERT);
+        NSDictionary<NSString, NSObject> aps = (NSDictionary<NSString, NSObject>) data.get(APS);
+        if (aps != null && aps.containsKey(ALERT)) {
+            NSObject val = aps.get(ALERT);
             if (val instanceof NSDictionary) {
                 NSDictionary<NSString, NSObject> alert = (NSDictionary<NSString, NSObject>) val;
                 if (alert.containsKey(SHOW_VIEW)) {
@@ -100,29 +103,27 @@ import org.robovm.apple.coreimage.*;
         return true;
     }
     public long getBadgeNumber() {
-        if (data.containsKey(BADGE)) {
-            NSString val = (NSString) data.get(BADGE);
+        NSDictionary<NSString, NSObject> aps = (NSDictionary<NSString, NSObject>) data.get(APS);
+        if (aps != null && aps.containsKey(BADGE)) {
+            NSString val = (NSString) aps.get(BADGE);
             return Long.valueOf(val.toString());
         }
         return -1;
     }
     public String getSound() {
-        if (data.containsKey(SOUND)) {
-            NSString val = (NSString) data.get(SOUND);
+        NSDictionary<NSString, NSObject> aps = (NSDictionary<NSString, NSObject>) data.get(APS);
+        if (aps != null && aps.containsKey(SOUND)) {
+            NSString val = (NSString) aps.get(SOUND);
             return val.toString();
         }
         return null;
     }
     
     public NSObject get(String key) {
-        return data.get(new NSString(key));
+        return data.get(key);
     }
     
     public String getString(String key) {
-        return String.valueOf(get(key));
-    }
-    
-    public NSDictionary<NSString, NSObject> getDictionary() {
-        return data;
+        return data.getString(key, null);
     }
 }

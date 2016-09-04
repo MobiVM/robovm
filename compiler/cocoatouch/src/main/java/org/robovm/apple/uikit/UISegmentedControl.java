@@ -55,14 +55,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /*</constants>*/
     /*<constructors>*/
     public UISegmentedControl() {}
+    protected UISegmentedControl(Handle h, long handle) { super(h, handle); }
     protected UISegmentedControl(SkipInit skipInit) { super(skipInit); }
     public UISegmentedControl(NSArray<?> items) { super((SkipInit) null); initObject(init(items)); }
     /*</constructors>*/
-    
     public UISegmentedControl(CGRect frame) {
         super(frame);
     }
-    
+    public UISegmentedControl(NSCoder decoder) {
+        super(decoder);
+    }
     public UISegmentedControl(String... items) {
         super((SkipInit) null);
         initObject(init(NSArray.fromStrings(items)));

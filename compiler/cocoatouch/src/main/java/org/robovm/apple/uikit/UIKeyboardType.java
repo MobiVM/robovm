@@ -62,6 +62,10 @@ public enum /*<name>*/UIKeyboardType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 7.0 and later.
      */
     WebSearch(10L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    ASCIICapableNumberPad(11L),
     Alphabet(1L);
     /*</values>*/
 

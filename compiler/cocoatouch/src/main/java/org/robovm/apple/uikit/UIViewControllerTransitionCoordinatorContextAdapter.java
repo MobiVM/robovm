@@ -50,16 +50,17 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
     @NotImplemented("isAnimated")
     public boolean isAnimated() { return false; }
     @NotImplemented("presentationStyle")
     public UIModalPresentationStyle getPresentationStyle() { return null; }
     @NotImplemented("initiallyInteractive")
     public boolean isInitiallyInteractive() { return false; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("isInterruptible")
+    public boolean isInterruptible() { return false; }
     @NotImplemented("isInteractive")
     public boolean isInteractive() { return false; }
     @NotImplemented("isCancelled")
@@ -72,13 +73,6 @@ import org.robovm.apple.corelocation.*;
     public @MachineSizedFloat double getCompletionVelocity() { return 0; }
     @NotImplemented("completionCurve")
     public UIViewAnimationCurve getCompletionCurve() { return null; }
-    @NotImplemented("viewControllerForKey:")
-    public UIViewController getViewController(String key) { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @NotImplemented("viewForKey:")
-    public UIView getView(String key) { return null; }
     @NotImplemented("containerView")
     public UIView getContainerView() { return null; }
     /**
@@ -86,5 +80,15 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("targetTransform")
     public @ByVal CGAffineTransform getTargetTransform() { return null; }
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @NotImplemented("viewControllerForKey:")
+    public UIViewController getViewController(String key) { return null; }
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @NotImplemented("viewForKey:")
+    public UIView getView(String key) { return null; }
     /*</methods>*/
 }

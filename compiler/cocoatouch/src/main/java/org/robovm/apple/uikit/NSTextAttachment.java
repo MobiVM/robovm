@@ -53,12 +53,13 @@ import org.robovm.apple.corelocation.*;
     /*</constants>*/
     /*<constructors>*/
     public NSTextAttachment() {}
+    protected NSTextAttachment(Handle h, long handle) { super(h, handle); }
     protected NSTextAttachment(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 7.0 and later.
      */
     public NSTextAttachment(NSData contentData, String uti) { super((SkipInit) null); initObject(init(contentData, uti)); }
-    public NSTextAttachment(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NSTextAttachment(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -126,6 +127,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

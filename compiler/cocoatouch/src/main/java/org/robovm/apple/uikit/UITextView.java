@@ -79,6 +79,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITextView() {}
+    protected UITextView(Handle h, long handle) { super(h, handle); }
     protected UITextView(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 7.0 and later.
@@ -367,6 +368,10 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UITextStorageDirection getSelectionAffinity();
     @Property(selector = "setSelectionAffinity:")
     public native void setSelectionAffinity(UITextStorageDirection v);
+    @Property(selector = "insertDictationResultPlaceholder")
+    public native NSObject getInsertDictationResultPlaceholder();
+    @Property(selector = "hasText")
+    public native boolean hasText();
     @Property(selector = "autocapitalizationType")
     public native UITextAutocapitalizationType getAutocapitalizationType();
     @Property(selector = "setAutocapitalizationType:")
@@ -405,6 +410,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native boolean isSecureTextEntry();
     @Property(selector = "setSecureTextEntry:")
     public native void setSecureTextEntry(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "textContentType")
+    public native UITextContentType getTextContentType();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTextContentType:")
+    public native void setTextContentType(UITextContentType v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -482,8 +497,6 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native void dictationRecordingDidEnd();
     @Method(selector = "dictationRecognitionFailed")
     public native void dictationRecognitionFailed();
-    @Method(selector = "insertDictationResultPlaceholder")
-    public native NSObject getInsertDictationResultPlaceholder();
     @Method(selector = "frameForDictationResultPlaceholder:")
     public native @ByVal CGRect getDictationResultPlaceholderFrame(NSObject placeholder);
     @Method(selector = "removeDictationResultPlaceholder:willInsertResult:")
@@ -503,8 +516,6 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Method(selector = "endFloatingCursor")
     public native void endFloatingCursor();
-    @Method(selector = "hasText")
-    public native boolean hasText();
     @Method(selector = "insertText:")
     public native void insertText(String text);
     @Method(selector = "deleteBackward")

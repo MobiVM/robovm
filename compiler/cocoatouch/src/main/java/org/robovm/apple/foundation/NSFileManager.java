@@ -146,7 +146,7 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public NSArray<NSURL> getContentsOfDirectoryAtURL(NSURL url, @org.robovm.rt.bro.annotation.Marshaler(NSURLFileSystemProperty.AsListMarshaler.class) List<NSURLFileSystemProperty> keys, NSDirectoryEnumerationOptions mask) throws NSErrorException {
+    public NSArray<NSURL> getContentsOfDirectoryAtURL(NSURL url, List<NSURLFileSystemProperty> keys, NSDirectoryEnumerationOptions mask) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSArray<NSURL> result = getContentsOfDirectoryAtURL(url, keys, mask, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
@@ -277,7 +277,7 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 2.0 and later.
      */
-    public @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getSubpathsOfDirectoryAtPath(String path) throws NSErrorException {
+    public List<String> getSubpathsOfDirectoryAtPath(String path) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        List<String> result = getSubpathsOfDirectoryAtPath(path, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }

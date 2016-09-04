@@ -51,13 +51,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIStepper() {}
+    protected UIStepper(Handle h, long handle) { super(h, handle); }
     protected UIStepper(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UIStepper(CGRect frame) {
         super(frame);
     }
-    
+    public UIStepper(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "isContinuous")
     public native boolean isContinuous();

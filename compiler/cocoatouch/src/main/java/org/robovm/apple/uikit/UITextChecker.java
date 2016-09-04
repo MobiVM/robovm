@@ -51,10 +51,16 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITextChecker() {}
+    protected UITextChecker(Handle h, long handle) { super(h, handle); }
     protected UITextChecker(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "ignoredWords")
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getIgnoredWords();
+    @Property(selector = "setIgnoredWords:")
+    public native void setIgnoredWords(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
+    @Property(selector = "availableLanguages")
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAvailableLanguages();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -66,17 +72,11 @@ import org.robovm.apple.corelocation.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getCompletionsForPartialWord(@ByVal NSRange range, String string, String language);
     @Method(selector = "ignoreWord:")
     public native void ignoreWord(String wordToIgnore);
-    @Method(selector = "ignoredWords")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getIgnoredWords();
-    @Method(selector = "setIgnoredWords:")
-    public native void setIgnoredWords(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> words);
     @Method(selector = "learnWord:")
     public static native void learnWord(String word);
     @Method(selector = "hasLearnedWord:")
     public static native boolean hasLearnedWord(String word);
     @Method(selector = "unlearnWord:")
     public static native void unlearnWord(String word);
-    @Method(selector = "availableLanguages")
-    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAvailableLanguages();
     /*</methods>*/
 }

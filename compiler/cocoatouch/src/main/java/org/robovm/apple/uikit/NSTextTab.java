@@ -51,9 +51,10 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSTextTab() {}
+    protected NSTextTab(Handle h, long handle) { super(h, handle); }
     protected NSTextTab(SkipInit skipInit) { super(skipInit); }
     public NSTextTab(NSTextAlignment alignment, @MachineSizedFloat double loc, NSTextTabOptions options) { super((SkipInit) null); initObject(init(alignment, loc, options)); }
-    public NSTextTab(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NSTextTab(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alignment")
@@ -75,6 +76,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

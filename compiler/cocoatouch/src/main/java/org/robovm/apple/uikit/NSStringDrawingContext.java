@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSStringDrawingContext() {}
+    protected NSStringDrawingContext(Handle h, long handle) { super(h, handle); }
     protected NSStringDrawingContext(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

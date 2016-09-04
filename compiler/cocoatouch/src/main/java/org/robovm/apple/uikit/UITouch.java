@@ -53,6 +53,7 @@ import org.robovm.apple.spritekit.SKNode;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITouch() {}
+    protected UITouch(Handle h, long handle) { super(h, handle); }
     protected UITouch(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -62,6 +63,11 @@ import org.robovm.apple.spritekit.SKNode;
     public native UITouchPhase getPhase();
     @Property(selector = "tapCount")
     public native @MachineSizedUInt long getTapCount();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "type")
+    public native UITouchType getType();
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -81,6 +87,36 @@ import org.robovm.apple.spritekit.SKNode;
      */
     @Property(selector = "gestureRecognizers")
     public native NSArray<UIGestureRecognizer> getGestureRecognizers();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "force")
+    public native @MachineSizedFloat double getForce();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "maximumPossibleForce")
+    public native @MachineSizedFloat double getMaximumPossibleForce();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Property(selector = "altitudeAngle")
+    public native @MachineSizedFloat double getAltitudeAngle();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Property(selector = "estimationUpdateIndex")
+    public native NSNumber getEstimationUpdateIndex();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Property(selector = "estimatedProperties")
+    public native UITouchProperties getEstimatedProperties();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Property(selector = "estimatedPropertiesExpectingUpdates")
+    public native UITouchProperties getEstimatedPropertiesExpectingUpdates();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -99,5 +135,25 @@ import org.robovm.apple.spritekit.SKNode;
     public native @ByVal CGPoint getLocationInView(UIView view);
     @Method(selector = "previousLocationInView:")
     public native @ByVal CGPoint getPreviousLocationInView(UIView view);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Method(selector = "preciseLocationInView:")
+    public native @ByVal CGPoint getPreciseLocationInView(UIView view);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Method(selector = "precisePreviousLocationInView:")
+    public native @ByVal CGPoint getPrecisePreviousLocationInView(UIView view);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Method(selector = "azimuthAngleInView:")
+    public native @MachineSizedFloat double getAzimuthAngleInView(UIView view);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Method(selector = "azimuthUnitVectorInView:")
+    public native @ByVal CGVector getAzimuthUnitVectorInView(UIView view);
     /*</methods>*/
 }

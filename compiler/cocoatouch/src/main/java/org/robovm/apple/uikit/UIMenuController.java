@@ -113,9 +113,12 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIMenuController() {}
+    protected UIMenuController(Handle h, long handle) { super(h, handle); }
     protected UIMenuController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "sharedMenuController")
+    public static native UIMenuController getSharedMenuController();
     @Property(selector = "isMenuVisible")
     public native boolean isMenuVisible();
     @Property(selector = "setMenuVisible:")
@@ -179,7 +182,5 @@ import org.robovm.apple.corelocation.*;
     public native void setTargetRect(@ByVal CGRect targetRect, UIView targetView);
     @Method(selector = "update")
     public native void update();
-    @Method(selector = "sharedMenuController")
-    public static native UIMenuController getSharedMenuController();
     /*</methods>*/
 }

@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIBarButtonItemGroup() {}
+    protected UIBarButtonItemGroup(Handle h, long handle) { super(h, handle); }
     protected UIBarButtonItemGroup(SkipInit skipInit) { super(skipInit); }
     public UIBarButtonItemGroup(NSArray<UIBarButtonItem> barButtonItems, UIBarButtonItem representativeItem) { super((SkipInit) null); initObject(init(barButtonItems, representativeItem)); }
     public UIBarButtonItemGroup(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }

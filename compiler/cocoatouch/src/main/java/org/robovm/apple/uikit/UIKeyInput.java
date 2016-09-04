@@ -49,11 +49,10 @@ import org.robovm.apple.corelocation.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    @Property(selector = "hasText")
+    boolean hasText();
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "hasText")
-    boolean hasText();
     @Method(selector = "insertText:")
     void insertText(String text);
     @Method(selector = "deleteBackward")

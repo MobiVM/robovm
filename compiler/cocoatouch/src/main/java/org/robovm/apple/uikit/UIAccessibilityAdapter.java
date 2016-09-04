@@ -138,6 +138,10 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("setAccessibilityNavigationStyle:")
     public void setAccessibilityNavigationStyle(UIAccessibilityNavigationStyle v) {}
+    @NotImplemented("accessibilityHeaderElements")
+    public NSArray<?> getAccessibilityHeaderElements() { return null; }
+    @NotImplemented("setAccessibilityHeaderElements:")
+    public void setAccessibilityHeaderElements(NSArray<?> v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

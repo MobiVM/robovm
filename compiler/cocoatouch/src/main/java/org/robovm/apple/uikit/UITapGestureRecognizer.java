@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITapGestureRecognizer() {}
+    protected UITapGestureRecognizer(Handle h, long handle) { super(h, handle); }
     protected UITapGestureRecognizer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     

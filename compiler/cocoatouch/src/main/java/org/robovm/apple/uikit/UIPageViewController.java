@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPageViewController() {}
+    protected UIPageViewController(Handle h, long handle) { super(h, handle); }
     protected UIPageViewController(SkipInit skipInit) { super(skipInit); }
     public UIPageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerOptions options) { super((SkipInit) null); initObject(init(style, navigationOrientation, options)); }
     public UIPageViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
@@ -80,6 +81,15 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<UIViewController> getViewControllers();
     /*</properties>*/
     /*<members>*//*</members>*/
+    private UIPageViewControllerModel model;
+    public void setModel(UIPageViewControllerModel model) {
+        this.model = model;
+        setDelegate(model);
+        setDataSource(model);
+    }
+    public UIPageViewControllerModel getModel() {
+        return model;
+    }
     /*<methods>*/
     @Method(selector = "initWithTransitionStyle:navigationOrientation:options:")
     protected native @Pointer long init(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerOptions options);

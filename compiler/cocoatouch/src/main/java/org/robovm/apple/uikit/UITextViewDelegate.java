@@ -67,13 +67,27 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "textViewDidChangeSelection:")
     void didChangeSelection(UITextView textView);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
+    @Method(selector = "textView:shouldInteractWithURL:inRange:interaction:")
+    boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange, UITextItemInteraction interaction);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:interaction:")
+    boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction);
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "textView:shouldInteractWithURL:inRange:")
     boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:")
     boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange);
     /*</methods>*/

@@ -44,7 +44,11 @@ public enum /*<name>*/UIEventType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Touches(0L),
     Motion(1L),
-    RemoteControl(2L);
+    RemoteControl(2L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    Presses(3L);
     /*</values>*/
 
     private final long n;

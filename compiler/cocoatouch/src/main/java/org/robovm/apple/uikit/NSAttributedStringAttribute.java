@@ -94,6 +94,18 @@ import org.robovm.apple.corelocation.*;
 
     /*<constants>*/
     /**
+     * @since Available in iOS 7.0 and later.
+     */
+    public static final NSAttributedStringAttribute SpeechPunctuation = new NSAttributedStringAttribute("SpeechPunctuation");
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    public static final NSAttributedStringAttribute SpeechLanguage = new NSAttributedStringAttribute("SpeechLanguage");
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    public static final NSAttributedStringAttribute SpeechPitch = new NSAttributedStringAttribute("SpeechPitch");
+    /**
      * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
@@ -117,18 +129,6 @@ import org.robovm.apple.corelocation.*;
      */
     @Deprecated
     public static final NSAttributedStringAttribute TextShadowOffset = new NSAttributedStringAttribute("TextShadowOffset");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public static final NSAttributedStringAttribute SpeechPunctuation = new NSAttributedStringAttribute("SpeechPunctuation");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public static final NSAttributedStringAttribute SpeechLanguage = new NSAttributedStringAttribute("SpeechLanguage");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public static final NSAttributedStringAttribute SpeechPitch = new NSAttributedStringAttribute("SpeechPitch");
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -215,7 +215,7 @@ import org.robovm.apple.corelocation.*;
     public static final NSAttributedStringAttribute VerticalGlyphForm = new NSAttributedStringAttribute("VerticalGlyphForm");
     /*</constants>*/
     
-    private static /*<name>*/NSAttributedStringAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringAttribute/*</name>*/[] {/*<value_list>*/TextFont, TextColor, TextShadowColor, TextShadowOffset, SpeechPunctuation, SpeechLanguage, SpeechPitch, Font, ParagraphStyle, ForegroundColor, BackgroundColor, Ligature, Kern, StrikethroughStyle, UnderlineStyle, StrokeColor, StrokeWidth, Shadow, TextEffect, Attachment, Link, BaselineOffset, UnderlineColor, StrikethroughColor, Obliqueness, Expansion, WritingDirection, VerticalGlyphForm/*</value_list>*/};
+    private static /*<name>*/NSAttributedStringAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringAttribute/*</name>*/[] {/*<value_list>*/SpeechPunctuation, SpeechLanguage, SpeechPitch, TextFont, TextColor, TextShadowColor, TextShadowOffset, Font, ParagraphStyle, ForegroundColor, BackgroundColor, Ligature, Kern, StrikethroughStyle, UnderlineStyle, StrokeColor, StrokeWidth, Shadow, TextEffect, Attachment, Link, BaselineOffset, UnderlineColor, StrikethroughColor, Obliqueness, Expansion, WritingDirection, VerticalGlyphForm/*</value_list>*/};
     
     /*<name>*/NSAttributedStringAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -238,6 +238,21 @@ import org.robovm.apple.corelocation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="UIAccessibilitySpeechAttributePunctuation", optional=true)
+        public static native NSString SpeechPunctuation();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="UIAccessibilitySpeechAttributeLanguage", optional=true)
+        public static native NSString SpeechLanguage();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="UIAccessibilitySpeechAttributePitch", optional=true)
+        public static native NSString SpeechPitch();
         /**
          * @since Available in iOS 5.0 and later.
          * @deprecated Deprecated in iOS 7.0.
@@ -266,21 +281,6 @@ import org.robovm.apple.corelocation.*;
         @Deprecated
         @GlobalValue(symbol="UITextAttributeTextShadowOffset", optional=true)
         public static native NSString TextShadowOffset();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
-        @GlobalValue(symbol="UIAccessibilitySpeechAttributePunctuation", optional=true)
-        public static native NSString SpeechPunctuation();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
-        @GlobalValue(symbol="UIAccessibilitySpeechAttributeLanguage", optional=true)
-        public static native NSString SpeechLanguage();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
-        @GlobalValue(symbol="UIAccessibilitySpeechAttributePitch", optional=true)
-        public static native NSString SpeechPitch();
         /**
          * @since Available in iOS 6.0 and later.
          */

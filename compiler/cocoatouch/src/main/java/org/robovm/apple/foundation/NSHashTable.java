@@ -115,7 +115,7 @@ import org.robovm.apple.foundation.NSSet.SetAdapter;
     protected NSHashTable(Handle h, long handle) { super(h, handle); }
     protected NSHashTable(SkipInit skipInit) { super(skipInit); }
     public NSHashTable(NSHashTableOptions options, @MachineSizedUInt long initialCapacity) { super((SkipInit) null); initObject(init(options, initialCapacity)); }
-    public NSHashTable(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NSHashTable(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     
     private static void checkNull(Object o) {
@@ -234,6 +234,6 @@ import org.robovm.apple.foundation.NSSet.SetAdapter;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

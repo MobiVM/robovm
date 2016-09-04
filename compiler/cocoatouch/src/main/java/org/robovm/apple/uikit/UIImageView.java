@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIImageView() {}
+    protected UIImageView(Handle h, long handle) { super(h, handle); }
     protected UIImageView(SkipInit skipInit) { super(skipInit); }
     public UIImageView(UIImage image) { super((SkipInit) null); initObject(init(image)); }
     /**
@@ -58,11 +59,12 @@ import org.robovm.apple.corelocation.*;
      */
     public UIImageView(UIImage image, UIImage highlightedImage) { super((SkipInit) null); initObject(init(image, highlightedImage)); }
     /*</constructors>*/
-    
     public UIImageView(CGRect frame) {
         super(frame);
     }
-    
+    public UIImageView(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "image")
     public native UIImage getImage();
@@ -124,6 +126,8 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setTintColor:")
     public native void setTintColor(UIColor v);
+    @Property(selector = "isAnimating")
+    public native boolean isAnimating();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -138,7 +142,5 @@ import org.robovm.apple.corelocation.*;
     public native void startAnimating();
     @Method(selector = "stopAnimating")
     public native void stopAnimating();
-    @Method(selector = "isAnimating")
-    public native boolean isAnimating();
     /*</methods>*/
 }

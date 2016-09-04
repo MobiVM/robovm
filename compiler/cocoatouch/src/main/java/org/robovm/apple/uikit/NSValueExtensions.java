@@ -51,27 +51,26 @@ import org.robovm.apple.corelocation.*;
     private NSValueExtensions() {}
     /*</constructors>*/
     /*<properties>*/
-    
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    @Method(selector = "CGPointValue")
+    @Property(selector = "CGPointValue")
     public static native @ByVal CGPoint getPointValue(NSValue thiz);
-    @Method(selector = "CGVectorValue")
+    @Property(selector = "CGVectorValue")
     public static native @ByVal CGVector getVectorValue(NSValue thiz);
-    @Method(selector = "CGSizeValue")
+    @Property(selector = "CGSizeValue")
     public static native @ByVal CGSize getSizeValue(NSValue thiz);
-    @Method(selector = "CGRectValue")
+    @Property(selector = "CGRectValue")
     public static native @ByVal CGRect getRectValue(NSValue thiz);
-    @Method(selector = "CGAffineTransformValue")
+    @Property(selector = "CGAffineTransformValue")
     public static native @ByVal CGAffineTransform getAffineTransformValue(NSValue thiz);
-    @Method(selector = "UIEdgeInsetsValue")
+    @Property(selector = "UIEdgeInsetsValue")
     public static native @ByVal UIEdgeInsets getEdgeInsetsValue(NSValue thiz);
     /**
      * @since Available in iOS 5.0 and later.
      */
-    @Method(selector = "UIOffsetValue")
+    @Property(selector = "UIOffsetValue")
     public static native @ByVal UIOffset getOffsetValue(NSValue thiz);
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
     @Method(selector = "valueWithCGPoint:")
     protected static native NSValue create(ObjCClass clazz, @ByVal CGPoint point);
     public static NSValue create(@ByVal CGPoint point) { return create(ObjCClass.getByType(NSValue.class), point); }

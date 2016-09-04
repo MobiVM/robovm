@@ -174,5 +174,25 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("tableView:performAction:forRowAtIndexPath:withSender:")
     public void performActionForRow(UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("tableView:canFocusRowAtIndexPath:")
+    public boolean canFocusRow(UITableView tableView, NSIndexPath indexPath) { return true; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("tableView:shouldUpdateFocusInContext:")
+    public boolean shouldUpdateFocus(UITableView tableView, UITableViewFocusUpdateContext context) { return true; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("tableView:didUpdateFocusInContext:withAnimationCoordinator:")
+    public void didUpdateFocus(UITableView tableView, UITableViewFocusUpdateContext context, UIFocusAnimationCoordinator coordinator) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("indexPathForPreferredFocusedViewInTableView:")
+    public NSIndexPath getIndexPathForPreferredFocusedView(UITableView tableView) { return null; }
     /*</methods>*/
 }

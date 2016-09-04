@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITextSelectionRect() {}
+    protected UITextSelectionRect(Handle h, long handle) { super(h, handle); }
     protected UITextSelectionRect(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

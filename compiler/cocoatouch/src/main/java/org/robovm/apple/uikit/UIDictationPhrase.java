@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIDictationPhrase() {}
+    protected UIDictationPhrase(Handle h, long handle) { super(h, handle); }
     protected UIDictationPhrase(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UISearchController() {}
+    protected UISearchController(Handle h, long handle) { super(h, handle); }
     protected UISearchController(SkipInit skipInit) { super(skipInit); }
     public UISearchController(UIViewController searchResultsController) { super((SkipInit) null); initObject(init(searchResultsController)); }
     /*</constructors>*/
@@ -71,6 +72,16 @@ import org.robovm.apple.corelocation.*;
     public native boolean dimsBackgroundDuringPresentation();
     @Property(selector = "setDimsBackgroundDuringPresentation:")
     public native void setDimsBackgroundDuringPresentation(boolean v);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Property(selector = "obscuresBackgroundDuringPresentation")
+    public native boolean obscuresBackgroundDuringPresentation();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Property(selector = "setObscuresBackgroundDuringPresentation:")
+    public native void setObscuresBackgroundDuringPresentation(boolean v);
     @Property(selector = "hidesNavigationBarDuringPresentation")
     public native boolean hidesNavigationBarDuringPresentation();
     @Property(selector = "setHidesNavigationBarDuringPresentation:")
@@ -101,6 +112,11 @@ import org.robovm.apple.corelocation.*;
     public native double getTransitionDuration(UIViewControllerContextTransitioning transitionContext);
     @Method(selector = "animateTransition:")
     public native void animateTransition(UIViewControllerContextTransitioning transitionContext);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "interruptibleAnimatorForTransition:")
+    public native UIViewImplicitlyAnimating getInterruptibleAnimator(UIViewControllerContextTransitioning transitionContext);
     @Method(selector = "animationEnded:")
     public native void animationEnded(boolean transitionCompleted);
     /*</methods>*/

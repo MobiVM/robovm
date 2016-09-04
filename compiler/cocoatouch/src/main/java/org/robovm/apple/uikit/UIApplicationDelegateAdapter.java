@@ -113,7 +113,7 @@ import org.robovm.apple.corelocation.*;
      */
     @Deprecated
     @NotImplemented("application:openURL:sourceApplication:annotation:")
-    public boolean openURL(UIApplication application, NSURL url, String sourceApplication, NSPropertyList annotation) { return false; }
+    public boolean openURL(UIApplication application, NSURL url, String sourceApplication, NSObject annotation) { return false; }
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -148,32 +148,44 @@ import org.robovm.apple.corelocation.*;
     public void didFailToRegisterForRemoteNotifications(UIApplication application, NSError error) {}
     /**
      * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @NotImplemented("application:didReceiveRemoteNotification:")
     public void didReceiveRemoteNotification(UIApplication application, UIRemoteNotification userInfo) {}
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @NotImplemented("application:didReceiveLocalNotification:")
     public void didReceiveLocalNotification(UIApplication application, UILocalNotification notification) {}
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @NotImplemented("application:handleActionWithIdentifier:forLocalNotification:completionHandler:")
     public void handleLocalNotificationAction(UIApplication application, String identifier, UILocalNotification notification, @Block Runnable completionHandler) {}
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @NotImplemented("application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler:")
     public void handleRemoteNotificationAction(UIApplication application, String identifier, UIRemoteNotification userInfo, NSDictionary<?, ?> responseInfo, @Block Runnable completionHandler) {}
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @NotImplemented("application:handleActionWithIdentifier:forRemoteNotification:completionHandler:")
     public void handleRemoteNotificationAction(UIApplication application, String identifier, UIRemoteNotification userInfo, @Block Runnable completionHandler) {}
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @NotImplemented("application:handleActionWithIdentifier:forLocalNotification:withResponseInfo:completionHandler:")
     public void handleLocalNotificationAction(UIApplication application, String identifier, UILocalNotification notification, NSDictionary<?, ?> responseInfo, @Block Runnable completionHandler) {}
     /**
@@ -186,6 +198,11 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("application:performFetchWithCompletionHandler:")
     public void performFetch(UIApplication application, @Block VoidBlock1<UIBackgroundFetchResult> completionHandler) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("application:performActionForShortcutItem:completionHandler:")
+    public void performAction(UIApplication application, UIApplicationShortcutItem shortcutItem, @Block VoidBooleanBlock completionHandler) {}
     /**
      * @since Available in iOS 7.0 and later.
      */

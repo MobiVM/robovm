@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UICollectionView() {}
+    protected UICollectionView(Handle h, long handle) { super(h, handle); }
     protected UICollectionView(SkipInit skipInit) { super(skipInit); }
     public UICollectionView(@ByVal CGRect frame, UICollectionViewLayout layout) { super((SkipInit) null); initObject(init(frame, layout)); }
     public UICollectionView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
@@ -68,6 +69,26 @@ import org.robovm.apple.corelocation.*;
     public native UICollectionViewDataSource getDataSource();
     @Property(selector = "setDataSource:", strongRef = true)
     public native void setDataSource(UICollectionViewDataSource v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "prefetchDataSource")
+    public native UICollectionViewDataSourcePrefetching getPrefetchDataSource();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setPrefetchDataSource:", strongRef = true)
+    public native void setPrefetchDataSource(UICollectionViewDataSourcePrefetching v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isPrefetchingEnabled")
+    public native boolean isPrefetchingEnabled();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setPrefetchingEnabled:")
+    public native void setPrefetchingEnabled(boolean v);
     @Property(selector = "backgroundView")
     public native UIView getBackgroundView();
     @Property(selector = "setBackgroundView:")
@@ -80,8 +101,35 @@ import org.robovm.apple.corelocation.*;
     public native boolean allowsMultipleSelection();
     @Property(selector = "setAllowsMultipleSelection:")
     public native void setAllowsMultipleSelection(boolean v);
+    @Property(selector = "indexPathsForSelectedItems")
+    public native NSArray<NSIndexPath> getIndexPathsForSelectedItems();
+    @Property(selector = "numberOfSections")
+    public native @MachineSizedSInt long getNumberOfSections();
+    @Property(selector = "visibleCells")
+    public native NSArray<UICollectionViewCell> getVisibleCells();
+    @Property(selector = "indexPathsForVisibleItems")
+    public native NSArray<NSIndexPath> getIndexPathsForVisibleItems();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "remembersLastFocusedIndexPath")
+    public native boolean remembersLastFocusedIndexPath();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setRemembersLastFocusedIndexPath:")
+    public native void setRemembersLastFocusedIndexPath(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
+    private UICollectionViewModel model;
+    public void setModel(UICollectionViewModel model) {
+        this.model = model;
+        setDelegate(model);
+        setDataSource(model);
+    }
+    public UICollectionViewModel getModel() {
+        return model;
+    }
     /*<methods>*/
     @Method(selector = "initWithFrame:collectionViewLayout:")
     protected native @Pointer long init(@ByVal CGRect frame, UICollectionViewLayout layout);
@@ -99,8 +147,6 @@ import org.robovm.apple.corelocation.*;
     public native UICollectionReusableView dequeueReusableCell(String identifier, NSIndexPath indexPath);
     @Method(selector = "dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:")
     public native UICollectionReusableView dequeueReusableSupplementaryView(UICollectionElementKind elementKind, String identifier, NSIndexPath indexPath);
-    @Method(selector = "indexPathsForSelectedItems")
-    public native NSArray<NSIndexPath> getIndexPathsForSelectedItems();
     @Method(selector = "selectItemAtIndexPath:animated:scrollPosition:")
     public native void selectItem(NSIndexPath indexPath, boolean animated, UICollectionViewScrollPosition scrollPosition);
     @Method(selector = "deselectItemAtIndexPath:animated:")
@@ -129,8 +175,6 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "cancelInteractiveTransition")
     public native void cancelInteractiveTransition();
-    @Method(selector = "numberOfSections")
-    public native @MachineSizedSInt long getNumberOfSections();
     @Method(selector = "numberOfItemsInSection:")
     public native @MachineSizedSInt long getNumberOfItemsInSection(@MachineSizedSInt long section);
     @Method(selector = "layoutAttributesForItemAtIndexPath:")
@@ -143,10 +187,6 @@ import org.robovm.apple.corelocation.*;
     public native NSIndexPath getIndexPathForCell(UICollectionViewCell cell);
     @Method(selector = "cellForItemAtIndexPath:")
     public native UICollectionViewCell getCellForItem(NSIndexPath indexPath);
-    @Method(selector = "visibleCells")
-    public native NSArray<UICollectionViewCell> getVisibleCells();
-    @Method(selector = "indexPathsForVisibleItems")
-    public native NSArray<NSIndexPath> getIndexPathsForVisibleItems();
     /**
      * @since Available in iOS 9.0 and later.
      */

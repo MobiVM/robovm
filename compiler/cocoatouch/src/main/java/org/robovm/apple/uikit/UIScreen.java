@@ -97,9 +97,17 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIScreen() {}
+    protected UIScreen(Handle h, long handle) { super(h, handle); }
     protected UIScreen(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 3.2 and later.
+     */
+    @Property(selector = "screens")
+    public static native NSArray<UIScreen> getScreens();
+    @Property(selector = "mainScreen")
+    public static native UIScreen getMainScreen();
     @Property(selector = "bounds")
     public native @ByVal CGRect getBounds();
     /**
@@ -188,6 +196,21 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "nativeScale")
     public native @MachineSizedFloat double getNativeScale();
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "focusedItem")
+    public native UIFocusItem getFocusedItem();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "focusedView")
+    public native UIView getFocusedView();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "supportsFocus")
+    public native boolean supportsFocus();
+    /**
      * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
@@ -229,13 +252,6 @@ import org.robovm.apple.corelocation.*;
     @WeaklyLinked
     @Method(selector = "displayLinkWithTarget:selector:")
     public native CADisplayLink getDisplayLink(NSObject target, Selector sel);
-    /**
-     * @since Available in iOS 3.2 and later.
-     */
-    @Method(selector = "screens")
-    public static native NSArray<UIScreen> getScreens();
-    @Method(selector = "mainScreen")
-    public static native UIScreen getMainScreen();
     /**
      * @since Available in iOS 7.0 and later.
      */

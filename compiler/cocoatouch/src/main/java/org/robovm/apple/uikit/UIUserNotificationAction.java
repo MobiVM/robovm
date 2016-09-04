@@ -39,7 +39,9 @@ import org.robovm.apple.corelocation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIUserNotificationAction/*</name>*/ 
@@ -51,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIUserNotificationAction() {}
+    protected UIUserNotificationAction(Handle h, long handle) { super(h, handle); }
     protected UIUserNotificationAction(SkipInit skipInit) { super(skipInit); }
     public UIUserNotificationAction(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
@@ -76,6 +79,33 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "isDestructive")
     public native boolean isDestructive();
     /*</properties>*/
+    public void setIdentifier(String v) {
+        throw new UnsupportedOperationException("UIUserNotificationAction is immutable");
+    }
+
+    public void setTitle(String v) {
+        throw new UnsupportedOperationException("UIUserNotificationAction is immutable");
+    }
+
+    public void setBehavior(UIUserNotificationActionBehavior v) {
+        throw new UnsupportedOperationException("UIUserNotificationAction is immutable");
+    }
+
+    public void setParameters(NSDictionary<?, ?> v) {
+        throw new UnsupportedOperationException("UIUserNotificationAction is immutable");
+    }
+
+    public void setActivationMode(UIUserNotificationActivationMode v) {
+        throw new UnsupportedOperationException("UIUserNotificationAction is immutable");
+    }
+
+    public void setAuthenticationRequired(boolean v) {
+        throw new UnsupportedOperationException("UIUserNotificationAction is immutable");
+    }
+
+    public void setDestructive(boolean v) {
+        throw new UnsupportedOperationException("UIUserNotificationAction is immutable");
+    }
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")

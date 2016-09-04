@@ -51,9 +51,12 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIFont() {}
+    protected UIFont(Handle h, long handle) { super(h, handle); }
     protected UIFont(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "familyNames")
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getFamilyNames();
     @Property(selector = "familyName")
     public native String getFamilyName();
     @Property(selector = "fontName")
@@ -75,6 +78,19 @@ import org.robovm.apple.corelocation.*;
     public native @MachineSizedFloat double getLineHeight();
     @Property(selector = "leading")
     public native @MachineSizedFloat double getLeading();
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Property(selector = "fontDescriptor")
+    public native UIFontDescriptor getFontDescriptor();
+    @Property(selector = "labelFontSize")
+    public static native @MachineSizedFloat double getLabelFontSize();
+    @Property(selector = "buttonFontSize")
+    public static native @MachineSizedFloat double getButtonFontSize();
+    @Property(selector = "smallSystemFontSize")
+    public static native @MachineSizedFloat double getSmallSystemFontSize();
+    @Property(selector = "systemFontSize")
+    public static native @MachineSizedFloat double getSystemFontSize();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -89,17 +105,15 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
-    @Method(selector = "fontDescriptor")
-    public native UIFontDescriptor getFontDescriptor();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "preferredFontForTextStyle:")
     public static native UIFont getPreferredFont(UIFontTextStyle style);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "preferredFontForTextStyle:compatibleWithTraitCollection:")
+    public static native UIFont getPreferredFont(UIFontTextStyle style, UITraitCollection traitCollection);
     @Method(selector = "fontWithName:size:")
     public static native UIFont getFont(String fontName, @MachineSizedFloat double fontSize);
-    @Method(selector = "familyNames")
-    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getFamilyNames();
     @Method(selector = "fontNamesForFamilyName:")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getFontNamesForFamilyName(String familyName);
     @Method(selector = "systemFontOfSize:")
@@ -123,13 +137,5 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "fontWithDescriptor:size:")
     public static native UIFont getFont(UIFontDescriptor descriptor, @MachineSizedFloat double pointSize);
-    @Method(selector = "labelFontSize")
-    public static native @MachineSizedFloat double getLabelFontSize();
-    @Method(selector = "buttonFontSize")
-    public static native @MachineSizedFloat double getButtonFontSize();
-    @Method(selector = "smallSystemFontSize")
-    public static native @MachineSizedFloat double getSmallSystemFontSize();
-    @Method(selector = "systemFontSize")
-    public static native @MachineSizedFloat double getSystemFontSize();
     /*</methods>*/
 }

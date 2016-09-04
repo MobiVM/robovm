@@ -61,15 +61,14 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITableView() {}
+    protected UITableView(Handle h, long handle) { super(h, handle); }
     protected UITableView(SkipInit skipInit) { super(skipInit); }
     public UITableView(@ByVal CGRect frame, UITableViewStyle style) { super((SkipInit) null); initObject(init(frame, style)); }
     public UITableView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    
     public UITableView(CGRect frame) {
         super(frame);
     }
-    
     /*<properties>*/
     @Property(selector = "style")
     public native UITableViewStyle getStyle();
@@ -81,6 +80,16 @@ import org.robovm.apple.corelocation.*;
     public native UITableViewDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UITableViewDelegate v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "prefetchDataSource")
+    public native UITableViewDataSourcePrefetching getPrefetchDataSource();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setPrefetchDataSource:", strongRef = true)
+    public native void setPrefetchDataSource(UITableViewDataSourcePrefetching v);
     @Property(selector = "rowHeight")
     public native @MachineSizedFloat double getRowHeight();
     @Property(selector = "setRowHeight:")
@@ -264,8 +273,37 @@ import org.robovm.apple.corelocation.*;
     public native UIView getTableFooterView();
     @Property(selector = "setTableFooterView:")
     public native void setTableFooterView(UIView v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "remembersLastFocusedIndexPath")
+    public native boolean remembersLastFocusedIndexPath();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setRemembersLastFocusedIndexPath:")
+    public native void setRemembersLastFocusedIndexPath(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
+    public void insertRow(NSIndexPath indexPath, UITableViewRowAnimation animation) {
+        insertRows(new NSArray<>(indexPath), animation);
+    }
+    public void deleteRow(NSIndexPath indexPath, UITableViewRowAnimation animation) {
+        deleteRows(new NSArray<>(indexPath), animation);
+    }
+    public void reloadRow(NSIndexPath indexPath, UITableViewRowAnimation animation) {
+        reloadRows(new NSArray<>(indexPath), animation);
+    }
+    
+    private UITableViewModel model;
+    public void setModel(UITableViewModel model) {
+        this.model = model;
+        setDelegate(model);
+        setDataSource(model);
+    }
+    public UITableViewModel getModel() {
+        return model;
+    }
     /*<methods>*/
     /**
      * @since Available in iOS 3.0 and later.

@@ -223,13 +223,18 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIApplication() {}
+    protected UIApplication(Handle h, long handle) { super(h, handle); }
     protected UIApplication(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "sharedApplication")
+    public static native UIApplication getSharedApplication();
     @Property(selector = "delegate")
     public native UIApplicationDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIApplicationDelegate v);
+    @Property(selector = "isIgnoringInteractionEvents")
+    public native boolean isIgnoringInteractionEvents();
     @Property(selector = "isIdleTimerDisabled")
     public native boolean isIdleTimerDisabled();
     @Property(selector = "setIdleTimerDisabled:")
@@ -297,15 +302,39 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "preferredContentSizeCategory")
     public native String getPreferredContentSizeCategory();
     /**
-     * @since Available in iOS 4.0 and later.
+     * @since Available in iOS 8.0 and later.
      */
+    @Property(selector = "isRegisteredForRemoteNotifications")
+    public native boolean isRegisteredForRemoteNotifications();
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "scheduledLocalNotifications")
     public native NSArray<UILocalNotification> getScheduledLocalNotifications();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "setScheduledLocalNotifications:")
     public native void setScheduledLocalNotifications(NSArray<UILocalNotification> v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Property(selector = "currentUserNotificationSettings")
+    public native UIUserNotificationSettings getCurrentUserNotificationSettings();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "shortcutItems")
+    public native NSArray<UIApplicationShortcutItem> getShortcutItems();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setShortcutItems:")
+    public native void setShortcutItems(NSArray<UIApplicationShortcutItem> v);
     /**
      * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0.
@@ -407,6 +436,16 @@ import org.robovm.apple.corelocation.*;
     
     /*<methods>*/
     /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @GlobalValue(symbol="UIContentSizeCategoryDidChangeNotification", optional=true)
+    public static native NSString ContentSizeCategoryDidChangeNotification();
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @GlobalValue(symbol="UIContentSizeCategoryNewValueKey", optional=true)
+    protected static native NSString ContentSizeCategoryNewValueKey();
+    /**
      * @since Available in iOS 4.0 and later.
      */
     @GlobalValue(symbol="UIBackgroundTaskInvalid", optional=true)
@@ -483,16 +522,6 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
-    @GlobalValue(symbol="UIContentSizeCategoryDidChangeNotification", optional=true)
-    public static native NSString ContentSizeCategoryDidChangeNotification();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="UIContentSizeCategoryNewValueKey", optional=true)
-    protected static native NSString ContentSizeCategoryNewValueKey();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @GlobalValue(symbol="UIApplicationUserDidTakeScreenshotNotification", optional=true)
     public static native NSString UserDidTakeScreenshotNotification();
     
@@ -503,8 +532,11 @@ import org.robovm.apple.corelocation.*;
     public native void beginIgnoringInteractionEvents();
     @Method(selector = "endIgnoringInteractionEvents")
     public native void endIgnoringInteractionEvents();
-    @Method(selector = "isIgnoringInteractionEvents")
-    public native boolean isIgnoringInteractionEvents();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "openURL:")
     public native boolean openURL(NSURL url);
     /**
@@ -512,6 +544,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "canOpenURL:")
     public native boolean canOpenURL(NSURL url);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "openURL:options:completionHandler:")
+    public native void openURL(NSURL url, UIApplicationOpenURLOptions options, @Block VoidBooleanBlock completion);
     @Method(selector = "sendEvent:")
     public native void sendEvent(UIEvent event);
     @Method(selector = "sendAction:to:from:forEvent:")
@@ -541,8 +578,6 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "setMinimumBackgroundFetchInterval:")
     public native void setMinimumBackgroundFetchInterval(double minimumBackgroundFetchInterval);
-    @Method(selector = "sharedApplication")
-    public static native UIApplication getSharedApplication();
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -553,11 +588,6 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "unregisterForRemoteNotifications")
     public native void unregisterForRemoteNotifications();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Method(selector = "isRegisteredForRemoteNotifications")
-    public native boolean isRegisteredForRemoteNotifications();
     /**
      * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
@@ -574,22 +604,30 @@ import org.robovm.apple.corelocation.*;
     public native UIRemoteNotificationType getEnabledRemoteNotificationTypes();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Method(selector = "presentLocalNotificationNow:")
     public native void presentLocalNotificationNow(UILocalNotification notification);
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Method(selector = "scheduleLocalNotification:")
     public native void scheduleLocalNotification(UILocalNotification notification);
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Method(selector = "cancelLocalNotification:")
     public native void cancelLocalNotification(UILocalNotification notification);
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Method(selector = "cancelAllLocalNotifications")
     public native void cancelAllLocalNotifications();
     /**
@@ -597,11 +635,6 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "registerUserNotificationSettings:")
     public native void registerUserNotificationSettings(UIUserNotificationSettings notificationSettings);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Method(selector = "currentUserNotificationSettings")
-    public native UIUserNotificationSettings getCurrentUserNotificationSettings();
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -613,7 +646,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "endReceivingRemoteControlEvents")
     public native void endReceivingRemoteControlEvents();
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated

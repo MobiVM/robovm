@@ -51,14 +51,16 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIControl() {}
-    protected UIControl(long handle) { super(handle); }
+    @Deprecated protected UIControl(long handle) { super(handle); }
+    protected UIControl(Handle h, long handle) { super(h, handle); }
     protected UIControl(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UIControl(CGRect frame) {
         super(frame);
     }    
-    
+    public UIControl(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "isEnabled")
     public native boolean isEnabled();
@@ -86,6 +88,10 @@ import org.robovm.apple.corelocation.*;
     public native boolean isTracking();
     @Property(selector = "isTouchInside")
     public native boolean isTouchInside();
+    @Property(selector = "allTargets")
+    public native NSSet<?> getAllTargets();
+    @Property(selector = "allControlEvents")
+    public native UIControlEvents getAllControlEvents();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -134,6 +140,8 @@ import org.robovm.apple.corelocation.*;
                 ((OnEditingDidEndListener) listener).onEditingDidEnd(control);
             } else if (controlEvent == UIControlEvents.EditingDidEndOnExit) {
                 ((OnEditingDidEndOnExitListener) listener).onEditingDidEndOnExit(control);
+            } else if (controlEvent == UIControlEvents.PrimaryActionTriggered) {
+                ((OnPrimaryActionTriggeredListener) listener).onPrimaryActionTriggered(control);
             }
         }
     }
@@ -180,6 +188,9 @@ import org.robovm.apple.corelocation.*;
     public interface OnEditingDidEndOnExitListener extends Listener {
         void onEditingDidEndOnExit(UIControl control);
     }
+    public interface OnPrimaryActionTriggeredListener extends Listener {
+        void onPrimaryActionTriggered(UIControl control);
+    }
     
     public void addOnTouchDownListener(OnTouchDownListener l) {
         addListener(l, UIControlEvents.TouchDown);
@@ -223,6 +234,9 @@ import org.robovm.apple.corelocation.*;
     public void addOnEditingDidEndOnExitListener(OnEditingDidEndOnExitListener l) {
         addListener(l, UIControlEvents.EditingDidEndOnExit);
     }
+    public void addOnPrimaryActionTriggeredListener(OnPrimaryActionTriggeredListener l) {
+        addListener(l, UIControlEvents.PrimaryActionTriggered);
+    }
     
     @SuppressWarnings("unchecked")
     private List<ListenerWrapper> getListeners(boolean create) {
@@ -242,7 +256,8 @@ import org.robovm.apple.corelocation.*;
                 || listener instanceof OnEditingChangedListener 
                 || listener instanceof OnEditingDidBeginListener 
                 || listener instanceof OnEditingDidEndListener 
-                || listener instanceof OnEditingDidEndOnExitListener) {
+                || listener instanceof OnEditingDidEndOnExitListener
+                || listener instanceof OnPrimaryActionTriggeredListener) {
             selector = handleEvent;
         }
         ListenerWrapper wrapper = new ListenerWrapper(listener, controlEvent, selector);
@@ -283,10 +298,6 @@ import org.robovm.apple.corelocation.*;
     public native void addTarget(NSObject target, Selector action, UIControlEvents controlEvents);
     @Method(selector = "removeTarget:action:forControlEvents:")
     public native void removeTarget(NSObject target, Selector action, UIControlEvents controlEvents);
-    @Method(selector = "allTargets")
-    public native NSSet<?> getAllTargets();
-    @Method(selector = "allControlEvents")
-    public native UIControlEvents getAllControlEvents();
     @Method(selector = "actionsForTarget:forControlEvent:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getActions(NSObject target, UIControlEvents controlEvent);
     @Method(selector = "sendAction:to:forEvent:")

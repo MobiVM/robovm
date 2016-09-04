@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIVideoEditorController() {}
+    protected UIVideoEditorController(Handle h, long handle) { super(h, handle); }
     protected UIVideoEditorController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

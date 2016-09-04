@@ -50,15 +50,19 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    @NotImplemented("completionSpeed")
+    public @MachineSizedFloat double getCompletionSpeed() { return 0; }
+    @NotImplemented("completionCurve")
+    public UIViewAnimationCurve getCompletionCurve() { return null; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("wantsInteractiveStart")
+    public boolean wantsInteractiveStart() { return false; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("startInteractiveTransition:")
     public void startInteractiveTransition(UIViewControllerContextTransitioning transitionContext) {}
-    @NotImplemented("completionSpeed")
-    public @MachineSizedFloat double getCompletionSpeed() { return 0; }
-    @NotImplemented("completionCurve")
-    public UIViewAnimationCurve getCompletionCurve() { return null; }
     /*</methods>*/
 }

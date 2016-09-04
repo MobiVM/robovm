@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIInputViewController() {}
+    protected UIInputViewController(Handle h, long handle) { super(h, handle); }
     protected UIInputViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -71,6 +72,11 @@ import org.robovm.apple.corelocation.*;
     public native void dismissKeyboard();
     @Method(selector = "advanceToNextInputMode")
     public native void advanceToNextInputMode();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "handleInputModeListFromView:withEvent:")
+    public native void handleInputModeList(UIView view, UIEvent event);
     @Method(selector = "requestSupplementaryLexiconWithCompletion:")
     public native void requestSupplementaryLexicon(@Block VoidBlock1<UILexicon> completionHandler);
     @Method(selector = "selectionWillChange:")

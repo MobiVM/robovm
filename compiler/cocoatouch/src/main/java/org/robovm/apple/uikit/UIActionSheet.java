@@ -53,13 +53,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIActionSheet() {}
+    protected UIActionSheet(Handle h, long handle) { super(h, handle); }
     protected UIActionSheet(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UIActionSheet(CGRect frame) {
         super(frame);
     }
-
+    public UIActionSheet(NSCoder decoder) {
+        super(decoder);
+    }
     public UIActionSheet(String title, UIActionSheetDelegate delegate, String cancelButtonTitle, 
             String destructiveButtonTitle, String ... otherButtonTitles) {
         super((SkipInit) null);

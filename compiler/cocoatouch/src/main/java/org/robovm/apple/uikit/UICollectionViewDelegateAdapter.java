@@ -93,6 +93,26 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
+    @NotImplemented("collectionView:canFocusItemAtIndexPath:")
+    public boolean canFocusItem(UICollectionView collectionView, NSIndexPath indexPath) { return false; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("collectionView:shouldUpdateFocusInContext:")
+    public boolean shouldUpdateFocus(UICollectionView collectionView, UICollectionViewFocusUpdateContext context) { return false; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("collectionView:didUpdateFocusInContext:withAnimationCoordinator:")
+    public void didUpdateFocus(UICollectionView collectionView, UICollectionViewFocusUpdateContext context, UIFocusAnimationCoordinator coordinator) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("indexPathForPreferredFocusedViewInCollectionView:")
+    public NSIndexPath getIndexPathForPreferredFocusedView(UICollectionView collectionView) { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("collectionView:targetIndexPathForMoveFromItemAtIndexPath:toProposedIndexPath:")
     public NSIndexPath getTargetIndexPathForMoveFromItem(UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath proposedIndexPath) { return null; }
     /**

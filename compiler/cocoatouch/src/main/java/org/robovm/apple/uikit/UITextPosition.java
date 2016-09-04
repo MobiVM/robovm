@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITextPosition() {}
+    protected UITextPosition(Handle h, long handle) { super(h, handle); }
     protected UITextPosition(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

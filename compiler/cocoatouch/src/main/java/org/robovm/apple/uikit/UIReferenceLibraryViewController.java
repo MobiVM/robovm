@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIReferenceLibraryViewController() {}
+    protected UIReferenceLibraryViewController(Handle h, long handle) { super(h, handle); }
     protected UIReferenceLibraryViewController(SkipInit skipInit) { super(skipInit); }
     public UIReferenceLibraryViewController(String term) { super((SkipInit) null); initObject(init(term)); }
     public UIReferenceLibraryViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }

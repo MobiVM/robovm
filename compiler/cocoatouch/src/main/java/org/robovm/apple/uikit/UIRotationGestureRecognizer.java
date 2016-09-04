@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIRotationGestureRecognizer() {}
+    protected UIRotationGestureRecognizer(Handle h, long handle) { super(h, handle); }
     protected UIRotationGestureRecognizer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     

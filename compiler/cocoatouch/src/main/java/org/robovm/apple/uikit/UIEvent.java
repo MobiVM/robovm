@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIEvent() {}
+    protected UIEvent(Handle h, long handle) { super(h, handle); }
     protected UIEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -66,11 +67,11 @@ import org.robovm.apple.corelocation.*;
     public native UIEventSubtype getSubtype();
     @Property(selector = "timestamp")
     public native double getTimestamp();
+    @Property(selector = "allTouches")
+    public native NSSet<UITouch> getAllTouches();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "allTouches")
-    public native NSSet<UITouch> getAllTouches();
     @Method(selector = "touchesForWindow:")
     public native NSSet<UITouch> getTouches(UIWindow window);
     @Method(selector = "touchesForView:")

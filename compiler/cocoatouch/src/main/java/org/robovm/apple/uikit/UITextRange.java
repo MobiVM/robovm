@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITextRange() {}
+    protected UITextRange(Handle h, long handle) { super(h, handle); }
     protected UITextRange(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

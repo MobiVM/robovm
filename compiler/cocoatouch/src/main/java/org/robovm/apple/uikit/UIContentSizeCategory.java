@@ -94,6 +94,10 @@ import org.robovm.apple.corelocation.*;
 
     /*<constants>*/
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final UIContentSizeCategory Unspecified = new UIContentSizeCategory("Unspecified");
+    /**
      * @since Available in iOS 7.0 and later.
      */
     public static final UIContentSizeCategory ExtraSmall = new UIContentSizeCategory("ExtraSmall");
@@ -143,7 +147,7 @@ import org.robovm.apple.corelocation.*;
     public static final UIContentSizeCategory AccessibilityExtraExtraExtraLarge = new UIContentSizeCategory("AccessibilityExtraExtraExtraLarge");
     /*</constants>*/
     
-    private static /*<name>*/UIContentSizeCategory/*</name>*/[] values = new /*<name>*/UIContentSizeCategory/*</name>*/[] {/*<value_list>*/ExtraSmall, Small, Medium, Large, ExtraLarge, ExtraExtraLarge, ExtraExtraExtraLarge, AccessibilityMedium, AccessibilityLarge, AccessibilityExtraLarge, AccessibilityExtraExtraLarge, AccessibilityExtraExtraExtraLarge/*</value_list>*/};
+    private static /*<name>*/UIContentSizeCategory/*</name>*/[] values = new /*<name>*/UIContentSizeCategory/*</name>*/[] {/*<value_list>*/Unspecified, ExtraSmall, Small, Medium, Large, ExtraLarge, ExtraExtraLarge, ExtraExtraExtraLarge, AccessibilityMedium, AccessibilityLarge, AccessibilityExtraLarge, AccessibilityExtraExtraLarge, AccessibilityExtraExtraExtraLarge/*</value_list>*/};
     
     /*<name>*/UIContentSizeCategory/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -166,6 +170,11 @@ import org.robovm.apple.corelocation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="UIContentSizeCategoryUnspecified", optional=true)
+        public static native NSString Unspecified();
         /**
          * @since Available in iOS 7.0 and later.
          */

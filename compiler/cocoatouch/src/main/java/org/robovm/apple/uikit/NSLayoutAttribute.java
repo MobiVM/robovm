@@ -52,8 +52,8 @@ public enum /*<name>*/NSLayoutAttribute/*</name>*/ implements ValuedEnum {
     Height(8L),
     CenterX(9L),
     CenterY(10L),
-    Baseline(11L),
     LastBaseline(11L),
+    Baseline(11L),
     /**
      * @since Available in iOS 8.0 and later.
      */

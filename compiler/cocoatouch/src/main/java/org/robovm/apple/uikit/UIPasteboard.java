@@ -75,6 +75,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPasteboard() {}
+    protected UIPasteboard(Handle h, long handle) { super(h, handle); }
     protected UIPasteboard(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public List<Map<String, NSObject>> getItems() {
@@ -92,7 +93,16 @@ import org.robovm.apple.corelocation.*;
         }
         setItems0(itemArray);
     }
+    public void setItems(List<Map<String, NSObject>> items, UIPasteboardOptions options) {
+        NSArray<NSDictionary> itemArray = new NSMutableArray<>();
+        for (Map<String, NSObject> item : items) {
+            itemArray.add(NSDictionary.fromStringMap(item));
+        }
+        setItems0(itemArray, options);
+    }
     /*<properties>*/
+    @Property(selector = "generalPasteboard")
+    public static native UIPasteboard getGeneralPasteboard();
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "isPersistent")
@@ -101,6 +111,8 @@ import org.robovm.apple.corelocation.*;
     public native void setPersistent(boolean v);
     @Property(selector = "changeCount")
     public native @MachineSizedSInt long getChangeCount();
+    @Property(selector = "pasteboardTypes")
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPasteboardTypes();
     @Property(selector = "numberOfItems")
     public native @MachineSizedSInt long getNumberOfItems();
     @Property(selector = "items")
@@ -139,6 +151,26 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<UIColor> getColors();
     @Property(selector = "setColors:")
     public native void setColors(NSArray<UIColor> v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "hasStrings")
+    public native boolean hasStrings();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "hasURLs")
+    public native boolean hasURLs();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "hasImages")
+    public native boolean hasImages();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "hasColors")
+    public native boolean hasColors();
     /*</properties>*/
     /*<members>*//*</members>*/
     public static UIPasteboard getFindPasteboard() {
@@ -161,6 +193,11 @@ import org.robovm.apple.corelocation.*;
         addItems(itemArray);
     }
     /*<methods>*/
+    /**
+     * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="UIPasteboardNameFind", optional=true)
     private static native String PasteboardNameFind();
     @GlobalValue(symbol="UIPasteboardChangedNotification", optional=true)
@@ -175,9 +212,12 @@ import org.robovm.apple.corelocation.*;
     public static native List<String> getImageTypeList();
     @GlobalValue(symbol="UIPasteboardTypeListColor", optional=true)
     public static native List<String> getColorTypeList();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="UIPasteboardTypeAutomatic", optional=true)
+    public static native String getAutomaticType();
     
-    @Method(selector = "pasteboardTypes")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getTypes();
     @Method(selector = "containsPasteboardTypes:")
     public native boolean contains(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> pasteboardTypes);
     @Method(selector = "dataForPasteboardType:")
@@ -200,8 +240,11 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<NSData> getData(String pasteboardType, NSIndexSet itemSet);
     @Method(selector = "addItems:")
     private native void addItems(NSArray<NSDictionary> items);
-    @Method(selector = "generalPasteboard")
-    public static native UIPasteboard getGeneralPasteboard();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setItems:options:")
+    private native void setItems0(NSArray<NSDictionary> items, UIPasteboardOptions options);
     @Method(selector = "pasteboardWithName:create:")
     public static native UIPasteboard getPasteboard(String pasteboardName, boolean create);
     @Method(selector = "pasteboardWithUniqueName")

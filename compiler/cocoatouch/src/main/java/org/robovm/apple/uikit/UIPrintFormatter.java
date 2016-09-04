@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPrintFormatter() {}
+    protected UIPrintFormatter(Handle h, long handle) { super(h, handle); }
     protected UIPrintFormatter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -64,8 +65,18 @@ import org.robovm.apple.corelocation.*;
     public native @MachineSizedFloat double getMaximumContentWidth();
     @Property(selector = "setMaximumContentWidth:")
     public native void setMaximumContentWidth(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 4.2 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "contentInsets")
     public native @ByVal UIEdgeInsets getContentInsets();
+    /**
+     * @since Available in iOS 4.2 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "setContentInsets:")
     public native void setContentInsets(@ByVal UIEdgeInsets v);
     @Property(selector = "perPageContentInsets")

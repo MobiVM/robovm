@@ -1,5 +1,5 @@
 package: org.robovm.apple.coreanimation
-include: [foundation.yaml, coregraphics.yaml, coreimage.yaml, coretext.yaml, opengles.yaml, metal.yaml]
+include: [foundation, coregraphics, coreimage, coretext, opengles, metal]
 library: QuartzCore
 framework: QuartzCore
 clang_args: ['-x', 'objective-c']
@@ -346,6 +346,8 @@ protocols:
                 trim_after_first_colon: true
             '-drawLayer:inContext:':
                 trim_after_first_colon: true
+            '-layerWillDraw:':
+                name: willDrawLayer
             '-layoutSublayersOfLayer:':
                 name: layoutSublayers
             '-actionForLayer:forKey:':

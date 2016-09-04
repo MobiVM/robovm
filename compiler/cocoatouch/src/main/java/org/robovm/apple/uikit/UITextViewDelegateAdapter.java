@@ -69,13 +69,27 @@ import org.robovm.apple.corelocation.*;
     @NotImplemented("textViewDidChangeSelection:")
     public void didChangeSelection(UITextView textView) {}
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
+    @NotImplemented("textView:shouldInteractWithURL:inRange:interaction:")
+    public boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange, UITextItemInteraction interaction) { return false; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("textView:shouldInteractWithTextAttachment:inRange:interaction:")
+    public boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction) { return false; }
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @NotImplemented("textView:shouldInteractWithURL:inRange:")
     public boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange) { return false; }
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @NotImplemented("textView:shouldInteractWithTextAttachment:inRange:")
     public boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange) { return false; }
     /*</methods>*/

@@ -51,13 +51,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UILabel() {}
+    protected UILabel(Handle h, long handle) { super(h, handle); }
     protected UILabel(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UILabel(CGRect frame) {
         super(frame);
     }
-    
+    public UILabel(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "text")
     public native String getText();

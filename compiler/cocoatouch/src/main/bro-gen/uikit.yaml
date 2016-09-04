@@ -1,5 +1,5 @@
 package: org.robovm.apple.uikit
-include: [foundation.yaml, coreanimation.yaml, coregraphics.yaml, coredata.yaml, coreimage.yaml, coretext.yaml, corelocation.yaml]
+include: [foundation, coreanimation, coregraphics, coredata, coreimage, coretext, corelocation]
 library: UIKit
 framework: UIKit
 clang_args: ['-x', 'objective-c']
@@ -8,15 +8,20 @@ headers:
 typedefs:
     NSCopying: NSObject
     'void (^)(UIBackgroundFetchResult)': '@Block VoidBlock1<UIBackgroundFetchResult>'
-    'void (^)(id<UIViewControllerTransitionCoordinatorContext>)': '@Block VoidBlock1<UIViewControllerTransitionCoordinatorContext>'
-    'void (^)(CGRect, CGRect, NSTextContainer *, NSRange, BOOL *)': '@Block("(@ByVal, @ByVal, , @ByVal, )") VoidBlock5<CGRect, CGRect, NSTextContainer, NSRange, BytePtr>'
-    'void (^)(CGRect, BOOL *)': '@Block("(@ByVal, )") VoidBlock2<CGRect, BytePtr>'
+    'void (^)(id<UIViewControllerTransitionCoordinatorContext> _Nonnull)': '@Block VoidBlock1<UIViewControllerTransitionCoordinatorContext>'
+    'void (^)(CGRect, CGRect, NSTextContainer * _Nonnull, NSRange, BOOL * _Nonnull)': '@Block("(@ByVal, @ByVal, , @ByVal, )") VoidBlock5<CGRect, CGRect, NSTextContainer, NSRange, BooleanPtr>'
+    'void (^)(CGRect, BOOL * _Nonnull)': '@Block("(@ByVal, )") VoidBlock2<CGRect, BooleanPtr>'
     'void (^)(void (^)(void))': '@Block("(@Block)") VoidBlock1<Runnable>'
     'void (^)(NSError *)': '@Block VoidBlock1<NSError>'
-    'void (^)(UILexicon *)': '@Block VoidBlock1<UILexicon>'
-    'void (^)(UIAlertAction *)': '@Block VoidBlock1<UIAlertAction>'
-    'void (^)(UITextField *)': '@Block VoidBlock1<UITextField>'
-    'void (^)(UITableViewRowAction *, NSIndexPath *)': '@Block VoidBlock2<UITableViewRowAction, NSIndexPath>'
+    'void (^)(UILexicon * _Nonnull)': '@Block VoidBlock1<UILexicon>'
+    'void (^)(UIAlertAction * _Nonnull)': '@Block VoidBlock1<UIAlertAction>'
+    'void (^)(UITextField * _Nonnull)': '@Block VoidBlock1<UITextField>'
+    'void (^)(UITableViewRowAction * _Nonnull, NSIndexPath * _Nonnull)': '@Block VoidBlock2<UITableViewRowAction, NSIndexPath>'
+    'void (^)(UIViewAnimatingPosition)': '@Block VoidBlock1<UIViewAnimatingPosition>'
+    'void (^)(UICloudSharingController * _Nonnull, void (^ _Nonnull)(CKShare * _Nullable, CKContainer * _Nullable, NSError * _Nullable))': '@Block(",(@Block)") VoidBlock2<UICloudSharingController, VoidBlock3<CKShare, CKContainer, NSError>>'
+    UIGraphicsImageDrawingActions: '@Block VoidBlock1<UIGraphicsImageRendererContext>'
+    UIGraphicsPDFDrawingActions: '@Block VoidBlock1<UIGraphicsPDFRendererContext>'
+    UITextContentType: UITextContentType
 private_typedefs:
     AnchorType: NSObject
 
@@ -34,6 +39,8 @@ enums:
     NSTextWritingDirection: {}
     NSUnderlineStyle: {}
     NSWritingDirection: {}
+    UIAccessibilityCustomRotorDirection: {}
+    UIAccessibilityHearingDeviceEar: {}
     UIAccessibilityNavigationStyle: {}
     UIAccessibilityScrollDirection: {}
     UIAccessibilityZoomType: {prefix: UIAccessibilityZoomType}
@@ -43,6 +50,7 @@ enums:
     UIAlertActionStyle: {}
     UIAlertControllerStyle: {prefix: UIAlertControllerStyle}
     UIAlertViewStyle: {}
+    UIApplicationShortcutIconType: {}
     UIApplicationState: {}
     UIAttachmentBehaviorType: {}
     UIBackgroundFetchResult: {}
@@ -55,6 +63,7 @@ enums:
     UIBaselineAdjustment: {}
     UIBlurEffectStyle: {}
     UIButtonType: {}
+    UICloudSharingPermissionOptions: {}
     UICollectionElementCategory: {}
     UICollectionUpdateAction: {}
     UICollectionViewScrollDirection: {}
@@ -68,6 +77,7 @@ enums:
     UIDatePickerMode: {}
     UIDeviceBatteryState: {}
     UIDeviceOrientation: {}
+    UIDisplayGamut: {}
     UIDocumentChangeKind: {}
     UIDocumentMenuOrder: {}
     UIDocumentPickerMode: {}
@@ -76,7 +86,9 @@ enums:
     UIDynamicItemCollisionBoundsType: {}
     UIEventSubtype: {}
     UIEventType: {}
+    UIFocusHeading: {}
     UIFontDescriptorSymbolicTraits: {}
+    UIForceTouchCapability: {}
     UIGestureRecognizerState: {}
     UIGuidedAccessRestrictionState: {}
     UIImageOrientation: {}
@@ -105,6 +117,9 @@ enums:
     UIPageViewControllerSpineLocation: {}
     UIPageViewControllerTransitionStyle: {}
     UIPopoverArrowDirection: {}
+    UIPressPhase: {}
+    UIPressType: {}
+    UIPreviewActionStyle: {}
     UIPrintErrorCode: {first: UIPrintingNotAvailableError, suffix: Error, UIPrintingNotAvailableError: PrintingNotAvailableError}
     UIPrinterCutterBehavior: {}
     UIPrinterJobTypes: {skip_none: true}
@@ -136,6 +151,7 @@ enums:
     UITabBarSystemItem: {}
     UITableViewCellAccessoryType: {}
     UITableViewCellEditingStyle: {}
+    UITableViewCellFocusStyle: {}
     UITableViewCellSelectionStyle: {}
     UITableViewCellSeparatorStyle: {}
     UITableViewCellStateMask: {suffix: mask}
@@ -148,21 +164,30 @@ enums:
     UITextAutocapitalizationType: {}
     UITextAutocorrectionType: {}
     UITextBorderStyle: {}
+    UITextFieldDidEndEditingReason: {prefix: UITextFieldDidEndEditingReason}
     UITextFieldViewMode: {}
     UITextGranularity: {}
+    UITextItemInteraction: {}
     UITextLayoutDirection: {}
     UITextSpellCheckingType: {}
     UITextStorageDirection: {}
     UITextWritingDirection: {}
+    UITimingCurveType: {}
     UIToolbarPosition: {}
     UITouchPhase: {}
+    UITouchProperties: {}
+    UITouchType: {}
+    UITraitEnvironmentLayoutDirection: {}
     UIUserInterfaceIdiom: {prefix: UIUserInterfaceIdiom}
     UIUserInterfaceLayoutDirection: {}
     UIUserInterfaceSizeClass: {}
+    UIUserInterfaceStyle: {}
     UIUserNotificationActionBehavior: {}
     UIUserNotificationActionContext: {}
     UIUserNotificationActivationMode: {}
     UIUserNotificationType: {}
+    UIViewAnimatingPosition: {}
+    UIViewAnimatingState: {}
     UIViewAnimationCurve: {}
     UIViewAnimationOptions: {}
     UIViewAnimationTransition: {}
@@ -309,16 +334,18 @@ categories:
                 name: getSize
     NSValue: # DONE
         annotations: ['@WeaklyLinked']
+        properties:
+            'CG(.*Value)':
+                name: '#{g[0]}'
+            'UI(.*Value)':
+                name: '#{g[0]}'
         methods:
-            '-CG(.*Value)':
-                name: 'get#{g[0]}'
-            '-UI(.*Value)':
-                name: 'get#{g[0]}'
             '+valueWith.*':
                 name: create
     UIAccessibility@NSObject: {protocol: true}
     UIAccessibilityAction@NSObject: {protocol: true}
     UIAccessibilityContainer@NSObject: {protocol: true}
+    UIAccessibilityCustomRotor@NSObject: {protocol: true}
     UIAccessibilityFocus@NSObject: {protocol: true}
     UINibLoadingAdditions@NSObject: {protocol: true}
     UIResponderStandardEditActions@NSObject: {protocol: true}
@@ -351,8 +378,6 @@ classes:
                 name: init
     NSFileProviderExtension: # DONE
         methods:
-            '-(providerIdentifier|documentStorageURL)':
-                property: true
             '-URLForItemWithPersistentIdentifier:':
                 name: getURLForItem
             '-persistentIdentifierForItemAtURL:':
@@ -440,9 +465,11 @@ classes:
                 return_type: NSArray<NSLayoutConstraint>
                 parameters:
                     metrics:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringNumberMapMarshaler.class) Map<String, Number>'
+                        type: 'Map<String, Number>'
+                        marshaler: NSDictionary.AsStringNumberMapMarshaler
                     views:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSObjectProtocol>'
+                        type: 'Map<String, NSObjectProtocol>'
+                        marshaler: NSDictionary.AsStringMapMarshaler
             '+activateConstraints:':
                 trim_after_first_colon: true
                 parameters:
@@ -524,10 +551,6 @@ classes:
                 trim_after_first_colon: true
             '-getFirstUnlaidCharacterIndex:glyphIndex:':
                 trim_after_first_colon: true
-            '-firstUnlaidCharacterIndex':
-                name: getFirstUnlaidCharacterIndex
-            '-firstUnlaidGlyphIndex':
-                name: getFirstUnlaidGlyphIndex
             '-textContainerForGlyphAtIndex:effectiveRange:':
                 name: getTextContainer
             '-usedRectForTextContainer:':
@@ -624,8 +647,6 @@ classes:
             'tabStops':
                 type: NSArray<NSTextTab>
         methods:
-            '+defaultParagraphStyle':
-                property: true
             '+defaultWritingDirectionForLanguage:':
                 name: getDefaultWritingDirection
 
@@ -687,6 +708,15 @@ classes:
         methods:
             '-init.*':
                 name: init
+    UIAccessibilityCustomRotor: # DONE
+        methods:
+            '-init.*':
+                name: init
+    UIAccessibilityCustomRotorItemResult: # DONE
+        methods:
+            '-init.*':
+                name: init
+    UIAccessibilityCustomRotorSearchPredicate: {} # DONE
     UIAccessibilityElement: # DONE
         properties:
             'isAccessibilityElement':
@@ -720,19 +750,12 @@ classes:
             '-showInView:':
                 name: showIn
     UIActivity: # DONE
+        properties:
+            'activity(.*)':
+                name: '#{g[0]}'
         methods:
-            '+activityCategory':
-                name: getActivityCategory
             '-activityDidFinish:':
                 name: didFinish
-            '-activityImage':
-                name: getImage
-            '-activityTitle':
-                name: getTitle
-            '-activityType':
-                name: getType
-            '-activityViewController':
-                name: getViewController
             '-performActivity':
                 name: perform
             '-canPerformWithActivityItems:':
@@ -747,14 +770,13 @@ classes:
         methods:
             '-init.*':
                 name: init
-            '-item':
-                name: getItem
     UIActivityViewController: # DONE
         properties:
             'completionHandler':
                 type: '@Block VoidBlock2<String, Boolean>'
             'excludedActivityTypes':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
             'completionWithItemsHandler':
                 type: '@Block VoidBlock4<String, Boolean, NSArray<NSObject>, NSError>'
         methods:
@@ -807,9 +829,9 @@ classes:
                 type: NSArray<UILocalNotification>
             'applicationSupportsShakeToEdit':
                 name: supportsShakeToEdit
+            'shortcutItems':
+                type: NSArray<UIApplicationShortcutItem>
         methods:
-            '+sharedApplication':
-                name: getSharedApplication
             '+registerObjectForStateRestoration:restorationIdentifier:':
                 trim_after_first_colon: true
             '-beginBackgroundTaskWith.*':
@@ -830,8 +852,21 @@ classes:
                 trim_after_first_colon: true
             '-registerUserNotificationSettings:':
                 trim_after_first_colon: true
-            '-currentUserNotificationSettings':
-                property: true
+            '-openURL:options:completionHandler:':
+                trim_after_first_colon: true
+                parameters:
+                    options:
+                        type: UIApplicationOpenURLOptions
+    UIApplicationShortcutIcon: # DONE
+        methods:
+            '+iconWith.*':
+                name: create
+                constructor: true
+    UIApplicationShortcutItem: # DONE
+        skip_def_constructor: true
+        methods:
+            '-init.*':
+                name: init
     UIAttachmentBehavior: # DONE
         properties:
             'items':
@@ -850,7 +885,8 @@ classes:
     UIBarButtonItem: # DONE
         properties:
             'possibleTitles':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringListMarshaler.class) List<String>'
+                type: Set<String>
+                marshaler: NSSet.AsStringListMarshaler
         methods:
             '-initWithImage:style:target:action:':
                 name: init
@@ -968,7 +1004,7 @@ classes:
                 constructor: true
     UIButton: # DONE
         methods:
-            '+buttonWithType:': ########################### # TODO remove deprecated method!!!!!
+            '+buttonWithType:':
                 name: create0
                 constructor: true
             '-backgroundImageForState:':
@@ -993,6 +1029,12 @@ classes:
                 name: getAttributedTitle
             '-(set.*):forState:.*':
                 name: '#{g[0]}'
+   # UICloudSharingController: # DONE
+   #     methods:
+   #         '-init.*':                         >>>>> TODO need to update CloudKit
+    #            name: init     
+    #        '-activityItemSource':
+    #            property: true
     UICollectionReusableView: # DONE
         methods:
             '-didTransitionFromLayout:toLayout:':
@@ -1014,9 +1056,6 @@ classes:
                 name: getCellForItem
             '-deleteItemsAtIndexPaths:':
                 name: deleteItems
-                parameters:
-                    indexPaths:
-                        type: NSArray<NSIndexPath>
             '-dequeueReusableCellWithReuseIdentifier:forIndexPath:':
                 name: dequeueReusableCell
                 return_type: UICollectionReusableView
@@ -1032,25 +1071,14 @@ classes:
                 name: getIndexPathForCell
             '-indexPathForItemAtPoint:':
                 name: getIndexPathForItem
-            '-indexPathsForSelectedItems':
-                name: getIndexPathsForSelectedItems
-                return_type: NSArray<NSIndexPath>
-            '-indexPathsForVisibleItems':
-                name: getIndexPathsForVisibleItems
-                return_type: NSArray<NSIndexPath>
             '-supplementaryViewForElementKind:atIndexPath:':
                 name: getSupplementaryView
             '-visibleSupplementaryViewsOfKind:':
                 name: getVisibleSupplementaryViews
-                return_type: NSArray<UICollectionReusableView>
             '-indexPathsForVisibleSupplementaryElementsOfKind:':
                 name: getIndexPathsForVisibleSupplementaryElements
-                return_type: NSArray<NSIndexPath>
             '-insertItemsAtIndexPaths:':
                 name: insertItems
-                parameters:
-                    indexPaths:
-                        type: NSArray<NSIndexPath>
             '-layoutAttributesForItemAtIndexPath:':
                 name: getLayoutAttributesForItem
             '-layoutAttributesForSupplementaryElementOfKind:atIndexPath:':
@@ -1062,8 +1090,6 @@ classes:
                 name: moveItem
             '-numberOfItemsInSection:':
                 name: getNumberOfItemsInSection
-            '-numberOfSections':
-                name: getNumberOfSections
             '-registerClass:forCellWithReuseIdentifier:':
                 name: registerReusableCellClass
                 parameters:
@@ -1085,16 +1111,10 @@ classes:
                         type: UICollectionElementKind
             '-reloadItemsAtIndexPaths:':
                 name: reloadItems
-                parameters:
-                    indexPaths:
-                        type: NSArray<NSIndexPath>
             '-scrollToItemAtIndexPath:atScrollPosition:animated:':
                 name: scrollToItem
             '-selectItemAtIndexPath:animated:scrollPosition:':
                 name: selectItem
-            '-visibleCells':
-                name: getVisibleCells
-                return_type: NSArray<UICollectionViewCell>
             '-setCollectionViewLayout:animated:':
                 trim_after_first_colon: true
             '-setCollectionViewLayout:animated:completion:':
@@ -1132,16 +1152,14 @@ classes:
                 name: invalidatesFlowLayoutDelegateMetrics
             'invalidateFlowLayoutAttributes':
                 name: invalidatesFlowLayoutAttributes
+    UICollectionViewFocusUpdateContext: {} # DONE
     UICollectionViewLayout: # DONE
+        properties:
+            'layoutAttributesClass':
+                type: 'Class<? extends UICollectionViewLayoutAttributes>'
+            'invalidationContextClass':
+                type: 'Class<? extends UICollectionViewLayoutInvalidationContext>'
         methods:
-            '+layoutAttributesClass':
-                property: true
-                return_type: 'Class<? extends UICollectionViewLayoutAttributes>'
-            '+invalidationContextClass':
-                property: true
-                return_type: 'Class<? extends UICollectionViewLayoutInvalidationContext>'
-            '-collectionViewContentSize':
-                name: getCollectionViewContentSize
             '-finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:':
                 name: getFinalLayoutAttributesForDisappearingDecorationElement
             '-finalLayoutAttributesForDisappearingItemAtIndexPath:':
@@ -1206,16 +1224,8 @@ classes:
                 name: getLayoutAttributesForInteractivelyMovingItem
             '-invalidationContextForInteractivelyMovingItems:withTargetPosition:previousIndexPaths:previousPosition:':
                 name: getInvalidationContextForInteractivelyMovingItems
-                parameters:
-                    previousIndexPaths:
-                        type: NSArray<NSIndexPath>
             '-invalidationContextForEndingInteractiveMovementOfItemsToFinalIndexPaths:previousIndexPaths:movementCancelled:':
                 name: getInvalidationContextForEndingInteractiveMovement
-                parameters:
-                    indexPaths:
-                        type: NSArray<NSIndexPath>
-                    previousIndexPaths:
-                        type: NSArray<NSIndexPath>
     UICollectionViewLayoutAttributes: # DONE
         methods:
             '+layoutAttributesForCellWithIndexPath:':
@@ -1286,20 +1296,20 @@ classes:
             '-boundaryWithIdentifier:':
                 name: getBoundary
     UIColor: # DONE
+        properties:
+            '(CIColor|CGColor)': {}
+            '(.*)Color':
+                getter: '#{g[0]}'
         methods:
             '-init.*':
                 name: init
-            '+(black|darkGray|lightGray|white|gray|red|green|blue|cyan|yellow|magenta|orange)Color':
-                name: '#{g[0][0].downcase}#{g[0][1..-1]}'
-            '+(purple|brown|clear|lightText|darkText)Color':
-                name: '#{g[0][0].downcase}#{g[0][1..-1]}'
-            '+(groupTableViewBackground|viewFlipsideBackground|scrollViewTexturedBackground|underPageBackground)Color':
-                name: '#{g[0][0].downcase}#{g[0][1..-1]}'
             '-initWithHue:saturation:brightness:alpha:':
                 exclude: true
             '-initWithPatternImage:':
                 exclude: true
             '-initWithWhite:alpha:':
+                exclude: true
+            '-initWithDisplayP3Red:green:blue:alpha:':
                 exclude: true
             '+colorWithCGColor:':
                 name: fromCGColor
@@ -1313,6 +1323,8 @@ classes:
                 name: fromPatternImage
             '+colorWithWhite:alpha:':
                 name: fromWhiteAlpha
+            '+colorWithDisplayP3Red:green:blue:alpha:':
+                name: fromDisplayP3
             '-colorWithAlphaComponent:':
                 name: addAlpha
             '-getHue:saturation:brightness:alpha:':
@@ -1326,16 +1338,14 @@ classes:
                 visibility: protected
             '-set':
                 name: setFillAndStroke
+    UIContentSizeCategoryAdjusting: {} # DONE
     UIControl: # DONE
         skip_handle_constructor: false
         methods:
             '-actionsForTarget:forControlEvent:':
                 name: getActions
-                return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
-            '-allControlEvents':
-                property: true
-            '-allTargets':
-                property: true
+                return_type: List<String>
+                return_marshaler: NSArray.AsStringListMarshaler
             '-beginTrackingWithTouch:withEvent:':
                 name: beginTracking
             '-cancelTrackingWithEvent:':
@@ -1352,24 +1362,24 @@ classes:
                 name: removeTarget
             '-sendAction:to:forEvent:':
                 name: sendAction
+    UICubicTimingParameters: # DONE
+        methods:
+            '-init.*':
+                name: init
     UIDatePicker: # DONE
         methods:
             '-setDate:animated:':
                 name: setDate
-    UIDevice: # DONE
-        methods:
-            '+currentDevice':
-                property: true
+    UIDevice: {} # DONE
     UIDictationPhrase: # DONE
         properties:
             'alternativeInterpretations':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
     UIDocument: # DONE
         methods:
             '-init.*':
                 name: init
-            '-savingFileType':
-                name: getSavingFileType
             '-autosaveWithCompletionHandler:':
                 name: autoSave
             '-closeWithCompletionHandler:':
@@ -1428,7 +1438,8 @@ classes:
                 name: init
                 parameters:
                     allowedUTIs:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
             '-init.*':
                 name: init
             '-addOptionWithTitle:image:order:handler:':
@@ -1460,7 +1471,8 @@ classes:
     UIDocumentPickerExtensionViewController: # DONE
         properties:
             'validTypes':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
         methods:
             '-dismissGrantingAccessToURL:':
                 trim_after_first_colon: true
@@ -1472,7 +1484,8 @@ classes:
                 name: init
                 parameters:
                     allowedUTIs:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
             '-init.*':
                 name: init
     UIDynamicAnimator: # DONE
@@ -1488,8 +1501,6 @@ classes:
                 trim_after_first_colon: true
             '-updateItemUsingCurrentState:':
                 trim_after_first_colon: true
-            '-elapsedTime':
-                property: true
             '-layoutAttributesForCellAtIndexPath:':
                 name: getLayoutAttributesForCell
             '-layoutAttributesForSupplementaryViewOfKind:atIndexPath:':
@@ -1532,27 +1543,59 @@ classes:
                 name: addAngularVelocityForItem
             '-angularVelocityForItem:':
                 name: getAngularVelocityForItem
+    UIDynamicItemGroup: # DONE
+        properties:
+            'items':
+                type: List<UIDynamicItem>
+                marshaler: NSArray.AsListMarshaler
+        methods:
+            '-initWithItems:':
+                name: init
+                parameters:
+                    items:
+                        type: List<UIDynamicItem>
+                        marshaler: NSArray.AsListMarshaler
     UIEvent: # DONE
         methods:
-            '-allTouches':
-                name: getAllTouches
-                return_type: NSSet<UITouch>
             '-touchesForGestureRecognizer:':
                 name: getTouches
-                return_type: NSSet<UITouch>
             '-touchesForView:':
                 name: getTouches
-                return_type: NSSet<UITouch>
             '-touchesForWindow:':
                 name: getTouches
-                return_type: NSSet<UITouch>
             '-coalescedTouchesForTouch:':
                 name: getCoalescedTouches
-                return_type: NSArray<UITouch>
             '-predictedTouchesForTouch:':
                 name: getPredictedTouches
-                return_type: NSArray<UITouch>
+    UIFieldBehavior: # DONE
+        properties:
+            'items':
+                type: List<UIDynamicItem>
+                marshaler: NSArray.AsListMarshaler
+        methods:
+            '+fieldWithEvaluationBlock:':
+                exclude: true
+            '+(.*)Field.*':
+                name: '#{g[0]}'
+            '-addItem:':
+                trim_after_first_colon: true
+            '-removeItem:':
+                trim_after_first_colon: true
+    UIFocusAnimationCoordinator: # DONE
+        methods:
+            '-addCoordinatedAnimations:completion:':
+                trim_after_first_colon: true
+    UIFocusGuide: # DONE
+        properties:
+            'preferredFocusEnvironments':
+                type: List<UIFocusEnvironment>
+                marshaler: NSArray.AsListMarshaler
+    UIFocusUpdateContext: {} # DONE
     UIFont: # DONE
+        properties:
+            'familyNames':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
         methods:
             '+boldSystemFontOfSize:':
                 name: getBoldSystemFont
@@ -1564,10 +1607,6 @@ classes:
                 return_marshaler: NSArray.AsStringListMarshaler
             '+buttonFontSize':
                 name: getButtonFontSize
-            '+familyNames':
-                name: getFamilyNames
-                return_type: List<String>
-                return_marshaler: NSArray.AsStringListMarshaler
             '+italicSystemFontOfSize:':
                 name: getItalicSystemFont
             '+labelFontSize':
@@ -1584,16 +1623,17 @@ classes:
                 name: getFont
             '+fontWithDescriptor:size:':
                 name: getFont
-            '+preferredFontForTextStyle:':
+            '+preferredFontForTextStyle.*':
                 name: getPreferredFont
                 parameters:
                     style:
                         type: UIFontTextStyle
             '-fontWithSize:':
                 name: newWithSize
-            '-fontDescriptor':
-                property: true
     UIFontDescriptor: # DONE
+        properties:
+            'fontAttributes':
+                type: UIFontDescriptorAttributes
         methods:
             '-initWithFontAttributes:':
                 name: init
@@ -1610,21 +1650,17 @@ classes:
             '+fontDescriptorWithName:matrix:':
                 name: create
                 constructor: true
-            '+preferredFontDescriptorWithTextStyle:':
+            '+preferredFontDescriptorWithTextStyle.*':
                 name: getPreferredFontDescriptor
-                visibility: protected
                 parameters:
                     style:
-                        type: NSString
+                        type: UIFontTextStyle
             '-objectForKey:':
                 name: getValue
                 visibility: protected
                 parameters:
                     anAttribute:
                         type: NSString
-            '-fontAttributes':
-                property: true
-                return_type: UIFontDescriptorAttributes
             '-matchingFontDescriptorsWithMandatoryKeys:':
                 name: getMatchingFontDescriptors
                 return_type: NSArray<UIFontDescriptor>
@@ -1648,6 +1684,13 @@ classes:
             '-fontDescriptorWithFamily:':
                 name: newWithFamily
     UIGestureRecognizer: # DONE
+        properties:
+            'allowedTouchTypes':
+                type: List<UITouchType>
+                marshaler: UITouchType.AsListMarshaler
+            'allowedPressTypes':
+                type: List<UIPressType>
+                marshaler: UIPressType.AsListMarshaler
         methods:
             '-initWithTarget:action:':
                 name: init
@@ -1666,6 +1709,54 @@ classes:
                 trim_after_first_colon: true
             '-requireGestureRecognizerToFail:':
                 trim_after_first_colon: true
+    UIGraphicsImageRenderer: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '-imageWithActions:':
+                name: toImage
+            '-PNGDataWithActions:':
+                name: toPNG
+            '-JPEGDataWithCompressionQuality:actions:':
+                name: toJPEG
+    UIGraphicsImageRendererContext: {} # DONE
+    UIGraphicsImageRendererFormat: {} # DONE
+    UIGraphicsPDFRenderer: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '-writePDFToURL:withActions:error:':
+                name: writePDFToURL
+                throws: NSErrorException
+            '-PDFDataWithActions:':
+                name: toPDFData
+    UIGraphicsPDFRendererContext: # DONE
+        methods:
+            '-beginPageWithBounds:pageInfo:':
+                name: beginPage
+            '-setURL:forRect:':
+                name: setURLForRect
+            '-addDestinationWithName:atPoint:':
+                name: addDestination
+            '-setDestinationWithName:forRect:':
+                name: setDestination
+    UIGraphicsPDFRendererFormat: {} # DONE
+    UIGraphicsRenderer: # DONE
+        methods:
+            '-init.*':
+                name: init
+    UIGraphicsRendererContext: # DONE
+        methods:
+            '-fillRect.*':
+                trim_after_first_colon: true
+            '-strokeRect.*':
+                trim_after_first_colon: true
+            '-clipToRect:':
+                trim_after_first_colon: true
+    UIGraphicsRendererFormat: # DONE
+        methods:
+            '+defaultFormat':
+                property: true
     UIGravityBehavior: # DONE
         properties:
             'items':
@@ -1693,7 +1784,7 @@ classes:
                 name: flipsHorizontally
             'CIImage':
                 annotations: ['@WeaklyLinked']
-        methods:  ########################### # TODO remove deprecated methods!!!!!
+        methods:
             '+animatedImageNamed:duration:':
                 name: getAnimatedImage
             '+animatedImageWithImages:duration:':
@@ -1710,7 +1801,8 @@ classes:
             '+imageNamed:inBundle:compatibleWithTraitCollection:':
                 name: getImage
             '+imageWithContentsOfFile:':
-                exclude: true
+                name: getImageWithContentsOfFile
+                visibility: private
             '+imageWithCGImage:':
                 exclude: true
             '+imageWithCGImage:scale:orientation:':
@@ -1768,14 +1860,17 @@ classes:
             'delegate':
                 type: UIImagePickerControllerDelegate
             'mediaTypes':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
         methods:
             '+availableCaptureModesForCameraDevice:':
                 name: getAvailableCaptureModes
-                return_type: '@org.robovm.rt.bro.annotation.Marshaler(UIImagePickerControllerCameraCaptureMode.AsListMarshaler.class) List<UIImagePickerControllerCameraCaptureMode>'
+                return_type: List<UIImagePickerControllerCameraCaptureMode>
+                return_marshaler: UIImagePickerControllerCameraCaptureMode.AsListMarshaler
             '+availableMediaTypesForSourceType:':
                 name: getAvailableMediaTypes
-                return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                return_type: List<String>
+                return_marshaler: NSArray.AsStringListMarshaler
             '+isSourceTypeAvailable:':
                 trim_after_first_colon: true
             '+isCameraDeviceAvailable:':
@@ -1799,6 +1894,8 @@ classes:
         methods:
             '-requestSupplementaryLexiconWithCompletion:':
                 name: requestSupplementaryLexicon
+            '-handleInputModeListFromView:withEvent:':
+                name: handleInputModeList
     UIInterpolatingMotionEffect: # DONE
         properties:
             'minimumRelativeValue':
@@ -1815,7 +1912,10 @@ classes:
             '+keyCommandWithInput:modifierFlags.*':
                 name: create
                 constructor: true
-    UILayoutGuide: {} # DONE
+    UILayoutGuide: # DONE
+        methods:
+            '-constraintsAffectingLayoutForAxis:':
+                name: getConstraintsAffectingLayout
     UILabel: # DONE
         methods:
             '-drawTextInRect:':
@@ -1829,10 +1929,9 @@ classes:
     UILexiconEntry: {} # DONE
     UILocalizedIndexedCollation: # DONE
         properties:
-            'sectionTitles':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
-            'sectionIndexTitles':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '(sectionTitles|sectionIndexTitles)':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
         methods:
             '+currentCollation':
                 name: getCurrentCollation
@@ -1861,8 +1960,6 @@ classes:
                 type: NSPersistentStoreOptions
                 annotations: ['@WeaklyLinked']
         methods:
-            '+persistentStoreName':
-                name: getPersistentStoreName
             '-additionalContentForURL:error:':
                 name: getAdditionalContent
                 throws: NSErrorException
@@ -1889,11 +1986,8 @@ classes:
         properties:
             'menuItems':
                 name: menuItems0
-                type: NSArray<UIMenuItem>
                 visibility: private
         methods:
-            '+sharedMenuController':
-                name: getSharedMenuController
             '-setMenuVisible:animated:':
                 trim_after_first_colon: true
             '-setTargetRect:inView:':
@@ -1909,16 +2003,11 @@ classes:
             '-keyPathsAndRelativeValuesForViewerOffset:':
                 name: getKeyPathsAndRelativeValues
                 return_type: UIMotionEffectViewerOffsetValues
-    UIMotionEffectGroup: # DONE
-        properties:
-            'motionEffects':
-                type: NSArray<UIMotionEffect>
+    UIMotionEffectGroup: {} # DONE
     UINavigationBar: # DONE
         properties:
             'delegate':
                 type: UINavigationBarDelegate
-            'items':
-                type: NSArray<UINavigationItem>
             'titleTextAttributes':
                 name: titleTextAttributesDictionary
                 type: 'NSDictionary<NSString, ?>'
@@ -2055,38 +2144,30 @@ classes:
         properties:
             'items':
                 name: items0
-                type: 'NSArray<NSDictionary>'
+                type: NSArray<NSDictionary>
                 visibility: private
-            'images':
-                type: NSArray<UIImage>
-            'URLs':
-                type: NSArray<NSURL>
-            'colors':
-                type: NSArray<UIColor>
-            'strings':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '(pasteboardTypes|strings)':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
         methods:
-            '+generalPasteboard':
-                name: getGeneralPasteboard
             '+pasteboardWithUniqueName':
                 name: getUniquePasteboard
             '+pasteboardWithName:create:':
                 name: getPasteboard
             '+removePasteboardWithName:':
                 name: removePasteboard
-            '-pasteboardTypes':
-                name: getTypes
-                return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
             '-containsPasteboardTypes:':
                 name: contains
                 parameters:
                     pasteboardTypes:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
             '-containsPasteboardTypes:inItemSet:':
                 name: contains
                 parameters:
                     pasteboardTypes:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
             '-dataForPasteboardType:':
                 name: getData
             '-dataForPasteboardType:inItemSet:':
@@ -2096,7 +2177,8 @@ classes:
                 name: getItemsWithTypes
                 parameters:
                     pasteboardTypes:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
             '-pasteboardTypesForItemSet:':
                 name: getTypes0
                 visibility: private
@@ -2114,7 +2196,15 @@ classes:
                 visibility: private
                 parameters:
                     items:
-                        type: 'NSArray<NSDictionary>'
+                        type: NSArray<NSDictionary>
+            '-setItems:options:':
+                name: setItems0
+                visibility: private
+                parameters:
+                    items:
+                        type: NSArray<NSDictionary>
+                    options:
+                        type: UIPasteboardOptions
     UIPercentDrivenInteractiveTransition: # DONE
         methods:
             '-updateInteractiveTransition:':
@@ -2175,8 +2265,6 @@ classes:
         methods:
             '-init.*':
                 name: init
-            '-(adaptivePresentationStyle|presentedView)':
-                property: true
             '-adaptivePresentationStyleForTraitCollection:':
                 name: getAdaptivePresentationStyleForTraitCollection
             '-frameOfPresentedViewInContainerView':
@@ -2185,6 +2273,33 @@ classes:
                 trim_after_first_colon: true
             '-dismissalTransitionDidEnd:':
                 trim_after_first_colon: true
+    UIPress: {} # DONE
+    UIPressesEvent: # DONE
+        methods:
+            '-pressesForGestureRecognizer:':
+                name: getPressesForGestureRecognizer
+    UIPreviewAction: # DONE
+        properties:
+            'handler':
+                type: '@Block VoidBlock2<UIPreviewActionItem, UIViewController>'
+        methods:
+            '+actionWithTitle:style:handler:':
+                name: create
+                constructor: true
+                parameters:
+                    handler:
+                        type: '@Block VoidBlock2<UIPreviewActionItem, UIViewController>'
+    UIPreviewActionGroup: # DONE
+        methods:
+            '+actionGroupWithTitle:style:actions:':
+                name: create
+                constructor: true
+    UIPreviewInteraction: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '-locationInCoordinateSpace:':
+                name: getLocationInCoordinateSpace
     UIPrinter: # DONE
         methods:
             '-contactPrinter:':
@@ -2199,6 +2314,9 @@ classes:
             '-rectForPageAtIndex:':
                 name: getRectForPage
     UIPrintInfo: # DONE
+        properties:
+            'dictionaryRepresentation':
+                getter: toDictionary
         methods:
             '-init.*':
                 name: init
@@ -2207,19 +2325,16 @@ classes:
             '+printInfoWithDictionary:':
                 name: create
                 constructor: true
-            '-dictionaryRepresentation':
-                name: toDictionary
     UIPrintInteractionController: # DONE
+        properties:
+            'printableUTIs':
+                type: Set<String>
+                marshaler: NSSet.AsStringSetMarshaler
         methods:
             '+canPrintData:':
                 name: canPrint
             '+canPrintURL:':
                 name: canPrint
-            '+printableUTIs':
-                name: getPrintableUTIs
-                return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
-            '+sharedPrintController':
-                name: getSharedPrintController
             '-dismissAnimated:':
                 name: dismiss
             '-presentAnimated:completionHandler:':
@@ -2247,8 +2362,6 @@ classes:
             'printFormatters':
                 type: NSArray<UIPrintFormatter>
         methods:
-            '-numberOfPages':
-                name: getNumberOfPages
             '-drawContentForPageAtIndex:inRect:':
                 name: drawContent
             '-drawFooterForPageAtIndex:inRect:':
@@ -2344,8 +2457,6 @@ classes:
                 name: intersection
             '-containsPoint:':
                 trim_after_first_colon: true
-            '+infiniteRegion':
-                property: true
     UIResponder: # DONE
         skip_handle_constructor: false
         protocols: [UIAccessibility]
@@ -2353,8 +2464,6 @@ classes:
             'keyCommands':
                 type: NSArray<UIKeyCommand>
         methods:
-            '-nextResponder':
-                name: getNextResponder
             '-remoteControlReceivedWithEvent:':
                 name: remoteControlReceived
             '-(touches.*):withEvent:':
@@ -2377,20 +2486,22 @@ classes:
                 trim_after_first_colon: true
             '-restoreUserActivityState:':
                 trim_after_first_colon: true
+            '-touchesEstimatedPropertiesUpdated:':
+                trim_after_first_colon: true
+            '-pressesBegan:withEvent:':
+                trim_after_first_colon: true
+            '-pressesChanged:withEvent:':
+                trim_after_first_colon: true
+            '-pressesEnded:withEvent:':
+                trim_after_first_colon: true
+            '-pressesCancelled:withEvent:':
+                trim_after_first_colon: true
     UIRotationGestureRecognizer: {} # DONE
     UIScreen: # DONE
-        properties:
-            'availableModes':
-                type: NSArray<UIScreenMode>
         methods:
-            '+mainScreen':
-                name: getMainScreen
-            '+screens':
-                name: getScreens
-                return_type: NSArray<UIScreen>
             '-displayLinkWithTarget:selector:':
                 name: getDisplayLink
-                annotations: ['@WeaklyLinked'] # TODO make listenerwrapper!!!!
+                annotations: ['@WeaklyLinked']
             '-snapshotViewAfterScreenUpdates:':
                 name: snapshotView
     UIScreenEdgePanGestureRecognizer: {} # DONE
@@ -2454,6 +2565,10 @@ classes:
                 parameters:
                     attributes:
                         type: 'NSDictionary<NSString, ?>'
+    UISearchContainerViewController: # DONE
+        methods:
+            '-init.*':
+                name: init
     UISearchController: # DONE
         methods:
             '-init.*':
@@ -2552,26 +2667,22 @@ classes:
             '-init.*':
                 name: init
     UISplitViewController: # DONE
-        properties:
-            'viewControllers':
-                type: NSArray<UIViewController>
         methods:
-            '-displayModeButtonItem':
-                property: true
             '-showViewController:sender:':
                 trim_after_first_colon: true
             '-showDetailViewController:sender:':
                 trim_after_first_colon: true
+    UISpringTimingParameters: # DONE
+        methods:
+            '-init.*':
+                name: init
     UIStackView: # DONE
         properties:
             'arrangedSubviews':
                 type: NSArray<UIView>
         methods:
-            '-initWithArrangedSubviews:':
+            '-init.*':
                 name: init
-                parameters:
-                    views:
-                        type: NSArray<UIView>
             '-addArrangedSubview:':
                 trim_after_first_colon: true
             '-removeArrangedSubview:':
@@ -2671,6 +2782,14 @@ classes:
                 name: setFinishedImages
             '-titlePositionAdjustment':
                 name: getTitlePositionAdjustment
+            '-setBadgeTextAttributes:forState:':
+                trim_after_first_colon: true
+                parameters:
+                    textAttributes:
+                        type: 'NSDictionary<NSString, ?>'
+            '-badgeTextAttributesForState:':
+                name: getBadgeTextAttributes
+                return_type: 'NSDictionary<NSString, ?>'
     UITableView: # DONE
         properties:
             'indexPathsForVisibleRows':
@@ -2785,6 +2904,7 @@ classes:
         methods:
             '-init.*':
                 name: init
+    UITableViewFocusUpdateContext: {} # DONE
     UITableViewHeaderFooterView: # DONE
         methods:
             '-init.*':
@@ -2796,22 +2916,23 @@ classes:
                 constructor: true
     UITapGestureRecognizer: {} # DONE
     UITextChecker: # DONE
+        properties:
+            '(ignoredWords|availableLanguages)':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
         methods:
             '-rangeOfMisspelledWordInString:range:startingAt:wrap:language:':
                 name: getRangeOfMisspelledWordInString
             '-guessesForWordRange:inString:language:':
                 name: getGuessesForWord
-                return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                return_type: List<String>
+                return_marshaler: NSArray.AsStringListMarshaler
             '-completionsForPartialWordRange:inString:language:':
                 name: getCompletionsForPartialWord
                 return_type: List<String>
                 return_marshaler: NSArray.AsStringListMarshaler
             '-ignoreWord:':
                 trim_after_first_colon: true
-            '-ignoredWords':
-                property: true
-                return_type: List<String>
-                return_marshaler: NSArray.AsStringListMarshaler
             '-setIgnoredWords:':
                 trim_after_first_colon: true
                 parameters:
@@ -2824,10 +2945,6 @@ classes:
                 trim_after_first_colon: true
             '+unlearnWord:':
                 trim_after_first_colon: true
-            '+availableLanguages':
-                property: true
-                return_type: List<String>
-                return_marshaler: NSArray.AsStringListMarshaler
     UITextField: # DONE
         properties:
             'defaultTextAttributes':
@@ -2857,9 +2974,6 @@ classes:
                 name: drawPlaceholder
     UITextInputMode: # DONE
         methods:
-            '+activeInputModes':
-                name: getActiveInputModes
-                return_type: NSArray<UITextInputMode>
             '+currentInputMode':
                 name: getCurrentInputMode
     UITextInputAssistantItem: # DONE
@@ -2919,6 +3033,14 @@ classes:
                 name: getLocationInView
             '-previousLocationInView:':
                 name: getPreviousLocationInView
+            '-preciseLocationInView:':
+                name: getPreciseLocationInView
+            '-precisePreviousLocationInView:':
+                name: getPrecisePreviousLocationInView
+            '-azimuthAngleInView:':
+                name: getAzimuthAngleInView
+            '-azimuthUnitVectorInView:':
+                name: getAzimuthUnitVectorInView
     UITraitCollection: # DONE
         methods:
             '-init.*':
@@ -2938,6 +3060,26 @@ classes:
                 name: createWithHorizontalSizeClass
             '+traitCollectionWithVerticalSizeClass:':
                 name: createWithVerticalSizeClass
+            '+traitCollectionWithForceTouchCapability:':
+                name: create
+                constructor: true
+            '+traitCollectionWithUserInterfaceStyle:':
+                name: create
+                constructor: true
+            '+traitCollectionWithLayoutDirection:':
+                name: create
+                constructor: true
+            '+traitCollectionWithPreferredContentSizeCategory:':
+                name: create
+                constructor: true
+                parameters:
+                    preferredContentSizeCategory:
+                        type: UIContentSizeCategory
+            '+traitCollectionWithDisplayGamut:':
+                name: create
+                constructor: true
+    UIMutableApplicationShortcutItem: # DONE
+        skip_def_constructor: true
     UIMutableUserNotificationAction: {} # DONE
     UIMutableUserNotificationCategory: # DONE
         methods:
@@ -2996,6 +3138,9 @@ classes:
                 type: NSArray<NSLayoutConstraint>
             'layoutGuides':
                 type: NSArray<UILayoutGuide>
+            'layerClass':
+                type: 'Class<? extends CALayer>'
+                annotations: ['@WeaklyLinked']
         methods:
             '-init.*':
                 name: init
@@ -3011,10 +3156,6 @@ classes:
                 name: transition
             '+transitionWithView:duration:options:animations:completion:':
                 name: transition
-            '+layerClass':
-                name: getLayerClass
-                return_type: 'Class<? extends CALayer>'
-                annotations: ['@WeaklyLinked']
             '+performSystemAnimation:onViews:options:animations:completion:':
                 trim_after_first_colon: true
                 parameters:
@@ -3024,16 +3165,14 @@ classes:
                 name: animateKeyframes
             '+addKeyframeWithRelativeStartTime:relativeDuration:animations:':
                 name: addKeyframe
-            '+userInterfaceLayoutDirectionForSemanticContentAttribute:':
-                name: getUserInterfaceLayoutDirectionForSemanticContentAttribute
+            '+userInterfaceLayoutDirectionForSemanticContentAttribute.*':
+                name: getUserInterfaceLayoutDirection
             '+beginAnimations:context:':
                 trim_after_first_colon: true
             '+setAnimationTransition:forView:cache:':
                 trim_after_first_colon: true
             '+performWithoutAnimation:':
                 trim_after_first_colon: true
-            '+inheritedAnimationDuration':
-                property: true
             '-convertPoint:fromView:':
                 name: convertPointFromView
             '-convertPoint:toView:':
@@ -3072,8 +3211,6 @@ classes:
                 name: getContentHuggingPriority
             '-alignmentRectForFrame:':
                 name: getAlignmentRectForFrame
-            '-alignmentRectInsets':
-                name: getAlignmentRectInsets
             '-constraints':
                 name: getConstraints
                 return_type: NSArray<NSLayoutConstraint>
@@ -3082,8 +3219,6 @@ classes:
                 return_type: NSArray<NSLayoutConstraint>
             '-frameForAlignmentRect:':
                 name: getFrameForAlignmentRect
-            '-intrinsicContentSize':
-                name: getIntrinsicContentSize
             '-systemLayoutSizeFittingSize:':
                 name: getSystemLayoutSizeFittingSize
                 parameters:
@@ -3174,6 +3309,9 @@ classes:
                 getter: modalPresentationCapturesStatusBarAppearance
             'extendedLayoutIncludesOpaqueBars':
                 getter: extendedLayoutIncludesOpaqueBars
+            'previewActionItems':
+                type: List<UIPreviewActionItem>
+                marshaler: NSArray.AsListMarshaler
         methods:
             '-init.*':
                 name: init
@@ -3202,14 +3340,10 @@ classes:
                 name: willRotate
             '-willMoveToParentViewController:':
                 name: willMoveToParentViewController
-            '-editButtonItem':
-                name: getEditButtonItem
             '-decodeRestorableStateWithCoder:':
                 name: decodeRestorableState
             '-encodeRestorableStateWithCoder:':
                 name: encodeRestorableState
-            '-preferredInterfaceOrientationForPresentation':
-                name: getPreferredInterfaceOrientation
             '-segueForUnwindingToViewController:fromViewController:identifier:':
                 name: getSegueForUnwinding
             '-shouldPerformSegueWithIdentifier:sender:':
@@ -3259,16 +3393,6 @@ classes:
                 name: willAnimateFirstHalfOfRotation
             '-willAnimateSecondHalfOfRotationFromInterfaceOrientation:duration:':
                 name: willAnimateSecondHalfOfRotation
-            '-preferredStatusBarStyle':
-                property: true
-            '-preferredStatusBarUpdateAnimation':
-                property: true
-            '-childViewControllerForStatusBarStyle':
-                property: true
-            '-childViewControllerForStatusBarHidden':
-                property: true
-            '-transitionCoordinator':
-                property: true
             '-targetViewControllerForAction:sender:':
                 name: getTargetViewControllerForAction
             '-showViewController:sender:':
@@ -3294,7 +3418,23 @@ classes:
                 name: getChildViewControllerContainingSegueSource
             '-unwindForSegue:towardsViewController:':
                 name: unwind
+            '-registerForPreviewingWithDelegate:sourceView:':
+                name: registerForPreviewing
+            '-unregisterForPreviewingWithContext:':
+                name: unregisterForPreviewing
     UIViewPrintFormatter: {} # DONE
+    UIViewPropertyAnimator: # DONE
+        methods:
+            '-init.*':
+                name: init
+            '+runningPropertyAnimatorWithDuration:delay:options:animations:completion:':
+                name: getRunningPropertyAnimator
+            '-addAnimations.*':
+                trim_after_first_colon: true
+            '-addCompletion:':
+                trim_after_first_colon: true
+            '-continueAnimationWithTimingParameters:durationFactor:':
+                name: continueAnimation
     UIVisualEffect: # DONE
         skip_handle_constructor: false
     UIVisualEffectView: # DONE
@@ -3417,8 +3557,6 @@ protocols:
                 name: willPresent
             '-alertViewShouldEnableFirstOtherButton:':
                 name: shouldEnableFirstOtherButton
-    # UIAppearance is bound as a class with static methods rather than an interface.
-    # UIAppearance: {}
     UIAppearanceContainer: # DONE
         skip_adapter: true
     UIApplicationDelegate: # DONE
@@ -3452,9 +3590,6 @@ protocols:
                 name: handleOpenURL
             '-application:openURL:sourceApplication:annotation:':
                 name: openURL
-                parameters:
-                    annotation:
-                        type: NSPropertyList
             '-application:openURL:options:':
                 name: openURL
                 parameters:
@@ -3495,7 +3630,8 @@ protocols:
                 name: getViewController
                 parameters:
                     identifierComponents:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
             '-application:willEncodeRestorableStateWithCoder:':
                 name: willEncodeRestorableState
             '-application:willFinishLaunchingWithOptions:':
@@ -3508,6 +3644,8 @@ protocols:
                 parameters:
                     userInfo:
                         type: UIRemoteNotification
+            '-application:performActionForShortcutItem:completionHandler:':
+                name: performAction
             '-application:performFetchWithCompletionHandler:':
                 name: performFetch
             '-application:handleEventsForBackgroundURLSession:completionHandler:':
@@ -3551,11 +3689,28 @@ protocols:
                         type: '@Block VoidBlock1<NSDictionary<?, ?>>'
             '-applicationShouldRequestHealthAuthorization:':
                 name: shouldRequestHealthAuthorization
+            '-application:userDidAcceptCloudKitShareWithMetadata:':
+                name: didAcceptCloudKitShare
+                exclude: true # >>>>> TODO need to update CloudKit
     UIBarPositioning: {} # DONE
     UIBarPositioningDelegate: # DONE
         methods:
             '-positionForBar:':
                 name: getPosition
+  #  UICloudSharingControllerDelegate: # DONE
+   #     methods:                    >>>>> TODO need to update CloudKit
+  #          '-cloudSharingController:failedToSaveShareWithError:':
+   #             name: failedToSaveShare
+   #         '-itemTitleForCloudSharingController:':
+   #             name: getItemTitle
+   #         '-itemThumbnailDataForCloudSharingController:':
+    #            name: getItemThumbnailData
+   #         '-itemTypeForCloudSharingController:':
+   #             name: getItemType
+   #         '-cloudSharingControllerDidSaveShare:':
+   #             name: didSaveShare
+   #         '-cloudSharingControllerDidStopSharing:':
+   #             name: didStopSharing
     UICollectionViewDataSource: # DONE
         methods:
             '-collectionView:cellForItemAtIndexPath:':
@@ -3570,6 +3725,12 @@ protocols:
                 name: canMoveItemAt
             '-collectionView:moveItemAtIndexPath:toIndexPath:':
                 name: moveItemAt
+    UICollectionViewDataSourcePrefetching: # DONE
+        methods:
+            '-collectionView:prefetchItemsAtIndexPaths:':
+                name: prefetchItems
+            '-collectionView:cancelPrefetchingForItemsAtIndexPaths:':
+                name: cancelPrefetchingForItems
     UICollectionViewDelegate: # DONE
         methods:
             '-collectionView:canPerformAction:forItemAtIndexPath:withSender:':
@@ -3606,6 +3767,14 @@ protocols:
                 name: getTargetIndexPathForMoveFromItem
             '-collectionView:targetContentOffsetForProposedContentOffset:':
                 name: getTargetContentOffsetForProposedContentOffset
+            '-collectionView:canFocusItemAtIndexPath:':
+                name: canFocusItem
+            '-collectionView:shouldUpdateFocusInContext:':
+                name: shouldUpdateFocus
+            '-collectionView:didUpdateFocusInContext:withAnimationCoordinator:':
+                name: didUpdateFocus
+            '-indexPathForPreferredFocusedViewInCollectionView:':
+                name: getIndexPathForPreferredFocusedView
     UICollectionViewDelegateFlowLayout: # DONE
         methods:
             '-collectionView:layout:insetForSectionAtIndex:':
@@ -3693,8 +3862,17 @@ protocols:
             '-dynamicAnimatorDidPause:':
                 name: didPause
     UIDynamicItem: {} # DONE
-    UIDynamicItemGroup: {}
-    UIFieldBehavior: {}
+    UIFocusEnvironment: # DONE
+        properties:
+            'preferredFocusEnvironments':
+                type: List<UIFocusEnvironment>
+                marshaler: NSArray.AsListMarshaler
+        methods:
+            '-shouldUpdateFocusInContext:':
+                name: shouldUpdateFocus
+            '-didUpdateFocusInContext:withAnimationCoordinator:':
+                name: didUpdateFocus
+    UIFocusItem: {} # DONE
     UIGestureRecognizerDelegate: # DONE
         methods:
             '-gestureRecognizer:shouldReceiveTouch:':
@@ -3707,11 +3885,15 @@ protocols:
                 name: shouldRequireFailure
             '-gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:':
                 name: shouldBeRequiredToFail
+            '-gestureRecognizer:shouldReceivePress:':
+                name: shouldReceivePress
     UIGuidedAccessRestrictionDelegate: # DONE
+        properties:
+            'guidedAccessRestrictionIdentifiers':
+                name: identifiers
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
         methods:
-            '-guidedAccessRestrictionIdentifiers':
-                name: getIdentifiers
-                return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
             '-guidedAccessRestrictionWithIdentifier:didChangeState:':
                 name: didChangeState
             '-textForGuidedAccessRestrictionWithIdentifier:':
@@ -3754,17 +3936,14 @@ protocols:
                 name: didShowViewController
             '-navigationController:willShowViewController:animated:':
                 name: willShowViewController
-            '-navigationControllerSupportedInterfaceOrientations:':
-                name: getSupportedInterfaceOrientations
-                return_type: UIInterfaceOrientationMask
             '-navigationControllerPreferredInterfaceOrientationForPresentation:':
                 name: getPreferredInterfaceOrientation
             '-navigationController:interactionControllerForAnimationController:':
                 name: getInteractionController
             '-navigationController:animationControllerForOperation:fromViewController:toViewController:':
                 name: getAnimationController
-# Has a single static mehtod
-#    UIObjectRestoration: {}
+            '-navigationControllerSupportedInterfaceOrientations:':
+                name: getSupportedInterfaceOrientations
     UIPageViewControllerDataSource: # DONE
         methods:
             '-pageViewController:viewControllerAfterViewController:':
@@ -3838,6 +4017,17 @@ protocols:
                 name: didDismissPopover
             '-popoverPresentationController:willRepositionPopoverToRect:inView:':
                 name: willRepositionPopover
+    UIPreviewActionItem: {} # DONE
+    UIPreviewInteractionDelegate: # DONE
+        methods:
+            '-previewInteraction:didUpdatePreviewTransition:ended:':
+                name: didUpdatePreviewTransition
+            '-previewInteractionDidCancel:':
+                name: didCancel
+            '-previewInteractionShouldBegin:':
+                name: shouldBegin
+            '-previewInteraction:didUpdateCommitTransition:ended:':
+                name: didUpdateCommitTransition
     UIPrintInteractionControllerDelegate: # DONE
         methods:
             '-printInteractionController:choosePaper:':
@@ -4073,7 +4263,8 @@ protocols:
                 name: getNumberOfSections
             '-sectionIndexTitlesForTableView:':
                 name: getSectionIndexTitles
-                return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+                return_type: List<String>
+                return_marshaler: NSArray.AsStringListMarshaler
             '-tableView:commitEditingStyle:forRowAtIndexPath:':
                 name: commitEditingStyleForRow
             '-tableView:canMoveRowAtIndexPath:':
@@ -4092,6 +4283,12 @@ protocols:
                 name: getTitleForFooter
             '-tableView:titleForHeaderInSection:':
                 name: getTitleForHeader
+    UITableViewDataSourcePrefetching: # DONE
+        methods:
+            '-tableView:prefetchRowsAtIndexPaths:':
+                name: prefetchRows
+            '-tableView:cancelPrefetchingForRowsAtIndexPaths:':
+                name: cancelPrefetchingForRows
     UITableViewDelegate: # DONE
         methods:
             '-tableView:accessoryButtonTappedForRowWithIndexPath:':
@@ -4163,6 +4360,16 @@ protocols:
             '-tableView:editActionsForRowAtIndexPath:':
                 name: getEditActionsForRow
                 return_type: NSArray<UITableViewRowAction>
+            '-tableView:canFocusRowAtIndexPath:':
+                name: canFocusRow
+                default: true
+            '-tableView:shouldUpdateFocusInContext:':
+                name: shouldUpdateFocus
+                default: true
+            '-tableView:didUpdateFocusInContext:withAnimationCoordinator:':
+                name: didUpdateFocus
+            '-indexPathForPreferredFocusedViewInTableView:':
+                name: getIndexPathForPreferredFocusedView
     UITextDocumentProxy: # DONE
         methods:
             '-adjustTextPositionByCharacterOffset:':
@@ -4174,7 +4381,7 @@ protocols:
                 default: true
             '-textFieldDidBeginEditing:':
                 name: didBeginEditing
-            '-textFieldDidEndEditing:':
+            '-textFieldDidEndEditing.*':
                 name: didEndEditing
             '-textFieldShouldBeginEditing:':
                 name: shouldBeginEditing
@@ -4241,8 +4448,6 @@ protocols:
                 name: setMarkedText
             '-setBaseWritingDirection:forRange:':
                 name: setBaseWritingDirection
-            '-insertDictationResultPlaceholder':
-                property: true
             '-insertDictationResult:':
                 name: insertDictationResult
                 parameters:
@@ -4303,10 +4508,11 @@ protocols:
                 name: shouldBeginEditing
             '-textViewShouldEndEditing:':
                 name: shouldEndEditing
-            '-textView:shouldInteractWithURL:inRange:':
+            '-textView:shouldInteractWithURL:inRange.*':
                 name: shouldInteractWithURL
-            '-textView:shouldInteractWithTextAttachment:inRange:':
+            '-textView:shouldInteractWithTextAttachment:inRange.*':
                 name: shouldInteractWithTextAttachment
+    UITimingCurveProvider: {} # DONE
     UIToolbarDelegate: {} # DONE
     UITraitEnvironment: # DONE
         methods:
@@ -4321,6 +4527,22 @@ protocols:
                 name: didSave
             '-videoEditorControllerDidCancel:':
                 name: didCancel
+    UIViewAnimating: # DONE
+        methods:
+            '-startAnimationAfterDelay:':
+                name: startAnimation
+            '-stopAnimation:':
+                trim_after_first_colon: true
+            '-finishAnimationAtPosition:':
+                name: finishAnimation
+    UIViewImplicitlyAnimating: # DONE
+        methods:
+            '-addAnimations.*':
+                trim_after_first_colon: true
+            '-addCompletion:':
+                trim_after_first_colon: true
+            '-continueAnimationWithTimingParameters:durationFactor:':
+                name: continueAnimation
     UIViewControllerAnimatedTransitioning: # DONE
         methods:
             '-transitionDuration:':
@@ -4329,10 +4551,10 @@ protocols:
                 name: animateTransition
             '-animationEnded:':
                 name: animationEnded
+            '-interruptibleAnimatorForTransition:':
+                name: getInterruptibleAnimator
     UIViewControllerContextTransitioning: # DONE
         methods:
-            '-(containerView|presentationStyle|targetTransform)':
-                property: true
             '-updateInteractiveTransition:':
                 name: updateInteractiveTransition
             '-completeTransition:':
@@ -4357,8 +4579,13 @@ protocols:
                 property: true
             '-startInteractiveTransition:':
                 name: startInteractiveTransition
-# Contains a single static method
-#    UIViewControllerRestoration: {}
+    UIViewControllerPreviewingDelegate: # DONE
+        methods:
+            '-previewingContext:commitViewController:':
+                name: commitViewController
+            '-previewingContext:viewControllerForLocation:':
+                name: getViewControllerForLocation
+    UIViewControllerPreviewing: {} # DONE
     UIViewControllerTransitionCoordinator: # DONE
         methods:
             '-animateAlongsideTransition:completion:':
@@ -4367,6 +4594,8 @@ protocols:
                 name: animateAlongsideTransition
             '-notifyWhenInteractionEndsUsingBlock:':
                 name: notifyWhenInteractionEnds
+            '-notifyWhenInteractionChangesUsingBlock:':
+                name: notifyWhenInteractionChanges
     UIViewControllerTransitionCoordinatorContext: # DONE
         methods:
             '-(presentationStyle|initiallyInteractive|transitionDuration|percentComplete|completionVelocity|completionCurve|containerView|targetTransform)':
@@ -4493,6 +4722,9 @@ functions:
     UIAccessibility(FocusedElement):
         class: UIAccessibilityGlobals
         name: 'get#{g[0]}'
+    UIAccessibilityHearingDevicePairedEar:
+        class: UIAccessibilityGlobals
+        name: getHearingDevicePairingStatus
     UIAccessibility(.*):
         class: UIAccessibilityGlobals
         name: '#{g[0]}'
@@ -4633,17 +4865,11 @@ values:
         constructor_visibility: public
         name: '#{g[0]}'
         type: NSString
-    NS(.*)AttributeName:
+    UIAccessibilitySpeechAttribute(.*):
         dictionary: NSAttributedStringAttributes
         enum: NSAttributedStringAttribute
         constructor_visibility: public
-        name: '#{g[0]}'
-        type: NSString
-    UITextAttribute(Font):
-        dictionary: NSAttributedStringAttributes
-        enum: NSAttributedStringAttribute
-        constructor_visibility: public
-        name: 'Text#{g[0]}'
+        name: 'Speech#{g[0]}'
         type: NSString
         methods:
             Font:
@@ -4692,6 +4918,16 @@ values:
                 type: String
             SpeechPitch:
                 type: double
+    NS(.*)AttributeName:
+        dictionary: NSAttributedStringAttributes
+        enum: NSAttributedStringAttribute
+        name: '#{g[0]}'
+        type: NSString
+    UITextAttribute(Font):
+        dictionary: NSAttributedStringAttributes
+        enum: NSAttributedStringAttribute
+        name: 'Text#{g[0]}'
+        type: NSString
     UITextAttribute(.*):
         dictionary: NSAttributedStringAttributes
         enum: NSAttributedStringAttribute
@@ -4776,11 +5012,6 @@ values:
         visibility: protected
         type: long
         readonly: true
-    UIAccessibilitySpeechAttribute(.*):
-        dictionary: NSAttributedStringAttributes
-        enum: NSAttributedStringAttribute
-        name: 'Speech#{g[0]}'
-        type: NSString
 
     # UIActivity
     UIActivityType(.*):
@@ -4800,7 +5031,6 @@ values:
         dictionary: UIApplicationLaunchOptions
         name: '#{g[0]}'
         type: NSString
-        mutable: false
         methods:
             URL:
                 type: NSURL
@@ -4809,7 +5039,7 @@ values:
             LocalNotification:
                 type: UILocalNotification
             Annotation:
-                type: NSPropertyList
+                type: NSObject
             Location:
                 name: locationStart
                 type: boolean
@@ -4825,6 +5055,11 @@ values:
             UserActivityDictionary:
                 name: UserActivityInfo
                 type: UIApplicationLaunchOptionsUserActivityInfo
+            ShortcutItem:
+                type: UIApplicationShortcutItem
+      #      CloudKitShareMetadata:
+      #          type: CKShareMetadata               >>>>> TODO need to update CloudKit
+
     UIApplication(.*Notification):
         class: UIApplication
         name: '#{g[0]}'
@@ -4879,12 +5114,23 @@ values:
             OpenInPlace:
                 name: opensInPlace
                 type: boolean
+            UniversalLinksOnly:
+                type: boolean
+    UIApplicationOpenURLOption(UniversalLinksOnly):
+        dictionary: UIApplicationOpenURLOptions
+        name: '#{g[0]}'
+        type: NSString
 
     # UICollectionView
     UICollectionElementKind(.*):
         enum: UICollectionElementKind
         name: '#{g[0]}'
         type: NSString
+
+    # UICollectionViewFlowLayout
+    UICollectionViewFlowLayout(AutomaticSize):
+        class: UICollectionViewFlowLayout
+        name: 'get#{g[0]}'
 
     # UIDevice
     UIDevice(.*Notification):
@@ -5041,6 +5287,15 @@ values:
         class: UIPasteboard
         name: '#{g[0]}'
         type: NSString
+    UIPasteboardOption(.*):
+        dictionary: UIPasteboardOptions
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            ExpirationDate:
+                type: NSDate
+            LocalOnly:
+                type: boolean
     UIPasteboardChanged(.*)Key:
         dictionary: UIPasteboardChangedNotification
         name: '#{g[0]}'
@@ -5053,6 +5308,9 @@ values:
             TypesRemoved:
                 name: removedTypes
                 type: List<String>
+    UIPasteboardTypeAutomatic:
+        class: UIPasteboard
+        name: getAutomaticType
     UIPasteboardNameGeneral:
         exclude: true # use UIPasteboard.getGeneralPasteboard() instead
     UI(PasteboardNameFind):
@@ -5109,6 +5367,11 @@ values:
         class: UITextField
         name: '#{g[0]}'
         type: NSString
+    UITextField(DidEndEditingReasonKey):
+        class: UITextField
+        name: '#{g[0]}'
+        type: NSString
+        visibility: protected
 
     # UITextInput
     UITextInputText(.*)Key:
@@ -5123,6 +5386,10 @@ values:
                 type: UIColor
             Font:
                 type: UIFont
+    UITextContentType(.*):
+        enum: UITextContentType
+        name: '#{g[0]}'
+        type: NSString
 
     # UITextInputMode
     UITextInput(.*)Notification:

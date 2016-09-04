@@ -139,13 +139,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIWindow() {}
+    protected UIWindow(Handle h, long handle) { super(h, handle); }
     protected UIWindow(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UIWindow(CGRect frame) {
         super(frame);
     }
-    
+    public UIWindow(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     /**
      * @since Available in iOS 3.2 and later.

@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMutableParagraphStyle() {}
+    protected NSMutableParagraphStyle(Handle h, long handle) { super(h, handle); }
     protected NSMutableParagraphStyle(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -53,6 +53,11 @@ import org.robovm.apple.corelocation.*;
     String getDocumentContextBeforeInput();
     @Property(selector = "documentContextAfterInput")
     String getDocumentContextAfterInput();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "documentInputMode")
+    UITextInputMode getDocumentInputMode();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "adjustTextPositionByCharacterOffset:")

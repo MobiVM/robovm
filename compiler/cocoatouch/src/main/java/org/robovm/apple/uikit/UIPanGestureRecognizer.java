@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPanGestureRecognizer() {}
+    protected UIPanGestureRecognizer(Handle h, long handle) { super(h, handle); }
     protected UIPanGestureRecognizer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     

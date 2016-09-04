@@ -51,13 +51,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITabBar() {}
+    protected UITabBar(Handle h, long handle) { super(h, handle); }
     protected UITabBar(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UITabBar(CGRect frame) {
         super(frame);
     }
-    
+    public UITabBar(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "delegate")
     public native UITabBarDelegate getDelegate();
@@ -71,6 +73,8 @@ import org.robovm.apple.corelocation.*;
     public native UITabBarItem getSelectedItem();
     @Property(selector = "setSelectedItem:", strongRef = true)
     public native void setSelectedItem(UITabBarItem v);
+    @Property(selector = "isCustomizing")
+    public native boolean isCustomizing();
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -91,6 +95,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setBarTintColor:")
     public native void setBarTintColor(UIColor v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "unselectedItemTintColor")
+    public native UIColor getUnselectedItemTintColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setUnselectedItemTintColor:")
+    public native void setUnselectedItemTintColor(UIColor v);
     /**
      * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 8.0.
@@ -194,7 +208,5 @@ import org.robovm.apple.corelocation.*;
     public native void beginCustomizing(NSArray<UITabBarItem> items);
     @Method(selector = "endCustomizingAnimated:")
     public native boolean endCustomizing(boolean animated);
-    @Method(selector = "isCustomizing")
-    public native boolean isCustomizing();
     /*</methods>*/
 }

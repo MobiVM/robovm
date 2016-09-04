@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIActivityViewController() {}
+    protected UIActivityViewController(Handle h, long handle) { super(h, handle); }
     protected UIActivityViewController(SkipInit skipInit) { super(skipInit); }
     public UIActivityViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     public UIActivityViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }

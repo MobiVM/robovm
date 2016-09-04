@@ -50,12 +50,11 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    @NotImplemented("guidedAccessRestrictionIdentifiers")
+    public @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getIdentifiers() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("guidedAccessRestrictionIdentifiers")
-    public @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getIdentifiers() { return null; }
     @NotImplemented("guidedAccessRestrictionWithIdentifier:didChangeState:")
     public void didChangeState(String restrictionIdentifier, UIGuidedAccessRestrictionState newRestrictionState) {}
     @NotImplemented("textForGuidedAccessRestrictionWithIdentifier:")

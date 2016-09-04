@@ -51,7 +51,10 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIStackView() {}
+    protected UIStackView(Handle h, long handle) { super(h, handle); }
     protected UIStackView(SkipInit skipInit) { super(skipInit); }
+    public UIStackView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UIStackView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     public UIStackView(NSArray<UIView> views) { super((SkipInit) null); initObject(init(views)); }
     /*</constructors>*/
     /*<properties>*/
@@ -84,6 +87,10 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "initWithArrangedSubviews:")
     protected native @Pointer long init(NSArray<UIView> views);
     @Method(selector = "addArrangedSubview:")

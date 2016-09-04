@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UICollisionBehavior() {}
+    protected UICollisionBehavior(Handle h, long handle) { super(h, handle); }
     protected UICollisionBehavior(SkipInit skipInit) { super(skipInit); }
     public UICollisionBehavior(List<UIDynamicItem> items) { super((SkipInit) null); initObject(init(items)); }
     /*</constructors>*/
@@ -66,7 +67,7 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "setTranslatesReferenceBoundsIntoBoundary:")
     public native void setTranslatesReferenceBoundsIntoBoundary(boolean v);
     @Property(selector = "boundaryIdentifiers")
-    public native NSArray getBoundaryIdentifiers();
+    public native NSArray<?> getBoundaryIdentifiers();
     @Property(selector = "collisionDelegate")
     public native UICollisionBehaviorDelegate getCollisionDelegate();
     @Property(selector = "setCollisionDelegate:", strongRef = true)

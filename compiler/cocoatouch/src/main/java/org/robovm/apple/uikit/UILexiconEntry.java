@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UILexiconEntry() {}
+    protected UILexiconEntry(Handle h, long handle) { super(h, handle); }
     protected UILexiconEntry(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

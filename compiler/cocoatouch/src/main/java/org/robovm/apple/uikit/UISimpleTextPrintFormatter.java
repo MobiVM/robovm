@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UISimpleTextPrintFormatter() {}
+    protected UISimpleTextPrintFormatter(Handle h, long handle) { super(h, handle); }
     protected UISimpleTextPrintFormatter(SkipInit skipInit) { super(skipInit); }
     public UISimpleTextPrintFormatter(String text) { super((SkipInit) null); initObject(init(text)); }
     /**

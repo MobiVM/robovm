@@ -48,8 +48,9 @@ import org.robovm.apple.accounts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SLComposeViewController() {}
+    protected SLComposeViewController(Handle h, long handle) { super(h, handle); }
     protected SLComposeViewController(SkipInit skipInit) { super(skipInit); }
-    public SLComposeViewController(SLServiceType serviceType) { super(create(serviceType)); retain(getHandle()); }
+    public SLComposeViewController(SLServiceType serviceType) { super((Handle) null, create(serviceType)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "serviceType")

@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIActivityIndicatorView() {}
+    protected UIActivityIndicatorView(Handle h, long handle) { super(h, handle); }
     protected UIActivityIndicatorView(SkipInit skipInit) { super(skipInit); }
     public UIActivityIndicatorView(UIActivityIndicatorViewStyle style) { super((SkipInit) null); initObject(init(style)); }
     public UIActivityIndicatorView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
@@ -75,6 +76,8 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setColor:")
     public native void setColor(UIColor v);
+    @Property(selector = "isAnimating")
+    public native boolean isAnimating();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -88,7 +91,5 @@ import org.robovm.apple.corelocation.*;
     public native void startAnimating();
     @Method(selector = "stopAnimating")
     public native void stopAnimating();
-    @Method(selector = "isAnimating")
-    public native boolean isAnimating();
     /*</methods>*/
 }

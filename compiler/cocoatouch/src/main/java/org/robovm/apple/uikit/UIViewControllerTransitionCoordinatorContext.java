@@ -49,27 +49,38 @@ import org.robovm.apple.corelocation.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    @Property(selector = "isAnimated")
+    boolean isAnimated();
+    @Property(selector = "presentationStyle")
+    UIModalPresentationStyle getPresentationStyle();
+    @Property(selector = "initiallyInteractive")
+    boolean isInitiallyInteractive();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isInterruptible")
+    boolean isInterruptible();
+    @Property(selector = "isInteractive")
+    boolean isInteractive();
+    @Property(selector = "isCancelled")
+    boolean isCancelled();
+    @Property(selector = "transitionDuration")
+    double getTransitionDuration();
+    @Property(selector = "percentComplete")
+    @MachineSizedFloat double getPercentComplete();
+    @Property(selector = "completionVelocity")
+    @MachineSizedFloat double getCompletionVelocity();
+    @Property(selector = "completionCurve")
+    UIViewAnimationCurve getCompletionCurve();
+    @Property(selector = "containerView")
+    UIView getContainerView();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Property(selector = "targetTransform")
+    @ByVal CGAffineTransform getTargetTransform();
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "isAnimated")
-    boolean isAnimated();
-    @Method(selector = "presentationStyle")
-    UIModalPresentationStyle getPresentationStyle();
-    @Method(selector = "initiallyInteractive")
-    boolean isInitiallyInteractive();
-    @Method(selector = "isInteractive")
-    boolean isInteractive();
-    @Method(selector = "isCancelled")
-    boolean isCancelled();
-    @Method(selector = "transitionDuration")
-    double getTransitionDuration();
-    @Method(selector = "percentComplete")
-    @MachineSizedFloat double getPercentComplete();
-    @Method(selector = "completionVelocity")
-    @MachineSizedFloat double getCompletionVelocity();
-    @Method(selector = "completionCurve")
-    UIViewAnimationCurve getCompletionCurve();
     @Method(selector = "viewControllerForKey:")
     UIViewController getViewController(String key);
     /**
@@ -77,13 +88,6 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "viewForKey:")
     UIView getView(String key);
-    @Method(selector = "containerView")
-    UIView getContainerView();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Method(selector = "targetTransform")
-    @ByVal CGAffineTransform getTargetTransform();
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

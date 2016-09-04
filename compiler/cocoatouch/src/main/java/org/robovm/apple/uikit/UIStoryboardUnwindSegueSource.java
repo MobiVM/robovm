@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIStoryboardUnwindSegueSource() {}
+    protected UIStoryboardUnwindSegueSource(Handle h, long handle) { super(h, handle); }
     protected UIStoryboardUnwindSegueSource(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

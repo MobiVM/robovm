@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UILocalizedIndexedCollation() {}
+    protected UILocalizedIndexedCollation(Handle h, long handle) { super(h, handle); }
     protected UILocalizedIndexedCollation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
