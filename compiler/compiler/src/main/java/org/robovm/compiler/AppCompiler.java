@@ -889,6 +889,8 @@ public class AppCompiler {
                          + "                        exists in the cache.");
         System.err.println("  -d <dir>              Install the generated executable and other files in <dir>.\n" 
                          + "                        Default is <wd>/<executableName>. Ignored if -run is specified.");
+        System.err.println("  -dump-intermediates   Dump intermediate files like assembler files and LLVM bitcode\n" 
+                         + "                        files to disk under ~/.robovm/cache/ or where the cache is.");
         System.err.println("  -cc <path>            Path to the c compiler binary. gcc and clang are supported.");
         System.err.println("  -home <dir>           Directory where RoboVM runtime has been installed.\n"
                          + "                        Default is $ROBOVM_HOME. If not set the following paths\n" 
