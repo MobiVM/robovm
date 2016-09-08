@@ -1,5 +1,5 @@
 package: org.robovm.apple.systemconfiguration
-include: [foundation.yaml, corefoundation.yaml, dispatch.yaml]
+include: [foundation, corefoundation, dispatch]
 library: SystemConfiguration
 framework: SystemConfiguration
 clang_args: ['-x', 'objective-c']
@@ -41,7 +41,7 @@ functions:
         class: SCNetworkReachability
         name: '#{g[0]}'
         visibility: private
-        return_marshaler: CFType.NoRetainMarshaler
+        return_type: '@Pointer long'
         parameters:
             address:
                 type: Struct<?>

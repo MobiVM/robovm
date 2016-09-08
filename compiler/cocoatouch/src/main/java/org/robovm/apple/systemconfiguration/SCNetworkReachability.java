@@ -76,9 +76,9 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 2.0 and later.
      */
-    public static SCNetworkReachability create(java.net.InetSocketAddress address) {
+    public SCNetworkReachability(java.net.InetSocketAddress address) {
         long refconId = SCNetworkReachability.refconId.getAndIncrement();
-        SCNetworkReachability reachability;
+        long reachability;
         
         java.net.InetAddress addr = address.getAddress();
         if (addr instanceof java.net.Inet4Address) {
@@ -88,13 +88,13 @@ import org.robovm.apple.dispatch.*;
         } else {
             throw new IllegalArgumentException("address is not a valid IPv4 or IPv6 address!");
         }
-        reachability.localRefconId = refconId;
-        return reachability;
+        localRefconId = refconId;
+        setHandle(reachability);
     }
     /**
      * @since Available in iOS 2.0 and later.
      */
-    public static SCNetworkReachability create(java.net.InetSocketAddress localAddress, java.net.InetSocketAddress remoteAddress) {
+    public SCNetworkReachability(java.net.InetSocketAddress localAddress, java.net.InetSocketAddress remoteAddress) {
         long refconId = SCNetworkReachability.refconId.getAndIncrement();
         Struct<?> l;
         Struct<?> r;
@@ -112,19 +112,19 @@ import org.robovm.apple.dispatch.*;
         } else {
             throw new IllegalArgumentException("remoteAddress is not a valid IPv4 or IPv6 address!");
         }
-        SCNetworkReachability reachability = create(null, l, r);
-        reachability.localRefconId = refconId;
-        return reachability;
+        long reachability = create(null, l, r);
+        localRefconId = refconId;
+        setHandle(reachability);
     }
     /**
      * @since Available in iOS 2.0 and later.
      */
-    public static SCNetworkReachability create(String nodename) {
+    public SCNetworkReachability(String nodename) {
         long refconId = SCNetworkReachability.refconId.getAndIncrement();
         BytePtr ptr = BytePtr.toBytePtrZ(nodename);
-        SCNetworkReachability reachability = create(null, ptr);
-        reachability.localRefconId = refconId;
-        return reachability;
+        long reachability = create(null, ptr);
+        localRefconId = refconId;
+        setHandle(reachability);
     }
     /**
      * @since Available in iOS 2.0 and later.
@@ -150,17 +150,17 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="SCNetworkReachabilityCreateWithAddress", optional=true)
-    private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) SCNetworkReachability create(CFAllocator allocator, Struct<?> address);
+    private static native @Pointer long create(CFAllocator allocator, Struct<?> address);
     /**
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="SCNetworkReachabilityCreateWithAddressPair", optional=true)
-    private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) SCNetworkReachability create(CFAllocator allocator, Struct<?> localAddress, Struct<?> remoteAddress);
+    private static native @Pointer long create(CFAllocator allocator, Struct<?> localAddress, Struct<?> remoteAddress);
     /**
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="SCNetworkReachabilityCreateWithName", optional=true)
-    private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) SCNetworkReachability create(CFAllocator allocator, BytePtr nodename);
+    private static native @Pointer long create(CFAllocator allocator, BytePtr nodename);
     /**
      * @since Available in iOS 2.0 and later.
      */
