@@ -99,6 +99,7 @@ enums:
     UIImagePickerControllerSourceType: {}
     UIImageRenderingMode: {prefix: UIImageRenderingMode}
     UIImageResizingMode: {}
+    UIImpactFeedbackStyle: {}
     UIInputViewStyle: {}
     UIInterfaceOrientation: {}
     UIInterfaceOrientationMask: {}
@@ -112,6 +113,7 @@ enums:
     UIModalPresentationStyle: {}
     UIModalTransitionStyle: {}
     UINavigationControllerOperation: {}
+    UINotificationFeedbackType: {}
     UIPageViewControllerNavigationDirection: {}
     UIPageViewControllerNavigationOrientation: {}
     UIPageViewControllerSpineLocation: {}
@@ -1567,6 +1569,7 @@ classes:
                 name: getCoalescedTouches
             '-predictedTouchesForTouch:':
                 name: getPredictedTouches
+    UIFeedbackGenerator: {} # DONE
     UIFieldBehavior: # DONE
         properties:
             'items':
@@ -1886,6 +1889,10 @@ classes:
         methods:
             '-init.*':
                 name: init
+    UIImpactFeedbackGenerator: # DONE
+        methods:
+            '-init.*':
+                name: init
     UIInputView: # DONE
         methods:
             '-init.*':
@@ -2109,6 +2116,10 @@ classes:
                 parameters:
                     optionsOrNil:
                         type: UINibLoadingOptions
+    UINotificationFeedbackGenerator: # DONE
+        methods:
+            '-notificationOccurred:':
+                trim_after_first_colon: true
     UIPageControl: # DONE
         methods:
             '-sizeForNumberOfPages:':
@@ -2634,6 +2645,7 @@ classes:
                         type: 'NSDictionary<NSString, ?>'
             '-setContentPositionAdjustment:forSegmentType:barMetrics:':
                 name: setContentPositionAdjustment
+    UISelectionFeedbackGenerator: {} # DONE
     UISimpleTextPrintFormatter: # DONE
         methods:
             '-init.*':
