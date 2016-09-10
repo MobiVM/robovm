@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(UIStoryboardSegue.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UIStoryboardSegue() {}
+    protected UIStoryboardSegue() {}
     protected UIStoryboardSegue(Handle h, long handle) { super(h, handle); }
     protected UIStoryboardSegue(SkipInit skipInit) { super(skipInit); }
     public UIStoryboardSegue(String identifier, UIViewController source, UIViewController destination) { super((SkipInit) null); initObject(init(identifier, source, destination)); }

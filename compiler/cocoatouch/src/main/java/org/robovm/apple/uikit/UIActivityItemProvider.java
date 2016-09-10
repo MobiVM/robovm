@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(UIActivityItemProvider.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UIActivityItemProvider() {}
+    protected UIActivityItemProvider() {}
     protected UIActivityItemProvider(Handle h, long handle) { super(h, handle); }
     protected UIActivityItemProvider(SkipInit skipInit) { super(skipInit); }
     public UIActivityItemProvider(NSObject placeholderItem) { super((SkipInit) null); initObject(init(placeholderItem)); }

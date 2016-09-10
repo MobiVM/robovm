@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(UICollectionViewTransitionLayout.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UICollectionViewTransitionLayout() {}
+    protected UICollectionViewTransitionLayout() {}
     protected UICollectionViewTransitionLayout(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewTransitionLayout(SkipInit skipInit) { super(skipInit); }
     public UICollectionViewTransitionLayout(UICollectionViewLayout currentLayout, UICollectionViewLayout newLayout) { super((SkipInit) null); initObject(init(currentLayout, newLayout)); }

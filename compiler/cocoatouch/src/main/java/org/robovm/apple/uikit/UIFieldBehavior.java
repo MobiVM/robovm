@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(UIFieldBehavior.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UIFieldBehavior() {}
+    protected UIFieldBehavior() {}
     protected UIFieldBehavior(Handle h, long handle) { super(h, handle); }
     protected UIFieldBehavior(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

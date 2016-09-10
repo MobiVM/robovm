@@ -50,12 +50,11 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(UIReferenceLibraryViewController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UIReferenceLibraryViewController() {}
+    protected UIReferenceLibraryViewController() {}
     protected UIReferenceLibraryViewController(Handle h, long handle) { super(h, handle); }
     protected UIReferenceLibraryViewController(SkipInit skipInit) { super(skipInit); }
     public UIReferenceLibraryViewController(String term) { super((SkipInit) null); initObject(init(term)); }
     public UIReferenceLibraryViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
-    public UIReferenceLibraryViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -66,8 +65,6 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(String term);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
     @Method(selector = "dictionaryHasDefinitionForTerm:")
     public static native boolean dictionaryHasDefinitionForTerm(String term);
     /*</methods>*/

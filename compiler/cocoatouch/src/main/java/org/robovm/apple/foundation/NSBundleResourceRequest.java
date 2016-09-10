@@ -66,7 +66,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSBundleResourceRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSBundleResourceRequest() {}
+    protected NSBundleResourceRequest() {}
     protected NSBundleResourceRequest(Handle h, long handle) { super(h, handle); }
     protected NSBundleResourceRequest(SkipInit skipInit) { super(skipInit); }
     public NSBundleResourceRequest(@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String> tags) { super((SkipInit) null); initObject(init(tags)); }

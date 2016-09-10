@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(UIPresentationController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UIPresentationController() {}
+    protected UIPresentationController() {}
     protected UIPresentationController(Handle h, long handle) { super(h, handle); }
     protected UIPresentationController(SkipInit skipInit) { super(skipInit); }
     public UIPresentationController(UIViewController presentedViewController, UIViewController presentingViewController) { super((SkipInit) null); initObject(init(presentedViewController, presentingViewController)); }

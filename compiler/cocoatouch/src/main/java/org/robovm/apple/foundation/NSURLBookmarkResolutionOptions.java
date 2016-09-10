@@ -49,7 +49,6 @@ public final class /*<name>*/NSURLBookmarkResolutionOptions/*</name>*/ extends B
     public static final NSURLBookmarkResolutionOptions None = new NSURLBookmarkResolutionOptions(0L);
     public static final NSURLBookmarkResolutionOptions WithoutUI = new NSURLBookmarkResolutionOptions(256L);
     public static final NSURLBookmarkResolutionOptions WithoutMounting = new NSURLBookmarkResolutionOptions(512L);
-    public static final NSURLBookmarkResolutionOptions WithSecurityScope = new NSURLBookmarkResolutionOptions(1024L);
     /*</values>*/
 
     private static final /*<name>*/NSURLBookmarkResolutionOptions/*</name>*/[] values = _values(/*<name>*/NSURLBookmarkResolutionOptions/*</name>*/.class);

@@ -52,7 +52,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSUserActivity.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSUserActivity() {}
+    protected NSUserActivity() {}
     protected NSUserActivity(Handle h, long handle) { super(h, handle); }
     protected NSUserActivity(SkipInit skipInit) { super(skipInit); }
     public NSUserActivity(String activityType) { super((SkipInit) null); initObject(init(activityType)); }

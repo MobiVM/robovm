@@ -44,8 +44,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/UITextFieldDidEndEditingReason/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Committed(0L),
-    Cancelled(1L);
+    Committed(0L);
     /*</values>*/
 
     /*<bind>*/

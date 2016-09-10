@@ -93,14 +93,12 @@ public enum /*<name>*/NSSearchPathDirectory/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 4.0 and later.
      */
     PreferencePanesDirectory(22L),
-    ApplicationScriptsDirectory(23L),
     /**
      * @since Available in iOS 4.0 and later.
      */
     ItemReplacementDirectory(99L),
     AllApplicationsDirectory(100L),
-    AllLibrariesDirectory(101L),
-    TrashDirectory(102L);
+    AllLibrariesDirectory(101L);
     /*</values>*/
 
     private final long n;

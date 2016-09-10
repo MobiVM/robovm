@@ -76,8 +76,6 @@ public enum /*<name>*/NSCocoaErrorCode/*</name>*/ implements NSErrorCode {
      * @since Available in iOS 4.0 and later.
      */
     FileWriteVolumeReadOnly(642L),
-    FileManagerUnmountUnknown(768L),
-    FileManagerUnmountBusy(769L),
     KeyValueValidation(1024L),
     Formatting(2048L),
     UserCancelled(3072L),
