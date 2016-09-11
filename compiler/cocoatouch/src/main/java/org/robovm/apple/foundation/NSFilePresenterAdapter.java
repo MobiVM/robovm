@@ -56,8 +56,6 @@ import org.robovm.apple.dispatch.*;
     public NSURL getPresentedItemURL() { return null; }
     @NotImplemented("presentedItemOperationQueue")
     public NSOperationQueue getPresentedItemOperationQueue() { return null; }
-    @NotImplemented("primaryPresentedItemURL")
-    public NSURL getPrimaryPresentedItemURL() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
