@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIImagePickerController() {}
+    protected UIImagePickerController(Handle h, long handle) { super(h, handle); }
     protected UIImagePickerController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

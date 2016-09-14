@@ -155,6 +155,16 @@ import org.robovm.apple.corelocation.*;
      */
     @GlobalValue(symbol="UIAccessibilityShakeToUndoDidChangeNotification", optional=true)
     public static native NSString ShakeToUndoDidChangeNotification();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityAssistiveTouchStatusDidChangeNotification", optional=true)
+    public static native NSString AssistiveTouchStatusDidChangeNotification();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityHearingDevicePairedEarDidChangeNotification", optional=true)
+    public static native NSString HearingDevicePairedEarDidChangeNotification();
     
     /**
      * @since Available in iOS 5.0 and later.
@@ -254,9 +264,19 @@ import org.robovm.apple.corelocation.*;
     @Bridge(symbol="UIAccessibilityIsShakeToUndoEnabled", optional=true)
     public static native boolean isShakeToUndoEnabled();
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="UIAccessibilityIsAssistiveTouchRunning", optional=true)
+    public static native boolean isAssistiveTouchRunning();
+    /**
      * @since Available in iOS 7.0 and later.
      */
     @Bridge(symbol="UIAccessibilityRequestGuidedAccessSession", optional=true)
     public static native void requestGuidedAccessSession(boolean enable, @Block VoidBooleanBlock completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="UIAccessibilityHearingDevicePairedEar", optional=true)
+    public static native UIAccessibilityHearingDeviceEar getHearingDevicePairingStatus();
     /*</methods>*/
 }

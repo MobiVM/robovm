@@ -50,7 +50,15 @@ public enum /*<name>*/UIUserInterfaceIdiom/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 3.2 and later.
      */
-    Pad(1L);
+    Pad(1L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    TV(2L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    CarPlay(3L);
     /*</values>*/
 
     private final long n;

@@ -64,6 +64,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIDocument() {}
+    protected UIDocument(Handle h, long handle) { super(h, handle); }
     protected UIDocument(SkipInit skipInit) { super(skipInit); }
     public UIDocument(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
@@ -80,10 +81,19 @@ import org.robovm.apple.corelocation.*;
     public native void setFileModificationDate(NSDate v);
     @Property(selector = "documentState")
     public native UIDocumentState getDocumentState();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "progress")
+    public native NSProgress getProgress();
     @Property(selector = "undoManager")
     public native NSUndoManager getUndoManager();
     @Property(selector = "setUndoManager:")
     public native void setUndoManager(NSUndoManager v);
+    @Property(selector = "hasUnsavedChanges")
+    public native boolean hasUnsavedChanges();
+    @Property(selector = "savingFileType")
+    public native String getSavingFileType();
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -98,8 +108,6 @@ import org.robovm.apple.corelocation.*;
     public native NSURL getPresentedItemURL();
     @Property(selector = "presentedItemOperationQueue")
     public native NSOperationQueue getPresentedItemOperationQueue();
-    @Property(selector = "progress")
-    public native NSProgress getProgress();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -140,8 +148,6 @@ import org.robovm.apple.corelocation.*;
     public native void disableEditing();
     @Method(selector = "enableEditing")
     public native void enableEditing();
-    @Method(selector = "hasUnsavedChanges")
-    public native boolean hasUnsavedChanges();
     @Method(selector = "updateChangeCount:")
     public native void updateChangeCount(UIDocumentChangeKind change);
     @Method(selector = "changeCountTokenForSaveOperation:")
@@ -152,8 +158,6 @@ import org.robovm.apple.corelocation.*;
     public native void save(NSURL url, UIDocumentSaveOperation saveOperation, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "autosaveWithCompletionHandler:")
     public native void autoSave(@Block VoidBooleanBlock completionHandler);
-    @Method(selector = "savingFileType")
-    public native String getSavingFileType();
     @Method(selector = "fileNameExtensionForType:saveOperation:")
     public native String getFileNameExtension(String typeName, UIDocumentSaveOperation saveOperation);
     public boolean writeContents(NSObject contents, NSFileAttributes additionalFileAttributes, NSURL url, UIDocumentSaveOperation saveOperation) throws NSErrorException {

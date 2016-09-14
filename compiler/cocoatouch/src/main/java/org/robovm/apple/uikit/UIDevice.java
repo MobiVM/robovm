@@ -94,9 +94,12 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIDevice() {}
+    protected UIDevice(Handle h, long handle) { super(h, handle); }
     protected UIDevice(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "currentDevice")
+    public static native UIDevice getCurrentDevice();
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "model")
@@ -191,7 +194,5 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "playInputClick")
     public native void playInputClick();
-    @Method(selector = "currentDevice")
-    public static native UIDevice getCurrentDevice();
     /*</methods>*/
 }

@@ -64,7 +64,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSCalendar.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSCalendar() {}
+    protected NSCalendar() {}
     protected NSCalendar(Handle h, long handle) { super(h, handle); }
     protected NSCalendar(SkipInit skipInit) { super(skipInit); }
     public NSCalendar(NSCalendarIdentifier ident) { super((SkipInit) null); initObject(init(ident)); }

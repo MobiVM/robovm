@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIAttachmentBehavior() {}
+    protected UIAttachmentBehavior(Handle h, long handle) { super(h, handle); }
     protected UIAttachmentBehavior(SkipInit skipInit) { super(skipInit); }
     public UIAttachmentBehavior(UIDynamicItem item, @ByVal CGPoint point) { super((SkipInit) null); initObject(init(item, point)); }
     public UIAttachmentBehavior(UIDynamicItem item, @ByVal UIOffset offset, @ByVal CGPoint point) { super((SkipInit) null); initObject(init(item, offset, point)); }

@@ -88,6 +88,16 @@ import org.robovm.apple.corelocation.*;
     public boolean isSecureTextEntry() { return false; }
     @NotImplemented("setSecureTextEntry:")
     public void setSecureTextEntry(boolean v) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("textContentType")
+    public UITextContentType getTextContentType() { return null; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("setTextContentType:")
+    public void setTextContentType(UITextContentType v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

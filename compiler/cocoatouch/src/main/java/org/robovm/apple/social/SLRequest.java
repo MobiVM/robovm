@@ -48,8 +48,9 @@ import org.robovm.apple.accounts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SLRequest() {}
+    protected SLRequest(Handle h, long handle) { super(h, handle); }
     protected SLRequest(SkipInit skipInit) { super(skipInit); }
-    public SLRequest(SLServiceType serviceType, SLRequestMethod requestMethod, NSURL url, NSDictionary<NSString, ?> parameters) { super(create(serviceType, requestMethod, url, parameters)); retain(getHandle()); }
+    public SLRequest(SLServiceType serviceType, SLRequestMethod requestMethod, NSURL url, NSDictionary<NSString, ?> parameters) { super((Handle) null, create(serviceType, requestMethod, url, parameters)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @WeaklyLinked

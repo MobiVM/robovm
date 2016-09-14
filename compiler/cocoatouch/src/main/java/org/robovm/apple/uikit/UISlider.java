@@ -51,13 +51,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UISlider() {}
+    protected UISlider(Handle h, long handle) { super(h, handle); }
     protected UISlider(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UISlider(CGRect frame) {
         super(frame);
     }
-    
+    public UISlider(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "value")
     public native float getValue();

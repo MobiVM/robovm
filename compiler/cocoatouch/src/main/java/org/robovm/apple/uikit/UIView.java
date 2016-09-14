@@ -44,19 +44,23 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIView/*</name>*/ 
     extends /*<extends>*/UIResponder/*</extends>*/ 
-    /*<implements>*/implements NSCoding, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIAccessibilityIdentification/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, CALayerDelegate, UIAccessibilityIdentification/*</implements>*/ {
 
     /*<ptr>*/public static class UIViewPtr extends Ptr<UIView, UIViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIView.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIView() {}
-    protected UIView(long handle) { super(handle); }
+    @Deprecated protected UIView(long handle) { super(handle); }
+    protected UIView(Handle h, long handle) { super(h, handle); }
     protected UIView(SkipInit skipInit) { super(skipInit); }
     public UIView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     public UIView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     @Property(selector = "isUserInteractionEnabled")
     public native boolean isUserInteractionEnabled();
     @Property(selector = "setUserInteractionEnabled:")
@@ -71,6 +75,16 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
+    @Property(selector = "canBecomeFocused")
+    public native boolean canBecomeFocused();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "isFocused")
+    public native boolean isFocused();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "semanticContentAttribute")
     public native UISemanticContentAttribute getSemanticContentAttribute();
     /**
@@ -78,6 +92,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setSemanticContentAttribute:")
     public native void setSemanticContentAttribute(UISemanticContentAttribute v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "effectiveUserInterfaceLayoutDirection")
+    public native UIUserInterfaceLayoutDirection getEffectiveUserInterfaceLayoutDirection();
     @Property(selector = "frame")
     public native @ByVal CGRect getFrame();
     @Property(selector = "setFrame:")
@@ -214,6 +233,13 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setTintAdjustmentMode:")
     public native void setTintAdjustmentMode(UIViewTintAdjustmentMode v);
+    @Property(selector = "areAnimationsEnabled")
+    public static native boolean areAnimationsEnabled();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "inheritedAnimationDuration")
+    public static native double getInheritedAnimationDuration();
     /**
      * @since Available in iOS 3.2 and later.
      */
@@ -250,6 +276,16 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "setTranslatesAutoresizingMaskIntoConstraints:")
     public native void setTranslatesAutoresizingMaskIntoConstraints(boolean v);
     /**
+     * @since Available in iOS 6.0 and later.
+     */
+    @Property(selector = "requiresConstraintBasedLayout")
+    public static native boolean requiresConstraintBasedLayout();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    @Property(selector = "alignmentRectInsets")
+    public native @ByVal UIEdgeInsets getAlignmentRectInsets();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "viewForFirstBaselineLayout")
@@ -259,6 +295,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "viewForLastBaselineLayout")
     public native UIView getViewForLastBaselineLayout();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    @Property(selector = "intrinsicContentSize")
+    public native @ByVal CGSize getIntrinsicContentSize();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -327,6 +368,11 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @Property(selector = "hasAmbiguousLayout")
+    public native boolean hasAmbiguousLayout();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     @Property(selector = "restorationIdentifier")
     public native String getRestorationIdentifier();
     /**
@@ -349,6 +395,15 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
+    @Property(selector = "preferredFocusEnvironments")
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> getPreferredFocusEnvironments();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "preferredFocusedView")
+    public native UIView getPreferredFocusedView();
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -372,14 +427,16 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
-    @WeaklyLinked
-    @Method(selector = "layerClass")
-    public static native Class<? extends CALayer> getLayerClass();
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
-    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirectionForSemanticContentAttribute(UISemanticContentAttribute attribute);
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     @Method(selector = "hitTest:withEvent:")
     public native UIView hitTest(@ByVal CGPoint point, UIEvent event);
     @Method(selector = "pointInside:withEvent:")
@@ -478,18 +535,11 @@ import org.robovm.apple.corelocation.*;
     public static native void setAnimationTransition(UIViewAnimationTransition transition, UIView view, boolean cache);
     @Method(selector = "setAnimationsEnabled:")
     public static native void setAnimationsEnabled(boolean enabled);
-    @Method(selector = "areAnimationsEnabled")
-    public static native boolean areAnimationsEnabled();
     /**
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "performWithoutAnimation:")
     public static native void performWithoutAnimation(@Block Runnable actionsWithoutAnimation);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "inheritedAnimationDuration")
-    public static native double getInheritedAnimationDuration();
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -603,11 +653,6 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 6.0 and later.
      */
-    @Method(selector = "requiresConstraintBasedLayout")
-    public static native boolean requiresConstraintBasedLayout();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Method(selector = "alignmentRectForFrame:")
     public native @ByVal CGRect getAlignmentRectForFrame(@ByVal CGRect frame);
     /**
@@ -617,21 +662,11 @@ import org.robovm.apple.corelocation.*;
     public native @ByVal CGRect getFrameForAlignmentRect(@ByVal CGRect alignmentRect);
     /**
      * @since Available in iOS 6.0 and later.
-     */
-    @Method(selector = "alignmentRectInsets")
-    public native @ByVal UIEdgeInsets getAlignmentRectInsets();
-    /**
-     * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @Method(selector = "viewForBaselineLayout")
     public native UIView getViewForBaselineLayout();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @Method(selector = "intrinsicContentSize")
-    public native @ByVal CGSize getIntrinsicContentSize();
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -682,11 +717,6 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "constraintsAffectingLayoutForAxis:")
     public native NSArray<NSLayoutConstraint> getConstraintsAffectingLayout(UILayoutConstraintAxis axis);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @Method(selector = "hasAmbiguousLayout")
-    public native boolean hasAmbiguousLayout();
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -750,5 +780,26 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "convertRect:fromCoordinateSpace:")
     public native @ByVal CGRect convertRectFromCoordinateSpace(@ByVal CGRect rect, UICoordinateSpace coordinateSpace);
+    @Method(selector = "setNeedsFocusUpdate")
+    public native void setNeedsFocusUpdate();
+    @Method(selector = "updateFocusIfNeeded")
+    public native void updateFocusIfNeeded();
+    @Method(selector = "shouldUpdateFocusInContext:")
+    public native boolean shouldUpdateFocus(UIFocusUpdateContext context);
+    @Method(selector = "didUpdateFocusInContext:withAnimationCoordinator:")
+    public native void didUpdateFocus(UIFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
+    @Method(selector = "displayLayer:")
+    public native void displayLayer(CALayer layer);
+    @Method(selector = "drawLayer:inContext:")
+    public native void drawLayer(CALayer layer, CGContext ctx);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "layerWillDraw:")
+    public native void willDrawLayer(CALayer layer);
+    @Method(selector = "layoutSublayersOfLayer:")
+    public native void layoutSublayers(CALayer layer);
+    @Method(selector = "actionForLayer:forKey:")
+    public native CAAction getAction(CALayer layer, String event);
     /*</methods>*/
 }

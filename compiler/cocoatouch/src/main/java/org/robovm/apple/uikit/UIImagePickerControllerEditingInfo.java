@@ -227,6 +227,11 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="UIImagePickerControllerMediaMetadata", optional=true)
         public static native NSString MediaMetadata();
+        /**
+         * @since Available in iOS 9.1 and later.
+         */
+        @GlobalValue(symbol="UIImagePickerControllerLivePhoto", optional=true)
+        public static native NSString LivePhoto();
     }
     /*</keys>*/
 }

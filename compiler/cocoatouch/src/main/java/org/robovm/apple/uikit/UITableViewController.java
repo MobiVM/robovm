@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITableViewController() {}
+    protected UITableViewController(Handle h, long handle) { super(h, handle); }
     protected UITableViewController(SkipInit skipInit) { super(skipInit); }
     public UITableViewController(UITableViewStyle style) { super((SkipInit) null); initObject(init(style)); }
     public UITableViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
@@ -210,6 +211,26 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "tableView:performAction:forRowAtIndexPath:withSender:")
     public native void performActionForRow(UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "tableView:canFocusRowAtIndexPath:")
+    public native boolean canFocusRow(UITableView tableView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "tableView:shouldUpdateFocusInContext:")
+    public native boolean shouldUpdateFocus(UITableView tableView, UITableViewFocusUpdateContext context);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "tableView:didUpdateFocusInContext:withAnimationCoordinator:")
+    public native void didUpdateFocus(UITableView tableView, UITableViewFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "indexPathForPreferredFocusedViewInTableView:")
+    public native NSIndexPath getIndexPathForPreferredFocusedView(UITableView tableView);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     /**

@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIProgressView() {}
+    protected UIProgressView(Handle h, long handle) { super(h, handle); }
     protected UIProgressView(SkipInit skipInit) { super(skipInit); }
     public UIProgressView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     public UIProgressView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }

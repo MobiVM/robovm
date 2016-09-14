@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIMarkupTextPrintFormatter() {}
+    protected UIMarkupTextPrintFormatter(Handle h, long handle) { super(h, handle); }
     protected UIMarkupTextPrintFormatter(SkipInit skipInit) { super(skipInit); }
     public UIMarkupTextPrintFormatter(String markupText) { super((SkipInit) null); initObject(init(markupText)); }
     /*</constructors>*/

@@ -49,7 +49,7 @@ import org.robovm.apple.security.*;
     protected NSException(Handle h, long handle) { super(h, handle); }
     protected NSException(SkipInit skipInit) { super(skipInit); }
     public NSException(String aName, String aReason, NSDictionary<?, ?> aUserInfo) { super((SkipInit) null); initObject(init(aName, aReason, aUserInfo)); }
-    public NSException(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NSException(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -131,6 +131,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

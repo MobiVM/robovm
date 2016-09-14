@@ -51,7 +51,8 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIVisualEffect() {}
-    protected UIVisualEffect(long handle) { super(handle); }
+    @Deprecated protected UIVisualEffect(long handle) { super(handle); }
+    protected UIVisualEffect(Handle h, long handle) { super(h, handle); }
     protected UIVisualEffect(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

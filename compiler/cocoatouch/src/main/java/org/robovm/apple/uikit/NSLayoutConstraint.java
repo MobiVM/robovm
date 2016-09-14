@@ -51,8 +51,9 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSLayoutConstraint() {}
+    protected NSLayoutConstraint(Handle h, long handle) { super(h, handle); }
     protected NSLayoutConstraint(SkipInit skipInit) { super(skipInit); }
-    public NSLayoutConstraint(NSObject view1, NSLayoutAttribute attr1, NSLayoutRelation relation, NSObject view2, NSLayoutAttribute attr2, @MachineSizedFloat double multiplier, @MachineSizedFloat double c) { super(create(view1, attr1, relation, view2, attr2, multiplier, c)); retain(getHandle()); }
+    public NSLayoutConstraint(NSObject view1, NSLayoutAttribute attr1, NSLayoutRelation relation, NSObject view2, NSLayoutAttribute attr2, @MachineSizedFloat double multiplier, @MachineSizedFloat double c) { super((Handle) null, create(view1, attr1, relation, view2, attr2, multiplier, c)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "priority")
@@ -67,12 +68,22 @@ import org.robovm.apple.corelocation.*;
     public native NSObject getFirstItem();
     @Property(selector = "firstAttribute")
     public native NSLayoutAttribute getFirstAttribute();
-    @Property(selector = "relation")
-    public native NSLayoutRelation getRelation();
     @Property(selector = "secondItem")
     public native NSObject getSecondItem();
     @Property(selector = "secondAttribute")
     public native NSLayoutAttribute getSecondAttribute();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "firstAnchor")
+    public native NSLayoutAnchor getFirstAnchor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "secondAnchor")
+    public native NSLayoutAnchor getSecondAnchor();
+    @Property(selector = "relation")
+    public native NSLayoutRelation getRelation();
     @Property(selector = "multiplier")
     public native @MachineSizedFloat double getMultiplier();
     @Property(selector = "constant")

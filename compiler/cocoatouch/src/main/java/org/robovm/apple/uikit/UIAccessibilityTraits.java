@@ -42,6 +42,7 @@ import org.robovm.apple.corelocation.*;
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/UIAccessibilityTraits/*</name>*/ 
     extends /*<extends>*/Bits<UIAccessibilityTraits>/*</extends>*/  {
 
+    /*<values>*/
     public static final UIAccessibilityTraits None = new UIAccessibilityTraits(NoneValue());
     public static final UIAccessibilityTraits Button = new UIAccessibilityTraits(ButtonValue());
     public static final UIAccessibilityTraits Link = new UIAccessibilityTraits(LinkValue());
@@ -73,6 +74,11 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 5.0 and later.
      */
     public static final UIAccessibilityTraits CausesPageTurn = new UIAccessibilityTraits(CausesPageTurnValue());
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final UIAccessibilityTraits TabBarValue = new UIAccessibilityTraits(TabBarValue());
+    /*</values>*/
 
     private static final /*<name>*/UIAccessibilityTraits/*</name>*/[] values = _values(/*<name>*/UIAccessibilityTraits/*</name>*/.class);
 
@@ -138,5 +144,10 @@ import org.robovm.apple.corelocation.*;
      */
     @GlobalValue(symbol="UIAccessibilityTraitCausesPageTurn", optional=true)
     protected static native long CausesPageTurnValue();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTraitTabBar", optional=true)
+    protected static native long TabBarValue();
     /*</methods>*/
 }

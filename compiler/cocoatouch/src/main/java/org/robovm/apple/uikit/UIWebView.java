@@ -51,13 +51,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIWebView() {}
+    protected UIWebView(Handle h, long handle) { super(h, handle); }
     protected UIWebView(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UIWebView(CGRect frame) {
         super(frame);
     }
-    
+    public UIWebView(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "delegate")
     public native UIWebViewDelegate getDelegate();
@@ -195,6 +197,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setAllowsPictureInPictureMediaPlayback:")
     public native void setAllowsPictureInPictureMediaPlayback(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "allowsLinkPreview")
+    public native boolean allowsLinkPreview();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setAllowsLinkPreview:")
+    public native void setAllowsLinkPreview(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

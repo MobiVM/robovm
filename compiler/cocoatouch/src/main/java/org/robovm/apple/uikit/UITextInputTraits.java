@@ -87,6 +87,16 @@ import org.robovm.apple.corelocation.*;
     boolean isSecureTextEntry();
     @Property(selector = "setSecureTextEntry:")
     void setSecureTextEntry(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "textContentType")
+    UITextContentType getTextContentType();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTextContentType:")
+    void setTextContentType(UITextContentType v);
     /*</properties>*/
     /*<methods>*/
     

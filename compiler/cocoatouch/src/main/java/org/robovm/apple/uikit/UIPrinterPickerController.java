@@ -51,8 +51,9 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPrinterPickerController() {}
+    protected UIPrinterPickerController(Handle h, long handle) { super(h, handle); }
     protected UIPrinterPickerController(SkipInit skipInit) { super(skipInit); }
-    public UIPrinterPickerController(UIPrinter printer) { super(create(printer)); retain(getHandle()); }
+    public UIPrinterPickerController(UIPrinter printer) { super((Handle) null, create(printer)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "selectedPrinter")

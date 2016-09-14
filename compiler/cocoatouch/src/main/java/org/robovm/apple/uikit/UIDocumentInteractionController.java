@@ -51,8 +51,9 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIDocumentInteractionController() {}
+    protected UIDocumentInteractionController(Handle h, long handle) { super(h, handle); }
     protected UIDocumentInteractionController(SkipInit skipInit) { super(skipInit); }
-    public UIDocumentInteractionController(NSURL url) { super(create(url)); retain(getHandle()); }
+    public UIDocumentInteractionController(NSURL url) { super((Handle) null, create(url)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

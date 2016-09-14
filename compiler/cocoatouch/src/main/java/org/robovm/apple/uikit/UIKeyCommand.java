@@ -51,13 +51,14 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIKeyCommand() {}
+    protected UIKeyCommand(Handle h, long handle) { super(h, handle); }
     protected UIKeyCommand(SkipInit skipInit) { super(skipInit); }
     public UIKeyCommand(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
-    public UIKeyCommand(String input, UIKeyModifierFlags modifierFlags, Selector action) { super(create(input, modifierFlags, action)); retain(getHandle()); }
+    public UIKeyCommand(String input, UIKeyModifierFlags modifierFlags, Selector action) { super((Handle) null, create(input, modifierFlags, action)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public UIKeyCommand(String input, UIKeyModifierFlags modifierFlags, Selector action, String discoverabilityTitle) { super(create(input, modifierFlags, action, discoverabilityTitle)); retain(getHandle()); }
+    public UIKeyCommand(String input, UIKeyModifierFlags modifierFlags, Selector action, String discoverabilityTitle) { super((Handle) null, create(input, modifierFlags, action, discoverabilityTitle)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "input")

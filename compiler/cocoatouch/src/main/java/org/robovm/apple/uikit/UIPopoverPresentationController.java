@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPopoverPresentationController() {}
+    protected UIPopoverPresentationController(Handle h, long handle) { super(h, handle); }
     protected UIPopoverPresentationController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

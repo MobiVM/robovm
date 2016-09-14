@@ -51,13 +51,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIRegion() {}
+    protected UIRegion(Handle h, long handle) { super(h, handle); }
     protected UIRegion(SkipInit skipInit) { super(skipInit); }
     public UIRegion(@MachineSizedFloat double radius) { super((SkipInit) null); initObject(init(radius)); }
     public UIRegion(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
-    public UIRegion(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIRegion(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "infiniteRegion")
+    public static native UIRegion getInfiniteRegion();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -75,11 +77,9 @@ import org.robovm.apple.corelocation.*;
     public native UIRegion intersection(UIRegion region);
     @Method(selector = "containsPoint:")
     public native boolean containsPoint(@ByVal CGPoint point);
-    @Method(selector = "infiniteRegion")
-    public static native UIRegion getInfiniteRegion();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

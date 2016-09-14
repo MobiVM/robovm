@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UICollectionViewController() {}
+    protected UICollectionViewController(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewController(SkipInit skipInit) { super(skipInit); }
     public UICollectionViewController(UICollectionViewLayout layout) { super((SkipInit) null); initObject(init(layout)); }
     public UICollectionViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
@@ -135,6 +136,26 @@ import org.robovm.apple.corelocation.*;
     public native void performAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender);
     @Method(selector = "collectionView:transitionLayoutForOldLayout:newLayout:")
     public native UICollectionViewTransitionLayout getTransitionLayout(UICollectionView collectionView, UICollectionViewLayout fromLayout, UICollectionViewLayout toLayout);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "collectionView:canFocusItemAtIndexPath:")
+    public native boolean canFocusItem(UICollectionView collectionView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "collectionView:shouldUpdateFocusInContext:")
+    public native boolean shouldUpdateFocus(UICollectionView collectionView, UICollectionViewFocusUpdateContext context);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "collectionView:didUpdateFocusInContext:withAnimationCoordinator:")
+    public native void didUpdateFocus(UICollectionView collectionView, UICollectionViewFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "indexPathForPreferredFocusedViewInCollectionView:")
+    public native NSIndexPath getIndexPathForPreferredFocusedView(UICollectionView collectionView);
     /**
      * @since Available in iOS 9.0 and later.
      */

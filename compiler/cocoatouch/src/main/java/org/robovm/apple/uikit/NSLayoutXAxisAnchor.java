@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSLayoutXAxisAnchor() {}
+    protected NSLayoutXAxisAnchor(Handle h, long handle) { super(h, handle); }
     protected NSLayoutXAxisAnchor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

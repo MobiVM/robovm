@@ -102,6 +102,7 @@ import org.robovm.apple.corelocation.*;
     }
     /*<constructors>*/
     public UIMenuItem() {}
+    protected UIMenuItem(Handle h, long handle) { super(h, handle); }
     protected UIMenuItem(SkipInit skipInit) { super(skipInit); }
     public UIMenuItem(String title, Selector action) { super((SkipInit) null); initObject(init(title, action)); }
     /*</constructors>*/

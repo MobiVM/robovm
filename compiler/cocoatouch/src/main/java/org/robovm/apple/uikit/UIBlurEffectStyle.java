@@ -46,7 +46,19 @@ public enum /*<name>*/UIBlurEffectStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     ExtraLight(0L),
     Light(1L),
-    Dark(2L);
+    Dark(2L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    ExtraDark(3L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Regular(4L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Prominent(5L);
     /*</values>*/
 
     /*<bind>*/

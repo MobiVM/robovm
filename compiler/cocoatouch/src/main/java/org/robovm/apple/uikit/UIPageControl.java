@@ -51,13 +51,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPageControl() {}
+    protected UIPageControl(Handle h, long handle) { super(h, handle); }
     protected UIPageControl(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UIPageControl(CGRect frame) {
         super(frame);
     }
-    
+    public UIPageControl(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "numberOfPages")
     public native @MachineSizedSInt long getNumberOfPages();

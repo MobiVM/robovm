@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPrintPaper() {}
+    protected UIPrintPaper(Handle h, long handle) { super(h, handle); }
     protected UIPrintPaper(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

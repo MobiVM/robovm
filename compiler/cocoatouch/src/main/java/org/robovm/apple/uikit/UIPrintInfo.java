@@ -51,9 +51,10 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPrintInfo() {}
+    protected UIPrintInfo(Handle h, long handle) { super(h, handle); }
     protected UIPrintInfo(SkipInit skipInit) { super(skipInit); }
     public UIPrintInfo(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
-    public UIPrintInfo(NSDictionary<?, ?> dictionary) { super(create(dictionary)); retain(getHandle()); }
+    public UIPrintInfo(NSDictionary<?, ?> dictionary) { super((Handle) null, create(dictionary)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "printerID")
@@ -76,13 +77,13 @@ import org.robovm.apple.corelocation.*;
     public native UIPrintInfoDuplex getDuplex();
     @Property(selector = "setDuplex:")
     public native void setDuplex(UIPrintInfoDuplex v);
+    @Property(selector = "dictionaryRepresentation")
+    public native NSDictionary<?, ?> toDictionary();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
-    @Method(selector = "dictionaryRepresentation")
-    public native NSDictionary<?, ?> toDictionary();
     @Method(selector = "printInfoWithDictionary:")
     protected static native @Pointer long create(NSDictionary<?, ?> dictionary);
     @Method(selector = "encodeWithCoder:")

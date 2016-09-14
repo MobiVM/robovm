@@ -44,20 +44,22 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPickerView/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
-    /*<implements>*/implements NSCoding, UITableViewDataSource/*</implements>*/ {
+    /*<implements>*/implements NSCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UIPickerViewPtr extends Ptr<UIPickerView, UIPickerViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIPickerView.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPickerView() {}
+    protected UIPickerView(Handle h, long handle) { super(h, handle); }
     protected UIPickerView(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UIPickerView(CGRect frame) {
         super(frame);
     }
-    
+    public UIPickerView(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "dataSource")
     public native UIPickerViewDataSource getDataSource();
@@ -75,6 +77,15 @@ import org.robovm.apple.corelocation.*;
     public native @MachineSizedSInt long getNumberOfComponents();
     /*</properties>*/
     /*<members>*//*</members>*/
+    private UIPickerViewModel model;
+    public void setModel(UIPickerViewModel model) {
+        this.model = model;
+        setDelegate(model);
+        setDataSource(model);
+    }
+    public UIPickerViewModel getModel() {
+        return model;
+    }
     /*<methods>*/
     @Method(selector = "numberOfRowsInComponent:")
     public native @MachineSizedSInt long getNumberOfRows(@MachineSizedSInt long component);
@@ -90,27 +101,5 @@ import org.robovm.apple.corelocation.*;
     public native void selectRow(@MachineSizedSInt long row, @MachineSizedSInt long component, boolean animated);
     @Method(selector = "selectedRowInComponent:")
     public native @MachineSizedSInt long getSelectedRow(@MachineSizedSInt long component);
-    @Method(selector = "tableView:numberOfRowsInSection:")
-    public native @MachineSizedSInt long getNumberOfRowsInSection(UITableView tableView, @MachineSizedSInt long section);
-    @Method(selector = "tableView:cellForRowAtIndexPath:")
-    public native UITableViewCell getCellForRow(UITableView tableView, NSIndexPath indexPath);
-    @Method(selector = "numberOfSectionsInTableView:")
-    public native @MachineSizedSInt long getNumberOfSections(UITableView tableView);
-    @Method(selector = "tableView:titleForHeaderInSection:")
-    public native String getTitleForHeader(UITableView tableView, @MachineSizedSInt long section);
-    @Method(selector = "tableView:titleForFooterInSection:")
-    public native String getTitleForFooter(UITableView tableView, @MachineSizedSInt long section);
-    @Method(selector = "tableView:canEditRowAtIndexPath:")
-    public native boolean canEditRow(UITableView tableView, NSIndexPath indexPath);
-    @Method(selector = "tableView:canMoveRowAtIndexPath:")
-    public native boolean canMoveRow(UITableView tableView, NSIndexPath indexPath);
-    @Method(selector = "sectionIndexTitlesForTableView:")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getSectionIndexTitles(UITableView tableView);
-    @Method(selector = "tableView:sectionForSectionIndexTitle:atIndex:")
-    public native @MachineSizedSInt long getSectionForSectionIndexTitle(UITableView tableView, String title, @MachineSizedSInt long index);
-    @Method(selector = "tableView:commitEditingStyle:forRowAtIndexPath:")
-    public native void commitEditingStyleForRow(UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath);
-    @Method(selector = "tableView:moveRowAtIndexPath:toIndexPath:")
-    public native void moveRow(UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath);
     /*</methods>*/
 }

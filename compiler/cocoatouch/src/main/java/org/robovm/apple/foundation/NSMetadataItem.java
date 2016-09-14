@@ -52,7 +52,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSMetadataItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSMetadataItem() {}
+    protected NSMetadataItem() {}
     protected NSMetadataItem(Handle h, long handle) { super(h, handle); }
     protected NSMetadataItem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

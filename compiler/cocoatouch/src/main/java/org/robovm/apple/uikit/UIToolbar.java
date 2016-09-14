@@ -51,13 +51,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIToolbar() {}
+    protected UIToolbar(Handle h, long handle) { super(h, handle); }
     protected UIToolbar(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UIToolbar(CGRect frame) {
         super(frame);
     }
-    
+    public UIToolbar(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "barStyle")
     public native UIBarStyle getBarStyle();

@@ -39,7 +39,9 @@ import org.robovm.apple.corelocation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UILocalNotification/*</name>*/ 
@@ -51,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UILocalNotification() {}
+    protected UILocalNotification(Handle h, long handle) { super(h, handle); }
     protected UILocalNotification(SkipInit skipInit) { super(skipInit); }
     public UILocalNotification(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
@@ -146,7 +149,9 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @GlobalValue(symbol="UILocalNotificationDefaultSoundName", optional=true)
     public static native String getDefaultSoundName();
     

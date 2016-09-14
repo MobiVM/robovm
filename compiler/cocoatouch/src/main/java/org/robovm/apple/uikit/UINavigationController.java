@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UINavigationController() {}
+    protected UINavigationController(Handle h, long handle) { super(h, handle); }
     protected UINavigationController(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 5.0 and later.

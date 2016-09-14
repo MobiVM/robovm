@@ -46,7 +46,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIViewController/*</name>*/ 
     extends /*<extends>*/UIResponder/*</extends>*/ 
-    /*<implements>*/implements NSCoding, UIAppearanceContainer, UITraitEnvironment, UIStateRestoring, NSExtensionRequestHandling/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIAppearanceContainer, UITraitEnvironment, UIFocusEnvironment, UIStateRestoring, NSExtensionRequestHandling/*</implements>*/ {
 
     public static class Notifications {
         /**
@@ -67,7 +67,8 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIViewController() {}
-    protected UIViewController(long handle) { super(handle); }
+    @Deprecated protected UIViewController(long handle) { super(handle); }
+    protected UIViewController(Handle h, long handle) { super(h, handle); }
     protected UIViewController(SkipInit skipInit) { super(skipInit); }
     public UIViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     public UIViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
@@ -82,6 +83,11 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "viewIfLoaded")
     public native UIView getViewIfLoaded();
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
+    @Property(selector = "isViewLoaded")
+    public native boolean isViewLoaded();
     @Property(selector = "nibName")
     public native String getNibName();
     @Property(selector = "nibBundle")
@@ -128,6 +134,36 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "setProvidesPresentationContextTransitionStyle:")
     public native void setProvidesPresentationContextTransitionStyle(boolean v);
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "restoresFocusAfterTransition")
+    public native boolean isRestoresFocusAfterTransition();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setRestoresFocusAfterTransition:")
+    public native void setRestoresFocusAfterTransition(boolean v);
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "isBeingPresented")
+    public native boolean isBeingPresented();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "isBeingDismissed")
+    public native boolean isBeingDismissed();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "isMovingToParentViewController")
+    public native boolean isMovingToParentViewController();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "isMovingFromParentViewController")
+    public native boolean isMovingFromParentViewController();
+    /**
      * @since Available in iOS 3.0 and later.
      */
     @Property(selector = "modalTransitionStyle")
@@ -157,6 +193,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "setModalPresentationCapturesStatusBarAppearance:")
     public native void setModalPresentationCapturesStatusBarAppearance(boolean v);
+    /**
+     * @since Available in iOS 4.3 and later.
+     */
+    @Property(selector = "disablesAutomaticKeyboardDismissal")
+    public native boolean disablesAutomaticKeyboardDismissal();
+    /**
+     * @since Available in iOS 4.3 and later.
+     */
+    @Property(selector = "setDisablesAutomaticKeyboardDismissal:")
+    public native void setDisablesAutomaticKeyboardDismissal(boolean v);
     /**
      * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 7.0.
@@ -212,6 +258,36 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "setPreferredContentSize:")
     public native void setPreferredContentSize(@ByVal CGSize v);
     /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Property(selector = "preferredStatusBarStyle")
+    public native UIStatusBarStyle getPreferredStatusBarStyle();
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Property(selector = "prefersStatusBarHidden")
+    public native boolean prefersStatusBarHidden();
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Property(selector = "preferredStatusBarUpdateAnimation")
+    public native UIStatusBarAnimation getPreferredStatusBarUpdateAnimation();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    @Property(selector = "shouldAutorotate")
+    public native boolean shouldAutorotate();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    @Property(selector = "supportedInterfaceOrientations")
+    public native UIInterfaceOrientationMask getSupportedInterfaceOrientations();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    @Property(selector = "preferredInterfaceOrientationForPresentation")
+    public native UIInterfaceOrientation getPreferredInterfaceOrientationForPresentation();
+    /**
      * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
@@ -222,6 +298,8 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native boolean isEditing();
     @Property(selector = "setEditing:")
     public native void setEditing(boolean v);
+    @Property(selector = "editButtonItem")
+    public native UIBarButtonItem getEditButtonItem();
     /**
      * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
@@ -234,6 +312,21 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "childViewControllers")
     public native NSArray<UIViewController> getChildViewControllers();
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Property(selector = "childViewControllerForStatusBarStyle")
+    public native UIViewController getChildViewControllerForStatusBarStyle();
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Property(selector = "childViewControllerForStatusBarHidden")
+    public native UIViewController getChildViewControllerForStatusBarHidden();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    @Property(selector = "shouldAutomaticallyForwardAppearanceMethods")
+    public native boolean shouldAutomaticallyForwardAppearanceMethods();
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -289,6 +382,11 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "popoverPresentationController")
     public native UIPopoverPresentationController getPopoverPresentationController();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "previewActionItems")
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIPreviewActionItem> getPreviewActionItems();
     @Property(selector = "navigationItem")
     public native UINavigationItem getNavigationItem();
     @Property(selector = "hidesBottomBarWhenPushed")
@@ -331,6 +429,11 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Deprecated
     @Property(selector = "setContentSizeForViewInPopover:")
     public native void setContentSizeForViewInPopover(@ByVal CGSize v);
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Property(selector = "transitionCoordinator")
+    public native UIViewControllerTransitionCoordinator getTransitionCoordinator();
     @Property(selector = "splitViewController")
     public native UISplitViewController getSplitViewController();
     @Property(selector = "tabBarItem")
@@ -344,6 +447,15 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
+    @Property(selector = "preferredFocusEnvironments")
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> getPreferredFocusEnvironments();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "preferredFocusedView")
+    public native UIView getPreferredFocusedView();
     @Property(selector = "restorationParent")
     public native UIStateRestoring getRestorationParent();
     @Property(selector = "objectRestorationClass")
@@ -454,11 +566,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "viewDidLoad")
     public native void viewDidLoad();
     /**
-     * @since Available in iOS 3.0 and later.
-     */
-    @Method(selector = "isViewLoaded")
-    public native boolean isViewLoaded();
-    /**
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "performSegueWithIdentifier:sender:")
@@ -530,26 +637,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     /**
      * @since Available in iOS 5.0 and later.
      */
-    @Method(selector = "isBeingPresented")
-    public native boolean isBeingPresented();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @Method(selector = "isBeingDismissed")
-    public native boolean isBeingDismissed();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @Method(selector = "isMovingToParentViewController")
-    public native boolean isMovingToParentViewController();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @Method(selector = "isMovingFromParentViewController")
-    public native boolean isMovingFromParentViewController();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     @Method(selector = "presentViewController:animated:completion:")
     public native void presentViewController(UIViewController viewControllerToPresent, boolean animated, @Block Runnable completion);
     /**
@@ -557,26 +644,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Method(selector = "dismissViewControllerAnimated:completion:")
     public native void dismissViewController(boolean animated, @Block Runnable completion);
-    /**
-     * @since Available in iOS 4.3 and later.
-     */
-    @Method(selector = "disablesAutomaticKeyboardDismissal")
-    public native boolean disablesAutomaticKeyboardDismissal();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @Method(selector = "preferredStatusBarStyle")
-    public native UIStatusBarStyle getPreferredStatusBarStyle();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @Method(selector = "prefersStatusBarHidden")
-    public native boolean prefersStatusBarHidden();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @Method(selector = "preferredStatusBarUpdateAnimation")
-    public native UIStatusBarAnimation getPreferredStatusBarUpdateAnimation();
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -597,21 +664,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Method(selector = "showDetailViewController:sender:")
     public native void showDetailViewController(UIViewController vc, NSObject sender);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @Method(selector = "shouldAutorotate")
-    public native boolean shouldAutorotate();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @Method(selector = "supportedInterfaceOrientations")
-    public native UIInterfaceOrientationMask getSupportedInterfaceOrientations();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @Method(selector = "preferredInterfaceOrientationForPresentation")
-    public native UIInterfaceOrientation getPreferredInterfaceOrientation();
     /**
      * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0.
@@ -654,8 +706,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public static native void attemptRotationToDeviceOrientation();
     @Method(selector = "setEditing:animated:")
     public native void setEditing(boolean editing, boolean animated);
-    @Method(selector = "editButtonItem")
-    public native UIBarButtonItem getEditButtonItem();
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -682,16 +732,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "endAppearanceTransition")
     public native void endAppearanceTransition();
     /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @Method(selector = "childViewControllerForStatusBarStyle")
-    public native UIViewController getChildViewControllerForStatusBarStyle();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @Method(selector = "childViewControllerForStatusBarHidden")
-    public native UIViewController getChildViewControllerForStatusBarHidden();
-    /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "setOverrideTraitCollection:forChildViewController:")
@@ -708,11 +748,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Deprecated
     @Method(selector = "shouldAutomaticallyForwardRotationMethods")
     public native boolean shouldAutomaticallyForwardRotationMethods();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @Method(selector = "shouldAutomaticallyForwardAppearanceMethods")
-    public native boolean shouldAutomaticallyForwardAppearanceMethods();
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -754,15 +789,20 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "removeKeyCommand:")
     public native void removeKeyCommand(UIKeyCommand keyCommand);
     /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "registerForPreviewingWithDelegate:sourceView:")
+    public native UIViewControllerPreviewing registerForPreviewing(UIViewControllerPreviewingDelegate delegate, UIView sourceView);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "unregisterForPreviewingWithContext:")
+    public native void unregisterForPreviewing(UIViewControllerPreviewing previewing);
+    /**
      * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "setToolbarItems:animated:")
     public native void setToolbarItems(NSArray<UIBarButtonItem> toolbarItems, boolean animated);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @Method(selector = "transitionCoordinator")
-    public native UIViewControllerTransitionCoordinator getTransitionCoordinator();
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -780,6 +820,14 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Method(selector = "traitCollectionDidChange:")
     public native void traitCollectionDidChange(UITraitCollection previousTraitCollection);
+    @Method(selector = "setNeedsFocusUpdate")
+    public native void setNeedsFocusUpdate();
+    @Method(selector = "updateFocusIfNeeded")
+    public native void updateFocusIfNeeded();
+    @Method(selector = "shouldUpdateFocusInContext:")
+    public native boolean shouldUpdateFocus(UIFocusUpdateContext context);
+    @Method(selector = "didUpdateFocusInContext:withAnimationCoordinator:")
+    public native void didUpdateFocus(UIFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
     @Method(selector = "beginRequestWithExtensionContext:")
     public native void beginRequest(NSExtensionContext context);
     /*</methods>*/

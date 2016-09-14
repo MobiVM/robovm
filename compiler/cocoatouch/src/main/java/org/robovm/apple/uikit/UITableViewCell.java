@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITableViewCell() {}
+    protected UITableViewCell(Handle h, long handle) { super(h, handle); }
     protected UITableViewCell(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 3.0 and later.
@@ -162,6 +163,16 @@ import org.robovm.apple.corelocation.*;
     public native void setEditing(boolean v);
     @Property(selector = "showingDeleteConfirmation")
     public native boolean isShowingDeleteConfirmation();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "focusStyle")
+    public native UITableViewCellFocusStyle getFocusStyle();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setFocusStyle:")
+    public native void setFocusStyle(UITableViewCellFocusStyle v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -206,5 +217,7 @@ import org.robovm.apple.corelocation.*;
     public native boolean shouldBeRequiredToFail(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
     @Method(selector = "gestureRecognizer:shouldReceiveTouch:")
     public native boolean shouldReceiveTouch(UIGestureRecognizer gestureRecognizer, UITouch touch);
+    @Method(selector = "gestureRecognizer:shouldReceivePress:")
+    public native boolean shouldReceivePress(UIGestureRecognizer gestureRecognizer, UIPress press);
     /*</methods>*/
 }

@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPrintPageRenderer() {}
+    protected UIPrintPageRenderer(Handle h, long handle) { super(h, handle); }
     protected UIPrintPageRenderer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -66,6 +67,8 @@ import org.robovm.apple.corelocation.*;
     public native @ByVal CGRect getPaperRect();
     @Property(selector = "printableRect")
     public native @ByVal CGRect getPrintableRect();
+    @Property(selector = "numberOfPages")
+    public native @MachineSizedSInt long getNumberOfPages();
     @Property(selector = "printFormatters")
     public native NSArray<UIPrintFormatter> getPrintFormatters();
     @Property(selector = "setPrintFormatters:")
@@ -77,8 +80,6 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<UIPrintFormatter> getPrintFormatters(@MachineSizedSInt long pageIndex);
     @Method(selector = "addPrintFormatter:startingAtPageAtIndex:")
     public native void addPrintFormatter(UIPrintFormatter formatter, @MachineSizedSInt long pageIndex);
-    @Method(selector = "numberOfPages")
-    public native @MachineSizedSInt long getNumberOfPages();
     @Method(selector = "prepareForDrawingPages:")
     public native void prepareForDrawingPages(@ByVal NSRange range);
     @Method(selector = "drawPageAtIndex:inRect:")

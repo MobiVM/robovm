@@ -428,7 +428,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public NSURLProperties getResourceValues(@org.robovm.rt.bro.annotation.Marshaler(NSURLProperty.AsListMarshaler.class) List<NSURLProperty> keys) throws NSErrorException {
+    public NSURLProperties getResourceValues(List<NSURLProperty> keys) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSURLProperties result = getResourceValues(keys, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
@@ -485,7 +485,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public NSData toBookmarkData(NSURLBookmarkCreationOptions options, @org.robovm.rt.bro.annotation.Marshaler(NSURLProperty.AsListMarshaler.class) List<NSURLProperty> keys, NSURL relativeURL) throws NSErrorException {
+    public NSData toBookmarkData(NSURLBookmarkCreationOptions options, List<NSURLProperty> keys, NSURL relativeURL) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSData result = toBookmarkData(options, keys, relativeURL, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
@@ -561,7 +561,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     /**
      * @since Available in iOS 8.0 and later.
      */
-    public NSURLProperties getPromisedItemResourceValues(@org.robovm.rt.bro.annotation.Marshaler(NSURLProperty.AsListMarshaler.class) List<NSURLProperty> keys) throws NSErrorException {
+    public NSURLProperties getPromisedItemResourceValues(List<NSURLProperty> keys) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSURLProperties result = getPromisedItemResourceValues(keys, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }

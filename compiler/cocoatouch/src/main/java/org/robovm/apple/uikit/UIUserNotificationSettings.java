@@ -39,7 +39,9 @@ import org.robovm.apple.corelocation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIUserNotificationSettings/*</name>*/ 
@@ -51,8 +53,9 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIUserNotificationSettings() {}
+    protected UIUserNotificationSettings(Handle h, long handle) { super(h, handle); }
     protected UIUserNotificationSettings(SkipInit skipInit) { super(skipInit); }
-    public UIUserNotificationSettings(UIUserNotificationType types, NSSet<UIUserNotificationCategory> categories) { super(create(types, categories)); retain(getHandle()); }
+    public UIUserNotificationSettings(UIUserNotificationType types, NSSet<UIUserNotificationCategory> categories) { super((Handle) null, create(types, categories)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "types")

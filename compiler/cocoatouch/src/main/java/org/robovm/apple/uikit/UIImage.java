@@ -75,6 +75,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIImage() {}
+    protected UIImage(Handle h, long handle) { super(h, handle); }
     protected UIImage(SkipInit skipInit) { super(skipInit); }
     public UIImage(NSData data) { super((SkipInit) null); initObject(init(data)); }
     /**
@@ -149,6 +150,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "renderingMode")
     public native UIImageRenderingMode getRenderingMode();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "imageRendererFormat")
+    public native UIGraphicsImageRendererFormat getImageRendererFormat();
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -277,6 +283,10 @@ import org.robovm.apple.corelocation.*;
             saveToPhotosAlbum(null, null, 0);
         }
     }
+    
+    public static UIImage getImage(File file) {
+        return getImageWithContentsOfFile(file.getAbsolutePath());
+    }
     /*<methods>*/
     @Bridge(symbol="UIImagePNGRepresentation", optional=true)
     public native NSData toPNGData();
@@ -348,6 +358,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "imageFlippedForRightToLeftLayoutDirection")
     public native UIImage flipHorizontally();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "imageWithHorizontallyFlippedOrientation")
+    public native UIImage imageWithHorizontallyFlippedOrientation();
     @Method(selector = "imageNamed:")
     public static native UIImage getImage(String name);
     /**
@@ -355,6 +370,8 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "imageNamed:inBundle:compatibleWithTraitCollection:")
     public static native UIImage getImage(String name, NSBundle bundle, UITraitCollection traitCollection);
+    @Method(selector = "imageWithContentsOfFile:")
+    private static native UIImage getImageWithContentsOfFile(String path);
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -376,39 +393,4 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "animatedImageWithImages:duration:")
     public static native UIImage getAnimatedImage(NSArray<UIImage> images, double duration);
     /*</methods>*/
-    /**
-     * @Deprecated use {@link #getImage(String)} instead.
-     */
-    @Deprecated
-    public static UIImage create(String name) {
-        return UIImage.getImage(name);
-    }
-    /**
-     * @Deprecated use {@link #getAnimatedImage(String, double)} instead.
-     */
-    @Deprecated
-    public static UIImage createAnimated(String name, double duration) {
-        return UIImage.getAnimatedImage(name, duration);
-    }
-    /**
-     * @Deprecated use {@link #getAnimatedResizableImage(String, UIEdgeInsets, double)} instead.
-     */
-    @Deprecated
-    public static UIImage createAnimatedResizable(String name, @ByVal UIEdgeInsets capInsets, double duration) {
-        return UIImage.getAnimatedResizableImage(name, capInsets, duration);
-    }
-    /**
-     * @Deprecated use {@link #getAnimatedResizableImage(String, UIEdgeInsets, UIImageResizingMode, double)} instead.
-     */
-    @Deprecated
-    public static UIImage createAnimatedResizable(String name, @ByVal UIEdgeInsets capInsets, UIImageResizingMode resizingMode, double duration) {
-        return UIImage.getAnimatedResizableImage(name, capInsets, resizingMode, duration);
-    }
-    /**
-     * @Deprecated use {@link #getAnimatedImage(NSArray, double)} instead.
-     */
-    @Deprecated
-    public static UIImage createAnimated(NSArray<UIImage> images, double duration) {
-        return UIImage.getAnimatedImage(images, duration);
-    }
 }

@@ -91,6 +91,26 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
+    @Method(selector = "collectionView:canFocusItemAtIndexPath:")
+    boolean canFocusItem(UICollectionView collectionView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "collectionView:shouldUpdateFocusInContext:")
+    boolean shouldUpdateFocus(UICollectionView collectionView, UICollectionViewFocusUpdateContext context);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "collectionView:didUpdateFocusInContext:withAnimationCoordinator:")
+    void didUpdateFocus(UICollectionView collectionView, UICollectionViewFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "indexPathForPreferredFocusedViewInCollectionView:")
+    NSIndexPath getIndexPathForPreferredFocusedView(UICollectionView collectionView);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "collectionView:targetIndexPathForMoveFromItemAtIndexPath:toProposedIndexPath:")
     NSIndexPath getTargetIndexPathForMoveFromItem(UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath proposedIndexPath);
     /**

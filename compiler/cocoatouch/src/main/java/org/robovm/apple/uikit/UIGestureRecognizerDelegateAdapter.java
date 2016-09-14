@@ -70,5 +70,7 @@ import org.robovm.apple.corelocation.*;
     public boolean shouldBeRequiredToFail(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer) { return false; }
     @NotImplemented("gestureRecognizer:shouldReceiveTouch:")
     public boolean shouldReceiveTouch(UIGestureRecognizer gestureRecognizer, UITouch touch) { return false; }
+    @NotImplemented("gestureRecognizer:shouldReceivePress:")
+    public boolean shouldReceivePress(UIGestureRecognizer gestureRecognizer, UIPress press) { return false; }
     /*</methods>*/
 }

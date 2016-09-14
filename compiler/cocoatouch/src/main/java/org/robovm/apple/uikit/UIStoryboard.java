@@ -51,8 +51,9 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIStoryboard() {}
+    protected UIStoryboard(Handle h, long handle) { super(h, handle); }
     protected UIStoryboard(SkipInit skipInit) { super(skipInit); }
-    public UIStoryboard(String name, NSBundle storyboardBundleOrNil) { super(create(name, storyboardBundleOrNil)); retain(getHandle()); }
+    public UIStoryboard(String name, NSBundle storyboardBundleOrNil) { super((Handle) null, create(name, storyboardBundleOrNil)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     

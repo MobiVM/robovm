@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIDynamicAnimator() {}
+    protected UIDynamicAnimator(Handle h, long handle) { super(h, handle); }
     protected UIDynamicAnimator(SkipInit skipInit) { super(skipInit); }
     public UIDynamicAnimator(UIView view) { super((SkipInit) null); initObject(init(view)); }
     public UIDynamicAnimator(UICollectionViewLayout layout) { super((SkipInit) null); initObject(init(layout)); }
@@ -62,6 +63,8 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<UIDynamicBehavior> getBehaviors();
     @Property(selector = "isRunning")
     public native boolean isRunning();
+    @Property(selector = "elapsedTime")
+    public native double getElapsedTime();
     @Property(selector = "delegate")
     public native UIDynamicAnimatorDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
@@ -81,8 +84,6 @@ import org.robovm.apple.corelocation.*;
     public native List<UIDynamicItem> getItemsInRect(@ByVal CGRect rect);
     @Method(selector = "updateItemUsingCurrentState:")
     public native void updateItemUsingCurrentState(UIDynamicItem item);
-    @Method(selector = "elapsedTime")
-    public native double getElapsedTime();
     @Method(selector = "initWithCollectionViewLayout:")
     protected native @Pointer long init(UICollectionViewLayout layout);
     @Method(selector = "layoutAttributesForCellAtIndexPath:")

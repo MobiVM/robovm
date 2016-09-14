@@ -53,7 +53,7 @@ import org.robovm.apple.dispatch.*;
     protected NSDecimalNumberHandler(Handle h, long handle) { super(h, handle); }
     protected NSDecimalNumberHandler(SkipInit skipInit) { super(skipInit); }
     public NSDecimalNumberHandler(NSRoundingMode roundingMode, short scale, boolean exact, boolean overflow, boolean underflow, boolean divideByZero) { super((SkipInit) null); initObject(init(roundingMode, scale, exact, overflow, underflow, divideByZero)); }
-    public NSDecimalNumberHandler(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NSDecimalNumberHandler(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -73,6 +73,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

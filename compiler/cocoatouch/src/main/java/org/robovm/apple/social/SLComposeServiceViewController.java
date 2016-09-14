@@ -48,6 +48,7 @@ import org.robovm.apple.accounts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SLComposeServiceViewController() {}
+    protected SLComposeServiceViewController(Handle h, long handle) { super(h, handle); }
     protected SLComposeServiceViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -107,13 +108,27 @@ import org.robovm.apple.accounts.*;
     @Method(selector = "textViewDidChangeSelection:")
     public native void didChangeSelection(UITextView textView);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
+    @Method(selector = "textView:shouldInteractWithURL:inRange:interaction:")
+    public native boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange, UITextItemInteraction interaction);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:interaction:")
+    public native boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction);
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "textView:shouldInteractWithURL:inRange:")
     public native boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:")
     public native boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange);
     @Method(selector = "scrollViewDidScroll:")

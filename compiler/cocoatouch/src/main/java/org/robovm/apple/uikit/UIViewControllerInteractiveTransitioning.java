@@ -49,15 +49,19 @@ import org.robovm.apple.corelocation.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    @Property(selector = "completionSpeed")
+    @MachineSizedFloat double getCompletionSpeed();
+    @Property(selector = "completionCurve")
+    UIViewAnimationCurve getCompletionCurve();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "wantsInteractiveStart")
+    boolean wantsInteractiveStart();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "startInteractiveTransition:")
     void startInteractiveTransition(UIViewControllerContextTransitioning transitionContext);
-    @Method(selector = "completionSpeed")
-    @MachineSizedFloat double getCompletionSpeed();
-    @Method(selector = "completionCurve")
-    UIViewAnimationCurve getCompletionCurve();
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

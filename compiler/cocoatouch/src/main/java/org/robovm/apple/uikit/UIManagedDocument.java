@@ -51,9 +51,12 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIManagedDocument() {}
+    protected UIManagedDocument(Handle h, long handle) { super(h, handle); }
     protected UIManagedDocument(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "persistentStoreName")
+    public static native String getPersistentStoreName();
     @WeaklyLinked
     @Property(selector = "managedObjectContext")
     public native NSManagedObjectContext getManagedObjectContext();
@@ -109,7 +112,5 @@ import org.robovm.apple.corelocation.*;
     }
     @Method(selector = "writeAdditionalContent:toURL:originalContentsURL:error:")
     private native boolean writeAdditionalContent(NSObject content, NSURL absoluteURL, NSURL absoluteOriginalContentsURL, NSError.NSErrorPtr error);
-    @Method(selector = "persistentStoreName")
-    public static native String getPersistentStoreName();
     /*</methods>*/
 }

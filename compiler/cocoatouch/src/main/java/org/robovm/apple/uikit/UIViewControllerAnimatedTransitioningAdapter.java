@@ -58,6 +58,11 @@ import org.robovm.apple.corelocation.*;
     public double getTransitionDuration(UIViewControllerContextTransitioning transitionContext) { return 0; }
     @NotImplemented("animateTransition:")
     public void animateTransition(UIViewControllerContextTransitioning transitionContext) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("interruptibleAnimatorForTransition:")
+    public UIViewImplicitlyAnimating getInterruptibleAnimator(UIViewControllerContextTransitioning transitionContext) { return null; }
     @NotImplemented("animationEnded:")
     public void animationEnded(boolean transitionCompleted) {}
     /*</methods>*/

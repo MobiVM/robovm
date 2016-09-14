@@ -51,13 +51,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIDatePicker() {}
+    protected UIDatePicker(Handle h, long handle) { super(h, handle); }
     protected UIDatePicker(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UIDatePicker(CGRect frame) {
         super(frame);
     }
-    
+    public UIDatePicker(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "datePickerMode")
     public native UIDatePickerMode getDatePickerMode();

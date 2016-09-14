@@ -49,25 +49,34 @@ import org.robovm.apple.corelocation.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    @Property(selector = "containerView")
+    UIView getContainerView();
+    @Property(selector = "isAnimated")
+    boolean isAnimated();
+    @Property(selector = "isInteractive")
+    boolean isInteractive();
+    @Property(selector = "transitionWasCancelled")
+    boolean isTransitionWasCancelled();
+    @Property(selector = "presentationStyle")
+    UIModalPresentationStyle getPresentationStyle();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Property(selector = "targetTransform")
+    @ByVal CGAffineTransform getTargetTransform();
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "containerView")
-    UIView getContainerView();
-    @Method(selector = "isAnimated")
-    boolean isAnimated();
-    @Method(selector = "isInteractive")
-    boolean isInteractive();
-    @Method(selector = "transitionWasCancelled")
-    boolean transitionWasCancelled();
-    @Method(selector = "presentationStyle")
-    UIModalPresentationStyle getPresentationStyle();
     @Method(selector = "updateInteractiveTransition:")
     void updateInteractiveTransition(@MachineSizedFloat double percentComplete);
     @Method(selector = "finishInteractiveTransition")
     void finishInteractiveTransition();
     @Method(selector = "cancelInteractiveTransition")
     void cancelInteractiveTransition();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "pauseInteractiveTransition")
+    void pauseInteractiveTransition();
     @Method(selector = "completeTransition:")
     void completeTransition(boolean didComplete);
     @Method(selector = "viewControllerForKey:")
@@ -77,11 +86,6 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "viewForKey:")
     UIView getView(UITransitionContextViewType key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Method(selector = "targetTransform")
-    @ByVal CGAffineTransform getTargetTransform();
     @Method(selector = "initialFrameForViewController:")
     @ByVal CGRect getInitialFrame(UIViewController vc);
     @Method(selector = "finalFrameForViewController:")

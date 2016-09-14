@@ -51,18 +51,64 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITraitCollection() {}
+    protected UITraitCollection(Handle h, long handle) { super(h, handle); }
     protected UITraitCollection(SkipInit skipInit) { super(skipInit); }
     public UITraitCollection(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public UITraitCollection(UIUserInterfaceStyle userInterfaceStyle) { super((Handle) null, create(userInterfaceStyle)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public UITraitCollection(UITraitEnvironmentLayoutDirection layoutDirection) { super((Handle) null, create(layoutDirection)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public UITraitCollection(UIForceTouchCapability capability) { super((Handle) null, create(capability)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public UITraitCollection(UIContentSizeCategory preferredContentSizeCategory) { super((Handle) null, create(preferredContentSizeCategory)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public UITraitCollection(UIDisplayGamut displayGamut) { super((Handle) null, create(displayGamut)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "userInterfaceIdiom")
     public native UIUserInterfaceIdiom getUserInterfaceIdiom();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "userInterfaceStyle")
+    public native UIUserInterfaceStyle getUserInterfaceStyle();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "layoutDirection")
+    public native UITraitEnvironmentLayoutDirection getLayoutDirection();
     @Property(selector = "displayScale")
     public native @MachineSizedFloat double getDisplayScale();
     @Property(selector = "horizontalSizeClass")
     public native UIUserInterfaceSizeClass getHorizontalSizeClass();
     @Property(selector = "verticalSizeClass")
     public native UIUserInterfaceSizeClass getVerticalSizeClass();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "forceTouchCapability")
+    public native UIForceTouchCapability getForceTouchCapability();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "preferredContentSizeCategory")
+    public native String getPreferredContentSizeCategory();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "displayGamut")
+    public native UIDisplayGamut getDisplayGamut();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -74,11 +120,36 @@ import org.robovm.apple.corelocation.*;
     public static native UITraitCollection createWithTraits(NSArray<UITraitCollection> traitCollections);
     @Method(selector = "traitCollectionWithUserInterfaceIdiom:")
     public static native UITraitCollection createWithUserInterfaceIdiom(UIUserInterfaceIdiom idiom);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "traitCollectionWithUserInterfaceStyle:")
+    protected static native @Pointer long create(UIUserInterfaceStyle userInterfaceStyle);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "traitCollectionWithLayoutDirection:")
+    protected static native @Pointer long create(UITraitEnvironmentLayoutDirection layoutDirection);
     @Method(selector = "traitCollectionWithDisplayScale:")
     public static native UITraitCollection createWithDisplayScale(@MachineSizedFloat double scale);
     @Method(selector = "traitCollectionWithHorizontalSizeClass:")
     public static native UITraitCollection createWithHorizontalSizeClass(UIUserInterfaceSizeClass horizontalSizeClass);
     @Method(selector = "traitCollectionWithVerticalSizeClass:")
     public static native UITraitCollection createWithVerticalSizeClass(UIUserInterfaceSizeClass verticalSizeClass);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "traitCollectionWithForceTouchCapability:")
+    protected static native @Pointer long create(UIForceTouchCapability capability);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "traitCollectionWithPreferredContentSizeCategory:")
+    protected static native @Pointer long create(UIContentSizeCategory preferredContentSizeCategory);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "traitCollectionWithDisplayGamut:")
+    protected static native @Pointer long create(UIDisplayGamut displayGamut);
     /*</methods>*/
 }

@@ -51,9 +51,10 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UINib() {}
+    protected UINib(Handle h, long handle) { super(h, handle); }
     protected UINib(SkipInit skipInit) { super(skipInit); }
-    public UINib(String name, NSBundle bundleOrNil) { super(create(name, bundleOrNil)); retain(getHandle()); }
-    public UINib(NSData data, NSBundle bundleOrNil) { super(create(data, bundleOrNil)); retain(getHandle()); }
+    public UINib(String name, NSBundle bundleOrNil) { super((Handle) null, create(name, bundleOrNil)); retain(getHandle()); }
+    public UINib(NSData data, NSBundle bundleOrNil) { super((Handle) null, create(data, bundleOrNil)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     

@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIGravityBehavior() {}
+    protected UIGravityBehavior(Handle h, long handle) { super(h, handle); }
     protected UIGravityBehavior(SkipInit skipInit) { super(skipInit); }
     public UIGravityBehavior(List<UIDynamicItem> items) { super((SkipInit) null); initObject(init(items)); }
     /*</constructors>*/

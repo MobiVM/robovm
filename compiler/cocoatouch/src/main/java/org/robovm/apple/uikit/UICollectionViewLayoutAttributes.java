@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UICollectionViewLayoutAttributes() {}
+    protected UICollectionViewLayoutAttributes(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewLayoutAttributes(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

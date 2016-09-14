@@ -39,7 +39,9 @@ import org.robovm.apple.corelocation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIUserNotificationCategory/*</name>*/ 
@@ -51,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIUserNotificationCategory() {}
+    protected UIUserNotificationCategory(Handle h, long handle) { super(h, handle); }
     protected UIUserNotificationCategory(SkipInit skipInit) { super(skipInit); }
     public UIUserNotificationCategory(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
@@ -58,6 +61,13 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "identifier")
     public native String getIdentifier();
     /*</properties>*/
+    public void setIdentifier(String v) {
+        throw new UnsupportedOperationException("UIUserNotificationCategory is immutable");
+    }
+
+    public void setActions(NSArray<UIUserNotificationAction> actions, UIUserNotificationActionContext context) {
+        throw new UnsupportedOperationException("UIUserNotificationCategory is immutable");
+    }
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")

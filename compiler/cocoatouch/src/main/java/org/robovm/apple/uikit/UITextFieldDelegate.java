@@ -60,6 +60,11 @@ import org.robovm.apple.corelocation.*;
     boolean shouldEndEditing(UITextField textField);
     @Method(selector = "textFieldDidEndEditing:")
     void didEndEditing(UITextField textField);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "textFieldDidEndEditing:reason:")
+    void didEndEditing(UITextField textField, UITextFieldDidEndEditingReason reason);
     @Method(selector = "textField:shouldChangeCharactersInRange:replacementString:")
     boolean shouldChangeCharacters(UITextField textField, @ByVal NSRange range, String string);
     @Method(selector = "textFieldShouldClear:")

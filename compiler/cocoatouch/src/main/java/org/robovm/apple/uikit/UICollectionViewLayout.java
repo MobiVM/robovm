@@ -51,12 +51,22 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UICollectionViewLayout() {}
+    protected UICollectionViewLayout(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewLayout(SkipInit skipInit) { super(skipInit); }
     public UICollectionViewLayout(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "collectionView")
     public native UICollectionView getCollectionView();
+    @Property(selector = "layoutAttributesClass")
+    public static native Class<? extends UICollectionViewLayoutAttributes> getLayoutAttributesClass();
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Property(selector = "invalidationContextClass")
+    public static native Class<? extends UICollectionViewLayoutInvalidationContext> getInvalidationContextClass();
+    @Property(selector = "collectionViewContentSize")
+    public native @ByVal CGSize getCollectionViewContentSize();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -107,15 +117,6 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "targetContentOffsetForProposedContentOffset:")
     public native @ByVal CGPoint getTargetContentOffset(@ByVal CGPoint proposedContentOffset);
-    @Method(selector = "collectionViewContentSize")
-    public native @ByVal CGSize getCollectionViewContentSize();
-    @Method(selector = "layoutAttributesClass")
-    public static native Class<? extends UICollectionViewLayoutAttributes> getLayoutAttributesClass();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @Method(selector = "invalidationContextClass")
-    public static native Class<? extends UICollectionViewLayoutInvalidationContext> getInvalidationContextClass();
     @Method(selector = "prepareForCollectionViewUpdates:")
     public native void prepareForCollectionViewUpdates(NSArray<UICollectionViewUpdateItem> updateItems);
     @Method(selector = "finalizeCollectionViewUpdates")
@@ -185,7 +186,7 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "invalidationContextForInteractivelyMovingItems:withTargetPosition:previousIndexPaths:previousPosition:")
-    public native UICollectionViewLayoutInvalidationContext getInvalidationContextForInteractivelyMovingItems(NSArray<?> targetIndexPaths, @ByVal CGPoint targetPosition, NSArray<NSIndexPath> previousIndexPaths, @ByVal CGPoint previousPosition);
+    public native UICollectionViewLayoutInvalidationContext getInvalidationContextForInteractivelyMovingItems(NSArray<NSIndexPath> targetIndexPaths, @ByVal CGPoint targetPosition, NSArray<NSIndexPath> previousIndexPaths, @ByVal CGPoint previousPosition);
     /**
      * @since Available in iOS 9.0 and later.
      */

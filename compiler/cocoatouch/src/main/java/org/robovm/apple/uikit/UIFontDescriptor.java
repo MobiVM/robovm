@@ -51,11 +51,12 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIFontDescriptor() {}
+    protected UIFontDescriptor(Handle h, long handle) { super(h, handle); }
     protected UIFontDescriptor(SkipInit skipInit) { super(skipInit); }
     public UIFontDescriptor(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     public UIFontDescriptor(UIFontDescriptorAttributes attributes) { super((SkipInit) null); initObject(init(attributes)); }
-    public UIFontDescriptor(String fontName, @MachineSizedFloat double size) { super(create(fontName, size)); retain(getHandle()); }
-    public UIFontDescriptor(String fontName, @ByVal CGAffineTransform matrix) { super(create(fontName, matrix)); retain(getHandle()); }
+    public UIFontDescriptor(String fontName, @MachineSizedFloat double size) { super((Handle) null, create(fontName, size)); retain(getHandle()); }
+    public UIFontDescriptor(String fontName, @ByVal CGAffineTransform matrix) { super((Handle) null, create(fontName, matrix)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "postscriptName")
@@ -66,6 +67,8 @@ import org.robovm.apple.corelocation.*;
     public native @ByVal CGAffineTransform getMatrix();
     @Property(selector = "symbolicTraits")
     public native UIFontDescriptorSymbolicTraits getSymbolicTraits();
+    @Property(selector = "fontAttributes")
+    public native UIFontDescriptorAttributes getFontAttributes();
     /*</properties>*/
     /*<members>*//*</members>*/
     public NSObject getValue(String attribute) {
@@ -84,24 +87,17 @@ import org.robovm.apple.corelocation.*;
         }
         return getMatchingFontDescriptors(set);
     }
-    public static UIFontDescriptor getPreferredFontDescriptor(UIFontTextStyle style) {
-        return getPreferredFontDescriptor(style.value());
-    }
     /*<methods>*/
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "objectForKey:")
     protected native NSObject getValue(NSString anAttribute);
-    @Method(selector = "fontAttributes")
-    public native UIFontDescriptorAttributes getFontAttributes();
     @Method(selector = "matchingFontDescriptorsWithMandatoryKeys:")
     protected native NSArray<UIFontDescriptor> getMatchingFontDescriptors(NSSet<NSString> mandatoryKeys);
     @Method(selector = "initWithFontAttributes:")
     protected native @Pointer long init(UIFontDescriptorAttributes attributes);
     @Method(selector = "fontDescriptorByAddingAttributes:")
     public native UIFontDescriptor newWithAttributes(UIFontDescriptorAttributes attributes);
-    @Method(selector = "fontDescriptorWithSymbolicTraits:")
-    public native UIFontDescriptor newWithSymbolicTraits(UIFontDescriptorSymbolicTraits symbolicTraits);
     @Method(selector = "fontDescriptorWithSize:")
     public native UIFontDescriptor newWithSize(@MachineSizedFloat double newPointSize);
     @Method(selector = "fontDescriptorWithMatrix:")
@@ -110,11 +106,18 @@ import org.robovm.apple.corelocation.*;
     public native UIFontDescriptor newWithFace(String newFace);
     @Method(selector = "fontDescriptorWithFamily:")
     public native UIFontDescriptor newWithFamily(String newFamily);
+    @Method(selector = "fontDescriptorWithSymbolicTraits:")
+    public native UIFontDescriptor newWithSymbolicTraits(UIFontDescriptorSymbolicTraits symbolicTraits);
     @Method(selector = "fontDescriptorWithName:size:")
     protected static native @Pointer long create(String fontName, @MachineSizedFloat double size);
     @Method(selector = "fontDescriptorWithName:matrix:")
     protected static native @Pointer long create(String fontName, @ByVal CGAffineTransform matrix);
     @Method(selector = "preferredFontDescriptorWithTextStyle:")
-    protected static native UIFontDescriptor getPreferredFontDescriptor(NSString style);
+    public static native UIFontDescriptor getPreferredFontDescriptor(UIFontTextStyle style);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "preferredFontDescriptorWithTextStyle:compatibleWithTraitCollection:")
+    public static native UIFontDescriptor getPreferredFontDescriptor(UIFontTextStyle style, UITraitCollection traitCollection);
     /*</methods>*/
 }

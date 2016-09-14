@@ -52,8 +52,9 @@ import org.robovm.rt.annotation.WeaklyLinked;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIVibrancyEffect() {}
+    protected UIVibrancyEffect(Handle h, long handle) { super(h, handle); }
     protected UIVibrancyEffect(SkipInit skipInit) { super(skipInit); }
-    public UIVibrancyEffect(UIBlurEffect blurEffect) { super(create(blurEffect)); retain(getHandle()); }
+    public UIVibrancyEffect(UIBlurEffect blurEffect) { super((Handle) null, create(blurEffect)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     

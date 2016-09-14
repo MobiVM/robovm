@@ -51,13 +51,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIScrollView() {}
+    protected UIScrollView(Handle h, long handle) { super(h, handle); }
     protected UIScrollView(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UIScrollView(CGRect frame) {
         super(frame);
     }
-    
+    public UIScrollView(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "contentOffset")
     public native @ByVal CGPoint getContentOffset();
@@ -189,6 +191,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setKeyboardDismissMode:")
     public native void setKeyboardDismissMode(UIScrollViewKeyboardDismissMode v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "refreshControl")
+    public native UIRefreshControl getRefreshControl();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setRefreshControl:")
+    public native void setRefreshControl(UIRefreshControl v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

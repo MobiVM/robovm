@@ -51,13 +51,15 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPopoverBackgroundView() {}
+    protected UIPopoverBackgroundView(Handle h, long handle) { super(h, handle); }
     protected UIPopoverBackgroundView(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
-    
     public UIPopoverBackgroundView(CGRect frame) {
         super(frame);
     }
-    
+    public UIPopoverBackgroundView(NSCoder decoder) {
+        super(decoder);
+    }
     /*<properties>*/
     @Property(selector = "arrowOffset")
     public native @MachineSizedFloat double getArrowOffset();
@@ -67,13 +69,14 @@ import org.robovm.apple.corelocation.*;
     public native UIPopoverArrowDirection getArrowDirection();
     @Property(selector = "setArrowDirection:")
     public native void setArrowDirection(UIPopoverArrowDirection v);
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
     /**
      * @since Available in iOS 6.0 and later.
      */
-    @Method(selector = "wantsDefaultContentAppearance")
+    @Property(selector = "wantsDefaultContentAppearance")
     public static native boolean wantsDefaultContentAppearance();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
     /*</methods>*/
 }

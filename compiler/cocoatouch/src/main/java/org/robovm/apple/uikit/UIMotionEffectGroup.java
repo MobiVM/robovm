@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIMotionEffectGroup() {}
+    protected UIMotionEffectGroup(Handle h, long handle) { super(h, handle); }
     protected UIMotionEffectGroup(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

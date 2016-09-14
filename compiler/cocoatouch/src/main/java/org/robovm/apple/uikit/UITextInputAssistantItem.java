@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITextInputAssistantItem() {}
+    protected UITextInputAssistantItem(Handle h, long handle) { super(h, handle); }
     protected UITextInputAssistantItem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

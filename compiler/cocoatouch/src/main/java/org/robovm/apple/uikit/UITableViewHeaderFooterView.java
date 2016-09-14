@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITableViewHeaderFooterView() {}
+    protected UITableViewHeaderFooterView(Handle h, long handle) { super(h, handle); }
     protected UITableViewHeaderFooterView(SkipInit skipInit) { super(skipInit); }
     public UITableViewHeaderFooterView(String reuseIdentifier) { super((SkipInit) null); initObject(init(reuseIdentifier)); }
     public UITableViewHeaderFooterView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }

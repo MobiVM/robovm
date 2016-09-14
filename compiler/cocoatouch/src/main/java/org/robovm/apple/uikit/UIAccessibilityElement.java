@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIAccessibilityElement() {}
+    protected UIAccessibilityElement(Handle h, long handle) { super(h, handle); }
     protected UIAccessibilityElement(SkipInit skipInit) { super(skipInit); }
     public UIAccessibilityElement(UIAccessibilityContainer container) { super((SkipInit) null); initObject(init(container)); }
     /*</constructors>*/
@@ -83,6 +84,16 @@ import org.robovm.apple.corelocation.*;
     public native UIAccessibilityTraits getAccessibilityTraits();
     @Property(selector = "setAccessibilityTraits:", strongRef = true)
     public native void setAccessibilityTraits(UIAccessibilityTraits v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "accessibilityFrameInContainerSpace")
+    public native @ByVal CGRect getAccessibilityFrameInContainerSpace();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setAccessibilityFrameInContainerSpace:")
+    public native void setAccessibilityFrameInContainerSpace(@ByVal CGRect v);
     /**
      * @since Available in iOS 5.0 and later.
      */

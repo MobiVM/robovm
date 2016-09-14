@@ -110,6 +110,7 @@ import org.robovm.apple.corelocation.*;
     }
     /*<constructors>*/
     public UIGestureRecognizer() {}
+    protected UIGestureRecognizer(Handle h, long handle) { super(h, handle); }
     protected UIGestureRecognizer(SkipInit skipInit) { super(skipInit); }
     public UIGestureRecognizer(NSObject target, Selector action) { super((SkipInit) null); initObject(init(target, action)); }
     /*</constructors>*/
@@ -138,6 +139,38 @@ import org.robovm.apple.corelocation.*;
     public native boolean delaysTouchesEnded();
     @Property(selector = "setDelaysTouchesEnded:")
     public native void setDelaysTouchesEnded(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "allowedTouchTypes")
+    public native @org.robovm.rt.bro.annotation.Marshaler(UITouchType.AsListMarshaler.class) List<UITouchType> getAllowedTouchTypes();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setAllowedTouchTypes:")
+    public native void setAllowedTouchTypes(@org.robovm.rt.bro.annotation.Marshaler(UITouchType.AsListMarshaler.class) List<UITouchType> v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "allowedPressTypes")
+    public native @org.robovm.rt.bro.annotation.Marshaler(UIPressType.AsListMarshaler.class) List<UIPressType> getAllowedPressTypes();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setAllowedPressTypes:")
+    public native void setAllowedPressTypes(@org.robovm.rt.bro.annotation.Marshaler(UIPressType.AsListMarshaler.class) List<UIPressType> v);
+    /**
+     * @since Available in iOS 9.2 and later.
+     */
+    @Property(selector = "requiresExclusiveTouchType")
+    public native boolean requiresExclusiveTouchType();
+    /**
+     * @since Available in iOS 9.2 and later.
+     */
+    @Property(selector = "setRequiresExclusiveTouchType:")
+    public native void setRequiresExclusiveTouchType(boolean v);
+    @Property(selector = "numberOfTouches")
+    public native @MachineSizedUInt long getNumberOfTouches();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -151,8 +184,6 @@ import org.robovm.apple.corelocation.*;
     public native void requireGestureRecognizerToFail(UIGestureRecognizer otherGestureRecognizer);
     @Method(selector = "locationInView:")
     public native @ByVal CGPoint getLocationInView(UIView view);
-    @Method(selector = "numberOfTouches")
-    public native @MachineSizedUInt long getNumberOfTouches();
     @Method(selector = "locationOfTouch:inView:")
     public native @ByVal CGPoint getLocationOfTouch(@MachineSizedUInt long touchIndex, UIView view);
     /*</methods>*/

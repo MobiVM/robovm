@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSTextContainer() {}
+    protected NSTextContainer(Handle h, long handle) { super(h, handle); }
     protected NSTextContainer(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 7.0 and later.

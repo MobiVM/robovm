@@ -163,6 +163,23 @@ import org.robovm.apple.corelocation.*;
         set(Keys.OpenInPlace(), NSNumber.valueOf(opensInPlace));
         return this;
     }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public boolean isUniversalLinksOnly() {
+        if (has(Keys.UniversalLinksOnly())) {
+            NSNumber val = (NSNumber) get(Keys.UniversalLinksOnly());
+            return val.booleanValue();
+        }
+        return false;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public UIApplicationOpenURLOptions setUniversalLinksOnly(boolean universalLinksOnly) {
+        set(Keys.UniversalLinksOnly(), NSNumber.valueOf(universalLinksOnly));
+        return this;
+    }
     /*</methods>*/
     
     /*<keys>*/
@@ -184,6 +201,11 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="UIApplicationOpenURLOptionsOpenInPlaceKey", optional=true)
         public static native NSString OpenInPlace();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="UIApplicationOpenURLOptionUniversalLinksOnly", optional=true)
+        public static native NSString UniversalLinksOnly();
     }
     /*</keys>*/
 }

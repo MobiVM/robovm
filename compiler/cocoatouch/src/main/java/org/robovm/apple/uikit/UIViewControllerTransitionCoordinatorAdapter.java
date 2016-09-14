@@ -58,7 +58,17 @@ import org.robovm.apple.corelocation.*;
     public boolean animateAlongsideTransition(@Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> animation, @Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> completion) { return false; }
     @NotImplemented("animateAlongsideTransitionInView:animation:completion:")
     public boolean animateAlongsideTransition(UIView view, @Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> animation, @Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> completion) { return false; }
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @NotImplemented("notifyWhenInteractionEndsUsingBlock:")
     public void notifyWhenInteractionEnds(@Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> handler) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("notifyWhenInteractionChangesUsingBlock:")
+    public void notifyWhenInteractionChanges(@Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> handler) {}
     /*</methods>*/
 }

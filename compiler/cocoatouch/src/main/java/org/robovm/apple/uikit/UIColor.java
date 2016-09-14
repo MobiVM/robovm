@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIColor() {}
+    protected UIColor(Handle h, long handle) { super(h, handle); }
     protected UIColor(SkipInit skipInit) { super(skipInit); }
     public UIColor(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha) { super((SkipInit) null); initObject(init(red, green, blue, alpha)); }
     public UIColor(CGColor cgColor) { super((SkipInit) null); initObject(init(cgColor)); }
@@ -60,6 +61,36 @@ import org.robovm.apple.corelocation.*;
     public UIColor(CIColor ciColor) { super((SkipInit) null); initObject(init(ciColor)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "blackColor")
+    public static native UIColor black();
+    @Property(selector = "darkGrayColor")
+    public static native UIColor darkGray();
+    @Property(selector = "lightGrayColor")
+    public static native UIColor lightGray();
+    @Property(selector = "whiteColor")
+    public static native UIColor white();
+    @Property(selector = "grayColor")
+    public static native UIColor gray();
+    @Property(selector = "redColor")
+    public static native UIColor red();
+    @Property(selector = "greenColor")
+    public static native UIColor green();
+    @Property(selector = "blueColor")
+    public static native UIColor blue();
+    @Property(selector = "cyanColor")
+    public static native UIColor cyan();
+    @Property(selector = "yellowColor")
+    public static native UIColor yellow();
+    @Property(selector = "magentaColor")
+    public static native UIColor magenta();
+    @Property(selector = "orangeColor")
+    public static native UIColor orange();
+    @Property(selector = "purpleColor")
+    public static native UIColor purple();
+    @Property(selector = "brownColor")
+    public static native UIColor brown();
+    @Property(selector = "clearColor")
+    public static native UIColor clear();
     @Property(selector = "CGColor")
     public native CGColor getCGColor();
     /**
@@ -67,6 +98,33 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "CIColor")
     public native CIColor getCIColor();
+    @Property(selector = "lightTextColor")
+    public static native UIColor lightText();
+    @Property(selector = "darkTextColor")
+    public static native UIColor darkText();
+    @Property(selector = "groupTableViewBackgroundColor")
+    public static native UIColor groupTableViewBackground();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
+    @Property(selector = "viewFlipsideBackgroundColor")
+    public static native UIColor viewFlipsideBackground();
+    /**
+     * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
+    @Property(selector = "scrollViewTexturedBackgroundColor")
+    public static native UIColor scrollViewTexturedBackground();
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
+    @Property(selector = "underPageBackgroundColor")
+    public static native UIColor underPageBackground();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -156,6 +214,11 @@ import org.robovm.apple.corelocation.*;
     public static native UIColor fromHSBA(@MachineSizedFloat double hue, @MachineSizedFloat double saturation, @MachineSizedFloat double brightness, @MachineSizedFloat double alpha);
     @Method(selector = "colorWithRed:green:blue:alpha:")
     public static native UIColor fromRGBA(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "colorWithDisplayP3Red:green:blue:alpha:")
+    public static native UIColor fromDisplayP3(@MachineSizedFloat double displayP3Red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha);
     @Method(selector = "colorWithCGColor:")
     public static native UIColor fromCGColor(CGColor cgColor);
     @Method(selector = "colorWithPatternImage:")
@@ -165,62 +228,5 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "colorWithCIColor:")
     public static native UIColor fromCIColor(CIColor ciColor);
-    @Method(selector = "blackColor")
-    public static native UIColor black();
-    @Method(selector = "darkGrayColor")
-    public static native UIColor darkGray();
-    @Method(selector = "lightGrayColor")
-    public static native UIColor lightGray();
-    @Method(selector = "whiteColor")
-    public static native UIColor white();
-    @Method(selector = "grayColor")
-    public static native UIColor gray();
-    @Method(selector = "redColor")
-    public static native UIColor red();
-    @Method(selector = "greenColor")
-    public static native UIColor green();
-    @Method(selector = "blueColor")
-    public static native UIColor blue();
-    @Method(selector = "cyanColor")
-    public static native UIColor cyan();
-    @Method(selector = "yellowColor")
-    public static native UIColor yellow();
-    @Method(selector = "magentaColor")
-    public static native UIColor magenta();
-    @Method(selector = "orangeColor")
-    public static native UIColor orange();
-    @Method(selector = "purpleColor")
-    public static native UIColor purple();
-    @Method(selector = "brownColor")
-    public static native UIColor brown();
-    @Method(selector = "clearColor")
-    public static native UIColor clear();
-    @Method(selector = "lightTextColor")
-    public static native UIColor lightText();
-    @Method(selector = "darkTextColor")
-    public static native UIColor darkText();
-    @Method(selector = "groupTableViewBackgroundColor")
-    public static native UIColor groupTableViewBackground();
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "viewFlipsideBackgroundColor")
-    public static native UIColor viewFlipsideBackground();
-    /**
-     * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "scrollViewTexturedBackgroundColor")
-    public static native UIColor scrollViewTexturedBackground();
-    /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "underPageBackgroundColor")
-    public static native UIColor underPageBackground();
     /*</methods>*/
 }

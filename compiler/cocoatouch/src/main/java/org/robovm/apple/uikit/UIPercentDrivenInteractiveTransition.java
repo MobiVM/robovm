@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPercentDrivenInteractiveTransition() {}
+    protected UIPercentDrivenInteractiveTransition(Handle h, long handle) { super(h, handle); }
     protected UIPercentDrivenInteractiveTransition(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -66,9 +67,34 @@ import org.robovm.apple.corelocation.*;
     public native UIViewAnimationCurve getCompletionCurve();
     @Property(selector = "setCompletionCurve:")
     public native void setCompletionCurve(UIViewAnimationCurve v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "timingCurve")
+    public native UITimingCurveProvider getTimingCurve();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTimingCurve:")
+    public native void setTimingCurve(UITimingCurveProvider v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "wantsInteractiveStart")
+    public native boolean wantsInteractiveStart();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setWantsInteractiveStart:")
+    public native void setWantsInteractiveStart(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "pauseInteractiveTransition")
+    public native void pauseInteractiveTransition();
     @Method(selector = "updateInteractiveTransition:")
     public native void updateInteractiveTransition(@MachineSizedFloat double percentComplete);
     @Method(selector = "cancelInteractiveTransition")

@@ -51,9 +51,12 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSParagraphStyle() {}
+    protected NSParagraphStyle(Handle h, long handle) { super(h, handle); }
     protected NSParagraphStyle(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "defaultParagraphStyle")
+    public static native NSParagraphStyle getDefaultParagraphStyle();
     @Property(selector = "lineSpacing")
     public native @MachineSizedFloat double getLineSpacing();
     @Property(selector = "paragraphSpacing")
@@ -96,10 +99,83 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "allowsDefaultTighteningForTruncation")
     public native boolean allowsDefaultTighteningForTruncation();
     /*</properties>*/
+    public void setLineSpacing(double v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setParagraphSpacing(double v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setAlignment(NSTextAlignment v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setFirstLineHeadIndent(double v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setHeadIndent(double v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setTailIndent(double v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setLineBreakMode(NSLineBreakMode v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setMinimumLineHeight(double v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setMaximumLineHeight(double v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setBaseWritingDirection(NSWritingDirection v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setLineHeightMultiple(double v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setParagraphSpacingBefore(double v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setHyphenationFactor(float v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setTabStops(NSArray<NSTextTab> v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setDefaultTabInterval(double v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setAllowsDefaultTighteningForTruncation(boolean v) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void addTabStop(NSTextTab tab) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void removeTabStop(NSTextTab tab) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
+
+    public void setParagraphStyle(NSParagraphStyle style) {
+        throw new UnsupportedOperationException("NSParagraphStyle is immutable");
+    }
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "defaultParagraphStyle")
-    public static native NSParagraphStyle getDefaultParagraphStyle();
     @Method(selector = "defaultWritingDirectionForLanguage:")
     public static native NSWritingDirection getDefaultWritingDirection(String languageName);
     /*</methods>*/

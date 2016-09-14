@@ -68,6 +68,8 @@ import org.robovm.apple.corelocation.*;
     boolean shouldBeRequiredToFail(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
     @Method(selector = "gestureRecognizer:shouldReceiveTouch:")
     boolean shouldReceiveTouch(UIGestureRecognizer gestureRecognizer, UITouch touch);
+    @Method(selector = "gestureRecognizer:shouldReceivePress:")
+    boolean shouldReceivePress(UIGestureRecognizer gestureRecognizer, UIPress press);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

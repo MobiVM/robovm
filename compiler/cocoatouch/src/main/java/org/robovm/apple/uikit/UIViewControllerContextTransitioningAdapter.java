@@ -50,10 +50,6 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
     @NotImplemented("containerView")
     public UIView getContainerView() { return null; }
     @NotImplemented("isAnimated")
@@ -61,15 +57,28 @@ import org.robovm.apple.corelocation.*;
     @NotImplemented("isInteractive")
     public boolean isInteractive() { return false; }
     @NotImplemented("transitionWasCancelled")
-    public boolean transitionWasCancelled() { return false; }
+    public boolean isTransitionWasCancelled() { return false; }
     @NotImplemented("presentationStyle")
     public UIModalPresentationStyle getPresentationStyle() { return null; }
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @NotImplemented("targetTransform")
+    public @ByVal CGAffineTransform getTargetTransform() { return null; }
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
     @NotImplemented("updateInteractiveTransition:")
     public void updateInteractiveTransition(@MachineSizedFloat double percentComplete) {}
     @NotImplemented("finishInteractiveTransition")
     public void finishInteractiveTransition() {}
     @NotImplemented("cancelInteractiveTransition")
     public void cancelInteractiveTransition() {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("pauseInteractiveTransition")
+    public void pauseInteractiveTransition() {}
     @NotImplemented("completeTransition:")
     public void completeTransition(boolean didComplete) {}
     @NotImplemented("viewControllerForKey:")
@@ -79,11 +88,6 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("viewForKey:")
     public UIView getView(UITransitionContextViewType key) { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @NotImplemented("targetTransform")
-    public @ByVal CGAffineTransform getTargetTransform() { return null; }
     @NotImplemented("initialFrameForViewController:")
     public @ByVal CGRect getInitialFrame(UIViewController vc) { return null; }
     @NotImplemented("finalFrameForViewController:")

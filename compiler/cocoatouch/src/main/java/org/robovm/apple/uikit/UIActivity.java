@@ -51,33 +51,33 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIActivity() {}
+    protected UIActivity(Handle h, long handle) { super(h, handle); }
     protected UIActivity(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Property(selector = "activityCategory")
+    public static native UIActivityCategory getCategory();
+    @Property(selector = "activityType")
+    public native String getType();
+    @Property(selector = "activityTitle")
+    public native String getTitle();
+    @Property(selector = "activityImage")
+    public native UIImage getImage();
+    @Property(selector = "activityViewController")
+    public native UIViewController getViewController();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "activityType")
-    public native String getType();
-    @Method(selector = "activityTitle")
-    public native String getTitle();
-    @Method(selector = "activityImage")
-    public native UIImage getImage();
     @Method(selector = "canPerformWithActivityItems:")
     public native boolean canPerform(NSArray<?> activityItems);
     @Method(selector = "prepareWithActivityItems:")
     public native void prepare(NSArray<?> activityItems);
-    @Method(selector = "activityViewController")
-    public native UIViewController getViewController();
     @Method(selector = "performActivity")
     public native void perform();
     @Method(selector = "activityDidFinish:")
     public native void didFinish(boolean completed);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @Method(selector = "activityCategory")
-    public static native UIActivityCategory getActivityCategory();
     /*</methods>*/
 }

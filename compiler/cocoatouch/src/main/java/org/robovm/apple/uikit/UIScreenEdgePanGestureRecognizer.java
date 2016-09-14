@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIScreenEdgePanGestureRecognizer() {}
+    protected UIScreenEdgePanGestureRecognizer(Handle h, long handle) { super(h, handle); }
     protected UIScreenEdgePanGestureRecognizer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     

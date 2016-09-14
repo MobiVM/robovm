@@ -50,7 +50,8 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(UIStoryboardUnwindSegueSource.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UIStoryboardUnwindSegueSource() {}
+    protected UIStoryboardUnwindSegueSource() {}
+    protected UIStoryboardUnwindSegueSource(Handle h, long handle) { super(h, handle); }
     protected UIStoryboardUnwindSegueSource(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -74,6 +74,8 @@ import org.robovm.apple.corelocation.*;
     UITextStorageDirection getSelectionAffinity();
     @Property(selector = "setSelectionAffinity:")
     void setSelectionAffinity(UITextStorageDirection v);
+    @Property(selector = "insertDictationResultPlaceholder")
+    NSObject getInsertDictationResultPlaceholder();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "textInRange:")
@@ -134,8 +136,6 @@ import org.robovm.apple.corelocation.*;
     void dictationRecordingDidEnd();
     @Method(selector = "dictationRecognitionFailed")
     void dictationRecognitionFailed();
-    @Method(selector = "insertDictationResultPlaceholder")
-    NSObject getInsertDictationResultPlaceholder();
     @Method(selector = "frameForDictationResultPlaceholder:")
     @ByVal CGRect getDictationResultPlaceholderFrame(NSObject placeholder);
     @Method(selector = "removeDictationResultPlaceholder:willInsertResult:")

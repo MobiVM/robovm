@@ -66,6 +66,9 @@ import org.robovm.apple.corelocation.*;
         }
     }
     
+    public UIBarButtonItem(UIImage image, UIBarButtonItemStyle style) { 
+        this(image, style, null);
+    }
     public UIBarButtonItem(UIImage image, UIBarButtonItemStyle style, OnClickListener listener) { 
         super((SkipInit) null);
         if (listener != null) {
@@ -75,6 +78,9 @@ import org.robovm.apple.corelocation.*;
         } else {
             initObject(init(image, style, null, null));
         }
+    }
+    public UIBarButtonItem(UIImage image, UIImage landscapeImagePhone, UIBarButtonItemStyle style) {
+        this(image, landscapeImagePhone, style, null);
     }
     public UIBarButtonItem(UIImage image, UIImage landscapeImagePhone, UIBarButtonItemStyle style, OnClickListener listener) {
         super((SkipInit) null);
@@ -86,6 +92,9 @@ import org.robovm.apple.corelocation.*;
             initObject(init(image, landscapeImagePhone, style, null, null));
         }
     }
+    public UIBarButtonItem(String title, UIBarButtonItemStyle style) {
+        this(title, style, null);
+    }
     public UIBarButtonItem(String title, UIBarButtonItemStyle style, OnClickListener listener) {
         super((SkipInit) null);
         if (listener != null) {
@@ -95,6 +104,9 @@ import org.robovm.apple.corelocation.*;
         } else {
             initObject(init(title, style, null, null));
         }
+    }
+    public UIBarButtonItem(UIBarButtonSystemItem systemItem) {
+        this(systemItem, null);
     }
     public UIBarButtonItem(UIBarButtonSystemItem systemItem, OnClickListener listener) {
         super((SkipInit) null);
@@ -109,6 +121,7 @@ import org.robovm.apple.corelocation.*;
     
     /*<constructors>*/
     public UIBarButtonItem() {}
+    protected UIBarButtonItem(Handle h, long handle) { super(h, handle); }
     protected UIBarButtonItem(SkipInit skipInit) { super(skipInit); }
     public UIBarButtonItem(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     public UIBarButtonItem(UIImage image, UIBarButtonItemStyle style, NSObject target, Selector action) { super((SkipInit) null); initObject(init(image, style, target, action)); }
@@ -142,9 +155,9 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "setWidth:")
     public native void setWidth(@MachineSizedFloat double v);
     @Property(selector = "possibleTitles")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringListMarshaler.class) List<String> getPossibleTitles();
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringListMarshaler.class) Set<String> getPossibleTitles();
     @Property(selector = "setPossibleTitles:")
-    public native void setPossibleTitles(@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringListMarshaler.class) List<String> v);
+    public native void setPossibleTitles(@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringListMarshaler.class) Set<String> v);
     @Property(selector = "customView")
     public native UIView getCustomView();
     @Property(selector = "setCustomView:")

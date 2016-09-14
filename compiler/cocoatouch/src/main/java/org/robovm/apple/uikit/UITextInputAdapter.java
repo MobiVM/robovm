@@ -76,6 +76,8 @@ import org.robovm.apple.corelocation.*;
     public UITextStorageDirection getSelectionAffinity() { return null; }
     @NotImplemented("setSelectionAffinity:")
     public void setSelectionAffinity(UITextStorageDirection v) {}
+    @NotImplemented("insertDictationResultPlaceholder")
+    public NSObject getInsertDictationResultPlaceholder() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -137,8 +139,6 @@ import org.robovm.apple.corelocation.*;
     public void dictationRecordingDidEnd() {}
     @NotImplemented("dictationRecognitionFailed")
     public void dictationRecognitionFailed() {}
-    @NotImplemented("insertDictationResultPlaceholder")
-    public NSObject getInsertDictationResultPlaceholder() { return null; }
     @NotImplemented("frameForDictationResultPlaceholder:")
     public @ByVal CGRect getDictationResultPlaceholderFrame(NSObject placeholder) { return null; }
     @NotImplemented("removeDictationResultPlaceholder:willInsertResult:")

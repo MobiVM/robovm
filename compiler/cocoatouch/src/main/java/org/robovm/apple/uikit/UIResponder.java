@@ -51,10 +51,19 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIResponder() {}
-    protected UIResponder(long handle) { super(handle); }
+    @Deprecated protected UIResponder(long handle) { super(handle); }
+    protected UIResponder(Handle h, long handle) { super(h, handle); }
     protected UIResponder(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "nextResponder")
+    public native UIResponder getNextResponder();
+    @Property(selector = "canBecomeFirstResponder")
+    public native boolean canBecomeFirstResponder();
+    @Property(selector = "canResignFirstResponder")
+    public native boolean canResignFirstResponder();
+    @Property(selector = "isFirstResponder")
+    public native boolean isFirstResponder();
     /**
      * @since Available in iOS 3.0 and later.
      */
@@ -201,18 +210,10 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "nextResponder")
-    public native UIResponder getNextResponder();
-    @Method(selector = "canBecomeFirstResponder")
-    public native boolean canBecomeFirstResponder();
     @Method(selector = "becomeFirstResponder")
     public native boolean becomeFirstResponder();
-    @Method(selector = "canResignFirstResponder")
-    public native boolean canResignFirstResponder();
     @Method(selector = "resignFirstResponder")
     public native boolean resignFirstResponder();
-    @Method(selector = "isFirstResponder")
-    public native boolean isFirstResponder();
     @Method(selector = "touchesBegan:withEvent:")
     public native void touchesBegan(NSSet<UITouch> touches, UIEvent event);
     @Method(selector = "touchesMoved:withEvent:")
@@ -221,6 +222,31 @@ import org.robovm.apple.corelocation.*;
     public native void touchesEnded(NSSet<UITouch> touches, UIEvent event);
     @Method(selector = "touchesCancelled:withEvent:")
     public native void touchesCancelled(NSSet<UITouch> touches, UIEvent event);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Method(selector = "touchesEstimatedPropertiesUpdated:")
+    public native void touchesEstimatedPropertiesUpdated(NSSet<UITouch> touches);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "pressesBegan:withEvent:")
+    public native void pressesBegan(NSSet<UIPress> presses, UIPressesEvent event);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "pressesChanged:withEvent:")
+    public native void pressesChanged(NSSet<UIPress> presses, UIPressesEvent event);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "pressesEnded:withEvent:")
+    public native void pressesEnded(NSSet<UIPress> presses, UIPressesEvent event);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "pressesCancelled:withEvent:")
+    public native void pressesCancelled(NSSet<UIPress> presses, UIPressesEvent event);
     /**
      * @since Available in iOS 3.0 and later.
      */

@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITabBarItem() {}
+    protected UITabBarItem(Handle h, long handle) { super(h, handle); }
     protected UITabBarItem(SkipInit skipInit) { super(skipInit); }
     public UITabBarItem(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     public UITabBarItem(String title, UIImage image, @MachineSizedSInt long tag) { super((SkipInit) null); initObject(init(title, image, tag)); }
@@ -85,6 +86,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setTitlePositionAdjustment:")
     public native void setTitlePositionAdjustment(@ByVal UIOffset v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "badgeColor")
+    public native UIColor getBadgeColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setBadgeColor:")
+    public native void setBadgeColor(UIColor v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -120,5 +131,15 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "finishedUnselectedImage")
     public native UIImage getFinishedUnselectedImage();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setBadgeTextAttributes:forState:")
+    public native void setBadgeTextAttributes(NSDictionary<NSString, ?> textAttributes, UIControlState state);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "badgeTextAttributesForState:")
+    public native NSDictionary<NSString, ?> getBadgeTextAttributes(UIControlState state);
     /*</methods>*/
 }

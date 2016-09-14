@@ -50,7 +50,8 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(NSDataAsset.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSDataAsset() {}
+    protected NSDataAsset() {}
+    protected NSDataAsset(Handle h, long handle) { super(h, handle); }
     protected NSDataAsset(SkipInit skipInit) { super(skipInit); }
     public NSDataAsset(String name) { super((SkipInit) null); initObject(init(name)); }
     public NSDataAsset(String name, NSBundle bundle) { super((SkipInit) null); initObject(init(name, bundle)); }

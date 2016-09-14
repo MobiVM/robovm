@@ -75,6 +75,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSTextStorage() {}
+    protected NSTextStorage(Handle h, long handle) { super(h, handle); }
     protected NSTextStorage(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

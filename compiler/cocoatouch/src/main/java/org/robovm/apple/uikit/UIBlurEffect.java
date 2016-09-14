@@ -51,8 +51,9 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIBlurEffect() {}
+    protected UIBlurEffect(Handle h, long handle) { super(h, handle); }
     protected UIBlurEffect(SkipInit skipInit) { super(skipInit); }
-    public UIBlurEffect(UIBlurEffectStyle style) { super(create(style)); retain(getHandle()); }
+    public UIBlurEffect(UIBlurEffectStyle style) { super((Handle) null, create(style)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     

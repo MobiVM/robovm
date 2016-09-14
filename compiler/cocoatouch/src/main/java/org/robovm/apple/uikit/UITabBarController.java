@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UITabBarController() {}
+    protected UITabBarController(Handle h, long handle) { super(h, handle); }
     protected UITabBarController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

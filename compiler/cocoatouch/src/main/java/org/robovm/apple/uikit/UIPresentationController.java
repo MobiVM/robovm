@@ -44,13 +44,14 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPresentationController/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements UIAppearanceContainer, UITraitEnvironment/*</implements>*/ {
+    /*<implements>*/implements UIAppearanceContainer, UITraitEnvironment, UIFocusEnvironment/*</implements>*/ {
 
     /*<ptr>*/public static class UIPresentationControllerPtr extends Ptr<UIPresentationController, UIPresentationControllerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIPresentationController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UIPresentationController() {}
+    protected UIPresentationController() {}
+    protected UIPresentationController(Handle h, long handle) { super(h, handle); }
     protected UIPresentationController(SkipInit skipInit) { super(skipInit); }
     public UIPresentationController(UIViewController presentedViewController, UIViewController presentingViewController) { super((SkipInit) null); initObject(init(presentedViewController, presentingViewController)); }
     /*</constructors>*/
@@ -67,6 +68,16 @@ import org.robovm.apple.corelocation.*;
     public native UIAdaptivePresentationControllerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIAdaptivePresentationControllerDelegate v);
+    @Property(selector = "adaptivePresentationStyle")
+    public native UIModalPresentationStyle getAdaptivePresentationStyle();
+    @Property(selector = "presentedView")
+    public native UIView getPresentedView();
+    @Property(selector = "frameOfPresentedViewInContainerView")
+    public native @ByVal CGRect getFrameOfPresentedViewInContainerView();
+    @Property(selector = "shouldPresentInFullscreen")
+    public native boolean shouldPresentInFullscreen();
+    @Property(selector = "shouldRemovePresentersView")
+    public native boolean shouldRemovePresentersView();
     @Property(selector = "overrideTraitCollection")
     public native UITraitCollection getOverrideTraitCollection();
     @Property(selector = "setOverrideTraitCollection:")
@@ -76,13 +87,20 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
+    @Property(selector = "preferredFocusEnvironments")
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> getPreferredFocusEnvironments();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "preferredFocusedView")
+    public native UIView getPreferredFocusedView();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPresentedViewController:presentingViewController:")
     protected native @Pointer long init(UIViewController presentedViewController, UIViewController presentingViewController);
-    @Method(selector = "adaptivePresentationStyle")
-    public native UIModalPresentationStyle getAdaptivePresentationStyle();
     /**
      * @since Available in iOS 8.3 and later.
      */
@@ -92,14 +110,6 @@ import org.robovm.apple.corelocation.*;
     public native void containerViewWillLayoutSubviews();
     @Method(selector = "containerViewDidLayoutSubviews")
     public native void containerViewDidLayoutSubviews();
-    @Method(selector = "presentedView")
-    public native UIView getPresentedView();
-    @Method(selector = "frameOfPresentedViewInContainerView")
-    public native @ByVal CGRect getFrameOfPresentedViewInContainerView();
-    @Method(selector = "shouldPresentInFullscreen")
-    public native boolean shouldPresentInFullscreen();
-    @Method(selector = "shouldRemovePresentersView")
-    public native boolean shouldRemovePresentersView();
     @Method(selector = "presentationTransitionWillBegin")
     public native void presentationTransitionWillBegin();
     @Method(selector = "presentationTransitionDidEnd:")
@@ -113,5 +123,13 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "traitCollectionDidChange:")
     public native void traitCollectionDidChange(UITraitCollection previousTraitCollection);
+    @Method(selector = "setNeedsFocusUpdate")
+    public native void setNeedsFocusUpdate();
+    @Method(selector = "updateFocusIfNeeded")
+    public native void updateFocusIfNeeded();
+    @Method(selector = "shouldUpdateFocusInContext:")
+    public native boolean shouldUpdateFocus(UIFocusUpdateContext context);
+    @Method(selector = "didUpdateFocusInContext:withAnimationCoordinator:")
+    public native void didUpdateFocus(UIFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
     /*</methods>*/
 }

@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UICollectionViewFlowLayout() {}
+    protected UICollectionViewFlowLayout(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewFlowLayout(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -115,6 +116,12 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="UICollectionViewFlowLayoutAutomaticSize", optional=true)
+    public static native @ByVal CGSize getAutomaticSize();
+    
     
     /*</methods>*/
 }

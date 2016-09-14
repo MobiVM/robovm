@@ -50,12 +50,11 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    @NotImplemented("hasText")
+    public boolean hasText() { return false; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("hasText")
-    public boolean hasText() { return false; }
     @NotImplemented("insertText:")
     public void insertText(String text) {}
     @NotImplemented("deleteBackward")

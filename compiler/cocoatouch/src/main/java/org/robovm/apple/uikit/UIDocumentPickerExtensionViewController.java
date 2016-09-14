@@ -51,6 +51,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIDocumentPickerExtensionViewController() {}
+    protected UIDocumentPickerExtensionViewController(Handle h, long handle) { super(h, handle); }
     protected UIDocumentPickerExtensionViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

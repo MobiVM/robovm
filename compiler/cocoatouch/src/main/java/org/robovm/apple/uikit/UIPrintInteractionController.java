@@ -51,9 +51,16 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UIPrintInteractionController() {}
+    protected UIPrintInteractionController(Handle h, long handle) { super(h, handle); }
     protected UIPrintInteractionController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "isPrintingAvailable")
+    public static native boolean isPrintingAvailable();
+    @Property(selector = "printableUTIs")
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String> getPrintableUTIs();
+    @Property(selector = "sharedPrintController")
+    public static native UIPrintInteractionController getSharedPrintController();
     @Property(selector = "printInfo")
     public native UIPrintInfo getPrintInfo();
     @Property(selector = "setPrintInfo:")
@@ -62,8 +69,18 @@ import org.robovm.apple.corelocation.*;
     public native UIPrintInteractionControllerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIPrintInteractionControllerDelegate v);
+    /**
+     * @since Available in iOS 4.2 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "showsPageRange")
     public native boolean showsPageRange();
+    /**
+     * @since Available in iOS 4.2 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "setShowsPageRange:")
     public native void setShowsPageRange(boolean v);
     /**
@@ -117,15 +134,9 @@ import org.robovm.apple.corelocation.*;
     public native boolean print(UIPrinter printer, @Block VoidBlock3<UIPrintInteractionController, Boolean, NSError> completion);
     @Method(selector = "dismissAnimated:")
     public native void dismiss(boolean animated);
-    @Method(selector = "isPrintingAvailable")
-    public static native boolean isPrintingAvailable();
-    @Method(selector = "printableUTIs")
-    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPrintableUTIs();
     @Method(selector = "canPrintURL:")
     public static native boolean canPrint(NSURL url);
     @Method(selector = "canPrintData:")
     public static native boolean canPrint(NSData data);
-    @Method(selector = "sharedPrintController")
-    public static native UIPrintInteractionController getSharedPrintController();
     /*</methods>*/
 }

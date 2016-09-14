@@ -53,6 +53,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public UISearchBar() {}
+    protected UISearchBar(Handle h, long handle) { super(h, handle); }
     protected UISearchBar(SkipInit skipInit) { super(skipInit); }
     public UISearchBar(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     public UISearchBar(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
@@ -259,6 +260,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native boolean isSecureTextEntry();
     @Property(selector = "setSecureTextEntry:")
     public native void setSecureTextEntry(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "textContentType")
+    public native UITextContentType getTextContentType();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTextContentType:")
+    public native void setTextContentType(UITextContentType v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
