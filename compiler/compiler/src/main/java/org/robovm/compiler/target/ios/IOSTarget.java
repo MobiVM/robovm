@@ -151,100 +151,45 @@ public class IOSTarget extends AbstractTarget {
         }
     }
 
-    private Launcher createIOSSimLauncher(LaunchParameters launchParameters)
-            throws IOException {
-
+    private Launcher createIOSSimLauncher(LaunchParameters launchParameters) throws IOException {
         File dir = getAppDir();
 
-        String iosSimPath = new File(config.getHome().getBinDir(), "ios-sim").getAbsolutePath();
+        String iosSimPath = new File(config.getHome().getBinDir(), "simlauncher").getAbsolutePath();;
 
+        IOSSimulatorLaunchParameters simulatorLaunchParameters = (IOSSimulatorLaunchParameters) launchParameters;
+        
         List<Object> args = new ArrayList<Object>();
-        args.add("launch");
-        args.add(dir);
-        args.add("--timeout");
-        args.add("90");
-        args.add("--unbuffered");
-        if (((IOSSimulatorLaunchParameters) launchParameters).getDeviceType() != null) {
-            DeviceType deviceType = ((IOSSimulatorLaunchParameters) launchParameters).getDeviceType();
-            args.add("--devicetypeid");
-            args.add(deviceType.getDeviceTypeId());
-        }
-        if (launchParameters.getStdoutFifo() != null) {
-            args.add("--stdout");
-            args.add(launchParameters.getStdoutFifo());
-        }
-        if (launchParameters.getStderrFifo() != null) {
-            args.add("--stderr");
-            args.add(launchParameters.getStderrFifo());
-        }
+        args.add("-a=" + dir);
+        args.add("-u=" + simulatorLaunchParameters.getDeviceType().getUdid());
+        
         if (launchParameters.getEnvironment() != null) {
             for (Entry<String, String> entry : launchParameters.getEnvironment().entrySet()) {
-                args.add("--setenv");
-                args.add(entry.getKey() + "=" + entry.getValue());
+                args.add("-e="+ entry.getKey() + "=" + entry.getValue() + "");
             }
         }
 
         if (!launchParameters.getArguments().isEmpty()) {
-            args.add("--args");
-            args.addAll(launchParameters.getArguments());
+        	for (String entry : launchParameters.getArguments()) {
+                args.add("-x=" + entry);
+            }        
         }
 
         File xcodePath = new File(ToolchainUtil.findXcodePath());
         Map<String, String> env = Collections.singletonMap("DEVELOPER_DIR", xcodePath.getAbsolutePath());
         
-        // See issue https://github.com/robovm/robovm/issues/1150, we need
-        // to swallow the error message by ios-sim on Xcode 7. We need
-        // to remove this
-        Logger proxyLogger = new Logger() {
-            boolean skipWarningsAndErrors = false;
-
-            @Override
-            public void debug(String format, Object... args) {
-                config.getLogger().debug(format, args);
-            }
-
-            @Override
-            public void info(String format, Object... args) {
-                config.getLogger().info(format, args);
-            }
-
-            @Override
-            public void warn(String format, Object... args) {
-                // we swallow the first warning message, then
-                // error() will turn on skipWarningsAndErrors until
-                // we get another warning.
-                if (format.toString().contains("DVTPlugInManager.m:257")) {
-                    config.getLogger().info(format, args);
-                    return;
-                }
-
-                // received the "closing" warning, enable
-                // logging of warnings and errors again
-                if (skipWarningsAndErrors) {
-                    skipWarningsAndErrors = false;
-                    config.getLogger().info(format, args);
-                } else {
-                    config.getLogger().warn(format, args);
-                }
-            }
-
-            @Override
-            public void error(String format, Object... args) {
-                if (format.contains(
-                        "Requested but did not find extension point with identifier Xcode.DVTFoundation.DevicePlatformMapping")) {
-                    skipWarningsAndErrors = true;                    
-                }
-                if (skipWarningsAndErrors) {
-                    config.getLogger().info(format, args);
-                } else {
-                    config.getLogger().error(format, args);
-                }
-            }
-        };
+        OutputStream out = System.out;
+        OutputStream err = System.err;
+        if (launchParameters.getStdoutFifo() != null) {
+            out = new OpenOnWriteFileOutputStream(launchParameters.getStdoutFifo());
+        }
+        if (launchParameters.getStderrFifo() != null) {
+            err = new OpenOnWriteFileOutputStream(launchParameters.getStderrFifo());
+        }
         
-        return new Executor(proxyLogger, iosSimPath)
+        return new Executor(config.getLogger(), iosSimPath)
                 .args(args)
                 .wd(launchParameters.getWorkingDirectory())
+                .out(out).err(err).closeOutputStreams(true)
                 .inheritEnv(false)
                 .env(env);
     }
@@ -590,13 +535,13 @@ public class IOSTarget extends AbstractTarget {
     protected Process doLaunch(LaunchParameters launchParameters) throws IOException {
         prepareLaunch(getAppDir());
         Process process = super.doLaunch(launchParameters);
-        if (launchParameters instanceof IOSSimulatorLaunchParameters) {
+        /*if (launchParameters instanceof IOSSimulatorLaunchParameters) {
             File script = File.createTempFile("BISTF", ".scpt");
             FileUtils.copyURLToFile(getClass().getResource("/BringIOSSimulatorToFront.scpt"), script);
             new Executor(config.getHome().isDev() ? config.getLogger() : Logger.NULL_LOGGER, "osascript")
                     .args(script)
                     .execAsync();
-        }
+        }*/
         return process;
     }
 

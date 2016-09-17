@@ -254,7 +254,9 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 File stdErrFifo = launchParameters.getStderrFifo();
                 PipedInputStream pipedIn = new PipedInputStream();
                 PipedOutputStream pipedOut = new PipedOutputStream(pipedIn);
+                
                 Process process = compiler.launchAsync(launchParameters, pipedIn);
+                
                 if (stdOutFifo != null || stdErrFifo != null) {
                     InputStream stdoutStream = null;
                     InputStream stderrStream = null;
