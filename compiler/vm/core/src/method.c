@@ -406,6 +406,7 @@ ObjectArray* rvmCallStackToStackTraceElements(Env* env, CallStack* callStack, ji
             args[1].l = (jobject) rvmNewStringUTF(env, m->name, -1);
             if (!args[1].l) return NULL;
             args[2].l = (jobject) rvmAttributeGetClassSourceFile(env, m->clazz);
+            args[3].i = 0;
             if (rvmExceptionOccurred(env)) {
                 return NULL;
             }
