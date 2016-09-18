@@ -470,7 +470,13 @@ typedef struct ShadowFrame {
     struct ShadowFrame* prev;
     void* functionAddress;
     jint lineNumber;
+    void* functionName;
 } ShadowFrame;
+
+typedef struct ThreadShadowFrame {
+  pthread_t thread;
+  ShadowFrame* shadowFrame;
+} ThreadShadowFrame;
 
 struct Env {
     JNIEnv jni;
@@ -483,6 +489,7 @@ struct Env {
     TrycatchContext* trycatchContext;
     jint attachCount;
     ShadowFrame* shadowFrame;
+    ThreadShadowFrame threadFrames[20];
 };
 
 typedef struct DebugGcRoot {

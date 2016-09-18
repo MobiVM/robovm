@@ -7,15 +7,22 @@ import org.robovm.compiler.Functions;
 import org.robovm.compiler.ModuleBuilder;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.llvm.Alloca;
+import org.robovm.compiler.llvm.ArrayType;
 import org.robovm.compiler.llvm.BasicBlock;
 import org.robovm.compiler.llvm.Call;
 import org.robovm.compiler.llvm.Function;
+import org.robovm.compiler.llvm.Getelementptr;
 import org.robovm.compiler.llvm.Instruction;
 import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.PlainTextInstruction;
+import org.robovm.compiler.llvm.PointerType;
 import org.robovm.compiler.llvm.Ret;
+import org.robovm.compiler.llvm.Store;
+import org.robovm.compiler.llvm.StringConstant;
 import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
+import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 
@@ -56,8 +63,20 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         Value env = function.getParameterRef(0);         
         VariableRef funcAddr = new VariableRef("funcAddr", Type.I8_PTR);
         // memory is allocated in runtime on the heap
-        entryBlock.getInstructions().add(2, new Call(Functions.PUSH_SHADOW_FRAME, env, funcAddr));
         
+        StringConstant stringConstant = new StringConstant(function.getName().getBytes());
+        
+        Variable stringVariable = function.newVariable("functionName", new PointerType(new ArrayType(function.getName().length(), Type.I8)));
+        entryBlock.getInstructions().add(2, new Alloca(stringVariable, new ArrayType(function.getName().length(), Type.I8)));
+        entryBlock.getInstructions().add(3, new Store(stringConstant, stringVariable.ref()));
+        
+        Variable ptr = function.newVariable(new PointerType(Type.I8));
+        Getelementptr gep = new Getelementptr(ptr, stringVariable.ref(), 0, 0);
+        entryBlock.getInstructions().add(4, gep);
+        
+                       
+        entryBlock.getInstructions().add(5, new Call(Functions.PUSH_SHADOW_FRAME, env, funcAddr, ptr.ref()));
+                
         //update line numbers for each new instruction
         int currentLineNumber = 0;
         for (BasicBlock bb : function.getBasicBlocks()) {
