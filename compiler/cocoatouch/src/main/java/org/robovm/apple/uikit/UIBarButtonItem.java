@@ -15,25 +15,22 @@
  */
 package org.robovm.apple.uikit;
 
-/*<imports>*/
-import java.io.*;
-import java.nio.*;
-import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
-import org.robovm.rt.bro.*;
-import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.foundation.*;
-import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.coredata.*;
-import org.robovm.apple.coreimage.*;
-import org.robovm.apple.coretext.*;
-import org.robovm.apple.corelocation.*;
+import java.util.Set;
+
+import org.robovm.apple.foundation.NSCoder;
+import org.robovm.apple.foundation.NSCoding;
+import org.robovm.apple.foundation.NSObject;
+import org.robovm.apple.foundation.NSSet;
+import org.robovm.objc.ObjCRuntime;
+import org.robovm.objc.Selector;
+import org.robovm.objc.annotation.Method;
+import org.robovm.objc.annotation.NativeClass;
+import org.robovm.objc.annotation.Property;
+import org.robovm.rt.bro.annotation.ByVal;
+import org.robovm.rt.bro.annotation.Library;
+import org.robovm.rt.bro.annotation.MachineSizedFloat;
+import org.robovm.rt.bro.annotation.Pointer;
+import org.robovm.rt.bro.ptr.Ptr;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -155,9 +152,9 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "setWidth:")
     public native void setWidth(@MachineSizedFloat double v);
     @Property(selector = "possibleTitles")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringListMarshaler.class) Set<String> getPossibleTitles();
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String> getPossibleTitles();
     @Property(selector = "setPossibleTitles:")
-    public native void setPossibleTitles(@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringListMarshaler.class) Set<String> v);
+    public native void setPossibleTitles(@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String> v);
     @Property(selector = "customView")
     public native UIView getCustomView();
     @Property(selector = "setCustomView:")

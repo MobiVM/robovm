@@ -888,7 +888,7 @@ classes:
         properties:
             'possibleTitles':
                 type: Set<String>
-                marshaler: NSSet.AsStringListMarshaler
+                marshaler: NSSet.AsStringSetMarshaler
         methods:
             '-initWithImage:style:target:action:':
                 name: init
