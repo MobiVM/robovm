@@ -15,22 +15,25 @@
  */
 package org.robovm.apple.uikit;
 
-import java.util.Set;
-
-import org.robovm.apple.foundation.NSCoder;
-import org.robovm.apple.foundation.NSCoding;
-import org.robovm.apple.foundation.NSObject;
-import org.robovm.apple.foundation.NSSet;
-import org.robovm.objc.ObjCRuntime;
-import org.robovm.objc.Selector;
-import org.robovm.objc.annotation.Method;
-import org.robovm.objc.annotation.NativeClass;
-import org.robovm.objc.annotation.Property;
-import org.robovm.rt.bro.annotation.ByVal;
-import org.robovm.rt.bro.annotation.Library;
-import org.robovm.rt.bro.annotation.MachineSizedFloat;
-import org.robovm.rt.bro.annotation.Pointer;
-import org.robovm.rt.bro.ptr.Ptr;
+/*<imports>*/
+import java.io.*;
+import java.nio.*;
+import java.util.*;
+import org.robovm.objc.*;
+import org.robovm.objc.annotation.*;
+import org.robovm.objc.block.*;
+import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
+import org.robovm.rt.bro.*;
+import org.robovm.rt.bro.annotation.*;
+import org.robovm.rt.bro.ptr.*;
+import org.robovm.apple.foundation.*;
+import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coredata.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coretext.*;
+import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,18 +42,18 @@ import org.robovm.rt.bro.ptr.Ptr;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIBarButtonItem/*</name>*/ 
-    extends /*<extends>*/UIBarItem/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIBarButtonItem/*</name>*/
+    extends /*<extends>*/UIBarItem/*</extends>*/
     /*<implements>*/implements NSCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UIBarButtonItemPtr extends Ptr<UIBarButtonItem, UIBarButtonItemPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIBarButtonItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    
+
     public interface OnClickListener {
         void onClick(UIBarButtonItem barButtonItem);
     }
-    
+
     private static final Selector handleClick = Selector.register("handleClick");
     private static class ListenerWrapper extends NSObject {
         private final OnClickListener listener;
@@ -62,11 +65,11 @@ import org.robovm.rt.bro.ptr.Ptr;
             listener.onClick(barButtonItem);
         }
     }
-    
-    public UIBarButtonItem(UIImage image, UIBarButtonItemStyle style) { 
+
+    public UIBarButtonItem(UIImage image, UIBarButtonItemStyle style) {
         this(image, style, null);
     }
-    public UIBarButtonItem(UIImage image, UIBarButtonItemStyle style, OnClickListener listener) { 
+    public UIBarButtonItem(UIImage image, UIBarButtonItemStyle style, OnClickListener listener) {
         super((SkipInit) null);
         if (listener != null) {
             ListenerWrapper l = new ListenerWrapper(listener);
@@ -115,7 +118,7 @@ import org.robovm.rt.bro.ptr.Ptr;
             initObject(init(systemItem, null, null));
         }
     }
-    
+
     /*<constructors>*/
     public UIBarButtonItem() {}
     protected UIBarButtonItem(Handle h, long handle) { super(h, handle); }
@@ -130,7 +133,7 @@ import org.robovm.rt.bro.ptr.Ptr;
     public UIBarButtonItem(UIBarButtonSystemItem systemItem, NSObject target, Selector action) { super((SkipInit) null); initObject(init(systemItem, target, action)); }
     public UIBarButtonItem(UIView customView) { super((SkipInit) null); initObject(init(customView)); }
     /*</constructors>*/
-    
+
     public void setOnClickListener(OnClickListener listener) {
         NSObject t = getTarget();
         if (t instanceof ListenerWrapper) {
@@ -141,7 +144,7 @@ import org.robovm.rt.bro.ptr.Ptr;
         setTarget(l);
         this.addStrongRef(l);
     }
-    
+
     /*<properties>*/
     @Property(selector = "style")
     public native UIBarButtonItemStyle getStyle();
