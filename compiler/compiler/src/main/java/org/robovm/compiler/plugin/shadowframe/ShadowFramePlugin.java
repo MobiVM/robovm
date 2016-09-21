@@ -15,6 +15,7 @@ import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.PlainTextInstruction;
 import org.robovm.compiler.llvm.Ret;
 import org.robovm.compiler.llvm.Type;
+import org.robovm.compiler.llvm.Unreachable;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.VariableRef;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
@@ -80,16 +81,15 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
                 }
             }
         }
-        
-        // insert pops on returns
-        // TODO: handle unwinding due to exception
+
         for(BasicBlock bb: function.getBasicBlocks()) {
             for(int i = 0; i < bb.getInstructions().size(); i++) {
-                if(bb.getInstructions().get(i) instanceof Ret) {
+                Instruction inst = bb.getInstructions().get(i);
+                if(inst instanceof Ret || (i > 0 && inst instanceof Unreachable && bb.getInstructions().get(i-1) instanceof Call)) {
                     bb.getInstructions().add(i, new Call(Functions.POP_SHADOW_FRAME, env));
                     break;
                 }
             }
-        }
+        }        
     }
 }
