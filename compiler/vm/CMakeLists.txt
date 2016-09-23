@@ -143,6 +143,7 @@ if(MACOSX)
   set(C_CXX_FLAGS "${C_CXX_FLAGS} -mmacosx-version-min=${MACOSX_MIN_VERSION}")
 elseif(IOS)
   set(C_CXX_FLAGS "${C_CXX_FLAGS} -miphoneos-version-min=${IOS_MIN_VERSION}")
+  set(CMAKE_OSX_DEPLOYMENT_TARGET "") #reset variable for compat with SDK 10.12, see issue #48
 endif()
 
 # Linker flags
@@ -265,16 +266,16 @@ if (IOS)
     set(EXT_HOST --host=arm-apple-darwin7)
   endif()
 endif()
-ExternalProject_Add(libatomic_ops 
+ExternalProject_Add(libatomic_ops
   GIT_REPOSITORY https://github.com/ivmai/libatomic_ops.git
   GIT_TAG 4e22546e8a161b6bab93e43c115a22151daf45c5
   UPDATE_COMMAND ""
-  CONFIGURE_COMMAND "" 
+  CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""
   BUILD_IN_SOURCE 1
 )
-ExternalProject_Add(extgc 
+ExternalProject_Add(extgc
   DEPENDS libatomic_ops
   GIT_REPOSITORY https://github.com/robovm/bdwgc.git
   GIT_TAG feafbd724bef0641e0435f195f8d8ddd595515f6
