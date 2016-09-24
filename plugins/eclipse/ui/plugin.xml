@@ -2,7 +2,8 @@
 <?eclipse version="3.4"?>
 <plugin>
   <extension point="org.eclipse.ui.startup">
-  <!-- our plugin implements IStartup -->     
+  	<!-- our plugin implements IStartup -->   
+  	<startup class="org.robovm.eclipse.RoboVMPlugin"/>
   </extension>
   <extension point="org.eclipse.ui.newWizards">
     <category id="org.robovm.eclipse.wizards.category" name="RoboVM"/>
