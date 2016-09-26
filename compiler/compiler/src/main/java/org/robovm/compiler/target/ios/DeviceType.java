@@ -180,7 +180,7 @@ public class DeviceType implements Comparable<DeviceType> {
     private static List<DeviceType> filter(List<DeviceType> deviceTypes, Arch arch,
             DeviceFamily family, String deviceName, String sdkVersion) {
 
-        deviceName = deviceName == null ? null : deviceName.toLowerCase();
+        deviceName = deviceName == null ? null : deviceName.toLowerCase().replaceAll("-", " ");
 
         List<DeviceType> result = new ArrayList<>();
         for (DeviceType type : deviceTypes) {
