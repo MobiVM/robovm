@@ -170,6 +170,9 @@ public class Config {
     private File infoPListFile = null;    
     @Element(required = false)
     private File iosEntitlementsPList;
+    
+    @ElementList(required = false, entry = "exclude")
+    private ArrayList<String> stripArchives;
 
     @Element(required = false)
     private Tools tools;
@@ -530,6 +533,11 @@ public class Config {
         return iosEntitlementsPList;
     }
 
+    public List<String> getStripArchives() { 
+    		return stripArchives == null ? Collections.<String> emptyList()
+                : Collections.unmodifiableList(stripArchives);
+    }
+    
     public SigningIdentity getIosSignIdentity() {
         return iosSignIdentity;
     }
