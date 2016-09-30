@@ -12,4 +12,7 @@
             <directory>resources</directory>
         </resource>
     </resources>
+	<stripArchives>
+	    <exclude>META-INF/robovm/.*</exclude>
+	</stripArchives>
 </config>

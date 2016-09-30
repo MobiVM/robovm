@@ -543,10 +543,6 @@ public abstract class AbstractTarget implements Target {
                         if (entry.getName().toLowerCase().endsWith(".class")) {
                             continue;
                         }
-                        if (entry.getName().startsWith("META-INF/robovm/")) {
-                            // Don't include anything under META-INF/robovm/
-                            continue;
-                        }
                         for (Pattern stripArchivesPattern : stripArchivesPatterns) {
                         		if (stripArchivesPattern.matcher(entry.getName()).matches()) {
                         			continue ENTRIES;
@@ -578,10 +574,6 @@ public abstract class AbstractTarget implements Target {
                         continue;
                     }
                     String entryName = f.getAbsolutePath().substring(basePath.length() + 1);
-                    if (entryName.startsWith("META-INF/robovm/")) {
-                        // Don't include anything under META-INF/robovm/
-                        continue;
-                    }
                     for (Pattern stripArchivesPattern : stripArchivesPatterns) {
 	                		if (stripArchivesPattern.matcher(entryName).matches()) {
 	                			continue FILES;

@@ -4,4 +4,7 @@
 <config>
     <executableName>${app.executable}</executableName>
     <mainClass>${app.mainclass}</mainClass>
+	<stripArchives>
+	  <exclude>META-INF/robovm/.*</exclude>
+	</stripArchives>
 </config>
