@@ -521,6 +521,14 @@ public abstract class AbstractTarget implements Target {
         
         config.getLogger().info("Creating stripped archive file %s", output);
 
+        List<String> stripArchives = config.getStripArchives();
+        
+        /* Compile each stripArchives-Entry (Java Regex) into a reusable Pattern. */
+        List<Pattern> stripArchivesPatterns = new ArrayList<>();
+        for (String stripArchivesEntry : stripArchives) {
+            stripArchivesPatterns.add(Pattern.compile(stripArchivesEntry));
+		}
+        
         ZipOutputStream out = null;
         try {
             out = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(output)));
@@ -530,14 +538,15 @@ public abstract class AbstractTarget implements Target {
                 try {
                     archive = new ZipFile(path.getFile());
                     Enumeration<? extends ZipEntry> entries = archive.entries();
-                    while (entries.hasMoreElements()) {
+                    ENTRIES: while (entries.hasMoreElements()) {
                         ZipEntry entry = entries.nextElement();
                         if (entry.getName().toLowerCase().endsWith(".class")) {
                             continue;
                         }
-                        if (entry.getName().startsWith("META-INF/robovm/")) {
-                            // Don't include anything under META-INF/robovm/
-                            continue;
+                        for (Pattern stripArchivesPattern : stripArchivesPatterns) {
+                        		if (stripArchivesPattern.matcher(entry.getName()).matches()) {
+                        			continue ENTRIES;
+                        		}
                         }
                         ZipEntry newEntry = new ZipEntry(entry.getName());
                         newEntry.setTime(entry.getTime());
@@ -560,15 +569,16 @@ public abstract class AbstractTarget implements Target {
                 String basePath = path.getFile().getAbsolutePath();
                 @SuppressWarnings("unchecked")
                 Collection<File> files = FileUtils.listFiles(path.getFile(), null, true);
-                for (File f : files) {
+                FILES: for (File f : files) {
                     if (f.getName().toLowerCase().endsWith(".class")) {
                         continue;
                     }
                     String entryName = f.getAbsolutePath().substring(basePath.length() + 1);
-                    if (entryName.startsWith("META-INF/robovm/")) {
-                        // Don't include anything under META-INF/robovm/
-                        continue;
-                    }
+                    for (Pattern stripArchivesPattern : stripArchivesPatterns) {
+	                		if (stripArchivesPattern.matcher(entryName).matches()) {
+	                			continue FILES;
+	                		}
+	                }
                     ZipEntry newEntry = new ZipEntry(entryName);
                     newEntry.setTime(f.lastModified());
                     out.putNextEntry(newEntry);
