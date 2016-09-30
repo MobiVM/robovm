@@ -523,19 +523,11 @@ public abstract class AbstractTarget implements Target {
 
         List<String> stripArchives = config.getStripArchives();
         
-        /* Compile each stripArchives-Entry into a reusable Pattern. */
+        /* Compile each stripArchives-Entry (Java Regex) into a reusable Pattern. */
         List<Pattern> stripArchivesPatterns = new ArrayList<>();
         for (String stripArchivesEntry : stripArchives) {
-        	
-        		String javaRegex = stripArchivesEntry;
-        		
-        		javaRegex = javaRegex.replace(".", "\\.");
-        		javaRegex = javaRegex.replace("**", "{wildcard}");
-        		javaRegex = javaRegex.replace("*", "{wildcard}");
-        		javaRegex = javaRegex.replace("{wildcard}", ".*");
-        		
-        		stripArchivesPatterns.add(Pattern.compile(javaRegex));
-        }
+            stripArchivesPatterns.add(Pattern.compile(stripArchivesEntry));
+		}
         
         ZipOutputStream out = null;
         try {
