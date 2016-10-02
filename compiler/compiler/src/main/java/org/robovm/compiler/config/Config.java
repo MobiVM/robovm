@@ -57,6 +57,7 @@ import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.clazz.Clazzes;
 import org.robovm.compiler.clazz.Path;
 import org.robovm.compiler.config.OS.Family;
+import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.config.tools.Tools;
 import org.robovm.compiler.llvm.DataLayout;
 import org.robovm.compiler.log.Logger;
@@ -98,8 +99,9 @@ import org.simpleframework.xml.stream.OutputNode;
  */
 @Root
 public class Config {
+    
 
-    /**
+	/**
      * The max file name length of files stored in the cache. OS X has a limit
      * of 255 characters. Class names are very unlikely to be this long but some
      * JVM language compilers (e.g. the Scala compiler) are known to generate
@@ -150,7 +152,7 @@ public class Config {
     @ElementList(required = false, entry = "path")
     private ArrayList<File> frameworkPaths;
     @ElementList(required = false, entry = "resource")
-    private ArrayList<Resource> resources;
+    private ArrayList<Resource> resources;   
     @ElementList(required = false, entry = "classpathentry")
     private ArrayList<File> bootclasspath;
     @ElementList(required = false, entry = "classpathentry")
@@ -159,6 +161,8 @@ public class Config {
     private ArrayList<String> pluginArguments;
     @Element(required = false, name = "target")
     private String targetType;
+    @Element(required = false, name = "stripArchives")
+    private StripArchivesConfig stripArchivesConfig;
     @Element(required = false, name = "treeShaker")
     private TreeShakerMode treeShakerMode;
 
@@ -219,6 +223,7 @@ public class Config {
     private transient Config configBeforeBuild;
     private transient DependencyGraph dependencyGraph;
     private transient Arch sliceArch;
+    private transient StripArchivesBuilder stripArchivesBuilder;
 
     protected Config() throws IOException {
         // Add standard plugins
@@ -358,6 +363,10 @@ public class Config {
     public void addResourcesPath(Path path) {
         resourcesPaths.add(path);
     }
+    
+    public StripArchivesConfig getStripArchivesConfig() {
+       return stripArchivesConfig == null ? StripArchivesConfig.DEFAULT : stripArchivesConfig;
+   }
 
     public DependencyGraph getDependencyGraph() {
         return dependencyGraph;
@@ -907,6 +916,7 @@ public class Config {
         osArchCacheDir.mkdirs();
 
         this.clazzes = new Clazzes(this, realBootclasspath, classpath);
+		  this.stripArchivesConfig = stripArchivesBuilder == null ? StripArchivesConfig.DEFAULT : stripArchivesBuilder.build();
 
         mergeConfigsFromClasspath();
 
@@ -1359,6 +1369,11 @@ public class Config {
             config.resources.add(resource);
             return this;
         }
+        
+        public Builder stripArchivesBuilder(StripArchivesBuilder stripArchivesBuilder) {
+           this.config.stripArchivesBuilder = stripArchivesBuilder;
+           return this;
+       }
 
         public Builder targetType(String targetType) {
             config.targetType = targetType;
@@ -1628,6 +1643,7 @@ public class Config {
             registry.bind(File.class, fileConverter);
             registry.bind(Lib.class, new RelativeLibConverter(fileConverter));
             registry.bind(Resource.class, new ResourceConverter(fileConverter, resourceSerializer));
+            registry.bind(StripArchivesConfig.class, new StripArchivesConfigConverter());
 
             return serializer;
         }
@@ -1821,5 +1837,36 @@ public class Config {
                 serializer.write(resource, node.getParent());
             }
         }
+    }
+    
+    private static final class StripArchivesConfigConverter implements Converter<StripArchivesConfig> {
+
+   	 @Override
+   	 public StripArchivesConfig read (InputNode node) throws Exception {
+   		 StripArchivesBuilder cfgBuilder = new StripArchivesBuilder();
+   		 InputNode childNode;
+   		 while((childNode = node.getNext()) != null){
+   			 if(childNode.isElement() && !childNode.isEmpty() && childNode.getName().equals("include") || childNode.getName().equals("exclude")){
+   				 boolean isInclude = childNode.getName().equals("include");
+   				 cfgBuilder.add(isInclude, childNode.getValue());
+   			 }
+   		 }
+   		 return cfgBuilder.build();
+   	 }
+
+   	 @Override
+   	 public void write (OutputNode node, StripArchivesConfig config) throws Exception {
+   		 if(config.getPatterns() != null && !config.getPatterns().isEmpty()){
+   			 for(StripArchivesConfig.Pattern pattern : config.getPatterns()){
+   				 OutputNode child = node.getChild(pattern.isInclude() ? "include" : "exclude");
+   				 child.setValue(pattern.getPatternAsString());
+   				 child.commit();
+   			 }
+
+
+   		 }
+   		 node.commit();
+   	 }
+
     }
 }
