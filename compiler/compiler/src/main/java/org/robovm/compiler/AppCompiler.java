@@ -56,6 +56,8 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.TreeShakerMode;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
+import org.robovm.compiler.config.StripArchivesConfig;
+import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.plugin.LaunchPlugin;
 import org.robovm.compiler.plugin.Plugin;
@@ -476,6 +478,7 @@ public class AppCompiler {
         boolean run = false;
         boolean archive = false;
         List<Arch> archs = new ArrayList<>();
+        StripArchivesBuilder stripArchivesBuilder = new StripArchivesBuilder();
         String dumpConfigFile = null;
         List<String> runArgs = new ArrayList<String>();
         try {
@@ -611,6 +614,10 @@ public class AppCompiler {
                             builder.addResource(new Resource(new File(p)));
                         }
                     }
+                } else if ("-strip-archives-include".equals(args[i])) {
+                   stripArchivesBuilder.addInclude(args[++i].split(":"));
+                } else if ("-strip-archives-exclude".equals(args[i])) {
+               	 stripArchivesBuilder.addExclude(args[++i].split(":"));
                 } else if ("-cacerts".equals(args[i])) {
                     String name = args[++i];
                     Config.Cacerts cacerts = null;
@@ -669,6 +676,7 @@ public class AppCompiler {
             }
 
             builder.archs(archs.toArray(new Arch[archs.size()]));
+            builder.stripArchivesBuilder(stripArchivesBuilder);
 
             while (i < args.length) {
                 runArgs.add(args[i++]);
@@ -970,6 +978,21 @@ public class AppCompiler {
                          + "                        If a pattern is specified the longest non-pattern path before\n" 
                          + "                        the first wildcard will be used as base directory and will\n" 
                          + "                        not be recreated in the install dir.");
+        System.err.println("  -strip-archives-include <list>\n" 
+                         + "                        : separated list of file patterns. Matching files will always\n"
+                         + "                        be included when stripping archives. The default is to include\n"
+                         + "                        all non .class files when stripping archives.\n"
+                         + "                        -strip-archives-include and -strip-archives-exclude patterns\n"
+                         + "                        will be evaluated in order and the first matching pattern will\n"
+                         + "                        specify whether a specific file should be included or not.");
+        
+        System.err.println("  -strip-archives-exclude <list>\n"
+                         + "                        : separated list of file patterns. Matching files will always\n"
+                         + "                        be excluded when stripping archives. The default is to include\n"
+                         + "                        all non .class files when stripping archives.\n"
+                         + "                        -strip-archives-include and -strip-archives-exclude patterns\n"
+                         + "                        will be evaluated in order and the first matching pattern will\n"
+                         + "                        specify whether a specific file should be included or not.");
         System.err.println("  -cacerts <value>      Use the specified cacerts file. Allowed value are 'none',\n" 
                          + "                        'full'. Default is 'full' but no cacerts will be included\n" 
                          + "                        unless the code actually needs them.");
