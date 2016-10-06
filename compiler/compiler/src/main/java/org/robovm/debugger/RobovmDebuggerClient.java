@@ -64,7 +64,7 @@ public class RobovmDebuggerClient implements Runnable {
 
 	public void setBreakpoint(String method, int lineNumberOffset) {
 		//1. first step, get base address of breakpoint byte array
-		long baseAddress = getSymbolAddress(method + "[bptable]");
+		long baseAddress = getSymbolAddress("_" + method + "[bptable]");
 		
 		//2. second step, get correct byte of bptable array
 		int bpTableIndex = lineNumberOffset >> 3;
