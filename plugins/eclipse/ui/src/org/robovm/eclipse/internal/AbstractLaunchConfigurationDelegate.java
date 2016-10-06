@@ -20,8 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
 import java.net.ServerSocket;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -43,7 +41,10 @@ import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchManager;
+import org.eclipse.debug.core.IStreamListener;
 import org.eclipse.debug.core.model.IProcess;
+import org.eclipse.debug.core.model.IStreamMonitor;
+import org.eclipse.debug.core.model.IStreamsProxy;
 import org.eclipse.jdi.Bootstrap;
 import org.eclipse.jdi.internal.VirtualMachineImpl;
 import org.eclipse.jdt.core.IJavaProject;
@@ -60,6 +61,9 @@ import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.util.io.Fifos;
 import org.robovm.compiler.util.io.OpenOnReadFileInputStream;
+import org.robovm.compiler.util.io.OpenOnWriteFileOutputStream;
+import org.robovm.debugger.ConsoleDebugger;
+import org.robovm.debugger.io.FilterDebuggerCommandsOutputStream;
 import org.robovm.eclipse.RoboVMPlugin;
 
 import com.sun.jdi.VirtualMachine;
@@ -89,6 +93,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
             String mode) throws IOException, CoreException {
         launchParameters.setStdoutFifo(Fifos.mkfifo("stdout"));
         launchParameters.setStderrFifo(Fifos.mkfifo("stderr"));
+        launchParameters.setStdinFifo(Fifos.mkfifo("stdin"));
     }
 
     protected boolean isTestConfiguration() {
@@ -198,10 +203,6 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
             Config config = null;
             AppCompiler compiler = null;
             try {
-                RoboVMPlugin.consoleInfo("Cleaning output dir " + tmpDir.getAbsolutePath());
-                FileUtils.deleteDirectory(tmpDir);
-                tmpDir.mkdirs();
-
                 Home home = RoboVMPlugin.getRoboVMHome();
                 if (home.isDev()) {
                     configBuilder.useDebugLibs(true);
@@ -209,6 +210,20 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 }
                 configBuilder.home(home);
                 config = configure(configBuilder, configuration, mode).build();
+
+                config.getCompilerCache().setProjectRoot(projectRoot);
+
+                //only clean all intermediates when clean is set in config or via CLI
+                if (config.isClean()) {
+                	RoboVMPlugin.consoleInfo("Cleaning output dir " + tmpDir.getAbsolutePath());
+                	FileUtils.deleteDirectory(tmpDir);
+                }
+                else {
+                	config.getCompilerCache().readCache();
+                }
+                
+                tmpDir.mkdirs();
+                
                 compiler = new AppCompiler(config);
                 if (monitor.isCanceled()) {
                     return;
@@ -241,6 +256,14 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 List<String> runArgs = new ArrayList<String>();
                 runArgs.addAll(vmArgs);
                 runArgs.addAll(pgmArgs);
+                
+                if (ILaunchManager.DEBUG_MODE.equals(mode)) {
+                	runArgs.add("-rvm:WaitForResume");
+                	runArgs.add("-rvm:PrintPID");
+                	runArgs.add("-rvm:PrintDebugPort");
+                	runArgs.add("-rvm:log=debug");
+                }
+                
                 LaunchParameters launchParameters = config.getTarget().createLaunchParameters();
                 launchParameters.setArguments(runArgs);
                 launchParameters.setWorkingDirectory(workingDir);
@@ -252,24 +275,73 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 // it then writes to. Need to save the original fifos
                 File stdOutFifo = launchParameters.getStdoutFifo();
                 File stdErrFifo = launchParameters.getStderrFifo();
-                PipedInputStream pipedIn = new PipedInputStream();
-                PipedOutputStream pipedOut = new PipedOutputStream(pipedIn);
-                
-                Process process = compiler.launchAsync(launchParameters, pipedIn);
+                File stdInFifo = launchParameters.getStdinFifo();
+                                
+                Process process = compiler.launchAsync(launchParameters);
+                OutputStream stdinStream = null;
                 
                 if (stdOutFifo != null || stdErrFifo != null) {
                     InputStream stdoutStream = null;
                     InputStream stderrStream = null;
+                    
                     if (launchParameters.getStdoutFifo() != null) {
                         stdoutStream = new OpenOnReadFileInputStream(stdOutFifo);
                     }
                     if (launchParameters.getStderrFifo() != null) {
                         stderrStream = new OpenOnReadFileInputStream(stdErrFifo);
                     }
-                    process = new ProcessProxy(process, pipedOut, stdoutStream, stderrStream, compiler);
+                    if (launchParameters.getStdinFifo() != null) {
+                    	stdinStream = new FilterDebuggerCommandsOutputStream(new OpenOnWriteFileOutputStream(stdInFifo));
+                    }
+                    
+                    process = new ProcessProxy(process, stdinStream, stdoutStream, stderrStream, compiler);
                 }
 
-                IProcess iProcess = DebugPlugin.newProcess(launch, process, label);
+                final IProcess iProcess = DebugPlugin.newProcess(launch, process, label);
+                                
+                if (ILaunchManager.DEBUG_MODE.equals(mode)) {  
+                	File dir = config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir();
+                	final ConsoleDebugger debugger = new ConsoleDebugger(RoboVMPlugin.getConsoleLogger(), 
+                			new File(dir, config.getExecutableName()).getAbsolutePath());
+                	
+                	final IStreamsProxy streamsProxy = iProcess.getStreamsProxy();
+                	IStreamListener listener = new IStreamListener() {
+						@Override
+						public void streamAppended(String message, IStreamMonitor monitor) {
+							debugger.parseAppOutput(message);
+						}
+					};
+					
+                	streamsProxy.getOutputStreamMonitor().addListener(listener);
+                	streamsProxy.getErrorStreamMonitor().addListener(listener);
+                	
+                	final FilterDebuggerCommandsOutputStream debuggerInputStream = (FilterDebuggerCommandsOutputStream) stdinStream;
+                	debuggerInputStream.setDebuggingCommandListener(debugger);
+                	debugger.setAppOutputStream(new OpenOnWriteFileOutputStream(stdOutFifo));
+                	
+                	Thread checkProcess = new Thread(new Runnable() {
+                		@Override
+                		public void run() {
+                			boolean running = true;
+                			while (running) {
+	                			if (iProcess.isTerminated()) {
+	                				debugger.shutdown();
+	                				running = false;
+	                			}
+	                			else {
+	                				try {
+										Thread.sleep(1000);
+									} 
+	                				catch (InterruptedException e) {
+	                					RoboVMPlugin.consoleWarn("Process checker of debugger interrupted!");
+	                					e.printStackTrace();
+									}
+	                			}
+                			}
+                		}
+                	}, "ProcessWatcherThread");
+                	checkProcess.start();
+                }
                 
                 // setup the debugger
                 if (ILaunchManager.DEBUG_MODE.equals(mode) && hasDebugPlugin) {
@@ -287,12 +359,16 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 }
                 RoboVMPlugin.consoleInfo("Launch done");
 
+                config.getCompilerCache().addRobovmXmlTimestamp();
+                config.getCompilerCache().writeCache();
+                
                 if (monitor.isCanceled()) {
                     process.destroy();
                     return;
                 }
                 monitor.worked(1);
             } catch (Throwable t) {
+            	config.getCompilerCache().deleteCache();
                 RoboVMPlugin.consoleError("Launch failed");
                 throw new CoreException(new Status(IStatus.ERROR, RoboVMPlugin.PLUGIN_ID,
                         "Launch failed. Check the RoboVM console for more information.", t));

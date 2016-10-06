@@ -18,6 +18,7 @@ package org.robovm.compiler.target;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +28,7 @@ import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.util.Executor;
+import org.robovm.compiler.util.io.OpenOnReadFileInputStream;
 import org.robovm.compiler.util.io.OpenOnWriteFileOutputStream;
 
 
@@ -64,17 +66,22 @@ public class ConsoleTarget extends AbstractTarget {
         File dir = config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir();
         OutputStream out = System.out;
         OutputStream err = System.err;
+        InputStream in = System.in;
+        
         if (launchParameters.getStdoutFifo() != null) {
             out = new OpenOnWriteFileOutputStream(launchParameters.getStdoutFifo());
         }
         if (launchParameters.getStderrFifo() != null) {
             err = new OpenOnWriteFileOutputStream(launchParameters.getStderrFifo());
         }
+        if (launchParameters.getStdinFifo() != null) {
+        	in = new OpenOnReadFileInputStream(launchParameters.getStdinFifo());
+        }
         
         return createExecutor(launchParameters, new File(dir, 
                 config.getExecutableName()).getAbsolutePath(), 
                 launchParameters.getArguments())
-                .out(out).err(err).closeOutputStreams(true);
+                .out(out).err(err).in(in).closeOutputStreams(true);
     }
     
     protected Executor createExecutor(LaunchParameters launchParameters, String cmd, List<? extends Object> args) throws IOException {

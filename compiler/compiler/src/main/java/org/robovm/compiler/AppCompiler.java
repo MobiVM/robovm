@@ -441,6 +441,7 @@ public class AppCompiler {
 
         long duration = System.currentTimeMillis() - start;
         config.getLogger().info("Compiled %d classes in %.2f seconds", compiledCount, duration / 1000.0);
+        config.getCompilerCache().setCompiledClasses(compiledCount);
 
         return linkClasses;
     }
@@ -805,22 +806,15 @@ public class AppCompiler {
     }
 
     public int launch(LaunchParameters launchParameters) throws Throwable {
-        return launch(launchParameters, null);
-    }
-
-    public int launch(LaunchParameters launchParameters, InputStream inputStream) throws Throwable {
         try {
-            return launchAsync(launchParameters, inputStream).waitFor();
+            return launchAsync(launchParameters).waitFor();
         } finally {
             launchAsyncCleanup();
         }
     }
 
-    public Process launchAsync(LaunchParameters launchParameters) throws Throwable {
-        return launchAsync(launchParameters, null);
-    }
 
-    public Process launchAsync(LaunchParameters launchParameters, InputStream inputStream) throws Throwable {
+    public Process launchAsync(LaunchParameters launchParameters) throws Throwable {
         for (LaunchPlugin plugin : config.getLaunchPlugins()) {
             plugin.beforeLaunch(config, launchParameters);
         }

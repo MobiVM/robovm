@@ -183,6 +183,12 @@ public class Linker {
     }
 
     public void link(Set<Clazz> classes) throws IOException {
+        if (config.getCompilerCache().getCompiledClasses() == 0) {
+        	config.getLogger().info("No linkage required.");
+        	config.getTarget().build(null);
+        	return;
+        }
+
         for (CompilerPlugin plugin : config.getCompilerPlugins()) {
             plugin.beforeLinker(config, this, classes);
         }

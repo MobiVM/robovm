@@ -74,6 +74,7 @@ import org.robovm.compiler.plugin.objc.ObjCProtocolProxyPlugin;
 import org.robovm.compiler.plugin.shadowframe.ShadowFramePlugin;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.Target;
+import org.robovm.compiler.target.ios.CompilerCache;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
@@ -177,6 +178,7 @@ public class Config {
     @Element(required = false)
     private boolean useLineNumbers;
 
+    private CompilerCache compilerCache;
     private SigningIdentity iosSignIdentity;
     private ProvisioningProfile iosProvisioningProfile;
     private String iosDeviceType;
@@ -546,6 +548,10 @@ public class Config {
         return tools;
     }
 
+    public CompilerCache getCompilerCache() {
+    	return this.compilerCache;
+    }
+
     private static File makeFileRelativeTo(File dir, File f) {
         if (f.getParentFile() == null) {
             return dir;
@@ -907,6 +913,8 @@ public class Config {
         osArchCacheDir.mkdirs();
 
         this.clazzes = new Clazzes(this, realBootclasspath, classpath);
+
+        this.compilerCache = new CompilerCache(this);
 
         mergeConfigsFromClasspath();
 

@@ -102,6 +102,11 @@ public abstract class AbstractTarget implements Target {
     }
 
     public void build(List<File> objectFiles) throws IOException {
+    	if (objectFiles == null) {
+    		 config.getLogger().info("No object files passed, assume that binary is up-to-date.");
+    		 return;
+    	}
+    	
         File outFile = new File(config.getTmpDir(), config.getExecutableName());
         
         config.getLogger().info("Building %s binary %s", config.getTarget().getType(), outFile);
@@ -289,20 +294,34 @@ public abstract class AbstractTarget implements Target {
     }
 
     protected void copyResources(File destDir) throws IOException {
-        for (Resource res : config.getResources()) {
-            res.walk(new Walker() {
-                @Override
-                public boolean processDir(Resource resource, File dir, File destDir) throws IOException {
-                    return AbstractTarget.this.processDir(resource, dir, destDir);
-                }
-                @Override
-                public void processFile(Resource resource, File file, File destDir)
-                        throws IOException {
-                    
-                    copyFile(resource, file, destDir);
-                }
-            }, destDir);
-        }
+    	for (Resource res : config.getResources()) {
+    		if (config.getCompilerCache().isResourceChanged(res)) {
+    			break;
+    		}
+    	}
+    	
+    	//If one resource or robovm.xml has changed, copy all resources again
+    	if (config.getCompilerCache().isAnyResourceChanged() || config.getCompilerCache().isRobovmXmlChanged()) {
+	    	for (Resource res : config.getResources()) {
+	            res.walk(new Walker() {
+	                @Override
+	                public boolean processDir(Resource resource, File dir, File destDir) throws IOException {
+	                    return AbstractTarget.this.processDir(resource, dir, destDir);
+	                }
+	                @Override
+	                public void processFile(Resource resource, File file, File destDir)
+	                        throws IOException {
+	                    
+	                    copyFile(resource, file, destDir);
+	                }
+	            }, destDir);
+	            
+	            config.getCompilerCache().addTimestamp(res);
+	        }
+    	}
+    	else {
+    		config.getLogger().info("No resource changed, don't update resources");
+    	}
     }
     
     protected void copyDynamicFrameworks(File destDir) throws IOException {

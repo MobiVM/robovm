@@ -29,6 +29,7 @@ public class LaunchParameters {
     private File workingDirectory = new File(".");
     private File stdoutFifo = null;
     private File stderrFifo = null;
+    private File stdinFifo = null;
     
     public List<String> getArguments() {
         return arguments;
@@ -69,4 +70,14 @@ public class LaunchParameters {
     public void setStderrFifo(File stderrFifo) {
         this.stderrFifo = stderrFifo;
     }
+
+	public File getStdinFifo() {
+		return stdinFifo;
+	}
+
+	public void setStdinFifo(File stdinFifo) {
+		this.stdinFifo = stdinFifo;
+	}
+
+	
 }
