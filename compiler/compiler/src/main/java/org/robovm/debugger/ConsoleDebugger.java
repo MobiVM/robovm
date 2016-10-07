@@ -49,7 +49,9 @@ public class ConsoleDebugger implements DebuggingCommandListener {
 		//writeToAppOutput("Got command %s in debugger, but doing nothing", command);
 		
 		if (command.equals("start")) {
-			debuggerClient.resumeThread(0L);
+			//uncomment this for auto setting of breakpoint
+			//debuggerClient.setBreakpoint("[J]Main.voidMethod()V",1);
+			debuggerClient.resumeThread(0L);			
 		}
 		else if (command.equals("exit")) {
 			debuggerClient.setRunning(false);

@@ -81,7 +81,7 @@ public class RobovmDebuggerClient implements Runnable {
 	
 	public void readMemory(int size) {
 		curReadMemLength = size;
-		this.readMemory(currentStack.get(0).framePointer, size);
+		this.readMemory(currentStack.get(0).framePointer - size, size);
 	}
 	
 	public void readMemory(long address, int size) {
@@ -174,7 +174,7 @@ public class RobovmDebuggerClient implements Runnable {
 						long requestId = inputStream.readLong();
 						long shouldBeZero = inputStream.readLong();
 						
-						System.out.println("Successfully wrote memory?" + (shouldBeZero == 0));
+						System.out.println("Successfully wrote memory? " + (shouldBeZero == 0));
 					}
 					else {
 						System.out.println("Unknown event: " + event);
@@ -260,6 +260,7 @@ public class RobovmDebuggerClient implements Runnable {
 		public void send(DataOutputStream outputStream) throws IOException {
 			super.send(outputStream);
 			
+			//payload size!
 			outputStream.writeLong(8L);
 			outputStream.writeLong(this.threadAddress);
 		}
@@ -278,6 +279,9 @@ public class RobovmDebuggerClient implements Runnable {
 		@Override
 		public void send(DataOutputStream outputStream) throws IOException {
 			super.send(outputStream);
+			
+			//payload size!
+			outputStream.writeLong(12);
 			outputStream.writeLong(address);
 			outputStream.writeInt(bytes);
 		}
