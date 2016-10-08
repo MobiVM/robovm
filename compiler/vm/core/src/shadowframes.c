@@ -1,12 +1,12 @@
 /*
  * Copyright 2016 Justin Shapcott.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,9 +17,10 @@
 
 #define LOG_TAG "shadowframes"
 
-void rvmPushShadowFrame(Env* env, void* functionAddress) {
+void rvmPushShadowFrame(Env* env, void* functionAddress, void* stackAddress) {
     ShadowFrame* frame = rvmAllocateMemory(env, sizeof(ShadowFrame));
     frame->functionAddress = functionAddress;
+    frame->stackAddress = stackAddress;
 
     frame->prev = env->shadowFrame;
     env->shadowFrame = frame;

@@ -1296,6 +1296,7 @@ static void writeStopOrExceptionEvent(Env* env, char event, Object* throwable, j
     writeChannelLong(clientSocket, payLoadSize, &error);
     writeChannelLong(clientSocket, (jlong)env->currentThread->threadObj, &error);
     writeChannelLong(clientSocket, (jlong)env->currentThread, &error);
+    writeChannelLong(clientSocket, (jlong)env->shadowFrame->stackAddress, &error);
     if(event == EVT_EXCEPTION) {
         writeChannelLong(clientSocket, (jlong)throwable, &error);
         writeChannelByte(clientSocket, isCaught? -1: 0, &error);
@@ -1311,7 +1312,7 @@ void _rvmHookClassLoaded(Env* env, Class* clazz, void* classInfo) {
     // check if there's a filter for that class
     rvmLockMutex(&classFilterMutex);
     for(ClassFilter* f = classFilters; f; f = f->next) {
-        if(!strcmp(f->className, clazz->name)) {            
+        if(!strcmp(f->className, clazz->name)) {
             if(env->currentThread) {
                 javaThread = env->currentThread->threadObj;
                 thread = env->currentThread;

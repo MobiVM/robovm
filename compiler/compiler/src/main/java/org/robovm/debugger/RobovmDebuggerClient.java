@@ -3,6 +3,7 @@ package org.robovm.debugger;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -49,10 +50,9 @@ public class RobovmDebuggerClient implements Runnable {
 	private long curThreadPointer;
 	private long curThreadObjPointer;
 	private long curThrowablePointer;
+	private long curStackPointer;
 	private byte curIsCaught;
-	
-	private int curReadMemLength = 0;
-	
+		
 	public RobovmDebuggerClient(DataInputStream inputStream, DataOutputStream outputStream, Map<String, Long> symbolTable) {
 		super();
 		this.inputStream = inputStream;
@@ -79,9 +79,12 @@ public class RobovmDebuggerClient implements Runnable {
 		this.queueCommand(new ThreadResumeCommand(threadAddress));
 	}
 	
+	public void readMemoryFromStack(int offset, int size) {
+		this.readMemory(curStackPointer + offset, size);
+	}
+	
 	public void readMemory(int size) {
-		curReadMemLength = size;
-		this.readMemory(currentStack.get(0).framePointer - size, size);
+		this.readMemory(0, size);
 	}
 	
 	public void readMemory(long address, int size) {
@@ -142,6 +145,7 @@ public class RobovmDebuggerClient implements Runnable {
 						long callstackPayloadSize = inputStream.readLong();
 						curThreadPointer = inputStream.readLong();
 						curThreadObjPointer = inputStream.readLong();
+						curStackPointer = inputStream.readLong();
 						
 						if (event == EVT_EXCEPTION) {
 							curThrowablePointer = inputStream.readLong();
@@ -159,16 +163,17 @@ public class RobovmDebuggerClient implements Runnable {
 					else if (event == CMD_READ_MEMORY) {
 						long requestId = inputStream.readLong();
 						long noBytes = inputStream.readLong();
-						int noBytesInt = (int)noBytes;
-						//bp _[J]Main.voidMethod()V 3
-						if (noBytesInt == 0) {
-							noBytesInt = curReadMemLength;
-						}
 						
-						byte[] memory = new byte[noBytesInt];
-						inputStream.readFully(memory, 0, noBytesInt);
+						byte[] memory = new byte[(int)noBytes];
+						inputStream.readFully(memory, 0, (int)noBytes);
 						
 						System.out.println(memory);
+						if (noBytes == 4) {
+							int integer = ByteBuffer.wrap(memory).getInt();
+							byte[] inverse = new byte[]{memory[3],memory[2],memory[1],memory[0]};
+							int inverseInt = ByteBuffer.wrap(inverse).getInt();
+							System.out.println(inverse + " " + inverseInt);
+						}
 					}
 					else if (event == CMD_WRITE_OR_BITS) {
 						long requestId = inputStream.readLong();

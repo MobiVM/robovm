@@ -50,7 +50,7 @@ public class ConsoleDebugger implements DebuggingCommandListener {
 		
 		if (command.equals("start")) {
 			//uncomment this for auto setting of breakpoint
-			//debuggerClient.setBreakpoint("[J]Main.voidMethod()V",1);
+			debuggerClient.setBreakpoint("[J]Main.voidMethod()V", 5);
 			debuggerClient.resumeThread(0L);			
 		}
 		else if (command.equals("exit")) {
@@ -58,8 +58,10 @@ public class ConsoleDebugger implements DebuggingCommandListener {
 			shutdown();
 		}
 		else if (command.contains("readmem")) {
-			int length = Integer.valueOf(command.split(" ")[1]);
-			debuggerClient.readMemory(length);
+			String[] parts = command.split(" ");
+			int offset = Integer.valueOf(parts[1]);
+			int length = Integer.valueOf(parts[2]);
+			debuggerClient.readMemoryFromStack(offset, length);
 		}
 		else if (command.contains("bp")) {
 			String[] bpParts = command.split(" ");

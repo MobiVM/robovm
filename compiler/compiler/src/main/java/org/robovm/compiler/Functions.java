@@ -16,8 +16,24 @@
  */
 package org.robovm.compiler;
 
-import static org.robovm.compiler.Types.*;
-import static org.robovm.compiler.llvm.Type.*;
+import static org.robovm.compiler.Types.CLASS_PTR;
+import static org.robovm.compiler.Types.ENV_PTR;
+import static org.robovm.compiler.Types.GATEWAY_FRAME;
+import static org.robovm.compiler.Types.GATEWAY_FRAME_PTR;
+import static org.robovm.compiler.Types.OBJECT_PTR;
+import static org.robovm.compiler.Types.TRYCATCH_CONTEXT;
+import static org.robovm.compiler.Types.TRYCATCH_CONTEXT_PTR;
+import static org.robovm.compiler.Types.VITABLE_PTR;
+import static org.robovm.compiler.llvm.Type.DOUBLE;
+import static org.robovm.compiler.llvm.Type.FLOAT;
+import static org.robovm.compiler.llvm.Type.I1;
+import static org.robovm.compiler.llvm.Type.I16;
+import static org.robovm.compiler.llvm.Type.I32;
+import static org.robovm.compiler.llvm.Type.I64;
+import static org.robovm.compiler.llvm.Type.I8;
+import static org.robovm.compiler.llvm.Type.I8_PTR;
+import static org.robovm.compiler.llvm.Type.I8_PTR_PTR;
+import static org.robovm.compiler.llvm.Type.VOID;
 
 import java.util.List;
 
@@ -157,7 +173,7 @@ public class Functions {
     public static final FunctionRef MONITOREXIT = new FunctionRef("monitorexit", new FunctionType(VOID, ENV_PTR, OBJECT_PTR));
     public static final FunctionRef PUSH_NATIVE_FRAME = new FunctionRef("pushNativeFrame", new FunctionType(VOID, ENV_PTR));
     public static final FunctionRef POP_NATIVE_FRAME = new FunctionRef("popNativeFrame", new FunctionType(VOID, ENV_PTR));
-    public static final FunctionRef PUSH_SHADOW_FRAME = new FunctionRef("rvmPushShadowFrame", new FunctionType(VOID, ENV_PTR, I8_PTR));
+    public static final FunctionRef PUSH_SHADOW_FRAME = new FunctionRef("rvmPushShadowFrame", new FunctionType(VOID, ENV_PTR, I8_PTR, I8_PTR));
     public static final FunctionRef POP_SHADOW_FRAME = new FunctionRef("rvmPopShadowFrame", new FunctionType(VOID, ENV_PTR));
     public static final FunctionRef PUSH_SHADOW_LINE_NUMBER = new FunctionRef("rvmPushShadowFrameLineNumber", new FunctionType(VOID, ENV_PTR, I32));
     public static final FunctionRef GETPC = new FunctionRef("getpc", new FunctionType(I8_PTR));

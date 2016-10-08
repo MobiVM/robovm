@@ -22,6 +22,7 @@ import org.robovm.compiler.Functions;
 import org.robovm.compiler.ModuleBuilder;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.llvm.Alloca;
 import org.robovm.compiler.llvm.ArrayConstant;
 import org.robovm.compiler.llvm.ArrayType;
 import org.robovm.compiler.llvm.BasicBlock;
@@ -32,6 +33,7 @@ import org.robovm.compiler.llvm.Global;
 import org.robovm.compiler.llvm.Instruction;
 import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.Linkage;
+import org.robovm.compiler.llvm.NullConstant;
 import org.robovm.compiler.llvm.PlainTextInstruction;
 import org.robovm.compiler.llvm.Ret;
 import org.robovm.compiler.llvm.Type;
@@ -103,18 +105,48 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
 	        global = new Global(bpTableVariable, Linkage.internal, new ArrayConstant(new ArrayType((long)methodLines, (Type)Type.I8), value));
 	        moduleBuilder.addGlobal(global);
         }
+        
+        // get address of stack frame, get first alloca instruction
+        int shadowFrameIndex = 0;
+        boolean foundStackVar = false;
+        PlainTextInstruction storeStackAddress = null;
+    	for (int i=0; i<entryBlock.getInstructions().size();i++) {
+    		if (entryBlock.getInstructions().get(i) instanceof Alloca) {
+    			shadowFrameIndex = i + 1;
+    			if (!foundStackVar) {
+    				//address of first stack allocation is stored
+	    			Alloca allocaInstr = (Alloca) entryBlock.getInstructions().get(i);
+	    			storeStackAddress = new PlainTextInstruction(
+	    					"%stackAddr = bitcast " + allocaInstr.getType() + "* " + allocaInstr.getResult() + " to i8*");
+	    			foundStackVar = true;
+    			}
+    		}
+    	}        
+    	
+    	if (storeStackAddress != null) {
+    		entryBlock.getInstructions().add(shadowFrameIndex++, storeStackAddress);
+    	}
 
         // get functionsAddress for shadowframe
         String functionSignature = function.getSignature();
         PlainTextInstruction storeFunctionAddress = new PlainTextInstruction(                
-                  "%funcAddr = bitcast " + functionSignature + "* @\"" + function.getName() +"\" to i8*\n");        
-        entryBlock.getInstructions().add(1, storeFunctionAddress);
-        
-        // push frame into Env        
+                  "%funcAddr = bitcast " + functionSignature + "* @\"" + function.getName() +"\" to i8*");        
+        entryBlock.getInstructions().add(shadowFrameIndex++, storeFunctionAddress);
         Value env = function.getParameterRef(0);         
         VariableRef funcAddr = new VariableRef("funcAddr", Type.I8_PTR);
-        // memory is allocated in runtime on the heap
-        entryBlock.getInstructions().add(2, new Call(Functions.PUSH_SHADOW_FRAME, env, funcAddr));
+        
+        // set stack variable param, depending if an alloca instruction was found
+        Value stackAddr; 
+        if (foundStackVar) {
+        	stackAddr = new VariableRef("stackAddr", Type.I8_PTR);
+        }
+        else {
+        	stackAddr = new NullConstant(Type.I8_PTR);
+        }
+        
+        // push frame into env, memory is allocated in runtime on the heap
+        entryBlock.getInstructions().add(shadowFrameIndex++, new Call(Functions.PUSH_SHADOW_FRAME, env, funcAddr, stackAddr));
+
         
         int lastGlobalLineNumber = Integer.MIN_VALUE;
     
@@ -151,7 +183,7 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
 	                                instruction = bcHookCall;
                                 }
                                 // push new line number
-                                bb.insertAfter(instruction, new Call(Functions.PUSH_SHADOW_LINE_NUMBER, env,
+                                bb.insertBefore(instruction, new Call(Functions.PUSH_SHADOW_LINE_NUMBER, env,
                                         new IntegerConstant(currentLineNumber)));
                                 
                             }

@@ -154,16 +154,16 @@ struct TypeInfo {
   uint32_t types[0];
 };
 
-/* 
+/*
  * Represents a java.lang.Class instance. Size must be multiple of 8 bytes. Must correspond to the %Class type in header.ll in compiler.
  */
 struct Class {
   Object object;
-  void* _data;             // Reserve the memory needed to store the instance fields for java.lang.Class. 
+  void* _data;             // Reserve the memory needed to store the instance fields for java.lang.Class.
                            // java.lang.Class has a single field, (SoftReference<ClassCache<T>> cacheRef).
                            // void* gives enough space to store that reference.
   void* gcDescriptor;      // Descriptor used by the GC to find pointers in instances of this class.
-                           // NOTE: If the offset of gcDescriptor changes the EXTGC_MARK_DESCR_OFFSET value in the 
+                           // NOTE: If the offset of gcDescriptor changes the EXTGC_MARK_DESCR_OFFSET value in the
                            // root CMakeLists.txt MUST also be modified.
   TypeInfo* typeInfo;      // Info on all types this class implements.
   VITable* vitable;
@@ -335,12 +335,12 @@ typedef struct Options {
     char* debugPortFile;
     char resourcesPath[PATH_MAX];
     char imagePath[PATH_MAX];
-    char** rawBootclasspath; 
-    char** rawClasspath; 
+    char** rawBootclasspath;
+    char** rawClasspath;
     SystemProperty* properties;
     ClasspathEntry* bootclasspath;
     ClasspathEntry* classpath;
-    char** staticLibs; 
+    char** staticLibs;
     void* runtimeData;
     Class* (*loadBootClass)(Env*, const char*, Object*);
     Class* (*loadUserClass)(Env*, const char*, Object*);
@@ -368,9 +368,9 @@ typedef struct RefTable {
 } RefTable;
 
 typedef struct GatewayFrame {
-    /* 
+    /*
      * Whenever we enter (through a call to a native, bridge or proxy method) or leave (through a call to  _call0 or
-     * a callback method) native code we push the address of the stack frame of the function making the call. This 
+     * a callback method) native code we push the address of the stack frame of the function making the call. This
      * information is used in unwind.c to avoid native frames when unwinding.
      */
     struct GatewayFrame* prev;
@@ -381,7 +381,7 @@ typedef struct GatewayFrame {
 /*
  * Macros to push/pop GatewayFrames.
  * IMPORTANT: rvmPushGatewayFrame() uses a local GatewayFrame which will be allocated on the stack.
- *            The corresponding rvmPopGatewayFrame() call must be made in the same or a child scope 
+ *            The corresponding rvmPopGatewayFrame() call must be made in the same or a child scope
  *            of the scope of the push.
  */
 #define rvmPushGatewayFrame0(env, f, address, pm)  \
@@ -469,6 +469,7 @@ struct TrycatchContext {
 typedef struct ShadowFrame {
     struct ShadowFrame* prev;
     void* functionAddress;
+    void* stackAddress;
     jint lineNumber;
 } ShadowFrame;
 
@@ -556,4 +557,3 @@ static inline jboolean rvmIsNonNativeFrame(Env* env) {
 }
 
 #endif
-
