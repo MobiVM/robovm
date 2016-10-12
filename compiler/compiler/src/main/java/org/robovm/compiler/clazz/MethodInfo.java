@@ -18,9 +18,11 @@ package org.robovm.compiler.clazz;
 
 import java.io.Serializable;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -38,6 +40,7 @@ public class MethodInfo implements Serializable {
     private boolean weaklyLinked;
     private boolean stronglyLinked;
     private Map<String, Dependency> dependencies = new HashMap<>();
+    private List<LocalVariableInfo> localVariables = new ArrayList<>();
 
     MethodInfo(ClazzInfo ci, int modifiers, String name, String desc, boolean callback, boolean weaklyLinked,
             boolean strongyLinked) {
@@ -97,9 +100,17 @@ public class MethodInfo implements Serializable {
             addSuperMethodDependency(d.getLeft(), d.getMiddle(), d.getRight(), weak);
         }
     }
+    
+    public void addLocalVariable(LocalVariableInfo localVar) {
+    	this.localVariables.add(localVar);
+    }
 
     public Set<Dependency> getDependencies() {
         return new HashSet<Dependency>(dependencies.values());
+    }
+    
+    public List<LocalVariableInfo> getLocalVariables() {
+    	return this.localVariables;
     }
 
     public String getName() {

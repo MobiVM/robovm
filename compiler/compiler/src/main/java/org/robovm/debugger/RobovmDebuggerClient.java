@@ -3,10 +3,13 @@ package org.robovm.debugger;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.robovm.compiler.config.Config;
 
 
 public class RobovmDebuggerClient implements Runnable {
@@ -45,7 +48,12 @@ public class RobovmDebuggerClient implements Runnable {
 	private Map<String, Long> symbolTable;
 	private List<StackFrame> currentStack;
 	private List<DebuggerCommand> commandList;
+	private Map<Long, DebuggerCommand> commandHistory;
 	private boolean running = true;
+	private Config config;
+	private List<RobovmDebuggerClientListener> listeners;
+	private List<RobovmDebuggerClientListener> listenersToRemove;
+	private SetBreakpointCommand currentBreakpointCommand;
 	
 	private long curThreadPointer;
 	private long curThreadObjPointer;
@@ -53,13 +61,19 @@ public class RobovmDebuggerClient implements Runnable {
 	private long curStackPointer;
 	private byte curIsCaught;
 		
-	public RobovmDebuggerClient(DataInputStream inputStream, DataOutputStream outputStream, Map<String, Long> symbolTable) {
+	public RobovmDebuggerClient(DataInputStream inputStream, DataOutputStream outputStream, Map<String, Long> symbolTable, Config config) {
 		super();
 		this.inputStream = inputStream;
 		this.outputStream = outputStream;
 		this.symbolTable = symbolTable;
+		this.config = config;
+		
 		this.commandList = new ArrayList<>();
-		this.currentStack = new ArrayList<>();
+		this.currentStack = new ArrayList<>();		
+		this.commandHistory = new HashMap<>();
+		
+		this.listeners = new ArrayList<>();
+		this.listenersToRemove = new ArrayList<>();
 	}
 
 	public void setBreakpoint(String method, int lineNumberOffset) {
@@ -72,7 +86,7 @@ public class RobovmDebuggerClient implements Runnable {
 		//3. third step, set breakpoint bit
 		byte bpTableByte = (byte)(1 << (lineNumberOffset & 0x7));
 		
-		this.queueCommand(new WriteMemoryCommmand(baseAddress + bpTableIndex, bpTableByte));
+		this.queueCommand(new SetBreakpointCommand(baseAddress + bpTableIndex, bpTableByte, method));
 	}
 	
 	public void resumeThread(long threadAddress) {
@@ -91,6 +105,16 @@ public class RobovmDebuggerClient implements Runnable {
 		this.queueCommand(new ReadMemoryCommand(address, size));
 	}
 	
+	public void readCurrentStackVariables() {
+		new ReadStackVariablesCommand(currentStack, this).start();
+	}
+	
+	public void sendErrorToListeners(String error) {
+		for (RobovmDebuggerClientListener l : listeners) {
+			l.error(error);
+		}
+	}
+	
 	public boolean isRunning() {
 		return running;
 	}
@@ -104,6 +128,12 @@ public class RobovmDebuggerClient implements Runnable {
 	public void run() {
 		while (running) {
 			try {
+				//remove listeners async so that they can be removed in listener callback
+				for (RobovmDebuggerClientListener listener : listenersToRemove) {
+					listeners.remove(listener);
+				}
+				listenersToRemove.clear();
+				
 				if (inputStream.available() > 0 ) { 
 					byte event = inputStream.readByte();
 					
@@ -151,9 +181,35 @@ public class RobovmDebuggerClient implements Runnable {
 							curThrowablePointer = inputStream.readLong();
 							curIsCaught = inputStream.readByte();
 						}
+						
 						readCallstack();
+						
+						if (event == EVT_BREAKPOINT) {
+							for (RobovmDebuggerClientListener l : listeners) {
+								l.breakpointEvent(currentStack);
+							}
+						}
 					}
-					
+					else if (event == CMD_READ_CSTRING) {
+						long requestId = inputStream.readLong();
+						long stringLength = inputStream.readLong();
+						
+						byte[] memory = new byte[(int)stringLength];
+						inputStream.readFully(memory, 0, (int)stringLength);
+						
+						String string = new String(memory);
+						
+						if (commandHistory.containsKey(requestId)) {
+							ReadStringCommand command = (ReadStringCommand) commandHistory.get(requestId);
+							command.setResponse(string);
+							command.setResponseLength(stringLength);
+							
+							for (RobovmDebuggerClientListener l : listeners) {
+								l.readStringCommand(command);
+							}
+						}
+
+					}
 					else if (event == CMD_THREAD_RESUME) {
 						long requestId = inputStream.readLong();
 						long shouldBeZero = inputStream.readLong();
@@ -167,12 +223,15 @@ public class RobovmDebuggerClient implements Runnable {
 						byte[] memory = new byte[(int)noBytes];
 						inputStream.readFully(memory, 0, (int)noBytes);
 						
-						System.out.println(memory);
-						if (noBytes == 4) {
-							int integer = ByteBuffer.wrap(memory).getInt();
-							byte[] inverse = new byte[]{memory[3],memory[2],memory[1],memory[0]};
-							int inverseInt = ByteBuffer.wrap(inverse).getInt();
-							System.out.println(inverse + " " + inverseInt);
+						ArrayUtils.reverse(memory); //TODO: check if this is always needed
+						
+						if (commandHistory.containsKey(requestId)) {
+							ReadMemoryCommand command = (ReadMemoryCommand) commandHistory.get(requestId);
+							command.setResponse(memory);
+							
+							for (RobovmDebuggerClientListener l : listeners) {
+								l.readMemoryCommand(command);
+							}
 						}
 					}
 					else if (event == CMD_WRITE_OR_BITS) {
@@ -200,7 +259,7 @@ public class RobovmDebuggerClient implements Runnable {
 		}
 	}
 	
-	private void queueCommand(DebuggerCommand command) {
+	public void queueCommand(DebuggerCommand command) {
 		this.commandList.add(command);
 	}
 	
@@ -208,6 +267,7 @@ public class RobovmDebuggerClient implements Runnable {
 		if (this.commandList.size() > 0) {
 			DebuggerCommand command = this.commandList.remove(0);
 			command.send(this.outputStream);
+			commandHistory.put(command.requestId, command);
 		}
 		Thread.sleep(100);
 	}
@@ -275,6 +335,8 @@ public class RobovmDebuggerClient implements Runnable {
 		long address;
 		int bytes;
 		
+		byte[] response;
+		
 		public ReadMemoryCommand(long address, int bytes) {
 			command = CMD_READ_MEMORY;
 			this.address = address;
@@ -290,16 +352,63 @@ public class RobovmDebuggerClient implements Runnable {
 			outputStream.writeLong(address);
 			outputStream.writeInt(bytes);
 		}
+
+		public byte[] getResponse() {
+			return response;
+		}
+
+		public void setResponse(byte[] response) {
+			this.response = response;
+		}
 	}
 	
-	public static class WriteMemoryCommmand extends DebuggerCommand {
+	public static class ReadStringCommand extends DebuggerCommand {
+		long address;
+		
+		String response;
+		long responseLength;
+
+		public ReadStringCommand(long address) {
+			command = CMD_READ_CSTRING;
+			this.address = address;
+		}
+		
+		@Override
+		public void send(DataOutputStream outputStream) throws IOException {
+			super.send(outputStream);
+			
+			//payload size!
+			outputStream.writeLong(8L);
+			outputStream.writeLong(address);
+		}
+
+		public String getResponse() {
+			return response;
+		}
+
+		public void setResponse(String response) {
+			this.response = response;
+		}
+
+		public long getResponseLength() {
+			return responseLength;
+		}
+
+		public void setResponseLength(long responseLength) {
+			this.responseLength = responseLength;
+		}
+	}
+	
+	public static class SetBreakpointCommand extends DebuggerCommand {
 		long address;
 		byte bpByte;
+		String methodName; //used when setting a breakpoint
 		
-		WriteMemoryCommmand(long address, byte bpByte) {
+		SetBreakpointCommand(long address, byte bpByte, String methodName) {
 			command = CMD_WRITE_OR_BITS;
 			this.address = address;
 			this.bpByte = bpByte;
+			this.methodName = methodName;
 		}
 		
 		@Override
@@ -312,22 +421,23 @@ public class RobovmDebuggerClient implements Runnable {
 		}	
 	}
 	
-	public static class StackFrame {
-		public long methodPointer;
-		public long framePointer;
-		public String className;
-		
-		public StackFrame(long framePointer, long methodPointer, String className) {
-			super();
-			this.methodPointer = methodPointer;
-			this.framePointer = framePointer;
-			this.className = className;
-		}
-		
-		
-	}
-
 	public List<StackFrame> getCurrentStack() {
 		return currentStack;
+	}
+	
+	public void removeListener(RobovmDebuggerClientListener listener) {
+		this.listenersToRemove.add(listener);
+	}
+	
+	public void addListener(RobovmDebuggerClientListener listener) {
+		this.listeners.add(listener);
+	}
+
+	public Config getConfig() {
+		return config;
+	}
+
+	public void setConfig(Config config) {
+		this.config = config;
 	}
 }

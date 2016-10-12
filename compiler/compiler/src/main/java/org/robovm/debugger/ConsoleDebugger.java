@@ -6,10 +6,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 
+import org.robovm.compiler.config.Config;
 import org.robovm.compiler.log.Logger;
 import org.robovm.debugger.io.DebuggingCommandListener;
 
-public class ConsoleDebugger implements DebuggingCommandListener {
+public class ConsoleDebugger implements DebuggingCommandListener  {
 	private Socket socket;
 	private String host;
 	private int port;
@@ -27,8 +28,10 @@ public class ConsoleDebugger implements DebuggingCommandListener {
 			
 	private RobovmDebuggerClient debuggerClient;
 	private Thread debuggerThread;
+	private Config config;
 	
-	public ConsoleDebugger(Logger logger, String executable) {
+	public ConsoleDebugger(Config config, Logger logger, String executable) {
+		this.config = config;
 		this.logger = logger;
 		this.executable = executable;
 		this.host = "127.0.0.1";
@@ -50,18 +53,28 @@ public class ConsoleDebugger implements DebuggingCommandListener {
 		
 		if (command.equals("start")) {
 			//uncomment this for auto setting of breakpoint
-			debuggerClient.setBreakpoint("[J]Main.voidMethod()V", 5);
+			//debuggerClient.setBreakpoint("[J]Main.voidMethod()V", 5);
+			debuggerClient.setBreakpoint("[J]test.sub.SubClass.doNothing()V", 3);
 			debuggerClient.resumeThread(0L);			
 		}
 		else if (command.equals("exit")) {
 			debuggerClient.setRunning(false);
 			shutdown();
 		}
+		else if (command.contains("readmemaddr")) {
+			String[] parts = command.split(" ");
+			long addr = Long.valueOf(parts[1]);
+			int length = Integer.valueOf(parts[2]);
+			debuggerClient.readMemory(addr, length);			
+		}
 		else if (command.contains("readmem")) {
 			String[] parts = command.split(" ");
 			int offset = Integer.valueOf(parts[1]);
 			int length = Integer.valueOf(parts[2]);
 			debuggerClient.readMemoryFromStack(offset, length);
+		}
+		else if (command.equals("stackvars")) {
+			debuggerClient.readCurrentStackVariables();
 		}
 		else if (command.contains("bp")) {
 			String[] bpParts = command.split(" ");
@@ -96,7 +109,7 @@ public class ConsoleDebugger implements DebuggingCommandListener {
 			
 			this.baseAddress = debuggerInputStream.readLong();
 			
-			this.debuggerClient = new RobovmDebuggerClient(debuggerInputStream, debuggerOutputStream, SymbolTableParser.readSymbolTable(executable));
+			this.debuggerClient = new RobovmDebuggerClient(debuggerInputStream, debuggerOutputStream, SymbolTableParser.readSymbolTable(executable), config);
 			this.debuggerThread = new Thread(this.debuggerClient);
 			this.debuggerThread.start();
 			

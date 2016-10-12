@@ -20,7 +20,10 @@ import java.util.List;
 
 import org.robovm.compiler.Functions;
 import org.robovm.compiler.ModuleBuilder;
+import org.robovm.compiler.Types;
 import org.robovm.compiler.clazz.Clazz;
+import org.robovm.compiler.clazz.LocalVariableInfo;
+import org.robovm.compiler.clazz.MethodInfo;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.llvm.Alloca;
 import org.robovm.compiler.llvm.ArrayConstant;
@@ -43,6 +46,7 @@ import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 
+import soot.LocalVariable;
 import soot.SootMethod;
 import soot.Unit;
 import soot.tagkit.LineNumberTag;
@@ -56,7 +60,7 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         if (!config.isUseLineNumbers()) {
             return;
         }
-
+        
         // don't try to generate shadow frames for native or abstract methods
         // or methods that don't have any instructions in them
         if (method.isNative() || method.isAbstract() || !method.hasActiveBody()) {
@@ -70,7 +74,11 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         	return;
         }
         
-        int firstLineNumber = Integer.MAX_VALUE;
+        if (method.getActiveBody().getLocalCount() > 0) {
+        	addLocalVariablesToClazzInfo(clazz, method);
+        }
+        
+        int methodFirstLineNumber = Integer.MAX_VALUE;
         Global global = null;
         if (config.isDebug()) {
 	        //Get min and max linenumber for instrumentation hook, checks if a breakpoint is set
@@ -85,17 +93,17 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
 	            }
 	            
 	            foundLineNumber = true;
-	            firstLineNumber = Math.min(firstLineNumber, lineNumberTag.getLineNumber());
+	            methodFirstLineNumber = Math.min(methodFirstLineNumber, lineNumberTag.getLineNumber());
 	            lastLineNumber = Math.max(lastLineNumber, lineNumberTag.getLineNumber());
 	        }
 	        
 	        if (!foundLineNumber) {
 	            lastLineNumber = 1;
-	            firstLineNumber = 1;
+	            methodFirstLineNumber = 1;
 	        }
 	        
 	        
-	        int methodLines = lastLineNumber - firstLineNumber + 1;
+	        int methodLines = lastLineNumber - methodFirstLineNumber + 1;
 	        methodLines = (methodLines + 7 & -8) / 8;
 	        
 	        Value[] value = new Value[methodLines];
@@ -148,7 +156,6 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         entryBlock.getInstructions().add(shadowFrameIndex++, new Call(Functions.PUSH_SHADOW_FRAME, env, funcAddr, stackAddr));
 
         
-        int lastGlobalLineNumber = Integer.MIN_VALUE;
     
         //update line numbers for each new instruction
         int currentLineNumber = 0;
@@ -170,11 +177,8 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
 	                                bb.insertBefore(instruction, new Call(programCounter, Functions.GETPC, new Value[0]));
 	                                
 	                                int globalLineNumber = getLineNumber(unit);
-	                                int methodLineNumber = globalLineNumber - firstLineNumber;
-	                                if (globalLineNumber == lastGlobalLineNumber) {
-	                                    methodLineNumber = -1;
-	                                }
-	                                lastGlobalLineNumber = globalLineNumber;
+	                                int methodLineNumber = globalLineNumber - methodFirstLineNumber;
+
 	                                Call bcHookCall = new Call((Value)Functions.BC_HOOK_INSTRUMENTED, 
 	                                		new Value[]{env, new IntegerConstant(globalLineNumber), 
 	                                		new IntegerConstant(methodLineNumber), new ConstantBitcast(global.ref(), Type.I8_PTR), programCounter.ref()});
@@ -204,7 +208,53 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         }        
     }
     
-    private int getLineNumber(Unit unit) {
+    @SuppressWarnings("unused")
+	private void addLocalVariablesToClazzInfo(Clazz clazz, SootMethod method) {
+    	final int noOfParam = method.getParameterCount();
+    	int i = 0;
+    	MethodInfo methodInfo = clazz.getClazzInfo().getMethod(method.getName(), Types.getDescriptor(method));
+    	
+    	if (methodInfo == null) {
+    		return;
+    	}
+    	
+    	for (LocalVariable localVar : method.getActiveBody().getLocalVariables()) {
+    		if (i > noOfParam) {
+        		LocalVariableInfo localVarInfo = new LocalVariableInfo();
+        		
+        		localVarInfo.setName(localVar.getName());
+        		
+        		LineNumberTag lineNumberTag = (LineNumberTag)localVar.getStartUnit().getTag("LineNumberTag");
+                if (lineNumberTag != null) {
+                	localVarInfo.setScopeStartLine(lineNumberTag.getLineNumber());
+                }    		
+
+                if (localVar.getEndUnit() != null) {
+	        		lineNumberTag = (LineNumberTag)localVar.getEndUnit().getTag("LineNumberTag");
+	                if (lineNumberTag != null) {
+	                	localVarInfo.setScopeEndLine(lineNumberTag.getLineNumber());
+	                }    		
+                }
+    			if (localVar.getDescriptor().equals("I")) {
+    				localVarInfo.setType(LocalVariableInfo.Type.INT);
+    			}
+    			
+    			methodInfo.addLocalVariable(localVarInfo);
+    		}
+    		i++;
+    	}
+    	
+    	/*[LocalVariable [name=this, index=0, startUnit=r0 := @this: Main, endUnit=null, descriptor=LMain;], 
+    	LocalVariable [name=j, index=1, startUnit=r0 := @this: Main, endUnit=null, descriptor=I], 
+    	LocalVariable [name=integerVar, index=2, startUnit=d0 = 2.0, endUnit=null, descriptor=I], 
+    	LocalVariable [name=doubleVar, index=3, startUnit=i2 = i0, endUnit=null, descriptor=D], 
+    	LocalVariable [name=m, index=5, startUnit=r0.<Main: double doubleAttr> = 0.232336, endUnit=null, descriptor=I]
+    			]*/
+    	
+    	
+	}
+
+	private int getLineNumber(Unit unit) {
         if (unit == null) {
             return -1;
         }

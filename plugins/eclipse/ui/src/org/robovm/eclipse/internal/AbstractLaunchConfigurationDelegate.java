@@ -301,7 +301,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                                 
                 if (ILaunchManager.DEBUG_MODE.equals(mode)) {  
                 	File dir = config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir();
-                	final ConsoleDebugger debugger = new ConsoleDebugger(RoboVMPlugin.getConsoleLogger(), 
+                	final ConsoleDebugger debugger = new ConsoleDebugger(config, RoboVMPlugin.getConsoleLogger(), 
                 			new File(dir, config.getExecutableName()).getAbsolutePath());
                 	
                 	final IStreamsProxy streamsProxy = iProcess.getStreamsProxy();

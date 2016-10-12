@@ -1277,7 +1277,7 @@ static void writeCallstack(Env* env, jint length, CallStack* callStack ) {
     CallStackFrame* frame = NULL;
     while ((frame = rvmGetNextCallStackMethod(env, callStack, &index)) != NULL) {
         // TODO: Handle proxy methods
-        writeChannelLong(clientSocket, (jlong)(frame->method->impl), &error);
+        writeChannelLong(clientSocket, (jlong)(frame->method), &error); //was frame->method->impl
         writeChannelInt(clientSocket, frame->lineNumber, &error);
         writeChannelLong(clientSocket, (jlong)(frame->fp), &error);
         jint strLen = strlen(frame->method->clazz->name);
