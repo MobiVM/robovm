@@ -1,0 +1,6 @@
+/junit/client/target
+/junit/protocol/target
+/junit/server/target
+/maven-resolver/target
+/robovm-maven-plugin/plugin/target
+/robovm-maven-plugin/surefire/target
