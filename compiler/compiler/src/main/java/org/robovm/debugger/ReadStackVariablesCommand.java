@@ -6,12 +6,15 @@ import java.util.List;
 
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.clazz.Clazzes;
+import org.robovm.compiler.clazz.LocalVariableInfo;
+import org.robovm.compiler.clazz.LocalVariableInfo.Type;
+import org.robovm.compiler.clazz.MethodInfo;
 import org.robovm.debugger.RobovmDebuggerClient.ReadMemoryCommand;
 import org.robovm.debugger.RobovmDebuggerClient.ReadStringCommand;
 
 public class ReadStackVariablesCommand {
 	private RobovmDebuggerClient debugger;
-	private List<StackFrame> currentStack;
+	private SuspendedStack currentStack;
 	
 	private ReadMemoryCommand readMethodNameAddrCommand;
 	private ReadMemoryCommand readMethodDescAddrCommand;
@@ -22,23 +25,23 @@ public class ReadStackVariablesCommand {
 	private String methodDescr;
 	
 	
-	public ReadStackVariablesCommand(List<StackFrame> currentStack, RobovmDebuggerClient debugger) {
+	public ReadStackVariablesCommand(SuspendedStack currentStack, RobovmDebuggerClient debugger) {
 		this.debugger = debugger;
-		this.currentStack = new ArrayList<>(currentStack);
+		this.currentStack = currentStack;
 	}
 	
 	public void start() {
-		if (currentStack == null || currentStack.size() == 0) {
+		if (currentStack == null || currentStack.getStackFrames().size() == 0) {
 			this.debugger.sendErrorToListeners("Error when trying to read stack variables, no stackframes present!");
 			return;
 		}
 		
-		String className = currentStack.get(0).className;
+		String className = currentStack.getStackFrames().get(0).className;
 		
-		Clazzes clazzes = debugger.getConfig().getClazzes();
-		Clazz clazz = clazzes.load(className);
+		final Clazzes clazzes = debugger.getConfig().getClazzes();
+		final Clazz clazz = clazzes.load(className);
 
-		final long methodPointer = currentStack.get(0).methodPointer;
+		final long methodPointer = currentStack.getStackFrames().get(0).methodPointer;
 		
 		
 		/*
@@ -82,12 +85,58 @@ public class ReadStackVariablesCommand {
 				else if (command.requestId == readMethodDescCommand.requestId) {
 					methodDescr = command.getResponse();
 					debugger.removeListener(this);
+					
+					final MethodInfo methodInfo = clazz.getClazzInfo().getMethod(methodName, methodDescr);
+					final ReadStackVariablesHandler nextHandler = new ReadStackVariablesHandler(debugger, currentStack, methodInfo);
+					debugger.addListener(nextHandler);
+					nextHandler.readNextStackVariable();
 				}
 			}
 		});
 		
 		debugger.queueCommand(readMethodNameAddrCommand);
 		
+	}
+	
+	//Unfinished!
+	private static class ReadStackVariablesHandler extends RobovmDebuggerClientHandler {
+		private MethodInfo methodInfo;
+		private List<LocalVariableInfo> variablesToRead;
+		private RobovmDebuggerClient debugger;
+		private ReadMemoryCommand readStackVariableCmd;
+		private StackFrame currentStackFrame;
+		private int stackVariableIndex;
+		private long stackVariableAddress;
+		
+		public ReadStackVariablesHandler(RobovmDebuggerClient debugger, SuspendedStack currentStack, MethodInfo methodInfo) {
+			this.methodInfo = methodInfo;
+			this.debugger = debugger;
+			this.variablesToRead = new ArrayList<>(methodInfo.getLocalVariables());
+			this.currentStackFrame = currentStack.getStackFrames().get(0);
+			this.stackVariableIndex = 0;
+			this.stackVariableAddress = currentStack.getCurStackPointer();
+		}
+		
+		public void readNextStackVariable() {
+			if (this.variablesToRead.size()-1 > stackVariableIndex) {
+				LocalVariableInfo nextVariable = this.variablesToRead.get(stackVariableIndex);
+				
+				if (nextVariable.getType() == Type.INT) {
+					ReadMemoryCommand readMem = new ReadMemoryCommand(stackVariableAddress, 4);
+				}
+				
+				if (nextVariable.getScopeStartLine() <= currentStackFrame.lineNumber && nextVariable.getScopeEndLine() >= currentStackFrame.lineNumber) {
+					
+				}
+				
+				stackVariableIndex++;
+			}
+		}
+		
+		@Override
+		public void readMemoryCommand(ReadMemoryCommand command) {
+			super.readMemoryCommand(command);
+		} 
 	}
 	
 }

@@ -14,7 +14,7 @@ public class RobovmDebuggerClientHandler implements RobovmDebuggerClientListener
 	}
 
 	@Override
-	public void breakpointEvent(List<StackFrame> stackFrame) {
+	public void breakpointEvent(SuspendedStack stack) {
 		// TODO Auto-generated method stub
 		
 	}

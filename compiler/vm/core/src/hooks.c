@@ -1276,9 +1276,21 @@ static void writeCallstack(Env* env, jint length, CallStack* callStack ) {
     jint index = 0;
     CallStackFrame* frame = NULL;
     while ((frame = rvmGetNextCallStackMethod(env, callStack, &index)) != NULL) {
+    	jint lineNumber = -1;
+    
+		//New method of getting lineNumbers via shadowframes
+		ShadowFrame* shadowFrame = env->shadowFrame;
+		while (shadowFrame != NULL) {
+			if (shadowFrame->functionAddress == frame->method->impl) {
+				lineNumber = shadowFrame->lineNumber;
+				break;
+			}
+			shadowFrame = shadowFrame->prev;
+		}
+    
         // TODO: Handle proxy methods
         writeChannelLong(clientSocket, (jlong)(frame->method), &error); //was frame->method->impl
-        writeChannelInt(clientSocket, frame->lineNumber, &error);
+        writeChannelInt(clientSocket, lineNumber, &error);
         writeChannelLong(clientSocket, (jlong)(frame->fp), &error);
         jint strLen = strlen(frame->method->clazz->name);
         writeChannelInt(clientSocket, strLen, &error);

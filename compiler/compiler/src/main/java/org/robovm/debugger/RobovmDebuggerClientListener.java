@@ -9,7 +9,7 @@ public interface RobovmDebuggerClientListener {
 	
 	public void error(String message);
 	
-	public void breakpointEvent(List<StackFrame> stackFrame);
+	public void breakpointEvent(SuspendedStack stack);
 	public void readMemoryCommand(ReadMemoryCommand command);
 	public void readStringCommand(ReadStringCommand command);
 	

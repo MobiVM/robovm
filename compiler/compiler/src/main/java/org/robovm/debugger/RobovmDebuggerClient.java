@@ -46,7 +46,6 @@ public class RobovmDebuggerClient implements Runnable {
 	private static final byte CMD_THREAD_NEWINSTANCE = 56;
 	
 	private Map<String, Long> symbolTable;
-	private List<StackFrame> currentStack;
 	private List<DebuggerCommand> commandList;
 	private Map<Long, DebuggerCommand> commandHistory;
 	private boolean running = true;
@@ -54,13 +53,8 @@ public class RobovmDebuggerClient implements Runnable {
 	private List<RobovmDebuggerClientListener> listeners;
 	private List<RobovmDebuggerClientListener> listenersToRemove;
 	private SetBreakpointCommand currentBreakpointCommand;
-	
-	private long curThreadPointer;
-	private long curThreadObjPointer;
-	private long curThrowablePointer;
-	private long curStackPointer;
-	private byte curIsCaught;
-		
+	private SuspendedStack stack;
+			
 	public RobovmDebuggerClient(DataInputStream inputStream, DataOutputStream outputStream, Map<String, Long> symbolTable, Config config) {
 		super();
 		this.inputStream = inputStream;
@@ -69,7 +63,6 @@ public class RobovmDebuggerClient implements Runnable {
 		this.config = config;
 		
 		this.commandList = new ArrayList<>();
-		this.currentStack = new ArrayList<>();		
 		this.commandHistory = new HashMap<>();
 		
 		this.listeners = new ArrayList<>();
@@ -94,7 +87,7 @@ public class RobovmDebuggerClient implements Runnable {
 	}
 	
 	public void readMemoryFromStack(int offset, int size) {
-		this.readMemory(curStackPointer + offset, size);
+		this.readMemory(stack.getCurStackPointer() + offset, size);
 	}
 	
 	public void readMemory(int size) {
@@ -106,7 +99,7 @@ public class RobovmDebuggerClient implements Runnable {
 	}
 	
 	public void readCurrentStackVariables() {
-		new ReadStackVariablesCommand(currentStack, this).start();
+		new ReadStackVariablesCommand(stack, this).start();
 	}
 	
 	public void sendErrorToListeners(String error) {
@@ -173,20 +166,27 @@ public class RobovmDebuggerClient implements Runnable {
 					else if (event == EVT_EXCEPTION || event == EVT_BREAKPOINT) {
 						long shouldBeZero = inputStream.readLong();
 						long callstackPayloadSize = inputStream.readLong();
-						curThreadPointer = inputStream.readLong();
-						curThreadObjPointer = inputStream.readLong();
-						curStackPointer = inputStream.readLong();
 						
+						stack = new SuspendedStack();
+						stack.setCurThreadPointer(inputStream.readLong());
+						stack.setCurThreadObjPointer(inputStream.readLong());
+						stack.setCurStackPointer(inputStream.readLong());
+												
 						if (event == EVT_EXCEPTION) {
-							curThrowablePointer = inputStream.readLong();
-							curIsCaught = inputStream.readByte();
+							stack.setCurThrowablePointer(inputStream.readLong());
+							stack.setCurIsCaught(inputStream.readByte());
+							stack.setException(true);
 						}
+						else {
+							stack.setException(false);
+						}
+						
 						
 						readCallstack();
 						
 						if (event == EVT_BREAKPOINT) {
 							for (RobovmDebuggerClientListener l : listeners) {
-								l.breakpointEvent(currentStack);
+								l.breakpointEvent(stack);
 							}
 						}
 					}
@@ -278,8 +278,7 @@ public class RobovmDebuggerClient implements Runnable {
 	
 	private void readCallstack() throws IOException {
 		int length = inputStream.readInt();
-		
-		currentStack.clear();
+		stack.getStackFrames().clear();
 		
 		while (length > 0) {			
 			long methodPointer = inputStream.readLong();		
@@ -292,9 +291,9 @@ public class RobovmDebuggerClient implements Runnable {
 			
 			String className = new String(classNameBytes);
 			
-			System.out.println(className + " " + methodPointer + " " + framePointer);
+			System.out.println(className + " " + methodPointer + " " + framePointer + " " + lineNumber);
 			
-			currentStack.add(new StackFrame(framePointer, methodPointer, className));
+			stack.addStackFrame(new StackFrame(framePointer, methodPointer, className, lineNumber));
 			
 			length--;
 		}
@@ -421,8 +420,8 @@ public class RobovmDebuggerClient implements Runnable {
 		}	
 	}
 	
-	public List<StackFrame> getCurrentStack() {
-		return currentStack;
+	public SuspendedStack getCurrentStack() {
+		return stack;
 	}
 	
 	public void removeListener(RobovmDebuggerClientListener listener) {
@@ -431,6 +430,10 @@ public class RobovmDebuggerClient implements Runnable {
 	
 	public void addListener(RobovmDebuggerClientListener listener) {
 		this.listeners.add(listener);
+	}
+	
+	public List<RobovmDebuggerClientListener> getListeners() {
+		return this.listeners;
 	}
 
 	public Config getConfig() {
