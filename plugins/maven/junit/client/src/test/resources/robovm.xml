@@ -18,8 +18,6 @@
     </resources>
 
     <forceLinkClasses>
-        <pattern>com.badlogic.gdx.scenes.scene2d.ui.*</pattern>
-        <pattern>com.badlogic.gdx.physics.bullet.**</pattern>
         <pattern>com.android.okhttp.HttpHandler</pattern>
         <pattern>com.android.okhttp.HttpsHandler</pattern>
         <pattern>com.android.org.conscrypt.**</pattern>
