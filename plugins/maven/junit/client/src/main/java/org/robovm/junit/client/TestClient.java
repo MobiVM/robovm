@@ -68,7 +68,7 @@ public class TestClient extends LaunchPlugin {
         }
     }
     private static class Terminator extends Waiter {}
-    
+
     public static final String SERVER_CLASS_NAME = "org.robovm.junit.server.TestServer";
 
     private ServerPortReader serverPortReader;
@@ -103,11 +103,11 @@ public class TestClient extends LaunchPlugin {
         w.await();
         return this;
     }
-    
+
     public void setRunListener(RunListener runListener) {
         this.runListener = runListener;
     }
-    
+
     @Override
     public void beforeLaunch(Config config, LaunchParameters parameters) {
         parameters.getArguments().add("-rvm:log=fatal");
@@ -117,7 +117,7 @@ public class TestClient extends LaunchPlugin {
          * TestServer for more info.
          */
         parameters.getArguments().add("-rvm:Drobovm.launchedFromTestClient=true");
-        
+
         try {
             oldStdOutFifo = parameters.getStdoutFifo();
             newStdOutFifo = Fifos.mkfifo("junit-out-proxy");
@@ -131,9 +131,9 @@ public class TestClient extends LaunchPlugin {
     @Override
     public void afterLaunch(Config config, LaunchParameters parameters, Process process) {
         try {
-            serverPortReader = new ServerPortReader(config, parameters, process, 
+            serverPortReader = new ServerPortReader(config, parameters, process,
                     oldStdOutFifo, newStdOutFifo, defaultStdOutStream);
-            
+
             while (!serverPortReader.stopped && serverPortReader.port == -1) {
                 try {
                     Thread.sleep(10);
@@ -184,25 +184,25 @@ public class TestClient extends LaunchPlugin {
             }
         });
     }
-    
+
     @Override
     public void cleanup() {
         if (serverPortReader != null) {
             serverPortReader.running = false;
             serverPortReader.thread.interrupt();
-            serverPortReader = null;            
+            serverPortReader = null;
         }
     }
-    
+
     @Override
     public PluginArguments getArguments() {
         return new PluginArguments("junit", Collections.<PluginArgument>emptyList());
     }
-    
+
     @Override
     public void launchFailed(Config config, LaunchParameters parameters) {
     }
-    
+
     private Observable<ResultObject> runTests(final Config config) {
         return Observable.create(new Observable.OnSubscribe<ResultObject>() {
             @Override
@@ -213,7 +213,7 @@ public class TestClient extends LaunchPlugin {
                     if (config.getTarget() instanceof IOSTarget && IOSTarget.isDeviceArch(config.getArch())) {
                         // iOS device launch. Use libimobiledevice to set up the connection.
                         IDevice device = ((IOSTarget) config.getTarget()).getDevice();
-                        config.getLogger().debug("Connecting to test server running on port %d " 
+                        config.getLogger().debug("Connecting to test server running on port %d "
                                 + "on device with id %s", port, device.getUdid());
                         try (IDeviceConnection conn = device.connect(port)) {
                             config.getLogger().debug("Connected to test server on device %s", device.getUdid());
@@ -245,9 +245,9 @@ public class TestClient extends LaunchPlugin {
         configBuilder.mainClass(mainClassName);
         configBuilder.addForceLinkClass("com.android.org.conscrypt.OpenSSLProvider");
         configBuilder.addForceLinkClass("com.android.org.conscrypt.OpenSSLMessageDigestJDK**");
-        
+
         configBuilder.addLaunchPlugin(this);
-        
+
         return configBuilder;
     }
 
@@ -266,7 +266,7 @@ public class TestClient extends LaunchPlugin {
                     config.getLogger().debug("Running test %s", testToRun);
                     writer.write(Command.run + " " + testToRun + "\n");
                     writer.flush();
-      
+
                     while ((line = reader.readLine()) != null) {
                         ResultObject resultObject = ResultObject.fromJson(line);
                         if (!subscriber.isUnsubscribed()) {
@@ -305,7 +305,7 @@ public class TestClient extends LaunchPlugin {
         volatile boolean closeOutOnExit = true;
 
         public ServerPortReader(final Config config, final LaunchParameters params, final Process process,
-                final File oldStdOutFifo, final File newStdOutFifo, 
+                final File oldStdOutFifo, final File newStdOutFifo,
                 final OutputStream defaultStdOutStream) throws IOException {
 
             final BufferedReader in = new BufferedReader(new InputStreamReader(new OpenOnReadFileInputStream(newStdOutFifo)));

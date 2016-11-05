@@ -54,7 +54,7 @@ public class TestServer {
          * the command line. If it's not set we now that we have been
          * relaunched. In that case we return immediately.
          */
-        if (System.getProperty("os.name").equals("iOS Simulator") 
+        if (System.getProperty("os.name").equals("iOS Simulator")
                 && !Boolean.getBoolean("robovm.launchedFromTestClient")) {
             return;
         }
@@ -72,7 +72,7 @@ public class TestServer {
                 }
             }
         });
-        
+
         new TestServer().run();
         debug("Exiting");
         System.exit(0);
@@ -109,7 +109,7 @@ public class TestServer {
                             }
                         });
             }
-        }        
+        }
     }
 
     public Observable<String> run(final InputStream in, final OutputStream out) {
@@ -139,10 +139,10 @@ public class TestServer {
             }
         });
     }
-    
+
     /**
      * Process command for running a JUnit test class or method
-     * 
+     *
      * @param commandLine
      */
     protected void processCommand(String commandLine) {
@@ -177,7 +177,7 @@ public class TestServer {
 
     /**
      * Print stack trace to System.err
-     * 
+     *
      * @param throwable
      *            Throwable
      */
@@ -187,7 +187,7 @@ public class TestServer {
 
     /**
      * Run a single method test
-     * 
+     *
      * @param jUnitCore
      * @param className
      * @param method
@@ -203,7 +203,7 @@ public class TestServer {
 
     /**
      * Run class methods in the specified class
-     * 
+     *
      * @param jUnitCore
      * @param className
      */

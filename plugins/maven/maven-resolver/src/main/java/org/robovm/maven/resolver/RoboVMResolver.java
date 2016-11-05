@@ -29,7 +29,7 @@ public class RoboVMResolver {
     private static String ROBOVM_DIST = "com.mobidevelop.robovm:robovm-dist:tar.gz:nocompiler";
 
     private Logger logger = new GenericLogger();
-    
+
     public void setLogger(Logger logger) {
         this.logger = logger;
     }
@@ -76,7 +76,7 @@ public class RoboVMResolver {
         File unpackedDir = new File(unpackBaseDir, "robovm-" + version);
         return unpackedDir;
     }
-    
+
     private Logger getLog() {
         return logger;
     }

@@ -32,7 +32,7 @@ public class ResultObject {
         .registerTypeAdapter(Description.class, new DescriptionTypeAdapter())
         .registerTypeAdapter(Throwable.class, new ThrowableTypeAdapter())
         .create();
-    
+
     ResultType resultType;
     Description description;
     Result result;
@@ -72,7 +72,7 @@ public class ResultObject {
     public void setFailure(Failure failure) {
         this.failure = failure;
     }
-    
+
     public String toJson() {
         return gson.toJson(this);
     }

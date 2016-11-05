@@ -55,7 +55,7 @@ public abstract class AbstractIOSSimulatorMojo extends AbstractRoboVMMojo {
             if (super.arch != null && super.arch.equals(Arch.x86.toString())) {
                 arch = Arch.x86;
             }
-            
+
             AppCompiler compiler = build(OS.ios, arch, IOSTarget.TYPE);
             Config config = compiler.getConfig();
             IOSSimulatorLaunchParameters launchParameters = (IOSSimulatorLaunchParameters)

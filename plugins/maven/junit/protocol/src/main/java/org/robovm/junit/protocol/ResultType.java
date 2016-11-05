@@ -16,7 +16,7 @@
 package org.robovm.junit.protocol;
 
 /**
- * 
+ *
  */
 public enum ResultType {
     AssumptionFailure, Ignored, RunStarted, RunFinished, Started, Finished, Failure;

@@ -40,7 +40,7 @@ public class RoboTestListener extends org.junit.runner.notification.RunListener 
     public void testAssumptionFailure(Failure failure) {
         sendToHost(createFailureResult(failure, ResultType.AssumptionFailure));
     }
-    
+
     @Override
     public void testIgnored(Description description) throws Exception {
         sendToHost(createDescriptionResult(description, ResultType.Ignored));

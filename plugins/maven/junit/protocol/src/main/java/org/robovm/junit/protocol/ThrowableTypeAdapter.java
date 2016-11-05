@@ -61,7 +61,7 @@ public class ThrowableTypeAdapter implements JsonSerializer<Throwable>, JsonDese
             throw new Error(e);
         }
     }
-    
+
     @Override
     public Throwable deserialize(JsonElement jsonElement, Type type,
             JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {

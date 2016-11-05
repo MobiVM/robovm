@@ -30,23 +30,23 @@ public class RoboVMResolverTest {
 
     File m2Repo = new File(System.getProperty("user.home"), ".m2/repository");
     File distAlpha2Dir = new File(m2Repo, "com/mobidevelop/robovm/robovm-dist/2.2.0-SNAPSHOT/unpacked/robovm-2.2.0-SNAPSHOT");
-    
+
     @Before
     public void setup() throws Exception {
         if (distAlpha2Dir.getParentFile().exists()) {
             FileUtils.deleteDirectory(distAlpha2Dir.getParentFile());
         }
     }
-    
+
     @Test
     public void testResolveAndUnpackRoboVMDistArtifact() throws Exception {
         RoboVMResolver resolver = new RoboVMResolver();
         File dir = resolver.resolveAndUnpackRoboVMDistArtifact("2.2.0-SNAPSHOT");
         assertEquals(distAlpha2Dir, dir);
         assertTrue(new File(dir, "bin/ios-sim").canExecute());
-		
-		// Commented out lastModified check for the 2.0.0 revamp, since there's not a safe baseline yet
-		// -Jesse Gallagher 2016-04-28
+
+  // Commented out lastModified check for the 2.0.0 revamp, since there's not a safe baseline yet
+  // -Jesse Gallagher 2016-04-28
         //assertEquals(1411637293L, new File(dir, "lib/robovm-rt.jar").lastModified() / 1000L);
     }
 

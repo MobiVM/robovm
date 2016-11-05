@@ -53,7 +53,7 @@ public abstract class AbstractRoboVMBuildMojo extends AbstractRoboVMMojo {
 
             Config.Builder builder = configure(new Config.Builder())
                     .skipInstall(false);
-            
+
             if (getArchs() != null) {
                 List<Arch> archs = new ArrayList<>();
                 for (String s : getArchs().trim().split(":")) {
@@ -61,7 +61,7 @@ public abstract class AbstractRoboVMBuildMojo extends AbstractRoboVMMojo {
                 }
                 builder.archs(archs);
             }
-            
+
             AppCompiler compiler = new AppCompiler(builder.build());
             compiler.build();
             if (shouldArchive()) {

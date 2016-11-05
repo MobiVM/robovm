@@ -23,7 +23,7 @@ public enum Command {
     /**
      * Runs a test class or method. Takes a single argument which is the test
      * class or a single test method to be run. E.g.:
-     * 
+     *
      * <pre>
      *   run com.example.SomeTest
      *   run com.example.SomeTest#testSomething
