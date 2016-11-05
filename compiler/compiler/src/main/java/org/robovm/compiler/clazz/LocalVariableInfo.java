@@ -23,7 +23,8 @@ public class LocalVariableInfo implements Serializable{
 		ARRAY_FLOAT,
 		ARRAY_LONG,
 		ARRAY_DOUBLE,
-		ARRAY_OBJECT
+		ARRAY_OBJECT;
+	
 	}
 	
 	private String name;
@@ -73,6 +74,5 @@ public class LocalVariableInfo implements Serializable{
 	public void setScopeEndLine(int scopeEndLine) {
 		this.scopeEndLine = scopeEndLine;
 	}	
-	
 
 }

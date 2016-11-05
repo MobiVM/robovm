@@ -1,6 +1,7 @@
 package org.robovm.debugger;
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.clazz.Clazzes;
 import org.robovm.compiler.clazz.LocalVariableInfo;
 import org.robovm.compiler.clazz.LocalVariableInfo.Type;
+import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.clazz.MethodInfo;
 import org.robovm.debugger.RobovmDebuggerClient.ReadMemoryCommand;
 import org.robovm.debugger.RobovmDebuggerClient.ReadStringCommand;
@@ -104,6 +106,7 @@ public class ReadStackVariablesCommand {
 		private List<LocalVariableInfo> variablesToRead;
 		private RobovmDebuggerClient debugger;
 		private ReadMemoryCommand readStackVariableCmd;
+		private LocalVariableInfo curStackVariable;
 		private StackFrame currentStackFrame;
 		private int stackVariableIndex;
 		private long stackVariableAddress;
@@ -114,28 +117,57 @@ public class ReadStackVariablesCommand {
 			this.variablesToRead = new ArrayList<>(methodInfo.getLocalVariables());
 			this.currentStackFrame = currentStack.getStackFrames().get(0);
 			this.stackVariableIndex = 0;
-			this.stackVariableAddress = currentStack.getCurStackPointer();
+			this.stackVariableAddress = currentStack.getCurStackPointer() - 4;
 		}
 		
 		public void readNextStackVariable() {
-			if (this.variablesToRead.size()-1 > stackVariableIndex) {
-				LocalVariableInfo nextVariable = this.variablesToRead.get(stackVariableIndex);
-				
-				if (nextVariable.getType() == Type.INT) {
-					ReadMemoryCommand readMem = new ReadMemoryCommand(stackVariableAddress, 4);
-				}
-				
-				if (nextVariable.getScopeStartLine() <= currentStackFrame.lineNumber && nextVariable.getScopeEndLine() >= currentStackFrame.lineNumber) {
-					
-				}
-				
+			if (this.variablesToRead.size() > stackVariableIndex) {
+				curStackVariable = this.variablesToRead.get(stackVariableIndex);
 				stackVariableIndex++;
+				
+				int memoryOffset = 0;
+				if (curStackVariable.getType() == Type.INT) {
+					memoryOffset = -4; //stack grows downward llvm
+				}
+				else if (curStackVariable.getType() == Type.LONG) {
+					memoryOffset = debugger.getConfig().getArch().is32Bit() ? -4 : -8;
+				}
+				else {
+					memoryOffset = -4; //stack grows downward llvm
+				}
+				
+				if (curStackVariable.getScopeStartLine() <= currentStackFrame.lineNumber && curStackVariable.getScopeEndLine() >= currentStackFrame.lineNumber) {					
+					readStackVariableCmd = new ReadMemoryCommand(stackVariableAddress, -memoryOffset);
+					debugger.queueCommand(readStackVariableCmd);
+				}
+				else {
+					readNextStackVariable();
+				}
+				
+				this.stackVariableAddress += memoryOffset;
 			}
 		}
 		
 		@Override
 		public void readMemoryCommand(ReadMemoryCommand command) {
-			super.readMemoryCommand(command);
+			if (readStackVariableCmd.requestId == command.requestId) {
+				LocalVariableValue localVal = new LocalVariableValue(curStackVariable);				
+				final ByteBuffer bb = ByteBuffer.wrap(command.response);
+								
+				if (curStackVariable.getType() == Type.INT) {
+				    localVal.setValue(bb.getInt());
+				}
+				else if (curStackVariable.getType() == Type.LONG) {
+					localVal.setValue(bb.getLong());
+				}
+				
+				for (RobovmDebuggerClientListener l : debugger.getListeners()) {
+			    	l.readStackVariableCommand(localVal);
+			    }
+				
+				readNextStackVariable();
+				
+			}
 		} 
 	}
 	

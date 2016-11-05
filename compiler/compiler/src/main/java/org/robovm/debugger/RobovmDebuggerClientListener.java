@@ -12,5 +12,7 @@ public interface RobovmDebuggerClientListener {
 	public void breakpointEvent(SuspendedStack stack);
 	public void readMemoryCommand(ReadMemoryCommand command);
 	public void readStringCommand(ReadStringCommand command);
+
+	public void readStackVariableCommand(LocalVariableValue localVal);
 	
 }

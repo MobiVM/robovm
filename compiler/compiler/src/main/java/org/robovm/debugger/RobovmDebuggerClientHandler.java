@@ -30,6 +30,11 @@ public class RobovmDebuggerClientHandler implements RobovmDebuggerClientListener
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void readStackVariableCommand(LocalVariableValue localVal) {
+		
+	}
 
 
 }

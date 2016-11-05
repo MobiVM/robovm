@@ -52,7 +52,7 @@ public class RobovmDebuggerClient implements Runnable {
 	private Config config;
 	private List<RobovmDebuggerClientListener> listeners;
 	private List<RobovmDebuggerClientListener> listenersToRemove;
-	private SetBreakpointCommand currentBreakpointCommand;
+	private List<RobovmDebuggerClientListener> listenersToAdd;
 	private SuspendedStack stack;
 			
 	public RobovmDebuggerClient(DataInputStream inputStream, DataOutputStream outputStream, Map<String, Long> symbolTable, Config config) {
@@ -67,11 +67,18 @@ public class RobovmDebuggerClient implements Runnable {
 		
 		this.listeners = new ArrayList<>();
 		this.listenersToRemove = new ArrayList<>();
+		this.listenersToAdd = new ArrayList<>();
 	}
 
 	public void setBreakpoint(String method, int lineNumberOffset) {
 		//1. first step, get base address of breakpoint byte array
-		long baseAddress = getSymbolAddress("_" + method + "[bptable]");
+		Long baseAddress = getSymbolAddress(method + "[bptable]");
+		if (baseAddress == null) {
+			for (RobovmDebuggerClientListener listener : listeners) {
+				listener.error("Address of method " + method + " not found!");
+			}
+			return;
+		}
 		
 		//2. second step, get correct byte of bptable array
 		int bpTableIndex = lineNumberOffset >> 3;
@@ -126,6 +133,13 @@ public class RobovmDebuggerClient implements Runnable {
 					listeners.remove(listener);
 				}
 				listenersToRemove.clear();
+				
+				//add listeners async so that they can be added in listener callback
+				for (RobovmDebuggerClientListener listener : listenersToAdd) {
+					listeners.add(listener);
+				}
+				listenersToAdd.clear();
+				
 				
 				if (inputStream.available() > 0 ) { 
 					byte event = inputStream.readByte();
@@ -272,7 +286,11 @@ public class RobovmDebuggerClient implements Runnable {
 		Thread.sleep(100);
 	}
 	
-	private long getSymbolAddress(String symbol) {
+	private Long getSymbolAddress(String symbol) {
+		//nm on macos returns symbols with _ prefixed
+		if (symbolTable.containsKey("_" + symbol)) {
+			return symbolTable.get("_" + symbol);
+		}
 		return symbolTable.get(symbol);
 	}
 	
@@ -429,7 +447,7 @@ public class RobovmDebuggerClient implements Runnable {
 	}
 	
 	public void addListener(RobovmDebuggerClientListener listener) {
-		this.listeners.add(listener);
+		this.listenersToAdd.add(listener);
 	}
 	
 	public List<RobovmDebuggerClientListener> getListeners() {

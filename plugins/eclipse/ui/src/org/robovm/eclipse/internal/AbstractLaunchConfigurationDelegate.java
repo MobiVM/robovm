@@ -16,9 +16,11 @@
  */
 package org.robovm.eclipse.internal;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.text.DateFormat;
@@ -42,13 +44,16 @@ import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.IStreamListener;
+import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamMonitor;
 import org.eclipse.debug.core.model.IStreamsProxy;
 import org.eclipse.jdi.Bootstrap;
 import org.eclipse.jdi.internal.VirtualMachineImpl;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.util.IBootstrapMethodsEntry;
 import org.eclipse.jdt.debug.core.JDIDebugModel;
+import org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint;
 import org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
@@ -249,6 +254,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
             }
 
             try {
+            	final File robovmDebuggerPortFifo = File.createTempFile("robovm-debugger-port",".txt");
                 RoboVMPlugin.consoleInfo("Launching executable");
                 monitor.subTask("Launching executable");
                 mainTypeName = config.getMainClass();
@@ -260,7 +266,7 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 if (ILaunchManager.DEBUG_MODE.equals(mode)) {
                 	runArgs.add("-rvm:WaitForResume");
                 	runArgs.add("-rvm:PrintPID");
-                	runArgs.add("-rvm:PrintDebugPort");
+                	runArgs.add("-rvm:PrintDebugPort=" + robovmDebuggerPortFifo.getAbsolutePath());
                 	runArgs.add("-rvm:log=debug");
                 }
                 
@@ -298,12 +304,13 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 }
 
                 final IProcess iProcess = DebugPlugin.newProcess(launch, process, label);
-                                
+                                               
                 if (ILaunchManager.DEBUG_MODE.equals(mode)) {  
                 	File dir = config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir();
                 	final ConsoleDebugger debugger = new ConsoleDebugger(config, RoboVMPlugin.getConsoleLogger(), 
                 			new File(dir, config.getExecutableName()).getAbsolutePath());
                 	
+                	/* streamAppended isn't called on fast machines. so we read debugger port from file. TODO: check how this can work with device/simulator
                 	final IStreamsProxy streamsProxy = iProcess.getStreamsProxy();
                 	IStreamListener listener = new IStreamListener() {
 						@Override
@@ -311,19 +318,51 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
 							debugger.parseAppOutput(message);
 						}
 					};
-					
-                	streamsProxy.getOutputStreamMonitor().addListener(listener);
-                	streamsProxy.getErrorStreamMonitor().addListener(listener);
+					streamsProxy.getOutputStreamMonitor().addListener(listener);
+					streamsProxy.getErrorStreamMonitor().addListener(listener);
+					*/
+                	IBreakpoint[] breakpoints = DebugPlugin.getDefault().getBreakpointManager().getBreakpoints();
+                	
+                	for (IBreakpoint bp : breakpoints) {
+                		if (bp instanceof JavaLineBreakpoint) {
+                			JavaLineBreakpoint javaBp = (JavaLineBreakpoint) bp;
+                			javaBp.getLineNumber();
+                			javaBp.getModelIdentifier();
+                			javaBp.getTypeName();
+                			javaBp.getMarkerType();
+                			javaBp.getMarker();
+                			((org.eclipse.core.internal.resources.Marker)javaBp.getMarker()).getAttributes();
+                			System.out.println("Got breakpoint at: " + bp);
+                		}
+                	}
                 	
                 	final FilterDebuggerCommandsOutputStream debuggerInputStream = (FilterDebuggerCommandsOutputStream) stdinStream;
                 	debuggerInputStream.setDebuggingCommandListener(debugger);
                 	debugger.setAppOutputStream(new OpenOnWriteFileOutputStream(stdOutFifo));
                 	
                 	Thread checkProcess = new Thread(new Runnable() {
+                		
                 		@Override
                 		public void run() {
                 			boolean running = true;
+                			BufferedReader robovmDebuggerPortReader = new BufferedReader(new InputStreamReader(new OpenOnReadFileInputStream(robovmDebuggerPortFifo)));
+                			
                 			while (running) {
+                				try {
+                					if (robovmDebuggerPortReader != null && robovmDebuggerPortReader.ready()) {
+                						String line = robovmDebuggerPortReader.readLine();
+                						
+                						debugger.setPort(Integer.valueOf(line));
+                						debugger.connect();
+                						
+                						robovmDebuggerPortReader.close();
+                						robovmDebuggerPortReader = null;
+                					}
+                				}
+                				catch(IOException e) {
+                					//TODO
+                				}
+                				
 	                			if (iProcess.isTerminated()) {
 	                				debugger.shutdown();
 	                				running = false;

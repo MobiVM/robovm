@@ -53,8 +53,8 @@ public class ConsoleDebugger implements DebuggingCommandListener  {
 		
 		if (command.equals("start")) {
 			//uncomment this for auto setting of breakpoint
-			//debuggerClient.setBreakpoint("[J]Main.voidMethod()V", 5);
-			debuggerClient.setBreakpoint("[J]test.sub.SubClass.doNothing()V", 3);
+			debuggerClient.setBreakpoint("[J]Main.voidMethod()V", 4);
+			//debuggerClient.setBreakpoint("[J]test.sub.SubClass.doNothing()V", 3);
 			debuggerClient.resumeThread(0L);			
 		}
 		else if (command.equals("exit")) {
@@ -112,6 +112,19 @@ public class ConsoleDebugger implements DebuggingCommandListener  {
 			this.debuggerClient = new RobovmDebuggerClient(debuggerInputStream, debuggerOutputStream, SymbolTableParser.readSymbolTable(executable), config);
 			this.debuggerThread = new Thread(this.debuggerClient);
 			this.debuggerThread.start();
+			
+			this.debuggerClient.addListener(new RobovmDebuggerClientHandler() {
+				@Override
+				public void breakpointEvent(SuspendedStack stack) {
+					writeToAppOutput("Suspended because of breakpoint: " + stack.getStackFrames().get(0).lineNumber);
+				}
+				
+				@Override
+				public void readStackVariableCommand(LocalVariableValue localVal) {
+					writeToAppOutput("Got stack variable");
+					writeToAppOutput(localVal.toString());
+				}
+			});
 			
 			writeToAppOutput("Debugger is now ready, set breakpoints or enter 'start' to start program");
 		}
