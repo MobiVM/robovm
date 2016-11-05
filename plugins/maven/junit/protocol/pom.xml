@@ -41,11 +41,11 @@
               <relocations>
                 <relocation>
                   <pattern>com.google.gson</pattern>
-                  <shadedPattern>org.robovm.junit.deps.com.google.gson</shadedPattern>
+                  <shadedPattern>robovm.junit.deps.com.google.gson</shadedPattern>
                 </relocation>
                 <relocation>
                   <pattern>biz.source_code.base64Coder</pattern>
-                  <shadedPattern>org.robovm.junit.deps.biz.source_code.base64Coder</shadedPattern>
+                  <shadedPattern>robovm.junit.deps.biz.source_code.base64Coder</shadedPattern>
                 </relocation>
               </relocations>
               <filters>

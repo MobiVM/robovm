@@ -57,7 +57,7 @@
               <relocations>
                 <relocation>
                   <pattern>rx</pattern>
-                  <shadedPattern>org.robovm.junit.deps.rx</shadedPattern>
+                  <shadedPattern>robovm.junit.deps.rx</shadedPattern>
                 </relocation>
               </relocations>
               <filters>
