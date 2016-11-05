@@ -38,14 +38,14 @@ public class TestClass {
         <version>2.17</version>
         <dependencies>
           <dependency>
-            <groupId>org.robovm</groupId>
+            <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-surefire-provider</artifactId>
             <version>1.0.0-SNAPSHOT</version>
           </dependency>
         </dependencies>
       </plugin>
     </plugins>
-  </build>  
+  </build>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -104,7 +104,7 @@ Or be set in the provider coniguration in the `pom.xml`, e.g.:
     <version>2.17</version>
     <dependencies>
       <dependency>
-        <groupId>org.robovm</groupId>
+        <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-surefire-provider</artifactId>
         <version>1.0.0-SNAPSHOT</version>
       </dependency>
