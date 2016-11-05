@@ -217,7 +217,11 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     	if (methodInfo == null) {
     		return;
     	}
-    	
+    	//TODO:
+    	//we need to map the relevant llvm instruction to the variable.
+    	//because currently we're ignoring intermediate alloca's necessary for code like this
+    	//int stackvar = (int)Math.random() * 1000;
+    	//and now all our address offsets are wrong, because the compiler inserted helper alloca instructions
     	for (LocalVariable localVar : method.getActiveBody().getLocalVariables()) {
     		if (i > noOfParam) {
         		LocalVariableInfo localVarInfo = new LocalVariableInfo();
