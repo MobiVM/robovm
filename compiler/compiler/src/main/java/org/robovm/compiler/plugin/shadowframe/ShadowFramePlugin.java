@@ -35,9 +35,11 @@ import org.robovm.compiler.llvm.Function;
 import org.robovm.compiler.llvm.Global;
 import org.robovm.compiler.llvm.Instruction;
 import org.robovm.compiler.llvm.IntegerConstant;
+import org.robovm.compiler.llvm.IntegerType;
 import org.robovm.compiler.llvm.Linkage;
 import org.robovm.compiler.llvm.NullConstant;
 import org.robovm.compiler.llvm.PlainTextInstruction;
+import org.robovm.compiler.llvm.PointerType;
 import org.robovm.compiler.llvm.Ret;
 import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Unreachable;
@@ -49,6 +51,7 @@ import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import soot.LocalVariable;
 import soot.SootMethod;
 import soot.Unit;
+import soot.jimple.internal.JimpleLocal;
 import soot.tagkit.LineNumberTag;
 
 public class ShadowFramePlugin extends AbstractCompilerPlugin {
@@ -74,8 +77,10 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         	return;
         }
         
+        MethodInfo methodInfo = clazz.getClazzInfo().getMethod(method.getName(), Types.getDescriptor(method));
+        
         if (method.getActiveBody().getLocalCount() > 0) {
-        	addLocalVariablesToClazzInfo(clazz, method);
+        	addLocalVariablesToClazzInfo(method, methodInfo);
         }
         
         int methodFirstLineNumber = Integer.MAX_VALUE;
@@ -118,16 +123,42 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         int shadowFrameIndex = 0;
         boolean foundStackVar = false;
         PlainTextInstruction storeStackAddress = null;
+        int stackVarSize = 4; 
+        int stackVarMemoryOffset = 0;
     	for (int i=0; i<entryBlock.getInstructions().size();i++) {
     		if (entryBlock.getInstructions().get(i) instanceof Alloca) {
+    			Alloca allocaInstr = (Alloca) entryBlock.getInstructions().get(i);
     			shadowFrameIndex = i + 1;
+
+    			if (allocaInstr.getType() instanceof IntegerType) {
+    				IntegerType type = (IntegerType) allocaInstr.getType();
+    				stackVarSize = Math.max(type.getBits() / 8, 1); //stack is always byte aligned? so minimum offset 1 byte?
+    			}
+    			else if (allocaInstr.getType() == Type.DOUBLE) {
+    				stackVarSize = 8;
+    			}
+    			
+    			List<Object> units = allocaInstr.getAttachments();
+    			for (Object object : units) {
+    				if (object instanceof JimpleLocal) {
+						JimpleLocal localVar = (JimpleLocal) object;
+						if (localVar.getIndex() > -1 && methodInfo.getLocalVariables().size() > localVar.getIndex()) {
+							methodInfo.getLocalVariables().get(localVar.getIndex()).setSize(stackVarSize);
+							methodInfo.getLocalVariables().get(localVar.getIndex()).setMemoryOffset(stackVarMemoryOffset);
+						}
+						//System.out.println(entryBlock.getInstructions().get(i) + " got local var with index " + localVar.getIndex() + " " + localVar.getNumber()+ " " + localVar.getName());
+					}
+    			}
+    			
     			if (!foundStackVar) {
     				//address of first stack allocation is stored
-	    			Alloca allocaInstr = (Alloca) entryBlock.getInstructions().get(i);
 	    			storeStackAddress = new PlainTextInstruction(
 	    					"%stackAddr = bitcast " + allocaInstr.getType() + "* " + allocaInstr.getResult() + " to i8*");
 	    			foundStackVar = true;
     			}
+    			
+    			stackVarMemoryOffset += stackVarSize;
+    			
     		}
     	}        
     	
@@ -209,10 +240,9 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     }
     
     @SuppressWarnings("unused")
-	private void addLocalVariablesToClazzInfo(Clazz clazz, SootMethod method) {
+	private void addLocalVariablesToClazzInfo(SootMethod method, MethodInfo methodInfo) {
     	final int noOfParam = method.getParameterCount();
     	int i = 0;
-    	MethodInfo methodInfo = clazz.getClazzInfo().getMethod(method.getName(), Types.getDescriptor(method));
     	
     	if (methodInfo == null) {
     		return;
@@ -223,7 +253,7 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     	//int stackvar = (int)Math.random() * 1000;
     	//and now all our address offsets are wrong, because the compiler inserted helper alloca instructions
     	for (LocalVariable localVar : method.getActiveBody().getLocalVariables()) {
-    		if (i > noOfParam) {
+    		if (i > noOfParam-1) { //TODO this!!
         		LocalVariableInfo localVarInfo = new LocalVariableInfo();
         		
         		localVarInfo.setName(localVar.getName());
@@ -242,7 +272,10 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     			if (localVar.getDescriptor().equals("I")) {
     				localVarInfo.setType(LocalVariableInfo.Type.INT);
     			}
-    			
+    			else if (localVar.getDescriptor().startsWith("L")) {
+    				localVarInfo.setType(LocalVariableInfo.Type.OBJECT);
+    			}
+    			    			
     			methodInfo.addLocalVariable(localVarInfo);
     		}
     		i++;

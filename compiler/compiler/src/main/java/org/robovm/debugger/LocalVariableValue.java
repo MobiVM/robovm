@@ -23,6 +23,6 @@ public class LocalVariableValue extends LocalVariableInfo {
 	
 	@Override
 	public String toString() {
-		return getType().toString() + " " + getName() + ": '" + value.toString() + "'";  
+		return String.valueOf(getType()) + " " + getName() + ": '" + String.valueOf(value) + "'";  
 	}
 }

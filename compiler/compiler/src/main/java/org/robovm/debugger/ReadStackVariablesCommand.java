@@ -117,7 +117,7 @@ public class ReadStackVariablesCommand {
 			this.variablesToRead = new ArrayList<>(methodInfo.getLocalVariables());
 			this.currentStackFrame = currentStack.getStackFrames().get(0);
 			this.stackVariableIndex = 0;
-			this.stackVariableAddress = currentStack.getCurStackPointer() - 4;
+			this.stackVariableAddress = currentStack.getCurStackPointer();
 		}
 		
 		public void readNextStackVariable() {
@@ -125,26 +125,14 @@ public class ReadStackVariablesCommand {
 				curStackVariable = this.variablesToRead.get(stackVariableIndex);
 				stackVariableIndex++;
 				
-				int memoryOffset = 0;
-				if (curStackVariable.getType() == Type.INT) {
-					memoryOffset = -4; //stack grows downward llvm
-				}
-				else if (curStackVariable.getType() == Type.LONG) {
-					memoryOffset = debugger.getConfig().getArch().is32Bit() ? -4 : -8;
-				}
-				else {
-					memoryOffset = -4; //stack grows downward llvm
-				}
 				
 				if (curStackVariable.getScopeStartLine() <= currentStackFrame.lineNumber && curStackVariable.getScopeEndLine() >= currentStackFrame.lineNumber) {					
-					readStackVariableCmd = new ReadMemoryCommand(stackVariableAddress, -memoryOffset);
+					readStackVariableCmd = new ReadMemoryCommand(stackVariableAddress - curStackVariable.getMemoryOffset(), curStackVariable.getSize());
 					debugger.queueCommand(readStackVariableCmd);
 				}
 				else {
 					readNextStackVariable();
 				}
-				
-				this.stackVariableAddress += memoryOffset;
 			}
 		}
 		
@@ -154,13 +142,13 @@ public class ReadStackVariablesCommand {
 				LocalVariableValue localVal = new LocalVariableValue(curStackVariable);				
 				final ByteBuffer bb = ByteBuffer.wrap(command.response);
 								
-				if (curStackVariable.getType() == Type.INT) {
+				if (curStackVariable.getType() == Type.INT || curStackVariable.getType() == Type.OBJECT) {
 				    localVal.setValue(bb.getInt());
 				}
 				else if (curStackVariable.getType() == Type.LONG) {
 					localVal.setValue(bb.getLong());
 				}
-				
+			
 				for (RobovmDebuggerClientListener l : debugger.getListeners()) {
 			    	l.readStackVariableCommand(localVal);
 			    }

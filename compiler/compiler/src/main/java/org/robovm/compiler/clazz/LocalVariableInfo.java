@@ -29,9 +29,11 @@ public class LocalVariableInfo implements Serializable{
 	
 	private String name;
 	private Type type;
+	private int memoryOffset;
+	private int size;
 	private int scopeStartLine = Integer.MIN_VALUE;
 	private int scopeEndLine = Integer.MAX_VALUE;
-	
+		
 	public LocalVariableInfo() {
 	}
 	
@@ -41,6 +43,8 @@ public class LocalVariableInfo implements Serializable{
 		this.type = type;
 		this.scopeStartLine = scopeStartLine;
 		this.scopeEndLine = scopeEndLine;
+		this.memoryOffset = 0;
+		this.size = 0;
 	}
 	
 	public String getName() {
@@ -74,5 +78,21 @@ public class LocalVariableInfo implements Serializable{
 	public void setScopeEndLine(int scopeEndLine) {
 		this.scopeEndLine = scopeEndLine;
 	}	
+	
+	public int getMemoryOffset() {
+		return memoryOffset;
+	}
+
+	public void setMemoryOffset(int memoryOffset) {
+		this.memoryOffset = memoryOffset;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
 
 }
