@@ -1,5 +1,6 @@
 package org.robovm.debugger;
 
+import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -142,11 +143,23 @@ public class ReadStackVariablesCommand {
 				LocalVariableValue localVal = new LocalVariableValue(curStackVariable);				
 				final ByteBuffer bb = ByteBuffer.wrap(command.response);
 								
-				if (curStackVariable.getType() == Type.INT || curStackVariable.getType() == Type.OBJECT) {
-				    localVal.setValue(bb.getInt());
+				if (curStackVariable.getType() == Type.INT) {
+				    localVal.setValue(bb.getInt(0));
+				}
+				else if (curStackVariable.getType() == Type.OBJECT) {
+					//localVal.setValue(String.format("0x%06X", bb.getInt() & 0xFFFFFF));
+					//localVal.setValue(bb.getInt(0));
 				}
 				else if (curStackVariable.getType() == Type.LONG) {
-					localVal.setValue(bb.getLong());
+					localVal.setValue(bb.getLong(0));
+				}
+				else if (curStackVariable.getType() == Type.DOUBLE) {
+					try {
+						localVal.setValue(bb.getDouble(0));
+					}
+					catch (BufferUnderflowException e) {
+						localVal.setValue("Error when reading double value.");
+					}
 				}
 			
 				for (RobovmDebuggerClientListener l : debugger.getListeners()) {

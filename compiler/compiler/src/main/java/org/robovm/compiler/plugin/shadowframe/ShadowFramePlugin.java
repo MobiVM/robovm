@@ -130,6 +130,13 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     			Alloca allocaInstr = (Alloca) entryBlock.getInstructions().get(i);
     			shadowFrameIndex = i + 1;
 
+    			//TODO: Problem here:
+    			//It seems the stack variables addresses aren't always exactly separared by the required size
+    			//It only works with integer variables
+    			//So the offset calculation is wrong for all other types :-/
+    			//Seems we need to store every address of every stack variable for every method :-//
+    			//Update: Yup, that it is: http://stackoverflow.com/questions/1102049/order-of-local-variable-allocation-on-the-stack
+    			
     			if (allocaInstr.getType() instanceof IntegerType) {
     				IntegerType type = (IntegerType) allocaInstr.getType();
     				stackVarSize = Math.max(type.getBits() / 8, 1); //stack is always byte aligned? so minimum offset 1 byte?
@@ -271,6 +278,12 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
                 }
     			if (localVar.getDescriptor().equals("I")) {
     				localVarInfo.setType(LocalVariableInfo.Type.INT);
+    			}
+    			else if (localVar.getDescriptor().equals("D")) {
+    				localVarInfo.setType(LocalVariableInfo.Type.DOUBLE);
+    			}
+    			else if (localVar.getDescriptor().equals("J")) {
+    				localVarInfo.setType(LocalVariableInfo.Type.LONG);
     			}
     			else if (localVar.getDescriptor().startsWith("L")) {
     				localVarInfo.setType(LocalVariableInfo.Type.OBJECT);

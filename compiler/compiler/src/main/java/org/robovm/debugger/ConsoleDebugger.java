@@ -53,7 +53,7 @@ public class ConsoleDebugger implements DebuggingCommandListener  {
 		
 		if (command.equals("start")) {
 			//uncomment this for auto setting of breakpoint
-			debuggerClient.setBreakpoint("[J]Main.voidMethod()V", 9);
+			debuggerClient.setBreakpoint("[J]Main.voidMethod()V", 8);
 			//debuggerClient.setBreakpoint("[J]test.sub.SubClass.doNothing()V", 3);
 			debuggerClient.resumeThread(0L);			
 		}
@@ -127,6 +127,7 @@ public class ConsoleDebugger implements DebuggingCommandListener  {
 			});
 			
 			writeToAppOutput("Debugger is now ready, set breakpoints or enter 'start' to start program");
+			command("start");
 		}
 		catch (Exception e) {
 			logger.error("Error when trying to connect to remote debugger %s", e.getMessage());
