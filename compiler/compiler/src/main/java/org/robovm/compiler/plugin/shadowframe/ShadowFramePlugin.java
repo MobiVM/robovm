@@ -30,6 +30,7 @@ import org.robovm.compiler.llvm.ArrayConstant;
 import org.robovm.compiler.llvm.ArrayType;
 import org.robovm.compiler.llvm.BasicBlock;
 import org.robovm.compiler.llvm.Call;
+import org.robovm.compiler.llvm.ConstantAggregateZero;
 import org.robovm.compiler.llvm.ConstantBitcast;
 import org.robovm.compiler.llvm.Function;
 import org.robovm.compiler.llvm.Global;
@@ -115,7 +116,7 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
 	        for (int i = 0; i < methodLines; i++) {
 	        	value[i] = new IntegerConstant((byte)0);
 	        }
-	        global = new Global(bpTableVariable, Linkage.internal, new ArrayConstant(new ArrayType((long)methodLines, (Type)Type.I8), value));
+	        global = new Global(bpTableVariable, Linkage.internal, new ArrayConstant(new ArrayType(methodLines, Type.I8), new ConstantAggregateZero(Type.I8)));
 	        moduleBuilder.addGlobal(global);
         }
         
