@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKLocalPlayer/*</name>*/ 
-    extends /*<extends>*/GKPlayer/*</extends>*/
+    extends /*<extends>*/GKPlayer/*</extends>*/ 
     /*<implements>*/implements GKSavedGameListener/*</implements>*/ {
 
     /*<ptr>*/public static class GKLocalPlayerPtr extends Ptr<GKLocalPlayer, GKLocalPlayerPtr> {}/*</ptr>*/
@@ -47,7 +47,6 @@ import org.robovm.apple.uikit.*;
     /*<constructors>*/
     public GKLocalPlayer() {}
     protected GKLocalPlayer(Handle h, long handle) { super(h, handle); }
-
     protected GKLocalPlayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -90,7 +89,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "setDefaultLeaderboardIdentifier:completionHandler:")
-    public native void setDefaultLeaderboardIdentifier(String leaderboardIdentifier, @Block VoidBlock1< NSError> completionHandler);
+    public native void setDefaultLeaderboardIdentifier(String leaderboardIdentifier, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 3.0 and later.
      */
@@ -124,7 +123,7 @@ import org.robovm.apple.uikit.*;
      */
     @Deprecated
     @Method(selector = "setDefaultLeaderboardCategoryID:completionHandler:")
-    public native void setDefaultLeaderboardCategoryID(String categoryID, @Block VoidBlock1< NSError> completionHandler);
+    public native void setDefaultLeaderboardCategoryID(String categoryID, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
@@ -160,7 +159,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "deleteSavedGamesWithName:completionHandler:")
-    public native void deleteSavedGames(String name, @Block VoidBlock1< NSError> handler);
+    public native void deleteSavedGames(String name, @Block VoidBlock1<NSError> handler);
     /**
      * @since Available in iOS 8.0 and later.
      */

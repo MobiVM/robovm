@@ -6,7 +6,7 @@ clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/GameKit.framework/Headers/GameKit.h
 typedefs:
-    'void (^)(NSError * _Nullable)': '@Block VoidBlock1< NSError>'
+    'void (^)(NSError * _Nullable)': '@Block VoidBlock1<NSError>'
     'void (^)(UIImage * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<UIImage, NSError>'
     'void (^)(NSArray<GKPlayer *> * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<NSArray<GKPlayer>, NSError>'
     'void (^)(NSString * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<String, NSError>'

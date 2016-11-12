@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -76,15 +76,15 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "saveData:completionHandler:")
     public native void saveData$completionHandler$(NSData data, @Block VoidBlock2<NSData, NSError> completionHandler);
     @Method(selector = "setConnectionState:completionHandler:")
-    public native void setConnectionState$completionHandler$(GKConnectionState state, @Block VoidBlock1< NSError> completionHandler);
+    public native void setConnectionState$completionHandler$(GKConnectionState state, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "playersWithConnectionState:")
     public native NSArray<GKCloudPlayer> playersWithConnectionState$(GKConnectionState state);
     @Method(selector = "sendData:withTransportType:completionHandler:")
-    public native void sendData$withTransportType$completionHandler$(NSData data, GKTransportType transport, @Block VoidBlock1< NSError> completionHandler);
+    public native void sendData$withTransportType$completionHandler$(NSData data, GKTransportType transport, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:")
-    public native void sendMessageWithLocalizedFormatKey$arguments$data$toPlayers$badgePlayers$completionHandler$(String key, NSArray<?> arguments, NSData data, NSArray<GKCloudPlayer> players, boolean badgePlayers, @Block VoidBlock1< NSError> completionHandler);
+    public native void sendMessageWithLocalizedFormatKey$arguments$data$toPlayers$badgePlayers$completionHandler$(String key, NSArray<?> arguments, NSData data, NSArray<GKCloudPlayer> players, boolean badgePlayers, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "clearBadgeForPlayers:completionHandler:")
-    public native void clearBadgeForPlayers$completionHandler$(NSArray<GKCloudPlayer> players, @Block VoidBlock1< NSError> completionHandler);
+    public native void clearBadgeForPlayers$completionHandler$(NSArray<GKCloudPlayer> players, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:")
     public static native void createSessionInContainer$withTitle$maxConnectedPlayers$completionHandler$(String containerName, String title, @MachineSizedSInt long maxPlayers, @Block VoidBlock2<GKGameSession, NSError> completionHandler);
     @Method(selector = "loadSessionsInContainer:completionHandler:")
@@ -92,7 +92,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadSessionWithIdentifier:completionHandler:")
     public static native void loadSessionWithIdentifier$completionHandler$(String identifier, @Block VoidBlock2<GKGameSession, NSError> completionHandler);
     @Method(selector = "removeSessionWithIdentifier:completionHandler:")
-    public static native void removeSessionWithIdentifier$completionHandler$(String identifier, @Block VoidBlock1< NSError> completionHandler);
+    public static native void removeSessionWithIdentifier$completionHandler$(String identifier, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
      */

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -129,40 +129,40 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "declineInviteWithCompletionHandler:")
-    public native void declineInvite(@Block VoidBlock1< NSError> completionHandler);
+    public native void declineInvite(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "removeWithCompletionHandler:")
-    public native void remove(@Block VoidBlock1< NSError> completionHandler);
+    public native void remove(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "loadMatchDataWithCompletionHandler:")
     public native void loadMatchData(@Block VoidBlock2<NSData, NSError> completionHandler);
     /**
      * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "endTurnWithNextParticipants:turnTimeout:matchData:completionHandler:")
-    public native void endTurn(NSArray<GKTurnBasedParticipant> nextParticipants, double timeout, NSData matchData, @Block VoidBlock1< NSError> completionHandler);
+    public native void endTurn(NSArray<GKTurnBasedParticipant> nextParticipants, double timeout, NSData matchData, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "participantQuitInTurnWithOutcome:nextParticipants:turnTimeout:matchData:completionHandler:")
-    public native void participantQuitInTurn(GKTurnBasedMatchOutcome matchOutcome, NSArray<GKTurnBasedParticipant> nextParticipants, double timeout, NSData matchData, @Block VoidBlock1< NSError> completionHandler);
+    public native void participantQuitInTurn(GKTurnBasedMatchOutcome matchOutcome, NSArray<GKTurnBasedParticipant> nextParticipants, double timeout, NSData matchData, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "participantQuitOutOfTurnWithOutcome:withCompletionHandler:")
-    public native void participantQuitOutOfTurn(GKTurnBasedMatchOutcome matchOutcome, @Block VoidBlock1< NSError> completionHandler);
+    public native void participantQuitOutOfTurn(GKTurnBasedMatchOutcome matchOutcome, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "endMatchInTurnWithMatchData:completionHandler:")
-    public native void endMatch(NSData matchData, @Block VoidBlock1< NSError> completionHandler);
+    public native void endMatch(NSData matchData, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "endMatchInTurnWithMatchData:scores:achievements:completionHandler:")
-    public native void endMatch(NSData matchData, NSArray<GKScore> scores, NSArray<GKAchievement> achievements, @Block VoidBlock1< NSError> completionHandler);
+    public native void endMatch(NSData matchData, NSArray<GKScore> scores, NSArray<GKAchievement> achievements, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "saveCurrentTurnWithMatchData:completionHandler:")
-    public native void saveCurrentTurn(NSData matchData, @Block VoidBlock1< NSError> completionHandler);
+    public native void saveCurrentTurn(NSData matchData, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "saveMergedMatchData:withResolvedExchanges:completionHandler:")
-    public native void saveMergedMatchData(NSData matchData, NSArray<GKTurnBasedExchange> exchanges, @Block VoidBlock1< NSError> completionHandler);
+    public native void saveMergedMatchData(NSData matchData, NSArray<GKTurnBasedExchange> exchanges, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 3.0 and later.
      */
@@ -172,7 +172,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "sendReminderToParticipants:localizableMessageKey:arguments:completionHandler:")
-    public native void sendReminder(NSArray<GKTurnBasedParticipant> participants, String key, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> arguments, @Block VoidBlock1< NSError> completionHandler);
+    public native void sendReminder(NSArray<GKTurnBasedParticipant> participants, String key, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> arguments, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "findMatchForRequest:withCompletionHandler:")
     public static native void findMatch(GKMatchRequest request, @Block VoidBlock2<GKTurnBasedMatch, NSError> completionHandler);
     @Method(selector = "loadMatchesWithCompletionHandler:")
