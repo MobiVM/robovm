@@ -34,9 +34,9 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKSavedGameListenerAdapter/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGameSessionEventListenerAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements GKSavedGameListener/*</implements>*/ {
+    /*<implements>*/implements GKGameSessionEventListener/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -50,14 +50,34 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    @NotImplemented("player:didModifySavedGame:")
-    public void didModifySavedGame(GKPlayer player, GKSavedGame savedGame) {}
+    @NotImplemented("session:didAddPlayer:")
+    public void didAddPlayer(GKGameSession session, GKCloudPlayer player) {}
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    @NotImplemented("player:hasConflictingSavedGames:")
-    public void hasConflictingSavedGames(GKPlayer player, NSArray<GKSavedGame> savedGames) {}
+    @NotImplemented("session:didRemovePlayer:")
+    public void didRemovePlayer(GKGameSession session, GKCloudPlayer player) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("session:player:didChangeConnectionState:")
+    public void didChangeConnectionState(GKGameSession session, GKCloudPlayer player, GKConnectionState newState) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("session:player:didSaveData:")
+    public void didSaveData(GKGameSession session, GKCloudPlayer player, NSData data) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("session:didReceiveData:fromPlayer:")
+    public void didReceiveData(GKGameSession session, NSData data, GKCloudPlayer player) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("session:didReceiveMessage:withData:fromPlayer:")
+    public void didReceiveMessage(GKGameSession session, String message, NSData data, GKCloudPlayer player) {}
     /*</methods>*/
 }

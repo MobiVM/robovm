@@ -32,20 +32,27 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- * @deprecated Deprecated in iOS 7.0.
- */
-@Deprecated
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GKPeerConnectionState/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/GKGameSessionErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
-    Available(0L),
-    Unavailable(1L),
-    Connected(2L),
-    Disconnected(3L),
-    Connecting(4L);
+    Unknown(1L),
+    NotAuthenticated(2L),
+    SessionConflict(3L),
+    SessionNotShared(4L),
+    ConnectionCancelledByUser(5L),
+    ConnectionFailed(6L),
+    SessionHasMaxConnectedPlayers(7L),
+    SendDataNotConnected(8L),
+    SendDataNoRecipients(9L),
+    SendDataNotReachable(10L),
+    SendRateLimitReached(11L),
+    BadContainer(12L),
+    CloudQuotaExceeded(13L),
+    NetworkFailure(14L),
+    CloudDriveDisabled(15L),
+    InvalidSession(16L);
     /*</values>*/
 
     /*<bind>*/
@@ -55,15 +62,15 @@ public enum /*<name>*/GKPeerConnectionState/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/GKPeerConnectionState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/GKGameSessionErrorCode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/GKPeerConnectionState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GKPeerConnectionState/*</name>*/ v : values()) {
+    public static /*<name>*/GKGameSessionErrorCode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/GKGameSessionErrorCode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GKPeerConnectionState/*</name>*/.class.getName());
+            + /*<name>*/GKGameSessionErrorCode/*</name>*/.class.getName());
     }
 }

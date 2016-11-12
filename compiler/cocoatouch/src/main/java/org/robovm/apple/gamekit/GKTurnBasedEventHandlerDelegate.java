@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,28 +57,28 @@ import org.robovm.apple.uikit.*;
      */
     @Deprecated
     @Method(selector = "handleInviteFromGameCenter:")
-    void handleInvite(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playersToInvite);
+    void handleInvite (@Marshaler(NSArray.AsStringListMarshaler.class) List<String> playersToInvite);
     /**
      * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Method(selector = "handleTurnEventForMatch:didBecomeActive:")
-    void handleTurnEvent(GKTurnBasedMatch match, boolean didBecomeActive);
+    void handleTurnEvent (GKTurnBasedMatch match, boolean didBecomeActive);
     /**
      * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Method(selector = "handleTurnEventForMatch:")
-    void handleTurnEvent(GKTurnBasedMatch match);
+    void handleTurnEvent (GKTurnBasedMatch match);
     /**
      * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Method(selector = "handleMatchEnded:")
-    void handleMatchEnded(GKTurnBasedMatch match);
+    void handleMatchEnded (GKTurnBasedMatch match);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

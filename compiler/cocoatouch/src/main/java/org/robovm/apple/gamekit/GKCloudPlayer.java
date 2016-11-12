@@ -33,37 +33,28 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
- * @deprecated Deprecated in iOS 7.0.
+ * @since Available in iOS 10.0 and later.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GKPeerConnectionState/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Available(0L),
-    Unavailable(1L),
-    Connected(2L),
-    Disconnected(3L),
-    Connecting(4L);
-    /*</values>*/
+/*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKCloudPlayer/*</name>*/ 
+    extends /*<extends>*/GKBasePlayer/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class GKCloudPlayerPtr extends Ptr<GKCloudPlayer, GKCloudPlayerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GKCloudPlayer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/GKPeerConnectionState/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/GKPeerConnectionState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GKPeerConnectionState/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GKPeerConnectionState/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    public GKCloudPlayer() {}
+    protected GKCloudPlayer(Handle h, long handle) { super(h, handle); }
+    protected GKCloudPlayer(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @Method(selector = "getCurrentSignedInPlayerForContainer:completionHandler:")
+    public static native void getCurrentSignedInPlayerForContainer$completionHandler$(String containerName, @Block VoidBlock2<GKCloudPlayer, NSError> handler);
+    /*</methods>*/
 }

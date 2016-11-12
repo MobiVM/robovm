@@ -35,7 +35,7 @@ import org.robovm.apple.uikit.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GKVoiceChatClient/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GKGameSessionEventListener/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -47,20 +47,36 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "voiceChatService:sendData:toParticipantID:")
-    void sendData (GKVoiceChatService voiceChatService, NSData data, String participantID);
-    @Method(selector = "participantID")
-    String getParticipantID ();
-    @Method(selector = "voiceChatService:sendRealTimeData:toParticipantID:")
-    void sendRealTimeData (GKVoiceChatService voiceChatService, NSData data, String participantID);
-    @Method(selector = "voiceChatService:didStartWithParticipantID:")
-    void didStart (GKVoiceChatService voiceChatService, String participantID);
-    @Method(selector = "voiceChatService:didNotStartWithParticipantID:error:")
-    void didNotStart (GKVoiceChatService voiceChatService, String participantID, NSError error);
-    @Method(selector = "voiceChatService:didStopWithParticipantID:error:")
-    void didStop (GKVoiceChatService voiceChatService, String participantID, NSError error);
-    @Method(selector = "voiceChatService:didReceiveInvitationFromParticipantID:callID:")
-    void didReceiveInvitation (GKVoiceChatService voiceChatService, String participantID, @MachineSizedSInt long callID);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "session:didAddPlayer:")
+    void didAddPlayer (GKGameSession session, GKCloudPlayer player);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "session:didRemovePlayer:")
+    void didRemovePlayer (GKGameSession session, GKCloudPlayer player);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "session:player:didChangeConnectionState:")
+    void didChangeConnectionState (GKGameSession session, GKCloudPlayer player, GKConnectionState newState);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "session:player:didSaveData:")
+    void didSaveData (GKGameSession session, GKCloudPlayer player, NSData data);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "session:didReceiveData:fromPlayer:")
+    void didReceiveData (GKGameSession session, NSData data, GKCloudPlayer player);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "session:didReceiveMessage:withData:fromPlayer:")
+    void didReceiveMessage (GKGameSession session, String message, NSData data, GKCloudPlayer player);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

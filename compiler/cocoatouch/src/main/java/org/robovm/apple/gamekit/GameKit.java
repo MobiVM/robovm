@@ -32,38 +32,23 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- * @deprecated Deprecated in iOS 7.0.
- */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GKPeerConnectionState/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Available(0L),
-    Unavailable(1L),
-    Connected(2L),
-    Disconnected(3L),
-    Connecting(4L);
-    /*</values>*/
+/*<annotations>*/@Library("GameKit")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GameKit/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(GameKit.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/GKPeerConnectionState/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/GKPeerConnectionState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GKPeerConnectionState/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GKPeerConnectionState/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @GlobalValue(symbol="GKGameSessionErrorDomain", optional=true)
+    public static native String Value__GKGameSessionErrorDomain();
+    @GlobalValue(symbol="GKGameSessionErrorDomain", optional=true)
+    public static native void Value__GKGameSessionErrorDomain(String v);
+    /*</methods>*/
 }

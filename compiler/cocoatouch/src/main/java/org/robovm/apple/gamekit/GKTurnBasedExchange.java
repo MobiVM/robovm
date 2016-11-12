@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,7 +33,7 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.0 and later.
+ * @since Available in iOS 3.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKTurnBasedExchange() {}
+    protected GKTurnBasedExchange(Handle h, long handle) { super(h, handle); }
     protected GKTurnBasedExchange(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -73,25 +74,25 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @GlobalValue(symbol="GKExchangeTimeoutDefault", optional=true)
     public static native double getDefaultTimeout();
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @GlobalValue(symbol="GKExchangeTimeoutNone", optional=true)
     public static native double getNoneTimeout();
     
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "cancelWithLocalizableMessageKey:arguments:completionHandler:")
-    public native void cancel(String key, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> arguments, @Block VoidBlock1<NSError> completionHandler);
+    public native void cancel(String key, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> arguments, @Block VoidBlock1< NSError> completionHandler);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "replyWithLocalizableMessageKey:arguments:data:completionHandler:")
-    public native void reply(String key, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> arguments, NSData data, @Block VoidBlock1<NSError> completionHandler);
+    public native void reply(String key, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> arguments, NSData data, @Block VoidBlock1< NSError> completionHandler);
     /*</methods>*/
 }

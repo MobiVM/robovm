@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,7 +33,7 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.1 and later.
+ * @since Available in iOS 3.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKLeaderboard() {}
+    protected GKLeaderboard(Handle h, long handle) { super(h, handle); }
     protected GKLeaderboard(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 8.0 and later.
@@ -133,19 +134,12 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithPlayerIDs:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs);
     /**
-     * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Method(selector = "loadCategoriesWithCompletionHandler:")
-    public static native void loadCategories(@Block VoidBlock3<NSArray<NSString>, NSArray<NSString>, NSError> completionHandler);
-    /**
      * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @Method(selector = "setDefaultLeaderboard:withCompletionHandler:")
-    public static native void setDefaultLeaderboard(String leaderboardIdentifier, @Block VoidBlock1<NSError> completionHandler);
+    public static native void setDefaultLeaderboard(String leaderboardIdentifier, @Block VoidBlock1< NSError> completionHandler);
     /**
      * @since Available in iOS 7.0 and later.
      */

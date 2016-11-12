@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -52,19 +52,19 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "localPlayerDidSelectChallenge:")
-    void localPlayerDidSelectChallenge(GKChallenge challenge);
+    void localPlayerDidSelectChallenge (GKChallenge challenge);
     @Method(selector = "shouldShowBannerForLocallyReceivedChallenge:")
-    boolean shouldShowBannerForLocallyReceivedChallenge(GKChallenge challenge);
+    boolean shouldShowBannerForLocallyReceivedChallenge (GKChallenge challenge);
     @Method(selector = "localPlayerDidReceiveChallenge:")
-    void localPlayerDidReceiveChallenge(GKChallenge challenge);
+    void localPlayerDidReceiveChallenge (GKChallenge challenge);
     @Method(selector = "shouldShowBannerForLocallyCompletedChallenge:")
-    boolean shouldShowBannerForLocallyCompletedChallenge(GKChallenge challenge);
+    boolean shouldShowBannerForLocallyCompletedChallenge (GKChallenge challenge);
     @Method(selector = "localPlayerDidCompleteChallenge:")
-    void localPlayerDidCompleteChallenge(GKChallenge challenge);
+    void localPlayerDidCompleteChallenge (GKChallenge challenge);
     @Method(selector = "shouldShowBannerForRemotelyCompletedChallenge:")
-    boolean shouldShowBannerForRemotelyCompletedChallenge(GKChallenge challenge);
+    boolean shouldShowBannerForRemotelyCompletedChallenge (GKChallenge challenge);
     @Method(selector = "remotePlayerDidCompleteChallenge:")
-    void remotePlayerDidCompleteChallenge(GKChallenge challenge);
+    void remotePlayerDidCompleteChallenge (GKChallenge challenge);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

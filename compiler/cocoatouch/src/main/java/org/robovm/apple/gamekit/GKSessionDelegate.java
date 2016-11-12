@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,13 +48,13 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "session:peer:didChangeState:")
-    void didChangeState(GKSession session, String peerID, GKPeerConnectionState state);
+    void didChangeState (GKSession session, String peerID, GKPeerConnectionState state);
     @Method(selector = "session:didReceiveConnectionRequestFromPeer:")
-    void didReceiveConnectionRequest(GKSession session, String peerID);
+    void didReceiveConnectionRequest (GKSession session, String peerID);
     @Method(selector = "session:connectionWithPeerFailed:withError:")
-    void connectionWithPeerFailed(GKSession session, String peerID, NSError error);
+    void connectionWithPeerFailed (GKSession session, String peerID, NSError error);
     @Method(selector = "session:didFailWithError:")
-    void didFail(GKSession session, NSError error);
+    void didFail (GKSession session, NSError error);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

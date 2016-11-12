@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKMatchmaker() {}
+    protected GKMatchmaker(Handle h, long handle) { super(h, handle); }
     protected GKMatchmaker(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -79,7 +80,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "findPlayersForHostedRequest:withCompletionHandler:")
     public native void findPlayersForHostedRequest(GKMatchRequest request, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     @Method(selector = "addPlayersToMatch:matchRequest:completionHandler:")
-    public native void addPlayersToMatch(GKMatch match, GKMatchRequest matchRequest, @Block VoidBlock1<NSError> completionHandler);
+    public native void addPlayersToMatch(GKMatch match, GKMatchRequest matchRequest, @Block VoidBlock1< NSError> completionHandler);
     @Method(selector = "cancel")
     public native void cancel();
     /**

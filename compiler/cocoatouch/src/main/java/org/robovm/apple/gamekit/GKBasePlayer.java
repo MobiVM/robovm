@@ -34,36 +34,29 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 3.0 and later.
- * @deprecated Deprecated in iOS 7.0.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GKPeerConnectionState/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Available(0L),
-    Unavailable(1L),
-    Connected(2L),
-    Disconnected(3L),
-    Connecting(4L);
-    /*</values>*/
+/*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKBasePlayer/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class GKBasePlayerPtr extends Ptr<GKBasePlayer, GKBasePlayerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GKBasePlayer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/GKPeerConnectionState/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/GKPeerConnectionState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GKPeerConnectionState/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GKPeerConnectionState/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    public GKBasePlayer() {}
+    protected GKBasePlayer(Handle h, long handle) { super(h, handle); }
+    protected GKBasePlayer(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "playerID")
+    public native String getPlayerID();
+    @Property(selector = "displayName")
+    public native String getDisplayName();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

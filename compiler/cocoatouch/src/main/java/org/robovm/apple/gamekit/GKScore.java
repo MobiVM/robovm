@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,7 +33,7 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.1 and later.
+ * @since Available in iOS 3.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
@@ -46,10 +46,11 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKScore() {}
+    protected GKScore(Handle h, long handle) { super(h, handle); }
     protected GKScore(SkipInit skipInit) { super(skipInit); }
     public GKScore(String identifier) { super((SkipInit) null); initObject(init(identifier)); }
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     public GKScore(String identifier, GKPlayer player) { super((SkipInit) null); initObject(init(identifier, player)); }
     /**
@@ -68,41 +69,41 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "formattedValue")
     public native String getFormattedValue();
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @Property(selector = "leaderboardIdentifier")
     public native String getLeaderboardIdentifier();
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @Property(selector = "setLeaderboardIdentifier:")
     public native void setLeaderboardIdentifier(String v);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @Property(selector = "context")
     public native long getContext();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @Property(selector = "setContext:")
     public native void setContext(long v);
     @Property(selector = "date")
     public native NSDate getDate();
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @Property(selector = "player")
     public native GKPlayer getPlayer();
     @Property(selector = "rank")
     public native @MachineSizedSInt long getRank();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @Property(selector = "shouldSetDefaultLeaderboard")
     public native boolean shouldSetDefaultLeaderboard();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @Property(selector = "setShouldSetDefaultLeaderboard:")
     public native void setShouldSetDefaultLeaderboard(boolean v);
@@ -133,15 +134,15 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithLeaderboardIdentifier:")
     protected native @Pointer long init(String identifier);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "initWithLeaderboardIdentifier:player:")
     protected native @Pointer long init(String identifier, GKPlayer player);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "reportScores:withCompletionHandler:")
-    public static native void reportScores(NSArray<GKScore> scores, @Block VoidBlock1<NSError> completionHandler);
+    public static native void reportScores(NSArray<GKScore> scores, @Block VoidBlock1< NSError> completionHandler);
     /**
      * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0.
@@ -155,7 +156,7 @@ import org.robovm.apple.uikit.*;
      */
     @Deprecated
     @Method(selector = "reportScoreWithCompletionHandler:")
-    public native void reportScore(@Block VoidBlock1<NSError> completionHandler);
+    public native void reportScore(@Block VoidBlock1< NSError> completionHandler);
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -172,7 +173,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "reportScores:withEligibleChallenges:withCompletionHandler:")
-    public static native void reportScores(NSArray<GKScore> scores, NSArray<GKChallenge> challenges, @Block VoidBlock1<NSError> completionHandler);
+    public static native void reportScores(NSArray<GKScore> scores, NSArray<GKChallenge> challenges, @Block VoidBlock1< NSError> completionHandler);
     /**
      * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0.

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,36 +33,27 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.1 and later.
+ * @since Available in iOS 3.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKPlayer/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/GKBasePlayer/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
-    
-    public static class Notifications {
-        public static NSObject observeDidChange(GKPlayer object, final VoidBlock1<GKPlayer> block) {
-            return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
-                @Override
-                public void invoke(NSNotification a) {
-                    block.invoke((GKPlayer) a.getObject());
-                }
-            });
-        }
-    }
+
     /*<ptr>*/public static class GKPlayerPtr extends Ptr<GKPlayer, GKPlayerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKPlayer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKPlayer() {}
+    protected GKPlayer(Handle h, long handle) { super(h, handle); }
     protected GKPlayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "playerID")
     public native String getPlayerID();
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 3.0 and later.
      */
     @Property(selector = "displayName")
     public native String getDisplayName();
