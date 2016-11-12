@@ -629,10 +629,8 @@ classes:
 categories:
     GKGameSession :
         methods:
-            #+ (void)addEventListener:(NSObject<GKGameSessionEventListener> *)listener;
             '+addEventListener:': 
                 name: addEventListener
-            #+ (void)removeEventListener:(NSObject<GKGameSessionEventListener> *)listener;
             '+removeEventListener:': 
                 name: removeEventListener
 protocols:
@@ -784,22 +782,16 @@ protocols:
                 trim_after_first_colon: true
     GKGameSessionEventListener:
         methods:
-            #- (void)session:(GKGameSession *)session didAddPlayer:(GKCloudPlayer *)player;
             '-session:didAddPlayer:':
                 name: didAddPlayer
-            #- (void)session:(GKGameSession *)session didRemovePlayer:(GKCloudPlayer *)player;
             '-session:didRemovePlayer:':
                 name: didRemovePlayer
-            #- (void)session:(GKGameSession *)session player:(GKCloudPlayer *)player didChangeConnectionState:(GKConnectionState)newState;
             '-session:player:didChangeConnectionState:':
                 name: didChangeConnectionState
-            #- (void)session:(GKGameSession *)session player:(GKCloudPlayer *)player didSaveData:(NSData *)data;
             '-session:player:didSaveData:':
                 name: didSaveData
-            #- (void)session:(GKGameSession *)session didReceiveData:(NSData *)data fromPlayer:(GKCloudPlayer *)player;
             '-session:didReceiveData:fromPlayer:':
                 name: didReceiveData
-            #- (void)session:(GKGameSession *)session didReceiveMessage:(NSString *)message withData:(NSData *)data fromPlayer:(GKCloudPlayer *)player;
             '-session:didReceiveMessage:withData:fromPlayer:':
                 name: didReceiveMessage
 
