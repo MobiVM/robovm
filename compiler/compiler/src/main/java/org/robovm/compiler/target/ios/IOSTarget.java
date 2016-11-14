@@ -225,6 +225,8 @@ public class IOSTarget extends AbstractTarget {
         if (env == null) {
             env = new HashMap<>();
         }
+        //Fix for #71, see http://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-8-logs
+        env.put("OS_ACTIVITY_DT_MODE", "");
 
         AppLauncher launcher = new AppLauncher(device, getAppDir()) {
             protected void log(String s, Object... args) {
