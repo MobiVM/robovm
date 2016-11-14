@@ -171,7 +171,7 @@ public class CompilerCache implements Cloneable{
 	}
 
 	public boolean isAnyResourceChanged() {
-		return resourceChanged;
+		return true;
 	}
 
 }
