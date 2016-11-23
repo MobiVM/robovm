@@ -41,6 +41,7 @@
     <module>plugins/maven</module>    
     <module>plugins/eclipse</module>
     <module>plugins/idea</module>
+    <module>plugins/gradle</module>
  </modules>
 
 </project>
