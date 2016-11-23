@@ -69,6 +69,7 @@ Tag the release in git:
 
 Prepare next development cycle
      ```
+     mvn org.eclipse.tycho:tycho-versions-plugin:0.20.0:set-version -Dtycho.mode=maven -DnewVersion=2.2.2-SNAPSHOT
      git commit -am "Set next development version 2.2.2-SNAPSHOT"
 	git push --tags
 	```
