@@ -40,8 +40,8 @@
     <module>plugins/templates</module>
     <module>plugins/maven</module>    
     <module>plugins/eclipse</module>
-    <module>plugins/idea</module>
     <module>plugins/gradle</module>
- </modules>
+    <module>plugins/idea</module>
+  </modules>
 
 </project>
