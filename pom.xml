@@ -37,7 +37,8 @@
   <modules>
     <module>compiler</module>
     <module>dist</module>
-    <module>plugins/templates</module>    
-  </modules>
+    <module>plugins/templates</module>
+    <module>plugins/maven</module>    
+ </modules>
 
 </project>
