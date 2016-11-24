@@ -28,6 +28,13 @@ with the runtime code being Apache 2 for distribution on iOS.
 
 ### Prerequisites
 
+#### Setup Environment
+
+You need to install
+ - java
+ - maven
+ - cmake
+
 #### Setup Maven
 You need to setup the bintray username/password in your
 local `~/.m2/settings.xml` file:
@@ -51,26 +58,36 @@ local `~/.m2/settings.xml` file:
 
 ### Releasing
 
-Change the versions to the release one:
-   `mvn org.eclipse.tycho:tycho-versions-plugin:0.20.0:set-version -Dtycho.mode=maven -DnewVersion=2.2.1`
+1. Change the versions to the release one:
+   
+   ```
+   mvn org.eclipse.tycho:tycho-versions-plugin:0.20.0:set-version -Dtycho.mode=maven -DnewVersion=2.2.1
+   ```
    (!) The tycho-versions plugin handles the versions for eclipse too compared with *versions* plugin.
 
-Deploy to bintray with profile *release* to generate and deploy javadoc and sources as well.
-    `mvn deploy -DskipTests -Prelease`
+2. Deploy to bintray with profile *release* to generate and deploy javadoc and sources as well.
+    
+    ```
+    mvn deploy -DskipTests -Prelease
+    ```
     (!) For now the idea plugin is not generated since needs a intelij to be installed.
 
-Publish manually in bintray if in pom.xml distributionManagement url is finished with publish=0. Change publish=1 to publish in bintray automatically.
+3. Publish manually in bintray if in pom.xml distributionManagement url is finished with publish=0.
+    Change publish=1 to publish in bintray automatically.
+    After publishing you can find the artifacts here: https://dl.bintray.com/raisercostin/maven/com/mobidevelop/robovm/
+    If a request to add the project to jcenter is approved you can find them here: http://jcenter.bintray.com/com/mobidevelop/robovm/
 
-Tag the release in git:
+4. Tag the release in git:
+    
     ```
 	git commit -am "Set release version 2.2.1"
 	git tag robovm-2.2.1
 	```
 
-Prepare next development cycle
+5. Prepare next development cycle
      ```
      mvn org.eclipse.tycho:tycho-versions-plugin:0.20.0:set-version -Dtycho.mode=maven -DnewVersion=2.2.2-SNAPSHOT
      git commit -am "Set next development version 2.2.2-SNAPSHOT"
 	git push --tags
 	```
-   
+ 
