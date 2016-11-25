@@ -33,7 +33,7 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
+ * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/

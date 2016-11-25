@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 6.0 and later.
      */
     @Method(selector = "gameCenterViewControllerDidFinish:")
-    void didFinish (GKGameCenterViewController gameCenterViewController);
+    void didFinish(GKGameCenterViewController gameCenterViewController);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

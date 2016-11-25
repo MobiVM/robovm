@@ -53,12 +53,12 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "player:didModifySavedGame:")
-    void didModifySavedGame (GKPlayer player, GKSavedGame savedGame);
+    void didModifySavedGame(GKPlayer player, GKSavedGame savedGame);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "player:hasConflictingSavedGames:")
-    void hasConflictingSavedGames (GKPlayer player, NSArray<GKSavedGame> savedGames);
+    void hasConflictingSavedGames(GKPlayer player, NSArray<GKSavedGame> savedGames);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

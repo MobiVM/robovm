@@ -51,42 +51,41 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 4.1 and later.
      */
     @Method(selector = "matchmakerViewControllerWasCancelled:")
-    void wasCancelled (GKMatchmakerViewController viewController);
+    void wasCancelled(GKMatchmakerViewController viewController);
     /**
      * @since Available in iOS 4.1 and later.
      */
     @Method(selector = "matchmakerViewController:didFailWithError:")
-    void didFail (GKMatchmakerViewController viewController, NSError error);
+    void didFail(GKMatchmakerViewController viewController, NSError error);
     /**
      * @since Available in iOS 4.1 and later.
      */
     @Method(selector = "matchmakerViewController:didFindMatch:")
-    void didFindMatch (GKMatchmakerViewController viewController, GKMatch match);
+    void didFindMatch(GKMatchmakerViewController viewController, GKMatch match);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "matchmakerViewController:didFindHostedPlayers:")
-    void didFindHostedPlayers (GKMatchmakerViewController viewController, NSArray<GKPlayer> players);
+    void didFindHostedPlayers(GKMatchmakerViewController viewController, NSArray<GKPlayer> players);
     /**
      * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Method(selector = "matchmakerViewController:didFindPlayers:")
-    void didFindPlayers (GKMatchmakerViewController viewController,
-		 @Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs);
+    void didFindPlayers(GKMatchmakerViewController viewController, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "matchmakerViewController:hostedPlayerDidAccept:")
-    void hostedPlayerDidAccept (GKMatchmakerViewController viewController, GKPlayer player);
+    void hostedPlayerDidAccept(GKMatchmakerViewController viewController, GKPlayer player);
     /**
      * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Method(selector = "matchmakerViewController:didReceiveAcceptFromHostedPlayer:")
-    void didReceiveAccept (GKMatchmakerViewController viewController, String playerID);
+    void didReceiveAccept(GKMatchmakerViewController viewController, String playerID);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

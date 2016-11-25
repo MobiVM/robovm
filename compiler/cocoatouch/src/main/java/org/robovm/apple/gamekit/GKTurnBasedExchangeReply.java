@@ -33,7 +33,7 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
+ * @since Available in iOS 7.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
@@ -57,7 +57,7 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "data")
     public native NSData getData();
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "replyDate")
     public native NSDate getReplyDate();

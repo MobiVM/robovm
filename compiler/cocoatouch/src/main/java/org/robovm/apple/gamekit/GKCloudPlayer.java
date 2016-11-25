@@ -55,6 +55,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "getCurrentSignedInPlayerForContainer:completionHandler:")
-    public static native void getCurrentSignedInPlayerForContainer$completionHandler$(String containerName, @Block VoidBlock2<GKCloudPlayer, NSError> handler);
+    public static native void getCurrentSignedInPlayerForContainer(String containerName, @Block VoidBlock2<GKCloudPlayer, NSError> handler);
     /*</methods>*/
 }

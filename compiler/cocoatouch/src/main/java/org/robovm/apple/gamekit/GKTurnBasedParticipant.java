@@ -33,7 +33,7 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
+ * @since Available in iOS 5.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "player")
     public native GKPlayer getPlayer();
@@ -64,7 +64,7 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setMatchOutcome:")
     public native void setMatchOutcome(GKTurnBasedMatchOutcome v);
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 6.0 and later.
      */
     @Property(selector = "timeoutDate")
     public native NSDate getTimeoutDate();

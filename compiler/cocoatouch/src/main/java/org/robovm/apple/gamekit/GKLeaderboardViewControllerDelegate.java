@@ -52,7 +52,7 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "leaderboardViewControllerDidFinish:")
-    void didFinish (GKLeaderboardViewController viewController);
+    void didFinish(GKLeaderboardViewController viewController);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -48,19 +48,19 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "voiceChatService:sendData:toParticipantID:")
-    void sendData (GKVoiceChatService voiceChatService, NSData data, String participantID);
+    void sendData(GKVoiceChatService voiceChatService, NSData data, String participantID);
     @Method(selector = "participantID")
-    String getParticipantID ();
+    String getParticipantID();
     @Method(selector = "voiceChatService:sendRealTimeData:toParticipantID:")
-    void sendRealTimeData (GKVoiceChatService voiceChatService, NSData data, String participantID);
+    void sendRealTimeData(GKVoiceChatService voiceChatService, NSData data, String participantID);
     @Method(selector = "voiceChatService:didStartWithParticipantID:")
-    void didStart (GKVoiceChatService voiceChatService, String participantID);
+    void didStart(GKVoiceChatService voiceChatService, String participantID);
     @Method(selector = "voiceChatService:didNotStartWithParticipantID:error:")
-    void didNotStart (GKVoiceChatService voiceChatService, String participantID, NSError error);
+    void didNotStart(GKVoiceChatService voiceChatService, String participantID, NSError error);
     @Method(selector = "voiceChatService:didStopWithParticipantID:error:")
-    void didStop (GKVoiceChatService voiceChatService, String participantID, NSError error);
+    void didStop(GKVoiceChatService voiceChatService, String participantID, NSError error);
     @Method(selector = "voiceChatService:didReceiveInvitationFromParticipantID:callID:")
-    void didReceiveInvitation (GKVoiceChatService voiceChatService, String participantID, @MachineSizedSInt long callID);
+    void didReceiveInvitation(GKVoiceChatService voiceChatService, String participantID, @MachineSizedSInt long callID);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

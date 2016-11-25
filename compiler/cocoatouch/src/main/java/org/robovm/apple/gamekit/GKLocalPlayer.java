@@ -33,7 +33,7 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
+ * @since Available in iOS 4.1 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
@@ -81,39 +81,39 @@ import org.robovm.apple.uikit.*;
     public static native NSString AuthenticationDidChangeNotification();
     
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "loadRecentPlayersWithCompletionHandler:")
-    public native void loadRecentPlayersWithCompletionHandler$(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
+    public native void loadRecentPlayers(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "setDefaultLeaderboardIdentifier:completionHandler:")
     public native void setDefaultLeaderboardIdentifier(String leaderboardIdentifier, @Block VoidBlock1<NSError> completionHandler);
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "loadDefaultLeaderboardIdentifierWithCompletionHandler:")
     public native void loadDefaultLeaderboardIdentifier(@Block VoidBlock2<String, NSError> completionHandler);
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "generateIdentityVerificationSignatureWithCompletionHandler:")
     public native void generateIdentityVerificationSignature(@Block VoidBlock5<NSURL, NSData, NSData, Long, NSError> completionHandler);
     @Method(selector = "localPlayer")
     public static native GKLocalPlayer getLocalPlayer();
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "registerListener:")
     public native void registerListener(GKLocalPlayerListener listener);
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "unregisterListener:")
     public native void unregisterListener(GKLocalPlayerListener listener);
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "unregisterAllListeners")
     public native void unregisterAllListeners();

@@ -52,19 +52,19 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "localPlayerDidSelectChallenge:")
-    void localPlayerDidSelectChallenge (GKChallenge challenge);
+    void localPlayerDidSelectChallenge(GKChallenge challenge);
     @Method(selector = "shouldShowBannerForLocallyReceivedChallenge:")
-    boolean shouldShowBannerForLocallyReceivedChallenge (GKChallenge challenge);
+    boolean shouldShowBannerForLocallyReceivedChallenge(GKChallenge challenge);
     @Method(selector = "localPlayerDidReceiveChallenge:")
-    void localPlayerDidReceiveChallenge (GKChallenge challenge);
+    void localPlayerDidReceiveChallenge(GKChallenge challenge);
     @Method(selector = "shouldShowBannerForLocallyCompletedChallenge:")
-    boolean shouldShowBannerForLocallyCompletedChallenge (GKChallenge challenge);
+    boolean shouldShowBannerForLocallyCompletedChallenge(GKChallenge challenge);
     @Method(selector = "localPlayerDidCompleteChallenge:")
-    void localPlayerDidCompleteChallenge (GKChallenge challenge);
+    void localPlayerDidCompleteChallenge(GKChallenge challenge);
     @Method(selector = "shouldShowBannerForRemotelyCompletedChallenge:")
-    boolean shouldShowBannerForRemotelyCompletedChallenge (GKChallenge challenge);
+    boolean shouldShowBannerForRemotelyCompletedChallenge(GKChallenge challenge);
     @Method(selector = "remotePlayerDidCompleteChallenge:")
-    void remotePlayerDidCompleteChallenge (GKChallenge challenge);
+    void remotePlayerDidCompleteChallenge(GKChallenge challenge);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

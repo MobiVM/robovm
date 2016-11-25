@@ -33,7 +33,7 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
+ * @since Available in iOS 4.1 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
@@ -53,7 +53,7 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "playerID")
     public native String getPlayerID();
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 6.0 and later.
      */
     @Property(selector = "displayName")
     public native String getDisplayName();

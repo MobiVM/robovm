@@ -51,26 +51,26 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "turnBasedMatchmakerViewControllerWasCancelled:")
-    void wasCancelled (GKTurnBasedMatchmakerViewController viewController);
+    void wasCancelled(GKTurnBasedMatchmakerViewController viewController);
     /**
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "turnBasedMatchmakerViewController:didFailWithError:")
-    void didFail (GKTurnBasedMatchmakerViewController viewController, NSError error);
+    void didFail(GKTurnBasedMatchmakerViewController viewController, NSError error);
     /**
      * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @Method(selector = "turnBasedMatchmakerViewController:didFindMatch:")
-    void didFindMatch (GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match);
+    void didFindMatch(GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match);
     /**
      * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @Method(selector = "turnBasedMatchmakerViewController:playerQuitForMatch:")
-    void playerQuit (GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match);
+    void playerQuit(GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

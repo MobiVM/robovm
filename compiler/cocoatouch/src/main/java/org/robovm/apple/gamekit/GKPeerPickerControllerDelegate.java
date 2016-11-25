@@ -48,13 +48,13 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "peerPickerController:didSelectConnectionType:")
-    void didSelectConnectionType (GKPeerPickerController picker, GKPeerPickerConnectionType type);
+    void didSelectConnectionType(GKPeerPickerController picker, GKPeerPickerConnectionType type);
     @Method(selector = "peerPickerController:sessionForConnectionType:")
-    GKSession getSession (GKPeerPickerController picker, GKPeerPickerConnectionType type);
+    GKSession getSession(GKPeerPickerController picker, GKPeerPickerConnectionType type);
     @Method(selector = "peerPickerController:didConnectPeer:toSession:")
-    void didConnectPeer (GKPeerPickerController picker, String peerID, GKSession session);
+    void didConnectPeer(GKPeerPickerController picker, String peerID, GKSession session);
     @Method(selector = "peerPickerControllerDidCancel:")
-    void didCancel (GKPeerPickerController picker);
+    void didCancel(GKPeerPickerController picker);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

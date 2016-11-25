@@ -52,7 +52,7 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "achievementViewControllerDidFinish:")
-    void didFinish (GKAchievementViewController viewController);
+    void didFinish(GKAchievementViewController viewController);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

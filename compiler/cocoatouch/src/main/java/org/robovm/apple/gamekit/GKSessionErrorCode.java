@@ -39,7 +39,7 @@ import org.robovm.apple.uikit.*;
 @Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GKSessionErrorCode/*</name>*/ implements NSErrorCode {
+public enum /*<name>*/GKSessionErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     InvalidParameter(30500L),
     PeerNotFound(30501L),

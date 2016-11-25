@@ -48,13 +48,13 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "session:peer:didChangeState:")
-    void didChangeState (GKSession session, String peerID, GKPeerConnectionState state);
+    void didChangeState(GKSession session, String peerID, GKPeerConnectionState state);
     @Method(selector = "session:didReceiveConnectionRequestFromPeer:")
-    void didReceiveConnectionRequest (GKSession session, String peerID);
+    void didReceiveConnectionRequest(GKSession session, String peerID);
     @Method(selector = "session:connectionWithPeerFailed:withError:")
-    void connectionWithPeerFailed (GKSession session, String peerID, NSError error);
+    void connectionWithPeerFailed(GKSession session, String peerID, NSError error);
     @Method(selector = "session:didFailWithError:")
-    void didFail (GKSession session, NSError error);
+    void didFail(GKSession session, NSError error);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

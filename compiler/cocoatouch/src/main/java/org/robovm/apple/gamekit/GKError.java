@@ -37,9 +37,6 @@ import org.robovm.apple.uikit.*;
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKError/*</name>*/ 
     extends /*<extends>*/NSError/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
-    public GKError (SkipInit skipInit) {
-        super(skipInit);
-    }
 
     /*<ptr>*/
     /*</ptr>*/
@@ -48,16 +45,6 @@ import org.robovm.apple.uikit.*;
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
-    @Override
-    public GKErrorCode getErrorCode() {
-        GKErrorCode code = null;
-        try {
-            code = GKErrorCode.valueOf(getCode());
-        } catch (IllegalArgumentException e) {
-            // ignore
-        }
-        return code;
-    }
     /*<methods>*/
     @GlobalValue(symbol="GKErrorDomain", optional=true)
     public static native String getClassDomain();

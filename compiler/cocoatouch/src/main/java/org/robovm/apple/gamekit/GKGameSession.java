@@ -70,38 +70,38 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "getShareURLWithCompletionHandler:")
-    public native void getShareURLWithCompletionHandler$(@Block VoidBlock2<NSURL, NSError> completionHandler);
+    public native void getShareURL(@Block VoidBlock2<NSURL, NSError> completionHandler);
     @Method(selector = "loadDataWithCompletionHandler:")
-    public native void loadDataWithCompletionHandler$(@Block VoidBlock2<NSData, NSError> completionHandler);
+    public native void loadData(@Block VoidBlock2<NSData, NSError> completionHandler);
     @Method(selector = "saveData:completionHandler:")
-    public native void saveData$completionHandler$(NSData data, @Block VoidBlock2<NSData, NSError> completionHandler);
+    public native void saveData(NSData data, @Block VoidBlock2<NSData, NSError> completionHandler);
     @Method(selector = "setConnectionState:completionHandler:")
-    public native void setConnectionState$completionHandler$(GKConnectionState state, @Block VoidBlock1<NSError> completionHandler);
+    public native void setConnectionState(GKConnectionState state, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "playersWithConnectionState:")
-    public native NSArray<GKCloudPlayer> playersWithConnectionState$(GKConnectionState state);
+    public native NSArray<GKCloudPlayer> playersWithConnectionStat(GKConnectionState state);
     @Method(selector = "sendData:withTransportType:completionHandler:")
-    public native void sendData$withTransportType$completionHandler$(NSData data, GKTransportType transport, @Block VoidBlock1<NSError> completionHandler);
+    public native void sendData(NSData data, GKTransportType transport, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:")
-    public native void sendMessageWithLocalizedFormatKey$arguments$data$toPlayers$badgePlayers$completionHandler$(String key, NSArray<?> arguments, NSData data, NSArray<GKCloudPlayer> players, boolean badgePlayers, @Block VoidBlock1<NSError> completionHandler);
+    public native void sendMessage(String key, NSArray<?> arguments, NSData data, NSArray<GKCloudPlayer> players, boolean badgePlayers, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "clearBadgeForPlayers:completionHandler:")
-    public native void clearBadgeForPlayers$completionHandler$(NSArray<GKCloudPlayer> players, @Block VoidBlock1<NSError> completionHandler);
+    public native void saveData(NSArray<GKCloudPlayer> players, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:")
-    public static native void createSessionInContainer$withTitle$maxConnectedPlayers$completionHandler$(String containerName, String title, @MachineSizedSInt long maxPlayers, @Block VoidBlock2<GKGameSession, NSError> completionHandler);
+    public static native void createSessionInContainer(String containerName, String title, @MachineSizedSInt long maxPlayers, @Block VoidBlock2<GKGameSession, NSError> completionHandler);
     @Method(selector = "loadSessionsInContainer:completionHandler:")
-    public static native void loadSessionsInContainer$completionHandler$(String containerName, @Block VoidBlock2<NSArray<GKGameSession>, NSError> completionHandler);
+    public static native void loadSessionsInContainer(String containerName, @Block VoidBlock2<NSArray<GKGameSession>, NSError> completionHandler);
     @Method(selector = "loadSessionWithIdentifier:completionHandler:")
-    public static native void loadSessionWithIdentifier$completionHandler$(String identifier, @Block VoidBlock2<GKGameSession, NSError> completionHandler);
+    public static native void loadSession(String identifier, @Block VoidBlock2<GKGameSession, NSError> completionHandler);
     @Method(selector = "removeSessionWithIdentifier:completionHandler:")
-    public static native void removeSessionWithIdentifier$completionHandler$(String identifier, @Block VoidBlock1<NSError> completionHandler);
+    public static native void removeSession(String identifier, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "addEventListener:")
-    public static native void addEventListener$(GKGameSessionEventListener listener);
+    public static native void addEventListener(GKGameSessionEventListener listener);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "removeEventListener:")
-    public static native void removeEventListener$(GKGameSessionEventListener listener);
+    public static native void removeEventListener(GKGameSessionEventListener listener);
     /*</methods>*/
 }

@@ -51,32 +51,32 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "session:didAddPlayer:")
-    void didAddPlayer (GKGameSession session, GKCloudPlayer player);
+    void didAddPlayer(GKGameSession session, GKCloudPlayer player);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "session:didRemovePlayer:")
-    void didRemovePlayer (GKGameSession session, GKCloudPlayer player);
+    void didRemovePlayer(GKGameSession session, GKCloudPlayer player);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "session:player:didChangeConnectionState:")
-    void didChangeConnectionState (GKGameSession session, GKCloudPlayer player, GKConnectionState newState);
+    void didChangeConnectionState(GKGameSession session, GKCloudPlayer player, GKConnectionState newState);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "session:player:didSaveData:")
-    void didSaveData (GKGameSession session, GKCloudPlayer player, NSData data);
+    void didSaveData(GKGameSession session, GKCloudPlayer player, NSData data);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "session:didReceiveData:fromPlayer:")
-    void didReceiveData (GKGameSession session, NSData data, GKCloudPlayer player);
+    void didReceiveData(GKGameSession session, NSData data, GKCloudPlayer player);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "session:didReceiveMessage:withData:fromPlayer:")
-    void didReceiveMessage (GKGameSession session, String message, NSData data, GKCloudPlayer player);
+    void didReceiveMessage(GKGameSession session, String message, NSData data, GKCloudPlayer player);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

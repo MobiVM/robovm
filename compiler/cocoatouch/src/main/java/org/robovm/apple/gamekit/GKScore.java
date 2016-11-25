@@ -33,7 +33,7 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
+ * @since Available in iOS 4.1 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
@@ -50,7 +50,7 @@ import org.robovm.apple.uikit.*;
     protected GKScore(SkipInit skipInit) { super(skipInit); }
     public GKScore(String identifier) { super((SkipInit) null); initObject(init(identifier)); }
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 8.0 and later.
      */
     public GKScore(String identifier, GKPlayer player) { super((SkipInit) null); initObject(init(identifier, player)); }
     /**
@@ -69,41 +69,41 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "formattedValue")
     public native String getFormattedValue();
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 7.0 and later.
      */
     @Property(selector = "leaderboardIdentifier")
     public native String getLeaderboardIdentifier();
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 7.0 and later.
      */
     @Property(selector = "setLeaderboardIdentifier:")
     public native void setLeaderboardIdentifier(String v);
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 5.0 and later.
      */
     @Property(selector = "context")
     public native long getContext();
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 5.0 and later.
      */
     @Property(selector = "setContext:")
     public native void setContext(long v);
     @Property(selector = "date")
     public native NSDate getDate();
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "player")
     public native GKPlayer getPlayer();
     @Property(selector = "rank")
     public native @MachineSizedSInt long getRank();
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 5.0 and later.
      */
     @Property(selector = "shouldSetDefaultLeaderboard")
     public native boolean shouldSetDefaultLeaderboard();
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 5.0 and later.
      */
     @Property(selector = "setShouldSetDefaultLeaderboard:")
     public native void setShouldSetDefaultLeaderboard(boolean v);
@@ -134,12 +134,12 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithLeaderboardIdentifier:")
     protected native @Pointer long init(String identifier);
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "initWithLeaderboardIdentifier:player:")
     protected native @Pointer long init(String identifier, GKPlayer player);
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 6.0 and later.
      */
     @Method(selector = "reportScores:withCompletionHandler:")
     public static native void reportScores(NSArray<GKScore> scores, @Block VoidBlock1<NSError> completionHandler);

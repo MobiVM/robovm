@@ -53,7 +53,7 @@ import org.robovm.apple.uikit.*;
      */
     @Deprecated
     @Method(selector = "friendRequestComposeViewControllerDidFinish:")
-    void didFinish (GKFriendRequestComposeViewController viewController);
+    void didFinish(GKFriendRequestComposeViewController viewController);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
