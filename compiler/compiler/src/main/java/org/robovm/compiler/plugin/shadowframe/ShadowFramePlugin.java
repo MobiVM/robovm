@@ -85,7 +85,7 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         }
         
         int methodFirstLineNumber = Integer.MAX_VALUE;
-        Global global = null;
+        Global globalBpTableVar = null;
         if (config.isDebug()) {
 	        //Get min and max linenumber for instrumentation hook, checks if a breakpoint is set
 	        int lastLineNumber = Integer.MIN_VALUE;
@@ -112,12 +112,8 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
 	        int methodLines = lastLineNumber - methodFirstLineNumber + 1;
 	        methodLines = (methodLines + 7 & -8) / 8;
 	        
-	        Value[] value = new Value[methodLines];
-	        for (int i = 0; i < methodLines; i++) {
-	        	value[i] = new IntegerConstant((byte)0);
-	        }
-	        global = new Global(bpTableVariable, Linkage.internal, new ArrayConstant(new ArrayType(methodLines, Type.I8), new ConstantAggregateZero(Type.I8)));
-	        moduleBuilder.addGlobal(global);
+	        globalBpTableVar = new Global(bpTableVariable, Linkage.internal, new ArrayConstant(new ArrayType(methodLines, Type.I8), new ConstantAggregateZero(Type.I8)));
+	        moduleBuilder.addGlobal(globalBpTableVar);
         }
         
         // get address of stack frame, get first alloca instruction
@@ -220,7 +216,7 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
 
 	                                Call bcHookCall = new Call((Value)Functions.BC_HOOK_INSTRUMENTED, 
 	                                		new Value[]{env, new IntegerConstant(globalLineNumber), 
-	                                		new IntegerConstant(methodLineNumber), new ConstantBitcast(global.ref(), Type.I8_PTR), programCounter.ref()});
+	                                		new IntegerConstant(methodLineNumber), new ConstantBitcast(globalBpTableVar.ref(), Type.I8_PTR), programCounter.ref()});
 	                                bb.insertBefore(instruction, bcHookCall);
 	                                
 	                                instruction = bcHookCall;
