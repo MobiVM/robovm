@@ -164,10 +164,16 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     			stackVarMemoryOffset += stackVarSize;
     			
     		}
-    	}        
+    	}    
     	
     	if (storeStackAddress != null) {
     		entryBlock.getInstructions().add(shadowFrameIndex++, storeStackAddress);
+    	}
+    	
+    	if (methodInfo.getLocalVariables().size() > 0) {
+    		final String stackVarAddr = function.getName() + "[stackaddr]";
+    		Global globalStackAddrVar = new Global(stackVarAddr, Linkage.internal, new ArrayConstant(new ArrayType(methodInfo.getLocalVariables().size(), Type.I8_PTR), new ConstantAggregateZero(Type.I8_PTR)));
+	        moduleBuilder.addGlobal(globalStackAddrVar);
     	}
 
         // get functionsAddress for shadowframe

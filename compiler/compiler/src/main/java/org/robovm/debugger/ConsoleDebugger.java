@@ -53,7 +53,7 @@ public class ConsoleDebugger implements DebuggingCommandListener  {
 		
 		if (command.equals("start")) {
 			//uncomment this for auto setting of breakpoint
-			debuggerClient.setBreakpoint("[J]Main.voidMethod()V", 8);
+			debuggerClient.setBreakpoint("[J]Main.voidMethod()V", 6);
 			//debuggerClient.setBreakpoint("[J]test.sub.SubClass.doNothing()V", 3);
 			debuggerClient.resumeThread(0L);			
 		}
