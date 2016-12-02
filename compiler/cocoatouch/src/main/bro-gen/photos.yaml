@@ -208,6 +208,7 @@ classes:
         properties:
             'progressHandler':
                 type: VoidBlock1<Double>
+                annotations: ['@Block']
     PHCachingImageManager: # DONE
         methods:
             '-startCachingImagesForAssets:targetSize:contentMode:options:':
