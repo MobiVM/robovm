@@ -361,7 +361,7 @@ public class Executor implements Launcher {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         CommandLine commandLine = generateCommandLine();
         try {
-            streamHandler(new PumpStreamHandler(baos));
+            streamHandler(new PumpStreamHandler(baos, new ErrorOutputStream(logger)));
             logCommandLine(commandLine);
             DefaultExecutor executor = initExecutor(new DefaultExecutor());
             executor.execute(commandLine, generateEnv());
