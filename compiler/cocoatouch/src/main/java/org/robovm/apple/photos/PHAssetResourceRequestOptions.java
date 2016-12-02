@@ -57,9 +57,9 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "setNetworkAccessAllowed:")
     public native void setNetworkAccessAllowed(boolean v);
     @Property(selector = "progressHandler")
-    public native VoidBlock1<Double> getProgressHandler();
+    public native @Block VoidBlock1<Double> getProgressHandler();
     @Property(selector = "setProgressHandler:")
-    public native void setProgressHandler(VoidBlock1<Double> v);
+    public native void setProgressHandler(@Block VoidBlock1<Double> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
