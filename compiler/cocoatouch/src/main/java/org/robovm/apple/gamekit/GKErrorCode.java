@@ -35,7 +35,7 @@ import org.robovm.apple.uikit.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GKErrorCode/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/GKErrorCode/*</name>*/ implements NSErrorCode { //Manually edited!
     /*<values>*/
     Unknown(1L),
     Cancelled(2L),

@@ -42,7 +42,9 @@ import org.robovm.apple.uikit.*;
     /*<bind>*/static { Bro.bind(GKSessionError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected GKSessionError() {}
+    protected GKSessionError(SkipInit skipInit) { //Manually edited!
+    	super(skipInit);
+    }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
