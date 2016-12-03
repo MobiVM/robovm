@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKInvite() {}
+    protected GKInvite(Handle h, long handle) { super(h, handle); }
     protected GKInvite(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

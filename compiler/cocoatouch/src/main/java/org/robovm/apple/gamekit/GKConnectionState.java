@@ -32,18 +32,13 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- * @deprecated Deprecated in iOS 7.0.
- */
-@Deprecated
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GKSessionMode/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/GKConnectionState/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Server(0L),
-    Client(1L),
-    Peer(2L);
+    NotConnected(0L),
+    Connected(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -53,15 +48,15 @@ public enum /*<name>*/GKSessionMode/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/GKSessionMode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/GKConnectionState/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/GKSessionMode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GKSessionMode/*</name>*/ v : values()) {
+    public static /*<name>*/GKConnectionState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/GKConnectionState/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GKSessionMode/*</name>*/.class.getName());
+            + /*<name>*/GKConnectionState/*</name>*/.class.getName());
     }
 }

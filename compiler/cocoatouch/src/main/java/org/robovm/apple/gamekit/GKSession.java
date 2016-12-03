@@ -43,27 +43,12 @@ import org.robovm.apple.uikit.*;
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    public interface DataReceiveHandler {
-        void onReceive(NSData data, String peer, GKSession session);
-    }
-    
-    private static final Selector handleDataReceive = Selector.register("receiveData:fromPeer:inSession:context:");
-    private static class ListenerWrapper extends NSObject {
-        private final DataReceiveHandler listener;
-        private ListenerWrapper(DataReceiveHandler listener) {
-            this.listener = listener;
-        }
-        @Method(selector = "handleDataReceive")
-        private void handleDataReceive(NSData data, String peer, GKSession session, @Pointer long context) {
-            listener.onReceive(data, peer, session);
-        }
-    }
-    
     /*<ptr>*/public static class GKSessionPtr extends Ptr<GKSession, GKSessionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKSession.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKSession() {}
+    protected GKSession(Handle h, long handle) { super(h, handle); }
     protected GKSession(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 3.0 and later.
@@ -100,14 +85,6 @@ import org.robovm.apple.uikit.*;
     public native void setDisconnectTimeout(double v);
     /*</properties>*/
     /*<members>*//*</members>*/
-    public void setDataReceiveHandler(DataReceiveHandler handler) {
-        if (handler == null) {
-            throw new NullPointerException("handler");
-        }
-        ListenerWrapper l = new ListenerWrapper(handler);
-        setDataReceiveHandler(l, 0);
-        addStrongRef(l);
-    }
     /*<methods>*/
     /**
      * @since Available in iOS 3.0 and later.
@@ -123,7 +100,7 @@ import org.robovm.apple.uikit.*;
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
-    public boolean sendData(NSData data, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> peers, GKSendDataMode mode) throws NSErrorException {
+    public boolean sendData(NSData data, List<String> peers, GKSendDataMode mode) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = sendData(data, peers, mode, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
@@ -180,6 +157,6 @@ import org.robovm.apple.uikit.*;
      */
     @Deprecated
     @Method(selector = "peersWithConnectionState:")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPeers(GKPeerConnectionState state);
+    public native List<String> getPeers(GKPeerConnectionState state);
     /*</methods>*/
 }

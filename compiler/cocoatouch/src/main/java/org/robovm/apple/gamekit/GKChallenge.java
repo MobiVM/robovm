@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKChallenge() {}
+    protected GKChallenge(Handle h, long handle) { super(h, handle); }
     protected GKChallenge(SkipInit skipInit) { super(skipInit); }
     public GKChallenge(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/

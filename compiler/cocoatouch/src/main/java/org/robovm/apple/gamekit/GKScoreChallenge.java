@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKScoreChallenge() {}
+    protected GKScoreChallenge(Handle h, long handle) { super(h, handle); }
     protected GKScoreChallenge(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

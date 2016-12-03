@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKSavedGame() {}
+    protected GKSavedGame(Handle h, long handle) { super(h, handle); }
     protected GKSavedGame(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

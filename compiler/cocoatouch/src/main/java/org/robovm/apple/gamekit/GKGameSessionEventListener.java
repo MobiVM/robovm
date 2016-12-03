@@ -32,14 +32,10 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 4.1 and later.
- * @deprecated Deprecated in iOS 7.0.
- */
-@Deprecated
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GKAchievementViewControllerDelegate/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GKGameSessionEventListener/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -51,8 +47,36 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "achievementViewControllerDidFinish:")
-    void didFinish(GKAchievementViewController viewController);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "session:didAddPlayer:")
+    void didAddPlayer(GKGameSession session, GKCloudPlayer player);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "session:didRemovePlayer:")
+    void didRemovePlayer(GKGameSession session, GKCloudPlayer player);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "session:player:didChangeConnectionState:")
+    void didChangeConnectionState(GKGameSession session, GKCloudPlayer player, GKConnectionState newState);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "session:player:didSaveData:")
+    void didSaveData(GKGameSession session, GKCloudPlayer player, NSData data);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "session:didReceiveData:fromPlayer:")
+    void didReceiveData(GKGameSession session, NSData data, GKCloudPlayer player);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "session:didReceiveMessage:withData:fromPlayer:")
+    void didReceiveMessage(GKGameSession session, String message, NSData data, GKCloudPlayer player);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

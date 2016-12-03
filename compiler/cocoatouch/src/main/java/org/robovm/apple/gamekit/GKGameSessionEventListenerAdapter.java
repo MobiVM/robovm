@@ -34,9 +34,9 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKTurnBasedMatchmakerViewControllerDelegateAdapter/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGameSessionEventListenerAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements GKTurnBasedMatchmakerViewControllerDelegate/*</implements>*/ {
+    /*<implements>*/implements GKGameSessionEventListener/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -50,28 +50,34 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    @NotImplemented("turnBasedMatchmakerViewControllerWasCancelled:")
-    public void wasCancelled(GKTurnBasedMatchmakerViewController viewController) {}
+    @NotImplemented("session:didAddPlayer:")
+    public void didAddPlayer(GKGameSession session, GKCloudPlayer player) {}
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    @NotImplemented("turnBasedMatchmakerViewController:didFailWithError:")
-    public void didFail(GKTurnBasedMatchmakerViewController viewController, NSError error) {}
+    @NotImplemented("session:didRemovePlayer:")
+    public void didRemovePlayer(GKGameSession session, GKCloudPlayer player) {}
     /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @since Available in iOS 10.0 and later.
      */
-    @Deprecated
-    @NotImplemented("turnBasedMatchmakerViewController:didFindMatch:")
-    public void didFindMatch(GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match) {}
+    @NotImplemented("session:player:didChangeConnectionState:")
+    public void didChangeConnectionState(GKGameSession session, GKCloudPlayer player, GKConnectionState newState) {}
     /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @since Available in iOS 10.0 and later.
      */
-    @Deprecated
-    @NotImplemented("turnBasedMatchmakerViewController:playerQuitForMatch:")
-    public void playerQuit(GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match) {}
+    @NotImplemented("session:player:didSaveData:")
+    public void didSaveData(GKGameSession session, GKCloudPlayer player, NSData data) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("session:didReceiveData:fromPlayer:")
+    public void didReceiveData(GKGameSession session, NSData data, GKCloudPlayer player) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("session:didReceiveMessage:withData:fromPlayer:")
+    public void didReceiveMessage(GKGameSession session, String message, NSData data, GKCloudPlayer player) {}
     /*</methods>*/
 }

@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKVoiceChat() {}
+    protected GKVoiceChat(Handle h, long handle) { super(h, handle); }
     protected GKVoiceChat(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

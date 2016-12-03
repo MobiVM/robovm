@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKAchievementDescription() {}
+    protected GKAchievementDescription(Handle h, long handle) { super(h, handle); }
     protected GKAchievementDescription(SkipInit skipInit) { super(skipInit); }
     public GKAchievementDescription(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/

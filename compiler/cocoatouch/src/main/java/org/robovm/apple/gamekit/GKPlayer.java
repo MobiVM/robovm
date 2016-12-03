@@ -38,24 +38,15 @@ import org.robovm.apple.uikit.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKPlayer/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/GKBasePlayer/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
-    
-    public static class Notifications {
-        public static NSObject observeDidChange(GKPlayer object, final VoidBlock1<GKPlayer> block) {
-            return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
-                @Override
-                public void invoke(NSNotification a) {
-                    block.invoke((GKPlayer) a.getObject());
-                }
-            });
-        }
-    }
+
     /*<ptr>*/public static class GKPlayerPtr extends Ptr<GKPlayer, GKPlayerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKPlayer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKPlayer() {}
+    protected GKPlayer(Handle h, long handle) { super(h, handle); }
     protected GKPlayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

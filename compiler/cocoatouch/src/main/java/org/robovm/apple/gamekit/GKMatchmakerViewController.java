@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKMatchmakerViewController() {}
+    protected GKMatchmakerViewController(Handle h, long handle) { super(h, handle); }
     protected GKMatchmakerViewController(SkipInit skipInit) { super(skipInit); }
     public GKMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(init(request)); }
     public GKMatchmakerViewController(GKInvite invite) { super((SkipInit) null); initObject(init(invite)); }

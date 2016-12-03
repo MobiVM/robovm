@@ -51,7 +51,9 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 4.2 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @NotImplemented("friendRequestComposeViewControllerDidFinish:")
     public void didFinish(GKFriendRequestComposeViewController viewController) {}
     /*</methods>*/

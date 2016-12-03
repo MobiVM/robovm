@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKTurnBasedMatch() {}
+    protected GKTurnBasedMatch(Handle h, long handle) { super(h, handle); }
     protected GKTurnBasedMatch(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -172,20 +173,6 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "sendReminderToParticipants:localizableMessageKey:arguments:completionHandler:")
     public native void sendReminder(NSArray<GKTurnBasedParticipant> participants, String key, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> arguments, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Method(selector = "endTurnWithNextParticipant:matchData:completionHandler:")
-    public native void endTurn(GKTurnBasedParticipant nextParticipant, NSData matchData, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Method(selector = "participantQuitInTurnWithOutcome:nextParticipant:matchData:completionHandler:")
-    public native void participantQuitInTurn(GKTurnBasedMatchOutcome matchOutcome, GKTurnBasedParticipant nextParticipant, NSData matchData, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "findMatchForRequest:withCompletionHandler:")
     public static native void findMatch(GKMatchRequest request, @Block VoidBlock2<GKTurnBasedMatch, NSError> completionHandler);
     @Method(selector = "loadMatchesWithCompletionHandler:")

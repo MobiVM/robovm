@@ -48,6 +48,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKChallengeEventHandler() {}
+    protected GKChallengeEventHandler(Handle h, long handle) { super(h, handle); }
     protected GKChallengeEventHandler(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

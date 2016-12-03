@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKLeaderboardSet() {}
+    protected GKLeaderboardSet(Handle h, long handle) { super(h, handle); }
     protected GKLeaderboardSet(SkipInit skipInit) { super(skipInit); }
     public GKLeaderboardSet(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/

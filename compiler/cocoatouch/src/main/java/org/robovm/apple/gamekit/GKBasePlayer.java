@@ -33,35 +33,30 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
- * @deprecated Deprecated in iOS 7.0.
+ * @since Available in iOS 10.0 and later.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GKSessionMode/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Server(0L),
-    Client(1L),
-    Peer(2L);
-    /*</values>*/
+/*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKBasePlayer/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class GKBasePlayerPtr extends Ptr<GKBasePlayer, GKBasePlayerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GKBasePlayer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/GKSessionMode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/GKSessionMode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GKSessionMode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GKSessionMode/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    public GKBasePlayer() {}
+    protected GKBasePlayer(Handle h, long handle) { super(h, handle); }
+    protected GKBasePlayer(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "playerID")
+    public native String getPlayerID();
+    @Property(selector = "displayName")
+    public native String getDisplayName();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

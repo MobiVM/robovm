@@ -32,36 +32,23 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- * @deprecated Deprecated in iOS 7.0.
- */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GKSessionMode/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Server(0L),
-    Client(1L),
-    Peer(2L);
-    /*</values>*/
+/*<annotations>*/@Library("GameKit")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GameKit/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(GameKit.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/GKSessionMode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/GKSessionMode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GKSessionMode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GKSessionMode/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @GlobalValue(symbol="GKGameSessionErrorDomain", optional=true)
+    public static native String Value__GKGameSessionErrorDomain();
+    @GlobalValue(symbol="GKGameSessionErrorDomain", optional=true)
+    public static native void Value__GKGameSessionErrorDomain(String v);
+    /*</methods>*/
 }

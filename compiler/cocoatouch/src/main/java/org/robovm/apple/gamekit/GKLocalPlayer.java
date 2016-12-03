@@ -41,21 +41,12 @@ import org.robovm.apple.uikit.*;
     extends /*<extends>*/GKPlayer/*</extends>*/ 
     /*<implements>*/implements GKSavedGameListener/*</implements>*/ {
 
-    public static class Notifications {
-        public static NSObject observeAuthenticationDidChange(GKLocalPlayer object, final VoidBlock1<GKLocalPlayer> block) {
-            return NSNotificationCenter.getDefaultCenter().addObserver(AuthenticationDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
-                @Override
-                public void invoke(NSNotification a) {
-                    block.invoke((GKLocalPlayer) a.getObject());
-                }
-            });
-        }
-    }
     /*<ptr>*/public static class GKLocalPlayerPtr extends Ptr<GKLocalPlayer, GKLocalPlayerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKLocalPlayer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKLocalPlayer() {}
+    protected GKLocalPlayer(Handle h, long handle) { super(h, handle); }
     protected GKLocalPlayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -90,10 +81,10 @@ import org.robovm.apple.uikit.*;
     public static native NSString AuthenticationDidChangeNotification();
     
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    @Method(selector = "loadFriendPlayersWithCompletionHandler:")
-    public native void loadFriendPlayers(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
+    @Method(selector = "loadRecentPlayersWithCompletionHandler:")
+    public native void loadRecentPlayers(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -148,12 +139,12 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadFriendsWithCompletionHandler:")
     public native void loadFriends(@Block VoidBlock2<NSArray<NSString>, NSError> completionHandler);
     /**
-     * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 6.0.
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
-    @Method(selector = "authenticateWithCompletionHandler:")
-    public native void authenticate(@Block VoidBlock1<NSError> completionHandler);
+    @Method(selector = "loadFriendPlayersWithCompletionHandler:")
+    public native void loadFriendPlayers(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
      * @since Available in iOS 8.0 and later.
      */

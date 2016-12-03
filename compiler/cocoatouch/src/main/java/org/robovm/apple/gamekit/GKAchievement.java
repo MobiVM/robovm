@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKAchievement() {}
+    protected GKAchievement(Handle h, long handle) { super(h, handle); }
     protected GKAchievement(SkipInit skipInit) { super(skipInit); }
     public GKAchievement(String identifier) { super((SkipInit) null); initObject(init(identifier)); }
     /**
@@ -88,13 +89,6 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "player")
     public native GKPlayer getPlayer();
-    /**
-     * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Property(selector = "isHidden")
-    public native boolean isHidden();
     /**
      * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0.

@@ -48,6 +48,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKLeaderboardViewController() {}
+    protected GKLeaderboardViewController(Handle h, long handle) { super(h, handle); }
     protected GKLeaderboardViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
