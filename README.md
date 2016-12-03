@@ -23,3 +23,71 @@ For using the RoboVM Gradle plugin, follow the [README in the repository](https:
 ## License
 See the LICENSE files in the various sub directories. Generally, RoboVM is GPL2,
 with the runtime code being Apache 2 for distribution on iOS.
+
+## How to release
+
+### Prerequisites
+
+#### Setup Environment
+
+You need to install
+ - java
+ - maven
+ - cmake
+
+#### Setup Maven
+You need to setup the bintray username/password in your
+local `~/.m2/settings.xml` file:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <servers>
+	<server>
+		<id>bintray</id>
+		<username>raisercostin</username>
+		<password>10d49f760982f6*as sample*e133a0dec77439</password>
+	</server>
+  </servers>
+</settings>
+```
+
+(!) You can find the password at https://bintray.com/profile/edit > API Key
+
+### Releasing
+
+1. Change the versions to the release one:
+   
+   ```
+   mvn org.eclipse.tycho:tycho-versions-plugin:0.20.0:set-version -Dtycho.mode=maven -DnewVersion=2.2.1
+   ```
+   (!) The tycho-versions plugin handles the versions for eclipse too compared with *versions* plugin.
+
+2. Deploy to bintray with profile *release* to generate and deploy javadoc and sources as well.
+    
+    ```
+    mvn deploy -DskipTests -Prelease
+    ```
+    (!) For now the idea plugin is not generated since needs a intelij to be installed.
+
+3. Publish manually in bintray if in pom.xml distributionManagement url is finished with publish=0.
+    Change publish=1 to publish in bintray automatically.
+    After publishing you can find the artifacts here: https://dl.bintray.com/raisercostin/maven/com/mobidevelop/robovm/
+    If a request to add the project to jcenter is approved you can find them here: http://jcenter.bintray.com/com/mobidevelop/robovm/
+
+4. Tag the release in git:
+    
+    ```
+	git commit -am "Set release version 2.2.1"
+	git tag robovm-2.2.1
+	```
+
+5. Prepare next development cycle
+     ```
+     mvn org.eclipse.tycho:tycho-versions-plugin:0.20.0:set-version -Dtycho.mode=maven -DnewVersion=2.2.2-SNAPSHOT
+     git commit -am "Set next development version 2.2.2-SNAPSHOT"
+	git push --tags
+	```
+ 

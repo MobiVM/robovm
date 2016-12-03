@@ -5,4 +5,7 @@
 .idea/
 .DS_Store
 dependency-reduced-pom.xml
-/target/
+target/
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties

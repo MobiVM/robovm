@@ -16,15 +16,20 @@ apply plugin: 'nexus'
 apply plugin: 'eclipse'
 apply plugin: 'com.github.johnrengelman.shadow'
 
-group = 'com.mobidevelop.robovm'
-archivesBaseName = 'robovm-gradle-plugin'
-version = '2.2.1-SNAPSHOT'
+def pom = new XmlSlurper().parse(new File(projectDir,'pom.xml'))
+group = pom.groupId ?: pom.parent.groupid //'com.mobidevelop.robovm'
+archivesBaseName = pom.artifactId // 'robovm-gradle-plugin'
+version = pom.parent.version //'2.2.1-SNAPSHOT'
+
+println "groupId=" + group
+println "artifactId=" + archivesBaseName
+println "version=[" + version + "]"
 
 sourceCompatibility = '1.7'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 ext {
-            roboVMVersion = '2.2.1-SNAPSHOT'
+            roboVMVersion = version
 }
 
 repositories {
