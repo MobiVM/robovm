@@ -15,7 +15,11 @@
  */
 package org.robovm.compiler.plugin.shadowframe;
 
+import static org.robovm.compiler.llvm.Type.I8_PTR;
+import static org.robovm.compiler.llvm.Type.I8_PTR_PTR;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.robovm.compiler.Functions;
@@ -29,11 +33,14 @@ import org.robovm.compiler.llvm.Alloca;
 import org.robovm.compiler.llvm.ArrayConstant;
 import org.robovm.compiler.llvm.ArrayType;
 import org.robovm.compiler.llvm.BasicBlock;
+import org.robovm.compiler.llvm.Bitcast;
 import org.robovm.compiler.llvm.Call;
 import org.robovm.compiler.llvm.ConstantAggregateZero;
 import org.robovm.compiler.llvm.ConstantBitcast;
 import org.robovm.compiler.llvm.Function;
+import org.robovm.compiler.llvm.Getelementptr;
 import org.robovm.compiler.llvm.Global;
+import org.robovm.compiler.llvm.GlobalRef;
 import org.robovm.compiler.llvm.Instruction;
 import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.IntegerType;
@@ -122,6 +129,14 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         PlainTextInstruction storeStackAddress = null;
         int stackVarSize = 4; 
         int stackVarMemoryOffset = 0;
+        
+		final String stackVarAddr = function.getName() + "[stackaddr]";
+		Global globalStackAddrVar = new Global(stackVarAddr, Linkage.internal, new ArrayConstant(new ArrayType(methodInfo.getLocalVariables().size(), Type.I8_PTR), new ConstantAggregateZero(Type.I8_PTR)));
+        moduleBuilder.addGlobal(globalStackAddrVar);
+        
+        List<Instruction> stackAddrInstr = new ArrayList<>();
+        int stackVarIndex = 0;
+        
     	for (int i=0; i<entryBlock.getInstructions().size();i++) {
     		if (entryBlock.getInstructions().get(i) instanceof Alloca) {
     			Alloca allocaInstr = (Alloca) entryBlock.getInstructions().get(i);
@@ -146,9 +161,17 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     			for (Object object : units) {
     				if (object instanceof JimpleLocal) {
 						JimpleLocal localVar = (JimpleLocal) object;
-						if (localVar.getIndex() > -1 && methodInfo.getLocalVariables().size() > localVar.getIndex()) {
-							methodInfo.getLocalVariables().get(localVar.getIndex()).setSize(stackVarSize);
-							methodInfo.getLocalVariables().get(localVar.getIndex()).setMemoryOffset(stackVarMemoryOffset);
+						if (localVar.getIndex() > -1 && methodInfo.getLocalVariables().size() > stackVarIndex) {
+							methodInfo.getLocalVariables().get(stackVarIndex).setSize(stackVarSize);
+							methodInfo.getLocalVariables().get(stackVarIndex).setMemoryOffset(stackVarMemoryOffset);
+							
+							stackAddrInstr.add(new PlainTextInstruction("%stackAddr" + stackVarIndex + " = bitcast " + allocaInstr.getType() + "* " + allocaInstr.getResult() + " to i8*"));
+							
+							stackVarIndex++;
+							
+							//Variable funcPtrPtr = function.newVariable(I8_PTR_PTR);
+							//entryBlock.getInstructions().add(shadowFrameIndex++, new PlainTextInstruction("%" + funcPtrPtr.getName() + " = getelementptr " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + localVar.getIndex()));
+							
 						}
 						//System.out.println(entryBlock.getInstructions().get(i) + " got local var with index " + localVar.getIndex() + " " + localVar.getNumber()+ " " + localVar.getName());
 					}
@@ -167,14 +190,48 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     	}    
     	
     	if (storeStackAddress != null) {
-    		entryBlock.getInstructions().add(shadowFrameIndex++, storeStackAddress);
+    		int i = 0;
+    		for (Instruction inst : stackAddrInstr) {
+    			entryBlock.getInstructions().add(shadowFrameIndex++, inst);
+    			VariableRef stackAddrPtr = new VariableRef(new Variable("stackAdrr" + i, Type.I8_PTR));
+    			Variable funcPtrPtr = function.newVariable(I8_PTR_PTR);
+    			entryBlock.getInstructions().add(shadowFrameIndex++, new PlainTextInstruction("%" + funcPtrPtr.getName() + " = getelementptr " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + i));
+    			entryBlock.getInstructions().add(shadowFrameIndex++, new PlainTextInstruction("store i8* %stackAddr" + i + ", i8** %" + funcPtrPtr.getName()));
+    			i++;
+    		}
+    		
+    		//entryBlock.getInstructions().addAll(shadowFrameIndex, stackAddrInstr);
+    		shadowFrameIndex += stackAddrInstr.size() + 1;
+    		entryBlock.getInstructions().add(shadowFrameIndex, storeStackAddress);
     	}
     	
-    	if (methodInfo.getLocalVariables().size() > 0) {
-    		final String stackVarAddr = function.getName() + "[stackaddr]";
-    		Global globalStackAddrVar = new Global(stackVarAddr, Linkage.internal, new ArrayConstant(new ArrayType(methodInfo.getLocalVariables().size(), Type.I8_PTR), new ConstantAggregateZero(Type.I8_PTR)));
-	        moduleBuilder.addGlobal(globalStackAddrVar);
-    	}
+    	/*if (methodInfo.getLocalVariables().size() > 0) {
+	        
+    		final Value[] values = new Value[methodInfo.getLocalVariables().size()];
+    		int index = 0;
+    		for (LocalVariableInfo localVar : methodInfo.getLocalVariables()) {
+    			VariableRef stackAddrPtr = new VariableRef(new Variable("stackAdrr" + index, Type.I8_PTR));
+    			Variable funcPtrPtr = function.newVariable(I8_PTR_PTR);
+    			//store i8* %stackAdrr0, i8** getelementptr inbounds([1 x i8*], [1 x i8*]* @"[J]Main.<init>()V[stackaddr]", i64 0, i64 0)
+    			//store i8* %stackAdrr0, i8** getelementptr inbounds([1 x i8*], [1 x i8*]* @"[J]Main.<init>()V[stackaddr]", i64 0, i64 0
+    			//store i8* %1, i8** getelementptr inbounds ([256 x i8*], [256 x i8*]* @arr, i64 0, i64 0), align 16
+    			//%5 = getelementptr inbounds [2 x i8*], [2 x i8*]* %localArr, i64 0, i64 0
+    			
+    			//function.add(new PlainTextInstruction("%" + funcPtrPtr.getName() + " = getelementptr " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + index));
+    			
+    			//function.add(new PlainTextInstruction("store i8* %stackAdrr" + index + ", "
+    			//		+ "i8** getelementptr inbounds(" + globalStackAddrVar.getType().getBase() + ", " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + index + ")"));
+    			
+
+    			
+    			//function.add(new PlainTextInstruction(funcPtrPtr.getName() + 
+    			//		" = getelementptr " + globalStackAddrVar.getType() + ", " + globalStackAddrVar.getType() + "*" + globalStackAddrVar.getName() + ", i64 0, i64 " + index));
+    			
+    			//function.add(new Getelementptr(funcPtrPtr, new GlobalRef(globalStackAddrVar), new GlobalRef(globalStackAddrVar), new IntegerConstant(0), new IntegerConstant(index)));
+    			
+    			index++;
+    		}
+    	}*/
 
         // get functionsAddress for shadowframe
         String functionSignature = function.getSignature();
