@@ -29,7 +29,7 @@ public class ConsoleDebugger implements DebuggingCommandListener  {
 	private RobovmDebuggerClient debuggerClient;
 	private Thread debuggerThread;
 	private Config config;
-	
+		
 	public ConsoleDebugger(Config config, Logger logger, String executable) {
 		this.config = config;
 		this.logger = logger;
@@ -53,7 +53,7 @@ public class ConsoleDebugger implements DebuggingCommandListener  {
 		
 		if (command.equals("start")) {
 			//uncomment this for auto setting of breakpoint
-			debuggerClient.setBreakpoint("[J]Main.voidMethod()V", 6);
+			//debuggerClient.setBreakpoint("[J]Main.voidMethod()V", 6);
 			//debuggerClient.setBreakpoint("[J]test.sub.SubClass.doNothing()V", 3);
 			debuggerClient.resumeThread(0L);			
 		}
@@ -111,12 +111,12 @@ public class ConsoleDebugger implements DebuggingCommandListener  {
 			
 			this.debuggerClient = new RobovmDebuggerClient(debuggerInputStream, debuggerOutputStream, SymbolTableParser.readSymbolTable(executable), config);
 			this.debuggerThread = new Thread(this.debuggerClient);
-			this.debuggerThread.start();
-			
+						
 			this.debuggerClient.addListener(new RobovmDebuggerClientHandler() {
 				@Override
 				public void breakpointEvent(SuspendedStack stack) {
 					writeToAppOutput("Suspended because of breakpoint: " + stack.getStackFrames().get(0).lineNumber);
+					command("stackvars");
 				}
 				
 				@Override
@@ -126,8 +126,8 @@ public class ConsoleDebugger implements DebuggingCommandListener  {
 				}
 			});
 			
-			writeToAppOutput("Debugger is now ready, set breakpoints or enter 'start' to start program");
-			command("start");
+			this.debuggerThread.start();
+			writeToAppOutput("Debugger is now ready, set breakpoints or enter 'start' to start program");			
 		}
 		catch (Exception e) {
 			logger.error("Error when trying to connect to remote debugger %s", e.getMessage());
@@ -149,6 +149,10 @@ public class ConsoleDebugger implements DebuggingCommandListener  {
 		catch (IOException e) {
 			logger.error("Error when closing debugger streams %s", e.getMessage());
 		}
+	}
+	
+	public void setBreakpoint(String method, int lineNumberOffset) {
+		debuggerClient.setBreakpoint(method, lineNumberOffset);
 	}
 	
 	private void writeToAppOutput(String message, Object...args) {
@@ -184,11 +188,8 @@ public class ConsoleDebugger implements DebuggingCommandListener  {
 	public void setPort(int port) {
 		this.port = port;
 	}
-
-
-
 	
-		
+	
 	/*public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException {
 		DebugServer server = new DebugServer("/home/florian/runtime-EclipseApplication/.metadata/.plugins/org.robovm.eclipse.ui/build/RobovmConsole/Main/linux/x86_64/Main/Main", "127.0.0.1", 49741);
 		server.connect();

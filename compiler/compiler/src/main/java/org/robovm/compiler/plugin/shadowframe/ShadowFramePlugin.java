@@ -95,7 +95,7 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         Global globalBpTableVar = null;
         if (config.isDebug()) {
 	        //Get min and max linenumber for instrumentation hook, checks if a breakpoint is set
-	        int lastLineNumber = Integer.MIN_VALUE;
+	        int methodLastLineNumber = Integer.MIN_VALUE;
 	        final String bpTableVariable = function.getName() + "[bptable]";
 	        boolean foundLineNumber = false;
 	        
@@ -107,16 +107,18 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
 	            
 	            foundLineNumber = true;
 	            methodFirstLineNumber = Math.min(methodFirstLineNumber, lineNumberTag.getLineNumber());
-	            lastLineNumber = Math.max(lastLineNumber, lineNumberTag.getLineNumber());
+	            methodLastLineNumber = Math.max(methodLastLineNumber, lineNumberTag.getLineNumber());
 	        }
 	        
 	        if (!foundLineNumber) {
-	            lastLineNumber = 1;
+	            methodLastLineNumber = 1;
 	            methodFirstLineNumber = 1;
 	        }
 	        
+	        methodInfo.setFirstLineNumber(methodFirstLineNumber);
+	        methodInfo.setLastLineNumber(methodLastLineNumber);
 	        
-	        int methodLines = lastLineNumber - methodFirstLineNumber + 1;
+	        int methodLines = methodLastLineNumber - methodFirstLineNumber + 1;
 	        methodLines = (methodLines + 7 & -8) / 8;
 	        
 	        globalBpTableVar = new Global(bpTableVariable, Linkage.internal, new ArrayConstant(new ArrayType(methodLines, Type.I8), new ConstantAggregateZero(Type.I8)));
@@ -338,6 +340,9 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
                 }
     			if (localVar.getDescriptor().equals("I")) {
     				localVarInfo.setType(LocalVariableInfo.Type.INT);
+    			}
+    			else if (localVar.getDescriptor().equals("F")) {
+    				localVarInfo.setType(LocalVariableInfo.Type.FLOAT);
     			}
     			else if (localVar.getDescriptor().equals("D")) {
     				localVarInfo.setType(LocalVariableInfo.Type.DOUBLE);

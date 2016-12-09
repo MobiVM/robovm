@@ -31,9 +31,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.io.FileUtils;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -48,6 +50,7 @@ import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamMonitor;
 import org.eclipse.debug.core.model.IStreamsProxy;
+import org.eclipse.debug.core.model.LineBreakpoint;
 import org.eclipse.jdi.Bootstrap;
 import org.eclipse.jdi.internal.VirtualMachineImpl;
 import org.eclipse.jdt.core.IJavaProject;
@@ -56,6 +59,10 @@ import org.eclipse.jdt.debug.core.JDIDebugModel;
 import org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint;
 import org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate;
 import org.robovm.compiler.AppCompiler;
+import org.robovm.compiler.clazz.Clazz;
+import org.robovm.compiler.clazz.ClazzInfo;
+import org.robovm.compiler.clazz.Clazzes;
+import org.robovm.compiler.clazz.MethodInfo;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Builder;
@@ -321,24 +328,12 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
 					streamsProxy.getOutputStreamMonitor().addListener(listener);
 					streamsProxy.getErrorStreamMonitor().addListener(listener);
 					*/
-                	IBreakpoint[] breakpoints = DebugPlugin.getDefault().getBreakpointManager().getBreakpoints();
-                	
-                	for (IBreakpoint bp : breakpoints) {
-                		if (bp instanceof JavaLineBreakpoint) {
-                			JavaLineBreakpoint javaBp = (JavaLineBreakpoint) bp;
-                			javaBp.getLineNumber();
-                			javaBp.getModelIdentifier();
-                			javaBp.getTypeName();
-                			javaBp.getMarkerType();
-                			javaBp.getMarker();
-                			((org.eclipse.core.internal.resources.Marker)javaBp.getMarker()).getAttributes();
-                			System.out.println("Got breakpoint at: " + bp);
-                		}
-                	}
                 	
                 	final FilterDebuggerCommandsOutputStream debuggerInputStream = (FilterDebuggerCommandsOutputStream) stdinStream;
                 	debuggerInputStream.setDebuggingCommandListener(debugger);
                 	debugger.setAppOutputStream(new OpenOnWriteFileOutputStream(stdOutFifo));
+                	
+                	final Clazzes clazzes = config.getClazzes();
                 	
                 	Thread checkProcess = new Thread(new Runnable() {
                 		
@@ -355,12 +350,32 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 						debugger.setPort(Integer.valueOf(line));
                 						debugger.connect();
                 						
+                	                	IBreakpoint[] breakpoints = DebugPlugin.getDefault().getBreakpointManager().getBreakpoints();
+                	                   	for (IBreakpoint bp : breakpoints) {
+                	                		if (bp instanceof JavaLineBreakpoint) {
+                	                			JavaLineBreakpoint javaBp = (JavaLineBreakpoint) bp;             			
+                	                			int lineNumber = javaBp.getLineNumber();
+                	                			Clazz clazz = clazzes.load(javaBp.getTypeName().replace(".","/"));
+                	                			
+                	                			for (MethodInfo mi : clazz.getClazzInfo().getMethods()) {
+                	                				if (mi.getFirstLineNumber() <= lineNumber && mi.getLastLineNumber() >= lineNumber) {
+                	                					System.out.println("Got breakpoint at method: " + mi.getName() + " at line: " + lineNumber);
+                	                					debugger.setBreakpoint("[J]" + clazz.getClassName() + "." + mi.getName() + mi.getDesc(), lineNumber - mi.getFirstLineNumber());
+                	                					
+                	                				}
+                	                			}
+                	                		}
+                	                	}
+                						
                 						robovmDebuggerPortReader.close();
                 						robovmDebuggerPortReader = null;
                 					}
                 				}
                 				catch(IOException e) {
                 					//TODO
+                				}
+                				catch (CoreException e) {
+                					e.printStackTrace();
                 				}
                 				
 	                			if (iProcess.isTerminated()) {

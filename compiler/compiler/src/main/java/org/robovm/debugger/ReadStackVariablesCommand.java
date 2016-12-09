@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.robovm.compiler.clazz.Clazz;
+import org.robovm.compiler.clazz.ClazzInfo;
 import org.robovm.compiler.clazz.Clazzes;
 import org.robovm.compiler.clazz.LocalVariableInfo;
 import org.robovm.compiler.clazz.LocalVariableInfo.Type;
@@ -90,7 +91,7 @@ public class ReadStackVariablesCommand {
 					debugger.removeListener(this);
 					
 					final MethodInfo methodInfo = clazz.getClazzInfo().getMethod(methodName, methodDescr);
-					final ReadStackVariablesHandler nextHandler = new ReadStackVariablesHandler(debugger, currentStack, methodInfo);
+					final ReadStackVariablesHandler nextHandler = new ReadStackVariablesHandler(debugger, currentStack, clazz, methodInfo);
 					debugger.addListener(nextHandler);
 					nextHandler.readNextStackVariable();
 				}
@@ -106,40 +107,66 @@ public class ReadStackVariablesCommand {
 		private MethodInfo methodInfo;
 		private List<LocalVariableInfo> variablesToRead;
 		private RobovmDebuggerClient debugger;
-		private ReadMemoryCommand readStackVariableCmd;
+		private ReadMemoryCommand readStackVariableAddrCmd;
+		private ReadMemoryCommand readStackVariableValueCmd;
 		private LocalVariableInfo curStackVariable;
 		private StackFrame currentStackFrame;
 		private int stackVariableIndex;
-		private long stackVariableAddress;
 		
-		public ReadStackVariablesHandler(RobovmDebuggerClient debugger, SuspendedStack currentStack, MethodInfo methodInfo) {
+		private List<Long> stackVariableAddr;
+		private boolean addrRead;
+		private long stackAddrArrayAddr;
+		
+		public ReadStackVariablesHandler(RobovmDebuggerClient debugger, SuspendedStack currentStack, Clazz clazz, MethodInfo methodInfo) {
 			this.methodInfo = methodInfo;
 			this.debugger = debugger;
 			this.variablesToRead = new ArrayList<>(methodInfo.getLocalVariables());
 			this.currentStackFrame = currentStack.getStackFrames().get(0);
 			this.stackVariableIndex = 0;
-			this.stackVariableAddress = currentStack.getCurStackPointer();
+			this.stackVariableAddr = new ArrayList<>();
+			this.addrRead = false;
+			
+			this.stackAddrArrayAddr = debugger.getSymbolAddress("[J]" + clazz.getClassName() + "." + methodInfo.getName() + methodInfo.getDesc() + "[stackaddr]");
 		}
 		
 		public void readNextStackVariable() {
-			if (this.variablesToRead.size() > stackVariableIndex) {
+			if (this.variablesToRead.size() > stackVariableIndex && !this.addrRead) {
 				curStackVariable = this.variablesToRead.get(stackVariableIndex);
+								
+				readStackVariableAddrCmd = new ReadMemoryCommand(this.stackAddrArrayAddr + stackVariableIndex * 8, 8);
 				stackVariableIndex++;
+				debugger.queueCommand(readStackVariableAddrCmd);
 				
-				
-				if (curStackVariable.getScopeStartLine() <= currentStackFrame.lineNumber && curStackVariable.getScopeEndLine() >= currentStackFrame.lineNumber) {					
+				/*if (curStackVariable.getScopeStartLine() <= currentStackFrame.lineNumber && curStackVariable.getScopeEndLine() >= currentStackFrame.lineNumber) {					
 					readStackVariableCmd = new ReadMemoryCommand(stackVariableAddress - curStackVariable.getMemoryOffset(), curStackVariable.getSize());
 					debugger.queueCommand(readStackVariableCmd);
 				}
 				else {
 					readNextStackVariable();
-				}
+				}*/
+			}
+			else if (!this.addrRead && this.variablesToRead.size() <= stackVariableIndex) {
+				this.addrRead = true;
+				stackVariableIndex = 0;
+				readNextStackVariable();
+			}
+			else if (this.variablesToRead.size() > stackVariableIndex) {
+				curStackVariable = this.variablesToRead.get(stackVariableIndex);
+				readStackVariableValueCmd = new ReadMemoryCommand(this.stackVariableAddr.get(stackVariableIndex), curStackVariable.getSize());
+				debugger.queueCommand(readStackVariableValueCmd);
+				
+				stackVariableIndex++;
 			}
 		}
 		
 		@Override
 		public void readMemoryCommand(ReadMemoryCommand command) {
-			if (readStackVariableCmd.requestId == command.requestId) {
+			if (readStackVariableAddrCmd.requestId == command.requestId) {
+				
+				final ByteBuffer bb = ByteBuffer.wrap(command.response);
+				this.stackVariableAddr.add(bb.getLong());
+				
+				/*
 				LocalVariableValue localVal = new LocalVariableValue(curStackVariable);				
 				final ByteBuffer bb = ByteBuffer.wrap(command.response);
 								
@@ -165,9 +192,40 @@ public class ReadStackVariablesCommand {
 				for (RobovmDebuggerClientListener l : debugger.getListeners()) {
 			    	l.readStackVariableCommand(localVal);
 			    }
+				*/
+				readNextStackVariable();	
+			}
+			else if (readStackVariableValueCmd.requestId == command.requestId) {
+				final ByteBuffer bb = ByteBuffer.wrap(command.response);
+				LocalVariableValue localVal = new LocalVariableValue(curStackVariable);				
+								
+				if (curStackVariable.getType() == Type.INT) {
+				    localVal.setValue(bb.getInt(0));
+				}
+				else if(curStackVariable.getType() == Type.FLOAT) {
+					localVal.setValue(bb.getFloat(0));
+				}
+				else if (curStackVariable.getType() == Type.OBJECT) {
+					//localVal.setValue(String.format("0x%06X", bb.getInt() & 0xFFFFFF));
+					//localVal.setValue(bb.getInt(0));
+				}
+				else if (curStackVariable.getType() == Type.LONG) {
+					localVal.setValue(bb.getLong(0));
+				}
+				else if (curStackVariable.getType() == Type.DOUBLE) {
+					try {
+						localVal.setValue(bb.getDouble(0));
+					}
+					catch (BufferUnderflowException e) {
+						localVal.setValue("Error when reading double value.");
+					}
+				}
+			
+				for (RobovmDebuggerClientListener l : debugger.getListeners()) {
+			    	l.readStackVariableCommand(localVal);
+			    }
 				
 				readNextStackVariable();
-				
 			}
 		} 
 	}

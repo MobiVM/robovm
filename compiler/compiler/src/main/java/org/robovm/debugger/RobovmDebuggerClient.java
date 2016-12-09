@@ -286,7 +286,7 @@ public class RobovmDebuggerClient implements Runnable {
 		Thread.sleep(100);
 	}
 	
-	private Long getSymbolAddress(String symbol) {
+	public Long getSymbolAddress(String symbol) {
 		//nm on macos returns symbols with _ prefixed
 		if (symbolTable.containsKey("_" + symbol)) {
 			return symbolTable.get("_" + symbol);

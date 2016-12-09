@@ -40,7 +40,10 @@ public class MethodInfo implements Serializable {
     private boolean weaklyLinked;
     private boolean stronglyLinked;
     private Map<String, Dependency> dependencies = new HashMap<>();
+    
     private List<LocalVariableInfo> localVariables = new ArrayList<>();
+    private int firstLineNumber;
+	private int lastLineNumber;
 
     MethodInfo(ClazzInfo ci, int modifiers, String name, String desc, boolean callback, boolean weaklyLinked,
             boolean strongyLinked) {
@@ -112,6 +115,22 @@ public class MethodInfo implements Serializable {
     public List<LocalVariableInfo> getLocalVariables() {
     	return this.localVariables;
     }
+    
+    public int getFirstLineNumber() {
+		return firstLineNumber;
+	}
+
+	public void setFirstLineNumber(int firstLineNumber) {
+		this.firstLineNumber = firstLineNumber;
+	}
+
+	public int getLastLineNumber() {
+		return lastLineNumber;
+	}
+
+	public void setLastLineNumber(int lastLineNumber) {
+		this.lastLineNumber = lastLineNumber;
+	}
 
     public String getName() {
         return name;
