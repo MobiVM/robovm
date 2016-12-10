@@ -148,8 +148,8 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     							Variable stackVarAryPtr = function.newVariable(I8_PTR_PTR);
     							
     							entryBlock.getInstructions().add(i + 1, new PlainTextInstruction(stackVarAddrPtr + " = bitcast " + storeInstr.getPointer().getType() + " " + storeInstr.getPointer() + " to i8*"));
-    			    			entryBlock.getInstructions().add(i + 2, new PlainTextInstruction(stackVarAryPtr + " = getelementptr " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + stackVar.getIndex()));
-    			    			entryBlock.getInstructions().add(i + 3, new PlainTextInstruction("store i8* " + stackVarAddrPtr + ", i8** " + stackVarAryPtr));
+    							entryBlock.getInstructions().add(i + 2, new PlainTextInstruction(stackVarAryPtr + " = getelementptr " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + stackVar.getIndex()));
+    							entryBlock.getInstructions().add(i + 3, new PlainTextInstruction("store i8* " + stackVarAddrPtr + ", i8** " + stackVarAryPtr));
     						}
     						
     						//System.out.println(localVar + " index: " + localVar.getIndex());
