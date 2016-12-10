@@ -151,11 +151,16 @@ public class ReadStackVariablesCommand {
 				readNextStackVariable();
 			}
 			else if (this.variablesToRead.size() > stackVariableIndex) {
-				curStackVariable = this.variablesToRead.get(stackVariableIndex);
-				readStackVariableValueCmd = new ReadMemoryCommand(this.stackVariableAddr.get(stackVariableIndex), curStackVariable.getSize());
-				debugger.queueCommand(readStackVariableValueCmd);
-				
-				stackVariableIndex++;
+				if (this.stackVariableAddr.get(stackVariableIndex) > 0) {
+					curStackVariable = this.variablesToRead.get(stackVariableIndex);
+					readStackVariableValueCmd = new ReadMemoryCommand(this.stackVariableAddr.get(stackVariableIndex), curStackVariable.getSize());
+					debugger.queueCommand(readStackVariableValueCmd);
+					stackVariableIndex++;
+				}
+				else {
+					stackVariableIndex++;
+					readNextStackVariable();
+				}
 			}
 		}
 		
@@ -196,34 +201,34 @@ public class ReadStackVariablesCommand {
 				readNextStackVariable();	
 			}
 			else if (readStackVariableValueCmd.requestId == command.requestId) {
-				final ByteBuffer bb = ByteBuffer.wrap(command.response);
-				LocalVariableValue localVal = new LocalVariableValue(curStackVariable);				
-								
-				if (curStackVariable.getType() == Type.INT) {
-				    localVal.setValue(bb.getInt(0));
-				}
-				else if(curStackVariable.getType() == Type.FLOAT) {
-					localVal.setValue(bb.getFloat(0));
-				}
-				else if (curStackVariable.getType() == Type.OBJECT) {
-					//localVal.setValue(String.format("0x%06X", bb.getInt() & 0xFFFFFF));
-					//localVal.setValue(bb.getInt(0));
-				}
-				else if (curStackVariable.getType() == Type.LONG) {
-					localVal.setValue(bb.getLong(0));
-				}
-				else if (curStackVariable.getType() == Type.DOUBLE) {
-					try {
+				try {
+					final ByteBuffer bb = ByteBuffer.wrap(command.response);
+					LocalVariableValue localVal = new LocalVariableValue(curStackVariable);				
+									
+					if (curStackVariable.getType() == Type.INT) {
+					    localVal.setValue(bb.getInt(0));
+					}
+					else if(curStackVariable.getType() == Type.FLOAT) {
+						localVal.setValue(bb.getFloat(0));
+					}
+					else if (curStackVariable.getType() == Type.OBJECT) {
+						//localVal.setValue(String.format("0x%06X", bb.getInt() & 0xFFFFFF));
+						//localVal.setValue(bb.getInt(0));
+					}
+					else if (curStackVariable.getType() == Type.LONG) {
+						localVal.setValue(bb.getLong(0));
+					}
+					else if (curStackVariable.getType() == Type.DOUBLE) {
 						localVal.setValue(bb.getDouble(0));
 					}
-					catch (BufferUnderflowException e) {
-						localVal.setValue("Error when reading double value.");
-					}
+				
+					for (RobovmDebuggerClientListener l : debugger.getListeners()) {
+				    	l.readStackVariableCommand(localVal);
+				    }
 				}
-			
-				for (RobovmDebuggerClientListener l : debugger.getListeners()) {
-			    	l.readStackVariableCommand(localVal);
-			    }
+				catch(RuntimeException e) {
+					e.printStackTrace();
+				}
 				
 				readNextStackVariable();
 			}

@@ -107,6 +107,20 @@ public class MethodInfo implements Serializable {
     public void addLocalVariable(LocalVariableInfo localVar) {
     	this.localVariables.add(localVar);
     }
+    
+    public LocalVariableInfo getLocalVariableByStackByteIndex(int index) {
+    	if (index == -1) {
+    		return null;
+    	}
+    	
+    	for (LocalVariableInfo localVariable : localVariables) {
+    		if (localVariable.getStackByteIndex() == index) {
+    			return localVariable;
+    		}
+    	}
+    	
+    	return null;
+    }
 
     public Set<Dependency> getDependencies() {
         return new HashSet<Dependency>(dependencies.values());

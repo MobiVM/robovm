@@ -92,11 +92,7 @@ public class RobovmDebuggerClient implements Runnable {
 	public void resumeThread(long threadAddress) {
 		this.queueCommand(new ThreadResumeCommand(threadAddress));
 	}
-	
-	public void readMemoryFromStack(int offset, int size) {
-		this.readMemory(stack.getCurStackPointer() + offset, size);
-	}
-	
+		
 	public void readMemory(int size) {
 		this.readMemory(0, size);
 	}
@@ -144,7 +140,7 @@ public class RobovmDebuggerClient implements Runnable {
 				if (inputStream.available() > 0 ) { 
 					byte event = inputStream.readByte();
 					
-					System.out.println("Got event: " + event);
+					//System.out.println("Got event: " + event);
 					
 					if (event == EVT_CLASS_LOAD) {
 						long shouldBeZero = inputStream.readLong();
@@ -184,7 +180,6 @@ public class RobovmDebuggerClient implements Runnable {
 						stack = new SuspendedStack();
 						stack.setCurThreadPointer(inputStream.readLong());
 						stack.setCurThreadObjPointer(inputStream.readLong());
-						stack.setCurStackPointer(inputStream.readLong());
 												
 						if (event == EVT_EXCEPTION) {
 							stack.setCurThrowablePointer(inputStream.readLong());

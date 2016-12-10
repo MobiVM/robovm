@@ -469,7 +469,6 @@ struct TrycatchContext {
 typedef struct ShadowFrame {
     struct ShadowFrame* prev;
     void* functionAddress;
-    void* stackAddress;
     jint lineNumber;
 } ShadowFrame;
 

@@ -49,6 +49,7 @@ import org.robovm.compiler.llvm.NullConstant;
 import org.robovm.compiler.llvm.PlainTextInstruction;
 import org.robovm.compiler.llvm.PointerType;
 import org.robovm.compiler.llvm.Ret;
+import org.robovm.compiler.llvm.Store;
 import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Unreachable;
 import org.robovm.compiler.llvm.Value;
@@ -59,6 +60,8 @@ import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import soot.LocalVariable;
 import soot.SootMethod;
 import soot.Unit;
+import soot.jimple.Jimple;
+import soot.jimple.internal.JAssignStmt;
 import soot.jimple.internal.JimpleLocal;
 import soot.tagkit.LineNumberTag;
 
@@ -88,7 +91,7 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
         MethodInfo methodInfo = clazz.getClazzInfo().getMethod(method.getName(), Types.getDescriptor(method));
         
         if (method.getActiveBody().getLocalCount() > 0) {
-        	addLocalVariablesToClazzInfo(method, methodInfo);
+        	addLocalVariablesToClazzInfo(config, method, methodInfo);
         }
         
         int methodFirstLineNumber = Integer.MAX_VALUE;
@@ -124,136 +127,50 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
 	        globalBpTableVar = new Global(bpTableVariable, Linkage.internal, new ArrayConstant(new ArrayType(methodLines, Type.I8), new ConstantAggregateZero(Type.I8)));
 	        moduleBuilder.addGlobal(globalBpTableVar);
         }
-        
-        // get address of stack frame, get first alloca instruction
-        int shadowFrameIndex = 0;
-        boolean foundStackVar = false;
-        PlainTextInstruction storeStackAddress = null;
-        int stackVarSize = 4; 
-        int stackVarMemoryOffset = 0;
-        
+                
 		final String stackVarAddr = function.getName() + "[stackaddr]";
 		Global globalStackAddrVar = new Global(stackVarAddr, Linkage.internal, new ArrayConstant(new ArrayType(methodInfo.getLocalVariables().size(), Type.I8_PTR), new ConstantAggregateZero(Type.I8_PTR)));
         moduleBuilder.addGlobal(globalStackAddrVar);
-        
-        List<Instruction> stackAddrInstr = new ArrayList<>();
-        int stackVarIndex = 0;
-        
+         
     	for (int i=0; i<entryBlock.getInstructions().size();i++) {
-    		if (entryBlock.getInstructions().get(i) instanceof Alloca) {
-    			Alloca allocaInstr = (Alloca) entryBlock.getInstructions().get(i);
-    			shadowFrameIndex = i + 1;
-
-    			//TODO: Problem here:
-    			//It seems the stack variables addresses aren't always exactly separared by the required size
-    			//It only works with integer variables
-    			//So the offset calculation is wrong for all other types :-/
-    			//Seems we need to store every address of every stack variable for every method :-//
-    			//Update: Yup, that it is: http://stackoverflow.com/questions/1102049/order-of-local-variable-allocation-on-the-stack
-    			
-    			if (allocaInstr.getType() instanceof IntegerType) {
-    				IntegerType type = (IntegerType) allocaInstr.getType();
-    				stackVarSize = Math.max(type.getBits() / 8, 1); //stack is always byte aligned? so minimum offset 1 byte?
-    			}
-    			else if (allocaInstr.getType() == Type.DOUBLE) {
-    				stackVarSize = 8;
-    			}
-    			
-    			List<Object> units = allocaInstr.getAttachments();
+    		if (entryBlock.getInstructions().get(i) instanceof Store) {
+    			Store storeInstr = (Store) entryBlock.getInstructions().get(i);
+    			List<Object> units = storeInstr.getAttachments();
     			for (Object object : units) {
-    				if (object instanceof JimpleLocal) {
-						JimpleLocal localVar = (JimpleLocal) object;
-						if (localVar.getIndex() > -1 && methodInfo.getLocalVariables().size() > stackVarIndex) {
-							methodInfo.getLocalVariables().get(stackVarIndex).setSize(stackVarSize);
-							methodInfo.getLocalVariables().get(stackVarIndex).setMemoryOffset(stackVarMemoryOffset);
-							
-							stackAddrInstr.add(new PlainTextInstruction("%stackAddr" + stackVarIndex + " = bitcast " + allocaInstr.getType() + "* " + allocaInstr.getResult() + " to i8*"));
-							
-							stackVarIndex++;
-							
-							//Variable funcPtrPtr = function.newVariable(I8_PTR_PTR);
-							//entryBlock.getInstructions().add(shadowFrameIndex++, new PlainTextInstruction("%" + funcPtrPtr.getName() + " = getelementptr " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + localVar.getIndex()));
-							
-						}
-						//System.out.println(entryBlock.getInstructions().get(i) + " got local var with index " + localVar.getIndex() + " " + localVar.getNumber()+ " " + localVar.getName());
-					}
+    				if (object instanceof JAssignStmt) {
+    					JAssignStmt assign = (JAssignStmt) object;
+    					if (assign.leftBox.getValue() instanceof JimpleLocal) {
+    						JimpleLocal localVar = (JimpleLocal) assign.leftBox.getValue();
+    						LocalVariableInfo stackVar = methodInfo.getLocalVariableByStackByteIndex(localVar.getIndex()); 
+    						
+    						if (stackVar != null) {    							
+    							Variable stackVarAddrPtr = function.newVariable(I8_PTR);
+    							Variable stackVarAryPtr = function.newVariable(I8_PTR_PTR);
+    							
+    							entryBlock.getInstructions().add(i + 1, new PlainTextInstruction(stackVarAddrPtr + " = bitcast " + storeInstr.getPointer().getType() + " " + storeInstr.getPointer() + " to i8*"));
+    			    			entryBlock.getInstructions().add(i + 2, new PlainTextInstruction(stackVarAryPtr + " = getelementptr " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + stackVar.getIndex()));
+    			    			entryBlock.getInstructions().add(i + 3, new PlainTextInstruction("store i8* " + stackVarAddrPtr + ", i8** " + stackVarAryPtr));
+    						}
+    						
+    						//System.out.println(localVar + " index: " + localVar.getIndex());
+    					}
+    					//System.out.println(assign);
+    				}
     			}
-    			
-    			if (!foundStackVar) {
-    				//address of first stack allocation is stored
-	    			storeStackAddress = new PlainTextInstruction(
-	    					"%stackAddr = bitcast " + allocaInstr.getType() + "* " + allocaInstr.getResult() + " to i8*");
-	    			foundStackVar = true;
-    			}
-    			
-    			stackVarMemoryOffset += stackVarSize;
-    			
     		}
-    	}    
+    	}   
     	
-    	if (storeStackAddress != null) {
-    		int i = 0;
-    		for (Instruction inst : stackAddrInstr) {
-    			entryBlock.getInstructions().add(shadowFrameIndex++, inst);
-    			VariableRef stackAddrPtr = new VariableRef(new Variable("stackAdrr" + i, Type.I8_PTR));
-    			Variable funcPtrPtr = function.newVariable(I8_PTR_PTR);
-    			entryBlock.getInstructions().add(shadowFrameIndex++, new PlainTextInstruction("%" + funcPtrPtr.getName() + " = getelementptr " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + i));
-    			entryBlock.getInstructions().add(shadowFrameIndex++, new PlainTextInstruction("store i8* %stackAddr" + i + ", i8** %" + funcPtrPtr.getName()));
-    			i++;
-    		}
-    		
-    		//entryBlock.getInstructions().addAll(shadowFrameIndex, stackAddrInstr);
-    		shadowFrameIndex += stackAddrInstr.size() + 1;
-    		entryBlock.getInstructions().add(shadowFrameIndex, storeStackAddress);
-    	}
-    	
-    	/*if (methodInfo.getLocalVariables().size() > 0) {
-	        
-    		final Value[] values = new Value[methodInfo.getLocalVariables().size()];
-    		int index = 0;
-    		for (LocalVariableInfo localVar : methodInfo.getLocalVariables()) {
-    			VariableRef stackAddrPtr = new VariableRef(new Variable("stackAdrr" + index, Type.I8_PTR));
-    			Variable funcPtrPtr = function.newVariable(I8_PTR_PTR);
-    			//store i8* %stackAdrr0, i8** getelementptr inbounds([1 x i8*], [1 x i8*]* @"[J]Main.<init>()V[stackaddr]", i64 0, i64 0)
-    			//store i8* %stackAdrr0, i8** getelementptr inbounds([1 x i8*], [1 x i8*]* @"[J]Main.<init>()V[stackaddr]", i64 0, i64 0
-    			//store i8* %1, i8** getelementptr inbounds ([256 x i8*], [256 x i8*]* @arr, i64 0, i64 0), align 16
-    			//%5 = getelementptr inbounds [2 x i8*], [2 x i8*]* %localArr, i64 0, i64 0
-    			
-    			//function.add(new PlainTextInstruction("%" + funcPtrPtr.getName() + " = getelementptr " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + index));
-    			
-    			//function.add(new PlainTextInstruction("store i8* %stackAdrr" + index + ", "
-    			//		+ "i8** getelementptr inbounds(" + globalStackAddrVar.getType().getBase() + ", " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + index + ")"));
-    			
-
-    			
-    			//function.add(new PlainTextInstruction(funcPtrPtr.getName() + 
-    			//		" = getelementptr " + globalStackAddrVar.getType() + ", " + globalStackAddrVar.getType() + "*" + globalStackAddrVar.getName() + ", i64 0, i64 " + index));
-    			
-    			//function.add(new Getelementptr(funcPtrPtr, new GlobalRef(globalStackAddrVar), new GlobalRef(globalStackAddrVar), new IntegerConstant(0), new IntegerConstant(index)));
-    			
-    			index++;
-    		}
-    	}*/
 
         // get functionsAddress for shadowframe
         String functionSignature = function.getSignature();
         PlainTextInstruction storeFunctionAddress = new PlainTextInstruction(                
                   "%funcAddr = bitcast " + functionSignature + "* @\"" + function.getName() +"\" to i8*");        
-        entryBlock.getInstructions().add(shadowFrameIndex++, storeFunctionAddress);
+        entryBlock.getInstructions().add(0, storeFunctionAddress);
         Value env = function.getParameterRef(0);         
         VariableRef funcAddr = new VariableRef("funcAddr", Type.I8_PTR);
         
-        // set stack variable param, depending if an alloca instruction was found
-        Value stackAddr; 
-        if (foundStackVar) {
-        	stackAddr = new VariableRef("stackAddr", Type.I8_PTR);
-        }
-        else {
-        	stackAddr = new NullConstant(Type.I8_PTR);
-        }
-        
         // push frame into env, memory is allocated in runtime on the heap
-        entryBlock.getInstructions().add(shadowFrameIndex++, new Call(Functions.PUSH_SHADOW_FRAME, env, funcAddr, stackAddr));
+        entryBlock.getInstructions().add(1, new Call(Functions.PUSH_SHADOW_FRAME, env, funcAddr));
 
         
     
@@ -309,9 +226,11 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     }
     
     @SuppressWarnings("unused")
-	private void addLocalVariablesToClazzInfo(SootMethod method, MethodInfo methodInfo) {
+	private void addLocalVariablesToClazzInfo(Config config, SootMethod method, MethodInfo methodInfo) {
     	final int noOfParam = method.getParameterCount();
+    	
     	int i = 0;
+    	int stackByteIndex = 0;
     	
     	if (methodInfo == null) {
     		return;
@@ -322,11 +241,13 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     	//int stackvar = (int)Math.random() * 1000;
     	//and now all our address offsets are wrong, because the compiler inserted helper alloca instructions
     	for (LocalVariable localVar : method.getActiveBody().getLocalVariables()) {
-    		if (i > noOfParam-1) { //TODO this!!
-        		LocalVariableInfo localVarInfo = new LocalVariableInfo();
+    		if (i > noOfParam-1) { //TODO this!! First are method params
+        		LocalVariableInfo localVarInfo = new LocalVariableInfo(config.getArch());
         		
+        		localVarInfo.setStackByteIndex(stackByteIndex);
+        		localVarInfo.setIndex(i); 
         		localVarInfo.setName(localVar.getName());
-        		
+        		        		
         		LineNumberTag lineNumberTag = (LineNumberTag)localVar.getStartUnit().getTag("LineNumberTag");
                 if (lineNumberTag != null) {
                 	localVarInfo.setScopeStartLine(lineNumberTag.getLineNumber());
@@ -353,7 +274,9 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     			else if (localVar.getDescriptor().startsWith("L")) {
     				localVarInfo.setType(LocalVariableInfo.Type.OBJECT);
     			}
-    			    			
+    			
+    			stackByteIndex = stackByteIndex + Math.max(localVarInfo.getSize() / 8, 1);
+    			
     			methodInfo.addLocalVariable(localVarInfo);
     		}
     		i++;

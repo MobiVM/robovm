@@ -9,7 +9,6 @@ public class SuspendedStack {
 	private long curThreadPointer;
 	private long curThreadObjPointer;
 	private long curThrowablePointer;
-	private long curStackPointer;
 	private byte curIsCaught;
 	
 	public SuspendedStack() {
@@ -50,12 +49,7 @@ public class SuspendedStack {
 	public void setCurThrowablePointer(long curThrowablePointer) {
 		this.curThrowablePointer = curThrowablePointer;
 	}
-	public long getCurStackPointer() {
-		return curStackPointer;
-	}
-	public void setCurStackPointer(long curStackPointer) {
-		this.curStackPointer = curStackPointer;
-	}
+
 	public byte getCurIsCaught() {
 		return curIsCaught;
 	}

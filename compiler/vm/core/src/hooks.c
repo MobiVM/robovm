@@ -1308,7 +1308,7 @@ static void writeStopOrExceptionEvent(Env* env, char event, Object* throwable, j
     writeChannelLong(clientSocket, payLoadSize, &error);
     writeChannelLong(clientSocket, (jlong)env->currentThread->threadObj, &error);
     writeChannelLong(clientSocket, (jlong)env->currentThread, &error);
-    writeChannelLong(clientSocket, (jlong)env->shadowFrame->stackAddress, &error);
+
     if(event == EVT_EXCEPTION) {
         writeChannelLong(clientSocket, (jlong)throwable, &error);
         writeChannelByte(clientSocket, isCaught? -1: 0, &error);

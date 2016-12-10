@@ -17,10 +17,9 @@
 
 #define LOG_TAG "shadowframes"
 
-void rvmPushShadowFrame(Env* env, void* functionAddress, void* stackAddress) {
+void rvmPushShadowFrame(Env* env, void* functionAddress) {
     ShadowFrame* frame = rvmAllocateMemory(env, sizeof(ShadowFrame));
     frame->functionAddress = functionAddress;
-    frame->stackAddress = stackAddress;
 
     frame->prev = env->shadowFrame;
     env->shadowFrame = frame;

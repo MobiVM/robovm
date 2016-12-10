@@ -67,12 +67,6 @@ public class ConsoleDebugger implements DebuggingCommandListener  {
 			int length = Integer.valueOf(parts[2]);
 			debuggerClient.readMemory(addr, length);			
 		}
-		else if (command.contains("readmem")) {
-			String[] parts = command.split(" ");
-			int offset = Integer.valueOf(parts[1]);
-			int length = Integer.valueOf(parts[2]);
-			debuggerClient.readMemoryFromStack(offset, length);
-		}
 		else if (command.equals("stackvars")) {
 			debuggerClient.readCurrentStackVariables();
 		}
