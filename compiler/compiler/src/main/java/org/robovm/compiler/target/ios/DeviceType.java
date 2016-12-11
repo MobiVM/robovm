@@ -35,7 +35,7 @@ import org.robovm.compiler.util.Executor;
 
 /**
  * Simulator device types, consisting of the device type id and SDK version as
- * listed by ios-sim.
+ * listed by xcrun simctl devices -j list.
  */
 public class DeviceType implements Comparable<DeviceType> {
     public static final String PREFIX = "com.apple.CoreSimulator.SimDeviceType.";

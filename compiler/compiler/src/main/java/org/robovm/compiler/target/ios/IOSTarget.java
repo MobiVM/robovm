@@ -110,20 +110,6 @@ public class IOSTarget extends AbstractTarget {
         return arch == Arch.thumbv7 || arch == Arch.arm64;
     }
 
-    public static synchronized File getIosSimPath() {
-        if (iosSimPath == null) {
-            try {
-                File path = File.createTempFile("ios-sim", "");
-                FileUtils.copyURLToFile(IOSTarget.class.getResource("/ios-sim"), path);
-                path.setExecutable(true);
-                path.deleteOnExit();
-                iosSimPath = path;
-            } catch (IOException e) {
-                throw new Error(e);
-            }
-        }
-        return iosSimPath;
-    }
 
     public List<SDK> getSDKs() {
         if (isSimulatorArch(arch)) {
