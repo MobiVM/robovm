@@ -17,6 +17,7 @@
 package org.robovm.compiler.target.ios;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -38,8 +39,10 @@ import org.robovm.compiler.util.Executor;
  */
 public class DeviceType implements Comparable<DeviceType> {
     public static final String PREFIX = "com.apple.CoreSimulator.SimDeviceType.";
-    public static final String PREFERRED_IPHONE_SIM_NAME = PREFIX + "iPhone-6";
-    public static final String PREFERRED_IPAD_SIM_NAME = PREFIX + "iPad-Air";
+    public static final String PREFERRED_IPHONE_SIM_NAME = PREFIX + "iPhone 6";
+    public static final String PREFERRED_IPAD_SIM_NAME = PREFIX + "iPad Air";
+    
+    public static final String[] ONLY_32BIT_DEVICES = {"iPhone 4", "iPhone 4s", "iPhone 5", "iPhone 5c", "iPad 2"};
 
     public static enum DeviceFamily {
         iPhone,
@@ -122,40 +125,21 @@ public class DeviceType implements Comparable<DeviceType> {
     			for (Object obj : devices) {
     				JSONObject device = (JSONObject) obj;
     				SDK sdk = sdkMap.get(sdkMapKey);
+    				final String deviceName = device.get("name").toString();
     				
     				if (!device.get("availability").toString().contains("unavailable") && sdk != null) {
     					Set<Arch> archs = new HashSet<>();
     					archs.add(Arch.x86);
-    					archs.add(Arch.x86_64);
-    					
-    					types.add(new DeviceType(device.get("name").toString(), device.get("udid").toString(), 
+    					if (!Arrays.asList(ONLY_32BIT_DEVICES).contains(deviceName)) {
+    						archs.add(Arch.x86_64);
+    					}
+
+    					types.add(new DeviceType(deviceName, device.get("udid").toString(), 
     							device.get("state").toString(), sdk, archs));
     				}
     			}
             }
-            /*
-            for (String deviceTypeId : deviceTypeIds) {
-                String[] tokens = deviceTypeId.split(",");
-                if (tokens.length < 3) continue;
-                tokens[0] = tokens[0].trim();
-                tokens[1] = tokens[1].trim();
-                tokens[2] = tokens[2].trim();
-                SDK sdk = sdkMap.get(tokens[1]);
-                if (sdk != null) {
-                    Set<Arch> archs = new HashSet<>();
-                    for (String s : tokens[2].replaceAll("[\\(\\)]", "").split(" ")) {
-                        switch (s) {
-                        case "i386":
-                            archs.add(Arch.x86);
-                            break;
-                        case "x86_64":
-                            archs.add(Arch.x86_64);
-                            break;
-                        }
-                    }
-                    types.add(new DeviceType(tokens[0], sdk, archs));
-                }
-            }*/
+
             // Sort. Make sure that devices that have an id which is a prefix of
             // another id comes before in the list.
             Collections.sort(types);
