@@ -43,7 +43,7 @@ public class RoboVMResolverTest {
         RoboVMResolver resolver = new RoboVMResolver();
         File dir = resolver.resolveAndUnpackRoboVMDistArtifact("2.2.1-SNAPSHOT");
         assertEquals(distAlpha2Dir, dir);
-        assertTrue(new File(dir, "bin/ios-sim").canExecute());
+        assertTrue(new File(dir, "bin/simlauncher").canExecute());
 
   // Commented out lastModified check for the 2.0.0 revamp, since there's not a safe baseline yet
   // -Jesse Gallagher 2016-04-28
