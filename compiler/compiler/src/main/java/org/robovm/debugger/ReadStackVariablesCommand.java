@@ -133,7 +133,7 @@ public class ReadStackVariablesCommand {
 			if (this.variablesToRead.size() > stackVariableIndex && !this.addrRead) {
 				curStackVariable = this.variablesToRead.get(stackVariableIndex);
 								
-				readStackVariableAddrCmd = new ReadMemoryCommand(this.stackAddrArrayAddr + stackVariableIndex * 8, 8);
+				readStackVariableAddrCmd = new ReadMemoryCommand(this.stackAddrArrayAddr + stackVariableIndex * 8, 8); //mhmm, stack 16byte aligned?
 				stackVariableIndex++;
 				debugger.queueCommand(readStackVariableAddrCmd);
 				
@@ -200,6 +200,7 @@ public class ReadStackVariablesCommand {
 				*/
 				readNextStackVariable();	
 			}
+			//This does not work yet. Some stack variables are not read correctly, address returns 0. Others return garbage, some work.
 			else if (readStackVariableValueCmd.requestId == command.requestId) {
 				try {
 					final ByteBuffer bb = ByteBuffer.wrap(command.response);
@@ -220,6 +221,11 @@ public class ReadStackVariablesCommand {
 					}
 					else if (curStackVariable.getType() == Type.DOUBLE) {
 						localVal.setValue(bb.getDouble(0));
+					}
+					else {
+						for (RobovmDebuggerClientListener l : debugger.getListeners()) {
+					    	l.error("Unkown variable for requestId: " + command.requestId);
+					    }
 					}
 				
 					for (RobovmDebuggerClientListener l : debugger.getListeners()) {
