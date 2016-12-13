@@ -242,7 +242,7 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     	//and now all our address offsets are wrong, because the compiler inserted helper alloca instructions
     	for (LocalVariable localVar : method.getActiveBody().getLocalVariables()) {
     		if (i > noOfParam-1) { //TODO this!! First are method params
-        		LocalVariableInfo localVarInfo = new LocalVariableInfo(config.getArch());
+        		LocalVariableInfo localVarInfo = new LocalVariableInfo(config.getArch().is32Bit());
         		
         		localVarInfo.setStackByteIndex(stackByteIndex);
         		localVarInfo.setIndex(i); 

@@ -7,7 +7,7 @@ public class LocalVariableValue extends LocalVariableInfo {
 	private Object value;
 	
 	public LocalVariableValue(LocalVariableInfo localVariableInfo) {
-		super(localVariableInfo.getArch());
+		super(localVariableInfo.is32Bit());
 		setName(localVariableInfo.getName());
 		setType(localVariableInfo.getType());
 		setScopeStartLine(localVariableInfo.getScopeStartLine());

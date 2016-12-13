@@ -38,17 +38,17 @@ public class LocalVariableInfo implements Serializable {
 	private int stackByteIndex; //this is the index of the variable on the stack in bytes from base
 	private int scopeStartLine = Integer.MIN_VALUE;
 	private int scopeEndLine = Integer.MAX_VALUE;
-	private transient Arch arch;
+	private boolean is32Bit = false;
 		
-	public LocalVariableInfo(Arch arch) {
-		this.arch = arch;
+	public LocalVariableInfo(boolean is32Bit) {
+		this.is32Bit = is32Bit;
 	}
 	
-	public LocalVariableInfo(Arch arch, String name, Type type, int scopeStartLine, int scopeEndLine) {
+	public LocalVariableInfo(String name, Type type, boolean is32Bit, int scopeStartLine, int scopeEndLine) {
 		super();
-		this.arch = arch;
 		this.name = name;
 		this.type = type;
+		this.is32Bit = is32Bit;
 		this.scopeStartLine = scopeStartLine;
 		this.scopeEndLine = scopeEndLine;
 		this.memoryOffset = 0;
@@ -81,7 +81,7 @@ public class LocalVariableInfo implements Serializable {
 			setSize(4);
 		}
 		else if (type == Type.DOUBLE || type == Type.LONG) {
-			setSize(arch.is32Bit() ? 4 : 8); //TODO: 64/32 Bit 
+			setSize(is32Bit ? 4 : 8); 
 		}
 	}
 
@@ -133,8 +133,8 @@ public class LocalVariableInfo implements Serializable {
 		this.index = index;
 	}
 	
-	public Arch getArch() {
-		return this.arch;
+	public boolean is32Bit() {
+		return is32Bit;
 	}
-
+	
 }
