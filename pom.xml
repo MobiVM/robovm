@@ -27,7 +27,7 @@
   <scm>
     <url>https://github.com/mobidevelop/robovm</url>
     <connection>scm:git:https://github.com/mobidevelop/robovm.git</connection>
-    <developerConnection>scm:git:https://github.com/mobidevelop/robovm.git</developerConnection>    
+    <developerConnection>scm:git:https://github.com/mobidevelop/robovm.git</developerConnection>
   </scm>
 
   <properties>
@@ -38,6 +38,7 @@
     <module>compiler</module>
     <module>dist</module>
     <module>plugins/templates</module>
+    <module>plugins/maven/robovm-maven-plugin</module>
   </modules>
 
 </project>
