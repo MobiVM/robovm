@@ -38,7 +38,7 @@
     <module>compiler</module>
     <module>dist</module>
     <module>plugins/templates</module>
-    <module>plugins/maven/robovm-maven-plugin</module>
+    <module>plugins/maven</module>
   </modules>
 
 </project>

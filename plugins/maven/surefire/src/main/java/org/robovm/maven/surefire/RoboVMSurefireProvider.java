@@ -157,13 +157,13 @@ public class RoboVMSurefireProvider extends AbstractProvider {
             config.getLogger().info("This could take a while, especially the first time round");
             AppCompiler appCompiler = new AppCompiler(config);
             appCompiler.build();
-            
+
             LaunchParameters launchParameters = config.getTarget().createLaunchParameters();
             if (Boolean.getBoolean(PROP_SERVER_DEBUG)) {
                 launchParameters.getArguments().add("-rvm:Drobovm.debug=true");
             }
             process = appCompiler.launchAsync(launchParameters);
-            
+
             runNotifier.fireTestRunStarted(null);
             for (Class<?> clazz : testsToRun) {
                 executeTestSet(testClient, clazz, reporter, runNotifier);
@@ -240,7 +240,7 @@ public class RoboVMSurefireProvider extends AbstractProvider {
             }
         };
         configBuilder.logger(logger);
-        
+
         RoboVMResolver roboVMResolver = new RoboVMResolver();
         roboVMResolver.setLogger(new org.robovm.maven.resolver.Logger() {
             public void info(String logLine) {
@@ -271,7 +271,7 @@ public class RoboVMSurefireProvider extends AbstractProvider {
                 throw new FileNotFoundException("Failed to find specified "
                         + PROP_PROPERTIES_FILE + ": " + propertiesFile.getAbsolutePath());
             }
-            logger.debug("Loading RoboVM config properties from " 
+            logger.debug("Loading RoboVM config properties from "
                     + propertiesFile.getAbsolutePath());
             configBuilder.addProperties(propertiesFile);
         } else {
@@ -289,7 +289,7 @@ public class RoboVMSurefireProvider extends AbstractProvider {
         } else {
             configBuilder.readProjectConfig(basedir, true);
         }
-        
+
         if (System.getProperty(PROP_OS) != null) {
             configBuilder.os(OS.valueOf(System.getProperty(PROP_OS)));
         }
@@ -312,10 +312,10 @@ public class RoboVMSurefireProvider extends AbstractProvider {
                         ProvisioningProfile.list(), iosProvisioningProfile));
             }
         }
-        
+
         // Ignore any classpath entries in the loaded robovm.xml file.
         configBuilder.clearClasspathEntries();
-        
+
         configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-junit-server:" + Version.getVersion()).asFile());
         for (String p : System.getProperty("java.class.path").split(File.pathSeparator)) {
             configBuilder.addClasspathEntry(new File(p));
@@ -348,7 +348,7 @@ public class RoboVMSurefireProvider extends AbstractProvider {
                 configBuilder.addClasspathEntry(new File(path));
             }
         }
-        
+
         for (Class<?> c : testsToRun.getLocatedClasses()) {
             configBuilder.addForceLinkClass(c.getName());
         }
@@ -356,7 +356,7 @@ public class RoboVMSurefireProvider extends AbstractProvider {
 
         return configBuilder;
     }
-    
+
     private RunNotifier getRunNotifier(org.junit.runner.notification.RunListener main, Result result,
             List<org.junit.runner.notification.RunListener> others) {
 
@@ -368,11 +368,11 @@ public class RoboVMSurefireProvider extends AbstractProvider {
         }
         return notifier;
     }
-    
+
     /**
      * RoboVM note: Copied from JUnit4Provider and cleaned up.
-     * 
-     * This method retrieves test methods from String like 
+     *
+     * This method retrieves test methods from String like
      * "com.xx.ImmutablePairTest#testBasic,com.xx.StopWatchTest#testLang315+testStopWatchSimpleGet"
      * <br>
      * and we need to think about cases that 2 or more method in 1 class. we should choose the correct method
