@@ -143,10 +143,10 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     						JimpleLocal localVar = (JimpleLocal) assign.leftBox.getValue();
     						LocalVariableInfo stackVar = methodInfo.getLocalVariableByStackByteIndex(localVar.getIndex()); 
     						
+    						//Attention: Currently String stack vars crash app!
     						if (stackVar != null) {    							
     							Variable stackVarAddrPtr = function.newVariable(I8_PTR);
     							Variable stackVarAryPtr = function.newVariable(I8_PTR_PTR);
-    							
     							entryBlock.getInstructions().add(i + 1, new PlainTextInstruction(stackVarAddrPtr + " = bitcast " + storeInstr.getPointer().getType() + " " + storeInstr.getPointer() + " to i8*"));
     							entryBlock.getInstructions().add(i + 2, new PlainTextInstruction(stackVarAryPtr + " = getelementptr " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + stackVar.getIndex()));
     							entryBlock.getInstructions().add(i + 3, new PlainTextInstruction("store i8* " + stackVarAddrPtr + ", i8** " + stackVarAryPtr));
@@ -230,7 +230,6 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     	final int noOfParam = method.getParameterCount();
     	
     	int i = 0;
-    	int stackByteIndex = 0;
     	
     	if (methodInfo == null) {
     		return;
@@ -241,10 +240,10 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     	//int stackvar = (int)Math.random() * 1000;
     	//and now all our address offsets are wrong, because the compiler inserted helper alloca instructions
     	for (LocalVariable localVar : method.getActiveBody().getLocalVariables()) {
-    		if (i > noOfParam-1) { //TODO this!! First are method params
+    		if (i > noOfParam-1) {
         		LocalVariableInfo localVarInfo = new LocalVariableInfo(config.getArch().is32Bit());
         		
-        		localVarInfo.setStackByteIndex(stackByteIndex);
+        		localVarInfo.setStackByteIndex(localVar.getIndex());
         		localVarInfo.setIndex(i); 
         		localVarInfo.setName(localVar.getName());
         		        		
@@ -275,7 +274,6 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     				localVarInfo.setType(LocalVariableInfo.Type.OBJECT);
     			}
     			
-    			stackByteIndex = stackByteIndex + Math.max(localVarInfo.getSize() / 8, 1);
     			
     			methodInfo.addLocalVariable(localVarInfo);
     		}

@@ -158,6 +158,7 @@ public class ReadStackVariablesCommand {
 					stackVariableIndex++;
 				}
 				else {
+					System.err.println("No address found for stack variable with index " + stackVariableIndex);
 					stackVariableIndex++;
 					readNextStackVariable();
 				}
@@ -213,7 +214,8 @@ public class ReadStackVariablesCommand {
 						localVal.setValue(bb.getFloat(0));
 					}
 					else if (curStackVariable.getType() == Type.OBJECT) {
-						//localVal.setValue(String.format("0x%06X", bb.getInt() & 0xFFFFFF));
+						long val = bb.getLong();						   //0x7f7ef4b06dc0	
+						localVal.setValue(String.format("0x%6X", val & 0xFFFFFFFFFFFFL) + " long " + val);
 						//localVal.setValue(bb.getInt(0));
 					}
 					else if (curStackVariable.getType() == Type.LONG) {

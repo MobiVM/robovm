@@ -77,10 +77,10 @@ public class LocalVariableInfo implements Serializable {
 		else if (type == Type.SHORT || type == Type.CHAR) {
 			setSize(2);
 		}
-		else if (type == Type.INT || type == Type.OBJECT || type == Type.FLOAT) {
+		else if (type == Type.INT || type == Type.FLOAT) {
 			setSize(4);
 		}
-		else if (type == Type.DOUBLE || type == Type.LONG) {
+		else if (type == Type.DOUBLE || type == Type.LONG || type == Type.OBJECT) {
 			setSize(is32Bit ? 4 : 8); 
 		}
 	}
