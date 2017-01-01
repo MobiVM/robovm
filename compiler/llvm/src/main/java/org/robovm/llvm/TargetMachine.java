@@ -59,7 +59,7 @@ public class TargetMachine implements AutoCloseable {
     
     public DataLayout getDataLayout() {
         checkDisposed();
-        return new DataLayout(LLVM.GetTargetMachineData(ref));
+        return new DataLayout(LLVM.CreateTargetDataLayout(ref));
     }
     
     public TargetOptions getOptions() {
@@ -86,7 +86,7 @@ public class TargetMachine implements AutoCloseable {
     }
 
     public void setAsmVerbosityDefault(boolean value) {
-        LLVM.TargetMachineSetAsmVerbosityDefault(ref, value);
+        LLVM.SetTargetMachineAsmVerbosity(ref, value);
     }
 
     public boolean getDataSections() {
@@ -105,16 +105,6 @@ public class TargetMachine implements AutoCloseable {
         LLVM.TargetMachineSetFunctionSections(ref, value);
     }
     
-    public void emit(Module module, OutputStream out, CodeGenFileType fileType) {
-        checkDisposed();
-        module.checkDisposed();
-        StringOut ErrorMessage = new StringOut();
-        if (LLVM.TargetMachineEmitToOutputStream(ref, module.getRef(), out, fileType, ErrorMessage)) {
-            // Returns true on failure!
-            throw new LlvmException(ErrorMessage.getValue().trim());
-        }
-    }
-
     public void emit(Module module, File outFile, CodeGenFileType fileType) {
         checkDisposed();
         module.checkDisposed();
@@ -125,16 +115,15 @@ public class TargetMachine implements AutoCloseable {
         }
     }
 
-    public void assemble(byte[] asm, String filename, OutputStream out) {
-        MemoryBufferRef memoryBufferRef = LLVM.CreateMemoryBufferWithMemoryRangeCopy(asm, filename);
+    public void assemble(byte[] asm, File outFile) {
+        MemoryBufferRef memoryBufferRef = LLVM.CreateMemoryBufferWithMemoryRangeCopy(asm, outFile.getAbsolutePath());
         if (memoryBufferRef == null) {
             throw new LlvmException("Failed to create memory buffer");
         }
-        filename = filename == null ? "" : filename;
         StringOut errorMessage = new StringOut();
         // LLVMTargetMachineAssembleToOutputStream() takes ownership of the MemoryBuffer so there's no need for us
         // to dispose of it
-        if (LLVM.TargetMachineAssembleToOutputStream(ref, memoryBufferRef, out, false, false, errorMessage) != 0) {
+        if (LLVM.TargetMachineAssembleToFile(ref, memoryBufferRef, outFile.getAbsolutePath(), false, true, true, false, errorMessage) != 0) {
             String error = errorMessage.getValue() != null 
                     ? errorMessage.getValue().trim() 
                     : "Unknown error";

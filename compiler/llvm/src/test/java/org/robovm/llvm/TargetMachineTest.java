@@ -19,6 +19,10 @@ package org.robovm.llvm;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.Test;
 import org.robovm.llvm.binding.CodeGenFileType;
@@ -32,10 +36,12 @@ public class TargetMachineTest {
     public void testEmitToFile() throws Exception {
         try (Context context = new Context()) {
             try (TargetMachine tm = Target.getTarget("thumb").createTargetMachine("thumbv7-unknown-ios")) {
-                Module module = Module.parseIR(context, "define external i32 @foo() {\n ret i32 5\n }\n", "foo.c");
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                tm.emit(module, out, CodeGenFileType.AssemblyFile);
-                String asm = new String(out.toByteArray(), "utf-8");
+                Module module = Module.parseIR(context, "define external i32 @foo() {\n ret i32 5\n }\n", "foo.c");                
+                File tempFile = File.createTempFile("test", ".asm");
+                tm.emit(module, tempFile, CodeGenFileType.AssemblyFile);
+                Path path = Paths.get(tempFile.getAbsolutePath());
+                byte[] data = Files.readAllBytes(path);
+                String asm = new String(data, "utf-8");
                 assertTrue(asm.contains("_foo"));
             }
         }
@@ -46,12 +52,15 @@ public class TargetMachineTest {
         try (Context context = new Context()) {
             try (TargetMachine tm = Target.getTarget("thumb").createTargetMachine("thumbv7-unknown-ios")) {
                 Module module = Module.parseIR(context, "define private i32 @foo() {\n ret i32 5\n }\n", "foo.c");
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                tm.emit(module, out, CodeGenFileType.AssemblyFile);
-                String asm = new String(out.toByteArray(), "utf-8");
-                out = new ByteArrayOutputStream();
-                tm.assemble(asm.getBytes(), "foo.s", out);
-                byte[] data = out.toByteArray();
+                File tempFile = File.createTempFile("test", ".asm");
+                tm.emit(module, tempFile, CodeGenFileType.AssemblyFile);
+                Path path = Paths.get(tempFile.getAbsolutePath());
+                byte[] data = Files.readAllBytes(path);
+                String asm = new String(data, "utf-8");                
+                File tempFile2 = File.createTempFile("test", ".s");
+                tm.assemble(asm.getBytes(), tempFile2);
+                Path path2 = Paths.get(tempFile2.getAbsolutePath());
+                data = Files.readAllBytes(path2);
                 assertTrue(data.length > 0);
             }
         }

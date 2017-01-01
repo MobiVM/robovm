@@ -51,6 +51,8 @@ public class ConstantGetelementptr extends Constant {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("getelementptr (");
+        sb.append((cst.isPointer() ? ((PointerType)cst.getType()).getBase() : cst.getType()));
+        sb.append(", ");
         sb.append(cst.getType());
         sb.append(' ');
         sb.append(cst);

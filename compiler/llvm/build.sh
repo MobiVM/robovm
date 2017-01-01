@@ -4,7 +4,7 @@ SELF=$(basename $0)
 BASE=$(cd $(dirname $0); pwd -P)
 CLEAN=0
 WIN=0
-WORKERS=1
+WORKERS=3
 
 function usage {
   cat <<EOF
@@ -45,7 +45,7 @@ Darwin)
   TARGETS="macosx-x86_64"
   ;;
 Linux)
-  TARGETS="linux-x86_64 linux-x86"
+  TARGETS="linux-x86_64" # linux-x86
   ;;
 Windows)
   TARGETS="windows-x86_64" # windows-x86"

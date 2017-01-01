@@ -9,9 +9,9 @@
 package org.robovm.llvm.binding;
 
 public class ValueRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected ValueRef(long cPtr, boolean futureUse) {
+  protected ValueRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

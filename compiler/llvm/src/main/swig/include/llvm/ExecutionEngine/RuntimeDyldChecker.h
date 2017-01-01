@@ -10,10 +10,14 @@
 #ifndef LLVM_EXECUTIONENGINE_RUNTIMEDYLDCHECKER_H
 #define LLVM_EXECUTIONENGINE_RUNTIMEDYLDCHECKER_H
 
-#include "llvm/ADT/StringRef.h"
+#include <cstdint>
+#include <memory>
+#include <string>
+#include <utility>
 
 namespace llvm {
 
+class StringRef;
 class MCDisassembler;
 class MemoryBuffer;
 class MCInstPrinter;
@@ -52,6 +56,7 @@ class raw_ostream;
 ///
 /// ident_expr = 'decode_operand' '(' symbol ',' operand-index ')'
 ///            | 'next_pc'        '(' symbol ')'
+///            | 'stub_addr' '(' file-name ',' section-name ',' symbol ')'
 ///            | symbol
 ///
 /// binary_expr = expr '+' expr
@@ -85,12 +90,12 @@ public:
   /// \brief Returns the address of the requested section (or an error message
   ///        in the second element of the pair if the address cannot be found).
   ///
-  /// if 'LinkerAddress' is true, this returns the address of the section
-  /// within the linker's memory. If 'LinkerAddress' is false it returns the
+  /// if 'LocalAddress' is true, this returns the address of the section
+  /// within the linker's memory. If 'LocalAddress' is false it returns the
   /// address within the target process (i.e. the load address).
   std::pair<uint64_t, std::string> getSectionAddr(StringRef FileName,
                                                   StringRef SectionName,
-                                                  bool LinkerAddress);
+                                                  bool LocalAddress);
 
 private:
   std::unique_ptr<RuntimeDyldCheckerImpl> Impl;

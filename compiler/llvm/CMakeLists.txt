@@ -11,12 +11,12 @@ elseif(OS STREQUAL "windows")
 endif()
 
 if (WINDOWS)
-  # set(CMAKE_CROSSCOMPILING TRUE) 
+  # set(CMAKE_CROSSCOMPILING TRUE)
   set(CMAKE_SYSTEM_NAME Windows)
 
   #should be passed from build.sh, just here to prevent warning
   set(CMAKE_RC_COMPILER "/usr/bin/x86_64-w64-mingw32-windres")
-  
+
   #these are not actually used by robovm but find_package does not always resolve them, use JAVA_HOME env var to prevent paths?
   set(JAVA_AWT_LIBRARY "/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libawt.so")
   set(JAVA_JVM_LIBRARY "/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/server/libjvm.so")
@@ -72,11 +72,11 @@ if(MACOSX)
   set(C_CXX_FLAGS "${C_CXX_FLAGS} -isysroot ${SYSROOT}")
 endif()
 
-ExternalProject_Add(extclang 
-  GIT_REPOSITORY git://github.com/robovm/clang.git
-  GIT_TAG 7b389564897bc6c0431c42f8f1825f04624ff4e3
+ExternalProject_Add(extclang
+  GIT_REPOSITORY git://github.com/llvm-mirror/clang.git
+  GIT_TAG release_39
   UPDATE_COMMAND ""
-  CONFIGURE_COMMAND "" 
+  CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""
   BUILD_IN_SOURCE 1
@@ -87,15 +87,15 @@ set(LLVM_C_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-
 set(LLVM_CXX_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-sections")
 ExternalProject_Add(extllvm
   DEPENDS extclang
-  GIT_REPOSITORY git://github.com/robovm/llvm.git
-  GIT_TAG aceb47b80838681fe65a1d01aac7aae7b863ac5a
-  PATCH_COMMAND bash -c "rm -rf tools/clang && ln -s ../../../../extclang-prefix/src/extclang tools/clang && ${CMAKE_SOURCE_DIR}/patches/apply-patches"
+  GIT_REPOSITORY git://github.com/llvm-mirror/llvm.git
+  GIT_TAG release_39
+  PATCH_COMMAND bash -c "rm -rf tools/clang && ln -s ../../../../extclang-prefix/src/extclang tools/clang"
   LIST_SEPARATOR ^^
   CONFIGURE_COMMAND cmake -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER} -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER} -DCMAKE_RC_COMPILER=${CMAKE_RC_COMPILER} -DCMAKE_SYSTEM_NAME=${CMAKE_SYSTEM_NAME} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DBUILD_SHARED_LIBS=OFF "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/llvm" "-DLLVM_TARGETS_TO_BUILD=${LLVM_ARCHS}" "-DCMAKE_C_FLAGS=${LLVM_C_FLAGS}" "-DCMAKE_CXX_FLAGS=${LLVM_CXX_FLAGS}" -DLLVM_ENABLE_LIBCXX=YES -DLLVM_ENABLE_CXX1Y=YES -DLLVM_ENABLE_THREADS=YES -DLIBCLANG_BUILD_STATIC=YES ../extllvm/
 )
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${C_CXX_FLAGS}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${C_CXX_FLAGS} -fno-rtti -std=c++0x")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${C_CXX_FLAGS} -fno-rtti -std=c++11")
 set(CMAKE_INSTALL_DO_STRIP YES)
 if(MACOSX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
@@ -105,30 +105,28 @@ add_definitions(-D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS)
 include_directories(${JAVA_INCLUDE_PATH} ${JAVA_INCLUDE_PATH2} ${CMAKE_BINARY_DIR}/llvm/include)
 
 # This was generated using 'llvm-config --libs core bitreader bitwriter irreader ipo arm x86 aarch64 debuginfo linker option instrumentation objcarcopts'
+# added lLLVMSymbolize -lLLVMDebugInfoPDB -lLLVMDebugInfoDWARF manually!
 set(LLVM_LIBS
-  -lLLVMObjCARCOpts -lLLVMInstrumentation -lLLVMOption -lLLVMLinker
-  -lLLVMDebugInfo -lLLVMAArch64Disassembler -lLLVMAArch64CodeGen
-  -lLLVMAArch64AsmParser -lLLVMAArch64Desc -lLLVMAArch64Info
-  -lLLVMAArch64AsmPrinter -lLLVMAArch64Utils -lLLVMX86Disassembler
-  -lLLVMX86AsmParser -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info
-  -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMARMDisassembler -lLLVMARMCodeGen
-  -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMCodeGen -lLLVMARMAsmParser
-  -lLLVMARMDesc -lLLVMMCDisassembler -lLLVMARMInfo -lLLVMARMAsmPrinter
-  -lLLVMipo -lLLVMVectorize -lLLVMScalarOpts -lLLVMProfileData -lLLVMObject
-  -lLLVMMCParser -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa
-  -lLLVMAnalysis -lLLVMTarget -lLLVMMC -lLLVMIRReader -lLLVMAsmParser
-  -lLLVMBitWriter -lLLVMBitReader -lLLVMCore -lLLVMSupport
+  -lLLVMObjCARCOpts -lLLVMOption -lLLVMAArch64Disassembler -lLLVMAArch64CodeGen -lLLVMGlobalISel
+  -lLLVMSymbolize -lLLVMDebugInfoPDB -lLLVMDebugInfoDWARF -lLLVMTableGen -lLLVMLineEditor
+  -lLLVMAArch64AsmParser -lLLVMAArch64Desc -lLLVMAArch64Info -lLLVMAArch64AsmPrinter -lLLVMAArch64Utils
+  -lLLVMX86Disassembler -lLLVMX86AsmParser -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter
+  -lLLVMX86Utils -lLLVMARMDisassembler -lLLVMARMCodeGen -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMDebugInfoCodeView
+  -lLLVMCodeGen -lLLVMTarget -lLLVMARMAsmParser -lLLVMARMDesc -lLLVMMCDisassembler -lLLVMARMInfo -lLLVMARMAsmPrinter
+  -lLLVMipo -lLLVMInstrumentation -lLLVMVectorize -lLLVMScalarOpts -lLLVMObject -lLLVMMCParser -lLLVMMC -lLLVMLinker
+  -lLLVMInstCombine -lLLVMTransformUtils -lLLVMIRReader -lLLVMAsmParser -lLLVMBitWriter -lLLVMAnalysis -lLLVMProfileData
+  -lLLVMBitReader -lLLVMCore -lLLVMSupport
 )
 # Required clang libs
 if(LINUX)
   # With the GNU linker library order is important and some libraries have
   # to be repeated in order to resolve all symbols properly.
-  set(LLVM_LIBS
-    -lclangBasic -lclangDriver -lclangFrontend -lclangCodeGen
-    -lclangFrontend -lclangDriver -lclangParse -lclangSerialization
-    -lclangSema -lclangEdit -lclangAnalysis -lclangAST -lclangLex
-    -lclangBasic ${LLVM_LIBS}
-  )
+   set(LLVM_LIBS
+     -lclangBasic -lclangDriver -lclangFrontend -lclangCodeGen
+     -lclangFrontend -lclangDriver -lclangParse -lclangSerialization
+     -lclangSema -lclangEdit -lclangAnalysis -lclangAST -lclangLex
+     -lclangBasic ${LLVM_LIBS}
+   )
 elseif(MACOSX)
   set(LLVM_LIBS ${LLVM_LIBS}
     -lclangFrontend -lclangAST -lclangBasic -lclangLex -lclangSerialization

@@ -9,9 +9,9 @@
 package org.robovm.llvm.binding;
 
 public class SymbolIteratorRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected SymbolIteratorRef(long cPtr, boolean futureUse) {
+  protected SymbolIteratorRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

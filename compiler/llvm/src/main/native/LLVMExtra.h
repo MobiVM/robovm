@@ -21,6 +21,12 @@ typedef enum LLVMFPOpFusionMode {
     LLVMFPOpFusionModeStrict
 } LLVMFPOpFusionMode;
 
+typedef enum LLVMPIELevel {
+  LLVMPIELevelDefault = 0,
+  LLVMPIELevelSmall = 1,
+  LLVMPIELevelLarge = 2
+} LLVMPIELevel;
+
 typedef struct LLVMOpaqueTargetOptions *LLVMTargetOptionsRef;
 
 extern const char *llvmHostTriple;
@@ -50,8 +56,6 @@ LLVMTargetOptionsRef LLVMGetTargetMachineTargetOptions(LLVMTargetMachineRef T);
 
 LLVMBool LLVMTargetOptionsGetPrintMachineCode(LLVMTargetOptionsRef O);
 void LLVMTargetOptionsSetPrintMachineCode(LLVMTargetOptionsRef O, LLVMBool V);
-LLVMBool LLVMTargetOptionsGetNoFramePointerElim(LLVMTargetOptionsRef O);
-void LLVMTargetOptionsSetNoFramePointerElim(LLVMTargetOptionsRef O, LLVMBool V);
 LLVMBool LLVMTargetOptionsGetLessPreciseFPMADOption(LLVMTargetOptionsRef O);
 void LLVMTargetOptionsSetLessPreciseFPMADOption(LLVMTargetOptionsRef O, LLVMBool V);
 LLVMBool LLVMTargetOptionsGetUnsafeFPMath(LLVMTargetOptionsRef O);
@@ -62,24 +66,14 @@ LLVMBool LLVMTargetOptionsGetNoNaNsFPMath(LLVMTargetOptionsRef O);
 void LLVMTargetOptionsSetNoNaNsFPMath(LLVMTargetOptionsRef O, LLVMBool V);
 LLVMBool LLVMTargetOptionsGetHonorSignDependentRoundingFPMathOption(LLVMTargetOptionsRef O);
 void LLVMTargetOptionsSetHonorSignDependentRoundingFPMathOption(LLVMTargetOptionsRef O, LLVMBool V);
-LLVMBool LLVMTargetOptionsGetUseSoftFloat(LLVMTargetOptionsRef O);
-void LLVMTargetOptionsSetUseSoftFloat(LLVMTargetOptionsRef O, LLVMBool V);
 LLVMBool LLVMTargetOptionsGetNoZerosInBSS(LLVMTargetOptionsRef O);
 void LLVMTargetOptionsSetNoZerosInBSS(LLVMTargetOptionsRef O, LLVMBool V);
-LLVMBool LLVMTargetOptionsGetJITEmitDebugInfo(LLVMTargetOptionsRef O);
-void LLVMTargetOptionsSetJITEmitDebugInfo(LLVMTargetOptionsRef O, LLVMBool V);
-LLVMBool LLVMTargetOptionsGetJITEmitDebugInfoToDisk(LLVMTargetOptionsRef O);
-void LLVMTargetOptionsSetJITEmitDebugInfoToDisk(LLVMTargetOptionsRef O, LLVMBool V);
 LLVMBool LLVMTargetOptionsGetGuaranteedTailCallOpt(LLVMTargetOptionsRef O);
 void LLVMTargetOptionsSetGuaranteedTailCallOpt(LLVMTargetOptionsRef O, LLVMBool V);
-LLVMBool LLVMTargetOptionsGetDisableTailCalls(LLVMTargetOptionsRef O);
-void LLVMTargetOptionsSetDisableTailCalls(LLVMTargetOptionsRef O, LLVMBool V);
 unsigned LLVMTargetOptionsGetStackAlignmentOverride(LLVMTargetOptionsRef O);
 void LLVMTargetOptionsSetStackAlignmentOverride(LLVMTargetOptionsRef O, unsigned V);
 LLVMBool LLVMTargetOptionsGetEnableFastISel(LLVMTargetOptionsRef O);
 void LLVMTargetOptionsSetEnableFastISel(LLVMTargetOptionsRef O, LLVMBool V);
-LLVMBool LLVMTargetOptionsGetPositionIndependentExecutable(LLVMTargetOptionsRef O);
-void LLVMTargetOptionsSetPositionIndependentExecutable(LLVMTargetOptionsRef O, LLVMBool V);
 LLVMBool LLVMTargetOptionsGetUseInitArray(LLVMTargetOptionsRef O);
 void LLVMTargetOptionsSetUseInitArray(LLVMTargetOptionsRef O, LLVMBool V);
 LLVMFloatABIType LLVMTargetOptionsGetFloatABIType(LLVMTargetOptionsRef O);
@@ -87,12 +81,15 @@ void LLVMTargetOptionsSetFloatABIType(LLVMTargetOptionsRef O, LLVMFloatABIType V
 LLVMFPOpFusionMode LLVMTargetOptionsGetAllowFPOpFusion(LLVMTargetOptionsRef O);
 void LLVMTargetOptionsSetAllowFPOpFusion(LLVMTargetOptionsRef O, LLVMFPOpFusionMode V);
 
+void LLVMModuleSetPIELevel(LLVMModuleRef M, LLVMPIELevel V);
+LLVMPIELevel LLVMModuleGetPIELevel(LLVMModuleRef M);
+
 void *AllocOutputStreamWrapper(JNIEnv *env, jobject OutputStream);
 void FreeOutputStreamWrapper(void *p);
-int LLVMTargetMachineAssembleToOutputStream(LLVMTargetMachineRef TM, LLVMMemoryBufferRef Mem, void *OutputStream, 
-    LLVMBool RelaxAll, LLVMBool NoExecStack, char **ErrorMessage);
-LLVMBool LLVMTargetMachineEmitToOutputStream(LLVMTargetMachineRef T, LLVMModuleRef M,
-    void *OutputStream, LLVMCodeGenFileType codegen, char** ErrorMessage);
+int LLVMTargetMachineAssembleToFile(LLVMTargetMachineRef TM, LLVMMemoryBufferRef Mem, char* FilePath,
+    LLVMBool RelaxAll, LLVMBool IncrementalLinkerCompatible, LLVMBool DWARFMustBeAtTheEnd, LLVMBool NoExecStack, char **ErrorMessage);
+//LLVMBool LLVMTargetMachineEmitToOutputStream(LLVMTargetMachineRef T, LLVMModuleRef M,
+//    void *OutputStream, LLVMCodeGenFileType codegen, char** ErrorMessage);
 
 void LLVMGetLineInfoForAddressRange(LLVMObjectFileRef O, uint64_t Address, uint64_t Size, int* OutSize, uint64_t** Out);
 size_t LLVMCopySectionContents(LLVMSectionIteratorRef SI, char* Dest, size_t DestSize);
