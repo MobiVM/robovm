@@ -38,6 +38,7 @@ import org.robovm.compiler.llvm.Call;
 import org.robovm.compiler.llvm.ConstantAggregateZero;
 import org.robovm.compiler.llvm.ConstantBitcast;
 import org.robovm.compiler.llvm.Function;
+import org.robovm.compiler.llvm.FunctionRef;
 import org.robovm.compiler.llvm.Getelementptr;
 import org.robovm.compiler.llvm.Global;
 import org.robovm.compiler.llvm.GlobalRef;
@@ -63,6 +64,7 @@ import soot.Unit;
 import soot.jimple.Jimple;
 import soot.jimple.internal.JAssignStmt;
 import soot.jimple.internal.JimpleLocal;
+import soot.tagkit.IntegerConstantValueTag;
 import soot.tagkit.LineNumberTag;
 
 public class ShadowFramePlugin extends AbstractCompilerPlugin {
@@ -147,33 +149,24 @@ public class ShadowFramePlugin extends AbstractCompilerPlugin {
     						if (stackVar != null) {    							
     							Variable stackVarAddrPtr = function.newVariable(I8_PTR);
     							Variable stackVarAryPtr = function.newVariable(I8_PTR_PTR);
-    							entryBlock.getInstructions().add(i + 1, new PlainTextInstruction(stackVarAddrPtr + " = bitcast " + storeInstr.getPointer().getType() + " " + storeInstr.getPointer() + " to i8*"));
-    							entryBlock.getInstructions().add(i + 2, new PlainTextInstruction(stackVarAryPtr + " = getelementptr " + globalStackAddrVar.getType() + " " + globalStackAddrVar.toString() + ", i64 0, i64 " + stackVar.getIndex()));
-    							entryBlock.getInstructions().add(i + 3, new PlainTextInstruction("store i8* " + stackVarAddrPtr + ", i8** " + stackVarAryPtr));
+
+    							entryBlock.getInstructions().add(i + 1, new Bitcast(stackVarAddrPtr, storeInstr.getPointer(), Type.I8_PTR));
+    							entryBlock.getInstructions().add(i + 2, new Getelementptr(stackVarAryPtr, globalStackAddrVar.ref(), new IntegerConstant(0L), new IntegerConstant((long)stackVar.getIndex())));
+    							entryBlock.getInstructions().add(i + 3, new Store(stackVarAddrPtr.ref(), stackVarAryPtr.ref()));
+    							
     						}
-    						
-    						//System.out.println(localVar + " index: " + localVar.getIndex());
     					}
-    					//System.out.println(assign);
     				}
     			}
     		}
     	}   
     	
-
-        // get functionsAddress for shadowframe
-        String functionSignature = function.getSignature();
-        PlainTextInstruction storeFunctionAddress = new PlainTextInstruction(                
-                  "%funcAddr = bitcast " + functionSignature + "* @\"" + function.getName() +"\" to i8*");        
-        entryBlock.getInstructions().add(0, storeFunctionAddress);
-        Value env = function.getParameterRef(0);         
-        VariableRef funcAddr = new VariableRef("funcAddr", Type.I8_PTR);
-        
+    	Variable funcAddr = function.newVariable(I8_PTR);
+        entryBlock.getInstructions().add(0, new Bitcast(funcAddr, new FunctionRef(function), Type.I8_PTR));
+        Value env = function.getParameterRef(0);                 
         // push frame into env, memory is allocated in runtime on the heap
-        entryBlock.getInstructions().add(1, new Call(Functions.PUSH_SHADOW_FRAME, env, funcAddr));
+        entryBlock.getInstructions().add(1, new Call(Functions.PUSH_SHADOW_FRAME, env, funcAddr.ref()));
 
-        
-    
         //update line numbers for each new instruction
         int currentLineNumber = 0;
         for (BasicBlock bb : function.getBasicBlocks()) {
