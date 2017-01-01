@@ -15,7 +15,7 @@
 #include "llvm/ADT/SmallVector.h"
 
 namespace llvm {
-  
+
 /// TinyPtrVector - This class is specialized for cases where there are
 /// normally 0 or 1 element in a vector, but is general enough to go beyond that
 /// when required.
@@ -27,9 +27,12 @@ class TinyPtrVector {
 public:
   typedef llvm::SmallVector<EltTy, 4> VecTy;
   typedef typename VecTy::value_type value_type;
+  typedef llvm::PointerUnion<EltTy, VecTy *> PtrUnion;
 
-  llvm::PointerUnion<EltTy, VecTy*> Val;
+private:
+  PtrUnion Val;
 
+public:
   TinyPtrVector() {}
   ~TinyPtrVector() {
     if (VecTy *V = Val.template dyn_cast<VecTy*>())
@@ -96,6 +99,22 @@ public:
     return *this;
   }
 
+  /// Constructor from an ArrayRef.
+  ///
+  /// This also is a constructor for individual array elements due to the single
+  /// element constructor for ArrayRef.
+  explicit TinyPtrVector(ArrayRef<EltTy> Elts)
+      : Val(Elts.empty()
+                ? PtrUnion()
+                : Elts.size() == 1
+                      ? PtrUnion(Elts[0])
+                      : PtrUnion(new VecTy(Elts.begin(), Elts.end()))) {}
+
+  TinyPtrVector(size_t Count, EltTy Value)
+      : Val(Count == 0 ? PtrUnion()
+                       : Count == 1 ? PtrUnion(Value)
+                                    : PtrUnion(new VecTy(Count, Value))) {}
+
   // implicit conversion operator to ArrayRef.
   operator ArrayRef<EltTy>() const {
     if (Val.isNull())
@@ -103,6 +122,24 @@ public:
     if (Val.template is<EltTy>())
       return *Val.getAddrOfPtr1();
     return *Val.template get<VecTy*>();
+  }
+
+  // implicit conversion operator to MutableArrayRef.
+  operator MutableArrayRef<EltTy>() {
+    if (Val.isNull())
+      return None;
+    if (Val.template is<EltTy>())
+      return *Val.getAddrOfPtr1();
+    return *Val.template get<VecTy*>();
+  }
+
+  // Implicit conversion to ArrayRef<U> if EltTy* implicitly converts to U*.
+  template<typename U,
+           typename std::enable_if<
+               std::is_convertible<ArrayRef<EltTy>, ArrayRef<U>>::value,
+               bool>::type = false>
+  operator ArrayRef<U>() const {
+    return operator ArrayRef<EltTy>();
   }
 
   bool empty() const {
@@ -122,15 +159,16 @@ public:
     return Val.template get<VecTy*>()->size();
   }
 
-  typedef const EltTy *const_iterator;
   typedef EltTy *iterator;
+  typedef const EltTy *const_iterator;
+  typedef std::reverse_iterator<iterator> reverse_iterator;
+  typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
   iterator begin() {
     if (Val.template is<EltTy>())
       return Val.getAddrOfPtr1();
 
     return Val.template get<VecTy *>()->begin();
-
   }
   iterator end() {
     if (Val.template is<EltTy>())
@@ -145,6 +183,15 @@ public:
 
   const_iterator end() const {
     return (const_iterator)const_cast<TinyPtrVector*>(this)->end();
+  }
+
+  reverse_iterator rbegin() { return reverse_iterator(end()); }
+  reverse_iterator rend() { return reverse_iterator(begin()); }
+  const_reverse_iterator rbegin() const {
+    return const_reverse_iterator(end());
+  }
+  const_reverse_iterator rend() const {
+    return const_reverse_iterator(begin());
   }
 
   EltTy operator[](unsigned i) const {

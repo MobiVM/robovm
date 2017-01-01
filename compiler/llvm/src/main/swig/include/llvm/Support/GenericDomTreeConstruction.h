@@ -21,7 +21,6 @@
 ///
 //===----------------------------------------------------------------------===//
 
-
 #ifndef LLVM_SUPPORT_GENERICDOMTREECONSTRUCTION_H
 #define LLVM_SUPPORT_GENERICDOMTREECONSTRUCTION_H
 
@@ -88,7 +87,7 @@ unsigned DFSPass(DominatorTreeBase<typename GraphT::NodeType>& DT,
 
     // Increment the successor number for the next time we get to it.
     ++Worklist.back().second;
-    
+
     // Visit the successor next, if it isn't already visited.
     typename GraphT::NodeType* Succ = *NextSucc;
 
@@ -103,9 +102,9 @@ unsigned DFSPass(DominatorTreeBase<typename GraphT::NodeType>& DT,
     return N;
 }
 
-template<class GraphT>
-typename GraphT::NodeType* 
-Eval(DominatorTreeBase<typename GraphT::NodeType>& DT,
+template <class GraphT>
+typename GraphT::NodeType *
+Eval(DominatorTreeBase<typename GraphT::NodeType> &DT,
      typename GraphT::NodeType *VIn, unsigned LastLinked) {
   typename DominatorTreeBase<typename GraphT::NodeType>::InfoRec &VInInfo =
                                                                   DT.Info[VIn];
@@ -117,7 +116,7 @@ Eval(DominatorTreeBase<typename GraphT::NodeType>& DT,
 
   if (VInInfo.Parent >= LastLinked)
     Work.push_back(VIn);
-  
+
   while (!Work.empty()) {
     typename GraphT::NodeType* V = Work.back();
     typename DominatorTreeBase<typename GraphT::NodeType>::InfoRec &VInfo =
@@ -128,8 +127,8 @@ Eval(DominatorTreeBase<typename GraphT::NodeType>& DT,
     if (Visited.insert(VAncestor).second && VInfo.Parent >= LastLinked) {
       Work.push_back(VAncestor);
       continue;
-    } 
-    Work.pop_back(); 
+    }
+    Work.pop_back();
 
     // Update VInfo based on Ancestor info
     if (VInfo.Parent < LastLinked)
@@ -169,7 +168,7 @@ void Calculate(DominatorTreeBase<typename GraphTraits<NodeT>::NodeType>& DT,
        i != e; ++i)
     N = DFSPass<GraphT>(DT, DT.Roots[i], N);
 
-  // it might be that some blocks did not get a DFS number (e.g., blocks of 
+  // it might be that some blocks did not get a DFS number (e.g., blocks of
   // infinite loops). In these cases an artificial exit node is required.
   MultipleRoots |= (DT.isPostDominator() && N != GraphTraits<FuncT*>::size(&F));
 
@@ -251,15 +250,18 @@ void Calculate(DominatorTreeBase<typename GraphTraits<NodeT>::NodeType>& DT,
   // an infinite loop.
   typename GraphT::NodeType* Root = !MultipleRoots ? DT.Roots[0] : nullptr;
 
-  DT.DomTreeNodes[Root] = DT.RootNode =
-                  new DomTreeNodeBase<typename GraphT::NodeType>(Root, nullptr);
+  DT.RootNode =
+      (DT.DomTreeNodes[Root] =
+           llvm::make_unique<DomTreeNodeBase<typename GraphT::NodeType>>(
+               Root, nullptr)).get();
 
   // Loop over all of the reachable blocks in the function...
   for (unsigned i = 2; i <= N; ++i) {
     typename GraphT::NodeType* W = DT.Vertex[i];
 
-    DomTreeNodeBase<typename GraphT::NodeType> *BBNode = DT.DomTreeNodes[W];
-    if (BBNode) continue;  // Haven't calculated this node yet?
+    // Don't replace this with 'count', the insertion side effect is important
+    if (DT.DomTreeNodes[W])
+      continue; // Haven't calculated this node yet?
 
     typename GraphT::NodeType* ImmDom = DT.getIDom(W);
 
@@ -271,19 +273,19 @@ void Calculate(DominatorTreeBase<typename GraphTraits<NodeT>::NodeType>& DT,
 
     // Add a new tree node for this BasicBlock, and link it as a child of
     // IDomNode
-    DomTreeNodeBase<typename GraphT::NodeType> *C =
-                    new DomTreeNodeBase<typename GraphT::NodeType>(W, IDomNode);
-    DT.DomTreeNodes[W] = IDomNode->addChild(C);
+    DT.DomTreeNodes[W] = IDomNode->addChild(
+        llvm::make_unique<DomTreeNodeBase<typename GraphT::NodeType>>(
+            W, IDomNode));
   }
 
   // Free temporary memory used to construct idom's
   DT.IDoms.clear();
   DT.Info.clear();
-  std::vector<typename GraphT::NodeType*>().swap(DT.Vertex);
+  DT.Vertex.clear();
+  DT.Vertex.shrink_to_fit();
 
   DT.updateDFSNumbers();
 }
-
 }
 
 #endif

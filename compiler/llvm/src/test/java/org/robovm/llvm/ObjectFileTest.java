@@ -43,9 +43,9 @@ public class ObjectFileTest {
             try (TargetMachine tm = Target.getTarget("x86").createTargetMachine("i386-unknown-macosx")) {
                 Module module = Module.parseIR(context, "define external i32 @foo() {\n ret i32 5\n }\n", "foo.c");
                 File oFile = File.createTempFile(getClass().getSimpleName(), ".o");
-                try (FileOutputStream out = new FileOutputStream(oFile)) {
-                    tm.emit(module, out, CodeGenFileType.ObjectFile);
-                }
+                //try (FileOutputStream out = new FileOutputStream(oFile)) {
+                    tm.emit(module, oFile, CodeGenFileType.ObjectFile);
+                //}
                 try (ObjectFile objectFile = ObjectFile.load(oFile)) {
                     List<Symbol> symbols = objectFile.getSymbols();
                     assertEquals(1, symbols.size());
@@ -63,9 +63,9 @@ public class ObjectFileTest {
             try (TargetMachine tm = Target.getTarget("x86").createTargetMachine("i386-unknown-macosx")) {
                 Module module = Module.parseIR(context, "define external i32 @foo() {\n ret i32 5\n }\n", "foo.c");
                 File oFile = File.createTempFile(getClass().getSimpleName(), ".o");
-                try (FileOutputStream out = new FileOutputStream(oFile)) {
-                    tm.emit(module, out, CodeGenFileType.ObjectFile);
-                }
+                //try (FileOutputStream out = new FileOutputStream(oFile)) {
+                    tm.emit(module, oFile, CodeGenFileType.ObjectFile);
+                //}
                 try (ObjectFile objectFile = ObjectFile.load(oFile)) {
                     TreeSet<String> sections = new TreeSet<>();
                     for (SectionIterator it = objectFile.getSectionIterator(); it.hasNext(); it.next()) {

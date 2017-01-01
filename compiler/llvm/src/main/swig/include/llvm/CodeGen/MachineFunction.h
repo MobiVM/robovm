@@ -18,12 +18,15 @@
 #ifndef LLVM_CODEGEN_MACHINEFUNCTION_H
 #define LLVM_CODEGEN_MACHINEFUNCTION_H
 
+#include "llvm/ADT/BitVector.h"
 #include "llvm/ADT/ilist.h"
 #include "llvm/CodeGen/MachineBasicBlock.h"
+#include "llvm/CodeGen/MachineMemOperand.h"
 #include "llvm/IR/DebugLoc.h"
 #include "llvm/IR/Metadata.h"
 #include "llvm/Support/Allocator.h"
 #include "llvm/Support/ArrayRecycler.h"
+#include "llvm/Support/Compiler.h"
 #include "llvm/Support/Recycler.h"
 
 namespace llvm {
@@ -38,16 +41,20 @@ class MachineJumpTableInfo;
 class MachineModuleInfo;
 class MCContext;
 class Pass;
+class PseudoSourceValueManager;
 class TargetMachine;
 class TargetSubtargetInfo;
 class TargetRegisterClass;
 struct MachinePointerInfo;
+struct WinEHFuncInfo;
 
 template <>
 struct ilist_traits<MachineBasicBlock>
     : public ilist_default_traits<MachineBasicBlock> {
   mutable ilist_half_node<MachineBasicBlock> Sentinel;
 public:
+  // FIXME: This downcast is UB. See llvm.org/PR26753.
+  LLVM_NO_SANITIZE("object-size")
   MachineBasicBlock *createSentinel() const {
     return static_cast<MachineBasicBlock*>(&Sentinel);
   }
@@ -72,6 +79,83 @@ private:
 /// MachineFunction is destroyed.
 struct MachineFunctionInfo {
   virtual ~MachineFunctionInfo();
+
+  /// \brief Factory function: default behavior is to call new using the
+  /// supplied allocator.
+  ///
+  /// This function can be overridden in a derive class.
+  template<typename Ty>
+  static Ty *create(BumpPtrAllocator &Allocator, MachineFunction &MF) {
+    return new (Allocator.Allocate<Ty>()) Ty(MF);
+  }
+};
+
+/// Properties which a MachineFunction may have at a given point in time.
+/// Each of these has checking code in the MachineVerifier, and passes can
+/// require that a property be set.
+class MachineFunctionProperties {
+  // TODO: Add MachineVerifier checks for AllVRegsAllocated
+  // TODO: Add a way to print the properties and make more useful error messages
+  // Possible TODO: Allow targets to extend this (perhaps by allowing the
+  // constructor to specify the size of the bit vector)
+  // Possible TODO: Allow requiring the negative (e.g. VRegsAllocated could be
+  // stated as the negative of "has vregs"
+
+public:
+  // The properties are stated in "positive" form; i.e. a pass could require
+  // that the property hold, but not that it does not hold.
+
+  // Property descriptions:
+  // IsSSA: True when the machine function is in SSA form and virtual registers
+  //  have a single def.
+  // TracksLiveness: True when tracking register liveness accurately.
+  //  While this property is set, register liveness information in basic block
+  //  live-in lists and machine instruction operands (e.g. kill flags, implicit
+  //  defs) is accurate. This means it can be used to change the code in ways
+  //  that affect the values in registers, for example by the register
+  //  scavenger.
+  //  When this property is clear, liveness is no longer reliable.
+  // AllVRegsAllocated: All virtual registers have been allocated; i.e. all
+  //  register operands are physical registers.
+  enum class Property : unsigned {
+    IsSSA,
+    TracksLiveness,
+    AllVRegsAllocated,
+    LastProperty,
+  };
+
+  bool hasProperty(Property P) const {
+    return Properties[static_cast<unsigned>(P)];
+  }
+  MachineFunctionProperties &set(Property P) {
+    Properties.set(static_cast<unsigned>(P));
+    return *this;
+  }
+  MachineFunctionProperties &clear(Property P) {
+    Properties.reset(static_cast<unsigned>(P));
+    return *this;
+  }
+  MachineFunctionProperties &set(const MachineFunctionProperties &MFP) {
+    Properties |= MFP.Properties;
+    return *this;
+  }
+  MachineFunctionProperties &clear(const MachineFunctionProperties &MFP) {
+    Properties.reset(MFP.Properties);
+    return *this;
+  }
+  // Returns true if all properties set in V (i.e. required by a pass) are set
+  // in this.
+  bool verifyRequiredProperties(const MachineFunctionProperties &V) const {
+    return !V.Properties.test(Properties);
+  }
+
+  // Print the MachineFunctionProperties in human-readable form. If OnlySet is
+  // true, only print the properties that are set.
+  void print(raw_ostream &ROS, bool OnlySet=false) const;
+
+private:
+  BitVector Properties =
+      BitVector(static_cast<unsigned>(Property::LastProperty));
 };
 
 class MachineFunction {
@@ -93,9 +177,13 @@ class MachineFunction {
 
   // Keep track of constants which are spilled to memory
   MachineConstantPool *ConstantPool;
-  
+
   // Keep track of jump tables for switch instructions
   MachineJumpTableInfo *JumpTableInfo;
+
+  // Keeps track of Windows exception handling related data. This will be null
+  // for functions that aren't using a funclet-based EH personality.
+  WinEHFuncInfo *WinEHInfo = nullptr;
 
   // Function-level unique numbering for MachineBasicBlocks.  When a
   // MachineBasicBlock is inserted into a MachineFunction is it automatically
@@ -122,7 +210,7 @@ class MachineFunction {
   /// this translation unit.
   ///
   unsigned FunctionNumber;
-  
+
   /// Alignment - The alignment of the function.
   unsigned Alignment;
 
@@ -131,13 +219,20 @@ class MachineFunction {
   /// the attribute itself.
   /// This is used to limit optimizations which cannot reason
   /// about the control flow of such functions.
-  bool ExposesReturnsTwice;
+  bool ExposesReturnsTwice = false;
 
   /// True if the function includes any inline assembly.
-  bool HasInlineAsm;
+  bool HasInlineAsm = false;
 
-  MachineFunction(const MachineFunction &) LLVM_DELETED_FUNCTION;
-  void operator=(const MachineFunction&) LLVM_DELETED_FUNCTION;
+  /// Current high-level properties of the IR of the function (e.g. is in SSA
+  /// form or whether registers have been allocated)
+  MachineFunctionProperties Properties;
+
+  // Allocation management for pseudo source values.
+  std::unique_ptr<PseudoSourceValueManager> PSVManager;
+
+  MachineFunction(const MachineFunction &) = delete;
+  void operator=(const MachineFunction&) = delete;
 public:
   MachineFunction(const Function *Fn, const TargetMachine &TM,
                   unsigned FunctionNum, MachineModuleInfo &MMI);
@@ -145,6 +240,11 @@ public:
 
   MachineModuleInfo &getMMI() const { return MMI; }
   MCContext &getContext() const { return Ctx; }
+
+  PseudoSourceValueManager &getPSVManager() const { return *PSVManager; }
+
+  /// Return the DataLayout attached to the Module associated to this MF.
+  const DataLayout &getDataLayout() const;
 
   /// getFunction - Return the LLVM function that this machine code represents
   ///
@@ -167,6 +267,13 @@ public:
   const TargetSubtargetInfo &getSubtarget() const { return *STI; }
   void setSubtarget(const TargetSubtargetInfo *ST) { STI = ST; }
 
+  /// getSubtarget - This method returns a pointer to the specified type of
+  /// TargetSubtargetInfo.  In debug builds, it verifies that the object being
+  /// returned is of the correct type.
+  template<typename STC> const STC &getSubtarget() const {
+    return *static_cast<const STC *>(STI);
+  }
+
   /// getRegInfo - Return information about the registers currently in use.
   ///
   MachineRegisterInfo &getRegInfo() { return *RegInfo; }
@@ -179,7 +286,7 @@ public:
   MachineFrameInfo *getFrameInfo() { return FrameInfo; }
   const MachineFrameInfo *getFrameInfo() const { return FrameInfo; }
 
-  /// getJumpTableInfo - Return the jump table info object for the current 
+  /// getJumpTableInfo - Return the jump table info object for the current
   /// function.  This object contains information about jump tables in the
   /// current function.  If the current function has no jump tables, this will
   /// return null.
@@ -190,12 +297,17 @@ public:
   /// does already exist, allocate one.
   MachineJumpTableInfo *getOrCreateJumpTableInfo(unsigned JTEntryKind);
 
-  
   /// getConstantPool - Return the constant pool object for the current
   /// function.
   ///
   MachineConstantPool *getConstantPool() { return ConstantPool; }
   const MachineConstantPool *getConstantPool() const { return ConstantPool; }
+
+  /// getWinEHFuncInfo - Return information about how the current function uses
+  /// Windows exception handling. Returns null for functions that don't use
+  /// funclets for exception handling.
+  const WinEHFuncInfo *getWinEHFuncInfo() const { return WinEHInfo; }
+  WinEHFuncInfo *getWinEHFuncInfo() { return WinEHInfo; }
 
   /// getAlignment - Return the alignment (log2, not bytes) of the function.
   ///
@@ -233,13 +345,17 @@ public:
     HasInlineAsm = B;
   }
 
+  /// Get the function properties
+  const MachineFunctionProperties &getProperties() const { return Properties; }
+  MachineFunctionProperties &getProperties() { return Properties; }
+
   /// getInfo - Keep track of various per-function pieces of information for
   /// backends that would like to do so.
   ///
   template<typename Ty>
   Ty *getInfo() {
     if (!MFInfo)
-      MFInfo = new (Allocator.Allocate<Ty>()) Ty(*this);
+      MFInfo = Ty::template create<Ty>(Allocator, *this);
     return static_cast<Ty*>(MFInfo);
   }
 
@@ -260,23 +376,23 @@ public:
   }
 
   /// Should we be emitting segmented stack stuff for the function
-  bool shouldSplitStack();
+  bool shouldSplitStack() const;
 
   /// getNumBlockIDs - Return the number of MBB ID's allocated.
   ///
   unsigned getNumBlockIDs() const { return (unsigned)MBBNumbering.size(); }
-  
+
   /// RenumberBlocks - This discards all of the MachineBasicBlock numbers and
   /// recomputes them.  This guarantees that the MBB numbers are sequential,
   /// dense, and match the ordering of the blocks within the function.  If a
   /// specific MachineBasicBlock is specified, only that block and those after
   /// it are renumbered.
   void RenumberBlocks(MachineBasicBlock *MBBFrom = nullptr);
-  
+
   /// print - Print out the MachineFunction in a format suitable for debugging
   /// to the specified stream.
   ///
-  void print(raw_ostream &OS, SlotIndexes* = nullptr) const;
+  void print(raw_ostream &OS, const SlotIndexes* = nullptr) const;
 
   /// viewCFG - This function is meant for use from the debugger.  You can just
   /// say 'call F->viewCFG()' and a ghostview window should pop up from the
@@ -297,15 +413,23 @@ public:
   ///
   void dump() const;
 
-  /// verify - Run the current MachineFunction through the machine code
-  /// verifier, useful for debugger use.
-  void verify(Pass *p = nullptr, const char *Banner = nullptr) const;
+  /// Run the current MachineFunction through the machine code verifier, useful
+  /// for debugger use.
+  /// \returns true if no problems were found.
+  bool verify(Pass *p = nullptr, const char *Banner = nullptr,
+              bool AbortOnError = true) const;
 
   // Provide accessors for the MachineBasicBlock list...
   typedef BasicBlockListType::iterator iterator;
   typedef BasicBlockListType::const_iterator const_iterator;
   typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
   typedef std::reverse_iterator<iterator>             reverse_iterator;
+
+  /// Support for MachineBasicBlock::getNextNode().
+  static BasicBlockListType MachineFunction::*
+  getSublistAccess(MachineBasicBlock *) {
+    return &MachineFunction::BasicBlocks;
+  }
 
   /// addLiveIn - Add the specified physical register as a live-in value and
   /// create a corresponding virtual register for it.
@@ -339,15 +463,21 @@ public:
   void splice(iterator InsertPt, iterator MBBI) {
     BasicBlocks.splice(InsertPt, BasicBlocks, MBBI);
   }
+  void splice(iterator InsertPt, MachineBasicBlock *MBB) {
+    BasicBlocks.splice(InsertPt, BasicBlocks, MBB);
+  }
   void splice(iterator InsertPt, iterator MBBI, iterator MBBE) {
     BasicBlocks.splice(InsertPt, BasicBlocks, MBBI, MBBE);
   }
 
-  void remove(iterator MBBI) {
-    BasicBlocks.remove(MBBI);
-  }
-  void erase(iterator MBBI) {
-    BasicBlocks.erase(MBBI);
+  void remove(iterator MBBI) { BasicBlocks.remove(MBBI); }
+  void remove(MachineBasicBlock *MBBI) { BasicBlocks.remove(MBBI); }
+  void erase(iterator MBBI) { BasicBlocks.erase(MBBI); }
+  void erase(MachineBasicBlock *MBBI) { BasicBlocks.erase(MBBI); }
+
+  template <typename Comp>
+  void sort(Comp comp) {
+    BasicBlocks.sort(comp);
   }
 
   //===--------------------------------------------------------------------===//
@@ -373,8 +503,7 @@ public:
   /// CreateMachineInstr - Allocate a new MachineInstr. Use this instead
   /// of `new MachineInstr'.
   ///
-  MachineInstr *CreateMachineInstr(const MCInstrDesc &MCID,
-                                   DebugLoc DL,
+  MachineInstr *CreateMachineInstr(const MCInstrDesc &MCID, const DebugLoc &DL,
                                    bool NoImp = false);
 
   /// CloneMachineInstr - Create a new MachineInstr which is a copy of the
@@ -402,11 +531,11 @@ public:
   /// MachineMemOperands are owned by the MachineFunction and need not be
   /// explicitly deallocated.
   MachineMemOperand *getMachineMemOperand(MachinePointerInfo PtrInfo,
-                                          unsigned f, uint64_t s,
-                                          unsigned base_alignment,
+                                          MachineMemOperand::Flags f,
+                                          uint64_t s, unsigned base_alignment,
                                           const AAMDNodes &AAInfo = AAMDNodes(),
                                           const MDNode *Ranges = nullptr);
-  
+
   /// getMachineMemOperand - Allocate a new MachineMemOperand by copying
   /// an existing one, adjusting by an offset and using the given size.
   /// MachineMemOperands are owned by the MachineFunction and need not be
@@ -456,16 +585,19 @@ public:
     extractStoreMemRefs(MachineInstr::mmo_iterator Begin,
                         MachineInstr::mmo_iterator End);
 
+  /// Allocate a string and populate it with the given external symbol name.
+  const char *createExternalSymbolName(StringRef Name);
+
   //===--------------------------------------------------------------------===//
   // Label Manipulation.
   //
-  
+
   /// getJTISymbol - Return the MCSymbol for the specified non-empty jump table.
   /// If isLinkerPrivate is specified, an 'l' label is returned, otherwise a
   /// normal 'L' label is returned.
-  MCSymbol *getJTISymbol(unsigned JTI, MCContext &Ctx, 
+  MCSymbol *getJTISymbol(unsigned JTI, MCContext &Ctx,
                          bool isLinkerPrivate = false) const;
-  
+
   /// getPICBaseSymbol - Return a function-local symbol to represent the PIC
   /// base.
   MCSymbol *getPICBaseSymbol() const;

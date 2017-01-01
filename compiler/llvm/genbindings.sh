@@ -12,25 +12,25 @@ function rename {
     else
     	sed -i -e "s/\b$from\b/$to/g" "$JAVAOUT"/*.java
     fi
-    mv "$JAVAOUT/$from.java" "$JAVAOUT/$to.java" 
+    mv "$JAVAOUT/$from.java" "$JAVAOUT/$to.java"
 }
 
 mkdir -p "$JAVAOUT"
 mkdir -p "$COUT"
-swig -includeall -I"$BASE/src/main/swig/include" -outdir "$JAVAOUT" -o "$COUT"/LLVM_wrap.c -java -package org.robovm.llvm.binding -fakeversion 2.0.4 "$BASE/src/main/swig/LLVM.i"
+swig  -I"$BASE/src/main/swig/include" -I"/usr/include" -I"/usr/include/linux" -I"/usr/include/bits" -outdir "$JAVAOUT" -o "$COUT"/LLVM_wrap.c -java -package org.robovm.llvm.binding -fakeversion 2.0.4 "$BASE/src/main/swig/LLVM.i"
 
-rename SWIGTYPE_p_LLVMOpaqueBasicBlock BasicBlockRef
-rename SWIGTYPE_p_LLVMOpaqueBuilder BuilderRef
-rename SWIGTYPE_p_LLVMOpaqueContext ContextRef
-rename SWIGTYPE_p_LLVMOpaqueMemoryBuffer MemoryBufferRef
-rename SWIGTYPE_p_LLVMOpaqueModule ModuleRef
-rename SWIGTYPE_p_LLVMOpaqueModuleProvider ModuleProviderRef
-rename SWIGTYPE_p_LLVMOpaquePassManager PassManagerRef
+rename SWIGTYPE_p_LLVMBasicBlockRef BasicBlockRef
+rename SWIGTYPE_p_LLVMBuilderRef BuilderRef
+rename SWIGTYPE_p_LLVMContextRef ContextRef
+rename SWIGTYPE_p_LLVMMemoryBufferRef MemoryBufferRef
+rename SWIGTYPE_p_LLVMModuleRef ModuleRef
+rename SWIGTYPE_p_LLVMModuleProviderRef ModuleProviderRef
+rename SWIGTYPE_p_LLVMPassManagerRef PassManagerRef
 rename SWIGTYPE_p_LLVMOpaquePassManagerBuilder PassManagerBuilderRef
-rename SWIGTYPE_p_LLVMOpaquePassRegistry PassRegistryRef
-rename SWIGTYPE_p_LLVMOpaqueType TypeRef
-rename SWIGTYPE_p_LLVMOpaqueUse UseRef
-rename SWIGTYPE_p_LLVMOpaqueValue ValueRef
+rename SWIGTYPE_p_LLVMPassRegistryRef PassRegistryRef
+rename SWIGTYPE_p_LLVMTypeRef TypeRef
+rename SWIGTYPE_p_LLVMUseRef UseRef
+rename SWIGTYPE_p_LLVMValueRef ValueRef
 rename SWIGTYPE_p_LLVMOpaqueTargetData TargetDataRef
 rename SWIGTYPE_p_LLVMOpaqueTargetLibraryInfotData TargetLibraryInfoRef
 rename SWIGTYPE_p_LLVMOpaqueTargetMachine TargetMachineRef
@@ -40,4 +40,4 @@ rename SWIGTYPE_p_LLVMOpaqueObjectFile ObjectFileRef
 rename SWIGTYPE_p_LLVMOpaqueRelocationIterator RelocationIteratorRef
 rename SWIGTYPE_p_LLVMOpaqueSectionIterator SectionIteratorRef
 rename SWIGTYPE_p_LLVMOpaqueSymbolIterator SymbolIteratorRef
-rename SWIGTYPE_p_LLVMOpaqueDiagnosticInfo DiagnosticInfoRef
+rename SWIGTYPE_p_LLVMDiagnosticInfoRef DiagnosticInfoRef

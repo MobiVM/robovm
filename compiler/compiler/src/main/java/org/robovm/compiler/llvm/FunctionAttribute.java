@@ -22,6 +22,28 @@ package org.robovm.compiler.llvm;
  */
 public enum FunctionAttribute {
 
-    noinline, optsize, alwaysinline, nounwind;
+    noinline("noinline"), 
+    optsize("optsize"), 
+    alwaysinline("alwaysinline"), 
+    nounwind("nounwind"), 
+    noframepointerelim("\"no-frame-pointer-elim\"=\"true\""),			//used to be set globally, now on function level
+    noframepointerelimnonleaf("\"no-frame-pointer-elim-non-leaf\"");
+	
+    private final String text;
+
+    /**
+     * @param text
+     */
+    private FunctionAttribute(final String text) {
+        this.text = text;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Enum#toString()
+     */
+    @Override
+    public String toString() {
+        return text;
+    }
     
 }

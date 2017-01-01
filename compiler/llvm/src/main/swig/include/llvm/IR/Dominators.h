@@ -15,34 +15,28 @@
 #ifndef LLVM_IR_DOMINATORS_H
 #define LLVM_IR_DOMINATORS_H
 
-#include "llvm/ADT/DenseMap.h"
-#include "llvm/ADT/DepthFirstIterator.h"
+#include "llvm/ADT/DenseMapInfo.h"
 #include "llvm/ADT/GraphTraits.h"
 #include "llvm/ADT/SmallPtrSet.h"
-#include "llvm/ADT/SmallVector.h"
-#include "llvm/IR/BasicBlock.h"
 #include "llvm/IR/CFG.h"
-#include "llvm/IR/Function.h"
+#include "llvm/IR/PassManager.h"
 #include "llvm/Pass.h"
-#include "llvm/Support/Compiler.h"
 #include "llvm/Support/GenericDomTree.h"
-#include "llvm/Support/raw_ostream.h"
-#include <algorithm>
 
 namespace llvm {
 
-EXTERN_TEMPLATE_INSTANTIATION(class DomTreeNodeBase<BasicBlock>);
-EXTERN_TEMPLATE_INSTANTIATION(class DominatorTreeBase<BasicBlock>);
+class Function;
+class BasicBlock;
+class raw_ostream;
 
-#define LLVM_COMMA ,
-EXTERN_TEMPLATE_INSTANTIATION(void Calculate<Function LLVM_COMMA BasicBlock *>(
-    DominatorTreeBase<GraphTraits<BasicBlock *>::NodeType> &DT LLVM_COMMA
-        Function &F));
-EXTERN_TEMPLATE_INSTANTIATION(
-    void Calculate<Function LLVM_COMMA Inverse<BasicBlock *> >(
-        DominatorTreeBase<GraphTraits<Inverse<BasicBlock *> >::NodeType> &DT
-            LLVM_COMMA Function &F));
-#undef LLVM_COMMA
+extern template class DomTreeNodeBase<BasicBlock>;
+extern template class DominatorTreeBase<BasicBlock>;
+
+extern template void Calculate<Function, BasicBlock *>(
+    DominatorTreeBase<GraphTraits<BasicBlock *>::NodeType> &DT, Function &F);
+extern template void Calculate<Function, Inverse<BasicBlock *>>(
+    DominatorTreeBase<GraphTraits<Inverse<BasicBlock *>>::NodeType> &DT,
+    Function &F);
 
 typedef DomTreeNodeBase<BasicBlock> DomTreeNode;
 
@@ -61,13 +55,59 @@ public:
   bool isSingleEdge() const;
 };
 
+template <> struct DenseMapInfo<BasicBlockEdge> {
+  static unsigned getHashValue(const BasicBlockEdge *V);
+  typedef DenseMapInfo<const BasicBlock *> BBInfo;
+  static inline BasicBlockEdge getEmptyKey() {
+    return BasicBlockEdge(BBInfo::getEmptyKey(), BBInfo::getEmptyKey());
+  }
+  static inline BasicBlockEdge getTombstoneKey() {
+    return BasicBlockEdge(BBInfo::getTombstoneKey(), BBInfo::getTombstoneKey());
+  }
+
+  static unsigned getHashValue(const BasicBlockEdge &Edge) {
+    return hash_combine(BBInfo::getHashValue(Edge.getStart()),
+                        BBInfo::getHashValue(Edge.getEnd()));
+  }
+  static bool isEqual(const BasicBlockEdge &LHS, const BasicBlockEdge &RHS) {
+    return BBInfo::isEqual(LHS.getStart(), RHS.getStart()) &&
+           BBInfo::isEqual(LHS.getEnd(), RHS.getEnd());
+  }
+};
+
 /// \brief Concrete subclass of DominatorTreeBase that is used to compute a
 /// normal dominator tree.
+///
+/// Definition: A block is said to be forward statically reachable if there is
+/// a path from the entry of the function to the block.  A statically reachable
+/// block may become statically unreachable during optimization.
+///
+/// A forward unreachable block may appear in the dominator tree, or it may
+/// not.  If it does, dominance queries will return results as if all reachable
+/// blocks dominate it.  When asking for a Node corresponding to a potentially
+/// unreachable block, calling code must handle the case where the block was
+/// unreachable and the result of getNode() is nullptr.
+///
+/// Generally, a block known to be unreachable when the dominator tree is
+/// constructed will not be in the tree.  One which becomes unreachable after
+/// the dominator tree is initially constructed may still exist in the tree,
+/// even if the tree is properly updated. Calling code should not rely on the
+/// preceding statements; this is stated only to assist human understanding.
 class DominatorTree : public DominatorTreeBase<BasicBlock> {
 public:
   typedef DominatorTreeBase<BasicBlock> Base;
 
   DominatorTree() : DominatorTreeBase<BasicBlock>(false) {}
+  explicit DominatorTree(Function &F) : DominatorTreeBase<BasicBlock>(false) {
+    recalculate(F);
+  }
+
+  DominatorTree(DominatorTree &&Arg)
+      : Base(std::move(static_cast<Base &>(Arg))) {}
+  DominatorTree &operator=(DominatorTree &&RHS) {
+    Base::operator=(std::move(static_cast<Base &>(RHS)));
+    return *this;
+  }
 
   /// \brief Returns *false* if the other dominator tree matches this dominator
   /// tree.
@@ -114,30 +154,34 @@ public:
 // DominatorTree GraphTraits specializations so the DominatorTree can be
 // iterable by generic graph iterators.
 
-template <> struct GraphTraits<DomTreeNode*> {
-  typedef DomTreeNode NodeType;
-  typedef NodeType::iterator  ChildIteratorType;
+template <class Node, class ChildIterator> struct DomTreeGraphTraitsBase {
+  typedef Node NodeType;
+  typedef ChildIterator ChildIteratorType;
+  typedef df_iterator<Node *, SmallPtrSet<NodeType *, 8>> nodes_iterator;
 
-  static NodeType *getEntryNode(NodeType *N) {
-    return N;
-  }
+  static NodeType *getEntryNode(NodeType *N) { return N; }
   static inline ChildIteratorType child_begin(NodeType *N) {
     return N->begin();
   }
-  static inline ChildIteratorType child_end(NodeType *N) {
-    return N->end();
-  }
+  static inline ChildIteratorType child_end(NodeType *N) { return N->end(); }
 
-  typedef df_iterator<DomTreeNode*> nodes_iterator;
-
-  static nodes_iterator nodes_begin(DomTreeNode *N) {
+  static nodes_iterator nodes_begin(NodeType *N) {
     return df_begin(getEntryNode(N));
   }
 
-  static nodes_iterator nodes_end(DomTreeNode *N) {
+  static nodes_iterator nodes_end(NodeType *N) {
     return df_end(getEntryNode(N));
   }
 };
+
+template <>
+struct GraphTraits<DomTreeNode *>
+    : public DomTreeGraphTraitsBase<DomTreeNode, DomTreeNode::iterator> {};
+
+template <>
+struct GraphTraits<const DomTreeNode *>
+    : public DomTreeGraphTraitsBase<const DomTreeNode,
+                                    DomTreeNode::const_iterator> {};
 
 template <> struct GraphTraits<DominatorTree*>
   : public GraphTraits<DomTreeNode*> {
@@ -155,6 +199,34 @@ template <> struct GraphTraits<DominatorTree*>
 };
 
 /// \brief Analysis pass which computes a \c DominatorTree.
+class DominatorTreeAnalysis : public AnalysisInfoMixin<DominatorTreeAnalysis> {
+  friend AnalysisInfoMixin<DominatorTreeAnalysis>;
+  static char PassID;
+
+public:
+  /// \brief Provide the result typedef for this analysis pass.
+  typedef DominatorTree Result;
+
+  /// \brief Run the analysis pass over a function and produce a dominator tree.
+  DominatorTree run(Function &F, AnalysisManager<Function> &);
+};
+
+/// \brief Printer pass for the \c DominatorTree.
+class DominatorTreePrinterPass
+    : public PassInfoMixin<DominatorTreePrinterPass> {
+  raw_ostream &OS;
+
+public:
+  explicit DominatorTreePrinterPass(raw_ostream &OS);
+  PreservedAnalyses run(Function &F, AnalysisManager<Function> &AM);
+};
+
+/// \brief Verifier pass for the \c DominatorTree.
+struct DominatorTreeVerifierPass : PassInfoMixin<DominatorTreeVerifierPass> {
+  PreservedAnalyses run(Function &F, AnalysisManager<Function> &AM);
+};
+
+/// \brief Legacy analysis pass which computes a \c DominatorTree.
 class DominatorTreeWrapperPass : public FunctionPass {
   DominatorTree DT;
 

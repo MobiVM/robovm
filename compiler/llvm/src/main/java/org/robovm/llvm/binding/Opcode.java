@@ -67,7 +67,12 @@ public enum Opcode {
   AtomicCmpXchg(56),
   AtomicRMW(57),
   Resume(58),
-  LandingPad(59);
+  LandingPad(59),
+  CleanupRet(61),
+  CatchRet(62),
+  CatchPad(63),
+  CleanupPad(64),
+  CatchSwitch(65);
 
   public final int swigValue() {
     return swigValue;

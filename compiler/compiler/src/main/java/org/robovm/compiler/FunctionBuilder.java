@@ -69,6 +69,8 @@ public class FunctionBuilder {
         this.name = name;
         this.type = type;
         attributes.add(FunctionAttribute.nounwind);
+        attributes.add(FunctionAttribute.noframepointerelim);
+        attributes.add(FunctionAttribute.noframepointerelimnonleaf);
     }
 
     public FunctionBuilder name(String name) {

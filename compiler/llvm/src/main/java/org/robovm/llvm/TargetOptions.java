@@ -39,14 +39,6 @@ public class TargetOptions {
         LLVM.TargetOptionsSetPrintMachineCode(ref, value);
     }
 
-    public boolean getNoFramePointerElim() {
-        return LLVM.TargetOptionsGetNoFramePointerElim(ref);
-    }
-
-    public void setNoFramePointerElim(boolean value) {
-        LLVM.TargetOptionsSetNoFramePointerElim(ref, value);
-    }
-
     public boolean getLessPreciseFPMADOption() {
         return LLVM.TargetOptionsGetLessPreciseFPMADOption(ref);
     }
@@ -87,14 +79,6 @@ public class TargetOptions {
         LLVM.TargetOptionsSetHonorSignDependentRoundingFPMathOption(ref, value);
     }
 
-    public boolean getUseSoftFloat() {
-        return LLVM.TargetOptionsGetUseSoftFloat(ref);
-    }
-
-    public void setUseSoftFloat(boolean value) {
-        LLVM.TargetOptionsSetUseSoftFloat(ref, value);
-    }
-
     public boolean getNoZerosInBSS() {
         return LLVM.TargetOptionsGetNoZerosInBSS(ref);
     }
@@ -103,36 +87,12 @@ public class TargetOptions {
         LLVM.TargetOptionsSetNoZerosInBSS(ref, value);
     }
 
-    public boolean getJITEmitDebugInfo() {
-        return LLVM.TargetOptionsGetJITEmitDebugInfo(ref);
-    }
-
-    public void setJITEmitDebugInfo(boolean value) {
-        LLVM.TargetOptionsSetJITEmitDebugInfo(ref, value);
-    }
-
-    public boolean getJITEmitDebugInfoToDisk() {
-        return LLVM.TargetOptionsGetJITEmitDebugInfoToDisk(ref);
-    }
-
-    public void setJITEmitDebugInfoToDisk(boolean value) {
-        LLVM.TargetOptionsSetJITEmitDebugInfoToDisk(ref, value);
-    }
-
     public boolean getGuaranteedTailCallOpt() {
         return LLVM.TargetOptionsGetGuaranteedTailCallOpt(ref);
     }
 
     public void setGuaranteedTailCallOpt(boolean value) {
         LLVM.TargetOptionsSetGuaranteedTailCallOpt(ref, value);
-    }
-
-    public boolean getDisableTailCalls() {
-        return LLVM.TargetOptionsGetDisableTailCalls(ref);
-    }
-
-    public void setDisableTailCalls(boolean value) {
-        LLVM.TargetOptionsSetDisableTailCalls(ref, value);
     }
 
     public int getStackAlignmentOverride() {
@@ -149,14 +109,6 @@ public class TargetOptions {
 
     public void setEnableFastISel(boolean value) {
         LLVM.TargetOptionsSetEnableFastISel(ref, value);
-    }
-
-    public boolean getPositionIndependentExecutable() {
-        return LLVM.TargetOptionsGetPositionIndependentExecutable(ref);
-    }
-
-    public void setPositionIndependentExecutable(boolean value) {
-        LLVM.TargetOptionsSetPositionIndependentExecutable(ref, value);
     }
 
     public boolean getUseInitArray() {

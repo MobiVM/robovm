@@ -52,59 +52,56 @@ protected:
     Weak
   };
 
+  ValueHandleBase(const ValueHandleBase &RHS)
+      : ValueHandleBase(RHS.PrevPair.getInt(), RHS) {}
+
+  ValueHandleBase(HandleBaseKind Kind, const ValueHandleBase &RHS)
+      : PrevPair(nullptr, Kind), Next(nullptr), V(RHS.V) {
+    if (isValid(V))
+      AddToExistingUseList(RHS.getPrevPtr());
+  }
+
 private:
   PointerIntPair<ValueHandleBase**, 2, HandleBaseKind> PrevPair;
   ValueHandleBase *Next;
 
-  // A subclass may want to store some information along with the value
-  // pointer. Allow them to do this by making the value pointer a pointer-int
-  // pair. The 'setValPtrInt' and 'getValPtrInt' methods below give them this
-  // access.
-  PointerIntPair<Value*, 2> VP;
+  Value* V;
 
-  ValueHandleBase(const ValueHandleBase&) LLVM_DELETED_FUNCTION;
 public:
   explicit ValueHandleBase(HandleBaseKind Kind)
-    : PrevPair(nullptr, Kind), Next(nullptr), VP(nullptr, 0) {}
+    : PrevPair(nullptr, Kind), Next(nullptr), V(nullptr) {}
   ValueHandleBase(HandleBaseKind Kind, Value *V)
-    : PrevPair(nullptr, Kind), Next(nullptr), VP(V, 0) {
-    if (isValid(VP.getPointer()))
+    : PrevPair(nullptr, Kind), Next(nullptr), V(V) {
+    if (isValid(V))
       AddToUseList();
   }
-  ValueHandleBase(HandleBaseKind Kind, const ValueHandleBase &RHS)
-    : PrevPair(nullptr, Kind), Next(nullptr), VP(RHS.VP) {
-    if (isValid(VP.getPointer()))
-      AddToExistingUseList(RHS.getPrevPtr());
-  }
+
   ~ValueHandleBase() {
-    if (isValid(VP.getPointer()))
+    if (isValid(V))
       RemoveFromUseList();
   }
 
   Value *operator=(Value *RHS) {
-    if (VP.getPointer() == RHS) return RHS;
-    if (isValid(VP.getPointer())) RemoveFromUseList();
-    VP.setPointer(RHS);
-    if (isValid(VP.getPointer())) AddToUseList();
+    if (V == RHS) return RHS;
+    if (isValid(V)) RemoveFromUseList();
+    V = RHS;
+    if (isValid(V)) AddToUseList();
     return RHS;
   }
 
   Value *operator=(const ValueHandleBase &RHS) {
-    if (VP.getPointer() == RHS.VP.getPointer()) return RHS.VP.getPointer();
-    if (isValid(VP.getPointer())) RemoveFromUseList();
-    VP.setPointer(RHS.VP.getPointer());
-    if (isValid(VP.getPointer())) AddToExistingUseList(RHS.getPrevPtr());
-    return VP.getPointer();
+    if (V == RHS.V) return RHS.V;
+    if (isValid(V)) RemoveFromUseList();
+    V = RHS.V;
+    if (isValid(V)) AddToExistingUseList(RHS.getPrevPtr());
+    return V;
   }
 
-  Value *operator->() const { return getValPtr(); }
-  Value &operator*() const { return *getValPtr(); }
+  Value *operator->() const { return V; }
+  Value &operator*() const { return *V; }
 
 protected:
-  Value *getValPtr() const { return VP.getPointer(); }
-
-  void setValPtrInt(unsigned K) { VP.setInt(K); }
-  unsigned getValPtrInt() const { return VP.getInt(); }
+  Value *getValPtr() const { return V; }
 
   static bool isValid(Value *V) {
     return V &&
@@ -123,7 +120,7 @@ private:
   HandleBaseKind getKind() const { return PrevPair.getInt(); }
   void setPrevPtr(ValueHandleBase **Ptr) { PrevPair.setPointer(Ptr); }
 
-  /// \brief Add this ValueHandle to the use list for VP.
+  /// \brief Add this ValueHandle to the use list for V.
   ///
   /// List is the address of either the head of the list or a Next node within
   /// the existing use list.
@@ -132,7 +129,7 @@ private:
   /// \brief Add this ValueHandle to the use list after Node.
   void AddToExistingUseListAfter(ValueHandleBase *Node);
 
-  /// \brief Add this ValueHandle to the use list for VP.
+  /// \brief Add this ValueHandle to the use list for V.
   void AddToUseList();
   /// \brief Remove this ValueHandle from its current use list.
   void RemoveFromUseList();
@@ -152,6 +149,8 @@ public:
   WeakVH(const WeakVH &RHS)
     : ValueHandleBase(Weak, RHS) {}
 
+  WeakVH &operator=(const WeakVH &RHS) = default;
+
   Value *operator=(Value *RHS) {
     return ValueHandleBase::operator=(RHS);
   }
@@ -166,11 +165,13 @@ public:
 
 // Specialize simplify_type to allow WeakVH to participate in
 // dyn_cast, isa, etc.
-template<> struct simplify_type<WeakVH> {
-  typedef Value* SimpleType;
-  static SimpleType getSimplifiedValue(WeakVH &WVH) {
-    return WVH;
-  }
+template <> struct simplify_type<WeakVH> {
+  typedef Value *SimpleType;
+  static SimpleType getSimplifiedValue(WeakVH &WVH) { return WVH; }
+};
+template <> struct simplify_type<const WeakVH> {
+  typedef Value *SimpleType;
+  static SimpleType getSimplifiedValue(const WeakVH &WVH) { return WVH; }
 };
 
 /// \brief Value handle that asserts if the Value is deleted.
@@ -197,22 +198,19 @@ class AssertingVH
   friend struct DenseMapInfo<AssertingVH<ValueTy> >;
 
 #ifndef NDEBUG
-  ValueTy *getValPtr() const {
-    return static_cast<ValueTy*>(ValueHandleBase::getValPtr());
-  }
-  void setValPtr(ValueTy *P) {
-    ValueHandleBase::operator=(GetAsValue(P));
-  }
+  Value *getRawValPtr() const { return ValueHandleBase::getValPtr(); }
+  void setRawValPtr(Value *P) { ValueHandleBase::operator=(P); }
 #else
-  ValueTy *ThePtr;
-  ValueTy *getValPtr() const { return ThePtr; }
-  void setValPtr(ValueTy *P) { ThePtr = P; }
+  Value *ThePtr;
+  Value *getRawValPtr() const { return ThePtr; }
+  void setRawValPtr(Value *P) { ThePtr = P; }
 #endif
-
-  // Convert a ValueTy*, which may be const, to the type the base
-  // class expects.
+  // Convert a ValueTy*, which may be const, to the raw Value*.
   static Value *GetAsValue(Value *V) { return V; }
   static Value *GetAsValue(const Value *V) { return const_cast<Value*>(V); }
+
+  ValueTy *getValPtr() const { return static_cast<ValueTy *>(getRawValPtr()); }
+  void setValPtr(ValueTy *P) { setRawValPtr(GetAsValue(P)); }
 
 public:
 #ifndef NDEBUG
@@ -221,7 +219,7 @@ public:
   AssertingVH(const AssertingVH &RHS) : ValueHandleBase(Assert, RHS) {}
 #else
   AssertingVH() : ThePtr(nullptr) {}
-  AssertingVH(ValueTy *P) : ThePtr(P) {}
+  AssertingVH(ValueTy *P) : ThePtr(GetAsValue(P)) {}
 #endif
 
   operator ValueTy*() const {
@@ -244,27 +242,23 @@ public:
 // Specialize DenseMapInfo to allow AssertingVH to participate in DenseMap.
 template<typename T>
 struct DenseMapInfo<AssertingVH<T> > {
-  typedef DenseMapInfo<T*> PointerInfo;
   static inline AssertingVH<T> getEmptyKey() {
-    return AssertingVH<T>(PointerInfo::getEmptyKey());
+    AssertingVH<T> Res;
+    Res.setRawValPtr(DenseMapInfo<Value *>::getEmptyKey());
+    return Res;
   }
-  static inline T* getTombstoneKey() {
-    return AssertingVH<T>(PointerInfo::getTombstoneKey());
+  static inline AssertingVH<T> getTombstoneKey() {
+    AssertingVH<T> Res;
+    Res.setRawValPtr(DenseMapInfo<Value *>::getTombstoneKey());
+    return Res;
   }
   static unsigned getHashValue(const AssertingVH<T> &Val) {
-    return PointerInfo::getHashValue(Val);
+    return DenseMapInfo<Value *>::getHashValue(Val.getRawValPtr());
   }
-#ifndef NDEBUG
   static bool isEqual(const AssertingVH<T> &LHS, const AssertingVH<T> &RHS) {
-    // Avoid downcasting AssertingVH<T> to T*, as empty/tombstone keys may not
-    // be properly aligned pointers to T*.
-    return LHS.ValueHandleBase::getValPtr() == RHS.ValueHandleBase::getValPtr();
+    return DenseMapInfo<Value *>::isEqual(LHS.getRawValPtr(),
+                                          RHS.getRawValPtr());
   }
-#else
-  static bool isEqual(const AssertingVH<T> &LHS, const AssertingVH<T> &RHS) {
-    return LHS == RHS;
-  }
-#endif
 };
 
 template <typename T>
@@ -326,7 +320,6 @@ class TrackingVH : public ValueHandleBase {
 public:
   TrackingVH() : ValueHandleBase(Tracking) {}
   TrackingVH(ValueTy *P) : ValueHandleBase(Tracking, GetAsValue(P)) {}
-  TrackingVH(const TrackingVH &RHS) : ValueHandleBase(Tracking, RHS) {}
 
   operator ValueTy*() const {
     return getValPtr();
@@ -334,10 +327,6 @@ public:
 
   ValueTy *operator=(ValueTy *RHS) {
     setValPtr(RHS);
-    return getValPtr();
-  }
-  ValueTy *operator=(const TrackingVH<ValueTy> &RHS) {
-    setValPtr(RHS.getValPtr());
     return getValPtr();
   }
 
@@ -351,15 +340,13 @@ public:
 /// when the underlying Value has RAUW called on it or is destroyed.  This
 /// class can be used as the key of a map, as long as the user takes it out of
 /// the map before calling setValPtr() (since the map has to rearrange itself
-/// when the pointer changes).  Unlike ValueHandleBase, this class has a vtable
-/// and a virtual destructor.
+/// when the pointer changes).  Unlike ValueHandleBase, this class has a vtable.
 class CallbackVH : public ValueHandleBase {
   virtual void anchor();
 protected:
-  CallbackVH(const CallbackVH &RHS)
-    : ValueHandleBase(Callback, RHS) {}
-
-  virtual ~CallbackVH() {}
+  ~CallbackVH() = default;
+  CallbackVH(const CallbackVH &) = default;
+  CallbackVH &operator=(const CallbackVH &) = default;
 
   void setValPtr(Value *P) {
     ValueHandleBase::operator=(P);

@@ -79,6 +79,8 @@ public class Getelementptr extends Instruction {
         StringBuilder sb = new StringBuilder();
         sb.append(result);
         sb.append(" = getelementptr ");
+        sb.append((ptr.isPointer() ? ((PointerType)ptr.getType()).getBase() : ptr.getType()));
+        sb.append(", ");
         sb.append(ptr.getType());
         sb.append(' ');
         sb.append(ptr);
