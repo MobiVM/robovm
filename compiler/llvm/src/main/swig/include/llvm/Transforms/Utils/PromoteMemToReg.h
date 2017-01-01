@@ -15,14 +15,13 @@
 #ifndef LLVM_TRANSFORMS_UTILS_PROMOTEMEMTOREG_H
 #define LLVM_TRANSFORMS_UTILS_PROMOTEMEMTOREG_H
 
-#include "llvm/ADT/ArrayRef.h"
-
 namespace llvm {
 
+template <typename T> class ArrayRef;
 class AllocaInst;
 class DominatorTree;
 class AliasSetTracker;
-class AssumptionTracker;
+class AssumptionCache;
 
 /// \brief Return true if this alloca is legal for promotion.
 ///
@@ -43,7 +42,7 @@ bool isAllocaPromotable(const AllocaInst *AI);
 /// made to the IR.
 void PromoteMemToReg(ArrayRef<AllocaInst *> Allocas, DominatorTree &DT,
                      AliasSetTracker *AST = nullptr,
-                     AssumptionTracker *AT = nullptr);
+                     AssumptionCache *AC = nullptr);
 
 } // End llvm namespace
 

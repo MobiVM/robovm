@@ -9,9 +9,9 @@
 package org.robovm.llvm.binding;
 
 public class RelocationIteratorRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected RelocationIteratorRef(long cPtr, boolean futureUse) {
+  protected RelocationIteratorRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

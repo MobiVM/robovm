@@ -9,8 +9,8 @@
 package org.robovm.llvm.binding;
 
 public class TypeRefArray {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected TypeRefArray(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
@@ -40,8 +40,7 @@ public class TypeRefArray {
   }
 
   public TypeRef getValue() {
-    long cPtr = LLVMJNI.TypeRefArray_value_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new TypeRef(cPtr, false);
+    return new TypeRef(LLVMJNI.TypeRefArray_value_get(swigCPtr, this), true);
   }
 
   public TypeRefArray(int nelements) {
@@ -49,8 +48,7 @@ public class TypeRefArray {
   }
 
   public TypeRef get(int index) {
-    long cPtr = LLVMJNI.TypeRefArray_get(swigCPtr, this, index);
-    return (cPtr == 0) ? null : new TypeRef(cPtr, false);
+    return new TypeRef(LLVMJNI.TypeRefArray_get(swigCPtr, this, index), true);
   }
 
   public void set(int index, TypeRef value) {

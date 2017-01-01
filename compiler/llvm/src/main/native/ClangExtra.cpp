@@ -42,7 +42,7 @@ LLVMModuleRef ClangCompileFile(LLVMContextRef Context, char* Data, char* FileNam
     // Create the compiler instance
     CompilerInstance Clang;
     Clang.setInvocation(CI.release());
-    
+
     // Create the compilers actual diagnostics engine.
     Clang.createDiagnostics(DiagClient, false);
     if (!Clang.hasDiagnostics())
@@ -51,13 +51,13 @@ LLVMModuleRef ClangCompileFile(LLVMContextRef Context, char* Data, char* FileNam
     Clang.getDiagnosticOpts().ShowCarets = false;
 
     // Create and execute the frontend to generate an LLVM bitcode module.
-    std::unique_ptr<CodeGenAction> Act(new EmitLLVMOnlyAction(unwrap(Context)));
+    std::unique_ptr<CodeGenAction> Act(new EmitLLVMOnlyAction(llvm::unwrap(Context)));
     if (!Clang.ExecuteAction(*Act)) {
         *ErrorMessage = strdup(error.c_str());
         return NULL;
     }
 
     *ErrorMessage = strdup(error.c_str());
-    
+
     return wrap((*Act).takeModule().release());
 }

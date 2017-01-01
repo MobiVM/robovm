@@ -26,11 +26,14 @@ import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -107,6 +110,7 @@ import org.robovm.llvm.TargetMachine;
 import org.robovm.llvm.binding.Attribute;
 import org.robovm.llvm.binding.CodeGenFileType;
 import org.robovm.llvm.binding.CodeGenOptLevel;
+import org.robovm.llvm.binding.PIELevel;
 import org.robovm.llvm.binding.RelocMode;
 
 import soot.BooleanType;
@@ -396,17 +400,20 @@ public class ClassCompiler {
                     targetMachine.setAsmVerbosityDefault(true);
                     targetMachine.setFunctionSections(true);
                     targetMachine.setDataSections(true);
-                    targetMachine.getOptions().setNoFramePointerElim(true);
-                    targetMachine.getOptions().setPositionIndependentExecutable(!config.isDebug()); // NOTE: Doesn't have any effect on x86. See #503.
 
-                    ByteArrayOutputStream output = new ByteArrayOutputStream(256 * 1024);
-                    targetMachine.emit(module, output, CodeGenFileType.AssemblyFile);
+                    if (!config.isDebug()) {
+                    	module.setPIELevel(PIELevel.PIELevelSmall);
+                    }
+                    else {
+                    	module.setPIELevel(PIELevel.PIELevelDefault);
+                    }
+                    
+                    targetMachine.emit(module, oFile, CodeGenFileType.AssemblyFile);
 
-                    byte[] asm = output.toByteArray();
-                    output.reset();
-                    patchAsmWithFunctionSizes(config, clazz, new ByteArrayInputStream(asm), output);
-                    asm = output.toByteArray();
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream(1024 * 32);
+                    patchAsmWithFunctionSizes(config, clazz, new FileInputStream(oFile), bos);
 
+                    byte[] asm = bos.toByteArray();
                     if (config.isDumpIntermediates()) {
                         File sFile = config.getSFile(clazz);
                         sFile.getParentFile().mkdirs();
@@ -414,9 +421,10 @@ public class ClassCompiler {
                     }
 
                     oFile.getParentFile().mkdirs();
-                    ByteArrayOutputStream oFileBytes = new ByteArrayOutputStream();
-                    targetMachine.assemble(asm, clazz.getClassName(), oFileBytes);                                                                                               
-                    new HfsCompressor().compress(oFile, oFileBytes.toByteArray(), config);
+                    targetMachine.assemble(asm, oFile);
+                    if (OS.getDefaultOS() == OS.macosx && System.getenv("ROBOVM_DISABLE_COMPRESSION") == null) {
+                    	new HfsCompressor().compress(oFile, Files.readAllBytes(Paths.get(oFile.getAbsolutePath())), config);
+                    }
                     
                     for (CompilerPlugin plugin : config.getCompilerPlugins()) {
                         plugin.afterObjectFile(config, clazz, oFile);
@@ -526,9 +534,8 @@ public class ClassCompiler {
                         }
                         try (Module linesModule = Module.parseIR(context, linesData, clazz.getClassName() + ".lines")) {
                             File linesOFile = config.getLinesOFile(clazz);
-                            ByteArrayOutputStream linesOBytes = new ByteArrayOutputStream();
-                            targetMachine.emit(linesModule, linesOBytes, CodeGenFileType.ObjectFile);
-                            new HfsCompressor().compress(linesOFile, linesOBytes.toByteArray(), config);
+                            targetMachine.emit(linesModule, linesOFile, CodeGenFileType.ObjectFile);
+                            new HfsCompressor().compress(linesOFile, Files.readAllBytes(Paths.get(linesOFile.getAbsolutePath())), config);
                         }
                     } else {
                         // Make sure there's no stale lines.o file lingering

@@ -9,8 +9,8 @@
 package org.robovm.llvm.binding;
 
 public class BasicBlockRefArray {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected BasicBlockRefArray(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
@@ -40,8 +40,7 @@ public class BasicBlockRefArray {
   }
 
   public BasicBlockRef getValue() {
-    long cPtr = LLVMJNI.BasicBlockRefArray_value_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new BasicBlockRef(cPtr, false);
+    return new BasicBlockRef(LLVMJNI.BasicBlockRefArray_value_get(swigCPtr, this), true);
   }
 
   public BasicBlockRefArray(int nelements) {
@@ -49,8 +48,7 @@ public class BasicBlockRefArray {
   }
 
   public BasicBlockRef get(int index) {
-    long cPtr = LLVMJNI.BasicBlockRefArray_get(swigCPtr, this, index);
-    return (cPtr == 0) ? null : new BasicBlockRef(cPtr, false);
+    return new BasicBlockRef(LLVMJNI.BasicBlockRefArray_get(swigCPtr, this, index), true);
   }
 
   public void set(int index, BasicBlockRef value) {

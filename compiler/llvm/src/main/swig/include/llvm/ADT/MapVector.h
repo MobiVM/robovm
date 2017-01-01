@@ -18,6 +18,7 @@
 #define LLVM_ADT_MAPVECTOR_H
 
 #include "llvm/ADT/DenseMap.h"
+#include "llvm/ADT/SmallVector.h"
 #include <vector>
 
 namespace llvm {
@@ -64,6 +65,11 @@ public:
   void clear() {
     Map.clear();
     Vector.clear();
+  }
+
+  void swap(MapVector &RHS) {
+    std::swap(Map, RHS.Map);
+    std::swap(Vector, RHS.Vector);
   }
 
   ValueT &operator[](const KeyT &Key) {
@@ -180,6 +186,14 @@ void MapVector<KeyT, ValueT, MapType, VectorType>::remove_if(Function Pred) {
   // Erase trailing entries in the vector.
   Vector.erase(O, Vector.end());
 }
+
+/// \brief A MapVector that performs no allocations if smaller than a certain
+/// size.
+template <typename KeyT, typename ValueT, unsigned N>
+struct SmallMapVector
+    : MapVector<KeyT, ValueT, SmallDenseMap<KeyT, unsigned, N>,
+                SmallVector<std::pair<KeyT, ValueT>, N>> {
+};
 
 } // end namespace llvm
 

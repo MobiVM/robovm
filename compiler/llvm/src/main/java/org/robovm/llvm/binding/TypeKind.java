@@ -24,7 +24,8 @@ public enum TypeKind {
   PointerTypeKind,
   VectorTypeKind,
   MetadataTypeKind,
-  X86_MMXTypeKind;
+  X86_MMXTypeKind,
+  TokenTypeKind;
 
   public final int swigValue() {
     return swigValue;

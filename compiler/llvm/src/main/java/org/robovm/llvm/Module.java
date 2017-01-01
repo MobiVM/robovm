@@ -25,6 +25,7 @@ import org.robovm.llvm.binding.LLVM;
 import org.robovm.llvm.binding.MemoryBufferRef;
 import org.robovm.llvm.binding.ModuleRef;
 import org.robovm.llvm.binding.ModuleRefOut;
+import org.robovm.llvm.binding.PIELevel;
 import org.robovm.llvm.binding.StringOut;
 import org.robovm.llvm.binding.ValueRef;
 
@@ -84,9 +85,13 @@ public class Module implements AutoCloseable {
     
     public void link(Module other) {
         StringOut errorMessage = new StringOut();
-        if (LLVM.LinkModules(getRef(), other.getRef(), 0, errorMessage)) {
-            throw new LlvmException(errorMessage.getValue().trim());
+        if (LLVM.LinkModules2(getRef(), other.getRef())) {
+            throw new LlvmException("Error when linking!");
         }
+    }
+    
+    public void setPIELevel(PIELevel level) {
+    	LLVM.ModuleSetPIELevel(getRef(), level);
     }
     
     @Override

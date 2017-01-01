@@ -9,9 +9,9 @@
 package org.robovm.llvm.binding;
 
 public class MemoryBufferRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected MemoryBufferRef(long cPtr, boolean futureUse) {
+  protected MemoryBufferRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

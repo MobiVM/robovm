@@ -9,9 +9,9 @@
 package org.robovm.llvm.binding;
 
 public class BasicBlockRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected BasicBlockRef(long cPtr, boolean futureUse) {
+  protected BasicBlockRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

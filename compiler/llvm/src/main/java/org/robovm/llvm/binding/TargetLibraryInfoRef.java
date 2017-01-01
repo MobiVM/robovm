@@ -9,9 +9,9 @@
 package org.robovm.llvm.binding;
 
 public class TargetLibraryInfoRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected TargetLibraryInfoRef(long cPtr, boolean futureUse) {
+  protected TargetLibraryInfoRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

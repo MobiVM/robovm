@@ -85,6 +85,7 @@ import org.robovm.llvm.PassManager;
 import org.robovm.llvm.Target;
 import org.robovm.llvm.TargetMachine;
 import org.robovm.llvm.binding.CodeGenFileType;
+import org.robovm.llvm.binding.PIELevel;
 import org.robovm.llvm.binding.RelocMode;
 
 /**
@@ -504,18 +505,19 @@ public class Linker {
                     targetMachine.setAsmVerbosityDefault(true);
                     targetMachine.setFunctionSections(true);
                     targetMachine.setDataSections(true);
-                    targetMachine.getOptions().setNoFramePointerElim(true);
-                    // NOTE: Doesn't have any effect on x86. See #503.
-                    targetMachine.getOptions().setPositionIndependentExecutable(true);
+                    
+                    if (!config.isDebug()) {
+                    	module.setPIELevel(PIELevel.PIELevelSmall);
+                    }
+                    else {
+                    	module.setPIELevel(PIELevel.PIELevelDefault);
+                    }
+                    
                     if (config.isDumpIntermediates()) {
                         File linkerS = new File(config.getTmpDir(), "linker" + num + ".s");
-                        try (OutputStream outS = new BufferedOutputStream(new FileOutputStream(linkerS))) {
-                            targetMachine.emit(module, outS, CodeGenFileType.AssemblyFile);
-                        }
+                        targetMachine.emit(module, linkerS, CodeGenFileType.AssemblyFile);
                     }
-                    try (OutputStream outO = new BufferedOutputStream(new FileOutputStream(linkerO))) {
-                        targetMachine.emit(module, outO, CodeGenFileType.ObjectFile);
-                    }
+                    targetMachine.emit(module, linkerO, CodeGenFileType.ObjectFile);
                 }
             }
         }

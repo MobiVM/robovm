@@ -24,10 +24,14 @@
 /* #undef LLVM_DATADIR */
 
 /* Target triple LLVM will generate code for by default */
-#define LLVM_DEFAULT_TARGET_TRIPLE "x86_64-apple-darwin13.4.0"
+#define LLVM_DEFAULT_TARGET_TRIPLE "x86_64-unknown-linux-gnu"
 
 /* Installation directory for documentation */
 /* #undef LLVM_DOCSDIR */
+
+/* Define if LLVM is built with asserts and checks that change the layout of
+   client-visible data structures.  */
+/* #undef LLVM_ENABLE_ABI_BREAKING_CHECKS */
 
 /* Define if threads enabled */
 #define LLVM_ENABLE_THREADS 1
@@ -39,7 +43,7 @@
 #define LLVM_HAS_ATOMICS 1
 
 /* Host triple LLVM will be executed on */
-#define LLVM_HOST_TRIPLE "x86_64-apple-darwin13.4.0"
+#define LLVM_HOST_TRIPLE "x86_64-unknown-linux-gnu"
 
 /* Installation directory for include files */
 /* #undef LLVM_INCLUDEDIR */
@@ -78,7 +82,7 @@
 /* #undef LLVM_ON_WIN32 */
 
 /* Installation prefix directory */
-#define LLVM_PREFIX "/Users/niklas/Projects/robovm/llvm/target.llvm/build/macosx-x86_64/llvm"
+#define LLVM_PREFIX "/home/florian/projects/robovm/compiler/llvm/target.llvm/build/linux-x86_64/llvm"
 
 /* Define if we have the Intel JIT API runtime support library */
 /* #undef LLVM_USE_INTEL_JITEVENTS */
@@ -90,10 +94,13 @@
 #define LLVM_VERSION_MAJOR 3
 
 /* Minor version of the LLVM API */
-#define LLVM_VERSION_MINOR 6
+#define LLVM_VERSION_MINOR 9
+
+/* Patch version of the LLVM API */
+#define LLVM_VERSION_PATCH 1
 
 /* LLVM version string */
-#define LLVM_VERSION_STRING "3.6.0svn"
+#define LLVM_VERSION_STRING "3.9.1"
 
 /* Define if we link Polly to the tools */
 /* #undef LINK_POLLY_INTO_TOOLS */
