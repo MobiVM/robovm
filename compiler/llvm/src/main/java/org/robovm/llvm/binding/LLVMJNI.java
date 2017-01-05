@@ -806,7 +806,6 @@ public class LLVMJNI {
   public final static native boolean ParseIRInContext(long jarg1, long jarg2, long jarg3, ModuleRefOut jarg3_, long jarg4, StringOut jarg4_);
   public final static native long LookupTarget(String jarg1, long jarg2, StringOut jarg2_);
   public final static native boolean TargetMachineGetAsmVerbosityDefault(long jarg1);
-  public final static native void TargetMachineSetAsmVerbosityDefault(long jarg1, boolean jarg2);
   public final static native boolean TargetMachineGetDataSections(long jarg1);
   public final static native boolean TargetMachineGetFunctionSections(long jarg1);
   public final static native void TargetMachineSetDataSections(long jarg1, boolean jarg2);

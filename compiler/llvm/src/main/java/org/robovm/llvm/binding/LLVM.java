@@ -2999,10 +2999,6 @@ public class LLVM implements LLVMConstants {
     return LLVMJNI.TargetMachineGetAsmVerbosityDefault(TargetMachineRef.getCPtr(T));
   }
 
-  public static void TargetMachineSetAsmVerbosityDefault(TargetMachineRef T, boolean Value) {
-    LLVMJNI.TargetMachineSetAsmVerbosityDefault(TargetMachineRef.getCPtr(T), Value);
-  }
-
   public static boolean TargetMachineGetDataSections(TargetMachineRef T) {
     return LLVMJNI.TargetMachineGetDataSections(TargetMachineRef.getCPtr(T));
   }

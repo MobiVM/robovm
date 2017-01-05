@@ -213,12 +213,23 @@ ARRAY_ARG(IntArray, unsigned *IdxList)
   }
 %}
 
-%typemap(ret) LLVMValueRef {
-if ($1 == NULL) {
-  free(*(LLVMValueRef **)&jresult);
-  return $null;
-}
-}
+%typemap(ret) LLVMValueRef %{
+  if ($1 == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return $null;
+  }
+%}
+
+%typemap(out) SWIGTYPE %{
+  *($1_ltype*)&$result = $1;
+%}
+
+//jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+%typemap(in) SWIGTYPE %{
+  $1 = *($1_ltype*)&$input;
+  //TODO:
+  //$input $1_rtype *($1_ltype*)&$result = $1;
+%}
 
 %typemap(javain) enum LLVMAttribute "$javainput"
 %typemap(javaout) enum LLVMAttribute {
