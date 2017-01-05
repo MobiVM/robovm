@@ -9,7 +9,7 @@
 package org.robovm.llvm.binding;
 
 public interface LLVMConstants {
-  public final static int AttributeReturnIndex = 0U;
+  public final static int AttributeReturnIndex = 0;
   public final static int AttributeFunctionIndex = -1;
 
 }
