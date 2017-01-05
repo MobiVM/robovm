@@ -46,7 +46,6 @@ LLVMBool LLVMParseIRInContext(LLVMContextRef ContextRef,
 LLVMTargetRef LLVMLookupTarget(const char *Triple, char **ErrorMessage);
 
 LLVMBool LLVMTargetMachineGetAsmVerbosityDefault(LLVMTargetMachineRef T);
-void LLVMTargetMachineSetAsmVerbosityDefault(LLVMTargetMachineRef T, LLVMBool Value);
 LLVMBool LLVMTargetMachineGetDataSections(LLVMTargetMachineRef T);
 LLVMBool LLVMTargetMachineGetFunctionSections(LLVMTargetMachineRef T);
 void LLVMTargetMachineSetDataSections(LLVMTargetMachineRef T, LLVMBool Value);
