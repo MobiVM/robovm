@@ -156,9 +156,9 @@
 
 /* Support for throwing Java exceptions */
 typedef enum {
-  SWIG_JavaOutOfMemoryError = 1,
-  SWIG_JavaIOException,
-  SWIG_JavaRuntimeException,
+  SWIG_JavaOutOfMemoryError = 1, 
+  SWIG_JavaIOException, 
+  SWIG_JavaRuntimeException, 
   SWIG_JavaIndexOutOfBoundsException,
   SWIG_JavaArithmeticException,
   SWIG_JavaIllegalArgumentException,
@@ -227,7 +227,7 @@ typedef struct LongArray* LongArrayPtr;
         typedef struct MemoryBufferRefOut {
             LLVMMemoryBufferRef value;
         } MemoryBufferRefOut;
-
+    
 SWIGINTERN struct MemoryBufferRefOut *new_MemoryBufferRefOut(void){
           return (MemoryBufferRefOut *) calloc(1,sizeof(LLVMMemoryBufferRef));
         }
@@ -239,7 +239,7 @@ SWIGINTERN void delete_MemoryBufferRefOut(struct MemoryBufferRefOut *self){
         typedef struct ModuleRefOut {
             LLVMModuleRef value;
         } ModuleRefOut;
-
+    
 SWIGINTERN struct ModuleRefOut *new_ModuleRefOut(void){
           return (ModuleRefOut *) calloc(1,sizeof(LLVMModuleRef));
         }
@@ -251,7 +251,7 @@ SWIGINTERN void delete_ModuleRefOut(struct ModuleRefOut *self){
         typedef struct ModuleProviderRefOut {
             LLVMModuleProviderRef value;
         } ModuleProviderRefOut;
-
+    
 SWIGINTERN struct ModuleProviderRefOut *new_ModuleProviderRefOut(void){
           return (ModuleProviderRefOut *) calloc(1,sizeof(LLVMModuleProviderRef));
         }
@@ -263,7 +263,7 @@ SWIGINTERN void delete_ModuleProviderRefOut(struct ModuleProviderRefOut *self){
         typedef struct TargetRefOut {
             LLVMTargetRef value;
         } TargetRefOut;
-
+    
 SWIGINTERN struct TargetRefOut *new_TargetRefOut(void){
           return (TargetRefOut *) calloc(1,sizeof(LLVMTargetRef));
         }
@@ -275,7 +275,7 @@ SWIGINTERN void delete_TargetRefOut(struct TargetRefOut *self){
         typedef struct StringOut {
             charp value;
         } StringOut;
-
+    
 SWIGINTERN struct StringOut *new_StringOut(void){
           return (StringOut *) calloc(1,sizeof(charp));
         }
@@ -287,7 +287,7 @@ SWIGINTERN void delete_StringOut(struct StringOut *self){
         typedef struct IntOut {
             jint value;
         } IntOut;
-
+    
 SWIGINTERN struct IntOut *new_IntOut(void){
           return (IntOut *) calloc(1,sizeof(jint));
         }
@@ -299,7 +299,7 @@ SWIGINTERN void delete_IntOut(struct IntOut *self){
         typedef struct SizeTOut {
             size_t value;
         } SizeTOut;
-
+    
 SWIGINTERN struct SizeTOut *new_SizeTOut(void){
           return (SizeTOut *) calloc(1,sizeof(size_t));
         }
@@ -311,7 +311,7 @@ SWIGINTERN void delete_SizeTOut(struct SizeTOut *self){
         typedef struct LongArrayOut {
             LongArrayPtr value;
         } LongArrayOut;
-
+    
 SWIGINTERN struct LongArrayOut *new_LongArrayOut(void){
           return (LongArrayOut *) calloc(1,sizeof(LongArrayPtr));
         }
@@ -323,7 +323,7 @@ SWIGINTERN void delete_LongArrayOut(struct LongArrayOut *self){
         typedef struct TypeRefArray {
             LLVMTypeRef value;
         } TypeRefArray;
-
+    
 SWIGINTERN struct TypeRefArray *new_TypeRefArray(int nelements){
           return (TypeRefArray *) calloc(nelements,sizeof(LLVMTypeRef));
         }
@@ -340,7 +340,7 @@ SWIGINTERN void TypeRefArray_set(struct TypeRefArray *self,int index,LLVMTypeRef
         typedef struct BasicBlockRefArray {
             LLVMBasicBlockRef value;
         } BasicBlockRefArray;
-
+    
 SWIGINTERN struct BasicBlockRefArray *new_BasicBlockRefArray(int nelements){
           return (BasicBlockRefArray *) calloc(nelements,sizeof(LLVMBasicBlockRef));
         }
@@ -357,7 +357,7 @@ SWIGINTERN void BasicBlockRefArray_set(struct BasicBlockRefArray *self,int index
         typedef struct ValueRefArray {
             LLVMValueRef value;
         } ValueRefArray;
-
+    
 SWIGINTERN struct ValueRefArray *new_ValueRefArray(int nelements){
           return (ValueRefArray *) calloc(nelements,sizeof(LLVMValueRef));
         }
@@ -374,7 +374,7 @@ SWIGINTERN void ValueRefArray_set(struct ValueRefArray *self,int index,LLVMValue
         typedef struct LongArray {
             jlong value;
         } LongArray;
-
+    
 SWIGINTERN struct LongArray *new_LongArray(int nelements){
           return (LongArray *) calloc(nelements,sizeof(jlong));
         }
@@ -391,7 +391,7 @@ SWIGINTERN void LongArray_set(struct LongArray *self,int index,jlong value){
         typedef struct IntArray {
             jint value;
         } IntArray;
-
+    
 SWIGINTERN struct IntArray *new_IntArray(int nelements){
           return (IntArray *) calloc(nelements,sizeof(jint));
         }
@@ -413,11 +413,11 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MemoryBufferRefOut
   jlong jresult = 0 ;
   struct MemoryBufferRefOut *arg1 = (struct MemoryBufferRefOut *) 0 ;
   LLVMMemoryBufferRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct MemoryBufferRefOut **)&jarg1;
+  arg1 = *(struct MemoryBufferRefOut **)&jarg1; 
   result =  ((arg1)->value);
   {
     LLVMMemoryBufferRef * resultptr = (LLVMMemoryBufferRef *) malloc(sizeof(LLVMMemoryBufferRef));
@@ -431,21 +431,21 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MemoryBufferRefOut
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1MemoryBufferRefOut(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   struct MemoryBufferRefOut *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   result = (struct MemoryBufferRefOut *)new_MemoryBufferRefOut();
-  *(struct MemoryBufferRefOut **)&jresult = result;
+  *(struct MemoryBufferRefOut **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1MemoryBufferRefOut(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct MemoryBufferRefOut *arg1 = (struct MemoryBufferRefOut *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct MemoryBufferRefOut **)&jarg1;
+  arg1 = *(struct MemoryBufferRefOut **)&jarg1; 
   delete_MemoryBufferRefOut(arg1);
 }
 
@@ -454,11 +454,11 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ModuleRefOut_1valu
   jlong jresult = 0 ;
   struct ModuleRefOut *arg1 = (struct ModuleRefOut *) 0 ;
   LLVMModuleRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct ModuleRefOut **)&jarg1;
+  arg1 = *(struct ModuleRefOut **)&jarg1; 
   result =  ((arg1)->value);
   {
     LLVMModuleRef * resultptr = (LLVMModuleRef *) malloc(sizeof(LLVMModuleRef));
@@ -472,21 +472,21 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ModuleRefOut_1valu
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1ModuleRefOut(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   struct ModuleRefOut *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   result = (struct ModuleRefOut *)new_ModuleRefOut();
-  *(struct ModuleRefOut **)&jresult = result;
+  *(struct ModuleRefOut **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1ModuleRefOut(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct ModuleRefOut *arg1 = (struct ModuleRefOut *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct ModuleRefOut **)&jarg1;
+  arg1 = *(struct ModuleRefOut **)&jarg1; 
   delete_ModuleRefOut(arg1);
 }
 
@@ -495,11 +495,11 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ModuleProviderRefO
   jlong jresult = 0 ;
   struct ModuleProviderRefOut *arg1 = (struct ModuleProviderRefOut *) 0 ;
   LLVMModuleProviderRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct ModuleProviderRefOut **)&jarg1;
+  arg1 = *(struct ModuleProviderRefOut **)&jarg1; 
   result =  ((arg1)->value);
   {
     LLVMModuleProviderRef * resultptr = (LLVMModuleProviderRef *) malloc(sizeof(LLVMModuleProviderRef));
@@ -513,21 +513,21 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ModuleProviderRefO
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1ModuleProviderRefOut(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   struct ModuleProviderRefOut *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   result = (struct ModuleProviderRefOut *)new_ModuleProviderRefOut();
-  *(struct ModuleProviderRefOut **)&jresult = result;
+  *(struct ModuleProviderRefOut **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1ModuleProviderRefOut(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct ModuleProviderRefOut *arg1 = (struct ModuleProviderRefOut *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct ModuleProviderRefOut **)&jarg1;
+  arg1 = *(struct ModuleProviderRefOut **)&jarg1; 
   delete_ModuleProviderRefOut(arg1);
 }
 
@@ -536,13 +536,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetRefOut_1valu
   jlong jresult = 0 ;
   struct TargetRefOut *arg1 = (struct TargetRefOut *) 0 ;
   LLVMTargetRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct TargetRefOut **)&jarg1;
+  arg1 = *(struct TargetRefOut **)&jarg1; 
   result = (LLVMTargetRef) ((arg1)->value);
-  *(LLVMTargetRef *)&jresult = result;
+  *(LLVMTargetRef *)&jresult = result; 
   return jresult;
 }
 
@@ -550,21 +550,21 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetRefOut_1valu
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1TargetRefOut(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   struct TargetRefOut *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   result = (struct TargetRefOut *)new_TargetRefOut();
-  *(struct TargetRefOut **)&jresult = result;
+  *(struct TargetRefOut **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1TargetRefOut(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct TargetRefOut *arg1 = (struct TargetRefOut *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct TargetRefOut **)&jarg1;
+  arg1 = *(struct TargetRefOut **)&jarg1; 
   delete_TargetRefOut(arg1);
 }
 
@@ -573,11 +573,11 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StringOut_1value
   jstring jresult = 0 ;
   struct StringOut *arg1 = (struct StringOut *) 0 ;
   charp result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct StringOut **)&jarg1;
+  arg1 = *(struct StringOut **)&jarg1; 
   result = (charp) ((arg1)->value);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -587,21 +587,21 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StringOut_1value
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1StringOut(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   struct StringOut *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   result = (struct StringOut *)new_StringOut();
-  *(struct StringOut **)&jresult = result;
+  *(struct StringOut **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1StringOut(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct StringOut *arg1 = (struct StringOut *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct StringOut **)&jarg1;
+  arg1 = *(struct StringOut **)&jarg1; 
   delete_StringOut(arg1);
 }
 
@@ -610,13 +610,13 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntOut_1value_1get(
   jint jresult = 0 ;
   struct IntOut *arg1 = (struct IntOut *) 0 ;
   jint result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct IntOut **)&jarg1;
+  arg1 = *(struct IntOut **)&jarg1; 
   result =  ((arg1)->value);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -624,21 +624,21 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntOut_1value_1get(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1IntOut(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   struct IntOut *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   result = (struct IntOut *)new_IntOut();
-  *(struct IntOut **)&jresult = result;
+  *(struct IntOut **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1IntOut(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct IntOut *arg1 = (struct IntOut *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct IntOut **)&jarg1;
+  arg1 = *(struct IntOut **)&jarg1; 
   delete_IntOut(arg1);
 }
 
@@ -647,13 +647,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SizeTOut_1value_1g
   jlong jresult = 0 ;
   struct SizeTOut *arg1 = (struct SizeTOut *) 0 ;
   size_t result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct SizeTOut **)&jarg1;
+  arg1 = *(struct SizeTOut **)&jarg1; 
   result =  ((arg1)->value);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -661,21 +661,21 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SizeTOut_1value_1g
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1SizeTOut(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   struct SizeTOut *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   result = (struct SizeTOut *)new_SizeTOut();
-  *(struct SizeTOut **)&jresult = result;
+  *(struct SizeTOut **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1SizeTOut(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct SizeTOut *arg1 = (struct SizeTOut *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct SizeTOut **)&jarg1;
+  arg1 = *(struct SizeTOut **)&jarg1; 
   delete_SizeTOut(arg1);
 }
 
@@ -684,13 +684,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LongArrayOut_1valu
   jlong jresult = 0 ;
   struct LongArrayOut *arg1 = (struct LongArrayOut *) 0 ;
   LongArrayPtr result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct LongArrayOut **)&jarg1;
+  arg1 = *(struct LongArrayOut **)&jarg1; 
   result = (LongArrayPtr) ((arg1)->value);
-  *(LongArrayPtr *)&jresult = result;
+  *(LongArrayPtr *)&jresult = result; 
   return jresult;
 }
 
@@ -698,21 +698,21 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LongArrayOut_1valu
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1LongArrayOut(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   struct LongArrayOut *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   result = (struct LongArrayOut *)new_LongArrayOut();
-  *(struct LongArrayOut **)&jresult = result;
+  *(struct LongArrayOut **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1LongArrayOut(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct LongArrayOut *arg1 = (struct LongArrayOut *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct LongArrayOut **)&jarg1;
+  arg1 = *(struct LongArrayOut **)&jarg1; 
   delete_LongArrayOut(arg1);
 }
 
@@ -721,17 +721,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TypeRefArray_1value
   struct TypeRefArray *arg1 = (struct TypeRefArray *) 0 ;
   LLVMTypeRef arg2 ;
   LLVMTypeRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct TypeRefArray **)&jarg1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
+  arg1 = *(struct TypeRefArray **)&jarg1; 
+  argp2 = *(LLVMTypeRef **)&jarg2; 
   if (!argp2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
     return ;
   }
-  arg2 = *argp2;
+  arg2 = *argp2; 
   if (arg1) (arg1)->value = arg2;
 }
 
@@ -740,11 +740,11 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TypeRefArray_1valu
   jlong jresult = 0 ;
   struct TypeRefArray *arg1 = (struct TypeRefArray *) 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct TypeRefArray **)&jarg1;
+  arg1 = *(struct TypeRefArray **)&jarg1; 
   result =  ((arg1)->value);
   {
     LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
@@ -759,22 +759,22 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1TypeRefArray(
   jlong jresult = 0 ;
   int arg1 ;
   struct TypeRefArray *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1;
+  arg1 = (int)jarg1; 
   result = (struct TypeRefArray *)new_TypeRefArray(arg1);
-  *(struct TypeRefArray **)&jresult = result;
+  *(struct TypeRefArray **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1TypeRefArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct TypeRefArray *arg1 = (struct TypeRefArray *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct TypeRefArray **)&jarg1;
+  arg1 = *(struct TypeRefArray **)&jarg1; 
   delete_TypeRefArray(arg1);
 }
 
@@ -784,12 +784,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TypeRefArray_1get(
   struct TypeRefArray *arg1 = (struct TypeRefArray *) 0 ;
   int arg2 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct TypeRefArray **)&jarg1;
-  arg2 = (int)jarg2;
+  arg1 = *(struct TypeRefArray **)&jarg1; 
+  arg2 = (int)jarg2; 
   result = TypeRefArray_get(arg1,arg2);
   {
     LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
@@ -805,18 +805,18 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TypeRefArray_1set(J
   int arg2 ;
   LLVMTypeRef arg3 ;
   LLVMTypeRef *argp3 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct TypeRefArray **)&jarg1;
-  arg2 = (int)jarg2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
+  arg1 = *(struct TypeRefArray **)&jarg1; 
+  arg2 = (int)jarg2; 
+  argp3 = *(LLVMTypeRef **)&jarg3; 
   if (!argp3) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
     return ;
   }
-  arg3 = *argp3;
+  arg3 = *argp3; 
   TypeRefArray_set(arg1,arg2,arg3);
 }
 
@@ -825,17 +825,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BasicBlockRefArray_
   struct BasicBlockRefArray *arg1 = (struct BasicBlockRefArray *) 0 ;
   LLVMBasicBlockRef arg2 ;
   LLVMBasicBlockRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct BasicBlockRefArray **)&jarg1;
-  argp2 = *(LLVMBasicBlockRef **)&jarg2;
+  arg1 = *(struct BasicBlockRefArray **)&jarg1; 
+  argp2 = *(LLVMBasicBlockRef **)&jarg2; 
   if (!argp2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
     return ;
   }
-  arg2 = *argp2;
+  arg2 = *argp2; 
   if (arg1) (arg1)->value = arg2;
 }
 
@@ -844,11 +844,11 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BasicBlockRefArray
   jlong jresult = 0 ;
   struct BasicBlockRefArray *arg1 = (struct BasicBlockRefArray *) 0 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct BasicBlockRefArray **)&jarg1;
+  arg1 = *(struct BasicBlockRefArray **)&jarg1; 
   result =  ((arg1)->value);
   {
     LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
@@ -863,22 +863,22 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1BasicBlockRef
   jlong jresult = 0 ;
   int arg1 ;
   struct BasicBlockRefArray *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1;
+  arg1 = (int)jarg1; 
   result = (struct BasicBlockRefArray *)new_BasicBlockRefArray(arg1);
-  *(struct BasicBlockRefArray **)&jresult = result;
+  *(struct BasicBlockRefArray **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1BasicBlockRefArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct BasicBlockRefArray *arg1 = (struct BasicBlockRefArray *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct BasicBlockRefArray **)&jarg1;
+  arg1 = *(struct BasicBlockRefArray **)&jarg1; 
   delete_BasicBlockRefArray(arg1);
 }
 
@@ -888,12 +888,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BasicBlockRefArray
   struct BasicBlockRefArray *arg1 = (struct BasicBlockRefArray *) 0 ;
   int arg2 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct BasicBlockRefArray **)&jarg1;
-  arg2 = (int)jarg2;
+  arg1 = *(struct BasicBlockRefArray **)&jarg1; 
+  arg2 = (int)jarg2; 
   result = BasicBlockRefArray_get(arg1,arg2);
   {
     LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
@@ -909,18 +909,18 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BasicBlockRefArray_
   int arg2 ;
   LLVMBasicBlockRef arg3 ;
   LLVMBasicBlockRef *argp3 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct BasicBlockRefArray **)&jarg1;
-  arg2 = (int)jarg2;
-  argp3 = *(LLVMBasicBlockRef **)&jarg3;
+  arg1 = *(struct BasicBlockRefArray **)&jarg1; 
+  arg2 = (int)jarg2; 
+  argp3 = *(LLVMBasicBlockRef **)&jarg3; 
   if (!argp3) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
     return ;
   }
-  arg3 = *argp3;
+  arg3 = *argp3; 
   BasicBlockRefArray_set(arg1,arg2,arg3);
 }
 
@@ -929,17 +929,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ValueRefArray_1valu
   struct ValueRefArray *arg1 = (struct ValueRefArray *) 0 ;
   LLVMValueRef arg2 ;
   LLVMValueRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct ValueRefArray **)&jarg1;
-  argp2 = *(LLVMValueRef **)&jarg2;
+  arg1 = *(struct ValueRefArray **)&jarg1; 
+  argp2 = *(LLVMValueRef **)&jarg2; 
   if (!argp2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
     return ;
   }
-  arg2 = *argp2;
+  arg2 = *argp2; 
   if (arg1) (arg1)->value = arg2;
 }
 
@@ -948,11 +948,11 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ValueRefArray_1val
   jlong jresult = 0 ;
   struct ValueRefArray *arg1 = (struct ValueRefArray *) 0 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct ValueRefArray **)&jarg1;
+  arg1 = *(struct ValueRefArray **)&jarg1; 
   result =  ((arg1)->value);
   {
     LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
@@ -967,22 +967,22 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1ValueRefArray
   jlong jresult = 0 ;
   int arg1 ;
   struct ValueRefArray *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1;
+  arg1 = (int)jarg1; 
   result = (struct ValueRefArray *)new_ValueRefArray(arg1);
-  *(struct ValueRefArray **)&jresult = result;
+  *(struct ValueRefArray **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1ValueRefArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct ValueRefArray *arg1 = (struct ValueRefArray *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct ValueRefArray **)&jarg1;
+  arg1 = *(struct ValueRefArray **)&jarg1; 
   delete_ValueRefArray(arg1);
 }
 
@@ -992,12 +992,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ValueRefArray_1get
   struct ValueRefArray *arg1 = (struct ValueRefArray *) 0 ;
   int arg2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct ValueRefArray **)&jarg1;
-  arg2 = (int)jarg2;
+  arg1 = *(struct ValueRefArray **)&jarg1; 
+  arg2 = (int)jarg2; 
   result = ValueRefArray_get(arg1,arg2);
   {
     LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
@@ -1013,18 +1013,18 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ValueRefArray_1set(
   int arg2 ;
   LLVMValueRef arg3 ;
   LLVMValueRef *argp3 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct ValueRefArray **)&jarg1;
-  arg2 = (int)jarg2;
-  argp3 = *(LLVMValueRef **)&jarg3;
+  arg1 = *(struct ValueRefArray **)&jarg1; 
+  arg2 = (int)jarg2; 
+  argp3 = *(LLVMValueRef **)&jarg3; 
   if (!argp3) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
     return ;
   }
-  arg3 = *argp3;
+  arg3 = *argp3; 
   ValueRefArray_set(arg1,arg2,arg3);
 }
 
@@ -1032,12 +1032,12 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ValueRefArray_1set(
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LongArray_1value_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   struct LongArray *arg1 = (struct LongArray *) 0 ;
   jlong arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct LongArray **)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(struct LongArray **)&jarg1; 
+  arg2 = jarg2; 
   if (arg1) (arg1)->value = arg2;
 }
 
@@ -1046,13 +1046,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LongArray_1value_1
   jlong jresult = 0 ;
   struct LongArray *arg1 = (struct LongArray *) 0 ;
   jlong result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct LongArray **)&jarg1;
+  arg1 = *(struct LongArray **)&jarg1; 
   result =  ((arg1)->value);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -1061,22 +1061,22 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1LongArray(JNI
   jlong jresult = 0 ;
   int arg1 ;
   struct LongArray *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1;
+  arg1 = (int)jarg1; 
   result = (struct LongArray *)new_LongArray(arg1);
-  *(struct LongArray **)&jresult = result;
+  *(struct LongArray **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1LongArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct LongArray *arg1 = (struct LongArray *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct LongArray **)&jarg1;
+  arg1 = *(struct LongArray **)&jarg1; 
   delete_LongArray(arg1);
 }
 
@@ -1086,14 +1086,14 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LongArray_1get(JNI
   struct LongArray *arg1 = (struct LongArray *) 0 ;
   int arg2 ;
   jlong result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct LongArray **)&jarg1;
-  arg2 = (int)jarg2;
+  arg1 = *(struct LongArray **)&jarg1; 
+  arg2 = (int)jarg2; 
   result = LongArray_get(arg1,arg2);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -1102,13 +1102,13 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LongArray_1set(JNIE
   struct LongArray *arg1 = (struct LongArray *) 0 ;
   int arg2 ;
   jlong arg3 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct LongArray **)&jarg1;
-  arg2 = (int)jarg2;
-  arg3 = jarg3;
+  arg1 = *(struct LongArray **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = jarg3; 
   LongArray_set(arg1,arg2,arg3);
 }
 
@@ -1116,12 +1116,12 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LongArray_1set(JNIE
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntArray_1value_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   struct IntArray *arg1 = (struct IntArray *) 0 ;
   jint arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct IntArray **)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(struct IntArray **)&jarg1; 
+  arg2 = jarg2; 
   if (arg1) (arg1)->value = arg2;
 }
 
@@ -1130,13 +1130,13 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntArray_1value_1ge
   jint jresult = 0 ;
   struct IntArray *arg1 = (struct IntArray *) 0 ;
   jint result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct IntArray **)&jarg1;
+  arg1 = *(struct IntArray **)&jarg1; 
   result =  ((arg1)->value);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -1145,22 +1145,22 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_new_1IntArray(JNIE
   jlong jresult = 0 ;
   int arg1 ;
   struct IntArray *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = (int)jarg1;
+  arg1 = (int)jarg1; 
   result = (struct IntArray *)new_IntArray(arg1);
-  *(struct IntArray **)&jresult = result;
+  *(struct IntArray **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_delete_1IntArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   struct IntArray *arg1 = (struct IntArray *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(struct IntArray **)&jarg1;
+  arg1 = *(struct IntArray **)&jarg1; 
   delete_IntArray(arg1);
 }
 
@@ -1170,14 +1170,14 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntArray_1get(JNIEn
   struct IntArray *arg1 = (struct IntArray *) 0 ;
   int arg2 ;
   jint result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct IntArray **)&jarg1;
-  arg2 = (int)jarg2;
+  arg1 = *(struct IntArray **)&jarg1; 
+  arg2 = (int)jarg2; 
   result = IntArray_get(arg1,arg2);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -1186,29 +1186,27 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntArray_1set(JNIEn
   struct IntArray *arg1 = (struct IntArray *) 0 ;
   int arg2 ;
   jint arg3 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct IntArray **)&jarg1;
-  arg2 = (int)jarg2;
-  arg3 = jarg3;
+  arg1 = *(struct IntArray **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = jarg3; 
   IntArray_set(arg1,arg2,arg3);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InitializeCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassRegistryRef arg1 ;
-  LLVMPassRegistryRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassRegistryRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassRegistryRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassRegistryRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassRegistryRef*)&$result = arg1;
+  
   LLVMInitializeCore(arg1);
 }
 
@@ -1224,7 +1222,7 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateMessage(JN
   jstring jresult = 0 ;
   char *arg1 = (char *) 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   arg1 = 0;
@@ -1241,7 +1239,7 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateMessage(JN
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeMessage(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   char *arg1 = (char *) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   arg1 = 0;
@@ -1257,15 +1255,13 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeMessage(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ContextCreate(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMContextRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMContextCreate();
-  {
-    LLVMContextRef * resultptr = (LLVMContextRef *) malloc(sizeof(LLVMContextRef));
-    memmove(resultptr, &result, sizeof(LLVMContextRef));
-    *(LLVMContextRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMContextRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -1273,15 +1269,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ContextCreate(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetGlobalContext(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMContextRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMGetGlobalContext();
-  {
-    LLVMContextRef * resultptr = (LLVMContextRef *) malloc(sizeof(LLVMContextRef));
-    memmove(resultptr, &result, sizeof(LLVMContextRef));
-    *(LLVMContextRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMContextRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -1289,19 +1283,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetGlobalContext(J
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ContextGetDiagnosticHandler(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMDiagnosticHandler result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = (LLVMDiagnosticHandler)LLVMContextGetDiagnosticHandler(arg1);
-  *(LLVMDiagnosticHandler *)&jresult = result;
+  *(LLVMDiagnosticHandler *)&jresult = result; 
   return jresult;
 }
 
@@ -1309,35 +1301,31 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ContextGetDiagnost
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ContextGetDiagnosticContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   void *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = (void *)LLVMContextGetDiagnosticContext(arg1);
-  *(void **)&jresult = result;
+  *(void **)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ContextDispose(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   LLVMContextDispose(arg1);
 }
 
@@ -1345,17 +1333,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ContextDispose(JNIE
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetDiagInfoDescription(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMDiagnosticInfoRef arg1 ;
-  LLVMDiagnosticInfoRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMDiagnosticInfoRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMDiagnosticInfoRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMDiagnosticInfoRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMDiagnosticInfoRef*)&$result = arg1;
+  
   result = (char *)LLVMGetDiagInfoDescription(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -1365,19 +1351,17 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetDiagInfoDescr
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetDiagInfoSeverity(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMDiagnosticInfoRef arg1 ;
-  LLVMDiagnosticInfoRef *argp1 ;
   LLVMDiagnosticSeverity result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMDiagnosticInfoRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMDiagnosticInfoRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMDiagnosticInfoRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMDiagnosticInfoRef*)&$result = arg1;
+  
   result = (LLVMDiagnosticSeverity)LLVMGetDiagInfoSeverity(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -1387,17 +1371,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetMDKindIDInContex
   LLVMContextRef arg1 ;
   char *arg2 = (char *) 0 ;
   unsigned int arg3 ;
-  LLVMContextRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   {
     if (!jarg2) {
       SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
@@ -1408,7 +1390,7 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetMDKindIDInContex
     arg3 = strlen(arg2);
   }
   result = (unsigned int)LLVMGetMDKindIDInContext(arg1,(char const *)arg2,arg3);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   {
     (*jenv)->ReleaseStringUTFChars(jenv, jarg2, arg2);
   }
@@ -1421,7 +1403,7 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetMDKindID(JNIEnv 
   char *arg1 = (char *) 0 ;
   unsigned int arg2 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
   {
@@ -1434,7 +1416,7 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetMDKindID(JNIEnv 
     arg2 = strlen(arg1);
   }
   result = (unsigned int)LLVMGetMDKindID((char const *)arg1,arg2);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   {
     (*jenv)->ReleaseStringUTFChars(jenv, jarg1, arg1);
   }
@@ -1447,7 +1429,7 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetEnumAttributeKin
   char *arg1 = (char *) 0 ;
   size_t arg2 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
   arg1 = 0;
@@ -1455,9 +1437,9 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetEnumAttributeKin
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  arg2 = (size_t)jarg2;
+  arg2 = (size_t)jarg2; 
   result = (unsigned int)LLVMGetEnumAttributeKindForName((char const *)arg1,arg2);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
@@ -1466,11 +1448,11 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetEnumAttributeKin
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLastEnumAttributeKind(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
   result = (unsigned int)LLVMGetLastEnumAttributeKind();
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -1480,25 +1462,21 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateEnumAttribut
   LLVMContextRef arg1 ;
   unsigned int arg2 ;
   uint64_t arg3 ;
-  LLVMContextRef *argp1 ;
   LLVMAttributeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  arg3 = jarg3;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  arg3 = jarg3; 
   result = LLVMCreateEnumAttribute(arg1,arg2,arg3);
-  {
-    LLVMAttributeRef * resultptr = (LLVMAttributeRef *) malloc(sizeof(LLVMAttributeRef));
-    memmove(resultptr, &result, sizeof(LLVMAttributeRef));
-    *(LLVMAttributeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMAttributeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -1506,19 +1484,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateEnumAttribut
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetEnumAttributeKind(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMAttributeRef arg1 ;
-  LLVMAttributeRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMAttributeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMAttributeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMAttributeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMAttributeRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetEnumAttributeKind(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -1526,19 +1502,17 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetEnumAttributeKin
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetEnumAttributeValue(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMAttributeRef arg1 ;
-  LLVMAttributeRef *argp1 ;
   uint64_t result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMAttributeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMAttributeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMAttributeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMAttributeRef*)&$result = arg1;
+  
   result = LLVMGetEnumAttributeValue(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -1550,35 +1524,31 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateStringAttrib
   unsigned int arg3 ;
   char *arg4 = (char *) 0 ;
   unsigned int arg5 ;
-  LLVMContextRef *argp1 ;
   LLVMAttributeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
-  arg3 = (unsigned int)jarg3;
+  arg3 = (unsigned int)jarg3; 
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
-  arg5 = (unsigned int)jarg5;
+  arg5 = (unsigned int)jarg5; 
   result = LLVMCreateStringAttribute(arg1,(char const *)arg2,arg3,(char const *)arg4,arg5);
-  {
-    LLVMAttributeRef * resultptr = (LLVMAttributeRef *) malloc(sizeof(LLVMAttributeRef));
-    memmove(resultptr, &result, sizeof(LLVMAttributeRef));
-    *(LLVMAttributeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMAttributeRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
   return jresult;
@@ -1589,18 +1559,16 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetStringAttribu
   jstring jresult = 0 ;
   LLVMAttributeRef arg1 ;
   unsigned int *arg2 = (unsigned int *) 0 ;
-  LLVMAttributeRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMAttributeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMAttributeRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(unsigned int **)&jarg2;
+  
+  arg1 = *(LLVMAttributeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMAttributeRef*)&$result = arg1;
+  
+  arg2 = *(unsigned int **)&jarg2; 
   result = (char *)LLVMGetStringAttributeKind(arg1,arg2);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -1611,18 +1579,16 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetStringAttribu
   jstring jresult = 0 ;
   LLVMAttributeRef arg1 ;
   unsigned int *arg2 = (unsigned int *) 0 ;
-  LLVMAttributeRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMAttributeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMAttributeRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(unsigned int **)&jarg2;
+  
+  arg1 = *(LLVMAttributeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMAttributeRef*)&$result = arg1;
+  
+  arg2 = *(unsigned int **)&jarg2; 
   result = (char *)LLVMGetStringAttributeValue(arg1,arg2);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -1632,19 +1598,17 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetStringAttribu
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsEnumAttribute(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMAttributeRef arg1 ;
-  LLVMAttributeRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMAttributeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMAttributeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMAttributeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMAttributeRef*)&$result = arg1;
+  
   result = LLVMIsEnumAttribute(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -1652,19 +1616,17 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsEnumAttribute
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsStringAttribute(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMAttributeRef arg1 ;
-  LLVMAttributeRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMAttributeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMAttributeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMAttributeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMAttributeRef*)&$result = arg1;
+  
   result = LLVMIsStringAttribute(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -1673,7 +1635,7 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ModuleCreateWithNa
   jlong jresult = 0 ;
   char *arg1 = (char *) 0 ;
   LLVMModuleRef result;
-
+  
   (void)jenv;
   (void)jcls;
   arg1 = 0;
@@ -1682,11 +1644,9 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ModuleCreateWithNa
     if (!arg1) return 0;
   }
   result = LLVMModuleCreateWithName((char const *)arg1);
-  {
-    LLVMModuleRef * resultptr = (LLVMModuleRef *) malloc(sizeof(LLVMModuleRef));
-    memmove(resultptr, &result, sizeof(LLVMModuleRef));
-    *(LLVMModuleRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMModuleRef*)&jresult = result;
+  
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
@@ -1696,9 +1656,8 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ModuleCreateWithNa
   jlong jresult = 0 ;
   char *arg1 = (char *) 0 ;
   LLVMContextRef arg2 ;
-  LLVMContextRef *argp2 ;
   LLVMModuleRef result;
-
+  
   (void)jenv;
   (void)jcls;
   arg1 = 0;
@@ -1706,18 +1665,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ModuleCreateWithNa
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  argp2 = *(LLVMContextRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg2 = *(LLVMContextRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMContextRef*)&$result = arg2;
+  
   result = LLVMModuleCreateWithNameInContext((char const *)arg1,arg2);
-  {
-    LLVMModuleRef * resultptr = (LLVMModuleRef *) malloc(sizeof(LLVMModuleRef));
-    memmove(resultptr, &result, sizeof(LLVMModuleRef));
-    *(LLVMModuleRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMModuleRef*)&jresult = result;
+  
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
@@ -1726,39 +1682,33 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ModuleCreateWithNa
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CloneModule(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   LLVMModuleRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   result = LLVMCloneModule(arg1);
-  {
-    LLVMModuleRef * resultptr = (LLVMModuleRef *) malloc(sizeof(LLVMModuleRef));
-    memmove(resultptr, &result, sizeof(LLVMModuleRef));
-    *(LLVMModuleRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMModuleRef*)&jresult = result;
+  
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeModule(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   LLVMDisposeModule(arg1);
 }
 
@@ -1767,18 +1717,16 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetModuleIdentif
   jstring jresult = 0 ;
   LLVMModuleRef arg1 ;
   size_t *arg2 = (size_t *) 0 ;
-  LLVMModuleRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(size_t **)&jarg2;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
+  arg2 = *(size_t **)&jarg2; 
   result = (char *)LLVMGetModuleIdentifier(arg1,arg2);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -1789,22 +1737,20 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetModuleIdentifier
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
   size_t arg3 ;
-  LLVMModuleRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return ;
   }
-  arg3 = (size_t)jarg3;
+  arg3 = (size_t)jarg3; 
   LLVMSetModuleIdentifier(arg1,(char const *)arg2,arg3);
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
@@ -1813,17 +1759,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetModuleIdentifier
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetDataLayoutStr(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   result = (char *)LLVMGetDataLayoutStr(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -1833,17 +1777,15 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetDataLayoutStr
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetDataLayout(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   result = (char *)LLVMGetDataLayout(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -1853,16 +1795,14 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetDataLayout(JN
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetDataLayout(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMModuleRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
@@ -1876,17 +1816,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetDataLayout(JNIEn
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTarget(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   result = (char *)LLVMGetTarget(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -1896,16 +1834,14 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTarget(JNIEnv
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetTarget(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMModuleRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
@@ -1918,16 +1854,14 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetTarget(JNIEnv *j
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DumpModule(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   LLVMDumpModule(arg1);
 }
 
@@ -1937,26 +1871,24 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PrintModuleToFi
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
   char **arg3 = (char **) 0 ;
-  LLVMModuleRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
-  arg3 = *(char ***)&jarg3;
+  arg3 = *(char ***)&jarg3; 
   result = LLVMPrintModuleToFile(arg1,(char const *)arg2,arg3);
-  jresult = result;
+  jresult = result; 
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
@@ -1965,17 +1897,15 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PrintModuleToFi
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PrintModuleToString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   result = (char *)LLVMPrintModuleToString(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -1985,16 +1915,14 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PrintModuleToStr
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetModuleInlineAsm(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMModuleRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
@@ -2008,23 +1936,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetModuleInlineAsm(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetModuleContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   LLVMContextRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   result = LLVMGetModuleContext(arg1);
-  {
-    LLVMContextRef * resultptr = (LLVMContextRef *) malloc(sizeof(LLVMContextRef));
-    memmove(resultptr, &result, sizeof(LLVMContextRef));
-    *(LLVMContextRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMContextRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2033,28 +1957,24 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTypeByName(JNIE
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMModuleRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
   result = LLVMGetTypeByName(arg1,(char const *)arg2);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
@@ -2064,24 +1984,22 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNamedMetadataNum
   jint jresult = 0 ;
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMModuleRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
   result = (unsigned int)LLVMGetNamedMetadataNumOperands(arg1,(char const *)arg2);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
@@ -2091,23 +2009,21 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNamedMetadataOpe
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
   LLVMValueRef *arg3 = (LLVMValueRef *) 0 ;
-  LLVMModuleRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return ;
   }
-  arg3 = *(LLVMValueRef **)&jarg3;
+  arg3 = *(LLVMValueRef **)&jarg3; 
   LLVMGetNamedMetadataOperands(arg1,(char const *)arg2,arg3);
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
@@ -2117,28 +2033,24 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddNamedMetadataOpe
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
   LLVMValueRef arg3 ;
-  LLVMModuleRef *argp1 ;
-  LLVMValueRef *argp3 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return ;
   }
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg3 = *argp3;
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   LLVMAddNamedMetadataOperand(arg1,(char const *)arg2,arg3);
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
 }
@@ -2149,42 +2061,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddFunction(JNIEnv
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
   LLVMTypeRef arg3 ;
-  LLVMModuleRef *argp1 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
+  result = LLVMAddFunction(arg1,(char const *)arg2,arg3);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg3 = *argp3;
-  result = LLVMAddFunction(arg1,(char const *)arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -2193,35 +2099,31 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNamedFunction(J
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMModuleRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
   result = LLVMGetNamedFunction(arg1,(char const *)arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -2229,29 +2131,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNamedFunction(J
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstFunction(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
+  result = LLVMGetFirstFunction(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetFirstFunction(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -2259,29 +2157,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstFunction(J
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLastFunction(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
+  result = LLVMGetLastFunction(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetLastFunction(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -2289,29 +2183,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLastFunction(JN
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextFunction(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetNextFunction(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetNextFunction(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -2319,29 +2209,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextFunction(JN
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetPreviousFunction(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetPreviousFunction(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetPreviousFunction(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -2349,19 +2235,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetPreviousFunctio
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTypeKind(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMTypeKind result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = (LLVMTypeKind)LLVMGetTypeKind(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -2369,19 +2253,17 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTypeKind(JNIEnv 
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TypeIsSized(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = LLVMTypeIsSized(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -2389,39 +2271,33 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TypeIsSized(JNI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTypeContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMContextRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = LLVMGetTypeContext(arg1);
-  {
-    LLVMContextRef * resultptr = (LLVMContextRef *) malloc(sizeof(LLVMContextRef));
-    memmove(resultptr, &result, sizeof(LLVMContextRef));
-    *(LLVMContextRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMContextRef*)&jresult = result;
+  
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DumpType(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   LLVMDumpType(arg1);
 }
 
@@ -2429,17 +2305,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DumpType(JNIEnv *je
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PrintTypeToString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = (char *)LLVMPrintTypeToString(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -2449,23 +2323,19 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PrintTypeToStrin
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int1TypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMInt1TypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2473,23 +2343,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int1TypeInContext(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int8TypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMInt8TypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2497,23 +2363,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int8TypeInContext(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int16TypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMInt16TypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2521,23 +2383,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int16TypeInContext
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int32TypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMInt32TypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2545,23 +2403,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int32TypeInContext
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int64TypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMInt64TypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2569,23 +2423,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int64TypeInContext
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int128TypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMInt128TypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2594,24 +2444,20 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntTypeInContext(J
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
   unsigned int arg2 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   result = LLVMIntTypeInContext(arg1,arg2);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2619,15 +2465,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntTypeInContext(J
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int1Type(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMInt1Type();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2635,15 +2479,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int1Type(JNIEnv *j
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int8Type(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMInt8Type();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2651,15 +2493,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int8Type(JNIEnv *j
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int16Type(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMInt16Type();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2667,15 +2507,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int16Type(JNIEnv *
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int32Type(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMInt32Type();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2683,15 +2521,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int32Type(JNIEnv *
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int64Type(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMInt64Type();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2699,15 +2535,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int64Type(JNIEnv *
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_Int128Type(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMInt128Type();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2716,16 +2550,14 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntType(JNIEnv *je
   jlong jresult = 0 ;
   unsigned int arg1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = (unsigned int)jarg1;
+  arg1 = (unsigned int)jarg1; 
   result = LLVMIntType(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2733,19 +2565,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntType(JNIEnv *je
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetIntTypeWidth(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetIntTypeWidth(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -2753,23 +2583,19 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetIntTypeWidth(JNI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_HalfTypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMHalfTypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2777,23 +2603,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_HalfTypeInContext(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_FloatTypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMFloatTypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2801,23 +2623,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_FloatTypeInContext
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DoubleTypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMDoubleTypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2825,23 +2643,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DoubleTypeInContex
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_X86FP80TypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMX86FP80TypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2849,23 +2663,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_X86FP80TypeInConte
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_FP128TypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMFP128TypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2873,23 +2683,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_FP128TypeInContext
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PPCFP128TypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMPPCFP128TypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2897,15 +2703,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PPCFP128TypeInCont
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_HalfType(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMHalfType();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2913,15 +2717,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_HalfType(JNIEnv *j
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_FloatType(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMFloatType();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2929,15 +2731,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_FloatType(JNIEnv *
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DoubleType(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMDoubleType();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2945,15 +2745,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DoubleType(JNIEnv 
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_X86FP80Type(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMX86FP80Type();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2961,15 +2759,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_X86FP80Type(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_FP128Type(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMFP128Type();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2977,15 +2773,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_FP128Type(JNIEnv *
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PPCFP128Type(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMPPCFP128Type();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -2996,27 +2790,23 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_FunctionType(JNIEn
   LLVMTypeRef *arg2 = (LLVMTypeRef *) 0 ;
   unsigned int arg3 ;
   LLVMBool arg4 ;
-  LLVMTypeRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMTypeRef **)&jarg2;
-  arg3 = (unsigned int)jarg3;
-  arg4 = jarg4;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  arg2 = *(LLVMTypeRef **)&jarg2; 
+  arg3 = (unsigned int)jarg3; 
+  arg4 = jarg4; 
   result = LLVMFunctionType(arg1,arg2,arg3,arg4);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3024,19 +2814,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_FunctionType(JNIEn
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsFunctionVarArg(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = LLVMIsFunctionVarArg(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -3044,23 +2832,19 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsFunctionVarAr
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetReturnType(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = LLVMGetReturnType(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3068,19 +2852,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetReturnType(JNIE
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CountParamTypes(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMCountParamTypes(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -3088,18 +2870,16 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CountParamTypes(JNI
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetParamTypes(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jobject jarg2_) {
   LLVMTypeRef arg1 ;
   LLVMTypeRef *arg2 = (LLVMTypeRef *) 0 ;
-  LLVMTypeRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMTypeRef **)&jarg2;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  arg2 = *(LLVMTypeRef **)&jarg2; 
   LLVMGetParamTypes(arg1,arg2);
 }
 
@@ -3110,27 +2890,23 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StructTypeInContex
   LLVMTypeRef *arg2 = (LLVMTypeRef *) 0 ;
   unsigned int arg3 ;
   LLVMBool arg4 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMTypeRef **)&jarg2;
-  arg3 = (unsigned int)jarg3;
-  arg4 = jarg4;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  arg2 = *(LLVMTypeRef **)&jarg2; 
+  arg3 = (unsigned int)jarg3; 
+  arg4 = jarg4; 
   result = LLVMStructTypeInContext(arg1,arg2,arg3,arg4);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3141,19 +2917,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StructType(JNIEnv 
   unsigned int arg2 ;
   LLVMBool arg3 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(LLVMTypeRef **)&jarg1;
-  arg2 = (unsigned int)jarg2;
-  arg3 = jarg3;
+  arg1 = *(LLVMTypeRef **)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  arg3 = jarg3; 
   result = LLVMStructType(arg1,arg2,arg3);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3162,28 +2936,24 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StructCreateNamed(
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
   result = LLVMStructCreateNamed(arg1,(char const *)arg2);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
@@ -3192,17 +2962,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StructCreateNamed(
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetStructName(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = (char *)LLVMGetStructName(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -3214,20 +2982,18 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StructSetBody(JNIEn
   LLVMTypeRef *arg2 = (LLVMTypeRef *) 0 ;
   unsigned int arg3 ;
   LLVMBool arg4 ;
-  LLVMTypeRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMTypeRef **)&jarg2;
-  arg3 = (unsigned int)jarg3;
-  arg4 = jarg4;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  arg2 = *(LLVMTypeRef **)&jarg2; 
+  arg3 = (unsigned int)jarg3; 
+  arg4 = jarg4; 
   LLVMStructSetBody(arg1,arg2,arg3,arg4);
 }
 
@@ -3235,19 +3001,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StructSetBody(JNIEn
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CountStructElementTypes(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMCountStructElementTypes(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -3255,18 +3019,16 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CountStructElementT
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetStructElementTypes(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jobject jarg2_) {
   LLVMTypeRef arg1 ;
   LLVMTypeRef *arg2 = (LLVMTypeRef *) 0 ;
-  LLVMTypeRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMTypeRef **)&jarg2;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  arg2 = *(LLVMTypeRef **)&jarg2; 
   LLVMGetStructElementTypes(arg1,arg2);
 }
 
@@ -3275,24 +3037,20 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StructGetTypeAtInd
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
   unsigned int arg2 ;
-  LLVMTypeRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   result = LLVMStructGetTypeAtIndex(arg1,arg2);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3300,19 +3058,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StructGetTypeAtInd
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsPackedStruct(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = LLVMIsPackedStruct(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -3320,19 +3076,17 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsPackedStruct(
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsOpaqueStruct(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = LLVMIsOpaqueStruct(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -3340,23 +3094,19 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsOpaqueStruct(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetElementType(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = LLVMGetElementType(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3365,24 +3115,20 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ArrayType(JNIEnv *
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
   unsigned int arg2 ;
-  LLVMTypeRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   result = LLVMArrayType(arg1,arg2);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3390,19 +3136,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ArrayType(JNIEnv *
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetArrayLength(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetArrayLength(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -3411,24 +3155,20 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PointerType(JNIEnv
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
   unsigned int arg2 ;
-  LLVMTypeRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   result = LLVMPointerType(arg1,arg2);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3436,19 +3176,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PointerType(JNIEnv
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetPointerAddressSpace(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetPointerAddressSpace(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -3457,24 +3195,20 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_VectorType(JNIEnv 
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
   unsigned int arg2 ;
-  LLVMTypeRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   result = LLVMVectorType(arg1,arg2);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3482,19 +3216,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_VectorType(JNIEnv 
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetVectorSize(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetVectorSize(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -3502,23 +3234,19 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetVectorSize(JNIEn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_VoidTypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMVoidTypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3526,23 +3254,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_VoidTypeInContext(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LabelTypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMLabelTypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3550,23 +3274,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LabelTypeInContext
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_X86MMXTypeInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMX86MMXTypeInContext(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3574,15 +3294,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_X86MMXTypeInContex
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_VoidType(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMVoidType();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3590,15 +3308,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_VoidType(JNIEnv *j
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LabelType(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMLabelType();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3606,15 +3322,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LabelType(JNIEnv *
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_X86MMXType(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMX86MMXType();
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3622,23 +3336,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_X86MMXType(JNIEnv 
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TypeOf(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMTypeOf(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -3646,19 +3356,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TypeOf(JNIEnv *jen
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetValueKind(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueKind result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMValueKind)LLVMGetValueKind(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -3666,17 +3374,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetValueKind(JNIEnv
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetValueName(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (char *)LLVMGetValueName(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -3686,16 +3392,14 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetValueName(JNI
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetValueName(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
   LLVMValueRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
@@ -3708,16 +3412,14 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetValueName(JNIEnv
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DumpValue(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   LLVMDumpValue(arg1);
 }
 
@@ -3725,17 +3427,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DumpValue(JNIEnv *j
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PrintValueToString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (char *)LLVMPrintValueToString(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -3745,23 +3445,19 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PrintValueToStri
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ReplaceAllUsesWith(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   LLVMReplaceAllUsesWith(arg1,arg2);
 }
 
@@ -3769,19 +3465,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ReplaceAllUsesWith(
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsConstant(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsConstant(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -3789,19 +3483,17 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsConstant(JNIE
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsUndef(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsUndef(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -3809,29 +3501,25 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsUndef(JNIEnv 
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAArgument(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAArgument(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAArgument(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -3839,29 +3527,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAArgument(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsABasicBlock(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsABasicBlock(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsABasicBlock(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -3869,29 +3553,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsABasicBlock(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAInlineAsm(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAInlineAsm(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAInlineAsm(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -3899,29 +3579,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAInlineAsm(JNIEn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAUser(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAUser(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAUser(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -3929,29 +3605,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAUser(JNIEnv *je
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstant(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstant(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstant(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -3959,29 +3631,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstant(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsABlockAddress(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsABlockAddress(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsABlockAddress(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -3989,29 +3657,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsABlockAddress(JN
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantAggregateZero(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstantAggregateZero(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstantAggregateZero(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4019,29 +3683,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantAggrega
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstantArray(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstantArray(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4049,29 +3709,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantArray(J
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantDataSequential(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstantDataSequential(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstantDataSequential(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4079,29 +3735,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantDataSeq
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantDataArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstantDataArray(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstantDataArray(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4109,29 +3761,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantDataArr
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantDataVector(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstantDataVector(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstantDataVector(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4139,29 +3787,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantDataVec
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantExpr(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstantExpr(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstantExpr(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4169,29 +3813,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantExpr(JN
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantFP(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstantFP(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstantFP(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4199,29 +3839,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantFP(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantInt(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstantInt(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstantInt(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4229,29 +3865,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantInt(JNI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantPointerNull(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstantPointerNull(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstantPointerNull(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4259,29 +3891,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantPointer
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantStruct(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstantStruct(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstantStruct(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4289,29 +3917,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantStruct(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantTokenNone(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstantTokenNone(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstantTokenNone(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4319,29 +3943,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantTokenNo
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantVector(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAConstantVector(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAConstantVector(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4349,29 +3969,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAConstantVector(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAGlobalValue(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAGlobalValue(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAGlobalValue(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4379,29 +3995,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAGlobalValue(JNI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAGlobalAlias(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAGlobalAlias(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAGlobalAlias(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4409,29 +4021,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAGlobalAlias(JNI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAGlobalObject(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAGlobalObject(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAGlobalObject(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4439,29 +4047,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAGlobalObject(JN
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFunction(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAFunction(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAFunction(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4469,29 +4073,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFunction(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAGlobalVariable(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAGlobalVariable(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAGlobalVariable(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4499,29 +4099,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAGlobalVariable(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAUndefValue(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAUndefValue(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAUndefValue(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4529,29 +4125,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAUndefValue(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAInstruction(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAInstruction(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAInstruction(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4559,29 +4151,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAInstruction(JNI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsABinaryOperator(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsABinaryOperator(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsABinaryOperator(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4589,29 +4177,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsABinaryOperator(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACallInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsACallInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsACallInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4619,29 +4203,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACallInst(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAIntrinsicInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAIntrinsicInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAIntrinsicInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4649,29 +4229,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAIntrinsicInst(J
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsADbgInfoIntrinsic(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsADbgInfoIntrinsic(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsADbgInfoIntrinsic(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4679,29 +4255,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsADbgInfoIntrinsi
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsADbgDeclareInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsADbgDeclareInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsADbgDeclareInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4709,29 +4281,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsADbgDeclareInst(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAMemIntrinsic(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAMemIntrinsic(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAMemIntrinsic(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4739,29 +4307,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAMemIntrinsic(JN
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAMemCpyInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAMemCpyInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAMemCpyInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4769,29 +4333,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAMemCpyInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAMemMoveInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAMemMoveInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAMemMoveInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4799,29 +4359,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAMemMoveInst(JNI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAMemSetInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAMemSetInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAMemSetInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4829,29 +4385,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAMemSetInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACmpInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsACmpInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsACmpInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4859,29 +4411,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACmpInst(JNIEnv 
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFCmpInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAFCmpInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAFCmpInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4889,29 +4437,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFCmpInst(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAICmpInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAICmpInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAICmpInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4919,29 +4463,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAICmpInst(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAExtractElementInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAExtractElementInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAExtractElementInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4949,29 +4489,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAExtractElementI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAGetElementPtrInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAGetElementPtrInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAGetElementPtrInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -4979,29 +4515,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAGetElementPtrIn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAInsertElementInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAInsertElementInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAInsertElementInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5009,29 +4541,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAInsertElementIn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAInsertValueInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAInsertValueInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAInsertValueInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5039,29 +4567,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAInsertValueInst
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsALandingPadInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsALandingPadInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsALandingPadInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5069,29 +4593,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsALandingPadInst(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAPHINode(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAPHINode(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAPHINode(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5099,29 +4619,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAPHINode(JNIEnv 
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsASelectInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsASelectInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsASelectInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5129,29 +4645,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsASelectInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAShuffleVectorInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAShuffleVectorInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAShuffleVectorInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5159,29 +4671,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAShuffleVectorIn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAStoreInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAStoreInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAStoreInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5189,29 +4697,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAStoreInst(JNIEn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsATerminatorInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsATerminatorInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsATerminatorInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5219,29 +4723,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsATerminatorInst(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsABranchInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsABranchInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsABranchInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5249,29 +4749,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsABranchInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAIndirectBrInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAIndirectBrInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAIndirectBrInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5279,29 +4775,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAIndirectBrInst(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAInvokeInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAInvokeInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAInvokeInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5309,29 +4801,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAInvokeInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAReturnInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAReturnInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAReturnInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5339,29 +4827,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAReturnInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsASwitchInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsASwitchInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsASwitchInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5369,29 +4853,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsASwitchInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAUnreachableInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAUnreachableInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAUnreachableInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5399,29 +4879,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAUnreachableInst
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAResumeInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAResumeInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAResumeInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5429,29 +4905,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAResumeInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACleanupReturnInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsACleanupReturnInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsACleanupReturnInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5459,29 +4931,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACleanupReturnIn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACatchReturnInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsACatchReturnInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsACatchReturnInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5489,29 +4957,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACatchReturnInst
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFuncletPadInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAFuncletPadInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAFuncletPadInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5519,29 +4983,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFuncletPadInst(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACatchPadInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsACatchPadInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsACatchPadInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5549,29 +5009,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACatchPadInst(JN
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACleanupPadInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsACleanupPadInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsACleanupPadInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5579,29 +5035,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACleanupPadInst(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAUnaryInstruction(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAUnaryInstruction(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAUnaryInstruction(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5609,29 +5061,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAUnaryInstructio
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAAllocaInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAAllocaInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAAllocaInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5639,29 +5087,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAAllocaInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACastInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsACastInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsACastInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5669,29 +5113,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsACastInst(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAAddrSpaceCastInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAAddrSpaceCastInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAAddrSpaceCastInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5699,29 +5139,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAAddrSpaceCastIn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsABitCastInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsABitCastInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsABitCastInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5729,29 +5165,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsABitCastInst(JNI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFPExtInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAFPExtInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAFPExtInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5759,29 +5191,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFPExtInst(JNIEn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFPToSIInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAFPToSIInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAFPToSIInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5789,29 +5217,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFPToSIInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFPToUIInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAFPToUIInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAFPToUIInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5819,29 +5243,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFPToUIInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFPTruncInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAFPTruncInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAFPTruncInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5849,29 +5269,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAFPTruncInst(JNI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAIntToPtrInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAIntToPtrInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAIntToPtrInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5879,29 +5295,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAIntToPtrInst(JN
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAPtrToIntInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAPtrToIntInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAPtrToIntInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5909,29 +5321,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAPtrToIntInst(JN
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsASExtInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsASExtInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsASExtInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5939,29 +5347,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsASExtInst(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsASIToFPInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsASIToFPInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsASIToFPInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5969,29 +5373,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsASIToFPInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsATruncInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsATruncInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsATruncInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -5999,29 +5399,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsATruncInst(JNIEn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAUIToFPInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAUIToFPInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAUIToFPInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6029,29 +5425,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAUIToFPInst(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAZExtInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAZExtInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAZExtInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6059,29 +5451,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAZExtInst(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAExtractValueInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAExtractValueInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAExtractValueInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6089,29 +5477,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAExtractValueIns
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsALoadInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsALoadInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsALoadInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6119,29 +5503,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsALoadInst(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAVAArgInst(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAVAArgInst(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAVAArgInst(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6149,29 +5529,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAVAArgInst(JNIEn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAMDNode(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAMDNode(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAMDNode(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6179,29 +5555,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAMDNode(JNIEnv *
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAMDString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMIsAMDString(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMIsAMDString(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6209,23 +5581,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAMDString(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstUse(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMUseRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMGetFirstUse(arg1);
-  {
-    LLVMUseRef * resultptr = (LLVMUseRef *) malloc(sizeof(LLVMUseRef));
-    memmove(resultptr, &result, sizeof(LLVMUseRef));
-    *(LLVMUseRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMUseRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -6233,23 +5601,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstUse(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextUse(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMUseRef arg1 ;
-  LLVMUseRef *argp1 ;
   LLVMUseRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMUseRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMUseRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMUseRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMUseRef*)&$result = arg1;
+  
   result = LLVMGetNextUse(arg1);
-  {
-    LLVMUseRef * resultptr = (LLVMUseRef *) malloc(sizeof(LLVMUseRef));
-    memmove(resultptr, &result, sizeof(LLVMUseRef));
-    *(LLVMUseRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMUseRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -6257,29 +5621,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextUse(JNIEnv 
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetUser(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMUseRef arg1 ;
-  LLVMUseRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMUseRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMUseRef");
+  
+  arg1 = *(LLVMUseRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMUseRef*)&$result = arg1;
+  
+  result = LLVMGetUser(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetUser(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6287,29 +5647,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetUser(JNIEnv *je
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetUsedValue(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMUseRef arg1 ;
-  LLVMUseRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMUseRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMUseRef");
+  
+  arg1 = *(LLVMUseRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMUseRef*)&$result = arg1;
+  
+  result = LLVMGetUsedValue(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetUsedValue(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6318,30 +5674,26 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetOperand(JNIEnv 
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  result = LLVMGetOperand(arg1,arg2);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  result = LLVMGetOperand(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6350,24 +5702,20 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetOperandUse(JNIE
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
   LLVMUseRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   result = LLVMGetOperandUse(arg1,arg2);
-  {
-    LLVMUseRef * resultptr = (LLVMUseRef *) malloc(sizeof(LLVMUseRef));
-    memmove(resultptr, &result, sizeof(LLVMUseRef));
-    *(LLVMUseRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMUseRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -6376,24 +5724,20 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetOperand(JNIEnv *
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
   LLVMValueRef arg3 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp3 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   LLVMSetOperand(arg1,arg2,arg3);
 }
 
@@ -6401,19 +5745,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetOperand(JNIEnv *
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNumOperands(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (int)LLVMGetNumOperands(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -6421,29 +5763,25 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNumOperands(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNull(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  result = LLVMConstNull(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMConstNull(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6451,29 +5789,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNull(JNIEnv *
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstAllOnes(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  result = LLVMConstAllOnes(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMConstAllOnes(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6481,29 +5815,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstAllOnes(JNIEn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetUndef(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  result = LLVMGetUndef(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetUndef(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6511,19 +5841,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetUndef(JNIEnv *j
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsNull(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsNull(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -6531,29 +5859,25 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsNull(JNIEnv *
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstPointerNull(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  result = LLVMConstPointerNull(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMConstPointerNull(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6563,17 +5887,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstInt(JNIEnv *j
   LLVMTypeRef arg1 ;
   unsigned long long arg2 ;
   LLVMBool arg3 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   {
     jclass clazz;
     jmethodID mid;
@@ -6581,7 +5903,7 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstInt(JNIEnv *j
     jbyte* bae;
     jsize sz;
     int i;
-
+    
     if (!jarg2) {
       SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "BigInteger null");
       return 0;
@@ -6597,19 +5919,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstInt(JNIEnv *j
     }
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
   }
-  arg3 = jarg3;
+  arg3 = jarg3; 
   result = LLVMConstInt(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6619,33 +5939,29 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstIntOfArbitrar
   LLVMTypeRef arg1 ;
   unsigned int arg2 ;
   uint64_t *arg3 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  arg3 = *(uint64_t **)&jarg3; 
+  result = LLVMConstIntOfArbitraryPrecision(arg1,arg2,(jlong const (*))arg3);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  arg3 = *(uint64_t **)&jarg3;
-  result = LLVMConstIntOfArbitraryPrecision(arg1,arg2,(jlong const (*))arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6655,36 +5971,32 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstIntOfString(J
   LLVMTypeRef arg1 ;
   char *arg2 = (char *) 0 ;
   uint8_t arg3 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
-  arg3 = jarg3;
+  arg3 = jarg3; 
   result = LLVMConstIntOfString(arg1,(char const *)arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -6693,30 +6005,26 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstReal(JNIEnv *
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
   double arg2 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  arg2 = (double)jarg2; 
+  result = LLVMConstReal(arg1,arg2);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = (double)jarg2;
-  result = LLVMConstReal(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -6725,35 +6033,31 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstRealOfString(
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
   result = LLVMConstRealOfString(arg1,(char const *)arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -6761,17 +6065,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstRealOfString(
 SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstIntGetZExtValue(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jobject jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned long long result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned long long)LLVMConstIntGetZExtValue(arg1);
   {
     jbyteArray ba = (*jenv)->NewByteArray(jenv, 9);
@@ -6780,12 +6082,12 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstIntGetZExtV
     jmethodID mid = (*jenv)->GetMethodID(jenv, clazz, "<init>", "([B)V");
     jobject bigint;
     int i;
-
+    
     bae[0] = 0;
     for(i=1; i<9; i++ ) {
       bae[i] = (jbyte)(result>>8*(8-i));
     }
-
+    
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
     bigint = (*jenv)->NewObject(jenv, clazz, mid, ba);
     jresult = bigint;
@@ -6797,19 +6099,17 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstIntGetZExtV
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstIntGetSExtValue(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   long long result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (long long)LLVMConstIntGetSExtValue(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -6818,21 +6118,19 @@ SWIGEXPORT jdouble JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstRealGetDoub
   jdouble jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMBool *arg2 = (LLVMBool *) 0 ;
-  LLVMValueRef *argp1 ;
   double result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMBool **)&jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = *(LLVMBool **)&jarg2; 
   result = (double)LLVMConstRealGetDouble(arg1,arg2);
-  jresult = (jdouble)result;
+  jresult = (jdouble)result; 
   return jresult;
 }
 
@@ -6843,17 +6141,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstStringInConte
   char *arg2 = (char *) 0 ;
   unsigned int arg3 ;
   LLVMBool arg4 ;
-  LLVMContextRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   {
     if (!jarg2) {
       SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
@@ -6863,22 +6159,20 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstStringInConte
     if (!arg2) return 0;
     arg3 = strlen(arg2);
   }
-  arg4 = jarg4;
+  arg4 = jarg4; 
   result = LLVMConstStringInContext(arg1,(char const *)arg2,arg3,arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   {
     (*jenv)->ReleaseStringUTFChars(jenv, jarg2, arg2);
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -6889,7 +6183,7 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstString(JNIEnv
   unsigned int arg2 ;
   LLVMBool arg3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   {
@@ -6901,22 +6195,20 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstString(JNIEnv
     if (!arg1) return 0;
     arg2 = strlen(arg1);
   }
-  arg3 = jarg3;
+  arg3 = jarg3; 
   result = LLVMConstString((char const *)arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   {
     (*jenv)->ReleaseStringUTFChars(jenv, jarg1, arg1);
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -6924,19 +6216,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstString(JNIEnv
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsConstantString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsConstantString(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -6945,18 +6235,16 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetAsString(JNIE
   jstring jresult = 0 ;
   LLVMValueRef arg1 ;
   size_t *arg2 = (size_t *) 0 ;
-  LLVMValueRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(size_t **)&jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = *(size_t **)&jarg2; 
   result = (char *)LLVMGetAsString(arg1,arg2);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -6969,33 +6257,29 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstStructInConte
   LLVMValueRef *arg2 = (LLVMValueRef *) 0 ;
   unsigned int arg3 ;
   LLVMBool arg4 ;
-  LLVMContextRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  arg2 = *(LLVMValueRef **)&jarg2; 
+  arg3 = (unsigned int)jarg3; 
+  arg4 = jarg4; 
+  result = LLVMConstStructInContext(arg1,arg2,arg3,arg4);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = *(LLVMValueRef **)&jarg2;
-  arg3 = (unsigned int)jarg3;
-  arg4 = jarg4;
-  result = LLVMConstStructInContext(arg1,arg2,arg3,arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7006,25 +6290,23 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstStruct(JNIEnv
   unsigned int arg2 ;
   LLVMBool arg3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(LLVMValueRef **)&jarg1;
-  arg2 = (unsigned int)jarg2;
-  arg3 = jarg3;
+  arg1 = *(LLVMValueRef **)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  arg3 = jarg3; 
   result = LLVMConstStruct(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7034,32 +6316,28 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstArray(JNIEnv 
   LLVMTypeRef arg1 ;
   LLVMValueRef *arg2 = (LLVMValueRef *) 0 ;
   unsigned int arg3 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  arg2 = *(LLVMValueRef **)&jarg2; 
+  arg3 = (unsigned int)jarg3; 
+  result = LLVMConstArray(arg1,arg2,arg3);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = *(LLVMValueRef **)&jarg2;
-  arg3 = (unsigned int)jarg3;
-  result = LLVMConstArray(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7069,32 +6347,28 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNamedStruct(J
   LLVMTypeRef arg1 ;
   LLVMValueRef *arg2 = (LLVMValueRef *) 0 ;
   unsigned int arg3 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  arg2 = *(LLVMValueRef **)&jarg2; 
+  arg3 = (unsigned int)jarg3; 
+  result = LLVMConstNamedStruct(arg1,arg2,arg3);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = *(LLVMValueRef **)&jarg2;
-  arg3 = (unsigned int)jarg3;
-  result = LLVMConstNamedStruct(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7103,30 +6377,26 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetElementAsConsta
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  result = LLVMGetElementAsConstant(arg1,arg2);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  result = LLVMGetElementAsConstant(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7136,24 +6406,22 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstVector(JNIEnv
   LLVMValueRef *arg1 = (LLVMValueRef *) 0 ;
   unsigned int arg2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(LLVMValueRef **)&jarg1;
-  arg2 = (unsigned int)jarg2;
+  arg1 = *(LLVMValueRef **)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
   result = LLVMConstVector(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7161,19 +6429,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstVector(JNIEnv
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetConstOpcode(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMOpcode result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMOpcode)LLVMGetConstOpcode(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -7181,29 +6447,25 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetConstOpcode(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AlignOf(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  result = LLVMAlignOf(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMAlignOf(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7211,29 +6473,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AlignOf(JNIEnv *je
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SizeOf(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMTypeRef arg1 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
+  result = LLVMSizeOf(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMSizeOf(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7241,29 +6499,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SizeOf(JNIEnv *jen
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNeg(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMConstNeg(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMConstNeg(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7271,29 +6525,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNeg(JNIEnv *j
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNSWNeg(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMConstNSWNeg(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMConstNSWNeg(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7301,29 +6551,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNSWNeg(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNUWNeg(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMConstNUWNeg(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMConstNUWNeg(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7331,29 +6577,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNUWNeg(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFNeg(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMConstFNeg(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMConstFNeg(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7361,29 +6603,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFNeg(JNIEnv *
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNot(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMConstNot(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMConstNot(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7392,36 +6630,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstAdd(JNIEnv *j
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstAdd(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7430,36 +6662,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNSWAdd(JNIEnv
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstNSWAdd(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7468,36 +6694,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNUWAdd(JNIEnv
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstNUWAdd(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7506,36 +6726,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFAdd(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstFAdd(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7544,36 +6758,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstSub(JNIEnv *j
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstSub(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7582,36 +6790,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNSWSub(JNIEnv
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstNSWSub(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7620,36 +6822,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNUWSub(JNIEnv
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstNUWSub(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7658,36 +6854,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFSub(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstFSub(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7696,36 +6886,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstMul(JNIEnv *j
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstMul(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7734,36 +6918,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNSWMul(JNIEnv
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstNSWMul(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7772,36 +6950,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstNUWMul(JNIEnv
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstNUWMul(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7810,36 +6982,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFMul(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstFMul(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7848,36 +7014,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstUDiv(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstUDiv(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7886,36 +7046,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstSDiv(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstSDiv(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7924,36 +7078,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstExactSDiv(JNI
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstExactSDiv(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -7962,36 +7110,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFDiv(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstFDiv(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8000,36 +7142,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstURem(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstURem(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8038,36 +7174,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstSRem(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstSRem(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8076,36 +7206,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFRem(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstFRem(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8114,36 +7238,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstAnd(JNIEnv *j
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstAnd(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8152,36 +7270,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstOr(JNIEnv *je
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstOr(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8190,36 +7302,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstXor(JNIEnv *j
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstXor(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8229,37 +7335,31 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstICmp(JNIEnv *
   LLVMIntPredicate arg1 ;
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = (LLVMIntPredicate)jarg1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  arg1 = (LLVMIntPredicate)jarg1; 
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   result = LLVMConstICmp(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8269,37 +7369,31 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFCmp(JNIEnv *
   LLVMRealPredicate arg1 ;
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = (LLVMRealPredicate)jarg1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  arg1 = (LLVMRealPredicate)jarg1; 
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   result = LLVMConstFCmp(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8308,36 +7402,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstShl(JNIEnv *j
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstShl(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8346,36 +7434,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstLShr(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstLShr(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8384,36 +7466,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstAShr(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstAShr(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8423,32 +7499,28 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstGEP(JNIEnv *j
   LLVMValueRef arg1 ;
   LLVMValueRef *arg2 = (LLVMValueRef *) 0 ;
   unsigned int arg3 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = *(LLVMValueRef **)&jarg2; 
+  arg3 = (unsigned int)jarg3; 
+  result = LLVMConstGEP(arg1,arg2,arg3);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = *(LLVMValueRef **)&jarg2;
-  arg3 = (unsigned int)jarg3;
-  result = LLVMConstGEP(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8458,32 +7530,28 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstInBoundsGEP(J
   LLVMValueRef arg1 ;
   LLVMValueRef *arg2 = (LLVMValueRef *) 0 ;
   unsigned int arg3 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = *(LLVMValueRef **)&jarg2; 
+  arg3 = (unsigned int)jarg3; 
+  result = LLVMConstInBoundsGEP(arg1,arg2,arg3);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = *(LLVMValueRef **)&jarg2;
-  arg3 = (unsigned int)jarg3;
-  result = LLVMConstInBoundsGEP(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8492,36 +7560,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstTrunc(JNIEnv 
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstTrunc(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8530,36 +7592,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstSExt(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstSExt(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8568,36 +7624,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstZExt(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstZExt(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8606,36 +7656,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFPTrunc(JNIEn
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstFPTrunc(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8644,36 +7688,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFPExt(JNIEnv 
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstFPExt(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8682,36 +7720,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstUIToFP(JNIEnv
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstUIToFP(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8720,36 +7752,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstSIToFP(JNIEnv
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstSIToFP(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8758,36 +7784,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFPToUI(JNIEnv
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstFPToUI(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8796,36 +7816,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFPToSI(JNIEnv
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstFPToSI(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8834,36 +7848,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstPtrToInt(JNIE
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstPtrToInt(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8872,36 +7880,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstIntToPtr(JNIE
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstIntToPtr(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8910,36 +7912,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstBitCast(JNIEn
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstBitCast(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8948,36 +7944,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstAddrSpaceCast
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstAddrSpaceCast(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -8986,36 +7976,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstZExtOrBitCast
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstZExtOrBitCast(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9024,36 +8008,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstSExtOrBitCast
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstSExtOrBitCast(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9062,36 +8040,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstTruncOrBitCas
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstTruncOrBitCast(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9100,36 +8072,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstPointerCast(J
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstPointerCast(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9139,37 +8105,31 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstIntCast(JNIEn
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
   LLVMBool arg3 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = jarg3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
+  arg3 = jarg3; 
   result = LLVMConstIntCast(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9178,36 +8138,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstFPCast(JNIEnv
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMTypeRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = LLVMConstFPCast(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9217,43 +8171,35 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstSelect(JNIEnv
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   result = LLVMConstSelect(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9262,36 +8208,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstExtractElemen
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMConstExtractElement(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9301,43 +8241,35 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstInsertElement
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   result = LLVMConstInsertElement(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9347,43 +8279,35 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstShuffleVector
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   result = LLVMConstShuffleVector(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9393,32 +8317,28 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstExtractValue(
   LLVMValueRef arg1 ;
   unsigned int *arg2 = (unsigned int *) 0 ;
   unsigned int arg3 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = *(unsigned int **)&jarg2; 
+  arg3 = (unsigned int)jarg3; 
+  result = LLVMConstExtractValue(arg1,arg2,arg3);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = *(unsigned int **)&jarg2;
-  arg3 = (unsigned int)jarg3;
-  result = LLVMConstExtractValue(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9429,39 +8349,33 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstInsertValue(J
   LLVMValueRef arg2 ;
   unsigned int *arg3 = (unsigned int *) 0 ;
   unsigned int arg4 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = *(unsigned int **)&jarg3;
-  arg4 = (unsigned int)jarg4;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  arg3 = *(unsigned int **)&jarg3; 
+  arg4 = (unsigned int)jarg4; 
   result = LLVMConstInsertValue(arg1,arg2,arg3,arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9473,17 +8387,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstInlineAsm(JNI
   char *arg3 = (char *) 0 ;
   LLVMBool arg4 ;
   LLVMBool arg5 ;
-  LLVMTypeRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMTypeRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMTypeRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMTypeRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
@@ -9494,22 +8406,20 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstInlineAsm(JNI
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
-  arg4 = jarg4;
-  arg5 = jarg5;
+  arg4 = jarg4; 
+  arg5 = jarg5; 
   result = LLVMConstInlineAsm(arg1,(char const *)arg2,(char const *)arg3,arg4,arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -9518,36 +8428,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BlockAddress(JNIEn
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMBasicBlockRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMBasicBlockRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMBasicBlockRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMBasicBlockRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMBasicBlockRef*)&$result = arg2;
+  
   result = LLVMBlockAddress(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9555,23 +8459,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BlockAddress(JNIEn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetGlobalParent(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMModuleRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMGetGlobalParent(arg1);
-  {
-    LLVMModuleRef * resultptr = (LLVMModuleRef *) malloc(sizeof(LLVMModuleRef));
-    memmove(resultptr, &result, sizeof(LLVMModuleRef));
-    *(LLVMModuleRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMModuleRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -9579,19 +8479,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetGlobalParent(JN
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsDeclaration(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsDeclaration(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -9599,19 +8497,17 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsDeclaration(J
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLinkage(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMLinkage result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMLinkage)LLVMGetLinkage(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -9619,17 +8515,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLinkage(JNIEnv *
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetLinkage(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   LLVMLinkage arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMLinkage)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMLinkage)jarg2; 
   LLVMSetLinkage(arg1,arg2);
 }
 
@@ -9637,17 +8531,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetLinkage(JNIEnv *
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSection(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (char *)LLVMGetSection(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -9657,16 +8549,14 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSection(JNIEn
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetSection(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
   LLVMValueRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
@@ -9680,19 +8570,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetSection(JNIEnv *
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetVisibility(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMVisibility result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMVisibility)LLVMGetVisibility(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -9700,17 +8588,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetVisibility(JNIEn
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetVisibility(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   LLVMVisibility arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMVisibility)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMVisibility)jarg2; 
   LLVMSetVisibility(arg1,arg2);
 }
 
@@ -9718,19 +8604,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetVisibility(JNIEn
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetDLLStorageClass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMDLLStorageClass result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMDLLStorageClass)LLVMGetDLLStorageClass(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -9738,17 +8622,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetDLLStorageClass(
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetDLLStorageClass(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   LLVMDLLStorageClass arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMDLLStorageClass)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMDLLStorageClass)jarg2; 
   LLVMSetDLLStorageClass(arg1,arg2);
 }
 
@@ -9756,19 +8638,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetDLLStorageClass(
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_HasUnnamedAddr(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMHasUnnamedAddr(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -9776,17 +8656,15 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_HasUnnamedAddr(
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetUnnamedAddr(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMValueRef arg1 ;
   LLVMBool arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = jarg2; 
   LLVMSetUnnamedAddr(arg1,arg2);
 }
 
@@ -9794,19 +8672,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetUnnamedAddr(JNIE
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetAlignment(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetAlignment(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -9814,17 +8690,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetAlignment(JNIEnv
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetAlignment(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   LLVMSetAlignment(arg1,arg2);
 }
 
@@ -9834,42 +8708,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddGlobal(JNIEnv *
   LLVMModuleRef arg1 ;
   LLVMTypeRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMModuleRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMAddGlobal(arg1,arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -9880,43 +8748,37 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddGlobalInAddress
   LLVMTypeRef arg2 ;
   char *arg3 = (char *) 0 ;
   unsigned int arg4 ;
-  LLVMModuleRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
-  arg4 = (unsigned int)jarg4;
+  arg4 = (unsigned int)jarg4; 
   result = LLVMAddGlobalInAddressSpace(arg1,arg2,(char const *)arg3,arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -9925,35 +8787,31 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNamedGlobal(JNI
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMModuleRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
   result = LLVMGetNamedGlobal(arg1,(char const *)arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -9961,29 +8819,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNamedGlobal(JNI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstGlobal(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
+  result = LLVMGetFirstGlobal(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetFirstGlobal(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -9991,29 +8845,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstGlobal(JNI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLastGlobal(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
+  result = LLVMGetLastGlobal(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetLastGlobal(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -10021,29 +8871,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLastGlobal(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextGlobal(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetNextGlobal(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetNextGlobal(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -10051,45 +8897,39 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextGlobal(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetPreviousGlobal(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetPreviousGlobal(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetPreviousGlobal(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DeleteGlobal(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   LLVMDeleteGlobal(arg1);
 }
 
@@ -10097,29 +8937,25 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DeleteGlobal(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetInitializer(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetInitializer(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetInitializer(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -10127,23 +8963,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetInitializer(JNI
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetInitializer(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   LLVMSetInitializer(arg1,arg2);
 }
 
@@ -10151,19 +8983,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetInitializer(JNIE
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsThreadLocal(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsThreadLocal(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -10171,17 +9001,15 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsThreadLocal(J
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetThreadLocal(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMValueRef arg1 ;
   LLVMBool arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = jarg2; 
   LLVMSetThreadLocal(arg1,arg2);
 }
 
@@ -10189,19 +9017,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetThreadLocal(JNIE
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsGlobalConstant(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsGlobalConstant(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -10209,17 +9035,15 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsGlobalConstan
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetGlobalConstant(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMValueRef arg1 ;
   LLVMBool arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = jarg2; 
   LLVMSetGlobalConstant(arg1,arg2);
 }
 
@@ -10227,19 +9051,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetGlobalConstant(J
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetThreadLocalMode(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMThreadLocalMode result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMThreadLocalMode)LLVMGetThreadLocalMode(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -10247,17 +9069,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetThreadLocalMode(
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetThreadLocalMode(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   LLVMThreadLocalMode arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMThreadLocalMode)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMThreadLocalMode)jarg2; 
   LLVMSetThreadLocalMode(arg1,arg2);
 }
 
@@ -10265,19 +9085,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetThreadLocalMode(
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsExternallyInitialized(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsExternallyInitialized(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -10285,17 +9103,15 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsExternallyIni
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetExternallyInitialized(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMValueRef arg1 ;
   LLVMBool arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = jarg2; 
   LLVMSetExternallyInitialized(arg1,arg2);
 }
 
@@ -10306,65 +9122,55 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddAlias(JNIEnv *j
   LLVMTypeRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMModuleRef *argp1 ;
-  LLVMTypeRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMAddAlias(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DeleteFunction(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   LLVMDeleteFunction(arg1);
 }
 
@@ -10372,19 +9178,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DeleteFunction(JNIE
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_HasPersonalityFn(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMHasPersonalityFn(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -10392,29 +9196,25 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_HasPersonalityF
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetPersonalityFn(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetPersonalityFn(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetPersonalityFn(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -10422,23 +9222,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetPersonalityFn(J
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetPersonalityFn(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   LLVMSetPersonalityFn(arg1,arg2);
 }
 
@@ -10446,19 +9242,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetPersonalityFn(JN
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetIntrinsicID(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetIntrinsicID(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -10466,19 +9260,17 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetIntrinsicID(JNIE
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFunctionCallConv(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetFunctionCallConv(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -10486,17 +9278,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFunctionCallConv
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetFunctionCallConv(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   LLVMSetFunctionCallConv(arg1,arg2);
 }
 
@@ -10504,17 +9294,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetFunctionCallConv
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetGC(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (char *)LLVMGetGC(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -10524,16 +9312,14 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetGC(JNIEnv *je
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetGC(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
   LLVMValueRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
@@ -10547,17 +9333,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetGC(JNIEnv *jenv,
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddFunctionAttr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   LLVMAttribute arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttribute)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttribute)jarg2; 
   LLVMAddFunctionAttr(arg1,arg2);
 }
 
@@ -10566,24 +9350,20 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddAttributeAtIndex
   LLVMValueRef arg1 ;
   LLVMAttributeIndex arg2 ;
   LLVMAttributeRef arg3 ;
-  LLVMValueRef *argp1 ;
-  LLVMAttributeRef *argp3 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
-  argp3 = *(LLVMAttributeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMAttributeRef");
-    return ;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
+  
+  arg3 = *(LLVMAttributeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMAttributeRef*)&$result = arg3;
+  
   LLVMAddAttributeAtIndex(arg1,arg2,arg3);
 }
 
@@ -10592,20 +9372,18 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetAttributeCountAt
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMAttributeIndex arg2 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
   result = (unsigned int)LLVMGetAttributeCountAtIndex(arg1,arg2);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -10614,18 +9392,16 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetAttributesAtInde
   LLVMValueRef arg1 ;
   LLVMAttributeIndex arg2 ;
   LLVMAttributeRef *arg3 = (LLVMAttributeRef *) 0 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
-  arg3 = *(LLVMAttributeRef **)&jarg3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
+  arg3 = *(LLVMAttributeRef **)&jarg3; 
   LLVMGetAttributesAtIndex(arg1,arg2,arg3);
 }
 
@@ -10635,25 +9411,21 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetEnumAttributeAt
   LLVMValueRef arg1 ;
   LLVMAttributeIndex arg2 ;
   unsigned int arg3 ;
-  LLVMValueRef *argp1 ;
   LLVMAttributeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
-  arg3 = (unsigned int)jarg3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
+  arg3 = (unsigned int)jarg3; 
   result = LLVMGetEnumAttributeAtIndex(arg1,arg2,arg3);
-  {
-    LLVMAttributeRef * resultptr = (LLVMAttributeRef *) malloc(sizeof(LLVMAttributeRef));
-    memmove(resultptr, &result, sizeof(LLVMAttributeRef));
-    *(LLVMAttributeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMAttributeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -10664,30 +9436,26 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetStringAttribute
   LLVMAttributeIndex arg2 ;
   char *arg3 = (char *) 0 ;
   unsigned int arg4 ;
-  LLVMValueRef *argp1 ;
   LLVMAttributeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
-  arg4 = (unsigned int)jarg4;
+  arg4 = (unsigned int)jarg4; 
   result = LLVMGetStringAttributeAtIndex(arg1,arg2,(char const *)arg3,arg4);
-  {
-    LLVMAttributeRef * resultptr = (LLVMAttributeRef *) malloc(sizeof(LLVMAttributeRef));
-    memmove(resultptr, &result, sizeof(LLVMAttributeRef));
-    *(LLVMAttributeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMAttributeRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
@@ -10697,18 +9465,16 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RemoveEnumAttribute
   LLVMValueRef arg1 ;
   LLVMAttributeIndex arg2 ;
   unsigned int arg3 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
-  arg3 = (unsigned int)jarg3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
+  arg3 = (unsigned int)jarg3; 
   LLVMRemoveEnumAttributeAtIndex(arg1,arg2,arg3);
 }
 
@@ -10718,23 +9484,21 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RemoveStringAttribu
   LLVMAttributeIndex arg2 ;
   char *arg3 = (char *) 0 ;
   unsigned int arg4 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return ;
   }
-  arg4 = (unsigned int)jarg4;
+  arg4 = (unsigned int)jarg4; 
   LLVMRemoveStringAttributeAtIndex(arg1,arg2,(char const *)arg3,arg4);
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
 }
@@ -10744,16 +9508,14 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddTargetDependentF
   LLVMValueRef arg1 ;
   char *arg2 = (char *) 0 ;
   char *arg3 = (char *) 0 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
@@ -10773,19 +9535,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddTargetDependentF
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFunctionAttr(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMAttribute result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMAttribute)LLVMGetFunctionAttr(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -10793,17 +9553,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFunctionAttr(JNI
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RemoveFunctionAttr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   LLVMAttribute arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttribute)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttribute)jarg2; 
   LLVMRemoveFunctionAttr(arg1,arg2);
 }
 
@@ -10811,19 +9569,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RemoveFunctionAttr(
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CountParams(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMCountParams(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -10831,18 +9587,16 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CountParams(JNIEnv 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetParams(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jobject jarg2_) {
   LLVMValueRef arg1 ;
   LLVMValueRef *arg2 = (LLVMValueRef *) 0 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMValueRef **)&jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = *(LLVMValueRef **)&jarg2; 
   LLVMGetParams(arg1,arg2);
 }
 
@@ -10851,30 +9605,26 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetParam(JNIEnv *j
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  result = LLVMGetParam(arg1,arg2);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  result = LLVMGetParam(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -10882,29 +9632,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetParam(JNIEnv *j
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetParamParent(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetParamParent(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetParamParent(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -10912,29 +9658,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetParamParent(JNI
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstParam(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetFirstParam(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetFirstParam(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -10942,29 +9684,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstParam(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLastParam(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetLastParam(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetLastParam(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -10972,29 +9710,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLastParam(JNIEn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextParam(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetNextParam(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetNextParam(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -11002,29 +9736,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextParam(JNIEn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetPreviousParam(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetPreviousParam(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetPreviousParam(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -11032,17 +9762,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetPreviousParam(J
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddAttribute(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   LLVMAttribute arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttribute)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttribute)jarg2; 
   LLVMAddAttribute(arg1,arg2);
 }
 
@@ -11050,17 +9778,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddAttribute(JNIEnv
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RemoveAttribute(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   LLVMAttribute arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttribute)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttribute)jarg2; 
   LLVMRemoveAttribute(arg1,arg2);
 }
 
@@ -11068,19 +9794,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RemoveAttribute(JNI
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetAttribute(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMAttribute result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMAttribute)LLVMGetAttribute(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -11088,17 +9812,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetAttribute(JNIEnv
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetParamAlignment(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   LLVMSetParamAlignment(arg1,arg2);
 }
 
@@ -11108,17 +9830,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MDStringInContext(
   LLVMContextRef arg1 ;
   char *arg2 = (char *) 0 ;
   unsigned int arg3 ;
-  LLVMContextRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   {
     if (!jarg2) {
       SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
@@ -11129,20 +9849,18 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MDStringInContext(
     arg3 = strlen(arg2);
   }
   result = LLVMMDStringInContext(arg1,(char const *)arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   {
     (*jenv)->ReleaseStringUTFChars(jenv, jarg2, arg2);
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -11152,7 +9870,7 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MDString(JNIEnv *j
   char *arg1 = (char *) 0 ;
   unsigned int arg2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   {
@@ -11165,20 +9883,18 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MDString(JNIEnv *j
     arg2 = strlen(arg1);
   }
   result = LLVMMDString((char const *)arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   {
     (*jenv)->ReleaseStringUTFChars(jenv, jarg1, arg1);
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -11188,32 +9904,28 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MDNodeInContext(JN
   LLVMContextRef arg1 ;
   LLVMValueRef *arg2 = (LLVMValueRef *) 0 ;
   unsigned int arg3 ;
-  LLVMContextRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  arg2 = *(LLVMValueRef **)&jarg2; 
+  arg3 = (unsigned int)jarg3; 
+  result = LLVMMDNodeInContext(arg1,arg2,arg3);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = *(LLVMValueRef **)&jarg2;
-  arg3 = (unsigned int)jarg3;
-  result = LLVMMDNodeInContext(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -11223,24 +9935,22 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MDNode(JNIEnv *jen
   LLVMValueRef *arg1 = (LLVMValueRef *) 0 ;
   unsigned int arg2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(LLVMValueRef **)&jarg1;
-  arg2 = (unsigned int)jarg2;
+  arg1 = *(LLVMValueRef **)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
   result = LLVMMDNode(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -11249,18 +9959,16 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetMDString(JNIE
   jstring jresult = 0 ;
   LLVMValueRef arg1 ;
   unsigned int *arg2 = (unsigned int *) 0 ;
-  LLVMValueRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(unsigned int **)&jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = *(unsigned int **)&jarg2; 
   result = (char *)LLVMGetMDString(arg1,arg2);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -11270,19 +9978,17 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetMDString(JNIE
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetMDNodeNumOperands(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetMDNodeNumOperands(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -11290,18 +9996,16 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetMDNodeNumOperand
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetMDNodeOperands(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jobject jarg2_) {
   LLVMValueRef arg1 ;
   LLVMValueRef *arg2 = (LLVMValueRef *) 0 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMValueRef **)&jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = *(LLVMValueRef **)&jarg2; 
   LLVMGetMDNodeOperands(arg1,arg2);
 }
 
@@ -11309,29 +10013,25 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetMDNodeOperands(J
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BasicBlockAsValue(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMBasicBlockRef arg1 ;
-  LLVMBasicBlockRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
+  result = LLVMBasicBlockAsValue(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMBasicBlockAsValue(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -11339,19 +10039,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BasicBlockAsValue(
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ValueIsBasicBlock(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMValueIsBasicBlock(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -11359,23 +10057,19 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ValueIsBasicBlo
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ValueAsBasicBlock(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMValueAsBasicBlock(arg1);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -11383,17 +10077,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ValueAsBasicBlock(
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBasicBlockName(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMBasicBlockRef arg1 ;
-  LLVMBasicBlockRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
   result = (char *)LLVMGetBasicBlockName(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -11403,29 +10095,25 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBasicBlockNam
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBasicBlockParent(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMBasicBlockRef arg1 ;
-  LLVMBasicBlockRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
+  result = LLVMGetBasicBlockParent(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetBasicBlockParent(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -11433,29 +10121,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBasicBlockParen
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBasicBlockTerminator(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMBasicBlockRef arg1 ;
-  LLVMBasicBlockRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
+  result = LLVMGetBasicBlockTerminator(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetBasicBlockTerminator(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -11463,19 +10147,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBasicBlockTermi
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CountBasicBlocks(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMCountBasicBlocks(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -11483,18 +10165,16 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CountBasicBlocks(JN
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBasicBlocks(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jobject jarg2_) {
   LLVMValueRef arg1 ;
   LLVMBasicBlockRef *arg2 = (LLVMBasicBlockRef *) 0 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMBasicBlockRef **)&jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = *(LLVMBasicBlockRef **)&jarg2; 
   LLVMGetBasicBlocks(arg1,arg2);
 }
 
@@ -11502,23 +10182,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBasicBlocks(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstBasicBlock(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMGetFirstBasicBlock(arg1);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -11526,23 +10202,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstBasicBlock
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLastBasicBlock(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMGetLastBasicBlock(arg1);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -11550,23 +10222,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLastBasicBlock(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextBasicBlock(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMBasicBlockRef arg1 ;
-  LLVMBasicBlockRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
   result = LLVMGetNextBasicBlock(arg1);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -11574,23 +10242,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextBasicBlock(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetPreviousBasicBlock(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMBasicBlockRef arg1 ;
-  LLVMBasicBlockRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
   result = LLVMGetPreviousBasicBlock(arg1);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -11598,23 +10262,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetPreviousBasicBl
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetEntryBasicBlock(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMGetEntryBasicBlock(arg1);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -11624,35 +10284,29 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AppendBasicBlockIn
   LLVMContextRef arg1 ;
   LLVMValueRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMContextRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMAppendBasicBlockInContext(arg1,arg2,(char const *)arg3);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
@@ -11662,28 +10316,24 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AppendBasicBlock(J
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMValueRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
   result = LLVMAppendBasicBlock(arg1,(char const *)arg2);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
@@ -11694,35 +10344,29 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InsertBasicBlockIn
   LLVMContextRef arg1 ;
   LLVMBasicBlockRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMContextRef *argp1 ;
-  LLVMBasicBlockRef *argp2 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMBasicBlockRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMBasicBlockRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMBasicBlockRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMInsertBasicBlockInContext(arg1,arg2,(char const *)arg3);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
@@ -11732,28 +10376,24 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InsertBasicBlock(J
   jlong jresult = 0 ;
   LLVMBasicBlockRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMBasicBlockRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
   result = LLVMInsertBasicBlock(arg1,(char const *)arg2);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
@@ -11761,32 +10401,28 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InsertBasicBlock(J
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DeleteBasicBlock(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMBasicBlockRef arg1 ;
-  LLVMBasicBlockRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
   LLVMDeleteBasicBlock(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RemoveBasicBlockFromParent(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMBasicBlockRef arg1 ;
-  LLVMBasicBlockRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
   LLVMRemoveBasicBlockFromParent(arg1);
 }
 
@@ -11794,23 +10430,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RemoveBasicBlockFro
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MoveBasicBlockBefore(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMBasicBlockRef arg1 ;
   LLVMBasicBlockRef arg2 ;
-  LLVMBasicBlockRef *argp1 ;
-  LLVMBasicBlockRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMBasicBlockRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMBasicBlockRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMBasicBlockRef*)&$result = arg2;
+  
   LLVMMoveBasicBlockBefore(arg1,arg2);
 }
 
@@ -11818,23 +10450,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MoveBasicBlockBefor
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MoveBasicBlockAfter(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMBasicBlockRef arg1 ;
   LLVMBasicBlockRef arg2 ;
-  LLVMBasicBlockRef *argp1 ;
-  LLVMBasicBlockRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMBasicBlockRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMBasicBlockRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMBasicBlockRef*)&$result = arg2;
+  
   LLVMMoveBasicBlockAfter(arg1,arg2);
 }
 
@@ -11842,29 +10470,25 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MoveBasicBlockAfter
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstInstruction(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMBasicBlockRef arg1 ;
-  LLVMBasicBlockRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
+  result = LLVMGetFirstInstruction(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetFirstInstruction(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -11872,29 +10496,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstInstructio
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLastInstruction(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMBasicBlockRef arg1 ;
-  LLVMBasicBlockRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBasicBlockRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
+  
+  arg1 = *(LLVMBasicBlockRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBasicBlockRef*)&$result = arg1;
+  
+  result = LLVMGetLastInstruction(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetLastInstruction(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -11902,19 +10522,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLastInstruction
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_HasMetadata(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (int)LLVMHasMetadata(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -11923,30 +10541,26 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetMetadata(JNIEnv
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  result = LLVMGetMetadata(arg1,arg2);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  result = LLVMGetMetadata(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -11955,24 +10569,20 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetMetadata(JNIEnv 
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
   LLVMValueRef arg3 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp3 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   LLVMSetMetadata(arg1,arg2,arg3);
 }
 
@@ -11980,23 +10590,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetMetadata(JNIEnv 
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetInstructionParent(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMGetInstructionParent(arg1);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -12004,29 +10610,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetInstructionPare
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextInstruction(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetNextInstruction(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetNextInstruction(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -12034,61 +10636,53 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextInstruction
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetPreviousInstruction(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetPreviousInstruction(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetPreviousInstruction(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InstructionRemoveFromParent(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   LLVMInstructionRemoveFromParent(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InstructionEraseFromParent(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   LLVMInstructionEraseFromParent(arg1);
 }
 
@@ -12096,19 +10690,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InstructionEraseFro
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetInstructionOpcode(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMOpcode result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMOpcode)LLVMGetInstructionOpcode(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -12116,19 +10708,17 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetInstructionOpcod
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetICmpPredicate(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMIntPredicate result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMIntPredicate)LLVMGetICmpPredicate(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -12136,19 +10726,17 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetICmpPredicate(JN
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFCmpPredicate(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMRealPredicate result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMRealPredicate)LLVMGetFCmpPredicate(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -12156,29 +10744,25 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFCmpPredicate(JN
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InstructionClone(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMInstructionClone(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMInstructionClone(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -12186,19 +10770,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InstructionClone(J
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNumArgOperands(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetNumArgOperands(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -12206,17 +10788,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNumArgOperands(J
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetInstructionCallConv(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   LLVMSetInstructionCallConv(arg1,arg2);
 }
 
@@ -12224,19 +10804,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetInstructionCallC
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetInstructionCallConv(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetInstructionCallConv(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -12245,18 +10823,16 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddInstrAttribute(J
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
   LLVMAttribute arg3 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  arg3 = (LLVMAttribute)jarg3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  arg3 = (LLVMAttribute)jarg3; 
   LLVMAddInstrAttribute(arg1,arg2,arg3);
 }
 
@@ -12265,18 +10841,16 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RemoveInstrAttribut
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
   LLVMAttribute arg3 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  arg3 = (LLVMAttribute)jarg3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  arg3 = (LLVMAttribute)jarg3; 
   LLVMRemoveInstrAttribute(arg1,arg2,arg3);
 }
 
@@ -12285,18 +10859,16 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetInstrParamAlignm
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
   unsigned int arg3 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  arg3 = (unsigned int)jarg3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  arg3 = (unsigned int)jarg3; 
   LLVMSetInstrParamAlignment(arg1,arg2,arg3);
 }
 
@@ -12305,24 +10877,20 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddCallSiteAttribut
   LLVMValueRef arg1 ;
   LLVMAttributeIndex arg2 ;
   LLVMAttributeRef arg3 ;
-  LLVMValueRef *argp1 ;
-  LLVMAttributeRef *argp3 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
-  argp3 = *(LLVMAttributeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMAttributeRef");
-    return ;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
+  
+  arg3 = *(LLVMAttributeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMAttributeRef*)&$result = arg3;
+  
   LLVMAddCallSiteAttribute(arg1,arg2,arg3);
 }
 
@@ -12331,20 +10899,18 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCallSiteAttribut
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
   LLVMAttributeIndex arg2 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
   result = (unsigned int)LLVMGetCallSiteAttributeCount(arg1,arg2);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -12353,18 +10919,16 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCallSiteAttribut
   LLVMValueRef arg1 ;
   LLVMAttributeIndex arg2 ;
   LLVMAttributeRef *arg3 = (LLVMAttributeRef *) 0 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
-  arg3 = *(LLVMAttributeRef **)&jarg3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
+  arg3 = *(LLVMAttributeRef **)&jarg3; 
   LLVMGetCallSiteAttributes(arg1,arg2,arg3);
 }
 
@@ -12374,25 +10938,21 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCallSiteEnumAtt
   LLVMValueRef arg1 ;
   LLVMAttributeIndex arg2 ;
   unsigned int arg3 ;
-  LLVMValueRef *argp1 ;
   LLVMAttributeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
-  arg3 = (unsigned int)jarg3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
+  arg3 = (unsigned int)jarg3; 
   result = LLVMGetCallSiteEnumAttribute(arg1,arg2,arg3);
-  {
-    LLVMAttributeRef * resultptr = (LLVMAttributeRef *) malloc(sizeof(LLVMAttributeRef));
-    memmove(resultptr, &result, sizeof(LLVMAttributeRef));
-    *(LLVMAttributeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMAttributeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -12403,30 +10963,26 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCallSiteStringA
   LLVMAttributeIndex arg2 ;
   char *arg3 = (char *) 0 ;
   unsigned int arg4 ;
-  LLVMValueRef *argp1 ;
   LLVMAttributeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
-  arg4 = (unsigned int)jarg4;
+  arg4 = (unsigned int)jarg4; 
   result = LLVMGetCallSiteStringAttribute(arg1,arg2,(char const *)arg3,arg4);
-  {
-    LLVMAttributeRef * resultptr = (LLVMAttributeRef *) malloc(sizeof(LLVMAttributeRef));
-    memmove(resultptr, &result, sizeof(LLVMAttributeRef));
-    *(LLVMAttributeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMAttributeRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
@@ -12436,18 +10992,16 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RemoveCallSiteEnumA
   LLVMValueRef arg1 ;
   LLVMAttributeIndex arg2 ;
   unsigned int arg3 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
-  arg3 = (unsigned int)jarg3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
+  arg3 = (unsigned int)jarg3; 
   LLVMRemoveCallSiteEnumAttribute(arg1,arg2,arg3);
 }
 
@@ -12457,23 +11011,21 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RemoveCallSiteStrin
   LLVMAttributeIndex arg2 ;
   char *arg3 = (char *) 0 ;
   unsigned int arg4 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAttributeIndex)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAttributeIndex)jarg2; 
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return ;
   }
-  arg4 = (unsigned int)jarg4;
+  arg4 = (unsigned int)jarg4; 
   LLVMRemoveCallSiteStringAttribute(arg1,arg2,(char const *)arg3,arg4);
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
 }
@@ -12482,29 +11034,25 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RemoveCallSiteStrin
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCalledValue(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetCalledValue(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetCalledValue(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -12512,19 +11060,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCalledValue(JNI
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsTailCall(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsTailCall(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -12532,17 +11078,15 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsTailCall(JNIE
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetTailCall(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMValueRef arg1 ;
   LLVMBool arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = jarg2; 
   LLVMSetTailCall(arg1,arg2);
 }
 
@@ -12550,23 +11094,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetTailCall(JNIEnv 
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNormalDest(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMGetNormalDest(arg1);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -12574,23 +11114,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNormalDest(JNIE
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetUnwindDest(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMGetUnwindDest(arg1);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -12598,23 +11134,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetUnwindDest(JNIE
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetNormalDest(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMValueRef arg1 ;
   LLVMBasicBlockRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMBasicBlockRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMBasicBlockRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMBasicBlockRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMBasicBlockRef*)&$result = arg2;
+  
   LLVMSetNormalDest(arg1,arg2);
 }
 
@@ -12622,23 +11154,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetNormalDest(JNIEn
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetUnwindDest(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMValueRef arg1 ;
   LLVMBasicBlockRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMBasicBlockRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMBasicBlockRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMBasicBlockRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMBasicBlockRef*)&$result = arg2;
+  
   LLVMSetUnwindDest(arg1,arg2);
 }
 
@@ -12646,19 +11174,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetUnwindDest(JNIEn
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNumSuccessors(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetNumSuccessors(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -12667,24 +11193,20 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSuccessor(JNIEn
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   result = LLVMGetSuccessor(arg1,arg2);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -12693,24 +11215,20 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetSuccessor(JNIEnv
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
   LLVMBasicBlockRef arg3 ;
-  LLVMValueRef *argp1 ;
-  LLVMBasicBlockRef *argp3 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  argp3 = *(LLVMBasicBlockRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  
+  arg3 = *(LLVMBasicBlockRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMBasicBlockRef*)&$result = arg3;
+  
   LLVMSetSuccessor(arg1,arg2,arg3);
 }
 
@@ -12718,19 +11236,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetSuccessor(JNIEnv
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsConditional(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsConditional(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -12738,29 +11254,25 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsConditional(J
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCondition(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  result = LLVMGetCondition(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetCondition(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -12768,23 +11280,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCondition(JNIEn
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetCondition(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   LLVMSetCondition(arg1,arg2);
 }
 
@@ -12792,23 +11300,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetCondition(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSwitchDefaultDest(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMGetSwitchDefaultDest(arg1);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -12816,23 +11320,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSwitchDefaultDe
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetAllocatedType(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMGetAllocatedType(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -12840,19 +11340,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetAllocatedType(J
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsInBounds(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsInBounds(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -12860,17 +11358,15 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsInBounds(JNIE
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetIsInBounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMValueRef arg1 ;
   LLVMBool arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = jarg2; 
   LLVMSetIsInBounds(arg1,arg2);
 }
 
@@ -12880,21 +11376,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddIncoming(JNIEnv 
   LLVMValueRef *arg2 = (LLVMValueRef *) 0 ;
   LLVMBasicBlockRef *arg3 = (LLVMBasicBlockRef *) 0 ;
   unsigned int arg4 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
   (void)jarg3_;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMValueRef **)&jarg2;
-  arg3 = *(LLVMBasicBlockRef **)&jarg3;
-  arg4 = (unsigned int)jarg4;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = *(LLVMValueRef **)&jarg2; 
+  arg3 = *(LLVMBasicBlockRef **)&jarg3; 
+  arg4 = (unsigned int)jarg4; 
   LLVMAddIncoming(arg1,arg2,arg3,arg4);
 }
 
@@ -12902,19 +11396,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddIncoming(JNIEnv 
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CountIncoming(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMCountIncoming(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -12923,30 +11415,26 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetIncomingValue(J
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  result = LLVMGetIncomingValue(arg1,arg2);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  result = LLVMGetIncomingValue(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -12955,24 +11443,20 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetIncomingBlock(J
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   result = LLVMGetIncomingBlock(arg1,arg2);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -12980,19 +11464,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetIncomingBlock(J
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNumIndices(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetNumIndices(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -13000,19 +11482,17 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNumIndices(JNIEn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetIndices(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int *)LLVMGetIndices(arg1);
-  *(unsigned int **)&jresult = result;
+  *(unsigned int **)&jresult = result; 
   return jresult;
 }
 
@@ -13020,23 +11500,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetIndices(JNIEnv 
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateBuilderInContext(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
-  LLVMContextRef *argp1 ;
   LLVMBuilderRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   result = LLVMCreateBuilderInContext(arg1);
-  {
-    LLVMBuilderRef * resultptr = (LLVMBuilderRef *) malloc(sizeof(LLVMBuilderRef));
-    memmove(resultptr, &result, sizeof(LLVMBuilderRef));
-    *(LLVMBuilderRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBuilderRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -13044,15 +11520,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateBuilderInCon
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateBuilder(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMBuilderRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMCreateBuilder();
-  {
-    LLVMBuilderRef * resultptr = (LLVMBuilderRef *) malloc(sizeof(LLVMBuilderRef));
-    memmove(resultptr, &result, sizeof(LLVMBuilderRef));
-    *(LLVMBuilderRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBuilderRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -13061,30 +11535,24 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PositionBuilder(JNI
   LLVMBuilderRef arg1 ;
   LLVMBasicBlockRef arg2 ;
   LLVMValueRef arg3 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMBasicBlockRef *argp2 ;
-  LLVMValueRef *argp3 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMBasicBlockRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMBasicBlockRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMBasicBlockRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   LLVMPositionBuilder(arg1,arg2,arg3);
 }
 
@@ -13092,23 +11560,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PositionBuilder(JNI
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PositionBuilderBefore(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   LLVMPositionBuilderBefore(arg1,arg2);
 }
 
@@ -13116,23 +11580,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PositionBuilderBefo
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PositionBuilderAtEnd(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMBuilderRef arg1 ;
   LLVMBasicBlockRef arg2 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMBasicBlockRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMBasicBlockRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMBasicBlockRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMBasicBlockRef*)&$result = arg2;
+  
   LLVMPositionBuilderAtEnd(arg1,arg2);
 }
 
@@ -13140,39 +11600,33 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PositionBuilderAtEn
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetInsertBlock(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMBuilderRef arg1 ;
-  LLVMBuilderRef *argp1 ;
   LLVMBasicBlockRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
   result = LLVMGetInsertBlock(arg1);
-  {
-    LLVMBasicBlockRef * resultptr = (LLVMBasicBlockRef *) malloc(sizeof(LLVMBasicBlockRef));
-    memmove(resultptr, &result, sizeof(LLVMBasicBlockRef));
-    *(LLVMBasicBlockRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMBasicBlockRef*)&jresult = result;
+  
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ClearInsertionPosition(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMBuilderRef arg1 ;
-  LLVMBuilderRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
   LLVMClearInsertionPosition(arg1);
 }
 
@@ -13180,23 +11634,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ClearInsertionPosit
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InsertIntoBuilder(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   LLVMInsertIntoBuilder(arg1,arg2);
 }
 
@@ -13205,23 +11655,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InsertIntoBuilderWi
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
@@ -13234,16 +11680,14 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InsertIntoBuilderWi
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeBuilder(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMBuilderRef arg1 ;
-  LLVMBuilderRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
   LLVMDisposeBuilder(arg1);
 }
 
@@ -13251,23 +11695,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeBuilder(JNIE
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetCurrentDebugLocation(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   LLVMSetCurrentDebugLocation(arg1,arg2);
 }
 
@@ -13275,29 +11715,25 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetCurrentDebugLoca
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCurrentDebugLocation(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMBuilderRef arg1 ;
-  LLVMBuilderRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  result = LLVMGetCurrentDebugLocation(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMGetCurrentDebugLocation(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -13305,23 +11741,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCurrentDebugLoc
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetInstDebugLocation(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   LLVMSetInstDebugLocation(arg1,arg2);
 }
 
@@ -13329,29 +11761,25 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetInstDebugLocatio
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildRetVoid(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMBuilderRef arg1 ;
-  LLVMBuilderRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  result = LLVMBuildRetVoid(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMBuildRetVoid(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -13360,36 +11788,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildRet(JNIEnv *j
   jlong jresult = 0 ;
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMBuildRet(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -13399,32 +11821,28 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildAggregateRet(
   LLVMBuilderRef arg1 ;
   LLVMValueRef *arg2 = (LLVMValueRef *) 0 ;
   unsigned int arg3 ;
-  LLVMBuilderRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  arg2 = *(LLVMValueRef **)&jarg2; 
+  arg3 = (unsigned int)jarg3; 
+  result = LLVMBuildAggregateRet(arg1,arg2,arg3);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = *(LLVMValueRef **)&jarg2;
-  arg3 = (unsigned int)jarg3;
-  result = LLVMBuildAggregateRet(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -13433,36 +11851,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildBr(JNIEnv *je
   jlong jresult = 0 ;
   LLVMBuilderRef arg1 ;
   LLVMBasicBlockRef arg2 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMBasicBlockRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMBasicBlockRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMBasicBlockRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMBasicBlockRef*)&$result = arg2;
+  
   result = LLVMBuildBr(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -13473,50 +11885,40 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildCondBr(JNIEnv
   LLVMValueRef arg2 ;
   LLVMBasicBlockRef arg3 ;
   LLVMBasicBlockRef arg4 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMBasicBlockRef *argp3 ;
-  LLVMBasicBlockRef *argp4 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMBasicBlockRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  argp4 = *(LLVMBasicBlockRef **)&jarg4;
-  if (!argp4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return 0;
-  }
-  arg4 = *argp4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMBasicBlockRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMBasicBlockRef*)&$result = arg3;
+  
+  
+  arg4 = *(LLVMBasicBlockRef*)&jarg4;
+  //TODO:
+  //jarg4 arg4_rtype *(LLVMBasicBlockRef*)&$result = arg4;
+  
   result = LLVMBuildCondBr(arg1,arg2,arg3,arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -13527,44 +11929,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildSwitch(JNIEnv
   LLVMValueRef arg2 ;
   LLVMBasicBlockRef arg3 ;
   unsigned int arg4 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMBasicBlockRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMBasicBlockRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  arg4 = (unsigned int)jarg4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMBasicBlockRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMBasicBlockRef*)&$result = arg3;
+  
+  arg4 = (unsigned int)jarg4; 
   result = LLVMBuildSwitch(arg1,arg2,arg3,arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -13574,37 +11968,31 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildIndirectBr(JN
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
   unsigned int arg3 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = (unsigned int)jarg3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  arg3 = (unsigned int)jarg3; 
   result = LLVMBuildIndirectBr(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -13618,59 +12006,49 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildInvoke(JNIEnv
   LLVMBasicBlockRef arg5 ;
   LLVMBasicBlockRef arg6 ;
   char *arg7 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMBasicBlockRef *argp5 ;
-  LLVMBasicBlockRef *argp6 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = *(LLVMValueRef **)&jarg3;
-  arg4 = (unsigned int)jarg4;
-  argp5 = *(LLVMBasicBlockRef **)&jarg5;
-  if (!argp5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return 0;
-  }
-  arg5 = *argp5;
-  argp6 = *(LLVMBasicBlockRef **)&jarg6;
-  if (!argp6) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return 0;
-  }
-  arg6 = *argp6;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  arg3 = *(LLVMValueRef **)&jarg3; 
+  arg4 = (unsigned int)jarg4; 
+  
+  arg5 = *(LLVMBasicBlockRef*)&jarg5;
+  //TODO:
+  //jarg5 arg5_rtype *(LLVMBasicBlockRef*)&$result = arg5;
+  
+  
+  arg6 = *(LLVMBasicBlockRef*)&jarg6;
+  //TODO:
+  //jarg6 arg6_rtype *(LLVMBasicBlockRef*)&$result = arg6;
+  
   arg7 = 0;
   if (jarg7) {
     arg7 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg7, 0);
     if (!arg7) return 0;
   }
   result = LLVMBuildInvoke(arg1,arg2,arg3,arg4,arg5,arg6,(char const *)arg7);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg7) (*jenv)->ReleaseStringUTFChars(jenv, jarg7, (const char *)arg7);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -13682,50 +12060,42 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildLandingPad(JN
   LLVMValueRef arg3 ;
   unsigned int arg4 ;
   char *arg5 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMTypeRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  arg4 = (unsigned int)jarg4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
+  arg4 = (unsigned int)jarg4; 
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
     if (!arg5) return 0;
   }
   result = LLVMBuildLandingPad(arg1,arg2,arg3,arg4,(char const *)arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -13734,36 +12104,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildResume(JNIEnv
   jlong jresult = 0 ;
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMBuildResume(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -13771,29 +12135,25 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildResume(JNIEnv
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildUnreachable(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMBuilderRef arg1 ;
-  LLVMBuilderRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  result = LLVMBuildUnreachable(arg1);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  result = LLVMBuildUnreachable(arg1);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -13802,30 +12162,24 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddCase(JNIEnv *jen
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
   LLVMBasicBlockRef arg3 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMBasicBlockRef *argp3 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMBasicBlockRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMBasicBlockRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMBasicBlockRef*)&$result = arg3;
+  
   LLVMAddCase(arg1,arg2,arg3);
 }
 
@@ -13833,23 +12187,19 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddCase(JNIEnv *jen
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddDestination(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMValueRef arg1 ;
   LLVMBasicBlockRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMBasicBlockRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMBasicBlockRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBasicBlockRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMBasicBlockRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMBasicBlockRef*)&$result = arg2;
+  
   LLVMAddDestination(arg1,arg2);
 }
 
@@ -13857,19 +12207,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddDestination(JNIE
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNumClauses(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (unsigned int)LLVMGetNumClauses(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -13878,30 +12226,26 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetClause(JNIEnv *
   jlong jresult = 0 ;
   LLVMValueRef arg1 ;
   unsigned int arg2 ;
-  LLVMValueRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
+  result = LLVMGetClause(arg1,arg2);
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
     return 0;
   }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
-  result = LLVMGetClause(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -13909,23 +12253,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetClause(JNIEnv *
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddClause(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMValueRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp1 ;
-  LLVMValueRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   LLVMAddClause(arg1,arg2);
 }
 
@@ -13933,19 +12273,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddClause(JNIEnv *j
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsCleanup(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsCleanup(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -13953,17 +12291,15 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsCleanup(JNIEn
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetCleanup(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMValueRef arg1 ;
   LLVMBool arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = jarg2; 
   LLVMSetCleanup(arg1,arg2);
 }
 
@@ -13974,49 +12310,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildAdd(JNIEnv *j
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildAdd(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14027,49 +12355,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildNSWAdd(JNIEnv
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildNSWAdd(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14080,49 +12400,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildNUWAdd(JNIEnv
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildNUWAdd(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14133,49 +12445,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFAdd(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildFAdd(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14186,49 +12490,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildSub(JNIEnv *j
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildSub(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14239,49 +12535,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildNSWSub(JNIEnv
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildNSWSub(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14292,49 +12580,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildNUWSub(JNIEnv
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildNUWSub(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14345,49 +12625,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFSub(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildFSub(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14398,49 +12670,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildMul(JNIEnv *j
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildMul(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14451,49 +12715,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildNSWMul(JNIEnv
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildNSWMul(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14504,49 +12760,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildNUWMul(JNIEnv
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildNUWMul(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14557,49 +12805,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFMul(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildFMul(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14610,49 +12850,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildUDiv(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildUDiv(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14663,49 +12895,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildSDiv(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildSDiv(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14716,49 +12940,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildExactSDiv(JNI
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildExactSDiv(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14769,49 +12985,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFDiv(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildFDiv(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14822,49 +13030,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildURem(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildURem(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14875,49 +13075,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildSRem(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildSRem(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14928,49 +13120,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFRem(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildFRem(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -14981,49 +13165,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildShl(JNIEnv *j
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildShl(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15034,49 +13210,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildLShr(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildLShr(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15087,49 +13255,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildAShr(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildAShr(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15140,49 +13300,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildAnd(JNIEnv *j
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildAnd(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15193,49 +13345,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildOr(JNIEnv *je
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildOr(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15246,49 +13390,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildXor(JNIEnv *j
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildXor(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15300,50 +13436,42 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildBinOp(JNIEnv 
   LLVMValueRef arg3 ;
   LLVMValueRef arg4 ;
   char *arg5 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp3 ;
-  LLVMValueRef *argp4 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMOpcode)jarg2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  argp4 = *(LLVMValueRef **)&jarg4;
-  if (!argp4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg4 = *argp4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  arg2 = (LLVMOpcode)jarg2; 
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
+  
+  arg4 = *(LLVMValueRef*)&jarg4;
+  //TODO:
+  //jarg4 arg4_rtype *(LLVMValueRef*)&$result = arg4;
+  
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
     if (!arg5) return 0;
   }
   result = LLVMBuildBinOp(arg1,arg2,arg3,arg4,(char const *)arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15353,42 +13481,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildNeg(JNIEnv *j
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMBuildNeg(arg1,arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15398,42 +13520,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildNSWNeg(JNIEnv
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMBuildNSWNeg(arg1,arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15443,42 +13559,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildNUWNeg(JNIEnv
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMBuildNUWNeg(arg1,arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15488,42 +13598,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFNeg(JNIEnv *
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMBuildFNeg(arg1,arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15533,42 +13637,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildNot(JNIEnv *j
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMBuildNot(arg1,arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15578,42 +13676,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildMalloc(JNIEnv
   LLVMBuilderRef arg1 ;
   LLVMTypeRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMBuildMalloc(arg1,arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15624,49 +13716,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildArrayMalloc(J
   LLVMTypeRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMTypeRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildArrayMalloc(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15676,42 +13760,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildAlloca(JNIEnv
   LLVMBuilderRef arg1 ;
   LLVMTypeRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMBuildAlloca(arg1,arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15722,49 +13800,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildArrayAlloca(J
   LLVMTypeRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMTypeRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildArrayAlloca(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15773,36 +13843,30 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFree(JNIEnv *
   jlong jresult = 0 ;
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMBuildFree(arg1,arg2);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -15812,42 +13876,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildLoad(JNIEnv *
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMBuildLoad(arg1,arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15857,43 +13915,35 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildStore(JNIEnv 
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   result = LLVMBuildStore(arg1,arg2,arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -15905,45 +13955,39 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildGEP(JNIEnv *j
   LLVMValueRef *arg3 = (LLVMValueRef *) 0 ;
   unsigned int arg4 ;
   char *arg5 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = *(LLVMValueRef **)&jarg3;
-  arg4 = (unsigned int)jarg4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  arg3 = *(LLVMValueRef **)&jarg3; 
+  arg4 = (unsigned int)jarg4; 
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
     if (!arg5) return 0;
   }
   result = LLVMBuildGEP(arg1,arg2,arg3,arg4,(char const *)arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -15955,45 +13999,39 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildInBoundsGEP(J
   LLVMValueRef *arg3 = (LLVMValueRef *) 0 ;
   unsigned int arg4 ;
   char *arg5 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = *(LLVMValueRef **)&jarg3;
-  arg4 = (unsigned int)jarg4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  arg3 = *(LLVMValueRef **)&jarg3; 
+  arg4 = (unsigned int)jarg4; 
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
     if (!arg5) return 0;
   }
   result = LLVMBuildInBoundsGEP(arg1,arg2,arg3,arg4,(char const *)arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16004,43 +14042,37 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildStructGEP(JNI
   LLVMValueRef arg2 ;
   unsigned int arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = (unsigned int)jarg3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  arg3 = (unsigned int)jarg3; 
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildStructGEP(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16050,17 +14082,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildGlobalString(
   LLVMBuilderRef arg1 ;
   char *arg2 = (char *) 0 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
@@ -16072,19 +14102,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildGlobalString(
     if (!arg3) return 0;
   }
   result = LLVMBuildGlobalString(arg1,(char const *)arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16094,17 +14122,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildGlobalStringP
   LLVMBuilderRef arg1 ;
   char *arg2 = (char *) 0 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
@@ -16116,19 +14142,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildGlobalStringP
     if (!arg3) return 0;
   }
   result = LLVMBuildGlobalStringPtr(arg1,(char const *)arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16136,19 +14160,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildGlobalStringP
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetVolatile(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMGetVolatile(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -16156,17 +14178,15 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetVolatile(JNI
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetVolatile(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMValueRef arg1 ;
   LLVMBool arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = jarg2; 
   LLVMSetVolatile(arg1,arg2);
 }
 
@@ -16174,19 +14194,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetVolatile(JNIEnv 
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetOrdering(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMAtomicOrdering result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMAtomicOrdering)LLVMGetOrdering(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -16194,17 +14212,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetOrdering(JNIEnv 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetOrdering(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   LLVMAtomicOrdering arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAtomicOrdering)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAtomicOrdering)jarg2; 
   LLVMSetOrdering(arg1,arg2);
 }
 
@@ -16215,49 +14231,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildTrunc(JNIEnv 
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildTrunc(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16268,49 +14276,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildZExt(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildZExt(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16321,49 +14321,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildSExt(JNIEnv *
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildSExt(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16374,49 +14366,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFPToUI(JNIEnv
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildFPToUI(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16427,49 +14411,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFPToSI(JNIEnv
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildFPToSI(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16480,49 +14456,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildUIToFP(JNIEnv
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildUIToFP(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16533,49 +14501,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildSIToFP(JNIEnv
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildSIToFP(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16586,49 +14546,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFPTrunc(JNIEn
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildFPTrunc(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16639,49 +14591,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFPExt(JNIEnv 
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildFPExt(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16692,49 +14636,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildPtrToInt(JNIE
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildPtrToInt(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16745,49 +14681,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildIntToPtr(JNIE
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildIntToPtr(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16798,49 +14726,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildBitCast(JNIEn
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildBitCast(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16851,49 +14771,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildAddrSpaceCast
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildAddrSpaceCast(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16904,49 +14816,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildZExtOrBitCast
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildZExtOrBitCast(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -16957,49 +14861,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildSExtOrBitCast
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildSExtOrBitCast(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17010,49 +14906,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildTruncOrBitCas
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildTruncOrBitCast(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17064,50 +14952,42 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildCast(JNIEnv *
   LLVMValueRef arg3 ;
   LLVMTypeRef arg4 ;
   char *arg5 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp3 ;
-  LLVMTypeRef *argp4 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMOpcode)jarg2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  argp4 = *(LLVMTypeRef **)&jarg4;
-  if (!argp4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg4 = *argp4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  arg2 = (LLVMOpcode)jarg2; 
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
+  
+  arg4 = *(LLVMTypeRef*)&jarg4;
+  //TODO:
+  //jarg4 arg4_rtype *(LLVMTypeRef*)&$result = arg4;
+  
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
     if (!arg5) return 0;
   }
   result = LLVMBuildCast(arg1,arg2,arg3,arg4,(char const *)arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17118,49 +14998,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildPointerCast(J
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildPointerCast(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17171,49 +15043,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildIntCast(JNIEn
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildIntCast(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17224,49 +15088,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFPCast(JNIEnv
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildFPCast(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17278,50 +15134,42 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildICmp(JNIEnv *
   LLVMValueRef arg3 ;
   LLVMValueRef arg4 ;
   char *arg5 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp3 ;
-  LLVMValueRef *argp4 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMIntPredicate)jarg2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  argp4 = *(LLVMValueRef **)&jarg4;
-  if (!argp4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg4 = *argp4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  arg2 = (LLVMIntPredicate)jarg2; 
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
+  
+  arg4 = *(LLVMValueRef*)&jarg4;
+  //TODO:
+  //jarg4 arg4_rtype *(LLVMValueRef*)&$result = arg4;
+  
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
     if (!arg5) return 0;
   }
   result = LLVMBuildICmp(arg1,arg2,arg3,arg4,(char const *)arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17333,50 +15181,42 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFCmp(JNIEnv *
   LLVMValueRef arg3 ;
   LLVMValueRef arg4 ;
   char *arg5 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp3 ;
-  LLVMValueRef *argp4 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMRealPredicate)jarg2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  argp4 = *(LLVMValueRef **)&jarg4;
-  if (!argp4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg4 = *argp4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  arg2 = (LLVMRealPredicate)jarg2; 
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
+  
+  arg4 = *(LLVMValueRef*)&jarg4;
+  //TODO:
+  //jarg4 arg4_rtype *(LLVMValueRef*)&$result = arg4;
+  
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
     if (!arg5) return 0;
   }
   result = LLVMBuildFCmp(arg1,arg2,arg3,arg4,(char const *)arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17386,42 +15226,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildPhi(JNIEnv *j
   LLVMBuilderRef arg1 ;
   LLVMTypeRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMTypeRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMBuildPhi(arg1,arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17433,45 +15267,39 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildCall(JNIEnv *
   LLVMValueRef *arg3 = (LLVMValueRef *) 0 ;
   unsigned int arg4 ;
   char *arg5 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = *(LLVMValueRef **)&jarg3;
-  arg4 = (unsigned int)jarg4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  arg3 = *(LLVMValueRef **)&jarg3; 
+  arg4 = (unsigned int)jarg4; 
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
     if (!arg5) return 0;
   }
   result = LLVMBuildCall(arg1,arg2,arg3,arg4,(char const *)arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17483,56 +15311,46 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildSelect(JNIEnv
   LLVMValueRef arg3 ;
   LLVMValueRef arg4 ;
   char *arg5 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
-  LLVMValueRef *argp4 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  argp4 = *(LLVMValueRef **)&jarg4;
-  if (!argp4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg4 = *argp4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
+  
+  arg4 = *(LLVMValueRef*)&jarg4;
+  //TODO:
+  //jarg4 arg4_rtype *(LLVMValueRef*)&$result = arg4;
+  
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
     if (!arg5) return 0;
   }
   result = LLVMBuildSelect(arg1,arg2,arg3,arg4,(char const *)arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17543,49 +15361,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildVAArg(JNIEnv 
   LLVMValueRef arg2 ;
   LLVMTypeRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMTypeRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMTypeRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMTypeRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMTypeRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildVAArg(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17596,49 +15406,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildExtractElemen
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildExtractElement(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17650,56 +15452,46 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildInsertElement
   LLVMValueRef arg3 ;
   LLVMValueRef arg4 ;
   char *arg5 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
-  LLVMValueRef *argp4 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  argp4 = *(LLVMValueRef **)&jarg4;
-  if (!argp4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg4 = *argp4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
+  
+  arg4 = *(LLVMValueRef*)&jarg4;
+  //TODO:
+  //jarg4 arg4_rtype *(LLVMValueRef*)&$result = arg4;
+  
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
     if (!arg5) return 0;
   }
   result = LLVMBuildInsertElement(arg1,arg2,arg3,arg4,(char const *)arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17711,56 +15503,46 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildShuffleVector
   LLVMValueRef arg3 ;
   LLVMValueRef arg4 ;
   char *arg5 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
-  LLVMValueRef *argp4 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  argp4 = *(LLVMValueRef **)&jarg4;
-  if (!argp4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg4 = *argp4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
+  
+  arg4 = *(LLVMValueRef*)&jarg4;
+  //TODO:
+  //jarg4 arg4_rtype *(LLVMValueRef*)&$result = arg4;
+  
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
     if (!arg5) return 0;
   }
   result = LLVMBuildShuffleVector(arg1,arg2,arg3,arg4,(char const *)arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17771,43 +15553,37 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildExtractValue(
   LLVMValueRef arg2 ;
   unsigned int arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = (unsigned int)jarg3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  arg3 = (unsigned int)jarg3; 
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildExtractValue(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17819,50 +15595,42 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildInsertValue(J
   LLVMValueRef arg3 ;
   unsigned int arg4 ;
   char *arg5 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  arg4 = (unsigned int)jarg4;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
+  arg4 = (unsigned int)jarg4; 
   arg5 = 0;
   if (jarg5) {
     arg5 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg5, 0);
     if (!arg5) return 0;
   }
   result = LLVMBuildInsertValue(arg1,arg2,arg3,arg4,(char const *)arg5);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg5) (*jenv)->ReleaseStringUTFChars(jenv, jarg5, (const char *)arg5);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17872,42 +15640,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildIsNull(JNIEnv
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMBuildIsNull(arg1,arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17917,42 +15679,36 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildIsNotNull(JNI
   LLVMBuilderRef arg1 ;
   LLVMValueRef arg2 ;
   char *arg3 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
   result = LLVMBuildIsNotNull(arg1,arg2,(char const *)arg3);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -17963,49 +15719,41 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildPtrDiff(JNIEn
   LLVMValueRef arg2 ;
   LLVMValueRef arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildPtrDiff(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -18016,37 +15764,33 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildFence(JNIEnv 
   LLVMAtomicOrdering arg2 ;
   LLVMBool arg3 ;
   char *arg4 = (char *) 0 ;
-  LLVMBuilderRef *argp1 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAtomicOrdering)jarg2;
-  arg3 = jarg3;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  arg2 = (LLVMAtomicOrdering)jarg2; 
+  arg3 = jarg3; 
   arg4 = 0;
   if (jarg4) {
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
   result = LLVMBuildFence(arg1,arg2,arg3,(char const *)arg4);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMValueRef*)&jresult = result;
+  
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
+  
   return jresult;
 }
 
@@ -18059,46 +15803,38 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildAtomicRMW(JNI
   LLVMValueRef arg4 ;
   LLVMAtomicOrdering arg5 ;
   LLVMBool arg6 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp3 ;
-  LLVMValueRef *argp4 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAtomicRMWBinOp)jarg2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  argp4 = *(LLVMValueRef **)&jarg4;
-  if (!argp4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg4 = *argp4;
-  arg5 = (LLVMAtomicOrdering)jarg5;
-  arg6 = jarg6;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  arg2 = (LLVMAtomicRMWBinOp)jarg2; 
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
+  
+  arg4 = *(LLVMValueRef*)&jarg4;
+  //TODO:
+  //jarg4 arg4_rtype *(LLVMValueRef*)&$result = arg4;
+  
+  arg5 = (LLVMAtomicOrdering)jarg5; 
+  arg6 = jarg6; 
   result = LLVMBuildAtomicRMW(arg1,arg2,arg3,arg4,arg5,arg6);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -18112,53 +15848,43 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildAtomicCmpXchg
   LLVMAtomicOrdering arg5 ;
   LLVMAtomicOrdering arg6 ;
   LLVMBool arg7 ;
-  LLVMBuilderRef *argp1 ;
-  LLVMValueRef *argp2 ;
-  LLVMValueRef *argp3 ;
-  LLVMValueRef *argp4 ;
   LLVMValueRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMBuilderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMBuilderRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  argp3 = *(LLVMValueRef **)&jarg3;
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg3 = *argp3;
-  argp4 = *(LLVMValueRef **)&jarg4;
-  if (!argp4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg4 = *argp4;
-  arg5 = (LLVMAtomicOrdering)jarg5;
-  arg6 = (LLVMAtomicOrdering)jarg6;
-  arg7 = jarg7;
+  
+  arg1 = *(LLVMBuilderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMBuilderRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
+  
+  arg3 = *(LLVMValueRef*)&jarg3;
+  //TODO:
+  //jarg3 arg3_rtype *(LLVMValueRef*)&$result = arg3;
+  
+  
+  arg4 = *(LLVMValueRef*)&jarg4;
+  //TODO:
+  //jarg4 arg4_rtype *(LLVMValueRef*)&$result = arg4;
+  
+  arg5 = (LLVMAtomicOrdering)jarg5; 
+  arg6 = (LLVMAtomicOrdering)jarg6; 
+  arg7 = jarg7; 
   result = LLVMBuildAtomicCmpXchg(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
-  {
-    LLVMValueRef * resultptr = (LLVMValueRef *) malloc(sizeof(LLVMValueRef));
-    memmove(resultptr, &result, sizeof(LLVMValueRef));
-    *(LLVMValueRef **)&jresult = resultptr;
+  
+  *(LLVMValueRef*)&jresult = result;
+  
+  
+  if (result == NULL) {
+    free(*(LLVMValueRef **)&jresult);
+    return 0;
   }
-  {
-    if (result == NULL) {
-      free(*(LLVMValueRef **)&jresult);
-      return 0;
-    }
-  }
+  
   return jresult;
 }
 
@@ -18166,19 +15892,17 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_BuildAtomicCmpXchg
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAtomicSingleThread(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = LLVMIsAtomicSingleThread(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18186,17 +15910,15 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsAtomicSingleT
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetAtomicSingleThread(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMValueRef arg1 ;
   LLVMBool arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = jarg2; 
   LLVMSetAtomicSingleThread(arg1,arg2);
 }
 
@@ -18204,19 +15926,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetAtomicSingleThre
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCmpXchgSuccessOrdering(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMAtomicOrdering result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMAtomicOrdering)LLVMGetCmpXchgSuccessOrdering(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -18224,17 +15944,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCmpXchgSuccessOr
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetCmpXchgSuccessOrdering(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   LLVMAtomicOrdering arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAtomicOrdering)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAtomicOrdering)jarg2; 
   LLVMSetCmpXchgSuccessOrdering(arg1,arg2);
 }
 
@@ -18242,19 +15960,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetCmpXchgSuccessOr
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCmpXchgFailureOrdering(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMValueRef arg1 ;
-  LLVMValueRef *argp1 ;
   LLVMAtomicOrdering result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
   result = (LLVMAtomicOrdering)LLVMGetCmpXchgFailureOrdering(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -18262,17 +15978,15 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetCmpXchgFailureOr
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetCmpXchgFailureOrdering(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMValueRef arg1 ;
   LLVMAtomicOrdering arg2 ;
-  LLVMValueRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMValueRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMAtomicOrdering)jarg2;
+  
+  arg1 = *(LLVMValueRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMValueRef*)&$result = arg1;
+  
+  arg2 = (LLVMAtomicOrdering)jarg2; 
   LLVMSetCmpXchgFailureOrdering(arg1,arg2);
 }
 
@@ -18280,39 +15994,33 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetCmpXchgFailureOr
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateModuleProviderForExistingModule(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   LLVMModuleProviderRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   result = LLVMCreateModuleProviderForExistingModule(arg1);
-  {
-    LLVMModuleProviderRef * resultptr = (LLVMModuleProviderRef *) malloc(sizeof(LLVMModuleProviderRef));
-    memmove(resultptr, &result, sizeof(LLVMModuleProviderRef));
-    *(LLVMModuleProviderRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMModuleProviderRef*)&jresult = result;
+  
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeModuleProvider(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMModuleProviderRef arg1 ;
-  LLVMModuleProviderRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleProviderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleProviderRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleProviderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleProviderRef*)&$result = arg1;
+  
   LLVMDisposeModuleProvider(arg1);
 }
 
@@ -18323,7 +16031,7 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateMemoryBuf
   LLVMMemoryBufferRef *arg2 = (LLVMMemoryBufferRef *) 0 ;
   char **arg3 = (char **) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
@@ -18333,10 +16041,10 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateMemoryBuf
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  arg2 = *(LLVMMemoryBufferRef **)&jarg2;
-  arg3 = *(char ***)&jarg3;
+  arg2 = *(LLVMMemoryBufferRef **)&jarg2; 
+  arg3 = *(char ***)&jarg3; 
   result = LLVMCreateMemoryBufferWithContentsOfFile((char const *)arg1,arg2,arg3);
-  jresult = result;
+  jresult = result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
@@ -18347,15 +16055,15 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateMemoryBuf
   LLVMMemoryBufferRef *arg1 = (LLVMMemoryBufferRef *) 0 ;
   char **arg2 = (char **) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   (void)jarg2_;
-  arg1 = *(LLVMMemoryBufferRef **)&jarg1;
-  arg2 = *(char ***)&jarg2;
+  arg1 = *(LLVMMemoryBufferRef **)&jarg1; 
+  arg2 = *(char ***)&jarg2; 
   result = LLVMCreateMemoryBufferWithSTDIN(arg1,arg2);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18367,7 +16075,7 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateMemoryBuffer
   char *arg3 = (char *) 0 ;
   LLVMBool arg4 ;
   LLVMMemoryBufferRef result;
-
+  
   (void)jenv;
   (void)jcls;
   {
@@ -18384,13 +16092,11 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateMemoryBuffer
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
-  arg4 = jarg4;
+  arg4 = jarg4; 
   result = LLVMCreateMemoryBufferWithMemoryRange((char const *)arg1,arg2,(char const *)arg3,arg4);
-  {
-    LLVMMemoryBufferRef * resultptr = (LLVMMemoryBufferRef *) malloc(sizeof(LLVMMemoryBufferRef));
-    memmove(resultptr, &result, sizeof(LLVMMemoryBufferRef));
-    *(LLVMMemoryBufferRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMMemoryBufferRef*)&jresult = result;
+  
   {
     (*jenv)->ReleaseByteArrayElements(jenv, jarg1, arg1, 0);
   }
@@ -18405,7 +16111,7 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateMemoryBuffer
   size_t arg2 ;
   char *arg3 = (char *) 0 ;
   LLVMMemoryBufferRef result;
-
+  
   (void)jenv;
   (void)jcls;
   {
@@ -18423,11 +16129,9 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateMemoryBuffer
     if (!arg3) return 0;
   }
   result = LLVMCreateMemoryBufferWithMemoryRangeCopy((char const *)arg1,arg2,(char const *)arg3);
-  {
-    LLVMMemoryBufferRef * resultptr = (LLVMMemoryBufferRef *) malloc(sizeof(LLVMMemoryBufferRef));
-    memmove(resultptr, &result, sizeof(LLVMMemoryBufferRef));
-    *(LLVMMemoryBufferRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMMemoryBufferRef*)&jresult = result;
+  
   {
     (*jenv)->ReleaseByteArrayElements(jenv, jarg1, arg1, 0);
   }
@@ -18439,17 +16143,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateMemoryBuffer
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBufferStart(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   LLVMMemoryBufferRef arg1 ;
-  LLVMMemoryBufferRef *argp1 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMMemoryBufferRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMMemoryBufferRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMMemoryBufferRef*)&$result = arg1;
+  
   result = (char *)LLVMGetBufferStart(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -18459,35 +16161,31 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBufferStart(J
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBufferSize(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMMemoryBufferRef arg1 ;
-  LLVMMemoryBufferRef *argp1 ;
   size_t result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMMemoryBufferRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMMemoryBufferRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMMemoryBufferRef*)&$result = arg1;
+  
   result = LLVMGetBufferSize(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeMemoryBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMMemoryBufferRef arg1 ;
-  LLVMMemoryBufferRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMMemoryBufferRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMMemoryBufferRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMMemoryBufferRef*)&$result = arg1;
+  
   LLVMDisposeMemoryBuffer(arg1);
 }
 
@@ -18495,15 +16193,13 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeMemoryBuffer
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetGlobalPassRegistry(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMPassRegistryRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMGetGlobalPassRegistry();
-  {
-    LLVMPassRegistryRef * resultptr = (LLVMPassRegistryRef *) malloc(sizeof(LLVMPassRegistryRef));
-    memmove(resultptr, &result, sizeof(LLVMPassRegistryRef));
-    *(LLVMPassRegistryRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMPassRegistryRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -18511,15 +16207,13 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetGlobalPassRegis
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreatePassManager(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMPassManagerRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMCreatePassManager();
-  {
-    LLVMPassManagerRef * resultptr = (LLVMPassManagerRef *) malloc(sizeof(LLVMPassManagerRef));
-    memmove(resultptr, &result, sizeof(LLVMPassManagerRef));
-    *(LLVMPassManagerRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMPassManagerRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -18527,23 +16221,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreatePassManager(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateFunctionPassManagerForModule(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   LLVMPassManagerRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   result = LLVMCreateFunctionPassManagerForModule(arg1);
-  {
-    LLVMPassManagerRef * resultptr = (LLVMPassManagerRef *) malloc(sizeof(LLVMPassManagerRef));
-    memmove(resultptr, &result, sizeof(LLVMPassManagerRef));
-    *(LLVMPassManagerRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMPassManagerRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -18551,23 +16241,19 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateFunctionPass
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateFunctionPassManager(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMModuleProviderRef arg1 ;
-  LLVMModuleProviderRef *argp1 ;
   LLVMPassManagerRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleProviderRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleProviderRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleProviderRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleProviderRef*)&$result = arg1;
+  
   result = LLVMCreateFunctionPassManager(arg1);
-  {
-    LLVMPassManagerRef * resultptr = (LLVMPassManagerRef *) malloc(sizeof(LLVMPassManagerRef));
-    memmove(resultptr, &result, sizeof(LLVMPassManagerRef));
-    *(LLVMPassManagerRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMPassManagerRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -18576,26 +16262,22 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RunPassManager(
   jboolean jresult = 0 ;
   LLVMPassManagerRef arg1 ;
   LLVMModuleRef arg2 ;
-  LLVMPassManagerRef *argp1 ;
-  LLVMModuleRef *argp2 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMModuleRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMModuleRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMModuleRef*)&$result = arg2;
+  
   result = LLVMRunPassManager(arg1,arg2);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18603,19 +16285,17 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RunPassManager(
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InitializeFunctionPassManager(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   result = LLVMInitializeFunctionPassManager(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18624,26 +16304,22 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RunFunctionPass
   jboolean jresult = 0 ;
   LLVMPassManagerRef arg1 ;
   LLVMValueRef arg2 ;
-  LLVMPassManagerRef *argp1 ;
-  LLVMValueRef *argp2 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = LLVMRunFunctionPassManager(arg1,arg2);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18651,35 +16327,31 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_RunFunctionPass
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_FinalizeFunctionPassManager(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   result = LLVMFinalizeFunctionPassManager(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposePassManager(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMDisposePassManager(arg1);
 }
 
@@ -18687,11 +16359,11 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposePassManager(
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StartMultithreaded(JNIEnv *jenv, jclass jcls) {
   jboolean jresult = 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMStartMultithreaded();
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18706,11 +16378,11 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StopMultithreaded(J
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsMultithreaded(JNIEnv *jenv, jclass jcls) {
   jboolean jresult = 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMIsMultithreaded();
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18720,23 +16392,21 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ParseBitcode(JN
   LLVMMemoryBufferRef arg1 ;
   LLVMModuleRef *arg2 = (LLVMModuleRef *) 0 ;
   char **arg3 = (char **) 0 ;
-  LLVMMemoryBufferRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
   (void)jarg3_;
-  argp1 = *(LLVMMemoryBufferRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMModuleRef **)&jarg2;
-  arg3 = *(char ***)&jarg3;
+  
+  arg1 = *(LLVMMemoryBufferRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMMemoryBufferRef*)&$result = arg1;
+  
+  arg2 = *(LLVMModuleRef **)&jarg2; 
+  arg3 = *(char ***)&jarg3; 
   result = LLVMParseBitcode(arg1,arg2,arg3);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18745,21 +16415,19 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ParseBitcode2(J
   jboolean jresult = 0 ;
   LLVMMemoryBufferRef arg1 ;
   LLVMModuleRef *arg2 = (LLVMModuleRef *) 0 ;
-  LLVMMemoryBufferRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMMemoryBufferRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMModuleRef **)&jarg2;
+  
+  arg1 = *(LLVMMemoryBufferRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMMemoryBufferRef*)&$result = arg1;
+  
+  arg2 = *(LLVMModuleRef **)&jarg2; 
   result = LLVMParseBitcode2(arg1,arg2);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18770,30 +16438,26 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ParseBitcodeInC
   LLVMMemoryBufferRef arg2 ;
   LLVMModuleRef *arg3 = (LLVMModuleRef *) 0 ;
   char **arg4 = (char **) 0 ;
-  LLVMContextRef *argp1 ;
-  LLVMMemoryBufferRef *argp2 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
   (void)jarg4_;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMMemoryBufferRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = *(LLVMModuleRef **)&jarg3;
-  arg4 = *(char ***)&jarg4;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMMemoryBufferRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMMemoryBufferRef*)&$result = arg2;
+  
+  arg3 = *(LLVMModuleRef **)&jarg3; 
+  arg4 = *(char ***)&jarg4; 
   result = LLVMParseBitcodeInContext(arg1,arg2,arg3,arg4);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18803,28 +16467,24 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ParseBitcodeInC
   LLVMContextRef arg1 ;
   LLVMMemoryBufferRef arg2 ;
   LLVMModuleRef *arg3 = (LLVMModuleRef *) 0 ;
-  LLVMContextRef *argp1 ;
-  LLVMMemoryBufferRef *argp2 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMMemoryBufferRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = *(LLVMModuleRef **)&jarg3;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMMemoryBufferRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMMemoryBufferRef*)&$result = arg2;
+  
+  arg3 = *(LLVMModuleRef **)&jarg3; 
   result = LLVMParseBitcodeInContext2(arg1,arg2,arg3);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18835,30 +16495,26 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBitcodeModul
   LLVMMemoryBufferRef arg2 ;
   LLVMModuleRef *arg3 = (LLVMModuleRef *) 0 ;
   char **arg4 = (char **) 0 ;
-  LLVMContextRef *argp1 ;
-  LLVMMemoryBufferRef *argp2 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
   (void)jarg4_;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMMemoryBufferRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = *(LLVMModuleRef **)&jarg3;
-  arg4 = *(char ***)&jarg4;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMMemoryBufferRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMMemoryBufferRef*)&$result = arg2;
+  
+  arg3 = *(LLVMModuleRef **)&jarg3; 
+  arg4 = *(char ***)&jarg4; 
   result = LLVMGetBitcodeModuleInContext(arg1,arg2,arg3,arg4);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18868,28 +16524,24 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBitcodeModul
   LLVMContextRef arg1 ;
   LLVMMemoryBufferRef arg2 ;
   LLVMModuleRef *arg3 = (LLVMModuleRef *) 0 ;
-  LLVMContextRef *argp1 ;
-  LLVMMemoryBufferRef *argp2 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMMemoryBufferRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = *(LLVMModuleRef **)&jarg3;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMMemoryBufferRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMMemoryBufferRef*)&$result = arg2;
+  
+  arg3 = *(LLVMModuleRef **)&jarg3; 
   result = LLVMGetBitcodeModuleInContext2(arg1,arg2,arg3);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18899,23 +16551,21 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBitcodeModul
   LLVMMemoryBufferRef arg1 ;
   LLVMModuleRef *arg2 = (LLVMModuleRef *) 0 ;
   char **arg3 = (char **) 0 ;
-  LLVMMemoryBufferRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
   (void)jarg3_;
-  argp1 = *(LLVMMemoryBufferRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMModuleRef **)&jarg2;
-  arg3 = *(char ***)&jarg3;
+  
+  arg1 = *(LLVMMemoryBufferRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMMemoryBufferRef*)&$result = arg1;
+  
+  arg2 = *(LLVMModuleRef **)&jarg2; 
+  arg3 = *(char ***)&jarg3; 
   result = LLVMGetBitcodeModule(arg1,arg2,arg3);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18924,21 +16574,19 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetBitcodeModul
   jboolean jresult = 0 ;
   LLVMMemoryBufferRef arg1 ;
   LLVMModuleRef *arg2 = (LLVMModuleRef *) 0 ;
-  LLVMMemoryBufferRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
-  argp1 = *(LLVMMemoryBufferRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMModuleRef **)&jarg2;
+  
+  arg1 = *(LLVMMemoryBufferRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMMemoryBufferRef*)&$result = arg1;
+  
+  arg2 = *(LLVMModuleRef **)&jarg2; 
   result = LLVMGetBitcodeModule2(arg1,arg2);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -18947,24 +16595,22 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_WriteBitcodeToFile(
   jint jresult = 0 ;
   LLVMModuleRef arg1 ;
   char *arg2 = (char *) 0 ;
-  LLVMModuleRef *argp1 ;
   int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
     if (!arg2) return 0;
   }
   result = (int)LLVMWriteBitcodeToFile(arg1,(char const *)arg2);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
@@ -18976,22 +16622,20 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_WriteBitcodeToFD(JN
   int arg2 ;
   int arg3 ;
   int arg4 ;
-  LLVMModuleRef *argp1 ;
   int result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = (int)jarg2;
-  arg3 = (int)jarg3;
-  arg4 = (int)jarg4;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  arg4 = (int)jarg4; 
   result = (int)LLVMWriteBitcodeToFD(arg1,arg2,arg3,arg4);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -18999,23 +16643,19 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_WriteBitcodeToFD(JN
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_WriteBitcodeToMemoryBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   LLVMMemoryBufferRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   result = LLVMWriteBitcodeToMemoryBuffer(arg1);
-  {
-    LLVMMemoryBufferRef * resultptr = (LLVMMemoryBufferRef *) malloc(sizeof(LLVMMemoryBufferRef));
-    memmove(resultptr, &result, sizeof(LLVMMemoryBufferRef));
-    *(LLVMMemoryBufferRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMMemoryBufferRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -19023,29 +16663,27 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_WriteBitcodeToMemo
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateObjectFile(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMMemoryBufferRef arg1 ;
-  LLVMMemoryBufferRef *argp1 ;
   LLVMObjectFileRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMMemoryBufferRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMMemoryBufferRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMMemoryBufferRef*)&$result = arg1;
+  
   result = (LLVMObjectFileRef)LLVMCreateObjectFile(arg1);
-  *(LLVMObjectFileRef *)&jresult = result;
+  *(LLVMObjectFileRef *)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeObjectFile(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMObjectFileRef arg1 = (LLVMObjectFileRef) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMObjectFileRef *)&jarg1;
+  arg1 = *(LLVMObjectFileRef *)&jarg1; 
   LLVMDisposeObjectFile(arg1);
 }
 
@@ -19054,22 +16692,22 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSections(JNIEnv
   jlong jresult = 0 ;
   LLVMObjectFileRef arg1 = (LLVMObjectFileRef) 0 ;
   LLVMSectionIteratorRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMObjectFileRef *)&jarg1;
+  arg1 = *(LLVMObjectFileRef *)&jarg1; 
   result = (LLVMSectionIteratorRef)LLVMGetSections(arg1);
-  *(LLVMSectionIteratorRef *)&jresult = result;
+  *(LLVMSectionIteratorRef *)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeSectionIterator(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMSectionIteratorRef arg1 = (LLVMSectionIteratorRef) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSectionIteratorRef *)&jarg1;
+  arg1 = *(LLVMSectionIteratorRef *)&jarg1; 
   LLVMDisposeSectionIterator(arg1);
 }
 
@@ -19079,23 +16717,23 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsSectionIterat
   LLVMObjectFileRef arg1 = (LLVMObjectFileRef) 0 ;
   LLVMSectionIteratorRef arg2 = (LLVMSectionIteratorRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMObjectFileRef *)&jarg1;
-  arg2 = *(LLVMSectionIteratorRef *)&jarg2;
+  arg1 = *(LLVMObjectFileRef *)&jarg1; 
+  arg2 = *(LLVMSectionIteratorRef *)&jarg2; 
   result = LLVMIsSectionIteratorAtEnd(arg1,arg2);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MoveToNextSection(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMSectionIteratorRef arg1 = (LLVMSectionIteratorRef) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSectionIteratorRef *)&jarg1;
+  arg1 = *(LLVMSectionIteratorRef *)&jarg1; 
   LLVMMoveToNextSection(arg1);
 }
 
@@ -19103,11 +16741,11 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MoveToNextSection(J
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MoveToContainingSection(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMSectionIteratorRef arg1 = (LLVMSectionIteratorRef) 0 ;
   LLVMSymbolIteratorRef arg2 = (LLVMSymbolIteratorRef) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSectionIteratorRef *)&jarg1;
-  arg2 = *(LLVMSymbolIteratorRef *)&jarg2;
+  arg1 = *(LLVMSectionIteratorRef *)&jarg1; 
+  arg2 = *(LLVMSymbolIteratorRef *)&jarg2; 
   LLVMMoveToContainingSection(arg1,arg2);
 }
 
@@ -19116,22 +16754,22 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSymbols(JNIEnv 
   jlong jresult = 0 ;
   LLVMObjectFileRef arg1 = (LLVMObjectFileRef) 0 ;
   LLVMSymbolIteratorRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMObjectFileRef *)&jarg1;
+  arg1 = *(LLVMObjectFileRef *)&jarg1; 
   result = (LLVMSymbolIteratorRef)LLVMGetSymbols(arg1);
-  *(LLVMSymbolIteratorRef *)&jresult = result;
+  *(LLVMSymbolIteratorRef *)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeSymbolIterator(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMSymbolIteratorRef arg1 = (LLVMSymbolIteratorRef) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSymbolIteratorRef *)&jarg1;
+  arg1 = *(LLVMSymbolIteratorRef *)&jarg1; 
   LLVMDisposeSymbolIterator(arg1);
 }
 
@@ -19141,23 +16779,23 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsSymbolIterato
   LLVMObjectFileRef arg1 = (LLVMObjectFileRef) 0 ;
   LLVMSymbolIteratorRef arg2 = (LLVMSymbolIteratorRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMObjectFileRef *)&jarg1;
-  arg2 = *(LLVMSymbolIteratorRef *)&jarg2;
+  arg1 = *(LLVMObjectFileRef *)&jarg1; 
+  arg2 = *(LLVMSymbolIteratorRef *)&jarg2; 
   result = LLVMIsSymbolIteratorAtEnd(arg1,arg2);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MoveToNextSymbol(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMSymbolIteratorRef arg1 = (LLVMSymbolIteratorRef) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSymbolIteratorRef *)&jarg1;
+  arg1 = *(LLVMSymbolIteratorRef *)&jarg1; 
   LLVMMoveToNextSymbol(arg1);
 }
 
@@ -19166,10 +16804,10 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSectionName(J
   jstring jresult = 0 ;
   LLVMSectionIteratorRef arg1 = (LLVMSectionIteratorRef) 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSectionIteratorRef *)&jarg1;
+  arg1 = *(LLVMSectionIteratorRef *)&jarg1; 
   result = (char *)LLVMGetSectionName(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -19180,12 +16818,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSectionSize(JNI
   jlong jresult = 0 ;
   LLVMSectionIteratorRef arg1 = (LLVMSectionIteratorRef) 0 ;
   uint64_t result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSectionIteratorRef *)&jarg1;
+  arg1 = *(LLVMSectionIteratorRef *)&jarg1; 
   result = LLVMGetSectionSize(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -19194,10 +16832,10 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSectionConten
   jstring jresult = 0 ;
   LLVMSectionIteratorRef arg1 = (LLVMSectionIteratorRef) 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSectionIteratorRef *)&jarg1;
+  arg1 = *(LLVMSectionIteratorRef *)&jarg1; 
   result = (char *)LLVMGetSectionContents(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -19208,12 +16846,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSectionAddress(
   jlong jresult = 0 ;
   LLVMSectionIteratorRef arg1 = (LLVMSectionIteratorRef) 0 ;
   uint64_t result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSectionIteratorRef *)&jarg1;
+  arg1 = *(LLVMSectionIteratorRef *)&jarg1; 
   result = LLVMGetSectionAddress(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -19223,13 +16861,13 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSectionConta
   LLVMSectionIteratorRef arg1 = (LLVMSectionIteratorRef) 0 ;
   LLVMSymbolIteratorRef arg2 = (LLVMSymbolIteratorRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSectionIteratorRef *)&jarg1;
-  arg2 = *(LLVMSymbolIteratorRef *)&jarg2;
+  arg1 = *(LLVMSectionIteratorRef *)&jarg1; 
+  arg2 = *(LLVMSymbolIteratorRef *)&jarg2; 
   result = LLVMGetSectionContainsSymbol(arg1,arg2);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -19238,22 +16876,22 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetRelocations(JNI
   jlong jresult = 0 ;
   LLVMSectionIteratorRef arg1 = (LLVMSectionIteratorRef) 0 ;
   LLVMRelocationIteratorRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSectionIteratorRef *)&jarg1;
+  arg1 = *(LLVMSectionIteratorRef *)&jarg1; 
   result = (LLVMRelocationIteratorRef)LLVMGetRelocations(arg1);
-  *(LLVMRelocationIteratorRef *)&jresult = result;
+  *(LLVMRelocationIteratorRef *)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeRelocationIterator(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMRelocationIteratorRef arg1 = (LLVMRelocationIteratorRef) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMRelocationIteratorRef *)&jarg1;
+  arg1 = *(LLVMRelocationIteratorRef *)&jarg1; 
   LLVMDisposeRelocationIterator(arg1);
 }
 
@@ -19263,23 +16901,23 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IsRelocationIte
   LLVMSectionIteratorRef arg1 = (LLVMSectionIteratorRef) 0 ;
   LLVMRelocationIteratorRef arg2 = (LLVMRelocationIteratorRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSectionIteratorRef *)&jarg1;
-  arg2 = *(LLVMRelocationIteratorRef *)&jarg2;
+  arg1 = *(LLVMSectionIteratorRef *)&jarg1; 
+  arg2 = *(LLVMRelocationIteratorRef *)&jarg2; 
   result = LLVMIsRelocationIteratorAtEnd(arg1,arg2);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_MoveToNextRelocation(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMRelocationIteratorRef arg1 = (LLVMRelocationIteratorRef) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMRelocationIteratorRef *)&jarg1;
+  arg1 = *(LLVMRelocationIteratorRef *)&jarg1; 
   LLVMMoveToNextRelocation(arg1);
 }
 
@@ -19288,10 +16926,10 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSymbolName(JN
   jstring jresult = 0 ;
   LLVMSymbolIteratorRef arg1 = (LLVMSymbolIteratorRef) 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSymbolIteratorRef *)&jarg1;
+  arg1 = *(LLVMSymbolIteratorRef *)&jarg1; 
   result = (char *)LLVMGetSymbolName(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -19302,12 +16940,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSymbolAddress(J
   jlong jresult = 0 ;
   LLVMSymbolIteratorRef arg1 = (LLVMSymbolIteratorRef) 0 ;
   uint64_t result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSymbolIteratorRef *)&jarg1;
+  arg1 = *(LLVMSymbolIteratorRef *)&jarg1; 
   result = LLVMGetSymbolAddress(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -19316,12 +16954,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetSymbolSize(JNIE
   jlong jresult = 0 ;
   LLVMSymbolIteratorRef arg1 = (LLVMSymbolIteratorRef) 0 ;
   uint64_t result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSymbolIteratorRef *)&jarg1;
+  arg1 = *(LLVMSymbolIteratorRef *)&jarg1; 
   result = LLVMGetSymbolSize(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -19330,12 +16968,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetRelocationOffse
   jlong jresult = 0 ;
   LLVMRelocationIteratorRef arg1 = (LLVMRelocationIteratorRef) 0 ;
   uint64_t result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMRelocationIteratorRef *)&jarg1;
+  arg1 = *(LLVMRelocationIteratorRef *)&jarg1; 
   result = LLVMGetRelocationOffset(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -19344,12 +16982,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetRelocationSymbo
   jlong jresult = 0 ;
   LLVMRelocationIteratorRef arg1 = (LLVMRelocationIteratorRef) 0 ;
   LLVMSymbolIteratorRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMRelocationIteratorRef *)&jarg1;
+  arg1 = *(LLVMRelocationIteratorRef *)&jarg1; 
   result = (LLVMSymbolIteratorRef)LLVMGetRelocationSymbol(arg1);
-  *(LLVMSymbolIteratorRef *)&jresult = result;
+  *(LLVMSymbolIteratorRef *)&jresult = result; 
   return jresult;
 }
 
@@ -19358,12 +16996,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetRelocationType(
   jlong jresult = 0 ;
   LLVMRelocationIteratorRef arg1 = (LLVMRelocationIteratorRef) 0 ;
   uint64_t result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMRelocationIteratorRef *)&jarg1;
+  arg1 = *(LLVMRelocationIteratorRef *)&jarg1; 
   result = LLVMGetRelocationType(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -19372,10 +17010,10 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetRelocationTyp
   jstring jresult = 0 ;
   LLVMRelocationIteratorRef arg1 = (LLVMRelocationIteratorRef) 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMRelocationIteratorRef *)&jarg1;
+  arg1 = *(LLVMRelocationIteratorRef *)&jarg1; 
   result = (char *)LLVMGetRelocationTypeName(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -19386,10 +17024,10 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetRelocationVal
   jstring jresult = 0 ;
   LLVMRelocationIteratorRef arg1 = (LLVMRelocationIteratorRef) 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMRelocationIteratorRef *)&jarg1;
+  arg1 = *(LLVMRelocationIteratorRef *)&jarg1; 
   result = (char *)LLVMGetRelocationValueString(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -19398,176 +17036,154 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetRelocationVal
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddArgumentPromotionPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddArgumentPromotionPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddConstantMergePass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddConstantMergePass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddDeadArgEliminationPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddDeadArgEliminationPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddFunctionAttrsPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddFunctionAttrsPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddFunctionInliningPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddFunctionInliningPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddAlwaysInlinerPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddAlwaysInlinerPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddGlobalDCEPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddGlobalDCEPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddGlobalOptimizerPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddGlobalOptimizerPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddIPConstantPropagationPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddIPConstantPropagationPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddPruneEHPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddPruneEHPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddIPSCCPPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddIPSCCPPass(arg1);
 }
 
@@ -19575,49 +17191,43 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddIPSCCPPass(JNIEn
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddInternalizePass(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMPassManagerRef arg1 ;
   unsigned int arg2 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (unsigned int)jarg2;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
+  arg2 = (unsigned int)jarg2; 
   LLVMAddInternalizePass(arg1,arg2);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddStripDeadPrototypesPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddStripDeadPrototypesPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddStripSymbolsPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddStripSymbolsPass(arg1);
 }
 
@@ -19625,21 +17235,21 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddStripSymbolsPass
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderCreate(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMPassManagerBuilderRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = (LLVMPassManagerBuilderRef)LLVMPassManagerBuilderCreate();
-  *(LLVMPassManagerBuilderRef *)&jresult = result;
+  *(LLVMPassManagerBuilderRef *)&jresult = result; 
   return jresult;
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderDispose(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerBuilderRef arg1 = (LLVMPassManagerBuilderRef) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1;
+  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1; 
   LLVMPassManagerBuilderDispose(arg1);
 }
 
@@ -19647,11 +17257,11 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderD
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderSetOptLevel(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMPassManagerBuilderRef arg1 = (LLVMPassManagerBuilderRef) 0 ;
   unsigned int arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1;
-  arg2 = (unsigned int)jarg2;
+  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
   LLVMPassManagerBuilderSetOptLevel(arg1,arg2);
 }
 
@@ -19659,11 +17269,11 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderS
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderSetSizeLevel(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMPassManagerBuilderRef arg1 = (LLVMPassManagerBuilderRef) 0 ;
   unsigned int arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1;
-  arg2 = (unsigned int)jarg2;
+  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
   LLVMPassManagerBuilderSetSizeLevel(arg1,arg2);
 }
 
@@ -19671,11 +17281,11 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderS
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderSetDisableUnitAtATime(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMPassManagerBuilderRef arg1 = (LLVMPassManagerBuilderRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMPassManagerBuilderSetDisableUnitAtATime(arg1,arg2);
 }
 
@@ -19683,11 +17293,11 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderS
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderSetDisableUnrollLoops(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMPassManagerBuilderRef arg1 = (LLVMPassManagerBuilderRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMPassManagerBuilderSetDisableUnrollLoops(arg1,arg2);
 }
 
@@ -19695,11 +17305,11 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderS
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderSetDisableSimplifyLibCalls(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMPassManagerBuilderRef arg1 = (LLVMPassManagerBuilderRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMPassManagerBuilderSetDisableSimplifyLibCalls(arg1,arg2);
 }
 
@@ -19707,11 +17317,11 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderS
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderUseInlinerWithThreshold(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMPassManagerBuilderRef arg1 = (LLVMPassManagerBuilderRef) 0 ;
   unsigned int arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1;
-  arg2 = (unsigned int)jarg2;
+  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
   LLVMPassManagerBuilderUseInlinerWithThreshold(arg1,arg2);
 }
 
@@ -19719,17 +17329,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderU
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderPopulateFunctionPassManager(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMPassManagerBuilderRef arg1 = (LLVMPassManagerBuilderRef) 0 ;
   LLVMPassManagerRef arg2 ;
-  LLVMPassManagerRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1;
-  argp2 = *(LLVMPassManagerRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1; 
+  
+  arg2 = *(LLVMPassManagerRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMPassManagerRef*)&$result = arg2;
+  
   LLVMPassManagerBuilderPopulateFunctionPassManager(arg1,arg2);
 }
 
@@ -19737,17 +17345,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderP
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderPopulateModulePassManager(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMPassManagerBuilderRef arg1 = (LLVMPassManagerBuilderRef) 0 ;
   LLVMPassManagerRef arg2 ;
-  LLVMPassManagerRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1;
-  argp2 = *(LLVMPassManagerRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1; 
+  
+  arg2 = *(LLVMPassManagerRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMPassManagerRef*)&$result = arg2;
+  
   LLVMPassManagerBuilderPopulateModulePassManager(arg1,arg2);
 }
 
@@ -19757,435 +17363,381 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderP
   LLVMPassManagerRef arg2 ;
   LLVMBool arg3 ;
   LLVMBool arg4 ;
-  LLVMPassManagerRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1;
-  argp2 = *(LLVMPassManagerRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg2 = *argp2;
-  arg3 = jarg3;
-  arg4 = jarg4;
+  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1; 
+  
+  arg2 = *(LLVMPassManagerRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMPassManagerRef*)&$result = arg2;
+  
+  arg3 = jarg3; 
+  arg4 = jarg4; 
   LLVMPassManagerBuilderPopulateLTOPassManager(arg1,arg2,arg3,arg4);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddAggressiveDCEPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddAggressiveDCEPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddBitTrackingDCEPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddBitTrackingDCEPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddAlignmentFromAssumptionsPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddAlignmentFromAssumptionsPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddCFGSimplificationPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddCFGSimplificationPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddDeadStoreEliminationPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddDeadStoreEliminationPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddScalarizerPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddScalarizerPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddMergedLoadStoreMotionPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddMergedLoadStoreMotionPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddGVNPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddGVNPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddIndVarSimplifyPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddIndVarSimplifyPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddInstructionCombiningPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddInstructionCombiningPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddJumpThreadingPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddJumpThreadingPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddLICMPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddLICMPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddLoopDeletionPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddLoopDeletionPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddLoopIdiomPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddLoopIdiomPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddLoopRotatePass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddLoopRotatePass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddLoopRerollPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddLoopRerollPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddLoopUnrollPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddLoopUnrollPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddLoopUnswitchPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddLoopUnswitchPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddMemCpyOptPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddMemCpyOptPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddPartiallyInlineLibCallsPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddPartiallyInlineLibCallsPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddLowerSwitchPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddLowerSwitchPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddPromoteMemoryToRegisterPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddPromoteMemoryToRegisterPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddReassociatePass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddReassociatePass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddSCCPPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddSCCPPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddScalarReplAggregatesPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddScalarReplAggregatesPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddScalarReplAggregatesPassSSA(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddScalarReplAggregatesPassSSA(arg1);
 }
 
@@ -20193,241 +17745,211 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddScalarReplAggreg
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddScalarReplAggregatesPassWithThreshold(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMPassManagerRef arg1 ;
   int arg2 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (int)jarg2;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
+  arg2 = (int)jarg2; 
   LLVMAddScalarReplAggregatesPassWithThreshold(arg1,arg2);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddSimplifyLibCallsPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddSimplifyLibCallsPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddTailCallEliminationPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddTailCallEliminationPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddConstantPropagationPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddConstantPropagationPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddDemoteMemoryToRegisterPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddDemoteMemoryToRegisterPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddVerifierPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddVerifierPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddCorrelatedValuePropagationPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddCorrelatedValuePropagationPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddEarlyCSEPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddEarlyCSEPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddLowerExpectIntrinsicPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddLowerExpectIntrinsicPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddTypeBasedAliasAnalysisPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddTypeBasedAliasAnalysisPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddScopedNoAliasAAPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddScopedNoAliasAAPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddBasicAliasAnalysisPass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddBasicAliasAnalysisPass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddBBVectorizePass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddBBVectorizePass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddLoopVectorizePass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddLoopVectorizePass(arg1);
 }
 
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddSLPVectorizePass(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMPassManagerRef arg1 ;
-  LLVMPassManagerRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMPassManagerRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMPassManagerRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMPassManagerRef*)&$result = arg1;
+  
   LLVMAddSLPVectorizePass(arg1);
 }
 
@@ -20477,11 +17999,11 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InitializeAllDisass
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InitializeNativeAsmParser(JNIEnv *jenv, jclass jcls) {
   jboolean jresult = 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMInitializeNativeAsmParser();
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -20489,11 +18011,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InitializeNativ
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InitializeNativeAsmPrinter(JNIEnv *jenv, jclass jcls) {
   jboolean jresult = 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMInitializeNativeAsmPrinter();
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -20501,11 +18023,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InitializeNativ
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InitializeNativeDisassembler(JNIEnv *jenv, jclass jcls) {
   jboolean jresult = 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   result = LLVMInitializeNativeDisassembler();
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -20513,19 +18035,17 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_InitializeNativ
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetModuleDataLayout(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   LLVMTargetDataRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   result = (LLVMTargetDataRef)LLVMGetModuleDataLayout(arg1);
-  *(LLVMTargetDataRef *)&jresult = result;
+  *(LLVMTargetDataRef *)&jresult = result; 
   return jresult;
 }
 
@@ -20533,17 +18053,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetModuleDataLayou
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetModuleDataLayout(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMModuleRef arg1 ;
   LLVMTargetDataRef arg2 = (LLVMTargetDataRef) 0 ;
-  LLVMModuleRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMTargetDataRef *)&jarg2;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
+  arg2 = *(LLVMTargetDataRef *)&jarg2; 
   LLVMSetModuleDataLayout(arg1,arg2);
 }
 
@@ -20552,7 +18070,7 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateTargetData(J
   jlong jresult = 0 ;
   char *arg1 = (char *) 0 ;
   LLVMTargetDataRef result;
-
+  
   (void)jenv;
   (void)jcls;
   arg1 = 0;
@@ -20561,7 +18079,7 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateTargetData(J
     if (!arg1) return 0;
   }
   result = (LLVMTargetDataRef)LLVMCreateTargetData((char const *)arg1);
-  *(LLVMTargetDataRef *)&jresult = result;
+  *(LLVMTargetDataRef *)&jresult = result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
@@ -20569,10 +18087,10 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateTargetData(J
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeTargetData(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
   LLVMDisposeTargetData(arg1);
 }
 
@@ -20580,17 +18098,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeTargetData(J
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddTargetLibraryInfo(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMTargetLibraryInfoRef arg1 = (LLVMTargetLibraryInfoRef) 0 ;
   LLVMPassManagerRef arg2 ;
-  LLVMPassManagerRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetLibraryInfoRef *)&jarg1;
-  argp2 = *(LLVMPassManagerRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMTargetLibraryInfoRef *)&jarg1; 
+  
+  arg2 = *(LLVMPassManagerRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMPassManagerRef*)&$result = arg2;
+  
   LLVMAddTargetLibraryInfo(arg1,arg2);
 }
 
@@ -20599,10 +18115,10 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CopyStringRepOfT
   jstring jresult = 0 ;
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
   result = (char *)LLVMCopyStringRepOfTargetData(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   free(result);
@@ -20614,12 +18130,12 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ByteOrder(JNIEnv *j
   jint jresult = 0 ;
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   enum LLVMByteOrdering result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
   result = (enum LLVMByteOrdering)LLVMByteOrder(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -20628,12 +18144,12 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PointerSize(JNIEnv 
   jint jresult = 0 ;
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
   result = (unsigned int)LLVMPointerSize(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -20643,13 +18159,13 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PointerSizeForAS(JN
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   unsigned int arg2 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
-  arg2 = (unsigned int)jarg2;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
   result = (unsigned int)LLVMPointerSizeForAS(arg1,arg2);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -20658,16 +18174,14 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntPtrType(JNIEnv 
   jlong jresult = 0 ;
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
   result = LLVMIntPtrType(arg1);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -20677,17 +18191,15 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntPtrTypeForAS(JN
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   unsigned int arg2 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
-  arg2 = (unsigned int)jarg2;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
   result = LLVMIntPtrTypeForAS(arg1,arg2);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -20696,24 +18208,20 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntPtrTypeInContex
   jlong jresult = 0 ;
   LLVMContextRef arg1 ;
   LLVMTargetDataRef arg2 = (LLVMTargetDataRef) 0 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMTargetDataRef *)&jarg2;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  arg2 = *(LLVMTargetDataRef *)&jarg2; 
   result = LLVMIntPtrTypeInContext(arg1,arg2);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -20723,25 +18231,21 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_IntPtrTypeForASInC
   LLVMContextRef arg1 ;
   LLVMTargetDataRef arg2 = (LLVMTargetDataRef) 0 ;
   unsigned int arg3 ;
-  LLVMContextRef *argp1 ;
   LLVMTypeRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMTargetDataRef *)&jarg2;
-  arg3 = (unsigned int)jarg3;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  arg2 = *(LLVMTargetDataRef *)&jarg2; 
+  arg3 = (unsigned int)jarg3; 
   result = LLVMIntPtrTypeForASInContext(arg1,arg2,arg3);
-  {
-    LLVMTypeRef * resultptr = (LLVMTypeRef *) malloc(sizeof(LLVMTypeRef));
-    memmove(resultptr, &result, sizeof(LLVMTypeRef));
-    *(LLVMTypeRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMTypeRef*)&jresult = result;
+  
   return jresult;
 }
 
@@ -20750,18 +18254,16 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SizeOfTypeInBits
   jobject jresult = 0 ;
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   LLVMTypeRef arg2 ;
-  LLVMTypeRef *argp2 ;
   unsigned long long result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = (unsigned long long)LLVMSizeOfTypeInBits(arg1,arg2);
   {
     jbyteArray ba = (*jenv)->NewByteArray(jenv, 9);
@@ -20770,12 +18272,12 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SizeOfTypeInBits
     jmethodID mid = (*jenv)->GetMethodID(jenv, clazz, "<init>", "([B)V");
     jobject bigint;
     int i;
-
+    
     bae[0] = 0;
     for(i=1; i<9; i++ ) {
       bae[i] = (jbyte)(result>>8*(8-i));
     }
-
+    
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
     bigint = (*jenv)->NewObject(jenv, clazz, mid, ba);
     jresult = bigint;
@@ -20788,18 +18290,16 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StoreSizeOfType(
   jobject jresult = 0 ;
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   LLVMTypeRef arg2 ;
-  LLVMTypeRef *argp2 ;
   unsigned long long result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = (unsigned long long)LLVMStoreSizeOfType(arg1,arg2);
   {
     jbyteArray ba = (*jenv)->NewByteArray(jenv, 9);
@@ -20808,12 +18308,12 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StoreSizeOfType(
     jmethodID mid = (*jenv)->GetMethodID(jenv, clazz, "<init>", "([B)V");
     jobject bigint;
     int i;
-
+    
     bae[0] = 0;
     for(i=1; i<9; i++ ) {
       bae[i] = (jbyte)(result>>8*(8-i));
     }
-
+    
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
     bigint = (*jenv)->NewObject(jenv, clazz, mid, ba);
     jresult = bigint;
@@ -20826,18 +18326,16 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ABISizeOfType(JN
   jobject jresult = 0 ;
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   LLVMTypeRef arg2 ;
-  LLVMTypeRef *argp2 ;
   unsigned long long result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = (unsigned long long)LLVMABISizeOfType(arg1,arg2);
   {
     jbyteArray ba = (*jenv)->NewByteArray(jenv, 9);
@@ -20846,12 +18344,12 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ABISizeOfType(JN
     jmethodID mid = (*jenv)->GetMethodID(jenv, clazz, "<init>", "([B)V");
     jobject bigint;
     int i;
-
+    
     bae[0] = 0;
     for(i=1; i<9; i++ ) {
       bae[i] = (jbyte)(result>>8*(8-i));
     }
-
+    
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
     bigint = (*jenv)->NewObject(jenv, clazz, mid, ba);
     jresult = bigint;
@@ -20864,20 +18362,18 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ABIAlignmentOfType(
   jint jresult = 0 ;
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   LLVMTypeRef arg2 ;
-  LLVMTypeRef *argp2 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = (unsigned int)LLVMABIAlignmentOfType(arg1,arg2);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -20886,20 +18382,18 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CallFrameAlignmentO
   jint jresult = 0 ;
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   LLVMTypeRef arg2 ;
-  LLVMTypeRef *argp2 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = (unsigned int)LLVMCallFrameAlignmentOfType(arg1,arg2);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -20908,20 +18402,18 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PreferredAlignmentO
   jint jresult = 0 ;
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   LLVMTypeRef arg2 ;
-  LLVMTypeRef *argp2 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   result = (unsigned int)LLVMPreferredAlignmentOfType(arg1,arg2);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -20930,20 +18422,18 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PreferredAlignmentO
   jint jresult = 0 ;
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   LLVMValueRef arg2 ;
-  LLVMValueRef *argp2 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
-  argp2 = *(LLVMValueRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMValueRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
+  
+  arg2 = *(LLVMValueRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMValueRef*)&$result = arg2;
+  
   result = (unsigned int)LLVMPreferredAlignmentOfGlobal(arg1,arg2);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -20953,18 +18443,16 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ElementAtOffset(JNI
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   LLVMTypeRef arg2 ;
   unsigned long long arg3 ;
-  LLVMTypeRef *argp2 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
   {
     jclass clazz;
     jmethodID mid;
@@ -20972,7 +18460,7 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ElementAtOffset(JNI
     jbyte* bae;
     jsize sz;
     int i;
-
+    
     if (!jarg3) {
       SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "BigInteger null");
       return 0;
@@ -20989,7 +18477,7 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ElementAtOffset(JNI
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
   }
   result = (unsigned int)LLVMElementAtOffset(arg1,arg2,arg3);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -20999,19 +18487,17 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_OffsetOfElement(
   LLVMTargetDataRef arg1 = (LLVMTargetDataRef) 0 ;
   LLVMTypeRef arg2 ;
   unsigned int arg3 ;
-  LLVMTypeRef *argp2 ;
   unsigned long long result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetDataRef *)&jarg1;
-  argp2 = *(LLVMTypeRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMTypeRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = (unsigned int)jarg3;
+  arg1 = *(LLVMTargetDataRef *)&jarg1; 
+  
+  arg2 = *(LLVMTypeRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMTypeRef*)&$result = arg2;
+  
+  arg3 = (unsigned int)jarg3; 
   result = (unsigned long long)LLVMOffsetOfElement(arg1,arg2,arg3);
   {
     jbyteArray ba = (*jenv)->NewByteArray(jenv, 9);
@@ -21020,12 +18506,12 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_OffsetOfElement(
     jmethodID mid = (*jenv)->GetMethodID(jenv, clazz, "<init>", "([B)V");
     jobject bigint;
     int i;
-
+    
     bae[0] = 0;
     for(i=1; i<9; i++ ) {
       bae[i] = (jbyte)(result>>8*(8-i));
     }
-
+    
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
     bigint = (*jenv)->NewObject(jenv, clazz, mid, ba);
     jresult = bigint;
@@ -21037,11 +18523,11 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_OffsetOfElement(
 SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetFirstTarget(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   LLVMTargetRef result;
-
+  
   (void)jenv;
   (void)jcls;
   result = (LLVMTargetRef)LLVMGetFirstTarget();
-  *(LLVMTargetRef *)&jresult = result;
+  *(LLVMTargetRef *)&jresult = result; 
   return jresult;
 }
 
@@ -21050,12 +18536,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetNextTarget(JNIE
   jlong jresult = 0 ;
   LLVMTargetRef arg1 = (LLVMTargetRef) 0 ;
   LLVMTargetRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetRef *)&jarg1;
+  arg1 = *(LLVMTargetRef *)&jarg1; 
   result = (LLVMTargetRef)LLVMGetNextTarget(arg1);
-  *(LLVMTargetRef *)&jresult = result;
+  *(LLVMTargetRef *)&jresult = result; 
   return jresult;
 }
 
@@ -21064,7 +18550,7 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTargetFromName(
   jlong jresult = 0 ;
   char *arg1 = (char *) 0 ;
   LLVMTargetRef result;
-
+  
   (void)jenv;
   (void)jcls;
   arg1 = 0;
@@ -21073,7 +18559,7 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTargetFromName(
     if (!arg1) return 0;
   }
   result = (LLVMTargetRef)LLVMGetTargetFromName((char const *)arg1);
-  *(LLVMTargetRef *)&jresult = result;
+  *(LLVMTargetRef *)&jresult = result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
@@ -21085,7 +18571,7 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTargetFromTr
   LLVMTargetRef *arg2 = (LLVMTargetRef *) 0 ;
   char **arg3 = (char **) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
@@ -21095,10 +18581,10 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTargetFromTr
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  arg2 = *(LLVMTargetRef **)&jarg2;
-  arg3 = *(char ***)&jarg3;
+  arg2 = *(LLVMTargetRef **)&jarg2; 
+  arg3 = *(char ***)&jarg3; 
   result = LLVMGetTargetFromTriple((char const *)arg1,arg2,arg3);
-  jresult = result;
+  jresult = result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
@@ -21108,10 +18594,10 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTargetName(JN
   jstring jresult = 0 ;
   LLVMTargetRef arg1 = (LLVMTargetRef) 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetRef *)&jarg1;
+  arg1 = *(LLVMTargetRef *)&jarg1; 
   result = (char *)LLVMGetTargetName(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -21122,10 +18608,10 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTargetDescrip
   jstring jresult = 0 ;
   LLVMTargetRef arg1 = (LLVMTargetRef) 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetRef *)&jarg1;
+  arg1 = *(LLVMTargetRef *)&jarg1; 
   result = (char *)LLVMGetTargetDescription(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
@@ -21136,12 +18622,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetHasJIT(JN
   jboolean jresult = 0 ;
   LLVMTargetRef arg1 = (LLVMTargetRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetRef *)&jarg1;
+  arg1 = *(LLVMTargetRef *)&jarg1; 
   result = LLVMTargetHasJIT(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21150,12 +18636,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetHasTarget
   jboolean jresult = 0 ;
   LLVMTargetRef arg1 = (LLVMTargetRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetRef *)&jarg1;
+  arg1 = *(LLVMTargetRef *)&jarg1; 
   result = LLVMTargetHasTargetMachine(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21164,12 +18650,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetHasAsmBac
   jboolean jresult = 0 ;
   LLVMTargetRef arg1 = (LLVMTargetRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetRef *)&jarg1;
+  arg1 = *(LLVMTargetRef *)&jarg1; 
   result = LLVMTargetHasAsmBackend(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21184,10 +18670,10 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateTargetMachin
   LLVMRelocMode arg6 ;
   LLVMCodeModel arg7 ;
   LLVMTargetMachineRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetRef *)&jarg1;
+  arg1 = *(LLVMTargetRef *)&jarg1; 
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
@@ -21203,11 +18689,11 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateTargetMachin
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
-  arg5 = (LLVMCodeGenOptLevel)jarg5;
-  arg6 = (LLVMRelocMode)jarg6;
-  arg7 = (LLVMCodeModel)jarg7;
+  arg5 = (LLVMCodeGenOptLevel)jarg5; 
+  arg6 = (LLVMRelocMode)jarg6; 
+  arg7 = (LLVMCodeModel)jarg7; 
   result = (LLVMTargetMachineRef)LLVMCreateTargetMachine(arg1,(char const *)arg2,(char const *)arg3,(char const *)arg4,arg5,arg6,arg7);
-  *(LLVMTargetMachineRef *)&jresult = result;
+  *(LLVMTargetMachineRef *)&jresult = result; 
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
@@ -21217,10 +18703,10 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateTargetMachin
 
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DisposeTargetMachine(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
   LLVMDisposeTargetMachine(arg1);
 }
 
@@ -21229,12 +18715,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTargetMachineTa
   jlong jresult = 0 ;
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   LLVMTargetRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
   result = (LLVMTargetRef)LLVMGetTargetMachineTarget(arg1);
-  *(LLVMTargetRef *)&jresult = result;
+  *(LLVMTargetRef *)&jresult = result; 
   return jresult;
 }
 
@@ -21243,10 +18729,10 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTargetMachine
   jstring jresult = 0 ;
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
   result = (char *)LLVMGetTargetMachineTriple(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   free(result);
@@ -21258,10 +18744,10 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTargetMachine
   jstring jresult = 0 ;
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
   result = (char *)LLVMGetTargetMachineCPU(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   free(result);
@@ -21273,10 +18759,10 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTargetMachine
   jstring jresult = 0 ;
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
   result = (char *)LLVMGetTargetMachineFeatureString(arg1);
   if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   free(result);
@@ -21288,12 +18774,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateTargetDataLa
   jlong jresult = 0 ;
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   LLVMTargetDataRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
   result = (LLVMTargetDataRef)LLVMCreateTargetDataLayout(arg1);
-  *(LLVMTargetDataRef *)&jresult = result;
+  *(LLVMTargetDataRef *)&jresult = result; 
   return jresult;
 }
 
@@ -21301,11 +18787,11 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CreateTargetDataLa
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SetTargetMachineAsmVerbosity(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMSetTargetMachineAsmVerbosity(arg1,arg2);
 }
 
@@ -21317,28 +18803,26 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetMachineEm
   char *arg3 = (char *) 0 ;
   LLVMCodeGenFileType arg4 ;
   char **arg5 = (char **) 0 ;
-  LLVMModuleRef *argp2 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg5_;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
-  argp2 = *(LLVMModuleRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
+  
+  arg2 = *(LLVMModuleRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMModuleRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
-  arg4 = (LLVMCodeGenFileType)jarg4;
-  arg5 = *(char ***)&jarg5;
+  arg4 = (LLVMCodeGenFileType)jarg4; 
+  arg5 = *(char ***)&jarg5; 
   result = LLVMTargetMachineEmitToFile(arg1,arg2,arg3,arg4,arg5);
-  jresult = result;
+  jresult = result; 
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
@@ -21351,25 +18835,23 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetMachineEm
   LLVMCodeGenFileType arg3 ;
   char **arg4 = (char **) 0 ;
   LLVMMemoryBufferRef *arg5 = (LLVMMemoryBufferRef *) 0 ;
-  LLVMModuleRef *argp2 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg4_;
   (void)jarg5_;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
-  argp2 = *(LLVMModuleRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = (LLVMCodeGenFileType)jarg3;
-  arg4 = *(char ***)&jarg4;
-  arg5 = *(LLVMMemoryBufferRef **)&jarg5;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
+  
+  arg2 = *(LLVMModuleRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMModuleRef*)&$result = arg2;
+  
+  arg3 = (LLVMCodeGenFileType)jarg3; 
+  arg4 = *(char ***)&jarg4; 
+  arg5 = *(LLVMMemoryBufferRef **)&jarg5; 
   result = LLVMTargetMachineEmitToMemoryBuffer(arg1,arg2,arg3,arg4,arg5);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21377,7 +18859,7 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetMachineEm
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetDefaultTargetTriple(JNIEnv *jenv, jclass jcls) {
   jstring jresult = 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   result = (char *)LLVMGetDefaultTargetTriple();
@@ -21389,17 +18871,15 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetDefaultTarget
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_AddAnalysisPasses(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   LLVMPassManagerRef arg2 ;
-  LLVMPassManagerRef *argp2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
-  argp2 = *(LLVMPassManagerRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMPassManagerRef");
-    return ;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
+  
+  arg2 = *(LLVMPassManagerRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMPassManagerRef*)&$result = arg2;
+  
   LLVMAddAnalysisPasses(arg1,arg2);
 }
 
@@ -21408,26 +18888,22 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LinkModules2(JN
   jboolean jresult = 0 ;
   LLVMModuleRef arg1 ;
   LLVMModuleRef arg2 ;
-  LLVMModuleRef *argp1 ;
-  LLVMModuleRef *argp2 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMModuleRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMModuleRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMModuleRef*)&$result = arg2;
+  
   result = LLVMLinkModules2(arg1,arg2);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21435,7 +18911,7 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LinkModules2(JN
 SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_llvmHostTriple_1get(JNIEnv *jenv, jclass jcls) {
   jstring jresult = 0 ;
   char *result = 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   result = (char *)llvmHostTriple;
@@ -21447,11 +18923,11 @@ SWIGEXPORT jstring JNICALL Java_org_robovm_llvm_binding_LLVMJNI_llvmHostTriple_1
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderSetDisableTailCalls(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMPassManagerBuilderRef arg1 = (LLVMPassManagerBuilderRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMPassManagerBuilderSetDisableTailCalls(arg1,arg2);
 }
 
@@ -21459,11 +18935,11 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderS
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_PassManagerBuilderUseAlwaysInliner(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMPassManagerBuilderRef arg1 = (LLVMPassManagerBuilderRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMPassManagerBuilderRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMPassManagerBuilderUseAlwaysInliner(arg1,arg2);
 }
 
@@ -21473,23 +18949,21 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ParseIR(JNIEnv 
   LLVMMemoryBufferRef arg1 ;
   LLVMModuleRef *arg2 = (LLVMModuleRef *) 0 ;
   char **arg3 = (char **) 0 ;
-  LLVMMemoryBufferRef *argp1 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
   (void)jarg3_;
-  argp1 = *(LLVMMemoryBufferRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  arg2 = *(LLVMModuleRef **)&jarg2;
-  arg3 = *(char ***)&jarg3;
+  
+  arg1 = *(LLVMMemoryBufferRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMMemoryBufferRef*)&$result = arg1;
+  
+  arg2 = *(LLVMModuleRef **)&jarg2; 
+  arg3 = *(char ***)&jarg3; 
   result = LLVMParseIR(arg1,arg2,arg3);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21500,30 +18974,26 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ParseIRInContex
   LLVMMemoryBufferRef arg2 ;
   LLVMModuleRef *arg3 = (LLVMModuleRef *) 0 ;
   char **arg4 = (char **) 0 ;
-  LLVMContextRef *argp1 ;
-  LLVMMemoryBufferRef *argp2 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg3_;
   (void)jarg4_;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
-  argp2 = *(LLVMMemoryBufferRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg2 = *argp2;
-  arg3 = *(LLVMModuleRef **)&jarg3;
-  arg4 = *(char ***)&jarg4;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
+  
+  arg2 = *(LLVMMemoryBufferRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMMemoryBufferRef*)&$result = arg2;
+  
+  arg3 = *(LLVMModuleRef **)&jarg3; 
+  arg4 = *(char ***)&jarg4; 
   result = LLVMParseIRInContext(arg1,arg2,arg3,arg4);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21533,7 +19003,7 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LookupTarget(JNIEn
   char *arg1 = (char *) 0 ;
   char **arg2 = (char **) 0 ;
   LLVMTargetRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg2_;
@@ -21542,9 +19012,9 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_LookupTarget(JNIEn
     arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
     if (!arg1) return 0;
   }
-  arg2 = *(char ***)&jarg2;
+  arg2 = *(char ***)&jarg2; 
   result = (LLVMTargetRef)LLVMLookupTarget((char const *)arg1,arg2);
-  *(LLVMTargetRef *)&jresult = result;
+  *(LLVMTargetRef *)&jresult = result; 
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
@@ -21554,27 +19024,26 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetMachineGe
   jboolean jresult = 0 ;
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
   result = LLVMTargetMachineGetAsmVerbosityDefault(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
-
 
 
 SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetMachineGetDataSections(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
   result = LLVMTargetMachineGetDataSections(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21583,12 +19052,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetMachineGe
   jboolean jresult = 0 ;
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
   result = LLVMTargetMachineGetFunctionSections(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21596,11 +19065,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetMachineGe
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetMachineSetDataSections(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMTargetMachineSetDataSections(arg1,arg2);
 }
 
@@ -21608,11 +19077,11 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetMachineSetDat
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetMachineSetFunctionSections(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMTargetMachineSetFunctionSections(arg1,arg2);
 }
 
@@ -21621,12 +19090,12 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetTargetMachineTa
   jlong jresult = 0 ;
   LLVMTargetMachineRef arg1 = (LLVMTargetMachineRef) 0 ;
   LLVMTargetOptionsRef result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
   result = (LLVMTargetOptionsRef)LLVMGetTargetMachineTargetOptions(arg1);
-  *(LLVMTargetOptionsRef *)&jresult = result;
+  *(LLVMTargetOptionsRef *)&jresult = result; 
   return jresult;
 }
 
@@ -21635,12 +19104,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
   jboolean jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = LLVMTargetOptionsGetPrintMachineCode(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21648,11 +19117,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetPrintMachineCode(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMTargetOptionsSetPrintMachineCode(arg1,arg2);
 }
 
@@ -21661,12 +19130,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
   jboolean jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = LLVMTargetOptionsGetLessPreciseFPMADOption(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21674,11 +19143,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetLessPreciseFPMADOption(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMTargetOptionsSetLessPreciseFPMADOption(arg1,arg2);
 }
 
@@ -21687,12 +19156,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
   jboolean jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = LLVMTargetOptionsGetUnsafeFPMath(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21700,11 +19169,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetUnsafeFPMath(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMTargetOptionsSetUnsafeFPMath(arg1,arg2);
 }
 
@@ -21713,12 +19182,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
   jboolean jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = LLVMTargetOptionsGetNoInfsFPMath(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21726,11 +19195,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetNoInfsFPMath(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMTargetOptionsSetNoInfsFPMath(arg1,arg2);
 }
 
@@ -21739,12 +19208,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
   jboolean jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = LLVMTargetOptionsGetNoNaNsFPMath(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21752,11 +19221,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetNoNaNsFPMath(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMTargetOptionsSetNoNaNsFPMath(arg1,arg2);
 }
 
@@ -21765,12 +19234,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
   jboolean jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = LLVMTargetOptionsGetHonorSignDependentRoundingFPMathOption(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21778,11 +19247,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetHonorSignDependentRoundingFPMathOption(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMTargetOptionsSetHonorSignDependentRoundingFPMathOption(arg1,arg2);
 }
 
@@ -21791,12 +19260,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
   jboolean jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = LLVMTargetOptionsGetNoZerosInBSS(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21804,11 +19273,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetNoZerosInBSS(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMTargetOptionsSetNoZerosInBSS(arg1,arg2);
 }
 
@@ -21817,12 +19286,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
   jboolean jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = LLVMTargetOptionsGetGuaranteedTailCallOpt(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21830,11 +19299,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetGuaranteedTailCallOpt(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMTargetOptionsSetGuaranteedTailCallOpt(arg1,arg2);
 }
 
@@ -21843,12 +19312,12 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGetSta
   jint jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   unsigned int result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = (unsigned int)LLVMTargetOptionsGetStackAlignmentOverride(arg1);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -21856,11 +19325,11 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGetSta
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetStackAlignmentOverride(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   unsigned int arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = (unsigned int)jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
   LLVMTargetOptionsSetStackAlignmentOverride(arg1,arg2);
 }
 
@@ -21869,12 +19338,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
   jboolean jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = LLVMTargetOptionsGetEnableFastISel(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21882,11 +19351,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetEnableFastISel(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMTargetOptionsSetEnableFastISel(arg1,arg2);
 }
 
@@ -21895,12 +19364,12 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
   jboolean jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = LLVMTargetOptionsGetUseInitArray(arg1);
-  jresult = result;
+  jresult = result; 
   return jresult;
 }
 
@@ -21908,11 +19377,11 @@ SWIGEXPORT jboolean JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGe
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetUseInitArray(JNIEnv *jenv, jclass jcls, jlong jarg1, jboolean jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMBool arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = jarg2; 
   LLVMTargetOptionsSetUseInitArray(arg1,arg2);
 }
 
@@ -21921,12 +19390,12 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGetFlo
   jint jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMFloatABIType result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = (LLVMFloatABIType)LLVMTargetOptionsGetFloatABIType(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -21934,11 +19403,11 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGetFlo
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetFloatABIType(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMFloatABIType arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = (LLVMFloatABIType)jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = (LLVMFloatABIType)jarg2; 
   LLVMTargetOptionsSetFloatABIType(arg1,arg2);
 }
 
@@ -21947,12 +19416,12 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGetAll
   jint jresult = 0 ;
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMFPOpFusionMode result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
   result = (LLVMFPOpFusionMode)LLVMTargetOptionsGetAllowFPOpFusion(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -21960,11 +19429,11 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsGetAll
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetAllowFPOpFusion(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMTargetOptionsRef arg1 = (LLVMTargetOptionsRef) 0 ;
   LLVMFPOpFusionMode arg2 ;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMTargetOptionsRef *)&jarg1;
-  arg2 = (LLVMFPOpFusionMode)jarg2;
+  arg1 = *(LLVMTargetOptionsRef *)&jarg1; 
+  arg2 = (LLVMFPOpFusionMode)jarg2; 
   LLVMTargetOptionsSetAllowFPOpFusion(arg1,arg2);
 }
 
@@ -21972,17 +19441,15 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetOptionsSetAll
 SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ModuleSetPIELevel(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   LLVMModuleRef arg1 ;
   LLVMPIELevel arg2 ;
-  LLVMModuleRef *argp1 ;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return ;
-  }
-  arg1 = *argp1;
-  arg2 = (LLVMPIELevel)jarg2;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
+  arg2 = (LLVMPIELevel)jarg2; 
   LLVMModuleSetPIELevel(arg1,arg2);
 }
 
@@ -21990,19 +19457,17 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ModuleSetPIELevel(J
 SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ModuleGetPIELevel(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   LLVMModuleRef arg1 ;
-  LLVMModuleRef *argp1 ;
   LLVMPIELevel result;
-
+  
   (void)jenv;
   (void)jcls;
-  argp1 = *(LLVMModuleRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMModuleRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMModuleRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMModuleRef*)&$result = arg1;
+  
   result = (LLVMPIELevel)LLVMModuleGetPIELevel(arg1);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -22017,31 +19482,29 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_TargetMachineAssemb
   LLVMBool arg6 ;
   LLVMBool arg7 ;
   char **arg8 = (char **) 0 ;
-  LLVMMemoryBufferRef *argp2 ;
   int result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg8_;
-  arg1 = *(LLVMTargetMachineRef *)&jarg1;
-  argp2 = *(LLVMMemoryBufferRef **)&jarg2;
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMMemoryBufferRef");
-    return 0;
-  }
-  arg2 = *argp2;
+  arg1 = *(LLVMTargetMachineRef *)&jarg1; 
+  
+  arg2 = *(LLVMMemoryBufferRef*)&jarg2;
+  //TODO:
+  //jarg2 arg2_rtype *(LLVMMemoryBufferRef*)&$result = arg2;
+  
   arg3 = 0;
   if (jarg3) {
     arg3 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg3, 0);
     if (!arg3) return 0;
   }
-  arg4 = jarg4;
-  arg5 = jarg5;
-  arg6 = jarg6;
-  arg7 = jarg7;
-  arg8 = *(char ***)&jarg8;
+  arg4 = jarg4; 
+  arg5 = jarg5; 
+  arg6 = jarg6; 
+  arg7 = jarg7; 
+  arg8 = *(char ***)&jarg8; 
   result = (int)LLVMTargetMachineAssembleToFile(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8);
-  jresult = (jint)result;
+  jresult = (jint)result; 
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   return jresult;
 }
@@ -22053,16 +19516,16 @@ SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_GetLineInfoForAddre
   uint64_t arg3 ;
   int *arg4 = (int *) 0 ;
   uint64_t **arg5 = (uint64_t **) 0 ;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg4_;
   (void)jarg5_;
-  arg1 = *(LLVMObjectFileRef *)&jarg1;
-  arg2 = jarg2;
-  arg3 = jarg3;
-  arg4 = *(int **)&jarg4;
-  arg5 = *(uint64_t ***)&jarg5;
+  arg1 = *(LLVMObjectFileRef *)&jarg1; 
+  arg2 = jarg2; 
+  arg3 = jarg3; 
+  arg4 = *(int **)&jarg4; 
+  arg5 = *(uint64_t ***)&jarg5; 
   LLVMGetLineInfoForAddressRange(arg1,arg2,arg3,arg4,arg5);
 }
 
@@ -22073,10 +19536,10 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CopySectionContent
   char *arg2 = (char *) 0 ;
   size_t arg3 ;
   size_t result;
-
+  
   (void)jenv;
   (void)jcls;
-  arg1 = *(LLVMSectionIteratorRef *)&jarg1;
+  arg1 = *(LLVMSectionIteratorRef *)&jarg1; 
   {
     if (!jarg2) {
       SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
@@ -22087,7 +19550,7 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CopySectionContent
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
   }
   result = LLVMCopySectionContents(arg1,arg2,arg3);
-  jresult = (jlong)result;
+  jresult = (jlong)result; 
   {
     (*jenv)->ReleaseByteArrayElements(jenv, jarg2, arg2, 0);
   }
@@ -22102,18 +19565,16 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ClangCompileFile(J
   char *arg3 = (char *) 0 ;
   char *arg4 = (char *) 0 ;
   char **arg5 = (char **) 0 ;
-  LLVMContextRef *argp1 ;
   LLVMModuleRef result;
-
+  
   (void)jenv;
   (void)jcls;
   (void)jarg5_;
-  argp1 = *(LLVMContextRef **)&jarg1;
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null LLVMContextRef");
-    return 0;
-  }
-  arg1 = *argp1;
+  
+  arg1 = *(LLVMContextRef*)&jarg1;
+  //TODO:
+  //jarg1 arg1_rtype *(LLVMContextRef*)&$result = arg1;
+  
   arg2 = 0;
   if (jarg2) {
     arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
@@ -22129,13 +19590,11 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ClangCompileFile(J
     arg4 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg4, 0);
     if (!arg4) return 0;
   }
-  arg5 = *(char ***)&jarg5;
+  arg5 = *(char ***)&jarg5; 
   result = ClangCompileFile(arg1,arg2,arg3,arg4,arg5);
-  {
-    LLVMModuleRef * resultptr = (LLVMModuleRef *) malloc(sizeof(LLVMModuleRef));
-    memmove(resultptr, &result, sizeof(LLVMModuleRef));
-    *(LLVMModuleRef **)&jresult = resultptr;
-  }
+  
+  *(LLVMModuleRef*)&jresult = result;
+  
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   if (arg3) (*jenv)->ReleaseStringUTFChars(jenv, jarg3, (const char *)arg3);
   if (arg4) (*jenv)->ReleaseStringUTFChars(jenv, jarg4, (const char *)arg4);
@@ -22146,3 +19605,4 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ClangCompileFile(J
 #ifdef __cplusplus
 }
 #endif
+
