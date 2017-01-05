@@ -27,6 +27,7 @@ typedef struct LongArray* LongArrayPtr;
 SWIG_JAVABODY_METHODS(protected, protected, SWIGTYPE)
 
 %rename("%(strip:[LLVM])s") "";
+
 //%rename("%(regex:/LLVM(Reloc|CodeModel|CodeGenLevel)?(.*)/\\2/)s", %$isenumitem) "";
 //%rename LLVMRelocMode RelocModel;
 
@@ -140,7 +141,7 @@ ARRAY_ARG(IntArray, unsigned *IdxList)
   $2 = JCALL1(GetArrayLength, jenv, $input);
 }
 %typemap(freearg) (char *ARRAY, size_t ARRAYSIZE) {
-  JCALL3(ReleaseByteArrayElements, jenv, $input, $1, 0); 
+  JCALL3(ReleaseByteArrayElements, jenv, $input, $1, 0);
 }
 
 // Combine (char*, size_t) into a single parameter of type String
@@ -158,7 +159,7 @@ ARRAY_ARG(IntArray, unsigned *IdxList)
   $2 = strlen($1);
 }
 %typemap(freearg) (char *STRING, size_t STRINGSIZE) {
-  JCALL2(ReleaseStringUTFChars, jenv, $input, $1); 
+  JCALL2(ReleaseStringUTFChars, jenv, $input, $1);
 }
 
 %typemap(jtype) void *OutputStream "java.io.OutputStream"
@@ -206,7 +207,18 @@ ARRAY_ARG(IntArray, unsigned *IdxList)
     $javaclassname other = ($javaclassname) obj;
     return swigCPtr == other.swigCPtr;
   }
+
+  public boolean isNullPtr() {
+    return swigCPtr == 0;
+  }
 %}
+
+%typemap(ret) LLVMValueRef {
+if ($1 == NULL) {
+  free(*(LLVMValueRef **)&jresult);
+  return $null;
+}
+}
 
 %typemap(javain) enum LLVMAttribute "$javainput"
 %typemap(javaout) enum LLVMAttribute {
@@ -237,7 +249,7 @@ typedef jlong uint64_t;
 %ignore LLVMConstRealOfStringAndSize;
 
 // This is inlined and based on macros and will only work as expected when
-// called on the same platform as the llvm/Config/llvm-config.h file was 
+// called on the same platform as the llvm/Config/llvm-config.h file was
 // generated for.
 %ignore LLVMInitializeNativeTarget;
 

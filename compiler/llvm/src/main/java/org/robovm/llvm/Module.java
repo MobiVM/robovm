@@ -72,6 +72,9 @@ public class Module implements AutoCloseable {
     public Function[] getFunctions() {
         List<Function> result = new ArrayList<>();
         for (ValueRef fref = LLVM.GetFirstFunction(getRef()); fref != null; fref = LLVM.GetNextFunction(fref)) {
+        	if (fref.isNullPtr()) {
+        		break;
+        	}
             result.add(new Function(fref));
         }
         return result.toArray(new Function[result.size()]);

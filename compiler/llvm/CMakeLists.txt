@@ -72,27 +72,27 @@ if(MACOSX)
   set(C_CXX_FLAGS "${C_CXX_FLAGS} -isysroot ${SYSROOT}")
 endif()
 
-ExternalProject_Add(extclang
-  GIT_REPOSITORY git://github.com/llvm-mirror/clang.git
-  GIT_TAG release_39
-  UPDATE_COMMAND ""
-  CONFIGURE_COMMAND ""
-  BUILD_COMMAND ""
-  INSTALL_COMMAND ""
-  BUILD_IN_SOURCE 1
-)
-
-set(LLVM_ARCHS "X86^^ARM^^AArch64")
-set(LLVM_C_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-sections")
-set(LLVM_CXX_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-sections")
-ExternalProject_Add(extllvm
-  DEPENDS extclang
-  GIT_REPOSITORY git://github.com/llvm-mirror/llvm.git
-  GIT_TAG release_39
-  PATCH_COMMAND bash -c "rm -rf tools/clang && ln -s ../../../../extclang-prefix/src/extclang tools/clang"
-  LIST_SEPARATOR ^^
-  CONFIGURE_COMMAND cmake -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER} -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER} -DCMAKE_RC_COMPILER=${CMAKE_RC_COMPILER} -DCMAKE_SYSTEM_NAME=${CMAKE_SYSTEM_NAME} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DBUILD_SHARED_LIBS=OFF "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/llvm" "-DLLVM_TARGETS_TO_BUILD=${LLVM_ARCHS}" "-DCMAKE_C_FLAGS=${LLVM_C_FLAGS}" "-DCMAKE_CXX_FLAGS=${LLVM_CXX_FLAGS}" -DLLVM_ENABLE_LIBCXX=YES -DLLVM_ENABLE_CXX1Y=YES -DLLVM_ENABLE_THREADS=YES -DLIBCLANG_BUILD_STATIC=YES ../extllvm/
-)
+# ExternalProject_Add(extclang
+#   GIT_REPOSITORY git://github.com/llvm-mirror/clang.git
+#   GIT_TAG release_39
+#   UPDATE_COMMAND ""
+#   CONFIGURE_COMMAND ""
+#   BUILD_COMMAND ""
+#   INSTALL_COMMAND ""
+#   BUILD_IN_SOURCE 1
+# )
+#
+# set(LLVM_ARCHS "X86^^ARM^^AArch64")
+# set(LLVM_C_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-sections")
+# set(LLVM_CXX_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-sections")
+# ExternalProject_Add(extllvm
+#   DEPENDS extclang
+#   GIT_REPOSITORY git://github.com/llvm-mirror/llvm.git
+#   GIT_TAG release_39
+#   PATCH_COMMAND bash -c "rm -rf tools/clang && ln -s ../../../../extclang-prefix/src/extclang tools/clang"
+#   LIST_SEPARATOR ^^
+#   CONFIGURE_COMMAND cmake -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER} -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER} -DCMAKE_RC_COMPILER=${CMAKE_RC_COMPILER} -DCMAKE_SYSTEM_NAME=${CMAKE_SYSTEM_NAME} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DBUILD_SHARED_LIBS=OFF "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/llvm" "-DLLVM_TARGETS_TO_BUILD=${LLVM_ARCHS}" "-DCMAKE_C_FLAGS=${LLVM_C_FLAGS}" "-DCMAKE_CXX_FLAGS=${LLVM_CXX_FLAGS}" -DLLVM_ENABLE_LIBCXX=YES -DLLVM_ENABLE_CXX1Y=YES -DLLVM_ENABLE_THREADS=YES -DLIBCLANG_BUILD_STATIC=YES ../extllvm/
+# )
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${C_CXX_FLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${C_CXX_FLAGS} -fno-rtti -std=c++11")
