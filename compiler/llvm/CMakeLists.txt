@@ -1,5 +1,12 @@
 cmake_minimum_required(VERSION 2.8)
 
+# The Mac OS X SDK version required when building the VM libs
+set(MACOSX_SDK_VERSION 10.12)
+
+## ATTENTION: needed to add this to the llvm CMakeLists.txt of llvm on MacOS 10.12
+## Taken from /Applications/CMake.app/Contents/share/cmake-3.5/Modules/Platform/Darwin.cmake
+#set(CMAKE_SHARED_LIBRARY_RUNTIME_C_FLAG "-Wl,-rpath,")
+
 include(ExternalProject)
 
 if(OS STREQUAL "linux")
@@ -44,8 +51,8 @@ endif()
 
 set(C_CXX_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-sections")
 if(MACOSX AND X86_64)
-  set(C_CXX_FLAGS "${C_CXX_FLAGS} -arch x86_64 -mmacosx-version-min=10.7")
-  set(LD_FLAGS "${LD_FLAGS} -arch x86_64 -mmacosx-version-min=10.7")
+  set(C_CXX_FLAGS "${C_CXX_FLAGS} -arch x86_64 -mmacosx-version-min=10.8")
+  set(LD_FLAGS "${LD_FLAGS} -arch x86_64 -mmacosx-version-min=10.8")
 elseif(LINUX AND X86)
   set(C_CXX_FLAGS "${C_CXX_FLAGS} -m32")
   set(LD_FLAGS "${LD_FLAGS} -m64")
@@ -61,38 +68,46 @@ elseif(WINDOWS AND X86_64)
 endif()
 
 if(MACOSX)
-  exec_program(xcode-select ARGS --print-path OUTPUT_VARIABLE XCODE_PATH)
-  set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk")
-  if(NOT IS_DIRECTORY ${SYSROOT})
-    set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk")
-  endif()
-  if(NOT IS_DIRECTORY ${SYSROOT})
-    message(FATAL_ERROR "No supported MacOSX SDK found")
-  endif()
-  set(C_CXX_FLAGS "${C_CXX_FLAGS} -isysroot ${SYSROOT}")
+    if(NOT SYSROOT)
+      exec_program(xcode-select ARGS --print-path OUTPUT_VARIABLE XCODE_PATH)
+      if(MACOSX)
+        set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX${MACOSX_SDK_VERSION}.sdk")
+        if(NOT IS_DIRECTORY ${SYSROOT})
+          message(WARNING "Failed to locate MacOSX SDK ${MACOSX_SDK_VERSION}! Fallback to default version")
+          set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk")
+          if(NOT IS_DIRECTORY ${SYSROOT})
+            set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk")
+            if(NOT IS_DIRECTORY ${SYSROOT})
+              message(FATAL_ERROR "Failed to locate MacOSX SDK")
+            endif()
+          endif()
+        endif()
+      endif()
+    endif()
+    set(C_CXX_FLAGS "${C_CXX_FLAGS} -isysroot ${SYSROOT}")
 endif()
 
-ExternalProject_Add(extclang
-  GIT_REPOSITORY git://github.com/llvm-mirror/clang.git
-  GIT_TAG release_39
-  UPDATE_COMMAND ""
-  CONFIGURE_COMMAND ""
-  BUILD_COMMAND ""
-  INSTALL_COMMAND ""
-  BUILD_IN_SOURCE 1
-)
-
-set(LLVM_ARCHS "X86^^ARM^^AArch64")
-set(LLVM_C_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-sections")
-set(LLVM_CXX_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-sections")
-ExternalProject_Add(extllvm
-  DEPENDS extclang
-  GIT_REPOSITORY git://github.com/llvm-mirror/llvm.git
-  GIT_TAG release_39
-  PATCH_COMMAND bash -c "rm -rf tools/clang && ln -s ../../../../extclang-prefix/src/extclang tools/clang"
-  LIST_SEPARATOR ^^
-  CONFIGURE_COMMAND cmake -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER} -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER} -DCMAKE_RC_COMPILER=${CMAKE_RC_COMPILER} -DCMAKE_SYSTEM_NAME=${CMAKE_SYSTEM_NAME} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DBUILD_SHARED_LIBS=OFF "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/llvm" "-DLLVM_TARGETS_TO_BUILD=${LLVM_ARCHS}" "-DCMAKE_C_FLAGS=${LLVM_C_FLAGS}" "-DCMAKE_CXX_FLAGS=${LLVM_CXX_FLAGS}" -DLLVM_ENABLE_LIBCXX=YES -DLLVM_ENABLE_CXX1Y=YES -DLLVM_ENABLE_THREADS=YES -DLIBCLANG_BUILD_STATIC=YES ../extllvm/
-)
+# ExternalProject_Add(extclang
+#   GIT_REPOSITORY git://github.com/llvm-mirror/clang.git
+#   GIT_TAG release_39
+#   UPDATE_COMMAND ""
+#   CONFIGURE_COMMAND ""
+#   BUILD_COMMAND ""
+#   INSTALL_COMMAND ""
+#   BUILD_IN_SOURCE 1
+# )
+#
+# set(LLVM_ARCHS "X86^^ARM^^AArch64")
+# set(LLVM_C_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-sections")
+# set(LLVM_CXX_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-sections")
+# ExternalProject_Add(extllvm
+#   DEPENDS extclang
+#   GIT_REPOSITORY git://github.com/llvm-mirror/llvm.git
+#   GIT_TAG release_39
+#   PATCH_COMMAND bash -c "rm -rf tools/clang && ln -s ../../../../extclang-prefix/src/extclang tools/clang"
+#   LIST_SEPARATOR ^^
+#   CONFIGURE_COMMAND cmake -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER} -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER} -DCMAKE_RC_COMPILER=${CMAKE_RC_COMPILER} -DCMAKE_SYSTEM_NAME=${CMAKE_SYSTEM_NAME} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DBUILD_SHARED_LIBS=OFF "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/llvm" "-DLLVM_TARGETS_TO_BUILD=${LLVM_ARCHS}" "-DCMAKE_C_FLAGS=${LLVM_C_FLAGS}" "-DCMAKE_CXX_FLAGS=${LLVM_CXX_FLAGS}" -DLLVM_ENABLE_LIBCXX=YES -DLLVM_ENABLE_CXX1Y=YES -DLLVM_ENABLE_THREADS=YES -DLIBCLANG_BUILD_STATIC=YES ../extllvm/
+# )
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${C_CXX_FLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${C_CXX_FLAGS} -fno-rtti -std=c++11")
@@ -115,7 +130,7 @@ set(LLVM_LIBS
   -lLLVMCodeGen -lLLVMTarget -lLLVMARMAsmParser -lLLVMARMDesc -lLLVMMCDisassembler -lLLVMARMInfo -lLLVMARMAsmPrinter
   -lLLVMipo -lLLVMInstrumentation -lLLVMVectorize -lLLVMScalarOpts -lLLVMObject -lLLVMMCParser -lLLVMMC -lLLVMLinker
   -lLLVMInstCombine -lLLVMTransformUtils -lLLVMIRReader -lLLVMAsmParser -lLLVMBitWriter -lLLVMAnalysis -lLLVMProfileData
-  -lLLVMBitReader -lLLVMCore -lLLVMSupport
+  -lLLVMBitReader -lLLVMCore -lLLVMSupport -lLLVMCoverage
 )
 # Required clang libs
 if(LINUX)
