@@ -17,7 +17,7 @@ function rename {
 
 mkdir -p "$JAVAOUT"
 mkdir -p "$COUT"
-swig  -I"$BASE/src/main/swig/include" -I"/usr/include" -I"/usr/include/linux" -I"/usr/include/bits" -outdir "$JAVAOUT" -o "$COUT"/LLVM_wrap.c -java -package org.robovm.llvm.binding -fakeversion 2.0.4 "$BASE/src/main/swig/LLVM.i"
+swig  -I"$BASE/src/main/swig/include" -I"/usr/include" -I"/usr/include/linux" -I"/usr/include/bits" -outdir "$JAVAOUT" -o "$COUT"/LLVM_wrap.c -java -package org.robovm.llvm.binding "$BASE/src/main/swig/LLVM.i"
 
 rename SWIGTYPE_p_LLVMBasicBlockRef BasicBlockRef
 rename SWIGTYPE_p_LLVMBuilderRef BuilderRef
