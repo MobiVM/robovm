@@ -16,21 +16,9 @@
  */
 package org.robovm.compiler.plugin.objc;
 
-import static org.robovm.compiler.Annotations.*;
-import static soot.Modifier.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-
 import org.apache.commons.lang3.StringUtils;
 import org.robovm.compiler.Annotations;
-import org.robovm.compiler.Annotations.Visibility;
+import org.robovm.compiler.Annotations.*;
 import org.robovm.compiler.CompilerException;
 import org.robovm.compiler.MarshalerLookup.MarshalSite;
 import org.robovm.compiler.MarshalerLookup.MarshalerMethod;
@@ -41,11 +29,11 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import org.robovm.compiler.plugin.CompilerPlugin;
 import org.robovm.compiler.util.generic.SootMethodType;
-
 import soot.Body;
 import soot.BooleanType;
 import soot.DoubleType;
 import soot.FloatType;
+import soot.IntType;
 import soot.Local;
 import soot.LongType;
 import soot.Modifier;
@@ -69,6 +57,9 @@ import soot.jimple.IntConstant;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
 import soot.jimple.Jimple;
+import soot.jimple.JimpleBody;
+import soot.jimple.NopStmt;
+import soot.jimple.NullConstant;
 import soot.jimple.StaticInvokeExpr;
 import soot.jimple.Stmt;
 import soot.jimple.StringConstant;
@@ -76,6 +67,18 @@ import soot.tagkit.AnnotationStringElem;
 import soot.tagkit.AnnotationTag;
 import soot.tagkit.SignatureTag;
 import soot.util.Chain;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
+import static org.robovm.compiler.Annotations.*;
+import static soot.Modifier.*;
 
 /**
  * {@link CompilerPlugin} which transforms Objective-C methods and properties to @Bridge
@@ -92,9 +95,11 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
     public static final String IBOUTLET = "L" + OBJC_ANNOTATIONS_PACKAGE + "/IBOutlet;";
     public static final String IBOUTLETCOLLECTION = "L" + OBJC_ANNOTATIONS_PACKAGE + "/IBOutletCollection;";
     public static final String NATIVE_CLASS = "L" + OBJC_ANNOTATIONS_PACKAGE + "/NativeClass;";
+    public static final String CUSTOM_CLASS = "L" + OBJC_ANNOTATIONS_PACKAGE + "/CustomClass;";
     public static final String NATIVE_PROTOCOL_PROXY = "L" + OBJC_ANNOTATIONS_PACKAGE + "/NativeProtocolProxy;";
     public static final String TYPE_ENCODING = "L" + OBJC_ANNOTATIONS_PACKAGE + "/TypeEncoding;";
     public static final String SELECTOR = "org.robovm.objc.Selector";
+    public static final String NATIVE_OBJECT = "org.robovm.rt.bro.NativeObject";
     public static final String OBJC_SUPER = "org.robovm.objc.ObjCSuper";
     public static final String OBJC_CLASS = "org.robovm.objc.ObjCClass";
     public static final String OBJC_OBJECT = "org.robovm.objc.ObjCObject";
@@ -109,6 +114,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
 
     private boolean initialized = false;
     private Config config;
+    private SootClass org_robovm_rt_bro_NativeObject = null;
     private SootClass org_robovm_objc_ObjCClass = null;
     private SootClass org_robovm_objc_ObjCSuper = null;
     private SootClass org_robovm_objc_ObjCObject = null;
@@ -130,6 +136,12 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
     private SootMethodRef org_robovm_objc_ObjCObject_updateStrongRef = null;
     private SootMethodRef org_robovm_objc_ObjCExtensions_updateStrongRef = null;
     private SootMethodRef org_robovm_objc_Selector_register = null;
+    private SootMethodRef org_robovm_objc_ObjCObject_getPeerObject = null;
+    private SootMethodRef org_robovm_rt_bro_NativeObject_setHandle = null;
+    private SootMethodRef org_robovm_rt_bro_NativeObject_getHandle = null;
+    private SootMethodRef org_robovm_apple_foundation_NSObject_forceSkipInit = null;
+    private SootClass java_lang_NoSuchMethodError = null;
+    private SootMethodRef java_lang_NoSuchMethodError_init = null;
 
     static SootMethod getOrCreateStaticInitializer(SootClass sootClass) {
         for (SootMethod m : sootClass.getMethods()) {
@@ -177,6 +189,23 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         copyAnnotations(annotatedMethod, m, extensions);
         
         createGenericSignatureForMsgSend(annotatedMethod, m, paramTypes, extensions);
+
+        return m;
+    }
+
+    @SuppressWarnings("unchecked")
+    private SootMethod getMsgSendInitMethod(String selectorName, SootMethod method) {
+
+        List<Type> paramTypes = new ArrayList<>();
+        paramTypes.add(LongType.v());
+        paramTypes.add(org_robovm_objc_Selector.getType());
+        paramTypes.addAll(method.getParameterTypes());
+        SootMethod m = new SootMethod("$cb$" + selectorName.replace(':', '$'),
+                paramTypes, LongType.v(), STATIC | PRIVATE);
+        copyAnnotations(method, m, false);
+        Annotations.addRuntimeVisibleParameterAnnotation(m, 0, Annotations.POINTER);
+        Annotations.addRuntimeVisibleAnnotation(m, Annotations.POINTER);
+        createGenericSignatureForMsgSend(method, m, paramTypes, false);
 
         return m;
     }
@@ -357,6 +386,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         org_robovm_objc_ObjCObject = r.resolveClass(OBJC_OBJECT, SootClass.HIERARCHY);
         org_robovm_objc_ObjCExtensions = r.resolveClass(OBJC_EXTENSIONS, SootClass.HIERARCHY);
         // These only have to be DANGLING
+        org_robovm_rt_bro_NativeObject = r.makeClassRef(NATIVE_OBJECT);
         org_robovm_objc_ObjCClass = r.makeClassRef(OBJC_CLASS);
         org_robovm_objc_ObjCSuper = r.makeClassRef(OBJC_SUPER);
         org_robovm_objc_ObjCRuntime = r.makeClassRef(OBJC_RUNTIME);
@@ -416,6 +446,38 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                                 java_lang_Object.getType(),
                                 java_lang_Object.getType()),
                         VoidType.v(), true);
+        org_robovm_objc_ObjCObject_getPeerObject =
+                Scene.v().makeMethodRef(
+                        org_robovm_objc_ObjCObject,
+                        "getPeerObject",
+                        Arrays.<Type> asList(LongType.v()),
+                        this.org_robovm_objc_ObjCObject.getType(), true);
+        org_robovm_rt_bro_NativeObject_setHandle =
+                Scene.v().makeMethodRef(
+                        org_robovm_rt_bro_NativeObject,
+                        "setHandle",
+                        Arrays.<Type> asList(
+                                LongType.v()),
+                        VoidType.v(), false);
+        org_robovm_rt_bro_NativeObject_getHandle =
+                Scene.v().makeMethodRef(
+                        org_robovm_rt_bro_NativeObject,
+                        "getHandle",
+                        Collections.<Type>emptyList(),
+                        LongType.v(), false);
+        org_robovm_apple_foundation_NSObject_forceSkipInit =
+                Scene.v().makeMethodRef(
+                        org_robovm_apple_foundation_NSObject,
+                        "forceSkipInit",
+                        Collections.<Type>emptyList(),
+                        VoidType.v(), false);
+        java_lang_NoSuchMethodError = r.makeClassRef("java.lang.NoSuchMethodError");
+        java_lang_NoSuchMethodError_init =
+                Scene.v().makeMethodRef(
+                        java_lang_NoSuchMethodError,
+                        "<init>",
+                        Arrays.<Type> asList(java_lang_String.getType()),
+                        VoidType.v(), false);
         initialized = true;
     }
 
@@ -500,16 +562,25 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         init(config);
         SootClass sootClass = clazz.getSootClass();
         boolean extensions = false;
+        boolean customClass = hasAnnotation(sootClass, CUSTOM_CLASS);
         if (!sootClass.isInterface()
                 && (isObjCObject(sootClass) || (extensions = isObjCExtensions(sootClass)))) {
 
             Set<String> selectors = new TreeSet<>();
             Set<String> overridables = new HashSet<>();
+            Set<String> initializers = new HashSet<>();
             for (SootMethod method : sootClass.getMethods()) {
                 if (!"<clinit>".equals(method.getName()) && !"<init>".equals(method.getName())) {
                     transformMethod(config, clazz, sootClass, method, selectors, overridables, extensions);
+                } else if (customClass && "<init>".equals(method.getName())) {
+                    transformConstructor(sootClass, method, initializers);
                 }
             }
+
+            if (customClass) {
+                transformParentConstructors(sootClass, initializers);
+            }
+
             addBindCall(sootClass);
             if (!extensions) {
                 addObjCClassField(sootClass);
@@ -542,6 +613,266 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         }
         return b;
     }
+
+
+    private void transformConstructor(SootClass sootClass, SootMethod constructor, Set<String> initializers) {
+        initializers.add(constructor.getSubSignature());
+
+        AnnotationTag annotation = getAnnotation(constructor, METHOD);
+        if (annotation == null) {
+            SootMethod superConstructor = findOverridenMethodWithAnnotation(sootClass, constructor, METHOD);
+            if (superConstructor != null)
+                annotation = getAnnotation(superConstructor, METHOD);
+        }
+
+        if (annotation == null) {
+            // this constructor doesn't have annotation attached
+            return;
+        }
+
+        // Determine the selector
+        String selectorName = readStringElem(annotation, "selector", "").trim();
+        if (selectorName.length() == 0) {
+            // TODO: warning here
+            return;
+        }
+
+
+        //
+        createConstructorCallback(sootClass, constructor, selectorName);
+    }
+
+    private void transformParentConstructors(SootClass sootClass, Set<String> initializers) {
+        // get default constructor
+        SootMethod defaultConstructor;
+        try {
+            defaultConstructor = sootClass.getMethod("<init>", Collections.<Type>emptyList(), VoidType.v());
+        } catch (RuntimeException e) {
+            // Soot throws RuntimeException if method not found
+            defaultConstructor = null;
+        }
+
+        // move through subclasses
+        SootClass supercls = sootClass.getSuperclass();
+        while (!supercls.getType().equals(this.org_robovm_objc_ObjCObject.getType())) {
+            for (SootMethod method : supercls.getMethods()) {
+                 if (!"<init>".equals(method.getName()))
+                     continue;
+
+                // check if such constructor already been processed
+                if (initializers.contains(method.getSubSignature()))
+                    continue;
+                initializers.add(method.getSubSignature());
+
+                // check if there is native method information attached
+                AnnotationTag annotation = getAnnotation(method, METHOD);
+                if (annotation == null) {
+                    SootMethod superConstructor = findOverridenMethodWithAnnotation(supercls, method, METHOD);
+                    if (superConstructor != null)
+                        annotation = getAnnotation(superConstructor, METHOD);
+                }
+
+                // there is no method annotation attached which means there is no way to create callback
+                if (annotation == null)
+                    continue;
+
+                // Determine the selector
+                String selectorName = readStringElem(annotation, "selector", "").trim();
+                if (selectorName.length() == 0) {
+                    // TODO: warning here
+                    continue;
+                }
+
+                // convert constructor
+                if (defaultConstructor != null)
+                    createParentConstructorCallback(sootClass, defaultConstructor, method, selectorName);
+                else
+                    createParentConstructorExceptionCallback(sootClass, method, selectorName);
+            }
+
+            supercls = supercls.getSuperclass();
+        }
+    }
+
+
+    private void createConstructorCallback(SootClass sootClass, SootMethod constructor, String selectorName) {
+        Jimple jimple = Jimple.v();
+
+        SootMethod callbackMethod = this.getMsgSendInitMethod(selectorName, constructor);
+        sootClass.addMethod(callbackMethod);
+
+        addCallbackAnnotation(callbackMethod);
+        addBindSelectorAnnotation(callbackMethod, selectorName);
+
+        JimpleBody jimpleBody = jimple.newBody(callbackMethod);
+        callbackMethod.setActiveBody(jimpleBody);
+        Body body = callbackMethod.getActiveBody();
+        PatchingChain<Unit> units = body.getUnits();
+
+        // pick parameters first using small hack
+        jimpleBody.insertIdentityStmts();
+        ArrayList<Local> args = new ArrayList<>(jimpleBody.getLocals());
+
+        Local self = jimple.newLocal("$self", LongType.v());
+        body.getLocals().add(self);
+        units.add(jimple.newIdentityStmt(self, jimple.newParameterRef(LongType.v(), 0)));
+
+
+        Local thiz = jimple.newLocal("$this", sootClass.getType());
+        body.getLocals().add(thiz);
+
+        NopStmt noClassCreatedAnchor = jimple.newNopStmt();
+        NopStmt classAlreadyCreated = jimple.newNopStmt();
+        Local peer = jimple.newLocal("$peer", this.org_robovm_objc_ObjCObject.getType());
+        body.getLocals().add(peer);
+
+        units.add(jimple.newAssignStmt(peer, jimple.newStaticInvokeExpr(this.org_robovm_objc_ObjCObject_getPeerObject, self)));
+        units.add(jimple.newAssignStmt(thiz, jimple.newCastExpr(peer, thiz.getType())));
+        units.add(jimple.newIfStmt(jimple.newEqExpr(thiz, NullConstant.v()), noClassCreatedAnchor));
+        units.add(classAlreadyCreated);
+        units.add(jimple.newReturnStmt(self));
+
+        // lets create another instance of class
+        units.add(noClassCreatedAnchor);
+        units.add(jimple.newAssignStmt(thiz, jimple.newNewExpr(sootClass.getType())));
+
+        // setting handle before init, this will allow NSObject to not alloc another native part
+        units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, this.org_robovm_rt_bro_NativeObject_setHandle, self)));
+
+        // constructor goes
+        units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, constructor.makeRef(), args.subList(2, args.size()))));
+
+        // call after marshaled to retain native part
+        SootMethod afterMarshaled = findMethod(sootClass, "afterMarshaled", Arrays.<Type> asList(IntType.v()), VoidType.v(), true);
+        units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, afterMarshaled.makeRef(), IntConstant.v(0))));
+
+        // get back handle as it can be mutated as result of init
+        units.add(jimple.newAssignStmt(self, jimple.newSpecialInvokeExpr(thiz, this.org_robovm_rt_bro_NativeObject_getHandle)));
+        units.add(jimple.newReturnStmt(self));
+    }
+
+    private void createParentConstructorCallback(SootClass sootClass, SootMethod defaultConstructor, SootMethod parentConstructor, String selectorName) {
+        // init method is required as it is used initialize native instance
+        SootMethod initMethod = findMethod(sootClass, "init", parentConstructor.getParameterTypes(), LongType.v(), true);
+        if (initMethod == null) {
+            createParentConstructorExceptionCallback(sootClass, parentConstructor, selectorName);
+            return;
+        }
+
+        Jimple jimple = Jimple.v();
+
+        SootMethod callbackMethod = this.getMsgSendInitMethod(selectorName, parentConstructor);
+        sootClass.addMethod(callbackMethod);
+
+        addCallbackAnnotation(callbackMethod);
+        addBindSelectorAnnotation(callbackMethod, selectorName);
+
+        JimpleBody jimpleBody = jimple.newBody(callbackMethod);
+        callbackMethod.setActiveBody(jimpleBody);
+        Body body = callbackMethod.getActiveBody();
+        PatchingChain<Unit> units = body.getUnits();
+
+        // pick parameters first using small hack
+        jimpleBody.insertIdentityStmts();
+        ArrayList<Local> args = new ArrayList<>(jimpleBody.getLocals());
+
+        Local self = jimple.newLocal("$self", LongType.v());
+        body.getLocals().add(self);
+        units.add(jimple.newIdentityStmt(self, jimple.newParameterRef(LongType.v(), 0)));
+        Local thiz = jimple.newLocal("$this", sootClass.getType());
+        body.getLocals().add(thiz);
+
+        NopStmt noClassCreatedAnchor = jimple.newNopStmt();
+        NopStmt classAlreadyCreated = jimple.newNopStmt();
+        Local peer = jimple.newLocal("$peer", this.org_robovm_objc_ObjCObject.getType());
+        body.getLocals().add(peer);
+
+        units.add(jimple.newAssignStmt(peer, jimple.newStaticInvokeExpr(this.org_robovm_objc_ObjCObject_getPeerObject, self)));
+        units.add(jimple.newAssignStmt(thiz, jimple.newCastExpr(peer, thiz.getType())));
+        units.add(jimple.newIfStmt(jimple.newEqExpr(thiz, NullConstant.v()), noClassCreatedAnchor));
+        units.add(classAlreadyCreated);
+        units.add(jimple.newReturnStmt(self));
+
+        // lets create another instance of class
+        units.add(noClassCreatedAnchor);
+        units.add(jimple.newAssignStmt(thiz, jimple.newNewExpr(sootClass.getType())));
+
+        // setting handle before init, this will allow NSObject to not alloc another native part
+        units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, this.org_robovm_rt_bro_NativeObject_setHandle, self)));
+
+        // tell default constructor not to call default init
+        if (isNSObject(sootClass.getType()))
+            units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, this.org_robovm_apple_foundation_NSObject_forceSkipInit)));
+
+        // calling default constructor
+        units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, defaultConstructor.makeRef(), Collections.<Type>emptyList())));
+
+        // now call the init method to initialize native part
+        units.add(jimple.newAssignStmt(self, jimple.newSpecialInvokeExpr(thiz, initMethod.makeRef(), args.subList(2, args.size()))));
+
+        // associate java object with native handle
+        SootMethod initObject = findMethod(sootClass, "initObject", Arrays.<Type> asList(LongType.v()), VoidType.v(), true);
+        units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, initObject.makeRef(), self)));
+
+        // call after marshaled to retain native part
+        SootMethod afterMarshaled = findMethod(sootClass, "afterMarshaled", Arrays.<Type> asList(IntType.v()), VoidType.v(), true);
+        units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, afterMarshaled.makeRef(), IntConstant.v(0))));
+
+        // now need
+
+        // get back handle as it can be mutated as result of init
+        units.add(jimple.newAssignStmt(self, jimple.newSpecialInvokeExpr(thiz, this.org_robovm_rt_bro_NativeObject_getHandle)));
+        units.add(jimple.newReturnStmt(self));
+    }
+
+    private void createParentConstructorExceptionCallback(SootClass sootClass, SootMethod constructor, String selectorName) {
+        Jimple jimple = Jimple.v();
+
+        SootMethod callbackMethod = this.getMsgSendInitMethod(selectorName, constructor);
+        sootClass.addMethod(callbackMethod);
+
+        addCallbackAnnotation(callbackMethod);
+        addBindSelectorAnnotation(callbackMethod, selectorName);
+
+        callbackMethod.setActiveBody(jimple.newBody(callbackMethod));
+        Body body = callbackMethod.getActiveBody();
+        PatchingChain<Unit> units = body.getUnits();
+
+        // callback defined as following <long self, selector, ...>, pick self there
+        Local self = jimple.newLocal("$self", LongType.v());
+        body.getLocals().add(self);
+        units.add(jimple.newIdentityStmt(self, jimple.newParameterRef(LongType.v(), 0)));
+
+        Local thiz = jimple.newLocal("$this", sootClass.getType());
+        body.getLocals().add(thiz);
+
+        Local peer = jimple.newLocal("$peer", this.org_robovm_objc_ObjCObject.getType());
+        body.getLocals().add(peer);
+        units.add(jimple.newAssignStmt(peer, jimple.newStaticInvokeExpr(this.org_robovm_objc_ObjCObject_getPeerObject, self)));
+        units.add(jimple.newAssignStmt(thiz, jimple.newCastExpr(peer, thiz.getType())));
+
+        // check if pointer already associated with object
+        // this is not expected but possible due mix of java/native classes and receiving call from
+        // native code as super
+        NopStmt noClassCreatedAnchor = jimple.newNopStmt();
+        NopStmt classAlreadyCreatedAnchor = jimple.newNopStmt();
+        units.add(jimple.newIfStmt(jimple.newEqExpr(thiz, NullConstant.v()), noClassCreatedAnchor));
+        units.add(classAlreadyCreatedAnchor);
+        units.add(jimple.newReturnStmt(self));
+
+        // there is no java part, throw exception
+        units.add(noClassCreatedAnchor);
+        String msg = String.format("Objctive-C called -%s which could not be mapped to a constructor in %s. Expected a default constructor or a %s constructor.",
+                selectorName, sootClass.getName(), constructor.getSubSignature());
+
+        Local exc = jimple.newLocal("$exc", java_lang_NoSuchMethodError.getType());
+        body.getLocals().add(exc);
+        units.add(jimple.newAssignStmt(exc, jimple.newNewExpr(java_lang_NoSuchMethodError.getType())));
+        units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(exc, java_lang_NoSuchMethodError_init, StringConstant.v(msg))));
+        units.add(jimple.newThrowStmt(exc));
+    }
+
+
 
     private void transformMethod(Config config, Clazz clazz, SootClass sootClass,
             SootMethod method, Set<String> selectors, Set<String> overridables, boolean extensions) {
@@ -652,6 +983,26 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         return false;
     }
 
+    private SootMethod findMethod(SootClass sootClass, String methodName, List<Type> parameterTypes, Type returnType, boolean includeObjC) {
+        boolean done;
+        do {
+            try {
+                SootMethod m = sootClass.getMethod(methodName, parameterTypes, returnType);
+                return m;
+            } catch (RuntimeException e) {
+                // Soot throws RuntimeException if method not found
+            }
+
+            // break if processed ObjC already
+            done = sootClass.getType().equals(org_robovm_objc_ObjCObject.getType());
+            sootClass = sootClass.getSuperclass();
+            // break if now is ObjC and it is not included
+            done |= !includeObjC && sootClass.getType().equals(org_robovm_objc_ObjCObject.getType());
+        } while (!done);
+
+        return null;
+    }
+
     private List<SootMethod> findOverriddenMethods(SootClass sootClass, SootMethod method) {
         SootClass supercls = sootClass.getSuperclass();
         while (!supercls.getType().equals(org_robovm_objc_ObjCObject.getType())) {
@@ -696,6 +1047,24 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                 && !sootClass.getSuperclass().getType().equals(org_robovm_objc_ObjCObject.getType())) {
             findOverriddenMethodsOnInterfaces(sootClass.getSuperclass(), method, candidates);
         }
+    }
+
+    private SootMethod findOverridenMethodWithAnnotation(SootClass sootClass, SootMethod method, String annotationPath) {
+        SootClass supercls = sootClass.getSuperclass();
+        while (!supercls.getType().equals(org_robovm_objc_ObjCObject.getType())) {
+            try {
+                SootMethod m = supercls.getMethod(method.getName(), method.getParameterTypes(),
+                        method.getReturnType());
+                AnnotationTag annotation = getAnnotation(m, annotationPath);
+                if (annotation != null)
+                    return m;
+            } catch (RuntimeException e) {
+                // Soot throws RuntimeException if method not found
+            }
+            supercls = supercls.getSuperclass();
+        }
+
+        return null;
     }
 
     /**
@@ -1438,4 +1807,5 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         annotationTag.addElem(new AnnotationStringElem(encoding, 's', "value"));
         addRuntimeVisibleAnnotation(method, annotationTag);
     }
+
 }

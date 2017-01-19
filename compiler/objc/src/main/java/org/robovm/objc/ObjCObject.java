@@ -169,7 +169,7 @@ public abstract class ObjCObject extends NativeObject {
     }
 
     @SuppressWarnings("unchecked")
-    static <T extends ObjCObject> T getPeerObject(long handle) {
+    protected static <T extends ObjCObject> T getPeerObject(long handle) {
         synchronized (objcBridgeLock) {
             ObjCObjectRef ref = peers.get(handle);
             T o = ref != null ? (T) ref.get() : null;
@@ -254,6 +254,7 @@ public abstract class ObjCObject extends NativeObject {
         if (handle == 0L) {
             return null;
         }
+
         if (cls == ObjCClass.class) {
             return (T) ObjCClass.toObjCClass(handle);
         }
@@ -448,8 +449,11 @@ public abstract class ObjCObject extends NativeObject {
             int count = ObjCRuntime.int_objc_msgSend(self, retainCount);
             if (count <= 1) {
                 synchronized (CUSTOM_OBJECTS) {
-                    ObjCClass cls = ObjCClass.toObjCClass(ObjCRuntime.object_getClass(self));
-                    ObjCObject obj = ObjCObject.toObjCObject(cls.getType(), self, 0);
+                    ObjCObject obj = ObjCObject.getPeerObject(self);
+                    if (obj == null) {
+                        ObjCClass cls = ObjCClass.toObjCClass(ObjCRuntime.object_getClass(self));
+                        obj = ObjCObject.toObjCObject(cls.getType(), self, 0);
+                    }
                     CUSTOM_OBJECTS.put(self, obj);
                 }
             }
