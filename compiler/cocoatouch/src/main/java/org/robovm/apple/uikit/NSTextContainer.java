@@ -56,7 +56,9 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @Method(selector = "initWithSize:")
     public NSTextContainer(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
+    @Method(selector = "initWithCoder:")
     public NSTextContainer(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/

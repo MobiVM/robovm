@@ -112,6 +112,7 @@ import org.robovm.apple.corelocation.*;
     public UIGestureRecognizer() {}
     protected UIGestureRecognizer(Handle h, long handle) { super(h, handle); }
     protected UIGestureRecognizer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTarget:action:")
     public UIGestureRecognizer(NSObject target, Selector action) { super((SkipInit) null); initObject(init(target, action)); }
     /*</constructors>*/
     /*<properties>*/

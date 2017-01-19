@@ -123,14 +123,20 @@ import org.robovm.apple.corelocation.*;
     public UIBarButtonItem() {}
     protected UIBarButtonItem(Handle h, long handle) { super(h, handle); }
     protected UIBarButtonItem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UIBarButtonItem(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithImage:style:target:action:")
     public UIBarButtonItem(UIImage image, UIBarButtonItemStyle style, NSObject target, Selector action) { super((SkipInit) null); initObject(init(image, style, target, action)); }
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @Method(selector = "initWithImage:landscapeImagePhone:style:target:action:")
     public UIBarButtonItem(UIImage image, UIImage landscapeImagePhone, UIBarButtonItemStyle style, NSObject target, Selector action) { super((SkipInit) null); initObject(init(image, landscapeImagePhone, style, target, action)); }
+    @Method(selector = "initWithTitle:style:target:action:")
     public UIBarButtonItem(String title, UIBarButtonItemStyle style, NSObject target, Selector action) { super((SkipInit) null); initObject(init(title, style, target, action)); }
+    @Method(selector = "initWithBarButtonSystemItem:target:action:")
     public UIBarButtonItem(UIBarButtonSystemItem systemItem, NSObject target, Selector action) { super((SkipInit) null); initObject(init(systemItem, target, action)); }
+    @Method(selector = "initWithCustomView:")
     public UIBarButtonItem(UIView customView) { super((SkipInit) null); initObject(init(customView)); }
     /*</constructors>*/
 

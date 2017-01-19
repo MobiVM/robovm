@@ -53,9 +53,13 @@ import org.robovm.apple.corelocation.*;
     public UIViewPropertyAnimator() {}
     protected UIViewPropertyAnimator(Handle h, long handle) { super(h, handle); }
     protected UIViewPropertyAnimator(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDuration:timingParameters:")
     public UIViewPropertyAnimator(double duration, UITimingCurveProvider parameters) { super((SkipInit) null); initObject(init(duration, parameters)); }
+    @Method(selector = "initWithDuration:curve:animations:")
     public UIViewPropertyAnimator(double duration, UIViewAnimationCurve curve, @Block Runnable animations) { super((SkipInit) null); initObject(init(duration, curve, animations)); }
+    @Method(selector = "initWithDuration:controlPoint1:controlPoint2:animations:")
     public UIViewPropertyAnimator(double duration, @ByVal CGPoint point1, @ByVal CGPoint point2, @Block Runnable animations) { super((SkipInit) null); initObject(init(duration, point1, point2, animations)); }
+    @Method(selector = "initWithDuration:dampingRatio:animations:")
     public UIViewPropertyAnimator(double duration, @MachineSizedFloat double ratio, @Block Runnable animations) { super((SkipInit) null); initObject(init(duration, ratio, animations)); }
     /*</constructors>*/
     /*<properties>*/

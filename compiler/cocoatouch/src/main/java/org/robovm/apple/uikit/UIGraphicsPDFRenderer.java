@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIGraphicsPDFRenderer() {}
     protected UIGraphicsPDFRenderer(Handle h, long handle) { super(h, handle); }
     protected UIGraphicsPDFRenderer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithBounds:format:")
     public UIGraphicsPDFRenderer(@ByVal CGRect bounds, UIGraphicsPDFRendererFormat format) { super((SkipInit) null); initObject(init(bounds, format)); }
     /*</constructors>*/
     /*<properties>*/

@@ -53,8 +53,11 @@ import org.robovm.apple.corelocation.*;
     public UIActivityIndicatorView() {}
     protected UIActivityIndicatorView(Handle h, long handle) { super(h, handle); }
     protected UIActivityIndicatorView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithActivityIndicatorStyle:")
     public UIActivityIndicatorView(UIActivityIndicatorViewStyle style) { super((SkipInit) null); initObject(init(style)); }
+    @Method(selector = "initWithFrame:")
     public UIActivityIndicatorView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
     public UIActivityIndicatorView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/

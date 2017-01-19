@@ -55,6 +55,7 @@ import org.robovm.apple.corelocation.*;
     public UIUserNotificationCategory() {}
     protected UIUserNotificationCategory(Handle h, long handle) { super(h, handle); }
     protected UIUserNotificationCategory(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UIUserNotificationCategory(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

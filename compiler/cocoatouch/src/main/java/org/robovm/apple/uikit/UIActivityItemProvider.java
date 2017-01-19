@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     protected UIActivityItemProvider() {}
     protected UIActivityItemProvider(Handle h, long handle) { super(h, handle); }
     protected UIActivityItemProvider(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPlaceholderItem:")
     public UIActivityItemProvider(NSObject placeholderItem) { super((SkipInit) null); initObject(init(placeholderItem)); }
     /*</constructors>*/
     /*<properties>*/

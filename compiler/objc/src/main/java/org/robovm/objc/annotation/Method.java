@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
  * method is a member of a class it must have the <code>native</code> modifier.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.CONSTRUCTOR})
 public @interface Method {
     /**
      * The name of the Objective-C selector this method binds to. If not

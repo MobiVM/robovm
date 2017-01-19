@@ -53,7 +53,9 @@ import org.robovm.apple.corelocation.*;
     protected UICollectionViewTransitionLayout() {}
     protected UICollectionViewTransitionLayout(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewTransitionLayout(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCurrentLayout:nextLayout:")
     public UICollectionViewTransitionLayout(UICollectionViewLayout currentLayout, UICollectionViewLayout newLayout) { super((SkipInit) null); initObject(init(currentLayout, newLayout)); }
+    @Method(selector = "initWithCoder:")
     public UICollectionViewTransitionLayout(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

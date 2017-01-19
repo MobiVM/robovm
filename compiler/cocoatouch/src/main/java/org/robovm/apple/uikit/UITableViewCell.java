@@ -56,7 +56,9 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 3.0 and later.
      */
+    @Method(selector = "initWithStyle:reuseIdentifier:")
     public UITableViewCell(UITableViewCellStyle style, String reuseIdentifier) { super((SkipInit) null); initObject(init(style, reuseIdentifier)); }
+    @Method(selector = "initWithCoder:")
     public UITableViewCell(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     

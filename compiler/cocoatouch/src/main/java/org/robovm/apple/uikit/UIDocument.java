@@ -66,6 +66,7 @@ import org.robovm.apple.corelocation.*;
     public UIDocument() {}
     protected UIDocument(Handle h, long handle) { super(h, handle); }
     protected UIDocument(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFileURL:")
     public UIDocument(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
     /*<properties>*/

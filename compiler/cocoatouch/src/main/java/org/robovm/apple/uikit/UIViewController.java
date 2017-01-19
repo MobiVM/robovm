@@ -70,7 +70,9 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Deprecated protected UIViewController(long handle) { super(handle); }
     protected UIViewController(Handle h, long handle) { super(h, handle); }
     protected UIViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
     public UIViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
     public UIViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

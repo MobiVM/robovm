@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UILayoutGuide() {}
     protected UILayoutGuide(Handle h, long handle) { super(h, handle); }
     protected UILayoutGuide(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UILayoutGuide(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/

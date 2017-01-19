@@ -53,10 +53,12 @@ import org.robovm.apple.corelocation.*;
     public UISimpleTextPrintFormatter() {}
     protected UISimpleTextPrintFormatter(Handle h, long handle) { super(h, handle); }
     protected UISimpleTextPrintFormatter(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithText:")
     public UISimpleTextPrintFormatter(String text) { super((SkipInit) null); initObject(init(text)); }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @Method(selector = "initWithAttributedText:")
     public UISimpleTextPrintFormatter(NSAttributedString attributedText) { super((SkipInit) null); initObject(init(attributedText)); }
     /*</constructors>*/
     /*<properties>*/

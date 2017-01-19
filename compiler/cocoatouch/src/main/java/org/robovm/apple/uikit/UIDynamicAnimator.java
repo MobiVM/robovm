@@ -53,7 +53,9 @@ import org.robovm.apple.corelocation.*;
     public UIDynamicAnimator() {}
     protected UIDynamicAnimator(Handle h, long handle) { super(h, handle); }
     protected UIDynamicAnimator(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithReferenceView:")
     public UIDynamicAnimator(UIView view) { super((SkipInit) null); initObject(init(view)); }
+    @Method(selector = "initWithCollectionViewLayout:")
     public UIDynamicAnimator(UICollectionViewLayout layout) { super((SkipInit) null); initObject(init(layout)); }
     /*</constructors>*/
     /*<properties>*/

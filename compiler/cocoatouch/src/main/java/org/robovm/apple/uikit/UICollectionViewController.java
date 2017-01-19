@@ -53,8 +53,11 @@ import org.robovm.apple.corelocation.*;
     public UICollectionViewController() {}
     protected UICollectionViewController(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCollectionViewLayout:")
     public UICollectionViewController(UICollectionViewLayout layout) { super((SkipInit) null); initObject(init(layout)); }
+    @Method(selector = "initWithNibName:bundle:")
     public UICollectionViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
     public UICollectionViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

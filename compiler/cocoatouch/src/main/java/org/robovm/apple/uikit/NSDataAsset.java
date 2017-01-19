@@ -53,7 +53,9 @@ import org.robovm.apple.corelocation.*;
     protected NSDataAsset() {}
     protected NSDataAsset(Handle h, long handle) { super(h, handle); }
     protected NSDataAsset(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:")
     public NSDataAsset(String name) { super((SkipInit) null); initObject(init(name)); }
+    @Method(selector = "initWithName:bundle:")
     public NSDataAsset(String name, NSBundle bundle) { super((SkipInit) null); initObject(init(name, bundle)); }
     /*</constructors>*/
     /*<properties>*/

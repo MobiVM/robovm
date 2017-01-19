@@ -55,6 +55,7 @@ import org.robovm.apple.corelocation.*;
     public UILocalNotification() {}
     protected UILocalNotification(Handle h, long handle) { super(h, handle); }
     protected UILocalNotification(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UILocalNotification(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
