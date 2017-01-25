@@ -137,6 +137,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
     private SootMethodRef org_robovm_objc_ObjCExtensions_updateStrongRef = null;
     private SootMethodRef org_robovm_objc_Selector_register = null;
     private SootMethodRef org_robovm_objc_ObjCObject_getPeerObject = null;
+    private SootMethodRef org_robovm_objc_ObjCObject_retainCustomObjectFromCb = null;
     private SootMethodRef org_robovm_rt_bro_NativeObject_setHandle = null;
     private SootMethodRef org_robovm_rt_bro_NativeObject_getHandle = null;
     private SootMethodRef org_robovm_apple_foundation_NSObject_forceSkipInit = null;
@@ -452,6 +453,12 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                         "getPeerObject",
                         Arrays.<Type> asList(LongType.v()),
                         this.org_robovm_objc_ObjCObject.getType(), true);
+        org_robovm_objc_ObjCObject_retainCustomObjectFromCb =
+                Scene.v().makeMethodRef(
+                        org_robovm_objc_ObjCObject,
+                        "retainCustomObjectFromCb",
+                        Arrays.<Type> asList(LongType.v()),
+                        VoidType.v(), true);
         org_robovm_rt_bro_NativeObject_setHandle =
                 Scene.v().makeMethodRef(
                         org_robovm_rt_bro_NativeObject,
@@ -746,6 +753,9 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         SootMethod afterMarshaled = findMethod(sootClass, "afterMarshaled", Arrays.<Type> asList(IntType.v()), VoidType.v(), true);
         units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, afterMarshaled.makeRef(), IntConstant.v(0))));
 
+        // notify objc object to keep reference to this java side
+        units.add(jimple.newInvokeStmt(jimple.newStaticInvokeExpr(this.org_robovm_objc_ObjCObject_retainCustomObjectFromCb, self)));
+
         // get back handle as it can be mutated as result of init
         units.add(jimple.newAssignStmt(self, jimple.newSpecialInvokeExpr(thiz, this.org_robovm_rt_bro_NativeObject_getHandle)));
         units.add(jimple.newReturnStmt(self));
@@ -818,7 +828,8 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         SootMethod afterMarshaled = findMethod(sootClass, "afterMarshaled", Arrays.<Type> asList(IntType.v()), VoidType.v(), true);
         units.add(jimple.newInvokeStmt(jimple.newSpecialInvokeExpr(thiz, afterMarshaled.makeRef(), IntConstant.v(0))));
 
-        // now need
+        // notify objc object to keep reference to this java side
+        units.add(jimple.newInvokeStmt(jimple.newStaticInvokeExpr(this.org_robovm_objc_ObjCObject_retainCustomObjectFromCb, self)));
 
         // get back handle as it can be mutated as result of init
         units.add(jimple.newAssignStmt(self, jimple.newSpecialInvokeExpr(thiz, this.org_robovm_rt_bro_NativeObject_getHandle)));
