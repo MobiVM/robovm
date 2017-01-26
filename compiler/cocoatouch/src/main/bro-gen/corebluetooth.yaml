@@ -19,7 +19,8 @@ enums:
     CBPeripheralManagerAuthorizationStatus: {}
     CBPeripheralManagerState: {}
     CBPeripheralManagerConnectionLatency: {}
-        
+    CBManagerState: {}
+
 classes:
     CBError:
         extends: NSError
@@ -31,6 +32,7 @@ classes:
     CBATTRequest: {} # DONE
     CBAttribute: {} # DONE
     CBCentral: {} # DONE
+    CBManager: {} # DONE
     CBCentralManager: # DONE
         methods:
             '-initWithDelegate:queue:':

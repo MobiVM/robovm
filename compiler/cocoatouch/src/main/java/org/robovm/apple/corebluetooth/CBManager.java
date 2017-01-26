@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,25 +34,25 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 6.0 and later.
+ * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreBluetooth") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CBCentral/*</name>*/ 
-    extends /*<extends>*/CBPeer/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CBManager/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CBCentralPtr extends Ptr<CBCentral, CBCentralPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CBCentral.class); }/*</bind>*/
+    /*<ptr>*/public static class CBManagerPtr extends Ptr<CBManager, CBManagerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CBManager.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CBCentral() {}
-    protected CBCentral(Handle h, long handle) { super(h, handle); }
-    protected CBCentral(SkipInit skipInit) { super(skipInit); }
+    protected CBManager() {}
+    protected CBManager(Handle h, long handle) { super(h, handle); }
+    protected CBManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "maximumUpdateValueLength")
-    public native @MachineSizedUInt long getMaximumUpdateValueLength();
+    @Property(selector = "state")
+    public native CBManagerState getState();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

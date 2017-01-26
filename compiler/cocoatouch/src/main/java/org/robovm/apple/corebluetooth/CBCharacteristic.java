@@ -47,6 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CBCharacteristic() {}
+    protected CBCharacteristic(Handle h, long handle) { super(h, handle); }
     protected CBCharacteristic(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

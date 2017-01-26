@@ -46,7 +46,8 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(CBATTRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CBATTRequest() {}
+    protected CBATTRequest() {}
+    protected CBATTRequest(Handle h, long handle) { super(h, handle); }
     protected CBATTRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
