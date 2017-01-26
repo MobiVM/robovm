@@ -34,14 +34,13 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Library("CoreAudio")/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AudioStreamBasicDescription/*</name>*/ 
     extends /*<extends>*/Struct<AudioStreamBasicDescription>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class AudioStreamBasicDescriptionPtr extends Ptr<AudioStreamBasicDescription, AudioStreamBasicDescriptionPtr> {}/*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(AudioStreamBasicDescription.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AudioStreamBasicDescription() {}
@@ -77,5 +76,8 @@ import org.robovm.apple.corefoundation.*;
     @StructMember(8) private native int getReserved();
     @StructMember(8) private native AudioStreamBasicDescription setReserved(int reserved);
     /*</members>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    @GlobalValue(symbol="kAudioStreamAnyRate", optional=true)
+    public static native double AnyRate();
+    /*</methods>*/
 }

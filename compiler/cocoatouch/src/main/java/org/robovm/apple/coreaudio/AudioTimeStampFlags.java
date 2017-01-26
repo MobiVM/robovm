@@ -38,6 +38,7 @@ import org.robovm.apple.corefoundation.*;
 public final class /*<name>*/AudioTimeStampFlags/*</name>*/ extends Bits</*<name>*/AudioTimeStampFlags/*</name>*/> {
     /*<values>*/
     public static final AudioTimeStampFlags None = new AudioTimeStampFlags(0L);
+    public static final AudioTimeStampFlags NothingValid = new AudioTimeStampFlags(0L);
     public static final AudioTimeStampFlags SampleTimeValid = new AudioTimeStampFlags(1L);
     public static final AudioTimeStampFlags HostTimeValid = new AudioTimeStampFlags(2L);
     public static final AudioTimeStampFlags RateScalarValid = new AudioTimeStampFlags(4L);
