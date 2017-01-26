@@ -36,7 +36,9 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 2.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass @WeaklyLinked/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAEAGLLayer/*</name>*/ 
@@ -48,6 +50,7 @@ import org.robovm.apple.metal.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CAEAGLLayer() {}
+    protected CAEAGLLayer(Handle h, long handle) { super(h, handle); }
     protected CAEAGLLayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

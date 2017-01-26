@@ -37,7 +37,9 @@ import org.robovm.apple.metal.*;
 import org.robovm.rt.annotation.WeaklyLinked;
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 2.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAAnimation/*</name>*/ 
@@ -49,9 +51,11 @@ import org.robovm.rt.annotation.WeaklyLinked;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CAAnimation() {}
-    protected CAAnimation(long handle) { super(handle); }
+    @Deprecated protected CAAnimation(long handle) { super(handle); }
+    protected CAAnimation(Handle h, long handle) { super(h, handle); }
     protected CAAnimation(SkipInit skipInit) { super(skipInit); }
-    public CAAnimation(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithCoder:")
+    public CAAnimation(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     
     /* SceneKit extensions */
@@ -148,7 +152,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "runActionForKey:object:arguments:")
     public native void runAction(String event, NSObject anObject, NSDictionary<NSString, ?> dict);
     /*</methods>*/

@@ -36,7 +36,9 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 2.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAPropertyAnimation/*</name>*/ 
@@ -48,9 +50,10 @@ import org.robovm.apple.metal.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CAPropertyAnimation() {}
-    protected CAPropertyAnimation(long handle) { super(handle); }
+    @Deprecated protected CAPropertyAnimation(long handle) { super(handle); }
+    protected CAPropertyAnimation(Handle h, long handle) { super(h, handle); }
     protected CAPropertyAnimation(SkipInit skipInit) { super(skipInit); }
-    public CAPropertyAnimation(String path) { super(create(path)); retain(getHandle()); }
+    public CAPropertyAnimation(String path) { super((Handle) null, create(path)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "keyPath")

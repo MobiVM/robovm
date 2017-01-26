@@ -36,7 +36,9 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 2.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CABasicAnimation/*</name>*/ 
@@ -48,6 +50,7 @@ import org.robovm.apple.metal.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CABasicAnimation() {}
+    protected CABasicAnimation(Handle h, long handle) { super(h, handle); }
     protected CABasicAnimation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public CABasicAnimation(String path) {

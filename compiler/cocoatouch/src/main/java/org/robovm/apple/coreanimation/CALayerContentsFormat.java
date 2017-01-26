@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,34 +36,34 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CAScrollLayer/*</name>*/ 
-    extends /*<extends>*/CALayer/*</extends>*/ 
+/*<annotations>*/@Library("QuartzCore")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CALayerContentsFormat/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CAScrollLayerPtr extends Ptr<CAScrollLayer, CAScrollLayerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CAScrollLayer.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(CALayerContentsFormat.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public CAScrollLayer() {}
-    protected CAScrollLayer(Handle h, long handle) { super(h, handle); }
-    protected CAScrollLayer(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "scrollMode")
-    public native CAScrollMode getScrollMode();
-    @Property(selector = "setScrollMode:")
-    public native void setScrollMode(CAScrollMode v);
-    /*</properties>*/
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "scrollToPoint:")
-    public native void scrollTo(@ByVal CGPoint p);
-    @Method(selector = "scrollToRect:")
-    public native void scrollTo(@ByVal CGRect r);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="kCAContentsFormatRGBA8Uint", optional=true)
+    public static native String RGBA8Uint();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="kCAContentsFormatRGBA16Float", optional=true)
+    public static native String RGBA16Float();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="kCAContentsFormatGray8Uint", optional=true)
+    public static native String Gray8Uint();
     /*</methods>*/
 }

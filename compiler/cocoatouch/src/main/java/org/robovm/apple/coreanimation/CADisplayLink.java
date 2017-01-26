@@ -36,7 +36,9 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 3.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CADisplayLink/*</name>*/ 
@@ -64,8 +66,9 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(CADisplayLink.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected CADisplayLink(Handle h, long handle) { super(h, handle); }
     protected CADisplayLink(SkipInit skipInit) { super(skipInit); }
-    public CADisplayLink(NSObject target, Selector sel) { super(create(target, sel)); retain(getHandle()); }
+    public CADisplayLink(NSObject target, Selector sel) { super((Handle) null, create(target, sel)); retain(getHandle()); }
     /*</constructors>*/
     public CADisplayLink(OnUpdateListener listener) {
         super(create(listener));
@@ -86,14 +89,39 @@ import org.robovm.apple.metal.*;
     public native double getTimestamp();
     @Property(selector = "duration")
     public native double getDuration();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "targetTimestamp")
+    public native double getTargetTimestamp();
     @Property(selector = "isPaused")
     public native boolean isPaused();
     @Property(selector = "setPaused:")
     public native void setPaused(boolean v);
+    /**
+     * @since Available in iOS 3.1 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "frameInterval")
     public native @MachineSizedSInt long getFrameInterval();
+    /**
+     * @since Available in iOS 3.1 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "setFrameInterval:")
     public native void setFrameInterval(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "preferredFramesPerSecond")
+    public native @MachineSizedSInt long getPreferredFramesPerSecond();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setPreferredFramesPerSecond:")
+    public native void setPreferredFramesPerSecond(@MachineSizedSInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     public void addToRunLoop(NSRunLoop runloop, NSRunLoopMode mode) {

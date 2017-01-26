@@ -36,7 +36,9 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 2.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAMediaTimingFunction/*</name>*/ 
@@ -48,10 +50,13 @@ import org.robovm.apple.metal.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CAMediaTimingFunction() {}
+    protected CAMediaTimingFunction(Handle h, long handle) { super(h, handle); }
     protected CAMediaTimingFunction(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithControlPoints::::")
     public CAMediaTimingFunction(float c1x, float c1y, float c2x, float c2y) { super((SkipInit) null); initObject(init(c1x, c1y, c2x, c2y)); }
-    public CAMediaTimingFunction(CAMediaTimingFunctionName name) { super(create(name)); retain(getHandle()); }
-    public CAMediaTimingFunction(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public CAMediaTimingFunction(CAMediaTimingFunctionName name) { super((Handle) null, create(name)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public CAMediaTimingFunction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -72,6 +77,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
