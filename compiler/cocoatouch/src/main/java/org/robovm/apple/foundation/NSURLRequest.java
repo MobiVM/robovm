@@ -53,7 +53,9 @@ import org.robovm.apple.dispatch.*;
     public NSURLRequest() {}
     protected NSURLRequest(Handle h, long handle) { super(h, handle); }
     protected NSURLRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:")
     public NSURLRequest(NSURL URL) { super((SkipInit) null); initObject(init(URL)); }
+    @Method(selector = "initWithURL:cachePolicy:timeoutInterval:")
     public NSURLRequest(NSURL URL, NSURLRequestCachePolicy cachePolicy, double timeoutInterval) { super((SkipInit) null); initObject(init(URL, cachePolicy, timeoutInterval)); }
     /*</constructors>*/
     /*<properties>*/

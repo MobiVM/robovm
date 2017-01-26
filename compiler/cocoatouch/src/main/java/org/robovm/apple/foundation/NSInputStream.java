@@ -53,11 +53,14 @@ import org.robovm.apple.dispatch.*;
     public NSInputStream() {}
     protected NSInputStream(Handle h, long handle) { super(h, handle); }
     protected NSInputStream(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithData:")
     public NSInputStream(NSData data) { super((SkipInit) null); initObject(init(data)); }
     /**
      * @since Available in iOS 4.0 and later.
      */
+    @Method(selector = "initWithURL:")
     public NSInputStream(NSURL url) { super((SkipInit) null); initObject(init(url)); }
+    @Method(selector = "initWithFileAtPath:")
     public NSInputStream(String path) { super((SkipInit) null); initObject(init(path)); }
     /*</constructors>*/
     /*<properties>*/

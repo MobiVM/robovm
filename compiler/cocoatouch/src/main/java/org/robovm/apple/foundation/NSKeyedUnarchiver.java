@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     public NSKeyedUnarchiver() {}
     protected NSKeyedUnarchiver(Handle h, long handle) { super(h, handle); }
     protected NSKeyedUnarchiver(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initForReadingWithData:")
     public NSKeyedUnarchiver(NSData data) { super((SkipInit) null); initObject(init(data)); }
     /*</constructors>*/
     /*<properties>*/

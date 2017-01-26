@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     public NSIndexPath() {}
     protected NSIndexPath(Handle h, long handle) { super(h, handle); }
     protected NSIndexPath(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithIndex:")
     public NSIndexPath(@MachineSizedUInt long index) { super((SkipInit) null); initObject(init(index)); }
     /*</constructors>*/
     

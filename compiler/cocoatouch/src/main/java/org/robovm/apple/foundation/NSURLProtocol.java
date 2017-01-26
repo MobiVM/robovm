@@ -53,10 +53,12 @@ import org.robovm.apple.dispatch.*;
     public NSURLProtocol() {}
     protected NSURLProtocol(Handle h, long handle) { super(h, handle); }
     protected NSURLProtocol(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRequest:cachedResponse:client:")
     public NSURLProtocol(NSURLRequest request, NSCachedURLResponse cachedResponse, NSURLProtocolClient client) { super((SkipInit) null); initObject(init(request, cachedResponse, client)); }
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @Method(selector = "initWithTask:cachedResponse:client:")
     public NSURLProtocol(NSURLSessionTask task, NSCachedURLResponse cachedResponse, NSURLProtocolClient client) { super((SkipInit) null); initObject(init(task, cachedResponse, client)); }
     /*</constructors>*/
     /*<properties>*/

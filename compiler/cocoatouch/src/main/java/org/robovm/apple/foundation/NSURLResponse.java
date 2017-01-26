@@ -55,6 +55,7 @@ import org.robovm.apple.dispatch.*;
     public NSURLResponse() {}
     protected NSURLResponse(Handle h, long handle) { super(h, handle); }
     protected NSURLResponse(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:MIMEType:expectedContentLength:textEncodingName:")
     public NSURLResponse(NSURL URL, String MIMEType, @MachineSizedSInt long length, String name) { super((SkipInit) null); initObject(init(URL, MIMEType, length, name)); }
     /*</constructors>*/
     /*<properties>*/

@@ -56,7 +56,9 @@ import org.robovm.apple.dispatch.*;
     @Deprecated protected NSExpression(long handle) { super(handle); }
     protected NSExpression(Handle h, long handle) { super(h, handle); }
     protected NSExpression(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithExpressionType:")
     public NSExpression(NSExpressionType type) { super((SkipInit) null); initObject(init(type)); }
+    @Method(selector = "initWithCoder:")
     public NSExpression(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /**
      * @since Available in iOS 4.0 and later.

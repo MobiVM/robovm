@@ -53,7 +53,9 @@ import org.robovm.apple.dispatch.*;
     public NSCachedURLResponse() {}
     protected NSCachedURLResponse(Handle h, long handle) { super(h, handle); }
     protected NSCachedURLResponse(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithResponse:data:")
     public NSCachedURLResponse(NSURLResponse response, NSData data) { super((SkipInit) null); initObject(init(response, data)); }
+    @Method(selector = "initWithResponse:data:userInfo:storagePolicy:")
     public NSCachedURLResponse(NSURLResponse response, NSData data, NSDictionary<?, ?> userInfo, NSURLCacheStoragePolicy storagePolicy) { super((SkipInit) null); initObject(init(response, data, userInfo, storagePolicy)); }
     /*</constructors>*/
     /*<properties>*/

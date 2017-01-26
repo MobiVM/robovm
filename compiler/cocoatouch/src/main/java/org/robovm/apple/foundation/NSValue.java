@@ -57,6 +57,7 @@ import org.robovm.apple.scenekit.SCNVector4;
     /*<constructors>*/
     protected NSValue(Handle h, long handle) { super(h, handle); }
     protected NSValue(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public NSValue(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

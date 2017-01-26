@@ -55,6 +55,7 @@ import org.robovm.apple.dispatch.*;
     public NSProgress() {}
     protected NSProgress(Handle h, long handle) { super(h, handle); }
     protected NSProgress(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithParent:userInfo:")
     public NSProgress(NSProgress parentProgressOrNil, NSProgressUserInfo userInfoOrNil) { super((SkipInit) null); initObject(init(parentProgressOrNil, userInfoOrNil)); }
     public NSProgress(long unitCount) { super((Handle) null, create(unitCount)); retain(getHandle()); }
     /**

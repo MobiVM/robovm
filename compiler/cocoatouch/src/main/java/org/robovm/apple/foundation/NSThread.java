@@ -83,10 +83,12 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 2.0 and later.
      */
+    @Method(selector = "initWithTarget:selector:object:")
     public NSThread(NSObject target, Selector selector, NSObject argument) { super((SkipInit) null); initObject(init(target, selector, argument)); }
     /**
      * @since Available in iOS 10.0 and later.
      */
+    @Method(selector = "initWithBlock:")
     public NSThread(@Block Runnable block) { super((SkipInit) null); initObject(init(block)); }
     /*</constructors>*/
     /*<properties>*/
