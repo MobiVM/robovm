@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,31 +31,23 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 3.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFetchedPropertyDescription/*</name>*/ 
-    extends /*<extends>*/NSPropertyDescription/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSFetchedPropertyDescriptionPtr extends Ptr<NSFetchedPropertyDescription, NSFetchedPropertyDescriptionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSFetchedPropertyDescription.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFetchRequestResult/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public NSFetchedPropertyDescription() {}
-    protected NSFetchedPropertyDescription(Handle h, long handle) { super(h, handle); }
-    protected NSFetchedPropertyDescription(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "fetchRequest")
-    public native NSFetchRequest getFetchRequest();
-    @Property(selector = "setFetchRequest:")
-    public native void setFetchRequest(NSFetchRequest v);
+    
     /*</properties>*/
-    /*<members>*//*</members>*/
     /*<methods>*/
     
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

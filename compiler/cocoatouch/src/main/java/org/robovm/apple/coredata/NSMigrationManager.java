@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMigrationManager() {}
+    protected NSMigrationManager(Handle h, long handle) { super(h, handle); }
     protected NSMigrationManager(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSourceModel:destinationModel:")
     public NSMigrationManager(NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel) { super((SkipInit) null); initObject(init(sourceModel, destinationModel)); }
     /*</constructors>*/
     /*<properties>*/

@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSSaveChangesRequest() {}
+    protected NSSaveChangesRequest(Handle h, long handle) { super(h, handle); }
     protected NSSaveChangesRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:")
     public NSSaveChangesRequest(NSSet<NSManagedObject> insertedObjects, NSSet<NSManagedObject> updatedObjects, NSSet<NSManagedObject> deletedObjects, NSSet<NSManagedObject> lockedObjects) { super((SkipInit) null); initObject(init(insertedObjects, updatedObjects, deletedObjects, lockedObjects)); }
     /*</constructors>*/
     /*<properties>*/

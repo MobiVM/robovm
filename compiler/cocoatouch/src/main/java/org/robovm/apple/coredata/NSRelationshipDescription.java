@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSRelationshipDescription() {}
+    protected NSRelationshipDescription(Handle h, long handle) { super(h, handle); }
     protected NSRelationshipDescription(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

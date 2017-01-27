@@ -38,13 +38,14 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSManagedObjectID/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSFetchRequestResult/*</implements>*/ {
 
     /*<ptr>*/public static class NSManagedObjectIDPtr extends Ptr<NSManagedObjectID, NSManagedObjectIDPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSManagedObjectID.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSManagedObjectID() {}
+    protected NSManagedObjectID(Handle h, long handle) { super(h, handle); }
     protected NSManagedObjectID(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

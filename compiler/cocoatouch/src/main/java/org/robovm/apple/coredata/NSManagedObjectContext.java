@@ -92,12 +92,15 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSManagedObjectContext() {}
+    protected NSManagedObjectContext(Handle h, long handle) { super(h, handle); }
     protected NSManagedObjectContext(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @Method(selector = "initWithConcurrencyType:")
     public NSManagedObjectContext(NSManagedObjectContextConcurrencyType ct) { super((SkipInit) null); initObject(init(ct)); }
-    public NSManagedObjectContext(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithCoder:")
+    public NSManagedObjectContext(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "persistentStoreCoordinator")
@@ -174,6 +177,21 @@ import org.robovm.apple.foundation.*;
     public native NSObject getMergePolicy();
     @Property(selector = "setMergePolicy:")
     public native void setMergePolicy(NSObject v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "queryGenerationToken")
+    public native NSQueryGenerationToken getQueryGenerationToken();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "automaticallyMergesChangesFromParent")
+    public native boolean automaticallyMergesChangesFromParent();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setAutomaticallyMergesChangesFromParent:")
+    public native void setAutomaticallyMergesChangesFromParent(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     public void observeValue(String keyPath, NSObject object, NSKeyValueChangeInfo change) {}
@@ -198,6 +216,11 @@ import org.robovm.apple.foundation.*;
      */
     @GlobalValue(symbol="NSManagedObjectContextObjectsDidChangeNotification", optional=true)
     public static native NSString ObjectsDidChangeNotification();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="NSManagedObjectContextQueryGenerationKey", optional=true)
+    public static native NSString QueryGenerationKey();
     
     /**
      * @since Available in iOS 5.0 and later.
@@ -347,6 +370,20 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "mergeChangesFromContextDidSaveNotification:")
     public native void mergeChangesFromContextDidSaveNotification(NSNotification notification);
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public boolean setQueryGenerationFromToken(NSQueryGenerationToken generation) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setQueryGenerationFromToken(generation, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setQueryGenerationFromToken:error:")
+    private native boolean setQueryGenerationFromToken(NSQueryGenerationToken generation, NSError.NSErrorPtr error);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "mergeChangesFromRemoteContextSave:intoContexts:")
@@ -354,6 +391,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

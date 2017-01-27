@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSPersistentStoreAsynchronousResult() {}
+    protected NSPersistentStoreAsynchronousResult(Handle h, long handle) { super(h, handle); }
     protected NSPersistentStoreAsynchronousResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

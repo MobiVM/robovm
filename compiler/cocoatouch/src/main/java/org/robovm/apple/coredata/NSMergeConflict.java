@@ -44,8 +44,10 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(NSMergeConflict.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSMergeConflict() {}
+    protected NSMergeConflict() {}
+    protected NSMergeConflict(Handle h, long handle) { super(h, handle); }
     protected NSMergeConflict(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSource:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:")
     public NSMergeConflict(NSManagedObject srcObject, @MachineSizedUInt long newvers, @MachineSizedUInt long oldvers, NSDictionary<NSString, ?> cachesnap, NSDictionary<NSString, ?> persnap) { super((SkipInit) null); initObject(init(srcObject, newvers, oldvers, cachesnap, persnap)); }
     /*</constructors>*/
     /*<properties>*/

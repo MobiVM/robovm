@@ -133,7 +133,9 @@ import org.robovm.apple.foundation.*;
     }
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     public NSPersistentStoreUbiquitousTransitionType getUbiquitousTransitionType() {
         if (has(Keys.UbiquitousTransitionType())) {
             NSNumber val = (NSNumber) get(Keys.UbiquitousTransitionType());
@@ -164,7 +166,9 @@ import org.robovm.apple.foundation.*;
         public static native NSString UUIDChanged();
         /**
          * @since Available in iOS 7.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
          */
+        @Deprecated
         @GlobalValue(symbol="NSPersistentStoreUbiquitousTransitionTypeKey", optional=true)
         public static native NSString UbiquitousTransitionType();
     }

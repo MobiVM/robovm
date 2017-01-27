@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSPersistentStoreRequest() {}
+    protected NSPersistentStoreRequest(Handle h, long handle) { super(h, handle); }
     protected NSPersistentStoreRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

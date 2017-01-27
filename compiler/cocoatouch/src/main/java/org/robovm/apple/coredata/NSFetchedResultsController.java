@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSFetchedResultsController() {}
+    protected NSFetchedResultsController(Handle h, long handle) { super(h, handle); }
     protected NSFetchedResultsController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:")
     public NSFetchedResultsController(NSFetchRequest fetchRequest, NSManagedObjectContext context, String sectionNameKeyPath, String name) { super((SkipInit) null); initObject(init(fetchRequest, context, sectionNameKeyPath, name)); }
     /*</constructors>*/
     /*<properties>*/
@@ -81,9 +83,9 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "performFetch:")
     private native boolean performFetch(NSError.NSErrorPtr error);
     @Method(selector = "objectAtIndexPath:")
-    public native NSObject getObjectAtIndexPath(NSIndexPath indexPath);
+    public native NSFetchRequestResult getObjectAtIndexPath(NSIndexPath indexPath);
     @Method(selector = "indexPathForObject:")
-    public native NSIndexPath getIndexPathForObject(NSObject object);
+    public native NSIndexPath getIndexPathForObject(NSFetchRequestResult object);
     @Method(selector = "sectionIndexTitleForSectionName:")
     public native String getSectionIndexTitleForSectionName(String sectionName);
     @Method(selector = "sectionForSectionIndexTitle:atIndex:")

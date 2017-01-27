@@ -45,12 +45,15 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSFetchRequest() {}
+    protected NSFetchRequest(Handle h, long handle) { super(h, handle); }
     protected NSFetchRequest(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.
      */
+    @Method(selector = "initWithEntityName:")
     public NSFetchRequest(String entityName) { super((SkipInit) null); initObject(init(entityName)); }
-    public NSFetchRequest(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithCoder:")
+    public NSFetchRequest(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "entity")
@@ -216,9 +219,23 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "initWithEntityName:")
     protected native @Pointer long init(String entityName);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public NSArray<?> execute() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSArray<?> result = execute(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "execute:")
+    private native NSArray<?> execute(NSError.NSErrorPtr error);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

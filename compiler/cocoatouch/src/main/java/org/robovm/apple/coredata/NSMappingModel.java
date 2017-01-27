@@ -45,9 +45,11 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSMappingModel() {}
+    protected NSMappingModel(Handle h, long handle) { super(h, handle); }
     protected NSMappingModel(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithContentsOfURL:")
     public NSMappingModel(NSURL url) { super((SkipInit) null); initObject(init(url)); }
-    public NSMappingModel(NSArray<NSBundle> bundles, NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel) { super(create(bundles, sourceModel, destinationModel)); retain(getHandle()); }
+    public NSMappingModel(NSArray<NSBundle> bundles, NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel) { super((Handle) null, create(bundles, sourceModel, destinationModel)); retain(getHandle()); }
     /*</constructors>*/
     /**
      * @since Available in iOS 3.0 and later.

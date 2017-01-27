@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSAsynchronousFetchResult() {}
+    protected NSAsynchronousFetchResult(Handle h, long handle) { super(h, handle); }
     protected NSAsynchronousFetchResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
