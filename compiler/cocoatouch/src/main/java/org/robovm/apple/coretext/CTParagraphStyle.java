@@ -114,11 +114,6 @@ import org.robovm.apple.uikit.*;
         getValueForSpecifier(CTParagraphStyleSpecifier.MinimumLineHeight, MachineSizedFloatPtr.sizeOf(), ptr.as(VoidPtr.class));
         return ptr.get();
     }
-    public double getLineSpacing() {
-        MachineSizedFloatPtr ptr = new MachineSizedFloatPtr();
-        getValueForSpecifier(CTParagraphStyleSpecifier.LineSpacing, MachineSizedFloatPtr.sizeOf(), ptr.as(VoidPtr.class));
-        return ptr.get();
-    }
     public double getParagraphSpacing() {
         MachineSizedFloatPtr ptr = new MachineSizedFloatPtr();
         getValueForSpecifier(CTParagraphStyleSpecifier.ParagraphSpacing, MachineSizedFloatPtr.sizeOf(), ptr.as(VoidPtr.class));

@@ -76,6 +76,11 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CTRubyAnnotationCreate", optional=true)
     private static native CTRubyAnnotation create(CTRubyAlignment alignment, CTRubyOverhang overhang, @MachineSizedFloat double sizeFactor, CFString.CFStringPtr text);
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="CTRubyAnnotationCreateWithAttributes", optional=true)
+    public static native CTRubyAnnotation createWithAttributes(CTRubyAlignment alignment, CTRubyOverhang overhang, CTRubyPosition position, String string, NSDictionary attributes);
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @Bridge(symbol="CTRubyAnnotationCreateCopy", optional=true)

@@ -40,10 +40,35 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
 public enum /*<name>*/CTTextAlignment/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     Left(0L),
+    /**
+     * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     Right(1L),
+    /**
+     * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     Center(2L),
+    /**
+     * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     Justified(3L),
+    /**
+     * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     Natural(4L);
     /*</values>*/
 

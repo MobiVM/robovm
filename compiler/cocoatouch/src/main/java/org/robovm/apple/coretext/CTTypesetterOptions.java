@@ -112,27 +112,6 @@ import org.robovm.apple.uikit.*;
 
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    public boolean isBidiProcessingDisabled() {
-        if (has(Keys.DisableBidiProcessing())) {
-            CFBoolean val = get(Keys.DisableBidiProcessing(), CFBoolean.class);
-            return val.booleanValue();
-        }
-        return false;
-    }
-    /**
-     * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    public CTTypesetterOptions setBidiProcessingDisabled(boolean bidiProcessingDisabled) {
-        set(Keys.DisableBidiProcessing(), CFBoolean.valueOf(bidiProcessingDisabled));
-        return this;
-    }
-    /**
-     * @since Available in iOS 3.2 and later.
      */
     public int getEmbeddingLevel() {
         if (has(Keys.ForcedEmbeddingLevel())) {
@@ -154,13 +133,6 @@ import org.robovm.apple.uikit.*;
     @Library("CoreText")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        /**
-         * @since Available in iOS 3.2 and later.
-         * @deprecated Deprecated in iOS 6.0.
-         */
-        @Deprecated
-        @GlobalValue(symbol="kCTTypesetterOptionDisableBidiProcessing", optional=true)
-        public static native CFString DisableBidiProcessing();
         /**
          * @since Available in iOS 3.2 and later.
          */

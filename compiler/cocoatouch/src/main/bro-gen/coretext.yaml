@@ -15,7 +15,7 @@ private_typedefs:
     '__CFURL *': NSURL
     '__CFDictionary *': NSDictionary
     '__CFCharacterSet *': NSCharacterSet
-    
+
 enums:
     CTFontOptions: { bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
     CTFontUIFontType: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
@@ -485,6 +485,13 @@ functions:
         class: CTLine
         name: '#{g[0]}'
         return_marshaler: CFType.NoRetainMarshaler
+    CTLineEnumerateCaretOffsets:
+        class: CTLine
+        parameters:
+        name: 'enumerateCaretOffsets'
+        parameters:
+            block:
+                type: '@Block VoidBlock4<Double, Long, Boolean, BooleanPtr>'
     CTLine(.*):
         class: CTLine
         name: '#{g[0]}'
