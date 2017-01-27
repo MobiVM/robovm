@@ -46,6 +46,7 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CTCarrier() {}
+    protected CTCarrier(Handle h, long handle) { super(h, handle); }
     protected CTCarrier(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

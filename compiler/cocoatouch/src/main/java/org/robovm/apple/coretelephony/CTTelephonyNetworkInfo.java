@@ -56,6 +56,7 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CTTelephonyNetworkInfo() {}
+    protected CTTelephonyNetworkInfo(Handle h, long handle) { super(h, handle); }
     protected CTTelephonyNetworkInfo(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

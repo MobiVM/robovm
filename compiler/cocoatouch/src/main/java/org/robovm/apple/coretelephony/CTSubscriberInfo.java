@@ -46,6 +46,7 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CTSubscriberInfo() {}
+    protected CTSubscriberInfo(Handle h, long handle) { super(h, handle); }
     protected CTSubscriberInfo(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
