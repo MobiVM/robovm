@@ -47,6 +47,7 @@ import org.robovm.apple.corebluetooth.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CLBeacon() {}
+    protected CLBeacon(Handle h, long handle) { super(h, handle); }
     protected CLBeacon(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

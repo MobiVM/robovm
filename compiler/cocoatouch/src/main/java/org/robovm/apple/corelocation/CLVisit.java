@@ -47,6 +47,7 @@ import org.robovm.apple.corebluetooth.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CLVisit() {}
+    protected CLVisit(Handle h, long handle) { super(h, handle); }
     protected CLVisit(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
