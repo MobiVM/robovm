@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,30 +33,32 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- * @deprecated Deprecated in iOS 7.0.
- */
-@Deprecated
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/CGTextEncoding/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/CGColorConversionInfoTransformType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    FontSpecific(0L),
-    MacRoman(1L);
+    FromSpace(0L),
+    ToSpace(1L),
+    ApplySpace(2L);
     /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<methods>*//*</methods>*/
 
     private final long n;
 
-    private /*<name>*/CGTextEncoding/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CGColorConversionInfoTransformType/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/CGTextEncoding/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CGTextEncoding/*</name>*/ v : values()) {
+    public static /*<name>*/CGColorConversionInfoTransformType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CGColorConversionInfoTransformType/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CGTextEncoding/*</name>*/.class.getName());
+            + /*<name>*/CGColorConversionInfoTransformType/*</name>*/.class.getName());
     }
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,30 +33,32 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- * @deprecated Deprecated in iOS 7.0.
- */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/CGTextEncoding/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    FontSpecific(0L),
-    MacRoman(1L);
-    /*</values>*/
+/*<annotations>*/@Library("CoreGraphics")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CGColorConversionInfo/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    private final long n;
-
-    private /*<name>*/CGTextEncoding/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/CGTextEncoding/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CGTextEncoding/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CGTextEncoding/*</name>*/.class.getName());
-    }
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(CGColorConversionInfo.class); }/*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorConversionBlackPointCompensation", optional=true)
+    public static native String BlackPointCompensation();
+    
+    @Bridge(symbol="CGColorConversionInfoGetTypeID", optional=true)
+    public static native @MachineSizedUInt long getClassTypeID();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="CGColorConversionInfoCreate", optional=true)
+    public static native CGColorConversionInfo create(CGColorSpace src, CGColorSpace dst);
+    /*</methods>*/
 }

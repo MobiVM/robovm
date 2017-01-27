@@ -251,6 +251,107 @@ import org.robovm.apple.uikit.*;
     
     /*<methods>*/
     /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceGenericGray", optional=true)
+    public static native String GenericGray();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceGenericRGB", optional=true)
+    public static native String GenericRGB();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceGenericCMYK", optional=true)
+    public static native String GenericCMYK();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceDisplayP3", optional=true)
+    public static native String DisplayP3();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceGenericRGBLinear", optional=true)
+    public static native String GenericRGBLinear();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceAdobeRGB1998", optional=true)
+    public static native String AdobeRGB1998();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceSRGB", optional=true)
+    public static native String SRGB();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceGenericGrayGamma2_2", optional=true)
+    public static native String GenericGrayGamma2_2();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceGenericXYZ", optional=true)
+    public static native String GenericXYZ();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceACESCGLinear", optional=true)
+    public static native String ACESCGLinear();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceITUR_709", optional=true)
+    public static native String ITUR_709();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceITUR_2020", optional=true)
+    public static native String ITUR_2020();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceROMMRGB", optional=true)
+    public static native String ROMMRGB();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceDCIP3", optional=true)
+    public static native String DCIP3();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceExtendedSRGB", optional=true)
+    public static native String ExtendedSRGB();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceLinearSRGB", optional=true)
+    public static native String LinearSRGB();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceExtendedLinearSRGB", optional=true)
+    public static native String ExtendedLinearSRGB();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceExtendedGray", optional=true)
+    public static native String ExtendedGray();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceLinearGray", optional=true)
+    public static native String LinearGray();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceExtendedLinearGray", optional=true)
+    public static native String ExtendedLinearGray();
+    
+    /**
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="CGColorSpaceCreateDeviceGray", optional=true)
@@ -306,6 +407,11 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CGColorSpaceCreateWithName", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace create(String name);
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceCopyName", optional=true)
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getName();
+    /**
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="CGColorSpaceGetTypeID", optional=true)
@@ -335,10 +441,22 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGColorSpaceGetColorTable", optional=true)
     private native void getColorTable(@Pointer long table);
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
     @Bridge(symbol="CGColorSpaceCopyICCProfile", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData getICCProfile();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceCopyICCData", optional=true)
+    public native NSData copyICCData();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceIsWideGamutRGB", optional=true)
+    public native boolean isWideGamutRGB();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceSupportsOutput", optional=true)
+    public native boolean supportsOutput();
     /*</methods>*/
 }
