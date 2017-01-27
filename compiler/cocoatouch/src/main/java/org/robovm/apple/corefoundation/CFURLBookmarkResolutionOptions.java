@@ -46,7 +46,6 @@ public final class /*<name>*/CFURLBookmarkResolutionOptions/*</name>*/ extends B
     public static final CFURLBookmarkResolutionOptions None = new CFURLBookmarkResolutionOptions(0L);
     public static final CFURLBookmarkResolutionOptions WithoutUIMask = new CFURLBookmarkResolutionOptions(256L);
     public static final CFURLBookmarkResolutionOptions WithoutMountingMask = new CFURLBookmarkResolutionOptions(512L);
-    public static final CFURLBookmarkResolutionOptions WithSecurityScope = new CFURLBookmarkResolutionOptions(1024L);
     /*</values>*/
 
     private static final /*<name>*/CFURLBookmarkResolutionOptions/*</name>*/[] values = _values(/*<name>*/CFURLBookmarkResolutionOptions/*</name>*/.class);
