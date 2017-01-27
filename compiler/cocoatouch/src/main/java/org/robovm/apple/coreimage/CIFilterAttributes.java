@@ -34,6 +34,7 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -153,6 +154,16 @@ import org.robovm.apple.uikit.*;
         public static native NSString Name();
         @GlobalValue(symbol="kCIAttributeFilterDisplayName", optional=true)
         public static native NSString DisplayName();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIAttributeFilterAvailable_Mac", optional=true)
+        public static native NSString Available_Mac();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIAttributeFilterAvailable_iOS", optional=true)
+        public static native NSString Available_iOS();
         @GlobalValue(symbol="kCIAttributeFilterCategories", optional=true)
         public static native NSString Categories();
     }

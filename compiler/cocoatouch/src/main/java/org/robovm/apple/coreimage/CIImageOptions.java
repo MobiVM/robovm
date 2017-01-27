@@ -34,6 +34,7 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -155,6 +156,16 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCIImageProperties", optional=true)
         public static native CFString Properties();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageProviderTileSize", optional=true)
+        public static native CFString ProviderTileSize();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageProviderUserInfo", optional=true)
+        public static native CFString ProviderUserInfo();
     }
     /*</keys>*/
 }

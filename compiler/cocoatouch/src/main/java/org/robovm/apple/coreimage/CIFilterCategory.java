@@ -34,6 +34,7 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -116,9 +117,13 @@ import org.robovm.apple.uikit.*;
     public static final CIFilterCategory NonSquarePixels = new CIFilterCategory("NonSquarePixels");
     public static final CIFilterCategory HighDynamicRange = new CIFilterCategory("HighDynamicRange");
     public static final CIFilterCategory BuiltIn = new CIFilterCategory("BuiltIn");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFilterCategory FilterGenerator = new CIFilterCategory("FilterGenerator");
     /*</constants>*/
     
-    private static /*<name>*/CIFilterCategory/*</name>*/[] values = new /*<name>*/CIFilterCategory/*</name>*/[] {/*<value_list>*/DistortionEffect, GeometryAdjustment, CompositeOperation, HalftoneEffect, ColorAdjustment, ColorEffect, Transition, TileEffect, Generator, Reduction, Gradient, Stylize, Sharpen, Blur, Video, StillImage, Interlaced, NonSquarePixels, HighDynamicRange, BuiltIn/*</value_list>*/};
+    private static /*<name>*/CIFilterCategory/*</name>*/[] values = new /*<name>*/CIFilterCategory/*</name>*/[] {/*<value_list>*/DistortionEffect, GeometryAdjustment, CompositeOperation, HalftoneEffect, ColorAdjustment, ColorEffect, Transition, TileEffect, Generator, Reduction, Gradient, Stylize, Sharpen, Blur, Video, StillImage, Interlaced, NonSquarePixels, HighDynamicRange, BuiltIn, FilterGenerator/*</value_list>*/};
     
     /*<name>*/CIFilterCategory/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -184,6 +189,11 @@ import org.robovm.apple.uikit.*;
         public static native NSString HighDynamicRange();
         @GlobalValue(symbol="kCICategoryBuiltIn", optional=true)
         public static native NSString BuiltIn();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCICategoryFilterGenerator", optional=true)
+        public static native NSString FilterGenerator();
         /*</values>*/
     }
 }

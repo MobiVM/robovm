@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,37 +38,25 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CIRectangleFeature/*</name>*/ 
-    extends /*<extends>*/CIFeature/*</extends>*/ 
+/*<annotations>*/@Library("CoreImage")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CIFeatureType/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CIRectangleFeaturePtr extends Ptr<CIRectangleFeature, CIRectangleFeaturePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CIRectangleFeature.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(CIFeatureType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public CIRectangleFeature() {}
-    protected CIRectangleFeature(Handle h, long handle) { super(h, handle); }
-    protected CIRectangleFeature(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "bounds")
-    public native @ByVal CGRect getBounds();
-    @Property(selector = "topLeft")
-    public native @ByVal CGPoint getTopLeft();
-    @Property(selector = "topRight")
-    public native @ByVal CGPoint getTopRight();
-    @Property(selector = "bottomLeft")
-    public native @ByVal CGPoint getBottomLeft();
-    @Property(selector = "bottomRight")
-    public native @ByVal CGPoint getBottomRight();
-    /*</properties>*/
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @GlobalValue(symbol="CIFeatureTypeRectangle", optional=true)
+    public static native String Rectangle();
+    @GlobalValue(symbol="CIFeatureTypeQRCode", optional=true)
+    public static native String QRCode();
+    @GlobalValue(symbol="CIFeatureTypeText", optional=true)
+    public static native String Text();
     /*</methods>*/
 }

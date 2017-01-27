@@ -34,6 +34,7 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -184,6 +185,21 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="CIDetectorMinFeatureSize", optional=true)
         public static native NSString MinFeatureSize();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="CIDetectorMaxFeatureCount", optional=true)
+        public static native NSString MaxFeatureCount();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="CIDetectorNumberOfAngles", optional=true)
+        public static native NSString NumberOfAngles();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="CIDetectorReturnSubFeatures", optional=true)
+        public static native NSString ReturnSubFeatures();
     }
     /*</keys>*/
 }

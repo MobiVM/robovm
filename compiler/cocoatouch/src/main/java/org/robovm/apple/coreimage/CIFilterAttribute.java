@@ -34,6 +34,7 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -183,6 +184,16 @@ import org.robovm.apple.uikit.*;
     @Library("CoreImage")
     public static class Keys {
         static { Bro.bind(Keys.class); }
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIAttributeDescription", optional=true)
+        public static native NSString Description();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIAttributeReferenceDocumentation", optional=true)
+        public static native NSString ReferenceDocumentation();
         @GlobalValue(symbol="kCIAttributeClass", optional=true)
         public static native NSString Class();
         @GlobalValue(symbol="kCIAttributeType", optional=true)
