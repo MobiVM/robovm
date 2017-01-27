@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CMAccelerometerData() {}
+    protected CMAccelerometerData(Handle h, long handle) { super(h, handle); }
     protected CMAccelerometerData(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

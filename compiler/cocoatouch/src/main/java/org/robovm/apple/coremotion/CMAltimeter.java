@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CMAltimeter() {}
+    protected CMAltimeter(Handle h, long handle) { super(h, handle); }
     protected CMAltimeter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
