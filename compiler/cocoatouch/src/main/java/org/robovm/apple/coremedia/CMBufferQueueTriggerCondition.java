@@ -52,7 +52,8 @@ public enum /*<name>*/CMBufferQueueTriggerCondition/*</name>*/ implements Valued
     WhenEndOfDataReached(8L),
     WhenReset(9L),
     WhenBufferCountBecomesLessThan(10L),
-    WhenBufferCountBecomesGreaterThan(11L);
+    WhenBufferCountBecomesGreaterThan(11L),
+    WhenDurationBecomesGreaterThanOrEqualToAndBufferCountBecomesGreaterThan(12L);
     /*</values>*/
 
     /*<bind>*/

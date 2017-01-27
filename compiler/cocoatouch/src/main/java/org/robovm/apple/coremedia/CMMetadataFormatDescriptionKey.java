@@ -272,6 +272,16 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMMetadataFormatDescriptionKey_LanguageTag", optional=true)
         public static native CFString LanguageTag();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataFormatDescriptionKey_StructuralDependency", optional=true)
+        public static native CFString StructuralDependency();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataFormatDescriptionKey_SetupData", optional=true)
+        public static native CFString SetupData();
     }
     /*</keys>*/
 }
