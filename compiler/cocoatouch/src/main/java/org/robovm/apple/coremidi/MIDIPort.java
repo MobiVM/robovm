@@ -106,6 +106,11 @@ import org.robovm.apple.coremidi.MIDIEndpoint.MIDIEndpointPtr;
     @Bridge(symbol="MIDIInputPortCreate", optional=true)
     protected static native MIDIError createInputPort(MIDIClient client, String portName, FunctionPtr readProc, @Pointer long refCon, MIDIPort.MIDIPortPtr outPort);
     /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="MIDIInputPortCreateWithBlock", optional=true)
+    protected static native MIDIError createInputPort(MIDIClient client, String portName, MIDIPort.MIDIPortPtr outPort, @Block VoidBlock2<MIDIPacketList, Long> readBlock);
+    /**
      * @since Available in iOS 4.2 and later.
      */
     @Bridge(symbol="MIDIOutputPortCreate", optional=true)
@@ -125,5 +130,10 @@ import org.robovm.apple.coremidi.MIDIEndpoint.MIDIEndpointPtr;
      */
     @Bridge(symbol="MIDIPortDisconnectSource", optional=true)
     public native MIDIError disconnectSource(MIDIEndpoint source);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="MIDIDestinationCreateWithBlock", optional=true)
+    protected static native MIDIError createDestination(MIDIClient client, String name, MIDIEndpoint.MIDIEndpointPtr outDest, @Block VoidBlock2<MIDIPacketList, Long> readBlock);
     /*</methods>*/
 }

@@ -46,6 +46,7 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MIDINetworkSession() {}
+    protected MIDINetworkSession(Handle h, long handle) { super(h, handle); }
     protected MIDINetworkSession(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
