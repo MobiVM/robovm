@@ -154,9 +154,13 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 8.0 and later.
      */
     public static final CVPixelBufferAttribute MetalCompatibility = new CVPixelBufferAttribute("MetalCompatibility");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CVPixelBufferAttribute OpenGLESTextureCacheCompatibility = new CVPixelBufferAttribute("OpenGLESTextureCacheCompatibility");
     /*</constants>*/
     
-    private static /*<name>*/CVPixelBufferAttribute/*</name>*/[] values = new /*<name>*/CVPixelBufferAttribute/*</name>*/[] {/*<value_list>*/PixelFormatType, MemoryAllocator, Width, Height, ExtendedPixelsLeft, ExtendedPixelsTop, ExtendedPixelsRight, ExtendedPixelsBottom, BytesPerRowAlignment, CGBitmapContextCompatibility, CGImageCompatibility, OpenGLCompatibility, PlaneAlignment, IOSurfaceProperties, OpenGLESCompatibility, MetalCompatibility/*</value_list>*/};
+    private static /*<name>*/CVPixelBufferAttribute/*</name>*/[] values = new /*<name>*/CVPixelBufferAttribute/*</name>*/[] {/*<value_list>*/PixelFormatType, MemoryAllocator, Width, Height, ExtendedPixelsLeft, ExtendedPixelsTop, ExtendedPixelsRight, ExtendedPixelsBottom, BytesPerRowAlignment, CGBitmapContextCompatibility, CGImageCompatibility, OpenGLCompatibility, PlaneAlignment, IOSurfaceProperties, OpenGLESCompatibility, MetalCompatibility, OpenGLESTextureCacheCompatibility/*</value_list>*/};
     
     /*<name>*/CVPixelBufferAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -259,6 +263,11 @@ import org.robovm.apple.metal.*;
          */
         @GlobalValue(symbol="kCVPixelBufferMetalCompatibilityKey", optional=true)
         public static native CFString MetalCompatibility();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferOpenGLESTextureCacheCompatibilityKey", optional=true)
+        public static native CFString OpenGLESTextureCacheCompatibility();
         /*</values>*/
     }
 }

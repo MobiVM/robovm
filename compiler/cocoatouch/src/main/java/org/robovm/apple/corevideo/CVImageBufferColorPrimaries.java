@@ -106,9 +106,21 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 6.0 and later.
      */
     public static final CVImageBufferColorPrimaries P22 = new CVImageBufferColorPrimaries("P22");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CVImageBufferColorPrimaries DCI_P3 = new CVImageBufferColorPrimaries("DCI_P3");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CVImageBufferColorPrimaries P3_D65 = new CVImageBufferColorPrimaries("P3_D65");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CVImageBufferColorPrimaries ITU_R_2020 = new CVImageBufferColorPrimaries("ITU_R_2020");
     /*</constants>*/
     
-    private static /*<name>*/CVImageBufferColorPrimaries/*</name>*/[] values = new /*<name>*/CVImageBufferColorPrimaries/*</name>*/[] {/*<value_list>*/ITU_R_709_2, EBU_3213, SMPTE_C, P22/*</value_list>*/};
+    private static /*<name>*/CVImageBufferColorPrimaries/*</name>*/[] values = new /*<name>*/CVImageBufferColorPrimaries/*</name>*/[] {/*<value_list>*/ITU_R_709_2, EBU_3213, SMPTE_C, P22, DCI_P3, P3_D65, ITU_R_2020/*</value_list>*/};
     
     /*<name>*/CVImageBufferColorPrimaries/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -151,6 +163,21 @@ import org.robovm.apple.metal.*;
          */
         @GlobalValue(symbol="kCVImageBufferColorPrimaries_P22", optional=true)
         public static native CFString P22();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferColorPrimaries_DCI_P3", optional=true)
+        public static native CFString DCI_P3();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferColorPrimaries_P3_D65", optional=true)
+        public static native CFString P3_D65();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferColorPrimaries_ITU_R_2020", optional=true)
+        public static native CFString ITU_R_2020();
         /*</values>*/
     }
 }

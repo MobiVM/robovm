@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,28 +38,10 @@ import org.robovm.apple.metal.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/CVReturn/*</name>*/ implements ValuedEnum {
+public final class /*<name>*/CVPixelBufferPoolFlushFlags/*</name>*/ extends Bits</*<name>*/CVPixelBufferPoolFlushFlags/*</name>*/> {
     /*<values>*/
-    Success(0L),
-    First(-6660L),
-    Error(-6660L),
-    InvalidArgument(-6661L),
-    AllocationFailed(-6662L),
-    Unsupported(-6663L),
-    InvalidDisplay(-6670L),
-    DisplayLinkAlreadyRunning(-6671L),
-    DisplayLinkNotRunning(-6672L),
-    DisplayLinkCallbacksNotSet(-6673L),
-    InvalidPixelFormat(-6680L),
-    InvalidSize(-6681L),
-    InvalidPixelBufferAttributes(-6682L),
-    PixelBufferNotOpenGLCompatible(-6683L),
-    PixelBufferNotMetalCompatible(-6684L),
-    WouldExceedAllocationThreshold(-6689L),
-    PoolAllocationFailed(-6690L),
-    InvalidPoolAttributes(-6691L),
-    Retry(-6692L),
-    Last(-6699L);
+    public static final CVPixelBufferPoolFlushFlags None = new CVPixelBufferPoolFlushFlags(0L);
+    public static final CVPixelBufferPoolFlushFlags ExcessBuffers = new CVPixelBufferPoolFlushFlags(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -67,17 +49,17 @@ public enum /*<name>*/CVReturn/*</name>*/ implements ValuedEnum {
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/CVPixelBufferPoolFlushFlags/*</name>*/[] values = _values(/*<name>*/CVPixelBufferPoolFlushFlags/*</name>*/.class);
 
-    private /*<name>*/CVReturn/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/CVReturn/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CVReturn/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CVReturn/*</name>*/.class.getName());
+    public /*<name>*/CVPixelBufferPoolFlushFlags/*</name>*/(long value) { super(value); }
+    private /*<name>*/CVPixelBufferPoolFlushFlags/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/CVPixelBufferPoolFlushFlags/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/CVPixelBufferPoolFlushFlags/*</name>*/(value, mask);
+    }
+    protected /*<name>*/CVPixelBufferPoolFlushFlags/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/CVPixelBufferPoolFlushFlags/*</name>*/[] values() {
+        return values.clone();
     }
 }
