@@ -42,8 +42,7 @@ public enum /*<name>*/AUTypeMixer/*</name>*/ implements AUSubType {
     /*<values>*/
     MultiChannelMixer(1835232632L),
     MatrixMixer(1836608888L),
-    SpatialMixer(862217581L),
-    AU3DMixerEmbedded(862217581L);
+    SpatialMixer(862217581L);
     /*</values>*/
 
     /*<bind>*/

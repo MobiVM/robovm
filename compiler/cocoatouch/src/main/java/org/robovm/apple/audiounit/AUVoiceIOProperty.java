@@ -42,7 +42,8 @@ public enum /*<name>*/AUVoiceIOProperty/*</name>*/ implements AUPropertyType {
     /*<values>*/
     BypassVoiceProcessing(2100L),
     VoiceProcessingEnableAGC(2101L),
-    MuteOutput(2104L);
+    MuteOutput(2104L),
+    VoiceProcessingQuality(2103L);
     /*</values>*/
 
     /*<bind>*/

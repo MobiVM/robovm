@@ -101,6 +101,11 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="kAudioComponentRegistrationsChangedNotification", optional=true)
     public static native NSString RegistrationsChangedNotification();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kAudioComponentInstanceInvalidationNotification", optional=true)
+    public static native NSString InstanceInvalidationNotification();
     
     /**
      * @since Available in iOS 2.0 and later.

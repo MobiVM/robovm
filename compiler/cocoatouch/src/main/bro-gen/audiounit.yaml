@@ -24,16 +24,20 @@ enums:
     AUType2: {first: kAudioUnitType_RemoteEffect, prefix: kAudioUnitType_, merge_with: AUType}
     AUManufacturer: {first: kAudioUnitManufacturer_Apple, prefix: kAudioUnitManufacturer_}
     AUTypeOutput: {first: kAudioUnitSubType_GenericOutput}
+    AUTypeOutput2: {first: kAudioUnitSubType_RemoteIO, prefix: kAudioUnitSubType_, merge_with: AUTypeOutput}
     AUTypeMusicDevice: {first: kAudioUnitSubType_Sampler}
     AUTypeConverter: {first: kAudioUnitSubType_AUConverter}
+    AUTypeConverter2: {first: kAudioUnitSubType_AUiPodTime, prefix: kAudioUnitSubType_, merge_with: AUTypeConverter}
     AUTypeEffect: {first: kAudioUnitSubType_PeakLimiter}
+    AUTypeEffect2: {first: kAudioUnitSubType_Reverb2, merge_with: AUTypeEffect}
     AUTypeMixer: {first: kAudioUnitSubType_MultiChannelMixer}
     AUTypeGenerator: {first: kAudioUnitSubType_ScheduledSoundPlayer}
     AURenderActionFlags: {first: kAudioUnitRenderAction_PreRender, bits: true, prefix: kAudioUnitRenderAction_, kAudioOfflineUnitRenderAction_(.*): 'Offline#{g[0]}'}
-    AUErrorCode: {first: kAudioUnitErr_InvalidProperty}
+    AUErrorCode: {first: kAudioUnitErr_InvalidProperty, prefix: kAudioUnitErr_}
     AUParameterEventType: {first: kParameterEvent_Immediate, marshaler: ValuedEnum.AsUnsignedIntMarshaler}
     AUSelector: {first: kAudioUnitRange, suffix: Select, ignore: kAudioUnitRange}
     AUOutputSelector: {first: kAudioOutputUnitRange, suffix: Select, ignore: kAudioOutputUnitRange}
+    AUParameterAutomationEventType: {}
     AUParameterMIDI: {first: kAUGroupParameterID_Volume}
     AUParameterSpatialMixer: {first: kSpatialMixerParam_Azimuth}
     AUParameterReverb: {first: kReverbParam_FilterFrequency}
@@ -69,6 +73,8 @@ enums:
     AUAudioFilePlayerProperty: {first: kAudioUnitProperty_ScheduledFileIDs, prefix: kAudioUnitProperty_}
     AUDeferredRendererProperty: {first: kAudioUnitProperty_DeferredRendererPullSize}
     AUVoiceIOProperty: {first: kAUVoiceIOProperty_BypassVoiceProcessing}
+    AUVoiceIOProperty2: {first: kAUVoiceIOProperty_DuckNonVoiceAudio, prefix: kAUVoiceIOProperty_, merge_with: AUVoiceIOProperty}
+    AUVoiceIOProperty3: {first: kAUVoiceIOProperty_VoiceProcessingQuality, prefix: kAUVoiceIOProperty_, merge_with: AUVoiceIOProperty}
     AUNBandEQProperty: {first: kAUNBandEQProperty_NumberOfBands}
     AUMIDISynthProperty: {first: kAUMIDISynthProperty_EnablePreload, prefix: kAUMIDISynthProperty_}
     AUSamplerProperty: {first: kAUSamplerProperty_LoadInstrument}
@@ -90,6 +96,12 @@ enums:
     AUInstrumentType: {first: kInstrumentType_DLSPreset}
     AUSamplerBank: {first: kAUSampler_DefaultPercussionBankMSB}
     MusicDeviceSelector: {first: kMusicDeviceRange, suffix: Select, ignore: kMusicDeviceRange}
+    AudioComponentValidationResult: {}
+    AudioComponentInstantiationOptions: {}
+    AUAudioUnitBusType: {}
+    AUHostTransportStateFlags: {bits: true}
+    AURenderEventType: {}
+    AUEventSampleTime: {first: AUEventSampleTimeImmediate, prefix: AUEventSampleTime}
 
     # Deprecated
     Deprecated1: {first: kAudioUnitErr_IllegalInstrument, exclude: true}
@@ -100,6 +112,7 @@ enums:
     Deprecated6: {first: k3DMixerAttenuationCurve_Power, exclude: true}
     Deprecated7: {first: k3DMixerParam_Azimuth, exclude: true}
     Deprecated8: {first: kMusicNoteEvent_UseGroupInstrument, exclude: true}
+    Deprecated9: {first: kAudioUnitSubType_AU3DMixerEmbedded, exclude: true}
 
     # System reserved
     System1: {first: kAudioUnitClumpID_System, exclude: true}
@@ -339,6 +352,11 @@ functions:
         class: AudioComponent
         name: '#{g[0]}'
         annotations: ['@WeaklyLinked']
+    AudioComponent(Instantiate):
+        name: 'instantiate'
+        parameters:
+            inCompletionHandler:
+                type: '@Block VoidBlock2<AudioComponentInstance, OSStatus>'
     AudioComponent(Register):
         exclude: true
     AudioComponent(.*):
@@ -474,7 +492,7 @@ functions:
 
 values:
     # AudioComponent
-    kAudioComponent(RegistrationsChangedNotification):
+    kAudioComponent(RegistrationsChangedNotification|InstanceInvalidationNotification):
         class: AudioComponent
         name: '#{g[0]}'
         type: NSString

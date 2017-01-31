@@ -41,8 +41,8 @@ import org.robovm.apple.uikit.*;
 public enum /*<name>*/AUTypeOutput/*</name>*/ implements AUSubType {
     /*<values>*/
     GenericOutput(1734700658L),
-    RemoteIO(1919512419L),
-    VoiceProcessingIO(1987078511L);
+    VoiceProcessingIO(1987078511L),
+    RemoteIO(1919512419L);
     /*</values>*/
 
     /*<bind>*/

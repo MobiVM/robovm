@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,22 +38,11 @@ import org.robovm.apple.uikit.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/AUTypeEffect/*</name>*/ implements AUSubType {
+public enum /*<name>*/AUParameterAutomationEventType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    PeakLimiter(1819112562L),
-    DynamicsProcessor(1684237680L),
-    LowPassFilter(1819304307L),
-    HighPassFilter(1752195443L),
-    BandPassFilter(1651532147L),
-    HighShelfFilter(1752393830L),
-    LowShelfFilter(1819502694L),
-    ParametricEQ(1886217585L),
-    Distortion(1684632436L),
-    Delay(1684368505L),
-    SampleDelay(1935961209L),
-    NBandEQ(1851942257L),
-    Reverb2(1920361010L),
-    AUiPodEQ(1768973681L);
+    Value(0L),
+    Touch(1L),
+    Release(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -63,15 +52,15 @@ public enum /*<name>*/AUTypeEffect/*</name>*/ implements AUSubType {
 
     private final long n;
 
-    private /*<name>*/AUTypeEffect/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/AUParameterAutomationEventType/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/AUTypeEffect/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AUTypeEffect/*</name>*/ v : values()) {
+    public static /*<name>*/AUParameterAutomationEventType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AUParameterAutomationEventType/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AUTypeEffect/*</name>*/.class.getName());
+            + /*<name>*/AUParameterAutomationEventType/*</name>*/.class.getName());
     }
 }
