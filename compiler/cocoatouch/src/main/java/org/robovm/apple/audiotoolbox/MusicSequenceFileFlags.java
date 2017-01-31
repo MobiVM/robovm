@@ -41,6 +41,7 @@ import org.robovm.apple.coremidi.*;
 public final class /*<name>*/MusicSequenceFileFlags/*</name>*/ extends Bits</*<name>*/MusicSequenceFileFlags/*</name>*/> {
     /*<values>*/
     public static final MusicSequenceFileFlags None = new MusicSequenceFileFlags(0L);
+    public static final MusicSequenceFileFlags Default = new MusicSequenceFileFlags(0L);
     public static final MusicSequenceFileFlags EraseFile = new MusicSequenceFileFlags(1L);
     /*</values>*/
 
