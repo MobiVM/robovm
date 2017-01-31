@@ -49,6 +49,7 @@ import org.robovm.apple.imageio.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public ALAsset() {}
+    protected ALAsset(Handle h, long handle) { super(h, handle); }
     protected ALAsset(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
