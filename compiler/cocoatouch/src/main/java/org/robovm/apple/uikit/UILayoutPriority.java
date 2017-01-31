@@ -38,7 +38,7 @@ import org.robovm.apple.corelocation.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit")/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UILayoutPriority/*</name>*/ 
     extends /*<extends>*/CocoaUtility/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,30 +46,14 @@ import org.robovm.apple.corelocation.*;
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/static { Bro.bind(UILayoutPriority.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int Required = 1000;
+    public static final int DefaultHigh = 750;
+    public static final int DefaultLow = 250;
+    public static final int FittingSizeLevel = 50;
+    /*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
-    /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @GlobalValue(symbol="UILayoutPriorityRequired", optional=true)
-    public static native float Required();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @GlobalValue(symbol="UILayoutPriorityDefaultHigh", optional=true)
-    public static native float DefaultHigh();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @GlobalValue(symbol="UILayoutPriorityDefaultLow", optional=true)
-    public static native float DefaultLow();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @GlobalValue(symbol="UILayoutPriorityFittingSizeLevel", optional=true)
-    public static native float FittingSizeLevel();
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
 }

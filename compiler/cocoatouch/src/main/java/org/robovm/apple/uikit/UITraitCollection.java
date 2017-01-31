@@ -58,10 +58,6 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 10.0 and later.
      */
-    public UITraitCollection(UIUserInterfaceStyle userInterfaceStyle) { super((Handle) null, create(userInterfaceStyle)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     public UITraitCollection(UITraitEnvironmentLayoutDirection layoutDirection) { super((Handle) null, create(layoutDirection)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
@@ -79,11 +75,6 @@ import org.robovm.apple.corelocation.*;
     /*<properties>*/
     @Property(selector = "userInterfaceIdiom")
     public native UIUserInterfaceIdiom getUserInterfaceIdiom();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "userInterfaceStyle")
-    public native UIUserInterfaceStyle getUserInterfaceStyle();
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -121,11 +112,6 @@ import org.robovm.apple.corelocation.*;
     public static native UITraitCollection createWithTraits(NSArray<UITraitCollection> traitCollections);
     @Method(selector = "traitCollectionWithUserInterfaceIdiom:")
     public static native UITraitCollection createWithUserInterfaceIdiom(UIUserInterfaceIdiom idiom);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "traitCollectionWithUserInterfaceStyle:")
-    protected static native @Pointer long create(UIUserInterfaceStyle userInterfaceStyle);
     /**
      * @since Available in iOS 10.0 and later.
      */
