@@ -106,9 +106,13 @@ import org.robovm.apple.audiounit.*;
      * @since Available in iOS 7.0 and later.
      */
     public static final AVSampleRateConverterAlgorithm Mastering = new AVSampleRateConverterAlgorithm("Mastering");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final AVSampleRateConverterAlgorithm MinimumPhase = new AVSampleRateConverterAlgorithm("MinimumPhase");
     /*</constants>*/
     
-    private static /*<name>*/AVSampleRateConverterAlgorithm/*</name>*/[] values = new /*<name>*/AVSampleRateConverterAlgorithm/*</name>*/[] {/*<value_list>*/Normal, Mastering/*</value_list>*/};
+    private static /*<name>*/AVSampleRateConverterAlgorithm/*</name>*/[] values = new /*<name>*/AVSampleRateConverterAlgorithm/*</name>*/[] {/*<value_list>*/Normal, Mastering, MinimumPhase/*</value_list>*/};
     
     /*<name>*/AVSampleRateConverterAlgorithm/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -141,6 +145,11 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVSampleRateConverterAlgorithm_Mastering", optional=true)
         public static native NSString Mastering();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="AVSampleRateConverterAlgorithm_MinimumPhase", optional=true)
+        public static native NSString MinimumPhase();
         /*</values>*/
     }
 }

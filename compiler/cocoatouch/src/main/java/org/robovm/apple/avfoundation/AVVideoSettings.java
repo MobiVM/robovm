@@ -347,6 +347,31 @@ import org.robovm.apple.audiounit.*;
         @GlobalValue(symbol="AVVideoScalingModeKey", optional=true)
         public static native NSString ScalingMode();
         /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoColorPropertiesKey", optional=true)
+        public static native NSString ColorProperties();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoColorPrimariesKey", optional=true)
+        public static native NSString ColorPrimaries();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoTransferFunctionKey", optional=true)
+        public static native NSString TransferFunction();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoYCbCrMatrixKey", optional=true)
+        public static native NSString YCbCrMatrix();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoAllowWideColorKey", optional=true)
+        public static native NSString AllowWideColor();
+        /**
          * @since Available in iOS 4.0 and later.
          */
         @GlobalValue(symbol="AVVideoCompressionPropertiesKey", optional=true)

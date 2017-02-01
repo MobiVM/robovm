@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioUnitEQFilterParameters() {}
+    protected AVAudioUnitEQFilterParameters(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitEQFilterParameters(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

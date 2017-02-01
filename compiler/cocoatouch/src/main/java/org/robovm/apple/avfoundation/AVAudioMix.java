@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioMix() {}
+    protected AVAudioMix(Handle h, long handle) { super(h, handle); }
     protected AVAudioMix(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

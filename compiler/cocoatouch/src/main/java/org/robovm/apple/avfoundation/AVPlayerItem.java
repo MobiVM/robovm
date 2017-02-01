@@ -130,13 +130,17 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVPlayerItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVPlayerItem() {}
+    protected AVPlayerItem() {}
+    protected AVPlayerItem(Handle h, long handle) { super(h, handle); }
     protected AVPlayerItem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:")
     public AVPlayerItem(NSURL URL) { super((SkipInit) null); initObject(init(URL)); }
+    @Method(selector = "initWithAsset:")
     public AVPlayerItem(AVAsset asset) { super((SkipInit) null); initObject(init(asset)); }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @Method(selector = "initWithAsset:automaticallyLoadedAssetKeys:")
     public AVPlayerItem(AVAsset asset, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> automaticallyLoadedAssetKeys) { super((SkipInit) null); initObject(init(asset, automaticallyLoadedAssetKeys)); }
     /*</constructors>*/
     /*<properties>*/
@@ -274,6 +278,16 @@ import org.robovm.apple.audiounit.*;
     @Property(selector = "setCanUseNetworkResourcesForLiveStreamingWhilePaused:")
     public native void setCanUseNetworkResourcesForLiveStreamingWhilePaused(boolean v);
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "preferredForwardBufferDuration")
+    public native double getPreferredForwardBufferDuration();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setPreferredForwardBufferDuration:")
+    public native void setPreferredForwardBufferDuration(double v);
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "preferredPeakBitRate")
@@ -293,6 +307,11 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "outputs")
     public native NSArray<AVPlayerItemOutput> getOutputs();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Property(selector = "mediaDataCollectors")
+    public native NSArray<AVPlayerItemMediaDataCollector> getMediaDataCollectors();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -408,5 +427,15 @@ import org.robovm.apple.audiounit.*;
      */
     @Method(selector = "removeOutput:")
     public native void removeOutput(AVPlayerItemOutput output);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "addMediaDataCollector:")
+    public native void addMediaDataCollector(AVPlayerItemMediaDataCollector collector);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "removeMediaDataCollector:")
+    public native void removeMediaDataCollector(AVPlayerItemMediaDataCollector collector);
     /*</methods>*/
 }

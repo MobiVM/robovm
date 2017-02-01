@@ -56,8 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVSynchronizedLayer() {}
+    protected AVSynchronizedLayer(Handle h, long handle) { super(h, handle); }
     protected AVSynchronizedLayer(SkipInit skipInit) { super(skipInit); }
-    public AVSynchronizedLayer(AVPlayerItem playerItem) { super(create(playerItem)); retain(getHandle()); }
+    public AVSynchronizedLayer(AVPlayerItem playerItem) { super((Handle) null, create(playerItem)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "playerItem")

@@ -55,9 +55,12 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVTextStyleRule.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVTextStyleRule() {}
+    protected AVTextStyleRule() {}
+    protected AVTextStyleRule(Handle h, long handle) { super(h, handle); }
     protected AVTextStyleRule(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTextMarkupAttributes:")
     public AVTextStyleRule(CMTextMarkupAttributes textMarkupAttributes) { super((SkipInit) null); initObject(init(textMarkupAttributes)); }
+    @Method(selector = "initWithTextMarkupAttributes:textSelector:")
     public AVTextStyleRule(CMTextMarkupAttributes textMarkupAttributes, String textSelector) { super((SkipInit) null); initObject(init(textMarkupAttributes, textSelector)); }
     /*</constructors>*/
     /*<properties>*/

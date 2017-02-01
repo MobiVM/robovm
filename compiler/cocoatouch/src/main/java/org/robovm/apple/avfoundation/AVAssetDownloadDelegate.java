@@ -58,6 +58,11 @@ import org.robovm.apple.audiounit.*;
     /*</properties>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "URLSession:assetDownloadTask:didFinishDownloadingToURL:")
+    void didFinishDownloadingToURL(NSURLSession session, AVAssetDownloadTask assetDownloadTask, NSURL location);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "URLSession:assetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:")

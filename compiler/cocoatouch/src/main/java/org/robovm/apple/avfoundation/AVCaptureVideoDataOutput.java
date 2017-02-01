@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureVideoDataOutput() {}
+    protected AVCaptureVideoDataOutput(Handle h, long handle) { super(h, handle); }
     protected AVCaptureVideoDataOutput(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public AVVideoSettings getVideoSettings() {

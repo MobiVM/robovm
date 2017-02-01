@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureDeviceFormat() {}
+    protected AVCaptureDeviceFormat(Handle h, long handle) { super(h, handle); }
     protected AVCaptureDeviceFormat(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -127,6 +128,11 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "autoFocusSystem")
     public native AVCaptureAutoFocusSystem getAutoFocusSystem();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "supportedColorSpaces")
+    public native NSArray<NSNumber> getSupportedColorSpaces();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

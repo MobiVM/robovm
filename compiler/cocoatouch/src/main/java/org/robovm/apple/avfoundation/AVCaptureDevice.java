@@ -92,6 +92,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureDevice() {}
+    protected AVCaptureDevice(Handle h, long handle) { super(h, handle); }
     protected AVCaptureDevice(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -140,6 +141,11 @@ import org.robovm.apple.audiounit.*;
     public native void setActiveVideoMaxFrameDuration(@ByVal CMTime v);
     @Property(selector = "position")
     public native AVCaptureDevicePosition getPosition();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "deviceType")
+    public native String getDeviceType();
     @Property(selector = "hasFlash")
     public native boolean hasFlash();
     /**
@@ -149,11 +155,23 @@ import org.robovm.apple.audiounit.*;
     public native boolean isFlashAvailable();
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "isFlashActive")
     public native boolean isFlashActive();
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "flashMode")
     public native AVCaptureFlashMode getFlashMode();
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "setFlashMode:")
     public native void setFlashMode(AVCaptureFlashMode v);
     @Property(selector = "hasTorch")
@@ -177,6 +195,11 @@ import org.robovm.apple.audiounit.*;
     public native AVCaptureTorchMode getTorchMode();
     @Property(selector = "setTorchMode:")
     public native void setTorchMode(AVCaptureTorchMode v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isLockingFocusWithCustomLensPositionSupported")
+    public native boolean isLockingFocusWithCustomLensPositionSupported();
     @Property(selector = "focusMode")
     public native AVCaptureFocusMode getFocusMode();
     @Property(selector = "setFocusMode:")
@@ -271,6 +294,11 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "maxExposureTargetBias")
     public native float getMaxExposureTargetBias();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isLockingWhiteBalanceWithCustomDeviceGainsSupported")
+    public native boolean isLockingWhiteBalanceWithCustomDeviceGainsSupported();
     @Property(selector = "whiteBalanceMode")
     public native AVCaptureWhiteBalanceMode getWhiteBalanceMode();
     @Property(selector = "setWhiteBalanceMode:")
@@ -357,6 +385,16 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "setVideoHDREnabled:")
     public native void setVideoHDREnabled(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "activeColorSpace")
+    public native AVCaptureColorSpace getActiveColorSpace();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setActiveColorSpace:")
+    public native void setActiveColorSpace(AVCaptureColorSpace v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -417,14 +455,34 @@ import org.robovm.apple.audiounit.*;
     public native void unlockForConfiguration();
     @Method(selector = "supportsAVCaptureSessionPreset:")
     public native boolean supportsAVCaptureSessionPreset(AVCaptureSessionPreset preset);
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "devices")
     public static native NSArray<AVCaptureDevice> getDevices();
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "devicesWithMediaType:")
     public static native NSArray<AVCaptureDevice> getDevicesForMediaType(AVMediaType mediaType);
     @Method(selector = "defaultDeviceWithMediaType:")
     public static native AVCaptureDevice getDefaultDeviceForMediaType(AVMediaType mediaType);
     @Method(selector = "deviceWithUniqueID:")
     public static native AVCaptureDevice getDeviceWithUniqueID(String deviceUniqueID);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "defaultDeviceWithDeviceType:mediaType:position:")
+    public static native AVCaptureDevice getDefaultDevice(String deviceType, AVMediaType mediaType, AVCaptureDevicePosition position);
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "isFlashModeSupported:")
     public native boolean isFlashModeSupported(AVCaptureFlashMode flashMode);
     @Method(selector = "isTorchModeSupported:")

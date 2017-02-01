@@ -56,8 +56,11 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioCompressedBuffer() {}
+    protected AVAudioCompressedBuffer(Handle h, long handle) { super(h, handle); }
     protected AVAudioCompressedBuffer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFormat:packetCapacity:maximumPacketSize:")
     public AVAudioCompressedBuffer(AVAudioFormat format, int packetCapacity, @MachineSizedSInt long maximumPacketSize) { super((SkipInit) null); initObject(init(format, packetCapacity, maximumPacketSize)); }
+    @Method(selector = "initWithFormat:packetCapacity:")
     public AVAudioCompressedBuffer(AVAudioFormat format, int packetCapacity) { super((SkipInit) null); initObject(init(format, packetCapacity)); }
     /*</constructors>*/
     /*<properties>*/

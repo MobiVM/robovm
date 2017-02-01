@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioUnitSampler() {}
+    protected AVAudioUnitSampler(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitSampler(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

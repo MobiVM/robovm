@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioPlayer() {}
+    protected AVAudioPlayer(Handle h, long handle) { super(h, handle); }
     protected AVAudioPlayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithContentsOfURL:error:")
     public AVAudioPlayer(NSURL url) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -64,6 +66,7 @@ import org.robovm.apple.audiounit.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    @Method(selector = "initWithData:error:")
     public AVAudioPlayer(NSData data) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -74,6 +77,7 @@ import org.robovm.apple.audiounit.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @Method(selector = "initWithContentsOfURL:fileTypeHint:error:")
     public AVAudioPlayer(NSURL url, String utiString) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -84,6 +88,7 @@ import org.robovm.apple.audiounit.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @Method(selector = "initWithData:fileTypeHint:error:")
     public AVAudioPlayer(NSData data, String utiString) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -159,6 +164,11 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "settings")
     public native AVAudioSettings getSettings();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "format")
+    public native AVAudioFormat getFormat();
     @Property(selector = "isMeteringEnabled")
     public native boolean isMeteringEnabled();
     @Property(selector = "setMeteringEnabled:")
@@ -203,6 +213,11 @@ import org.robovm.apple.audiounit.*;
     public native void pause();
     @Method(selector = "stop")
     public native void stop();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setVolume:fadeDuration:")
+    public native void setVolume(float volume, double duration);
     @Method(selector = "updateMeters")
     public native void updateMeters();
     @Method(selector = "peakPowerForChannel:")

@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVDateRangeMetadataGroup() {}
+    protected AVDateRangeMetadataGroup(Handle h, long handle) { super(h, handle); }
     protected AVDateRangeMetadataGroup(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItems:startDate:endDate:")
     public AVDateRangeMetadataGroup(NSArray<AVMetadataItem> items, NSDate startDate, NSDate endDate) { super((SkipInit) null); initObject(init(items, startDate, endDate)); }
     /*</constructors>*/
     /*<properties>*/

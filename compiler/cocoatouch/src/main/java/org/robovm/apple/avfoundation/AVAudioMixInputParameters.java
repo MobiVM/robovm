@@ -56,7 +56,8 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioMixInputParameters() {}
-    protected AVAudioMixInputParameters(long handle) { super(handle); }
+    @Deprecated protected AVAudioMixInputParameters(long handle) { super(handle); }
+    protected AVAudioMixInputParameters(Handle h, long handle) { super(h, handle); }
     protected AVAudioMixInputParameters(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

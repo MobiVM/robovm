@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVSpeechSynthesizer() {}
+    protected AVSpeechSynthesizer(Handle h, long handle) { super(h, handle); }
     protected AVSpeechSynthesizer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -67,6 +68,16 @@ import org.robovm.apple.audiounit.*;
     public native boolean isSpeaking();
     @Property(selector = "isPaused")
     public native boolean isPaused();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "outputChannels")
+    public native NSArray<AVAudioSessionChannelDescription> getOutputChannels();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setOutputChannels:")
+    public native void setOutputChannels(NSArray<AVAudioSessionChannelDescription> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

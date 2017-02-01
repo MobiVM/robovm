@@ -131,6 +131,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioSession() {}
+    protected AVAudioSession(Handle h, long handle) { super(h, handle); }
     protected AVAudioSession(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -357,6 +358,20 @@ import org.robovm.apple.audiounit.*;
     @Method(selector = "setCategory:withOptions:error:")
     private native boolean setCategory(AVAudioSessionCategory category, AVAudioSessionCategoryOptions options, NSError.NSErrorPtr outError);
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public boolean setCategory(AVAudioSessionCategory category, String mode, AVAudioSessionCategoryOptions options) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setCategory(category, mode, options, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setCategory:mode:options:error:")
+    private native boolean setCategory(AVAudioSessionCategory category, String mode, AVAudioSessionCategoryOptions options, NSError.NSErrorPtr outError);
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "recordPermission")
@@ -502,5 +517,19 @@ import org.robovm.apple.audiounit.*;
      */
     @Method(selector = "setOutputDataSource:error:")
     private native boolean setOutputDataSource(AVAudioSessionDataSourceDescription dataSource, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public boolean setAggregatedIOPreference(AVAudioSessionIOType inIOType) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setAggregatedIOPreference(inIOType, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setAggregatedIOPreference:error:")
+    private native boolean setAggregatedIOPreference(AVAudioSessionIOType inIOType, NSError.NSErrorPtr outError);
     /*</methods>*/
 }

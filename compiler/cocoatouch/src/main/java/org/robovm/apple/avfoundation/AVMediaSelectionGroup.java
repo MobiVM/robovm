@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVMediaSelectionGroup() {}
+    protected AVMediaSelectionGroup(Handle h, long handle) { super(h, handle); }
     protected AVMediaSelectionGroup(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

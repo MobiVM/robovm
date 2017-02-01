@@ -75,6 +75,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVSampleBufferDisplayLayer() {}
+    protected AVSampleBufferDisplayLayer(Handle h, long handle) { super(h, handle); }
     protected AVSampleBufferDisplayLayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

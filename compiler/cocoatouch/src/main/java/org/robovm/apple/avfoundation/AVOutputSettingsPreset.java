@@ -114,9 +114,13 @@ import org.robovm.apple.audiounit.*;
      * @since Available in iOS 7.0 and later.
      */
     public static final AVOutputSettingsPreset Size1920x1080 = new AVOutputSettingsPreset("Size1920x1080");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final AVOutputSettingsPreset Size3840x2160 = new AVOutputSettingsPreset("Size3840x2160");
     /*</constants>*/
     
-    private static /*<name>*/AVOutputSettingsPreset/*</name>*/[] values = new /*<name>*/AVOutputSettingsPreset/*</name>*/[] {/*<value_list>*/Size640x480, Size960x540, Size1280x720, Size1920x1080/*</value_list>*/};
+    private static /*<name>*/AVOutputSettingsPreset/*</name>*/[] values = new /*<name>*/AVOutputSettingsPreset/*</name>*/[] {/*<value_list>*/Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160/*</value_list>*/};
     
     /*<name>*/AVOutputSettingsPreset/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -159,6 +163,11 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVOutputSettingsPreset1920x1080", optional=true)
         public static native NSString Size1920x1080();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="AVOutputSettingsPreset3840x2160", optional=true)
+        public static native NSString Size3840x2160();
         /*</values>*/
     }
 }

@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioBuffer() {}
+    protected AVAudioBuffer(Handle h, long handle) { super(h, handle); }
     protected AVAudioBuffer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

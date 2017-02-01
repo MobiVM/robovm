@@ -55,8 +55,10 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetReader.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetReader() {}
+    protected AVAssetReader() {}
+    protected AVAssetReader(Handle h, long handle) { super(h, handle); }
     protected AVAssetReader(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAsset:error:")
     public AVAssetReader(AVAsset asset) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();

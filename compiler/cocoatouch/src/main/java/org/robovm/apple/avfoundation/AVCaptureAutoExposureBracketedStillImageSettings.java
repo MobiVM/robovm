@@ -56,8 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureAutoExposureBracketedStillImageSettings() {}
+    protected AVCaptureAutoExposureBracketedStillImageSettings(Handle h, long handle) { super(h, handle); }
     protected AVCaptureAutoExposureBracketedStillImageSettings(SkipInit skipInit) { super(skipInit); }
-    public AVCaptureAutoExposureBracketedStillImageSettings(float exposureTargetBias) { super(create(exposureTargetBias)); retain(getHandle()); }
+    public AVCaptureAutoExposureBracketedStillImageSettings(float exposureTargetBias) { super((Handle) null, create(exposureTargetBias)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "exposureTargetBias")

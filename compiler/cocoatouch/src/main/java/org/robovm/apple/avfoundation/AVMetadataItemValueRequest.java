@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVMetadataItemValueRequest() {}
+    protected AVMetadataItemValueRequest(Handle h, long handle) { super(h, handle); }
     protected AVMetadataItemValueRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

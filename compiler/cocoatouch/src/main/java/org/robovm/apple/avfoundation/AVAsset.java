@@ -92,9 +92,10 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAsset() {}
-    protected AVAsset(long handle) { super(handle); }
+    @Deprecated protected AVAsset(long handle) { super(handle); }
+    protected AVAsset(Handle h, long handle) { super(h, handle); }
     protected AVAsset(SkipInit skipInit) { super(skipInit); }
-    public AVAsset(NSURL URL) { super(create(URL)); retain(getHandle()); }
+    public AVAsset(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "duration")
