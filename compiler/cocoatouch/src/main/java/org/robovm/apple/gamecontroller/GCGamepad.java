@@ -44,6 +44,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GCGamepad() {}
+    protected GCGamepad(Handle h, long handle) { super(h, handle); }
     protected GCGamepad(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -44,8 +44,11 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GCExtendedGamepadSnapshot() {}
+    protected GCExtendedGamepadSnapshot(Handle h, long handle) { super(h, handle); }
     protected GCExtendedGamepadSnapshot(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSnapshotData:")
     public GCExtendedGamepadSnapshot(NSData data) { super((SkipInit) null); initObject(init(data)); }
+    @Method(selector = "initWithController:snapshotData:")
     public GCExtendedGamepadSnapshot(GCController controller, NSData data) { super((SkipInit) null); initObject(init(controller, data)); }
     /*</constructors>*/
     /*<properties>*/

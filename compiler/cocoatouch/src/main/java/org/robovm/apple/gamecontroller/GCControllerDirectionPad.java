@@ -44,6 +44,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GCControllerDirectionPad() {}
+    protected GCControllerDirectionPad(Handle h, long handle) { super(h, handle); }
     protected GCControllerDirectionPad(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

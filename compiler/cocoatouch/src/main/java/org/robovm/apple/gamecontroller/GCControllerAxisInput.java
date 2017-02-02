@@ -44,6 +44,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GCControllerAxisInput() {}
+    protected GCControllerAxisInput(Handle h, long handle) { super(h, handle); }
     protected GCControllerAxisInput(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -44,6 +44,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GCControllerButtonInput() {}
+    protected GCControllerButtonInput(Handle h, long handle) { super(h, handle); }
     protected GCControllerButtonInput(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
