@@ -47,6 +47,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNContactPickerViewController() {}
+    protected CNContactPickerViewController(Handle h, long handle) { super(h, handle); }
     protected CNContactPickerViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
