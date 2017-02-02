@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,33 +34,34 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CKRecordZoneNotification/*</name>*/ 
-    extends /*<extends>*/CKNotification/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/CKShareParticipantType/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Unknown(0L),
+    Owner(1L),
+    PrivateUser(3L),
+    PublicUser(4L);
+    /*</values>*/
 
-    /*<ptr>*/public static class CKRecordZoneNotificationPtr extends Ptr<CKRecordZoneNotification, CKRecordZoneNotificationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CKRecordZoneNotification.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public CKRecordZoneNotification() {}
-    protected CKRecordZoneNotification(Handle h, long handle) { super(h, handle); }
-    protected CKRecordZoneNotification(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "recordZoneID")
-    public native CKRecordZoneID getRecordZoneID();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "databaseScope")
-    public native CKDatabaseScope getDatabaseScope();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/CKShareParticipantType/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/CKShareParticipantType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CKShareParticipantType/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/CKShareParticipantType/*</name>*/.class.getName());
+    }
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,19 +34,17 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
- * @deprecated Deprecated in iOS 10.0.
+ * @since Available in iOS 10.0 and later.
  */
-@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/CKSubscriptionOptions/*</name>*/ extends Bits</*<name>*/CKSubscriptionOptions/*</name>*/> {
+public final class /*<name>*/CKQuerySubscriptionOptions/*</name>*/ extends Bits</*<name>*/CKQuerySubscriptionOptions/*</name>*/> {
     /*<values>*/
-    public static final CKSubscriptionOptions None = new CKSubscriptionOptions(0L);
-    public static final CKSubscriptionOptions OnRecordCreation = new CKSubscriptionOptions(1L);
-    public static final CKSubscriptionOptions OnRecordUpdate = new CKSubscriptionOptions(2L);
-    public static final CKSubscriptionOptions OnRecordDeletion = new CKSubscriptionOptions(4L);
-    public static final CKSubscriptionOptions Once = new CKSubscriptionOptions(8L);
+    public static final CKQuerySubscriptionOptions None = new CKQuerySubscriptionOptions(0L);
+    public static final CKQuerySubscriptionOptions FiresOnRecordCreation = new CKQuerySubscriptionOptions(1L);
+    public static final CKQuerySubscriptionOptions FiresOnRecordUpdate = new CKQuerySubscriptionOptions(2L);
+    public static final CKQuerySubscriptionOptions FiresOnRecordDeletion = new CKQuerySubscriptionOptions(4L);
+    public static final CKQuerySubscriptionOptions FiresOnce = new CKQuerySubscriptionOptions(8L);
     /*</values>*/
 
     /*<bind>*/
@@ -54,17 +52,17 @@ public final class /*<name>*/CKSubscriptionOptions/*</name>*/ extends Bits</*<na
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/CKSubscriptionOptions/*</name>*/[] values = _values(/*<name>*/CKSubscriptionOptions/*</name>*/.class);
+    private static final /*<name>*/CKQuerySubscriptionOptions/*</name>*/[] values = _values(/*<name>*/CKQuerySubscriptionOptions/*</name>*/.class);
 
-    public /*<name>*/CKSubscriptionOptions/*</name>*/(long value) { super(value); }
-    private /*<name>*/CKSubscriptionOptions/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/CKSubscriptionOptions/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/CKSubscriptionOptions/*</name>*/(value, mask);
+    public /*<name>*/CKQuerySubscriptionOptions/*</name>*/(long value) { super(value); }
+    private /*<name>*/CKQuerySubscriptionOptions/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/CKQuerySubscriptionOptions/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/CKQuerySubscriptionOptions/*</name>*/(value, mask);
     }
-    protected /*<name>*/CKSubscriptionOptions/*</name>*/[] _values() {
+    protected /*<name>*/CKQuerySubscriptionOptions/*</name>*/[] _values() {
         return values;
     }
-    public static /*<name>*/CKSubscriptionOptions/*</name>*/[] values() {
+    public static /*<name>*/CKQuerySubscriptionOptions/*</name>*/[] values() {
         return values.clone();
     }
 }

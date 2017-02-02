@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,30 +34,39 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CKRecordZoneNotification/*</name>*/ 
-    extends /*<extends>*/CKNotification/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CKShareMetadata/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CKRecordZoneNotificationPtr extends Ptr<CKRecordZoneNotification, CKRecordZoneNotificationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CKRecordZoneNotification.class); }/*</bind>*/
+    /*<ptr>*/public static class CKShareMetadataPtr extends Ptr<CKShareMetadata, CKShareMetadataPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CKShareMetadata.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKRecordZoneNotification() {}
-    protected CKRecordZoneNotification(Handle h, long handle) { super(h, handle); }
-    protected CKRecordZoneNotification(SkipInit skipInit) { super(skipInit); }
+    public CKShareMetadata() {}
+    protected CKShareMetadata(Handle h, long handle) { super(h, handle); }
+    protected CKShareMetadata(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "recordZoneID")
-    public native CKRecordZoneID getRecordZoneID();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "databaseScope")
-    public native CKDatabaseScope getDatabaseScope();
+    @Property(selector = "containerIdentifier")
+    public native String getContainerIdentifier();
+    @Property(selector = "share")
+    public native CKShare getShare();
+    @Property(selector = "rootRecordID")
+    public native CKRecordID getRootRecordID();
+    @Property(selector = "participantType")
+    public native CKShareParticipantType getParticipantType();
+    @Property(selector = "participantStatus")
+    public native CKShareParticipantAcceptanceStatus getParticipantStatus();
+    @Property(selector = "participantPermission")
+    public native CKShareParticipantPermission getParticipantPermission();
+    @Property(selector = "ownerIdentity")
+    public native CKUserIdentity getOwnerIdentity();
+    @Property(selector = "rootRecord")
+    public native CKRecord getRootRecord();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -46,8 +46,10 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CKRecordZoneID.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKRecordZoneID() {}
+    protected CKRecordZoneID() {}
+    protected CKRecordZoneID(Handle h, long handle) { super(h, handle); }
     protected CKRecordZoneID(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithZoneName:ownerName:")
     public CKRecordZoneID(String zoneName, String ownerName) { super((SkipInit) null); initObject(init(zoneName, ownerName)); }
     /*</constructors>*/
     /*<properties>*/

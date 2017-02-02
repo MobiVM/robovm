@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,30 +34,31 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CKRecordZoneNotification/*</name>*/ 
-    extends /*<extends>*/CKNotification/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CKUserIdentity/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CKRecordZoneNotificationPtr extends Ptr<CKRecordZoneNotification, CKRecordZoneNotificationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CKRecordZoneNotification.class); }/*</bind>*/
+    /*<ptr>*/public static class CKUserIdentityPtr extends Ptr<CKUserIdentity, CKUserIdentityPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CKUserIdentity.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKRecordZoneNotification() {}
-    protected CKRecordZoneNotification(Handle h, long handle) { super(h, handle); }
-    protected CKRecordZoneNotification(SkipInit skipInit) { super(skipInit); }
+    protected CKUserIdentity() {}
+    protected CKUserIdentity(Handle h, long handle) { super(h, handle); }
+    protected CKUserIdentity(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "recordZoneID")
-    public native CKRecordZoneID getRecordZoneID();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "databaseScope")
-    public native CKDatabaseScope getDatabaseScope();
+    @Property(selector = "lookupInfo")
+    public native CKUserIdentityLookupInfo getLookupInfo();
+    @Property(selector = "nameComponents")
+    public native NSPersonNameComponents getNameComponents();
+    @Property(selector = "userRecordID")
+    public native CKRecordID getUserRecordID();
+    @Property(selector = "hasiCloudAccount")
+    public native boolean isHasiCloudAccount();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

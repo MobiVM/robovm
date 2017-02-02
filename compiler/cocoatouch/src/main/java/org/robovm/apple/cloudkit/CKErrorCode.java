@@ -53,6 +53,11 @@ public enum /*<name>*/CKErrorCode/*</name>*/ implements NSErrorCode {
     PermissionFailure(10L),
     UnknownItem(11L),
     InvalidArguments(12L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     ResultsTruncated(13L),
     ServerRecordChanged(14L),
     ServerRejectedRequest(15L),
@@ -68,7 +73,27 @@ public enum /*<name>*/CKErrorCode/*</name>*/ implements NSErrorCode {
     QuotaExceeded(25L),
     ZoneNotFound(26L),
     LimitExceeded(27L),
-    UserDeletedZone(28L);
+    UserDeletedZone(28L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    TooManyParticipants(29L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    AlreadyShared(30L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    ReferenceViolation(31L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    ManagedAccountRestricted(32L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    ParticipantMayNeedVerification(33L);
     /*</values>*/
 
     /*<bind>*/

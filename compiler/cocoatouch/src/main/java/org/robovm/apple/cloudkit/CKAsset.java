@@ -46,8 +46,10 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CKAsset.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKAsset() {}
+    protected CKAsset() {}
+    protected CKAsset(Handle h, long handle) { super(h, handle); }
     protected CKAsset(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFileURL:")
     public CKAsset(NSURL fileURL) { super((SkipInit) null); initObject(init(fileURL)); }
     /*</constructors>*/
     /*<properties>*/

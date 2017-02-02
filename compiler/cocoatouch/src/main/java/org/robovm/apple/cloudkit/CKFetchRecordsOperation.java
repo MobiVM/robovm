@@ -47,7 +47,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKFetchRecordsOperation() {}
+    protected CKFetchRecordsOperation(Handle h, long handle) { super(h, handle); }
     protected CKFetchRecordsOperation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRecordIDs:")
     public CKFetchRecordsOperation(NSArray<CKRecordID> recordIDs) { super((SkipInit) null); initObject(init(recordIDs)); }
     /*</constructors>*/
     /*<properties>*/

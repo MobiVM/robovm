@@ -47,7 +47,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKMarkNotificationsReadOperation() {}
+    protected CKMarkNotificationsReadOperation(Handle h, long handle) { super(h, handle); }
     protected CKMarkNotificationsReadOperation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNotificationIDsToMarkRead:")
     public CKMarkNotificationsReadOperation(NSArray<CKNotificationID> notificationIDs) { super((SkipInit) null); initObject(init(notificationIDs)); }
     /*</constructors>*/
     /*<properties>*/

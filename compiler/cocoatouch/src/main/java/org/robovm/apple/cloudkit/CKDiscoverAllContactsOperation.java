@@ -35,7 +35,9 @@ import org.robovm.apple.contacts.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKDiscoverAllContactsOperation/*</name>*/ 
@@ -47,6 +49,7 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKDiscoverAllContactsOperation() {}
+    protected CKDiscoverAllContactsOperation(Handle h, long handle) { super(h, handle); }
     protected CKDiscoverAllContactsOperation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

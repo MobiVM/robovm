@@ -41,7 +41,11 @@ import org.robovm.apple.contacts.*;
 public enum /*<name>*/CKSubscriptionType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Query(1L),
-    RecordZone(2L);
+    RecordZone(2L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Database(3L);
     /*</values>*/
 
     /*<bind>*/

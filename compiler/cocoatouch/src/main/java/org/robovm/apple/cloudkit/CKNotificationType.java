@@ -42,7 +42,11 @@ public enum /*<name>*/CKNotificationType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Query(1L),
     RecordZone(2L),
-    ReadNotification(3L);
+    ReadNotification(3L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Database(4L);
     /*</values>*/
 
     /*<bind>*/

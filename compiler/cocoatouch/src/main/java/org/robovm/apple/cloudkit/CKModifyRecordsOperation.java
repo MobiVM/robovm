@@ -47,7 +47,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKModifyRecordsOperation() {}
+    protected CKModifyRecordsOperation(Handle h, long handle) { super(h, handle); }
     protected CKModifyRecordsOperation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRecordsToSave:recordIDsToDelete:")
     public CKModifyRecordsOperation(NSArray<CKRecord> records, NSArray<CKRecordID> recordIDs) { super((SkipInit) null); initObject(init(records, recordIDs)); }
     /*</constructors>*/
     /*<properties>*/

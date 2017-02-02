@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,45 +34,39 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CKRecordZone/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CKRecordZoneSubscription/*</name>*/ 
+    extends /*<extends>*/CKSubscription/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CKRecordZonePtr extends Ptr<CKRecordZone, CKRecordZonePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CKRecordZone.class); }/*</bind>*/
+    /*<ptr>*/public static class CKRecordZoneSubscriptionPtr extends Ptr<CKRecordZoneSubscription, CKRecordZoneSubscriptionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CKRecordZoneSubscription.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CKRecordZone() {}
-    protected CKRecordZone(Handle h, long handle) { super(h, handle); }
-    protected CKRecordZone(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithZoneName:")
-    public CKRecordZone(String zoneName) { super((SkipInit) null); initObject(init(zoneName)); }
+    public CKRecordZoneSubscription() {}
+    protected CKRecordZoneSubscription(Handle h, long handle) { super(h, handle); }
+    protected CKRecordZoneSubscription(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithZoneID:")
-    public CKRecordZone(CKRecordZoneID zoneID) { super((SkipInit) null); initObject(init(zoneID)); }
+    public CKRecordZoneSubscription(CKRecordZoneID zoneID) { super((SkipInit) null); initObject(init(zoneID)); }
+    @Method(selector = "initWithZoneID:subscriptionID:")
+    public CKRecordZoneSubscription(CKRecordZoneID zoneID, String subscriptionID) { super((SkipInit) null); initObject(init(zoneID, subscriptionID)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "zoneID")
     public native CKRecordZoneID getZoneID();
-    @Property(selector = "capabilities")
-    public native CKRecordZoneCapabilities getCapabilities();
+    @Property(selector = "recordType")
+    public native String getRecordType();
+    @Property(selector = "setRecordType:")
+    public native void setRecordType(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @GlobalValue(symbol="CKRecordZoneDefaultName", optional=true)
-    public static native String getDefaultName();
-    
-    @Method(selector = "initWithZoneName:")
-    protected native @Pointer long init(String zoneName);
     @Method(selector = "initWithZoneID:")
     protected native @Pointer long init(CKRecordZoneID zoneID);
-    @Method(selector = "defaultRecordZone")
-    public static native CKRecordZone getDefaultRecordZone();
+    @Method(selector = "initWithZoneID:subscriptionID:")
+    protected native @Pointer long init(CKRecordZoneID zoneID, String subscriptionID);
     /*</methods>*/
 }

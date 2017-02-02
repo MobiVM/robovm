@@ -35,7 +35,9 @@ import org.robovm.apple.contacts.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKDiscoverUserInfosOperation/*</name>*/ 
@@ -47,7 +49,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKDiscoverUserInfosOperation() {}
+    protected CKDiscoverUserInfosOperation(Handle h, long handle) { super(h, handle); }
     protected CKDiscoverUserInfosOperation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithEmailAddresses:userRecordIDs:")
     public CKDiscoverUserInfosOperation(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> emailAddresses, NSArray<CKRecordID> userRecordIDs) { super((SkipInit) null); initObject(init(emailAddresses, userRecordIDs)); }
     /*</constructors>*/
     /*<properties>*/
