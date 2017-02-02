@@ -48,6 +48,7 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNContactFormatter() {}
+    protected CNContactFormatter(Handle h, long handle) { super(h, handle); }
     protected CNContactFormatter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -76,16 +77,19 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
         return format(contact, style, attributes.getDictionary().as(NSDictionary.class));
     }
     /*<methods>*/
+    @GlobalValue(symbol="CNContactPropertyAttribute", optional=true)
+    public static native NSString PropertyAttribute();
+    
     @Method(selector = "stringFromContact:")
     public native String format(CNContact contact);
     @Method(selector = "attributedStringFromContact:defaultAttributes:")
-    public native NSAttributedString format(CNContact contact, NSDictionary attributes);
+    public native NSAttributedString format(CNContact contact, NSDictionary<?, ?> attributes);
     @Method(selector = "descriptorForRequiredKeysForStyle:")
     public static native String getDescriptorForRequiredKeys(CNContactFormatterStyle style);
     @Method(selector = "stringFromContact:style:")
     public static native String format(CNContact contact, CNContactFormatterStyle style);
     @Method(selector = "attributedStringFromContact:style:defaultAttributes:")
-    public static native NSAttributedString format(CNContact contact, CNContactFormatterStyle style, NSDictionary attributes);
+    public static native NSAttributedString format(CNContact contact, CNContactFormatterStyle style, NSDictionary<?, ?> attributes);
     @Method(selector = "nameOrderForContact:")
     public static native CNContactDisplayNameOrder getNameOrder(CNContact contact);
     @Method(selector = "delimiterForContact:")

@@ -48,6 +48,7 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNPostalAddressFormatter() {}
+    protected CNPostalAddressFormatter(Handle h, long handle) { super(h, handle); }
     protected CNPostalAddressFormatter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -76,13 +77,18 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
         return format(postalAddress, style, attributes.getDictionary().as(NSDictionary.class));
     }
     /*<methods>*/
+    @GlobalValue(symbol="CNPostalAddressPropertyAttribute", optional=true)
+    public static native String PropertyAttribute();
+    @GlobalValue(symbol="CNPostalAddressLocalizedPropertyNameAttribute", optional=true)
+    public static native String LocalizedPropertyNameAttribute();
+    
     @Method(selector = "stringFromPostalAddress:")
     public native String format(CNPostalAddress postalAddress);
     @Method(selector = "attributedStringFromPostalAddress:withDefaultAttributes:")
-    public native NSAttributedString format(CNPostalAddress postalAddress, NSDictionary attributes);
+    public native NSAttributedString format(CNPostalAddress postalAddress, NSDictionary<?, ?> attributes);
     @Method(selector = "stringFromPostalAddress:style:")
     public static native String format(CNPostalAddress postalAddress, CNPostalAddressFormatterStyle style);
     @Method(selector = "attributedStringFromPostalAddress:style:withDefaultAttributes:")
-    public static native NSAttributedString format(CNPostalAddress postalAddress, CNPostalAddressFormatterStyle style, NSDictionary attributes);
+    public static native NSAttributedString format(CNPostalAddress postalAddress, CNPostalAddressFormatterStyle style, NSDictionary<?, ?> attributes);
     /*</methods>*/
 }

@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNPhoneNumber() {}
+    protected CNPhoneNumber(Handle h, long handle) { super(h, handle); }
     protected CNPhoneNumber(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithStringValue:")
     public CNPhoneNumber(String string) { super((SkipInit) null); initObject(init(string)); }
     /*</constructors>*/
     /*<properties>*/

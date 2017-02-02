@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNPostalAddress() {}
+    protected CNPostalAddress(Handle h, long handle) { super(h, handle); }
     protected CNPostalAddress(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
