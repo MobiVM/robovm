@@ -49,8 +49,11 @@ import org.robovm.apple.mapkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKRecurrenceRule() {}
+    protected EKRecurrenceRule(Handle h, long handle) { super(h, handle); }
     protected EKRecurrenceRule(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initRecurrenceWithFrequency:interval:end:")
     public EKRecurrenceRule(EKRecurrenceFrequency type, @MachineSizedSInt long interval, EKRecurrenceEnd end) { super((SkipInit) null); initObject(init(type, interval, end)); }
+    @Method(selector = "initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:")
     public EKRecurrenceRule(EKRecurrenceFrequency type, @MachineSizedSInt long interval, NSArray<EKRecurrenceDayOfWeek> days, NSArray<NSNumber> monthDays, NSArray<NSNumber> months, NSArray<NSNumber> weeksOfTheYear, NSArray<NSNumber> daysOfTheYear, NSArray<NSNumber> setPositions, EKRecurrenceEnd end) { super((SkipInit) null); initObject(init(type, interval, days, monthDays, months, weeksOfTheYear, daysOfTheYear, setPositions, end)); }
     /*</constructors>*/
     /*<properties>*/

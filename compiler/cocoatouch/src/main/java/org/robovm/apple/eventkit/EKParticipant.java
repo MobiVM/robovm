@@ -49,6 +49,7 @@ import org.robovm.apple.mapkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKParticipant() {}
+    protected EKParticipant(Handle h, long handle) { super(h, handle); }
     protected EKParticipant(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
