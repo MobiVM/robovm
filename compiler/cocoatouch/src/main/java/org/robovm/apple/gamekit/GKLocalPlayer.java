@@ -84,7 +84,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "loadRecentPlayersWithCompletionHandler:")
-    public native void loadRecentPlayers(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
+    public native void loadRecentPlayersWithCompletionHandler(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
      * @since Available in iOS 7.0 and later.
      */

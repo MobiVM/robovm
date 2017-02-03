@@ -48,6 +48,7 @@ import org.robovm.apple.uikit.*;
     public GKTurnBasedMatchmakerViewController() {}
     protected GKTurnBasedMatchmakerViewController(Handle h, long handle) { super(h, handle); }
     protected GKTurnBasedMatchmakerViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithMatchRequest:")
     public GKTurnBasedMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(init(request)); }
     /*</constructors>*/
     /*<properties>*/

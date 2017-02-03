@@ -168,7 +168,7 @@ classes:
     GKCloudPlayer: 
         methods:
             #+ (void)getCurrentSignedInPlayerForContainer:(NSString * __nullable)containerName completionHandler:(void(^)(GKCloudPlayer *__nullable player, NSError * __nullable error))handler;
-            '+getCurrentSignedInPlayerForContainer:completionHandler':
+            '+getCurrentSignedInPlayerForContainer:completionHandler:':
                 name: getCurrentSignedInPlayerForContainer
     GKFriendRequestComposeViewController: # DONE
         methods:
@@ -192,7 +192,33 @@ classes:
             '+maxNumberOfRecipients':
                 name: getMaxNumberOfRecipients
     GKGameCenterViewController: {} # 
-    GKGameSession: {}
+    GKGameSession:
+        methods:
+            '-getShareURLWithCompletionHandler:':
+                name: getShareURL
+            '-loadDataWithCompletionHandler:':
+                name: loadData
+            '-saveData:completionHandler:':
+                name: saveData
+            '-setConnectionState:completionHandler:':
+                name: setConnectionState
+            '-sendData:withTransportType:completionHandler:':
+                name: sendData
+            '-sendData:withTransportType:completionHandler:':
+                name: sendData
+            '-sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:':
+                name: sendMessage
+            '-clearBadgeForPlayers:completionHandler:':
+                name: clearBadge
+            '+createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:':
+                name: createSessionInContainer
+            '+loadSessionsInContainer:completionHandler:':
+                name: loadSessionsInContainer
+            '+loadSessionWithIdentifier:completionHandler:':
+                name: loadSession
+            '+removeSessionWithIdentifier:completionHandler:':
+                name: removeSession
+
     GKInvite: {} # DONE
     GKLeaderboard: # DONE
         properties:
