@@ -78,13 +78,13 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "setConnectionState:completionHandler:")
     public native void setConnectionState(GKConnectionState state, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "playersWithConnectionState:")
-    public native NSArray<GKCloudPlayer> playersWithConnectionStat(GKConnectionState state);
+    public native NSArray<GKCloudPlayer> playersWithConnectionState(GKConnectionState state);
     @Method(selector = "sendData:withTransportType:completionHandler:")
     public native void sendData(NSData data, GKTransportType transport, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:")
     public native void sendMessage(String key, NSArray<?> arguments, NSData data, NSArray<GKCloudPlayer> players, boolean badgePlayers, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "clearBadgeForPlayers:completionHandler:")
-    public native void saveData(NSArray<GKCloudPlayer> players, @Block VoidBlock1<NSError> completionHandler);
+    public native void clearBadge(NSArray<GKCloudPlayer> players, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:")
     public static native void createSessionInContainer(String containerName, String title, @MachineSizedSInt long maxPlayers, @Block VoidBlock2<GKGameSession, NSError> completionHandler);
     @Method(selector = "loadSessionsInContainer:completionHandler:")
