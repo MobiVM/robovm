@@ -31,7 +31,9 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGridGraph/*</name>*/ 
@@ -43,12 +45,16 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKGridGraph() {}
+    protected GKGridGraph(Handle h, long handle) { super(h, handle); }
     protected GKGridGraph(SkipInit skipInit) { super(skipInit); }
-    public GKGridGraph(VectorInt2 position, int width, int height, boolean diagonalsAllowed) { super((SkipInit) null); initObject(init(position, width, height, diagonalsAllowed)); }
+    @Method(selector = "initFromGridStartingAt:width:height:diagonalsAllowed:")
+    public GKGridGraph(@ByVal VectorInt2 position, int width, int height, boolean diagonalsAllowed) { super((SkipInit) null); initObject(init(position, width, height, diagonalsAllowed)); }
+    @Method(selector = "initFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:")
+    public GKGridGraph(@ByVal VectorInt2 position, int width, int height, boolean diagonalsAllowed, Class<?> nodeClass) { super((SkipInit) null); initObject(init(position, width, height, diagonalsAllowed, nodeClass)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "gridOrigin")
-    public native VectorInt2 getGridOrigin();
+    public native @ByVal VectorInt2 getGridOrigin();
     @Property(selector = "gridWidth")
     public native @MachineSizedUInt long getGridWidth();
     @Property(selector = "gridHeight")
@@ -59,10 +65,14 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initFromGridStartingAt:width:height:diagonalsAllowed:")
-    protected native @Pointer long init(VectorInt2 position, int width, int height, boolean diagonalsAllowed);
+    protected native @Pointer long init(@ByVal VectorInt2 position, int width, int height, boolean diagonalsAllowed);
+    @Method(selector = "initFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:")
+    protected native @Pointer long init(@ByVal VectorInt2 position, int width, int height, boolean diagonalsAllowed, Class<?> nodeClass);
     @Method(selector = "nodeAtGridPosition:")
-    public native GKGridGraphNode getNodeAtGridPosition(VectorInt2 position);
+    public native GKGridGraphNode getNodeAtGridPosition(@ByVal VectorInt2 position);
     @Method(selector = "connectNodeToAdjacentNodes:")
     public native void connectNodeToAdjacentNodes(GKGridGraphNode node);
+    @Method(selector = "classForGenericArgumentAtIndex:")
+    public native Class<?> classForGenericArgumentAtIndex(@MachineSizedUInt long index);
     /*</methods>*/
 }

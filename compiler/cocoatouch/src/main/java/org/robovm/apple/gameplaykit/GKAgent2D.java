@@ -31,27 +31,30 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKAgent2D/*</name>*/ 
     extends /*<extends>*/GKAgent/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKAgent2DPtr extends Ptr<GKAgent2D, GKAgent2DPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKAgent2D.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKAgent2D() {}
+    protected GKAgent2D(Handle h, long handle) { super(h, handle); }
     protected GKAgent2D(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "position")
-    public native VectorFloat2 getPosition();
-    @Property(selector = "setPosition:", strongRef = true)
-    public native void setPosition(VectorFloat2 v);
+    public native @ByVal VectorFloat2 getPosition();
+    @Property(selector = "setPosition:")
+    public native void setPosition(@ByVal VectorFloat2 v);
     @Property(selector = "velocity")
-    public native VectorFloat2 getVelocity();
+    public native @ByVal VectorFloat2 getVelocity();
     @Property(selector = "rotation")
     public native float getRotation();
     @Property(selector = "setRotation:")
