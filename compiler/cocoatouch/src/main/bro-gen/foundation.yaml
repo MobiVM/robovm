@@ -5377,10 +5377,11 @@ values:
     NSNotFound:
         exclude: true
 
-    NS(.*):
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?NS.*):
         class: Foundation
         readonly: true
-        name: '#{g[0]}'
+        name: 'Value__#{g[0]}'
 
 constants:
     # Garbage
@@ -5437,6 +5438,7 @@ constants:
         class: NSURLResponse
         name: '#{g[0]}'
 
-    (NS.*):
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?NS.*):
         class: Foundation
-        name: '#{g[0]}'
+        name: 'Constant__#{g[0]}'
