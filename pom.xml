@@ -38,7 +38,7 @@
     <module>compiler</module>
     <module>dist</module>
     <module>plugins/templates</module>
-    <module>plugins/maven</module>
+    <!--<module>plugins/maven</module> Disable maven plugin until new snapshot is published-->
   </modules>
 
 </project>
