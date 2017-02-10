@@ -50,7 +50,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GLKView() {}
+    protected GLKView(Handle h, long handle) { super(h, handle); }
     protected GLKView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:context:")
     public GLKView(@ByVal CGRect frame, EAGLContext context) { super((SkipInit) null); initObject(init(frame, context)); }
     /*</constructors>*/
 
