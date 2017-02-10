@@ -3,6 +3,7 @@ include: [foundation.yaml, corefoundation.yaml, audiounit.yaml, coreaudio.yaml, 
 library: AudioToolbox
 framework: AudioToolbox
 clang_args: ['-x', 'objective-c']
+merge_vals_consts_functs: true
 headers:
     - /System/Library/Frameworks/AudioToolbox.framework/Headers/AudioToolbox.h
 typedefs:
