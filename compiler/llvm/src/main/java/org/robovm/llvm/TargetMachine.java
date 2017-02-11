@@ -19,19 +19,18 @@ package org.robovm.llvm;
 import java.io.File;
 import java.io.OutputStream;
 
-import org.robovm.llvm.binding.CodeGenFileType;
+import org.bytedeco.javacpp.BytePointer;
 import org.robovm.llvm.binding.LLVM;
-import org.robovm.llvm.binding.MemoryBufferRef;
-import org.robovm.llvm.binding.StringOut;
-import org.robovm.llvm.binding.TargetMachineRef;
+import org.robovm.llvm.binding.LLVM.LLVMMemoryBufferRef;
+import org.robovm.llvm.binding.LLVM.LLVMTargetMachineRef;
 
 /**
  * 
  */
 public class TargetMachine implements AutoCloseable {
-    protected TargetMachineRef ref;
+    protected LLVMTargetMachineRef ref;
 
-    TargetMachine(TargetMachineRef ref) {
+    TargetMachine(LLVMTargetMachineRef ref) {
         this.ref = ref;
     }
     
@@ -43,7 +42,7 @@ public class TargetMachine implements AutoCloseable {
     
     public synchronized void dispose() {
         checkDisposed();
-        LLVM.DisposeTargetMachine(ref);
+        LLVM.LLVMDisposeTargetMachine(ref);
         ref = null;
     }
 
@@ -54,78 +53,78 @@ public class TargetMachine implements AutoCloseable {
 
     public Target getTarget() {
         checkDisposed();
-        return new Target(LLVM.GetTargetMachineTarget(ref));
+        return new Target(LLVM.LLVMGetTargetMachineTarget(ref));
     }
     
     public DataLayout getDataLayout() {
         checkDisposed();
-        return new DataLayout(LLVM.CreateTargetDataLayout(ref));
+        return new DataLayout(LLVM.LLVMCreateTargetDataLayout(ref));
     }
     
     public TargetOptions getOptions() {
-        return new TargetOptions(LLVM.GetTargetMachineTargetOptions(ref));
+        return new TargetOptions(LLVM.LLVMGetTargetMachineTargetOptions(ref));
     }
     
     public String getTriple() {
         checkDisposed();
-        return LLVM.GetTargetMachineTriple(ref);
+        return LLVM.LLVMGetTargetMachineTriple(ref).getString();
     }
 
     public String getCPU() {
         checkDisposed();
-        return LLVM.GetTargetMachineCPU(ref);
+        return LLVM.LLVMGetTargetMachineCPU(ref).getString();
     }
     
     public String getFeatureString() {
         checkDisposed();
-        return LLVM.GetTargetMachineFeatureString(ref);
+        return LLVM.LLVMGetTargetMachineFeatureString(ref).getString();
     }
     
     public boolean getAsmVerbosityDefault() {
-        return LLVM.TargetMachineGetAsmVerbosityDefault(ref);
+        return LLVM.LLVMTargetMachineGetAsmVerbosityDefault(ref) != 0;
     }
 
     public void setAsmVerbosityDefault(boolean value) {
-        LLVM.SetTargetMachineAsmVerbosity(ref, value);
+        LLVM.LLVMSetTargetMachineAsmVerbosity(ref, value ? 1 : 0);
     }
 
     public boolean getDataSections() {
-        return LLVM.TargetMachineGetDataSections(ref);
+        return LLVM.LLVMTargetMachineGetDataSections(ref) != 0;
     }
 
     public boolean getFunctionSections() {
-        return LLVM.TargetMachineGetFunctionSections(ref);
+        return LLVM.LLVMTargetMachineGetFunctionSections(ref) != 0;
     }
 
     public void setDataSections(boolean value) {
-        LLVM.TargetMachineSetDataSections(ref, value);
+        LLVM.LLVMTargetMachineSetDataSections(ref, value ? 1 : 0);
     }
 
     public void setFunctionSections(boolean value) {
-        LLVM.TargetMachineSetFunctionSections(ref, value);
+        LLVM.LLVMTargetMachineSetFunctionSections(ref, value ? 1 : 0);
     }
     
-    public void emit(Module module, File outFile, CodeGenFileType fileType) {
+    public void emit(Module module, File outFile, int fileType) {
         checkDisposed();
         module.checkDisposed();
-        StringOut ErrorMessage = new StringOut();
-        if (LLVM.TargetMachineEmitToFile(ref, module.getRef(), outFile.getAbsolutePath(), fileType, ErrorMessage)) {
+        BytePointer error = new BytePointer();
+        if (LLVM.LLVMTargetMachineEmitToFile(ref, module.getRef(), new BytePointer(outFile.getAbsolutePath()), fileType, error) != 0) {
             // Returns true on failure!
-            throw new LlvmException(ErrorMessage.getValue().trim());
+            throw new LlvmException(error.getString());
         }
     }
 
     public void assemble(byte[] asm, File outFile) {
-        MemoryBufferRef memoryBufferRef = LLVM.CreateMemoryBufferWithMemoryRangeCopy(asm, outFile.getAbsolutePath());
+        LLVMMemoryBufferRef memoryBufferRef = LLVM.LLVMCreateMemoryBufferWithMemoryRangeCopy(new BytePointer(asm), asm.length, new BytePointer(outFile.getAbsolutePath()));
         if (memoryBufferRef == null) {
             throw new LlvmException("Failed to create memory buffer");
         }
-        StringOut errorMessage = new StringOut();
+        BytePointer errorMessage = new BytePointer();
         // LLVMTargetMachineAssembleToOutputStream() takes ownership of the MemoryBuffer so there's no need for us
         // to dispose of it
-        if (LLVM.TargetMachineAssembleToFile(ref, memoryBufferRef, outFile.getAbsolutePath(), false, true, true, false, errorMessage) != 0) {
-            String error = errorMessage.getValue() != null 
-                    ? errorMessage.getValue().trim() 
+        if (LLVM.LLVMTargetMachineAssembleToFile(ref, memoryBufferRef, new BytePointer(outFile.getAbsolutePath()), 0, 1, 1, 0, errorMessage) != 0) {
+            String error = errorMessage.getString() != null 
+                    ? errorMessage.getString().trim() 
                     : "Unknown error";
             throw new LlvmException(error);
         }

@@ -17,26 +17,33 @@
 package org.robovm.llvm;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.LongBuffer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.robovm.llvm.binding.IntOut;
+import org.bytedeco.javacpp.BytePointer;
+import org.bytedeco.javacpp.IntPointer;
+import org.bytedeco.javacpp.LongPointer;
+import org.bytedeco.javacpp.PointerPointer;
 import org.robovm.llvm.binding.LLVM;
-import org.robovm.llvm.binding.LongArray;
-import org.robovm.llvm.binding.LongArrayOut;
-import org.robovm.llvm.binding.MemoryBufferRefOut;
-import org.robovm.llvm.binding.ObjectFileRef;
-import org.robovm.llvm.binding.StringOut;
-import org.robovm.llvm.binding.SymbolIteratorRef;
+import org.robovm.llvm.binding.LLVM.LLVMMemoryBufferRef;
+import org.robovm.llvm.binding.LLVM.LLVMObjectFileRef;
+import org.robovm.llvm.binding.LLVM.LLVMSymbolIteratorRef;
+
 
 /**
  * 
  */
 public class ObjectFile implements AutoCloseable {
     private final File file;
-    private ObjectFileRef ref;
+    private LLVMObjectFileRef ref;
 
-    private ObjectFile(File file, ObjectFileRef objectFileRef) {
+    private ObjectFile(File file, LLVMObjectFileRef objectFileRef) {
         this.file = file;
         this.ref = objectFileRef;
     }
@@ -47,50 +54,55 @@ public class ObjectFile implements AutoCloseable {
         }
     }
     
-    protected ObjectFileRef getRef() {
+    protected LLVMObjectFileRef getRef() {
         checkDisposed();
         return ref;
     }
     
     public List<Symbol> getSymbols() {
         List<Symbol> result = new ArrayList<>();
-        SymbolIteratorRef it = LLVM.GetSymbols(getRef());
-        while (!LLVM.IsSymbolIteratorAtEnd(getRef(), it)) {
-            String name = LLVM.GetSymbolName(it);
-            long address = LLVM.GetSymbolAddress(it);
-            long size = LLVM.GetSymbolSize(it);
+        LLVMSymbolIteratorRef it = LLVM.LLVMGetSymbols(getRef());
+        while (LLVM.LLVMIsSymbolIteratorAtEnd(getRef(), it) == 0) {
+            String name = LLVM.LLVMGetSymbolName(it).getString();
+            long address = LLVM.LLVMGetSymbolAddress(it);
+            long size = LLVM.LLVMGetSymbolSize(it);
             result.add(new Symbol(name, address, size));
-            LLVM.MoveToNextSymbol(it);
+            LLVM.LLVMMoveToNextSymbol(it);
         }
-        LLVM.DisposeSymbolIterator(it);
+        LLVM.LLVMDisposeSymbolIterator(it);
         return result;
     }
     
     public SectionIterator getSectionIterator() {
-        return new SectionIterator(this, LLVM.GetSections(getRef()));
+        return new SectionIterator(this, LLVM.LLVMGetSections(getRef()));
     }
 
     public List<LineInfo> getLineInfos(Symbol symbol) {
         List<LineInfo> result = new ArrayList<>();
-        IntOut sizeOut = new IntOut();
-        LongArrayOut out = new LongArrayOut();
-        LLVM.GetLineInfoForAddressRange(getRef(), symbol.getAddress(), symbol.getSize(), sizeOut, out);
-        int size = sizeOut.getValue();
+        IntPointer sizeOut = new IntPointer(1);        
+        LongPointer longPointer = new LongPointer(1024);
+        
+        LLVM.LLVMGetLineInfoForAddressRange(getRef(), symbol.getAddress(), symbol.getSize(), sizeOut, longPointer);
+                
+        int size = sizeOut.get();
+        
+        
         if (size > 0) {
-            LongArray values = out.getValue();
             for (int i = 0; i < size; i++) {
-                long address = values.get(i * 2);
-                long lineNumber = values.get(i * 2 + 1);
+                long address = longPointer.get(i * 2);
+                long lineNumber = longPointer.get(i * 2 + 1);
                 result.add(new LineInfo(address, (int) lineNumber));
             }
-            values.delete();
         }
-        out.delete();
+        
+        sizeOut.deallocate();
+        longPointer.deallocate();
+        
         return result;
     }
     
     public synchronized void dispose() {
-        LLVM.DisposeObjectFile(getRef());
+        LLVM.LLVMDisposeObjectFile(getRef());
         ref = null;
     }
 
@@ -143,14 +155,13 @@ public class ObjectFile implements AutoCloseable {
     }
 
     public static ObjectFile load(File file) {
-        MemoryBufferRefOut memBufOut = new MemoryBufferRefOut();
-        StringOut errorMsgOut = new StringOut();
-        LLVM.CreateMemoryBufferWithContentsOfFile(file.getAbsolutePath(), memBufOut, errorMsgOut);
-        if (memBufOut.getValue() == null) {
-            throw new LlvmException("Failed to create memory buffer from " + file.getAbsolutePath() 
-                    + (errorMsgOut.getValue() != null ? ":" + errorMsgOut.getValue() : ""));
+    	LLVMMemoryBufferRef memBufOut = new LLVMMemoryBufferRef();
+        BytePointer bp = new BytePointer(new byte[128]);
+        
+        if (LLVM.LLVMCreateMemoryBufferWithContentsOfFile(new BytePointer(file.getAbsolutePath()), memBufOut, bp) != 0) {
+            throw new LlvmException("Failed to create memory buffer from " + file.getAbsolutePath() + ": " + (new String(bp.getStringBytes())).trim());
         }
-        ObjectFileRef ref = LLVM.CreateObjectFile(memBufOut.getValue());
+        LLVMObjectFileRef ref = LLVM.LLVMCreateObjectFile(memBufOut);
         if (ref == null) {
             throw new LlvmException("Failed to create memory buffer from " + file.getAbsolutePath());
         }

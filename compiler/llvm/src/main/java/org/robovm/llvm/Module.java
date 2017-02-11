@@ -18,24 +18,23 @@ package org.robovm.llvm;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bytedeco.javacpp.BytePointer;
 import org.robovm.llvm.binding.LLVM;
-import org.robovm.llvm.binding.MemoryBufferRef;
-import org.robovm.llvm.binding.ModuleRef;
-import org.robovm.llvm.binding.ModuleRefOut;
-import org.robovm.llvm.binding.PIELevel;
-import org.robovm.llvm.binding.StringOut;
-import org.robovm.llvm.binding.ValueRef;
+import org.robovm.llvm.binding.LLVM.LLVMMemoryBufferRef;
+import org.robovm.llvm.binding.LLVM.LLVMModuleRef;
+import org.robovm.llvm.binding.LLVM.LLVMValueRef;
 
 /**
  * 
  */
 public class Module implements AutoCloseable {
-    private ModuleRef ref;
+    private LLVMModuleRef ref;
 
-    private Module(ModuleRef moduleRef) {
+    private Module(LLVMModuleRef moduleRef) {
         this.ref = moduleRef;
     }
     
@@ -45,13 +44,13 @@ public class Module implements AutoCloseable {
         }
     }
 
-    protected ModuleRef getRef() {
+    protected LLVMModuleRef getRef() {
         checkDisposed();
         return ref;
     }
 
     public synchronized void dispose() {
-        LLVM.DisposeModule(getRef());
+        LLVM.LLVMDisposeModule(getRef());
         ref = null;
     }
 
@@ -61,40 +60,36 @@ public class Module implements AutoCloseable {
     }
 
     public Type getTypeByName(String name) {
-        return new Type(LLVM.GetTypeByName(getRef(), name));
+        return new Type(LLVM.LLVMGetTypeByName(getRef(), name));
     }
 
     public Function getFunctionByName(String name) {
-        ValueRef fref = LLVM.GetNamedFunction(getRef(), name);
+    	LLVMValueRef fref = LLVM.LLVMGetNamedFunction(getRef(), name);
         return fref != null ? new Function(fref) : null;
     }
     
     public Function[] getFunctions() {
         List<Function> result = new ArrayList<>();
-        for (ValueRef fref = LLVM.GetFirstFunction(getRef()); fref != null; fref = LLVM.GetNextFunction(fref)) {
-        	if (fref.isNullPtr()) {
-        		break;
-        	}
+        for (LLVMValueRef fref = LLVM.LLVMGetFirstFunction(getRef()); fref != null; fref = LLVM.LLVMGetNextFunction(fref)) {
             result.add(new Function(fref));
         }
         return result.toArray(new Function[result.size()]);
     }
     
     public void writeBitcode(File file) {
-        if (LLVM.WriteBitcodeToFile(getRef(), file.getAbsolutePath()) != 0) {
+        if (LLVM.LLVMWriteBitcodeToFile(getRef(), file.getAbsolutePath()) != 0) {
             throw new LlvmException("Write failed");
         }
     }
     
     public void link(Module other) {
-        StringOut errorMessage = new StringOut();
-        if (LLVM.LinkModules2(getRef(), other.getRef())) {
+        if (LLVM.LLVMLinkModules2(getRef(), other.getRef()) != 0) {
             throw new LlvmException("Error when linking!");
         }
     }
     
-    public void setPIELevel(PIELevel level) {
-    	LLVM.ModuleSetPIELevel(getRef(), level);
+    public void setPIELevel(int level) {
+    	LLVM.LLVMModuleSetPIELevel(getRef(), level);
     }
     
     @Override
@@ -137,26 +132,28 @@ public class Module implements AutoCloseable {
     
     public static Module parseIR(Context context, byte[] data, String filename) {
         filename = filename == null ? "" : filename;
-        MemoryBufferRef memoryBufferRef = LLVM.CreateMemoryBufferWithMemoryRangeCopy(data, filename);
+        LLVMMemoryBufferRef memoryBufferRef = LLVM.LLVMCreateMemoryBufferWithMemoryRangeCopy(new String(data), data.length, filename);
         if (memoryBufferRef == null) {
             throw new LlvmException("Failed to create memory buffer");
         }
-        ModuleRefOut moduleRefOut = new ModuleRefOut();
-        StringOut errorMessage = new StringOut();
+        LLVMModuleRef moduleRefOut = new LLVMModuleRef();
+        BytePointer errorMsg = new BytePointer(new byte[128]);
+        //StringOut errorMessage = new StringOut();
         // LLVMParseIRInContext() takes ownership of the MemoryBuffer so there's no need for us
         // to dispose of it
-        if (!LLVM.ParseIRInContext(context.getRef(), memoryBufferRef, moduleRefOut, errorMessage)) {
-            return new Module(moduleRefOut.getValue());
+        if (LLVM.LLVMParseIRInContext(context.getRef(), memoryBufferRef, moduleRefOut, errorMsg) == 0) {
+            return new Module(moduleRefOut);
         }
-        throw new LlvmException(errorMessage.getValue().trim());
+        throw new LlvmException(errorMsg.getString().trim());
     }
 
+    //TODO!
     public static Module parseClangString(Context context, String buffer, String fileName, String triple) {
-        StringOut errorMessage = new StringOut();
-        ModuleRef ref = LLVM.ClangCompileFile(context.getRef(), buffer, fileName, triple, errorMessage);
+    	BytePointer errorMsg = new BytePointer(new byte[128]);
+    	LLVMModuleRef ref = LLVM.ClangCompileFile(context.getRef(), new BytePointer(buffer), new BytePointer(fileName), new BytePointer(triple), errorMsg);
         if (ref != null) {
             return new Module(ref);
         }
-        throw new LlvmException(errorMessage.getValue().trim());
+        throw new LlvmException(errorMsg.getString().trim());
     }
 }

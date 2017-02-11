@@ -24,6 +24,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.junit.Test;
+import org.robovm.llvm.binding.LLVM;
 
 /**
  * Tests {@link Module}.
@@ -32,6 +33,7 @@ public class ModuleTest {
 
     @Test
     public void testParseIRString() {
+    	
         try (Context context = new Context()) {
             try (Module m = Module.parseIR(context, 
                       "define private i32 @foo() alwaysinline {\n"
@@ -41,6 +43,7 @@ public class ModuleTest {
                     + "  %a = call i32 @foo()\n"
                     + "  ret i32 %a\n"
                     + "}\n", "Foo")) {
+            	            	
                 try (PassManager passManager = new PassManager()) {
                     try (PassManagerBuilder builder = new PassManagerBuilder()) {
                         builder.setSetOptLevel(2);
@@ -48,6 +51,7 @@ public class ModuleTest {
                         builder.useAlwaysInliner(true);
                         builder.populateModulePassManager(passManager);
                     }
+                    m.setPIELevel(LLVM.LLVMPIELevelDefault);
                     passManager.run(m);
                     m.writeBitcode(new File("/tmp/test.bc"));
                 }
@@ -76,4 +80,11 @@ public class ModuleTest {
         }
     }
 
+    
+    public static void main(String[] args) {
+    	System.out.println("Hallouu");
+    	ModuleTest mt = new ModuleTest();
+		mt.testParseIRString();
+		
+	}
 }

@@ -21,28 +21,34 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.robovm.llvm.binding.CodeGenOptLevel;
-import org.robovm.llvm.binding.CodeModel;
+import org.bytedeco.javacpp.BytePointer;
 import org.robovm.llvm.binding.LLVM;
-import org.robovm.llvm.binding.RelocMode;
-import org.robovm.llvm.binding.StringOut;
-import org.robovm.llvm.binding.TargetMachineRef;
-import org.robovm.llvm.binding.TargetRef;
+import org.robovm.llvm.binding.LLVM.LLVMTargetMachineRef;
+import org.robovm.llvm.binding.LLVM.LLVMTargetRef;
 
 /**
  * 
  */
 public class Target {
-    private static final String HOST_TRIPLE = LLVM.getLlvmHostTriple();
+    private static final String HOST_TRIPLE = LLVM.llvmHostTriple().getString();
     
-    protected TargetRef ref;
+    protected LLVMTargetRef ref;
     private String name;
     private String description;
+    
+    static {
+    	LLVM.LLVMStartMultithreaded();
+        LLVM.LLVMInitializeAllTargets();
+        LLVM.LLVMInitializeAllTargetInfos();
+        LLVM.LLVMInitializeAllTargetMCs();
+        LLVM.LLVMInitializeAllAsmPrinters();
+        LLVM.LLVMInitializeAllAsmParsers();
+    }
 
-    Target(TargetRef ref) {
+    Target(LLVMTargetRef ref) {
         this.ref = ref;
-        this.name = LLVM.GetTargetName(ref);
-        this.description = LLVM.GetTargetDescription(ref);
+        this.name = LLVM.LLVMGetTargetName(ref).getString();
+        this.description = LLVM.LLVMGetTargetDescription(ref).getString();
     }
 
     public String getName() {
@@ -54,23 +60,23 @@ public class Target {
     }
     
     public boolean hasJIT() {
-        return LLVM.TargetHasJIT(ref);
+        return LLVM.LLVMTargetHasJIT(ref) != 0;
     }
 
     public boolean hasTargetMachine() {
-        return LLVM.TargetHasTargetMachine(ref);
+        return LLVM.LLVMTargetHasTargetMachine(ref) != 0;
     }
 
     public boolean hasAsmBackend() {
-        return LLVM.TargetHasAsmBackend(ref);
+        return LLVM.LLVMTargetHasAsmBackend(ref) != 0;
     }
 
     public TargetMachine createTargetMachine(String triple) {
-        return createTargetMachine(triple, null, null, null, null, null);
+        return createTargetMachine(triple, null, null, LLVM.LLVMCodeGenLevelDefault, LLVM.LLVMRelocDefault, LLVM.LLVMCodeModelDefault);
     }
     
     public TargetMachine createTargetMachine(String triple, String cpu, String features, 
-            CodeGenOptLevel optLevel, RelocMode relocMode, CodeModel codeModel) {
+    		int optLevel, int relocMode, int codeModel) {
         
         if (triple == null) {
             throw new NullPointerException("triple");
@@ -78,11 +84,8 @@ public class Target {
         
         cpu = cpu == null ? "" : cpu;
         features = features == null ? "" : features;
-        optLevel = optLevel == null ? CodeGenOptLevel.CodeGenLevelDefault : optLevel;
-        relocMode = relocMode == null ? RelocMode.RelocDefault : relocMode;
-        codeModel = codeModel == null ? CodeModel.CodeModelDefault : codeModel;
         
-        TargetMachineRef machineRef = LLVM.CreateTargetMachine(ref, triple, cpu, features, optLevel, relocMode, codeModel);
+        LLVMTargetMachineRef machineRef = LLVM.LLVMCreateTargetMachine(ref, triple, cpu, features, optLevel, relocMode, codeModel);
         if (machineRef == null) {
             throw new LlvmException("Failed to create TargetMachine for triple '" + triple + "'");
         }
@@ -131,12 +134,12 @@ public class Target {
         if (name == null) {
             throw new NullPointerException("name");
         }
-        TargetRef ref = LLVM.GetFirstTarget();
+        LLVMTargetRef ref = LLVM.LLVMGetFirstTarget();
         while (ref != null) {
-            if (name.equals(LLVM.GetTargetName(ref))) {
+            if (name.equals(LLVM.LLVMGetTargetName(ref).getString())) {
                 return new Target(ref);
             }
-            ref = LLVM.GetNextTarget(ref);
+            ref = LLVM.LLVMGetNextTarget(ref);
         }
         throw new LlvmException("No target with name '" + name + "' found");
     }
@@ -145,20 +148,20 @@ public class Target {
         if (triple == null) {
             throw new NullPointerException("triple");
         }
-        StringOut ErrorMessage = new StringOut();
-        TargetRef ref = LLVM.LookupTarget(triple, ErrorMessage);
+        BytePointer error = new BytePointer();
+        LLVMTargetRef ref = LLVM.LLVMLookupTarget(triple, error);
         if (ref == null) {
-            throw new LlvmException(ErrorMessage.getValue().trim());
+            throw new LlvmException(error.getString());
         }
         return new Target(ref);
     }
     
     public static List<Target> getTargets() {
         List<Target> result = new ArrayList<Target>();
-        TargetRef ref = LLVM.GetFirstTarget();
+        LLVMTargetRef ref = LLVM.LLVMGetFirstTarget();
         while (ref != null) {
             result.add(new Target(ref));
-            ref = LLVM.GetNextTarget(ref);
+            ref = LLVM.LLVMGetNextTarget(ref);
         }
         return result;
     }

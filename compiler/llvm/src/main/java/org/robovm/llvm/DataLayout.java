@@ -17,15 +17,15 @@
 package org.robovm.llvm;
 
 import org.robovm.llvm.binding.LLVM;
-import org.robovm.llvm.binding.TargetDataRef;
+import org.robovm.llvm.binding.LLVM.LLVMTargetDataRef;
 
 /**
  * 
  */
 public class DataLayout implements AutoCloseable {
-    protected TargetDataRef ref;
+    protected LLVMTargetDataRef ref;
 
-    DataLayout(TargetDataRef ref) {
+    DataLayout(LLVMTargetDataRef ref) {
         this.ref = ref;
     }
     
@@ -37,7 +37,7 @@ public class DataLayout implements AutoCloseable {
     
     public synchronized void dispose() {
         checkDisposed();
-        LLVM.DisposeTargetData(ref);
+        LLVM.LLVMDisposeTargetData(ref);
         ref = null;
     }
 
@@ -48,17 +48,17 @@ public class DataLayout implements AutoCloseable {
 
     public long getTypeAllocSize(Type type) {
         checkDisposed();
-        return LLVM.ABISizeOfType(ref, type.ref).longValue();
+        return LLVM.LLVMABISizeOfType(ref, type.ref);
     }
 
     public int getABITypeAlignment(Type type) {
         checkDisposed();
-        return LLVM.ABIAlignmentOfType(ref, type.ref);
+        return LLVM.LLVMABIAlignmentOfType(ref, type.ref);
     }
 
     public long getTypeStoreSize(Type type) {
         checkDisposed();
-        return LLVM.StoreSizeOfType(ref, type.ref).longValue();
+        return LLVM.LLVMStoreSizeOfType(ref, type.ref);
     }
 
     @Override

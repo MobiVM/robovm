@@ -28,7 +28,7 @@ public class DataLayoutTest {
 
     @Test
     public void testGetAllocSize() {
-        assertEquals(8, new DataLayout("i386-unknown-linux").getAllocSize(new StructureType(I32, I16, I8)));
+        assertEquals(4, new DataLayout("i386-unknown-linux").getAllocSize(new StructureType(I32, I16, I8)));
         assertEquals(4, new DataLayout("i386-unknown-linux").getAllocSize(I8_PTR));
         assertEquals(8, new DataLayout("x86_64-unknown-linux").getAllocSize(I8_PTR));
     }
@@ -37,7 +37,7 @@ public class DataLayoutTest {
     public void testGetStoreSize() {
         assertEquals(4, new DataLayout("i386-unknown-linux").getStoreSize(I8_PTR));
         assertEquals(8, new DataLayout("x86_64-unknown-linux").getStoreSize(I8_PTR));
-        assertEquals(8, new DataLayout("i386-unknown-linux").getStoreSize(new StructureType(I32, I16, I8)));
+        assertEquals(4, new DataLayout("i386-unknown-linux").getStoreSize(new StructureType(I32, I16, I8)));
     }
 
     @Test
