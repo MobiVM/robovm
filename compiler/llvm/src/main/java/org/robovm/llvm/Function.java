@@ -19,53 +19,81 @@ package org.robovm.llvm;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.robovm.llvm.binding.Attribute;
 import org.robovm.llvm.binding.LLVM;
-import org.robovm.llvm.binding.Linkage;
-import org.robovm.llvm.binding.ValueRef;
+import org.robovm.llvm.binding.LLVM.LLVMValueRef;
+
 
 /**
  * 
  */
 public class Function {
-    private ValueRef ref;
+    private LLVMValueRef ref;
+    
+    public static int[] FUNCTION_ATTRIBUTES = {
+    		LLVM.LLVMZExtAttribute,
+    		LLVM.LLVMSExtAttribute,
+    		LLVM.LLVMNoReturnAttribute,
+    		LLVM.LLVMInRegAttribute,
+    		LLVM.LLVMStructRetAttribute,
+    		LLVM.LLVMNoUnwindAttribute,
+    		LLVM.LLVMNoAliasAttribute,
+    		LLVM.LLVMByValAttribute,
+    		LLVM.LLVMNestAttribute,
+    		LLVM.LLVMReadNoneAttribute,
+    		LLVM.LLVMReadOnlyAttribute,
+    		LLVM.LLVMNoInlineAttribute,
+    		LLVM.LLVMAlwaysInlineAttribute,
+    		LLVM.LLVMOptimizeForSizeAttribute,
+    		LLVM.LLVMStackProtectAttribute,
+    		LLVM.LLVMStackProtectReqAttribute,
+    		LLVM.LLVMAlignment,
+    		LLVM.LLVMNoCaptureAttribute,
+    		LLVM.LLVMNoRedZoneAttribute,
+    		LLVM.LLVMNoImplicitFloatAttribute,
+    		LLVM.LLVMNakedAttribute,
+    		LLVM.LLVMInlineHintAttribute,
+    		LLVM.LLVMStackAlignment,
+    		LLVM.LLVMReturnsTwice,
+    		LLVM.LLVMUWTable,
+    		LLVM.LLVMNonLazyBind
+    };
 
-    Function(ValueRef ref) {
+    Function(LLVMValueRef ref) {
         this.ref = ref;
     }
 
-    protected ValueRef getRef() {
+    protected LLVMValueRef getRef() {
         return ref;
     }
     
     public String getName() {
-        return LLVM.GetValueName(getRef());
+        return LLVM.LLVMGetValueName(getRef()).getString();
     }
     
-    public Linkage getLinkage() {
-        return LLVM.GetLinkage(getRef());
+    public int getLinkage() {
+        return LLVM.LLVMGetLinkage(getRef());
     }
 
-    public void setLinkage(Linkage linkage) {
-        LLVM.SetLinkage(getRef(), linkage);
+    public void setLinkage(int linkage) {
+        LLVM.LLVMSetLinkage(getRef(), linkage);
     }
     
-    public Attribute[] getAttributes() {
-        int mask = LLVM.GetFunctionAttr(getRef());
-        List<Attribute> result = new ArrayList<>();
-        for (Attribute a : Attribute.values()) {
-            if ((a.swigValue() & mask) != 0) {
+    public Integer[] getAttributes() {
+        int mask = LLVM.LLVMGetFunctionAttr(getRef());
+        List<Integer> result = new ArrayList<>();
+        for (int a : FUNCTION_ATTRIBUTES) {
+            if ((a & mask) != 0) {
                 result.add(a);
             }
         }
-        return result.toArray(new Attribute[result.size()]);
+        return result.toArray(new Integer[result.size()]);
     }
     
-    public void addAttribute(Attribute attribute) {
-        LLVM.AddFunctionAttr(getRef(), attribute.swigValue());
+    public void addAttribute(int attribute) {
+        LLVM.LLVMAddFunctionAttr(getRef(), attribute);
     }
 
-    public void removeAttribute(Attribute attribute) {
-        LLVM.RemoveFunctionAttr(getRef(), attribute.swigValue());
+    public void removeAttribute(int attribute) {
+        LLVM.LLVMRemoveFunctionAttr(getRef(), attribute);
     }
 }

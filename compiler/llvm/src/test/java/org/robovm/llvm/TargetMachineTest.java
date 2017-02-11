@@ -25,7 +25,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.Test;
-import org.robovm.llvm.binding.CodeGenFileType;
+import org.robovm.llvm.binding.LLVM;
 
 /**
  * Tests {@link TargetMachine}.
@@ -38,7 +38,7 @@ public class TargetMachineTest {
             try (TargetMachine tm = Target.getTarget("thumb").createTargetMachine("thumbv7-unknown-ios")) {
                 Module module = Module.parseIR(context, "define external i32 @foo() {\n ret i32 5\n }\n", "foo.c");                
                 File tempFile = File.createTempFile("test", ".asm");
-                tm.emit(module, tempFile, CodeGenFileType.AssemblyFile);
+                tm.emit(module, tempFile, LLVM.LLVMAssemblyFile);
                 Path path = Paths.get(tempFile.getAbsolutePath());
                 byte[] data = Files.readAllBytes(path);
                 String asm = new String(data, "utf-8");
@@ -53,7 +53,7 @@ public class TargetMachineTest {
             try (TargetMachine tm = Target.getTarget("thumb").createTargetMachine("thumbv7-unknown-ios")) {
                 Module module = Module.parseIR(context, "define private i32 @foo() {\n ret i32 5\n }\n", "foo.c");
                 File tempFile = File.createTempFile("test", ".asm");
-                tm.emit(module, tempFile, CodeGenFileType.AssemblyFile);
+                tm.emit(module, tempFile, LLVM.LLVMAssemblyFile);
                 Path path = Paths.get(tempFile.getAbsolutePath());
                 byte[] data = Files.readAllBytes(path);
                 String asm = new String(data, "utf-8");                

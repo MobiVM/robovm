@@ -17,16 +17,16 @@
 package org.robovm.llvm;
 
 import org.robovm.llvm.binding.LLVM;
-import org.robovm.llvm.binding.PassManagerRef;
+import org.robovm.llvm.binding.LLVM.LLVMPassManagerRef;
 
 /**
  * 
  */
 public class PassManager implements AutoCloseable {
-    protected PassManagerRef ref;
+    protected LLVMPassManagerRef ref;
 
     public PassManager() {
-        ref = LLVM.CreatePassManager();
+        ref = LLVM.LLVMCreatePassManager();
         if (ref == null) {
             throw new LlvmException("Failed to create PassManager");
         }
@@ -40,7 +40,7 @@ public class PassManager implements AutoCloseable {
 
     public synchronized void dispose() {
         checkDisposed();
-        LLVM.DisposePassManager(ref);
+        LLVM.LLVMDisposePassManager(ref);
         ref = null;
     }
 
@@ -51,196 +51,196 @@ public class PassManager implements AutoCloseable {
 
     public void addAggressiveDCEPass() {
         checkDisposed();
-        LLVM.AddAggressiveDCEPass(ref);
+        LLVM.LLVMAddAggressiveDCEPass(ref);
     }
     public void addAlwaysInlinerPass() {
         checkDisposed();
-        LLVM.AddAlwaysInlinerPass(ref);
+        LLVM.LLVMAddAlwaysInlinerPass(ref);
     }
     public void addArgumentPromotionPass() {
         checkDisposed();
-        LLVM.AddArgumentPromotionPass(ref);
+        LLVM.LLVMAddArgumentPromotionPass(ref);
     }
     public void addBasicAliasAnalysisPass() {
         checkDisposed();
-        LLVM.AddBasicAliasAnalysisPass(ref);
+        LLVM.LLVMAddBasicAliasAnalysisPass(ref);
     }
     public void addBBVectorizePass() {
         checkDisposed();
-        LLVM.AddBBVectorizePass(ref);
+        LLVM.LLVMAddBBVectorizePass(ref);
     }
     public void addCFGSimplificationPass() {
         checkDisposed();
-        LLVM.AddCFGSimplificationPass(ref);
+        LLVM.LLVMAddCFGSimplificationPass(ref);
     }
     public void addConstantMergePass() {
         checkDisposed();
-        LLVM.AddConstantMergePass(ref);
+        LLVM.LLVMAddConstantMergePass(ref);
     }
     public void addConstantPropagationPass() {
         checkDisposed();
-        LLVM.AddConstantPropagationPass(ref);
+        LLVM.LLVMAddConstantPropagationPass(ref);
     }
     public void addCorrelatedValuePropagationPass() {
         checkDisposed();
-        LLVM.AddCorrelatedValuePropagationPass(ref);
+        LLVM.LLVMAddCorrelatedValuePropagationPass(ref);
     }
     public void addDeadArgEliminationPass() {
         checkDisposed();
-        LLVM.AddDeadArgEliminationPass(ref);
+        LLVM.LLVMAddDeadArgEliminationPass(ref);
     }
     public void addDeadStoreEliminationPass() {
         checkDisposed();
-        LLVM.AddDeadStoreEliminationPass(ref);
+        LLVM.LLVMAddDeadStoreEliminationPass(ref);
     }
     public void addDemoteMemoryToRegisterPass() {
         checkDisposed();
-        LLVM.AddDemoteMemoryToRegisterPass(ref);
+        LLVM.LLVMAddDemoteMemoryToRegisterPass(ref);
     }
     public void addEarlyCSEPass() {
         checkDisposed();
-        LLVM.AddEarlyCSEPass(ref);
+        LLVM.LLVMAddEarlyCSEPass(ref);
     }
     public void addFunctionAttrsPass() {
         checkDisposed();
-        LLVM.AddFunctionAttrsPass(ref);
+        LLVM.LLVMAddFunctionAttrsPass(ref);
     }
     public void addFunctionInliningPass() {
         checkDisposed();
-        LLVM.AddFunctionInliningPass(ref);
+        LLVM.LLVMAddFunctionInliningPass(ref);
     }
     public void addGlobalDCEPass() {
         checkDisposed();
-        LLVM.AddGlobalDCEPass(ref);
+        LLVM.LLVMAddGlobalDCEPass(ref);
     }
     public void addGlobalOptimizerPass() {
         checkDisposed();
-        LLVM.AddGlobalOptimizerPass(ref);
+        LLVM.LLVMAddGlobalOptimizerPass(ref);
     }
     public void addGVNPass() {
         checkDisposed();
-        LLVM.AddGVNPass(ref);
+        LLVM.LLVMAddGVNPass(ref);
     }
     public void addIndVarSimplifyPass() {
         checkDisposed();
-        LLVM.AddIndVarSimplifyPass(ref);
+        LLVM.LLVMAddIndVarSimplifyPass(ref);
     }
     public void addInstructionCombiningPass() {
         checkDisposed();
-        LLVM.AddInstructionCombiningPass(ref);
+        LLVM.LLVMAddInstructionCombiningPass(ref);
     }
     public void addInternalizePass(boolean allButMain) {
         checkDisposed();
-        LLVM.AddInternalizePass(ref, allButMain ? 1 : 0);
+        LLVM.LLVMAddInternalizePass(ref, allButMain ? 1 : 0);
     }
     public void addIPConstantPropagationPass() {
         checkDisposed();
-        LLVM.AddIPConstantPropagationPass(ref);
+        LLVM.LLVMAddIPConstantPropagationPass(ref);
     }
     public void addIPSCCPPass() {
         checkDisposed();
-        LLVM.AddIPSCCPPass(ref);
+        LLVM.LLVMAddIPSCCPPass(ref);
     }
     public void addJumpThreadingPass() {
         checkDisposed();
-        LLVM.AddJumpThreadingPass(ref);
+        LLVM.LLVMAddJumpThreadingPass(ref);
     }
     public void addLICMPass() {
         checkDisposed();
-        LLVM.AddLICMPass(ref);
+        LLVM.LLVMAddLICMPass(ref);
     }
     public void addLoopDeletionPass() {
         checkDisposed();
-        LLVM.AddLoopDeletionPass(ref);
+        LLVM.LLVMAddLoopDeletionPass(ref);
     }
     public void addLoopIdiomPass() {
         checkDisposed();
-        LLVM.AddLoopIdiomPass(ref);
+        LLVM.LLVMAddLoopIdiomPass(ref);
     }
     public void addLoopRotatePass() {
         checkDisposed();
-        LLVM.AddLoopRotatePass(ref);
+        LLVM.LLVMAddLoopRotatePass(ref);
     }
     public void addLoopUnrollPass() {
         checkDisposed();
-        LLVM.AddLoopUnrollPass(ref);
+        LLVM.LLVMAddLoopUnrollPass(ref);
     }
     public void addLoopUnswitchPass() {
         checkDisposed();
-        LLVM.AddLoopUnswitchPass(ref);
+        LLVM.LLVMAddLoopUnswitchPass(ref);
     }
     public void addLoopVectorizePass() {
         checkDisposed();
-        LLVM.AddLoopVectorizePass(ref);
+        LLVM.LLVMAddLoopVectorizePass(ref);
     }
     public void addLowerExpectIntrinsicPass() {
         checkDisposed();
-        LLVM.AddLowerExpectIntrinsicPass(ref);
+        LLVM.LLVMAddLowerExpectIntrinsicPass(ref);
     }
     public void addMemCpyOptPass() {
         checkDisposed();
-        LLVM.AddMemCpyOptPass(ref);
+        LLVM.LLVMAddMemCpyOptPass(ref);
     }
     public void addPromoteMemoryToRegisterPass() {
         checkDisposed();
-        LLVM.AddPromoteMemoryToRegisterPass(ref);
+        LLVM.LLVMAddPromoteMemoryToRegisterPass(ref);
     }
     public void addPruneEHPass() {
         checkDisposed();
-        LLVM.AddPruneEHPass(ref);
+        LLVM.LLVMAddPruneEHPass(ref);
     }
     public void addReassociatePass() {
         checkDisposed();
-        LLVM.AddReassociatePass(ref);
+        LLVM.LLVMAddReassociatePass(ref);
     }
     public void addScalarReplAggregatesPass() {
         checkDisposed();
-        LLVM.AddScalarReplAggregatesPass(ref);
+        LLVM.LLVMAddScalarReplAggregatesPass(ref);
     }
     public void addScalarReplAggregatesPassSSA() {
         checkDisposed();
-        LLVM.AddScalarReplAggregatesPassSSA(ref);
+        LLVM.LLVMAddScalarReplAggregatesPassSSA(ref);
     }
     public void addScalarReplAggregatesPassWithThreshold(int threshold) {
         checkDisposed();
-        LLVM.AddScalarReplAggregatesPassWithThreshold(ref, threshold);
+        LLVM.LLVMAddScalarReplAggregatesPassWithThreshold(ref, threshold);
     }
     public void addSCCPPass() {
         checkDisposed();
-        LLVM.AddSCCPPass(ref);
+        LLVM.LLVMAddSCCPPass(ref);
     }
     public void addSimplifyLibCallsPass() {
         checkDisposed();
-        LLVM.AddSimplifyLibCallsPass(ref);
+        LLVM.LLVMAddSimplifyLibCallsPass(ref);
     }
     public void addSLPVectorizePass() {
         checkDisposed();
-        LLVM.AddSLPVectorizePass(ref);
+        LLVM.LLVMAddSLPVectorizePass(ref);
     }
     public void addStripDeadPrototypesPass() {
         checkDisposed();
-        LLVM.AddStripDeadPrototypesPass(ref);
+        LLVM.LLVMAddStripDeadPrototypesPass(ref);
     }
     public void addStripSymbolsPass() {
         checkDisposed();
-        LLVM.AddStripSymbolsPass(ref);
+        LLVM.LLVMAddStripSymbolsPass(ref);
     }
     public void addTailCallEliminationPass() {
         checkDisposed();
-        LLVM.AddTailCallEliminationPass(ref);
+        LLVM.LLVMAddTailCallEliminationPass(ref);
     }
     public void addTypeBasedAliasAnalysisPass() {
         checkDisposed();
-        LLVM.AddTypeBasedAliasAnalysisPass(ref);
+        LLVM.LLVMAddTypeBasedAliasAnalysisPass(ref);
     }
     public void addVerifierPass() {
         checkDisposed();
-        LLVM.AddVerifierPass(ref);
+        LLVM.LLVMAddVerifierPass(ref);
     }
     
     public void run(Module module) {
         checkDisposed();
-        LLVM.RunPassManager(ref, module.getRef());
+        LLVM.LLVMRunPassManager(ref, module.getRef());
     }
 
     @Override

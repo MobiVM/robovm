@@ -16,123 +16,121 @@
  */
 package org.robovm.llvm;
 
-import org.robovm.llvm.binding.FPOpFusionMode;
-import org.robovm.llvm.binding.FloatABIType;
 import org.robovm.llvm.binding.LLVM;
-import org.robovm.llvm.binding.TargetOptionsRef;
+import org.robovm.llvm.binding.LLVM.LLVMTargetOptionsRef;
 
 /**
  * 
  */
 public class TargetOptions {
-    protected TargetOptionsRef ref;
+    protected LLVMTargetOptionsRef ref;
 
-    TargetOptions(TargetOptionsRef ref) {
+    TargetOptions(LLVMTargetOptionsRef ref) {
         this.ref = ref;
     }
 
     public boolean getPrintMachineCode() {
-        return LLVM.TargetOptionsGetPrintMachineCode(ref);
+        return LLVM.LLVMTargetOptionsGetPrintMachineCode(ref) != 0;
     }
 
     public void setPrintMachineCode(boolean value) {
-        LLVM.TargetOptionsSetPrintMachineCode(ref, value);
+        LLVM.LLVMTargetOptionsSetPrintMachineCode(ref, value ? 1 : 0);
     }
 
     public boolean getLessPreciseFPMADOption() {
-        return LLVM.TargetOptionsGetLessPreciseFPMADOption(ref);
+        return LLVM.LLVMTargetOptionsGetLessPreciseFPMADOption(ref) != 0;
     }
 
     public void setLessPreciseFPMADOption(boolean value) {
-        LLVM.TargetOptionsSetLessPreciseFPMADOption(ref, value);
+        LLVM.LLVMTargetOptionsSetLessPreciseFPMADOption(ref, value ? 1 : 0);
     }
 
     public boolean getUnsafeFPMath() {
-        return LLVM.TargetOptionsGetUnsafeFPMath(ref);
+        return LLVM.LLVMTargetOptionsGetUnsafeFPMath(ref) != 0;
     }
 
     public void setUnsafeFPMath(boolean value) {
-        LLVM.TargetOptionsSetUnsafeFPMath(ref, value);
+        LLVM.LLVMTargetOptionsSetUnsafeFPMath(ref, value ? 1 : 0);
     }
 
     public boolean getNoInfsFPMath() {
-        return LLVM.TargetOptionsGetNoInfsFPMath(ref);
+        return LLVM.LLVMTargetOptionsGetNoInfsFPMath(ref) != 0;
     }
 
     public void setNoInfsFPMath(boolean value) {
-        LLVM.TargetOptionsSetNoInfsFPMath(ref, value);
+        LLVM.LLVMTargetOptionsSetNoInfsFPMath(ref, value ? 1 : 0);
     }
 
     public boolean getNoNaNsFPMath() {
-        return LLVM.TargetOptionsGetNoNaNsFPMath(ref);
+        return LLVM.LLVMTargetOptionsGetNoNaNsFPMath(ref) != 0;
     }
 
     public void setNoNaNsFPMath(boolean value) {
-        LLVM.TargetOptionsSetNoNaNsFPMath(ref, value);
+        LLVM.LLVMTargetOptionsSetNoNaNsFPMath(ref, value ? 1 : 0);
     }
 
     public boolean getHonorSignDependentRoundingFPMathOption() {
-        return LLVM.TargetOptionsGetHonorSignDependentRoundingFPMathOption(ref);
+        return LLVM.LLVMTargetOptionsGetHonorSignDependentRoundingFPMathOption(ref) != 0;
     }
 
     public void setHonorSignDependentRoundingFPMathOption(boolean value) {
-        LLVM.TargetOptionsSetHonorSignDependentRoundingFPMathOption(ref, value);
+        LLVM.LLVMTargetOptionsSetHonorSignDependentRoundingFPMathOption(ref, value ? 1 : 0);
     }
 
     public boolean getNoZerosInBSS() {
-        return LLVM.TargetOptionsGetNoZerosInBSS(ref);
+        return LLVM.LLVMTargetOptionsGetNoZerosInBSS(ref) != 0;
     }
 
     public void setNoZerosInBSS(boolean value) {
-        LLVM.TargetOptionsSetNoZerosInBSS(ref, value);
+        LLVM.LLVMTargetOptionsSetNoZerosInBSS(ref, value ? 1 : 0);
     }
 
     public boolean getGuaranteedTailCallOpt() {
-        return LLVM.TargetOptionsGetGuaranteedTailCallOpt(ref);
+        return LLVM.LLVMTargetOptionsGetGuaranteedTailCallOpt(ref) != 0;
     }
 
     public void setGuaranteedTailCallOpt(boolean value) {
-        LLVM.TargetOptionsSetGuaranteedTailCallOpt(ref, value);
+        LLVM.LLVMTargetOptionsSetGuaranteedTailCallOpt(ref, value ? 1 : 0);
     }
 
     public int getStackAlignmentOverride() {
-        return LLVM.TargetOptionsGetStackAlignmentOverride(ref);
+        return LLVM.LLVMTargetOptionsGetStackAlignmentOverride(ref);
     }
 
     public void setStackAlignmentOverride(int value) {
-        LLVM.TargetOptionsSetStackAlignmentOverride(ref, value);
+        LLVM.LLVMTargetOptionsSetStackAlignmentOverride(ref, value);
     }
 
     public boolean getEnableFastISel() {
-        return LLVM.TargetOptionsGetEnableFastISel(ref);
+        return LLVM.LLVMTargetOptionsGetEnableFastISel(ref) != 0;
     }
 
     public void setEnableFastISel(boolean value) {
-        LLVM.TargetOptionsSetEnableFastISel(ref, value);
+        LLVM.LLVMTargetOptionsSetEnableFastISel(ref, value ? 1 : 0);
     }
 
     public boolean getUseInitArray() {
-        return LLVM.TargetOptionsGetUseInitArray(ref);
+        return LLVM.LLVMTargetOptionsGetUseInitArray(ref) != 0;
     }
 
     public void setUseInitArray(boolean value) {
-        LLVM.TargetOptionsSetUseInitArray(ref, value);
+        LLVM.LLVMTargetOptionsSetUseInitArray(ref, value ? 1 : 0);
     }
 
-    public FloatABIType getFloatABIType() {
-        return LLVM.TargetOptionsGetFloatABIType(ref);
+    public int getFloatABIType() {
+        return LLVM.LLVMTargetOptionsGetFloatABIType(ref);
     }
 
-    public void setFloatABIType(FloatABIType value) {
-        LLVM.TargetOptionsSetFloatABIType(ref, value);
+    public void setFloatABIType(int value) {
+        LLVM.LLVMTargetOptionsSetFloatABIType(ref, value);
     }
 
-    public FPOpFusionMode getAllowFPOpFusion() {
-        return LLVM.TargetOptionsGetAllowFPOpFusion(ref);
+    public int getAllowFPOpFusion() {
+        return LLVM.LLVMTargetOptionsGetAllowFPOpFusion(ref);
     }
 
-    public void setAllowFPOpFusion(FPOpFusionMode value) {
-        LLVM.TargetOptionsSetAllowFPOpFusion(ref, value);
+    public void setAllowFPOpFusion(int value) {
+        LLVM.LLVMTargetOptionsSetAllowFPOpFusion(ref, value);
     }
 
     @Override

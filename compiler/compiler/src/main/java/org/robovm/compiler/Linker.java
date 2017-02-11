@@ -84,9 +84,8 @@ import org.robovm.llvm.Module;
 import org.robovm.llvm.PassManager;
 import org.robovm.llvm.Target;
 import org.robovm.llvm.TargetMachine;
-import org.robovm.llvm.binding.CodeGenFileType;
-import org.robovm.llvm.binding.PIELevel;
-import org.robovm.llvm.binding.RelocMode;
+import org.robovm.llvm.binding.LLVM;
+
 
 /**
  *
@@ -501,23 +500,18 @@ public class Linker {
                 String triple = config.getTriple();
                 Target target = Target.lookupTarget(triple);
                 try (TargetMachine targetMachine = target.createTargetMachine(
-                        triple, null, null, null, RelocMode.RelocPIC, null)) {
+                        triple, null, null, LLVM.LLVMCodeGenLevelDefault, LLVM.LLVMRelocPIC, LLVM.LLVMCodeModelDefault)) {
                     targetMachine.setAsmVerbosityDefault(true);
                     targetMachine.setFunctionSections(true);
                     targetMachine.setDataSections(true);
                     
-                    if (!config.isDebug()) {
-                    	module.setPIELevel(PIELevel.PIELevelSmall);
-                    }
-                    else {
-                    	module.setPIELevel(PIELevel.PIELevelDefault);
-                    }
-                    
+                    module.setPIELevel(LLVM.LLVMPIELevelSmall);
+                                        
                     if (config.isDumpIntermediates()) {
                         File linkerS = new File(config.getTmpDir(), "linker" + num + ".s");
-                        targetMachine.emit(module, linkerS, CodeGenFileType.AssemblyFile);
+                        targetMachine.emit(module, linkerS, LLVM.LLVMAssemblyFile);
                     }
-                    targetMachine.emit(module, linkerO, CodeGenFileType.ObjectFile);
+                    targetMachine.emit(module, linkerO, LLVM.LLVMObjectFile);
                 }
             }
         }

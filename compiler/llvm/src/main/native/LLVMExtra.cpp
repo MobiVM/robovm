@@ -40,11 +40,10 @@
 #ifdef __APPLE__
 #include <xlocale.h>
 #endif
- #include <iostream>
-
-#include <jni.h>
+#include <iostream>
 
 #include "LLVMExtra.h"
+
 
 using namespace llvm;
 using namespace llvm::object;
@@ -60,99 +59,6 @@ inline OwningBinary<ObjectFile> *unwrap(LLVMObjectFileRef OF) {
 
 const char *llvmHostTriple = LLVM_HOST_TRIPLE;
 
-class raw_java_ostream : public raw_pwrite_stream {
-  JNIEnv *m_env;
-  jobject m_target;
-  uint64_t m_pos;
-
-  virtual void write_impl(const char *Ptr, size_t Size) {
-    JNIEnv *env = this->m_env;
-    if (env->ExceptionCheck()) return;
-
-    // The method id will not change during the time this library is
-    // loaded, so it can be cached.
-    static jmethodID mid = 0;
-    if (mid == 0) {
-      jclass clazz = env->FindClass("java/io/OutputStream");
-      if (env->ExceptionCheck())
-        return;
-
-      mid = env->GetMethodID(clazz, "write", "([B)V");
-      if (env->ExceptionCheck() || mid == 0)
-        return;
-
-      env->DeleteLocalRef(clazz);
-    }
-
-    // convert the data to a Java byte array
-    jbyteArray data = env->NewByteArray((jsize) Size);
-    if (env->ExceptionCheck())
-      return;
-
-    env->SetByteArrayRegion(data, 0, (jsize) Size, (const jbyte *) Ptr);
-    if (env->ExceptionCheck())
-      return;
-
-    // write the data
-    env->CallObjectMethod(this->m_target, mid, data);
-    if (env->ExceptionCheck())
-      return;
-
-    env->DeleteLocalRef(data);
-
-    m_pos += Size;
-  }
-
-  virtual void pwrite_impl(const char *Ptr, size_t Size, uint64_t Offset) {
-    JNIEnv *env = this->m_env;
-    if (env->ExceptionCheck()) return;
-
-    // The method id will not change during the time this library is
-    // loaded, so it can be cached.
-    static jmethodID mid = 0;
-    if (mid == 0) {
-      jclass clazz = env->FindClass("java/io/OutputStream");
-      if (env->ExceptionCheck())
-        return;
-
-      mid = env->GetMethodID(clazz, "write", "([BII)V");
-      if (env->ExceptionCheck() || mid == 0)
-        return;
-
-      env->DeleteLocalRef(clazz);
-    }
-
-    // convert the data to a Java byte array
-    jbyteArray data = env->NewByteArray((jsize) Size);
-    if (env->ExceptionCheck())
-      return;
-
-    env->SetByteArrayRegion(data, 0, (jsize) Size, (const jbyte *) Ptr);
-    if (env->ExceptionCheck())
-      return;
-
-    // write the data
-    env->CallObjectMethod(this->m_target, mid, data, (jint) Offset, (jsize)(Size)-(jsize)Offset);
-    if (env->ExceptionCheck())
-      return;
-
-    env->DeleteLocalRef(data);
-
-    m_pos += Size;
-  }
-  virtual uint64_t current_pos() const { return m_pos; }
-public:
-  explicit raw_java_ostream(JNIEnv *env, jobject target) : m_env(env), m_target(target), m_pos(0) {}
-  ~raw_java_ostream() {}
-};
-
-void *AllocOutputStreamWrapper(JNIEnv *env, jobject jOutputStream) {
-  return new raw_java_ostream(env, jOutputStream);
-}
-void FreeOutputStreamWrapper(void *p) {
-  delete (raw_java_ostream*) p;
-}
-
 void LLVMPassManagerBuilderSetDisableTailCalls(LLVMPassManagerBuilderRef PMB,
                                             LLVMBool Value) {
   PassManagerBuilder *Builder = unwrap(PMB);
@@ -164,8 +70,7 @@ void LLVMPassManagerBuilderUseAlwaysInliner(LLVMPassManagerBuilderRef PMB, LLVMB
   Builder->Inliner = createAlwaysInlinerPass(InsertLifetime);
 }
 
-LLVMBool LLVMParseIR(LLVMMemoryBufferRef MemBuf,
-                          LLVMModuleRef *OutModule, char **OutMessage) {
+LLVMBool LLVMParseIR(LLVMMemoryBufferRef MemBuf, LLVMModuleRef *OutModule, char **OutMessage) {
   return LLVMParseIRInContext(LLVMGetGlobalContext(), MemBuf, OutModule, OutMessage);
 }
 
@@ -238,7 +143,7 @@ void LLVMTargetOptionsSetStackAlignmentOverride(LLVMTargetOptionsRef O, unsigned
 LLVMBool LLVMTargetOptionsGetEnableFastISel(LLVMTargetOptionsRef O) { return (LLVMBool) unwrap(O)->EnableFastISel; }
 void LLVMTargetOptionsSetEnableFastISel(LLVMTargetOptionsRef O, LLVMBool V) { unwrap(O)->EnableFastISel = V; }
 
-void LLVMModuleSetPIELevel(LLVMModuleRef M, LLVMPIELevel V) { unwrap(M)->setPIELevel((PIELevel::Level)V);}
+void LLVMModuleSetPIELevel(LLVMModuleRef M, LLVMPIELevel V) { unwrap(M)->setPIELevel((PIELevel::Level)V); }
 LLVMPIELevel LLVMModuleGetPIELevel(LLVMModuleRef M) { return (LLVMPIELevel)unwrap(M)->getPIELevel();}
 
 LLVMBool LLVMTargetOptionsGetUseInitArray(LLVMTargetOptionsRef O) { return (LLVMBool) unwrap(O)->UseInitArray; }
@@ -331,6 +236,7 @@ done:
 #endif
   return *ErrorMessage ? 1 : 0;
 }
+
 
 /*static LLVMBool LLVMTargetMachineEmit(LLVMTargetMachineRef T, LLVMModuleRef M,
   raw_pwrite_stream &OS, LLVMCodeGenFileType codegen, char **ErrorMessage) {

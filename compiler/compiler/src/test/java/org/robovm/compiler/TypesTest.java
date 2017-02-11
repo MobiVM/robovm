@@ -105,7 +105,7 @@ public class TypesTest {
     public void testGetInstanceType() throws Exception {
         StructureType type = Types.getInstanceType(OS.ios, Arch.thumbv7, getSootClass(D.class.getName()));
         int size = getAllocSize(type, "thumbv7-unknown-ios");
-        assertEquals(48, size);
+        assertEquals(4, size);
     }
     
     private int getAllocSize(StructureType type, String triple) {

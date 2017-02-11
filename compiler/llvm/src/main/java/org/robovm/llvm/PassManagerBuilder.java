@@ -17,16 +17,16 @@
 package org.robovm.llvm;
 
 import org.robovm.llvm.binding.LLVM;
-import org.robovm.llvm.binding.PassManagerBuilderRef;
+import org.robovm.llvm.binding.LLVM.LLVMPassManagerBuilderRef;
 
 /**
  * 
  */
 public class PassManagerBuilder implements AutoCloseable {
-    protected PassManagerBuilderRef ref;
+    protected LLVMPassManagerBuilderRef ref;
 
     public PassManagerBuilder() {
-        ref = LLVM.PassManagerBuilderCreate();
+        ref = LLVM.LLVMPassManagerBuilderCreate();
         if (ref == null) {
             throw new LlvmException("Failed to create PassManagerBuilder");
         }
@@ -40,7 +40,7 @@ public class PassManagerBuilder implements AutoCloseable {
 
     public synchronized void dispose() {
         checkDisposed();
-        LLVM.PassManagerBuilderDispose(ref);
+        LLVM.LLVMPassManagerBuilderDispose(ref);
         ref = null;
     }
 
@@ -51,57 +51,57 @@ public class PassManagerBuilder implements AutoCloseable {
 
     public void setDisableSimplifyLibCalls(boolean b) {
         checkDisposed();
-        LLVM.PassManagerBuilderSetDisableSimplifyLibCalls(ref, b);
+        LLVM.LLVMPassManagerBuilderSetDisableSimplifyLibCalls(ref, b ? 1 : 0);
     }
 
     public void setDisableUnitAtATime(boolean b) {
         checkDisposed();
-        LLVM.PassManagerBuilderSetDisableUnitAtATime(ref, b);
+        LLVM.LLVMPassManagerBuilderSetDisableUnitAtATime(ref, b ? 1 : 0);
     }
 
     public void setDisableUnrollLoops(boolean b) {
         checkDisposed();
-        LLVM.PassManagerBuilderSetDisableUnrollLoops(ref, b);
+        LLVM.LLVMPassManagerBuilderSetDisableUnrollLoops(ref, b ? 1 : 0);
     }
 
     public void setDisableTailCalls(boolean b) {
         checkDisposed();
-        LLVM.PassManagerBuilderSetDisableTailCalls(ref, b);
+        LLVM.LLVMPassManagerBuilderSetDisableTailCalls(ref, b ? 1 : 0);
     }
 
     public void setSetOptLevel(int level) {
         checkDisposed();
-        LLVM.PassManagerBuilderSetOptLevel(ref, level);
+        LLVM.LLVMPassManagerBuilderSetOptLevel(ref, level);
     }
 
     public void setSetSizeLevel(int level) {
         checkDisposed();
-        LLVM.PassManagerBuilderSetSizeLevel(ref, level);
+        LLVM.LLVMPassManagerBuilderSetSizeLevel(ref, level);
     }
 
     public void useInlinerWithThreshold(int threshold) {
         checkDisposed();
-        LLVM.PassManagerBuilderUseInlinerWithThreshold(ref, threshold);
+        LLVM.LLVMPassManagerBuilderUseInlinerWithThreshold(ref, threshold);
     }
 
     public void useAlwaysInliner(boolean insertLifeTime) {
         checkDisposed();
-        LLVM.PassManagerBuilderUseAlwaysInliner(ref, insertLifeTime);
+        LLVM.LLVMPassManagerBuilderUseAlwaysInliner(ref, insertLifeTime ? 1 : 0);
     }
 
     public void populateFunctionPassManager(PassManager passManager) {
         checkDisposed();
-        LLVM.PassManagerBuilderPopulateFunctionPassManager(ref, passManager.ref);
+        LLVM.LLVMPassManagerBuilderPopulateFunctionPassManager(ref, passManager.ref);
     }
 
     public void populateModulePassManager(PassManager passManager) {
         checkDisposed();
-        LLVM.PassManagerBuilderPopulateModulePassManager(ref, passManager.ref);
+        LLVM.LLVMPassManagerBuilderPopulateModulePassManager(ref, passManager.ref);
     }
 
     public void populateLTOPassManager(PassManager passManager, boolean internalize, boolean runInliner) {
         checkDisposed();
-        LLVM.PassManagerBuilderPopulateLTOPassManager(ref, passManager.ref, internalize, runInliner);
+        LLVM.LLVMPassManagerBuilderPopulateLTOPassManager(ref, passManager.ref, internalize ? 1 : 0, runInliner ? 1 : 0);
     }
 
     @Override

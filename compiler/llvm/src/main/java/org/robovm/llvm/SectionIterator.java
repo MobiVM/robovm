@@ -17,16 +17,16 @@
 package org.robovm.llvm;
 
 import org.robovm.llvm.binding.LLVM;
-import org.robovm.llvm.binding.SectionIteratorRef;
+import org.robovm.llvm.binding.LLVM.LLVMSectionIteratorRef;
 
 /**
  * 
  */
 public class SectionIterator implements AutoCloseable {
     protected ObjectFile objectFile;
-    protected SectionIteratorRef ref;
+    protected LLVMSectionIteratorRef ref;
 
-    SectionIterator(ObjectFile objectFile, SectionIteratorRef ref) {
+    SectionIterator(ObjectFile objectFile, LLVMSectionIteratorRef ref) {
         this.objectFile = objectFile;
         this.ref = ref;
     }
@@ -38,7 +38,7 @@ public class SectionIterator implements AutoCloseable {
     }
     
     public synchronized void dispose() {
-        LLVM.DisposeSectionIterator(getRef());
+        LLVM.LLVMDisposeSectionIterator(getRef());
         ref = null;
     }
     
@@ -47,31 +47,31 @@ public class SectionIterator implements AutoCloseable {
         dispose();
     }
     
-    protected SectionIteratorRef getRef() {
+    protected LLVMSectionIteratorRef getRef() {
         return ref;
     }
     
     public String getName() {
-        return LLVM.GetSectionName(getRef());
+        return LLVM.LLVMGetSectionName(getRef()).getString();
     }
 
     public long getAddress() {
-        return LLVM.GetSectionAddress(getRef());
+        return LLVM.LLVMGetSectionAddress(getRef());
     }
 
     public long getSize() {
-        return LLVM.GetSectionSize(getRef());
+        return LLVM.LLVMGetSectionSize(getRef());
     }
 
     public long copyContents(byte[] dest) {
-        return LLVM.CopySectionContents(getRef(), dest);
+        return LLVM.LLVMCopySectionContents(getRef(), dest, dest.length);
     }
     
     public void next() {
-        LLVM.MoveToNextSection(getRef());
+        LLVM.LLVMMoveToNextSection(getRef());
     }
     
     public boolean hasNext() {
-        return !LLVM.IsSectionIteratorAtEnd(objectFile.getRef(), getRef());
+        return LLVM.LLVMIsSectionIteratorAtEnd(objectFile.getRef(), getRef()) == 0;
     }
 }

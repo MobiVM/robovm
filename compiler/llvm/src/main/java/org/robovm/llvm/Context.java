@@ -16,23 +16,23 @@
  */
 package org.robovm.llvm;
 
-import org.robovm.llvm.binding.ContextRef;
 import org.robovm.llvm.binding.LLVM;
+import org.robovm.llvm.binding.LLVM.LLVMContextRef;
 
 /**
  * 
  */
 public class Context implements AutoCloseable {
-    private ContextRef ref;
+    private LLVMContextRef ref;
 
     public Context() {
-        ref = LLVM.ContextCreate();
+        ref = LLVM.LLVMContextCreate();
         if (ref == null) {
             throw new LlvmException("Failed to create Context");
         }
     }
 
-    private Context(ContextRef contextRef) {
+    private Context(LLVMContextRef contextRef) {
         this.ref = contextRef;
     }
     
@@ -42,13 +42,13 @@ public class Context implements AutoCloseable {
         }
     }
     
-    protected ContextRef getRef() {
+    protected LLVMContextRef getRef() {
         checkDisposed();
         return ref;
     }
 
     public synchronized void dispose() {
-        LLVM.ContextDispose(getRef());
+        LLVM.LLVMContextDispose(getRef());
         ref = null;
     }
 
@@ -58,7 +58,7 @@ public class Context implements AutoCloseable {
     }
     
     public static Context getGlobalContext() {
-        return new Context(LLVM.GetGlobalContext());
+        return new Context(LLVM.LLVMGetGlobalContext());
     }
 
     @Override

@@ -107,11 +107,7 @@ import org.robovm.llvm.PassManagerBuilder;
 import org.robovm.llvm.Symbol;
 import org.robovm.llvm.Target;
 import org.robovm.llvm.TargetMachine;
-import org.robovm.llvm.binding.Attribute;
-import org.robovm.llvm.binding.CodeGenFileType;
-import org.robovm.llvm.binding.CodeGenOptLevel;
-import org.robovm.llvm.binding.PIELevel;
-import org.robovm.llvm.binding.RelocMode;
+import org.robovm.llvm.binding.LLVM;
 
 import soot.BooleanType;
 import soot.ByteType;
@@ -369,12 +365,12 @@ public class ClassCompiler {
                             String name = f1.getName();
                             org.robovm.llvm.Function f2 = module.getFunctionByName(name);
                             if (Symbols.isBridgeCSymbol(name) || Symbols.isCallbackCSymbol(name) || Symbols.isCallbackInnerCSymbol(name)) {
-                                f2.setLinkage(org.robovm.llvm.binding.Linkage.PrivateLinkage);
+                                f2.setLinkage(LLVM.LLVMPrivateLinkage);
                                 if (Symbols.isCallbackInnerCSymbol(name)) {
                                     // TODO: We should also always inline the bridge functions but for some reason
                                     // that makes the RoboVM tests hang indefinitely.
-                                    f2.removeAttribute(Attribute.NoInlineAttribute);
-                                    f2.addAttribute(Attribute.AlwaysInlineAttribute);
+                                    f2.removeAttribute(LLVM.LLVMNoInlineAttribute);
+                                    f2.addAttribute(LLVM.LLVMAlwaysInlineAttribute);
                                 }
                             }
                         }
@@ -395,20 +391,14 @@ public class ClassCompiler {
                 Target target = Target.lookupTarget(triple);
                 try (TargetMachine targetMachine = target.createTargetMachine(triple,
                         config.getArch().getLlvmCpu(), null, 
-                        config.isDebug()? CodeGenOptLevel.CodeGenLevelNone: null,
-                        RelocMode.RelocPIC, null)) {
+                        config.isDebug()? LLVM.LLVMCodeGenLevelNone: LLVM.LLVMCodeGenLevelDefault,
+                        LLVM.LLVMRelocPIC, LLVM.LLVMCodeModelDefault)) {
                     targetMachine.setAsmVerbosityDefault(true);
                     targetMachine.setFunctionSections(true);
                     targetMachine.setDataSections(true);
 
-                    if (!config.isDebug()) {
-                    	module.setPIELevel(PIELevel.PIELevelSmall);
-                    }
-                    else {
-                    	module.setPIELevel(PIELevel.PIELevelDefault);
-                    }
-                    
-                    targetMachine.emit(module, oFile, CodeGenFileType.AssemblyFile);
+                    module.setPIELevel(LLVM.LLVMPIELevelSmall);
+                    targetMachine.emit(module, oFile, LLVM.LLVMAssemblyFile);
 
                     ByteArrayOutputStream bos = new ByteArrayOutputStream(1024 * 32);
                     patchAsmWithFunctionSizes(config, clazz, new FileInputStream(oFile), bos);
@@ -534,7 +524,7 @@ public class ClassCompiler {
                         }
                         try (Module linesModule = Module.parseIR(context, linesData, clazz.getClassName() + ".lines")) {
                             File linesOFile = config.getLinesOFile(clazz);
-                            targetMachine.emit(linesModule, linesOFile, CodeGenFileType.ObjectFile);
+                            targetMachine.emit(linesModule, linesOFile, LLVM.LLVMObjectFile);
                             new HfsCompressor().compress(linesOFile, Files.readAllBytes(Paths.get(linesOFile.getAbsolutePath())), config);
                         }
                     } else {
