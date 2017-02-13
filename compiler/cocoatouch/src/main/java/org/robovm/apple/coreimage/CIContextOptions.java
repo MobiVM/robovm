@@ -34,6 +34,7 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -194,6 +195,21 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCIContextWorkingFormat", optional=true)
         public static native NSString WorkingFormat();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIContextHighQualityDownsample", optional=true)
+        public static native NSString HighQualityDownsample();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIContextOutputPremultiplied", optional=true)
+        public static native NSString OutputPremultiplied();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCIContextCacheIntermediates", optional=true)
+        public static native NSString CacheIntermediates();
         @GlobalValue(symbol="kCIContextUseSoftwareRenderer", optional=true)
         public static native NSString UseSoftwareRenderer();
         /**

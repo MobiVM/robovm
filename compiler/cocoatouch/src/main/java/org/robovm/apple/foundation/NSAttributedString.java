@@ -55,8 +55,11 @@ import org.robovm.apple.dispatch.*;
     public NSAttributedString() {}
     protected NSAttributedString(Handle h, long handle) { super(h, handle); }
     protected NSAttributedString(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithString:")
     public NSAttributedString(String str) { super((SkipInit) null); initObject(init(str)); }
+    @Method(selector = "initWithString:attributes:")
     public NSAttributedString(String str, NSDictionary<NSString, ?> attrs) { super((SkipInit) null); initObject(init(str, attrs)); }
+    @Method(selector = "initWithAttributedString:")
     public NSAttributedString(NSAttributedString attrStr) { super((SkipInit) null); initObject(init(attrStr)); }
     /*</constructors>*/
     public NSAttributedString(String str, NSAttributedStringAttributes attrs) {

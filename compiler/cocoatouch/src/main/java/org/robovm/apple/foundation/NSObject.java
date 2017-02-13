@@ -56,6 +56,12 @@ import org.robovm.apple.dispatch.*;
     /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
 
     public static final int FLAG_NO_RETAIN = 0x1;
+
+    /** this flag is being set from <init> callback when there is no matching constructor in custom class so
+     * default constructor is called to initiate member and then matching initXXX method is called to initiate
+     * native part. In this case default constructor of NSObject shall not call init() as initXXX will be called by
+     * cb */
+    private boolean forceSkipInit;
     
     protected static class SkipInit {
         private SkipInit() {}
@@ -118,7 +124,8 @@ import org.robovm.apple.dispatch.*;
     
     
     public NSObject() {
-        initObject(init());
+        if (!forceSkipInit)
+            initObject(init());
     }
 
     @Deprecated
@@ -152,7 +159,15 @@ import org.robovm.apple.dispatch.*;
     public native Class<? extends NSObject> getClassForKeyedArchiver();
     /*</properties>*/
     /*<members>*//*</members>*/
-    
+
+    /**
+     * marks instance to not call init method from default constructor
+     * this method is being called from callback before initialize <init>/constructor is being called >*/
+    protected void forceSkipInit() {
+        this.forceSkipInit = true;
+    }
+
+
     @Override
     protected void afterMarshaled(int flags) {
         super.afterMarshaled(flags);
@@ -162,7 +177,11 @@ import org.robovm.apple.dispatch.*;
     }
     
     protected long alloc() {
-        return alloc(getObjCClass());
+        // once initiated from native init method the handle will be set by <init> callback
+        long h = this.getHandle();
+        if (h == 0)
+            h =  alloc(getObjCClass());
+        return h;
     }
 
     private static final Selector alloc = Selector.register("alloc");

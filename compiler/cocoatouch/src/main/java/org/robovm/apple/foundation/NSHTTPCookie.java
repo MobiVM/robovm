@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     public NSHTTPCookie() {}
     protected NSHTTPCookie(Handle h, long handle) { super(h, handle); }
     protected NSHTTPCookie(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithProperties:")
     public NSHTTPCookie(NSHTTPCookieAttributes properties) { super((SkipInit) null); initObject(init(properties)); }
     /*</constructors>*/
     /*<properties>*/

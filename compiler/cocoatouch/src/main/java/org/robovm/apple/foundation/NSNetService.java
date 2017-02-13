@@ -53,7 +53,9 @@ import org.robovm.apple.dispatch.*;
     public NSNetService() {}
     protected NSNetService(Handle h, long handle) { super(h, handle); }
     protected NSNetService(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDomain:type:name:port:")
     public NSNetService(String domain, String type, String name, int port) { super((SkipInit) null); initObject(init(domain, type, name, port)); }
+    @Method(selector = "initWithDomain:type:name:")
     public NSNetService(String domain, String type, String name) { super((SkipInit) null); initObject(init(domain, type, name)); }
     /*</constructors>*/
     /*<properties>*/

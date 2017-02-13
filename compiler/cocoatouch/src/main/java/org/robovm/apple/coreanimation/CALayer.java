@@ -36,7 +36,9 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 2.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CALayer/*</name>*/ 
@@ -48,10 +50,13 @@ import org.robovm.apple.metal.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CALayer() {}
-    protected CALayer(long handle) { super(handle); }
+    @Deprecated protected CALayer(long handle) { super(handle); }
+    protected CALayer(Handle h, long handle) { super(h, handle); }
     protected CALayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
     public CALayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
-    public CALayer(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithCoder:")
+    public CALayer(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "bounds")
@@ -138,6 +143,16 @@ import org.robovm.apple.metal.*;
     public native @ByVal CGRect getContentsCenter();
     @Property(selector = "setContentsCenter:")
     public native void setContentsCenter(@ByVal CGRect v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "contentsFormat")
+    public native String getContentsFormat();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setContentsFormat:")
+    public native void setContentsFormat(String v);
     @Property(selector = "minificationFilter")
     public native CAFilter getMinificationFilter();
     @Property(selector = "setMinificationFilter:")
@@ -390,6 +405,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

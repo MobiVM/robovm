@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIDynamicItemBehavior() {}
     protected UIDynamicItemBehavior(Handle h, long handle) { super(h, handle); }
     protected UIDynamicItemBehavior(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItems:")
     public UIDynamicItemBehavior(List<UIDynamicItem> items) { super((SkipInit) null); initObject(init(items)); }
     /*</constructors>*/
     /*<properties>*/

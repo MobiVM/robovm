@@ -77,25 +77,31 @@ import org.robovm.apple.corelocation.*;
     public UIImage() {}
     protected UIImage(Handle h, long handle) { super(h, handle); }
     protected UIImage(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithData:")
     public UIImage(NSData data) { super((SkipInit) null); initObject(init(data)); }
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @Method(selector = "initWithData:scale:")
     public UIImage(NSData data, @MachineSizedFloat double scale) { super((SkipInit) null); initObject(init(data, scale)); }
+    @Method(selector = "initWithCGImage:")
     public UIImage(CGImage cgImage) { super((SkipInit) null); initObject(init(cgImage)); }
     /**
      * @since Available in iOS 4.0 and later.
      */
+    @Method(selector = "initWithCGImage:scale:orientation:")
     public UIImage(CGImage cgImage, @MachineSizedFloat double scale, UIImageOrientation orientation) { super((SkipInit) null); initObject(init(cgImage, scale, orientation)); }
     /**
      * @since Available in iOS 5.0 and later.
      */
     @WeaklyLinked
+    @Method(selector = "initWithCIImage:")
     public UIImage(CIImage ciImage) { super((SkipInit) null); initObject(init(ciImage)); }
     /**
      * @since Available in iOS 6.0 and later.
      */
     @WeaklyLinked
+    @Method(selector = "initWithCIImage:scale:orientation:")
     public UIImage(CIImage ciImage, @MachineSizedFloat double scale, UIImageOrientation orientation) { super((SkipInit) null); initObject(init(ciImage, scale, orientation)); }
     /*</constructors>*/
     public UIImage(File file) {

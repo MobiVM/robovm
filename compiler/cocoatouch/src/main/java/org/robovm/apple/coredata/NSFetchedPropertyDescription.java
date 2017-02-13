@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSFetchedPropertyDescription() {}
+    protected NSFetchedPropertyDescription(Handle h, long handle) { super(h, handle); }
     protected NSFetchedPropertyDescription(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

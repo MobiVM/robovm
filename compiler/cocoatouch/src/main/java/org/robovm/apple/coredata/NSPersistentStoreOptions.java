@@ -243,108 +243,6 @@ import org.robovm.apple.foundation.*;
         return this;
     }
     /**
-     * @since Available in iOS 5.0 and later.
-     */
-    public String getUbiquitousContentName() {
-        if (has(Keys.UbiquitousContentName())) {
-            NSString val = (NSString) get(Keys.UbiquitousContentName());
-            return val.toString();
-        }
-        return null;
-    }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    public NSPersistentStoreOptions setUbiquitousContentName(String ubiquitousContentName) {
-        set(Keys.UbiquitousContentName(), new NSString(ubiquitousContentName));
-        return this;
-    }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    public String getUbiquitousContentURL() {
-        if (has(Keys.UbiquitousContentURL())) {
-            NSString val = (NSString) get(Keys.UbiquitousContentURL());
-            return val.toString();
-        }
-        return null;
-    }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    public NSPersistentStoreOptions setUbiquitousContentURL(String ubiquitousContentURL) {
-        set(Keys.UbiquitousContentURL(), new NSString(ubiquitousContentURL));
-        return this;
-    }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public String getUbiquitousPeerToken() {
-        if (has(Keys.UbiquitousPeerToken())) {
-            NSString val = (NSString) get(Keys.UbiquitousPeerToken());
-            return val.toString();
-        }
-        return null;
-    }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public NSPersistentStoreOptions setUbiquitousPeerToken(String ubiquitousPeerToken) {
-        set(Keys.UbiquitousPeerToken(), new NSString(ubiquitousPeerToken));
-        return this;
-    }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public boolean shouldRemoveUbiquitousMetadata() {
-        if (has(Keys.RemoveUbiquitousMetadata())) {
-            NSNumber val = (NSNumber) get(Keys.RemoveUbiquitousMetadata());
-            return val.booleanValue();
-        }
-        return false;
-    }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public NSPersistentStoreOptions setShouldRemoveUbiquitousMetadata(boolean shouldRemoveUbiquitousMetadata) {
-        set(Keys.RemoveUbiquitousMetadata(), NSNumber.valueOf(shouldRemoveUbiquitousMetadata));
-        return this;
-    }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public String getUbiquitousContainerIdentifier() {
-        if (has(Keys.UbiquitousContainerIdentifier())) {
-            NSString val = (NSString) get(Keys.UbiquitousContainerIdentifier());
-            return val.toString();
-        }
-        return null;
-    }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public NSPersistentStoreOptions setUbiquitousContainerIdentifier(String ubiquitousContainerIdentifier) {
-        set(Keys.UbiquitousContainerIdentifier(), new NSString(ubiquitousContainerIdentifier));
-        return this;
-    }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public boolean shouldRebuildFromUbiquitousContent() {
-        if (has(Keys.RebuildFromUbiquitousContent())) {
-            NSNumber val = (NSNumber) get(Keys.RebuildFromUbiquitousContent());
-            return val.booleanValue();
-        }
-        return false;
-    }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public NSPersistentStoreOptions setShouldRebuildFromUbiquitousContent(boolean shouldRebuildFromUbiquitousContent) {
-        set(Keys.RebuildFromUbiquitousContent(), NSNumber.valueOf(shouldRebuildFromUbiquitousContent));
-        return this;
-    }
-    /**
      * @since Available in iOS 6.0 and later.
      */
     public boolean isForceDestroy() {
@@ -376,6 +274,132 @@ import org.robovm.apple.foundation.*;
      */
     public NSPersistentStoreOptions setFileProtection(NSFileProtection fileProtection) {
         set(Keys.FileProtection(), fileProtection.value());
+        return this;
+    }
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public String getUbiquitousContentName() {
+        if (has(Keys.UbiquitousContentName())) {
+            NSString val = (NSString) get(Keys.UbiquitousContentName());
+            return val.toString();
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public NSPersistentStoreOptions setUbiquitousContentName(String ubiquitousContentName) {
+        set(Keys.UbiquitousContentName(), new NSString(ubiquitousContentName));
+        return this;
+    }
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public String getUbiquitousContentURL() {
+        if (has(Keys.UbiquitousContentURL())) {
+            NSString val = (NSString) get(Keys.UbiquitousContentURL());
+            return val.toString();
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public NSPersistentStoreOptions setUbiquitousContentURL(String ubiquitousContentURL) {
+        set(Keys.UbiquitousContentURL(), new NSString(ubiquitousContentURL));
+        return this;
+    }
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public String getUbiquitousPeerToken() {
+        if (has(Keys.UbiquitousPeerToken())) {
+            NSString val = (NSString) get(Keys.UbiquitousPeerToken());
+            return val.toString();
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public NSPersistentStoreOptions setUbiquitousPeerToken(String ubiquitousPeerToken) {
+        set(Keys.UbiquitousPeerToken(), new NSString(ubiquitousPeerToken));
+        return this;
+    }
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public boolean shouldRemoveUbiquitousMetadata() {
+        if (has(Keys.RemoveUbiquitousMetadata())) {
+            NSNumber val = (NSNumber) get(Keys.RemoveUbiquitousMetadata());
+            return val.booleanValue();
+        }
+        return false;
+    }
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public NSPersistentStoreOptions setShouldRemoveUbiquitousMetadata(boolean shouldRemoveUbiquitousMetadata) {
+        set(Keys.RemoveUbiquitousMetadata(), NSNumber.valueOf(shouldRemoveUbiquitousMetadata));
+        return this;
+    }
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public String getUbiquitousContainerIdentifier() {
+        if (has(Keys.UbiquitousContainerIdentifier())) {
+            NSString val = (NSString) get(Keys.UbiquitousContainerIdentifier());
+            return val.toString();
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public NSPersistentStoreOptions setUbiquitousContainerIdentifier(String ubiquitousContainerIdentifier) {
+        set(Keys.UbiquitousContainerIdentifier(), new NSString(ubiquitousContainerIdentifier));
+        return this;
+    }
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public boolean shouldRebuildFromUbiquitousContent() {
+        if (has(Keys.RebuildFromUbiquitousContent())) {
+            NSNumber val = (NSNumber) get(Keys.RebuildFromUbiquitousContent());
+            return val.booleanValue();
+        }
+        return false;
+    }
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public NSPersistentStoreOptions setShouldRebuildFromUbiquitousContent(boolean shouldRebuildFromUbiquitousContent) {
+        set(Keys.RebuildFromUbiquitousContent(), NSNumber.valueOf(shouldRebuildFromUbiquitousContent));
         return this;
     }
     /*</methods>*/
@@ -425,35 +449,10 @@ import org.robovm.apple.foundation.*;
         @GlobalValue(symbol="NSInferMappingModelAutomaticallyOption", optional=true)
         public static native NSString InferMappingModelAutomatically();
         /**
-         * @since Available in iOS 5.0 and later.
+         * @since Available in iOS 10.0 and later.
          */
-        @GlobalValue(symbol="NSPersistentStoreUbiquitousContentNameKey", optional=true)
-        public static native NSString UbiquitousContentName();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
-        @GlobalValue(symbol="NSPersistentStoreUbiquitousContentURLKey", optional=true)
-        public static native NSString UbiquitousContentURL();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
-        @GlobalValue(symbol="NSPersistentStoreUbiquitousPeerTokenOption", optional=true)
-        public static native NSString UbiquitousPeerToken();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
-        @GlobalValue(symbol="NSPersistentStoreRemoveUbiquitousMetadataOption", optional=true)
-        public static native NSString RemoveUbiquitousMetadata();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
-        @GlobalValue(symbol="NSPersistentStoreUbiquitousContainerIdentifierKey", optional=true)
-        public static native NSString UbiquitousContainerIdentifier();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
-        @GlobalValue(symbol="NSPersistentStoreRebuildFromUbiquitousContentOption", optional=true)
-        public static native NSString RebuildFromUbiquitousContent();
+        @GlobalValue(symbol="NSPersistentStoreConnectionPoolMaxSizeKey", optional=true)
+        public static native NSString ConnectionPoolMaxSize();
         /**
          * @since Available in iOS 6.0 and later.
          */
@@ -464,6 +463,48 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="NSPersistentStoreFileProtectionKey", optional=true)
         public static native NSString FileProtection();
+        /**
+         * @since Available in iOS 5.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
+         */
+        @Deprecated
+        @GlobalValue(symbol="NSPersistentStoreUbiquitousContentNameKey", optional=true)
+        public static native NSString UbiquitousContentName();
+        /**
+         * @since Available in iOS 5.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
+         */
+        @Deprecated
+        @GlobalValue(symbol="NSPersistentStoreUbiquitousContentURLKey", optional=true)
+        public static native NSString UbiquitousContentURL();
+        /**
+         * @since Available in iOS 7.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
+         */
+        @Deprecated
+        @GlobalValue(symbol="NSPersistentStoreUbiquitousPeerTokenOption", optional=true)
+        public static native NSString UbiquitousPeerToken();
+        /**
+         * @since Available in iOS 7.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
+         */
+        @Deprecated
+        @GlobalValue(symbol="NSPersistentStoreRemoveUbiquitousMetadataOption", optional=true)
+        public static native NSString RemoveUbiquitousMetadata();
+        /**
+         * @since Available in iOS 7.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
+         */
+        @Deprecated
+        @GlobalValue(symbol="NSPersistentStoreUbiquitousContainerIdentifierKey", optional=true)
+        public static native NSString UbiquitousContainerIdentifier();
+        /**
+         * @since Available in iOS 7.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
+         */
+        @Deprecated
+        @GlobalValue(symbol="NSPersistentStoreRebuildFromUbiquitousContentOption", optional=true)
+        public static native NSString RebuildFromUbiquitousContent();
     }
     /*</keys>*/
 }

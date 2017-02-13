@@ -47,9 +47,13 @@ import org.robovm.apple.corebluetooth.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CLBeaconRegion() {}
+    protected CLBeaconRegion(Handle h, long handle) { super(h, handle); }
     protected CLBeaconRegion(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithProximityUUID:identifier:")
     public CLBeaconRegion(NSUUID proximityUUID, String identifier) { super((SkipInit) null); initObject(init(proximityUUID, identifier)); }
+    @Method(selector = "initWithProximityUUID:major:identifier:")
     public CLBeaconRegion(NSUUID proximityUUID, short major, String identifier) { super((SkipInit) null); initObject(init(proximityUUID, major, identifier)); }
+    @Method(selector = "initWithProximityUUID:major:minor:identifier:")
     public CLBeaconRegion(NSUUID proximityUUID, short major, short minor, String identifier) { super((SkipInit) null); initObject(init(proximityUUID, major, minor, identifier)); }
     /*</constructors>*/
     /*<properties>*/

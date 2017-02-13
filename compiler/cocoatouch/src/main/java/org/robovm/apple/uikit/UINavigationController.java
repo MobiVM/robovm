@@ -56,7 +56,9 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
     public UINavigationController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super((SkipInit) null); initObject(init(navigationBarClass, toolbarClass)); }
+    @Method(selector = "initWithRootViewController:")
     public UINavigationController(UIViewController rootViewController) { super((SkipInit) null); initObject(init(rootViewController)); }
     /*</constructors>*/
     /*<properties>*/

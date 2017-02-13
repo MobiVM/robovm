@@ -53,8 +53,11 @@ import org.robovm.apple.corelocation.*;
     public UIGraphicsImageRenderer() {}
     protected UIGraphicsImageRenderer(Handle h, long handle) { super(h, handle); }
     protected UIGraphicsImageRenderer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSize:")
     public UIGraphicsImageRenderer(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
+    @Method(selector = "initWithSize:format:")
     public UIGraphicsImageRenderer(@ByVal CGSize size, UIGraphicsImageRendererFormat format) { super((SkipInit) null); initObject(init(size, format)); }
+    @Method(selector = "initWithBounds:format:")
     public UIGraphicsImageRenderer(@ByVal CGRect bounds, UIGraphicsImageRendererFormat format) { super((SkipInit) null); initObject(init(bounds, format)); }
     /*</constructors>*/
     /*<properties>*/

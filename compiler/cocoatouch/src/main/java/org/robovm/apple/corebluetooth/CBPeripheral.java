@@ -47,6 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CBPeripheral() {}
+    protected CBPeripheral(Handle h, long handle) { super(h, handle); }
     protected CBPeripheral(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -53,8 +53,11 @@ import org.robovm.apple.corelocation.*;
     public UIRegion() {}
     protected UIRegion(Handle h, long handle) { super(h, handle); }
     protected UIRegion(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRadius:")
     public UIRegion(@MachineSizedFloat double radius) { super((SkipInit) null); initObject(init(radius)); }
+    @Method(selector = "initWithSize:")
     public UIRegion(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
+    @Method(selector = "initWithCoder:")
     public UIRegion(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/

@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIDynamicItemGroup() {}
     protected UIDynamicItemGroup(Handle h, long handle) { super(h, handle); }
     protected UIDynamicItemGroup(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItems:")
     public UIDynamicItemGroup(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIDynamicItem> items) { super((SkipInit) null); initObject(init(items)); }
     /*</constructors>*/
     /*<properties>*/

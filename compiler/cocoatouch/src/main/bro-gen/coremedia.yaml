@@ -1318,8 +1318,34 @@ values:
         dictionary: CMVideoFormatDescriptionExtension
         name: '#{g[0]}'
         type: CFString
-    kCMFormatDescriptionColorPrimaries_P22:
-        exclude: true
+    kCMFormatDescriptionChromaLocation_(.*):
+        class: CMVideoFormatDescription
+        name: 'ChromaLocation#{g[0]}'
+        type: CFString
+    kCMSampleBufferLensStabilizationInfo_(.*):
+        class: CMVideoFormatDescription
+        name: 'LensStabilizationInfo#{g[0]}'
+        type: CFString
+    kCMFormatDescription(YCbCrMatrix_.*):
+        class: CMVideoFormatDescription
+        name: '#{g[0]}'
+        type: CFString
+    kCMFormatDescription(TransferFunction_.*):
+        class: CMVideoFormatDescription
+        name: '#{g[0]}'
+        type: CFString
+    kCMFormatDescription(ColorPrimaries_.*):
+        class: CMVideoFormatDescription
+        name: '#{g[0]}'
+        type: CFString
+    kCMSampleBufferLensStabilizationInfo_(.*):
+        class: CMVideoFormatDescription
+        name: 'LensStabilizationInfo#{g[0]}'
+        type: CFString
+    kCMFormatDescriptionFieldDetail_(.*):
+        class: CMVideoFormatDescription
+        name: 'FieldDetail#{g[0]}'
+        type: CFString
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CM.*):

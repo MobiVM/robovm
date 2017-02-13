@@ -384,6 +384,31 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="kCMFormatDescriptionExtension_Depth", optional=true)
         public static native CFString Depth();
         /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_CleanAperture", optional=true)
+        public static native CFString CleanAperture();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionKey_CleanApertureWidth", optional=true)
+        public static native CFString CleanApertureWidth();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionKey_CleanApertureHeight", optional=true)
+        public static native CFString CleanApertureHeight();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionKey_CleanApertureHorizontalOffset", optional=true)
+        public static native CFString CleanApertureHorizontalOffset();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionKey_CleanApertureVerticalOffset", optional=true)
+        public static native CFString CleanApertureVerticalOffset();
+        /**
          * @since Available in iOS 4.0 and later.
          */
         @GlobalValue(symbol="kCMFormatDescriptionKey_CleanApertureWidthRational", optional=true)
@@ -404,6 +429,51 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="kCMFormatDescriptionKey_CleanApertureVerticalOffsetRational", optional=true)
         public static native CFString CleanApertureVerticalOffsetRational();
         /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_FieldCount", optional=true)
+        public static native CFString FieldCount();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_FieldDetail", optional=true)
+        public static native CFString FieldDetail();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_PixelAspectRatio", optional=true)
+        public static native CFString PixelAspectRatio();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionKey_PixelAspectRatioHorizontalSpacing", optional=true)
+        public static native CFString PixelAspectRatioHorizontalSpacing();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionKey_PixelAspectRatioVerticalSpacing", optional=true)
+        public static native CFString PixelAspectRatioVerticalSpacing();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_ColorPrimaries", optional=true)
+        public static native CFString ColorPrimaries();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_TransferFunction", optional=true)
+        public static native CFString TransferFunction();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_GammaLevel", optional=true)
+        public static native CFString GammaLevel();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_YCbCrMatrix", optional=true)
+        public static native CFString YCbCrMatrix();
+        /**
          * @since Available in iOS 4.3 and later.
          */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_FullRangeVideo", optional=true)
@@ -419,6 +489,16 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="kCMFormatDescriptionExtension_BytesPerRow", optional=true)
         public static native CFString BytesPerRow();
         /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_ChromaLocationTopField", optional=true)
+        public static native CFString ChromaLocationTopField();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_ChromaLocationBottomField", optional=true)
+        public static native CFString ChromaLocationBottomField();
+        /**
          * @since Available in iOS 4.0 and later.
          */
         @GlobalValue(symbol="kCMFormatDescriptionConformsToMPEG2VideoProfile", optional=true)
@@ -433,6 +513,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_SpatialQuality", optional=true)
         public static native CFString SpatialQuality();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_VerbatimImageDescription", optional=true)
+        public static native CFString VerbatimImageDescription();
         /**
          * @since Available in iOS 4.0 and later.
          */

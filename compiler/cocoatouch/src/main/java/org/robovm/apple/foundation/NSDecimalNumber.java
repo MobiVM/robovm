@@ -52,9 +52,13 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     protected NSDecimalNumber(Handle h, long handle) { super(h, handle); }
     protected NSDecimalNumber(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithMantissa:exponent:isNegative:")
     public NSDecimalNumber(long mantissa, short exponent, boolean flag) { super((SkipInit) null); initObject(init(mantissa, exponent, flag)); }
+    @Method(selector = "initWithDecimal:")
     public NSDecimalNumber(@ByVal NSDecimal dcm) { super((SkipInit) null); initObject(init(dcm)); }
+    @Method(selector = "initWithString:")
     public NSDecimalNumber(String numberValue) { super((SkipInit) null); initObject(init(numberValue)); }
+    @Method(selector = "initWithString:locale:")
     public NSDecimalNumber(String numberValue, NSLocale locale) { super((SkipInit) null); initObject(init(numberValue, locale)); }
     /*</constructors>*/
     /*<properties>*/

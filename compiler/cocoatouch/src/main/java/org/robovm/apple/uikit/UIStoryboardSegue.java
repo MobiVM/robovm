@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     protected UIStoryboardSegue() {}
     protected UIStoryboardSegue(Handle h, long handle) { super(h, handle); }
     protected UIStoryboardSegue(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithIdentifier:source:destination:")
     public UIStoryboardSegue(String identifier, UIViewController source, UIViewController destination) { super((SkipInit) null); initObject(init(identifier, source, destination)); }
     /**
      * @since Available in iOS 6.0 and later.

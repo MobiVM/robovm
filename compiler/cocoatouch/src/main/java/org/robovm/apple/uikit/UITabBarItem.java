@@ -53,12 +53,16 @@ import org.robovm.apple.corelocation.*;
     public UITabBarItem() {}
     protected UITabBarItem(Handle h, long handle) { super(h, handle); }
     protected UITabBarItem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UITabBarItem(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithTitle:image:tag:")
     public UITabBarItem(String title, UIImage image, @MachineSizedSInt long tag) { super((SkipInit) null); initObject(init(title, image, tag)); }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @Method(selector = "initWithTitle:image:selectedImage:")
     public UITabBarItem(String title, UIImage image, UIImage selectedImage) { super((SkipInit) null); initObject(init(title, image, selectedImage)); }
+    @Method(selector = "initWithTabBarSystemItem:tag:")
     public UITabBarItem(UITabBarSystemItem systemItem, @MachineSizedSInt long tag) { super((SkipInit) null); initObject(init(systemItem, tag)); }
     /*</constructors>*/
     /*<properties>*/

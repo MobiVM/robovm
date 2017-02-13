@@ -53,8 +53,11 @@ import org.robovm.apple.corelocation.*;
     public UIDocumentPickerViewController() {}
     protected UIDocumentPickerViewController(Handle h, long handle) { super(h, handle); }
     protected UIDocumentPickerViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDocumentTypes:inMode:")
     public UIDocumentPickerViewController(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> allowedUTIs, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(allowedUTIs, mode)); }
+    @Method(selector = "initWithCoder:")
     public UIDocumentPickerViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithURL:inMode:")
     public UIDocumentPickerViewController(NSURL url, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(url, mode)); }
     /*</constructors>*/
     /*<properties>*/

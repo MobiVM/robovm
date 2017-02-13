@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreMotion") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CMSensorRecorder/*</name>*/ 
@@ -45,6 +43,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CMSensorRecorder() {}
+    protected CMSensorRecorder(Handle h, long handle) { super(h, handle); }
     protected CMSensorRecorder(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -52,12 +51,10 @@ import org.robovm.apple.foundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "accelerometerDataSince:")
-    public native CMSensorDataList getAccelerometerDataSince(long identifier);
-    @Method(selector = "accelerometerDataFrom:to:")
+    @Method(selector = "accelerometerDataFromDate:toDate:")
     public native CMSensorDataList getAccelerometerDataBetween(NSDate fromDate, NSDate toDate);
-    @Method(selector = "recordAccelerometerFor:")
-    public native void recordAccelerometerFor(double duration);
+    @Method(selector = "recordAccelerometerForDuration:")
+    public native void recordAccelerometerForDuration(double duration);
     @Method(selector = "isAccelerometerRecordingAvailable")
     public static native boolean isAccelerometerRecordingAvailable();
     @Method(selector = "isAuthorizedForRecording")

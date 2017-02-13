@@ -34,26 +34,42 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 5.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIFilter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class CIFilterPtr extends Ptr<CIFilter, CIFilterPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CIFilter.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected CIFilter(Handle h, long handle) { super(h, handle); }
     protected CIFilter(SkipInit skipInit) { super(skipInit); }
-    public CIFilter(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
     @Property(selector = "outputImage")
     public native CIImage getOutputImage();
+    @Property(selector = "name")
+    public native String getName();
+    @Property(selector = "setName:")
+    public native void setName(String v);
+    @Property(selector = "inputKeys")
+    public native NSArray<?> getInputKeys();
+    @Property(selector = "outputKeys")
+    public native NSArray<?> getOutputKeys();
+    @Property(selector = "attributes")
+    public native NSDictionary<?, ?> getAttributes();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -130,30 +146,44 @@ import org.robovm.apple.uikit.*;
         NSObject key3, NSObject value3, NSObject key4, NSObject value4, NSObject key5, NSObject value5, NSObject key6, NSObject value6, NSObject key7,
         NSObject value7, NSObject key8, NSObject value8, NSObject key9, NSObject value9);
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @Method(selector = "name")
-    public native String getName();
-    @Method(selector = "inputKeys")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getInputKeys();
-    @Method(selector = "outputKeys")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getOutputKeys();
     @Method(selector = "setDefaults")
     public native void setDefaults();
-    @Method(selector = "attributes")
-    public native CIFilterAttributes getAttributes();
     @Method(selector = "filterWithName:")
     public static native CIFilter create(String name);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "filterWithName:withInputParameters:")
-    public static native CIFilter create(String name, CIFilterInputParameters params);
+    public static native CIFilter create(String name, NSDictionary<?, ?> params);
     @Method(selector = "filterNamesInCategory:")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getFilterNames(CIFilterCategory category);
     @Method(selector = "filterNamesInCategories:")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getFilterNames(@org.robovm.rt.bro.annotation.Marshaler(CIFilterCategory.AsListMarshaler.class) List<CIFilterCategory> categories);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "registerFilterName:constructor:classAttributes:")
+    public static native void register(String name, CIFilterConstructor anObject, NSDictionary<?, ?> attributes);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "localizedNameForFilterName:")
+    public static native String localizedNameForFilterName(String filterName);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "localizedNameForCategory:")
+    public static native String localizedNameForCategory(String category);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "localizedDescriptionForFilterName:")
+    public static native String localizedDescriptionForFilterName(String filterName);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "localizedReferenceDocumentationForFilterName:")
+    public static native NSURL localizedReferenceDocumentationForFilterName(String filterName);
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -173,9 +203,20 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "filterArrayFromSerializedXMP:inputImageExtent:error:")
     private static native NSArray<CIFilter> deserializeFromXMP(NSData xmpData, @ByVal CGRect extent, NSError.NSErrorPtr outError);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "filterWithImageURL:options:")
+    public static native CIFilter create(NSURL url, NSDictionary<?, ?> options);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "filterWithImageData:options:")
+    public static native CIFilter create(NSData data, NSDictionary<?, ?> options);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "filterWithCVPixelBuffer:properties:options:")
+    public static native CIFilter create(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> properties, NSDictionary<?, ?> options);
     /*</methods>*/
 }

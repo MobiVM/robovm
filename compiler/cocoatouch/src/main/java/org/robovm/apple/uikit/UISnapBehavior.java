@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UISnapBehavior() {}
     protected UISnapBehavior(Handle h, long handle) { super(h, handle); }
     protected UISnapBehavior(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItem:snapToPoint:")
     public UISnapBehavior(UIDynamicItem item, @ByVal CGPoint point) { super((SkipInit) null); initObject(init(item, point)); }
     /*</constructors>*/
     /*<properties>*/

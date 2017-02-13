@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreMotion") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CMSensorDataList/*</name>*/ 
@@ -45,6 +43,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CMSensorDataList() {}
+    protected CMSensorDataList(Handle h, long handle) { super(h, handle); }
     protected CMSensorDataList(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

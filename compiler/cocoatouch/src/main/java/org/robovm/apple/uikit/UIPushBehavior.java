@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIPushBehavior() {}
     protected UIPushBehavior(Handle h, long handle) { super(h, handle); }
     protected UIPushBehavior(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItems:mode:")
     public UIPushBehavior(List<UIDynamicItem> items, UIPushBehaviorMode mode) { super((SkipInit) null); initObject(init(items, mode)); }
     /*</constructors>*/
     /*<properties>*/

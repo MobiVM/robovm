@@ -33,7 +33,11 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 5.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
+ */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/CBCentralManagerState/*</name>*/ implements ValuedEnum {

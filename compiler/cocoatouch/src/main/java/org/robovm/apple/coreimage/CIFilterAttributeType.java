@@ -34,6 +34,7 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -110,7 +111,18 @@ import org.robovm.apple.uikit.*;
     public static final CIFilterAttributeType Offset = new CIFilterAttributeType("Offset");
     public static final CIFilterAttributeType Position3 = new CIFilterAttributeType("Position3");
     public static final CIFilterAttributeType Rectangle = new CIFilterAttributeType("Rectangle");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFilterAttributeType OpaqueColor = new CIFilterAttributeType("OpaqueColor");
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
     public static final CIFilterAttributeType Color = new CIFilterAttributeType("Color");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFilterAttributeType Gradient = new CIFilterAttributeType("Gradient");
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -121,7 +133,7 @@ import org.robovm.apple.uikit.*;
     public static final CIFilterAttributeType Transform = new CIFilterAttributeType("Transform");
     /*</constants>*/
     
-    private static /*<name>*/CIFilterAttributeType/*</name>*/[] values = new /*<name>*/CIFilterAttributeType/*</name>*/[] {/*<value_list>*/Time, Scalar, Distance, Angle, Boolean, Integer, Count, Position, Offset, Position3, Rectangle, Color, Image, Transform/*</value_list>*/};
+    private static /*<name>*/CIFilterAttributeType/*</name>*/[] values = new /*<name>*/CIFilterAttributeType/*</name>*/[] {/*<value_list>*/Time, Scalar, Distance, Angle, Boolean, Integer, Count, Position, Offset, Position3, Rectangle, OpaqueColor, Color, Gradient, Image, Transform/*</value_list>*/};
     
     /*<name>*/CIFilterAttributeType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -172,8 +184,21 @@ import org.robovm.apple.uikit.*;
         public static native NSString Position3();
         @GlobalValue(symbol="kCIAttributeTypeRectangle", optional=true)
         public static native NSString Rectangle();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIAttributeTypeOpaqueColor", optional=true)
+        public static native NSString OpaqueColor();
+        /**
+         * @since Available in iOS 5.0 and later.
+         */
         @GlobalValue(symbol="kCIAttributeTypeColor", optional=true)
         public static native NSString Color();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIAttributeTypeGradient", optional=true)
+        public static native NSString Gradient();
         /**
          * @since Available in iOS 5.0 and later.
          */

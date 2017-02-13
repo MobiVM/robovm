@@ -127,7 +127,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 3.2 and later.
      */
     @Bridge(symbol="CTLineCreateWithAttributedString", optional=true)
-    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTLine create(NSAttributedString string);
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTLine create(NSAttributedString attrString);
     /**
      * @since Available in iOS 3.2 and later.
      */
@@ -193,5 +193,10 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CTLineGetOffsetForStringIndex", optional=true)
     protected native @MachineSizedFloat double getOffset(@MachineSizedSInt long charIndex, MachineSizedFloatPtr secondaryOffset);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CTLineEnumerateCaretOffsets", optional=true)
+    public native void enumerateCaretOffsets(@Block VoidBlock4<Double, Long, Boolean, BooleanPtr> block);
     /*</methods>*/
 }

@@ -13,6 +13,7 @@ enums:
     CMMagneticFieldCalibrationAccuracy: { first: CMMagneticFieldCalibrationAccuracyUncalibrated }
     CMErrorCode: { first: CMErrorNULL }
     CMMotionActivityConfidence: {}
+    CMPedometerEventType: {}
         
 classes:
     CMError:
@@ -93,15 +94,21 @@ classes:
                 parameters:
                     handler:
                         type: '@Block VoidBlock2<CMPedometerData, NSError>'
+            '-startPedometerEventUpdatesWithHandler:':
+                name: startPedometerEventUpdates
+                parameters:
+                    handler:
+                        type: '@Block VoidBlock2<CMPedometerEvent, NSError>'
     CMPedometerData: {} # DONE
+    CMPedometerEvent: {}
     CMSensorDataList: {}      ### TODO make enumeratable
     CMSensorRecorder: # DONE
         methods:
             '-accelerometerDataSince:':
                 name: getAccelerometerDataSince
-            '-accelerometerDataFrom:to:':
+            '-accelerometerDataFromDate:toDate:':
                 name: getAccelerometerDataBetween
-            '-recordAccelerometerFor:':
+            '-recordAccelerometerForDuration:':
                 trim_after_first_colon: true
     CMStepCounter: # DONE
         methods:

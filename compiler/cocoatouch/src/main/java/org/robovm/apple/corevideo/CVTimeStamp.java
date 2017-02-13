@@ -45,10 +45,7 @@ import org.robovm.apple.metal.*;
     /*<ptr>*/public static class CVTimeStampPtr extends Ptr<CVTimeStamp, CVTimeStampPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
-    /*<constants>*/
-    public static final int VideoHostTimeValid = 3;
-    public static final int IsInterlaced = 196608;
-    /*</constants>*/
+    /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CVTimeStamp() {}
     public CVTimeStamp(int version, int videoTimeScale, long videoTime, long hostTime, double rateScalar, long videoRefreshPeriod, CVSMPTETime smpteTime, CVTimeStampFlags flags, long reserved) {

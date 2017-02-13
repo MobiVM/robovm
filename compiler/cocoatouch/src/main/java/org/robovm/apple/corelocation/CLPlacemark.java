@@ -46,7 +46,9 @@ import org.robovm.apple.corebluetooth.*;
     /*<bind>*/static { ObjCRuntime.bind(CLPlacemark.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected CLPlacemark(Handle h, long handle) { super(h, handle); }
     protected CLPlacemark(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPlacemark:")
     public CLPlacemark(CLPlacemark placemark) { super((SkipInit) null); initObject(init(placemark)); }
     /*</constructors>*/
     /*<properties>*/

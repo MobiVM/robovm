@@ -55,6 +55,7 @@ import org.robovm.apple.dispatch.*;
     protected NSUserActivity() {}
     protected NSUserActivity(Handle h, long handle) { super(h, handle); }
     protected NSUserActivity(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithActivityType:")
     public NSUserActivity(String activityType) { super((SkipInit) null); initObject(init(activityType)); }
     /*</constructors>*/
     public NSUserActivity(NSUserActivityType activityType) {

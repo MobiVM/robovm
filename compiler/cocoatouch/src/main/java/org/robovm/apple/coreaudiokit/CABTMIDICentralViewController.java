@@ -48,6 +48,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CABTMIDICentralViewController() {}
+    protected CABTMIDICentralViewController(Handle h, long handle) { super(h, handle); }
     protected CABTMIDICentralViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

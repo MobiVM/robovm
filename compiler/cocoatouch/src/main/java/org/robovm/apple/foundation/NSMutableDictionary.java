@@ -52,6 +52,7 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     protected NSMutableDictionary(Handle h, long handle) { super(h, handle); }
     protected NSMutableDictionary(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCapacity:")
     public NSMutableDictionary(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
     /*</constructors>*/
     

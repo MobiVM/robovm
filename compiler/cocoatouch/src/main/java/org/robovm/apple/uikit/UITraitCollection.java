@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UITraitCollection() {}
     protected UITraitCollection(Handle h, long handle) { super(h, handle); }
     protected UITraitCollection(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UITraitCollection(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /**
      * @since Available in iOS 10.0 and later.

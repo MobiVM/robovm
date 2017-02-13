@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIAccessibilityCustomAction() {}
     protected UIAccessibilityCustomAction(Handle h, long handle) { super(h, handle); }
     protected UIAccessibilityCustomAction(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:target:selector:")
     public UIAccessibilityCustomAction(String name, NSObject target, Selector selector) { super((SkipInit) null); initObject(init(name, target, selector)); }
     /*</constructors>*/
     /*<properties>*/

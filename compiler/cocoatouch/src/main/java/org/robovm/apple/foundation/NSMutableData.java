@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     public NSMutableData() {}
     protected NSMutableData(Handle h, long handle) { super(h, handle); }
     protected NSMutableData(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCapacity:")
     public NSMutableData(@MachineSizedUInt long capacity) { super((SkipInit) null); initObject(init(capacity)); }
     /*</constructors>*/
     /*<properties>*/

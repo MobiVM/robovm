@@ -55,7 +55,9 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
+    @Method(selector = "initWithName:object:userInfo:")
     public NSNotification(NSString name, NSObject object, NSDictionary<?, ?> userInfo) { super((SkipInit) null); initObject(init(name, object, userInfo)); }
+    @Method(selector = "initWithCoder:")
     public NSNotification(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public NSNotification(String name, NSObject object, NSDictionary<?, ?> userInfo) {

@@ -47,6 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CBDescriptor() {}
+    protected CBDescriptor(Handle h, long handle) { super(h, handle); }
     protected CBDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

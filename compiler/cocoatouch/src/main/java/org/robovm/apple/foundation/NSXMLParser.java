@@ -53,11 +53,14 @@ import org.robovm.apple.dispatch.*;
     public NSXMLParser() {}
     protected NSXMLParser(Handle h, long handle) { super(h, handle); }
     protected NSXMLParser(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithContentsOfURL:")
     public NSXMLParser(NSURL url) { super((SkipInit) null); initObject(init(url)); }
+    @Method(selector = "initWithData:")
     public NSXMLParser(NSData data) { super((SkipInit) null); initObject(init(data)); }
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @Method(selector = "initWithStream:")
     public NSXMLParser(NSInputStream stream) { super((SkipInit) null); initObject(init(stream)); }
     /*</constructors>*/
     /*<properties>*/

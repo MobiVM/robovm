@@ -41,7 +41,13 @@ import org.robovm.apple.uikit.*;
 
     /*<ptr>*/public static class CGImagePtr extends Ptr<CGImage, CGImagePtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(CGImage.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int ByteOrderMask = 28672;
+    public static final int ByteOrder16Little = 4096;
+    public static final int ByteOrder32Little = 8192;
+    public static final int ByteOrder16Big = 12288;
+    public static final int ByteOrder32Big = 16384;
+    /*</constants>*/
     /*<constructors>*/
     protected CGImage() {}
     /*</constructors>*/
@@ -201,5 +207,10 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGImageGetBitmapInfo", optional=true)
     public native CGBitmapInfo getBitmapInfo();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CGImageGetUTType", optional=true)
+    public native String getUTType();
     /*</methods>*/
 }

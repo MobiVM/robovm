@@ -46,7 +46,9 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSAtomicStore() {}
+    protected NSAtomicStore(Handle h, long handle) { super(h, handle); }
     protected NSAtomicStore(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPersistentStoreCoordinator:configurationName:URL:options:")
     public NSAtomicStore(NSPersistentStoreCoordinator coordinator, String configurationName, NSURL url, NSPersistentStoreOptions options) { super((SkipInit) null); initObject(init(coordinator, configurationName, url, options)); }
     /*</constructors>*/
     /*<properties>*/

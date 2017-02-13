@@ -69,7 +69,9 @@ import org.robovm.apple.dispatch.*;
     protected NSBundleResourceRequest() {}
     protected NSBundleResourceRequest(Handle h, long handle) { super(h, handle); }
     protected NSBundleResourceRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTags:")
     public NSBundleResourceRequest(@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String> tags) { super((SkipInit) null); initObject(init(tags)); }
+    @Method(selector = "initWithTags:bundle:")
     public NSBundleResourceRequest(@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String> tags, NSBundle bundle) { super((SkipInit) null); initObject(init(tags, bundle)); }
     /*</constructors>*/
     /*<properties>*/

@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIPrintInfo() {}
     protected UIPrintInfo(Handle h, long handle) { super(h, handle); }
     protected UIPrintInfo(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UIPrintInfo(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     public UIPrintInfo(NSDictionary<?, ?> dictionary) { super((Handle) null, create(dictionary)); retain(getHandle()); }
     /*</constructors>*/

@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public NSLayoutManager() {}
     protected NSLayoutManager(Handle h, long handle) { super(h, handle); }
     protected NSLayoutManager(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public NSLayoutManager(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/

@@ -66,6 +66,7 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     protected NSLocale(Handle h, long handle) { super(h, handle); }
     protected NSLocale(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLocaleIdentifier:")
     public NSLocale(String string) { super((SkipInit) null); initObject(init(string)); }
     /*</constructors>*/
     

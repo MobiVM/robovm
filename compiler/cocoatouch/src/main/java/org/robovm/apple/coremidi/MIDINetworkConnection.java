@@ -46,6 +46,7 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MIDINetworkConnection() {}
+    protected MIDINetworkConnection(Handle h, long handle) { super(h, handle); }
     protected MIDINetworkConnection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

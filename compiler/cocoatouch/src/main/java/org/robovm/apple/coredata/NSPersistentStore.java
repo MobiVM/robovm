@@ -44,8 +44,10 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(NSPersistentStore.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSPersistentStore() {}
+    protected NSPersistentStore() {}
+    protected NSPersistentStore(Handle h, long handle) { super(h, handle); }
     protected NSPersistentStore(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPersistentStoreCoordinator:configurationName:URL:options:")
     public NSPersistentStore(NSPersistentStoreCoordinator root, String name, NSURL url, NSPersistentStoreOptions options) { super((SkipInit) null); initObject(init(root, name, url, options)); }
     /*</constructors>*/
     /*<properties>*/

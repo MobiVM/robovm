@@ -34,10 +34,13 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 8.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIKernel/*</name>*/ 
@@ -49,22 +52,33 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CIKernel() {}
+    protected CIKernel(Handle h, long handle) { super(h, handle); }
     protected CIKernel(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Property(selector = "name")
+    public native String getName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "name")
-    public native String getName();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "setROISelector:")
+    public native void setROISelector(Selector method);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "applyWithExtent:roiCallback:arguments:")
     public native CIImage apply(@ByVal CGRect extent, @Block("@ByVal (,@ByVal)") Block2<Integer, CGRect, CGRect> callback, NSArray<?> args);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "kernelsWithString:")
-    public static native NSArray<CIKernel> createKernels(String s);
+    public static native NSArray<CIKernel> createKernels(String string);
     /**
      * @since Available in iOS 8.0 and later.
      */

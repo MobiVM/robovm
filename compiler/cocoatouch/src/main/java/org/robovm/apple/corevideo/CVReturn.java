@@ -45,6 +45,7 @@ public enum /*<name>*/CVReturn/*</name>*/ implements ValuedEnum {
     Error(-6660L),
     InvalidArgument(-6661L),
     AllocationFailed(-6662L),
+    Unsupported(-6663L),
     InvalidDisplay(-6670L),
     DisplayLinkAlreadyRunning(-6671L),
     DisplayLinkNotRunning(-6672L),
@@ -57,6 +58,7 @@ public enum /*<name>*/CVReturn/*</name>*/ implements ValuedEnum {
     WouldExceedAllocationThreshold(-6689L),
     PoolAllocationFailed(-6690L),
     InvalidPoolAttributes(-6691L),
+    Retry(-6692L),
     Last(-6699L);
     /*</values>*/
 

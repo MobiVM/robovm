@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CMAttitude() {}
+    protected CMAttitude(Handle h, long handle) { super(h, handle); }
     protected CMAttitude(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

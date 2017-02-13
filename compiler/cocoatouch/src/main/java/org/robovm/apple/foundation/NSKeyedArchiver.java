@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     public NSKeyedArchiver() {}
     protected NSKeyedArchiver(Handle h, long handle) { super(h, handle); }
     protected NSKeyedArchiver(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initForWritingWithMutableData:")
     public NSKeyedArchiver(NSMutableData data) { super((SkipInit) null); initObject(init(data)); }
     /*</constructors>*/
     /*<properties>*/

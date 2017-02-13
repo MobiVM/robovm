@@ -58,6 +58,7 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @Method(selector = "initWithTagSchemes:options:")
     public NSLinguisticTagger(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTagScheme> tagSchemes, NSLinguisticTaggerOptions opts) { super((SkipInit) null); initObject(init(tagSchemes, opts)); }
     /*</constructors>*/
     /*<properties>*/

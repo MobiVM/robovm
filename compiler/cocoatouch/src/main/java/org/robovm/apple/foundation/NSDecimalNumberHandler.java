@@ -52,7 +52,9 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     protected NSDecimalNumberHandler(Handle h, long handle) { super(h, handle); }
     protected NSDecimalNumberHandler(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:")
     public NSDecimalNumberHandler(NSRoundingMode roundingMode, short scale, boolean exact, boolean overflow, boolean underflow, boolean divideByZero) { super((SkipInit) null); initObject(init(roundingMode, scale, exact, overflow, underflow, divideByZero)); }
+    @Method(selector = "initWithCoder:")
     public NSDecimalNumberHandler(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/

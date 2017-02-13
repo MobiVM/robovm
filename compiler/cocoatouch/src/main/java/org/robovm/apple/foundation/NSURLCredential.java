@@ -54,16 +54,19 @@ import org.robovm.apple.dispatch.*;
     protected NSURLCredential(Handle h, long handle) { super(h, handle); }
     protected NSURLCredential(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithUser:password:persistence:")
     public NSURLCredential(String user, String password, NSURLCredentialPersistence persistence) { super((SkipInit) null); initObject(init(user, password, persistence)); }
     /**
      * @since Available in iOS 3.0 and later.
      */
     @WeaklyLinked
+    @Method(selector = "initWithIdentity:certificates:persistence:")
     public NSURLCredential(SecIdentity identity, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<SecCertificate> certArray, NSURLCredentialPersistence persistence) { super((SkipInit) null); initObject(init(identity, certArray, persistence)); }
     /**
      * @since Available in iOS 3.0 and later.
      */
     @WeaklyLinked
+    @Method(selector = "initWithTrust:")
     public NSURLCredential(SecTrust trust) { super((SkipInit) null); initObject(init(trust)); }
     /*</constructors>*/
     /*<properties>*/

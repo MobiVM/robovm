@@ -40,8 +40,23 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/CTFontOrientation/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     Default(0L),
+    /**
+     * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     Horizontal(1L),
+    /**
+     * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     Vertical(2L);
     /*</values>*/
 

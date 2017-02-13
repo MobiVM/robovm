@@ -53,7 +53,9 @@ import org.robovm.apple.corelocation.*;
     protected UIReferenceLibraryViewController() {}
     protected UIReferenceLibraryViewController(Handle h, long handle) { super(h, handle); }
     protected UIReferenceLibraryViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTerm:")
     public UIReferenceLibraryViewController(String term) { super((SkipInit) null); initObject(init(term)); }
+    @Method(selector = "initWithCoder:")
     public UIReferenceLibraryViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

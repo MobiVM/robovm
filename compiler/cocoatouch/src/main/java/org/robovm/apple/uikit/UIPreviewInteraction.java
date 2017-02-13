@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     protected UIPreviewInteraction() {}
     protected UIPreviewInteraction(Handle h, long handle) { super(h, handle); }
     protected UIPreviewInteraction(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithView:")
     public UIPreviewInteraction(UIView view) { super((SkipInit) null); initObject(init(view)); }
     /*</constructors>*/
     /*<properties>*/

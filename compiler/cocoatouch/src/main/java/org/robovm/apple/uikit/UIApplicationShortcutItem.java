@@ -52,7 +52,9 @@ import org.robovm.apple.corelocation.*;
     /*<constructors>*/
     protected UIApplicationShortcutItem(Handle h, long handle) { super(h, handle); }
     protected UIApplicationShortcutItem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithType:localizedTitle:localizedSubtitle:icon:userInfo:")
     public UIApplicationShortcutItem(String type, String localizedTitle, String localizedSubtitle, UIApplicationShortcutIcon icon, NSDictionary<?, ?> userInfo) { super((SkipInit) null); initObject(init(type, localizedTitle, localizedSubtitle, icon, userInfo)); }
+    @Method(selector = "initWithType:localizedTitle:")
     public UIApplicationShortcutItem(String type, String localizedTitle) { super((SkipInit) null); initObject(init(type, localizedTitle)); }
     /*</constructors>*/
     /*<properties>*/

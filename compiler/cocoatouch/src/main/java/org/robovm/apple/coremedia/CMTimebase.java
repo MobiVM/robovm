@@ -251,23 +251,51 @@ import org.robovm.apple.audiotoolbox.*;
     @Bridge(symbol="CMTimebaseCreateWithMasterTimebase", optional=true)
     protected static native OSStatus create0(CFAllocator allocator, CMTimebase masterTimebase, CMTimebase.CMTimebasePtr timebaseOut);
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @Bridge(symbol="CMTimebaseCopyMasterTimebase", optional=true)
+    protected native CMTimebase copyMasterTimebase0();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CMTimebaseCopyMasterClock", optional=true)
+    protected native CMClock copyMasterClock0();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CMTimebaseCopyMaster", optional=true)
+    protected native CFType copyMaster0();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CMTimebaseCopyUltimateMasterClock", optional=true)
+    protected native CMClock copyUltimateMasterClock0();
+    /**
+     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Bridge(symbol="CMTimebaseGetMasterTimebase", optional=true)
     public native CMTimebase getMasterTimebase();
     /**
      * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Bridge(symbol="CMTimebaseGetMasterClock", optional=true)
     public native CMClock getMasterClock();
     /**
      * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Bridge(symbol="CMTimebaseGetMaster", optional=true)
     public native CMTimebase getMaster();
     /**
      * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Bridge(symbol="CMTimebaseGetUltimateMasterClock", optional=true)
     public native CMClock getUltimateMasterClock();
     /**

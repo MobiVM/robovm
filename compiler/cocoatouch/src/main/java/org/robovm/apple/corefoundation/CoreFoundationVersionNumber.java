@@ -123,6 +123,15 @@ import org.robovm.apple.coretext.*;
     public static final double VersionNumber10_10_1 = 1151.16;
     public static final int VersionNumber10_10_2 = 1152;
     public static final double VersionNumber10_10_3 = 1153.18;
+    public static final double VersionNumber10_10_4 = 1153.18;
+    public static final double VersionNumber10_10_5 = 1153.18;
+    public static final int VersionNumber10_10_Max = 1199;
+    public static final int VersionNumber10_11 = 1253;
+    public static final double VersionNumber10_11_1 = 1255.1;
+    public static final double VersionNumber10_11_2 = 1256.14;
+    public static final double VersionNumber10_11_3 = 1256.14;
+    public static final double VersionNumber10_11_4 = 1258.1;
+    public static final int VersionNumber10_11_Max = 1299;
     public static final double VersionNumber_iPhoneOS_2_0 = 478.23;
     public static final double VersionNumber_iPhoneOS_2_1 = 478.26;
     public static final double VersionNumber_iPhoneOS_2_2 = 478.29;
@@ -142,6 +151,15 @@ import org.robovm.apple.coretext.*;
     public static final double VersionNumber_iOS_8_0 = 1140.1;
     public static final double VersionNumber_iOS_8_1 = 1141.14;
     public static final double VersionNumber_iOS_8_2 = 1142.16;
+    public static final double VersionNumber_iOS_8_3 = 1144.17;
+    public static final double VersionNumber_iOS_8_4 = 1145.15;
+    public static final int VersionNumber_iOS_8_x_Max = 1199;
+    public static final double VersionNumber_iOS_9_0 = 1240.1;
+    public static final double VersionNumber_iOS_9_1 = 1241.11;
+    public static final double VersionNumber_iOS_9_2 = 1242.13;
+    public static final double VersionNumber_iOS_9_3 = 1242.13;
+    public static final double VersionNumber_iOS_9_4 = 1280.38;
+    public static final int VersionNumber_iOS_9_x_Max = 1299;
     /*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/

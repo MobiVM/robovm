@@ -69,6 +69,7 @@ import org.robovm.apple.dispatch.*;
     public NSDate() {}
     protected NSDate(Handle h, long handle) { super(h, handle); }
     protected NSDate(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTimeIntervalSince1970:")
     public NSDate(double secs) { super((SkipInit) null); initObject(init(secs)); }
     /*</constructors>*/
     

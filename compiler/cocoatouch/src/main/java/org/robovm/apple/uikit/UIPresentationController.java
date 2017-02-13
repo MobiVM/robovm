@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     protected UIPresentationController() {}
     protected UIPresentationController(Handle h, long handle) { super(h, handle); }
     protected UIPresentationController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPresentedViewController:presentingViewController:")
     public UIPresentationController(UIViewController presentedViewController, UIViewController presentingViewController) { super((SkipInit) null); initObject(init(presentedViewController, presentingViewController)); }
     /*</constructors>*/
     /*<properties>*/

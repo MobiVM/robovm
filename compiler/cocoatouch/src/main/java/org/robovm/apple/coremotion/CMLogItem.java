@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CMLogItem() {}
+    protected CMLogItem(Handle h, long handle) { super(h, handle); }
     protected CMLogItem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

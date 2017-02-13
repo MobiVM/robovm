@@ -60,12 +60,14 @@ import org.robovm.apple.newsstandkit.NKAssetDownload;
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
+    @Method(selector = "initWithRequest:delegate:startImmediately:")
     public NSURLConnection(NSURLRequest request, NSURLConnectionDelegate delegate, boolean startImmediately) { super((SkipInit) null); initObject(init(request, delegate, startImmediately)); }
     /**
      * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
+    @Method(selector = "initWithRequest:delegate:")
     public NSURLConnection(NSURLRequest request, NSURLConnectionDelegate delegate) { super((SkipInit) null); initObject(init(request, delegate)); }
     /*</constructors>*/
     /*<properties>*/
