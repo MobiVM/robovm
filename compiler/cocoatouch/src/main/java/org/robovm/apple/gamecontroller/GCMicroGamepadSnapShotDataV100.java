@@ -69,6 +69,9 @@ import org.robovm.apple.dispatch.*;
     @StructMember(5) public native GCMicroGamepadSnapShotDataV100 setButtonX(float buttonX);
     /*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @Bridge(symbol="GCMicroGamepadSnapShotDataV100FromNSData", optional=true)
     public native boolean getData(NSData data);
     /*</methods>*/
