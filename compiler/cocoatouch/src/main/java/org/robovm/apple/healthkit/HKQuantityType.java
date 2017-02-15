@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HKQuantityType() {}
+    protected HKQuantityType(Handle h, long handle) { super(h, handle); }
     protected HKQuantityType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

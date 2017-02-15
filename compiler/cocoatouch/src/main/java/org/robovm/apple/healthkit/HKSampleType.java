@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HKSampleType() {}
+    protected HKSampleType(Handle h, long handle) { super(h, handle); }
     protected HKSampleType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

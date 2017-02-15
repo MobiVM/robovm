@@ -52,6 +52,11 @@ public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
     Curling(12L),
     Cycling(13L),
     Dance(14L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     DanceInspiredTraining(15L),
     Elliptical(16L),
     EquestrianSports(17L),
@@ -95,6 +100,62 @@ public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
     WaterSports(55L),
     Wrestling(56L),
     Yoga(57L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Barre(58L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    CoreTraining(59L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    CrossCountrySkiing(60L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    DownhillSkiing(61L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Flexibility(62L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    HighIntensityIntervalTraining(63L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    JumpRope(64L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Kickboxing(65L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Pilates(66L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Snowboarding(67L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Stairs(68L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    StepTraining(69L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    WheelchairWalkPace(70L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    WheelchairRunPace(71L),
     Other(3000L);
     /*</values>*/
 
