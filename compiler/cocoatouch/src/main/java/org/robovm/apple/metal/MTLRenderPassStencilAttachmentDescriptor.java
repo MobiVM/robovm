@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLRenderPassStencilAttachmentDescriptor() {}
+    protected MTLRenderPassStencilAttachmentDescriptor(Handle h, long handle) { super(h, handle); }
     protected MTLRenderPassStencilAttachmentDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

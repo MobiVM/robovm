@@ -59,10 +59,25 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "storageMode")
     MTLStorageMode getStorageMode();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "heap")
+    MTLHeap getHeap();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "setPurgeableState:")
     MTLPurgeableState setPurgeableState(MTLPurgeableState state);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "makeAliasable")
+    void makeAliasable();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "isAliasable")
+    boolean isAliasable();
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

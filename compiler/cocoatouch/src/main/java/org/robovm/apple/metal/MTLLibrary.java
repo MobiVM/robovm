@@ -61,5 +61,24 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "newFunctionWithName:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) MTLFunction newFunction(String functionName);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public MTLFunction newFunction(String name, MTLFunctionConstantValues constantValues) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MTLFunction result = newFunction(name, constantValues, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "newFunctionWithName:constantValues:error:")
+    private native MTLFunction newFunction(String name, MTLFunctionConstantValues constantValues, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "newFunctionWithName:constantValues:completionHandler:")
+    public native void newFunction(String name, MTLFunctionConstantValues constantValues, @Block VoidBlock2<MTLFunction, NSError> completionHandler);
     /*</methods>*/
 }

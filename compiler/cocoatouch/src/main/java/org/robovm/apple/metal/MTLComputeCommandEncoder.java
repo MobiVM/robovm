@@ -120,8 +120,28 @@ import org.robovm.apple.dispatch.*;
     protected native void setSamplerStates(MTLSamplerState.MTLSamplerStatePtr samplers, FloatPtr lodMinClamps, FloatPtr lodMaxClamps, @ByVal NSRange range);
     @Method(selector = "setThreadgroupMemoryLength:atIndex:")
     public native void setThreadgroupMemoryLength(@MachineSizedUInt long length, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setStageInRegion:")
+    public native void setStageInRegion(@ByVal MTLRegion region);
     @Method(selector = "dispatchThreadgroups:threadsPerThreadgroup:")
     public native void dispatchThreadgroups(@ByVal MTLSize threadgroupsPerGrid, @ByVal MTLSize threadsPerThreadgroup);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:")
+    public native void dispatchThreadgroups(MTLBuffer indirectBuffer, @MachineSizedUInt long indirectBufferOffset, @ByVal MTLSize threadsPerThreadgroup);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "updateFence:")
+    public native void updateFence(MTLFence fence);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "waitForFence:")
+    public native void waitForFence(MTLFence fence);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")

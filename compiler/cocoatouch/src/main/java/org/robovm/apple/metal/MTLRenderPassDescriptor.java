@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLRenderPassDescriptor() {}
+    protected MTLRenderPassDescriptor(Handle h, long handle) { super(h, handle); }
     protected MTLRenderPassDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

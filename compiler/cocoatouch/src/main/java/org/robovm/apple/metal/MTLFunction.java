@@ -48,14 +48,44 @@ import org.robovm.apple.dispatch.*;
     
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "label")
+    public native String getLabel();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setLabel:")
+    public native void setLabel(String v);
     @Property(selector = "device")
     public native MTLDevice getDevice();
     @Property(selector = "functionType")
     public native MTLFunctionType getFunctionType();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "patchType")
+    public native MTLPatchType getPatchType();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "patchControlPointCount")
+    public native @MachineSizedSInt long getPatchControlPointCount();
     @Property(selector = "vertexAttributes")
     public native NSArray<MTLVertexAttribute> getVertexAttributes();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "stageInputAttributes")
+    public native NSArray<MTLAttribute> getStageInputAttributes();
     @Property(selector = "name")
     public native String getName();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "functionConstantsDictionary")
+    public native NSDictionary<?, ?> getFunctionConstantsDictionary();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
