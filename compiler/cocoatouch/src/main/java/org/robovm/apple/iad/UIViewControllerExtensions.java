@@ -51,42 +51,58 @@ import org.robovm.apple.avkit.*;
     /*<properties>*/
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "interstitialPresentationPolicy")
     public static native ADInterstitialPresentationPolicy getInterstitialPresentationPolicy(UIViewController thiz);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "setInterstitialPresentationPolicy:")
     public static native void setInterstitialPresentationPolicy(UIViewController thiz, ADInterstitialPresentationPolicy v);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "canDisplayBannerAds")
     public static native boolean canDisplayBannerAds(UIViewController thiz);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "setCanDisplayBannerAds:")
     public static native void setCanDisplayBannerAds(UIViewController thiz, boolean v);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "originalContentView")
     public static native UIView getOriginalContentView(UIViewController thiz);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "isPresentingFullScreenAd")
     public static native boolean isPresentingFullScreenAd(UIViewController thiz);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "isDisplayingBannerAd")
     public static native boolean isDisplayingBannerAd(UIViewController thiz);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "shouldPresentInterstitialAd")
     public static native boolean shouldPresentInterstitialAd(UIViewController thiz);
     /*</properties>*/
@@ -94,12 +110,16 @@ import org.robovm.apple.avkit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Method(selector = "requestInterstitialAdPresentation")
     public static native boolean requestInterstitialAdPresentation(UIViewController thiz);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Method(selector = "prepareInterstitialAds")
     protected static native void prepareInterstitialAds(ObjCClass clazz);
     public static void prepareInterstitialAds() { prepareInterstitialAds(ObjCClass.getByType(UIViewController.class)); }

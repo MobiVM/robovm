@@ -37,7 +37,9 @@ import org.robovm.apple.avkit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.3 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("iAd") @NativeClass/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/ADInterstitialAd/*</name>*/ 
@@ -49,6 +51,7 @@ import org.robovm.apple.avkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public ADInterstitialAd() {}
+    protected ADInterstitialAd(Handle h, long handle) { super(h, handle); }
     protected ADInterstitialAd(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -67,5 +70,12 @@ import org.robovm.apple.avkit.*;
     public native void cancelAction();
     @Method(selector = "presentInView:")
     public native boolean present(UIView containerView);
+    /**
+     * @since Available in iOS 4.3 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
+    @Method(selector = "presentFromViewController:")
+    public native void presentFromViewController(UIViewController viewController);
     /*</methods>*/
 }
