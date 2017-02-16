@@ -49,7 +49,8 @@ import org.robovm.apple.coreanimation.*;
     /*<bind>*/static { ObjCRuntime.bind(MTKSubmesh.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTKSubmesh() {}
+    protected MTKSubmesh() {}
+    protected MTKSubmesh(Handle h, long handle) { super(h, handle); }
     protected MTKSubmesh(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

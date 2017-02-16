@@ -43,15 +43,18 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("MetalKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTKView/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSCoding, CALayerDelegate/*</implements>*/ {
 
     /*<ptr>*/public static class MTKViewPtr extends Ptr<MTKView, MTKViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MTKView.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTKView() {}
+    protected MTKView(Handle h, long handle) { super(h, handle); }
     protected MTKView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:device:")
     public MTKView(@ByVal CGRect frameRect, MTLDevice device) { super((SkipInit) null); initObject(init(frameRect, device)); }
+    @Method(selector = "initWithCoder:")
     public MTKView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/

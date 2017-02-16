@@ -43,13 +43,14 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("MetalKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTKMeshBuffer/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements MDLMeshBuffer, MDLNamed/*</implements>*/ {
 
     /*<ptr>*/public static class MTKMeshBufferPtr extends Ptr<MTKMeshBuffer, MTKMeshBufferPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MTKMeshBuffer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTKMeshBuffer() {}
+    protected MTKMeshBuffer() {}
+    protected MTKMeshBuffer(Handle h, long handle) { super(h, handle); }
     protected MTKMeshBuffer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -65,9 +66,16 @@ import org.robovm.apple.coreanimation.*;
     public native @MachineSizedUInt long getOffset();
     @Property(selector = "type")
     public native MDLMeshBufferType getType();
+    @Property(selector = "name")
+    public native String getName();
+    @Property(selector = "setName:")
+    public native void setName(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "fillData:offset:")
+    public native void fill(NSData data, @MachineSizedUInt long offset);
+    @Method(selector = "map")
+    public native MDLMeshBufferMap getMap();
     /*</methods>*/
 }
