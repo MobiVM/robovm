@@ -189,7 +189,7 @@ classes:
     MDLMeshBufferZoneDefault: {} # DONE
     MDLNoiseTexture: # DONE
         methods:
-            '-initCellularNoiseWithFrequency':
+            '-initCellularNoiseWithFrequency:name:textureDimensions:channelEncoding:':
                 name: initCellularNoise
                 constructor: false # as conflicts
             '-init.*':
