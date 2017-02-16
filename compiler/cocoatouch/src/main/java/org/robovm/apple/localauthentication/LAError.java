@@ -59,7 +59,7 @@ import org.robovm.apple.security.*;
     }
     /*<methods>*/
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 8.3 and later.
      */
     @GlobalValue(symbol="LAErrorDomain", optional=true)
     public static native String getClassDomain();
