@@ -65,7 +65,8 @@ import org.robovm.apple.coregraphics.*;
     }
     
     /*<constructors>*/
-    public MPRemoteCommand() {}
+    protected MPRemoteCommand() {}
+    protected MPRemoteCommand(Handle h, long handle) { super(h, handle); }
     protected MPRemoteCommand(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

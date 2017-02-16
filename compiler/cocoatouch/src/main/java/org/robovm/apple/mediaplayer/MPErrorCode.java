@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,30 +34,41 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.1 and later.
+ * @since Available in iOS 9.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPRemoteCommandEvent/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("MediaPlayer")/*</annotations>*/
+public enum /*<name>*/MPErrorCode/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Unknown(0L),
+    PermissionDenied(1L),
+    CloudServiceCapabilityMissing(2L),
+    NetworkConnectionFailed(3L),
+    NotFound(4L),
+    NotSupported(5L);
+    /*</values>*/
 
-    /*<ptr>*/public static class MPRemoteCommandEventPtr extends Ptr<MPRemoteCommandEvent, MPRemoteCommandEventPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MPRemoteCommandEvent.class); }/*</bind>*/
+    /*<bind>*/static { Bro.bind(MPErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MPRemoteCommandEvent() {}
-    protected MPRemoteCommandEvent(Handle h, long handle) { super(h, handle); }
-    protected MPRemoteCommandEvent(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "command")
-    public native MPRemoteCommand getCommand();
-    @Property(selector = "timestamp")
-    public native double getTimestamp();
-    /*</properties>*/
-    /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @GlobalValue(symbol="MPErrorDomain", optional=true)
+    public static native String ErrorDomain();
     /*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/MPErrorCode/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/MPErrorCode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MPErrorCode/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/MPErrorCode/*</name>*/.class.getName());
+    }
 }

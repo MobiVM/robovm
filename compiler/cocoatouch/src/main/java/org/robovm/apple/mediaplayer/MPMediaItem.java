@@ -47,6 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPMediaItem() {}
+    protected MPMediaItem(Handle h, long handle) { super(h, handle); }
     protected MPMediaItem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -146,6 +147,11 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "artwork")
     public native MPMediaItemArtwork getArtwork();
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isExplicitItem")
+    public native boolean isExplicitItem();
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "lyrics")
@@ -180,6 +186,11 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "isCloudItem")
     public native boolean isCloudItem();
+    /**
+     * @since Available in iOS 9.2 and later.
+     */
+    @Property(selector = "hasProtectedAsset")
+    public native boolean isProtectedAsset();
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -220,6 +231,11 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "bookmarkTime")
     public native double getBookmarkTime();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "dateAdded")
+    public native NSDate getDateAdded();
     /*</properties>*/
     /*<members>*//*</members>*/
     @Override

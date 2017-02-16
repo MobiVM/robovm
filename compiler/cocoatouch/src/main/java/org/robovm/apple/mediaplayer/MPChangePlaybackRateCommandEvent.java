@@ -47,6 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPChangePlaybackRateCommandEvent() {}
+    protected MPChangePlaybackRateCommandEvent(Handle h, long handle) { super(h, handle); }
     protected MPChangePlaybackRateCommandEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

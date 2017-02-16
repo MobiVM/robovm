@@ -46,7 +46,8 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPRemoteCommandCenter.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPRemoteCommandCenter() {}
+    protected MPRemoteCommandCenter() {}
+    protected MPRemoteCommandCenter(Handle h, long handle) { super(h, handle); }
     protected MPRemoteCommandCenter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -58,6 +59,22 @@ import org.robovm.apple.coregraphics.*;
     public native MPRemoteCommand getStopCommand();
     @Property(selector = "togglePlayPauseCommand")
     public native MPRemoteCommand getTogglePlayPauseCommand();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "enableLanguageOptionCommand")
+    public native MPRemoteCommand getEnableLanguageOptionCommand();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "disableLanguageOptionCommand")
+    public native MPRemoteCommand getDisableLanguageOptionCommand();
+    @Property(selector = "changePlaybackRateCommand")
+    public native MPChangePlaybackRateCommand getChangePlaybackRateCommand();
+    @Property(selector = "changeRepeatModeCommand")
+    public native MPChangeRepeatModeCommand getChangeRepeatModeCommand();
+    @Property(selector = "changeShuffleModeCommand")
+    public native MPChangeShuffleModeCommand getChangeShuffleModeCommand();
     @Property(selector = "nextTrackCommand")
     public native MPRemoteCommand getNextTrackCommand();
     @Property(selector = "previousTrackCommand")
@@ -70,10 +87,13 @@ import org.robovm.apple.coregraphics.*;
     public native MPRemoteCommand getSeekForwardCommand();
     @Property(selector = "seekBackwardCommand")
     public native MPRemoteCommand getSeekBackwardCommand();
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Property(selector = "changePlaybackPositionCommand")
+    public native MPChangePlaybackPositionCommand getChangePlaybackPositionCommand();
     @Property(selector = "ratingCommand")
     public native MPRatingCommand getRatingCommand();
-    @Property(selector = "changePlaybackRateCommand")
-    public native MPChangePlaybackRateCommand getChangePlaybackRateCommand();
     @Property(selector = "likeCommand")
     public native MPFeedbackCommand getLikeCommand();
     @Property(selector = "dislikeCommand")

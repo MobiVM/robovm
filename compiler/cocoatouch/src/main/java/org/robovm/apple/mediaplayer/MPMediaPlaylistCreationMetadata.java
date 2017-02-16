@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,30 +34,39 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.1 and later.
+ * @since Available in iOS 9.3 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPRemoteCommandEvent/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaPlaylistCreationMetadata/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPRemoteCommandEventPtr extends Ptr<MPRemoteCommandEvent, MPRemoteCommandEventPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MPRemoteCommandEvent.class); }/*</bind>*/
+    /*<ptr>*/public static class MPMediaPlaylistCreationMetadataPtr extends Ptr<MPMediaPlaylistCreationMetadata, MPMediaPlaylistCreationMetadataPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MPMediaPlaylistCreationMetadata.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPRemoteCommandEvent() {}
-    protected MPRemoteCommandEvent(Handle h, long handle) { super(h, handle); }
-    protected MPRemoteCommandEvent(SkipInit skipInit) { super(skipInit); }
+    protected MPMediaPlaylistCreationMetadata() {}
+    protected MPMediaPlaylistCreationMetadata(Handle h, long handle) { super(h, handle); }
+    protected MPMediaPlaylistCreationMetadata(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:")
+    public MPMediaPlaylistCreationMetadata(String name) { super((SkipInit) null); initObject(initWithName(name)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "command")
-    public native MPRemoteCommand getCommand();
-    @Property(selector = "timestamp")
-    public native double getTimestamp();
+    @Property(selector = "name")
+    public native String getName();
+    @Property(selector = "authorDisplayName")
+    public native String getAuthorDisplayName();
+    @Property(selector = "setAuthorDisplayName:")
+    public native void setAuthorDisplayName(String v);
+    @Property(selector = "descriptionText")
+    public native String getDescriptionText();
+    @Property(selector = "setDescriptionText:")
+    public native void setDescriptionText(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithName:")
+    protected native @Pointer long initWithName(String name);
     /*</methods>*/
 }

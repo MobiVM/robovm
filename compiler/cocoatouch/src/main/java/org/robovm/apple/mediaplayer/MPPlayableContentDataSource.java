@@ -33,7 +33,9 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 7.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/MPPlayableContentDataSource/*</name>*/ 
@@ -52,6 +54,11 @@ import org.robovm.apple.coregraphics.*;
     void beginLoadingChildItems(NSIndexPath indexPath, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "childItemsDisplayPlaybackProgressAtIndexPath:")
     boolean childItemsDisplayPlaybackProgress(NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "contentItemForIdentifier:completionHandler:")
+    void getContentItem(String identifier, @Block VoidBlock2<MPContentItem, NSError> completionHandler);
     @Method(selector = "numberOfChildItemsAtIndexPath:")
     @MachineSizedSInt long getNumberOfChildItems(NSIndexPath indexPath);
     @Method(selector = "contentItemAtIndexPath:")

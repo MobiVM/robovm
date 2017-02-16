@@ -46,27 +46,48 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPMediaItemArtwork.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPMediaItemArtwork() {}
+    protected MPMediaItemArtwork() {}
+    protected MPMediaItemArtwork(Handle h, long handle) { super(h, handle); }
     protected MPMediaItemArtwork(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
+    @Method(selector = "initWithBoundsSize:requestHandler:")
+    public MPMediaItemArtwork(@ByVal CGSize boundsSize, @Block("(@ByVal)") Block1<CGSize, UIImage> requestHandler) { super((SkipInit) null); initObject(init(boundsSize, requestHandler)); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Method(selector = "initWithImage:")
     public MPMediaItemArtwork(UIImage image) { super((SkipInit) null); initObject(init(image)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "bounds")
     public native @ByVal CGRect getBounds();
+    /**
+     * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "imageCropRect")
     public native @ByVal CGRect getImageCropRect();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    @Method(selector = "initWithImage:")
-    protected native @Pointer long init(UIImage image);
+    @Method(selector = "initWithBoundsSize:requestHandler:")
+    protected native @Pointer long init(@ByVal CGSize boundsSize, @Block("(@ByVal)") Block1<CGSize, UIImage> requestHandler);
     @Method(selector = "imageWithSize:")
     public native UIImage getImage(@ByVal CGSize size);
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Method(selector = "initWithImage:")
+    protected native @Pointer long init(UIImage image);
     /*</methods>*/
 }

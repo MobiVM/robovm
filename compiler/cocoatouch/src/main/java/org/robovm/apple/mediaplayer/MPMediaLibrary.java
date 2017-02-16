@@ -58,6 +58,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPMediaLibrary() {}
+    protected MPMediaLibrary(Handle h, long handle) { super(h, handle); }
     protected MPMediaLibrary(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -73,7 +74,27 @@ import org.robovm.apple.coregraphics.*;
     public native void beginGeneratingLibraryChangeNotifications();
     @Method(selector = "endGeneratingLibraryChangeNotifications")
     public native void endGeneratingLibraryChangeNotifications();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "addItemWithProductID:completionHandler:")
+    public native void addItemWithProductID(String productID, @Block VoidBlock2<NSArray<MPMediaEntity>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "getPlaylistWithUUID:creationMetadata:completionHandler:")
+    public native void getPlaylistWithUUID(NSUUID uuid, MPMediaPlaylistCreationMetadata creationMetadata, @Block VoidBlock2<MPMediaPlaylist, NSError> completionHandler);
     @Method(selector = "defaultMediaLibrary")
     public static native MPMediaLibrary getDefaultMediaLibrary();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "authorizationStatus")
+    public static native MPMediaLibraryAuthorizationStatus authorizationStatus();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "requestAuthorization:")
+    public static native void requestAuthorization(@Block VoidBlock1<MPMediaLibraryAuthorizationStatus> handler);
     /*</methods>*/
 }

@@ -47,6 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPSeekCommandEvent() {}
+    protected MPSeekCommandEvent(Handle h, long handle) { super(h, handle); }
     protected MPSeekCommandEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
