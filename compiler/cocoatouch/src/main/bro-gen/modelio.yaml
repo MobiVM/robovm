@@ -19,6 +19,9 @@ enums:
     MDLMeshBufferType: {}
     MDLTextureChannelEncoding: {}
     MDLVertexFormat: {}
+    MDLProbePlacement: {}
+    MDLCameraProjection: {}
+    MDLMaterialFace: {}
         
 classes:
     # Structs
@@ -52,6 +55,8 @@ classes:
                 trim_after_first_colon: true
             '+canExportFileExtension:':
                 trim_after_first_colon: true
+            '+placeLightProbesWithDensity:heuristic:usingIrradianceDataSource:':
+                name: placeLightProbes
     MDLCamera: # DONE
         methods:
             '-frameBoundingBox:setNearAndFar:':
@@ -105,14 +110,14 @@ classes:
             'submeshes':
                 type: NSMutableArray<MDLSubmesh>
         methods:
-            '-initWithVertexBuffer:vertexCount:descriptor:submeshes:':
-                name: init
+            '-initHemisphereWithExtent:segments:inwardNormals:cap:geometryType:allocator:':
+                trim_after_first_colon: true
+                constructor: false # as conflicts, a wrapper to be done
+            '-init.*':
+                trim_after_first_colon: true
                 parameters:
                     submeshes:
                         type: NSMutableArray<MDLSubmesh>
-            '-initWithVertexBuffers:vertexCount:descriptor:submeshes:':
-                name: init
-                parameters:
                     vertexBuffers:
                         type: List<MDLMeshBuffer>
                         marshaler: NSArray.AsListMarshaler
@@ -184,6 +189,9 @@ classes:
     MDLMeshBufferZoneDefault: {} # DONE
     MDLNoiseTexture: # DONE
         methods:
+            '-initCellularNoiseWithFrequency':
+                name: initCellularNoise
+                constructor: false # as conflicts
             '-init.*':
                 name: init
     MDLNormalMapTexture: # DONE
@@ -200,6 +208,8 @@ classes:
                 trim_after_first_colon: true
             '-boundingBoxAtTime:':
                 name: getBoundingBox
+            '-enumerateChildObjectsOfClass:root:usingBlock:stopPointer:':
+                name: enumerateChildObjects
     MDLObjectContainer: {} # DONE
     MDLPhotometricLight: # DONE
         methods:
@@ -321,6 +331,8 @@ classes:
                 name: getVoxelBoundingBox
 
 protocols:
+    MDLLightProbeIrradianceDataSource:
+        skip_adapter: true
     MDLComponent: # DONE
         skip_adapter: true
     MDLMeshBuffer: # DONE

@@ -46,7 +46,9 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLNormalMapTexture() {}
+    protected MDLNormalMapTexture(Handle h, long handle) { super(h, handle); }
     protected MDLNormalMapTexture(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initByGeneratingNormalMapWithTexture:name:smoothness:contrast:")
     public MDLNormalMapTexture(MDLTexture sourceTexture, String name, float smoothness, float contrast) { super((SkipInit) null); initObject(init(sourceTexture, name, smoothness, contrast)); }
     /*</constructors>*/
     /*<properties>*/

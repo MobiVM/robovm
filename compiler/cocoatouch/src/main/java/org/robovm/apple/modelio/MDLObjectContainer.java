@@ -46,6 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLObjectContainer() {}
+    protected MDLObjectContainer(Handle h, long handle) { super(h, handle); }
     protected MDLObjectContainer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

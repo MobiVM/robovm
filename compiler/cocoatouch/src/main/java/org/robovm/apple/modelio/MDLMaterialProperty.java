@@ -45,17 +45,28 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MDLMaterialProperty.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MDLMaterialProperty() {}
+    protected MDLMaterialProperty() {}
+    protected MDLMaterialProperty(Handle h, long handle) { super(h, handle); }
     protected MDLMaterialProperty(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:semantic:")
     public MDLMaterialProperty(String name, MDLMaterialSemantic semantic) { super((SkipInit) null); initObject(init(name, semantic)); }
+    @Method(selector = "initWithName:semantic:float:")
     public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, float value) { super((SkipInit) null); initObject(init(name, semantic, value)); }
-    public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, VectorFloat2 value) { super((SkipInit) null); initObject(init(name, semantic, value)); }
-    public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, VectorFloat3 value) { super((SkipInit) null); initObject(init(name, semantic, value)); }
-    public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, VectorFloat4 value) { super((SkipInit) null); initObject(init(name, semantic, value)); }
-    public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, MatrixFloat4x4 value) { super((SkipInit) null); initObject(init(name, semantic, value)); }
+    @Method(selector = "initWithName:semantic:float2:")
+    public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, @ByVal VectorFloat2 value) { super((SkipInit) null); initObject(init(name, semantic, value)); }
+    @Method(selector = "initWithName:semantic:float3:")
+    public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, @ByVal VectorFloat3 value) { super((SkipInit) null); initObject(init(name, semantic, value)); }
+    @Method(selector = "initWithName:semantic:float4:")
+    public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, @ByVal VectorFloat4 value) { super((SkipInit) null); initObject(init(name, semantic, value)); }
+    @Method(selector = "initWithName:semantic:matrix4x4:")
+    public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, @ByVal MatrixFloat4x4 value) { super((SkipInit) null); initObject(init(name, semantic, value)); }
+    @Method(selector = "initWithName:semantic:URL:")
     public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, NSURL URL) { super((SkipInit) null); initObject(init(name, semantic, URL)); }
+    @Method(selector = "initWithName:semantic:string:")
     public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, String string) { super((SkipInit) null); initObject(init(name, semantic, string)); }
+    @Method(selector = "initWithName:semantic:textureSampler:")
     public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, MDLTextureSampler textureSampler) { super((SkipInit) null); initObject(init(name, semantic, textureSampler)); }
+    @Method(selector = "initWithName:semantic:color:")
     public MDLMaterialProperty(String name, MDLMaterialSemantic semantic, CGColor color) { super((SkipInit) null); initObject(init(name, semantic, color)); }
     /*</constructors>*/
     /*<properties>*/
@@ -90,21 +101,25 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "setFloatValue:")
     public native void setFloatValue(float v);
     @Property(selector = "float2Value")
-    public native VectorFloat2 getFloat2Value();
-    @Property(selector = "setFloat2Value:", strongRef = true)
-    public native void setFloat2Value(VectorFloat2 v);
+    public native @ByVal VectorFloat2 getFloat2Value();
+    @Property(selector = "setFloat2Value:")
+    public native void setFloat2Value(@ByVal VectorFloat2 v);
     @Property(selector = "float3Value")
-    public native VectorFloat3 getFloat3Value();
-    @Property(selector = "setFloat3Value:", strongRef = true)
-    public native void setFloat3Value(VectorFloat3 v);
+    public native @ByVal VectorFloat3 getFloat3Value();
+    @Property(selector = "setFloat3Value:")
+    public native void setFloat3Value(@ByVal VectorFloat3 v);
     @Property(selector = "float4Value")
-    public native VectorFloat4 getFloat4Value();
-    @Property(selector = "setFloat4Value:", strongRef = true)
-    public native void setFloat4Value(VectorFloat4 v);
+    public native @ByVal VectorFloat4 getFloat4Value();
+    @Property(selector = "setFloat4Value:")
+    public native void setFloat4Value(@ByVal VectorFloat4 v);
     @Property(selector = "matrix4x4")
-    public native MatrixFloat4x4 getMatrix4x4();
-    @Property(selector = "setMatrix4x4:", strongRef = true)
-    public native void setMatrix4x4(MatrixFloat4x4 v);
+    public native @ByVal MatrixFloat4x4 getMatrix4x4();
+    @Property(selector = "setMatrix4x4:")
+    public native void setMatrix4x4(@ByVal MatrixFloat4x4 v);
+    @Property(selector = "luminance")
+    public native float getLuminance();
+    @Property(selector = "setLuminance:")
+    public native void setLuminance(float v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -113,13 +128,13 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithName:semantic:float:")
     protected native @Pointer long init(String name, MDLMaterialSemantic semantic, float value);
     @Method(selector = "initWithName:semantic:float2:")
-    protected native @Pointer long init(String name, MDLMaterialSemantic semantic, VectorFloat2 value);
+    protected native @Pointer long init(String name, MDLMaterialSemantic semantic, @ByVal VectorFloat2 value);
     @Method(selector = "initWithName:semantic:float3:")
-    protected native @Pointer long init(String name, MDLMaterialSemantic semantic, VectorFloat3 value);
+    protected native @Pointer long init(String name, MDLMaterialSemantic semantic, @ByVal VectorFloat3 value);
     @Method(selector = "initWithName:semantic:float4:")
-    protected native @Pointer long init(String name, MDLMaterialSemantic semantic, VectorFloat4 value);
+    protected native @Pointer long init(String name, MDLMaterialSemantic semantic, @ByVal VectorFloat4 value);
     @Method(selector = "initWithName:semantic:matrix4x4:")
-    protected native @Pointer long init(String name, MDLMaterialSemantic semantic, MatrixFloat4x4 value);
+    protected native @Pointer long init(String name, MDLMaterialSemantic semantic, @ByVal MatrixFloat4x4 value);
     @Method(selector = "initWithName:semantic:URL:")
     protected native @Pointer long init(String name, MDLMaterialSemantic semantic, NSURL URL);
     @Method(selector = "initWithName:semantic:string:")

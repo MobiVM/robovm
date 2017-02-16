@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,27 +35,28 @@ import org.robovm.apple.coregraphics.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MDLAxisAlignedBoundingBox/*</name>*/ 
-    extends /*<extends>*/Struct<MDLAxisAlignedBoundingBox>/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MDLLightProbeIrradianceDataSource/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/public static class MDLAxisAlignedBoundingBoxPtr extends Ptr<MDLAxisAlignedBoundingBox, MDLAxisAlignedBoundingBoxPtr> {}/*</ptr>*/
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MDLAxisAlignedBoundingBox() {}
-    public MDLAxisAlignedBoundingBox(VectorFloat3 maxBounds, VectorFloat3 minBounds) {
-        this.setMaxBounds(maxBounds);
-        this.setMinBounds(minBounds);
-    }
-    /*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*/
-    @StructMember(0) public native @ByVal VectorFloat3 getMaxBounds();
-    @StructMember(0) public native MDLAxisAlignedBoundingBox setMaxBounds(@ByVal VectorFloat3 maxBounds);
-    @StructMember(1) public native @ByVal VectorFloat3 getMinBounds();
-    @StructMember(1) public native MDLAxisAlignedBoundingBox setMinBounds(@ByVal VectorFloat3 minBounds);
-    /*</members>*/
-    /*<methods>*//*</methods>*/
+    /*<properties>*/
+    @Property(selector = "boundingBox")
+    @ByVal MDLAxisAlignedBoundingBox getBoundingBox();
+    @Property(selector = "setBoundingBox:")
+    void setBoundingBox(@ByVal MDLAxisAlignedBoundingBox v);
+    @Property(selector = "sphericalHarmonicsLevel")
+    @MachineSizedUInt long getSphericalHarmonicsLevel();
+    @Property(selector = "setSphericalHarmonicsLevel:")
+    void setSphericalHarmonicsLevel(@MachineSizedUInt long v);
+    /*</properties>*/
+    /*<methods>*/
+    @Method(selector = "sphericalHarmonicsCoefficientsAtPosition:")
+    NSData sphericalHarmonicsCoefficientsAtPosition(@ByVal VectorFloat3 position);
+    /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

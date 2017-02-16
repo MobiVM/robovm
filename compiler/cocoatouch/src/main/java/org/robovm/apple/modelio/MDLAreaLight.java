@@ -46,6 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLAreaLight() {}
+    protected MDLAreaLight(Handle h, long handle) { super(h, handle); }
     protected MDLAreaLight(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -54,9 +55,9 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "setAreaRadius:")
     public native void setAreaRadius(float v);
     @Property(selector = "superEllipticPower")
-    public native VectorFloat2 getSuperEllipticPower();
+    public native @ByVal VectorFloat2 getSuperEllipticPower();
     @Property(selector = "setSuperEllipticPower:")
-    public native void setSuperEllipticPower(VectorFloat2 v);
+    public native void setSuperEllipticPower(@ByVal VectorFloat2 v);
     @Property(selector = "aspect")
     public native float getAspect();
     @Property(selector = "setAspect:")

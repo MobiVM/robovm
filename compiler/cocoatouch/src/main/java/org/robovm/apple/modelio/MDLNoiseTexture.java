@@ -46,9 +46,14 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLNoiseTexture() {}
+    protected MDLNoiseTexture(Handle h, long handle) { super(h, handle); }
     protected MDLNoiseTexture(SkipInit skipInit) { super(skipInit); }
-    public MDLNoiseTexture(float smoothness, String name, VectorInt2 textureDimensions, MDLTextureChannelEncoding channelEncoding) { super((SkipInit) null); initObject(init(smoothness, name, textureDimensions, channelEncoding)); }
-    public MDLNoiseTexture(float smoothness, String name, VectorInt2 textureDimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, boolean grayscale) { super((SkipInit) null); initObject(init(smoothness, name, textureDimensions, channelCount, channelEncoding, grayscale)); }
+    @Method(selector = "initVectorNoiseWithSmoothness:name:textureDimensions:channelEncoding:")
+    public MDLNoiseTexture(float smoothness, String name, @ByVal VectorInt2 textureDimensions, MDLTextureChannelEncoding channelEncoding) { super((SkipInit) null); initObject(init(smoothness, name, textureDimensions, channelEncoding)); }
+    @Method(selector = "initScalarNoiseWithSmoothness:name:textureDimensions:channelCount:channelEncoding:grayscale:")
+    public MDLNoiseTexture(float smoothness, String name, @ByVal VectorInt2 textureDimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, boolean grayscale) { super((SkipInit) null); initObject(init(smoothness, name, textureDimensions, channelCount, channelEncoding, grayscale)); }
+    @Method(selector = "initCellularNoiseWithFrequency:name:textureDimensions:channelEncoding:")
+    public MDLNoiseTexture(float frequency, String name, @ByVal VectorInt2 textureDimensions, MDLTextureChannelEncoding channelEncoding) { super((SkipInit) null); initObject(init(frequency, name, textureDimensions, channelEncoding)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -56,8 +61,10 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initVectorNoiseWithSmoothness:name:textureDimensions:channelEncoding:")
-    protected native @Pointer long init(float smoothness, String name, VectorInt2 textureDimensions, MDLTextureChannelEncoding channelEncoding);
+    protected native @Pointer long init(float smoothness, String name, @ByVal VectorInt2 textureDimensions, MDLTextureChannelEncoding channelEncoding);
     @Method(selector = "initScalarNoiseWithSmoothness:name:textureDimensions:channelCount:channelEncoding:grayscale:")
-    protected native @Pointer long init(float smoothness, String name, VectorInt2 textureDimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, boolean grayscale);
+    protected native @Pointer long init(float smoothness, String name, @ByVal VectorInt2 textureDimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, boolean grayscale);
+    @Method(selector = "initCellularNoiseWithFrequency:name:textureDimensions:channelEncoding:")
+    protected native @Pointer long init(float frequency, String name, @ByVal VectorInt2 textureDimensions, MDLTextureChannelEncoding channelEncoding);
     /*</methods>*/
 }

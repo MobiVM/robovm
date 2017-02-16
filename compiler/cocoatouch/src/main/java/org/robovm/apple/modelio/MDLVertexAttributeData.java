@@ -46,6 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLVertexAttributeData() {}
+    protected MDLVertexAttributeData(Handle h, long handle) { super(h, handle); }
     protected MDLVertexAttributeData(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

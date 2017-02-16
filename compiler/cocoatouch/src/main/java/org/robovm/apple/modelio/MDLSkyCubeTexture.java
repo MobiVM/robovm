@@ -46,8 +46,10 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLSkyCubeTexture() {}
+    protected MDLSkyCubeTexture(Handle h, long handle) { super(h, handle); }
     protected MDLSkyCubeTexture(SkipInit skipInit) { super(skipInit); }
-    public MDLSkyCubeTexture(String name, MDLTextureChannelEncoding channelEncoding, VectorInt2 textureDimensions, float turbidity, float sunElevation, float upperAtmosphereScattering, float groundAlbedo) { super((SkipInit) null); initObject(init(name, channelEncoding, textureDimensions, turbidity, sunElevation, upperAtmosphereScattering, groundAlbedo)); }
+    @Method(selector = "initWithName:channelEncoding:textureDimensions:turbidity:sunElevation:upperAtmosphereScattering:groundAlbedo:")
+    public MDLSkyCubeTexture(String name, MDLTextureChannelEncoding channelEncoding, @ByVal VectorInt2 textureDimensions, float turbidity, float sunElevation, float upperAtmosphereScattering, float groundAlbedo) { super((SkipInit) null); initObject(init(name, channelEncoding, textureDimensions, turbidity, sunElevation, upperAtmosphereScattering, groundAlbedo)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "turbidity")
@@ -95,14 +97,14 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "setSaturation:")
     public native void setSaturation(float v);
     @Property(selector = "highDynamicRangeCompression")
-    public native VectorFloat2 getHighDynamicRangeCompression();
-    @Property(selector = "setHighDynamicRangeCompression:", strongRef = true)
-    public native void setHighDynamicRangeCompression(VectorFloat2 v);
+    public native @ByVal VectorFloat2 getHighDynamicRangeCompression();
+    @Property(selector = "setHighDynamicRangeCompression:")
+    public native void setHighDynamicRangeCompression(@ByVal VectorFloat2 v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithName:channelEncoding:textureDimensions:turbidity:sunElevation:upperAtmosphereScattering:groundAlbedo:")
-    protected native @Pointer long init(String name, MDLTextureChannelEncoding channelEncoding, VectorInt2 textureDimensions, float turbidity, float sunElevation, float upperAtmosphereScattering, float groundAlbedo);
+    protected native @Pointer long init(String name, MDLTextureChannelEncoding channelEncoding, @ByVal VectorInt2 textureDimensions, float turbidity, float sunElevation, float upperAtmosphereScattering, float groundAlbedo);
     @Method(selector = "updateTexture")
     public native void updateTexture();
     /*</methods>*/
