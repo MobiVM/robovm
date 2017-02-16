@@ -49,6 +49,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKOverlayPathRenderer() {}
+    protected MKOverlayPathRenderer(Handle h, long handle) { super(h, handle); }
     protected MKOverlayPathRenderer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public MKOverlayPathRenderer(MKOverlay overlay) {

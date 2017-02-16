@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,32 +36,32 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.0 and later.
+ * @since Available in iOS 9.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKDirectionsResponse/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MKSearchCompletionFilterType/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    AndQueries(0L),
+    Only(1L);
+    /*</values>*/
 
-    /*<ptr>*/public static class MKDirectionsResponsePtr extends Ptr<MKDirectionsResponse, MKDirectionsResponsePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MKDirectionsResponse.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MKDirectionsResponse() {}
-    protected MKDirectionsResponse(Handle h, long handle) { super(h, handle); }
-    protected MKDirectionsResponse(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "source")
-    public native MKMapItem getSource();
-    @Property(selector = "destination")
-    public native MKMapItem getDestination();
-    @Property(selector = "routes")
-    public native NSArray<MKRoute> getRoutes();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/MKSearchCompletionFilterType/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/MKSearchCompletionFilterType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MKSearchCompletionFilterType/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/MKSearchCompletionFilterType/*</name>*/.class.getName());
+    }
 }

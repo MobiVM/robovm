@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,36 +36,46 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.0 and later.
+ * @since Available in iOS 9.3 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKDirections/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKLocalSearchCompleter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MKDirectionsPtr extends Ptr<MKDirections, MKDirectionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MKDirections.class); }/*</bind>*/
+    /*<ptr>*/public static class MKLocalSearchCompleterPtr extends Ptr<MKLocalSearchCompleter, MKLocalSearchCompleterPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MKLocalSearchCompleter.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MKDirections() {}
-    protected MKDirections(Handle h, long handle) { super(h, handle); }
-    protected MKDirections(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithRequest:")
-    public MKDirections(MKDirectionsRequest request) { super((SkipInit) null); initObject(init(request)); }
+    public MKLocalSearchCompleter() {}
+    protected MKLocalSearchCompleter(Handle h, long handle) { super(h, handle); }
+    protected MKLocalSearchCompleter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "isCalculating")
-    public native boolean isCalculating();
+    @Property(selector = "queryFragment")
+    public native String getQueryFragment();
+    @Property(selector = "setQueryFragment:")
+    public native void setQueryFragment(String v);
+    @Property(selector = "region")
+    public native @ByVal MKCoordinateRegion getRegion();
+    @Property(selector = "setRegion:")
+    public native void setRegion(@ByVal MKCoordinateRegion v);
+    @Property(selector = "filterType")
+    public native MKSearchCompletionFilterType getFilterType();
+    @Property(selector = "setFilterType:")
+    public native void setFilterType(MKSearchCompletionFilterType v);
+    @Property(selector = "delegate")
+    public native MKLocalSearchCompleterDelegate getDelegate();
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(MKLocalSearchCompleterDelegate v);
+    @Property(selector = "results")
+    public native NSArray<MKLocalSearchCompletion> getResults();
+    @Property(selector = "isSearching")
+    public native boolean isSearching();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithRequest:")
-    protected native @Pointer long init(MKDirectionsRequest request);
-    @Method(selector = "calculateDirectionsWithCompletionHandler:")
-    public native void calculateDirections(@Block VoidBlock2<MKDirectionsResponse, NSError> completionHandler);
-    @Method(selector = "calculateETAWithCompletionHandler:")
-    public native void calculateETA(@Block VoidBlock2<MKETAResponse, NSError> completionHandler);
     @Method(selector = "cancel")
     public native void cancel();
     /*</methods>*/

@@ -49,7 +49,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKMapItem() {}
+    protected MKMapItem(Handle h, long handle) { super(h, handle); }
     protected MKMapItem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPlacemark:")
     public MKMapItem(MKPlacemark placemark) { super((SkipInit) null); initObject(init(placemark)); }
     /*</constructors>*/
     /*<properties>*/

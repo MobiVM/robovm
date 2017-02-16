@@ -49,12 +49,14 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKPolylineView() {}
+    protected MKPolylineView(Handle h, long handle) { super(h, handle); }
     protected MKPolylineView(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
+    @Method(selector = "initWithPolyline:")
     public MKPolylineView(MKPolyline polyline) { super((SkipInit) null); initObject(init(polyline)); }
     /*</constructors>*/
     /*<properties>*/

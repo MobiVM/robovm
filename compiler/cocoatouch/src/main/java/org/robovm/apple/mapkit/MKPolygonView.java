@@ -49,12 +49,14 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKPolygonView() {}
+    protected MKPolygonView(Handle h, long handle) { super(h, handle); }
     protected MKPolygonView(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
+    @Method(selector = "initWithPolygon:")
     public MKPolygonView(MKPolygon polygon) { super((SkipInit) null); initObject(init(polygon)); }
     /*</constructors>*/
     /*<properties>*/

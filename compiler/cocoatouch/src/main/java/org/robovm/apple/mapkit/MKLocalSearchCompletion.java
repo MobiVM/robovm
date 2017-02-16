@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,49 +36,31 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.0 and later.
+ * @since Available in iOS 9.3 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKETAResponse/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKLocalSearchCompletion/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MKETAResponsePtr extends Ptr<MKETAResponse, MKETAResponsePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MKETAResponse.class); }/*</bind>*/
+    /*<ptr>*/public static class MKLocalSearchCompletionPtr extends Ptr<MKLocalSearchCompletion, MKLocalSearchCompletionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MKLocalSearchCompletion.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MKETAResponse() {}
-    protected MKETAResponse(Handle h, long handle) { super(h, handle); }
-    protected MKETAResponse(SkipInit skipInit) { super(skipInit); }
+    public MKLocalSearchCompletion() {}
+    protected MKLocalSearchCompletion(Handle h, long handle) { super(h, handle); }
+    protected MKLocalSearchCompletion(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "source")
-    public native MKMapItem getSource();
-    @Property(selector = "destination")
-    public native MKMapItem getDestination();
-    @Property(selector = "expectedTravelTime")
-    public native double getExpectedTravelTime();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "distance")
-    public native double getDistance();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "expectedArrivalDate")
-    public native NSDate getExpectedArrivalDate();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "expectedDepartureDate")
-    public native NSDate getExpectedDepartureDate();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "transportType")
-    public native MKDirectionsTransportType getTransportType();
+    @Property(selector = "title")
+    public native String getTitle();
+    @Property(selector = "titleHighlightRanges")
+    public native NSArray<NSValue> getTitleHighlightRanges();
+    @Property(selector = "subtitle")
+    public native String getSubtitle();
+    @Property(selector = "subtitleHighlightRanges")
+    public native NSArray<NSValue> getSubtitleHighlightRanges();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
