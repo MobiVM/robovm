@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NEVPNIKEv2SecurityAssociationParameters() {}
+    protected NEVPNIKEv2SecurityAssociationParameters(Handle h, long handle) { super(h, handle); }
     protected NEVPNIKEv2SecurityAssociationParameters(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

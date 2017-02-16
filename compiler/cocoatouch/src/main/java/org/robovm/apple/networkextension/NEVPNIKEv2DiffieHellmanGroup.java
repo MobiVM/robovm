@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NEVPNIKEv2DiffieHellmanGroup/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    _0(0L),
+    Invalid(0L),
     _1(1L),
     _2(2L),
     _5(5L),

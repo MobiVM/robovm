@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,36 +32,41 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEOnDemandRuleEvaluateConnection/*</name>*/ 
-    extends /*<extends>*/NEOnDemandRule/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEFilterControlVerdict/*</name>*/ 
+    extends /*<extends>*/NEFilterNewFlowVerdict/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NEOnDemandRuleEvaluateConnectionPtr extends Ptr<NEOnDemandRuleEvaluateConnection, NEOnDemandRuleEvaluateConnectionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NEOnDemandRuleEvaluateConnection.class); }/*</bind>*/
+    /*<ptr>*/public static class NEFilterControlVerdictPtr extends Ptr<NEFilterControlVerdict, NEFilterControlVerdictPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NEFilterControlVerdict.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NEOnDemandRuleEvaluateConnection() {}
-    protected NEOnDemandRuleEvaluateConnection(Handle h, long handle) { super(h, handle); }
-    protected NEOnDemandRuleEvaluateConnection(SkipInit skipInit) { super(skipInit); }
+    public NEFilterControlVerdict() {}
+    protected NEFilterControlVerdict(Handle h, long handle) { super(h, handle); }
+    protected NEFilterControlVerdict(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Property(selector = "connectionRules")
-    public native NSArray<NEEvaluateConnectionRule> getConnectionRules();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Property(selector = "setConnectionRules:")
-    public native void setConnectionRules(NSArray<NEEvaluateConnectionRule> v);
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "allowVerdictWithUpdateRules:")
+    public static native NEFilterControlVerdict allowVerdictWithUpdateRules(boolean updateRules);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "dropVerdictWithUpdateRules:")
+    public static native NEFilterControlVerdict dropVerdictWithUpdateRules(boolean updateRules);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "updateRules")
+    public static native NEFilterControlVerdict updateRules();
     /*</methods>*/
 }

@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NEVPNProtocolIPSec() {}
+    protected NEVPNProtocolIPSec(Handle h, long handle) { super(h, handle); }
     protected NEVPNProtocolIPSec(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
