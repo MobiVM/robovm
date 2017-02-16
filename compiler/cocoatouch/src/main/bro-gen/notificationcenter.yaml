@@ -1,5 +1,5 @@
 package: org.robovm.apple.notificationcenter
-include: [foundation.yaml, uikit.yaml]
+include: [foundation.yaml, coregraphics.yaml, uikit.yaml]
 library: NotificationCenter
 framework: NotificationCenter
 clang_args: ['-x', 'objective-c']
@@ -10,6 +10,7 @@ typedefs:
     
 enums:
     NCUpdateResult: {}
+    NCWidgetDisplayMode: {}
 
 categories:
     NotificationCenter: # DONE
