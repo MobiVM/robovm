@@ -47,7 +47,9 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MCNearbyServiceBrowser() {}
+    protected MCNearbyServiceBrowser(Handle h, long handle) { super(h, handle); }
     protected MCNearbyServiceBrowser(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPeer:serviceType:")
     public MCNearbyServiceBrowser(MCPeerID myPeerID, String serviceType) { super((SkipInit) null); initObject(init(myPeerID, serviceType)); }
     /*</constructors>*/
     /*<properties>*/
