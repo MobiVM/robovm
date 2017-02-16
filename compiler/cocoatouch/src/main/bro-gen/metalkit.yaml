@@ -55,6 +55,22 @@ classes:
                 parameters:
                     options:
                         type: MTKTextureLoaderOptions
+            '-newTexturesWithContentsOfURLs:options:completionHandler:':
+                name: newTexture
+                parameters:
+                    options:
+                        type: MTKTextureLoaderOptions
+            '-newTexturesWithNames:scaleFactor:bundle:options:completionHandler:':
+                name: newTexture
+                parameters:
+                    options:
+                        type: MTKTextureLoaderOptions
+            '-newTexturesWith.*error:':
+                name: newTextures
+                throws: NSErrorException
+                parameters:
+                    options:
+                        type: MTKTextureLoaderOptions
     MTKView: # DONE
         properties:
             'enableSetNeedsDisplay':
@@ -113,7 +129,12 @@ values:
                 type: MTLTextureUsage
             TextureCPUCacheMode:
                 type: MTLCPUCacheMode
-
+    MTKTextureLoaderCubeLayoutVertical:
+        dictionary: MTKTextureLoaderOptions
+        name: 'CubeLayoutVertical'
+    MTKTextureLoaderOrigin(.*):
+        enum: MTKTextureLoaderOrigin
+        name: '#{g[0]}'
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?MTK.*):
         class: MetalKit

@@ -112,9 +112,89 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 4.0 and later.
      */
     public static final CGImagePropertyDNG LensInfo = new CGImagePropertyDNG("LensInfo");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG BlackLevel = new CGImagePropertyDNG("BlackLevel");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG WhiteLevel = new CGImagePropertyDNG("WhiteLevel");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG CalibrationIlluminant1 = new CGImagePropertyDNG("CalibrationIlluminant1");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG CalibrationIlluminant2 = new CGImagePropertyDNG("CalibrationIlluminant2");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG ColorMatrix1 = new CGImagePropertyDNG("ColorMatrix1");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG ColorMatrix2 = new CGImagePropertyDNG("ColorMatrix2");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG CameraCalibration1 = new CGImagePropertyDNG("CameraCalibration1");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG CameraCalibration2 = new CGImagePropertyDNG("CameraCalibration2");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG AsShotNeutral = new CGImagePropertyDNG("AsShotNeutral");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG AsShotWhiteXY = new CGImagePropertyDNG("AsShotWhiteXY");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG BaselineExposure = new CGImagePropertyDNG("BaselineExposure");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG BaselineNoise = new CGImagePropertyDNG("BaselineNoise");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG BaselineSharpness = new CGImagePropertyDNG("BaselineSharpness");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG PrivateData = new CGImagePropertyDNG("PrivateData");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG CameraCalibrationSignature = new CGImagePropertyDNG("CameraCalibrationSignature");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG ProfileCalibrationSignature = new CGImagePropertyDNG("ProfileCalibrationSignature");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG NoiseProfile = new CGImagePropertyDNG("NoiseProfile");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG WarpRectilinear = new CGImagePropertyDNG("WarpRectilinear");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG WarpFisheye = new CGImagePropertyDNG("WarpFisheye");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CGImagePropertyDNG FixVignetteRadial = new CGImagePropertyDNG("FixVignetteRadial");
     /*</constants>*/
     
-    private static /*<name>*/CGImagePropertyDNG/*</name>*/[] values = new /*<name>*/CGImagePropertyDNG/*</name>*/[] {/*<value_list>*/Version, BackwardVersion, UniqueCameraModel, LocalizedCameraModel, CameraSerialNumber, LensInfo/*</value_list>*/};
+    private static /*<name>*/CGImagePropertyDNG/*</name>*/[] values = new /*<name>*/CGImagePropertyDNG/*</name>*/[] {/*<value_list>*/Version, BackwardVersion, UniqueCameraModel, LocalizedCameraModel, CameraSerialNumber, LensInfo, BlackLevel, WhiteLevel, CalibrationIlluminant1, CalibrationIlluminant2, ColorMatrix1, ColorMatrix2, CameraCalibration1, CameraCalibration2, AsShotNeutral, AsShotWhiteXY, BaselineExposure, BaselineNoise, BaselineSharpness, PrivateData, CameraCalibrationSignature, ProfileCalibrationSignature, NoiseProfile, WarpRectilinear, WarpFisheye, FixVignetteRadial/*</value_list>*/};
     
     /*<name>*/CGImagePropertyDNG/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -167,6 +247,106 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImagePropertyDNGLensInfo", optional=true)
         public static native CFString LensInfo();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGBlackLevel", optional=true)
+        public static native CFString BlackLevel();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGWhiteLevel", optional=true)
+        public static native CFString WhiteLevel();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGCalibrationIlluminant1", optional=true)
+        public static native CFString CalibrationIlluminant1();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGCalibrationIlluminant2", optional=true)
+        public static native CFString CalibrationIlluminant2();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGColorMatrix1", optional=true)
+        public static native CFString ColorMatrix1();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGColorMatrix2", optional=true)
+        public static native CFString ColorMatrix2();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGCameraCalibration1", optional=true)
+        public static native CFString CameraCalibration1();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGCameraCalibration2", optional=true)
+        public static native CFString CameraCalibration2();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGAsShotNeutral", optional=true)
+        public static native CFString AsShotNeutral();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGAsShotWhiteXY", optional=true)
+        public static native CFString AsShotWhiteXY();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGBaselineExposure", optional=true)
+        public static native CFString BaselineExposure();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGBaselineNoise", optional=true)
+        public static native CFString BaselineNoise();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGBaselineSharpness", optional=true)
+        public static native CFString BaselineSharpness();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGPrivateData", optional=true)
+        public static native CFString PrivateData();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGCameraCalibrationSignature", optional=true)
+        public static native CFString CameraCalibrationSignature();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGProfileCalibrationSignature", optional=true)
+        public static native CFString ProfileCalibrationSignature();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGNoiseProfile", optional=true)
+        public static native CFString NoiseProfile();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGWarpRectilinear", optional=true)
+        public static native CFString WarpRectilinear();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGWarpFisheye", optional=true)
+        public static native CFString WarpFisheye();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyDNGFixVignetteRadial", optional=true)
+        public static native CFString FixVignetteRadial();
         /*</values>*/
     }
 }

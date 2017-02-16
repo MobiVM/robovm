@@ -47,8 +47,11 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKQueryOperation() {}
+    protected CKQueryOperation(Handle h, long handle) { super(h, handle); }
     protected CKQueryOperation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithQuery:")
     public CKQueryOperation(CKQuery query) { super((SkipInit) null); initObject(init(query)); }
+    @Method(selector = "initWithCursor:")
     public CKQueryOperation(CKQueryCursor cursor) { super((SkipInit) null); initObject(init(cursor)); }
     /*</constructors>*/
     /*<properties>*/

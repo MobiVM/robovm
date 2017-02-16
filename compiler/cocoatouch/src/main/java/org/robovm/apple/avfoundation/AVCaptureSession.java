@@ -127,6 +127,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureSession() {}
+    protected AVCaptureSession(Handle h, long handle) { super(h, handle); }
     protected AVCaptureSession(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -165,6 +166,16 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "setAutomaticallyConfiguresApplicationAudioSession:")
     public native void setAutomaticallyConfiguresApplicationAudioSession(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "automaticallyConfiguresCaptureDeviceForWideColor")
+    public native boolean automaticallyConfiguresCaptureDeviceForWideColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setAutomaticallyConfiguresCaptureDeviceForWideColor:")
+    public native void setAutomaticallyConfiguresCaptureDeviceForWideColor(boolean v);
     /**
      * @since Available in iOS 7.0 and later.
      */

@@ -46,6 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HMCharacteristic() {}
+    protected HMCharacteristic(Handle h, long handle) { super(h, handle); }
     protected HMCharacteristic(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

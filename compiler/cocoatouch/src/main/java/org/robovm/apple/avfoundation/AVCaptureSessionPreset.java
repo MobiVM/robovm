@@ -131,6 +131,10 @@ import org.robovm.apple.audiounit.*;
      */
     public static final AVCaptureSessionPreset Size1920x1080 = new AVCaptureSessionPreset("Size1920x1080");
     /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final AVCaptureSessionPreset Size3840x2160 = new AVCaptureSessionPreset("Size3840x2160");
+    /**
      * @since Available in iOS 5.0 and later.
      */
     public static final AVCaptureSessionPreset iFrame960x540 = new AVCaptureSessionPreset("iFrame960x540");
@@ -144,7 +148,7 @@ import org.robovm.apple.audiounit.*;
     public static final AVCaptureSessionPreset InputPriority = new AVCaptureSessionPreset("InputPriority");
     /*</constants>*/
     
-    private static /*<name>*/AVCaptureSessionPreset/*</name>*/[] values = new /*<name>*/AVCaptureSessionPreset/*</name>*/[] {/*<value_list>*/Photo, High, Medium, Low, Size352x288, Size640x480, Size1280x720, Size1920x1080, iFrame960x540, iFrame1280x720, InputPriority/*</value_list>*/};
+    private static /*<name>*/AVCaptureSessionPreset/*</name>*/[] values = new /*<name>*/AVCaptureSessionPreset/*</name>*/[] {/*<value_list>*/Photo, High, Medium, Low, Size352x288, Size640x480, Size1280x720, Size1920x1080, Size3840x2160, iFrame960x540, iFrame1280x720, InputPriority/*</value_list>*/};
     
     /*<name>*/AVCaptureSessionPreset/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -207,6 +211,11 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVCaptureSessionPreset1920x1080", optional=true)
         public static native NSString Size1920x1080();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="AVCaptureSessionPreset3840x2160", optional=true)
+        public static native NSString Size3840x2160();
         /**
          * @since Available in iOS 5.0 and later.
          */

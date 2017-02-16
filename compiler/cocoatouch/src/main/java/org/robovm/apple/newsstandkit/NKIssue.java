@@ -55,6 +55,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NKIssue() {}
+    protected NKIssue(Handle h, long handle) { super(h, handle); }
     protected NKIssue(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

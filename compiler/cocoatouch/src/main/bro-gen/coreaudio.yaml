@@ -27,9 +27,6 @@ enums:
     AudioChannelFlags: {first: kAudioChannelFlags_AllOff, prefix: kAudioChannelFlags_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
     AudioChannelLayoutTag: {first: kAudioChannelLayoutTag_UseChannelDescriptions, skip_none: true, prefix: kAudioChannelLayoutTag_, bits: true}
     
-    Excluded1: {first: kAudioStreamAnyRate, exclude: true}    
-    Deprecated1: {first: kMPEG4Object_AAC_Main, exclude: true}
-    
 classes:
     # Structs:
     AudioValueRange: # DONE
@@ -178,9 +175,6 @@ functions:
         name: 'Function__#{g[0]}'
 
 values:
-    kAudioStreamAnyRate:
-        class: AudioStreamBasicDescription
-        name: 'AnyRate'
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (Audio.*):
@@ -191,6 +185,10 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    kAudioStreamAnyRate:
+        class: AudioStreamBasicDescription
+        name: 'AnyRate'
+
     kAudioUnitSampleFractionBits:
         exclude: true
 

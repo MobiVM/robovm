@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NEOnDemandRuleDisconnect() {}
+    protected NEOnDemandRuleDisconnect(Handle h, long handle) { super(h, handle); }
     protected NEOnDemandRuleDisconnect(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

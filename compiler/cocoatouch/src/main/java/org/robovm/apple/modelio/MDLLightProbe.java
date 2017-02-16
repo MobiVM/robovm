@@ -46,7 +46,9 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLLightProbe() {}
+    protected MDLLightProbe(Handle h, long handle) { super(h, handle); }
     protected MDLLightProbe(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithReflectiveTexture:irradianceTexture:")
     public MDLLightProbe(MDLTexture reflectiveTexture, MDLTexture irradianceTexture) { super((SkipInit) null); initObject(init(reflectiveTexture, irradianceTexture)); }
     /*</constructors>*/
     /*<properties>*/

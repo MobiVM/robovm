@@ -55,8 +55,10 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetExportSession.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetExportSession() {}
+    protected AVAssetExportSession() {}
+    protected AVAssetExportSession(Handle h, long handle) { super(h, handle); }
     protected AVAssetExportSession(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAsset:presetName:")
     public AVAssetExportSession(AVAsset asset, AVAssetExportPreset presetName) { super((SkipInit) null); initObject(init(asset, presetName)); }
     /*</constructors>*/
     /*<properties>*/

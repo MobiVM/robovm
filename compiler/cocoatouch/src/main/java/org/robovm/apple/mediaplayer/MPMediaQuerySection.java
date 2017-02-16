@@ -47,6 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPMediaQuerySection() {}
+    protected MPMediaQuerySection(Handle h, long handle) { super(h, handle); }
     protected MPMediaQuerySection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

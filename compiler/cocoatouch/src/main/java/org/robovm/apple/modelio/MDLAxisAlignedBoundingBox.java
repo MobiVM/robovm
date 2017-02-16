@@ -52,10 +52,10 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native VectorFloat3 getMaxBounds();
-    @StructMember(0) public native MDLAxisAlignedBoundingBox setMaxBounds(VectorFloat3 maxBounds);
-    @StructMember(1) public native VectorFloat3 getMinBounds();
-    @StructMember(1) public native MDLAxisAlignedBoundingBox setMinBounds(VectorFloat3 minBounds);
+    @StructMember(0) public native @ByVal VectorFloat3 getMaxBounds();
+    @StructMember(0) public native MDLAxisAlignedBoundingBox setMaxBounds(@ByVal VectorFloat3 maxBounds);
+    @StructMember(1) public native @ByVal VectorFloat3 getMinBounds();
+    @StructMember(1) public native MDLAxisAlignedBoundingBox setMinBounds(@ByVal VectorFloat3 minBounds);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

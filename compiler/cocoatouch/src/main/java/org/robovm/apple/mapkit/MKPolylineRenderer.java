@@ -49,7 +49,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKPolylineRenderer() {}
+    protected MKPolylineRenderer(Handle h, long handle) { super(h, handle); }
     protected MKPolylineRenderer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPolyline:")
     public MKPolylineRenderer(MKPolyline polyline) { super((SkipInit) null); initObject(init(polyline)); }
     /*</constructors>*/
     /*<properties>*/

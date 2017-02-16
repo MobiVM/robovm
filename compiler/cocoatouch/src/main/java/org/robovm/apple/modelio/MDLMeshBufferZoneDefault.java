@@ -44,6 +44,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLMeshBufferZoneDefault() {}
+    protected MDLMeshBufferZoneDefault(Handle h, long handle) { super(h, handle); }
     protected MDLMeshBufferZoneDefault(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

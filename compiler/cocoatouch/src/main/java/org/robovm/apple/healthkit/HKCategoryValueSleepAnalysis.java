@@ -39,7 +39,11 @@ import org.robovm.apple.foundation.*;
 public enum /*<name>*/HKCategoryValueSleepAnalysis/*</name>*/ implements ValuedEnum {
     /*<values>*/
     InBed(0L),
-    Asleep(1L);
+    Asleep(1L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Awake(2L);
     /*</values>*/
 
     /*<bind>*/

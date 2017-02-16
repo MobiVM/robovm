@@ -4963,9 +4963,6 @@ values:
             Range:
                 type: NSRange
                 hint: Struct<?>
-    UILayoutPriority(.*):
-        class: UILayoutPriority
-        name: '#{g[0]}'
 
     # NSRunLoopMode
     UI(Tracking)RunLoopMode:
@@ -5501,6 +5498,10 @@ constants:
 
     UISegmentedControl(NoSegment):
         class: UISegmentedControl
+        name: '#{g[0]}'
+
+    UILayoutPriority(.*):
+        class: UILayoutPriority
         name: '#{g[0]}'
 
     # Make sure we don't miss any constants if new ones are introduced in a later UIKit

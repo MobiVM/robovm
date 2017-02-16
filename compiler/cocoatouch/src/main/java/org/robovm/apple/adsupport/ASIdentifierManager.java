@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public ASIdentifierManager() {}
+    protected ASIdentifierManager(Handle h, long handle) { super(h, handle); }
     protected ASIdentifierManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

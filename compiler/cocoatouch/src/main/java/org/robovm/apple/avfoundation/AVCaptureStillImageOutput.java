@@ -44,7 +44,9 @@ import org.robovm.apple.audiounit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureStillImageOutput/*</name>*/ 
@@ -56,6 +58,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureStillImageOutput() {}
+    protected AVCaptureStillImageOutput(Handle h, long handle) { super(h, handle); }
     protected AVCaptureStillImageOutput(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public AVVideoSettings getVideoOutputSettings() {
@@ -118,22 +121,30 @@ import org.robovm.apple.audiounit.*;
     public native boolean isCapturingStillImage();
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "maxBracketedCaptureStillImageCount")
     public native @MachineSizedUInt long getMaxBracketedCaptureStillImageCount();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "isLensStabilizationDuringBracketedCaptureSupported")
     public native boolean isLensStabilizationDuringBracketedCaptureSupported();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "isLensStabilizationDuringBracketedCaptureEnabled")
     public native boolean isLensStabilizationDuringBracketedCaptureEnabled();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "setLensStabilizationDuringBracketedCaptureEnabled:")
     public native void setLensStabilizationDuringBracketedCaptureEnabled(boolean v);
     /*</properties>*/
@@ -145,12 +156,16 @@ import org.robovm.apple.audiounit.*;
     public static native NSData createJPEGStillImageNSDataRepresentation(CMSampleBuffer jpegSampleBuffer);
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Method(selector = "prepareToCaptureStillImageBracketFromConnection:withSettingsArray:completionHandler:")
     public native void prepareToCaptureStillImageBracket(AVCaptureConnection connection, NSArray<AVCaptureBracketedStillImageSettings> settings, @Block VoidBlock2<Boolean, NSError> handler);
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Method(selector = "captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler:")
     public native void captureStillImageBracketAsynchronously(AVCaptureConnection connection, NSArray<AVCaptureBracketedStillImageSettings> settings, @Block VoidBlock3<CMSampleBuffer, AVCaptureBracketedStillImageSettings, NSError> handler);
     /*</methods>*/

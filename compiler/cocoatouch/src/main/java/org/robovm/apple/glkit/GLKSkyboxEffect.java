@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GLKSkyboxEffect() {}
+    protected GLKSkyboxEffect(Handle h, long handle) { super(h, handle); }
     protected GLKSkyboxEffect(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

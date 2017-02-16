@@ -19,6 +19,7 @@ package org.robovm.apple.audiotoolbox;
 import java.io.*;
 import java.nio.*;
 import java.util.*;
+
 import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
@@ -33,6 +34,8 @@ import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremidi.*;
 /*</imports>*/
+import org.robovm.apple.dispatch.DispatchQueue;
+
 
 /*<javadoc>*/
 /*</javadoc>*/
@@ -513,6 +516,16 @@ import org.robovm.apple.coremidi.*;
      */
     @Bridge(symbol="AudioQueueNewInput", optional=true)
     protected static native OSStatus createInput0(AudioStreamBasicDescription inFormat, FunctionPtr inCallbackProc, @Pointer long inUserData, NSRunLoop inCallbackRunLoop, String inCallbackRunLoopMode, int inFlags, AudioQueue.AudioQueuePtr outAQ);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="AudioQueueNewOutputWithDispatchQueue", optional=true)
+    protected static native OSStatus createOutputWithDispatchQueue0(AudioQueue.AudioQueuePtr outAQ, AudioStreamBasicDescription inFormat, int inFlags, DispatchQueue inCallbackDispatchQueue, FunctionPtr inCallbackBlock);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="AudioQueueNewInputWithDispatchQueue", optional=true)
+    protected static native OSStatus createInputWithDispatchQueue0(AudioQueue.AudioQueuePtr outAQ, AudioStreamBasicDescription inFormat, int inFlags, DispatchQueue inCallbackDispatchQueue, FunctionPtr inCallbackBlock);
     /**
      * @since Available in iOS 2.0 and later.
      */

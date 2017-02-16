@@ -46,9 +46,12 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLColorSwatchTexture() {}
+    protected MDLColorSwatchTexture(Handle h, long handle) { super(h, handle); }
     protected MDLColorSwatchTexture(SkipInit skipInit) { super(skipInit); }
-    public MDLColorSwatchTexture(float colorTemperature1, float colorTemperature2, String name, VectorInt2 textureDimensions) { super((SkipInit) null); initObject(init(colorTemperature1, colorTemperature2, name, textureDimensions)); }
-    public MDLColorSwatchTexture(CGColor color1, CGColor color2, String name, VectorInt2 textureDimensions) { super((SkipInit) null); initObject(init(color1, color2, name, textureDimensions)); }
+    @Method(selector = "initWithColorTemperatureGradientFrom:toColorTemperature:name:textureDimensions:")
+    public MDLColorSwatchTexture(float colorTemperature1, float colorTemperature2, String name, @ByVal VectorInt2 textureDimensions) { super((SkipInit) null); initObject(init(colorTemperature1, colorTemperature2, name, textureDimensions)); }
+    @Method(selector = "initWithColorGradientFrom:toColor:name:textureDimensions:")
+    public MDLColorSwatchTexture(CGColor color1, CGColor color2, String name, @ByVal VectorInt2 textureDimensions) { super((SkipInit) null); initObject(init(color1, color2, name, textureDimensions)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -56,8 +59,8 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithColorTemperatureGradientFrom:toColorTemperature:name:textureDimensions:")
-    protected native @Pointer long init(float colorTemperature1, float colorTemperature2, String name, VectorInt2 textureDimensions);
+    protected native @Pointer long init(float colorTemperature1, float colorTemperature2, String name, @ByVal VectorInt2 textureDimensions);
     @Method(selector = "initWithColorGradientFrom:toColor:name:textureDimensions:")
-    protected native @Pointer long init(CGColor color1, CGColor color2, String name, VectorInt2 textureDimensions);
+    protected native @Pointer long init(CGColor color1, CGColor color2, String name, @ByVal VectorInt2 textureDimensions);
     /*</methods>*/
 }

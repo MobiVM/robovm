@@ -55,9 +55,11 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetWriterInputPixelBufferAdaptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetWriterInputPixelBufferAdaptor() {}
+    protected AVAssetWriterInputPixelBufferAdaptor() {}
+    protected AVAssetWriterInputPixelBufferAdaptor(Handle h, long handle) { super(h, handle); }
     protected AVAssetWriterInputPixelBufferAdaptor(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithAssetWriterInput:sourcePixelBufferAttributes:")
     public AVAssetWriterInputPixelBufferAdaptor(AVAssetWriterInput input, CVPixelBufferAttributes sourcePixelBufferAttributes) { super((SkipInit) null); initObject(init(input, sourcePixelBufferAttributes)); }
     /*</constructors>*/
     /*<properties>*/

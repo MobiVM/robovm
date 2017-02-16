@@ -56,8 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureManualExposureBracketedStillImageSettings() {}
+    protected AVCaptureManualExposureBracketedStillImageSettings(Handle h, long handle) { super(h, handle); }
     protected AVCaptureManualExposureBracketedStillImageSettings(SkipInit skipInit) { super(skipInit); }
-    public AVCaptureManualExposureBracketedStillImageSettings(@ByVal CMTime duration, float ISO) { super(create(duration, ISO)); retain(getHandle()); }
+    public AVCaptureManualExposureBracketedStillImageSettings(@ByVal CMTime duration, float ISO) { super((Handle) null, create(duration, ISO)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "exposureDuration")

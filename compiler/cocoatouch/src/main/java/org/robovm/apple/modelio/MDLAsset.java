@@ -46,9 +46,15 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLAsset() {}
+    protected MDLAsset(Handle h, long handle) { super(h, handle); }
     protected MDLAsset(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:")
     public MDLAsset(NSURL URL) { super((SkipInit) null); initObject(init(URL)); }
+    @Method(selector = "initWithURL:vertexDescriptor:bufferAllocator:")
     public MDLAsset(NSURL URL, MDLVertexDescriptor vertexDescriptor, MDLMeshBufferAllocator bufferAllocator) { super((SkipInit) null); initObject(init(URL, vertexDescriptor, bufferAllocator)); }
+    @Method(selector = "initWithBufferAllocator:")
+    public MDLAsset(MDLMeshBufferAllocator bufferAllocator) { super((SkipInit) null); initObject(init(bufferAllocator)); }
+    @Method(selector = "initWithURL:vertexDescriptor:bufferAllocator:preserveTopology:error:")
     public MDLAsset(NSURL URL, MDLVertexDescriptor vertexDescriptor, MDLMeshBufferAllocator bufferAllocator, boolean preserveTopology) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -80,6 +86,10 @@ import org.robovm.apple.coregraphics.*;
     public native MDLVertexDescriptor getVertexDescriptor();
     @Property(selector = "count")
     public native @MachineSizedUInt long getCount();
+    @Property(selector = "masters")
+    public native MDLObjectContainerComponent getMasters();
+    @Property(selector = "setMasters:")
+    public native void setMasters(MDLObjectContainerComponent v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -87,6 +97,8 @@ import org.robovm.apple.coregraphics.*;
     protected native @Pointer long init(NSURL URL);
     @Method(selector = "initWithURL:vertexDescriptor:bufferAllocator:")
     protected native @Pointer long init(NSURL URL, MDLVertexDescriptor vertexDescriptor, MDLMeshBufferAllocator bufferAllocator);
+    @Method(selector = "initWithBufferAllocator:")
+    protected native @Pointer long init(MDLMeshBufferAllocator bufferAllocator);
     @Method(selector = "initWithURL:vertexDescriptor:bufferAllocator:preserveTopology:error:")
     private native @Pointer long init(NSURL URL, MDLVertexDescriptor vertexDescriptor, MDLMeshBufferAllocator bufferAllocator, boolean preserveTopology, NSError.NSErrorPtr error);
     public boolean export(NSURL URL) throws NSErrorException {
@@ -97,6 +109,8 @@ import org.robovm.apple.coregraphics.*;
     }
     @Method(selector = "exportAssetToURL:error:")
     private native boolean export(NSURL URL, NSError.NSErrorPtr error);
+    @Method(selector = "childObjectsOfClass:")
+    public native NSArray<MDLObject> childObjectsOfClass(Class<?> objectClass);
     @Method(selector = "boundingBoxAtTime:")
     public native @ByVal MDLAxisAlignedBoundingBox getBoundingBox(double time);
     @Method(selector = "addObject:")
@@ -109,5 +123,7 @@ import org.robovm.apple.coregraphics.*;
     public static native boolean canImportFileExtension(String extension);
     @Method(selector = "canExportFileExtension:")
     public static native boolean canExportFileExtension(String extension);
+    @Method(selector = "placeLightProbesWithDensity:heuristic:usingIrradianceDataSource:")
+    public static native NSArray<MDLLightProbe> placeLightProbes(float value, MDLProbePlacement type, MDLLightProbeIrradianceDataSource dataSource);
     /*</methods>*/
 }

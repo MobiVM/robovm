@@ -45,7 +45,9 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMTimerTrigger.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMTimerTrigger(Handle h, long handle) { super(h, handle); }
     protected HMTimerTrigger(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:fireDate:timeZone:recurrence:recurrenceCalendar:")
     public HMTimerTrigger(String name, NSDate fireDate, NSTimeZone timeZone, NSDateComponents recurrence, NSCalendar recurrenceCalendar) { super((SkipInit) null); initObject(init(name, fireDate, timeZone, recurrence, recurrenceCalendar)); }
     /*</constructors>*/
     /*<properties>*/

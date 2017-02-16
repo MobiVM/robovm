@@ -46,10 +46,15 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLSubmesh() {}
+    protected MDLSubmesh(Handle h, long handle) { super(h, handle); }
     protected MDLSubmesh(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:indexBuffer:indexCount:indexType:geometryType:material:")
     public MDLSubmesh(String name, MDLMeshBuffer indexBuffer, @MachineSizedUInt long indexCount, MDLIndexBitDepth indexType, MDLGeometryType geometryType, MDLMaterial material) { super((SkipInit) null); initObject(init(name, indexBuffer, indexCount, indexType, geometryType, material)); }
+    @Method(selector = "initWithIndexBuffer:indexCount:indexType:geometryType:material:")
     public MDLSubmesh(MDLMeshBuffer indexBuffer, @MachineSizedUInt long indexCount, MDLIndexBitDepth indexType, MDLGeometryType geometryType, MDLMaterial material) { super((SkipInit) null); initObject(init(indexBuffer, indexCount, indexType, geometryType, material)); }
+    @Method(selector = "initWithName:indexBuffer:indexCount:indexType:geometryType:material:topology:")
     public MDLSubmesh(String name, MDLMeshBuffer indexBuffer, @MachineSizedUInt long indexCount, MDLIndexBitDepth indexType, MDLGeometryType geometryType, MDLMaterial material, MDLSubmeshTopology topology) { super((SkipInit) null); initObject(init(name, indexBuffer, indexCount, indexType, geometryType, material, topology)); }
+    @Method(selector = "initWithMDLSubmesh:indexType:geometryType:")
     public MDLSubmesh(MDLSubmesh submesh, MDLIndexBitDepth indexType, MDLGeometryType geometryType) { super((SkipInit) null); initObject(init(submesh, indexType, geometryType)); }
     /*</constructors>*/
     /*<properties>*/
@@ -67,6 +72,8 @@ import org.robovm.apple.coregraphics.*;
     public native void setMaterial(MDLMaterial v);
     @Property(selector = "topology")
     public native MDLSubmeshTopology getTopology();
+    @Property(selector = "setTopology:")
+    public native void setTopology(MDLSubmeshTopology v);
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "setName:")
@@ -82,5 +89,7 @@ import org.robovm.apple.coregraphics.*;
     protected native @Pointer long init(String name, MDLMeshBuffer indexBuffer, @MachineSizedUInt long indexCount, MDLIndexBitDepth indexType, MDLGeometryType geometryType, MDLMaterial material, MDLSubmeshTopology topology);
     @Method(selector = "initWithMDLSubmesh:indexType:geometryType:")
     protected native @Pointer long init(MDLSubmesh submesh, MDLIndexBitDepth indexType, MDLGeometryType geometryType);
+    @Method(selector = "indexBufferAsIndexType:")
+    public native MDLMeshBuffer indexBufferAsIndexType(MDLIndexBitDepth indexType);
     /*</methods>*/
 }

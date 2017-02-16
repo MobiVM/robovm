@@ -41,8 +41,26 @@ import org.robovm.apple.uikit.*;
 public final class /*<name>*/AudioComponentFlags/*</name>*/ extends Bits</*<name>*/AudioComponentFlags/*</name>*/> {
     /*<values>*/
     public static final AudioComponentFlags None = new AudioComponentFlags(0L);
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
     public static final AudioComponentFlags Unsearchable = new AudioComponentFlags(1L);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     public static final AudioComponentFlags SandboxSafe = new AudioComponentFlags(2L);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final AudioComponentFlags IsV3AudioUnit = new AudioComponentFlags(4L);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final AudioComponentFlags RequiresAsyncInstantiation = new AudioComponentFlags(8L);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final AudioComponentFlags CanLoadInProcess = new AudioComponentFlags(16L);
     /*</values>*/
 
     /*<bind>*/

@@ -50,8 +50,26 @@ import org.robovm.apple.coregraphics.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 7.1 and later.
+     */
     @NotImplemented("playableContentManager:initiatePlaybackOfContentItemAtIndexPath:completionHandler:")
     public void initiatePlayback(MPPlayableContentManager contentManager, NSIndexPath indexPath, @Block VoidBlock1<NSError> completionHandler) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 9.3.
+     */
+    @Deprecated
+    @NotImplemented("playableContentManager:initializePlaybackQueueWithCompletionHandler:")
+    public void initiatePlaybackQueue(MPPlayableContentManager contentManager, @Block VoidBlock1<NSError> completionHandler) {}
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @NotImplemented("playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:")
+    public void initializePlaybackQueueWithContent(MPPlayableContentManager contentManager, NSArray<?> contentItems, @Block VoidBlock1<NSError> completionHandler) {}
+    /**
+     * @since Available in iOS 8.4 and later.
+     */
     @NotImplemented("playableContentManager:didUpdateContext:")
     public void didUpdateContext(MPPlayableContentManager contentManager, MPPlayableContentManagerContext context) {}
     /*</methods>*/

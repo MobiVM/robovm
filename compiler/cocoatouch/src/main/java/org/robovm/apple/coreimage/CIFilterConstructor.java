@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "filterWithName:")
-    CIFilter filterWithName$(String name);
+    CIFilter filterWithName(String name);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

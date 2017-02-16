@@ -88,10 +88,33 @@ import org.robovm.apple.corefoundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public static final CTCallState Dialing = new CTCallState("Dialing");
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public static final CTCallState Incoming = new CTCallState("Incoming");
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public static final CTCallState Connected = new CTCallState("Connected");
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    public static final CTCallState Disconnected = new CTCallState("Disconnected");
     /*</constants>*/
     
-    private static /*<name>*/CTCallState/*</name>*/[] values = new /*<name>*/CTCallState/*</name>*/[] {/*<value_list>*//*</value_list>*/};
+    private static /*<name>*/CTCallState/*</name>*/[] values = new /*<name>*/CTCallState/*</name>*/[] {/*<value_list>*/Dialing, Incoming, Connected, Disconnected/*</value_list>*/};
     
     /*<name>*/CTCallState/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -114,7 +137,34 @@ import org.robovm.apple.corefoundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-    
+        /**
+         * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
+         */
+        @Deprecated
+        @GlobalValue(symbol="CTCallStateDialing", optional=true)
+        public static native NSString Dialing();
+        /**
+         * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
+         */
+        @Deprecated
+        @GlobalValue(symbol="CTCallStateIncoming", optional=true)
+        public static native NSString Incoming();
+        /**
+         * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
+         */
+        @Deprecated
+        @GlobalValue(symbol="CTCallStateConnected", optional=true)
+        public static native NSString Connected();
+        /**
+         * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
+         */
+        @Deprecated
+        @GlobalValue(symbol="CTCallStateDisconnected", optional=true)
+        public static native NSString Disconnected();
         /*</values>*/
     }
 }

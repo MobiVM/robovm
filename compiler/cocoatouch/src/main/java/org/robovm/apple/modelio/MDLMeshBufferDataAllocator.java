@@ -44,6 +44,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLMeshBufferDataAllocator() {}
+    protected MDLMeshBufferDataAllocator(Handle h, long handle) { super(h, handle); }
     protected MDLMeshBufferDataAllocator(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

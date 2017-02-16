@@ -47,6 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPMediaEntity() {}
+    protected MPMediaEntity(Handle h, long handle) { super(h, handle); }
     protected MPMediaEntity(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

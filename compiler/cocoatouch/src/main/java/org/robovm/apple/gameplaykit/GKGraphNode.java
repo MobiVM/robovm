@@ -31,19 +31,24 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGraphNode/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKGraphNodePtr extends Ptr<GKGraphNode, GKGraphNodePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKGraphNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKGraphNode() {}
+    protected GKGraphNode(Handle h, long handle) { super(h, handle); }
     protected GKGraphNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public GKGraphNode(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "connectedNodes")
@@ -63,5 +68,9 @@ import org.robovm.apple.foundation.*;
     public native NSArray<GKGraphNode> findPathToNode(GKGraphNode goalNode);
     @Method(selector = "findPathFromNode:")
     public native NSArray<GKGraphNode> findPathFromNode(GKGraphNode startNode);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

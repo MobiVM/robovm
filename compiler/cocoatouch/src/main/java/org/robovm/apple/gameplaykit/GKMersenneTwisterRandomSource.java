@@ -31,7 +31,9 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKMersenneTwisterRandomSource/*</name>*/ 
@@ -43,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKMersenneTwisterRandomSource() {}
+    protected GKMersenneTwisterRandomSource(Handle h, long handle) { super(h, handle); }
     protected GKMersenneTwisterRandomSource(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSeed:")
     public GKMersenneTwisterRandomSource(long seed) { super((SkipInit) null); initObject(init(seed)); }
     /*</constructors>*/
     /*<properties>*/

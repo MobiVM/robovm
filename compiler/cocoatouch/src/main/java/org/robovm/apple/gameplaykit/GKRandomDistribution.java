@@ -31,7 +31,9 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKRandomDistribution/*</name>*/ 
@@ -43,9 +45,11 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKRandomDistribution() {}
+    protected GKRandomDistribution(Handle h, long handle) { super(h, handle); }
     protected GKRandomDistribution(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRandomSource:lowestValue:highestValue:")
     public GKRandomDistribution(GKRandom source, @MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive) { super((SkipInit) null); initObject(init(source, lowestInclusive, highestInclusive)); }
-    public GKRandomDistribution(@MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive) { super(create(lowestInclusive, highestInclusive)); retain(getHandle()); }
+    public GKRandomDistribution(@MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive) { super((Handle) null, create(lowestInclusive, highestInclusive)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lowestValue")
@@ -68,7 +72,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "nextBool")
     public native boolean nextBool();
     @Method(selector = "distributionWithLowestValue:highestValue:")
-    private static native @Pointer long create(@MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive);
+    protected static native @Pointer long create(@MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive);
     @Method(selector = "distributionForDieWithSideCount:")
     public static native GKRandomDistribution die(@MachineSizedSInt long sideCount);
     @Method(selector = "d6")

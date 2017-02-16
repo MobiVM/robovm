@@ -47,11 +47,17 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKRecordZoneNotification() {}
+    protected CKRecordZoneNotification(Handle h, long handle) { super(h, handle); }
     protected CKRecordZoneNotification(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "recordZoneID")
     public native CKRecordZoneID getRecordZoneID();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "databaseScope")
+    public native CKDatabaseScope getDatabaseScope();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -31,7 +31,9 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKMinmaxStrategist/*</name>*/ 
@@ -43,21 +45,14 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKMinmaxStrategist() {}
+    protected GKMinmaxStrategist(Handle h, long handle) { super(h, handle); }
     protected GKMinmaxStrategist(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "gameModel")
-    public native GKGameModel getGameModel();
-    @Property(selector = "setGameModel:")
-    public native void setGameModel(GKGameModel v);
     @Property(selector = "maxLookAheadDepth")
     public native @MachineSizedSInt long getMaxLookAheadDepth();
     @Property(selector = "setMaxLookAheadDepth:")
     public native void setMaxLookAheadDepth(@MachineSizedSInt long v);
-    @Property(selector = "randomSource")
-    public native GKRandom getRandomSource();
-    @Property(selector = "setRandomSource:")
-    public native void setRandomSource(GKRandom v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

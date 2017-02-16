@@ -949,6 +949,8 @@ values:
     # CMMetadataFormatDescription
     kCMFormatDescriptionExtensionKey_(MetadataKeyTable):
         exclude: true
+    kCMMetadataFormatDescription_StructuralDependencyKey_DependencyIsInvalidFlag:
+        exclude: true
     kCMMetadataFormatDescriptionMetadataSpecificationKey_(.*):
         dictionary: CMMetadataFormatDescriptionMetadataSpecification
         name: '#{g[0]}'

@@ -55,11 +55,12 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVMetadataItem() {}
+    protected AVMetadataItem(Handle h, long handle) { super(h, handle); }
     protected AVMetadataItem(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public AVMetadataItem(AVMetadataItem metadataItem, @Block VoidBlock1<AVMetadataItemValueRequest> handler) { super(create(metadataItem, handler)); retain(getHandle()); }
+    public AVMetadataItem(AVMetadataItem metadataItem, @Block VoidBlock1<AVMetadataItemValueRequest> handler) { super((Handle) null, create(metadataItem, handler)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     /**

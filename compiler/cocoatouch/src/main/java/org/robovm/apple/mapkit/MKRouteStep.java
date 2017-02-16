@@ -49,6 +49,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKRouteStep() {}
+    protected MKRouteStep(Handle h, long handle) { super(h, handle); }
     protected MKRouteStep(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -46,11 +46,16 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLCamera() {}
+    protected MDLCamera(Handle h, long handle) { super(h, handle); }
     protected MDLCamera(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "projectionMatrix")
-    public native MatrixFloat4x4 getProjectionMatrix();
+    public native @ByVal MatrixFloat4x4 getProjectionMatrix();
+    @Property(selector = "projection")
+    public native MDLCameraProjection getProjection();
+    @Property(selector = "setProjection:")
+    public native void setProjection(MDLCameraProjection v);
     @Property(selector = "nearVisibilityDistance")
     public native float getNearVisibilityDistance();
     @Property(selector = "setNearVisibilityDistance:")
@@ -116,37 +121,37 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "setSensorAspect:")
     public native void setSensorAspect(float v);
     @Property(selector = "sensorEnlargement")
-    public native VectorFloat2 getSensorEnlargement();
-    @Property(selector = "setSensorEnlargement:", strongRef = true)
-    public native void setSensorEnlargement(VectorFloat2 v);
+    public native @ByVal VectorFloat2 getSensorEnlargement();
+    @Property(selector = "setSensorEnlargement:")
+    public native void setSensorEnlargement(@ByVal VectorFloat2 v);
     @Property(selector = "sensorShift")
-    public native VectorFloat2 getSensorShift();
-    @Property(selector = "setSensorShift:", strongRef = true)
-    public native void setSensorShift(VectorFloat2 v);
+    public native @ByVal VectorFloat2 getSensorShift();
+    @Property(selector = "setSensorShift:")
+    public native void setSensorShift(@ByVal VectorFloat2 v);
     @Property(selector = "flash")
-    public native VectorFloat3 getFlash();
-    @Property(selector = "setFlash:", strongRef = true)
-    public native void setFlash(VectorFloat3 v);
+    public native @ByVal VectorFloat3 getFlash();
+    @Property(selector = "setFlash:")
+    public native void setFlash(@ByVal VectorFloat3 v);
     @Property(selector = "exposureCompression")
-    public native VectorFloat2 getExposureCompression();
-    @Property(selector = "setExposureCompression:", strongRef = true)
-    public native void setExposureCompression(VectorFloat2 v);
+    public native @ByVal VectorFloat2 getExposureCompression();
+    @Property(selector = "setExposureCompression:")
+    public native void setExposureCompression(@ByVal VectorFloat2 v);
     @Property(selector = "exposure")
-    public native VectorFloat3 getExposure();
-    @Property(selector = "setExposure:", strongRef = true)
-    public native void setExposure(VectorFloat3 v);
+    public native @ByVal VectorFloat3 getExposure();
+    @Property(selector = "setExposure:")
+    public native void setExposure(@ByVal VectorFloat3 v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "frameBoundingBox:setNearAndFar:")
     public native void frameBoundingBox(@ByVal MDLAxisAlignedBoundingBox boundingBox, boolean setNearAndFar);
     @Method(selector = "lookAt:")
-    public native void lookAt(VectorFloat3 focusPosition);
+    public native void lookAt(@ByVal VectorFloat3 focusPosition);
     @Method(selector = "lookAt:from:")
-    public native void lookAt(VectorFloat3 focusPosition, VectorFloat3 cameraPosition);
+    public native void lookAt(@ByVal VectorFloat3 focusPosition, @ByVal VectorFloat3 cameraPosition);
     @Method(selector = "rayTo:forViewPort:")
-    public native VectorFloat3 rayTo(VectorInt2 pixel, VectorInt2 size);
+    public native @ByVal VectorFloat3 rayTo(@ByVal VectorInt2 pixel, @ByVal VectorInt2 size);
     @Method(selector = "bokehKernelWithSize:")
-    public native MDLTexture newBokehKernel(VectorInt2 size);
+    public native MDLTexture newBokehKernel(@ByVal VectorInt2 size);
     /*</methods>*/
 }

@@ -103,12 +103,16 @@ import org.robovm.apple.audiounit.*;
      */
     public static final AVMetadataIdentifierISOUserData Copyright = new AVMetadataIdentifierISOUserData("Copyright");
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final AVMetadataIdentifierISOUserData Date = new AVMetadataIdentifierISOUserData("Date");
+    /**
      * @since Available in iOS 8.0 and later.
      */
     public static final AVMetadataIdentifierISOUserData TaggedCharacteristic = new AVMetadataIdentifierISOUserData("TaggedCharacteristic");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataIdentifierISOUserData/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierISOUserData/*</name>*/[] {/*<value_list>*/Copyright, TaggedCharacteristic/*</value_list>*/};
+    private static /*<name>*/AVMetadataIdentifierISOUserData/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierISOUserData/*</name>*/[] {/*<value_list>*/Copyright, Date, TaggedCharacteristic/*</value_list>*/};
     
     /*<name>*/AVMetadataIdentifierISOUserData/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -136,6 +140,11 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVMetadataIdentifierISOUserDataCopyright", optional=true)
         public static native NSString Copyright();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierISOUserDataDate", optional=true)
+        public static native NSString Date();
         /**
          * @since Available in iOS 8.0 and later.
          */

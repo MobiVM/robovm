@@ -202,6 +202,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImageDestinationEmbedThumbnail", optional=true)
         public static native CFString EmbedThumbnail();
+        /**
+         * @since Available in iOS 9.3 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationOptimizeColorForSharing", optional=true)
+        public static native CFString OptimizeColorForSharing();
     }
     /*</keys>*/
 }

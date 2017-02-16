@@ -130,7 +130,15 @@ public enum /*<name>*/AVErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 9.0 and later.
      */
-    RecordingAlreadyInProgress(-11859L);
+    RecordingAlreadyInProgress(-11859L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    UnsupportedOutputSettings(-11861L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    OperationNotAllowed(-11862L);
     /*</values>*/
 
     /*<bind>*/

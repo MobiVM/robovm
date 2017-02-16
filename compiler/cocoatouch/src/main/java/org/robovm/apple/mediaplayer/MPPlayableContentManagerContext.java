@@ -47,6 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPPlayableContentManagerContext() {}
+    protected MPPlayableContentManagerContext(Handle h, long handle) { super(h, handle); }
     protected MPPlayableContentManagerContext(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -54,6 +55,13 @@ import org.robovm.apple.coregraphics.*;
     public native @MachineSizedSInt long getEnforcedContentItemsCount();
     @Property(selector = "enforcedContentTreeDepth")
     public native @MachineSizedSInt long getEnforcedContentTreeDepth();
+    @Property(selector = "contentLimitsEnforced")
+    public native boolean isContentLimitsEnforced();
+    /**
+     * @since Available in iOS 8.4 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Property(selector = "contentLimitsEnabled")
     public native boolean isContentLimitsEnabled();
     @Property(selector = "endpointAvailable")

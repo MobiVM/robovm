@@ -47,7 +47,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKFetchSubscriptionsOperation() {}
+    protected CKFetchSubscriptionsOperation(Handle h, long handle) { super(h, handle); }
     protected CKFetchSubscriptionsOperation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSubscriptionIDs:")
     public CKFetchSubscriptionsOperation(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> subscriptionIDs) { super((SkipInit) null); initObject(init(subscriptionIDs)); }
     /*</constructors>*/
     /*<properties>*/

@@ -56,8 +56,10 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioUnitMIDIInstrument() {}
+    protected AVAudioUnitMIDIInstrument(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitMIDIInstrument(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithAudioComponentDescription:")
     public AVAudioUnitMIDIInstrument(@ByVal AudioComponentDescription description) { super((SkipInit) null); initObject(init(description)); }
     /*</constructors>*/
     /*<properties>*/

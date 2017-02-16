@@ -45,7 +45,9 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMCharacteristicEvent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMCharacteristicEvent(Handle h, long handle) { super(h, handle); }
     protected HMCharacteristicEvent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCharacteristic:triggerValue:")
     public HMCharacteristicEvent(HMCharacteristic characteristic, T triggerValue) { super((SkipInit) null); initObject(init(characteristic, triggerValue)); }
     /*</constructors>*/
     /*<properties>*/

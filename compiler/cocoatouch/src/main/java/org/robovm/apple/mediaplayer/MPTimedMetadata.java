@@ -35,7 +35,9 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
+ * @deprecated Deprecated in iOS 9.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPTimedMetadata/*</name>*/ 
@@ -47,6 +49,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPTimedMetadata() {}
+    protected MPTimedMetadata(Handle h, long handle) { super(h, handle); }
     protected MPTimedMetadata(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -120,27 +123,37 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataKeyName", optional=true)
     protected static native NSString Name();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataKeyInfo", optional=true)
     protected static native NSString Info();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataKeyMIMEType", optional=true)
     protected static native NSString MIMEType();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataKeyDataType", optional=true)
     protected static native NSString DataType();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataKeyLanguageCode", optional=true)
     protected static native NSString LanguageCode();
     

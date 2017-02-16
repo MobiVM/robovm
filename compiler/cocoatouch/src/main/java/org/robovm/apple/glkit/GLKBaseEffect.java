@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GLKBaseEffect() {}
+    protected GLKBaseEffect(Handle h, long handle) { super(h, handle); }
     protected GLKBaseEffect(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

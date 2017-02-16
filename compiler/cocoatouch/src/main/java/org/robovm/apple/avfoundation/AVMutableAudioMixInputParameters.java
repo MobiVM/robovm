@@ -56,8 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVMutableAudioMixInputParameters() {}
+    protected AVMutableAudioMixInputParameters(Handle h, long handle) { super(h, handle); }
     protected AVMutableAudioMixInputParameters(SkipInit skipInit) { super(skipInit); }
-    public AVMutableAudioMixInputParameters(AVAssetTrack track) { super(create(track)); retain(getHandle()); }
+    public AVMutableAudioMixInputParameters(AVAssetTrack track) { super((Handle) null, create(track)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "trackID")

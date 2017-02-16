@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLVertexDescriptor() {}
+    protected MTLVertexDescriptor(Handle h, long handle) { super(h, handle); }
     protected MTLVertexDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

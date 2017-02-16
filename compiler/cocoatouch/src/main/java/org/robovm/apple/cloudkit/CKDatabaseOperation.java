@@ -47,6 +47,7 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKDatabaseOperation() {}
+    protected CKDatabaseOperation(Handle h, long handle) { super(h, handle); }
     protected CKDatabaseOperation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

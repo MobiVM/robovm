@@ -46,6 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLLight() {}
+    protected MDLLight(Handle h, long handle) { super(h, handle); }
     protected MDLLight(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -53,12 +54,16 @@ import org.robovm.apple.coregraphics.*;
     public native MDLLightType getLightType();
     @Property(selector = "setLightType:")
     public native void setLightType(MDLLightType v);
+    @Property(selector = "colorSpace")
+    public native String getColorSpace();
+    @Property(selector = "setColorSpace:")
+    public native void setColorSpace(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "irradianceAtPoint:")
-    public native CGColor getIrradiance(VectorFloat3 point);
+    public native CGColor getIrradiance(@ByVal VectorFloat3 point);
     @Method(selector = "irradianceAtPoint:colorSpace:")
-    public native CGColor getIrradiance(VectorFloat3 point, CGColorSpace colorSpace);
+    public native CGColor getIrradiance(@ByVal VectorFloat3 point, CGColorSpace colorSpace);
     /*</methods>*/
 }

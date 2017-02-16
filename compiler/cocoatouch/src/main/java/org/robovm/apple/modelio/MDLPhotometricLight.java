@@ -46,7 +46,9 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLPhotometricLight() {}
+    protected MDLPhotometricLight(Handle h, long handle) { super(h, handle); }
     protected MDLPhotometricLight(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithIESProfile:")
     public MDLPhotometricLight(NSURL URL) { super((SkipInit) null); initObject(init(URL)); }
     /*</constructors>*/
     /*<properties>*/

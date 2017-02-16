@@ -49,7 +49,13 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKLocalSearchRequest() {}
+    protected MKLocalSearchRequest(Handle h, long handle) { super(h, handle); }
     protected MKLocalSearchRequest(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "initWithCompletion:")
+    public MKLocalSearchRequest(MKLocalSearchCompletion completion) { super((SkipInit) null); initObject(initWithCompletion(completion)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "naturalLanguageQuery")
@@ -63,6 +69,10 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "initWithCompletion:")
+    protected native @Pointer long initWithCompletion(MKLocalSearchCompletion completion);
     /*</methods>*/
 }

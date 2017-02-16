@@ -55,24 +55,24 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetDownloadTask.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetDownloadTask() {}
+    protected AVAssetDownloadTask() {}
+    protected AVAssetDownloadTask(Handle h, long handle) { super(h, handle); }
     protected AVAssetDownloadTask(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "URLAsset")
     public native AVURLAsset getURLAsset();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "destinationURL")
     public native NSURL getDestinationURL();
     @Property(selector = "options")
     public native AVAssetDownloadTaskOptions getOptions();
     @Property(selector = "loadedTimeRanges")
     public native @org.robovm.rt.bro.annotation.Marshaler(CMTimeRange.AsValuedListMarshaler.class) List<CMTimeRange> getLoadedTimeRanges();
-    @Property(selector = "originalRequest")
-    public native NSURLRequest getOriginalRequest();
-    @Property(selector = "currentRequest")
-    public native NSURLRequest getCurrentRequest();
-    @Property(selector = "response")
-    public native NSURLResponse getResponse();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

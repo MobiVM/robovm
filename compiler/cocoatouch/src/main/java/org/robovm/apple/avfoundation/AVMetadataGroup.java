@@ -56,11 +56,22 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVMetadataGroup() {}
+    protected AVMetadataGroup(Handle h, long handle) { super(h, handle); }
     protected AVMetadataGroup(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "items")
     public native NSArray<AVMetadataItem> getItems();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Property(selector = "classifyingLabel")
+    public native String getClassifyingLabel();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Property(selector = "uniqueID")
+    public native String getUniqueID();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

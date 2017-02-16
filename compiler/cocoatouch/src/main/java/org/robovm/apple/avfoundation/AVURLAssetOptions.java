@@ -189,6 +189,11 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVURLAssetHTTPCookiesKey", optional=true)
         public static native NSString HTTPCookies();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetAllowsCellularAccessKey", optional=true)
+        public static native NSString AllowsCellularAccess();
     }
     /*</keys>*/
 }

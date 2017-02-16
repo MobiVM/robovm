@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HKCorrelationType() {}
+    protected HKCorrelationType(Handle h, long handle) { super(h, handle); }
     protected HKCorrelationType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -47,6 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPMediaPropertyPredicate() {}
+    protected MPMediaPropertyPredicate(Handle h, long handle) { super(h, handle); }
     protected MPMediaPropertyPredicate(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public MPMediaEntityProperty getProperty() {

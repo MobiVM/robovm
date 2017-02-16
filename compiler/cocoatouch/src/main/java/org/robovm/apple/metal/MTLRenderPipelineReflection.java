@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLRenderPipelineReflection() {}
+    protected MTLRenderPipelineReflection(Handle h, long handle) { super(h, handle); }
     protected MTLRenderPipelineReflection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

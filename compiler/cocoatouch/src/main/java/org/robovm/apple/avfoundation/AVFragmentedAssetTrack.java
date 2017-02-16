@@ -79,6 +79,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVFragmentedAssetTrack() {}
+    protected AVFragmentedAssetTrack(Handle h, long handle) { super(h, handle); }
     protected AVFragmentedAssetTrack(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

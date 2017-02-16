@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVMIDIPlayer() {}
+    protected AVMIDIPlayer(Handle h, long handle) { super(h, handle); }
     protected AVMIDIPlayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithContentsOfURL:soundBankURL:error:")
     public AVMIDIPlayer(NSURL inURL, NSURL bankURL) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -64,6 +66,7 @@ import org.robovm.apple.audiounit.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    @Method(selector = "initWithData:soundBankURL:error:")
     public AVMIDIPlayer(NSData data, NSURL bankURL) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();

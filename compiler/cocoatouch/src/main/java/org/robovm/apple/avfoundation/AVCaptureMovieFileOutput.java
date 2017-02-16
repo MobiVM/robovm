@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureMovieFileOutput() {}
+    protected AVCaptureMovieFileOutput(Handle h, long handle) { super(h, handle); }
     protected AVCaptureMovieFileOutput(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -67,9 +68,24 @@ import org.robovm.apple.audiounit.*;
     public native NSArray<AVMetadataItem> getMetadata();
     @Property(selector = "setMetadata:")
     public native void setMetadata(NSArray<AVMetadataItem> v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "availableVideoCodecTypes")
+    public native NSArray<?> getAvailableVideoCodecTypes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "outputSettingsForConnection:")
+    public native NSDictionary<?, ?> getOutputSettings(AVCaptureConnection connection);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setOutputSettings:forConnection:")
+    public native void setOutputSettings(NSDictionary<?, ?> outputSettings, AVCaptureConnection connection);
     /**
      * @since Available in iOS 9.0 and later.
      */

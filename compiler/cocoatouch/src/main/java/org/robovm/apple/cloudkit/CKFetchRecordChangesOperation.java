@@ -35,7 +35,9 @@ import org.robovm.apple.contacts.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKFetchRecordChangesOperation/*</name>*/ 
@@ -47,7 +49,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKFetchRecordChangesOperation() {}
+    protected CKFetchRecordChangesOperation(Handle h, long handle) { super(h, handle); }
     protected CKFetchRecordChangesOperation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRecordZoneID:previousServerChangeToken:")
     public CKFetchRecordChangesOperation(CKRecordZoneID recordZoneID, CKServerChangeToken previousServerChangeToken) { super((SkipInit) null); initObject(init(recordZoneID, previousServerChangeToken)); }
     /*</constructors>*/
     /*<properties>*/

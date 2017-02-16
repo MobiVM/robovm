@@ -49,8 +49,10 @@ import org.robovm.apple.coreanimation.*;
     /*<bind>*/static { ObjCRuntime.bind(MTKMesh.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTKMesh() {}
+    protected MTKMesh() {}
+    protected MTKMesh(Handle h, long handle) { super(h, handle); }
     protected MTKMesh(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithMesh:device:error:")
     public MTKMesh(MDLMesh mesh, MTLDevice device) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -77,13 +79,13 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithMesh:device:error:")
     private native @Pointer long init(MDLMesh mesh, MTLDevice device, NSError.NSErrorPtr error);
-    public static NSArray<MTKMesh> newMeshes(MDLAsset asset, MTLDevice device, NSArray.NSArrayPtr sourceMeshes) throws NSErrorException {
+    public static NSArray<MTKMesh> newMeshes(MDLAsset asset, MTLDevice device, NSArray.NSArrayPtr<?> sourceMeshes) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSArray<MTKMesh> result = newMeshes(asset, device, sourceMeshes, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
     @Method(selector = "newMeshesFromAsset:device:sourceMeshes:error:")
-    private static native NSArray<MTKMesh> newMeshes(MDLAsset asset, MTLDevice device, NSArray.NSArrayPtr sourceMeshes, NSError.NSErrorPtr error);
+    private static native NSArray<MTKMesh> newMeshes(MDLAsset asset, MTLDevice device, NSArray.NSArrayPtr<?> sourceMeshes, NSError.NSErrorPtr error);
     /*</methods>*/
 }

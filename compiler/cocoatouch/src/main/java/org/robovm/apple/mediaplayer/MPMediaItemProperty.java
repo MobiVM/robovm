@@ -126,6 +126,10 @@ import org.robovm.apple.coregraphics.*;
     public static final MPMediaItemProperty DiscNumber = new MPMediaItemProperty("DiscNumber");
     public static final MPMediaItemProperty DiscCount = new MPMediaItemProperty("DiscCount");
     public static final MPMediaItemProperty Artwork = new MPMediaItemProperty("Artwork");
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    public static final MPMediaItemProperty IsExplicit = new MPMediaItemProperty("IsExplicit");
     public static final MPMediaItemProperty Lyrics = new MPMediaItemProperty("Lyrics");
     public static final MPMediaItemProperty IsCompilation = new MPMediaItemProperty("IsCompilation");
     /**
@@ -148,6 +152,10 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 6.0 and later.
      */
     public static final MPMediaItemProperty IsCloudItem = new MPMediaItemProperty("IsCloudItem");
+    /**
+     * @since Available in iOS 9.2 and later.
+     */
+    public static final MPMediaItemProperty HasProtectedAsset = new MPMediaItemProperty("HasProtectedAsset");
     public static final MPMediaItemProperty PodcastTitle = new MPMediaItemProperty("PodcastTitle");
     /**
      * @since Available in iOS 4.2 and later.
@@ -165,9 +173,13 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 6.0 and later.
      */
     public static final MPMediaItemProperty BookmarkTime = new MPMediaItemProperty("BookmarkTime");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final MPMediaItemProperty DateAdded = new MPMediaItemProperty("DateAdded");
     /*</constants>*/
     
-    private static /*<name>*/MPMediaItemProperty/*</name>*/[] values = new /*<name>*/MPMediaItemProperty/*</name>*/[] {/*<value_list>*/ItemPersistentID, MediaType, Title, AlbumTitle, AlbumPersistentID, Artist, ArtistPersistentID, AlbumArtist, AlbumArtistPersistentID, Genre, GenrePersistentID, Composer, ComposerPersistentID, PlaybackDuration, AlbumTrackNumber, AlbumTrackCount, DiscNumber, DiscCount, Artwork, Lyrics, IsCompilation, ReleaseDate, BeatsPerMinute, Comments, AssetURL, IsCloudItem, PodcastTitle, PodcastPersistentID, PlayCount, SkipCount, Rating, LastPlayedDate, UserGrouping, BookmarkTime/*</value_list>*/};
+    private static /*<name>*/MPMediaItemProperty/*</name>*/[] values = new /*<name>*/MPMediaItemProperty/*</name>*/[] {/*<value_list>*/ItemPersistentID, MediaType, Title, AlbumTitle, AlbumPersistentID, Artist, ArtistPersistentID, AlbumArtist, AlbumArtistPersistentID, Genre, GenrePersistentID, Composer, ComposerPersistentID, PlaybackDuration, AlbumTrackNumber, AlbumTrackCount, DiscNumber, DiscCount, Artwork, IsExplicit, Lyrics, IsCompilation, ReleaseDate, BeatsPerMinute, Comments, AssetURL, IsCloudItem, HasProtectedAsset, PodcastTitle, PodcastPersistentID, PlayCount, SkipCount, Rating, LastPlayedDate, UserGrouping, BookmarkTime, DateAdded/*</value_list>*/};
     
     /*<name>*/MPMediaItemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -246,6 +258,11 @@ import org.robovm.apple.coregraphics.*;
         public static native NSString DiscCount();
         @GlobalValue(symbol="MPMediaItemPropertyArtwork", optional=true)
         public static native NSString Artwork();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="MPMediaItemPropertyIsExplicit", optional=true)
+        public static native NSString IsExplicit();
         @GlobalValue(symbol="MPMediaItemPropertyLyrics", optional=true)
         public static native NSString Lyrics();
         @GlobalValue(symbol="MPMediaItemPropertyIsCompilation", optional=true)
@@ -275,6 +292,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="MPMediaItemPropertyIsCloudItem", optional=true)
         public static native NSString IsCloudItem();
+        /**
+         * @since Available in iOS 9.2 and later.
+         */
+        @GlobalValue(symbol="MPMediaItemPropertyHasProtectedAsset", optional=true)
+        public static native NSString HasProtectedAsset();
         @GlobalValue(symbol="MPMediaItemPropertyPodcastTitle", optional=true)
         public static native NSString PodcastTitle();
         /**
@@ -300,6 +322,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="MPMediaItemPropertyBookmarkTime", optional=true)
         public static native NSString BookmarkTime();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="MPMediaItemPropertyDateAdded", optional=true)
+        public static native NSString DateAdded();
         /*</values>*/
     }
 }

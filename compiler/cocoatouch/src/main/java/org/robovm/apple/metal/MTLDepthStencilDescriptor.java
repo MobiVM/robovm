@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLDepthStencilDescriptor() {}
+    protected MTLDepthStencilDescriptor(Handle h, long handle) { super(h, handle); }
     protected MTLDepthStencilDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -46,6 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLPhysicallyPlausibleScatteringFunction() {}
+    protected MDLPhysicallyPlausibleScatteringFunction(Handle h, long handle) { super(h, handle); }
     protected MDLPhysicallyPlausibleScatteringFunction(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

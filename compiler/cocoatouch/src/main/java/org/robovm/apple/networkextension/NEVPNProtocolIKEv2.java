@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NEVPNProtocolIKEv2() {}
+    protected NEVPNProtocolIKEv2(Handle h, long handle) { super(h, handle); }
     protected NEVPNProtocolIKEv2(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -79,15 +80,25 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "setServerCertificateCommonName:")
     public native void setServerCertificateCommonName(String v);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 8.3 and later.
      */
     @Property(selector = "certificateType")
     public native NEVPNIKEv2CertificateType getCertificateType();
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 8.3 and later.
      */
     @Property(selector = "setCertificateType:")
     public native void setCertificateType(NEVPNIKEv2CertificateType v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "useConfigurationAttributeInternalIPSubnet")
+    public native boolean isUseConfigurationAttributeInternalIPSubnet();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setUseConfigurationAttributeInternalIPSubnet:")
+    public native void setUseConfigurationAttributeInternalIPSubnet(boolean v);
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -98,6 +109,56 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "childSecurityAssociationParameters")
     public native NEVPNIKEv2SecurityAssociationParameters getChildSecurityAssociationParameters();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "disableMOBIKE")
+    public native boolean isDisableMOBIKE();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setDisableMOBIKE:")
+    public native void setDisableMOBIKE(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "disableRedirect")
+    public native boolean isDisableRedirect();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setDisableRedirect:")
+    public native void setDisableRedirect(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "enablePFS")
+    public native boolean isEnablePFS();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setEnablePFS:")
+    public native void setEnablePFS(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "enableRevocationCheck")
+    public native boolean isEnableRevocationCheck();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setEnableRevocationCheck:")
+    public native void setEnableRevocationCheck(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "strictRevocationCheck")
+    public native boolean isStrictRevocationCheck();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setStrictRevocationCheck:")
+    public native void setStrictRevocationCheck(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

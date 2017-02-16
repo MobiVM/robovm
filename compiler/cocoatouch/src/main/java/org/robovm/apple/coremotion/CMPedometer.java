@@ -59,6 +59,16 @@ import org.robovm.apple.foundation.*;
     public native void startPedometerUpdates(NSDate start, @Block VoidBlock2<CMPedometerData, NSError> handler);
     @Method(selector = "stopPedometerUpdates")
     public native void stopPedometerUpdates();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "startPedometerEventUpdatesWithHandler:")
+    public native void startPedometerEventUpdates(@Block VoidBlock2<CMPedometerEvent, NSError> handler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "stopPedometerEventUpdates")
+    public native void stopPedometerEventUpdates();
     @Method(selector = "isStepCountingAvailable")
     public static native boolean isStepCountingAvailable();
     @Method(selector = "isDistanceAvailable")
@@ -75,5 +85,10 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "isCadenceAvailable")
     public static native boolean isCadenceAvailable();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "isPedometerEventTrackingAvailable")
+    public static native boolean isPedometerEventTrackingAvailable();
     /*</methods>*/
 }

@@ -47,6 +47,7 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKOperation() {}
+    protected CKOperation(Handle h, long handle) { super(h, handle); }
     protected CKOperation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -72,10 +73,54 @@ import org.robovm.apple.contacts.*;
     public native boolean allowsCellularAccess();
     @Property(selector = "setAllowsCellularAccess:")
     public native void setAllowsCellularAccess(boolean v);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Property(selector = "operationID")
+    public native String getOperationID();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Property(selector = "isLongLived")
+    public native boolean isLongLived();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Property(selector = "setLongLived:")
+    public native void setLongLived(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "timeoutIntervalForRequest")
+    public native double getTimeoutIntervalForRequest();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTimeoutIntervalForRequest:")
+    public native void setTimeoutIntervalForRequest(double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "timeoutIntervalForResource")
+    public native double getTimeoutIntervalForResource();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTimeoutIntervalForResource:")
+    public native void setTimeoutIntervalForResource(double v);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Property(selector = "longLivedOperationWasPersistedBlock")
+    public native @Block Runnable getLongLivedOperationWasPersistedBlock();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Property(selector = "setLongLivedOperationWasPersistedBlock:")
+    public native void setLongLivedOperationWasPersistedBlock(@Block Runnable v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "activityStart")
-    public native long activityStart();
+    
     /*</methods>*/
 }

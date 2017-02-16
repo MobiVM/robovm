@@ -47,8 +47,11 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKCalendarChooser() {}
+    protected EKCalendarChooser(Handle h, long handle) { super(h, handle); }
     protected EKCalendarChooser(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSelectionStyle:displayStyle:eventStore:")
     public EKCalendarChooser(EKCalendarChooserSelectionStyle selectionStyle, EKCalendarChooserDisplayStyle displayStyle, EKEventStore eventStore) { super((SkipInit) null); initObject(init(selectionStyle, displayStyle, eventStore)); }
+    @Method(selector = "initWithSelectionStyle:displayStyle:entityType:eventStore:")
     public EKCalendarChooser(EKCalendarChooserSelectionStyle style, EKCalendarChooserDisplayStyle displayStyle, EKEntityType entityType, EKEventStore eventStore) { super((SkipInit) null); initObject(init(style, displayStyle, entityType, eventStore)); }
     /*</constructors>*/
     /*<properties>*/

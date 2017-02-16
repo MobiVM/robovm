@@ -55,8 +55,10 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetImageGenerator.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetImageGenerator() {}
+    protected AVAssetImageGenerator() {}
+    protected AVAssetImageGenerator(Handle h, long handle) { super(h, handle); }
     protected AVAssetImageGenerator(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAsset:")
     public AVAssetImageGenerator(AVAsset asset) { super((SkipInit) null); initObject(init(asset)); }
     /*</constructors>*/
     /*<properties>*/

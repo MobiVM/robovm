@@ -55,7 +55,8 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVPlayerItemAccessLog.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVPlayerItemAccessLog() {}
+    protected AVPlayerItemAccessLog() {}
+    protected AVPlayerItemAccessLog(Handle h, long handle) { super(h, handle); }
     protected AVPlayerItemAccessLog(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -163,9 +163,41 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 8.0 and later.
      */
     public static final HKMetadataKey CoachedWorkout = new HKMetadataKey("CoachedWorkout");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKMetadataKey WeatherCondition = new HKMetadataKey("WeatherCondition");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKMetadataKey WeatherTemperature = new HKMetadataKey("WeatherTemperature");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKMetadataKey WeatherHumidity = new HKMetadataKey("WeatherHumidity");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKMetadataKey SexualActivityProtectionUsed = new HKMetadataKey("SexualActivityProtectionUsed");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKMetadataKey MenstrualCycleStart = new HKMetadataKey("MenstrualCycleStart");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKMetadataKey LapLength = new HKMetadataKey("LapLength");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKMetadataKey SwimmingLocationType = new HKMetadataKey("SwimmingLocationType");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKMetadataKey SwimmingStrokeStyle = new HKMetadataKey("SwimmingStrokeStyle");
     /*</constants>*/
     
-    private static /*<name>*/HKMetadataKey/*</name>*/[] values = new /*<name>*/HKMetadataKey/*</name>*/[] {/*<value_list>*/DeviceSerialNumber, BodyTemperatureSensorLocation, HeartRateSensorLocation, FoodType, UDIDeviceIdentifier, UDIProductionIdentifier, DigitalSignature, ExternalUUID, TimeZone, DeviceName, DeviceManufacturerName, WasTakenInLab, ReferenceRangeLowerLimit, ReferenceRangeUpperLimit, WasUserEntered, WorkoutBrandName, GroupFitness, IndoorWorkout, CoachedWorkout/*</value_list>*/};
+    private static /*<name>*/HKMetadataKey/*</name>*/[] values = new /*<name>*/HKMetadataKey/*</name>*/[] {/*<value_list>*/DeviceSerialNumber, BodyTemperatureSensorLocation, HeartRateSensorLocation, FoodType, UDIDeviceIdentifier, UDIProductionIdentifier, DigitalSignature, ExternalUUID, TimeZone, DeviceName, DeviceManufacturerName, WasTakenInLab, ReferenceRangeLowerLimit, ReferenceRangeUpperLimit, WasUserEntered, WorkoutBrandName, GroupFitness, IndoorWorkout, CoachedWorkout, WeatherCondition, WeatherTemperature, WeatherHumidity, SexualActivityProtectionUsed, MenstrualCycleStart, LapLength, SwimmingLocationType, SwimmingStrokeStyle/*</value_list>*/};
     
     /*<name>*/HKMetadataKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -283,6 +315,46 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKMetadataKeyCoachedWorkout", optional=true)
         public static native NSString CoachedWorkout();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyWeatherCondition", optional=true)
+        public static native NSString WeatherCondition();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyWeatherTemperature", optional=true)
+        public static native NSString WeatherTemperature();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyWeatherHumidity", optional=true)
+        public static native NSString WeatherHumidity();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeySexualActivityProtectionUsed", optional=true)
+        public static native NSString SexualActivityProtectionUsed();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyMenstrualCycleStart", optional=true)
+        public static native NSString MenstrualCycleStart();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyLapLength", optional=true)
+        public static native NSString LapLength();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeySwimmingLocationType", optional=true)
+        public static native NSString SwimmingLocationType();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeySwimmingStrokeStyle", optional=true)
+        public static native NSString SwimmingStrokeStyle();
         /*</values>*/
     }
 }

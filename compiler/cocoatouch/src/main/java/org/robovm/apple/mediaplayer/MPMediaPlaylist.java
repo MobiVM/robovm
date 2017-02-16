@@ -47,6 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPMediaPlaylist() {}
+    protected MPMediaPlaylist(Handle h, long handle) { super(h, handle); }
     protected MPMediaPlaylist(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -70,6 +71,16 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "seedItems")
     public native NSArray<MPMediaItem> getSeedItems();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Property(selector = "descriptionText")
+    public native String getDescriptionText();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Property(selector = "authorDisplayName")
+    public native String getAuthorDisplayName();
     /*</properties>*/
     /*<members>*//*</members>*/
     public long getPersistentIDLegacy() {
@@ -102,6 +113,15 @@ import org.robovm.apple.coregraphics.*;
         return null;
     }
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "addItemWithProductID:completionHandler:")
+    public native void addItemWithProductID(String productID, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "addMediaItems:completionHandler:")
+    public native void addMediaItems(NSArray<MPMediaItem> mediaItems, @Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
 }

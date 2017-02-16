@@ -92,6 +92,10 @@ import org.robovm.apple.dispatch.*;
 
     /*<constants>*/
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final MKDirectionsMode Default = new MKDirectionsMode("Default");
+    /**
      * @since Available in iOS 6.0 and later.
      */
     public static final MKDirectionsMode Driving = new MKDirectionsMode("Driving");
@@ -105,7 +109,7 @@ import org.robovm.apple.dispatch.*;
     public static final MKDirectionsMode Transit = new MKDirectionsMode("Transit");
     /*</constants>*/
     
-    private static /*<name>*/MKDirectionsMode/*</name>*/[] values = new /*<name>*/MKDirectionsMode/*</name>*/[] {/*<value_list>*/Driving, Walking, Transit/*</value_list>*/};
+    private static /*<name>*/MKDirectionsMode/*</name>*/[] values = new /*<name>*/MKDirectionsMode/*</name>*/[] {/*<value_list>*/Default, Driving, Walking, Transit/*</value_list>*/};
     
     /*<name>*/MKDirectionsMode/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -128,6 +132,11 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="MKLaunchOptionsDirectionsModeDefault", optional=true)
+        public static native NSString Default();
         /**
          * @since Available in iOS 6.0 and later.
          */

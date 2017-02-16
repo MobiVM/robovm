@@ -45,6 +45,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMHomeAccessControl.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMHomeAccessControl(Handle h, long handle) { super(h, handle); }
     protected HMHomeAccessControl(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

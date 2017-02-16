@@ -49,9 +49,10 @@ import org.robovm.apple.mapkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKRecurrenceEnd() {}
+    protected EKRecurrenceEnd(Handle h, long handle) { super(h, handle); }
     protected EKRecurrenceEnd(SkipInit skipInit) { super(skipInit); }
-    public EKRecurrenceEnd(NSDate endDate) { super(create(endDate)); retain(getHandle()); }
-    public EKRecurrenceEnd(@MachineSizedUInt long occurrenceCount) { super(create(occurrenceCount)); retain(getHandle()); }
+    public EKRecurrenceEnd(NSDate endDate) { super((Handle) null, create(endDate)); retain(getHandle()); }
+    public EKRecurrenceEnd(@MachineSizedUInt long occurrenceCount) { super((Handle) null, create(occurrenceCount)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "endDate")
@@ -62,8 +63,8 @@ import org.robovm.apple.mapkit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "recurrenceEndWithEndDate:")
-    private static native @Pointer long create(NSDate endDate);
+    protected static native @Pointer long create(NSDate endDate);
     @Method(selector = "recurrenceEndWithOccurrenceCount:")
-    private static native @Pointer long create(@MachineSizedUInt long occurrenceCount);
+    protected static native @Pointer long create(@MachineSizedUInt long occurrenceCount);
     /*</methods>*/
 }

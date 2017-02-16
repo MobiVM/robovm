@@ -40,9 +40,13 @@ import org.robovm.rt.bro.ptr.*;
     /*</ptr>*/
     /*<bind>*/static { Bro.bind(Dispatch.class); }/*</bind>*/
     /*<constants>*/
-    public static final int API_VERSION = 20141121;
+    public static final int API_VERSION = 20160712;
+    public static final int SWIFT3_OVERLAY = 0;
     protected static final long TIME_NOW = 0L;
     protected static final long TIME_FOREVER = ~0L;
+    public static final int AUTORELEASE_FREQUENCY_INHERIT = 0;
+    public static final int AUTORELEASE_FREQUENCY_WORK_ITEM = 1;
+    public static final int AUTORELEASE_FREQUENCY_NEVER = 2;
     /*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
@@ -66,10 +70,30 @@ import org.robovm.rt.bro.ptr.*;
     @Bridge(symbol="dispatch_walltime", optional=true)
     protected static native long walltime(timespec when, long delta);
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="dispatch_activate", optional=true)
+    public static native void activate(@ByVal DispatchObject object);
+    /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="dispatch_main", optional=true)
     public static native void main();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="dispatch_assert_queue", optional=true)
+    public static native void assertQueue(DispatchQueue queue);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="dispatch_assert_queue_barrier", optional=true)
+    public static native void assertQueueBarrier(DispatchQueue queue);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="dispatch_assert_queue_not", optional=true)
+    public static native void assertQueueNot(DispatchQueue queue);
     /**
      * @since Available in iOS 4.0 and later.
      */

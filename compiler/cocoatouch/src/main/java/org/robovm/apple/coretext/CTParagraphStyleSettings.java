@@ -81,11 +81,6 @@ public class CTParagraphStyleSettings {
         ptr.set(minimumLineHeight);
         setValueForSpecifier(CTParagraphStyleSpecifier.MinimumLineHeight, ptr.as(VoidPtr.class));
     }
-    public void setLineSpacing(double lineSpacing) {
-        MachineSizedFloatPtr ptr = new MachineSizedFloatPtr();
-        ptr.set(lineSpacing);
-        setValueForSpecifier(CTParagraphStyleSpecifier.LineSpacing, ptr.as(VoidPtr.class));
-    }
     public void setParagraphSpacing(double paragraphSpacing) {
         MachineSizedFloatPtr ptr = new MachineSizedFloatPtr();
         ptr.set(paragraphSpacing);
@@ -151,7 +146,6 @@ public class CTParagraphStyleSettings {
         case LineHeightMultiple:
         case MaximumLineHeight:
         case MinimumLineHeight:
-        case LineSpacing:
         case ParagraphSpacing:
         case ParagraphSpacingBefore:
         case MaximumLineSpacing:

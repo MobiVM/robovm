@@ -48,6 +48,7 @@ import org.robovm.apple.avkit.*;
     /*<bind>*/static { ObjCRuntime.bind(ADClient.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected ADClient(Handle h, long handle) { super(h, handle); }
     protected ADClient(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

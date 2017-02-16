@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLRenderPipelineDescriptor() {}
+    protected MTLRenderPipelineDescriptor(Handle h, long handle) { super(h, handle); }
     protected MTLRenderPipelineDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -91,6 +92,76 @@ import org.robovm.apple.dispatch.*;
     public native MTLPixelFormat getStencilAttachmentPixelFormat();
     @Property(selector = "setStencilAttachmentPixelFormat:")
     public native void setStencilAttachmentPixelFormat(MTLPixelFormat v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "tessellationPartitionMode")
+    public native MTLTessellationPartitionMode getTessellationPartitionMode();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTessellationPartitionMode:")
+    public native void setTessellationPartitionMode(MTLTessellationPartitionMode v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "maxTessellationFactor")
+    public native @MachineSizedUInt long getMaxTessellationFactor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setMaxTessellationFactor:")
+    public native void setMaxTessellationFactor(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isTessellationFactorScaleEnabled")
+    public native boolean isTessellationFactorScaleEnabled();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTessellationFactorScaleEnabled:")
+    public native void setTessellationFactorScaleEnabled(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "tessellationFactorFormat")
+    public native MTLTessellationFactorFormat getTessellationFactorFormat();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTessellationFactorFormat:")
+    public native void setTessellationFactorFormat(MTLTessellationFactorFormat v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "tessellationControlPointIndexType")
+    public native MTLTessellationControlPointIndexType getTessellationControlPointIndexType();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTessellationControlPointIndexType:")
+    public native void setTessellationControlPointIndexType(MTLTessellationControlPointIndexType v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "tessellationFactorStepFunction")
+    public native MTLTessellationFactorStepFunction getTessellationFactorStepFunction();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTessellationFactorStepFunction:")
+    public native void setTessellationFactorStepFunction(MTLTessellationFactorStepFunction v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "tessellationOutputWindingOrder")
+    public native MTLWinding getTessellationOutputWindingOrder();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTessellationOutputWindingOrder:")
+    public native void setTessellationOutputWindingOrder(MTLWinding v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -176,16 +176,6 @@ import org.robovm.apple.coremidi.*;
     /**
      * @since Available in iOS 2.0 and later.
      */
-    @Bridge(symbol="AudioServicesPlayAlertSound", optional=true)
-    public static native void playAlertSound(int systemSoundID);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    @Bridge(symbol="AudioServicesPlaySystemSound", optional=true)
-    public static native void playSystemSound(int systemSoundID);
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     @Bridge(symbol="AudioServicesCreateSystemSoundID", optional=true)
     protected static native OSStatus createSystemSoundID0(NSURL inFileURL, IntPtr outSystemSoundID);
     /**
@@ -194,15 +184,15 @@ import org.robovm.apple.coremidi.*;
     @Bridge(symbol="AudioServicesDisposeSystemSoundID", optional=true)
     protected static native OSStatus disposeSystemSoundID0(int inSystemSoundID);
     /**
-     * @since Available in iOS 2.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
-    @Bridge(symbol="AudioServicesAddSystemSoundCompletion", optional=true)
-    protected static native OSStatus addSystemSoundCompletion0(int inSystemSoundID, NSRunLoop inRunLoop, String inRunLoopMode, FunctionPtr inCompletionRoutine, VoidPtr inClientData);
+    @Bridge(symbol="AudioServicesPlayAlertSoundWithCompletion", optional=true)
+    protected static native void playAlertSoundWithCompletion0(int inSystemSoundID, @Block Runnable inCompletionBlock);
     /**
-     * @since Available in iOS 2.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
-    @Bridge(symbol="AudioServicesRemoveSystemSoundCompletion", optional=true)
-    protected static native void removeSystemSoundCompletion0(int inSystemSoundID);
+    @Bridge(symbol="AudioServicesPlaySystemSoundWithCompletion", optional=true)
+    protected static native void playSystemSoundWithCompletion0(int inSystemSoundID, @Block Runnable inCompletionBlock);
     /**
      * @since Available in iOS 2.0 and later.
      */
@@ -218,5 +208,25 @@ import org.robovm.apple.coremidi.*;
      */
     @Bridge(symbol="AudioServicesSetProperty", optional=true)
     protected static native OSStatus setProperty0(AudioServicesProperty inPropertyID, int inSpecifierSize, VoidPtr inSpecifier, int inPropertyDataSize, VoidPtr inPropertyData);
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Bridge(symbol="AudioServicesPlayAlertSound", optional=true)
+    public static native void playAlertSound(int systemSoundID);
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Bridge(symbol="AudioServicesPlaySystemSound", optional=true)
+    public static native void playSystemSound(int systemSoundID);
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Bridge(symbol="AudioServicesAddSystemSoundCompletion", optional=true)
+    protected static native OSStatus addSystemSoundCompletion0(int inSystemSoundID, NSRunLoop inRunLoop, String inRunLoopMode, FunctionPtr inCompletionRoutine, VoidPtr inClientData);
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Bridge(symbol="AudioServicesRemoveSystemSoundCompletion", optional=true)
+    protected static native void removeSystemSoundCompletion0(int inSystemSoundID);
     /*</methods>*/
 }

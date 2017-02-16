@@ -52,10 +52,10 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native VectorInt4 getMinimumExtent();
-    @StructMember(0) public native MDLVoxelIndexExtent setMinimumExtent(VectorInt4 minimumExtent);
-    @StructMember(1) public native VectorInt4 getMaximumExtent();
-    @StructMember(1) public native MDLVoxelIndexExtent setMaximumExtent(VectorInt4 maximumExtent);
+    @StructMember(0) public native @ByVal VectorInt4 getMinimumExtent();
+    @StructMember(0) public native MDLVoxelIndexExtent setMinimumExtent(@ByVal VectorInt4 minimumExtent);
+    @StructMember(1) public native @ByVal VectorInt4 getMaximumExtent();
+    @StructMember(1) public native MDLVoxelIndexExtent setMaximumExtent(@ByVal VectorInt4 maximumExtent);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

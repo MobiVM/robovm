@@ -56,18 +56,27 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioFormat() {}
+    protected AVAudioFormat(Handle h, long handle) { super(h, handle); }
     protected AVAudioFormat(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithStreamDescription:")
     public AVAudioFormat(AudioStreamBasicDescription asbd) { super((SkipInit) null); initObject(init(asbd)); }
+    @Method(selector = "initWithStreamDescription:channelLayout:")
     public AVAudioFormat(AudioStreamBasicDescription asbd, AVAudioChannelLayout layout) { super((SkipInit) null); initObject(init(asbd, layout)); }
+    @Method(selector = "initStandardFormatWithSampleRate:channels:")
     public AVAudioFormat(double sampleRate, int channels) { super((SkipInit) null); initObject(init(sampleRate, channels)); }
+    @Method(selector = "initStandardFormatWithSampleRate:channelLayout:")
     public AVAudioFormat(double sampleRate, AVAudioChannelLayout layout) { super((SkipInit) null); initObject(init(sampleRate, layout)); }
+    @Method(selector = "initWithCommonFormat:sampleRate:channels:interleaved:")
     public AVAudioFormat(AVAudioCommonFormat format, double sampleRate, int channels, boolean interleaved) { super((SkipInit) null); initObject(init(format, sampleRate, channels, interleaved)); }
+    @Method(selector = "initWithCommonFormat:sampleRate:interleaved:channelLayout:")
     public AVAudioFormat(AVAudioCommonFormat format, double sampleRate, boolean interleaved, AVAudioChannelLayout layout) { super((SkipInit) null); initObject(init(format, sampleRate, interleaved, layout)); }
+    @Method(selector = "initWithSettings:")
     public AVAudioFormat(AVAudioSettings settings) { super((SkipInit) null); initObject(init(settings)); }
     /**
      * @since Available in iOS 9.0 and later.
      */
+    @Method(selector = "initWithCMAudioFormatDescription:")
     public AVAudioFormat(CMAudioFormatDescription formatDescription) { super((SkipInit) null); initObject(init(formatDescription)); }
     /*</constructors>*/
     /*<properties>*/
@@ -86,6 +95,16 @@ import org.robovm.apple.audiounit.*;
     public native AudioStreamBasicDescription getStreamDescription();
     @Property(selector = "channelLayout")
     public native AVAudioChannelLayout getChannelLayout();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "magicCookie")
+    public native NSData getMagicCookie();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setMagicCookie:")
+    public native void setMagicCookie(NSData v);
     @Property(selector = "settings")
     public native AVAudioSettings getSettings();
     /**

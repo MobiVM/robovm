@@ -1,0 +1,91 @@
+package: org.robovm.apple.messages
+include: [foundation.yaml, coregraphics.yaml, uikit.yaml]
+library: Messages
+framework: Messages
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/Messages.framework/Headers/Messages.h
+typedefs: {}
+    
+enums:
+    MSMessagesAppPresentationStyle: {}
+    MSMessageErrorCode: {}
+    MSStickerSize: {}
+
+classes:
+    MSConversation:
+        methods:
+            '-insertMessage:completionHandler:':
+                name: insertMessage
+            '-insertSticker:completionHandler:':
+                name: insertSticker
+            '-insertText:completionHandler:':
+                name: insertText
+            '-insertAttachment:withAlternateFilename:completionHandler:':
+                name: insertAttachment
+    MSMessage: {}
+    MSMessageLayout: {}
+    MSMessagesAppViewController:
+        methods:
+            '-init.*':
+                name: init
+            '-will.*':
+                trim_after_first_colon: true
+            '-did.*':
+                trim_after_first_colon: true
+    MSMessageTemplateLayout: {}
+    MSSession: {}
+    MSSticker:
+        methods:
+            '-init.*':
+                name: init
+    MSStickerBrowserView:
+        methods:
+            '-init.*':
+                name: init
+            '-setContentOffset:animated:':
+                trim_after_first_colon: true
+
+    MSStickerBrowserViewController:
+        methods:
+            '-init.*':
+                name: init
+            '-stickerBrowserView:stickerAtIndex:':
+                name: getStickerBrowserViewStickerAtIndex
+
+    MSStickerView:
+        methods:
+            '-init.*':
+                name: init
+
+protocols:
+    MSStickerBrowserViewDataSource:
+        methods:
+            '-numberOfStickersInStickerBrowserView:':
+                name: numberOfStickersInStickerBrowserView
+            '-stickerBrowserView:stickerAtIndex:':
+                name: stickerAtIndex
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?MS.*):
+        class: Messages
+        name: 'Function__#{g[0]}'
+
+values:
+    MSStickersErrorDomain:
+        class: MSMessageErrorCode
+        name: getStickersErrorDomain
+    MSMessagesErrorDomain:
+        class: MSMessageErrorCode
+        name: getMessagesErrorDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?MS.*):
+        class: Messages
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?MS.*):
+        class: Messages
+        name: 'Constant__#{g[0]}'

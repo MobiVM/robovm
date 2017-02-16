@@ -31,7 +31,9 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKStateMachine/*</name>*/ 
@@ -43,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKStateMachine() {}
+    protected GKStateMachine(Handle h, long handle) { super(h, handle); }
     protected GKStateMachine(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithStates:")
     public GKStateMachine(NSArray<GKState> states) { super((SkipInit) null); initObject(init(states)); }
     /*</constructors>*/
     /*<properties>*/

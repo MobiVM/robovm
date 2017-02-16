@@ -35,7 +35,9 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.3 and later.
+ * @deprecated Deprecated in iOS 9.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMovieErrorLog/*</name>*/ 
@@ -47,6 +49,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPMovieErrorLog() {}
+    protected MPMovieErrorLog(Handle h, long handle) { super(h, handle); }
     protected MPMovieErrorLog(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

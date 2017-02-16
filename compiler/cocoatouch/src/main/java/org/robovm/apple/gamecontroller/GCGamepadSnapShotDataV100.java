@@ -81,11 +81,15 @@ import org.robovm.apple.dispatch.*;
     @StructMember(9) public native GCGamepadSnapShotDataV100 setRightShoulder(float rightShoulder);
     /*</members>*/
     /*<methods>*/
-    public boolean setData(NSData data) { return setData(this, data); }
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @Bridge(symbol="GCGamepadSnapShotDataV100FromNSData", optional=true)
-    private static native boolean setData(@ByVal GCGamepadSnapShotDataV100 snapshotData, NSData data);
-    public NSData getData() { return getData(this); }
+    public native boolean setData(NSData data);
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @Bridge(symbol="NSDataFromGCGamepadSnapShotDataV100", optional=true)
-    private static native NSData getData(@ByVal GCGamepadSnapShotDataV100 snapshotData);
+    public native NSData getData();
     /*</methods>*/
 }

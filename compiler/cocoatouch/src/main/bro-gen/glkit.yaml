@@ -71,7 +71,7 @@ classes:
                 parameters:
                     options:
                         type: GLKTextureLoaderOptions
-            '-textureWith(ContentsOfData|CGImage).*':
+            '-textureWith(ContentsOfData|CGImage|Name).*':
                 name: createTexture
                 annotations: ['@WeaklyLinked']
                 parameters:
@@ -98,7 +98,7 @@ classes:
                 parameters:
                     options:
                         type: GLKTextureLoaderOptions
-            '+textureWith(ContentsOfData|CGImage).*':
+            '+textureWith(ContentsOfData|CGImage|Name).*':
                 name: createTexture
                 throws: NSErrorException
                 parameters:

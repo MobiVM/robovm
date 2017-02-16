@@ -56,16 +56,17 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVVideoComposition() {}
-    protected AVVideoComposition(long handle) { super(handle); }
+    @Deprecated protected AVVideoComposition(long handle) { super(handle); }
+    protected AVVideoComposition(Handle h, long handle) { super(h, handle); }
     protected AVVideoComposition(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public AVVideoComposition(AVAsset asset) { super(create(asset)); retain(getHandle()); }
+    public AVVideoComposition(AVAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public AVVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier) { super(create(asset, ciFiltersApplier)); retain(getHandle()); }
+    public AVVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier) { super((Handle) null, create(asset, ciFiltersApplier)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -83,6 +84,21 @@ import org.robovm.apple.audiounit.*;
     public native NSArray<AVVideoCompositionInstruction> getInstructions();
     @Property(selector = "animationTool")
     public native AVVideoCompositionCoreAnimationTool getAnimationTool();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "colorPrimaries")
+    public native String getColorPrimaries();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "colorYCbCrMatrix")
+    public native String getColorYCbCrMatrix();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "colorTransferFunction")
+    public native String getColorTransferFunction();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

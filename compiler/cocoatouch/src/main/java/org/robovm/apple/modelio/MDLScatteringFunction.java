@@ -46,6 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLScatteringFunction() {}
+    protected MDLScatteringFunction(Handle h, long handle) { super(h, handle); }
     protected MDLScatteringFunction(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -105,7 +105,9 @@ import org.robovm.apple.coregraphics.*;
 
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     public UIImage getImage() {
         if (has(Keys.Image())) {
             UIImage val = (UIImage) get(Keys.Image());
@@ -115,7 +117,9 @@ import org.robovm.apple.coregraphics.*;
     }
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     public double getTime() {
         if (has(Keys.Time())) {
             NSNumber val = (NSNumber) get(Keys.Time());
@@ -125,7 +129,9 @@ import org.robovm.apple.coregraphics.*;
     }
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     public NSError getError() {
         if (has(Keys.Error())) {
             NSError val = (NSError) get(Keys.Error());
@@ -141,17 +147,23 @@ import org.robovm.apple.coregraphics.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 3.2 and later.
+         * @deprecated Deprecated in iOS 9.0.
          */
+        @Deprecated
         @GlobalValue(symbol="MPMoviePlayerThumbnailImageKey", optional=true)
         public static native NSString Image();
         /**
          * @since Available in iOS 3.2 and later.
+         * @deprecated Deprecated in iOS 9.0.
          */
+        @Deprecated
         @GlobalValue(symbol="MPMoviePlayerThumbnailTimeKey", optional=true)
         public static native NSString Time();
         /**
          * @since Available in iOS 3.2 and later.
+         * @deprecated Deprecated in iOS 9.0.
          */
+        @Deprecated
         @GlobalValue(symbol="MPMoviePlayerThumbnailErrorKey", optional=true)
         public static native NSString Error();
     }

@@ -46,10 +46,14 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CKRecord.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKRecord() {}
+    protected CKRecord() {}
+    protected CKRecord(Handle h, long handle) { super(h, handle); }
     protected CKRecord(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRecordType:")
     public CKRecord(String recordType) { super((SkipInit) null); initObject(init(recordType)); }
+    @Method(selector = "initWithRecordType:recordID:")
     public CKRecord(String recordType, CKRecordID recordID) { super((SkipInit) null); initObject(init(recordType, recordID)); }
+    @Method(selector = "initWithRecordType:zoneID:")
     public CKRecord(String recordType, CKRecordZoneID zoneID) { super((SkipInit) null); initObject(init(recordType, zoneID)); }
     /*</constructors>*/
     /*<properties>*/
@@ -67,6 +71,21 @@ import org.robovm.apple.contacts.*;
     public native CKRecordID getLastModifiedUserRecordID();
     @Property(selector = "modificationDate")
     public native NSDate getModificationDate();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "share")
+    public native CKReference getShare();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "parent")
+    public native CKReference getParent();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setParent:")
+    public native void setParent(CKReference v);
     /*</properties>*/
     /*<members>*//*</members>*/
     public void put(String key, String object) {
@@ -104,6 +123,17 @@ import org.robovm.apple.contacts.*;
         put(NSArray.fromStrings(object), key);
     }
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="CKRecordParentKey", optional=true)
+    public static native String ParentKey();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="CKRecordShareKey", optional=true)
+    public static native String ShareKey();
+    
     @Method(selector = "initWithRecordType:")
     protected native @Pointer long init(String recordType);
     @Method(selector = "initWithRecordType:recordID:")
@@ -122,5 +152,15 @@ import org.robovm.apple.contacts.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getChangedKeys();
     @Method(selector = "encodeSystemFieldsWithCoder:")
     public native void encodeSystemFields(NSCoder coder);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setParentReferenceFromRecord:")
+    public native void setParentReferenceFromRecord(CKRecord parentRecord);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setParentReferenceFromRecordID:")
+    public native void setParentReferenceFromRecordID(CKRecordID parentRecordID);
     /*</methods>*/
 }

@@ -31,7 +31,9 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKComponentSystem/*</name>*/ <T extends GKComponent>
@@ -42,7 +44,9 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(GKComponentSystem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected GKComponentSystem(Handle h, long handle) { super(h, handle); }
     protected GKComponentSystem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithComponentClass:")
     public GKComponentSystem(Class<? extends T> cls) { super((SkipInit) null); initObject(init(cls)); }
     /*</constructors>*/
     /*<properties>*/
@@ -71,6 +75,8 @@ import org.robovm.apple.foundation.*;
     public native void removeComponent(T component);
     @Method(selector = "updateWithDeltaTime:")
     public native void update(double seconds);
+    @Method(selector = "classForGenericArgumentAtIndex:")
+    public native Class<?> classForGenericArgumentAtIndex(@MachineSizedUInt long index);
     /*</methods>*/
     
     private static class Iterator<T extends GKComponent> implements java.util.Iterator<T> {

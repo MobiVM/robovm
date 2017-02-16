@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAsynchronousCIImageFilteringRequest() {}
+    protected AVAsynchronousCIImageFilteringRequest(Handle h, long handle) { super(h, handle); }
     protected AVAsynchronousCIImageFilteringRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

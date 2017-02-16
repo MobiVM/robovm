@@ -40,8 +40,11 @@ import org.robovm.apple.dispatch.*;
 public enum /*<name>*/MTLStorageMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Shared(0L),
-    Managed(1L),
-    Private(2L);
+    Private(2L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Memoryless(3L);
     /*</values>*/
 
     /*<bind>*/

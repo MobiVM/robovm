@@ -45,6 +45,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMZone.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMZone(Handle h, long handle) { super(h, handle); }
     protected HMZone(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

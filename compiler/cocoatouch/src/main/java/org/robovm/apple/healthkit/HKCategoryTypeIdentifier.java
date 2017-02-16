@@ -91,9 +91,37 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 8.0 and later.
      */
     public static final HKCategoryTypeIdentifier SleepAnalysis = new HKCategoryTypeIdentifier("SleepAnalysis");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier AppleStandHour = new HKCategoryTypeIdentifier("AppleStandHour");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier CervicalMucusQuality = new HKCategoryTypeIdentifier("CervicalMucusQuality");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier OvulationTestResult = new HKCategoryTypeIdentifier("OvulationTestResult");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier MenstrualFlow = new HKCategoryTypeIdentifier("MenstrualFlow");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier IntermenstrualBleeding = new HKCategoryTypeIdentifier("IntermenstrualBleeding");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier SexualActivity = new HKCategoryTypeIdentifier("SexualActivity");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier MindfulSession = new HKCategoryTypeIdentifier("MindfulSession");
     /*</constants>*/
     
-    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/SleepAnalysis/*</value_list>*/};
+    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/SleepAnalysis, AppleStandHour, CervicalMucusQuality, OvulationTestResult, MenstrualFlow, IntermenstrualBleeding, SexualActivity, MindfulSession/*</value_list>*/};
     
     /*<name>*/HKCategoryTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -121,6 +149,41 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierSleepAnalysis", optional=true)
         public static native NSString SleepAnalysis();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierAppleStandHour", optional=true)
+        public static native NSString AppleStandHour();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierCervicalMucusQuality", optional=true)
+        public static native NSString CervicalMucusQuality();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierOvulationTestResult", optional=true)
+        public static native NSString OvulationTestResult();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierMenstrualFlow", optional=true)
+        public static native NSString MenstrualFlow();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierIntermenstrualBleeding", optional=true)
+        public static native NSString IntermenstrualBleeding();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierSexualActivity", optional=true)
+        public static native NSString SexualActivity();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierMindfulSession", optional=true)
+        public static native NSString MindfulSession();
         /*</values>*/
     }
 }

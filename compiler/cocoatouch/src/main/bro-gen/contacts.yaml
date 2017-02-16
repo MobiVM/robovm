@@ -347,6 +347,11 @@ values:
         name: '#{g[0]}'
         type: NSString
 
+    CNContactPropertyAttribute:
+        class: CNContactFormatter
+        name: 'PropertyAttribute'
+        type: NSString
+
     # CNGroup
     CNGroup(.*)Key:
         enum: CNGroupKey
@@ -394,6 +399,13 @@ values:
         enum: CNLabel
         name: '#{g[0]}'
         type: NSString
+
+    CNPostalAddressPropertyAttribute:
+        class: CNPostalAddressFormatter
+        name: 'PropertyAttribute'
+    CNPostalAddressLocalizedPropertyNameAttribute:
+        class: CNPostalAddressFormatter
+        name: 'LocalizedPropertyNameAttribute'
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CN.*):

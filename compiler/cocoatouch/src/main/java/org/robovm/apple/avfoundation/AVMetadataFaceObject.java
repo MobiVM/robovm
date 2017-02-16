@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVMetadataFaceObject() {}
+    protected AVMetadataFaceObject(Handle h, long handle) { super(h, handle); }
     protected AVMetadataFaceObject(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

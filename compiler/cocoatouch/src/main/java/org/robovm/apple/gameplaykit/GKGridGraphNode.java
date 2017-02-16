@@ -31,7 +31,9 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGridGraphNode/*</name>*/ 
@@ -43,18 +45,18 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKGridGraphNode() {}
+    protected GKGridGraphNode(Handle h, long handle) { super(h, handle); }
     protected GKGridGraphNode(SkipInit skipInit) { super(skipInit); }
-    public GKGridGraphNode(VectorInt2 gridPosition) { super((SkipInit) null); initObject(init(gridPosition)); }
+    @Method(selector = "initWithGridPosition:")
+    public GKGridGraphNode(@ByVal VectorInt2 gridPosition) { super((SkipInit) null); initObject(init(gridPosition)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "gridPosition")
-    public native VectorInt2 getGridPosition();
-    @Property(selector = "setGridPosition:")
-    public native void setGridPosition(VectorInt2 v);
+    public native @ByVal VectorInt2 getGridPosition();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithGridPosition:")
-    protected native @Pointer long init(VectorInt2 gridPosition);
+    protected native @Pointer long init(@ByVal VectorInt2 gridPosition);
     /*</methods>*/
 }

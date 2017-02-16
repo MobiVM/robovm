@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNContactVCardSerialization() {}
+    protected CNContactVCardSerialization(Handle h, long handle) { super(h, handle); }
     protected CNContactVCardSerialization(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -127,6 +127,10 @@ import org.robovm.apple.audiounit.*;
      */
     public static final AVAssetExportPreset Size1920x1080 = new AVAssetExportPreset("Size1920x1080");
     /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final AVAssetExportPreset Size3840x2160 = new AVAssetExportPreset("Size3840x2160");
+    /**
      * @since Available in iOS 4.0 and later.
      */
     public static final AVAssetExportPreset AppleM4A = new AVAssetExportPreset("AppleM4A");
@@ -136,7 +140,7 @@ import org.robovm.apple.audiounit.*;
     public static final AVAssetExportPreset Passthrough = new AVAssetExportPreset("Passthrough");
     /*</constants>*/
     
-    private static /*<name>*/AVAssetExportPreset/*</name>*/[] values = new /*<name>*/AVAssetExportPreset/*</name>*/[] {/*<value_list>*/LowQuality, MediumQuality, HighestQuality, Size640x480, Size960x540, Size1280x720, Size1920x1080, AppleM4A, Passthrough/*</value_list>*/};
+    private static /*<name>*/AVAssetExportPreset/*</name>*/[] values = new /*<name>*/AVAssetExportPreset/*</name>*/[] {/*<value_list>*/LowQuality, MediumQuality, HighestQuality, Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, AppleM4A, Passthrough/*</value_list>*/};
     
     /*<name>*/AVAssetExportPreset/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -194,6 +198,11 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVAssetExportPreset1920x1080", optional=true)
         public static native NSString Size1920x1080();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPreset3840x2160", optional=true)
+        public static native NSString Size3840x2160();
         /**
          * @since Available in iOS 4.0 and later.
          */

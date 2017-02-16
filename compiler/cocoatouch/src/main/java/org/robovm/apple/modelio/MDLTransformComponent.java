@@ -47,21 +47,27 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<properties>*/
     @Property(selector = "matrix")
-    MatrixFloat4x4 getMatrix();
-    @Property(selector = "setMatrix:", strongRef = true)
-    void setMatrix(MatrixFloat4x4 v);
+    @ByVal MatrixFloat4x4 getMatrix();
+    @Property(selector = "setMatrix:")
+    void setMatrix(@ByVal MatrixFloat4x4 v);
+    @Property(selector = "resetsTransform")
+    boolean resetsTransform();
+    @Property(selector = "setResetsTransform:")
+    void setResetsTransform(boolean v);
     @Property(selector = "minimumTime")
     double getMinimumTime();
     @Property(selector = "maximumTime")
     double getMaximumTime();
+    @Property(selector = "keyTimes")
+    NSArray<NSNumber> getKeyTimes();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "setLocalTransform:forTime:")
-    void setLocalTransform(MatrixFloat4x4 transform, double time);
+    void setLocalTransform(@ByVal MatrixFloat4x4 transform, double time);
     @Method(selector = "setLocalTransform:")
-    void setLocalTransform(MatrixFloat4x4 transform);
+    void setLocalTransform(@ByVal MatrixFloat4x4 transform);
     @Method(selector = "localTransformAtTime:")
-    MatrixFloat4x4 getLocalTransform(double time);
+    @ByVal MatrixFloat4x4 getLocalTransform(double time);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

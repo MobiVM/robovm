@@ -19,7 +19,6 @@ package org.robovm.apple.contacts;
 import java.io.*;
 import java.nio.*;
 import java.util.*;
-
 import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
@@ -60,6 +59,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNContactStore() {}
+    protected CNContactStore(Handle h, long handle) { super(h, handle); }
     protected CNContactStore(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
