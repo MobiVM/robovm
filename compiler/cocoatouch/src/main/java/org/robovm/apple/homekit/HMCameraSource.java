@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,39 +33,27 @@ import org.robovm.apple.corelocation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMZone/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMCameraSource/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class HMZonePtr extends Ptr<HMZone, HMZonePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(HMZone.class); }/*</bind>*/
+    /*<ptr>*/public static class HMCameraSourcePtr extends Ptr<HMCameraSource, HMCameraSourcePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(HMCameraSource.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected HMZone(Handle h, long handle) { super(h, handle); }
-    protected HMZone(SkipInit skipInit) { super(skipInit); }
+    public HMCameraSource() {}
+    protected HMCameraSource(Handle h, long handle) { super(h, handle); }
+    protected HMCameraSource(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "name")
-    public native String getName();
-    @Property(selector = "rooms")
-    public native NSArray<HMRoom> getRooms();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "uniqueIdentifier")
-    public native NSUUID getUniqueIdentifier();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "updateName:completionHandler:")
-    public native void updateName(String name, @Block VoidBlock1<NSError> completion);
-    @Method(selector = "addRoom:completionHandler:")
-    public native void addRoom(HMRoom room, @Block VoidBlock1<NSError> completion);
-    @Method(selector = "removeRoom:completionHandler:")
-    public native void removeRoom(HMRoom room, @Block VoidBlock1<NSError> completion);
+    
     /*</methods>*/
 }

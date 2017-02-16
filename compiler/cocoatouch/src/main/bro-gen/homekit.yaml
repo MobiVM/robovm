@@ -30,8 +30,36 @@ enums:
     HMCharacteristicValueTemperatureUnit: {}
     HMCharacteristicValueLockMechanismState: {}
     HMCharacteristicValueLockMechanismLastKnownAction: {}
+    HMCharacteristicValueBatteryStatus: {}
+    HMCharacteristicValueJammedStatus: {}
+    HMCharacteristicValueTamperedStatus: {}
+    HMCharacteristicValueLeakStatus: {}
+    HMCharacteristicValueSmokeDetectionStatus: {}
+    HMCharacteristicValueChargingState: {}
+    HMCharacteristicValueContactState: {}
+    HMCharacteristicValueStatusFault: {}
+    HMCharacteristicValueCarbonMonoxideDetectionStatus: {}
+    HMCharacteristicValueCarbonDioxideDetectionStatus: {}
+    HMCharacteristicValueOccupancyStatus: {}
+    HMCharacteristicValueSecuritySystemAlarmType: {}
+    HMCharacteristicValueLockPhysicalControlsState: {}
+    HMCharacteristicValueCurrentAirPurifierState: {}
+    HMCharacteristicValueTargetAirPurifierState: {}
+    HMCharacteristicValueCurrentSlatState: {}
+    HMCharacteristicValueSlatType: {}
+    HMCharacteristicValueFilterChange: {}
+    HMCharacteristicValueCurrentFanState: {}
+    HMCharacteristicValueTargetFanState: {}
+    HMCharacteristicValueCurrentHeaterCoolerState: {}
+    HMCharacteristicValueTargetHeaterCoolerState: {}
+    HMCharacteristicValueCurrentHumidifierDehumidifierState: {}
+    HMCharacteristicValueTargetHumidifierDehumidifierState: {}
+    HMCharacteristicValueSwingMode: {}
+    HMCharacteristicValueActivationState: {}
     HMErrorCode: {}
-        
+    HMCameraAudioStreamSetting: {}
+    HMCameraStreamState: {}
+
 classes:
     HMError:
         extends: NSError
@@ -311,6 +339,21 @@ classes:
             '-removeRoom:completionHandler:':
                 trim_after_first_colon: true
 
+    HMAccessoryProfile: {}
+    HMCameraProfile: {}
+    HMCameraSettingsControl: {}
+    HMCameraStreamControl: {}
+    HMCameraAudioControl: {}
+    HMCameraStream:
+        methods:
+            '-updateAudioStreamSetting:completionHandler:':
+                  name: updateAudioStreamSetting
+    HMCameraSource: {}
+    HMCameraSnapshot: {}
+    HMCameraSnapshotControl: {}
+    HMCameraControl: {}
+    HMCameraView: {}
+
 protocols:
     HMAccessoryBrowserDelegate: # DONE
         methods:
@@ -403,6 +446,22 @@ protocols:
             '-homeManager:didRemoveHome:':
                 name: didRemoveHome
 
+    HMCameraStreamControlDelegate:
+        skip_adapter: true
+        methods:
+            '-cameraStreamControlDidStartStream:':
+                name: didStartStream
+            '-cameraStreamControl:didStopStreamWithError:':
+                name: didStopStreamWithError
+
+    HMCameraSnapshotControlDelegate:
+        skip_adapter: true
+        methods:
+            '-cameraSnapshotControl:didTakeSnapshot:error:':
+                name: didTakeSnapshot
+            '-cameraSnapshotControlDidUpdateMostRecentSnapshot:':
+                name: didUpdateMostRecentSnapshot
+
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?HM.*):
@@ -467,7 +526,8 @@ values:
         enum: HMServiceType
         name: '#{g[0]}'
         type: NSString
-   
+
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?HM.*):
         class: HomeKit

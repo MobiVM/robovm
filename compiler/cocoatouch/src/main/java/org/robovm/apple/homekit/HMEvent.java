@@ -46,6 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HMEvent() {}
+    protected HMEvent(Handle h, long handle) { super(h, handle); }
     protected HMEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

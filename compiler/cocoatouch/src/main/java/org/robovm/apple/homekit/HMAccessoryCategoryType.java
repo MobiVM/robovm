@@ -117,6 +117,10 @@ import org.robovm.apple.corelocation.*;
      */
     public static final HMAccessoryCategoryType GarageDoorOpener = new HMAccessoryCategoryType("GarageDoorOpener");
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMAccessoryCategoryType IPCamera = new HMAccessoryCategoryType("IPCamera");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final HMAccessoryCategoryType Lightbulb = new HMAccessoryCategoryType("Lightbulb");
@@ -128,6 +132,10 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final HMAccessoryCategoryType ProgrammableSwitch = new HMAccessoryCategoryType("ProgrammableSwitch");
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    public static final HMAccessoryCategoryType RangeExtender = new HMAccessoryCategoryType("RangeExtender");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -141,6 +149,10 @@ import org.robovm.apple.corelocation.*;
      */
     public static final HMAccessoryCategoryType Thermostat = new HMAccessoryCategoryType("Thermostat");
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMAccessoryCategoryType VideoDoorbell = new HMAccessoryCategoryType("VideoDoorbell");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final HMAccessoryCategoryType Window = new HMAccessoryCategoryType("Window");
@@ -150,7 +162,7 @@ import org.robovm.apple.corelocation.*;
     public static final HMAccessoryCategoryType WindowCovering = new HMAccessoryCategoryType("WindowCovering");
     /*</constants>*/
     
-    private static /*<name>*/HMAccessoryCategoryType/*</name>*/[] values = new /*<name>*/HMAccessoryCategoryType/*</name>*/[] {/*<value_list>*/Other, SecuritySystem, Bridge, Door, DoorLock, Fan, GarageDoorOpener, Lightbulb, Outlet, ProgrammableSwitch, Sensor, Switch, Thermostat, Window, WindowCovering/*</value_list>*/};
+    private static /*<name>*/HMAccessoryCategoryType/*</name>*/[] values = new /*<name>*/HMAccessoryCategoryType/*</name>*/[] {/*<value_list>*/Other, SecuritySystem, Bridge, Door, DoorLock, Fan, GarageDoorOpener, IPCamera, Lightbulb, Outlet, ProgrammableSwitch, RangeExtender, Sensor, Switch, Thermostat, VideoDoorbell, Window, WindowCovering/*</value_list>*/};
     
     /*<name>*/HMAccessoryCategoryType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -209,6 +221,11 @@ import org.robovm.apple.corelocation.*;
         @GlobalValue(symbol="HMAccessoryCategoryTypeGarageDoorOpener", optional=true)
         public static native NSString GarageDoorOpener();
         /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeIPCamera", optional=true)
+        public static native NSString IPCamera();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="HMAccessoryCategoryTypeLightbulb", optional=true)
@@ -224,6 +241,11 @@ import org.robovm.apple.corelocation.*;
         @GlobalValue(symbol="HMAccessoryCategoryTypeProgrammableSwitch", optional=true)
         public static native NSString ProgrammableSwitch();
         /**
+         * @since Available in iOS 9.3 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeRangeExtender", optional=true)
+        public static native NSString RangeExtender();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="HMAccessoryCategoryTypeSensor", optional=true)
@@ -238,6 +260,11 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMAccessoryCategoryTypeThermostat", optional=true)
         public static native NSString Thermostat();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeVideoDoorbell", optional=true)
+        public static native NSString VideoDoorbell();
         /**
          * @since Available in iOS 9.0 and later.
          */

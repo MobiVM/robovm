@@ -45,7 +45,9 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMEventTrigger.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMEventTrigger(Handle h, long handle) { super(h, handle); }
     protected HMEventTrigger(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:events:predicate:")
     public HMEventTrigger(String name, NSArray<HMEvent> events, NSPredicate predicate) { super((SkipInit) null); initObject(init(name, events, predicate)); }
     /*</constructors>*/
     /*<properties>*/

@@ -100,9 +100,13 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 8.0 and later.
      */
     public static final HMCharacteristicProperty Writable = new HMCharacteristicProperty("Writable");
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    public static final HMCharacteristicProperty Hidden = new HMCharacteristicProperty("Hidden");
     /*</constants>*/
     
-    private static /*<name>*/HMCharacteristicProperty/*</name>*/[] values = new /*<name>*/HMCharacteristicProperty/*</name>*/[] {/*<value_list>*/SupportsEventNotification, Readable, Writable/*</value_list>*/};
+    private static /*<name>*/HMCharacteristicProperty/*</name>*/[] values = new /*<name>*/HMCharacteristicProperty/*</name>*/[] {/*<value_list>*/SupportsEventNotification, Readable, Writable, Hidden/*</value_list>*/};
     
     /*<name>*/HMCharacteristicProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -140,6 +144,11 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMCharacteristicPropertyWritable", optional=true)
         public static native NSString Writable();
+        /**
+         * @since Available in iOS 9.3 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicPropertyHidden", optional=true)
+        public static native NSString Hidden();
         /*</values>*/
     }
 }

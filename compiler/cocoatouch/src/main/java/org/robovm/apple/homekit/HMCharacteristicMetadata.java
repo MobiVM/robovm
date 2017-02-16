@@ -46,6 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HMCharacteristicMetadata() {}
+    protected HMCharacteristicMetadata(Handle h, long handle) { super(h, handle); }
     protected HMCharacteristicMetadata(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -63,6 +64,11 @@ import org.robovm.apple.corelocation.*;
     public native HMCharacteristicMetadataUnits getUnits();
     @Property(selector = "manufacturerDescription")
     public native String getManufacturerDescription();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "validValues")
+    public native NSArray<NSNumber> getValidValues();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

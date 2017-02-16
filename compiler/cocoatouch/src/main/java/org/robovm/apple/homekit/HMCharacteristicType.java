@@ -372,9 +372,61 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final HMCharacteristicType TargetVerticalTilt = new HMCharacteristicType("TargetVerticalTilt");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType StreamingStatus = new HMCharacteristicType("StreamingStatus");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType SetupStreamEndpoint = new HMCharacteristicType("SetupStreamEndpoint");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType SupportedVideoStreamConfiguration = new HMCharacteristicType("SupportedVideoStreamConfiguration");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType SupportedAudioStreamConfiguration = new HMCharacteristicType("SupportedAudioStreamConfiguration");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType SupportedRTPConfiguration = new HMCharacteristicType("SupportedRTPConfiguration");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType SelectedStreamConfiguration = new HMCharacteristicType("SelectedStreamConfiguration");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType Volume = new HMCharacteristicType("Volume");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType Mute = new HMCharacteristicType("Mute");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType NightVision = new HMCharacteristicType("NightVision");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType OpticalZoom = new HMCharacteristicType("OpticalZoom");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType DigitalZoom = new HMCharacteristicType("DigitalZoom");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType ImageRotation = new HMCharacteristicType("ImageRotation");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicType ImageMirroring = new HMCharacteristicType("ImageMirroring");
     /*</constants>*/
     
-    private static /*<name>*/HMCharacteristicType/*</name>*/[] values = new /*<name>*/HMCharacteristicType/*</name>*/[] {/*<value_list>*/PowerState, Hue, Saturation, Brightness, TemperatureUnits, CurrentTemperature, TargetTemperature, CurrentHeatingCooling, TargetHeatingCooling, CoolingThreshold, HeatingThreshold, CurrentRelativeHumidity, TargetRelativeHumidity, CurrentDoorState, TargetDoorState, ObstructionDetected, Name, Manufacturer, Model, SerialNumber, Identify, RotationDirection, RotationSpeed, OutletInUse, Version, Logs, AudioFeedback, AdminOnlyAccess, SecuritySystemAlarmType, MotionDetected, CurrentLockMechanismState, TargetLockMechanismState, LockMechanismLastKnownAction, LockManagementControlPoint, LockManagementAutoSecureTimeout, AirParticulateDensity, AirParticulateSize, AirQuality, BatteryLevel, CarbonDioxideDetected, CarbonDioxideLevel, CarbonDioxidePeakLevel, CarbonMonoxideDetected, CarbonMonoxideLevel, CarbonMonoxidePeakLevel, ChargingState, ContactState, CurrentHorizontalTilt, CurrentLightLevel, CurrentPosition, CurrentSecuritySystemState, CurrentVerticalTilt, FirmwareVersion, HardwareVersion, HoldPosition, InputEvent, LeakDetected, OccupancyDetected, OutputState, PositionState, SmokeDetected, SoftwareVersion, StatusActive, StatusFault, StatusJammed, StatusLowBattery, StatusTampered, TargetHorizontalTilt, TargetSecuritySystemState, TargetPosition, TargetVerticalTilt/*</value_list>*/};
+    private static /*<name>*/HMCharacteristicType/*</name>*/[] values = new /*<name>*/HMCharacteristicType/*</name>*/[] {/*<value_list>*/PowerState, Hue, Saturation, Brightness, TemperatureUnits, CurrentTemperature, TargetTemperature, CurrentHeatingCooling, TargetHeatingCooling, CoolingThreshold, HeatingThreshold, CurrentRelativeHumidity, TargetRelativeHumidity, CurrentDoorState, TargetDoorState, ObstructionDetected, Name, Manufacturer, Model, SerialNumber, Identify, RotationDirection, RotationSpeed, OutletInUse, Version, Logs, AudioFeedback, AdminOnlyAccess, SecuritySystemAlarmType, MotionDetected, CurrentLockMechanismState, TargetLockMechanismState, LockMechanismLastKnownAction, LockManagementControlPoint, LockManagementAutoSecureTimeout, AirParticulateDensity, AirParticulateSize, AirQuality, BatteryLevel, CarbonDioxideDetected, CarbonDioxideLevel, CarbonDioxidePeakLevel, CarbonMonoxideDetected, CarbonMonoxideLevel, CarbonMonoxidePeakLevel, ChargingState, ContactState, CurrentHorizontalTilt, CurrentLightLevel, CurrentPosition, CurrentSecuritySystemState, CurrentVerticalTilt, FirmwareVersion, HardwareVersion, HoldPosition, InputEvent, LeakDetected, OccupancyDetected, OutputState, PositionState, SmokeDetected, SoftwareVersion, StatusActive, StatusFault, StatusJammed, StatusLowBattery, StatusTampered, TargetHorizontalTilt, TargetSecuritySystemState, TargetPosition, TargetVerticalTilt, StreamingStatus, SetupStreamEndpoint, SupportedVideoStreamConfiguration, SupportedAudioStreamConfiguration, SupportedRTPConfiguration, SelectedStreamConfiguration, Volume, Mute, NightVision, OpticalZoom, DigitalZoom, ImageRotation, ImageMirroring/*</value_list>*/};
     
     /*<name>*/HMCharacteristicType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -752,6 +804,71 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMCharacteristicTypeTargetVerticalTilt", optional=true)
         public static native NSString TargetVerticalTilt();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeStreamingStatus", optional=true)
+        public static native NSString StreamingStatus();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeSetupStreamEndpoint", optional=true)
+        public static native NSString SetupStreamEndpoint();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeSupportedVideoStreamConfiguration", optional=true)
+        public static native NSString SupportedVideoStreamConfiguration();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeSupportedAudioStreamConfiguration", optional=true)
+        public static native NSString SupportedAudioStreamConfiguration();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeSupportedRTPConfiguration", optional=true)
+        public static native NSString SupportedRTPConfiguration();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeSelectedStreamConfiguration", optional=true)
+        public static native NSString SelectedStreamConfiguration();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeVolume", optional=true)
+        public static native NSString Volume();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeMute", optional=true)
+        public static native NSString Mute();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeNightVision", optional=true)
+        public static native NSString NightVision();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeOpticalZoom", optional=true)
+        public static native NSString OpticalZoom();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeDigitalZoom", optional=true)
+        public static native NSString DigitalZoom();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeImageRotation", optional=true)
+        public static native NSString ImageRotation();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicTypeImageMirroring", optional=true)
+        public static native NSString ImageMirroring();
         /*</values>*/
     }
 }

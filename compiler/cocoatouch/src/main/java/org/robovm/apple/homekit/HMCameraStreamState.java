@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,32 +32,33 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMAction/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class HMActionPtr extends Ptr<HMAction, HMActionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(HMAction.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/HMCameraStreamState/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Starting(1L),
+    Streaming(2L),
+    Stopping(3L),
+    NotStreaming(4L);
+    /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public HMAction() {}
-    protected HMAction(Handle h, long handle) { super(h, handle); }
-    protected HMAction(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "uniqueIdentifier")
-    public native NSUUID getUniqueIdentifier();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/HMCameraStreamState/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/HMCameraStreamState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/HMCameraStreamState/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/HMCameraStreamState/*</name>*/.class.getName());
+    }
 }
