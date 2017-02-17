@@ -45,9 +45,11 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(PKPushRegistry.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public PKPushRegistry() {}
+    protected PKPushRegistry() {}
+    protected PKPushRegistry(Handle h, long handle) { super(h, handle); }
     protected PKPushRegistry(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithQueue:")
     public PKPushRegistry(DispatchQueue queue) { super((SkipInit) null); initObject(init(queue)); }
     /*</constructors>*/
     /*<properties>*/
