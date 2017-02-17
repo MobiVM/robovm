@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,29 +32,32 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 10.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("ReplayKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/RPPreviewViewController/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/RPBroadcastActivityViewController/*</name>*/ 
     extends /*<extends>*/UIViewController/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class RPPreviewViewControllerPtr extends Ptr<RPPreviewViewController, RPPreviewViewControllerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(RPPreviewViewController.class); }/*</bind>*/
+    /*<ptr>*/public static class RPBroadcastActivityViewControllerPtr extends Ptr<RPBroadcastActivityViewController, RPBroadcastActivityViewControllerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(RPBroadcastActivityViewController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public RPPreviewViewController() {}
-    protected RPPreviewViewController(Handle h, long handle) { super(h, handle); }
-    protected RPPreviewViewController(SkipInit skipInit) { super(skipInit); }
+    public RPBroadcastActivityViewController() {}
+    protected RPBroadcastActivityViewController(Handle h, long handle) { super(h, handle); }
+    protected RPBroadcastActivityViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "previewControllerDelegate")
-    public native RPPreviewViewControllerDelegate getPreviewControllerDelegate();
-    @Property(selector = "setPreviewControllerDelegate:", strongRef = true)
-    public native void setPreviewControllerDelegate(RPPreviewViewControllerDelegate v);
+    @Property(selector = "delegate")
+    public native RPBroadcastActivityViewControllerDelegate getDelegate();
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(RPBroadcastActivityViewControllerDelegate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "loadBroadcastActivityViewControllerWithHandler:")
+    public static native void load(@Block VoidBlock2<RPBroadcastActivityViewController, NSError> handler);
     /*</methods>*/
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,29 +32,26 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 9.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/RPScreenRecorderDelegateAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements RPScreenRecorderDelegate/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/RPBroadcastControllerDelegate/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
-    /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("screenRecorder:didStopRecordingWithError:previewViewController:")
-    public void didStopRecording(RPScreenRecorder screenRecorder, NSError error, RPPreviewViewController previewViewController) {}
-    @NotImplemented("screenRecorderDidChangeAvailability:")
-    public void didChangeAvailability(RPScreenRecorder screenRecorder) {}
+    @Method(selector = "broadcastController:didFinishWithError:")
+    void didFinish(RPBroadcastController broadcastController, NSError error);
+    @Method(selector = "broadcastController:didUpdateServiceInfo:")
+    void didUpdateServiceInfo(RPBroadcastController broadcastController, NSDictionary<?, ?> serviceInfo);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

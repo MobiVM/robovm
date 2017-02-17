@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,28 +33,30 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/RPScreenRecorderDelegateAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements RPScreenRecorderDelegate/*</implements>*/ {
+/*<annotations>*/@Library("ReplayKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/RPBroadcastMP4ClipHandler/*</name>*/ 
+    extends /*<extends>*/RPBroadcastHandler/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class RPBroadcastMP4ClipHandlerPtr extends Ptr<RPBroadcastMP4ClipHandler, RPBroadcastMP4ClipHandlerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(RPBroadcastMP4ClipHandler.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    public RPBroadcastMP4ClipHandler() {}
+    protected RPBroadcastMP4ClipHandler(Handle h, long handle) { super(h, handle); }
+    protected RPBroadcastMP4ClipHandler(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("screenRecorder:didStopRecordingWithError:previewViewController:")
-    public void didStopRecording(RPScreenRecorder screenRecorder, NSError error, RPPreviewViewController previewViewController) {}
-    @NotImplemented("screenRecorderDidChangeAvailability:")
-    public void didChangeAvailability(RPScreenRecorder screenRecorder) {}
+    @Method(selector = "processMP4ClipWithURL:setupInfo:finished:")
+    public native void processMP4Clip(NSURL mp4ClipURL, NSDictionary<?, ?> setupInfo, boolean finished);
+    @Method(selector = "finishedProcessingMP4ClipWithUpdatedBroadcastConfiguration:error:")
+    public native void finishedProcessingMP4Clip(RPBroadcastConfiguration broadcastConfiguration, NSError error);
     /*</methods>*/
 }
