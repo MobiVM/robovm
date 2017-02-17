@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,45 +33,29 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/SecErrorCode/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Success(0L),
-    Unimplemented(-4L),
-    IO(-36L),
-    OpWr(-49L),
-    Param(-50L),
-    Allocate(-108L),
-    UserCanceled(-128L),
-    BadReq(-909L),
-    InternalComponent(-2070L),
-    NotAvailable(-25291L),
-    DuplicateItem(-25299L),
-    ItemNotFound(-25300L),
-    InteractionNotAllowed(-25308L),
-    Decode(-26275L),
-    AuthFailed(-25293L),
-    VerifyFailed(-67808L);
-    /*</values>*/
+/*<annotations>*/@Library("Security")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SecKeyKeyExchangeParameter/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(SecKeyKeyExchangeParameter.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/SecErrorCode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/SecErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/SecErrorCode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/SecErrorCode/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyKeyExchangeParameterRequestedSize", optional=true)
+    public static native String RequestedSize();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyKeyExchangeParameterSharedInfo", optional=true)
+    public static native String SharedInfo();
+    /*</methods>*/
 }

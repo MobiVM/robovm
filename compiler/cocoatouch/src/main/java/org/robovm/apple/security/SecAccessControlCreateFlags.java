@@ -69,7 +69,7 @@ public final class /*<name>*/SecAccessControlCreateFlags/*</name>*/ extends Bits
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public static final SecAccessControlCreateFlags ApplicationPassword = new SecAccessControlCreateFlags(-2147483648L);
+    public static final SecAccessControlCreateFlags ApplicationPassword = new SecAccessControlCreateFlags(2147483648L);
     /*</values>*/
 
     /*<bind>*/

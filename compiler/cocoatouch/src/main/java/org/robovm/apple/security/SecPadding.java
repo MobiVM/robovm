@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,32 +36,37 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/SecPadding/*</name>*/ implements ValuedEnum {
+public final class /*<name>*/SecPadding/*</name>*/ extends Bits</*<name>*/SecPadding/*</name>*/> {
     /*<values>*/
-    None(0L),
-    PKCS1(1L),
-    OAEP(2L),
-    SigRaw(16384L),
-    PKCS1MD2(32768L),
-    PKCS1MD5(32769L),
-    PKCS1SHA1(32770L),
-    PKCS1SHA224(32771L),
-    PKCS1SHA256(32772L),
-    PKCS1SHA384(32773L),
-    PKCS1SHA512(32774L);
+    public static final SecPadding None = new SecPadding(0L);
+    public static final SecPadding PKCS1 = new SecPadding(1L);
+    public static final SecPadding OAEP = new SecPadding(2L);
+    public static final SecPadding SigRaw = new SecPadding(16384L);
+    public static final SecPadding PKCS1MD2 = new SecPadding(32768L);
+    public static final SecPadding PKCS1MD5 = new SecPadding(32769L);
+    public static final SecPadding PKCS1SHA1 = new SecPadding(32770L);
+    public static final SecPadding PKCS1SHA224 = new SecPadding(32771L);
+    public static final SecPadding PKCS1SHA256 = new SecPadding(32772L);
+    public static final SecPadding PKCS1SHA384 = new SecPadding(32773L);
+    public static final SecPadding PKCS1SHA512 = new SecPadding(32774L);
     /*</values>*/
 
-    private final long n;
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<methods>*//*</methods>*/
 
-    private /*<name>*/SecPadding/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/SecPadding/*</name>*/ valueOf(long n) {
-        for (/*<name>*/SecPadding/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/SecPadding/*</name>*/.class.getName());
+    private static final /*<name>*/SecPadding/*</name>*/[] values = _values(/*<name>*/SecPadding/*</name>*/.class);
+
+    public /*<name>*/SecPadding/*</name>*/(long value) { super(value); }
+    private /*<name>*/SecPadding/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/SecPadding/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/SecPadding/*</name>*/(value, mask);
+    }
+    protected /*<name>*/SecPadding/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/SecPadding/*</name>*/[] values() {
+        return values.clone();
     }
 }
