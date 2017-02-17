@@ -46,10 +46,12 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKReceiptRefreshRequest() {}
+    protected SKReceiptRefreshRequest(Handle h, long handle) { super(h, handle); }
     protected SKReceiptRefreshRequest(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @Method(selector = "initWithReceiptProperties:")
     public SKReceiptRefreshRequest(SKReceiptRefreshRequestOptions properties) { super((SkipInit) null); initObject(init(properties)); }
     /*</constructors>*/
     /*<properties>*/

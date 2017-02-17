@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKPaymentQueue() {}
+    protected SKPaymentQueue(Handle h, long handle) { super(h, handle); }
     protected SKPaymentQueue(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
