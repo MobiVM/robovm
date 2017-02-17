@@ -48,19 +48,12 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKPayment() {}
+    protected PKPayment(Handle h, long handle) { super(h, handle); }
     protected PKPayment(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "token")
     public native PKPaymentToken getToken();
-    /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
-    @WeaklyLinked
-    @Property(selector = "billingAddress")
-    public native ABPerson getBillingAddress();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -72,13 +65,21 @@ import org.robovm.apple.contacts.*;
      */
     @Deprecated
     @WeaklyLinked
-    @Property(selector = "shippingAddress")
-    public native ABPerson getShippingAddress();
+    @Property(selector = "billingAddress")
+    public native ABPerson getBillingAddress();
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "shippingContact")
     public native PKContact getShippingContact();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
+    @WeaklyLinked
+    @Property(selector = "shippingAddress")
+    public native ABPerson getShippingAddress();
     @Property(selector = "shippingMethod")
     public native PKShippingMethod getShippingMethod();
     /*</properties>*/

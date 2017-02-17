@@ -48,7 +48,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKAddPaymentPassViewController() {}
+    protected PKAddPaymentPassViewController(Handle h, long handle) { super(h, handle); }
     protected PKAddPaymentPassViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRequestConfiguration:delegate:")
     public PKAddPaymentPassViewController(PKAddPaymentPassRequestConfiguration configuration, PKAddPaymentPassViewControllerDelegate delegate) { super((SkipInit) null); initObject(init(configuration, delegate)); }
     /*</constructors>*/
     /*<properties>*/
