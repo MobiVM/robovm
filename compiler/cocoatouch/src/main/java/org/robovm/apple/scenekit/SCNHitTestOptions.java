@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -190,9 +192,6 @@ import org.robovm.apple.opengles.*;
         set(Keys.RootNode(), rootNode);
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public boolean ignoresHiddenNodes() {
         if (has(Keys.IgnoreHiddenNodes())) {
             NSNumber val = (NSNumber) get(Keys.IgnoreHiddenNodes());
@@ -200,11 +199,25 @@ import org.robovm.apple.opengles.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public SCNHitTestOptions setIgnoresHiddenNodes(boolean ignoresHiddenNodes) {
         set(Keys.IgnoreHiddenNodes(), NSNumber.valueOf(ignoresHiddenNodes));
+        return this;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public int getOptionCategoryBitMask() {
+        if (has(Keys.OptionCategoryBitMask())) {
+            NSNumber val = (NSNumber) get(Keys.OptionCategoryBitMask());
+            return val.intValue();
+        }
+        return 0;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public SCNHitTestOptions setOptionCategoryBitMask(int optionCategoryBitMask) {
+        set(Keys.OptionCategoryBitMask(), NSNumber.valueOf(optionCategoryBitMask));
         return this;
     }
     /*</methods>*/
@@ -227,11 +240,13 @@ import org.robovm.apple.opengles.*;
         public static native NSString IgnoreChildNodes();
         @GlobalValue(symbol="SCNHitTestRootNodeKey", optional=true)
         public static native NSString RootNode();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNHitTestIgnoreHiddenNodesKey", optional=true)
         public static native NSString IgnoreHiddenNodes();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="SCNHitTestOptionCategoryBitMask", optional=true)
+        public static native NSString OptionCategoryBitMask();
     }
     /*</keys>*/
 }

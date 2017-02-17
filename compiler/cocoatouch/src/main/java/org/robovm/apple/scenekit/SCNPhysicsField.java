@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNPhysicsField() {}
+    protected SCNPhysicsField(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsField(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -93,14 +96,8 @@ import org.robovm.apple.opengles.*;
     public native @ByVal SCNVector3 getDirection();
     @Property(selector = "setDirection:")
     public native void setDirection(@ByVal SCNVector3 v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "categoryBitMask")
     public native @MachineSizedUInt long getCategoryBitMask();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setCategoryBitMask:")
     public native void setCategoryBitMask(@MachineSizedUInt long v);
     /*</properties>*/

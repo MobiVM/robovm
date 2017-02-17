@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -94,21 +96,9 @@ import org.robovm.apple.opengles.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SCNSceneSourceAnimationImportPolicy Play = new SCNSceneSourceAnimationImportPolicy("Play");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SCNSceneSourceAnimationImportPolicy PlayRepeatedly = new SCNSceneSourceAnimationImportPolicy("PlayRepeatedly");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SCNSceneSourceAnimationImportPolicy DoNotPlay = new SCNSceneSourceAnimationImportPolicy("DoNotPlay");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SCNSceneSourceAnimationImportPolicy PlayUsingSceneTimeBase = new SCNSceneSourceAnimationImportPolicy("PlayUsingSceneTimeBase");
     /*</constants>*/
     
@@ -135,24 +125,12 @@ import org.robovm.apple.opengles.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNSceneSourceAnimationImportPolicyPlay", optional=true)
         public static native NSString Play();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNSceneSourceAnimationImportPolicyPlayRepeatedly", optional=true)
         public static native NSString PlayRepeatedly();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNSceneSourceAnimationImportPolicyDoNotPlay", optional=true)
         public static native NSString DoNotPlay();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNSceneSourceAnimationImportPolicyPlayUsingSceneTimeBase", optional=true)
         public static native NSString PlayUsingSceneTimeBase();
         /*</values>*/

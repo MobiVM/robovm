@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,6 +54,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNAction() {}
+    protected SCNAction(Handle h, long handle) { super(h, handle); }
     protected SCNAction(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -112,6 +115,16 @@ import org.robovm.apple.opengles.*;
     public static native SCNAction fadeOpacityBy(@MachineSizedFloat double factor, double sec);
     @Method(selector = "fadeOpacityTo:duration:")
     public static native SCNAction fadeOpacityTo(@MachineSizedFloat double opacity, double sec);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "hide")
+    public static native SCNAction hide();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "unhide")
+    public static native SCNAction unhide();
     @Method(selector = "waitForDuration:")
     public static native SCNAction wait(double sec);
     @Method(selector = "waitForDuration:withRange:")
@@ -126,5 +139,10 @@ import org.robovm.apple.opengles.*;
     public static native SCNAction javaScript(String script, double seconds);
     @Method(selector = "customActionWithDuration:actionBlock:")
     public static native SCNAction custom(double seconds, @Block("(,@MachineSizedFloat)") VoidBlock2<SCNNode, Double> block);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "playAudioSource:waitForCompletion:")
+    public static native SCNAction playAudioSource(SCNAudioSource source, boolean wait);
     /*</methods>*/
 }

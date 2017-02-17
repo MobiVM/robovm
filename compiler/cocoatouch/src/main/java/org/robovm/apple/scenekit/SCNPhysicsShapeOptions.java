@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -146,6 +148,23 @@ import org.robovm.apple.opengles.*;
         set(Keys.Scale(), new NSData(scale));
         return this;
     }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public NSNumber getCollisionMargin() {
+        if (has(Keys.CollisionMargin())) {
+            NSNumber val = (NSNumber) get(Keys.CollisionMargin());
+            return val;
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public SCNPhysicsShapeOptions setCollisionMargin(NSNumber collisionMargin) {
+        set(Keys.CollisionMargin(), collisionMargin);
+        return this;
+    }
     /*</methods>*/
     
     /*<keys>*/
@@ -158,6 +177,11 @@ import org.robovm.apple.opengles.*;
         public static native NSString KeepAsCompound();
         @GlobalValue(symbol="SCNPhysicsShapeScaleKey", optional=true)
         public static native NSString Scale();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="SCNPhysicsShapeOptionCollisionMargin", optional=true)
+        public static native NSString CollisionMargin();
     }
     /*</keys>*/
 }

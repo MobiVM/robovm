@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNTransaction/*</name>*/ 
@@ -52,10 +52,26 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNTransaction() {}
+    protected SCNTransaction(Handle h, long handle) { super(h, handle); }
     protected SCNTransaction(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "animationDuration")
+    public static native double getAnimationDuration();
+    @Property(selector = "setAnimationDuration:")
+    public static native void setAnimationDuration(double v);
+    @Property(selector = "animationTimingFunction")
+    public static native CAMediaTimingFunction getAnimationTimingFunction();
+    @Property(selector = "setAnimationTimingFunction:")
+    public static native void setAnimationTimingFunction(CAMediaTimingFunction v);
+    @Property(selector = "disableActions")
+    public static native boolean isDisableActions();
+    @Property(selector = "setDisableActions:")
+    public static native void setDisableActions(boolean v);
+    @Property(selector = "completionBlock")
+    public static native @Block Runnable getCompletionBlock();
+    @Property(selector = "setCompletionBlock:")
+    public static native void setCompletionBlock(@Block Runnable v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -69,25 +85,9 @@ import org.robovm.apple.opengles.*;
     public static native void lock();
     @Method(selector = "unlock")
     public static native void unlock();
-    @Method(selector = "animationDuration")
-    public static native double getAnimationDuration();
-    @Method(selector = "setAnimationDuration:")
-    public static native void setAnimationDuration(double duration);
-    @Method(selector = "animationTimingFunction")
-    public static native CAMediaTimingFunction getAnimationTimingFunction();
-    @Method(selector = "setAnimationTimingFunction:")
-    public static native void setAnimationTimingFunction(CAMediaTimingFunction function);
-    @Method(selector = "disableActions")
-    public static native boolean areActionsDisabled();
-    @Method(selector = "setDisableActions:")
-    public static native void setActionsDisabled(boolean flag);
-    @Method(selector = "completionBlock")
-    public static native @Block Runnable getCompletionBlock();
-    @Method(selector = "setCompletionBlock:")
-    public static native void setCompletionBlock(@Block Runnable block);
     @Method(selector = "valueForKey:")
     public static native NSObject getValue(String key);
     @Method(selector = "setValue:forKey:")
-    public static native void setValue(NSObject anObject, String key);
+    public static native void setValue(NSObject value, String key);
     /*</methods>*/
 }

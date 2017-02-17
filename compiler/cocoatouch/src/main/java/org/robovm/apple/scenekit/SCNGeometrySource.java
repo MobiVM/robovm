@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNGeometrySource/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNGeometrySource() {}
+    protected SCNGeometrySource(Handle h, long handle) { super(h, handle); }
     protected SCNGeometrySource(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -82,5 +83,10 @@ import org.robovm.apple.opengles.*;
     public static native SCNGeometrySource createWithNormals(SCNVector3 normals, @MachineSizedSInt long count);
     @Method(selector = "geometrySourceWithTextureCoordinates:count:")
     public static native SCNGeometrySource createWithTextureCoordinates(CGPoint texcoord, @MachineSizedSInt long count);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "geometrySourceWithBuffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:")
+    public static native SCNGeometrySource createWithBuffer(MTLBuffer mtlBuffer, MTLVertexFormat vertexFormat, String semantic, @MachineSizedSInt long vertexCount, @MachineSizedSInt long offset, @MachineSizedSInt long stride);
     /*</methods>*/
 }
