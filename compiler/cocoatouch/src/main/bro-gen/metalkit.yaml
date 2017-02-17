@@ -133,7 +133,7 @@ values:
         dictionary: MTKTextureLoaderOptions
         name: 'CubeLayoutVertical'
     MTKTextureLoaderOrigin(.*):
-        enum: MTKTextureLoaderOrigin
+        class: MTKTextureLoaderOrigin
         name: '#{g[0]}'
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?MTK.*):
