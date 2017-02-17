@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,26 +36,39 @@ import org.robovm.apple.avfoundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 9.1 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PHObject/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PHLivePhotoRequestOptions/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class PHObjectPtr extends Ptr<PHObject, PHObjectPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PHObject.class); }/*</bind>*/
+    /*<ptr>*/public static class PHLivePhotoRequestOptionsPtr extends Ptr<PHLivePhotoRequestOptions, PHLivePhotoRequestOptionsPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PHLivePhotoRequestOptions.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public PHObject() {}
-    @Deprecated protected PHObject(long handle) { super(handle); }
-    protected PHObject(Handle h, long handle) { super(h, handle); }
-    protected PHObject(SkipInit skipInit) { super(skipInit); }
+    public PHLivePhotoRequestOptions() {}
+    protected PHLivePhotoRequestOptions(Handle h, long handle) { super(h, handle); }
+    protected PHLivePhotoRequestOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "localIdentifier")
-    public native String getLocalIdentifier();
+    @Property(selector = "version")
+    public native PHImageRequestOptionsVersion getVersion();
+    @Property(selector = "setVersion:")
+    public native void setVersion(PHImageRequestOptionsVersion v);
+    @Property(selector = "deliveryMode")
+    public native PHImageRequestOptionsDeliveryMode getDeliveryMode();
+    @Property(selector = "setDeliveryMode:")
+    public native void setDeliveryMode(PHImageRequestOptionsDeliveryMode v);
+    @Property(selector = "isNetworkAccessAllowed")
+    public native boolean isNetworkAccessAllowed();
+    @Property(selector = "setNetworkAccessAllowed:")
+    public native void setNetworkAccessAllowed(boolean v);
+    @Property(selector = "progressHandler")
+    public native @Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> getProgressHandler();
+    @Property(selector = "setProgressHandler:")
+    public native void setProgressHandler(@Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

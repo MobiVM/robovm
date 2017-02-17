@@ -49,6 +49,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHFetchOptions() {}
+    protected PHFetchOptions(Handle h, long handle) { super(h, handle); }
     protected PHFetchOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

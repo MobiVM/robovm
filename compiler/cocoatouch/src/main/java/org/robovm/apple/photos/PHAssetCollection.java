@@ -49,9 +49,10 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAssetCollection() {}
+    protected PHAssetCollection(Handle h, long handle) { super(h, handle); }
     protected PHAssetCollection(SkipInit skipInit) { super(skipInit); }
-    public PHAssetCollection(NSArray<PHAsset> assets, String title) { super(createTransientAssetCollection(assets, title)); retain(getHandle()); }
-    public PHAssetCollection(PHFetchResult<PHAsset> fetchResult, String title) { super(createTransientAssetCollection(fetchResult, title)); retain(getHandle()); }
+    public PHAssetCollection(NSArray<PHAsset> assets, String title) { super((Handle) null, createTransientAssetCollection(assets, title)); retain(getHandle()); }
+    public PHAssetCollection(PHFetchResult<PHAsset> fetchResult, String title) { super((Handle) null, createTransientAssetCollection(fetchResult, title)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "assetCollectionType")

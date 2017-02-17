@@ -49,6 +49,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHObjectPlaceholder() {}
+    protected PHObjectPlaceholder(Handle h, long handle) { super(h, handle); }
     protected PHObjectPlaceholder(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

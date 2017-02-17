@@ -49,6 +49,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHPhotoLibrary() {}
+    protected PHPhotoLibrary(Handle h, long handle) { super(h, handle); }
     protected PHPhotoLibrary(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

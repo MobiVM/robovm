@@ -49,9 +49,10 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAssetChangeRequest() {}
-    protected PHAssetChangeRequest(long handle) { super(handle); }
+    @Deprecated protected PHAssetChangeRequest(long handle) { super(handle); }
+    protected PHAssetChangeRequest(Handle h, long handle) { super(h, handle); }
     protected PHAssetChangeRequest(SkipInit skipInit) { super(skipInit); }
-    public PHAssetChangeRequest(PHAsset asset) { super(create(asset)); retain(getHandle()); }
+    public PHAssetChangeRequest(PHAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "placeholderForCreatedAsset")
