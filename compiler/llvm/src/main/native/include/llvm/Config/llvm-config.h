@@ -24,7 +24,7 @@
 /* #undef LLVM_DATADIR */
 
 /* Target triple LLVM will generate code for by default */
-#define LLVM_DEFAULT_TARGET_TRIPLE "x86_64-unknown-linux-gnu"
+#define LLVM_DEFAULT_TARGET_TRIPLE "x86_64-apple-darwin16.4.0"
 
 /* Installation directory for documentation */
 /* #undef LLVM_DOCSDIR */
@@ -43,7 +43,7 @@
 #define LLVM_HAS_ATOMICS 1
 
 /* Host triple LLVM will be executed on */
-#define LLVM_HOST_TRIPLE "x86_64-unknown-linux-gnu"
+#define LLVM_HOST_TRIPLE "x86_64-apple-darwin16.4.0"
 
 /* Installation directory for include files */
 /* #undef LLVM_INCLUDEDIR */
@@ -82,7 +82,7 @@
 /* #undef LLVM_ON_WIN32 */
 
 /* Installation prefix directory */
-#define LLVM_PREFIX "/home/florian/projects/robovm/compiler/llvm/target.llvm/build/linux-x86_64/llvm"
+#define LLVM_PREFIX "/Users/generalsolutions/Documents/projects/robovm/compiler/llvm/target.llvm/build/macosx-x86_64/llvm"
 
 /* Define if we have the Intel JIT API runtime support library */
 /* #undef LLVM_USE_INTEL_JITEVENTS */

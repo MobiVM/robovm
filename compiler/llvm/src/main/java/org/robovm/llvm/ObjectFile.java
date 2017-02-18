@@ -17,19 +17,12 @@
 package org.robovm.llvm;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.LongBuffer;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.bytedeco.javacpp.BytePointer;
 import org.bytedeco.javacpp.IntPointer;
 import org.bytedeco.javacpp.LongPointer;
-import org.bytedeco.javacpp.PointerPointer;
 import org.robovm.llvm.binding.LLVM;
 import org.robovm.llvm.binding.LLVM.LLVMMemoryBufferRef;
 import org.robovm.llvm.binding.LLVM.LLVMObjectFileRef;
@@ -156,7 +149,7 @@ public class ObjectFile implements AutoCloseable {
 
     public static ObjectFile load(File file) {
     	LLVMMemoryBufferRef memBufOut = new LLVMMemoryBufferRef();
-        BytePointer bp = new BytePointer(new byte[128]);
+        BytePointer bp = new BytePointer(new byte[512]);
         
         if (LLVM.LLVMCreateMemoryBufferWithContentsOfFile(new BytePointer(file.getAbsolutePath()), memBufOut, bp) != 0) {
             throw new LlvmException("Failed to create memory buffer from " + file.getAbsolutePath() + ": " + (new String(bp.getStringBytes())).trim());

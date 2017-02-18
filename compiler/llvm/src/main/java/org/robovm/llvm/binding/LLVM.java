@@ -7240,10 +7240,13 @@ public static native @Cast("size_t") long LLVMCopySectionContents(LLVMSectionIte
 // #ifdef __cplusplus
 // #endif
 
-public static native LLVMModuleRef ClangCompileFile(LLVMContextRef Context, @Cast("char*") BytePointer Data, @Cast("char*") BytePointer FileName, @Cast("char*") BytePointer Triple, @Cast("char**") PointerPointer ErrorMessage);
-public static native LLVMModuleRef ClangCompileFile(LLVMContextRef Context, @Cast("char*") BytePointer Data, @Cast("char*") BytePointer FileName, @Cast("char*") BytePointer Triple, @Cast("char**") @ByPtrPtr BytePointer ErrorMessage);
-public static native LLVMModuleRef ClangCompileFile(LLVMContextRef Context, @Cast("char*") ByteBuffer Data, @Cast("char*") ByteBuffer FileName, @Cast("char*") ByteBuffer Triple, @Cast("char**") @ByPtrPtr ByteBuffer ErrorMessage);
-public static native LLVMModuleRef ClangCompileFile(LLVMContextRef Context, @Cast("char*") byte[] Data, @Cast("char*") byte[] FileName, @Cast("char*") byte[] Triple, @Cast("char**") @ByPtrPtr byte[] ErrorMessage);
+public static native @Cast("LLVMBool") int ClangCompileFile(LLVMContextRef Context, @Cast("char*") BytePointer Data, @Cast("char*") BytePointer FileName, @Cast("char*") BytePointer Triple, @ByPtrPtr LLVMModuleRef OutM, @Cast("char**") PointerPointer ErrorMessage);
+public static native @Cast("LLVMBool") int ClangCompileFile(LLVMContextRef Context, @Cast("char*") BytePointer Data, @Cast("char*") BytePointer FileName, @Cast("char*") BytePointer Triple, @ByPtrPtr LLVMModuleRef OutM, @Cast("char**") @ByPtrPtr BytePointer ErrorMessage);
+public static native @Cast("LLVMBool") int ClangCompileFile(LLVMContextRef Context, @Cast("char*") ByteBuffer Data, @Cast("char*") ByteBuffer FileName, @Cast("char*") ByteBuffer Triple, @Cast("LLVMModuleRef*") PointerPointer OutM, @Cast("char**") @ByPtrPtr ByteBuffer ErrorMessage);
+public static native @Cast("LLVMBool") int ClangCompileFile(LLVMContextRef Context, @Cast("char*") byte[] Data, @Cast("char*") byte[] FileName, @Cast("char*") byte[] Triple, @ByPtrPtr LLVMModuleRef OutM, @Cast("char**") @ByPtrPtr byte[] ErrorMessage);
+public static native @Cast("LLVMBool") int ClangCompileFile(LLVMContextRef Context, @Cast("char*") BytePointer Data, @Cast("char*") BytePointer FileName, @Cast("char*") BytePointer Triple, @Cast("LLVMModuleRef*") PointerPointer OutM, @Cast("char**") @ByPtrPtr BytePointer ErrorMessage);
+public static native @Cast("LLVMBool") int ClangCompileFile(LLVMContextRef Context, @Cast("char*") ByteBuffer Data, @Cast("char*") ByteBuffer FileName, @Cast("char*") ByteBuffer Triple, @ByPtrPtr LLVMModuleRef OutM, @Cast("char**") @ByPtrPtr ByteBuffer ErrorMessage);
+public static native @Cast("LLVMBool") int ClangCompileFile(LLVMContextRef Context, @Cast("char*") byte[] Data, @Cast("char*") byte[] FileName, @Cast("char*") byte[] Triple, @Cast("LLVMModuleRef*") PointerPointer OutM, @Cast("char**") @ByPtrPtr byte[] ErrorMessage);
 
 // #ifdef __cplusplus
 // #endif

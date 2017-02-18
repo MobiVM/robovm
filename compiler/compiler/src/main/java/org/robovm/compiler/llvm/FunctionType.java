@@ -52,7 +52,7 @@ public class FunctionType extends PointerType {
 
     @Override
     public Type getBase() {
-        throw new UnsupportedOperationException("Function pointers cannot be dereferenced");
+    	throw new UnsupportedOperationException("Function pointers cannot be dereferenced");
     }
     
     public Type getReturnType() {

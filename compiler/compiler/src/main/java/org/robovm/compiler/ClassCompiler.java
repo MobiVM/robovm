@@ -16,14 +16,46 @@
  */
 package org.robovm.compiler;
 
-import static org.robovm.compiler.Annotations.*;
-import static org.robovm.compiler.Functions.*;
-import static org.robovm.compiler.Types.*;
-import static org.robovm.compiler.llvm.Type.*;
+import static org.robovm.compiler.Annotations.BRIDGE;
+import static org.robovm.compiler.Annotations.getAnnotation;
+import static org.robovm.compiler.Annotations.hasBridgeAnnotation;
+import static org.robovm.compiler.Annotations.hasCallbackAnnotation;
+import static org.robovm.compiler.Annotations.hasGlobalValueAnnotation;
+import static org.robovm.compiler.Annotations.hasStructMemberAnnotation;
+import static org.robovm.compiler.Annotations.readBooleanElem;
+import static org.robovm.compiler.Functions.BC_ALLOCATE;
+import static org.robovm.compiler.Functions.BC_INITIALIZE_CLASS;
+import static org.robovm.compiler.Functions.BC_LDC_CLASS;
+import static org.robovm.compiler.Functions.BC_LOOKUP_INTERFACE_METHOD_IMPL;
+import static org.robovm.compiler.Functions.CLASS_VITABLE;
+import static org.robovm.compiler.Functions.LDC_CLASS_WRAPPER;
+import static org.robovm.compiler.Functions.OBJECT_CLASS;
+import static org.robovm.compiler.Functions.call;
+import static org.robovm.compiler.Functions.tailcall;
+import static org.robovm.compiler.Types.getBaseType;
+import static org.robovm.compiler.Types.getClassFields;
+import static org.robovm.compiler.Types.getClassType;
+import static org.robovm.compiler.Types.getDescriptor;
+import static org.robovm.compiler.Types.getFieldPtr;
+import static org.robovm.compiler.Types.getFunctionType;
+import static org.robovm.compiler.Types.getInstanceFields;
+import static org.robovm.compiler.Types.getInstanceType;
+import static org.robovm.compiler.Types.getInternalName;
+import static org.robovm.compiler.Types.getInternalNameFromDescriptor;
+import static org.robovm.compiler.Types.getType;
+import static org.robovm.compiler.Types.isArray;
+import static org.robovm.compiler.Types.isPrimitive;
+import static org.robovm.compiler.Types.isPrimitiveBaseType;
+import static org.robovm.compiler.Types.isStruct;
+import static org.robovm.compiler.Types.offsetof;
+import static org.robovm.compiler.Types.sizeof;
+import static org.robovm.compiler.llvm.Type.I1;
+import static org.robovm.compiler.llvm.Type.I32;
+import static org.robovm.compiler.llvm.Type.I8_PTR;
+import static org.robovm.compiler.llvm.Type.I8_PTR_PTR;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -359,8 +391,10 @@ public class ClassCompiler {
                     for (String s : cCode) {
                         sb.append(s);
                     }
-                    try (Module m2 = Module.parseClangString(context, sb.toString(), clazz.getClassName() + ".c", config.getClangTriple())) {
-                        module.link(m2);
+                    //Don't wrap into try, because module.link will destroy source module (m2) already!
+                    //try (Module m2 = Module.parseClangString(context, sb.toString(), clazz.getClassName() + ".c", config.getClangTriple())) {
+                    Module m2 = Module.parseClangString(context, sb.toString(), clazz.getClassName() + ".c", config.getClangTriple());
+                    	module.link(m2);
                         for (org.robovm.llvm.Function f1 : m2.getFunctions()) {
                             String name = f1.getName();
                             org.robovm.llvm.Function f2 = module.getFunctionByName(name);
@@ -374,7 +408,7 @@ public class ClassCompiler {
                                 }
                             }
                         }
-                    }
+                    //}
                 }
                 
                 try (PassManager passManager = createPassManager(config)) {
@@ -424,6 +458,7 @@ public class ClassCompiler {
                      * Read out line number info from the .o file if any and
                      * assemble into a separate .o file.
                      */
+                    //TODO Currently causes crashes when multithreaded, so commented out.*/
                     String symbolPrefix = config.getOs().getFamily() == OS.Family.darwin ? "_" : "";
                     symbolPrefix += Symbols.EXTERNAL_SYMBOL_PREFIX;
                     ModuleBuilder linesMb = null;

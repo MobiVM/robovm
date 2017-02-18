@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-LLVMModuleRef ClangCompileFile(LLVMContextRef Context, char* Data, char* FileName, char* Triple, char **ErrorMessage);
+LLVMBool ClangCompileFile(LLVMContextRef Context, char* Data, char* FileName, char* Triple, LLVMModuleRef *OutM, char **ErrorMessage);
 
 #ifdef __cplusplus
 }

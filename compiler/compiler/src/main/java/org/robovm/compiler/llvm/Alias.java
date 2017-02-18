@@ -16,6 +16,7 @@
  */
 package org.robovm.compiler.llvm;
 
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -58,7 +59,18 @@ public class Alias {
             sb.append(' ');
         }
         sb.append("alias ");
-        sb.append((value.isPointer() ? ((PointerType)value.getType()).getBase() : value.getType()));
+        if (value.isPointer()) {
+        	if (value.getType() instanceof FunctionType) {
+        		FunctionType ft = (FunctionType)value.getType();
+        		sb.append(StringUtils.removeEnd(ft.getDefinition(), "*"));
+        	}
+        	else {        		
+        		sb.append(((PointerType)value.getType()).getBase());
+        	}
+        }
+        else {
+        	sb.append(value.getType());
+        }
         sb.append(", ");
         sb.append(value.getType());
         sb.append(' ');
