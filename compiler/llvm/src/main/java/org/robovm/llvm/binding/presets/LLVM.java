@@ -22,8 +22,11 @@
 
 package org.robovm.llvm.binding.presets;
 
-import org.bytedeco.javacpp.annotation.*;
-import org.bytedeco.javacpp.tools.*;
+import org.bytedeco.javacpp.annotation.Platform;
+import org.bytedeco.javacpp.annotation.Properties;
+import org.bytedeco.javacpp.tools.Info;
+import org.bytedeco.javacpp.tools.InfoMap;
+import org.bytedeco.javacpp.tools.InfoMapper;
 
 @Properties(target = "org.robovm.llvm.binding.LLVM", value = {@Platform(value = {"linux-x86", "macosx"}, define = {"__STDC_LIMIT_MACROS", "__STDC_CONSTANT_MACROS"},
     include = {"<llvm-c/Types.h>", "<llvm-c/Support.h>", "<llvm-c/Core.h>", "<llvm-c/Analysis.h>", "<llvm-c/BitReader.h>", "<llvm-c/BitWriter.h>",
@@ -31,7 +34,7 @@ import org.bytedeco.javacpp.tools.*;
                "<llvm-c/lto.h>", "<llvm-c/Object.h>", "<llvm-c/Target.h>", "<llvm-c/TargetMachine.h>", "<llvm-c/ExecutionEngine.h>",
                "<llvm-c/Transforms/IPO.h>", "<llvm-c/Transforms/PassManagerBuilder.h>", "<llvm-c/Transforms/Scalar.h>", "<llvm-c/Transforms/Vectorize.h>",
                "LLVMExtra.h", "ClangExtra.h"},
-    compiler = "cpp11", link = {"LLVM-3.9", "LTO", "LLVMExtra"})})
+    compiler = "cpp11", link = {"LLVM-3.9", "LTO", "LLVMExtra"}), @Platform(value = "macosx", link = {"LLVM"}) })
 public class LLVM implements InfoMapper {
     public void map(InfoMap infoMap) {
         infoMap.put(new Info("LLVMOpaqueContext").pointerTypes("LLVMContextRef"))

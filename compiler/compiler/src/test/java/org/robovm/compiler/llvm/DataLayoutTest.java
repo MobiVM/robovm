@@ -16,8 +16,13 @@
  */
 package org.robovm.compiler.llvm;
 
-import static org.junit.Assert.*;
-import static org.robovm.compiler.llvm.Type.*;
+import static org.junit.Assert.assertEquals;
+import static org.robovm.compiler.llvm.Type.DOUBLE;
+import static org.robovm.compiler.llvm.Type.I16;
+import static org.robovm.compiler.llvm.Type.I32;
+import static org.robovm.compiler.llvm.Type.I64;
+import static org.robovm.compiler.llvm.Type.I8;
+import static org.robovm.compiler.llvm.Type.I8_PTR;
 
 import org.junit.Test;
 
@@ -28,7 +33,7 @@ public class DataLayoutTest {
 
     @Test
     public void testGetAllocSize() {
-        assertEquals(4, new DataLayout("i386-unknown-linux").getAllocSize(new StructureType(I32, I16, I8)));
+        assertEquals(8, new DataLayout("i386-unknown-linux").getAllocSize(new StructureType(I32, I16, I8)));
         assertEquals(4, new DataLayout("i386-unknown-linux").getAllocSize(I8_PTR));
         assertEquals(8, new DataLayout("x86_64-unknown-linux").getAllocSize(I8_PTR));
     }
@@ -37,7 +42,7 @@ public class DataLayoutTest {
     public void testGetStoreSize() {
         assertEquals(4, new DataLayout("i386-unknown-linux").getStoreSize(I8_PTR));
         assertEquals(8, new DataLayout("x86_64-unknown-linux").getStoreSize(I8_PTR));
-        assertEquals(4, new DataLayout("i386-unknown-linux").getStoreSize(new StructureType(I32, I16, I8)));
+        assertEquals(8, new DataLayout("i386-unknown-linux").getStoreSize(new StructureType(I32, I16, I8)));
     }
 
     @Test

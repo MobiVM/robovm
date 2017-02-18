@@ -126,7 +126,7 @@
 							<goal>build</goal>
 						</goals>
 						<configuration>
-							<skip>${javacpp.parser.skip}</skip>
+							<skip>false</skip>
 							<outputDirectory>${project.build.sourceDirectory}</outputDirectory>
 							<classOrPackageName>org.robovm.llvm.binding.presets.*</classOrPackageName>
 						</configuration>
@@ -138,6 +138,7 @@
 							<goal>build</goal>
 						</goals>
 						<configuration>
+							<skip>false</skip>
 							<classOrPackageNames>
 								<classOrPackageName>org.robovm.llvm.binding.*</classOrPackageName>
 							</classOrPackageNames>

@@ -16,9 +16,11 @@
  */
 package org.robovm.compiler;
 
-import static org.junit.Assert.*;
-import static org.robovm.compiler.Types.*;
-import static org.robovm.compiler.llvm.Type.*;
+import static org.junit.Assert.assertEquals;
+import static org.robovm.compiler.Types.ENV_PTR;
+import static org.robovm.compiler.Types.OBJECT_PTR;
+import static org.robovm.compiler.Types.getFunctionType;
+import static org.robovm.compiler.llvm.Type.VOID;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -105,7 +107,7 @@ public class TypesTest {
     public void testGetInstanceType() throws Exception {
         StructureType type = Types.getInstanceType(OS.ios, Arch.thumbv7, getSootClass(D.class.getName()));
         int size = getAllocSize(type, "thumbv7-unknown-ios");
-        assertEquals(4, size);
+        assertEquals(48, size);
     }
     
     private int getAllocSize(StructureType type, String triple) {

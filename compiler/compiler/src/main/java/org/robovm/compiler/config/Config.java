@@ -885,6 +885,8 @@ public class Config {
             sliceArch = getArchs().get(0);
         }
 
+        //System.getProperties().put("org.bytedeco.javacpp.logger.debug", "true");
+        
         target.init(this);
 
         os = target.getOs();

@@ -18,7 +18,6 @@ package org.robovm.llvm;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,7 +136,7 @@ public class Module implements AutoCloseable {
             throw new LlvmException("Failed to create memory buffer");
         }
         LLVMModuleRef moduleRefOut = new LLVMModuleRef();
-        BytePointer errorMsg = new BytePointer(new byte[128]);
+        BytePointer errorMsg = new BytePointer(new byte[512]);
         //StringOut errorMessage = new StringOut();
         // LLVMParseIRInContext() takes ownership of the MemoryBuffer so there's no need for us
         // to dispose of it
@@ -150,8 +149,9 @@ public class Module implements AutoCloseable {
     //TODO!
     public static Module parseClangString(Context context, String buffer, String fileName, String triple) {
     	BytePointer errorMsg = new BytePointer(new byte[128]);
-    	LLVMModuleRef ref = LLVM.ClangCompileFile(context.getRef(), new BytePointer(buffer), new BytePointer(fileName), new BytePointer(triple), errorMsg);
-        if (ref != null) {
+    	LLVMModuleRef ref = new LLVMModuleRef();
+    	int result = LLVM.ClangCompileFile(context.getRef(), new BytePointer(buffer), new BytePointer(fileName), new BytePointer(triple), ref, errorMsg);
+        if (result == 0) {
             return new Module(ref);
         }
         throw new LlvmException(errorMsg.getString().trim());

@@ -15,7 +15,8 @@ using namespace clang;
 
 DEFINE_SIMPLE_CONVERSION_FUNCTIONS(llvm::LLVMContext, LLVMContextRef)
 
-LLVMModuleRef ClangCompileFile(LLVMContextRef Context, char* Data, char* FileName, char* Triple, char **ErrorMessage)
+
+LLVMBool ClangCompileFile(LLVMContextRef Context, char* Data, char* FileName, char* Triple, LLVMModuleRef *OutM, char **ErrorMessage)
 {
     std::string error;
     raw_string_ostream error_os(error);
@@ -46,7 +47,7 @@ LLVMModuleRef ClangCompileFile(LLVMContextRef Context, char* Data, char* FileNam
     // Create the compilers actual diagnostics engine.
     Clang.createDiagnostics(DiagClient, false);
     if (!Clang.hasDiagnostics())
-        return NULL;
+        return 1;
 
     Clang.getDiagnosticOpts().ShowCarets = false;
 
@@ -54,10 +55,12 @@ LLVMModuleRef ClangCompileFile(LLVMContextRef Context, char* Data, char* FileNam
     std::unique_ptr<CodeGenAction> Act(new EmitLLVMOnlyAction(llvm::unwrap(Context)));
     if (!Clang.ExecuteAction(*Act)) {
         *ErrorMessage = strdup(error.c_str());
-        return NULL;
+        return 1;
     }
 
     *ErrorMessage = strdup(error.c_str());
 
-    return wrap((*Act).takeModule().release());
+    *OutM =wrap((*Act).takeModule().release());
+
+    return 0;
 }
