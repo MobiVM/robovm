@@ -53,8 +53,11 @@ import org.robovm.apple.corelocation.*;
     public UIProgressView() {}
     protected UIProgressView(Handle h, long handle) { super(h, handle); }
     protected UIProgressView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
     public UIProgressView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
     public UIProgressView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithProgressViewStyle:")
     public UIProgressView(UIProgressViewStyle style) { super((SkipInit) null); initObject(init(style)); }
     /*</constructors>*/
     /*<properties>*/

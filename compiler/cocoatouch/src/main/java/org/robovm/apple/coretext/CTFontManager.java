@@ -94,6 +94,16 @@ import org.robovm.apple.uikit.*;
     public static native NSString RegisteredFontsChangedNotification();
     
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="CTFontManagerCopyAvailablePostScriptNames", optional=true)
+    public static native CFArray copyAvailablePostScriptNames();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="CTFontManagerCopyAvailableFontFamilyNames", optional=true)
+    public static native CFArray copyAvailableFontFamilyNames();
+    /**
      * @since Available in iOS 7.0 and later.
      */
     @Bridge(symbol="CTFontManagerCreateFontDescriptorsFromURL", optional=true)

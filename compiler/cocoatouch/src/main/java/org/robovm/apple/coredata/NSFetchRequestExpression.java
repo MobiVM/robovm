@@ -45,8 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSFetchRequestExpression() {}
+    protected NSFetchRequestExpression(Handle h, long handle) { super(h, handle); }
     protected NSFetchRequestExpression(SkipInit skipInit) { super(skipInit); }
-    public NSFetchRequestExpression(NSExpression fetch, NSExpression context, boolean countFlag) { super(create(fetch, context, countFlag)); retain(getHandle()); }
+    public NSFetchRequestExpression(NSExpression fetch, NSExpression context, boolean countFlag) { super((Handle) null, create(fetch, context, countFlag)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "requestExpression")

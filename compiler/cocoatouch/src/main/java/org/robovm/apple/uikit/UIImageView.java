@@ -53,10 +53,12 @@ import org.robovm.apple.corelocation.*;
     public UIImageView() {}
     protected UIImageView(Handle h, long handle) { super(h, handle); }
     protected UIImageView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithImage:")
     public UIImageView(UIImage image) { super((SkipInit) null); initObject(init(image)); }
     /**
      * @since Available in iOS 3.0 and later.
      */
+    @Method(selector = "initWithImage:highlightedImage:")
     public UIImageView(UIImage image, UIImage highlightedImage) { super((SkipInit) null); initObject(init(image, highlightedImage)); }
     /*</constructors>*/
     public UIImageView(CGRect frame) {

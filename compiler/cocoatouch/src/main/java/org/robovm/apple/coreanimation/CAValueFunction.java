@@ -36,7 +36,9 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 3.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAValueFunction/*</name>*/ 
@@ -47,9 +49,11 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(CAValueFunction.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected CAValueFunction(Handle h, long handle) { super(h, handle); }
     protected CAValueFunction(SkipInit skipInit) { super(skipInit); }
-    public CAValueFunction(CAValueFunctionName name) { super(create(name)); retain(getHandle()); }
-    public CAValueFunction(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public CAValueFunction(CAValueFunctionName name) { super((Handle) null, create(name)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public CAValueFunction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -62,6 +66,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -53,10 +53,12 @@ import org.robovm.apple.dispatch.*;
     public NSMachPort() {}
     protected NSMachPort(Handle h, long handle) { super(h, handle); }
     protected NSMachPort(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithMachPort:")
     public NSMachPort(int machPort) { super((SkipInit) null); initObject(init(machPort)); }
     /**
      * @since Available in iOS 2.0 and later.
      */
+    @Method(selector = "initWithMachPort:options:")
     public NSMachPort(int machPort, NSMachPortRights f) { super((SkipInit) null); initObject(init(machPort, f)); }
     /*</constructors>*/
     /*<properties>*/

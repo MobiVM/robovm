@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     public NSFormatter() {}
     protected NSFormatter(Handle h, long handle) { super(h, handle); }
     protected NSFormatter(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public NSFormatter(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/

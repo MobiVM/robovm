@@ -44,9 +44,12 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(NSBatchDeleteRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSBatchDeleteRequest() {}
+    protected NSBatchDeleteRequest() {}
+    protected NSBatchDeleteRequest(Handle h, long handle) { super(h, handle); }
     protected NSBatchDeleteRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFetchRequest:")
     public NSBatchDeleteRequest(NSFetchRequest fetch) { super((SkipInit) null); initObject(init(fetch)); }
+    @Method(selector = "initWithObjectIDs:")
     public NSBatchDeleteRequest(NSArray<NSManagedObjectID> objects) { super((SkipInit) null); initObject(init(objects)); }
     /*</constructors>*/
     /*<properties>*/

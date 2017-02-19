@@ -54,7 +54,9 @@ import org.robovm.apple.corelocation.*;
     @Deprecated protected UIView(long handle) { super(handle); }
     protected UIView(Handle h, long handle) { super(h, handle); }
     protected UIView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
     public UIView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
     public UIView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

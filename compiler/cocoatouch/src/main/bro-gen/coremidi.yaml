@@ -16,6 +16,8 @@ typedefs:
     MIDISetupRef: MIDISetup
     MIDIThruConnectionRef: MIDIThruConnection
     MIDIDriverRef: MIDIDriver
+    MIDIReadBlock: '@Block VoidBlock2<MIDIPacketList, Long>'
+    MIDINotifyBlock: '@Block VoidBlock1<MIDINotification>'
 private_typedefs:
     '__CFString *': String
     '__CFString **': NSString.NSStringPtr
@@ -185,6 +187,11 @@ functions:
         parameters:
             notifyRefCon:
                 type: "@Pointer long"
+    MIDIClientCreateWithBlock:
+        class: MIDIClient
+        name: "create"
+        visibility: protected
+        return_type: MIDIError
     MIDIClient(.*):
         class: MIDIClient
         name: "#{g[0]}"
@@ -213,6 +220,11 @@ functions:
         parameters:
             refCon:
                 type: "@Pointer long"
+    MIDIInputPortCreateWithBlock:
+        class: MIDIPort
+        name: "createInputPort"
+        visibility: protected
+        return_type: MIDIError
     MIDIOutputPortCreate:
         class: MIDIPort
         name: "createOutputPort"
@@ -301,6 +313,11 @@ functions:
         parameters:
             refCon:
                 type: "@Pointer long"
+    MIDIDestinationCreateWithBlock:
+        class: MIDIPort
+        name: "createDestination"
+        visibility: protected
+        return_type: MIDIError
     MIDISourceCreate:
         class: MIDIEndpoint
         name: "createSource"

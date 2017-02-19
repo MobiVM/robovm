@@ -53,7 +53,9 @@ import org.robovm.apple.corelocation.*;
     public UIPageViewController() {}
     protected UIPageViewController(Handle h, long handle) { super(h, handle); }
     protected UIPageViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTransitionStyle:navigationOrientation:options:")
     public UIPageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerOptions options) { super((SkipInit) null); initObject(init(style, navigationOrientation, options)); }
+    @Method(selector = "initWithCoder:")
     public UIPageViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/

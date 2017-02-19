@@ -426,6 +426,9 @@ values:
     kCA(OnOrderIn|OnOrderOut|Transition):
         class: CAActionIdentifier
         name: '#{g[0]}'
+    kCAContentsFormat(.*):
+        class: CALayerContentsFormat
+        name: '#{g[0]}'
 
     # CAMediaTiming
     kCAFillMode(.*):

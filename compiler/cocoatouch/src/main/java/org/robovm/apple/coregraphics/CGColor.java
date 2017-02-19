@@ -137,6 +137,11 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CGColorCreateCopyWithAlpha", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColor createCopy(CGColor color, @MachineSizedFloat double alpha);
     /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CGColorCreateCopyByMatchingToColorSpace", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColor createCopy(CGColorSpace p0, CGColorRenderingIntent intent, CGColor color, NSDictionary options);
+    /**
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="CGColorEqualToColor", optional=true)

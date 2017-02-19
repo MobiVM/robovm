@@ -45,8 +45,11 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSBatchUpdateRequest() {}
+    protected NSBatchUpdateRequest(Handle h, long handle) { super(h, handle); }
     protected NSBatchUpdateRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithEntityName:")
     public NSBatchUpdateRequest(String entityName) { super((SkipInit) null); initObject(init(entityName)); }
+    @Method(selector = "initWithEntity:")
     public NSBatchUpdateRequest(NSEntityDescription entity) { super((SkipInit) null); initObject(init(entity)); }
     /*</constructors>*/
     /*<properties>*/

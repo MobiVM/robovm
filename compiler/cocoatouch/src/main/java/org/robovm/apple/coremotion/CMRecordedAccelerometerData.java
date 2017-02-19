@@ -31,9 +31,7 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 2.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreMotion") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CMRecordedAccelerometerData/*</name>*/ 
@@ -45,6 +43,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CMRecordedAccelerometerData() {}
+    protected CMRecordedAccelerometerData(Handle h, long handle) { super(h, handle); }
     protected CMRecordedAccelerometerData(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

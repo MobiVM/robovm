@@ -53,8 +53,11 @@ import org.robovm.apple.corelocation.*;
     public UITableViewController() {}
     protected UITableViewController(Handle h, long handle) { super(h, handle); }
     protected UITableViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithStyle:")
     public UITableViewController(UITableViewStyle style) { super((SkipInit) null); initObject(init(style)); }
+    @Method(selector = "initWithNibName:bundle:")
     public UITableViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
     public UITableViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

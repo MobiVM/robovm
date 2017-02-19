@@ -68,7 +68,9 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 10.0 and later.
      */
+    @Method(selector = "initWithFireDate:interval:repeats:block:")
     public NSTimer(NSDate date, double interval, boolean repeats, @Block VoidBlock1<NSTimer> block) { super((SkipInit) null); initObject(init(date, interval, repeats, block)); }
+    @Method(selector = "initWithFireDate:interval:target:selector:userInfo:repeats:")
     public NSTimer(NSDate fireDate, double timeInterval, NSObject target, Selector selector, NSObject userInfo, boolean repeats) { super((SkipInit) null); initObject(init(fireDate, timeInterval, target, selector, userInfo, repeats)); }
     /*</constructors>*/
     public NSTimer(NSDate fireDate, double timeInterval, VoidBlock1<NSTimer> run, boolean repeats) {

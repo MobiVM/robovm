@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIKeyCommand() {}
     protected UIKeyCommand(Handle h, long handle) { super(h, handle); }
     protected UIKeyCommand(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UIKeyCommand(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     public UIKeyCommand(String input, UIKeyModifierFlags modifierFlags, Selector action) { super((Handle) null, create(input, modifierFlags, action)); retain(getHandle()); }
     /**

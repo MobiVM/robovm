@@ -55,8 +55,11 @@ import org.robovm.apple.dispatch.*;
     public NSDateInterval() {}
     protected NSDateInterval(Handle h, long handle) { super(h, handle); }
     protected NSDateInterval(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public NSDateInterval(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    @Method(selector = "initWithStartDate:duration:")
     public NSDateInterval(NSDate startDate, double duration) { super((SkipInit) null); initObject(init(startDate, duration)); }
+    @Method(selector = "initWithStartDate:endDate:")
     public NSDateInterval(NSDate startDate, NSDate endDate) { super((SkipInit) null); initObject(init(startDate, endDate)); }
     /*</constructors>*/
     /*<properties>*/

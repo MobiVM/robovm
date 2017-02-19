@@ -177,7 +177,11 @@ functions:
         class: CoreAudio
         name: 'Function__#{g[0]}'
 
-values:   
+values:
+    kAudioStreamAnyRate:
+        class: AudioStreamBasicDescription
+        name: 'AnyRate'
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (Audio.*):
         class: CoreAudio

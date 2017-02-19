@@ -54,6 +54,7 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     protected NSDataDetector(Handle h, long handle) { super(h, handle); }
     protected NSDataDetector(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTypes:error:")
     public NSDataDetector(NSTextCheckingType checkingTypes) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();

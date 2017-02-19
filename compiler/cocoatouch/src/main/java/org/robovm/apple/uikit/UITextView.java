@@ -84,7 +84,9 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @Method(selector = "initWithFrame:textContainer:")
     public UITextView(@ByVal CGRect frame, NSTextContainer textContainer) { super((SkipInit) null); initObject(init(frame, textContainer)); }
+    @Method(selector = "initWithCoder:")
     public UITextView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     

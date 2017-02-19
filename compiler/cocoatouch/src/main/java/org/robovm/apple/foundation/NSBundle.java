@@ -75,6 +75,7 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
+    @Method(selector = "initWithURL:")
     public NSBundle(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
     

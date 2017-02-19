@@ -47,7 +47,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CBMutableCharacteristic() {}
+    protected CBMutableCharacteristic(Handle h, long handle) { super(h, handle); }
     protected CBMutableCharacteristic(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithType:properties:value:permissions:")
     public CBMutableCharacteristic(CBUUID UUID, CBCharacteristicProperties properties, NSData value, CBAttributePermissions permissions) { super((SkipInit) null); initObject(init(UUID, properties, value, permissions)); }
     /*</constructors>*/
     /*<properties>*/

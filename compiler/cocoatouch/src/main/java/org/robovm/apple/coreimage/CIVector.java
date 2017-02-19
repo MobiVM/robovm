@@ -34,40 +34,51 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 5.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIVector/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class CIVectorPtr extends Ptr<CIVector, CIVectorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CIVector.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CIVector() {}
+    protected CIVector(Handle h, long handle) { super(h, handle); }
     protected CIVector(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithX:")
     public CIVector(@MachineSizedFloat double x) { super((SkipInit) null); initObject(init(x)); }
+    @Method(selector = "initWithX:Y:")
     public CIVector(@MachineSizedFloat double x, @MachineSizedFloat double y) { super((SkipInit) null); initObject(init(x, y)); }
+    @Method(selector = "initWithX:Y:Z:")
     public CIVector(@MachineSizedFloat double x, @MachineSizedFloat double y, @MachineSizedFloat double z) { super((SkipInit) null); initObject(init(x, y, z)); }
+    @Method(selector = "initWithX:Y:Z:W:")
     public CIVector(@MachineSizedFloat double x, @MachineSizedFloat double y, @MachineSizedFloat double z, @MachineSizedFloat double w) { super((SkipInit) null); initObject(init(x, y, z, w)); }
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @Method(selector = "initWithCGPoint:")
     public CIVector(@ByVal CGPoint p) { super((SkipInit) null); initObject(init(p)); }
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @Method(selector = "initWithCGRect:")
     public CIVector(@ByVal CGRect r) { super((SkipInit) null); initObject(init(r)); }
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @Method(selector = "initWithCGAffineTransform:")
     public CIVector(@ByVal CGAffineTransform r) { super((SkipInit) null); initObject(init(r)); }
+    @Method(selector = "initWithString:")
     public CIVector(String representation) { super((SkipInit) null); initObject(init(representation)); }
-    public CIVector(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
 
     public CIVector(double[] values) {
@@ -91,7 +102,33 @@ import org.robovm.apple.uikit.*;
     }
 
     /*<properties>*/
-    
+    @Property(selector = "count")
+    public native @MachineSizedUInt long getCount();
+    @Property(selector = "X")
+    public native @MachineSizedFloat double getX();
+    @Property(selector = "Y")
+    public native @MachineSizedFloat double getY();
+    @Property(selector = "Z")
+    public native @MachineSizedFloat double getZ();
+    @Property(selector = "W")
+    public native @MachineSizedFloat double getW();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "CGPointValue")
+    public native @ByVal CGPoint getCGPointValue();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "CGRectValue")
+    public native @ByVal CGRect getCGRectValue();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "CGAffineTransformValue")
+    public native @ByVal CGAffineTransform getCGAffineTransformValue();
+    @Property(selector = "stringRepresentation")
+    public native String getStringRepresentation();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -124,36 +161,5 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(String representation);
     @Method(selector = "valueAtIndex:")
     public native @MachineSizedFloat double getValueAtIndex(@MachineSizedUInt long index);
-    @Method(selector = "count")
-    public native @MachineSizedUInt long getCount();
-    @Method(selector = "X")
-    public native @MachineSizedFloat double getX();
-    @Method(selector = "Y")
-    public native @MachineSizedFloat double getY();
-    @Method(selector = "Z")
-    public native @MachineSizedFloat double getZ();
-    @Method(selector = "W")
-    public native @MachineSizedFloat double getW();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @Method(selector = "CGPointValue")
-    public native @ByVal CGPoint getCGPointValue();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @Method(selector = "CGRectValue")
-    public native @ByVal CGRect getCGRectValue();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @Method(selector = "CGAffineTransformValue")
-    public native @ByVal CGAffineTransform getCGAffineTransformValue();
-    @Method(selector = "stringRepresentation")
-    public native String getStringRepresentation();
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -53,7 +53,9 @@ import org.robovm.apple.corelocation.*;
     public UIFontDescriptor() {}
     protected UIFontDescriptor(Handle h, long handle) { super(h, handle); }
     protected UIFontDescriptor(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UIFontDescriptor(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithFontAttributes:")
     public UIFontDescriptor(UIFontDescriptorAttributes attributes) { super((SkipInit) null); initObject(init(attributes)); }
     public UIFontDescriptor(String fontName, @MachineSizedFloat double size) { super((Handle) null, create(fontName, size)); retain(getHandle()); }
     public UIFontDescriptor(String fontName, @ByVal CGAffineTransform matrix) { super((Handle) null, create(fontName, matrix)); retain(getHandle()); }

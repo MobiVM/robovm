@@ -53,7 +53,9 @@ import org.robovm.apple.corelocation.*;
     public UINavigationItem() {}
     protected UINavigationItem(Handle h, long handle) { super(h, handle); }
     protected UINavigationItem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTitle:")
     public UINavigationItem(String title) { super((SkipInit) null); initObject(init(title)); }
+    @Method(selector = "initWithCoder:")
     public UINavigationItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/

@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UITextInputStringTokenizer() {}
     protected UITextInputStringTokenizer(Handle h, long handle) { super(h, handle); }
     protected UITextInputStringTokenizer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTextInput:")
     public UITextInputStringTokenizer(UITextInput textInput) { super((SkipInit) null); initObject(init(textInput)); }
     /*</constructors>*/
     /*<properties>*/

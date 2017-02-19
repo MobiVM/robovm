@@ -102,7 +102,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSPersistentStoreCoordinator() {}
+    protected NSPersistentStoreCoordinator(Handle h, long handle) { super(h, handle); }
     protected NSPersistentStoreCoordinator(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithManagedObjectModel:")
     public NSPersistentStoreCoordinator(NSManagedObjectModel model) { super((SkipInit) null); initObject(init(model)); }
     /*</constructors>*/
     /*<properties>*/
@@ -120,6 +122,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setName:")
     public native void setName(String v);
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
+    @Property(selector = "registeredStoreTypes")
+    public static native NSDictionary<NSString, NSPersistentStore> getRegisteredStoreTypes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -196,7 +203,9 @@ import org.robovm.apple.foundation.*;
     public static native NSString WillRemoveStoreNotification();
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @GlobalValue(symbol="NSPersistentStoreDidImportUbiquitousContentChangesNotification", optional=true)
     public static native NSString DidImportUbiquitousContentChangesNotification();
     
@@ -219,6 +228,11 @@ import org.robovm.apple.foundation.*;
     }
     @Method(selector = "addPersistentStoreWithType:configuration:URL:options:error:")
     private native NSPersistentStore addPersistentStore(String storeType, String configuration, NSURL storeURL, NSPersistentStoreOptions options, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "addPersistentStoreWithDescription:completionHandler:")
+    public native void addPersistentStoreWithDescription(NSPersistentStoreDescription storeDescription, @Block VoidBlock2<NSPersistentStoreDescription, NSError> block);
     public boolean removePersistentStore(NSPersistentStore store) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = removePersistentStore(store, ptr);
@@ -317,11 +331,6 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 3.0 and later.
      */
-    @Method(selector = "registeredStoreTypes")
-    public static native NSDictionary<NSString, NSPersistentStore> getRegisteredStoreTypes();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "registerStoreClass:forStoreType:")
     public static native void registerStoreClassForType(Class<? extends NSPersistentStore> storeClass, String storeType);
     /**
@@ -389,8 +398,10 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "setMetadata:forPersistentStoreOfType:URL:error:")
     private static native boolean setMetadataForPersistentStoreType(NSPersistentStoreMetadata metadata, String storeType, NSURL url, NSError.NSErrorPtr error);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     public static boolean removeUbiquitousContentAndPersistentStore(NSURL storeURL, NSPersistentStoreOptions options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = removeUbiquitousContentAndPersistentStore(storeURL, options, ptr);
@@ -398,8 +409,10 @@ import org.robovm.apple.foundation.*;
        return result;
     }
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Method(selector = "removeUbiquitousContentAndPersistentStoreAtURL:options:error:")
     private static native boolean removeUbiquitousContentAndPersistentStore(NSURL storeURL, NSPersistentStoreOptions options, NSError.NSErrorPtr error);
     /*</methods>*/

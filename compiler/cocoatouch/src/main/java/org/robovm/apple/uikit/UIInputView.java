@@ -53,7 +53,9 @@ import org.robovm.apple.corelocation.*;
     public UIInputView() {}
     protected UIInputView(Handle h, long handle) { super(h, handle); }
     protected UIInputView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:inputViewStyle:")
     public UIInputView(@ByVal CGRect frame, UIInputViewStyle inputViewStyle) { super((SkipInit) null); initObject(init(frame, inputViewStyle)); }
+    @Method(selector = "initWithCoder:")
     public UIInputView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

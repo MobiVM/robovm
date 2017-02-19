@@ -39,7 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreBluetooth") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CBPeripheralManager/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/CBManager/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class CBPeripheralManagerPtr extends Ptr<CBPeripheralManager, CBPeripheralManagerPtr> {}/*</ptr>*/
@@ -47,13 +47,16 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CBPeripheralManager() {}
+    protected CBPeripheralManager(Handle h, long handle) { super(h, handle); }
     protected CBPeripheralManager(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithDelegate:queue:")
     public CBPeripheralManager(CBPeripheralManagerDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(delegate, queue)); }
     /**
      * @since Available in iOS 7.0 and later.
      */
     @WeaklyLinked
+    @Method(selector = "initWithDelegate:queue:options:")
     public CBPeripheralManager(CBPeripheralManagerDelegate delegate, DispatchQueue queue, CBPeripheralManagerOptions options) { super((SkipInit) null); initObject(init(delegate, queue, options)); }
     /*</constructors>*/
     /*<properties>*/
@@ -61,8 +64,6 @@ import org.robovm.apple.dispatch.*;
     public native CBPeripheralManagerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(CBPeripheralManagerDelegate v);
-    @Property(selector = "state")
-    public native CBPeripheralManagerState getState();
     @Property(selector = "isAdvertising")
     public native boolean isAdvertising();
     /*</properties>*/

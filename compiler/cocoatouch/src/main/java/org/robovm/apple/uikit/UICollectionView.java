@@ -53,7 +53,9 @@ import org.robovm.apple.corelocation.*;
     public UICollectionView() {}
     protected UICollectionView(Handle h, long handle) { super(h, handle); }
     protected UICollectionView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:collectionViewLayout:")
     public UICollectionView(@ByVal CGRect frame, UICollectionViewLayout layout) { super((SkipInit) null); initObject(init(frame, layout)); }
+    @Method(selector = "initWithCoder:")
     public UICollectionView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

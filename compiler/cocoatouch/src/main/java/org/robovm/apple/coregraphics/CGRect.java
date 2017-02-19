@@ -333,4 +333,32 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CGRectApplyAffineTransform", optional=true)
     private static native @ByVal CGRect apply(@ByVal CGRect rect, @ByVal CGAffineTransform t);
     /*</methods>*/
+
+    public double getX() {
+        return this.getOrigin().getX();
+    }
+
+    public double getY() {
+        return this.getOrigin().getY();
+    }
+
+    public CGRect setX(double x) {
+         this.getOrigin().setX(x);
+         return this;
+    }
+
+    public CGRect setY(double y) {
+        this.getOrigin().setY(y);
+        return this;
+    }
+
+    public CGRect setWidth(double w) {
+        this.getSize().setWidth(w);
+        return this;
+    }
+
+    public CGRect setHeight(double h) {
+        this.getSize().setHeight(h);
+        return this;
+    }
 }

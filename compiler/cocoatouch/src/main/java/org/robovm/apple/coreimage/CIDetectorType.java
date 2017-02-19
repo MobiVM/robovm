@@ -34,6 +34,7 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -105,9 +106,13 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 8.0 and later.
      */
     public static final CIDetectorType QRCode = new CIDetectorType("QRCode");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIDetectorType Text = new CIDetectorType("Text");
     /*</constants>*/
     
-    private static /*<name>*/CIDetectorType/*</name>*/[] values = new /*<name>*/CIDetectorType/*</name>*/[] {/*<value_list>*/Face, Rectangle, QRCode/*</value_list>*/};
+    private static /*<name>*/CIDetectorType/*</name>*/[] values = new /*<name>*/CIDetectorType/*</name>*/[] {/*<value_list>*/Face, Rectangle, QRCode, Text/*</value_list>*/};
     
     /*<name>*/CIDetectorType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -145,6 +150,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="CIDetectorTypeQRCode", optional=true)
         public static native NSString QRCode();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="CIDetectorTypeText", optional=true)
+        public static native NSString Text();
         /*</values>*/
     }
 }

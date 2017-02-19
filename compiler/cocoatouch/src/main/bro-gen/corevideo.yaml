@@ -28,6 +28,7 @@ enums:
     CVAttachmentMode: { first: kCVAttachmentMode_ShouldNotPropagate, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
     CVPixelFormatType: { first: kCVPixelFormatType_1Monochrome, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
     CVPixelBufferLockFlags: { first: kCVPixelBufferLock_ReadOnly, prefix: kCVPixelBufferLock_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    CVPixelBufferPoolFlushFlags: { first: kCVPixelBufferPoolFlushExcessBuffers, bits: false, prefix: kCVPixelBufferPoolFlush}
     CVReturn: { first: kCVReturnSuccess }
 
 classes:

@@ -53,7 +53,9 @@ import org.robovm.apple.dispatch.*;
     public NSURLAuthenticationChallenge() {}
     protected NSURLAuthenticationChallenge(Handle h, long handle) { super(h, handle); }
     protected NSURLAuthenticationChallenge(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithProtectionSpace:proposedCredential:previousFailureCount:failureResponse:error:sender:")
     public NSURLAuthenticationChallenge(NSURLProtectionSpace space, NSURLCredential credential, @MachineSizedSInt long previousFailureCount, NSURLResponse response, NSError error, NSURLAuthenticationChallengeSender sender) { super((SkipInit) null); initObject(init(space, credential, previousFailureCount, response, error, sender)); }
+    @Method(selector = "initWithAuthenticationChallenge:sender:")
     public NSURLAuthenticationChallenge(NSURLAuthenticationChallenge challenge, NSURLAuthenticationChallengeSender sender) { super((SkipInit) null); initObject(init(challenge, sender)); }
     /*</constructors>*/
     /*<properties>*/

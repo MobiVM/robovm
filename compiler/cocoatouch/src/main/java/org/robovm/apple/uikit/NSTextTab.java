@@ -53,7 +53,9 @@ import org.robovm.apple.corelocation.*;
     public NSTextTab() {}
     protected NSTextTab(Handle h, long handle) { super(h, handle); }
     protected NSTextTab(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTextAlignment:location:options:")
     public NSTextTab(NSTextAlignment alignment, @MachineSizedFloat double loc, NSTextTabOptions options) { super((SkipInit) null); initObject(init(alignment, loc, options)); }
+    @Method(selector = "initWithCoder:")
     public NSTextTab(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/

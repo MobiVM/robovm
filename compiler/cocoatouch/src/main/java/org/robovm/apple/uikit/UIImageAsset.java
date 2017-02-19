@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIImageAsset() {}
     protected UIImageAsset(Handle h, long handle) { super(h, handle); }
     protected UIImageAsset(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UIImageAsset(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

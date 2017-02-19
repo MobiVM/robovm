@@ -88,7 +88,9 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
+    @Method(selector = "initWithDominantScript:languageMap:")
     public NSOrthography(String script, @org.robovm.rt.bro.annotation.Marshaler(NSOrthography.LanguageMapMarshaler.class) Map<String, List<String>> map) { super((SkipInit) null); initObject(init(script, map)); }
+    @Method(selector = "initWithCoder:")
     public NSOrthography(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

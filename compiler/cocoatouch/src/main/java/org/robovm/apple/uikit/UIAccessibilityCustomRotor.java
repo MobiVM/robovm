@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIAccessibilityCustomRotor() {}
     protected UIAccessibilityCustomRotor(Handle h, long handle) { super(h, handle); }
     protected UIAccessibilityCustomRotor(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:itemSearchBlock:")
     public UIAccessibilityCustomRotor(String name, FunctionPtr itemSearchBlock) { super((SkipInit) null); initObject(init(name, itemSearchBlock)); }
     /*</constructors>*/
     /*<properties>*/

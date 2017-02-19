@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIAccessibilityElement() {}
     protected UIAccessibilityElement(Handle h, long handle) { super(h, handle); }
     protected UIAccessibilityElement(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAccessibilityContainer:")
     public UIAccessibilityElement(UIAccessibilityContainer container) { super((SkipInit) null); initObject(init(container)); }
     /*</constructors>*/
     /*<properties>*/

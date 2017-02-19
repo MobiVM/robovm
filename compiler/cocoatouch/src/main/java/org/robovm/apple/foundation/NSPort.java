@@ -64,6 +64,7 @@ import org.robovm.apple.dispatch.*;
     public NSPort() {}
     protected NSPort(Handle h, long handle) { super(h, handle); }
     protected NSPort(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public NSPort(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/

@@ -55,6 +55,7 @@ import org.robovm.apple.dispatch.*;
     public NSDimension() {}
     protected NSDimension(Handle h, long handle) { super(h, handle); }
     protected NSDimension(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSymbol:converter:")
     public NSDimension(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
     /*</constructors>*/
     /*<properties>*/

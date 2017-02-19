@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIBezierPath() {}
     protected UIBezierPath(Handle h, long handle) { super(h, handle); }
     protected UIBezierPath(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UIBezierPath(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

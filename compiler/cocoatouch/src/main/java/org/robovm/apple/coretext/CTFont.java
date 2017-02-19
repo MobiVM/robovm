@@ -345,7 +345,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 3.2 and later.
      */
     @Bridge(symbol="CTFontCreatePathForGlyph", optional=true)
-    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPath createPath(short glyph, CGAffineTransform transform);
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPath createPath(short glyph, CGAffineTransform matrix);
     /**
      * @since Available in iOS 3.2 and later.
      */

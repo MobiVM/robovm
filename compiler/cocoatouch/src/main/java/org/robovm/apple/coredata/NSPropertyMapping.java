@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSPropertyMapping() {}
+    protected NSPropertyMapping(Handle h, long handle) { super(h, handle); }
     protected NSPropertyMapping(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -47,6 +47,7 @@ import org.robovm.apple.corebluetooth.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CLGeocoder() {}
+    protected CLGeocoder(Handle h, long handle) { super(h, handle); }
     protected CLGeocoder(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -53,6 +53,7 @@ import org.robovm.apple.dispatch.*;
     public NSURLCache() {}
     protected NSURLCache(Handle h, long handle) { super(h, handle); }
     protected NSURLCache(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithMemoryCapacity:diskCapacity:diskPath:")
     public NSURLCache(@MachineSizedUInt long memoryCapacity, @MachineSizedUInt long diskCapacity, String path) { super((SkipInit) null); initObject(init(memoryCapacity, diskCapacity, path)); }
     /*</constructors>*/
     /*<properties>*/

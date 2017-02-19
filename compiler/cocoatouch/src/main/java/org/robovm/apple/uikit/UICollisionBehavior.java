@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UICollisionBehavior() {}
     protected UICollisionBehavior(Handle h, long handle) { super(h, handle); }
     protected UICollisionBehavior(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItems:")
     public UICollisionBehavior(List<UIDynamicItem> items) { super((SkipInit) null); initObject(init(items)); }
     /*</constructors>*/
     /*<properties>*/

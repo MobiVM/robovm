@@ -56,6 +56,7 @@ import org.robovm.apple.dispatch.*;
     @Deprecated protected NSCharacterSet(long handle) { super(handle); }
     protected NSCharacterSet(Handle h, long handle) { super(h, handle); }
     protected NSCharacterSet(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public NSCharacterSet(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     public NSCharacterSet(@ByVal NSRange aRange) { super((Handle) null, create(aRange)); retain(getHandle()); }
     public NSCharacterSet(String aString) { super((Handle) null, create(aString)); retain(getHandle()); }

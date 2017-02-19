@@ -67,6 +67,7 @@ import org.robovm.apple.dispatch.*;
     protected NSCalendar() {}
     protected NSCalendar(Handle h, long handle) { super(h, handle); }
     protected NSCalendar(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCalendarIdentifier:")
     public NSCalendar(NSCalendarIdentifier ident) { super((SkipInit) null); initObject(init(ident)); }
     /*</constructors>*/
     /*<properties>*/

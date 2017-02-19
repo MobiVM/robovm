@@ -126,6 +126,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="kCMTimeZero", optional=true)
     public static native @ByVal CMTime Zero();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCMTimeMappingInvalid", optional=true)
+    public static native @ByVal CMTimeMapping MappingInvalid();
     
     /**
      * @since Available in iOS 4.0 and later.
@@ -141,7 +146,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTimeMakeWithSeconds", optional=true)
-    public static native @ByVal CMTime create(double seconds, int preferredTimeScale);
+    public static native @ByVal CMTime create(double seconds, int preferredTimescale);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -296,5 +301,35 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Bridge(symbol="CMTimeMapDurationFromRangeToRange", optional=true)
     private static native @ByVal CMTime mapDurationFromRangeToRange(@ByVal CMTime dur, @ByVal CMTimeRange fromRange, @ByVal CMTimeRange toRange);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CMTimeMappingMake", optional=true)
+    public static native @ByVal CMTimeMapping mappingMake(@ByVal CMTimeRange source, @ByVal CMTimeRange target);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CMTimeMappingMakeEmpty", optional=true)
+    public static native @ByVal CMTimeMapping mappingMakeEmpty(@ByVal CMTimeRange target);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CMTimeMappingCopyAsDictionary", optional=true)
+    public static native NSDictionary mappingCopyAsDictionary(@ByVal CMTimeMapping mapping, CFAllocator allocator);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CMTimeMappingMakeFromDictionary", optional=true)
+    public static native @ByVal CMTimeMapping mappingMakeFromDictionary(NSDictionary dict);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CMTimeMappingCopyDescription", optional=true)
+    public static native String mappingCopyDescription(CFAllocator allocator, @ByVal CMTimeMapping mapping);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="CMTimeMappingShow", optional=true)
+    public static native void mappingShow(@ByVal CMTimeMapping mapping);
     /*</methods>*/
 }

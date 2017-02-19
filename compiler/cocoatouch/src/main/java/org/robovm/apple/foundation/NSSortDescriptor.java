@@ -62,12 +62,16 @@ import org.robovm.apple.dispatch.*;
     public NSSortDescriptor() {}
     protected NSSortDescriptor(Handle h, long handle) { super(h, handle); }
     protected NSSortDescriptor(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithKey:ascending:")
     public NSSortDescriptor(String key, boolean ascending) { super((SkipInit) null); initObject(init(key, ascending)); }
+    @Method(selector = "initWithKey:ascending:selector:")
     public NSSortDescriptor(String key, boolean ascending, Selector selector) { super((SkipInit) null); initObject(init(key, ascending, selector)); }
+    @Method(selector = "initWithCoder:")
     public NSSortDescriptor(NSCoder coder) { super((SkipInit) null); initObject(initWithCoder$(coder)); }
     /**
      * @since Available in iOS 4.0 and later.
      */
+    @Method(selector = "initWithKey:ascending:comparator:")
     public NSSortDescriptor(String key, boolean ascending, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr) { super((SkipInit) null); initObject(init(key, ascending, cmptr)); }
     /*</constructors>*/
     /*<properties>*/

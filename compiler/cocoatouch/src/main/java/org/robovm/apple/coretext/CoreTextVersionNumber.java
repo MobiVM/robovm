@@ -54,6 +54,8 @@ import org.robovm.apple.uikit.*;
     public static final int Version10_8 = 0x00050000;
     public static final int Version10_9 = 0x00060000;
     public static final int Version10_10 = 0x00070000;
+    public static final int Version10_11 = 0x00080000;
+    public static final int Version10_12 = 0x00090000;
     /*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/

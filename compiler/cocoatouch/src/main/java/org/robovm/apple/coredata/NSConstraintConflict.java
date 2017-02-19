@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSConstraintConflict() {}
+    protected NSConstraintConflict(Handle h, long handle) { super(h, handle); }
     protected NSConstraintConflict(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithConstraint:databaseObject:databaseSnapshot:conflictingObjects:conflictingSnapshots:")
     public NSConstraintConflict(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> constraint, NSManagedObject databaseObject, NSDictionary<?, ?> databaseSnapshot, NSArray<NSManagedObject> conflictingObjects, NSArray<NSDictionary> conflictingSnapshots) { super((SkipInit) null); initObject(init(constraint, databaseObject, databaseSnapshot, conflictingObjects, conflictingSnapshots)); }
     /*</constructors>*/
     /*<properties>*/

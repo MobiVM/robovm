@@ -177,7 +177,9 @@ import org.robovm.apple.coretext.*;
     public static final CFURLFileSystemProperty LabelNumber = new CFURLFileSystemProperty("LabelNumber");
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     public static final CFURLFileSystemProperty LabelColor = new CFURLFileSystemProperty("LabelColor");
     /**
      * @since Available in iOS 4.0 and later.
@@ -185,11 +187,15 @@ import org.robovm.apple.coretext.*;
     public static final CFURLFileSystemProperty LocalizedLabel = new CFURLFileSystemProperty("LocalizedLabel");
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     public static final CFURLFileSystemProperty EffectiveIcon = new CFURLFileSystemProperty("EffectiveIcon");
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     public static final CFURLFileSystemProperty CustomIcon = new CFURLFileSystemProperty("CustomIcon");
     /**
      * @since Available in iOS 5.0 and later.
@@ -224,6 +230,10 @@ import org.robovm.apple.coretext.*;
      */
     public static final CFURLFileSystemProperty Path = new CFURLFileSystemProperty("Path");
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CFURLFileSystemProperty CanonicalPath = new CFURLFileSystemProperty("CanonicalPath");
+    /**
      * @since Available in iOS 8.0 and later.
      */
     public static final CFURLFileSystemProperty GenerationIdentifier = new CFURLFileSystemProperty("GenerationIdentifier");
@@ -241,7 +251,7 @@ import org.robovm.apple.coretext.*;
     public static final CFURLFileSystemProperty FileProtection = new CFURLFileSystemProperty("FileProtection");
     /*</constants>*/
     
-    private static /*<name>*/CFURLFileSystemProperty/*</name>*/[] values = new /*<name>*/CFURLFileSystemProperty/*</name>*/[] {/*<value_list>*/Name, LocalizedName, IsRegularFile, IsDirectory, IsSymbolicLink, IsVolume, IsPackage, IsApplication, IsSystemImmutable, IsUserImmutable, IsHidden, HasHiddenExtension, CreationDate, ContentAccessDate, ContentModificationDate, AttributeModificationDate, LinkCount, ParentDirectoryURL, TypeIdentifier, LocalizedTypeDescription, LabelNumber, LabelColor, LocalizedLabel, EffectiveIcon, CustomIcon, FileResourceIdentifier, PreferredIOBlockSize, IsReadable, IsWritable, IsExecutable, FileSecurity, IsExcludedFromBackup, Path, GenerationIdentifier, DocumentIdentifier, AddedToDirectoryDate, FileProtection/*</value_list>*/};
+    private static /*<name>*/CFURLFileSystemProperty/*</name>*/[] values = new /*<name>*/CFURLFileSystemProperty/*</name>*/[] {/*<value_list>*/Name, LocalizedName, IsRegularFile, IsDirectory, IsSymbolicLink, IsVolume, IsPackage, IsApplication, IsSystemImmutable, IsUserImmutable, IsHidden, HasHiddenExtension, CreationDate, ContentAccessDate, ContentModificationDate, AttributeModificationDate, LinkCount, ParentDirectoryURL, TypeIdentifier, LocalizedTypeDescription, LabelNumber, LabelColor, LocalizedLabel, EffectiveIcon, CustomIcon, FileResourceIdentifier, PreferredIOBlockSize, IsReadable, IsWritable, IsExecutable, FileSecurity, IsExcludedFromBackup, Path, CanonicalPath, GenerationIdentifier, DocumentIdentifier, AddedToDirectoryDate, FileProtection/*</value_list>*/};
     
     /*<name>*/CFURLFileSystemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -371,7 +381,9 @@ import org.robovm.apple.coretext.*;
         public static native CFString LabelNumber();
         /**
          * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
          */
+        @Deprecated
         @GlobalValue(symbol="kCFURLLabelColorKey", optional=true)
         public static native CFString LabelColor();
         /**
@@ -381,12 +393,16 @@ import org.robovm.apple.coretext.*;
         public static native CFString LocalizedLabel();
         /**
          * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
          */
+        @Deprecated
         @GlobalValue(symbol="kCFURLEffectiveIconKey", optional=true)
         public static native CFString EffectiveIcon();
         /**
          * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
          */
+        @Deprecated
         @GlobalValue(symbol="kCFURLCustomIconKey", optional=true)
         public static native CFString CustomIcon();
         /**
@@ -429,6 +445,11 @@ import org.robovm.apple.coretext.*;
          */
         @GlobalValue(symbol="kCFURLPathKey", optional=true)
         public static native CFString Path();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCFURLCanonicalPathKey", optional=true)
+        public static native CFString CanonicalPath();
         /**
          * @since Available in iOS 8.0 and later.
          */

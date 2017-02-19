@@ -53,9 +53,13 @@ import org.robovm.apple.corelocation.*;
     public UISpringTimingParameters() {}
     protected UISpringTimingParameters(Handle h, long handle) { super(h, handle); }
     protected UISpringTimingParameters(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UISpringTimingParameters(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithDampingRatio:initialVelocity:")
     public UISpringTimingParameters(@MachineSizedFloat double ratio, @ByVal CGVector velocity) { super((SkipInit) null); initObject(init(ratio, velocity)); }
+    @Method(selector = "initWithMass:stiffness:damping:initialVelocity:")
     public UISpringTimingParameters(@MachineSizedFloat double mass, @MachineSizedFloat double stiffness, @MachineSizedFloat double damping, @ByVal CGVector velocity) { super((SkipInit) null); initObject(init(mass, stiffness, damping, velocity)); }
+    @Method(selector = "initWithDampingRatio:")
     public UISpringTimingParameters(@MachineSizedFloat double ratio) { super((SkipInit) null); initObject(init(ratio)); }
     /*</constructors>*/
     /*<properties>*/

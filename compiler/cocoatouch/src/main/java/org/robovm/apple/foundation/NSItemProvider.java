@@ -55,7 +55,9 @@ import org.robovm.apple.dispatch.*;
     public NSItemProvider() {}
     protected NSItemProvider(Handle h, long handle) { super(h, handle); }
     protected NSItemProvider(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItem:typeIdentifier:")
     public NSItemProvider(NSObject item, String typeIdentifier) { super((SkipInit) null); initObject(init(item, typeIdentifier)); }
+    @Method(selector = "initWithContentsOfURL:")
     public NSItemProvider(NSURL fileURL) { super((SkipInit) null); initObject(init(fileURL)); }
     /*</constructors>*/
     /*<properties>*/

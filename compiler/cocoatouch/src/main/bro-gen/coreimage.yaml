@@ -1,5 +1,5 @@
 package: org.robovm.apple.coreimage
-include: [foundation.yaml, corefoundation.yaml, coregraphics.yaml, opengles.yaml, corevideo.yaml, imageio.yaml, uikit.yaml]
+include: [foundation.yaml, corefoundation.yaml, coregraphics.yaml, opengles.yaml, corevideo.yaml, imageio.yaml, uikit.yaml, metal.yaml]
 library: CoreImage
 framework: CoreImage
 clang_args: ['-x', 'objective-c']
@@ -10,19 +10,24 @@ enums:
 
 classes:
     CIColor: # DONE
+        properties:
+            'components':
+                visibility: protected
         methods:
             '-initWithCGColor:':
                 exclude: true
+            '-initWithRed:green:blue:alpha:':
+                exclude: true # as conflicts with constructors in ios9+
+            '-initWithRed:green:blue:':
+                exclude: true # as conflicts with constructors in ios9+
             '-init.*':
                 name: init
             '+color.*':
-                name: init
+                name: create # as conflicts with constructors in ios9+
                 visibility: protected
                 return_type: '@Pointer long'
             '-(alpha|blue|colorSpace|green|numberOfComponents|red|stringRepresentation)':
                 property: true
-            '-components':
-                visibility: protected
     CIColorKernel: # DONE
         methods:
             '-applyWithExtent:arguments:':
@@ -30,15 +35,28 @@ classes:
                 parameters:
                     args:
                         type: NSArray<?>
+            '+kernelWithString:':
+                exclude: true # present in parent protocol
+
     CIContext: # DONE
         methods:
-            '+context.*':
+            '-init.*':
                 name: init
+                visibility: protected
+                parameters:
+                    options:
+                        name: options
+                        type: CIContextOptions
+            '+context.*':
+                name: create
                 visibility: protected
                 return_type: '@Pointer long'
                 annotations: ['@WeaklyLinked']
                 parameters:
                     dict:
+                        name: options
+                        type: CIContextOptions
+                    options:
                         name: options
                         type: CIContextOptions
             '-(inputImageMaximumSize|outputImageMaximumSize)':
@@ -56,6 +74,14 @@ classes:
                 name: createCGLayer
                 return_marshaler: CFType.NoRetainMarshaler
                 annotations: ['@WeaklyLinked']
+            '-TIFFRepresentationOfImage:format:colorSpace:options:':
+                name: tiffRepresentationOfImage
+            '-JPEGRepresentationOfImage:colorSpace:options:':
+                name: jpegRepresentationOfImage
+            '-writeTIFFRepresentationOfImage:toURL:format:colorSpace:options:error:':
+                trim_after_first_colon: true
+            '-writeJPEGRepresentationOfImage:toURL:colorSpace:options:error:':
+                trim_after_first_colon: true
     CIDetector: # DONE
         methods:
             '+detectorOfType:context:options:':
@@ -89,11 +115,13 @@ classes:
                 name: deserializeFromXMP
                 return_type: NSArray<CIFilter>
                 throws: NSErrorException
-            '+filterWithName:withInputParameters:':
+            '+filterWith.*':
                 name: create
                 parameters:
                     params:
                         type: CIFilterInputParameters
+                    params:
+                        options: CIFilterInputParameters
             '+filterNames.*':
                 name: getFilterNames
                 return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
@@ -110,6 +138,17 @@ classes:
             '-(inputKeys|outputKeys)':
                 property: true
                 return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            '+registerFilterName:constructor:classAttributes:':
+                name: register
+            '+localizedNameForFilterName:':
+                trim_after_first_colon: true
+            '+localizedNameForCategory:':
+                trim_after_first_colon: true
+            '+localizedDescriptionForFilterName:':
+                trim_after_first_colon: true
+            '+localizedReferenceDocumentationForFilterName:':
+                trim_after_first_colon: true
+
     CIImage: # DONE
         methods:
             '-initWithCVPixelBuffer:.*':
@@ -121,6 +160,8 @@ classes:
                     d:
                         type: CIImageOptions
                     dict:
+                        type: CIImageOptions
+                    options:
                         type: CIImageOptions
             '+imageWith.*':
                 exclude: true
@@ -199,8 +240,14 @@ classes:
                         type: '@Block("@ByVal (,@ByVal)") Block2<Integer, CGRect, CGRect>'
                     args:
                         type: NSArray<?>
+            '+kernelWithString:':
+                exclude: true # present in parent protocol
 
 protocols:
+    CIFilterConstructor:
+        protocols: [NSObjectProtocol]
+        skip_adapter: true
+
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -275,6 +322,18 @@ values:
         dictionary: CIFilterInputParameters
         name: '#{g[0]}'
         type: NSString
+    kCISupportedDecoderVersionsKey:
+        dictionary: CIFilterInputParameters
+        name: 'SupportedDecoderVersions'
+    kCIInputLinearSpaceFilter:
+        dictionary: CIFilterInputParameters
+        name: 'LinearSpaceFilter'
+    kCIOutputNativeSizeKey:
+        dictionary: CIFilterInputParameters
+        name: 'NativeSize'
+    kCIActiveKeys:
+        dictionary: CIFilterInputParameters
+        name: 'ActiveKeys'
     kCI(OutputImage)Key:
         dictionary: CIFilterInputParameters
         name: '#{g[0]}'
@@ -372,6 +431,24 @@ values:
                 annotations: ['@WeaklyLinked']
                 type: CGImageProperties
                 hint: GlobalValueDictionaryWrapper<NSString>
+
+    # CIUIParameterSet
+    kCIUIParameterSet:
+        name: 'Set'
+        class: CIUIParameterSet
+    kCIUISet(.*):
+        name: '#{g[0]}'
+        class: CIUIParameterSet
+
+    #CIFeatureType
+    CIFeatureType(.*):
+        name: '#{g[0]}'
+        class: CIFeatureType
+
+    #CISamplerType
+    kCISampler(.*):
+        name: '#{g[0]}'
+        class: CISamplerType
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CI.*):

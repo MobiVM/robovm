@@ -45,9 +45,12 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSManagedObjectModel() {}
+    protected NSManagedObjectModel(Handle h, long handle) { super(h, handle); }
     protected NSManagedObjectModel(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithContentsOfURL:")
     public NSManagedObjectModel(NSURL url) { super((SkipInit) null); initObject(init(url)); }
-    public NSManagedObjectModel(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithCoder:")
+    public NSManagedObjectModel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "entitiesByName")
@@ -119,6 +122,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

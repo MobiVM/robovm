@@ -52,11 +52,14 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     protected NSOutputStream(Handle h, long handle) { super(h, handle); }
     protected NSOutputStream(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initToMemory")
     public NSOutputStream() { super((SkipInit) null); initObject(init()); }
     /**
      * @since Available in iOS 4.0 and later.
      */
+    @Method(selector = "initWithURL:append:")
     public NSOutputStream(NSURL url, boolean shouldAppend) { super((SkipInit) null); initObject(init(url, shouldAppend)); }
+    @Method(selector = "initToFileAtPath:append:")
     public NSOutputStream(String path, boolean shouldAppend) { super((SkipInit) null); initObject(init(path, shouldAppend)); }
     /*</constructors>*/
     public NSOutputStream(byte[] bytes) {

@@ -98,6 +98,11 @@ import org.robovm.apple.metal.*;
      */
     @GlobalValue(symbol="kCVPixelBufferPoolFreeBufferNotification", optional=true)
     public static native NSString FreeBufferNotification();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    @GlobalValue(symbol="kCVPixelBufferPoolFreeBufferNotification", optional=true)
+    public static native void FreeBufferNotification(NSString v);
     
     /**
      * @since Available in iOS 4.0 and later.
@@ -129,5 +134,7 @@ import org.robovm.apple.metal.*;
      */
     @Bridge(symbol="CVPixelBufferPoolCreatePixelBufferWithAuxAttributes", optional=true)
     private static native CVReturn createPixelBuffer(CFAllocator allocator, CVPixelBufferPool pixelBufferPool, CVPixelBufferPoolAuxiliaryAttributes auxAttributes, CVPixelBuffer.CVPixelBufferPtr pixelBufferOut);
+    @Bridge(symbol="CVPixelBufferPoolFlush", optional=true)
+    public native void flush(CVPixelBufferPoolFlushFlags options);
     /*</methods>*/
 }

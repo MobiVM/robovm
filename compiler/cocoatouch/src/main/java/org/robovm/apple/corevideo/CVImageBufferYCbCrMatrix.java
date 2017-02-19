@@ -102,9 +102,21 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 4.0 and later.
      */
     public static final CVImageBufferYCbCrMatrix SMPTE_240M_1995 = new CVImageBufferYCbCrMatrix("SMPTE_240M_1995");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CVImageBufferYCbCrMatrix DCI_P3 = new CVImageBufferYCbCrMatrix("DCI_P3");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CVImageBufferYCbCrMatrix P3_D65 = new CVImageBufferYCbCrMatrix("P3_D65");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CVImageBufferYCbCrMatrix ITU_R_2020 = new CVImageBufferYCbCrMatrix("ITU_R_2020");
     /*</constants>*/
     
-    private static /*<name>*/CVImageBufferYCbCrMatrix/*</name>*/[] values = new /*<name>*/CVImageBufferYCbCrMatrix/*</name>*/[] {/*<value_list>*/ITU_R_709_2, ITU_R_601_4, SMPTE_240M_1995/*</value_list>*/};
+    private static /*<name>*/CVImageBufferYCbCrMatrix/*</name>*/[] values = new /*<name>*/CVImageBufferYCbCrMatrix/*</name>*/[] {/*<value_list>*/ITU_R_709_2, ITU_R_601_4, SMPTE_240M_1995, DCI_P3, P3_D65, ITU_R_2020/*</value_list>*/};
     
     /*<name>*/CVImageBufferYCbCrMatrix/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -142,6 +154,21 @@ import org.robovm.apple.metal.*;
          */
         @GlobalValue(symbol="kCVImageBufferYCbCrMatrix_SMPTE_240M_1995", optional=true)
         public static native CFString SMPTE_240M_1995();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferYCbCrMatrix_DCI_P3", optional=true)
+        public static native CFString DCI_P3();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferYCbCrMatrix_P3_D65", optional=true)
+        public static native CFString P3_D65();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferYCbCrMatrix_ITU_R_2020", optional=true)
+        public static native CFString ITU_R_2020();
         /*</values>*/
     }
 }

@@ -34,6 +34,7 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -97,14 +98,12 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 6.0 and later.
      */
     public static final CIFormat ARGB8 = new CIFormat("ARGB8");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CIFormat BGRA8 = new CIFormat("BGRA8");
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public static final CIFormat RGBA8 = new CIFormat("RGBA8");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat ABGR8 = new CIFormat("ABGR8");
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -113,9 +112,57 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 6.0 and later.
      */
     public static final CIFormat RGBAh = new CIFormat("RGBAh");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat A8 = new CIFormat("A8");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat A16 = new CIFormat("A16");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat Ah = new CIFormat("Ah");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat Af = new CIFormat("Af");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat R8 = new CIFormat("R8");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat R16 = new CIFormat("R16");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat Rh = new CIFormat("Rh");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat Rf = new CIFormat("Rf");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat RG8 = new CIFormat("RG8");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat RG16 = new CIFormat("RG16");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat RGh = new CIFormat("RGh");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CIFormat RGf = new CIFormat("RGf");
     /*</constants>*/
     
-    private static /*<name>*/CIFormat/*</name>*/[] values = new /*<name>*/CIFormat/*</name>*/[] {/*<value_list>*/ARGB8, BGRA8, RGBA8, RGBAf, RGBAh/*</value_list>*/};
+    private static /*<name>*/CIFormat/*</name>*/[] values = new /*<name>*/CIFormat/*</name>*/[] {/*<value_list>*/ARGB8, BGRA8, RGBA8, ABGR8, RGBAf, RGBAh, A8, A16, Ah, Af, R8, R16, Rh, Rf, RG8, RG16, RGh, RGf/*</value_list>*/};
     
     /*<name>*/CIFormat/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -143,16 +190,15 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCIFormatARGB8", optional=true)
         public static native int ARGB8();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIFormatBGRA8", optional=true)
         public static native int BGRA8();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="kCIFormatRGBA8", optional=true)
         public static native int RGBA8();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatABGR8", optional=true)
+        public static native int ABGR8();
         /**
          * @since Available in iOS 7.0 and later.
          */
@@ -163,6 +209,66 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCIFormatRGBAh", optional=true)
         public static native int RGBAh();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatA8", optional=true)
+        public static native int A8();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatA16", optional=true)
+        public static native int A16();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatAh", optional=true)
+        public static native int Ah();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatAf", optional=true)
+        public static native int Af();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatR8", optional=true)
+        public static native int R8();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatR16", optional=true)
+        public static native int R16();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatRh", optional=true)
+        public static native int Rh();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatRf", optional=true)
+        public static native int Rf();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatRG8", optional=true)
+        public static native int RG8();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatRG16", optional=true)
+        public static native int RG16();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatRGh", optional=true)
+        public static native int RGh();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatRGf", optional=true)
+        public static native int RGf();
         /*</values>*/
     }
 }

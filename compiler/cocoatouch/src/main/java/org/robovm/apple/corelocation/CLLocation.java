@@ -47,12 +47,16 @@ import org.robovm.apple.corebluetooth.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CLLocation() {}
+    protected CLLocation(Handle h, long handle) { super(h, handle); }
     protected CLLocation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLatitude:longitude:")
     public CLLocation(double latitude, double longitude) { super((SkipInit) null); initObject(init(latitude, longitude)); }
+    @Method(selector = "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:")
     public CLLocation(@ByVal CLLocationCoordinate2D coordinate, double altitude, double hAccuracy, double vAccuracy, NSDate timestamp) { super((SkipInit) null); initObject(init(coordinate, altitude, hAccuracy, vAccuracy, timestamp)); }
     /**
      * @since Available in iOS 4.2 and later.
      */
+    @Method(selector = "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:")
     public CLLocation(@ByVal CLLocationCoordinate2D coordinate, double altitude, double hAccuracy, double vAccuracy, double course, double speed, NSDate timestamp) { super((SkipInit) null); initObject(init(coordinate, altitude, hAccuracy, vAccuracy, course, speed, timestamp)); }
     /*</constructors>*/
     /*<properties>*/

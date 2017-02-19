@@ -54,6 +54,7 @@ import org.robovm.apple.dispatch.*;
     public NSData() {}
     protected NSData(Handle h, long handle) { super(h, handle); }
     protected NSData(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithData:")
     public NSData(NSData data) { super((SkipInit) null); initObject(init(data)); }
     /*</constructors>*/
     
