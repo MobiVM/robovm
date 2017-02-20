@@ -58,6 +58,7 @@ enums:
     AudioQueueProperty2: {first: kAudioQueueProperty_HardwareCodecPolicy, prefix: kAudioQueueProperty_, merge_with: AudioQueueProperty}
     AudioQueueProperty3: {first: kAudioQueueProperty_ChannelAssignments, prefix: kAudioQueueProperty_, merge_with: AudioQueueProperty}
     AudioQueuePitchAlgorithm: {first: kAudioQueueTimePitchAlgorithm_Spectral, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler}
+    AudioQueuePitchAlgorithm2: {first: kAudioQueueTimePitchAlgorithm_LowQualityZeroLatency, prefix: kAudioQueueTimePitchAlgorithm_, merge_with: AudioQueuePitchAlgorithm}
     AudioQueueHardwareCodecPolicy: {first: kAudioQueueHardwareCodecPolicy_Default, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler}
     AudioQueueParam: {first: kAudioQueueParam_Volume, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler}
     AudioQueueProcessingTapFlags: {first: kAudioQueueProcessingTap_PreEffects, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
@@ -98,6 +99,10 @@ enums:
     Deprecated2: {first: kAudioSessionProperty_AudioRoute, exclude: true}
     Deprecated3: {first: kAudioFormatProperty_HardwareCodecCapabilities, exclude: true}
 
+    AUPropertyID: {first: kAudioUnitProperty_3DMixerDistanceParams, prefix: kAudioUnitProperty_}
+    AUErrors: {first: kAudioUnitErr_IllegalInstrument, prefix: kAudioUnitErr_}
+    AudioFileStreamParseFlags: {prefix: kAudioFileStreamParseFlag_, marshaler: Bits.AsMachineSizedIntMarshaler}
+    AudioFileStreamSeekFlags: {prefix: kAudioFileStreamSeekFlag_, marshaler: Bits.AsMachineSizedIntMarshaler}
 classes:
     OpaqueAudioConverter:
         name: AudioConverter

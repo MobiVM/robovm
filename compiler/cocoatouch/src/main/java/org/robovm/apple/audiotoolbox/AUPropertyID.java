@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,13 +35,21 @@ import org.robovm.apple.coremidi.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 3.0 and later.
+ * @deprecated Deprecated in iOS 9.0.
+ */
+@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/AudioFileStreamSeekFlags/*</name>*/ extends Bits</*<name>*/AudioFileStreamSeekFlags/*</name>*/> {
+/*<annotations>*//*</annotations>*/
+public enum /*<name>*/AUPropertyID/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    public static final AudioFileStreamSeekFlags None = new AudioFileStreamSeekFlags(0L);
-    public static final AudioFileStreamSeekFlags OffsetIsEstimated = new AudioFileStreamSeekFlags(1L);
+    _3DMixerDistanceParams(3010L),
+    _3DMixerAttenuationCurve(3013L),
+    DopplerShift(3002L),
+    _3DMixerRenderingFlags(3003L),
+    _3DMixerDistanceAtten(3004L),
+    ReverbPreset(3012L);
     /*</values>*/
 
     /*<bind>*/
@@ -49,17 +57,17 @@ public final class /*<name>*/AudioFileStreamSeekFlags/*</name>*/ extends Bits</*
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/AudioFileStreamSeekFlags/*</name>*/[] values = _values(/*<name>*/AudioFileStreamSeekFlags/*</name>*/.class);
+    private final long n;
 
-    public /*<name>*/AudioFileStreamSeekFlags/*</name>*/(long value) { super(value); }
-    private /*<name>*/AudioFileStreamSeekFlags/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/AudioFileStreamSeekFlags/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/AudioFileStreamSeekFlags/*</name>*/(value, mask);
-    }
-    protected /*<name>*/AudioFileStreamSeekFlags/*</name>*/[] _values() {
-        return values;
-    }
-    public static /*<name>*/AudioFileStreamSeekFlags/*</name>*/[] values() {
-        return values.clone();
+    private /*<name>*/AUPropertyID/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/AUPropertyID/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AUPropertyID/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/AUPropertyID/*</name>*/.class.getName());
     }
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,11 +37,11 @@ import org.robovm.apple.coremidi.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/AudioFileStreamSeekFlags/*</name>*/ extends Bits</*<name>*/AudioFileStreamSeekFlags/*</name>*/> {
+/*<annotations>*//*</annotations>*/
+public enum /*<name>*/AUErrors/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    public static final AudioFileStreamSeekFlags None = new AudioFileStreamSeekFlags(0L);
-    public static final AudioFileStreamSeekFlags OffsetIsEstimated = new AudioFileStreamSeekFlags(1L);
+    IllegalInstrument(-10873L),
+    InstrumentTypeNotFound(-10872L);
     /*</values>*/
 
     /*<bind>*/
@@ -49,17 +49,17 @@ public final class /*<name>*/AudioFileStreamSeekFlags/*</name>*/ extends Bits</*
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/AudioFileStreamSeekFlags/*</name>*/[] values = _values(/*<name>*/AudioFileStreamSeekFlags/*</name>*/.class);
+    private final long n;
 
-    public /*<name>*/AudioFileStreamSeekFlags/*</name>*/(long value) { super(value); }
-    private /*<name>*/AudioFileStreamSeekFlags/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/AudioFileStreamSeekFlags/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/AudioFileStreamSeekFlags/*</name>*/(value, mask);
-    }
-    protected /*<name>*/AudioFileStreamSeekFlags/*</name>*/[] _values() {
-        return values;
-    }
-    public static /*<name>*/AudioFileStreamSeekFlags/*</name>*/[] values() {
-        return values.clone();
+    private /*<name>*/AUErrors/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/AUErrors/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AUErrors/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/AUErrors/*</name>*/.class.getName());
     }
 }
