@@ -48,8 +48,11 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKWebView() {}
+    protected WKWebView(Handle h, long handle) { super(h, handle); }
     protected WKWebView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:configuration:")
     public WKWebView(@ByVal CGRect frame, WKWebViewConfiguration configuration) { super((SkipInit) null); initObject(init(frame, configuration)); }
+    @Method(selector = "initWithCoder:")
     public WKWebView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     public WKWebView(CGRect frame) {
@@ -79,10 +82,10 @@ import org.robovm.apple.security.*;
     @Property(selector = "hasOnlySecureContent")
     public native boolean hasOnlySecureContent();
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    @Property(selector = "certificateChain")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<SecCertificate> getCertificateChain();
+    @Property(selector = "serverTrust")
+    public native SecTrust getServerTrust();
     @Property(selector = "canGoBack")
     public native boolean canGoBack();
     @Property(selector = "canGoForward")
@@ -101,8 +104,25 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setCustomUserAgent:")
     public native void setCustomUserAgent(String v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "allowsLinkPreview")
+    public native boolean allowsLinkPreview();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setAllowsLinkPreview:")
+    public native void setAllowsLinkPreview(boolean v);
     @Property(selector = "scrollView")
     public native UIScrollView getScrollView();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "certificateChain")
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<SecCertificate> getCertificateChain();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

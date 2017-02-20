@@ -48,6 +48,7 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKWindowFeatures() {}
+    protected WKWindowFeatures(Handle h, long handle) { super(h, handle); }
     protected WKWindowFeatures(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public boolean isMenuBarVisible() {

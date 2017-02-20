@@ -48,6 +48,7 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKScriptMessage() {}
+    protected WKScriptMessage(Handle h, long handle) { super(h, handle); }
     protected WKScriptMessage(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

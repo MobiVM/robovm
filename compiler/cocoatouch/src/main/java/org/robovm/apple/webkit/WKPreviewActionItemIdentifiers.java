@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,33 +34,39 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKBackForwardListItem/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<annotations>*/@Library("WebKit")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKPreviewActionItemIdentifiers/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class WKBackForwardListItemPtr extends Ptr<WKBackForwardListItem, WKBackForwardListItemPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(WKBackForwardListItem.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(WKPreviewActionItemIdentifiers.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected WKBackForwardListItem() {}
-    protected WKBackForwardListItem(Handle h, long handle) { super(h, handle); }
-    protected WKBackForwardListItem(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "URL")
-    public native NSURL getURL();
-    @Property(selector = "title")
-    public native String getTitle();
-    @Property(selector = "initialURL")
-    public native NSURL getInitialURL();
-    /*</properties>*/
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="WKPreviewActionItemIdentifierOpen", optional=true)
+    public static native String Open();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="WKPreviewActionItemIdentifierAddToReadingList", optional=true)
+    public static native String AddToReadingList();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="WKPreviewActionItemIdentifierCopy", optional=true)
+    public static native String Copy();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="WKPreviewActionItemIdentifierShare", optional=true)
+    public static native String Share();
     /*</methods>*/
 }
