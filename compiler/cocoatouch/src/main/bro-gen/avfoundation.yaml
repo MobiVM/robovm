@@ -3065,7 +3065,8 @@ constants:
         exclude: true
     AVAudioSessionSetActiveFlags_NotifyOthersOnDeactivation:
         exclude: true
-
+    (AVAUDIOFORMAT_HAVE_CMFORMATDESCRIPTION|AVAUDIOENGINE_HAVE_MUSICPLAYER|AVAUDIOUNIT_HAVE_AUDIOUNIT|AVAUDIOIONODE_HAVE_AUDIOUNIT|AVAUDIOUNITCOMPONENT_HAVE_AUDIOCOMPONENT):
+        exclude: true
     AVMusicTrack(LoopCountForever):
         exclude: true
 
