@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WCSessionFile() {}
+    protected WCSessionFile(Handle h, long handle) { super(h, handle); }
     protected WCSessionFile(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,36 +31,34 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 9.3 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("WatchConnectivity") @StronglyLinked/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/WCError/*</name>*/ 
-    extends /*<extends>*/NSError/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/WCSessionActivationState/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    NotActivated(0L),
+    Inactive(1L),
+    Activated(2L);
+    /*</values>*/
 
-    protected WCError(SkipInit skipInit) {
-        super(skipInit);
-    }
-    
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(WCError.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    @Override
-    public WCErrorCode getErrorCode() {
-        try {
-            return WCErrorCode.valueOf(getCode());
-        } catch (IllegalArgumentException e) {
-            return null;
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/WCSessionActivationState/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/WCSessionActivationState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/WCSessionActivationState/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
         }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/WCSessionActivationState/*</name>*/.class.getName());
     }
-    /*<methods>*/
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @GlobalValue(symbol="WCErrorDomain", optional=true)
-    public static native String getClassDomain();
-    /*</methods>*/
 }

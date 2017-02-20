@@ -46,6 +46,21 @@ import org.robovm.apple.foundation.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "session:activationDidCompleteWithState:error:")
+    void session$activationDidCompleteWithState$error$(WCSession session, WCSessionActivationState activationState, NSError error);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "sessionDidBecomeInactive:")
+    void sessionDidBecomeInactive(WCSession session);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "sessionDidDeactivate:")
+    void sessionDidDeactivate(WCSession session);
     @Method(selector = "sessionWatchStateDidChange:")
     void watchStateDidChange(WCSession session);
     @Method(selector = "sessionReachabilityDidChange:")
