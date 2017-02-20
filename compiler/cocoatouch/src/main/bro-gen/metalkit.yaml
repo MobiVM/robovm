@@ -92,6 +92,10 @@ functions:
     (MTKModelIOVertexDescriptorFromMetal|MTKMetalVertexDescriptorFromModelIO):
         class: MTKTypeConverter
         name: convertVertexDescriptor
+    (MTKModelIOVertexDescriptorFromMetalWithError|MTKMetalVertexDescriptorFromModelIOWithError):
+        class: MTKTypeConverter
+        name: convertVertexDescriptorEx
+        throws: NSErrorException
     (MTKModelIOVertexFormatFromMetal|MTKMetalVertexFormatFromModelIO):
         class: MTKTypeConverter
         name: convertVertexFormat
