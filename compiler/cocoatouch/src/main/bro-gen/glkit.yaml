@@ -42,6 +42,7 @@ classes:
     GLKVector2: {}
     GLKVector3: {}
     GLKVector4: {}
+    GLKVertexAttributeParameters: {}
 
     GLKBaseEffect: # DONE
         properties:
@@ -266,6 +267,13 @@ functions:
             isInvertible:
                 type: BooleanPtr
 
+    GLKVertexAttributeParametersFromModelIO:
+        class: GLKVertexAttributeParameters
+        name: "fromModelIO"
+        parameters:
+            vertexFormat:
+                type: 'org.robovm.apple.modelio.MDLVertexFormat'
+
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?GLK.*):
         class: GLKit
@@ -291,6 +299,11 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: NSErrorUserInfoKey
+
+    # GLKModel
+    kGLKModel(ErrorDomain|ErrorKey):
+        class: GLKModel
+        name: 'get#{g[0]}'
 
     # GLKTextureLoader
     GLKTextureLoader(.*):
