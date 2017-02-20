@@ -768,6 +768,8 @@ functions:
         parameters:
             inUserData:
                 type: '@Pointer long'
+            inCallbackDispatchQueue:
+                type: org.robovm.apple.dispatch.DispatchQueue
     AudioQueue(.*Property.*):
         class: AudioQueue
         name: '#{g[0]}0'
