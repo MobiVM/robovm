@@ -509,6 +509,8 @@ constants:
     GKGameModel(MinScore|MaxScore):
         class: GKGameModel
         name: '#{g[0]}'
+    GK_VERSION:
+        exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?GK.*):
