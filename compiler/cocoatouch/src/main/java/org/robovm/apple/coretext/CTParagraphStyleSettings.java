@@ -15,21 +15,16 @@
  */
 package org.robovm.apple.coretext;
 
-import java.io.*;
-import java.nio.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.bro.*;
-import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
+import org.robovm.apple.corefoundation.CFArray;
 import org.robovm.apple.corefoundation.CFArray.CFArrayPtr;
-import org.robovm.apple.coregraphics.*;
+import org.robovm.rt.bro.ptr.BytePtr;
+import org.robovm.rt.bro.ptr.LongPtr;
+import org.robovm.rt.bro.ptr.MachineSizedFloatPtr;
+import org.robovm.rt.bro.ptr.VoidPtr;
 
 public class CTParagraphStyleSettings {
     private Map<CTParagraphStyleSpecifier, CTParagraphStyleSetting> settings = new HashMap<>();
@@ -80,11 +75,6 @@ public class CTParagraphStyleSettings {
         MachineSizedFloatPtr ptr = new MachineSizedFloatPtr();
         ptr.set(minimumLineHeight);
         setValueForSpecifier(CTParagraphStyleSpecifier.MinimumLineHeight, ptr.as(VoidPtr.class));
-    }
-    public void setLineSpacing(double lineSpacing) {
-        MachineSizedFloatPtr ptr = new MachineSizedFloatPtr();
-        ptr.set(lineSpacing);
-        setValueForSpecifier(CTParagraphStyleSpecifier.LineSpacing, ptr.as(VoidPtr.class));
     }
     public void setParagraphSpacing(double paragraphSpacing) {
         MachineSizedFloatPtr ptr = new MachineSizedFloatPtr();
@@ -151,7 +141,6 @@ public class CTParagraphStyleSettings {
         case LineHeightMultiple:
         case MaximumLineHeight:
         case MinimumLineHeight:
-        case LineSpacing:
         case ParagraphSpacing:
         case ParagraphSpacingBefore:
         case MaximumLineSpacing:
