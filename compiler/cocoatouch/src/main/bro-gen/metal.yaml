@@ -655,6 +655,8 @@ constants:
         exclude: true
     MTLResourceStorageModeShift:
         exclude: true
+    MTLResourceHazardTrackingModeShift:
+        exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?MTL.*):
