@@ -51,8 +51,9 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKPhysicsJointSliding() {}
+    protected SKPhysicsJointSliding(Handle h, long handle) { super(h, handle); }
     protected SKPhysicsJointSliding(SkipInit skipInit) { super(skipInit); }
-    public SKPhysicsJointSliding(SKPhysicsBody bodyA, SKPhysicsBody bodyB, @ByVal CGPoint anchor, @ByVal CGVector axis) { super(create(bodyA, bodyB, anchor, axis)); retain(getHandle()); }
+    public SKPhysicsJointSliding(SKPhysicsBody bodyA, SKPhysicsBody bodyB, @ByVal CGPoint anchor, @ByVal CGVector axis) { super((Handle) null, create(bodyA, bodyB, anchor, axis)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "shouldEnableLimits")

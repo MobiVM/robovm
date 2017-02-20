@@ -53,6 +53,7 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKLightNode() {}
+    protected SKLightNode(Handle h, long handle) { super(h, handle); }
     protected SKLightNode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

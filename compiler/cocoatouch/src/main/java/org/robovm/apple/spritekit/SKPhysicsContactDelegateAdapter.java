@@ -39,6 +39,7 @@ import org.robovm.apple.gameplaykit.*;
 /*</imports>*/
 
 /*<javadoc>*/
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKPhysicsContactDelegateAdapter/*</name>*/ 

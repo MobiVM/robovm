@@ -51,6 +51,7 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKEmitterNode() {}
+    protected SKEmitterNode(Handle h, long handle) { super(h, handle); }
     protected SKEmitterNode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -230,6 +231,10 @@ import org.robovm.apple.gameplaykit.*;
     public native SKShader getShader();
     @Property(selector = "setShader:")
     public native void setShader(SKShader v);
+    @Property(selector = "attributeValues")
+    public native NSDictionary<?, ?> getAttributeValues();
+    @Property(selector = "setAttributeValues:")
+    public native void setAttributeValues(NSDictionary<?, ?> v);
     @Property(selector = "particleZPosition")
     public native @MachineSizedFloat double getParticleZPosition();
     @Property(selector = "setParticleZPosition:")
@@ -279,5 +284,9 @@ import org.robovm.apple.gameplaykit.*;
     public native void advanceSimulationTime(double sec);
     @Method(selector = "resetSimulation")
     public native void resetSimulation();
+    @Method(selector = "valueForAttributeNamed:")
+    public native SKAttributeValue valueForAttribute(String key);
+    @Method(selector = "setValue:forAttributeNamed:")
+    public native void setValueForAttribute(SKAttributeValue value, String key);
     /*</methods>*/
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,40 +39,45 @@ import org.robovm.apple.gameplaykit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 10.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKPhysicsJoint/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKTileGroupRule/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class SKPhysicsJointPtr extends Ptr<SKPhysicsJoint, SKPhysicsJointPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SKPhysicsJoint.class); }/*</bind>*/
+    /*<ptr>*/public static class SKTileGroupRulePtr extends Ptr<SKTileGroupRule, SKTileGroupRulePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(SKTileGroupRule.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public SKPhysicsJoint() {}
-    @Deprecated protected SKPhysicsJoint(long handle) { super(handle); }
-    protected SKPhysicsJoint(Handle h, long handle) { super(h, handle); }
-    protected SKPhysicsJoint(SkipInit skipInit) { super(skipInit); }
+    public SKTileGroupRule() {}
+    protected SKTileGroupRule(Handle h, long handle) { super(h, handle); }
+    protected SKTileGroupRule(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAdjacency:tileDefinitions:")
+    public SKTileGroupRule(SKTileAdjacencyMask adjacency, NSArray<SKTileDefinition> tileDefinitions) { super((SkipInit) null); initObject(init(adjacency, tileDefinitions)); }
     @Method(selector = "initWithCoder:")
-    public SKPhysicsJoint(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKTileGroupRule(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "bodyA")
-    public native SKPhysicsBody getBodyA();
-    @Property(selector = "setBodyA:")
-    public native void setBodyA(SKPhysicsBody v);
-    @Property(selector = "bodyB")
-    public native SKPhysicsBody getBodyB();
-    @Property(selector = "setBodyB:")
-    public native void setBodyB(SKPhysicsBody v);
-    @Property(selector = "reactionForce")
-    public native @ByVal CGVector getReactionForce();
-    @Property(selector = "reactionTorque")
-    public native @MachineSizedFloat double getReactionTorque();
+    @Property(selector = "adjacency")
+    public native SKTileAdjacencyMask getAdjacency();
+    @Property(selector = "setAdjacency:")
+    public native void setAdjacency(SKTileAdjacencyMask v);
+    @Property(selector = "tileDefinitions")
+    public native NSArray<SKTileDefinition> getTileDefinitions();
+    @Property(selector = "setTileDefinitions:")
+    public native void setTileDefinitions(NSArray<SKTileDefinition> v);
+    @Property(selector = "name")
+    public native String getName();
+    @Property(selector = "setName:")
+    public native void setName(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithAdjacency:tileDefinitions:")
+    protected native @Pointer long init(SKTileAdjacencyMask adjacency, NSArray<SKTileDefinition> tileDefinitions);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

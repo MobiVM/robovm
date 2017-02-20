@@ -53,9 +53,12 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKReachConstraints() {}
+    protected SKReachConstraints(Handle h, long handle) { super(h, handle); }
     protected SKReachConstraints(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLowerAngleLimit:upperAngleLimit:")
     public SKReachConstraints(@MachineSizedFloat double lowerAngleLimit, @MachineSizedFloat double upperAngleLimit) { super((SkipInit) null); initObject(init(lowerAngleLimit, upperAngleLimit)); }
-    public SKReachConstraints(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithCoder:")
+    public SKReachConstraints(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lowerAngleLimit")
@@ -74,6 +77,6 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

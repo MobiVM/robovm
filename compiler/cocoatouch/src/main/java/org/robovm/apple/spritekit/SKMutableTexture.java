@@ -53,8 +53,11 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKMutableTexture() {}
+    protected SKMutableTexture(Handle h, long handle) { super(h, handle); }
     protected SKMutableTexture(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSize:")
     public SKMutableTexture(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
+    @Method(selector = "initWithSize:pixelFormat:")
     public SKMutableTexture(@ByVal CGSize size, int format) { super((SkipInit) null); initObject(init(size, format)); }
     /*</constructors>*/
     /*<properties>*/

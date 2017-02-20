@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,28 +39,33 @@ import org.robovm.apple.gameplaykit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 10.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKPhysicsJointFixed/*</name>*/ 
-    extends /*<extends>*/SKPhysicsJoint/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKWarpGeometry/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements NSCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class SKPhysicsJointFixedPtr extends Ptr<SKPhysicsJointFixed, SKPhysicsJointFixedPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SKPhysicsJointFixed.class); }/*</bind>*/
+    /*<ptr>*/public static class SKWarpGeometryPtr extends Ptr<SKWarpGeometry, SKWarpGeometryPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(SKWarpGeometry.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public SKPhysicsJointFixed() {}
-    protected SKPhysicsJointFixed(Handle h, long handle) { super(h, handle); }
-    protected SKPhysicsJointFixed(SkipInit skipInit) { super(skipInit); }
-    public SKPhysicsJointFixed(SKPhysicsBody bodyA, SKPhysicsBody bodyB, @ByVal CGPoint anchor) { super((Handle) null, create(bodyA, bodyB, anchor)); retain(getHandle()); }
+    public SKWarpGeometry() {}
+    protected SKWarpGeometry(Handle h, long handle) { super(h, handle); }
+    protected SKWarpGeometry(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SKWarpGeometry(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "jointWithBodyA:bodyB:anchor:")
-    protected static native @Pointer long create(SKPhysicsBody bodyA, SKPhysicsBody bodyB, @ByVal CGPoint anchor);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

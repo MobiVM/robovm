@@ -53,9 +53,13 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKReferenceNode() {}
+    protected SKReferenceNode(Handle h, long handle) { super(h, handle); }
     protected SKReferenceNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:")
     public SKReferenceNode(NSURL url) { super((SkipInit) null); initObject(init(url)); }
+    @Method(selector = "initWithFileNamed:")
     public SKReferenceNode(String fileName) { super((SkipInit) null); initObject(init(fileName)); }
+    @Method(selector = "initWithCoder:")
     public SKReferenceNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

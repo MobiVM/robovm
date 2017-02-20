@@ -51,25 +51,27 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKAction() {}
+    protected SKAction(Handle h, long handle) { super(h, handle); }
     protected SKAction(SkipInit skipInit) { super(skipInit); }
-    public SKAction(double seconds, @Block("(,@MachineSizedFloat)") VoidBlock2<SKNode, Double> block) { super(create(seconds, block)); retain(getHandle()); }
+    public SKAction(double seconds, @Block("(,@MachineSizedFloat)") VoidBlock2<SKNode, Double> block) { super((Handle) null, create(seconds, block)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public SKAction(String name) { super(create(name)); retain(getHandle()); }
+    public SKAction(String name) { super((Handle) null, create(name)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public SKAction(String name, double sec) { super(create(name, sec)); retain(getHandle()); }
+    public SKAction(String name, double sec) { super((Handle) null, create(name, sec)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public SKAction(String name, NSURL url) { super(create(name, url)); retain(getHandle()); }
+    public SKAction(String name, NSURL url) { super((Handle) null, create(name, url)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public SKAction(String name, NSURL url, double sec) { super(create(name, url, sec)); retain(getHandle()); }
-    public SKAction(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKAction(String name, NSURL url, double sec) { super((Handle) null, create(name, url, sec)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public SKAction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "duration")
@@ -135,6 +137,11 @@ import org.robovm.apple.gameplaykit.*;
     public static native SKAction scaleXTo(@MachineSizedFloat double scale, double sec);
     @Method(selector = "scaleYTo:duration:")
     public static native SKAction scaleYTo(@MachineSizedFloat double scale, double sec);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "scaleToSize:duration:")
+    public static native SKAction scaleToSize(@ByVal CGSize size, double sec);
     @Method(selector = "sequence:")
     public static native SKAction sequence(NSArray<SKAction> actions);
     @Method(selector = "group:")
@@ -374,6 +381,21 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "changeVolumeBy:duration:")
     public static native SKAction changeVolumeBy(float v, double duration);
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "warpTo:duration:")
+    public static native SKAction warp(SKWarpGeometry warp, double duration);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "animateWithWarps:times:")
+    public static native SKAction animateWarps(NSArray<SKWarpGeometry> warps, NSArray<NSNumber> times);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "animateWithWarps:times:restore:")
+    public static native SKAction animateWarps(NSArray<SKWarpGeometry> warps, NSArray<NSNumber> times, boolean restore);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "stereoPanTo:duration:")
@@ -416,6 +438,6 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

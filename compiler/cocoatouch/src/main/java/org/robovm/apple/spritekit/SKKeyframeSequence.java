@@ -51,9 +51,13 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKKeyframeSequence() {}
+    protected SKKeyframeSequence(Handle h, long handle) { super(h, handle); }
     protected SKKeyframeSequence(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithKeyframeValues:times:")
     public SKKeyframeSequence(NSArray<NSObject> values, NSArray<NSNumber> times) { super((SkipInit) null); initObject(init(values, times)); }
+    @Method(selector = "initWithCapacity:")
     public SKKeyframeSequence(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
+    @Method(selector = "initWithCoder:")
     public SKKeyframeSequence(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

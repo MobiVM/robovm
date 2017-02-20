@@ -51,6 +51,7 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKCropNode() {}
+    protected SKCropNode(Handle h, long handle) { super(h, handle); }
     protected SKCropNode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

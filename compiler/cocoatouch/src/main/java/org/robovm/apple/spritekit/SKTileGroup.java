@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,40 +39,51 @@ import org.robovm.apple.gameplaykit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 10.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKPhysicsJoint/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKTileGroup/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class SKPhysicsJointPtr extends Ptr<SKPhysicsJoint, SKPhysicsJointPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SKPhysicsJoint.class); }/*</bind>*/
+    /*<ptr>*/public static class SKTileGroupPtr extends Ptr<SKTileGroup, SKTileGroupPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(SKTileGroup.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public SKPhysicsJoint() {}
-    @Deprecated protected SKPhysicsJoint(long handle) { super(handle); }
-    protected SKPhysicsJoint(Handle h, long handle) { super(h, handle); }
-    protected SKPhysicsJoint(SkipInit skipInit) { super(skipInit); }
+    public SKTileGroup() {}
+    protected SKTileGroup(Handle h, long handle) { super(h, handle); }
+    protected SKTileGroup(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTileDefinition:")
+    public SKTileGroup(SKTileDefinition tileDefinition) { super((SkipInit) null); initObject(initWithTileDefinition(tileDefinition)); }
+    @Method(selector = "initWithRules:")
+    public SKTileGroup(NSArray<SKTileGroupRule> rules) { super((SkipInit) null); initObject(initWithRules(rules)); }
     @Method(selector = "initWithCoder:")
-    public SKPhysicsJoint(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKTileGroup(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "bodyA")
-    public native SKPhysicsBody getBodyA();
-    @Property(selector = "setBodyA:")
-    public native void setBodyA(SKPhysicsBody v);
-    @Property(selector = "bodyB")
-    public native SKPhysicsBody getBodyB();
-    @Property(selector = "setBodyB:")
-    public native void setBodyB(SKPhysicsBody v);
-    @Property(selector = "reactionForce")
-    public native @ByVal CGVector getReactionForce();
-    @Property(selector = "reactionTorque")
-    public native @MachineSizedFloat double getReactionTorque();
+    @Property(selector = "rules")
+    public native NSArray<SKTileGroupRule> getRules();
+    @Property(selector = "setRules:")
+    public native void setRules(NSArray<SKTileGroupRule> v);
+    @Property(selector = "name")
+    public native String getName();
+    @Property(selector = "setName:")
+    public native void setName(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithTileDefinition:")
+    protected native @Pointer long initWithTileDefinition(SKTileDefinition tileDefinition);
+    @Method(selector = "initWithRules:")
+    protected native @Pointer long initWithRules(NSArray<SKTileGroupRule> rules);
+    @Method(selector = "tileGroupWithTileDefinition:")
+    public static native SKTileGroup tileGroupWithTileDefinition(SKTileDefinition tileDefinition);
+    @Method(selector = "tileGroupWithRules:")
+    public static native SKTileGroup tileGroupWithRules(NSArray<SKTileGroupRule> rules);
+    @Method(selector = "emptyTileGroup")
+    public static native SKTileGroup emptyTileGroup();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
