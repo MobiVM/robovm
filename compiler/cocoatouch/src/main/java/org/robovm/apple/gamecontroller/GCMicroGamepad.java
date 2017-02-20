@@ -53,9 +53,9 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "controller")
     public native GCController getController();
     @Property(selector = "valueChangedHandler")
-    public native FunctionPtr getValueChangedHandler();
+    public native @Block VoidBlock2<GCMicroGamepad, GCControllerElement> getValueChangedHandler();
     @Property(selector = "setValueChangedHandler:")
-    public native void setValueChangedHandler(FunctionPtr v);
+    public native void setValueChangedHandler(@Block VoidBlock2<GCMicroGamepad, GCControllerElement> v);
     @Property(selector = "dpad")
     public native GCControllerDirectionPad getDpad();
     @Property(selector = "buttonA")
