@@ -91,6 +91,14 @@ structdefs:
     vector_float2: 'VectorFloat2'
     vector_float3: 'VectorFloat3'
     vector_float4: 'VectorFloat4'
+    matrix_float2x2: 'MatrixFloat2x4'
+    matrix_float3x2: 'MatrixFloat3x4'
+    matrix_float4x2: 'MatrixFloat4x4'
+    matrix_float2x3: 'MatrixFloat2x4'
+    matrix_float3x3: 'MatrixFloat3x4'
+    matrix_float4x3: 'MatrixFloat4x4'
+    matrix_float2x4: 'MatrixFloat2x4'
+    matrix_float3x4: 'MatrixFloat3x4'
     matrix_float4x4: 'MatrixFloat4x4'
 
 private_typedefs:
