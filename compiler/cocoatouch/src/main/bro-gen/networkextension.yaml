@@ -245,6 +245,9 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    NEFilterFlowBytesMax:
+        exclude: true
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?NE.*):
         class: NetworkExtension
