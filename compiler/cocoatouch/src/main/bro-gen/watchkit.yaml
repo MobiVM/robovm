@@ -22,6 +22,9 @@ classes:
     
     WKAccessibilityImageRegion: {} # DONE
     WKInterfaceController: # DONE
+        properties:
+            crownSequencer:
+                exclude: true  # as class is available for watchos only
         methods:
             '-awakeWithContext:':
                 name: awake
