@@ -803,6 +803,8 @@ values:
 constants:
     SK_VERSION:
         exclude: true
+    SKVIEW_AVAILABLE:
+        exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?SK.*):
