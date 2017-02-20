@@ -1,0 +1,124 @@
+package: org.robovm.apple.usernotifications
+include: [foundation.yaml]
+library: UserNotifications
+framework: UserNotifications
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h
+
+enums:
+    UNAlertStyle: {}
+    UNAuthorizationOptions: {}
+    UNAuthorizationStatus: {}
+    UNErrorCode: {}
+    UNNotificationActionOptions: {}
+    UNNotificationCategoryOptions: {}
+    UNNotificationPresentationOptions: {}
+    UNNotificationSetting: {}
+        
+classes:
+    UNCalendarNotificationTrigger:
+        methods:
+            '+triggerWithDateMatchingComponents:repeats:':
+                name: create
+                constructor: true
+    UNLocationNotificationTrigger:
+        properties:
+            region:
+                type: org.robovm.apple.corelocation.CLRegion
+        methods:
+            '+triggerWithRegion:repeats:':
+                name: create
+                constructor: true
+                parameters:
+                    region:
+                        type: org.robovm.apple.corelocation.CLRegion
+    UNMutableNotificationContent: {}
+    UNNotification: {}
+    UNNotificationAction:
+        methods:
+            '+actionWithIdentifier:title:options:':
+                name: create
+                constructor: true
+    UNNotificationAttachment:
+        methods:
+            '+attachmentWithIdentifier:URL:options:error:':
+                name: create
+                constructor: true
+                throws: NSErrorException
+    UNNotificationCategory:
+        methods:
+            '+categoryWithIdentifier:actions:intentIdentifiers:options:':
+                name: create
+                constructor: true
+    UNNotificationContent: {}
+    UNNotificationRequest:
+        methods:
+            '+requestWithIdentifier:content:trigger:':
+                name: create
+                constructor: true
+    UNNotificationResponse: {}
+    UNNotificationServiceExtension:
+        methods:
+            '-didReceiveNotificationRequest:withContentHandler:':
+                name: didReceiveNotificationRequest
+    UNNotificationSettings: {}
+    UNNotificationSound: {}
+    UNNotificationTrigger: {}
+    UNPushNotificationTrigger: {}
+    UNTextInputNotificationAction:
+        methods:
+            '+actionWithIdentifier:title:options:textInputButtonTitle:textInputPlaceholder:':
+                name: create
+                constructor: true
+    UNTextInputNotificationResponse: {}
+    UNTimeIntervalNotificationTrigger:
+        methods:
+            '+triggerWithTimeInterval:repeats:':
+                name: create
+                constructor: true
+    UNUserNotificationCenter:
+        methods:
+            '-requestAuthorizationWithOptions:completionHandler:':
+                name: requestAuthorization
+            '-addNotificationRequest:withCompletionHandler:':
+                name: addNotificationRequest
+
+protocols:
+    UNUserNotificationCenterDelegate:
+        skip_adapter: true
+        methods:
+            '-userNotificationCenter:willPresentNotification:withCompletionHandler:':
+                name: willPresentNotification
+            '-userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:':
+                name: didReceiveNotificationResponse
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?UN.*):
+        class: UserNotifications
+        name: 'Function__#{g[0]}'
+
+values:
+    UNErrorDomain:
+        class: UNErrorCode
+        name: getClassDomain
+
+    UNNotificationAttachmentOptions(ThumbnailClippingRectKey|ThumbnailHiddenKey|ThumbnailTimeKey|TypeHintKey):
+        class: UNNotificationAttachmentOptions
+        name: '#{g[0]}'
+
+    UNNotification(Default|Dismiss)ActionIdentifier:
+        class: UNNotificationActionIdentifier
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?UN.*):
+        class: UserNotifications
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?UN.*):
+        class: UserNotifications
+        name: 'Constant__#{g[0]}'
