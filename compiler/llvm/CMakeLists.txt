@@ -138,10 +138,18 @@ target_link_libraries(LLVM ${LLVM_LDFLAGS})
 set_target_properties(LLVM PROPERTIES LINKER_LANGUAGE CXX)
 
 if(LINUX)
-  #set_target_properties(robovm-llvm PROPERTIES LINK_FLAGS "-Wl,--gc-sections -Wl,--version-script=${CMAKE_SOURCE_DIR}/src/main/native/exports_linux.sym")
+  set(EXPORT_FLAGS "")
+  #Those symbols need to be added manually, otherwise they get stripped.
+  set(EXPORT_SYMBOLS InitializeX86Target InitializeARMTarget InitializeAArch64Target InitializeX86AsmPrinter InitializeARMAsmPrinter
+  InitializeAArch64AsmPrinter InitializeX86AsmParser InitializeARMAsmParser InitializeAArch64AsmParser GetFirstTarget WriteBitcodeToFile
+  AddAlwaysInlinerPass AddPromoteMemoryToRegisterPass
+)
+  foreach(SYMBOL ${EXPORT_SYMBOLS})
+    set(EXPORT_FLAGS "${EXPORT_FLAGS} -Wl,-undefined=LLVM${SYMBOL}")
+  endforeach()
+  set_target_properties(LLVM PROPERTIES LINK_FLAGS "${EXPORT_FLAGS} -Wl,--retain-symbols-file=${CMAKE_SOURCE_DIR}/src/main/native/exports_linux.sym")
 elseif(MACOSX)
   set_target_properties(LLVM PROPERTIES LINK_FLAGS "-Wl,-exported_symbols_list -Wl,${CMAKE_SOURCE_DIR}/src/main/native/exports_macosx.sym")
-  #set_target_properties(LLVM PROPERTIES LINK_FLAGS "-Wl,-dead_strip -Wl,-exported_symbols_list -Wl,${CMAKE_SOURCE_DIR}/src/main/native/exports_macosx.sym")
 endif()
 set(CMAKE_INSTALL_DO_STRIP FALSE)
 set(CMAKE_STRIP echo)
@@ -152,8 +160,4 @@ add_custom_command(TARGET LLVM POST_BUILD
     COMMAND cmake -E copy_directory ${CMAKE_BINARY_DIR}/llvm/include/llvm-c ${CMAKE_SOURCE_DIR}/src/main/native/include/llvm-c
     COMMAND cmake -E copy_directory ${CMAKE_BINARY_DIR}/llvm/include/clang ${CMAKE_SOURCE_DIR}/src/main/native/include/clang
     COMMAND cmake -E copy_directory ${CMAKE_BINARY_DIR}/llvm/include/clang-c ${CMAKE_SOURCE_DIR}/src/main/native/include/clang-c
-
-    #COMMAND cmake -E copy ${CMAKE_BINARY_DIR}/llvm/lib/${LLVM_LIB_SO} ${INSTALL_DIR}
-    #COMMAND cmake -E copy ${CMAKE_BINARY_DIR}/llvm/lib/${LTO_LIB_SO} ${INSTALL_DIR}
-    #COMMAND cmake -E copy ${CMAKE_BINARY_DIR}/llvm/lib/${CLANG_LIB_SO} ${INSTALL_DIR}
 )

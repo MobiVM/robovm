@@ -34,7 +34,7 @@ import org.bytedeco.javacpp.tools.InfoMapper;
                "<llvm-c/lto.h>", "<llvm-c/Object.h>", "<llvm-c/Target.h>", "<llvm-c/TargetMachine.h>", "<llvm-c/ExecutionEngine.h>",
                "<llvm-c/Transforms/IPO.h>", "<llvm-c/Transforms/PassManagerBuilder.h>", "<llvm-c/Transforms/Scalar.h>", "<llvm-c/Transforms/Vectorize.h>",
                "LLVMExtra.h", "ClangExtra.h"},
-    compiler = "cpp11", link = {"LLVM-3.9", "LTO", "LLVMExtra"}), @Platform(value = "macosx", link = {"LLVM"}) })
+    compiler = "cpp11", link = {"LLVM"}) })
 public class LLVM implements InfoMapper {
     public void map(InfoMap infoMap) {
         infoMap.put(new Info("LLVMOpaqueContext").pointerTypes("LLVMContextRef"))
