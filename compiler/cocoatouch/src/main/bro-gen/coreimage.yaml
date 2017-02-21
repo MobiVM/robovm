@@ -104,8 +104,6 @@ classes:
     CIFilter: # DONE
         skip_def_constructor: true
         methods:
-            '+filterWithName:':
-                name: create
             '+serializedXMPFromFilters:inputImageExtent:':
                 name: serializeToXMP
                 parameters:
@@ -117,10 +115,10 @@ classes:
                 throws: NSErrorException
             '+filterWith.*':
                 name: create
+                constructor: true
                 parameters:
                     params:
                         type: CIFilterInputParameters
-                    params:
                         options: CIFilterInputParameters
             '+filterNames.*':
                 name: getFilterNames
