@@ -3602,6 +3602,9 @@ protocols:
                 name: handleOpenURL
             '-application:openURL:sourceApplication:annotation:':
                 name: openURL
+                parameters:
+                    annotation:
+                        type: NSPropertyList
             '-application:openURL:options:':
                 name: openURL
                 parameters:
