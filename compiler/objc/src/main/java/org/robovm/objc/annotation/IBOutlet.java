@@ -38,7 +38,7 @@ import org.robovm.objc.ObjCObject;
  * "set".
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.METHOD })
+@Target({ ElementType.METHOD, ElementType.FIELD})
 public @interface IBOutlet {
     /**
      * The name of the Objective-C selector this outlet binds to. If not
