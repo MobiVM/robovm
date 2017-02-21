@@ -403,6 +403,14 @@ public class RoboVmPlugin {
     }
 
     private static void extractArchive(String archive, File dest) {
+        Config.Home home = Config.Home.find();
+        if (home.isDev()) {
+            // ROBOVM_DEV_ROOT has been set (rtPath points to $ROBOVM_DEV_ROOT/rt/target/robovm-rt-<version>.jar).
+            File rootDir = home.getRtPath().getParentFile().getParentFile().getParentFile();
+            logInfo(null, "Using ~~~DEV~~~ RoboVM SDK from %s", rootDir.getAbsolutePath());
+            return;
+        }
+
         archive = "/" + archive;
         TarArchiveInputStream in = null;
         boolean isSnapshot = Version.getVersion().toLowerCase().contains("snapshot");
@@ -446,14 +454,29 @@ public class RoboVmPlugin {
      */
     public static List<File> getSdkLibraries() {
         List<File> libs = new ArrayList<File>();
-        File libsDir = new File(getSdkHome(), "lib");
-        for (File file : libsDir.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith(".jar") && !name.contains("cacerts");
+
+        Config.Home home = Config.Home.find();
+        if (home.isDev()) {
+            // ROBOVM_DEV_ROOT has been set (rtPath points to $ROBOVM_DEV_ROOT/rt/target/robovm-rt-<version>.jar).
+            File rootDir = home.getRtPath().getParentFile().getParentFile().getParentFile();
+            libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getVersion() +  ".jar"));
+            libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getVersion() +  "-sources.jar"));
+            libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getVersion() +  ".jar"));
+            libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getVersion() +  "-sources.jar"));
+            libs.add(new File(rootDir, "rt/target/robovm-rt-" + Version.getVersion() +  ".jar"));
+            libs.add(new File(rootDir, "rt/target/robovm-rt-" + Version.getVersion() +  "-sources.jar"));
+            libs.add(new File(rootDir, "cacerts/full/target/robovm-cacerts-full-" + Version.getVersion() +  ".jar"));
+        } else {
+            // normal run
+            File libsDir = new File(getSdkHome(), "lib");
+            for (File file : libsDir.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".jar") && !name.contains("cacerts");
+                }
+            })) {
+                libs.add(file);
             }
-        })) {
-            libs.add(file);
         }
         return libs;
     }
