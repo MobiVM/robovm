@@ -67,6 +67,7 @@ import org.robovm.compiler.plugin.Plugin;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.TargetPlugin;
 import org.robovm.compiler.plugin.annotation.AnnotationImplPlugin;
+import org.robovm.compiler.plugin.debug.DebugInformationPlugin;
 import org.robovm.compiler.plugin.lambda.LambdaPlugin;
 import org.robovm.compiler.plugin.objc.InterfaceBuilderClassesPlugin;
 import org.robovm.compiler.plugin.objc.ObjCBlockPlugin;
@@ -234,7 +235,7 @@ public class Config {
                 new ObjCBlockPlugin(),
                 new AnnotationImplPlugin(),
                 new LambdaPlugin(),         
-                new ShadowFramePlugin()
+                new DebugInformationPlugin()
                 ));
         this.loadPluginsFromClassPath();
     }

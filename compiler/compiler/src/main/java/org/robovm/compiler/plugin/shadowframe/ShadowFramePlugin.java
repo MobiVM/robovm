@@ -39,6 +39,10 @@ import soot.SootMethod;
 import soot.Unit;
 import soot.tagkit.LineNumberTag;
 
+/*
+ * Not in use anymore, just kept for reference @florianf
+ */
+@Deprecated
 public class ShadowFramePlugin extends AbstractCompilerPlugin {
     private static final String SHADOW_FRAME_VAR_NAME = "__shadowFrame";
     
