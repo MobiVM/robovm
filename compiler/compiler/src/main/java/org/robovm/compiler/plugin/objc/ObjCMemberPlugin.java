@@ -573,6 +573,12 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         if (!sootClass.isInterface()
                 && (isObjCObject(sootClass) || (extensions = isObjCExtensions(sootClass)))) {
 
+            if (customClass) {
+                // create a setter methods for fields marked with IBOutlet/Collection
+                // once created following transformMethod run will create callbacks for them
+                transformIBOutletFieldToSetters(sootClass);
+            }
+
             Set<String> selectors = new TreeSet<>();
             Set<String> overridables = new HashSet<>();
             Set<String> initializers = new HashSet<>();
@@ -883,7 +889,61 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         units.add(jimple.newThrowStmt(exc));
     }
 
+    private void transformIBOutletFieldToSetters(SootClass sootClass) {
+        // find out all fields marked with annotation
+        for (SootField field : sootClass.getFields()) {
+            AnnotationTag annotation = getAnnotation(field, IBOUTLETCOLLECTION);
+            if (annotation != null) {
+                if (!isNSArray(field.getType())) {
+                    throw new CompilerException("Objective-C @IBOutletCollection field " + field +
+                            " must be of type NSArray.");
+                }
+            } else {
+                annotation = getAnnotation(field, IBOUTLET);
+            }
 
+            // skip fields without annotations
+            if (annotation == null)
+                continue;
+
+            // validate against static/final
+            if (field.isStatic()) {
+                throw new CompilerException("Objective-C @IBOutlet/@IBOutletCollection method " + field + " must not be static.");
+            }
+            if (field.isFinal()) {
+                throw new CompilerException("Objective-C @IBOutlet/@IBOutletCollection method " + field + " must not be final.");
+            }
+
+            // create a setter method
+            Jimple jimple = Jimple.v();
+            SootMethod method = new SootMethod("$field$set_" + field.getName(), Collections.singletonList(field.getType()),
+                    VoidType.v(), PRIVATE | FINAL);
+            sootClass.addMethod(method);
+
+            method.setActiveBody(jimple.newBody(method));
+            Body body = method.getActiveBody();
+            PatchingChain<Unit> units = body.getUnits();
+            // synth simple setter method like:
+            // @IBOutlet(selector = "setSomething:")
+            // void setSomething(T v) { this.something = v; }
+            Local thiz = jimple.newLocal("$this", sootClass.getType());
+            Local value = jimple.newLocal("$value", field.getType());
+            body.getLocals().add(thiz);
+            body.getLocals().add(value);
+            units.add(jimple.newIdentityStmt(thiz, jimple.newThisRef(sootClass.getType())));
+            units.add(jimple.newIdentityStmt(value, jimple.newParameterRef(field.getType(), 0)));
+            units.add(jimple.newAssignStmt(jimple.newInstanceFieldRef(thiz, field.makeRef()), value));
+            units.add(jimple.newReturnVoidStmt());
+
+            // now attach annotation to allow transformMethod to recognize this method
+            String propertyName = Annotations.readStringElem(annotation, "name", field.getName());
+            String setterSelectorName = "set" + StringUtils.capitalize(propertyName) + ":";
+            annotation = new AnnotationTag(annotation.getType(), 1);
+            // need to attach selector param as field and property could be different
+            annotation.addElem(new AnnotationStringElem(setterSelectorName, 's', "selector"));
+            Annotations.addRuntimeVisibleAnnotation(method, annotation);
+        }
+    }
 
     private void transformMethod(Config config, Clazz clazz, SootClass sootClass,
             SootMethod method, Set<String> selectors, Set<String> overridables, boolean extensions) {
