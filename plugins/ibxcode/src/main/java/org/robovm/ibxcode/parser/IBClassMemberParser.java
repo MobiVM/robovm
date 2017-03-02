@@ -46,7 +46,10 @@ public class IBClassMemberParser {
                 for (AnnotationEntry entry : field.getAnnotationEntries()) {
                     switch (entry.getAnnotationType()) {
                         case AnnotationsTypes.IBOUTLET:
-                            exportMemberItem = createIBOutletItem(classData, field, entry);
+                            exportMemberItem = createIBOutletItem(classData, field, entry, "IBOutlet");
+                            break;
+                        case AnnotationsTypes.IBINSPECTABLE:
+                            exportMemberItem = createIBOutletItem(classData, field, entry, "IBInspectable");
                             break;
                         case AnnotationsTypes.IBOUTLETCOLLECTION:
                             exportMemberItem = createIBOutletCollectionItem(classData, field, entry);
@@ -70,7 +73,10 @@ public class IBClassMemberParser {
                 for (AnnotationEntry entry : method.getAnnotationEntries()) {
                     switch (entry.getAnnotationType()) {
                         case AnnotationsTypes.IBOUTLET:
-                            exportMemberItem = createIBOutletItem(classData, method, entry);
+                            exportMemberItem = createIBOutletItem(classData, method, entry, "IBOutlet");
+                            break;
+                        case AnnotationsTypes.IBINSPECTABLE:
+                            exportMemberItem = createIBOutletItem(classData, method, entry, "IBInspectable");
                             break;
                         case AnnotationsTypes.IBOUTLETCOLLECTION:
                             exportMemberItem = createIBOutletCollectionItem(classData, method, entry);
@@ -97,16 +103,17 @@ public class IBClassMemberParser {
     }
 
 
-    private IClassExportMemberItem createIBOutletItem(IBClassHierarchyData classData, Method method, AnnotationEntry entry) {
+    private IClassExportMemberItem createIBOutletItem(IBClassHierarchyData classData, Method method,
+                                                      AnnotationEntry entry, String propertyType) {
         // validate
         IBClassHierarchyData fieldType = null;
         String exceptionMessage = null;
         Type[] argTypes = method.getArgumentTypes();
         if (method.isAbstract() || method.isStatic()) {
-            exceptionMessage = "IBOutlet: setter shall not be abstract or static: while handling " + method.getName() + "@" +
+            exceptionMessage = propertyType + ": setter shall not be abstract or static: while handling " + method.getName() + "@" +
                     classData.jc.getClassName();
         } else if (method.getReturnType() != Type.VOID &&  argTypes.length != 1) {
-            exceptionMessage = "IBOutlet: setter shall take 1 arg and return VOID: while handling " + method.getName() + "@" +
+            exceptionMessage = propertyType + ": setter shall take 1 arg and return VOID: while handling " + method.getName() + "@" +
                     classData.jc.getClassName();
         } else {
             // check if argument is know
@@ -115,10 +122,10 @@ public class IBClassMemberParser {
             if (fieldType == null)
                 fieldType = Utils.convertKnownClasses(fieldTypeStr, this.resolvedClasses);
             if (fieldType == null || fieldType.isUnresolved()) {
-                exceptionMessage = "IBOutlet: unresolved type " + fieldTypeStr + ": while handling " + method.getName() + "@" +
+                exceptionMessage = propertyType + ": unresolved type " + fieldTypeStr + ": while handling " + method.getName() + "@" +
                         classData.jc.getClassName();
             } else if (!fieldType.isNative() && !fieldType.isUIKit() && !fieldType.isPrimitive()) {
-                exceptionMessage = "IBOutlet: wrong type " + fieldTypeStr + " (NativeClass or UIKit subclasses expected): while handling " +
+                exceptionMessage = propertyType + ": wrong type " + fieldTypeStr + " (NativeClass or UIKit subclasses expected): while handling " +
                         method.getName() + "@" + classData.jc.getClassName();
             }
             // all ok :)
@@ -127,16 +134,17 @@ public class IBClassMemberParser {
         if (exceptionMessage != null)
             throw new IBException(exceptionMessage);
 
-        return createIBOutletItem(fieldType, entry, Utils.getFieldName(method.getName()));
+        return createIBOutletItem(propertyType, fieldType, entry, Utils.getFieldName(method.getName()));
     }
 
 
-    private IClassExportMemberItem createIBOutletItem(IBClassHierarchyData classData, Field field, AnnotationEntry entry) {
+    private IClassExportMemberItem createIBOutletItem(IBClassHierarchyData classData, Field field,
+                                                      AnnotationEntry entry, String propertyType) {
         // validate
         IBClassHierarchyData fieldType = null;
         String exceptionMessage = null;
         if (field.isFinal() || field.isStatic()) {
-            exceptionMessage = "IBOutlet: field shall not be final or static: while handling " + field.getName() + "@" +
+            exceptionMessage = propertyType + ": field shall not be final or static: while handling " + field.getName() + "@" +
                     classData.jc.getClassName();
         } else {
             // check if argument is know
@@ -145,10 +153,10 @@ public class IBClassMemberParser {
             if (fieldType == null)
                 fieldType = Utils.convertKnownClasses(fieldTypeStr, this.resolvedClasses);
             if (fieldType == null || fieldType.isUnresolved()) {
-                exceptionMessage = "IBOutlet: unresolved type " + fieldTypeStr + ": while handling " + field.getName() + "@" +
+                exceptionMessage = propertyType + ": unresolved type " + fieldTypeStr + ": while handling " + field.getName() + "@" +
                         classData.jc.getClassName();
             } else if (!fieldType.isNative() && !fieldType.isUIKit() && !fieldType.isPrimitive()) {
-                exceptionMessage = "IBOutlet: wrong type " + fieldTypeStr + " (NativeClass or UIKit subclasses expected): while handling " +
+                exceptionMessage = propertyType + ": wrong type " + fieldTypeStr + " (NativeClass or UIKit subclasses expected): while handling " +
                         field.getName() + "@" + classData.jc.getClassName();
             }
             // all ok :)
@@ -157,15 +165,16 @@ public class IBClassMemberParser {
         if (exceptionMessage != null)
             throw new IBException(exceptionMessage);
 
-        return createIBOutletItem(fieldType, entry, field.getName());
+        return createIBOutletItem(propertyType, fieldType, entry, field.getName());
     }
 
 
-    private IClassExportMemberItem createIBOutletItem(IBClassHierarchyData fieldType, AnnotationEntry entry, String name) {
+    private IClassExportMemberItem createIBOutletItem(String propertyType, IBClassHierarchyData fieldType,
+                                                      AnnotationEntry entry, String name) {
         // check annotation for custom name and selector
         String selector = Utils.getAnnotationValue(entry, "selector", null);
         name = Utils.getAnnotationValue(entry, "name", name);
-        return new IBOutletExportMemberItem(name, selector, fieldType);
+        return new IBOutletExportMemberItem(propertyType, name, selector, fieldType);
     }
 
 
