@@ -10,9 +10,9 @@ public class DICompileUnit extends DIMap {
 	public static final String DI_NAME = "DICompileUnit";
 	
 	public DICompileUnit() {
-		map.put("language", new DIMapValueConstant("DW_LANG_Java"));
+		map.put("language", new DIMapValueConstant("DW_LANG_C99"));
 		map.put("producer", new DIMapValueString("RoboVM 2.3.0"));
-		map.put("emissionKind", new DIMapValueConstant("FullDebug"));
+		map.put("emissionKind", new DIMapValueConstant("LineTablesOnly"));
 		map.put("runtimeVersion", new DIMapValueInteger(0));
 		distinct = true;
 	}

@@ -95,8 +95,10 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	UnnamedMetadata dwarfVersion = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(2), new MetadataString("Dwarf Version"), new IntegerConstant(2) }));
     	UnnamedMetadata debugInfoVersion = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(2), new MetadataString("Debug Info Version"), new IntegerConstant(3) }));
     	UnnamedMetadata picLevel = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(1), new MetadataString("PIC Level"), new IntegerConstant(2) }));
+    	UnnamedMetadata ident = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new MetadataString("RoboVM 2.3.0")}));
     	
     	moduleBuilder.addNamedMetadata(new NamedMetadata("llvm.db.cu", diCuMeta));
+    	moduleBuilder.addNamedMetadata(new NamedMetadata("llvm.ident", new UnnamedMetadata[] { ident }));
     	moduleBuilder.addNamedMetadata(new NamedMetadata("llvm.module.flags", new UnnamedMetadata[] { dwarfVersion, debugInfoVersion, picLevel }));
     	moduleBuilder.addFunctionDeclaration(LLVM_DBG_DECLARE_DECLARATION);
     }
@@ -124,7 +126,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         DISubroutineType diSubType = new DISubroutineType();
         diSubType.setTypes(new DIMapValueReference(diNullMeta));
         
-        int methodLineNumber = 0;
+        int methodLineNumber = Integer.MAX_VALUE;
         for (BasicBlock bb : function.getBasicBlocks()) {
             for (int i = 0; i < bb.getInstructions().size(); i++) {
                 Instruction instruction = bb.getInstructions().get(i);
