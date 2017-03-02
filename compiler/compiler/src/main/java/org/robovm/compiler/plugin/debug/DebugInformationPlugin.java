@@ -28,7 +28,10 @@ import org.robovm.compiler.llvm.debug.DIFile;
 import org.robovm.compiler.llvm.debug.DILexicalBlock;
 import org.robovm.compiler.llvm.debug.DILocation;
 import org.robovm.compiler.llvm.debug.DISubprogram;
+import org.robovm.compiler.llvm.debug.DISubroutineType;
 import org.robovm.compiler.llvm.debug.map.DIMapValueReference;
+import org.robovm.compiler.llvm.debug.metadata.EmptyConstant;
+import org.robovm.compiler.llvm.debug.metadata.NullConstant;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import org.robovm.compiler.plugin.PluginArgument;
@@ -47,6 +50,8 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     private static FunctionDeclaration LLVM_DBG_DECLARE_DECLARATION = new FunctionDeclaration(LLVM_DBG_DECLARE_FUN);
 	private UnnamedMetadata diFileMeta;
 	private UnnamedMetadata diCuMeta;
+	private UnnamedMetadata diEmptyMeta;
+	private UnnamedMetadata diNullMeta;
     
     public DebugInformationPlugin() {
 	}
@@ -73,12 +78,19 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     public void beforeClass(Config config, Clazz clazz, ModuleBuilder moduleBuilder) throws IOException {
     	super.beforeClass(config, clazz, moduleBuilder);
     	    	
+    	diEmptyMeta = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new EmptyConstant()}));
+    	diNullMeta = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new NullConstant()}));
+    	
     	DIFile diFile = new DIFile(getSourceFile(config, clazz));
     	DICompileUnit diCu = new DICompileUnit();
     	
     	diCuMeta = moduleBuilder.newUnnamedMetadata(diCu);
     	diFileMeta = moduleBuilder.newUnnamedMetadata(diFile);
     	diCu.setFile(new DIMapValueReference(diFileMeta));
+    	diCu.setEnums(new DIMapValueReference(diEmptyMeta));
+    	diCu.setRetainedTypes(new DIMapValueReference(diEmptyMeta));
+    	diCu.setGlobals(new DIMapValueReference(diEmptyMeta));
+    	diCu.setImports(new DIMapValueReference(diEmptyMeta));
     	
     	UnnamedMetadata dwarfVersion = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(2), new MetadataString("Dwarf Version"), new IntegerConstant(2) }));
     	UnnamedMetadata debugInfoVersion = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(2), new MetadataString("Debug Info Version"), new IntegerConstant(3) }));
@@ -109,6 +121,8 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         
         DISubprogram diSub = new DISubprogram();
         UnnamedMetadata diSubNode = moduleBuilder.newUnnamedMetadata(diSub);
+        DISubroutineType diSubType = new DISubroutineType();
+        diSubType.setTypes(new DIMapValueReference(diNullMeta));
         
         int methodLineNumber = 0;
         for (BasicBlock bb : function.getBasicBlocks()) {
@@ -131,6 +145,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             }
         }
         
+        diSub.setType(new DIMapValueReference(moduleBuilder.newUnnamedMetadata(diSubType)));
         diSub.setFile(new DIMapValueReference(diFileMeta));
         diSub.setScope(new DIMapValueReference(diFileMeta));
         diSub.setName(function.getName());

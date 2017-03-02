@@ -26,9 +26,14 @@ public class DISubprogram extends DIMap {
 	public void setFile(DIMapValueReference file) {
 		map.put("file", file);
 	}
+
+	public void setType(DIMapValueReference type) {
+		map.put("type", type);
+	}
 	
 	@Override
 	public String getDIName() {
 		return DI_NAME;
 	}
+
 }
