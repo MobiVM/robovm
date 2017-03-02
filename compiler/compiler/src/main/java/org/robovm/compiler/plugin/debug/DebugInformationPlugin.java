@@ -10,6 +10,7 @@ import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Builder;
 import org.robovm.compiler.llvm.BasicBlock;
+import org.robovm.compiler.llvm.DebugMetadata;
 import org.robovm.compiler.llvm.Function;
 import org.robovm.compiler.llvm.FunctionDeclaration;
 import org.robovm.compiler.llvm.FunctionRef;
@@ -24,6 +25,9 @@ import org.robovm.compiler.llvm.UnnamedMetadata;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.debug.DICompileUnit;
 import org.robovm.compiler.llvm.debug.DIFile;
+import org.robovm.compiler.llvm.debug.DILexicalBlock;
+import org.robovm.compiler.llvm.debug.DILocation;
+import org.robovm.compiler.llvm.debug.DISubprogram;
 import org.robovm.compiler.llvm.debug.map.DIMapValueReference;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
@@ -77,7 +81,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	diCu.setFile(new DIMapValueReference(diFileMeta));
     	
     	UnnamedMetadata dwarfVersion = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(2), new MetadataString("Dwarf Version"), new IntegerConstant(2) }));
-    	UnnamedMetadata debugInfoVersion = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(2), new MetadataString("Debug Info Version"), new IntegerConstant(2) }));
+    	UnnamedMetadata debugInfoVersion = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(2), new MetadataString("Debug Info Version"), new IntegerConstant(3) }));
     	UnnamedMetadata picLevel = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(1), new MetadataString("PIC Level"), new IntegerConstant(2) }));
     	
     	moduleBuilder.addNamedMetadata(new NamedMetadata("llvm.db.cu", diCuMeta));
@@ -103,6 +107,9 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         	return;
         }
         
+        DISubprogram diSub = new DISubprogram();
+        UnnamedMetadata diSubNode = moduleBuilder.newUnnamedMetadata(diSub);
+        
         int methodLineNumber = 0;
         for (BasicBlock bb : function.getBasicBlocks()) {
             for (int i = 0; i < bb.getInstructions().size(); i++) {
@@ -117,11 +124,26 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                         if (tag != null) {
                         	currentLineNumber = tag.getLineNumber();
                         	methodLineNumber = Math.min(methodLineNumber, currentLineNumber);
+                        	instruction.addMetadata(new DebugMetadata(moduleBuilder.newUnnamedMetadata(new DILocation(new DIMapValueReference(diSubNode), currentLineNumber, 0)).ref()));
                         }
                     }
                 }
             }
         }
+        
+        diSub.setFile(new DIMapValueReference(diFileMeta));
+        diSub.setScope(new DIMapValueReference(diFileMeta));
+        diSub.setName(function.getName());
+        
+        function.addMetadata(new DebugMetadata(diSubNode.ref()));
+        
+        DILexicalBlock diBlock = new DILexicalBlock();
+        diBlock.setFile(new DIMapValueReference(diFileMeta));
+        diBlock.setScope(new DIMapValueReference(diSubNode));
+        diBlock.setLine(methodLineNumber);
+        diBlock.setColumn(0);
+        moduleBuilder.newUnnamedMetadata(diBlock);
+        
     }
     
     private File getSourceFile(Config config, Clazz clazz) {
@@ -134,7 +156,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	else {
     		sourceFile = new File(sourceFileTag.getSourceFile());
     	}
-    	if (!sourceFile.exists()) {
+    	if (!sourceFile.exists() && sourcePath != null) {
     		for (String dir : sourcePath) {
     			sourceFile = new File(dir + "/" + sourceFile.getName());
     			if (sourceFile.exists()) {

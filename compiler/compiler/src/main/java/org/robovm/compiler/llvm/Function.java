@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,7 @@ public class Function {
     private final Map<Label, BasicBlock> basicBlockMap = new HashMap<Label, BasicBlock>();
     private final List<BasicBlock> basicBlockList = new ArrayList<BasicBlock>();
     private final Map<String, Variable> variablesMap = new HashMap<String, Variable>();
+    private List<Metadata> metadata;
     
     private int counter = 0;
     private final String[] parameterNames;
@@ -156,6 +158,18 @@ public class Function {
         return instruction;
     }
     
+    public List<Metadata> getMetadata() {
+        return metadata == null ? Collections.<Metadata>emptyList() : metadata;
+    }
+    
+    public Function addMetadata(Metadata md) {
+        if (metadata == null) {
+            metadata = new ArrayList<>();
+        }
+        metadata.add(md);
+        return this;
+    }
+    
     public String getSignature() {
         String sig = type.getReturnType().toString() + " (";
         Type[] parameterTypes = type.getParameterTypes();
@@ -219,6 +233,15 @@ public class Function {
             writer.write(section);
             writer.write('"');
         }
+        
+        List<Metadata> metadata = getMetadata();
+        if (!metadata.isEmpty()) {
+            for (Metadata md : metadata) {
+                writer.append(" ");
+                writer.append(md.toString());
+            }
+        }
+        
         writer.write(" {\n");
         for (BasicBlock bb : basicBlockList) {
             writer.write(bb.toString());
