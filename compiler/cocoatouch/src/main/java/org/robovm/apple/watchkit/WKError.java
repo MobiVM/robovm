@@ -63,6 +63,9 @@ import org.robovm.apple.corelocation.*;
         return code;
     }
     /*<methods>*/
+    /**
+     * @since Available in iOS 8.2 and later.
+     */
     @GlobalValue(symbol="WatchKitErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

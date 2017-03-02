@@ -45,7 +45,9 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMLocationEvent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMLocationEvent(Handle h, long handle) { super(h, handle); }
     protected HMLocationEvent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRegion:")
     public HMLocationEvent(CLRegion region) { super((SkipInit) null); initObject(init(region)); }
     /*</constructors>*/
     /*<properties>*/

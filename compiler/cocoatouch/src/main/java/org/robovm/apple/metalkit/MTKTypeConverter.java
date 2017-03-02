@@ -52,8 +52,24 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Bridge(symbol="MTKModelIOVertexDescriptorFromMetal", optional=true)
     public static native MDLVertexDescriptor convertVertexDescriptor(MTLVertexDescriptor metalDescriptor);
+    public static MDLVertexDescriptor convertVertexDescriptorEx(MTLVertexDescriptor metalDescriptor) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MDLVertexDescriptor result = convertVertexDescriptorEx(metalDescriptor, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Bridge(symbol="MTKModelIOVertexDescriptorFromMetalWithError", optional=true)
+    private static native MDLVertexDescriptor convertVertexDescriptorEx(MTLVertexDescriptor metalDescriptor, NSError.NSErrorPtr error);
     @Bridge(symbol="MTKMetalVertexDescriptorFromModelIO", optional=true)
     public static native MTLVertexDescriptor convertVertexDescriptor(MDLVertexDescriptor modelIODescriptor);
+    public static MTLVertexDescriptor convertVertexDescriptorEx(MDLVertexDescriptor modelIODescriptor) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MTLVertexDescriptor result = convertVertexDescriptorEx(modelIODescriptor, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Bridge(symbol="MTKMetalVertexDescriptorFromModelIOWithError", optional=true)
+    private static native MTLVertexDescriptor convertVertexDescriptorEx(MDLVertexDescriptor modelIODescriptor, NSError.NSErrorPtr error);
     @Bridge(symbol="MTKModelIOVertexFormatFromMetal", optional=true)
     public static native MDLVertexFormat convertVertexFormat(MTLVertexFormat vertexFormat);
     @Bridge(symbol="MTKMetalVertexFormatFromModelIO", optional=true)

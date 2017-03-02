@@ -1,5 +1,5 @@
 package: org.robovm.apple.messageui
-include: [foundation.yaml, uikit.yaml]
+include: [foundation.yaml, uikit.yaml, messages.yaml]
 library: MessageUI
 framework: MessageUI
 clang_args: ['-x', 'objective-c']

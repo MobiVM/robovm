@@ -45,11 +45,18 @@ public final class /*<name>*/MTLResourceOptions/*</name>*/ extends Bits</*<name>
      * @since Available in iOS 9.0 and later.
      */
     public static final MTLResourceOptions StorageModeShared = new MTLResourceOptions(0L);
-    public static final MTLResourceOptions StorageModeManaged = new MTLResourceOptions(16L);
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final MTLResourceOptions StorageModePrivate = new MTLResourceOptions(32L);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final MTLResourceOptions StorageModeMemoryless = new MTLResourceOptions(48L);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final MTLResourceOptions HazardTrackingModeUntracked = new MTLResourceOptions(256L);
     /*</values>*/
 
     /*<bind>*/

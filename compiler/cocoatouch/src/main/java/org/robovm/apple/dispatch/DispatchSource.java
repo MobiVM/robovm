@@ -54,6 +54,7 @@ import org.robovm.rt.bro.ptr.*;
     public static final int VNODE_LINK = 0x10;
     public static final int VNODE_RENAME = 0x20;
     public static final int VNODE_REVOKE = 0x40;
+    public static final int VNODE_FUNLOCK = 0x100;
     public static final int TIMER_STRICT = 0x1;
     /*</constants>*/
     /*<constructors>*/

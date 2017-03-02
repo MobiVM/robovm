@@ -48,7 +48,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKAddPaymentPassRequestConfiguration() {}
+    protected PKAddPaymentPassRequestConfiguration(Handle h, long handle) { super(h, handle); }
     protected PKAddPaymentPassRequestConfiguration(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithEncryptionScheme:")
     public PKAddPaymentPassRequestConfiguration(String encryptionScheme) { super((SkipInit) null); initObject(init(encryptionScheme)); }
     /*</constructors>*/
     /*<properties>*/

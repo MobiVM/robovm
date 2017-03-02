@@ -55,6 +55,7 @@ import org.robovm.apple.uikit.*;
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
+    @Method(selector = "initWithSessionID:displayName:sessionMode:")
     public GKSession(String sessionID, String name, GKSessionMode mode) { super((SkipInit) null); initObject(init(sessionID, name, mode)); }
     /*</constructors>*/
     /*<properties>*/

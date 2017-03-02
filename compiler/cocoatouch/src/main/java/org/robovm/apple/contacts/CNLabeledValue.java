@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNLabeledValue() {}
+    protected CNLabeledValue(Handle h, long handle) { super(h, handle); }
     protected CNLabeledValue(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public CNLabeledValue(String label, T value) {

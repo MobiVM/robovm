@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVVideoCompositionRenderContext() {}
+    protected AVVideoCompositionRenderContext(Handle h, long handle) { super(h, handle); }
     protected AVVideoCompositionRenderContext(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

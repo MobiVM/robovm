@@ -113,7 +113,7 @@ import org.robovm.apple.corelocation.*;
      */
     @Deprecated
     @NotImplemented("application:openURL:sourceApplication:annotation:")
-    public boolean openURL(UIApplication application, NSURL url, String sourceApplication, NSObject annotation) { return false; }
+    public boolean openURL(UIApplication application, NSURL url, String sourceApplication, NSPropertyList annotation) { return false; }
     /**
      * @since Available in iOS 9.0 and later.
      */

@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioUnitEQ() {}
+    protected AVAudioUnitEQ(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitEQ(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNumberOfBands:")
     public AVAudioUnitEQ(@MachineSizedUInt long numberOfBands) { super((SkipInit) null); initObject(init(numberOfBands)); }
     /*</constructors>*/
     /*<properties>*/

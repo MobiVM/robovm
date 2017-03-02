@@ -60,7 +60,9 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @GlobalValue(symbol="SFContentBlockerErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

@@ -45,7 +45,19 @@ public enum /*<name>*/PKPaymentAuthorizationStatus/*</name>*/ implements ValuedE
     Failure(1L),
     InvalidBillingPostalAddress(2L),
     InvalidShippingPostalAddress(3L),
-    InvalidShippingContact(4L);
+    InvalidShippingContact(4L),
+    /**
+     * @since Available in iOS 9.2 and later.
+     */
+    PINRequired(5L),
+    /**
+     * @since Available in iOS 9.2 and later.
+     */
+    PINIncorrect(6L),
+    /**
+     * @since Available in iOS 9.2 and later.
+     */
+    PINLockout(7L);
     /*</values>*/
 
     /*<bind>*/

@@ -100,6 +100,10 @@ import org.robovm.apple.foundation.*;
      */
     public static final HKFitnessQuantityTypeIdentifier DistanceCycling = new HKFitnessQuantityTypeIdentifier("DistanceCycling");
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier DistanceWheelchair = new HKFitnessQuantityTypeIdentifier("DistanceWheelchair");
+    /**
      * @since Available in iOS 8.0 and later.
      */
     public static final HKFitnessQuantityTypeIdentifier BasalEnergyBurned = new HKFitnessQuantityTypeIdentifier("BasalEnergyBurned");
@@ -115,9 +119,25 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 8.0 and later.
      */
     public static final HKFitnessQuantityTypeIdentifier NikeFuel = new HKFitnessQuantityTypeIdentifier("NikeFuel");
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier AppleExerciseTime = new HKFitnessQuantityTypeIdentifier("AppleExerciseTime");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier PushCount = new HKFitnessQuantityTypeIdentifier("PushCount");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier DistanceSwimming = new HKFitnessQuantityTypeIdentifier("DistanceSwimming");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier SwimmingStrokeCount = new HKFitnessQuantityTypeIdentifier("SwimmingStrokeCount");
     /*</constants>*/
     
-    private static /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/StepCount, DistanceWalkingRunning, DistanceCycling, BasalEnergyBurned, ActiveEnergyBurned, FlightsClimbed, NikeFuel/*</value_list>*/};
+    private static /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/StepCount, DistanceWalkingRunning, DistanceCycling, DistanceWheelchair, BasalEnergyBurned, ActiveEnergyBurned, FlightsClimbed, NikeFuel, AppleExerciseTime, PushCount, DistanceSwimming, SwimmingStrokeCount/*</value_list>*/};
     
     /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -156,6 +176,11 @@ import org.robovm.apple.foundation.*;
         @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceCycling", optional=true)
         public static native NSString DistanceCycling();
         /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceWheelchair", optional=true)
+        public static native NSString DistanceWheelchair();
+        /**
          * @since Available in iOS 8.0 and later.
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierBasalEnergyBurned", optional=true)
@@ -175,6 +200,26 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierNikeFuel", optional=true)
         public static native NSString NikeFuel();
+        /**
+         * @since Available in iOS 9.3 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierAppleExerciseTime", optional=true)
+        public static native NSString AppleExerciseTime();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierPushCount", optional=true)
+        public static native NSString PushCount();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceSwimming", optional=true)
+        public static native NSString DistanceSwimming();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierSwimmingStrokeCount", optional=true)
+        public static native NSString SwimmingStrokeCount();
         /*</values>*/
     }
 }

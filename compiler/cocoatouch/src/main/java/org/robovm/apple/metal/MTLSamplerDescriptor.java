@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLSamplerDescriptor() {}
+    protected MTLSamplerDescriptor(Handle h, long handle) { super(h, handle); }
     protected MTLSamplerDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -89,6 +90,26 @@ import org.robovm.apple.dispatch.*;
     public native float getLodMaxClamp();
     @Property(selector = "setLodMaxClamp:")
     public native void setLodMaxClamp(float v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "lodAverage")
+    public native boolean isLodAverage();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setLodAverage:")
+    public native void setLodAverage(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "compareFunction")
+    public native MTLCompareFunction getCompareFunction();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setCompareFunction:")
+    public native void setCompareFunction(MTLCompareFunction v);
     @Property(selector = "label")
     public native String getLabel();
     @Property(selector = "setLabel:")

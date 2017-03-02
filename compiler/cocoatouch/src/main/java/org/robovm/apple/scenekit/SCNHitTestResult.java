@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNHitTestResult/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNHitTestResult() {}
+    protected SCNHitTestResult(Handle h, long handle) { super(h, handle); }
     protected SCNHitTestResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -71,6 +72,11 @@ import org.robovm.apple.opengles.*;
     public native @ByVal SCNVector3 getWorldNormal();
     @Property(selector = "modelTransform")
     public native @ByVal SCNMatrix4 getModelTransform();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "boneNode")
+    public native SCNNode getBoneNode();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

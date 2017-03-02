@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HKQuantitySample() {}
+    protected HKQuantitySample(Handle h, long handle) { super(h, handle); }
     protected HKQuantitySample(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -59,5 +60,10 @@ import org.robovm.apple.foundation.*;
     public static native HKQuantitySample create(HKQuantityType quantityType, HKQuantity quantity, NSDate startDate, NSDate endDate);
     @Method(selector = "quantitySampleWithType:quantity:startDate:endDate:metadata:")
     public static native HKQuantitySample create(HKQuantityType quantityType, HKQuantity quantity, NSDate startDate, NSDate endDate, HKMetadata metadata);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "quantitySampleWithType:quantity:startDate:endDate:device:metadata:")
+    public static native HKQuantitySample create(HKQuantityType quantityType, HKQuantity quantity, NSDate startDate, NSDate endDate, HKDevice device, HKMetadata metadata);
     /*</methods>*/
 }

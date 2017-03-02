@@ -56,9 +56,17 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVPlayerItemVideoOutput() {}
+    protected AVPlayerItemVideoOutput(Handle h, long handle) { super(h, handle); }
     protected AVPlayerItemVideoOutput(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithPixelBufferAttributes:")
     public AVPlayerItemVideoOutput(CVPixelBufferAttributes pixelBufferAttributes) { super((SkipInit) null); initObject(init(pixelBufferAttributes)); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @WeaklyLinked
+    @Method(selector = "initWithOutputSettings:")
+    public AVPlayerItemVideoOutput(NSDictionary<?, ?> outputSettings) { super((SkipInit) null); initObject(init(outputSettings)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -72,6 +80,12 @@ import org.robovm.apple.audiounit.*;
     @WeaklyLinked
     @Method(selector = "initWithPixelBufferAttributes:")
     protected native @Pointer long init(CVPixelBufferAttributes pixelBufferAttributes);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @WeaklyLinked
+    @Method(selector = "initWithOutputSettings:")
+    protected native @Pointer long init(NSDictionary<?, ?> outputSettings);
     @Method(selector = "hasNewPixelBufferForItemTime:")
     public native boolean hasNewPixelBufferForItemTime(@ByVal CMTime itemTime);
     @WeaklyLinked

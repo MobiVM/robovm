@@ -48,11 +48,14 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKAddPassesViewController() {}
+    protected PKAddPassesViewController(Handle h, long handle) { super(h, handle); }
     protected PKAddPassesViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPass:")
     public PKAddPassesViewController(PKPass pass) { super((SkipInit) null); initObject(init(pass)); }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @Method(selector = "initWithPasses:")
     public PKAddPassesViewController(NSArray<PKPass> passes) { super((SkipInit) null); initObject(init(passes)); }
     /*</constructors>*/
     /*<properties>*/

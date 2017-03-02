@@ -46,6 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HMAccessory() {}
+    protected HMAccessory(Handle h, long handle) { super(h, handle); }
     protected HMAccessory(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -94,6 +95,11 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<HMService> getServices();
     @Property(selector = "isBlocked")
     public native boolean isBlocked();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "cameraProfiles")
+    public native NSArray<HMCameraProfile> getCameraProfiles();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

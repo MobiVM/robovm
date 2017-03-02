@@ -47,7 +47,9 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPContentItem() {}
+    protected MPContentItem(Handle h, long handle) { super(h, handle); }
     protected MPContentItem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithIdentifier:")
     public MPContentItem(String identifier) { super((SkipInit) null); initObject(init(identifier)); }
     /*</constructors>*/
     /*<properties>*/
@@ -65,6 +67,30 @@ import org.robovm.apple.coregraphics.*;
     public native MPMediaItemArtwork getArtwork();
     @Property(selector = "setArtwork:")
     public native void setArtwork(MPMediaItemArtwork v);
+    @Property(selector = "playbackProgress")
+    public native float getPlaybackProgress();
+    @Property(selector = "setPlaybackProgress:")
+    public native void setPlaybackProgress(float v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isStreamingContent")
+    public native boolean isStreamingContent();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setStreamingContent:")
+    public native void setStreamingContent(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isExplicitContent")
+    public native boolean isExplicitContent();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setExplicitContent:")
+    public native void setExplicitContent(boolean v);
     @Property(selector = "isContainer")
     public native boolean isContainer();
     @Property(selector = "setContainer:")
@@ -73,10 +99,6 @@ import org.robovm.apple.coregraphics.*;
     public native boolean isPlayable();
     @Property(selector = "setPlayable:")
     public native void setPlayable(boolean v);
-    @Property(selector = "playbackProgress")
-    public native float getPlaybackProgress();
-    @Property(selector = "setPlaybackProgress:")
-    public native void setPlaybackProgress(float v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

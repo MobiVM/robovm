@@ -41,20 +41,26 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WKProcessPool/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSCoding/*</implements>*/ {
 
     /*<ptr>*/public static class WKProcessPoolPtr extends Ptr<WKProcessPool, WKProcessPoolPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(WKProcessPool.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKProcessPool() {}
+    protected WKProcessPool(Handle h, long handle) { super(h, handle); }
     protected WKProcessPool(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public WKProcessPool(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

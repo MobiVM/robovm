@@ -49,6 +49,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKPointAnnotation() {}
+    protected MKPointAnnotation(Handle h, long handle) { super(h, handle); }
     protected MKPointAnnotation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

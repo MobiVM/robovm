@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,25 +55,16 @@ import org.robovm.apple.opengles.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "renderer:updateAtTime:")
-    void update(SCNSceneRenderer aRenderer, double time);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    void update(SCNSceneRenderer renderer, double time);
     @Method(selector = "renderer:didApplyAnimationsAtTime:")
-    void didApplyAnimations(SCNSceneRenderer aRenderer, double time);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    void didApplyAnimations(SCNSceneRenderer renderer, double time);
     @Method(selector = "renderer:didSimulatePhysicsAtTime:")
-    void didSimulatePhysics(SCNSceneRenderer aRenderer, double time);
+    void didSimulatePhysics(SCNSceneRenderer renderer, double time);
     @Method(selector = "renderer:willRenderScene:atTime:")
-    void willRenderScene(SCNSceneRenderer aRenderer, SCNScene scene, double time);
+    void willRenderScene(SCNSceneRenderer renderer, SCNScene scene, double time);
     @Method(selector = "renderer:didRenderScene:atTime:")
-    void didRenderScene(SCNSceneRenderer aRenderer, SCNScene scene, double time);
+    void didRenderScene(SCNSceneRenderer renderer, SCNScene scene, double time);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

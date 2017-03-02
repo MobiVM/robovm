@@ -56,15 +56,16 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVMutableVideoComposition() {}
+    protected AVMutableVideoComposition(Handle h, long handle) { super(h, handle); }
     protected AVMutableVideoComposition(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public AVMutableVideoComposition(AVAsset asset) { super(create(asset)); retain(getHandle()); }
+    public AVMutableVideoComposition(AVAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public AVMutableVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier) { super(create(asset, ciFiltersApplier)); retain(getHandle()); }
+    public AVMutableVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier) { super((Handle) null, create(asset, ciFiltersApplier)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -97,6 +98,36 @@ import org.robovm.apple.audiounit.*;
     public native AVVideoCompositionCoreAnimationTool getAnimationTool();
     @Property(selector = "setAnimationTool:")
     public native void setAnimationTool(AVVideoCompositionCoreAnimationTool v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "colorPrimaries")
+    public native String getColorPrimaries();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setColorPrimaries:")
+    public native void setColorPrimaries(String v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "colorYCbCrMatrix")
+    public native String getColorYCbCrMatrix();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setColorYCbCrMatrix:")
+    public native void setColorYCbCrMatrix(String v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "colorTransferFunction")
+    public native String getColorTransferFunction();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setColorTransferFunction:")
+    public native void setColorTransferFunction(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

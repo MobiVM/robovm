@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioUnitVarispeed() {}
+    protected AVAudioUnitVarispeed(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitVarispeed(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

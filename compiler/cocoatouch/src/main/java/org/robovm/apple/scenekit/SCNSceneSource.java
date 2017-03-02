@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNSceneSource/*</name>*/ 
@@ -52,8 +52,11 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNSceneSource() {}
+    protected SCNSceneSource(Handle h, long handle) { super(h, handle); }
     protected SCNSceneSource(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:options:")
     public SCNSceneSource(NSURL url, SCNSceneSourceOptions options) { super((SkipInit) null); initObject(init(url, options)); }
+    @Method(selector = "initWithData:options:")
     public SCNSceneSource(NSData data, SCNSceneSourceOptions options) { super((SkipInit) null); initObject(init(data, options)); }
     /*</constructors>*/
     /*<properties>*/
@@ -112,11 +115,8 @@ import org.robovm.apple.opengles.*;
     public native NSObject getEntryWithIdentifier(String uid, Class<? extends NSObject> entryClass);
     @Method(selector = "identifiersOfEntriesWithClass:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getIdentifiersOfEntriesWithClass(Class<? extends NSObject> entryClass);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "entriesPassingTest:")
-    public native NSArray<?> getEntriesPassingTest(@Block Block3<NSObject, String, BooleanPtr, Boolean> predicate);
+    public native NSArray<NSObject> getEntriesPassingTest(@Block Block3<NSObject, String, BooleanPtr, Boolean> predicate);
     @Method(selector = "sceneSourceWithURL:options:")
     public static native SCNSceneSource create(NSURL url, SCNSceneSourceOptions options);
     @Method(selector = "sceneSourceWithData:options:")

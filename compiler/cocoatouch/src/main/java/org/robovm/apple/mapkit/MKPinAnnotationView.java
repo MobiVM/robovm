@@ -49,6 +49,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKPinAnnotationView() {}
+    protected MKPinAnnotationView(Handle h, long handle) { super(h, handle); }
     protected MKPinAnnotationView(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public MKPinAnnotationView(MKAnnotation annotation, String reuseIdentifier) {

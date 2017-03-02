@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 /*</imports>*/
 
@@ -51,6 +52,16 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @NotImplemented("widgetPerformUpdateWithCompletionHandler:")
     public void performUpdate(@Block VoidBlock1<NCUpdateResult> completionHandler) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("widgetActiveDisplayModeDidChange:withMaximumSize:")
+    public void widgetActiveDisplayModeDidChange$withMaximumSize$(NCWidgetDisplayMode activeDisplayMode, @ByVal CGSize maxSize) {}
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @NotImplemented("widgetMarginInsetsForProposedMarginInsets:")
     public @ByVal UIEdgeInsets getMarginInsetsForProposedInsets(@ByVal UIEdgeInsets defaultMarginInsets) { return null; }
     /*</methods>*/

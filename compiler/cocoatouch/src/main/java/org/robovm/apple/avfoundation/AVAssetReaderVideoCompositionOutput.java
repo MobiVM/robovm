@@ -55,7 +55,8 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetReaderVideoCompositionOutput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetReaderVideoCompositionOutput() {}
+    protected AVAssetReaderVideoCompositionOutput() {}
+    protected AVAssetReaderVideoCompositionOutput(Handle h, long handle) { super(h, handle); }
     protected AVAssetReaderVideoCompositionOutput(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public AVAssetReaderVideoCompositionOutput(NSArray<AVAssetTrack> videoTracks, AVVideoSettings videoSettings) {

@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNCamera/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNCamera() {}
+    protected SCNCamera(Handle h, long handle) { super(h, handle); }
     protected SCNCamera(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -75,80 +76,239 @@ import org.robovm.apple.opengles.*;
     public native double getZFar();
     @Property(selector = "setZFar:")
     public native void setZFar(double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "automaticallyAdjustsZRange")
     public native boolean automaticallyAdjustsZRange();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAutomaticallyAdjustsZRange:")
     public native void setAutomaticallyAdjustsZRange(boolean v);
     @Property(selector = "usesOrthographicProjection")
     public native boolean usesOrthographicProjection();
     @Property(selector = "setUsesOrthographicProjection:")
     public native void setUsesOrthographicProjection(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "orthographicScale")
     public native double getOrthographicScale();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setOrthographicScale:")
     public native void setOrthographicScale(double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    @Property(selector = "projectionTransform")
+    public native @ByVal SCNMatrix4 getProjectionTransform();
+    @Property(selector = "setProjectionTransform:")
+    public native void setProjectionTransform(@ByVal SCNMatrix4 v);
     @Property(selector = "focalDistance")
     public native @MachineSizedFloat double getFocalDistance();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setFocalDistance:")
     public native void setFocalDistance(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "focalSize")
     public native @MachineSizedFloat double getFocalSize();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setFocalSize:")
     public native void setFocalSize(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "focalBlurRadius")
     public native @MachineSizedFloat double getFocalBlurRadius();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setFocalBlurRadius:")
     public native void setFocalBlurRadius(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "aperture")
     public native @MachineSizedFloat double getAperture();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAperture:")
     public native void setAperture(@MachineSizedFloat double v);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
+    @Property(selector = "motionBlurIntensity")
+    public native @MachineSizedFloat double getMotionBlurIntensity();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setMotionBlurIntensity:")
+    public native void setMotionBlurIntensity(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "wantsHDR")
+    public native boolean wantsHDR();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setWantsHDR:")
+    public native void setWantsHDR(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "exposureOffset")
+    public native @MachineSizedFloat double getExposureOffset();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setExposureOffset:")
+    public native void setExposureOffset(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "averageGray")
+    public native @MachineSizedFloat double getAverageGray();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setAverageGray:")
+    public native void setAverageGray(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "whitePoint")
+    public native @MachineSizedFloat double getWhitePoint();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setWhitePoint:")
+    public native void setWhitePoint(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "wantsExposureAdaptation")
+    public native boolean wantsExposureAdaptation();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setWantsExposureAdaptation:")
+    public native void setWantsExposureAdaptation(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "exposureAdaptationBrighteningSpeedFactor")
+    public native @MachineSizedFloat double getExposureAdaptationBrighteningSpeedFactor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setExposureAdaptationBrighteningSpeedFactor:")
+    public native void setExposureAdaptationBrighteningSpeedFactor(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "exposureAdaptationDarkeningSpeedFactor")
+    public native @MachineSizedFloat double getExposureAdaptationDarkeningSpeedFactor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setExposureAdaptationDarkeningSpeedFactor:")
+    public native void setExposureAdaptationDarkeningSpeedFactor(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "minimumExposure")
+    public native @MachineSizedFloat double getMinimumExposure();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setMinimumExposure:")
+    public native void setMinimumExposure(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "maximumExposure")
+    public native @MachineSizedFloat double getMaximumExposure();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setMaximumExposure:")
+    public native void setMaximumExposure(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "bloomThreshold")
+    public native @MachineSizedFloat double getBloomThreshold();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setBloomThreshold:")
+    public native void setBloomThreshold(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "bloomIntensity")
+    public native @MachineSizedFloat double getBloomIntensity();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setBloomIntensity:")
+    public native void setBloomIntensity(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "bloomBlurRadius")
+    public native @MachineSizedFloat double getBloomBlurRadius();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setBloomBlurRadius:")
+    public native void setBloomBlurRadius(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "vignettingPower")
+    public native @MachineSizedFloat double getVignettingPower();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setVignettingPower:")
+    public native void setVignettingPower(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "vignettingIntensity")
+    public native @MachineSizedFloat double getVignettingIntensity();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setVignettingIntensity:")
+    public native void setVignettingIntensity(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "colorFringeStrength")
+    public native @MachineSizedFloat double getColorFringeStrength();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setColorFringeStrength:")
+    public native void setColorFringeStrength(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "colorFringeIntensity")
+    public native @MachineSizedFloat double getColorFringeIntensity();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setColorFringeIntensity:")
+    public native void setColorFringeIntensity(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "saturation")
+    public native @MachineSizedFloat double getSaturation();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setSaturation:")
+    public native void setSaturation(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "contrast")
+    public native @MachineSizedFloat double getContrast();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setContrast:")
+    public native void setContrast(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "colorGrading")
+    public native SCNMaterialProperty getColorGrading();
     @Property(selector = "categoryBitMask")
     public native @MachineSizedUInt long getCategoryBitMask();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setCategoryBitMask:")
     public native void setCategoryBitMask(@MachineSizedUInt long v);
+    @Property(selector = "animationKeys")
+    public native NSArray<?> getAnimationKeys();
     @Property(selector = "technique")
     public native SCNTechnique getTechnique();
     @Property(selector = "setTechnique:")
@@ -156,13 +316,6 @@ import org.robovm.apple.opengles.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "projectionTransform")
-    public native @ByVal SCNMatrix4 getProjectionTransform();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Method(selector = "setProjectionTransform:")
-    public native void setProjectionTransform(@ByVal SCNMatrix4 projectionTransform);
     @Method(selector = "camera")
     public static native SCNCamera create();
     @Method(selector = "addAnimation:forKey:")
@@ -171,29 +324,20 @@ import org.robovm.apple.opengles.*;
     public native void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
-    @Method(selector = "animationKeys")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAnimationKeys();
     @Method(selector = "animationForKey:")
     public native CAAnimation getAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "pauseAnimationForKey:")
     public native void pauseAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "resumeAnimationForKey:")
     public native void resumeAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "isAnimationForKeyPaused:")
     public native boolean isAnimationPaused(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setSpeed:forAnimationKey:")
+    public native void setSpeed(@MachineSizedFloat double speed, String key);
     /*</methods>*/
 }

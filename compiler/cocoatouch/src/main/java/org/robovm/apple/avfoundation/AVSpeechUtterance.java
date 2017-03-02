@@ -56,8 +56,15 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVSpeechUtterance() {}
+    protected AVSpeechUtterance(Handle h, long handle) { super(h, handle); }
     protected AVSpeechUtterance(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithString:")
     public AVSpeechUtterance(String string) { super((SkipInit) null); initObject(init(string)); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithAttributedString:")
+    public AVSpeechUtterance(NSAttributedString string) { super((SkipInit) null); initObject(initWithAttributedString(string)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "voice")
@@ -66,6 +73,11 @@ import org.robovm.apple.audiounit.*;
     public native void setVoice(AVSpeechSynthesisVoice v);
     @Property(selector = "speechString")
     public native String getSpeechString();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "attributedSpeechString")
+    public native NSAttributedString getAttributedSpeechString();
     @Property(selector = "rate")
     public native float getRate();
     @Property(selector = "setRate:")
@@ -107,5 +119,15 @@ import org.robovm.apple.audiounit.*;
     
     @Method(selector = "initWithString:")
     protected native @Pointer long init(String string);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithAttributedString:")
+    protected native @Pointer long initWithAttributedString(NSAttributedString string);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "speechUtteranceWithAttributedString:")
+    public static native AVSpeechUtterance speechUtteranceWithAttributedString(NSAttributedString string);
     /*</methods>*/
 }

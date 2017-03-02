@@ -199,6 +199,16 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="kSecTrustRevocationValidUntilDate", optional=true)
         public static native CFType RevocationValidUntilDate();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kSecTrustCertificateTransparency", optional=true)
+        public static native CFType CertificateTransparency();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kSecTrustCertificateTransparencyWhiteList", optional=true)
+        public static native CFType CertificateTransparencyWhiteList();
     }
     /*</keys>*/
 }

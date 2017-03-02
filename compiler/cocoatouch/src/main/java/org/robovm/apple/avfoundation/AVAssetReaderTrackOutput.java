@@ -55,7 +55,8 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetReaderTrackOutput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetReaderTrackOutput() {}
+    protected AVAssetReaderTrackOutput() {}
+    protected AVAssetReaderTrackOutput(Handle h, long handle) { super(h, handle); }
     protected AVAssetReaderTrackOutput(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public AVAssetReaderTrackOutput(AVAssetTrack track, AVAudioSettings outputSettings) {

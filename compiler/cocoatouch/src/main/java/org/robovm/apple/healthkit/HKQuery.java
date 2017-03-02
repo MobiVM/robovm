@@ -44,10 +44,21 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKQuery.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKQuery() {}
+    protected HKQuery() {}
+    protected HKQuery(Handle h, long handle) { super(h, handle); }
     protected HKQuery(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Property(selector = "objectType")
+    public native HKObjectType getObjectType();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.3.
+     */
+    @Deprecated
     @Property(selector = "sampleType")
     public native HKSampleType getSampleType();
     @Property(selector = "predicate")
@@ -65,6 +76,21 @@ import org.robovm.apple.foundation.*;
     public static native NSPredicate createPredicateForObjectsFromSource(HKSource source);
     @Method(selector = "predicateForObjectsFromSources:")
     public static native NSPredicate createPredicateForObjectsFromSources(NSSet<HKSource> sources);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "predicateForObjectsFromSourceRevisions:")
+    public static native NSPredicate predicateForObjectsFromSourceRevisions(NSSet<HKSourceRevision> sourceRevisions);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "predicateForObjectsFromDevices:")
+    public static native NSPredicate predicateForObjectsFromDevices(NSSet<HKDevice> devices);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "predicateForObjectsWithDeviceProperty:allowedValues:")
+    public static native NSPredicate predicateForObjectsWithDeviceProperty(String key, NSSet<?> allowedValues);
     @Method(selector = "predicateForObjectWithUUID:")
     public static native NSPredicate createPredicateForObjectsWithUUID(NSUUID uuid);
     @Method(selector = "predicateForObjectsWithUUIDs:")
@@ -87,5 +113,17 @@ import org.robovm.apple.foundation.*;
     public static native NSPredicate createPredicateForWorkoutsWithTotalEnergyBurned(NSPredicateOperatorType operatorType, HKQuantity totalEnergyBurned);
     @Method(selector = "predicateForWorkoutsWithOperatorType:totalDistance:")
     public static native NSPredicate createPredicateForWorkoutsWithTotalDistance(NSPredicateOperatorType operatorType, HKQuantity totalDistance);
+    @Method(selector = "predicateForWorkoutsWithOperatorType:totalSwimmingStrokeCount:")
+    public static native NSPredicate createPredicateForWorkoutsWithTotalSwimmingStrokeCount(NSPredicateOperatorType operatorType, HKQuantity totalSwimmingStrokeCount);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "predicateForActivitySummaryWithDateComponents:")
+    public static native NSPredicate predicateForActivitySummaryWithDateComponents(NSDateComponents dateComponents);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "predicateForActivitySummariesBetweenStartDateComponents:endDateComponents:")
+    public static native NSPredicate createPredicateForActivitySummariesBetweenDates(NSDateComponents startDateComponents, NSDateComponents endDateComponents);
     /*</methods>*/
 }

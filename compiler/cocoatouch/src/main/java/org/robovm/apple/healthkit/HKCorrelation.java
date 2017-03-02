@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HKCorrelation() {}
+    protected HKCorrelation(Handle h, long handle) { super(h, handle); }
     protected HKCorrelation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -61,5 +62,10 @@ import org.robovm.apple.foundation.*;
     public static native HKCorrelation create(HKCorrelationType correlationType, NSDate startDate, NSDate endDate, NSSet<HKSample> objects);
     @Method(selector = "correlationWithType:startDate:endDate:objects:metadata:")
     public static native HKCorrelation create(HKCorrelationType correlationType, NSDate startDate, NSDate endDate, NSSet<HKSample> objects, HKMetadata metadata);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "correlationWithType:startDate:endDate:objects:device:metadata:")
+    public static native HKCorrelation create(HKCorrelationType correlationType, NSDate startDate, NSDate endDate, NSSet<HKSample> objects, HKDevice device, HKMetadata metadata);
     /*</methods>*/
 }

@@ -49,7 +49,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKCircleRenderer() {}
+    protected MKCircleRenderer(Handle h, long handle) { super(h, handle); }
     protected MKCircleRenderer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCircle:")
     public MKCircleRenderer(MKCircle circle) { super((SkipInit) null); initObject(init(circle)); }
     /*</constructors>*/
     /*<properties>*/

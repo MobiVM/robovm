@@ -46,7 +46,9 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLVertexAttribute() {}
+    protected MDLVertexAttribute(Handle h, long handle) { super(h, handle); }
     protected MDLVertexAttribute(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:format:offset:bufferIndex:")
     public MDLVertexAttribute(String name, MDLVertexFormat format, @MachineSizedUInt long offset, @MachineSizedUInt long bufferIndex) { super((SkipInit) null); initObject(init(name, format, offset, bufferIndex)); }
     /*</constructors>*/
     public MDLVertexAttribute(MDLVertexAttributeName name, MDLVertexFormat format, @MachineSizedUInt long offset, @MachineSizedUInt long bufferIndex) {
@@ -76,10 +78,14 @@ import org.robovm.apple.coregraphics.*;
     public native @MachineSizedUInt long getBufferIndex();
     @Property(selector = "setBufferIndex:")
     public native void setBufferIndex(@MachineSizedUInt long v);
+    @Property(selector = "time")
+    public native double getTime();
+    @Property(selector = "setTime:")
+    public native void setTime(double v);
     @Property(selector = "initializationValue")
-    public native VectorFloat4 getInitializationValue();
+    public native @ByVal VectorFloat4 getInitializationValue();
     @Property(selector = "setInitializationValue:")
-    public native void setInitializationValue(VectorFloat4 v);
+    public native void setInitializationValue(@ByVal VectorFloat4 v);
     /*</properties>*/
     /*<members>*//*</members>*/
     @Method(selector = "initWithName:format:offset:bufferIndex:")

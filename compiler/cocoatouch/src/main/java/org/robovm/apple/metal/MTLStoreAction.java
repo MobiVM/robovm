@@ -41,7 +41,15 @@ public enum /*<name>*/MTLStoreAction/*</name>*/ implements ValuedEnum {
     /*<values>*/
     DontCare(0L),
     Store(1L),
-    MultisampleResolve(2L);
+    MultisampleResolve(2L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    StoreAndMultisampleResolve(3L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Unknown(4L);
     /*</values>*/
 
     /*<bind>*/

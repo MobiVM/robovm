@@ -47,26 +47,67 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKInterfaceDevice() {}
+    protected WKInterfaceDevice(Handle h, long handle) { super(h, handle); }
     protected WKInterfaceDevice(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 8.2 and later.
+     */
+    @Property(selector = "cachedImages")
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSNumber> getCachedImages();
     @Property(selector = "screenBounds")
     public native @ByVal CGRect getScreenBounds();
     @Property(selector = "screenScale")
     public native @MachineSizedFloat double getScreenScale();
     @Property(selector = "preferredContentSizeCategory")
     public native UIContentSizeCategory getPreferredContentSizeCategory();
-    @Property(selector = "cachedImages")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSNumber> getCachedImages();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "systemVersion")
+    public native String getSystemVersion();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "name")
+    public native String getName();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "model")
+    public native String getModel();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "localizedModel")
+    public native String getLocalizedModel();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "systemName")
+    public native String getSystemName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 8.2 and later.
+     */
     @Method(selector = "addCachedImage:name:")
     public native boolean addCachedImage(UIImage image, String name);
+    /**
+     * @since Available in iOS 8.2 and later.
+     */
     @Method(selector = "addCachedImageWithData:name:")
     public native boolean addCachedImage(NSData imageData, String name);
+    /**
+     * @since Available in iOS 8.2 and later.
+     */
     @Method(selector = "removeCachedImageWithName:")
     public native void removeCachedImage(String name);
+    /**
+     * @since Available in iOS 8.2 and later.
+     */
     @Method(selector = "removeAllCachedImages")
     public native void removeAllCachedImages();
     @Method(selector = "currentDevice")

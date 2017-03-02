@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HKCorrelationQuery() {}
+    protected HKCorrelationQuery(Handle h, long handle) { super(h, handle); }
     protected HKCorrelationQuery(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithType:predicate:samplePredicates:completion:")
     public HKCorrelationQuery(HKCorrelationType correlationType, NSPredicate predicate, NSDictionary<HKSampleType, NSPredicate> samplePredicates, @Block VoidBlock3<HKCorrelationQuery, NSArray<HKCorrelation>, NSError> completion) { super((SkipInit) null); initObject(init(correlationType, predicate, samplePredicates, completion)); }
     /*</constructors>*/
     /*<properties>*/

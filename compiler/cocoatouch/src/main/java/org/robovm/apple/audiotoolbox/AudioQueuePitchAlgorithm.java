@@ -42,8 +42,8 @@ public enum /*<name>*/AudioQueuePitchAlgorithm/*</name>*/ implements ValuedEnum 
     /*<values>*/
     Spectral(1936745827L),
     TimeDomain(1953064047L),
-    LowQualityZeroLatency(1819376236L),
-    Varispeed(1987276900L);
+    Varispeed(1987276900L),
+    LowQualityZeroLatency(1819376236L);
     /*</values>*/
 
     /*<bind>*/

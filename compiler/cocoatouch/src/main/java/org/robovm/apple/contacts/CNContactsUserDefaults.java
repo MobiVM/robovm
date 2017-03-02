@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNContactsUserDefaults() {}
+    protected CNContactsUserDefaults(Handle h, long handle) { super(h, handle); }
     protected CNContactsUserDefaults(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

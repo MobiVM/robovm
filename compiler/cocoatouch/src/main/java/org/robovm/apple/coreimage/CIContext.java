@@ -51,22 +51,37 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(CIContext.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CIContext() {}
     protected CIContext(Handle h, long handle) { super(h, handle); }
     protected CIContext(SkipInit skipInit) { super(skipInit); }
     /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public CIContext(CGContext cgctx, CIContextOptions options) { super((Handle) null, create(cgctx, options)); retain(getHandle()); }
+    /**
      * @since Available in iOS 5.0 and later.
      */
-    @Method(selector = "initWithOptions:")
-    public CIContext(CIContextOptions options) { super((SkipInit) null); initObject(init(options)); }
+    public CIContext(CIContextOptions options) { super((Handle) null, create(options)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    public CIContext() { super((Handle) null, create()); retain(getHandle()); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    public CIContext(EAGLContext eaglContext) { super((Handle) null, create(eaglContext)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    public CIContext(EAGLContext eaglContext, CIContextOptions options) { super((Handle) null, create(eaglContext, options)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public CIContext(MTLDevice device) { super((Handle) null, create(device)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public CIContext(MTLDevice device, CIContextOptions options) { super((Handle) null, create(device, options)); retain(getHandle()); }
     /*</constructors>*/
-    
-    public CIContext(EAGLContext eaglContext) {
-        super((Handle)null, create(eaglContext));
-    }
-    public CIContext(EAGLContext eaglContext, CIContextOptions options) {
-        super((Handle)null, create(eaglContext, options));
-    }
     
     /*<properties>*/
     /**
@@ -82,11 +97,6 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @Method(selector = "initWithOptions:")
-    protected native @Pointer long init(CIContextOptions options);
     @Method(selector = "drawImage:inRect:fromRect:")
     public native void drawImage(CIImage image, @ByVal CGRect inRect, @ByVal CGRect fromRect);
     @WeaklyLinked
@@ -140,43 +150,36 @@ import org.robovm.apple.metal.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
-    @WeaklyLinked
     @Method(selector = "contextWithCGContext:options:")
     protected static native @Pointer long create(CGContext cgctx, CIContextOptions options);
     /**
      * @since Available in iOS 5.0 and later.
      */
-    @WeaklyLinked
     @Method(selector = "contextWithOptions:")
     protected static native @Pointer long create(CIContextOptions options);
     /**
      * @since Available in iOS 5.0 and later.
      */
-    @WeaklyLinked
     @Method(selector = "context")
     protected static native @Pointer long create();
     /**
      * @since Available in iOS 5.0 and later.
      */
-    @WeaklyLinked
     @Method(selector = "contextWithEAGLContext:")
     protected static native @Pointer long create(EAGLContext eaglContext);
     /**
      * @since Available in iOS 5.0 and later.
      */
-    @WeaklyLinked
     @Method(selector = "contextWithEAGLContext:options:")
     protected static native @Pointer long create(EAGLContext eaglContext, CIContextOptions options);
     /**
      * @since Available in iOS 9.0 and later.
      */
-    @WeaklyLinked
     @Method(selector = "contextWithMTLDevice:")
     protected static native @Pointer long create(MTLDevice device);
     /**
      * @since Available in iOS 9.0 and later.
      */
-    @WeaklyLinked
     @Method(selector = "contextWithMTLDevice:options:")
     protected static native @Pointer long create(MTLDevice device, CIContextOptions options);
     /**

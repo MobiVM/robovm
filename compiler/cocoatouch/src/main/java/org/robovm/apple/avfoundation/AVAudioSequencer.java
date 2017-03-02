@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioSequencer() {}
+    protected AVAudioSequencer(Handle h, long handle) { super(h, handle); }
     protected AVAudioSequencer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAudioEngine:")
     public AVAudioSequencer(AVAudioEngine engine) { super((SkipInit) null); initObject(init(engine)); }
     /*</constructors>*/
     /*<properties>*/

@@ -63,6 +63,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "storageMode")
     public native MTLStorageMode getStorageMode();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "heap")
+    public native MTLHeap getHeap();
     /*</properties>*/
     /*<members>*//*</members>*/
     public ByteBuffer getContents() {
@@ -76,7 +81,27 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newTextureWithDescriptor:offset:bytesPerRow:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) MTLTexture newTexture(MTLTextureDescriptor descriptor, @MachineSizedUInt long offset, @MachineSizedUInt long bytesPerRow);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "addDebugMarker:range:")
+    public native void addDebugMarker(String marker, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "removeAllDebugMarkers")
+    public native void removeAllDebugMarkers();
     @Method(selector = "setPurgeableState:")
     public native MTLPurgeableState setPurgeableState(MTLPurgeableState state);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "makeAliasable")
+    public native void makeAliasable();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "isAliasable")
+    public native boolean isAliasable();
     /*</methods>*/
 }

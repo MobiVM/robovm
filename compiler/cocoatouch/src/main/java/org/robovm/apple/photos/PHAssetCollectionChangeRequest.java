@@ -47,9 +47,10 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAssetCollectionChangeRequest() {}
+    protected PHAssetCollectionChangeRequest(Handle h, long handle) { super(h, handle); }
     protected PHAssetCollectionChangeRequest(SkipInit skipInit) { super(skipInit); }
-    public PHAssetCollectionChangeRequest(PHAssetCollection assetCollection) { super(create(assetCollection)); retain(getHandle()); }
-    public PHAssetCollectionChangeRequest(PHAssetCollection assetCollection, PHFetchResult<PHAsset> assets) { super(create(assetCollection, assets)); retain(getHandle()); }
+    public PHAssetCollectionChangeRequest(PHAssetCollection assetCollection) { super((Handle) null, create(assetCollection)); retain(getHandle()); }
+    public PHAssetCollectionChangeRequest(PHAssetCollection assetCollection, PHFetchResult<PHAsset> assets) { super((Handle) null, create(assetCollection, assets)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "placeholderForCreatedAssetCollection")

@@ -44,6 +44,7 @@ public enum /*<name>*/AUTypeConverter/*</name>*/ implements AUSubType {
     Varispeed(1986097769L),
     DeferredRenderer(1684366962L),
     Splitter(1936747636L),
+    MultiSplitter(1836281964L),
     Merger(1835364967L),
     NewTimePitch(1853191280L),
     AUiPodTimeOther(1768977519L),

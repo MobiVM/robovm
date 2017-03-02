@@ -47,14 +47,45 @@ import org.robovm.apple.foundation.*;
     /*</constants>*/
     /*<constructors>*/
     public HKAnchoredObjectQuery() {}
+    protected HKAnchoredObjectQuery(Handle h, long handle) { super(h, handle); }
     protected HKAnchoredObjectQuery(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "initWithType:predicate:anchor:limit:resultsHandler:")
+    public HKAnchoredObjectQuery(HKSampleType type, NSPredicate predicate, HKQueryAnchor anchor, @MachineSizedUInt long limit, @Block VoidBlock5<HKAnchoredObjectQuery, NSArray<HKSample>, NSArray<HKDeletedObject>, HKQueryAnchor, NSError> handler) { super((SkipInit) null); initObject(init(type, predicate, anchor, limit, handler)); }
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
+    @Method(selector = "initWithType:predicate:anchor:limit:completionHandler:")
     public HKAnchoredObjectQuery(HKSampleType type, NSPredicate predicate, @MachineSizedUInt long anchor, @MachineSizedUInt long limit, @Block("(,,@MachineSizedUInt,)") VoidBlock4<HKAnchoredObjectQuery, NSArray<HKSample>, Long, NSError> handler) { super((SkipInit) null); initObject(init(type, predicate, anchor, limit, handler)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "updateHandler")
+    public native @Block VoidBlock5<HKAnchoredObjectQuery, NSArray<HKSample>, NSArray<HKDeletedObject>, HKQueryAnchor, NSError> getUpdateHandler();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setUpdateHandler:")
+    public native void setUpdateHandler(@Block VoidBlock5<HKAnchoredObjectQuery, NSArray<HKSample>, NSArray<HKDeletedObject>, HKQueryAnchor, NSError> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "initWithType:predicate:anchor:limit:resultsHandler:")
+    protected native @Pointer long init(HKSampleType type, NSPredicate predicate, HKQueryAnchor anchor, @MachineSizedUInt long limit, @Block VoidBlock5<HKAnchoredObjectQuery, NSArray<HKSample>, NSArray<HKDeletedObject>, HKQueryAnchor, NSError> handler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Method(selector = "initWithType:predicate:anchor:limit:completionHandler:")
     protected native @Pointer long init(HKSampleType type, NSPredicate predicate, @MachineSizedUInt long anchor, @MachineSizedUInt long limit, @Block("(,,@MachineSizedUInt,)") VoidBlock4<HKAnchoredObjectQuery, NSArray<HKSample>, Long, NSError> handler);
     /*</methods>*/

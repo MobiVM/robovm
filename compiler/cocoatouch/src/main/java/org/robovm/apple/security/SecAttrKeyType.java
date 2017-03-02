@@ -96,9 +96,13 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 4.0 and later.
      */
     public static final SecAttrKeyType EC = new SecAttrKeyType("EC");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final SecAttrKeyType ECSECPrimeRandom = new SecAttrKeyType("ECSECPrimeRandom");
     /*</constants>*/
     
-    private static /*<name>*/SecAttrKeyType/*</name>*/[] values = new /*<name>*/SecAttrKeyType/*</name>*/[] {/*<value_list>*/RSA, EC/*</value_list>*/};
+    private static /*<name>*/SecAttrKeyType/*</name>*/[] values = new /*<name>*/SecAttrKeyType/*</name>*/[] {/*<value_list>*/RSA, EC, ECSECPrimeRandom/*</value_list>*/};
     
     /*<name>*/SecAttrKeyType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -131,6 +135,11 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="kSecAttrKeyTypeEC", optional=true)
         public static native CFType EC();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kSecAttrKeyTypeECSECPrimeRandom", optional=true)
+        public static native CFType ECSECPrimeRandom();
         /*</values>*/
     }
 }

@@ -44,13 +44,14 @@ import org.robovm.apple.gameplaykit.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKEffectNode/*</name>*/ 
     extends /*<extends>*/SKNode/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements SKWarpable/*</implements>*/ {
 
     /*<ptr>*/public static class SKEffectNodePtr extends Ptr<SKEffectNode, SKEffectNodePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKEffectNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKEffectNode() {}
+    protected SKEffectNode(Handle h, long handle) { super(h, handle); }
     protected SKEffectNode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -80,9 +81,24 @@ import org.robovm.apple.gameplaykit.*;
     public native SKShader getShader();
     @Property(selector = "setShader:")
     public native void setShader(SKShader v);
+    @Property(selector = "attributeValues")
+    public native NSDictionary<?, ?> getAttributeValues();
+    @Property(selector = "setAttributeValues:")
+    public native void setAttributeValues(NSDictionary<?, ?> v);
+    @Property(selector = "warpGeometry")
+    public native SKWarpGeometry getWarpGeometry();
+    @Property(selector = "setWarpGeometry:")
+    public native void setWarpGeometry(SKWarpGeometry v);
+    @Property(selector = "subdivisionLevels")
+    public native @MachineSizedSInt long getSubdivisionLevels();
+    @Property(selector = "setSubdivisionLevels:")
+    public native void setSubdivisionLevels(@MachineSizedSInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "valueForAttributeNamed:")
+    public native SKAttributeValue valueForAttribute(String key);
+    @Method(selector = "setValue:forAttributeNamed:")
+    public native void setValueForAttribute(SKAttributeValue value, String key);
     /*</methods>*/
 }

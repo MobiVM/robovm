@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNPhysicsBody/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNPhysicsBody() {}
+    protected SCNPhysicsBody(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsBody(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -63,6 +64,26 @@ import org.robovm.apple.opengles.*;
     public native @MachineSizedFloat double getMass();
     @Property(selector = "setMass:")
     public native void setMass(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "momentOfInertia")
+    public native @ByVal SCNVector3 getMomentOfInertia();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setMomentOfInertia:")
+    public native void setMomentOfInertia(@ByVal SCNVector3 v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "usesDefaultMomentOfInertia")
+    public native boolean usesDefaultMomentOfInertia();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setUsesDefaultMomentOfInertia:")
+    public native void setUsesDefaultMomentOfInertia(boolean v);
     @Property(selector = "charge")
     public native @MachineSizedFloat double getCharge();
     @Property(selector = "setCharge:")
@@ -119,8 +140,28 @@ import org.robovm.apple.opengles.*;
     public native void setCategoryBitMask(@MachineSizedUInt long v);
     @Property(selector = "collisionBitMask")
     public native SCNPhysicsCollisionCategory getCollisionBitMask();
-    @Property(selector = "setCollisionBitMask:", strongRef = true)
+    @Property(selector = "setCollisionBitMask:")
     public native void setCollisionBitMask(SCNPhysicsCollisionCategory v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "contactTestBitMask")
+    public native @MachineSizedUInt long getContactTestBitMask();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setContactTestBitMask:")
+    public native void setContactTestBitMask(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "isAffectedByGravity")
+    public native boolean isAffectedByGravity();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setAffectedByGravity:")
+    public native void setAffectedByGravity(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

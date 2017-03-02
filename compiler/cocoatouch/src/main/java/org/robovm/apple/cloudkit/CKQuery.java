@@ -46,9 +46,12 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CKQuery.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKQuery() {}
+    protected CKQuery() {}
+    protected CKQuery(Handle h, long handle) { super(h, handle); }
     protected CKQuery(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public CKQuery(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithRecordType:predicate:")
     public CKQuery(String recordType, NSPredicate predicate) { super((SkipInit) null); initObject(init(recordType, predicate)); }
     /*</constructors>*/
     /*<properties>*/

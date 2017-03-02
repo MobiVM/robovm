@@ -56,8 +56,10 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioUnitGenerator() {}
+    protected AVAudioUnitGenerator(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitGenerator(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithAudioComponentDescription:")
     public AVAudioUnitGenerator(@ByVal AudioComponentDescription audioComponentDescription) { super((SkipInit) null); initObject(init(audioComponentDescription)); }
     /*</constructors>*/
     /*<properties>*/

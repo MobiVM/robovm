@@ -464,6 +464,11 @@ import org.robovm.apple.corefoundation.*;
          */
         @GlobalValue(symbol="kUTTypeScalableVectorGraphics", optional=true)
         public static native String ScalableVectorGraphics();
+        /**
+         * @since Available in iOS 9.1 and later.
+         */
+        @GlobalValue(symbol="kUTTypeLivePhoto", optional=true)
+        public static native String LivePhoto();
     }
 
     @Library("MobileCoreServices")

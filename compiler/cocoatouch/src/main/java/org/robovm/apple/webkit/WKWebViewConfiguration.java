@@ -41,14 +41,17 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WKWebViewConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSCoding/*</implements>*/ {
 
     /*<ptr>*/public static class WKWebViewConfigurationPtr extends Ptr<WKWebViewConfiguration, WKWebViewConfigurationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(WKWebViewConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKWebViewConfiguration() {}
+    protected WKWebViewConfiguration(Handle h, long handle) { super(h, handle); }
     protected WKWebViewConfiguration(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public WKWebViewConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "processPool")
@@ -97,20 +100,20 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setAllowsAirPlayForMediaPlayback:")
     public native void setAllowsAirPlayForMediaPlayback(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "mediaTypesRequiringUserActionForPlayback")
+    public native WKAudiovisualMediaTypes getMediaTypesRequiringUserActionForPlayback();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setMediaTypesRequiringUserActionForPlayback:")
+    public native void setMediaTypesRequiringUserActionForPlayback(WKAudiovisualMediaTypes v);
     @Property(selector = "allowsInlineMediaPlayback")
     public native boolean allowsInlineMediaPlayback();
     @Property(selector = "setAllowsInlineMediaPlayback:")
     public native void setAllowsInlineMediaPlayback(boolean v);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "requiresUserActionForMediaPlayback")
-    public native boolean requiresUserActionForMediaPlayback();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "setRequiresUserActionForMediaPlayback:")
-    public native void setRequiresUserActionForMediaPlayback(boolean v);
     @Property(selector = "selectionGranularity")
     public native WKSelectionGranularity getSelectionGranularity();
     @Property(selector = "setSelectionGranularity:")
@@ -125,6 +128,26 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setAllowsPictureInPictureMediaPlayback:")
     public native void setAllowsPictureInPictureMediaPlayback(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "dataDetectorTypes")
+    public native WKDataDetectorTypes getDataDetectorTypes();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setDataDetectorTypes:")
+    public native void setDataDetectorTypes(WKDataDetectorTypes v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "ignoresViewportScaleLimits")
+    public native boolean ignoresViewportScaleLimits();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setIgnoresViewportScaleLimits:")
+    public native void setIgnoresViewportScaleLimits(boolean v);
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0.
@@ -153,9 +176,26 @@ import org.robovm.apple.security.*;
     @Deprecated
     @Property(selector = "setMediaPlaybackAllowsAirPlay:")
     public native void setMediaPlaybackAllowsAirPlay(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "requiresUserActionForMediaPlayback")
+    public native boolean requiresUserActionForMediaPlayback();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "setRequiresUserActionForMediaPlayback:")
+    public native void setRequiresUserActionForMediaPlayback(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

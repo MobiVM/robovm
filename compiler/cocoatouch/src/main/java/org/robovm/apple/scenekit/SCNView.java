@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,8 +52,10 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNView() {}
+    protected SCNView(Handle h, long handle) { super(h, handle); }
     protected SCNView(SkipInit skipInit) { super(skipInit); }
-    public SCNView(@ByVal CGRect frame, NSDictionary options) { super((SkipInit) null); initObject(init(frame, options)); }
+    @Method(selector = "initWithFrame:options:")
+    public SCNView(@ByVal CGRect frame, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(frame, options)); }
     /*</constructors>*/
     public SCNView(CGRect frame) {
     	super(frame);
@@ -65,32 +69,20 @@ import org.robovm.apple.opengles.*;
     public native boolean allowsCameraControl();
     @Property(selector = "setAllowsCameraControl:")
     public native void setAllowsCameraControl(boolean v);
-    @Property(selector = "eaglContext")
-    public native EAGLContext getEaglContext();
-    @Property(selector = "setEaglContext:")
-    public native void setEaglContext(EAGLContext v);
     @Property(selector = "preferredFramesPerSecond")
     public native @MachineSizedSInt long getPreferredFramesPerSecond();
     @Property(selector = "setPreferredFramesPerSecond:")
     public native void setPreferredFramesPerSecond(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    @Property(selector = "eaglContext")
+    public native EAGLContext getEaglContext();
+    @Property(selector = "setEaglContext:")
+    public native void setEaglContext(EAGLContext v);
     @Property(selector = "antialiasingMode")
     public native SCNAntialiasingMode getAntialiasingMode();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAntialiasingMode:")
     public native void setAntialiasingMode(SCNAntialiasingMode v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "sceneTime")
     public native double getSceneTime();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setSceneTime:")
     public native void setSceneTime(double v);
     @Property(selector = "delegate")
@@ -117,31 +109,84 @@ import org.robovm.apple.opengles.*;
     public native boolean isJitteringEnabled();
     @Property(selector = "setJitteringEnabled:")
     public native void setJitteringEnabled(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "showsStatistics")
     public native boolean showsStatistics();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShowsStatistics:")
     public native void setShowsStatistics(boolean v);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @Property(selector = "debugOptions")
+    public native SCNDebugOptions getDebugOptions();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setDebugOptions:")
+    public native void setDebugOptions(SCNDebugOptions v);
     @WeaklyLinked
     @Property(selector = "overlaySKScene")
     public native SKScene getOverlaySKScene();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Property(selector = "setOverlaySKScene:")
     public native void setOverlaySKScene(SKScene v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "renderingAPI")
+    public native SCNRenderingAPI getRenderingAPI();
     @WeaklyLinked
     @Property(selector = "context")
     public native EAGLContext getContext();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "currentRenderCommandEncoder")
+    public native MTLRenderCommandEncoder getCurrentRenderCommandEncoder();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "device")
+    public native MTLDevice getDevice();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "colorPixelFormat")
+    public native MTLPixelFormat getColorPixelFormat();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "depthPixelFormat")
+    public native MTLPixelFormat getDepthPixelFormat();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "stencilPixelFormat")
+    public native MTLPixelFormat getStencilPixelFormat();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "commandQueue")
+    public native MTLCommandQueue getCommandQueue();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "audioEngine")
+    public native AVAudioEngine getAudioEngine();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "audioEnvironmentNode")
+    public native AVAudioEnvironmentNode getAudioEnvironmentNode();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "audioListener")
+    public native SCNNode getAudioListener();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setAudioListener:")
+    public native void setAudioListener(SCNNode v);
     @Property(selector = "technique")
     public native SCNTechnique getTechnique();
     @Property(selector = "setTechnique:")
@@ -149,11 +194,24 @@ import org.robovm.apple.opengles.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithFrame:options:")
-    protected native @Pointer long init(@ByVal CGRect frame, NSDictionary options);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @GlobalValue(symbol="SCNPreferredRenderingAPIKey", optional=true)
+    public static native String SCNPreferredRenderingAPIKey();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="SCNPreferredDeviceKey", optional=true)
+    public static native String SCNPreferredDeviceKey();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="SCNPreferLowPowerDeviceKey", optional=true)
+    public static native String SCNPreferLowPowerDeviceKey();
+    
+    @Method(selector = "initWithFrame:options:")
+    protected native @Pointer long init(@ByVal CGRect frame, NSDictionary<?, ?> options);
     @Method(selector = "snapshot")
     public native UIImage snapshot();
     @Method(selector = "play:")
@@ -162,31 +220,26 @@ import org.robovm.apple.opengles.*;
     public native void pause(NSObject sender);
     @Method(selector = "stop:")
     public native void stop(NSObject sender);
-    @Method(selector = "hitTest:options:")
-    public native NSArray<SCNHitTestResult> hitTest(@ByVal CGPoint thePoint, SCNHitTestOptions options);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @Method(selector = "presentScene:withTransition:incomingPointOfView:completionHandler:")
+    public native void presentScene(SCNScene scene, SKTransition transition, SCNNode pointOfView, @Block Runnable completionHandler);
+    @Method(selector = "hitTest:options:")
+    public native NSArray<SCNHitTestResult> hitTest(@ByVal CGPoint point, SCNHitTestOptions options);
     @Method(selector = "isNodeInsideFrustum:withPointOfView:")
     public native boolean isNodeInsideFrustum(SCNNode node, SCNNode pointOfView);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @Method(selector = "nodesInsideFrustumWithPointOfView:")
+    public native NSArray<SCNNode> nodesInsideFrustumWithPointOfView(SCNNode pointOfView);
     @Method(selector = "projectPoint:")
     public native @ByVal SCNVector3 projectPoint(@ByVal SCNVector3 point);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "unprojectPoint:")
     public native @ByVal SCNVector3 unprojectPoint(@ByVal SCNVector3 point);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "prepareObject:shouldAbortBlock:")
     public native boolean prepareObject(NSObject object, @Block Block0<Boolean> block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "prepareObjects:withCompletionHandler:")
     public native void prepareObjects(NSArray<?> objects, @Block VoidBooleanBlock completionHandler);
     /*</methods>*/

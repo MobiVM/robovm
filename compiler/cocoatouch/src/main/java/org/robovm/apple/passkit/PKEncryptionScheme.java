@@ -94,9 +94,13 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final PKEncryptionScheme ECC_V2 = new PKEncryptionScheme("ECC_V2");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final PKEncryptionScheme RSA_V2 = new PKEncryptionScheme("RSA_V2");
     /*</constants>*/
     
-    private static /*<name>*/PKEncryptionScheme/*</name>*/[] values = new /*<name>*/PKEncryptionScheme/*</name>*/[] {/*<value_list>*/ECC_V2/*</value_list>*/};
+    private static /*<name>*/PKEncryptionScheme/*</name>*/[] values = new /*<name>*/PKEncryptionScheme/*</name>*/[] {/*<value_list>*/ECC_V2, RSA_V2/*</value_list>*/};
     
     /*<name>*/PKEncryptionScheme/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -124,6 +128,11 @@ import org.robovm.apple.contacts.*;
          */
         @GlobalValue(symbol="PKEncryptionSchemeECC_V2", optional=true)
         public static native NSString ECC_V2();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="PKEncryptionSchemeRSA_V2", optional=true)
+        public static native NSString RSA_V2();
         /*</values>*/
     }
 }

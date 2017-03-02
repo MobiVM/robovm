@@ -55,7 +55,8 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVPlayerItemErrorLogEvent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVPlayerItemErrorLogEvent() {}
+    protected AVPlayerItemErrorLogEvent() {}
+    protected AVPlayerItemErrorLogEvent(Handle h, long handle) { super(h, handle); }
     protected AVPlayerItemErrorLogEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -46,7 +46,8 @@ import org.robovm.apple.foundation.*;
     public static final double MolarMassBloodGlucose = 180.15588000005408;
     /*</constants>*/
     /*<constructors>*/
-    public HKUnit() {}
+    protected HKUnit() {}
+    protected HKUnit(Handle h, long handle) { super(h, handle); }
     protected HKUnit(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -93,6 +94,11 @@ import org.robovm.apple.foundation.*;
     public static native HKUnit inch();
     @Method(selector = "footUnit")
     public static native HKUnit foot();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "yardUnit")
+    public static native HKUnit yard();
     @Method(selector = "mileUnit")
     public static native HKUnit mile();
     @Method(selector = "literUnitWithMetricPrefix:")
@@ -107,6 +113,16 @@ import org.robovm.apple.foundation.*;
     public static native HKUnit pintUS();
     @Method(selector = "pintImperialUnit")
     public static native HKUnit pintImperial();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "cupUSUnit")
+    public static native HKUnit cupUS();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "cupImperialUnit")
+    public static native HKUnit cupImperial();
     @Method(selector = "pascalUnitWithMetricPrefix:")
     public static native HKUnit pascal(HKMetricPrefix prefix);
     @Method(selector = "pascalUnit")

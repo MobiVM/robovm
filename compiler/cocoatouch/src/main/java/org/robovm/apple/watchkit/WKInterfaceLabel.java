@@ -49,6 +49,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKInterfaceLabel() {}
+    protected WKInterfaceLabel(Handle h, long handle) { super(h, handle); }
     protected WKInterfaceLabel(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

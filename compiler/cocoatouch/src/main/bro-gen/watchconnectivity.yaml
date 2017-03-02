@@ -9,6 +9,8 @@ typedefs: {}
     
 enums:
     WCErrorCode: {}
+    WCSessionActivationState: {}
+
         
 classes:
     WCError:

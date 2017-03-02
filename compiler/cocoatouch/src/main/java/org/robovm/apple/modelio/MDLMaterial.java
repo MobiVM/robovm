@@ -46,7 +46,9 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLMaterial() {}
+    protected MDLMaterial(Handle h, long handle) { super(h, handle); }
     protected MDLMaterial(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:scatteringFunction:")
     public MDLMaterial(String name, MDLScatteringFunction scatteringFunction) { super((SkipInit) null); initObject(init(name, scatteringFunction)); }
     /*</constructors>*/
     /*<properties>*/
@@ -62,6 +64,10 @@ import org.robovm.apple.coregraphics.*;
     public native void setBaseMaterial(MDLMaterial v);
     @Property(selector = "count")
     public native @MachineSizedUInt long getCount();
+    @Property(selector = "materialFace")
+    public native MDLMaterialFace getMaterialFace();
+    @Property(selector = "setMaterialFace:")
+    public native void setMaterialFace(MDLMaterialFace v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -75,6 +81,8 @@ import org.robovm.apple.coregraphics.*;
     public native MDLMaterialProperty getProperty(String name);
     @Method(selector = "propertyWithSemantic:")
     public native MDLMaterialProperty getProperty(MDLMaterialSemantic semantic);
+    @Method(selector = "propertiesWithSemantic:")
+    public native NSArray<MDLMaterialProperty> propertiesWithSemantic(MDLMaterialSemantic semantic);
     @Method(selector = "removeAllProperties")
     public native void removeAllProperties();
     @Method(selector = "objectAtIndexedSubscript:")

@@ -46,9 +46,12 @@ import org.robovm.apple.avfoundation.*;
 
     /*<ptr>*/public static class PHAssetResourceManagerPtr extends Ptr<PHAssetResourceManager, PHAssetResourceManagerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(PHAssetResourceManager.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int InvalidAssetResourceDataRequestID = 0;
+    /*</constants>*/
     /*<constructors>*/
     public PHAssetResourceManager() {}
+    protected PHAssetResourceManager(Handle h, long handle) { super(h, handle); }
     protected PHAssetResourceManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -56,9 +59,6 @@ import org.robovm.apple.avfoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @GlobalValue(symbol="PHInvalidAssetResourceDataRequestID", optional=true)
-    public static native int getInvalidAssetResourceDataRequestID();
-    
     @Method(selector = "requestDataForAssetResource:options:dataReceivedHandler:completionHandler:")
     public native int requestData(PHAssetResource resource, PHAssetResourceRequestOptions options, @Block VoidBlock1<NSData> handler, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "writeDataForAssetResource:toFile:options:completionHandler:")

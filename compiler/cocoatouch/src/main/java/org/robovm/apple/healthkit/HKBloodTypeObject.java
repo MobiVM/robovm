@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HKBloodTypeObject() {}
+    protected HKBloodTypeObject(Handle h, long handle) { super(h, handle); }
     protected HKBloodTypeObject(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

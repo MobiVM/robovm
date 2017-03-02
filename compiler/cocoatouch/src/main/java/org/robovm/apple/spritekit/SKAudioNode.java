@@ -53,10 +53,15 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKAudioNode() {}
+    protected SKAudioNode(Handle h, long handle) { super(h, handle); }
     protected SKAudioNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAVAudioNode:")
     public SKAudioNode(AVAudioNode node) { super((SkipInit) null); initObject(init(node)); }
+    @Method(selector = "initWithCoder:")
     public SKAudioNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithFileNamed:")
     public SKAudioNode(String name) { super((SkipInit) null); initObject(init(name)); }
+    @Method(selector = "initWithURL:")
     public SKAudioNode(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
     public SKAudioNode(File file) {

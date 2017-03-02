@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLVertexBufferLayoutDescriptor() {}
+    protected MTLVertexBufferLayoutDescriptor(Handle h, long handle) { super(h, handle); }
     protected MTLVertexBufferLayoutDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

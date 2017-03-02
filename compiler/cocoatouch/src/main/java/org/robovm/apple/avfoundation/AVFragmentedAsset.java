@@ -54,8 +54,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVFragmentedAsset() {}
+    protected AVFragmentedAsset(Handle h, long handle) { super(h, handle); }
     protected AVFragmentedAsset(SkipInit skipInit) { super(skipInit); }
-    public AVFragmentedAsset(NSURL URL, AVURLAssetOptions options) { super(create(URL, options)); retain(getHandle()); }
+    public AVFragmentedAsset(NSURL URL, AVURLAssetOptions options) { super((Handle) null, create(URL, options)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tracks")

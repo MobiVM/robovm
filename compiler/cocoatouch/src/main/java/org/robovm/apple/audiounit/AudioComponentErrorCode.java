@@ -43,7 +43,7 @@ public enum /*<name>*/AudioComponentErrorCode/*</name>*/ implements NSErrorCode 
     DuplicateDescription(-66752L),
     UnsupportedType(-66751L),
     TooManyInstances(-66750L),
-    InstanceInvalidated(-66749L),
+    InstanceInvalidated(-66749L), // manually moved from AUErrorCodes
     NotPermitted(-66748L),
     InitializationTimedOut(-66747L),
     InvalidFormat(-66746L);

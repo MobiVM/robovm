@@ -49,6 +49,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKMapView() {}
+    protected MKMapView(Handle h, long handle) { super(h, handle); }
     protected MKMapView(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public MKMapView(CGRect frame) {
@@ -207,8 +208,6 @@ import org.robovm.apple.dispatch.*;
     public native void setVisibleMapRect(@ByVal MKMapRect mapRect, boolean animate);
     @Method(selector = "mapRectThatFits:")
     public native @ByVal MKMapRect getMapRectThatFits(@ByVal MKMapRect mapRect);
-    @Method(selector = "_handleSelectionAtPoint:")
-    public native void handleSelectionAtPoint(@ByVal CGPoint locationInView);
     @Method(selector = "setVisibleMapRect:edgePadding:animated:")
     public native void setVisibleMapRect(@ByVal MKMapRect mapRect, @ByVal UIEdgeInsets insets, boolean animate);
     @Method(selector = "mapRectThatFits:edgePadding:")

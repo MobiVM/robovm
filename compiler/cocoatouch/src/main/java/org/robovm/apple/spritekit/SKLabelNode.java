@@ -51,8 +51,9 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKLabelNode() {}
+    protected SKLabelNode(Handle h, long handle) { super(h, handle); }
     protected SKLabelNode(SkipInit skipInit) { super(skipInit); }
-    public SKLabelNode(String text) { super(create(text)); retain(getHandle()); }
+    public SKLabelNode(String text) { super((Handle) null, create(text)); retain(getHandle()); }
     /*</constructors>*/
     public SKLabelNode(String text, String fontName) {
         this(text);

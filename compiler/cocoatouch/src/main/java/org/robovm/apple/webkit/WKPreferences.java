@@ -41,14 +41,17 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WKPreferences/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSCoding/*</implements>*/ {
 
     /*<ptr>*/public static class WKPreferencesPtr extends Ptr<WKPreferences, WKPreferencesPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(WKPreferences.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKPreferences() {}
+    protected WKPreferences(Handle h, long handle) { super(h, handle); }
     protected WKPreferences(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public WKPreferences(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "minimumFontSize")
@@ -66,6 +69,9 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

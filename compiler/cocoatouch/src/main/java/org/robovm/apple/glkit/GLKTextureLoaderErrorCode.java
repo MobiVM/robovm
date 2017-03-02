@@ -61,7 +61,8 @@ public enum /*<name>*/GLKTextureLoaderErrorCode/*</name>*/ implements NSErrorCod
     ReorientationFailure(15L),
     AlphaPremultiplicationFailure(16L),
     InvalidEAGLContext(17L),
-    IncompatibleFormatSRGB(18L);
+    IncompatibleFormatSRGB(18L),
+    UnsupportedTextureTarget(19L);
     /*</values>*/
 
     /*<bind>*/

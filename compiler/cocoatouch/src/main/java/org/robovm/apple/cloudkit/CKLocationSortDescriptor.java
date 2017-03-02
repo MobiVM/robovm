@@ -46,10 +46,13 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CKLocationSortDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKLocationSortDescriptor() {}
+    protected CKLocationSortDescriptor() {}
+    protected CKLocationSortDescriptor(Handle h, long handle) { super(h, handle); }
     protected CKLocationSortDescriptor(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithKey:relativeLocation:")
     public CKLocationSortDescriptor(String key, CLLocation relativeLocation) { super((SkipInit) null); initObject(init(key, relativeLocation)); }
+    @Method(selector = "initWithCoder:")
     public CKLocationSortDescriptor(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public CKLocationSortDescriptor(NSSortIdentifier key, boolean ascending) {

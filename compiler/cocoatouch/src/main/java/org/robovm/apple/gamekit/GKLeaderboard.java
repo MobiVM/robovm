@@ -51,12 +51,14 @@ import org.robovm.apple.uikit.*;
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @Method(selector = "initWithPlayers:")
     public GKLeaderboard(NSArray<GKPlayer> players) { super((SkipInit) null); initObject(init(players)); }
     /**
      * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
+    @Method(selector = "initWithPlayerIDs:")
     public GKLeaderboard(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs) { super((SkipInit) null); initObject(init(playerIDs)); }
     /*</constructors>*/
     /*<properties>*/

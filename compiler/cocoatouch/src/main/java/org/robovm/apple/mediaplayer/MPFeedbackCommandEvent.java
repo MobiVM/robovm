@@ -47,6 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPFeedbackCommandEvent() {}
+    protected MPFeedbackCommandEvent(Handle h, long handle) { super(h, handle); }
     protected MPFeedbackCommandEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

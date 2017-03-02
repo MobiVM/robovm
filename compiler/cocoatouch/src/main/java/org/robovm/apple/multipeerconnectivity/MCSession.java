@@ -47,9 +47,12 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MCSession() {}
+    protected MCSession(Handle h, long handle) { super(h, handle); }
     protected MCSession(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPeer:")
     public MCSession(MCPeerID myPeerID) { super((SkipInit) null); initObject(init(myPeerID)); }
     @WeaklyLinked
+    @Method(selector = "initWithPeer:securityIdentity:encryptionPreference:")
     public MCSession(MCPeerID myPeerID, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<SecIdentity> identity, MCEncryptionPreference encryptionPreference) { super((SkipInit) null); initObject(init(myPeerID, identity, encryptionPreference)); }
     /*</constructors>*/
     /*<properties>*/

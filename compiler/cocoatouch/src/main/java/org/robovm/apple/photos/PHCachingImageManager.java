@@ -49,6 +49,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHCachingImageManager() {}
+    protected PHCachingImageManager(Handle h, long handle) { super(h, handle); }
     protected PHCachingImageManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

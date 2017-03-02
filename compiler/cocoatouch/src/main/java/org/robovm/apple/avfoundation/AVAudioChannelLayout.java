@@ -55,10 +55,13 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAudioChannelLayout.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAudioChannelLayout() {}
+    protected AVAudioChannelLayout() {}
+    protected AVAudioChannelLayout(Handle h, long handle) { super(h, handle); }
     protected AVAudioChannelLayout(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayoutTag:")
     public AVAudioChannelLayout(AudioChannelLayoutTag layoutTag) { super((SkipInit) null); initObject(init(layoutTag)); }
     @WeaklyLinked
+    @Method(selector = "initWithLayout:")
     public AVAudioChannelLayout(AudioChannelLayout layout) { super((SkipInit) null); initObject(init(layout)); }
     /*</constructors>*/
     /*<properties>*/

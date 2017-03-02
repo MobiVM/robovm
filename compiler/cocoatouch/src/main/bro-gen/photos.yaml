@@ -39,6 +39,13 @@ enums:
     PHVideoRequestOptionsDeliveryMode: {}
         
 classes:
+    PHLivePhotoRequestOptions: {}
+    PHLivePhoto:
+        methods:
+            '+requestLivePhotoWithResourceFileURLs:placeholderImage:targetSize:contentMode:resultHandler:':
+                name: requestLivePhoto
+            '+cancelLivePhotoRequestWithRequestID:':
+                name: cancelLivePhotoRequest
     PHAdjustmentData: # DONE
         methods:
             '-init.*':
@@ -204,11 +211,7 @@ classes:
                 trim_after_first_colon: true
             '+defaultManager':
                 property: true
-    PHAssetResourceRequestOptions: # DONE
-        properties:
-            'progressHandler':
-                type: VoidBlock1<Double>
-                annotations: ['@Block']
+    PHAssetResourceRequestOptions: {} # DONE
     PHCachingImageManager: # DONE
         methods:
             '-startCachingImagesForAssets:targetSize:contentMode:options:':
@@ -400,6 +403,9 @@ classes:
             '-requestImageDataForAsset:options:resultHandler:':
                 trim_after_first_colon: true
                 annotations: ['@WeaklyLinked']
+            '-requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
             '-cancelImageRequest:':
                 trim_after_first_colon: true
             '-requestPlayerItemForVideo:options:resultHandler:':
@@ -509,12 +515,26 @@ values:
             Error:
                 type: NSError
    
+    PHLivePhoto(.*):
+        class: PHLivePhoto
+        name: '#{g[0]}'
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?PH.*):
         class: Photos
         name: 'Value__#{g[0]}'
 
 constants:
+    PHLivePhoto(.*):
+        class: PHLivePhoto
+        name: '#{g[0]}'
+    PHInvalidImageRequestID:
+        class: PHImageManager
+        name: 'InvalidImageRequestID'
+    PHInvalidAssetResourceDataRequestID:
+        class: PHAssetResourceManager
+        name: 'InvalidAssetResourceDataRequestID'
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?PH.*):
         class: Photos

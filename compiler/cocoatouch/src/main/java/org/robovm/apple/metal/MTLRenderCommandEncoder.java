@@ -156,11 +156,6 @@ import org.robovm.apple.dispatch.*;
     public native void setFrontFacingWinding(MTLWinding frontFacingWinding);
     @Method(selector = "setCullMode:")
     public native void setCullMode(MTLCullMode cullMode);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "setDepthClipMode:")
-    public native void setDepthClipMode(MTLDepthClipMode depthClipMode);
     @Method(selector = "setDepthBias:slopeScale:clamp:")
     public native void setDepthBias(float depthBias, float slopeScale, float clamp);
     @Method(selector = "setScissorRect:")
@@ -206,6 +201,21 @@ import org.robovm.apple.dispatch.*;
     public native void setStencilReferenceValue(int frontReferenceValue, int backReferenceValue);
     @Method(selector = "setVisibilityResultMode:offset:")
     public native void setVisibilityResultMode(MTLVisibilityResultMode mode, @MachineSizedUInt long offset);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setColorStoreAction:atIndex:")
+    public native void setColorStoreAction(MTLStoreAction storeAction, @MachineSizedUInt long colorAttachmentIndex);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setDepthStoreAction:")
+    public native void setDepthStoreAction(MTLStoreAction storeAction);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setStencilStoreAction:")
+    public native void setStencilStoreAction(MTLStoreAction storeAction);
     @Method(selector = "drawPrimitives:vertexStart:vertexCount:instanceCount:")
     public native void drawPrimitives(MTLPrimitiveType primitiveType, @MachineSizedUInt long vertexStart, @MachineSizedUInt long vertexCount, @MachineSizedUInt long instanceCount);
     @Method(selector = "drawPrimitives:vertexStart:vertexCount:")
@@ -214,6 +224,56 @@ import org.robovm.apple.dispatch.*;
     public native void drawIndexedPrimitives(MTLPrimitiveType primitiveType, @MachineSizedUInt long indexCount, MTLIndexType indexType, MTLBuffer indexBuffer, @MachineSizedUInt long indexBufferOffset, @MachineSizedUInt long instanceCount);
     @Method(selector = "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:")
     public native void drawIndexedPrimitives(MTLPrimitiveType primitiveType, @MachineSizedUInt long indexCount, MTLIndexType indexType, MTLBuffer indexBuffer, @MachineSizedUInt long indexBufferOffset);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:")
+    public native void drawPrimitives(MTLPrimitiveType primitiveType, @MachineSizedUInt long vertexStart, @MachineSizedUInt long vertexCount, @MachineSizedUInt long instanceCount, @MachineSizedUInt long baseInstance);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:")
+    public native void drawIndexedPrimitives(MTLPrimitiveType primitiveType, @MachineSizedUInt long indexCount, MTLIndexType indexType, MTLBuffer indexBuffer, @MachineSizedUInt long indexBufferOffset, @MachineSizedUInt long instanceCount, @MachineSizedSInt long baseVertex, @MachineSizedUInt long baseInstance);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "drawPrimitives:indirectBuffer:indirectBufferOffset:")
+    public native void drawPrimitives(MTLPrimitiveType primitiveType, MTLBuffer indirectBuffer, @MachineSizedUInt long indirectBufferOffset);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:")
+    public native void drawIndexedPrimitives(MTLPrimitiveType primitiveType, MTLIndexType indexType, MTLBuffer indexBuffer, @MachineSizedUInt long indexBufferOffset, MTLBuffer indirectBuffer, @MachineSizedUInt long indirectBufferOffset);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "updateFence:afterStages:")
+    public native void updateFence(MTLFence fence, MTLRenderStages stages);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "waitForFence:beforeStages:")
+    public native void waitForFence(MTLFence fence, MTLRenderStages stages);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setTessellationFactorBuffer:offset:instanceStride:")
+    public native void setTessellationFactorBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long instanceStride);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setTessellationFactorScale:")
+    public native void setTessellationFactorScale(float scale);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:")
+    public native void drawPatches(@MachineSizedUInt long numberOfPatchControlPoints, @MachineSizedUInt long patchStart, @MachineSizedUInt long patchCount, MTLBuffer patchIndexBuffer, @MachineSizedUInt long patchIndexBufferOffset, @MachineSizedUInt long instanceCount, @MachineSizedUInt long baseInstance);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:")
+    public native void drawIndexedPatches(@MachineSizedUInt long numberOfPatchControlPoints, @MachineSizedUInt long patchStart, @MachineSizedUInt long patchCount, MTLBuffer patchIndexBuffer, @MachineSizedUInt long patchIndexBufferOffset, MTLBuffer controlPointIndexBuffer, @MachineSizedUInt long controlPointIndexBufferOffset, @MachineSizedUInt long instanceCount, @MachineSizedUInt long baseInstance);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")

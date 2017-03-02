@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GCMotion() {}
+    protected GCMotion(Handle h, long handle) { super(h, handle); }
     protected GCMotion(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

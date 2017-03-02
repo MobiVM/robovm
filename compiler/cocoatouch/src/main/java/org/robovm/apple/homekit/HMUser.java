@@ -45,6 +45,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMUser.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMUser(Handle h, long handle) { super(h, handle); }
     protected HMUser(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -35,7 +35,9 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 3.2 and later.
+ * @deprecated Deprecated in iOS 9.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMoviePlayerViewController/*</name>*/ 
@@ -47,7 +49,9 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPMoviePlayerViewController() {}
+    protected MPMoviePlayerViewController(Handle h, long handle) { super(h, handle); }
     protected MPMoviePlayerViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithContentURL:")
     public MPMoviePlayerViewController(NSURL contentURL) { super((SkipInit) null); initObject(init(contentURL)); }
     /*</constructors>*/
     /*<properties>*/

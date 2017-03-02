@@ -48,7 +48,9 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKUserScript() {}
+    protected WKUserScript(Handle h, long handle) { super(h, handle); }
     protected WKUserScript(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSource:injectionTime:forMainFrameOnly:")
     public WKUserScript(String source, WKUserScriptInjectionTime injectionTime, boolean forMainFrameOnly) { super((SkipInit) null); initObject(init(source, injectionTime, forMainFrameOnly)); }
     /*</constructors>*/
     /*<properties>*/

@@ -47,6 +47,7 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKQueryNotification() {}
+    protected CKQueryNotification(Handle h, long handle) { super(h, handle); }
     protected CKQueryNotification(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -56,8 +57,18 @@ import org.robovm.apple.contacts.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSObject> getRecordFields();
     @Property(selector = "recordID")
     public native CKRecordID getRecordID();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "isPublicDatabase")
     public native boolean isPublicDatabase();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "databaseScope")
+    public native CKDatabaseScope getDatabaseScope();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

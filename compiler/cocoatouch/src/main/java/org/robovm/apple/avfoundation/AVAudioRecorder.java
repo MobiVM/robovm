@@ -56,11 +56,24 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioRecorder() {}
+    protected AVAudioRecorder(Handle h, long handle) { super(h, handle); }
     protected AVAudioRecorder(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:settings:error:")
     public AVAudioRecorder(NSURL url, AVAudioSettings settings) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        long handle = init(url, settings, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithURL:format:error:")
+    public AVAudioRecorder(NSURL url, AVAudioFormat format) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(url, format, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
@@ -72,6 +85,11 @@ import org.robovm.apple.audiounit.*;
     public native NSURL getUrl();
     @Property(selector = "settings")
     public native AVAudioSettings getSettings();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "format")
+    public native AVAudioFormat getFormat();
     @Property(selector = "delegate")
     public native AVAudioRecorderDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
@@ -102,6 +120,11 @@ import org.robovm.apple.audiounit.*;
     /*<methods>*/
     @Method(selector = "initWithURL:settings:error:")
     private native @Pointer long init(NSURL url, AVAudioSettings settings, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithURL:format:error:")
+    private native @Pointer long init(NSURL url, AVAudioFormat format, NSError.NSErrorPtr outError);
     @Method(selector = "prepareToRecord")
     public native boolean prepareToRecord();
     @Method(selector = "record")

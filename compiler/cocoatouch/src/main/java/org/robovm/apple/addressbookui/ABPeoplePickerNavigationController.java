@@ -49,6 +49,7 @@ import org.robovm.apple.addressbook.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public ABPeoplePickerNavigationController() {}
+    protected ABPeoplePickerNavigationController(Handle h, long handle) { super(h, handle); }
     protected ABPeoplePickerNavigationController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

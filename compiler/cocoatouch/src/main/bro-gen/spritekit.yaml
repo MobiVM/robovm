@@ -25,6 +25,10 @@ enums:
     SKTextureFilteringMode: {}
     SKTransitionDirection: {}
     SKUniformType: {}
+    SKAttributeType: {}
+    SKTileDefinitionRotation: {}
+    SKTileSetType: {}
+    SKTileAdjacencyMask: {prefix: SKTile}
 
 categories:
     SKNodeTouches: # DONE
@@ -35,6 +39,40 @@ categories:
                 name: getPreviousLocationInNode
 
 classes:
+    SKAttribute:
+        methods:
+            '-init.*':
+                name: init
+            '+attributeWithName:type:':
+                exclude: true
+    SKAttributeValue: {}
+    SKTileDefinition:
+        methods:
+            '-init.*':
+                name: init
+            '+tileDefinitionWith.*':
+                exclude: true
+    SKTileSet:
+        methods:
+            '-init.*':
+                name: init
+            '+tileSetWithTileGroups:tileSetType:':
+                exclude: true
+    SKTileGroup: {}
+    SKTileGroupRule:
+        methods:
+            '-init.*':
+                name: init
+            '+tileGroupRuleWithAdjacency:tileDefinitions:':
+                exclude: true
+    SKWarpGeometry: {}
+    SKWarpGeometryGrid:
+        methods:
+            '-init.*':
+                name: init
+            '+grid.*':
+                name: create
+
     SK3DNode:
         properties:
             'loops':
@@ -90,6 +128,8 @@ classes:
             '+scaleXTo:duration:':
                 trim_after_first_colon: true
             '+scaleYTo:duration:':
+                trim_after_first_colon: true
+            '+scaleToSize:duration:':
                 trim_after_first_colon: true
             '+sequence:':
                 trim_after_first_colon: true
@@ -181,6 +221,12 @@ classes:
                 trim_after_first_colon: true
             '+stereoPan.*':
                 trim_after_first_colon: true
+            '+warpTo:duration:':
+                name: warp
+            '+animateWithWarps:times:':
+                name: animateWarps
+            '+animateWithWarps:times:restore:':
+                name: animateWarps
     SKAudioNode: # DONE
         properties:
             'avAudioNode':
@@ -222,10 +268,19 @@ classes:
         properties:
             'filter':
                 annotations: ['@WeaklyLinked']
+        methods:
+            '-valueForAttributeNamed:':
+                name: valueForAttribute
+            '-setValue:forAttributeNamed:':
+                name: setValueForAttribute
     SKEmitterNode: # DONE
         methods:
             '-advanceSimulationTime:':
                 trim_after_first_colon: true
+            '-valueForAttributeNamed:':
+                name: valueForAttribute
+            '-setValue:forAttributeNamed:':
+                name: setValueForAttribute
     SKFieldNode: # DONE
         methods:
             '+dragField':
@@ -589,6 +644,10 @@ classes:
                 constructor: true
             '+spriteNodeWith.*':
                 exclude: true
+            '-valueForAttributeNamed:':
+                name: valueForAttribute
+            '-setValue:forAttributeNamed:':
+                name: setValueForAttribute
     SKTexture: # DONE
         methods:
             '-textureByApplyingCIFilter:':
@@ -704,6 +763,12 @@ classes:
                 name: convertPointFromScene
 
 protocols:
+    SKWarpable: {}
+    SKViewDelegate:
+        methods:
+            '-view:shouldRenderAtTime:':
+                name: shouldRenderViewAtTime
+
     SKPhysicsContactDelegate: # DONE
         methods:
             '-didBeginContact:':
@@ -737,6 +802,8 @@ values:
 
 constants:
     SK_VERSION:
+        exclude: true
+    SKVIEW_AVAILABLE:
         exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version

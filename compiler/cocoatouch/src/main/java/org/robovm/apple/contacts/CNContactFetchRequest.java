@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNContactFetchRequest() {}
+    protected CNContactFetchRequest(Handle h, long handle) { super(h, handle); }
     protected CNContactFetchRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithKeysToFetch:")
     public CNContactFetchRequest(@org.robovm.rt.bro.annotation.Marshaler(CNContactPropertyKey.AsListMarshaler.class) List<CNContactPropertyKey> keysToFetch) { super((SkipInit) null); initObject(init(keysToFetch)); }
     /*</constructors>*/
     /*<properties>*/
@@ -57,8 +59,14 @@ import org.robovm.apple.foundation.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(CNContactPropertyKey.AsListMarshaler.class) List<CNContactPropertyKey> getKeysToFetch();
     @Property(selector = "setKeysToFetch:")
     public native void setKeysToFetch(@org.robovm.rt.bro.annotation.Marshaler(CNContactPropertyKey.AsListMarshaler.class) List<CNContactPropertyKey> v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "mutableObjects")
     public native boolean isMutableObjects();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "setMutableObjects:")
     public native void setMutableObjects(boolean v);
     @Property(selector = "unifyResults")

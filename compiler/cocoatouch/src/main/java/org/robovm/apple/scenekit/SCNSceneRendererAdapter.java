@@ -35,9 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNSceneRendererAdapter/*</name>*/ 
@@ -55,14 +58,8 @@ import org.robovm.apple.opengles.*;
     public SCNScene getScene() { return null; }
     @NotImplemented("setScene:")
     public void setScene(SCNScene v) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("sceneTime")
     public double getSceneTime() { return 0; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("setSceneTime:")
     public void setSceneTime(double v) {}
     @NotImplemented("delegate")
@@ -89,59 +86,107 @@ import org.robovm.apple.opengles.*;
     public boolean isJitteringEnabled() { return false; }
     @NotImplemented("setJitteringEnabled:")
     public void setJitteringEnabled(boolean v) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("showsStatistics")
     public boolean showsStatistics() { return false; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("setShowsStatistics:")
     public void setShowsStatistics(boolean v) {}
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @NotImplemented("debugOptions")
+    public SCNDebugOptions getDebugOptions() { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("setDebugOptions:")
+    public void setDebugOptions(SCNDebugOptions v) {}
     @WeaklyLinked
     @NotImplemented("overlaySKScene")
     public SKScene getOverlaySKScene() { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @NotImplemented("setOverlaySKScene:")
     public void setOverlaySKScene(SKScene v) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("renderingAPI")
+    public SCNRenderingAPI getRenderingAPI() { return null; }
     @WeaklyLinked
     @NotImplemented("context")
     public EAGLContext getContext() { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("currentRenderCommandEncoder")
+    public MTLRenderCommandEncoder getCurrentRenderCommandEncoder() { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("device")
+    public MTLDevice getDevice() { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("colorPixelFormat")
+    public MTLPixelFormat getColorPixelFormat() { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("depthPixelFormat")
+    public MTLPixelFormat getDepthPixelFormat() { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("stencilPixelFormat")
+    public MTLPixelFormat getStencilPixelFormat() { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("commandQueue")
+    public MTLCommandQueue getCommandQueue() { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("audioEngine")
+    public AVAudioEngine getAudioEngine() { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("audioEnvironmentNode")
+    public AVAudioEnvironmentNode getAudioEnvironmentNode() { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("audioListener")
+    public SCNNode getAudioListener() { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("setAudioListener:")
+    public void setAudioListener(SCNNode v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("hitTest:options:")
-    public NSArray<SCNHitTestResult> hitTest(@ByVal CGPoint thePoint, SCNHitTestOptions options) { return null; }
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @NotImplemented("presentScene:withTransition:incomingPointOfView:completionHandler:")
+    public void presentScene(SCNScene scene, SKTransition transition, SCNNode pointOfView, @Block Runnable completionHandler) {}
+    @NotImplemented("hitTest:options:")
+    public NSArray<SCNHitTestResult> hitTest(@ByVal CGPoint point, SCNHitTestOptions options) { return null; }
     @NotImplemented("isNodeInsideFrustum:withPointOfView:")
     public boolean isNodeInsideFrustum(SCNNode node, SCNNode pointOfView) { return false; }
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @NotImplemented("nodesInsideFrustumWithPointOfView:")
+    public NSArray<SCNNode> nodesInsideFrustumWithPointOfView(SCNNode pointOfView) { return null; }
     @NotImplemented("projectPoint:")
     public @ByVal SCNVector3 projectPoint(@ByVal SCNVector3 point) { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("unprojectPoint:")
     public @ByVal SCNVector3 unprojectPoint(@ByVal SCNVector3 point) { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("prepareObject:shouldAbortBlock:")
     public boolean prepareObject(NSObject object, @Block Block0<Boolean> block) { return false; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("prepareObjects:withCompletionHandler:")
     public void prepareObjects(NSArray<?> objects, @Block VoidBooleanBlock completionHandler) {}
     /*</methods>*/

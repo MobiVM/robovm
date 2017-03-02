@@ -56,12 +56,13 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVSpeechSynthesisVoice() {}
+    protected AVSpeechSynthesisVoice(Handle h, long handle) { super(h, handle); }
     protected AVSpeechSynthesisVoice(SkipInit skipInit) { super(skipInit); }
-    public AVSpeechSynthesisVoice(String languageCode) { super(create(languageCode)); retain(getHandle()); }
+    public AVSpeechSynthesisVoice(String languageCode) { super((Handle) null, create(languageCode)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public AVSpeechSynthesisVoice(AVSpeechSynthesisVoiceIdentifier identifier) { super(create(identifier)); retain(getHandle()); }
+    public AVSpeechSynthesisVoice(AVSpeechSynthesisVoiceIdentifier identifier) { super((Handle) null, create(identifier)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "language")

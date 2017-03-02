@@ -56,8 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVPlayerLayer() {}
+    protected AVPlayerLayer(Handle h, long handle) { super(h, handle); }
     protected AVPlayerLayer(SkipInit skipInit) { super(skipInit); }
-    public AVPlayerLayer(AVPlayer player) { super(create(player)); retain(getHandle()); }
+    public AVPlayerLayer(AVPlayer player) { super((Handle) null, create(player)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "player")

@@ -43,6 +43,10 @@ public final class /*<name>*/CKRecordZoneCapabilities/*</name>*/ extends Bits</*
     public static final CKRecordZoneCapabilities None = new CKRecordZoneCapabilities(0L);
     public static final CKRecordZoneCapabilities FetchChanges = new CKRecordZoneCapabilities(1L);
     public static final CKRecordZoneCapabilities Atomic = new CKRecordZoneCapabilities(2L);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CKRecordZoneCapabilities Sharing = new CKRecordZoneCapabilities(4L);
     /*</values>*/
 
     /*<bind>*/

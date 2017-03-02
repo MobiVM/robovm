@@ -46,11 +46,16 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CKDatabase.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKDatabase() {}
+    protected CKDatabase() {}
+    protected CKDatabase(Handle h, long handle) { super(h, handle); }
     protected CKDatabase(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "databaseScope")
+    public native CKDatabaseScope getDatabaseScope();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

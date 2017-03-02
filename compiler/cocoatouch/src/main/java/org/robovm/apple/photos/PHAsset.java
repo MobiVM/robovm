@@ -49,6 +49,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAsset() {}
+    protected PHAsset(Handle h, long handle) { super(h, handle); }
     protected PHAsset(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

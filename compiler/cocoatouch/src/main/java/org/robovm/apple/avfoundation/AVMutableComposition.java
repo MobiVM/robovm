@@ -56,11 +56,12 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVMutableComposition() {}
+    protected AVMutableComposition(Handle h, long handle) { super(h, handle); }
     protected AVMutableComposition(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public AVMutableComposition(AVURLAssetOptions urlAssetInitializationOptions) { super(create(urlAssetInitializationOptions)); retain(getHandle()); }
+    public AVMutableComposition(AVURLAssetOptions urlAssetInitializationOptions) { super((Handle) null, create(urlAssetInitializationOptions)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tracks")

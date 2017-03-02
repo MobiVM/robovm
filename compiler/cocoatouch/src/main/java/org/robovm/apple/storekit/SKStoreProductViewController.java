@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKStoreProductViewController() {}
+    protected SKStoreProductViewController(Handle h, long handle) { super(h, handle); }
     protected SKStoreProductViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

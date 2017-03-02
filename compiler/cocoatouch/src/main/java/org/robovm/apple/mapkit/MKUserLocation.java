@@ -49,6 +49,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKUserLocation() {}
+    protected MKUserLocation(Handle h, long handle) { super(h, handle); }
     protected MKUserLocation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

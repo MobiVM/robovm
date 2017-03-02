@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioEnvironmentNode() {}
+    protected AVAudioEnvironmentNode(Handle h, long handle) { super(h, handle); }
     protected AVAudioEnvironmentNode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLCompileOptions() {}
+    protected MTLCompileOptions(Handle h, long handle) { super(h, handle); }
     protected MTLCompileOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -129,12 +129,20 @@ import org.robovm.apple.dispatch.*;
      */
     public static final SecPolicyIdentifier AppleRevocation = new SecPolicyIdentifier("AppleRevocation");
     /**
+     * @since Available in iOS 7.0 and later.
+     */
+    public static final SecPolicyIdentifier ApplePassbookSigning = new SecPolicyIdentifier("ApplePassbookSigning");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final SecPolicyIdentifier ApplePayIssuerEncryption = new SecPolicyIdentifier("ApplePayIssuerEncryption");
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    public static final SecPolicyIdentifier TeamIdentifier = new SecPolicyIdentifier("TeamIdentifier");
     /*</constants>*/
     
-    private static /*<name>*/SecPolicyIdentifier/*</name>*/[] values = new /*<name>*/SecPolicyIdentifier/*</name>*/[] {/*<value_list>*/AppleX509Basic, AppleSSL, AppleSMIME, AppleEAP, AppleIPsec, AppleCodeSigning, MacAppStoreReceipt, AppleIDValidation, AppleTimeStamping, AppleRevocation, ApplePayIssuerEncryption/*</value_list>*/};
+    private static /*<name>*/SecPolicyIdentifier/*</name>*/[] values = new /*<name>*/SecPolicyIdentifier/*</name>*/[] {/*<value_list>*/AppleX509Basic, AppleSSL, AppleSMIME, AppleEAP, AppleIPsec, AppleCodeSigning, MacAppStoreReceipt, AppleIDValidation, AppleTimeStamping, AppleRevocation, ApplePassbookSigning, ApplePayIssuerEncryption, TeamIdentifier/*</value_list>*/};
     
     /*<name>*/SecPolicyIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -208,10 +216,20 @@ import org.robovm.apple.dispatch.*;
         @GlobalValue(symbol="kSecPolicyAppleRevocation", optional=true)
         public static native CFType AppleRevocation();
         /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kSecPolicyApplePassbookSigning", optional=true)
+        public static native CFType ApplePassbookSigning();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="kSecPolicyApplePayIssuerEncryption", optional=true)
         public static native CFType ApplePayIssuerEncryption();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kSecPolicyTeamIdentifier", optional=true)
+        public static native CFType TeamIdentifier();
         /*</values>*/
     }
 }

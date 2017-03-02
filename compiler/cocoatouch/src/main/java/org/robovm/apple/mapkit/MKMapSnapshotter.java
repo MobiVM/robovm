@@ -49,7 +49,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKMapSnapshotter() {}
+    protected MKMapSnapshotter(Handle h, long handle) { super(h, handle); }
     protected MKMapSnapshotter(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithOptions:")
     public MKMapSnapshotter(MKMapSnapshotOptions options) { super((SkipInit) null); initObject(init(options)); }
     /*</constructors>*/
     /*<properties>*/

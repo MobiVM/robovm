@@ -17,6 +17,8 @@ enums:
     WKNavigationResponsePolicy: {}
     WKUserScriptInjectionTime: {}
     WKSelectionGranularity: {}
+    WKDataDetectorTypes: {}
+    WKAudiovisualMediaTypes: {}
 
 classes:
     WKError:
@@ -139,6 +141,7 @@ classes:
                 parameters:
                     completionHandler:
                         type: '@Block VoidBlock2<NSObject, NSError>' # TODO change NSObject type to correct type???
+    WKPreviewElementInfo: {}
 
 protocols:
     WKNavigationDelegate: # DONE
@@ -179,6 +182,12 @@ protocols:
                 name: runJavaScriptConfirmPanel
             '-webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:completionHandler:':
                 name: runJavaScriptTextInputPanel
+            '-webView:shouldPreviewElement:':
+                name: shouldPreviewElement
+            '-webView:previewingViewControllerForElement:defaultActions:':
+                name: getPreviewingViewControllerForElement
+            '-webView:commitPreviewingViewController:':
+                name: commitPreviewingViewController
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -195,7 +204,11 @@ values:
         enum: WKWebsiteDataType
         name: '#{g[0]}'
         type: NSString
-   
+
+    WKPreviewActionItemIdentifier(.*):
+        class: WKPreviewActionItemIdentifiers
+        name: '#{g[0]}'
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?WK.*):
         class: WebKit

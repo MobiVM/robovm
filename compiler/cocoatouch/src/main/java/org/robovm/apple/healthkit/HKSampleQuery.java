@@ -47,7 +47,9 @@ import org.robovm.apple.foundation.*;
     /*</constants>*/
     /*<constructors>*/
     public HKSampleQuery() {}
+    protected HKSampleQuery(Handle h, long handle) { super(h, handle); }
     protected HKSampleQuery(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSampleType:predicate:limit:sortDescriptors:resultsHandler:")
     public HKSampleQuery(HKSampleType sampleType, NSPredicate predicate, @MachineSizedUInt long limit, NSArray<NSSortDescriptor> sortDescriptors, @Block VoidBlock3<HKSampleQuery, NSArray<HKSample>, NSError> resultsHandler) { super((SkipInit) null); initObject(init(sampleType, predicate, limit, sortDescriptors, resultsHandler)); }
     /*</constructors>*/
     /*<properties>*/

@@ -9,8 +9,31 @@ typedefs: {}
     
 enums:
     RPRecordingErrorCode: {}
+    RPPreviewViewControllerMode: {}
+    RPSampleBufferType: {}
         
 classes:
+    RPBroadcastController: {}
+    RPBroadcastActivityViewController:
+        methods:
+            '+loadBroadcastActivityViewControllerWithHandler:':
+                name: load
+    RPBroadcastConfiguration: {}
+    RPBroadcastHandler: {}
+    RPBroadcastMP4ClipHandler:
+        methods:
+            '-processMP4ClipWithURL:setupInfo:finished:':
+                name: processMP4Clip
+            '-finishedProcessingMP4ClipWithUpdatedBroadcastConfiguration:error:':
+                name: finishedProcessingMP4Clip
+    RPBroadcastSampleHandler:
+        methods:
+            '-processSampleBuffer:withType:':
+                name: processSampleBuffer
+                parameters:
+                    'sampleBuffer':
+                          type: 'org.robovm.apple.coremedia.CMSampleBuffer'
+
     RPRecordingError: # DONE
         extends: NSError
         annotations: ['@StronglyLinked']
@@ -34,6 +57,18 @@ classes:
                 exclude: true
 
 protocols:
+    RPBroadcastActivityViewControllerDelegate:
+        skip_adapter: true
+        methods:
+            '-broadcastActivityViewController:didFinishWithBroadcastController:error:':
+                name: didFinish
+    RPBroadcastControllerDelegate:
+        skip_adapter: true
+        methods:
+            '-broadcastController:didFinishWithError:':
+                name: didFinish
+            '-broadcastController:didUpdateServiceInfo:':
+                name: didUpdateServiceInfo
     RPPreviewViewControllerDelegate: # DONE
         methods:
             '-previewControllerDidFinish:':

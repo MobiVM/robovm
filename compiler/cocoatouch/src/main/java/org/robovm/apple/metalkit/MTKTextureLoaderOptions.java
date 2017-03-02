@@ -114,7 +114,7 @@ import org.robovm.apple.coreanimation.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public boolean allocatesMipmaps() {
+    public boolean isAllocatesMipmaps() {
         if (has(Keys.AllocateMipmaps())) {
             NSNumber val = (NSNumber) get(Keys.AllocateMipmaps());
             return val.booleanValue();
@@ -191,6 +191,11 @@ import org.robovm.apple.coreanimation.*;
         @GlobalValue(symbol="MTKTextureLoaderOptionAllocateMipmaps", optional=true)
         public static native NSString AllocateMipmaps();
         /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="MTKTextureLoaderOptionGenerateMipmaps", optional=true)
+        public static native NSString GenerateMipmaps();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="MTKTextureLoaderOptionSRGB", optional=true)
@@ -205,6 +210,26 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="MTKTextureLoaderOptionTextureCPUCacheMode", optional=true)
         public static native NSString TextureCPUCacheMode();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="MTKTextureLoaderOptionTextureStorageMode", optional=true)
+        public static native NSString TextureStorageMode();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="MTKTextureLoaderOptionCubeLayout", optional=true)
+        public static native NSString CubeLayout();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="MTKTextureLoaderCubeLayoutVertical", optional=true)
+        public static native String CubeLayoutVertical();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="MTKTextureLoaderOptionOrigin", optional=true)
+        public static native NSString Origin();
     }
     /*</keys>*/
 }

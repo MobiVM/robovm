@@ -38,18 +38,22 @@ import org.robovm.apple.coregraphics.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("ModelIO") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MDLVoxelArray/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MDLObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MDLVoxelArrayPtr extends Ptr<MDLVoxelArray, MDLVoxelArrayPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MDLVoxelArray.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MDLVoxelArray() {}
+    protected MDLVoxelArray() {}
+    protected MDLVoxelArray(Handle h, long handle) { super(h, handle); }
     protected MDLVoxelArray(SkipInit skipInit) { super(skipInit); }
-    public MDLVoxelArray(MDLAsset asset, int divisions, int interiorShells, int exteriorShells, float patchRadius) { super((SkipInit) null); initObject(init(asset, divisions, interiorShells, exteriorShells, patchRadius)); }
-    public MDLVoxelArray(MDLAsset asset, int divisions, float interiorNBWidth, float exteriorNBWidth, float patchRadius) { super((SkipInit) null); initObject(init(asset, divisions, interiorNBWidth, exteriorNBWidth, patchRadius)); }
+    @Method(selector = "initWithAsset:divisions:patchRadius:")
+    public MDLVoxelArray(MDLAsset asset, int divisions, float patchRadius) { super((SkipInit) null); initObject(init(asset, divisions, patchRadius)); }
+    @Method(selector = "initWithData:boundingBox:voxelExtent:")
     public MDLVoxelArray(NSData voxelData, @ByVal MDLAxisAlignedBoundingBox boundingBox, float voxelExtent) { super((SkipInit) null); initObject(init(voxelData, boundingBox, voxelExtent)); }
+    @Method(selector = "initWithAsset:divisions:interiorShells:exteriorShells:patchRadius:")
+    public MDLVoxelArray(MDLAsset asset, int divisions, int interiorShells, int exteriorShells, float patchRadius) { super((SkipInit) null); initObject(init(asset, divisions, interiorShells, exteriorShells, patchRadius)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "count")
@@ -58,40 +62,54 @@ import org.robovm.apple.coregraphics.*;
     public native @ByVal MDLVoxelIndexExtent getVoxelIndexExtent();
     @Property(selector = "boundingBox")
     public native @ByVal MDLAxisAlignedBoundingBox getBoundingBox();
+    @Property(selector = "isValidSignedShellField")
+    public native boolean isValidSignedShellField();
+    @Property(selector = "shellFieldInteriorThickness")
+    public native float getShellFieldInteriorThickness();
+    @Property(selector = "setShellFieldInteriorThickness:")
+    public native void setShellFieldInteriorThickness(float v);
+    @Property(selector = "shellFieldExteriorThickness")
+    public native float getShellFieldExteriorThickness();
+    @Property(selector = "setShellFieldExteriorThickness:")
+    public native void setShellFieldExteriorThickness(float v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithAsset:divisions:interiorShells:exteriorShells:patchRadius:")
-    protected native @Pointer long init(MDLAsset asset, int divisions, int interiorShells, int exteriorShells, float patchRadius);
-    @Method(selector = "initWithAsset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:")
-    protected native @Pointer long init(MDLAsset asset, int divisions, float interiorNBWidth, float exteriorNBWidth, float patchRadius);
+    @Method(selector = "initWithAsset:divisions:patchRadius:")
+    protected native @Pointer long init(MDLAsset asset, int divisions, float patchRadius);
     @Method(selector = "initWithData:boundingBox:voxelExtent:")
     protected native @Pointer long init(NSData voxelData, @ByVal MDLAxisAlignedBoundingBox boundingBox, float voxelExtent);
-    @Method(selector = "meshUsingAllocator:")
-    public native MDLMesh getMesh(MDLMeshBufferAllocator allocator);
+    @Method(selector = "initWithAsset:divisions:interiorShells:exteriorShells:patchRadius:")
+    protected native @Pointer long init(MDLAsset asset, int divisions, int interiorShells, int exteriorShells, float patchRadius);
     @Method(selector = "voxelExistsAtIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:")
-    public native boolean voxelExists(VectorInt4 index, boolean allowAnyX, boolean allowAnyY, boolean allowAnyZ, boolean allowAnyShell);
-    @Method(selector = "setVoxelAtIndex:")
-    public native void setVoxel(VectorInt4 index);
-    @Method(selector = "setVoxelsForMesh:divisions:interiorShells:exteriorShells:patchRadius:")
-    public native void setVoxels(MDLMesh mesh, int divisions, int interiorShells, int exteriorShells, float patchRadius);
-    @Method(selector = "setVoxelsForMesh:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:")
-    public native void setVoxels(MDLMesh mesh, int divisions, float interiorNBWidth, float exteriorNBWidth, float patchRadius);
+    public native boolean voxelExists(@ByVal VectorInt4 index, boolean allowAnyX, boolean allowAnyY, boolean allowAnyZ, boolean allowAnyShell);
     @Method(selector = "voxelsWithinExtent:")
     public native NSData getVoxelsWithinExtent(@ByVal MDLVoxelIndexExtent extent);
     @Method(selector = "voxelIndices")
     public native NSData getVoxelIndices();
+    @Method(selector = "setVoxelAtIndex:")
+    public native void setVoxel(@ByVal VectorInt4 index);
+    @Method(selector = "setVoxelsForMesh:divisions:patchRadius:")
+    public native void setVoxels(MDLMesh mesh, int divisions, float patchRadius);
     @Method(selector = "unionWithVoxels:")
     public native void union(MDLVoxelArray voxels);
-    @Method(selector = "differenceWithVoxels:")
-    public native void difference(MDLVoxelArray voxels);
     @Method(selector = "intersectWithVoxels:")
     public native void intersect(MDLVoxelArray voxels);
+    @Method(selector = "differenceWithVoxels:")
+    public native void difference(MDLVoxelArray voxels);
     @Method(selector = "indexOfSpatialLocation:")
-    public native VectorInt4 indexOfSpatialLocation(VectorFloat3 location);
+    public native @ByVal VectorInt4 indexOfSpatialLocation(@ByVal VectorFloat3 location);
     @Method(selector = "spatialLocationOfIndex:")
-    public native VectorFloat3 getSpatialLocation(VectorInt4 index);
+    public native @ByVal VectorFloat3 getSpatialLocation(@ByVal VectorInt4 index);
     @Method(selector = "voxelBoundingBoxAtIndex:")
-    public native @ByVal MDLAxisAlignedBoundingBox getVoxelBoundingBox(VectorInt4 index);
+    public native @ByVal MDLAxisAlignedBoundingBox getVoxelBoundingBox(@ByVal VectorInt4 index);
+    @Method(selector = "convertToSignedShellField")
+    public native void convertToSignedShellField();
+    @Method(selector = "coarseMesh")
+    public native MDLMesh coarseMesh();
+    @Method(selector = "coarseMeshUsingAllocator:")
+    public native MDLMesh coarseMeshUsingAllocator(MDLMeshBufferAllocator allocator);
+    @Method(selector = "meshUsingAllocator:")
+    public native MDLMesh getMesh(MDLMeshBufferAllocator allocator);
     /*</methods>*/
 }

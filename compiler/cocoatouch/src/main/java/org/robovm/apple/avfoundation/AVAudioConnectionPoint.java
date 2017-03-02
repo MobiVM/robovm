@@ -55,8 +55,10 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAudioConnectionPoint.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAudioConnectionPoint() {}
+    protected AVAudioConnectionPoint() {}
+    protected AVAudioConnectionPoint(Handle h, long handle) { super(h, handle); }
     protected AVAudioConnectionPoint(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNode:bus:")
     public AVAudioConnectionPoint(AVAudioNode node, @MachineSizedUInt long bus) { super((SkipInit) null); initObject(init(node, bus)); }
     /*</constructors>*/
     /*<properties>*/

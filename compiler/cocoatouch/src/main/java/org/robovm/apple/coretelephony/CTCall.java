@@ -50,7 +50,20 @@ import org.robovm.apple.corefoundation.*;
     protected CTCall(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "callState")
+    public native CTCallState getCallState();
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "callID")
+    public native String getCallID();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -45,6 +45,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMTrigger.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMTrigger(Handle h, long handle) { super(h, handle); }
     protected HMTrigger(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -46,6 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLTextureSampler() {}
+    protected MDLTextureSampler(Handle h, long handle) { super(h, handle); }
     protected MDLTextureSampler(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

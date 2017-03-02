@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HKSourceQuery() {}
+    protected HKSourceQuery(Handle h, long handle) { super(h, handle); }
     protected HKSourceQuery(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSampleType:samplePredicate:completionHandler:")
     public HKSourceQuery(HKSampleType sampleType, NSPredicate objectPredicate, @Block VoidBlock3<HKSourceQuery, NSSet<HKSource>, NSError> completionHandler) { super((SkipInit) null); initObject(init(sampleType, objectPredicate, completionHandler)); }
     /*</constructors>*/
     /*<properties>*/

@@ -281,12 +281,12 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "enumerateLineFragmentsForGlyphRange:usingBlock:")
-    public native void enumerateLineFragments(@ByVal NSRange glyphRange, @Block("(@ByVal, @ByVal, , @ByVal, )") VoidBlock5<CGRect, CGRect, NSTextContainer, NSRange, BooleanPtr> block);
+    public native void enumerateLineFragments(@ByVal NSRange glyphRange, @Block("(@ByVal,@ByVal,,@ByVal,)") VoidBlock5<CGRect, CGRect, NSTextContainer, NSRange, BooleanPtr> block);
     /**
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "enumerateEnclosingRectsForGlyphRange:withinSelectedGlyphRange:inTextContainer:usingBlock:")
-    public native void enumerateEnclosingRects(@ByVal NSRange glyphRange, @ByVal NSRange selectedRange, NSTextContainer textContainer, @Block("(@ByVal, )") VoidBlock2<CGRect, BooleanPtr> block);
+    public native void enumerateEnclosingRects(@ByVal NSRange glyphRange, @ByVal NSRange selectedRange, NSTextContainer textContainer, @Block("(@ByVal,)") VoidBlock2<CGRect, BooleanPtr> block);
     @Method(selector = "drawBackgroundForGlyphRange:atPoint:")
     public native void drawBackground(@ByVal NSRange glyphsToShow, @ByVal CGPoint origin);
     @Method(selector = "drawGlyphsForGlyphRange:atPoint:")

@@ -56,7 +56,8 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureBracketedStillImageSettings() {}
-    protected AVCaptureBracketedStillImageSettings(long handle) { super(handle); }
+    @Deprecated protected AVCaptureBracketedStillImageSettings(long handle) { super(handle); }
+    protected AVCaptureBracketedStillImageSettings(Handle h, long handle) { super(h, handle); }
     protected AVCaptureBracketedStillImageSettings(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

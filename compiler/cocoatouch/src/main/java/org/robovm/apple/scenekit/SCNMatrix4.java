@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -153,85 +155,34 @@ import org.robovm.apple.opengles.*;
         return this;
     }
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="SCNMatrix4Identity", optional=true)
     public static native @ByVal SCNMatrix4 Identity();
     
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    public boolean isIdentity() { return isIdentity(this); }
+    @Bridge(symbol="SCNMatrix4IsIdentity", optional=true)
+    private static native boolean isIdentity(@ByVal SCNMatrix4 m);
+    public boolean equalsTo(SCNMatrix4 b) { return equalsTo(this, b); }
+    @Bridge(symbol="SCNMatrix4EqualToMatrix4", optional=true)
+    private static native boolean equalsTo(@ByVal SCNMatrix4 a, @ByVal SCNMatrix4 b);
     @Bridge(symbol="SCNMatrix4MakeRotation", optional=true)
     public static native @ByVal SCNMatrix4 createRotation(float angle, float x, float y, float z);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    public SCNMatrix4 scale(float x, float y, float z) { return scale(this, x, y, z); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    public SCNMatrix4 scale(float sx, float sy, float sz) { return scale(this, sx, sy, sz); }
     @Bridge(symbol="SCNMatrix4Scale", optional=true)
-    private static native @ByVal SCNMatrix4 scale(@ByVal SCNMatrix4 mat, float x, float y, float z);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    private static native @ByVal SCNMatrix4 scale(@ByVal SCNMatrix4 m, float sx, float sy, float sz);
     public SCNMatrix4 rotate(float angle, float x, float y, float z) { return rotate(this, angle, x, y, z); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="SCNMatrix4Rotate", optional=true)
-    private static native @ByVal SCNMatrix4 rotate(@ByVal SCNMatrix4 mat, float angle, float x, float y, float z);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    private static native @ByVal SCNMatrix4 rotate(@ByVal SCNMatrix4 m, float angle, float x, float y, float z);
     public SCNMatrix4 invert() { return invert(this); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Bridge(symbol="SCNMatrix4Invert", optional=true)
-    private static native @ByVal SCNMatrix4 invert(@ByVal SCNMatrix4 mat);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    public SCNMatrix4 mult(SCNMatrix4 matB) { return mult(this, matB); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    private static native @ByVal SCNMatrix4 invert(@ByVal SCNMatrix4 m);
+    public SCNMatrix4 mult(SCNMatrix4 b) { return mult(this, b); }
     @Bridge(symbol="SCNMatrix4Mult", optional=true)
-    private static native @ByVal SCNMatrix4 mult(@ByVal SCNMatrix4 matA, @ByVal SCNMatrix4 matB);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    public boolean isIdentity() { return isIdentity(this); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Bridge(symbol="SCNMatrix4IsIdentity", optional=true)
-    private static native boolean isIdentity(@ByVal SCNMatrix4 mat);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    public boolean equalsTo(SCNMatrix4 matB) { return equalsTo(this, matB); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Bridge(symbol="SCNMatrix4EqualToMatrix4", optional=true)
-    private static native boolean equalsTo(@ByVal SCNMatrix4 matA, @ByVal SCNMatrix4 matB);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    private static native @ByVal SCNMatrix4 mult(@ByVal SCNMatrix4 a, @ByVal SCNMatrix4 b);
     @WeaklyLinked
     public GLKMatrix4 toGLKMatrix4() { return toGLKMatrix4(this); }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="SCNMatrix4ToGLKMatrix4", optional=true)
     private static native @ByVal GLKMatrix4 toGLKMatrix4(@ByVal SCNMatrix4 mat);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Bridge(symbol="SCNMatrix4FromGLKMatrix4", optional=true)
     public static native @ByVal SCNMatrix4 fromGLKMatrix4(@ByVal GLKMatrix4 mat);

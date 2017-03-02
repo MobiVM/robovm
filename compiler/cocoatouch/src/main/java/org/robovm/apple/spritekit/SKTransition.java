@@ -51,9 +51,10 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKTransition() {}
+    protected SKTransition(Handle h, long handle) { super(h, handle); }
     protected SKTransition(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
-    public SKTransition(CIFilter filter, double sec) { super(create(filter, sec)); retain(getHandle()); }
+    public SKTransition(CIFilter filter, double sec) { super((Handle) null, create(filter, sec)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "pausesIncomingScene")

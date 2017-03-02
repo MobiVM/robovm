@@ -35,9 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNSceneRendererDelegateAdapter/*</name>*/ 
@@ -55,24 +58,15 @@ import org.robovm.apple.opengles.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("renderer:updateAtTime:")
-    public void update(SCNSceneRenderer aRenderer, double time) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    public void update(SCNSceneRenderer renderer, double time) {}
     @NotImplemented("renderer:didApplyAnimationsAtTime:")
-    public void didApplyAnimations(SCNSceneRenderer aRenderer, double time) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    public void didApplyAnimations(SCNSceneRenderer renderer, double time) {}
     @NotImplemented("renderer:didSimulatePhysicsAtTime:")
-    public void didSimulatePhysics(SCNSceneRenderer aRenderer, double time) {}
+    public void didSimulatePhysics(SCNSceneRenderer renderer, double time) {}
     @NotImplemented("renderer:willRenderScene:atTime:")
-    public void willRenderScene(SCNSceneRenderer aRenderer, SCNScene scene, double time) {}
+    public void willRenderScene(SCNSceneRenderer renderer, SCNScene scene, double time) {}
     @NotImplemented("renderer:didRenderScene:atTime:")
-    public void didRenderScene(SCNSceneRenderer aRenderer, SCNScene scene, double time) {}
+    public void didRenderScene(SCNSceneRenderer renderer, SCNScene scene, double time) {}
     /*</methods>*/
 }

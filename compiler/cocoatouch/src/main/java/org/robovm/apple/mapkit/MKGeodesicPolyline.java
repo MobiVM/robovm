@@ -49,6 +49,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKGeodesicPolyline() {}
+    protected MKGeodesicPolyline(Handle h, long handle) { super(h, handle); }
     protected MKGeodesicPolyline(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public MKGeodesicPolyline(MKMapPoint[] points) {

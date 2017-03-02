@@ -49,6 +49,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKOverlayPathView() {}
+    protected MKOverlayPathView(Handle h, long handle) { super(h, handle); }
     protected MKOverlayPathView(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

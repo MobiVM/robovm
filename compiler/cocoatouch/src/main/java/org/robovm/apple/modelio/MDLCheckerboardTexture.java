@@ -46,8 +46,10 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLCheckerboardTexture() {}
+    protected MDLCheckerboardTexture(Handle h, long handle) { super(h, handle); }
     protected MDLCheckerboardTexture(SkipInit skipInit) { super(skipInit); }
-    public MDLCheckerboardTexture(float divisions, String name, VectorInt2 dimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, CGColor color1, CGColor color2) { super((SkipInit) null); initObject(init(divisions, name, dimensions, channelCount, channelEncoding, color1, color2)); }
+    @Method(selector = "initWithDivisions:name:dimensions:channelCount:channelEncoding:color1:color2:")
+    public MDLCheckerboardTexture(float divisions, String name, @ByVal VectorInt2 dimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, CGColor color1, CGColor color2) { super((SkipInit) null); initObject(init(divisions, name, dimensions, channelCount, channelEncoding, color1, color2)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "divisions")
@@ -66,6 +68,6 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDivisions:name:dimensions:channelCount:channelEncoding:color1:color2:")
-    protected native @Pointer long init(float divisions, String name, VectorInt2 dimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, CGColor color1, CGColor color2);
+    protected native @Pointer long init(float divisions, String name, @ByVal VectorInt2 dimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, CGColor color1, CGColor color2);
     /*</methods>*/
 }

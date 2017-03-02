@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNPhysicsVehicle() {}
+    protected SCNPhysicsVehicle(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsVehicle(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

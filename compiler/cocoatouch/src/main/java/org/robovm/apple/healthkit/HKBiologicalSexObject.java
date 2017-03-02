@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HKBiologicalSexObject() {}
+    protected HKBiologicalSexObject(Handle h, long handle) { super(h, handle); }
     protected HKBiologicalSexObject(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

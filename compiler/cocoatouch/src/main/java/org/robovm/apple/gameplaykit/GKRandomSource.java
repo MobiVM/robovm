@@ -31,7 +31,9 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKRandomSource/*</name>*/ 
@@ -43,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKRandomSource() {}
+    protected GKRandomSource(Handle h, long handle) { super(h, handle); }
     protected GKRandomSource(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public GKRandomSource(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

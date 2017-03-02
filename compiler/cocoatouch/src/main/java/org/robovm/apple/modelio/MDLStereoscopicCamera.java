@@ -46,6 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLStereoscopicCamera() {}
+    protected MDLStereoscopicCamera(Handle h, long handle) { super(h, handle); }
     protected MDLStereoscopicCamera(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -66,13 +67,13 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "setOverlap:")
     public native void setOverlap(float v);
     @Property(selector = "leftViewMatrix")
-    public native MatrixFloat4x4 getLeftViewMatrix();
+    public native @ByVal MatrixFloat4x4 getLeftViewMatrix();
     @Property(selector = "rightViewMatrix")
-    public native MatrixFloat4x4 getRightViewMatrix();
+    public native @ByVal MatrixFloat4x4 getRightViewMatrix();
     @Property(selector = "leftProjectionMatrix")
-    public native MatrixFloat4x4 getLeftProjectionMatrix();
+    public native @ByVal MatrixFloat4x4 getLeftProjectionMatrix();
     @Property(selector = "rightProjectionMatrix")
-    public native MatrixFloat4x4 getRightProjectionMatrix();
+    public native @ByVal MatrixFloat4x4 getRightProjectionMatrix();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

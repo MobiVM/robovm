@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVFrameRateRange() {}
+    protected AVFrameRateRange(Handle h, long handle) { super(h, handle); }
     protected AVFrameRateRange(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

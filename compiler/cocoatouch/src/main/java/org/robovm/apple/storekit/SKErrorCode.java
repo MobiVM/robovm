@@ -35,7 +35,7 @@ import org.robovm.apple.uikit.*;
 
 /*</javadoc>*/
 @ForceLinkClass(SKError.class)
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/SKErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Unknown(0L),
@@ -43,7 +43,15 @@ public enum /*<name>*/SKErrorCode/*</name>*/ implements NSErrorCode {
     PaymentCancelled(2L),
     PaymentInvalid(3L),
     PaymentNotAllowed(4L),
-    StoreProductNotAvailable(5L);
+    StoreProductNotAvailable(5L),
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    CloudServicePermissionDenied(6L),
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    CloudServiceNetworkConnectionFailed(7L);
     /*</values>*/
 
     /*<bind>*/

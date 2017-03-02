@@ -45,7 +45,9 @@ public enum /*<name>*/RPRecordingErrorCode/*</name>*/ implements NSErrorCode {
     Failed(-5804L),
     InsufficientStorage(-5805L),
     Interrupted(-5806L),
-    ContentResize(-5807L);
+    ContentResize(-5807L),
+    BroadcastInvalidSession(-5808L),
+    SystemDormancy(-5809L);
     /*</values>*/
 
     /*<bind>*/

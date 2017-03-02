@@ -60,9 +60,10 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CKContainer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKContainer() {}
+    protected CKContainer() {}
+    protected CKContainer(Handle h, long handle) { super(h, handle); }
     protected CKContainer(SkipInit skipInit) { super(skipInit); }
-    public CKContainer(String containerIdentifier) { super(create(containerIdentifier)); retain(getHandle()); }
+    public CKContainer(String containerIdentifier) { super((Handle) null, create(containerIdentifier)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "containerIdentifier")
@@ -71,12 +72,24 @@ import org.robovm.apple.contacts.*;
     public native CKDatabase getPrivateCloudDatabase();
     @Property(selector = "publicCloudDatabase")
     public native CKDatabase getPublicCloudDatabase();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "sharedCloudDatabase")
+    public native CKDatabase getSharedCloudDatabase();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
+    @GlobalValue(symbol="CKCurrentUserDefaultName", optional=true)
+    public static native String getDefaultCurrentUserName();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="CKOwnerDefaultName", optional=true)
     public static native String getDefaultOwnerName();
     /**
@@ -91,6 +104,11 @@ import org.robovm.apple.contacts.*;
     public static native CKContainer getDefaultContainer();
     @Method(selector = "containerWithIdentifier:")
     protected static native @Pointer long create(String containerIdentifier);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "databaseWithDatabaseScope:")
+    public native CKDatabase databaseWithDatabaseScope(CKDatabaseScope databaseScope);
     @Method(selector = "accountStatusWithCompletionHandler:")
     public native void getAccountStatus(@Block VoidBlock2<CKAccountStatus, NSError> completionHandler);
     @Method(selector = "statusForApplicationPermission:completionHandler:")
@@ -99,11 +117,81 @@ import org.robovm.apple.contacts.*;
     public native void requestApplicationPermission(CKApplicationPermissions applicationPermission, @Block VoidBlock2<CKApplicationPermissionStatus, NSError> completionHandler);
     @Method(selector = "fetchUserRecordIDWithCompletionHandler:")
     public native void fetchUserRecordID(@Block VoidBlock2<CKRecordID, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "discoverAllIdentitiesWithCompletionHandler:")
+    public native void discoverAllIdentitiesWithCompletionHandler(@Block VoidBlock2<NSArray<CKUserIdentity>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "discoverUserIdentityWithEmailAddress:completionHandler:")
+    public native void discoverUserIdentityWithEmailAddress(String email, @Block VoidBlock2<CKUserIdentity, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "discoverUserIdentityWithPhoneNumber:completionHandler:")
+    public native void discoverUserIdentityWithPhoneNumber(String phoneNumber, @Block VoidBlock2<CKUserIdentity, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "discoverUserIdentityWithUserRecordID:completionHandler:")
+    public native void discoverUserIdentityWithUserRecordID(CKRecordID userRecordID, @Block VoidBlock2<CKUserIdentity, NSError> completionHandler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "discoverAllContactUserInfosWithCompletionHandler:")
     public native void discoverAllContactUserInfos(@Block VoidBlock2<NSArray<CKDiscoveredUserInfo>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "discoverUserInfoWithEmailAddress:completionHandler:")
     public native void discoverUserInfo(String email, @Block VoidBlock2<CKDiscoveredUserInfo, NSError> completionHandler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "discoverUserInfoWithUserRecordID:completionHandler:")
     public native void discoverUserInfo(CKRecordID userRecordID, @Block VoidBlock2<CKDiscoveredUserInfo, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "fetchShareParticipantWithEmailAddress:completionHandler:")
+    public native void fetchShareParticipantWithEmailAddress(String emailAddress, @Block VoidBlock2<CKShareParticipant, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "fetchShareParticipantWithPhoneNumber:completionHandler:")
+    public native void fetchShareParticipantWithPhoneNumber(String phoneNumber, @Block VoidBlock2<CKShareParticipant, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "fetchShareParticipantWithUserRecordID:completionHandler:")
+    public native void fetchShareParticipantWithUserRecordID(CKRecordID userRecordID, @Block VoidBlock2<CKShareParticipant, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "fetchShareMetadataWithURL:completionHandler:")
+    public native void fetchShareMetadata(NSURL url, @Block VoidBlock2<CKShareMetadata, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "acceptShareMetadata:completionHandler:")
+    public native void acceptShareMetadata(CKShareMetadata metadata, @Block VoidBlock2<CKShare, NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "fetchAllLongLivedOperationIDsWithCompletionHandler:")
+    public native void fetchAllLongLivedOperationIDs(@Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "fetchLongLivedOperationWithID:completionHandler:")
+    public native void fetchLongLivedOperation(String operationID, @Block VoidBlock2<CKOperation, NSError> completionHandler);
     /*</methods>*/
 }

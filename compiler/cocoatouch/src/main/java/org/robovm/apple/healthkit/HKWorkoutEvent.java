@@ -44,7 +44,8 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKWorkoutEvent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKWorkoutEvent() {}
+    protected HKWorkoutEvent() {}
+    protected HKWorkoutEvent(Handle h, long handle) { super(h, handle); }
     protected HKWorkoutEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -52,10 +53,20 @@ import org.robovm.apple.foundation.*;
     public native HKWorkoutEventType getType();
     @Property(selector = "date")
     public native NSDate getDate();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "metadata")
+    public native HKMetadata getMetadata();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "workoutEventWithType:date:")
     public static native HKWorkoutEvent create(HKWorkoutEventType type, NSDate date);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "workoutEventWithType:date:metadata:")
+    public static native HKWorkoutEvent create(HKWorkoutEventType type, NSDate date, HKMetadata metadata);
     /*</methods>*/
 }

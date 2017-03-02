@@ -45,7 +45,8 @@ public enum /*<name>*/AudioServicesErrorCode/*</name>*/ implements ValuedEnum {
     BadPropertySize(561211770L),
     BadSpecifierSize(561213539L),
     SystemSoundUnspecified(-1500L),
-    SystemSoundClientTimedOut(-1501L);
+    SystemSoundClientTimedOut(-1501L),
+    SystemSoundExceededMaximumDuration(-1502L);
     /*</values>*/
 
     /*<bind>*/

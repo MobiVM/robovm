@@ -39,17 +39,6 @@ import org.robovm.apple.dispatch.*;
     extends /*<extends>*/CFType/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    private static final java.lang.reflect.Method cbEvaluate;
-    private VoidBlock2<SecTrust, SecTrustResultType> evaluateCallback;
-    
-    static {
-        try {
-            cbEvaluate = SecTrust.class.getDeclaredMethod("cbEvaluate", SecTrust.class, SecTrustResultType.class);
-        } catch (Throwable throwable) {
-            throw new Error(throwable);
-        }
-    }
-    
     /*<ptr>*/public static class SecTrustPtr extends Ptr<SecTrust, SecTrustPtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(SecTrust.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
@@ -58,14 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
-    @Callback
-    private static void cbEvaluate(SecTrust secTrust, SecTrustResultType trustResult) {
-        if (secTrust.evaluateCallback != null) {
-            secTrust.evaluateCallback.invoke(secTrust, trustResult);
-            secTrust.evaluateCallback = null;
-        }
-    }
-    
+
     /**
      * @throws OSStatusException 
      * @since Available in iOS 2.0 and later.
@@ -198,9 +180,8 @@ import org.robovm.apple.dispatch.*;
      */
     @WeaklyLinked
     public void evaluateAsync(DispatchQueue queue, VoidBlock2<SecTrust, SecTrustResultType> result) throws OSStatusException {
-        OSStatus status = evaluateAsync0(queue, new FunctionPtr(cbEvaluate));
+        OSStatus status = evaluateAsync0(queue, result);
         OSStatusException.throwIfNecessary(status);
-        evaluateCallback = result;
     }
     /**
      * @throws OSStatusException 
@@ -300,7 +281,7 @@ import org.robovm.apple.dispatch.*;
      */
     @WeaklyLinked
     @Bridge(symbol="SecTrustEvaluateAsync", optional=true)
-    protected native OSStatus evaluateAsync0(DispatchQueue queue, FunctionPtr result);
+    protected native OSStatus evaluateAsync0(DispatchQueue queue, @Block VoidBlock2<SecTrust, SecTrustResultType> result);
     /**
      * @since Available in iOS 7.0 and later.
      */

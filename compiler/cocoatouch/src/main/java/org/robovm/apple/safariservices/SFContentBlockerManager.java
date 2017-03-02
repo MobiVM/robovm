@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SFContentBlockerManager() {}
+    protected SFContentBlockerManager(Handle h, long handle) { super(h, handle); }
     protected SFContentBlockerManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -55,5 +56,10 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "reloadContentBlockerWithIdentifier:completionHandler:")
     public static native void reloadContentBlocker(String identifier, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "getStateOfContentBlockerWithIdentifier:completionHandler:")
+    public static native void getStateOfContentBlocker(String identifier, @Block VoidBlock2<SFContentBlockerState, NSError> completionHandler);
     /*</methods>*/
 }

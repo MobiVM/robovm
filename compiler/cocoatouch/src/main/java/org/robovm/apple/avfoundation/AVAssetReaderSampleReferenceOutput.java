@@ -55,8 +55,10 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetReaderSampleReferenceOutput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetReaderSampleReferenceOutput() {}
+    protected AVAssetReaderSampleReferenceOutput() {}
+    protected AVAssetReaderSampleReferenceOutput(Handle h, long handle) { super(h, handle); }
     protected AVAssetReaderSampleReferenceOutput(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTrack:")
     public AVAssetReaderSampleReferenceOutput(AVAssetTrack track) { super((SkipInit) null); initObject(init(track)); }
     /*</constructors>*/
     /*<properties>*/

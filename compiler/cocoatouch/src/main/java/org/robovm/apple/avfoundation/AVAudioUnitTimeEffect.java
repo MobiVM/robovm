@@ -56,8 +56,10 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioUnitTimeEffect() {}
+    protected AVAudioUnitTimeEffect(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitTimeEffect(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithAudioComponentDescription:")
     public AVAudioUnitTimeEffect(@ByVal AudioComponentDescription audioComponentDescription) { super((SkipInit) null); initObject(init(audioComponentDescription)); }
     /*</constructors>*/
     /*<properties>*/

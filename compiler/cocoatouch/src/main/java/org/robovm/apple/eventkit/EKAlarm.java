@@ -49,9 +49,10 @@ import org.robovm.apple.mapkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKAlarm() {}
+    protected EKAlarm(Handle h, long handle) { super(h, handle); }
     protected EKAlarm(SkipInit skipInit) { super(skipInit); }
-    public EKAlarm(NSDate date) { super(create(date)); retain(getHandle()); }
-    public EKAlarm(double offset) { super(create(offset)); retain(getHandle()); }
+    public EKAlarm(NSDate date) { super((Handle) null, create(date)); retain(getHandle()); }
+    public EKAlarm(double offset) { super((Handle) null, create(offset)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "relativeOffset")
@@ -74,8 +75,8 @@ import org.robovm.apple.mapkit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "alarmWithAbsoluteDate:")
-    private static native @Pointer long create(NSDate date);
+    protected static native @Pointer long create(NSDate date);
     @Method(selector = "alarmWithRelativeOffset:")
-    private static native @Pointer long create(double offset);
+    protected static native @Pointer long create(double offset);
     /*</methods>*/
 }

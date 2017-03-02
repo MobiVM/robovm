@@ -49,12 +49,14 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKOverlayView() {}
+    protected MKOverlayView(Handle h, long handle) { super(h, handle); }
     protected MKOverlayView(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
+    @Method(selector = "initWithOverlay:")
     public MKOverlayView(MKOverlay overlay) { super((SkipInit) null); initObject(init(overlay)); }
     /*</constructors>*/
     public MKOverlayView(CGRect frame) {

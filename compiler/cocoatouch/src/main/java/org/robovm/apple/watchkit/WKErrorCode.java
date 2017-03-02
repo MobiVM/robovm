@@ -35,14 +35,20 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 8.2 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 @ForceLinkClass(WKError.class)
 public enum /*<name>*/WKErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Unknown(1L),
-    ApplicationDelegateWatchKitRequestReplyNotCalled(2L);
+    ApplicationDelegateWatchKitRequestReplyNotCalled(2L),
+    InvalidArgument(3L),
+    MediaPlayer(4L),
+    Download(5L),
+    RecordingFailed(6L);
     /*</values>*/
 
     /*<bind>*/

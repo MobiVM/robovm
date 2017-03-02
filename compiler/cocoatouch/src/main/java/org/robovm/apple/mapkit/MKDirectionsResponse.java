@@ -49,6 +49,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKDirectionsResponse() {}
+    protected MKDirectionsResponse(Handle h, long handle) { super(h, handle); }
     protected MKDirectionsResponse(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

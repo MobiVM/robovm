@@ -56,11 +56,14 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVTimedMetadataGroup() {}
+    protected AVTimedMetadataGroup(Handle h, long handle) { super(h, handle); }
     protected AVTimedMetadataGroup(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItems:timeRange:")
     public AVTimedMetadataGroup(NSArray<AVMetadataItem> items, @ByVal CMTimeRange timeRange) { super((SkipInit) null); initObject(init(items, timeRange)); }
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @Method(selector = "initWithSampleBuffer:")
     public AVTimedMetadataGroup(CMSampleBuffer sampleBuffer) { super((SkipInit) null); initObject(init(sampleBuffer)); }
     /*</constructors>*/
     /*<properties>*/

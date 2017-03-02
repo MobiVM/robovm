@@ -62,5 +62,5 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @GlobalValue(symbol="GKErrorDomain", optional=true)
     public static native String getClassDomain();
-/*</methods>*/
+    /*</methods>*/
 }

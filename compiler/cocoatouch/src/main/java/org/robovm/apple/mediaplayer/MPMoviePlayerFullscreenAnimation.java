@@ -105,7 +105,9 @@ import org.robovm.apple.coregraphics.*;
 
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     public double getDuration() {
         if (has(Keys.Duration())) {
             NSNumber val = (NSNumber) get(Keys.Duration());
@@ -115,7 +117,9 @@ import org.robovm.apple.coregraphics.*;
     }
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     public UIViewAnimationCurve getCurve() {
         if (has(Keys.Curve())) {
             NSNumber val = (NSNumber) get(Keys.Curve());
@@ -131,12 +135,16 @@ import org.robovm.apple.coregraphics.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 3.2 and later.
+         * @deprecated Deprecated in iOS 9.0.
          */
+        @Deprecated
         @GlobalValue(symbol="MPMoviePlayerFullscreenAnimationDurationUserInfoKey", optional=true)
         public static native NSString Duration();
         /**
          * @since Available in iOS 3.2 and later.
+         * @deprecated Deprecated in iOS 9.0.
          */
+        @Deprecated
         @GlobalValue(symbol="MPMoviePlayerFullscreenAnimationCurveUserInfoKey", optional=true)
         public static native NSString Curve();
     }

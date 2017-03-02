@@ -42,13 +42,14 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("WatchKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WKInterfaceGroup/*</name>*/ 
     extends /*<extends>*/WKInterfaceObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements WKImageAnimatable/*</implements>*/ {
 
     /*<ptr>*/public static class WKInterfaceGroupPtr extends Ptr<WKInterfaceGroup, WKInterfaceGroupPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(WKInterfaceGroup.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKInterfaceGroup() {}
+    protected WKInterfaceGroup(Handle h, long handle) { super(h, handle); }
     protected WKInterfaceGroup(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

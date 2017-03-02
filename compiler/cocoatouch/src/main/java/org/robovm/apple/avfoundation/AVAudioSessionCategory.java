@@ -103,6 +103,11 @@ import org.robovm.apple.audiounit.*;
     public static final AVAudioSessionCategory Playback = new AVAudioSessionCategory("Playback");
     public static final AVAudioSessionCategory Record = new AVAudioSessionCategory("Record");
     public static final AVAudioSessionCategory PlayAndRecord = new AVAudioSessionCategory("PlayAndRecord");
+    /**
+     * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     public static final AVAudioSessionCategory AudioProcessing = new AVAudioSessionCategory("AudioProcessing");
     /**
      * @since Available in iOS 6.0 and later.
@@ -143,6 +148,11 @@ import org.robovm.apple.audiounit.*;
         public static native NSString Record();
         @GlobalValue(symbol="AVAudioSessionCategoryPlayAndRecord", optional=true)
         public static native NSString PlayAndRecord();
+        /**
+         * @since Available in iOS 3.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
+         */
+        @Deprecated
         @GlobalValue(symbol="AVAudioSessionCategoryAudioProcessing", optional=true)
         public static native NSString AudioProcessing();
         /**

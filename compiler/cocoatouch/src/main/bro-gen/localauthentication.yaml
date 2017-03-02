@@ -67,6 +67,8 @@ constants:
         exclude: true
     kLAOption.*:
         exclude: true
+    kLACredential.*:
+        exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?LA.*):

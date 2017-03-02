@@ -42,6 +42,10 @@ public enum /*<name>*/MPRemoteCommandHandlerStatus/*</name>*/ implements ValuedE
     /*<values>*/
     Success(0L),
     NoSuchContent(100L),
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    NoActionableNowPlayingItem(110L),
     CommandFailed(200L);
     /*</values>*/
 

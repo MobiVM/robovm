@@ -46,9 +46,12 @@ import org.robovm.apple.avfoundation.*;
 
     /*<ptr>*/public static class PHImageManagerPtr extends Ptr<PHImageManager, PHImageManagerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(PHImageManager.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int InvalidImageRequestID = 0;
+    /*</constants>*/
     /*<constructors>*/
     public PHImageManager() {}
+    protected PHImageManager(Handle h, long handle) { super(h, handle); }
     protected PHImageManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -56,8 +59,6 @@ import org.robovm.apple.avfoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @GlobalValue(symbol="PHInvalidImageRequestID", optional=true)
-    public static native int getInvalidImageRequestID();
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -66,21 +67,27 @@ import org.robovm.apple.avfoundation.*;
     
     @WeaklyLinked
     @Method(selector = "requestImageForAsset:targetSize:contentMode:options:resultHandler:")
-    public native int requestImageForAsset(PHAsset asset, @ByVal CGSize targetSize, PHImageContentMode contentMode, PHImageRequestOptions options, @Block VoidBlock2<UIImage, NSDictionary<NSString, NSObject>> resultHandler);
+    public native int requestImageForAsset(PHAsset asset, @ByVal CGSize targetSize, PHImageContentMode contentMode, PHImageRequestOptions options, @Block VoidBlock2<UIImage, NSDictionary<?, ?>> resultHandler);
     @WeaklyLinked
     @Method(selector = "requestImageDataForAsset:options:resultHandler:")
-    public native int requestImageDataForAsset(PHAsset asset, PHImageRequestOptions options, @Block VoidBlock4<NSData, String, UIImageOrientation, NSDictionary<NSString, NSObject>> resultHandler);
+    public native int requestImageDataForAsset(PHAsset asset, PHImageRequestOptions options, @Block VoidBlock4<NSData, String, UIImageOrientation, NSDictionary<?, ?>> resultHandler);
     @Method(selector = "cancelImageRequest:")
     public native void cancelImageRequest(int requestID);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @WeaklyLinked
+    @Method(selector = "requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:")
+    public native int requestLivePhotoForAsset(PHAsset asset, @ByVal CGSize targetSize, PHImageContentMode contentMode, PHLivePhotoRequestOptions options, @Block VoidBlock2<PHLivePhoto, NSDictionary<?, ?>> resultHandler);
     @WeaklyLinked
     @Method(selector = "requestPlayerItemForVideo:options:resultHandler:")
-    public native int requestPlayerItemForVideo(PHAsset asset, PHVideoRequestOptions options, @Block VoidBlock2<AVPlayerItem, NSDictionary<NSString, NSObject>> resultHandler);
+    public native int requestPlayerItemForVideo(PHAsset asset, PHVideoRequestOptions options, @Block VoidBlock2<AVPlayerItem, NSDictionary<?, ?>> resultHandler);
     @WeaklyLinked
     @Method(selector = "requestExportSessionForVideo:options:exportPreset:resultHandler:")
-    public native int requestExportSessionForVideo(PHAsset asset, PHVideoRequestOptions options, String exportPreset, @Block VoidBlock2<AVAssetExportSession, NSDictionary<NSString, NSObject>> resultHandler);
+    public native int requestExportSessionForVideo(PHAsset asset, PHVideoRequestOptions options, String exportPreset, @Block VoidBlock2<AVAssetExportSession, NSDictionary<?, ?>> resultHandler);
     @WeaklyLinked
     @Method(selector = "requestAVAssetForVideo:options:resultHandler:")
-    public native int requestAVAssetForVideo(PHAsset asset, PHVideoRequestOptions options, @Block VoidBlock3<AVAsset, AVAudioMix, NSDictionary<NSString, NSObject>> resultHandler);
+    public native int requestAVAssetForVideo(PHAsset asset, PHVideoRequestOptions options, @Block VoidBlock3<AVAsset, AVAudioMix, NSDictionary<?, ?>> resultHandler);
     @Method(selector = "defaultManager")
     public static native PHImageManager getDefaultManager();
     /*</methods>*/

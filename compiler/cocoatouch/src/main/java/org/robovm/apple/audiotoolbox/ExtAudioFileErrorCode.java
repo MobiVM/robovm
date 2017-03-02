@@ -40,18 +40,8 @@ import org.robovm.apple.coremidi.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/ExtAudioFileErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    CodecUnavailableInputConsumed(-66559L),
-    CodecUnavailableInputNotConsumed(-66560L),
-    InvalidProperty(-66561L),
-    InvalidPropertySize(-66562L),
-    NonPCMClientFormat(-66563L),
-    InvalidChannelMap(-66564L),
-    InvalidOperationOrder(-66565L),
-    InvalidDataFormat(-66566L),
-    MaxPacketSizeUnknown(-66567L),
-    InvalidSeek(-66568L),
-    AsyncWriteTooLarge(-66569L),
-    AsyncWriteBufferOverflow(-66570L);
+    Consumed(-66559L),
+    NotConsumed(-66560L);
     /*</values>*/
 
     /*<bind>*/

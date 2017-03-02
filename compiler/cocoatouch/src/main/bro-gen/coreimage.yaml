@@ -39,7 +39,10 @@ classes:
                 exclude: true # present in parent protocol
 
     CIContext: # DONE
+        skip_def_constructor: true
         methods:
+            '-initWithOptions:':
+                exclude: true # as it causes -[CIContext initWithOptions:]: unrecognized selector sent to instance on ios8 under ios10sdk
             '-init.*':
                 name: init
                 visibility: protected
@@ -49,9 +52,7 @@ classes:
                         type: CIContextOptions
             '+context.*':
                 name: create
-                visibility: protected
-                return_type: '@Pointer long'
-                annotations: ['@WeaklyLinked']
+                constructor: true
                 parameters:
                     dict:
                         name: options
@@ -104,8 +105,6 @@ classes:
     CIFilter: # DONE
         skip_def_constructor: true
         methods:
-            '+filterWithName:':
-                name: create
             '+serializedXMPFromFilters:inputImageExtent:':
                 name: serializeToXMP
                 parameters:
@@ -117,10 +116,10 @@ classes:
                 throws: NSErrorException
             '+filterWith.*':
                 name: create
+                constructor: true
                 parameters:
                     params:
                         type: CIFilterInputParameters
-                    params:
                         options: CIFilterInputParameters
             '+filterNames.*':
                 name: getFilterNames

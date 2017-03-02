@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,14 +56,8 @@ import org.robovm.apple.opengles.*;
     SCNScene getScene();
     @Property(selector = "setScene:")
     void setScene(SCNScene v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "sceneTime")
     double getSceneTime();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setSceneTime:")
     void setSceneTime(double v);
     @Property(selector = "delegate")
@@ -88,58 +84,106 @@ import org.robovm.apple.opengles.*;
     boolean isJitteringEnabled();
     @Property(selector = "setJitteringEnabled:")
     void setJitteringEnabled(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "showsStatistics")
     boolean showsStatistics();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShowsStatistics:")
     void setShowsStatistics(boolean v);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @Property(selector = "debugOptions")
+    SCNDebugOptions getDebugOptions();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setDebugOptions:")
+    void setDebugOptions(SCNDebugOptions v);
     @WeaklyLinked
     @Property(selector = "overlaySKScene")
     SKScene getOverlaySKScene();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @WeaklyLinked
     @Property(selector = "setOverlaySKScene:")
     void setOverlaySKScene(SKScene v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "renderingAPI")
+    SCNRenderingAPI getRenderingAPI();
     @WeaklyLinked
     @Property(selector = "context")
     EAGLContext getContext();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "currentRenderCommandEncoder")
+    MTLRenderCommandEncoder getCurrentRenderCommandEncoder();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "device")
+    MTLDevice getDevice();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "colorPixelFormat")
+    MTLPixelFormat getColorPixelFormat();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "depthPixelFormat")
+    MTLPixelFormat getDepthPixelFormat();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "stencilPixelFormat")
+    MTLPixelFormat getStencilPixelFormat();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "commandQueue")
+    MTLCommandQueue getCommandQueue();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "audioEngine")
+    AVAudioEngine getAudioEngine();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "audioEnvironmentNode")
+    AVAudioEnvironmentNode getAudioEnvironmentNode();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "audioListener")
+    SCNNode getAudioListener();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setAudioListener:")
+    void setAudioListener(SCNNode v);
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "hitTest:options:")
-    NSArray<SCNHitTestResult> hitTest(@ByVal CGPoint thePoint, SCNHitTestOptions options);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @Method(selector = "presentScene:withTransition:incomingPointOfView:completionHandler:")
+    void presentScene(SCNScene scene, SKTransition transition, SCNNode pointOfView, @Block Runnable completionHandler);
+    @Method(selector = "hitTest:options:")
+    NSArray<SCNHitTestResult> hitTest(@ByVal CGPoint point, SCNHitTestOptions options);
     @Method(selector = "isNodeInsideFrustum:withPointOfView:")
     boolean isNodeInsideFrustum(SCNNode node, SCNNode pointOfView);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @Method(selector = "nodesInsideFrustumWithPointOfView:")
+    NSArray<SCNNode> nodesInsideFrustumWithPointOfView(SCNNode pointOfView);
     @Method(selector = "projectPoint:")
     @ByVal SCNVector3 projectPoint(@ByVal SCNVector3 point);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "unprojectPoint:")
     @ByVal SCNVector3 unprojectPoint(@ByVal SCNVector3 point);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "prepareObject:shouldAbortBlock:")
     boolean prepareObject(NSObject object, @Block Block0<Boolean> block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "prepareObjects:withCompletionHandler:")
     void prepareObjects(NSArray<?> objects, @Block VoidBooleanBlock completionHandler);
     /*</methods>*/

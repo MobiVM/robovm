@@ -32,7 +32,9 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 7.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCController/*</name>*/ 
@@ -62,6 +64,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GCController() {}
+    protected GCController(Handle h, long handle) { super(h, handle); }
     protected GCController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -71,7 +74,7 @@ import org.robovm.apple.dispatch.*;
     public native void setControllerPausedHandler(@Block VoidBlock1<GCController> v);
     @Property(selector = "handlerQueue")
     public native DispatchQueue getHandlerQueue();
-    @Property(selector = "setHandlerQueue:")
+    @Property(selector = "setHandlerQueue:", strongRef = true)
     public native void setHandlerQueue(DispatchQueue v);
     @Property(selector = "vendorName")
     public native String getVendorName();
@@ -83,6 +86,8 @@ import org.robovm.apple.dispatch.*;
     public native void setPlayerIndex(GCControllerPlayerIndex v);
     @Property(selector = "gamepad")
     public native GCGamepad getGamepad();
+    @Property(selector = "microGamepad")
+    public native GCMicroGamepad getMicroGamepad();
     @Property(selector = "extendedGamepad")
     public native GCExtendedGamepad getExtendedGamepad();
     /**

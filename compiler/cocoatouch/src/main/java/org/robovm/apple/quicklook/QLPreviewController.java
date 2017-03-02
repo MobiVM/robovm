@@ -47,6 +47,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public QLPreviewController() {}
+    protected QLPreviewController(Handle h, long handle) { super(h, handle); }
     protected QLPreviewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -51,8 +51,20 @@ import org.robovm.apple.dispatch.*;
         super(placemark);
     }
     /*<constructors>*/
+    protected MKPlacemark(Handle h, long handle) { super(h, handle); }
     protected MKPlacemark(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithCoordinate:")
+    public MKPlacemark(@ByVal CLLocationCoordinate2D coordinate) { super((SkipInit) null); initObject(init(coordinate)); }
+    @Method(selector = "initWithCoordinate:addressDictionary:")
     public MKPlacemark(@ByVal CLLocationCoordinate2D coordinate, org.robovm.apple.addressbook.ABPersonAddress addressDictionary) { super((SkipInit) null); initObject(init(coordinate, addressDictionary)); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithCoordinate:postalAddress:")
+    public MKPlacemark(@ByVal CLLocationCoordinate2D coordinate, org.robovm.apple.contacts.CNPostalAddress postalAddress) { super((SkipInit) null); initObject(init(coordinate, postalAddress)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "countryCode")
@@ -68,7 +80,17 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithCoordinate:")
+    protected native @Pointer long init(@ByVal CLLocationCoordinate2D coordinate);
     @Method(selector = "initWithCoordinate:addressDictionary:")
     protected native @Pointer long init(@ByVal CLLocationCoordinate2D coordinate, org.robovm.apple.addressbook.ABPersonAddress addressDictionary);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithCoordinate:postalAddress:")
+    protected native @Pointer long init(@ByVal CLLocationCoordinate2D coordinate, org.robovm.apple.contacts.CNPostalAddress postalAddress);
     /*</methods>*/
 }

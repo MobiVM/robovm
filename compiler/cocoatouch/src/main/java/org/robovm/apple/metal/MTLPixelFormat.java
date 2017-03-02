@@ -97,6 +97,14 @@ public enum /*<name>*/MTLPixelFormat/*</name>*/ implements ValuedEnum {
     RGB10A2Uint(91L),
     RG11B10Float(92L),
     RGB9E5Float(93L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    BGR10_XR(554L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    BGR10_XR_sRGB(555L),
     RG32Uint(103L),
     RG32Sint(104L),
     RG32Float(105L),
@@ -105,23 +113,17 @@ public enum /*<name>*/MTLPixelFormat/*</name>*/ implements ValuedEnum {
     RGBA16Uint(113L),
     RGBA16Sint(114L),
     RGBA16Float(115L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    BGRA10_XR(552L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    BGRA10_XR_sRGB(553L),
     RGBA32Uint(123L),
     RGBA32Sint(124L),
     RGBA32Float(125L),
-    BC1_RGBA(130L),
-    BC1_RGBA_sRGB(131L),
-    BC2_RGBA(132L),
-    BC2_RGBA_sRGB(133L),
-    BC3_RGBA(134L),
-    BC3_RGBA_sRGB(135L),
-    BC4_RUnorm(140L),
-    BC4_RSnorm(141L),
-    BC5_RGUnorm(142L),
-    BC5_RGSnorm(143L),
-    BC6H_RGBFloat(150L),
-    BC6H_RGBUfloat(151L),
-    BC7_RGBAUnorm(152L),
-    BC7_RGBAUnorm_sRGB(153L),
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -310,11 +312,14 @@ public enum /*<name>*/MTLPixelFormat/*</name>*/ implements ValuedEnum {
     BGRG422(241L),
     Depth32Float(252L),
     Stencil8(253L),
-    Depth24Unorm_Stencil8(255L),
     /**
      * @since Available in iOS 9.0 and later.
      */
-    Depth32Float_Stencil8(260L);
+    Depth32Float_Stencil8(260L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    X32_Stencil8(261L);
     /*</values>*/
 
     /*<bind>*/

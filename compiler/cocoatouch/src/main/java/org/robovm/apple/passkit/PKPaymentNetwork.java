@@ -95,9 +95,17 @@ import org.robovm.apple.contacts.*;
      */
     public static final PKPaymentNetwork Amex = new PKPaymentNetwork("Amex");
     /**
+     * @since Available in iOS 9.2 and later.
+     */
+    public static final PKPaymentNetwork ChinaUnionPay = new PKPaymentNetwork("ChinaUnionPay");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final PKPaymentNetwork Discover = new PKPaymentNetwork("Discover");
+    /**
+     * @since Available in iOS 9.2 and later.
+     */
+    public static final PKPaymentNetwork Interac = new PKPaymentNetwork("Interac");
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -112,7 +120,7 @@ import org.robovm.apple.contacts.*;
     public static final PKPaymentNetwork Visa = new PKPaymentNetwork("Visa");
     /*</constants>*/
     
-    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, Discover, MasterCard, PrivateLabel, Visa/*</value_list>*/};
+    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, ChinaUnionPay, Discover, Interac, MasterCard, PrivateLabel, Visa/*</value_list>*/};
     
     /*<name>*/PKPaymentNetwork/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -141,10 +149,20 @@ import org.robovm.apple.contacts.*;
         @GlobalValue(symbol="PKPaymentNetworkAmex", optional=true)
         public static native NSString Amex();
         /**
+         * @since Available in iOS 9.2 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkChinaUnionPay", optional=true)
+        public static native NSString ChinaUnionPay();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="PKPaymentNetworkDiscover", optional=true)
         public static native NSString Discover();
+        /**
+         * @since Available in iOS 9.2 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkInterac", optional=true)
+        public static native NSString Interac();
         /**
          * @since Available in iOS 8.0 and later.
          */

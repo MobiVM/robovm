@@ -49,6 +49,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHContentEditingInputRequestOptions() {}
+    protected PHContentEditingInputRequestOptions(Handle h, long handle) { super(h, handle); }
     protected PHContentEditingInputRequestOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

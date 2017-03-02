@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.messages.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -65,6 +66,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MFMessageComposeViewController() {}
+    protected MFMessageComposeViewController(Handle h, long handle) { super(h, handle); }
     protected MFMessageComposeViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -86,6 +88,16 @@ import org.robovm.apple.uikit.*;
     public native void setSubject(String v);
     @Property(selector = "attachments")
     public native @org.robovm.rt.bro.annotation.Marshaler(MFMessageComposeViewControllerAttachment.AsListMarshaler.class) List<MFMessageComposeViewControllerAttachment> getAttachments();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "message")
+    public native MSMessage getMessage();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setMessage:")
+    public native void setMessage(MSMessage v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

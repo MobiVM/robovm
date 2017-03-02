@@ -51,7 +51,9 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKScene() {}
+    protected SKScene(Handle h, long handle) { super(h, handle); }
     protected SKScene(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSize:")
     public SKScene(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
     /*</constructors>*/
     /*<properties>*/
@@ -115,6 +117,11 @@ import org.robovm.apple.gameplaykit.*;
     /*<methods>*/
     @Method(selector = "initWithSize:")
     protected native @Pointer long init(@ByVal CGSize size);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "sceneDidLoad")
+    public native void sceneDidLoad();
     @Method(selector = "convertPointFromView:")
     public native @ByVal CGPoint convertPointFromView(@ByVal CGPoint point);
     @Method(selector = "convertPointToView:")

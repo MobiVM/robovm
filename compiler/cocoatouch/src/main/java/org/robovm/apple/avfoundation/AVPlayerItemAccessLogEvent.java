@@ -55,7 +55,8 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVPlayerItemAccessLogEvent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVPlayerItemAccessLogEvent() {}
+    protected AVPlayerItemAccessLogEvent() {}
+    protected AVPlayerItemAccessLogEvent(Handle h, long handle) { super(h, handle); }
     protected AVPlayerItemAccessLogEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -100,6 +101,21 @@ import org.robovm.apple.audiounit.*;
     public native double getObservedBitrate();
     @Property(selector = "indicatedBitrate")
     public native double getIndicatedBitrate();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "indicatedAverageBitrate")
+    public native double getIndicatedAverageBitrate();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "averageVideoBitrate")
+    public native double getAverageVideoBitrate();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "averageAudioBitrate")
+    public native double getAverageAudioBitrate();
     @Property(selector = "numberOfDroppedVideoFrames")
     public native @MachineSizedSInt long getNumberOfDroppedVideoFrames();
     /**
