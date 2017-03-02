@@ -2,6 +2,7 @@ package org.robovm.compiler.llvm.debug;
 
 import org.robovm.compiler.llvm.debug.map.DIMap;
 import org.robovm.compiler.llvm.debug.map.DIMapValueBoolean;
+import org.robovm.compiler.llvm.debug.map.DIMapValueInteger;
 import org.robovm.compiler.llvm.debug.map.DIMapValueReference;
 
 public class DISubprogram extends DIMap {
@@ -17,6 +18,7 @@ public class DISubprogram extends DIMap {
 	
 	public void setName(String name) {
 		put("name", name);
+		put("linkageName", name);
 	}
 	
 	public void setScope(DIMapValueReference scope) {
@@ -29,6 +31,11 @@ public class DISubprogram extends DIMap {
 
 	public void setType(DIMapValueReference type) {
 		map.put("type", type);
+	}
+	
+	public void setLine(int line) {
+		map.put("line", new DIMapValueInteger(line - 1));
+		map.put("scopeLine", new DIMapValueInteger(line));
 	}
 	
 	@Override

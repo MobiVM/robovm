@@ -140,7 +140,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                         if (tag != null) {
                         	currentLineNumber = tag.getLineNumber();
                         	methodLineNumber = Math.min(methodLineNumber, currentLineNumber);
-                        	instruction.addMetadata(new DebugMetadata(moduleBuilder.newUnnamedMetadata(new DILocation(new DIMapValueReference(diSubNode), currentLineNumber, 0)).ref()));
+                        	instruction.addMetadata(new DebugMetadata(moduleBuilder.newUnnamedMetadata(new DILocation(new DIMapValueReference(diSubNode), currentLineNumber, 15)).ref()));
                         }
                     }
                 }
@@ -151,6 +151,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         diSub.setFile(new DIMapValueReference(diFileMeta));
         diSub.setScope(new DIMapValueReference(diFileMeta));
         diSub.setName(function.getName());
+        diSub.setLine(methodLineNumber);
         
         function.addMetadata(new DebugMetadata(diSubNode.ref()));
         
@@ -158,7 +159,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         diBlock.setFile(new DIMapValueReference(diFileMeta));
         diBlock.setScope(new DIMapValueReference(diSubNode));
         diBlock.setLine(methodLineNumber);
-        diBlock.setColumn(0);
+        diBlock.setColumn(12);
         moduleBuilder.newUnnamedMetadata(diBlock);
         
     }
