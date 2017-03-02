@@ -109,11 +109,6 @@
                     </exclusions>
                 </dependency>
                 <dependency>
-                    <groupId>com.mobidevelop.robovm</groupId>
-                    <artifactId>robovm-ibxcode</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-                <dependency>
                     <groupId>org.zeroturnaround</groupId>
                     <artifactId>zt-zip</artifactId>
                     <version>1.7</version>
@@ -242,6 +237,17 @@
                 <exclusion>
                     <groupId>com.mobidevelop.robovm</groupId>
                     <artifactId>robovm-dist-compiler</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.mobidevelop.robovm</groupId>
+            <artifactId>robovm-ibxcode</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mobidevelop.robovm</groupId>
+                    <artifactId>robovm-compiler</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
