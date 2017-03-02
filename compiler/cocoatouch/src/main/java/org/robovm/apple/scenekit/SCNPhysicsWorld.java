@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNPhysicsWorld/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNPhysicsWorld() {}
+    protected SCNPhysicsWorld(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsWorld(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -71,6 +72,8 @@ import org.robovm.apple.opengles.*;
     public native SCNPhysicsContactDelegate getContactDelegate();
     @Property(selector = "setContactDelegate:", strongRef = true)
     public native void setContactDelegate(SCNPhysicsContactDelegate v);
+    @Property(selector = "allBehaviors")
+    public native NSArray<SCNPhysicsBehavior> getAllBehaviors();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -80,8 +83,6 @@ import org.robovm.apple.opengles.*;
     public native void removeBehavior(SCNPhysicsBehavior behavior);
     @Method(selector = "removeAllBehaviors")
     public native void removeAllBehaviors();
-    @Method(selector = "allBehaviors")
-    public native NSArray<SCNPhysicsBehavior> getAllBehaviors();
     @Method(selector = "rayTestWithSegmentFromPoint:toPoint:options:")
     public native NSArray<SCNHitTestResult> rayTestWithSegment(@ByVal SCNVector3 origin, @ByVal SCNVector3 dest, SCNPhysicsTestOptions options);
     @Method(selector = "contactTestBetweenBody:andBody:options:")

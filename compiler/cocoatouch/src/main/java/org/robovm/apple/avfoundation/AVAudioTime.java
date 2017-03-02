@@ -56,11 +56,16 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioTime() {}
+    protected AVAudioTime(Handle h, long handle) { super(h, handle); }
     protected AVAudioTime(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithAudioTimeStamp:sampleRate:")
     public AVAudioTime(AudioTimeStamp ts, double sampleRate) { super((SkipInit) null); initObject(init(ts, sampleRate)); }
+    @Method(selector = "initWithHostTime:")
     public AVAudioTime(long hostTime) { super((SkipInit) null); initObject(init(hostTime)); }
+    @Method(selector = "initWithSampleTime:atRate:")
     public AVAudioTime(long sampleTime, double sampleRate) { super((SkipInit) null); initObject(init(sampleTime, sampleRate)); }
+    @Method(selector = "initWithHostTime:sampleTime:atRate:")
     public AVAudioTime(long hostTime, long sampleTime, double sampleRate) { super((SkipInit) null); initObject(init(hostTime, sampleTime, sampleRate)); }
     /*</constructors>*/
     /*<properties>*/

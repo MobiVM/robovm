@@ -46,6 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HMAccessoryBrowser() {}
+    protected HMAccessoryBrowser(Handle h, long handle) { super(h, handle); }
     protected HMAccessoryBrowser(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

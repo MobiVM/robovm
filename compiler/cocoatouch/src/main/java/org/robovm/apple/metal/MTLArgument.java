@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLArgument() {}
+    protected MTLArgument(Handle h, long handle) { super(h, handle); }
     protected MTLArgument(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -75,6 +76,16 @@ import org.robovm.apple.dispatch.*;
     public native MTLTextureType getTextureType();
     @Property(selector = "textureDataType")
     public native MTLDataType getTextureDataType();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isDepthTexture")
+    public native boolean isDepthTexture();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "arrayLength")
+    public native @MachineSizedUInt long getArrayLength();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -48,7 +48,8 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(WKInterfaceObject.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public WKInterfaceObject() {}
+    protected WKInterfaceObject() {}
+    protected WKInterfaceObject(Handle h, long handle) { super(h, handle); }
     protected WKInterfaceObject(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -65,6 +66,11 @@ import org.robovm.apple.corelocation.*;
     public native void setWidth(@MachineSizedFloat double width);
     @Method(selector = "setHeight:")
     public native void setHeight(@MachineSizedFloat double height);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "setAccessibilityIdentifier:")
+    public native void setAccessibilityIdentifier(String accessibilityIdentifier);
     @Method(selector = "setAccessibilityLabel:")
     public native void setAccessibilityLabel(String accessibilityLabel);
     @Method(selector = "setAccessibilityHint:")

@@ -49,8 +49,9 @@ import org.robovm.apple.mapkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKEvent() {}
+    protected EKEvent(Handle h, long handle) { super(h, handle); }
     protected EKEvent(SkipInit skipInit) { super(skipInit); }
-    public EKEvent(EKEventStore eventStore) { super(create(eventStore)); retain(getHandle()); }
+    public EKEvent(EKEventStore eventStore) { super((Handle) null, create(eventStore)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "eventIdentifier")
@@ -112,6 +113,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "refresh")
     public native boolean refresh();
     @Method(selector = "eventWithEventStore:")
-    private static native @Pointer long create(EKEventStore eventStore);
+    protected static native @Pointer long create(EKEventStore eventStore);
     /*</methods>*/
 }

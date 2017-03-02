@@ -55,8 +55,10 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetWriterInputGroup.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetWriterInputGroup() {}
+    protected AVAssetWriterInputGroup() {}
+    protected AVAssetWriterInputGroup(Handle h, long handle) { super(h, handle); }
     protected AVAssetWriterInputGroup(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithInputs:defaultInput:")
     public AVAssetWriterInputGroup(NSArray<AVAssetWriterInput> inputs, AVAssetWriterInput defaultInput) { super((SkipInit) null); initObject(init(inputs, defaultInput)); }
     /*</constructors>*/
     /*<properties>*/

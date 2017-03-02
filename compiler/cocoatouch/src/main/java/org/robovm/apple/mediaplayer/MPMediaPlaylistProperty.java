@@ -93,9 +93,17 @@ import org.robovm.apple.coregraphics.*;
     public static final MPMediaPlaylistProperty Name = new MPMediaPlaylistProperty("Name");
     public static final MPMediaPlaylistProperty PlaylistAttributes = new MPMediaPlaylistProperty("PlaylistAttributes");
     public static final MPMediaPlaylistProperty SeedItems = new MPMediaPlaylistProperty("SeedItems");
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    public static final MPMediaPlaylistProperty DescriptionText = new MPMediaPlaylistProperty("DescriptionText");
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    public static final MPMediaPlaylistProperty AuthorDisplayName = new MPMediaPlaylistProperty("AuthorDisplayName");
     /*</constants>*/
     
-    private static /*<name>*/MPMediaPlaylistProperty/*</name>*/[] values = new /*<name>*/MPMediaPlaylistProperty/*</name>*/[] {/*<value_list>*/PlaylistPersistendID, Name, PlaylistAttributes, SeedItems/*</value_list>*/};
+    private static /*<name>*/MPMediaPlaylistProperty/*</name>*/[] values = new /*<name>*/MPMediaPlaylistProperty/*</name>*/[] {/*<value_list>*/PlaylistPersistendID, Name, PlaylistAttributes, SeedItems, DescriptionText, AuthorDisplayName/*</value_list>*/};
     
     /*<name>*/MPMediaPlaylistProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -126,6 +134,16 @@ import org.robovm.apple.coregraphics.*;
         public static native NSString PlaylistAttributes();
         @GlobalValue(symbol="MPMediaPlaylistPropertySeedItems", optional=true)
         public static native NSString SeedItems();
+        /**
+         * @since Available in iOS 9.3 and later.
+         */
+        @GlobalValue(symbol="MPMediaPlaylistPropertyDescriptionText", optional=true)
+        public static native NSString DescriptionText();
+        /**
+         * @since Available in iOS 9.3 and later.
+         */
+        @GlobalValue(symbol="MPMediaPlaylistPropertyAuthorDisplayName", optional=true)
+        public static native NSString AuthorDisplayName();
         /*</values>*/
     }
 }

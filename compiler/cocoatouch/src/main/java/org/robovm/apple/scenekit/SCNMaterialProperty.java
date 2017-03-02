@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNMaterialProperty/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNMaterialProperty() {}
+    protected SCNMaterialProperty(Handle h, long handle) { super(h, handle); }
     protected SCNMaterialProperty(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -59,14 +60,8 @@ import org.robovm.apple.opengles.*;
     public native NSObject getContents();
     @Property(selector = "setContents:")
     public native void setContents(NSObject v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "intensity")
     public native @MachineSizedFloat double getIntensity();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setIntensity:")
     public native void setIntensity(@MachineSizedFloat double v);
     @Property(selector = "minificationFilter")
@@ -93,30 +88,33 @@ import org.robovm.apple.opengles.*;
     public native SCNWrapMode getWrapT();
     @Property(selector = "setWrapT:")
     public native void setWrapT(SCNWrapMode v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "borderColor")
     public native NSObject getBorderColor();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "setBorderColor:")
     public native void setBorderColor(NSObject v);
     @Property(selector = "mappingChannel")
     public native @MachineSizedSInt long getMappingChannel();
     @Property(selector = "setMappingChannel:")
     public native void setMappingChannel(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "maxAnisotropy")
     public native @MachineSizedFloat double getMaxAnisotropy();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setMaxAnisotropy:")
     public native void setMaxAnisotropy(@MachineSizedFloat double v);
+    @Property(selector = "animationKeys")
+    public native NSArray<?> getAnimationKeys();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "materialPropertyWithContents:")
     public static native SCNMaterialProperty create(NSObject contents);
     @Method(selector = "addAnimation:forKey:")
@@ -125,29 +123,20 @@ import org.robovm.apple.opengles.*;
     public native void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
-    @Method(selector = "animationKeys")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAnimationKeys();
     @Method(selector = "animationForKey:")
     public native CAAnimation getAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "pauseAnimationForKey:")
     public native void pauseAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "resumeAnimationForKey:")
     public native void resumeAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "isAnimationForKeyPaused:")
     public native boolean isAnimationPaused(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setSpeed:forAnimationKey:")
+    public native void setSpeed(@MachineSizedFloat double speed, String key);
     /*</methods>*/
 }

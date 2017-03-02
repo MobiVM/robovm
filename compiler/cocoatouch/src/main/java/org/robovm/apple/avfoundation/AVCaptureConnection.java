@@ -56,14 +56,17 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureConnection() {}
+    protected AVCaptureConnection(Handle h, long handle) { super(h, handle); }
     protected AVCaptureConnection(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @Method(selector = "initWithInputPorts:output:")
     public AVCaptureConnection(NSArray<AVCaptureInputPort> ports, AVCaptureOutput output) { super((SkipInit) null); initObject(init(ports, output)); }
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @Method(selector = "initWithInputPort:videoPreviewLayer:")
     public AVCaptureConnection(AVCaptureInputPort port, AVCaptureVideoPreviewLayer layer) { super((SkipInit) null); initObject(init(port, layer)); }
     /*</constructors>*/
     /*<properties>*/

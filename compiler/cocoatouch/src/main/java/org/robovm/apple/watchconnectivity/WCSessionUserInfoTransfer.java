@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WCSessionUserInfoTransfer() {}
+    protected WCSessionUserInfoTransfer(Handle h, long handle) { super(h, handle); }
     protected WCSessionUserInfoTransfer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

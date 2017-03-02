@@ -52,7 +52,8 @@ public enum /*<name>*/SecErrorCode/*</name>*/ implements ValuedEnum {
     ItemNotFound(-25300L),
     InteractionNotAllowed(-25308L),
     Decode(-26275L),
-    AuthFailed(-25293L);
+    AuthFailed(-25293L),
+    VerifyFailed(-67808L);
     /*</values>*/
 
     /*<bind>*/

@@ -49,7 +49,8 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHCollection() {}
-    protected PHCollection(long handle) { super(handle); }
+    @Deprecated protected PHCollection(long handle) { super(handle); }
+    protected PHCollection(Handle h, long handle) { super(h, handle); }
     protected PHCollection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

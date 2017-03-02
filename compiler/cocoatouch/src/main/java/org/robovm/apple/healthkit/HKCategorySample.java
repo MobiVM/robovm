@@ -44,7 +44,8 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKCategorySample.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKCategorySample() {}
+    protected HKCategorySample() {}
+    protected HKCategorySample(Handle h, long handle) { super(h, handle); }
     protected HKCategorySample(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -59,5 +60,10 @@ import org.robovm.apple.foundation.*;
     public static native HKCategorySample create(HKCategoryType type, @MachineSizedSInt long value, NSDate startDate, NSDate endDate, HKMetadata metadata);
     @Method(selector = "categorySampleWithType:value:startDate:endDate:")
     public static native HKCategorySample create(HKCategoryType type, @MachineSizedSInt long value, NSDate startDate, NSDate endDate);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "categorySampleWithType:value:startDate:endDate:device:metadata:")
+    public static native HKCategorySample create(HKCategoryType type, @MachineSizedSInt long value, NSDate startDate, NSDate endDate, HKDevice device, HKMetadata metadata);
     /*</methods>*/
 }

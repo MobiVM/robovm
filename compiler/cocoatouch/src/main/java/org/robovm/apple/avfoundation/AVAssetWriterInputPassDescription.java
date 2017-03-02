@@ -55,7 +55,8 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetWriterInputPassDescription.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetWriterInputPassDescription() {}
+    protected AVAssetWriterInputPassDescription() {}
+    protected AVAssetWriterInputPassDescription(Handle h, long handle) { super(h, handle); }
     protected AVAssetWriterInputPassDescription(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

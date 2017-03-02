@@ -49,8 +49,9 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHFetchResultChangeDetails() {}
+    protected PHFetchResultChangeDetails(Handle h, long handle) { super(h, handle); }
     protected PHFetchResultChangeDetails(SkipInit skipInit) { super(skipInit); }
-    public PHFetchResultChangeDetails(PHFetchResult<T> fromResult, PHFetchResult<T> toResult, NSArray<T> changedObjects) { super(create(fromResult, toResult, changedObjects)); retain(getHandle()); }
+    public PHFetchResultChangeDetails(PHFetchResult<T> fromResult, PHFetchResult<T> toResult, NSArray<T> changedObjects) { super((Handle) null, create(fromResult, toResult, changedObjects)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "fetchResultBeforeChanges")

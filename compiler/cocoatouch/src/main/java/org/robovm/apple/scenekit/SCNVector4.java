@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -69,9 +71,6 @@ import org.robovm.apple.opengles.*;
     @StructMember(3) public native SCNVector4 setW(float w);
     /*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @GlobalValue(symbol="SCNVector4Zero", optional=true)
     public static native @ByVal SCNVector4 Zero();
     

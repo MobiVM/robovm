@@ -51,8 +51,9 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKPhysicsJointFixed() {}
+    protected SKPhysicsJointFixed(Handle h, long handle) { super(h, handle); }
     protected SKPhysicsJointFixed(SkipInit skipInit) { super(skipInit); }
-    public SKPhysicsJointFixed(SKPhysicsBody bodyA, SKPhysicsBody bodyB, @ByVal CGPoint anchor) { super(create(bodyA, bodyB, anchor)); retain(getHandle()); }
+    public SKPhysicsJointFixed(SKPhysicsBody bodyA, SKPhysicsBody bodyB, @ByVal CGPoint anchor) { super((Handle) null, create(bodyA, bodyB, anchor)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     

@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,13 +57,10 @@ import org.robovm.apple.opengles.*;
     /*<methods>*/
     @Method(selector = "getBoundingBoxMin:max:")
     boolean getBoundingBox(SCNVector3.SCNVector3Ptr min, SCNVector3.SCNVector3Ptr max);
-    @Method(selector = "getBoundingSphereCenter:radius:")
-    boolean getBoundingSphere(SCNVector3.SCNVector3Ptr center, MachineSizedFloatPtr radius);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "setBoundingBoxMin:max:")
     void setBoundingBox(SCNVector3.SCNVector3Ptr min, SCNVector3.SCNVector3Ptr max);
+    @Method(selector = "getBoundingSphereCenter:radius:")
+    boolean getBoundingSphere(SCNVector3.SCNVector3Ptr center, MachineSizedFloatPtr radius);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

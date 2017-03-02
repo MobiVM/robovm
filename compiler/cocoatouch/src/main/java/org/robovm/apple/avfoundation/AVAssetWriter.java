@@ -55,8 +55,10 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetWriter.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetWriter() {}
+    protected AVAssetWriter() {}
+    protected AVAssetWriter(Handle h, long handle) { super(h, handle); }
     protected AVAssetWriter(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:fileType:error:")
     public AVAssetWriter(NSURL outputURL, String outputFileType) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();

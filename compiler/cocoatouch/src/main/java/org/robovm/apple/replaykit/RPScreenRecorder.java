@@ -43,6 +43,7 @@ import org.robovm.apple.uikit.*;
     /*<bind>*/static { ObjCRuntime.bind(RPScreenRecorder.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected RPScreenRecorder(Handle h, long handle) { super(h, handle); }
     protected RPScreenRecorder(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -50,17 +51,44 @@ import org.robovm.apple.uikit.*;
     public native RPScreenRecorderDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(RPScreenRecorderDelegate v);
+    @Property(selector = "isAvailable")
+    public native boolean isAvailable();
     @Property(selector = "isRecording")
     public native boolean isRecording();
     @Property(selector = "isMicrophoneEnabled")
     public native boolean isMicrophoneEnabled();
-    @Property(selector = "isAvailable")
-    public native boolean isAvailable();
+    @Property(selector = "setMicrophoneEnabled:")
+    public native void setMicrophoneEnabled(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isCameraEnabled")
+    public native boolean isCameraEnabled();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setCameraEnabled:")
+    public native void setCameraEnabled(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "cameraPreviewView")
+    public native UIView getCameraPreviewView();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "startRecordingWithMicrophoneEnabled:handler:")
     public native void startRecording(boolean microphoneEnabled, @Block VoidBlock1<NSError> handler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "startRecordingWithHandler:")
+    public native void startRecordingWithHandler(@Block VoidBlock1<NSError> handler);
     @Method(selector = "stopRecordingWithHandler:")
     public native void stopRecording(@Block VoidBlock2<RPPreviewViewController, NSError> handler);
     @Method(selector = "discardRecordingWithHandler:")

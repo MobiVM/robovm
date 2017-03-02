@@ -49,6 +49,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAssetResourceRequestOptions() {}
+    protected PHAssetResourceRequestOptions(Handle h, long handle) { super(h, handle); }
     protected PHAssetResourceRequestOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -57,9 +58,9 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "setNetworkAccessAllowed:")
     public native void setNetworkAccessAllowed(boolean v);
     @Property(selector = "progressHandler")
-    public native @Block VoidBlock1<Double> getProgressHandler();
+    public native @Block VoidDoubleBlock getProgressHandler();
     @Property(selector = "setProgressHandler:")
-    public native void setProgressHandler(@Block VoidBlock1<Double> v);
+    public native void setProgressHandler(@Block VoidDoubleBlock v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

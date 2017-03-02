@@ -42,7 +42,8 @@ public enum /*<name>*/AudioConverterSampleRateConverterComplexity/*</name>*/ imp
     /*<values>*/
     Linear(1818848869L),
     Normal(1852797549L),
-    Mastering(1650553971L);
+    Mastering(1650553971L),
+    MinimumPhase(1835626096L);
     /*</values>*/
 
     /*<bind>*/

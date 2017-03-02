@@ -35,9 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNActionableAdapter/*</name>*/ 
@@ -51,7 +54,16 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @NotImplemented("hasActions")
+    public boolean hasActions() { return false; }
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @NotImplemented("actionKeys")
+    public NSArray<?> getActionKeys() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -75,11 +87,6 @@ import org.robovm.apple.opengles.*;
      */
     @NotImplemented("runAction:forKey:completionHandler:")
     public void runAction(SCNAction action, String key, @Block Runnable block) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @NotImplemented("hasActions")
-    public boolean hasActions() { return false; }
     /**
      * @since Available in iOS 8.0 and later.
      */

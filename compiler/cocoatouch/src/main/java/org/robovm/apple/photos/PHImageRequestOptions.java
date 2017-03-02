@@ -49,6 +49,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHImageRequestOptions() {}
+    protected PHImageRequestOptions(Handle h, long handle) { super(h, handle); }
     protected PHImageRequestOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

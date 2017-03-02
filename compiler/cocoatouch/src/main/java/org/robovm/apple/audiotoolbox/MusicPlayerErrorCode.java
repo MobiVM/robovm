@@ -40,16 +40,17 @@ import org.robovm.apple.coremidi.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/MusicPlayerErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    InvalidSequenceType(-10846L),
-    TrackIndexError(-10859L),
-    TrackNotFound(-10858L),
-    EndOfTrack(-10857L),
-    StartOfTrack(-10856L),
-    IllegalTrackDestination(-10855L),
-    NoSequence(-10854L),
-    InvalidEventType(-10853L),
-    InvalidPlayerState(-10852L),
-    CannotDoInCurrentContext(-10863L);
+    _InvalidSequenceType(-10846L),
+    _TrackIndexError(-10859L),
+    _TrackNotFound(-10858L),
+    _EndOfTrack(-10857L),
+    _StartOfTrack(-10856L),
+    _IllegalTrackDestination(-10855L),
+    _NoSequence(-10854L),
+    _InvalidEventType(-10853L),
+    _InvalidPlayerState(-10852L),
+    _CannotDoInCurrentContext(-10863L),
+    or_NoTrackDestination(-66720L);
     /*</values>*/
 
     /*<bind>*/

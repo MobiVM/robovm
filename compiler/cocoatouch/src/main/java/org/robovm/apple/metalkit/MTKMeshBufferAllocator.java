@@ -43,14 +43,16 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("MetalKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTKMeshBufferAllocator/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements MDLMeshBufferAllocator/*</implements>*/ {
 
     /*<ptr>*/public static class MTKMeshBufferAllocatorPtr extends Ptr<MTKMeshBufferAllocator, MTKMeshBufferAllocatorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MTKMeshBufferAllocator.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTKMeshBufferAllocator() {}
+    protected MTKMeshBufferAllocator() {}
+    protected MTKMeshBufferAllocator(Handle h, long handle) { super(h, handle); }
     protected MTKMeshBufferAllocator(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:")
     public MTKMeshBufferAllocator(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     /*</constructors>*/
     /*<properties>*/
@@ -61,5 +63,17 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithDevice:")
     protected native @Pointer long init(MTLDevice device);
+    @Method(selector = "newZone:")
+    public native MDLMeshBufferZone newZone(@MachineSizedUInt long capacity);
+    @Method(selector = "newZoneForBuffersWithSize:andType:")
+    public native MDLMeshBufferZone newZone(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsIntegerListMarshaler.class) List<Integer> sizes, @org.robovm.rt.bro.annotation.Marshaler(MDLMeshBufferType.AsListMarshaler.class) List<MDLMeshBufferType> types);
+    @Method(selector = "newBuffer:type:")
+    public native MDLMeshBuffer newBuffer(@MachineSizedUInt long length, MDLMeshBufferType type);
+    @Method(selector = "newBufferWithData:type:")
+    public native MDLMeshBuffer newBuffer(NSData data, MDLMeshBufferType type);
+    @Method(selector = "newBufferFromZone:length:type:")
+    public native MDLMeshBuffer newBuffer(MDLMeshBufferZone zone, @MachineSizedUInt long length, MDLMeshBufferType type);
+    @Method(selector = "newBufferFromZone:data:type:")
+    public native MDLMeshBuffer newBuffer(MDLMeshBufferZone zone, NSData data, MDLMeshBufferType type);
     /*</methods>*/
 }

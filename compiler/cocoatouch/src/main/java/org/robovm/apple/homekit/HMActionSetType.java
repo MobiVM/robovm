@@ -108,9 +108,13 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final HMActionSetType UserDefined = new HMActionSetType("UserDefined");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMActionSetType TriggerOwned = new HMActionSetType("TriggerOwned");
     /*</constants>*/
     
-    private static /*<name>*/HMActionSetType/*</name>*/[] values = new /*<name>*/HMActionSetType/*</name>*/[] {/*<value_list>*/WakeUp, Sleep, HomeDeparture, HomeArrival, UserDefined/*</value_list>*/};
+    private static /*<name>*/HMActionSetType/*</name>*/[] values = new /*<name>*/HMActionSetType/*</name>*/[] {/*<value_list>*/WakeUp, Sleep, HomeDeparture, HomeArrival, UserDefined, TriggerOwned/*</value_list>*/};
     
     /*<name>*/HMActionSetType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -158,6 +162,11 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMActionSetTypeUserDefined", optional=true)
         public static native NSString UserDefined();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMActionSetTypeTriggerOwned", optional=true)
+        public static native NSString TriggerOwned();
         /*</values>*/
     }
 }

@@ -49,7 +49,19 @@ public enum /*<name>*/PHAssetResourceType/*</name>*/ implements ValuedEnum {
     FullSizePhoto(5L),
     FullSizeVideo(6L),
     AdjustmentData(7L),
-    AdjustmentBasePhoto(8L);
+    AdjustmentBasePhoto(8L),
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    PairedVideo(9L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    FullSizePairedVideo(10L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    AdjustmentBasePairedVideo(11L);
     /*</values>*/
 
     public static class AsListMarshaler {

@@ -85,6 +85,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPMusicPlayerController() {}
+    protected MPMusicPlayerController(Handle h, long handle) { super(h, handle); }
     protected MPMusicPlayerController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -136,7 +137,9 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMediaPlaybackIsPreparedToPlayDidChangeNotification", optional=true)
     public static native NSString IsPreparedToPlayDidChangeNotification();
     @GlobalValue(symbol="MPMusicPlayerControllerPlaybackStateDidChangeNotification", optional=true)
@@ -161,6 +164,11 @@ import org.robovm.apple.coregraphics.*;
     public native void setQueue(MPMediaQuery query);
     @Method(selector = "setQueueWithItemCollection:")
     public native void setQueue(MPMediaItemCollection itemCollection);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "setQueueWithStoreIDs:")
+    public native void setQueueWithStoreIDs(NSArray<?> storeIDs);
     @Method(selector = "skipToNextItem")
     public native void skipToNextItem();
     @Method(selector = "skipToBeginning")

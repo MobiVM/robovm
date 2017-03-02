@@ -48,6 +48,7 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKAddPaymentPassRequest() {}
+    protected PKAddPaymentPassRequest(Handle h, long handle) { super(h, handle); }
     protected PKAddPaymentPassRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

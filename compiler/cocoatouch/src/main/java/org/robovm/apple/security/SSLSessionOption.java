@@ -45,7 +45,8 @@ public enum /*<name>*/SSLSessionOption/*</name>*/ implements ValuedEnum {
     SendOneByteRecord(4L),
     AllowServerIdentityChange(5L),
     Fallback(6L),
-    BreakOnClientHello(7L);
+    BreakOnClientHello(7L),
+    AllowRenegotiation(8L);
     /*</values>*/
 
     private final long n;

@@ -136,7 +136,7 @@ values:
         class: UTType
         static_class: CompositeContent
         name: '#{g[0]}'
-    kUTType(Image|JPEG|JPEG2000|TIFF|PICT|GIF|PNG|QuickTimeImage|AppleICNS|BMP|ICO|RawImage|ScalableVectorGraphics):
+    kUTType(Image|JPEG|JPEG2000|TIFF|PICT|GIF|PNG|QuickTimeImage|AppleICNS|BMP|ICO|RawImage|ScalableVectorGraphics|LivePhoto):
         class: UTType
         static_class: ImageContent
         name: '#{g[0]}'

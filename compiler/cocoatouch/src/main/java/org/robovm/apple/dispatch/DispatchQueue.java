@@ -103,6 +103,21 @@ import org.robovm.rt.bro.ptr.*;
     @Bridge(symbol="dispatch_get_global_queue", optional=true)
     public static native DispatchQueue getGlobalQueue(@MachineSizedSInt long identifier, @MachineSizedUInt long flags);
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="dispatch_queue_attr_make_initially_inactive", optional=true)
+    public static native DispatchQueueAttr attrMakeInitiallyInactive(DispatchQueueAttr attr);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="dispatch_queue_attr_make_with_autorelease_frequency", optional=true)
+    public static native DispatchQueueAttr attrMakeWithAutoreleaseFrequency(DispatchQueueAttr attr, long frequency);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="dispatch_queue_create_with_target", optional=true)
+    public static native DispatchQueue createWithTarget(BytePtr label, DispatchQueueAttr attr, DispatchQueue target);
+    /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="dispatch_queue_create", optional=true)

@@ -56,8 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVMutableVideoCompositionLayerInstruction() {}
+    protected AVMutableVideoCompositionLayerInstruction(Handle h, long handle) { super(h, handle); }
     protected AVMutableVideoCompositionLayerInstruction(SkipInit skipInit) { super(skipInit); }
-    public AVMutableVideoCompositionLayerInstruction(AVAssetTrack track) { super(create(track)); retain(getHandle()); }
+    public AVMutableVideoCompositionLayerInstruction(AVAssetTrack track) { super((Handle) null, create(track)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "trackID")

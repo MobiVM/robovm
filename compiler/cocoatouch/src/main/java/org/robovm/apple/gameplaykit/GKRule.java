@@ -31,7 +31,9 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKRule/*</name>*/ 
@@ -43,8 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKRule() {}
+    protected GKRule(Handle h, long handle) { super(h, handle); }
     protected GKRule(SkipInit skipInit) { super(skipInit); }
-    public GKRule(@Block Block1<GKRuleSystem, Boolean> predicate, @Block VoidBlock1<GKRuleSystem> action) { super(create(predicate, action)); retain(getHandle()); }
+    public GKRule(@Block Block1<GKRuleSystem, Boolean> predicate, @Block VoidBlock1<GKRuleSystem> action) { super((Handle) null, create(predicate, action)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "salience")
@@ -63,6 +66,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "ruleWithPredicate:retractingFact:grade:")
     public static native GKRule createRetractingFact(NSPredicate predicate, NSObject fact, float grade);
     @Method(selector = "ruleWithBlockPredicate:action:")
-    private static native @Pointer long create(@Block Block1<GKRuleSystem, Boolean> predicate, @Block VoidBlock1<GKRuleSystem> action);
+    protected static native @Pointer long create(@Block Block1<GKRuleSystem, Boolean> predicate, @Block VoidBlock1<GKRuleSystem> action);
     /*</methods>*/
 }

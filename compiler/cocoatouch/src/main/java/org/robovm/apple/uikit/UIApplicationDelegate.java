@@ -90,7 +90,7 @@ import org.robovm.apple.corelocation.*;
      */
     @Deprecated
     @Method(selector = "application:openURL:sourceApplication:annotation:")
-    boolean openURL(UIApplication application, NSURL url, String sourceApplication, NSObject annotation);
+    boolean openURL(UIApplication application, NSURL url, String sourceApplication, NSPropertyList annotation);
     /**
      * @since Available in iOS 9.0 and later.
      */

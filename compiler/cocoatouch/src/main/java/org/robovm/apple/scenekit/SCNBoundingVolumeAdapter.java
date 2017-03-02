@@ -35,9 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNBoundingVolumeAdapter/*</name>*/ 
@@ -57,12 +60,9 @@ import org.robovm.apple.opengles.*;
     /*<methods>*/
     @NotImplemented("getBoundingBoxMin:max:")
     public boolean getBoundingBox(SCNVector3.SCNVector3Ptr min, SCNVector3.SCNVector3Ptr max) { return false; }
-    @NotImplemented("getBoundingSphereCenter:radius:")
-    public boolean getBoundingSphere(SCNVector3.SCNVector3Ptr center, MachineSizedFloatPtr radius) { return false; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("setBoundingBoxMin:max:")
     public void setBoundingBox(SCNVector3.SCNVector3Ptr min, SCNVector3.SCNVector3Ptr max) {}
+    @NotImplemented("getBoundingSphereCenter:radius:")
+    public boolean getBoundingSphere(SCNVector3.SCNVector3Ptr center, MachineSizedFloatPtr radius) { return false; }
     /*</methods>*/
 }

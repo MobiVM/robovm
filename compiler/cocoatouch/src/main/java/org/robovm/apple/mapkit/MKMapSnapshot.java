@@ -49,6 +49,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKMapSnapshot() {}
+    protected MKMapSnapshot(Handle h, long handle) { super(h, handle); }
     protected MKMapSnapshot(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

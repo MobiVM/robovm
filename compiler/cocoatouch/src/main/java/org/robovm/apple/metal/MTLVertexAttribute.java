@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLVertexAttribute() {}
+    protected MTLVertexAttribute(Handle h, long handle) { super(h, handle); }
     protected MTLVertexAttribute(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -60,6 +61,16 @@ import org.robovm.apple.dispatch.*;
     public native MTLDataType getAttributeType();
     @Property(selector = "isActive")
     public native boolean isActive();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isPatchData")
+    public native boolean isPatchData();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isPatchControlPointData")
+    public native boolean isPatchControlPointData();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

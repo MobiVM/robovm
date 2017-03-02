@@ -48,7 +48,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKPaymentAuthorizationViewController() {}
+    protected PKPaymentAuthorizationViewController(Handle h, long handle) { super(h, handle); }
     protected PKPaymentAuthorizationViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPaymentRequest:")
     public PKPaymentAuthorizationViewController(PKPaymentRequest request) { super((SkipInit) null); initObject(init(request)); }
     /*</constructors>*/
     /*<properties>*/

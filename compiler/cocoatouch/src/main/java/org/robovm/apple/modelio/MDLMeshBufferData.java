@@ -46,8 +46,11 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLMeshBufferData() {}
+    protected MDLMeshBufferData(Handle h, long handle) { super(h, handle); }
     protected MDLMeshBufferData(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithType:length:")
     public MDLMeshBufferData(MDLMeshBufferType type, @MachineSizedUInt long length) { super((SkipInit) null); initObject(init(type, length)); }
+    @Method(selector = "initWithType:data:")
     public MDLMeshBufferData(MDLMeshBufferType type, NSData data) { super((SkipInit) null); initObject(init(type, data)); }
     /*</constructors>*/
     /*<properties>*/

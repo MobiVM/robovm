@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVPlayerItemLegibleOutput() {}
+    protected AVPlayerItemLegibleOutput(Handle h, long handle) { super(h, handle); }
     protected AVPlayerItemLegibleOutput(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithMediaSubtypesForNativeRepresentation:")
     public AVPlayerItemLegibleOutput(NSArray<NSNumber> subtypes) { super((SkipInit) null); initObject(init(subtypes)); }
     /*</constructors>*/
     /*<properties>*/

@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,34 +58,16 @@ import org.robovm.apple.opengles.*;
     public static native boolean usesSceneTimeBase(CAAnimation thiz);
     @Property(selector = "setUsesSceneTimeBase:")
     public static native void setUsesSceneTimeBase(CAAnimation thiz, boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "fadeInDuration")
     public static native @MachineSizedFloat double getFadeInDuration(CAAnimation thiz);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setFadeInDuration:")
     public static native void setFadeInDuration(CAAnimation thiz, @MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "fadeOutDuration")
     public static native @MachineSizedFloat double getFadeOutDuration(CAAnimation thiz);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setFadeOutDuration:")
     public static native void setFadeOutDuration(CAAnimation thiz, @MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "animationEvents")
     public static native NSArray<SCNAnimationEvent> getAnimationEvents(CAAnimation thiz);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAnimationEvents:")
     public static native void setAnimationEvents(CAAnimation thiz, NSArray<SCNAnimationEvent> v);
     /*</properties>*/

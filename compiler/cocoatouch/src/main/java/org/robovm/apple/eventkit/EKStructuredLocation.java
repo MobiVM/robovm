@@ -49,12 +49,13 @@ import org.robovm.apple.mapkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKStructuredLocation() {}
+    protected EKStructuredLocation(Handle h, long handle) { super(h, handle); }
     protected EKStructuredLocation(SkipInit skipInit) { super(skipInit); }
-    public EKStructuredLocation(String title) { super(create(title)); retain(getHandle()); }
+    public EKStructuredLocation(String title) { super((Handle) null, create(title)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public EKStructuredLocation(MKMapItem mapItem) { super(create(mapItem)); retain(getHandle()); }
+    public EKStructuredLocation(MKMapItem mapItem) { super((Handle) null, create(mapItem)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "title")
@@ -73,11 +74,11 @@ import org.robovm.apple.mapkit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "locationWithTitle:")
-    private static native @Pointer long create(String title);
+    protected static native @Pointer long create(String title);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "locationWithMapItem:")
-    private static native @Pointer long create(MKMapItem mapItem);
+    protected static native @Pointer long create(MKMapItem mapItem);
     /*</methods>*/
 }

@@ -47,6 +47,8 @@ public enum /*<name>*/AUErrorCode/*</name>*/ implements NSErrorCode {
     FailedInitialization(-10875L),
     TooManyFramesToProcess(-10874L),
     InvalidFile(-10871L),
+    UnknownFileType(-10870L),
+    FileNotSpecified(-10869L),
     FormatNotSupported(-10868L),
     Uninitialized(-10867L),
     InvalidScope(-10866L),
@@ -56,7 +58,8 @@ public enum /*<name>*/AUErrorCode/*</name>*/ implements NSErrorCode {
     PropertyNotInUse(-10850L),
     Initialized(-10849L),
     InvalidOfflineRender(-10848L),
-    Unauthorized(-10847L);
+    Unauthorized(-10847L),
+    RenderTimeout(-66745L);
     /*</values>*/
 
     /*<bind>*/

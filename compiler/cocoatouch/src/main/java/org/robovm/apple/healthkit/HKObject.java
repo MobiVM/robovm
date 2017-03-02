@@ -44,14 +44,30 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKObject.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKObject() {}
+    protected HKObject() {}
+    protected HKObject(Handle h, long handle) { super(h, handle); }
     protected HKObject(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "UUID")
     public native NSUUID getUUID();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Property(selector = "source")
     public native HKSource getSource();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "sourceRevision")
+    public native HKSourceRevision getSourceRevision();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "device")
+    public native HKDevice getDevice();
     @Property(selector = "metadata")
     public native HKMetadata getMetadata();
     /*</properties>*/

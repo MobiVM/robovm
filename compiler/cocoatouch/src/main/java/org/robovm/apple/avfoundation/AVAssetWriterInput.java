@@ -55,7 +55,8 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetWriterInput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetWriterInput() {}
+    protected AVAssetWriterInput() {}
+    protected AVAssetWriterInput(Handle h, long handle) { super(h, handle); }
     protected AVAssetWriterInput(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public AVAssetWriterInput(AVMediaType mediaType, AVAudioSettings outputSettings) {

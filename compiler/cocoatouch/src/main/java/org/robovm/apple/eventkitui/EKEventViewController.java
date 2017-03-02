@@ -47,6 +47,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKEventViewController() {}
+    protected EKEventViewController(Handle h, long handle) { super(h, handle); }
     protected EKEventViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

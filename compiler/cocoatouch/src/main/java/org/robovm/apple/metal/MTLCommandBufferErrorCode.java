@@ -47,7 +47,11 @@ public enum /*<name>*/MTLCommandBufferErrorCode/*</name>*/ implements NSErrorCod
     Blacklisted(4L),
     NotPermitted(7L),
     OutOfMemory(8L),
-    InvalidResource(9L);
+    InvalidResource(9L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Memoryless(10L);
     /*</values>*/
 
     /*<bind>*/

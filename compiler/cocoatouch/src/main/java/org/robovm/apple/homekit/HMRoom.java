@@ -45,6 +45,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMRoom.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMRoom(Handle h, long handle) { super(h, handle); }
     protected HMRoom(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

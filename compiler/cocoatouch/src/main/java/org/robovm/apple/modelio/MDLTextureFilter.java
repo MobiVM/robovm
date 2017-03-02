@@ -46,6 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLTextureFilter() {}
+    protected MDLTextureFilter(Handle h, long handle) { super(h, handle); }
     protected MDLTextureFilter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

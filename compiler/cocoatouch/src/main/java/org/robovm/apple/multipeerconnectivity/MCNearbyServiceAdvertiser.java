@@ -47,7 +47,9 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MCNearbyServiceAdvertiser() {}
+    protected MCNearbyServiceAdvertiser(Handle h, long handle) { super(h, handle); }
     protected MCNearbyServiceAdvertiser(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPeer:discoveryInfo:serviceType:")
     public MCNearbyServiceAdvertiser(MCPeerID myPeerID, @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> info, String serviceType) { super((SkipInit) null); initObject(init(myPeerID, info, serviceType)); }
     /*</constructors>*/
     /*<properties>*/

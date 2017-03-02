@@ -43,7 +43,15 @@ public enum /*<name>*/MTLLibraryErrorCode/*</name>*/ implements NSErrorCode {
     Unsupported(1L),
     Internal(2L),
     CompileFailure(3L),
-    CompileWarning(4L);
+    CompileWarning(4L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    FunctionNotFound(5L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    FileNotFound(6L);
     /*</values>*/
 
     /*<bind>*/

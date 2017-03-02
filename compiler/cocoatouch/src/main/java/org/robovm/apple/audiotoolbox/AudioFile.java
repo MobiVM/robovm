@@ -131,7 +131,7 @@ import org.robovm.apple.coremidi.*;
      * @throws OSStatusException 
      * @since Available in iOS 2.0 and later.
      */
-    public static AudioFile openURL(NSURL fileRef, byte permissions, AudioFileType fileTypeHint) throws OSStatusException {
+    public static AudioFile openURL(NSURL fileRef, AudioFilePermission permissions, AudioFileType fileTypeHint) throws OSStatusException {
         AudioFile.AudioFilePtr ptr = new AudioFile.AudioFilePtr();
         OSStatus status = openURL0(fileRef, permissions, fileTypeHint, ptr);
         OSStatusException.throwIfNecessary(status);
@@ -360,7 +360,7 @@ import org.robovm.apple.coremidi.*;
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="AudioFileOpenURL", optional=true)
-    protected static native OSStatus openURL0(NSURL inFileRef, byte inPermissions, AudioFileType inFileTypeHint, AudioFile.AudioFilePtr outAudioFile);
+    protected static native OSStatus openURL0(NSURL inFileRef, AudioFilePermission inPermissions, AudioFileType inFileTypeHint, AudioFile.AudioFilePtr outAudioFile);
     /**
      * @since Available in iOS 2.0 and later.
      */

@@ -1,5 +1,5 @@
 package: org.robovm.apple.scenekit
-include: [foundation.yaml, uikit.yaml, coregraphics.yaml, coreanimation.yaml, dispatch.yaml, glkit.yaml, spritekit.yaml, opengles.yaml]
+include: [foundation.yaml, uikit.yaml, coregraphics.yaml, coreanimation.yaml, dispatch.yaml, glkit.yaml, spritekit.yaml, opengles.yaml, metal.yaml, avfoundation.yaml]
 library: SceneKit
 framework: SceneKit
 clang_args: ['-x', 'objective-c']
@@ -41,6 +41,13 @@ enums:
     SCNPhysicsBodyType: {}
     SCNPhysicsCollisionCategory: {}
     SCNPhysicsFieldScope: {}
+    SCNRenderingAPI: {}
+    SCNDebugOptions: {}
+    SCNBufferFrequency: {}
+    SCNMovabilityHint: {}
+    SCNBlendMode: {}
+    SCNBillboardAxis: {}
+    SCNReferenceLoadingPolicy: {}
     
 categories:
     NSValue: # DONE
@@ -53,6 +60,11 @@ categories:
                 type: NSArray<SCNAnimationEvent>
         
 classes:
+    SCNReferenceNode: {}
+    SCNBillboardConstraint: {}
+    SCNAudioSource: {}
+    SCNAudioPlayer: {}
+
     SCNError:
         extends: NSError
         annotations: ['@StronglyLinked']
@@ -114,6 +126,9 @@ classes:
                 name: javaScript
             '+customActionWithDuration:actionBlock:':
                 name: custom
+            '+playAudioSource:waitForCompletion:':
+                trim_after_first_colon: true
+
     SCNAnimationEvent: # DONE
         methods:
             '+animationEventWithKeyTime:block:':
@@ -256,6 +271,8 @@ classes:
                 name: createWithNormals
             '+geometrySourceWithTextureCoordinates:count:':
                 name: createWithTextureCoordinates
+            '+geometrySourceWithBuffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:':
+                name: createWithBuffer
     SCNHitTestResult: # DONE
         methods:
             '-textureCoordinatesWithMappingChannel:':
@@ -522,15 +539,26 @@ classes:
                 return_type: SCNProgramSemantic
             '+program':
                 name: create
+            '-handleBindingOfBufferNamed:frequency:usingBlock:':
+                name: handleBindingOfBuffer
+
     SCNRenderer: # DONE
         methods:
-            '-renderAtTime:':
+            '-renderAtTime:.*':
                 trim_after_first_colon: true
             '+rendererWithContext:options:':
                 name: create
                 parameters:
                     context:
                         type: EAGLContext
+            '-snapshotAtTime:withSize:antialiasingMode:':
+                trim_after_first_colon: true
+            '-updateProbes:atTime:':
+                trim_after_first_colon: true
+            '-rendererWithDevice:options:':
+                trim_after_first_colon: true
+            '-presentScene:withTransition:incomingPointOfView:completionHandler:':
+                trim_after_first_colon: true
     SCNScene: # DONE
         properties:
             'fogColor':
@@ -567,6 +595,8 @@ classes:
             '-addParticleSystem:withTransform:':
                 trim_after_first_colon: true
             '-removeParticleSystem:':
+                trim_after_first_colon: true
+            '-writeToURL:options:delegate:progressHandler:':
                 trim_after_first_colon: true
     SCNSceneSource: # DONE
         methods:
@@ -639,6 +669,8 @@ classes:
                 parameters:
                     techniques:
                         type: NSArray<SCNTechnique>
+            '-setObject:forKeyedSubscript:':
+                name: setObjectForKeyedSubscript
     SCNTransaction: # DONE
         methods:
             '+(animationDuration|animationTimingFunction|disableActions|completionBlock)':
@@ -663,6 +695,17 @@ classes:
                 trim_after_first_colon: true
 
 protocols:
+    SCNBufferStream:
+        skip_adapter: true
+        methods:
+            '-writeBytes:length:':
+                trim_after_first_colon: true
+    SCNSceneExportDelegate:
+        skip_adapter: true
+        methods:
+            '-writeImage:withSceneDocumentURL:originalImageURL:':
+                trim_after_first_colon: true
+
     SCNActionable: # DONE
         methods:
             '-runAction.*':
@@ -690,6 +733,8 @@ protocols:
                 name: isAnimationPaused
             '-removeAnimationForKey:fadeOutDuration:':
                 name: removeAnimation
+            '-setSpeed:forAnimationKey:':
+                name: setSpeed
     SCNBoundingVolume: # DONE
         methods:
             '-getBoundingBoxMin:max:':
@@ -756,6 +801,9 @@ protocols:
                 trim_after_first_colon: true
             '-prepareObjects:withCompletionHandler:':
                 trim_after_first_colon: true
+            '-presentScene:withTransition:incomingPointOfView:completionHandler:':
+                trim_after_first_colon: true
+
     SCNSceneRendererDelegate: # DONE
         methods:
             '-renderer:updateAtTime:':
@@ -870,6 +918,10 @@ values:
         type: NSString
     
     # SCNPhysicsShape
+    SCNPhysicsShapeOptionCollisionMargin:
+        dictionary: SCNPhysicsShapeOptions
+        name: 'CollisionMargin'
+        type: NSString
     SCNPhysicsShape(.*)Key:
         dictionary: SCNPhysicsShapeOptions
         name: '#{g[0]}'
@@ -882,6 +934,9 @@ values:
                 type: boolean
             Scale:
                 type: SCNVector3
+            CollisionMargin:
+                name: collisionMargin
+                type: NSNumber
     SCNPhysicsShapeType(.*):
         enum: SCNPhysicsShapeType
         name: '#{g[0]}'
@@ -922,6 +977,10 @@ values:
         exclude: true
 
     # SCNSceneRenderer
+    SCNHitTestOptionCategoryBitMask:
+        dictionary: SCNHitTestOptions
+        name: 'OptionCategoryBitMask'
+        type: NSString
     SCNHitTest(.*)Key:
         dictionary: SCNHitTestOptions
         name: '#{g[0]}'
@@ -949,7 +1008,10 @@ values:
             IgnoreHiddenNodes:
                 name: ignoresHiddenNodes
                 type: boolean
-    
+            OptionCategoryBitMask:
+                name: optionCategoryBitMask
+                type: int
+
     # SCNSceneSource
     SCNSceneSourceAsset(Contributors|CreatedDate|ModifiedDate|UpAxis|Unit)Key:
         enum: SCNSceneSourceProperty
@@ -999,6 +1061,9 @@ values:
                 type: boolean
             AnimationImportPolicy:
                 type: SCNSceneSourceAnimationImportPolicy
+    SCNSceneSourceLoadingOptionPreserveOriginalTopology:
+        dictionary: SCNSceneSourceOptions
+        name: PreserveOriginalTopology
     SCNSceneSourceAnimationImportPolicy(.*):
         enum: SCNSceneSourceAnimationImportPolicy
         name: '#{g[0]}'
@@ -1009,6 +1074,10 @@ values:
         enum: SCNShaderModifierEntryPoint
         name: '#{g[0]}'
         type: NSString
+
+    # SCNView
+    SCN(PreferredRenderingAPI|PreferredDevice|PreferLowPowerDevice)Key:
+        class: SCNView
    
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?SCN.*):

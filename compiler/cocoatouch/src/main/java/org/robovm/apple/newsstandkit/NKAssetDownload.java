@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NKAssetDownload() {}
+    protected NKAssetDownload(Handle h, long handle) { super(h, handle); }
     protected NKAssetDownload(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -53,9 +54,9 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "identifier")
     public native String getIdentifier();
     @Property(selector = "userInfo")
-    public native NSDictionary getUserInfo();
+    public native NSDictionary<?, ?> getUserInfo();
     @Property(selector = "setUserInfo:")
-    public native void setUserInfo(NSDictionary v);
+    public native void setUserInfo(NSDictionary<?, ?> v);
     @Property(selector = "URLRequest")
     public native NSURLRequest getURLRequest();
     /*</properties>*/

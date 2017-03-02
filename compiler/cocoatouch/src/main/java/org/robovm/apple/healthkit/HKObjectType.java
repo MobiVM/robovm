@@ -44,7 +44,8 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKObjectType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKObjectType() {}
+    protected HKObjectType() {}
+    protected HKObjectType(Handle h, long handle) { super(h, handle); }
     protected HKObjectType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -61,7 +62,17 @@ import org.robovm.apple.foundation.*;
     public static native HKCharacteristicType getCharacteristicType(HKCharacteristicTypeIdentifier identifier);
     @Method(selector = "correlationTypeForIdentifier:")
     public static native HKCorrelationType getCorrelationType(HKCorrelationTypeIdentifier identifier);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "documentTypeForIdentifier:")
+    public static native HKDocumentType documentTypeForIdentifier(String identifier);
     @Method(selector = "workoutType")
     public static native HKWorkoutType getWorkoutType();
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "activitySummaryType")
+    public static native HKActivitySummaryType activitySummaryType();
     /*</methods>*/
 }

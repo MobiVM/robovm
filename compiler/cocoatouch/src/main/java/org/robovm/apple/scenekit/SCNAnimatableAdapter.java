@@ -35,9 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNAnimatableAdapter/*</name>*/ 
@@ -51,7 +54,8 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    @NotImplemented("animationKeys")
+    public NSArray<?> getAnimationKeys() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -61,29 +65,20 @@ import org.robovm.apple.opengles.*;
     public void removeAllAnimations() {}
     @NotImplemented("removeAnimationForKey:")
     public void removeAnimation(String key) {}
-    @NotImplemented("animationKeys")
-    public @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAnimationKeys() { return null; }
     @NotImplemented("animationForKey:")
     public CAAnimation getAnimation(String key) { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("pauseAnimationForKey:")
     public void pauseAnimation(String key) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("resumeAnimationForKey:")
     public void resumeAnimation(String key) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("isAnimationForKeyPaused:")
     public boolean isAnimationPaused(String key) { return false; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("removeAnimationForKey:fadeOutDuration:")
     public void removeAnimation(String key, @MachineSizedFloat double duration) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("setSpeed:forAnimationKey:")
+    public void setSpeed(@MachineSizedFloat double speed, String key) {}
     /*</methods>*/
 }

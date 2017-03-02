@@ -59,6 +59,11 @@ import org.robovm.apple.uikit.*;
     @NotImplemented("previewController:frameForPreviewItem:inSourceView:")
     public @ByVal CGRect getFrame(QLPreviewController controller, QLPreviewItem item, UIView.UIViewPtr view) { return null; }
     @NotImplemented("previewController:transitionImageForPreviewItem:contentRect:")
-    public UIImage getTransitionImage(QLPreviewController controller, QLPreviewItem item, @ByVal CGRect contentRect) { return null; }
+    public UIImage getTransitionImage(QLPreviewController controller, QLPreviewItem item, CGRect contentRect) { return null; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("previewController:transitionViewForPreviewItem:")
+    public UIView getTransitionViewForPreviewItem(QLPreviewController controller, QLPreviewItem item) { return null; }
     /*</methods>*/
 }

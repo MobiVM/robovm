@@ -46,7 +46,9 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLURLTexture() {}
+    protected MDLURLTexture(Handle h, long handle) { super(h, handle); }
     protected MDLURLTexture(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:name:")
     public MDLURLTexture(NSURL URL, String name) { super((SkipInit) null); initObject(init(URL, name)); }
     /*</constructors>*/
     /*<properties>*/

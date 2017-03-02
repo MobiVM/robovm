@@ -43,7 +43,8 @@ public enum /*<name>*/AUMixerProperty/*</name>*/ implements AUPropertyType {
     MeteringMode(3007L),
     MatrixLevels(3006L),
     MatrixDimensions(3009L),
-    MeterClipping(3011L);
+    MeterClipping(3011L),
+    InputAnchorTimeStamp(3016L);
     /*</values>*/
 
     /*<bind>*/

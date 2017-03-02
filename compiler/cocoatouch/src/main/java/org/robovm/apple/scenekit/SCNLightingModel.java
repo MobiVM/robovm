@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -98,9 +100,13 @@ import org.robovm.apple.opengles.*;
     public static final SCNLightingModel Blinn = new SCNLightingModel("Blinn");
     public static final SCNLightingModel Lambert = new SCNLightingModel("Lambert");
     public static final SCNLightingModel Constant = new SCNLightingModel("Constant");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final SCNLightingModel PhysicallyBased = new SCNLightingModel("PhysicallyBased");
     /*</constants>*/
     
-    private static /*<name>*/SCNLightingModel/*</name>*/[] values = new /*<name>*/SCNLightingModel/*</name>*/[] {/*<value_list>*/Phong, Blinn, Lambert, Constant/*</value_list>*/};
+    private static /*<name>*/SCNLightingModel/*</name>*/[] values = new /*<name>*/SCNLightingModel/*</name>*/[] {/*<value_list>*/Phong, Blinn, Lambert, Constant, PhysicallyBased/*</value_list>*/};
     
     /*<name>*/SCNLightingModel/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -131,6 +137,11 @@ import org.robovm.apple.opengles.*;
         public static native NSString Lambert();
         @GlobalValue(symbol="SCNLightingModelConstant", optional=true)
         public static native NSString Constant();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="SCNLightingModelPhysicallyBased", optional=true)
+        public static native NSString PhysicallyBased();
         /*</values>*/
     }
 }

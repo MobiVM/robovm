@@ -86,6 +86,21 @@ import org.robovm.apple.dispatch.*;
     public native MTLCommandQueue newCommandQueue();
     @Method(selector = "newCommandQueueWithMaxCommandBufferCount:")
     public native MTLCommandQueue newCommandQueue(@MachineSizedUInt long maxCommandBufferCount);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "heapTextureSizeAndAlignWithDescriptor:")
+    public native @ByVal MTLSizeAndAlign heapTextureSizeAndAlignWithDescriptor(MTLTextureDescriptor desc);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "heapBufferSizeAndAlignWithLength:options:")
+    public native @ByVal MTLSizeAndAlign heapBufferSizeAndAlignWithLength(@MachineSizedUInt long length, MTLResourceOptions options);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "newHeapWithDescriptor:")
+    public native MTLHeap newHeapWithDescriptor(MTLHeapDescriptor descriptor);
     @Method(selector = "newBufferWithLength:options:")
     public native MTLBuffer newBuffer(@MachineSizedUInt long length, MTLResourceOptions options);
     @Method(selector = "newBufferWithBytes:length:options:")
@@ -100,6 +115,20 @@ import org.robovm.apple.dispatch.*;
     public native MTLSamplerState newSamplerState(MTLSamplerDescriptor descriptor);
     @Method(selector = "newDefaultLibrary")
     public native MTLLibrary newDefaultLibrary();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public MTLLibrary newDefaultLibrary(NSBundle bundle) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MTLLibrary result = newDefaultLibrary(bundle, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "newDefaultLibraryWithBundle:error:")
+    private native MTLLibrary newDefaultLibrary(NSBundle bundle, NSError.NSErrorPtr error);
     public MTLLibrary newLibraryWithFile(String filepath) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        MTLLibrary result = newLibraryWithFile(filepath, ptr);
@@ -187,6 +216,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newComputePipelineStateWithDescriptor:options:completionHandler:")
     public native void newComputePipelineState(MTLComputePipelineDescriptor descriptor, MTLPipelineOption options, @Block VoidBlock3<MTLComputePipelineState, MTLComputePipelineReflection, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "newFence")
+    public native MTLFence newFence();
     @Method(selector = "supportsFeatureSet:")
     public native boolean supportsFeatureSet(MTLFeatureSet featureSet);
     /**

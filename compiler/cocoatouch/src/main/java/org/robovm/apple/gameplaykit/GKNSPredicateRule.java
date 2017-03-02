@@ -31,7 +31,9 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKNSPredicateRule/*</name>*/ 
@@ -43,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKNSPredicateRule() {}
+    protected GKNSPredicateRule(Handle h, long handle) { super(h, handle); }
     protected GKNSPredicateRule(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPredicate:")
     public GKNSPredicateRule(NSPredicate predicate) { super((SkipInit) null); initObject(init(predicate)); }
     /*</constructors>*/
     /*<properties>*/

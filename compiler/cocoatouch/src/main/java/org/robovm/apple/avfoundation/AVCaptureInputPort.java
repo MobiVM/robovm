@@ -70,6 +70,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureInputPort() {}
+    protected AVCaptureInputPort(Handle h, long handle) { super(h, handle); }
     protected AVCaptureInputPort(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

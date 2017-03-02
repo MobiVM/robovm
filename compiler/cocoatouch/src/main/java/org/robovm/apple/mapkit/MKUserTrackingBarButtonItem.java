@@ -49,7 +49,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKUserTrackingBarButtonItem() {}
+    protected MKUserTrackingBarButtonItem(Handle h, long handle) { super(h, handle); }
     protected MKUserTrackingBarButtonItem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithMapView:")
     public MKUserTrackingBarButtonItem(MKMapView mapView) { super((SkipInit) null); initObject(init(mapView)); }
     /*</constructors>*/
     /*<properties>*/

@@ -53,9 +53,12 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKRange() {}
+    protected SKRange(Handle h, long handle) { super(h, handle); }
     protected SKRange(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLowerLimit:upperLimit:")
     public SKRange(@MachineSizedFloat double lower, @MachineSizedFloat double upper) { super((SkipInit) null); initObject(init(lower, upper)); }
-    public SKRange(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithCoder:")
+    public SKRange(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lowerLimit")
@@ -84,6 +87,6 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

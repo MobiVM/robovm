@@ -13,6 +13,7 @@ typedefs:
     'void (^)(size_t)': '@Block("(@MachineSizedUInt)") VoidBlock1<Long>'
     dispatch_io_handler_t: '@Block VoidBlock3<Boolean, DispatchData, Integer>'
     dispatch_data_applier_t: '@Block("(,@MachineSizedUInt,,@MachineSizedUInt)") VoidBlock4<DispatchData, Long, VoidPtr, Long>'
+    dispatch_autorelease_frequency_t: 'long'
 classes:
     timespec:
         visibility: ''

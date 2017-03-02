@@ -59,6 +59,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HKHealthStore() {}
+    protected HKHealthStore(Handle h, long handle) { super(h, handle); }
     protected HKHealthStore(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -76,24 +77,64 @@ import org.robovm.apple.foundation.*;
     public native HKAuthorizationStatus getAuthorizationStatusForType(HKObjectType type);
     @Method(selector = "requestAuthorizationToShareTypes:readTypes:completion:")
     public native void requestAuthorizationToTypes(NSSet<HKSampleType> typesToShare, NSSet<HKObjectType> typesToRead, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "handleAuthorizationForExtensionWithCompletion:")
+    public native void handleAuthorizationForExtensionWithCompletion(@Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "earliestPermittedSampleDate")
+    public native NSDate earliestPermittedSampleDate();
     @Method(selector = "saveObject:withCompletion:")
     public native void saveObject(HKObject object, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "saveObjects:withCompletion:")
     public native void saveObjects(NSArray<HKObject> objects, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "deleteObject:withCompletion:")
     public native void deleteObject(HKObject object, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "deleteObjects:withCompletion:")
+    public native void deleteObjects(NSArray<HKObject> objects, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "deleteObjectsOfType:predicate:withCompletion:")
+    public native void deleteObjectsOfType(HKObjectType objectType, NSPredicate predicate, @Block VoidBlock3<Boolean, Long, NSError> completion);
     @Method(selector = "executeQuery:")
     public native void executeQuery(HKQuery query);
     @Method(selector = "stopQuery:")
     public native void stopQuery(HKQuery query);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "splitTotalEnergy:startDate:endDate:resultsHandler:")
+    public native void splitTotalEnergy(HKQuantity totalEnergy, NSDate startDate, NSDate endDate, @Block VoidBlock3<HKQuantity, HKQuantity, NSError> resultsHandler);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     public NSDate getDateOfBirth() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSDate result = getDateOfBirth(ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "dateOfBirthWithError:")
     private native NSDate getDateOfBirth(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "dateOfBirthComponentsWithError:")
+    public native NSDateComponents dateOfBirthComponentsWithError(NSError.NSErrorPtr error);
     public HKBiologicalSexObject getBiologicalSex() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        HKBiologicalSexObject result = getBiologicalSex(ptr);
@@ -110,10 +151,25 @@ import org.robovm.apple.foundation.*;
     }
     @Method(selector = "bloodTypeWithError:")
     private native HKBloodTypeObject getBloodType(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "fitzpatrickSkinTypeWithError:")
+    public native HKFitzpatrickSkinTypeObject fitzpatrickSkinTypeWithError(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "wheelchairUseWithError:")
+    public native HKWheelchairUseObject wheelchairUseWithError(NSError.NSErrorPtr error);
     @Method(selector = "isHealthDataAvailable")
     public static native boolean isHealthDataAvailable();
     @Method(selector = "addSamples:toWorkout:completion:")
     public native void addSamplesToWorkout(NSArray<HKSample> samples, HKWorkout workout, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "startWatchAppWithWorkoutConfiguration:completion:")
+    public native void startWatchApp(HKWorkoutConfiguration workoutConfiguration, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "enableBackgroundDeliveryForType:frequency:withCompletion:")
     public native void enableBackgroundDeliveryForType(HKObjectType type, HKUpdateFrequency frequency, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "disableBackgroundDeliveryForType:withCompletion:")

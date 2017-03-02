@@ -46,9 +46,10 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CKNotification.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKNotification() {}
+    protected CKNotification() {}
+    protected CKNotification(Handle h, long handle) { super(h, handle); }
     protected CKNotification(SkipInit skipInit) { super(skipInit); }
-    public CKNotification(org.robovm.apple.uikit.UIRemoteNotification notificationDictionary) { super(create(notificationDictionary)); retain(getHandle()); }
+    public CKNotification(org.robovm.apple.uikit.UIRemoteNotification notificationDictionary) { super((Handle) null, create(notificationDictionary)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "notificationType")

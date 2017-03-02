@@ -43,6 +43,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EAGLSharegroup() {}
+    protected EAGLSharegroup(Handle h, long handle) { super(h, handle); }
     protected EAGLSharegroup(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

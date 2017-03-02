@@ -59,6 +59,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public ACAccountStore() {}
+    protected ACAccountStore(Handle h, long handle) { super(h, handle); }
     protected ACAccountStore(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -84,15 +85,8 @@ import org.robovm.apple.foundation.*;
     public native NSArray<ACAccount> getAccounts(ACAccountType accountType);
     @Method(selector = "saveAccount:withCompletionHandler:")
     public native void saveAccount(ACAccount account, @Block VoidBlock2<Boolean, NSError> completionHandler);
-    /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Method(selector = "requestAccessToAccountsWithType:withCompletionHandler:")
-    public native void requestAccessToAccounts(ACAccountType accountType, @Block VoidBlock2<Boolean, NSError> handler);
     @Method(selector = "requestAccessToAccountsWithType:options:completion:")
-    protected native void requestAccessToAccounts(ACAccountType accountType, NSDictionary options, @Block VoidBlock2<Boolean, NSError> completion);
+    protected native void requestAccessToAccounts(ACAccountType accountType, NSDictionary<?, ?> options, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "renewCredentialsForAccount:completion:")
     public native void renewCredentials(ACAccount account, @Block VoidBlock2<ACAccountCredentialRenewResult, NSError> completionHandler);
     @Method(selector = "removeAccount:withCompletionHandler:")

@@ -49,8 +49,9 @@ import org.robovm.apple.mapkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKReminder() {}
+    protected EKReminder(Handle h, long handle) { super(h, handle); }
     protected EKReminder(SkipInit skipInit) { super(skipInit); }
-    public EKReminder(EKEventStore eventStore) { super(create(eventStore)); retain(getHandle()); }
+    public EKReminder(EKEventStore eventStore) { super((Handle) null, create(eventStore)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "startDateComponents")
@@ -77,6 +78,6 @@ import org.robovm.apple.mapkit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "reminderWithEventStore:")
-    private static native @Pointer long create(EKEventStore eventStore);
+    protected static native @Pointer long create(EKEventStore eventStore);
     /*</methods>*/
 }

@@ -32,7 +32,9 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 7.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCExtendedGamepadSnapshot/*</name>*/ 
@@ -44,8 +46,11 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GCExtendedGamepadSnapshot() {}
+    protected GCExtendedGamepadSnapshot(Handle h, long handle) { super(h, handle); }
     protected GCExtendedGamepadSnapshot(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSnapshotData:")
     public GCExtendedGamepadSnapshot(NSData data) { super((SkipInit) null); initObject(init(data)); }
+    @Method(selector = "initWithController:snapshotData:")
     public GCExtendedGamepadSnapshot(GCController controller, NSData data) { super((SkipInit) null); initObject(init(controller, data)); }
     /*</constructors>*/
     /*<properties>*/

@@ -49,6 +49,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKPolygon() {}
+    protected MKPolygon(Handle h, long handle) { super(h, handle); }
     protected MKPolygon(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public MKPolygon(MKMapPoint[] points) {

@@ -49,9 +49,11 @@ import org.robovm.apple.mapkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKRecurrenceDayOfWeek() {}
+    protected EKRecurrenceDayOfWeek(Handle h, long handle) { super(h, handle); }
     protected EKRecurrenceDayOfWeek(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDayOfTheWeek:weekNumber:")
     public EKRecurrenceDayOfWeek(EKWeekday dayOfTheWeek, @MachineSizedSInt long weekNumber) { super((SkipInit) null); initObject(init(dayOfTheWeek, weekNumber)); }
-    public EKRecurrenceDayOfWeek(EKWeekday dayOfTheWeek) { super(create(dayOfTheWeek)); retain(getHandle()); }
+    public EKRecurrenceDayOfWeek(EKWeekday dayOfTheWeek) { super((Handle) null, create(dayOfTheWeek)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dayOfTheWeek")
@@ -64,6 +66,6 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "initWithDayOfTheWeek:weekNumber:")
     protected native @Pointer long init(EKWeekday dayOfTheWeek, @MachineSizedSInt long weekNumber);
     @Method(selector = "dayOfWeek:")
-    private static native @Pointer long create(EKWeekday dayOfTheWeek);
+    protected static native @Pointer long create(EKWeekday dayOfTheWeek);
     /*</methods>*/
 }

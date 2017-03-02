@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNSocialProfile() {}
+    protected CNSocialProfile(Handle h, long handle) { super(h, handle); }
     protected CNSocialProfile(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithUrlString:username:userIdentifier:service:")
     public CNSocialProfile(String urlString, String username, String userIdentifier, String service) { super((SkipInit) null); initObject(init(urlString, username, userIdentifier, service)); }
     /*</constructors>*/
     public CNSocialProfile(String urlString, String username, String userIdentifier, CNSocialProfileService service) {

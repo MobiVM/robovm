@@ -46,12 +46,13 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKPayment() {}
-    protected SKPayment(long handle) { super(handle); }
+    @Deprecated protected SKPayment(long handle) { super(handle); }
+    protected SKPayment(Handle h, long handle) { super(h, handle); }
     protected SKPayment(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 3.0 and later.
      */
-    public SKPayment(SKProduct product) { super(create(product)); retain(getHandle()); }
+    public SKPayment(SKProduct product) { super((Handle) null, create(product)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     /**

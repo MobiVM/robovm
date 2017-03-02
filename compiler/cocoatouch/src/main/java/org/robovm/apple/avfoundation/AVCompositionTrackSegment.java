@@ -56,8 +56,11 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCompositionTrackSegment() {}
+    protected AVCompositionTrackSegment(Handle h, long handle) { super(h, handle); }
     protected AVCompositionTrackSegment(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:trackID:sourceTimeRange:targetTimeRange:")
     public AVCompositionTrackSegment(NSURL URL, int trackID, @ByVal CMTimeRange sourceTimeRange, @ByVal CMTimeRange targetTimeRange) { super((SkipInit) null); initObject(init(URL, trackID, sourceTimeRange, targetTimeRange)); }
+    @Method(selector = "initWithTimeRange:")
     public AVCompositionTrackSegment(@ByVal CMTimeRange timeRange) { super((SkipInit) null); initObject(init(timeRange)); }
     /*</constructors>*/
     /*<properties>*/

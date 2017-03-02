@@ -414,6 +414,46 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyChapterCount", optional=true)
         public static native NSString ChapterCount();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyIsLiveStream", optional=true)
+        public static native NSString IsLiveStream();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyAvailableLanguageOptions", optional=true)
+        public static native NSString AvailableLanguageOptions();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyCurrentLanguageOptions", optional=true)
+        public static native NSString CurrentLanguageOptions();
+        /**
+         * @since Available in iOS 9.3 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoCollectionIdentifier", optional=true)
+        public static native String CollectionIdentifier();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyExternalContentIdentifier", optional=true)
+        public static native NSString ExternalContentIdentifier();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyExternalUserProfileIdentifier", optional=true)
+        public static native NSString ExternalUserProfileIdentifier();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyPlaybackProgress", optional=true)
+        public static native NSString PlaybackProgress();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyMediaType", optional=true)
+        public static native NSString MediaType();
     }
     /*</keys>*/
 }

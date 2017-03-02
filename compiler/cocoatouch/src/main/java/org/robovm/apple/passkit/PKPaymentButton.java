@@ -48,10 +48,12 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKPaymentButton() {}
+    protected PKPaymentButton(Handle h, long handle) { super(h, handle); }
     protected PKPaymentButton(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 9.0 and later.
      */
+    @Method(selector = "initWithPaymentButtonType:paymentButtonStyle:")
     public PKPaymentButton(PKPaymentButtonType type, PKPaymentButtonStyle style) { super((SkipInit) null); initObject(init(type, style)); }
     /*</constructors>*/
     /*<properties>*/

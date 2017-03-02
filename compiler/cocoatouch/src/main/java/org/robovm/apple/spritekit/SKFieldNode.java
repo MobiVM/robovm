@@ -53,6 +53,7 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKFieldNode() {}
+    protected SKFieldNode(Handle h, long handle) { super(h, handle); }
     protected SKFieldNode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -55,7 +55,8 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAudioOutputNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAudioOutputNode() {}
+    protected AVAudioOutputNode() {}
+    protected AVAudioOutputNode(Handle h, long handle) { super(h, handle); }
     protected AVAudioOutputNode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

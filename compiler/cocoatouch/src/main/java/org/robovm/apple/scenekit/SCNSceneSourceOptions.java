@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -190,9 +192,6 @@ import org.robovm.apple.opengles.*;
         set(Keys.StrictConformance(), NSNumber.valueOf(strictConformance));
         return this;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public SCNSceneSourceAnimationImportPolicy getAnimationImportPolicy() {
         if (has(Keys.AnimationImportPolicy())) {
             NSString val = (NSString) get(Keys.AnimationImportPolicy());
@@ -200,9 +199,6 @@ import org.robovm.apple.opengles.*;
         }
         return null;
     }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public SCNSceneSourceOptions setAnimationImportPolicy(SCNSceneSourceAnimationImportPolicy animationImportPolicy) {
         set(Keys.AnimationImportPolicy(), animationImportPolicy.value());
         return this;
@@ -227,11 +223,13 @@ import org.robovm.apple.opengles.*;
         public static native NSString OverrideAssetURLs();
         @GlobalValue(symbol="SCNSceneSourceStrictConformanceKey", optional=true)
         public static native NSString StrictConformance();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNSceneSourceAnimationImportPolicyKey", optional=true)
         public static native NSString AnimationImportPolicy();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="SCNSceneSourceLoadingOptionPreserveOriginalTopology", optional=true)
+        public static native String PreserveOriginalTopology();
     }
     /*</keys>*/
 }

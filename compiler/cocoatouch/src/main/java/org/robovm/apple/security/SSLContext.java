@@ -416,6 +416,31 @@ import org.robovm.apple.dispatch.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
+    @GlobalValue(symbol="kSSLSessionConfig_default", optional=true)
+    public static native String kSSLSessionConfig_default();
+    @GlobalValue(symbol="kSSLSessionConfig_ATSv1", optional=true)
+    public static native String kSSLSessionConfig_ATSv1();
+    @GlobalValue(symbol="kSSLSessionConfig_ATSv1_noPFS", optional=true)
+    public static native String kSSLSessionConfig_ATSv1_noPFS();
+    @GlobalValue(symbol="kSSLSessionConfig_standard", optional=true)
+    public static native String kSSLSessionConfig_standard();
+    @GlobalValue(symbol="kSSLSessionConfig_RC4_fallback", optional=true)
+    public static native String kSSLSessionConfig_RC4_fallback();
+    @GlobalValue(symbol="kSSLSessionConfig_TLSv1_fallback", optional=true)
+    public static native String kSSLSessionConfig_TLSv1_fallback();
+    @GlobalValue(symbol="kSSLSessionConfig_TLSv1_RC4_fallback", optional=true)
+    public static native String kSSLSessionConfig_TLSv1_RC4_fallback();
+    @GlobalValue(symbol="kSSLSessionConfig_legacy", optional=true)
+    public static native String kSSLSessionConfig_legacy();
+    @GlobalValue(symbol="kSSLSessionConfig_legacy_DHE", optional=true)
+    public static native String kSSLSessionConfig_legacy_DHE();
+    @GlobalValue(symbol="kSSLSessionConfig_anonymous", optional=true)
+    public static native String kSSLSessionConfig_anonymous();
+    @GlobalValue(symbol="kSSLSessionConfig_3DES_fallback", optional=true)
+    public static native String kSSLSessionConfig_3DES_fallback();
+    @GlobalValue(symbol="kSSLSessionConfig_TLSv1_3DES_fallback", optional=true)
+    public static native String kSSLSessionConfig_TLSv1_3DES_fallback();
+    
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -446,6 +471,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Bridge(symbol="SSLSetIOFuncs", optional=true)
     protected native OSStatus setIOFunctions0(FunctionPtr readFunc, FunctionPtr writeFunc);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SSLSetSessionConfig", optional=true)
+    protected native OSStatus setSessionConfig0(String config);
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -496,6 +526,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Bridge(symbol="SSLGetPeerDomainName", optional=true)
     protected native OSStatus getPeerDomainName0(BytePtr peerName, MachineSizedUIntPtr peerNameLen);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="SSLCopyRequestedPeerName", optional=true)
+    protected native OSStatus copyRequestedPeerName0(BytePtr peerName, MachineSizedUIntPtr peerNameLen);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="SSLCopyRequestedPeerNameLength", optional=true)
+    protected native OSStatus copyRequestedPeerNameLength0(MachineSizedUIntPtr peerNameLen);
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -563,7 +603,9 @@ import org.robovm.apple.dispatch.*;
     protected native OSStatus getNegotiatedCipher0(ShortPtr cipherSuite);
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Bridge(symbol="SSLSetEncryptionCertificate", optional=true)
     protected native OSStatus setEncryptionCertificate0(CFArray certRefs);
     /**
@@ -591,6 +633,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Bridge(symbol="SSLHandshake", optional=true)
     protected native OSStatus handshake0();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SSLReHandshake", optional=true)
+    protected native OSStatus reHandshake0();
     /**
      * @since Available in iOS 5.0 and later.
      */

@@ -51,6 +51,7 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKShapeNode() {}
+    protected SKShapeNode(Handle h, long handle) { super(h, handle); }
     protected SKShapeNode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -136,9 +137,17 @@ import org.robovm.apple.gameplaykit.*;
      */
     @Property(selector = "setStrokeShader:")
     public native void setStrokeShader(SKShader v);
+    @Property(selector = "attributeValues")
+    public native NSDictionary<?, ?> getAttributeValues();
+    @Property(selector = "setAttributeValues:")
+    public native void setAttributeValues(NSDictionary<?, ?> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "valueForAttributeNamed:")
+    public native SKAttributeValue valueForAttributeNamed(String key);
+    @Method(selector = "setValue:forAttributeNamed:")
+    public native void setValue$forAttributeNamed$(SKAttributeValue value, String key);
     /**
      * @since Available in iOS 8.0 and later.
      */

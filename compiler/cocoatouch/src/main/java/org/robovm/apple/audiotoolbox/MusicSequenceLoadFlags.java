@@ -41,6 +41,7 @@ import org.robovm.apple.coremidi.*;
 public final class /*<name>*/MusicSequenceLoadFlags/*</name>*/ extends Bits</*<name>*/MusicSequenceLoadFlags/*</name>*/> {
     /*<values>*/
     public static final MusicSequenceLoadFlags None = new MusicSequenceLoadFlags(0L);
+    public static final MusicSequenceLoadFlags PreserveTracks = new MusicSequenceLoadFlags(0L);
     public static final MusicSequenceLoadFlags ChannelsToTracks = new MusicSequenceLoadFlags(1L);
     /*</values>*/
 

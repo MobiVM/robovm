@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNMutableGroup() {}
+    protected CNMutableGroup(Handle h, long handle) { super(h, handle); }
     protected CNMutableGroup(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

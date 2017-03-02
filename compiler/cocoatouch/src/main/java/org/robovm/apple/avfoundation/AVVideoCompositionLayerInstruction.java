@@ -55,7 +55,8 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVVideoCompositionLayerInstruction() {}
-    protected AVVideoCompositionLayerInstruction(long handle) { super(handle); }
+    @Deprecated protected AVVideoCompositionLayerInstruction(long handle) { super(handle); }
+    protected AVVideoCompositionLayerInstruction(Handle h, long handle) { super(h, handle); }
     protected AVVideoCompositionLayerInstruction(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

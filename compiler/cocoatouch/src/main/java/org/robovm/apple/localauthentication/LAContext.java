@@ -46,6 +46,7 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public LAContext() {}
+    protected LAContext(Handle h, long handle) { super(h, handle); }
     protected LAContext(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -53,6 +54,16 @@ import org.robovm.apple.security.*;
     public native String getLocalizedFallbackTitle();
     @Property(selector = "setLocalizedFallbackTitle:")
     public native void setLocalizedFallbackTitle(String v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "localizedCancelTitle")
+    public native String getLocalizedCancelTitle();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setLocalizedCancelTitle:")
+    public native void setLocalizedCancelTitle(String v);
     /**
      * @since Available in iOS 8.3 and later.
      * @deprecated Deprecated in iOS 9.0.

@@ -79,6 +79,16 @@ import org.robovm.apple.dispatch.*;
     public native void fillBuffer(MTLBuffer buffer, @ByVal NSRange range, byte value);
     @Method(selector = "copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:")
     public native void copyFromBufferToBuffer(MTLBuffer sourceBuffer, @MachineSizedUInt long sourceOffset, MTLBuffer destinationBuffer, @MachineSizedUInt long destinationOffset, @MachineSizedUInt long size);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "updateFence:")
+    public native void updateFence(MTLFence fence);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "waitForFence:")
+    public native void waitForFence(MTLFence fence);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")

@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNContact() {}
+    protected CNContact(Handle h, long handle) { super(h, handle); }
     protected CNContact(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -66,18 +67,23 @@ import org.robovm.apple.foundation.*;
     public native String getNameSuffix();
     @Property(selector = "nickname")
     public native String getNickname();
-    @Property(selector = "phoneticGivenName")
-    public native String getPhoneticGivenName();
-    @Property(selector = "phoneticMiddleName")
-    public native String getPhoneticMiddleName();
-    @Property(selector = "phoneticFamilyName")
-    public native String getPhoneticFamilyName();
     @Property(selector = "organizationName")
     public native String getOrganizationName();
     @Property(selector = "departmentName")
     public native String getDepartmentName();
     @Property(selector = "jobTitle")
     public native String getJobTitle();
+    @Property(selector = "phoneticGivenName")
+    public native String getPhoneticGivenName();
+    @Property(selector = "phoneticMiddleName")
+    public native String getPhoneticMiddleName();
+    @Property(selector = "phoneticFamilyName")
+    public native String getPhoneticFamilyName();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "phoneticOrganizationName")
+    public native String getPhoneticOrganizationName();
     @Property(selector = "note")
     public native String getNote();
     @Property(selector = "imageData")

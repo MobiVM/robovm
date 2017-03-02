@@ -48,6 +48,11 @@ import org.robovm.apple.dispatch.*;
     
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "rootResource")
     public native MTLResource getRootResource();
     /**
@@ -113,6 +118,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "storageMode")
     public native MTLStorageMode getStorageMode();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "heap")
+    public native MTLHeap getHeap();
     /*</properties>*/
     /*<members>*//*</members>*/
     public byte[] getBytes(int length, @MachineSizedUInt long bytesPerRow, @MachineSizedUInt long bytesPerImage, @ByVal MTLRegion region, @MachineSizedUInt long level, @MachineSizedUInt long slice) {
@@ -142,9 +152,22 @@ import org.robovm.apple.dispatch.*;
     protected native void replaceRegion(@ByVal MTLRegion region, @MachineSizedUInt long level, @Pointer long pixelBytes, @MachineSizedUInt long bytesPerRow);
     @Method(selector = "newTextureViewWithPixelFormat:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) MTLTexture newTextureView(MTLPixelFormat pixelFormat);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "newTextureViewWithPixelFormat:textureType:levels:slices:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) MTLTexture newTextureView(MTLPixelFormat pixelFormat, MTLTextureType textureType, @ByVal NSRange levelRange, @ByVal NSRange sliceRange);
     @Method(selector = "setPurgeableState:")
     public native MTLPurgeableState setPurgeableState(MTLPurgeableState state);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "makeAliasable")
+    public native void makeAliasable();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "isAliasable")
+    public native boolean isAliasable();
     /*</methods>*/
 }

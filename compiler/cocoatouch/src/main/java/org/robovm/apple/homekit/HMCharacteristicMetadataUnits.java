@@ -108,9 +108,21 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 8.3 and later.
      */
     public static final HMCharacteristicMetadataUnits Seconds = new HMCharacteristicMetadataUnits("Seconds");
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    public static final HMCharacteristicMetadataUnits Lux = new HMCharacteristicMetadataUnits("Lux");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicMetadataUnits PartsPerMillion = new HMCharacteristicMetadataUnits("PartsPerMillion");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HMCharacteristicMetadataUnits MicrogramsPerCubicMeter = new HMCharacteristicMetadataUnits("MicrogramsPerCubicMeter");
     /*</constants>*/
     
-    private static /*<name>*/HMCharacteristicMetadataUnits/*</name>*/[] values = new /*<name>*/HMCharacteristicMetadataUnits/*</name>*/[] {/*<value_list>*/Celsius, Fahrenheit, Percentage, ArcDegree, Seconds/*</value_list>*/};
+    private static /*<name>*/HMCharacteristicMetadataUnits/*</name>*/[] values = new /*<name>*/HMCharacteristicMetadataUnits/*</name>*/[] {/*<value_list>*/Celsius, Fahrenheit, Percentage, ArcDegree, Seconds, Lux, PartsPerMillion, MicrogramsPerCubicMeter/*</value_list>*/};
     
     /*<name>*/HMCharacteristicMetadataUnits/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -158,6 +170,21 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMCharacteristicMetadataUnitsSeconds", optional=true)
         public static native NSString Seconds();
+        /**
+         * @since Available in iOS 9.3 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicMetadataUnitsLux", optional=true)
+        public static native NSString Lux();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicMetadataUnitsPartsPerMillion", optional=true)
+        public static native NSString PartsPerMillion();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicMetadataUnitsMicrogramsPerCubicMeter", optional=true)
+        public static native NSString MicrogramsPerCubicMeter();
         /*</values>*/
     }
 }

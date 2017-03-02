@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,7 +52,16 @@ import org.robovm.apple.opengles.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Property(selector = "hasActions")
+    boolean hasActions();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Property(selector = "actionKeys")
+    NSArray<?> getActionKeys();
     /*</properties>*/
     /*<methods>*/
     /**
@@ -73,11 +84,6 @@ import org.robovm.apple.opengles.*;
      */
     @Method(selector = "runAction:forKey:completionHandler:")
     void runAction(SCNAction action, String key, @Block Runnable block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Method(selector = "hasActions")
-    boolean hasActions();
     /**
      * @since Available in iOS 8.0 and later.
      */

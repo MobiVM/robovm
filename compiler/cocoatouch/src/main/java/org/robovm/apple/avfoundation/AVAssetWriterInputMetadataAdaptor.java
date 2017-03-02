@@ -55,8 +55,10 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetWriterInputMetadataAdaptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetWriterInputMetadataAdaptor() {}
+    protected AVAssetWriterInputMetadataAdaptor() {}
+    protected AVAssetWriterInputMetadataAdaptor(Handle h, long handle) { super(h, handle); }
     protected AVAssetWriterInputMetadataAdaptor(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAssetWriterInput:")
     public AVAssetWriterInputMetadataAdaptor(AVAssetWriterInput input) { super((SkipInit) null); initObject(init(input)); }
     /*</constructors>*/
     /*<properties>*/

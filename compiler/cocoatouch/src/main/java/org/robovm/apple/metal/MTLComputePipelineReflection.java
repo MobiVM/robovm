@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLComputePipelineReflection() {}
+    protected MTLComputePipelineReflection(Handle h, long handle) { super(h, handle); }
     protected MTLComputePipelineReflection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

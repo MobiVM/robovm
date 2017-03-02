@@ -70,6 +70,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioUnitComponent() {}
+    protected AVAudioUnitComponent(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitComponent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

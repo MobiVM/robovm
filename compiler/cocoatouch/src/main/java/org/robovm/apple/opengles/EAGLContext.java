@@ -42,9 +42,12 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(EAGLContext.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public EAGLContext() {}
+    protected EAGLContext() {}
+    protected EAGLContext(Handle h, long handle) { super(h, handle); }
     protected EAGLContext(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAPI:")
     public EAGLContext(EAGLRenderingAPI api) { super((SkipInit) null); initObject(init(api)); }
+    @Method(selector = "initWithAPI:sharegroup:")
     public EAGLContext(EAGLRenderingAPI api, EAGLSharegroup sharegroup) { super((SkipInit) null); initObject(init(api, sharegroup)); }
     /*</constructors>*/
     /*<properties>*/
@@ -87,5 +90,7 @@ import org.robovm.apple.foundation.*;
     public native boolean renderbufferStorage(@MachineSizedUInt long target, EAGLDrawable drawable);
     @Method(selector = "presentRenderbuffer:")
     public native boolean presentRenderbuffer(@MachineSizedUInt long target);
+    @Method(selector = "presentRenderbuffer:atTime:")
+    public native boolean presentRenderbuffer(@MachineSizedUInt long target, double presentationTime);
     /*</methods>*/
 }

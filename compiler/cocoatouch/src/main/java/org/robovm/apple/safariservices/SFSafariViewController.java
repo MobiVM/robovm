@@ -45,11 +45,12 @@ import org.robovm.apple.uikit.*;
     /*<bind>*/static { ObjCRuntime.bind(SFSafariViewController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public SFSafariViewController() {}
+    protected SFSafariViewController() {}
+    protected SFSafariViewController(Handle h, long handle) { super(h, handle); }
     protected SFSafariViewController(SkipInit skipInit) { super(skipInit); }
-    public SFSafariViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
-    public SFSafariViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithURL:entersReaderIfAvailable:")
     public SFSafariViewController(NSURL URL, boolean entersReaderIfAvailable) { super((SkipInit) null); initObject(init(URL, entersReaderIfAvailable)); }
+    @Method(selector = "initWithURL:")
     public SFSafariViewController(NSURL URL) { super((SkipInit) null); initObject(init(URL)); }
     /*</constructors>*/
     /*<properties>*/
@@ -57,13 +58,29 @@ import org.robovm.apple.uikit.*;
     public native SFSafariViewControllerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(SFSafariViewControllerDelegate v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "preferredBarTintColor")
+    public native UIColor getPreferredBarTintColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setPreferredBarTintColor:")
+    public native void setPreferredBarTintColor(UIColor v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "preferredControlTintColor")
+    public native UIColor getPreferredControlTintColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setPreferredControlTintColor:")
+    public native void setPreferredControlTintColor(UIColor v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
     @Method(selector = "initWithURL:entersReaderIfAvailable:")
     protected native @Pointer long init(NSURL URL, boolean entersReaderIfAvailable);
     @Method(selector = "initWithURL:")

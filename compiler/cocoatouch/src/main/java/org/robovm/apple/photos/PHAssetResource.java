@@ -49,6 +49,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAssetResource() {}
+    protected PHAssetResource(Handle h, long handle) { super(h, handle); }
     protected PHAssetResource(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -65,5 +66,10 @@ import org.robovm.apple.avfoundation.*;
     /*<methods>*/
     @Method(selector = "assetResourcesForAsset:")
     public static native NSArray<PHAssetResource> getAssetResources(PHAsset asset);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Method(selector = "assetResourcesForLivePhoto:")
+    public static native NSArray<PHAssetResource> assetResourcesForLivePhoto(PHLivePhoto livePhoto);
     /*</methods>*/
 }

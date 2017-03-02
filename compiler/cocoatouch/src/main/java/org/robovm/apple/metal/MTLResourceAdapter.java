@@ -58,10 +58,25 @@ import org.robovm.apple.dispatch.*;
      */
     @NotImplemented("storageMode")
     public MTLStorageMode getStorageMode() { return null; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("heap")
+    public MTLHeap getHeap() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("setPurgeableState:")
     public MTLPurgeableState setPurgeableState(MTLPurgeableState state) { return null; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("makeAliasable")
+    public void makeAliasable() {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("isAliasable")
+    public boolean isAliasable() { return false; }
     /*</methods>*/
 }

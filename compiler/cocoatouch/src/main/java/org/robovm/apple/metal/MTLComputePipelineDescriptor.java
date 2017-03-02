@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLComputePipelineDescriptor() {}
+    protected MTLComputePipelineDescriptor(Handle h, long handle) { super(h, handle); }
     protected MTLComputePipelineDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -61,6 +62,16 @@ import org.robovm.apple.dispatch.*;
     public native boolean isThreadGroupSizeMultipleOfThreadExecutionWidth();
     @Property(selector = "setThreadGroupSizeIsMultipleOfThreadExecutionWidth:")
     public native void setThreadGroupSizeMultipleOfThreadExecutionWidth(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "stageInputDescriptor")
+    public native MTLStageInputOutputDescriptor getStageInputDescriptor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setStageInputDescriptor:")
+    public native void setStageInputDescriptor(MTLStageInputOutputDescriptor v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

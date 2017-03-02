@@ -46,6 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLPhysicallyPlausibleLight() {}
+    protected MDLPhysicallyPlausibleLight(Handle h, long handle) { super(h, handle); }
     protected MDLPhysicallyPlausibleLight(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

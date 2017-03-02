@@ -49,7 +49,9 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAdjustmentData() {}
+    protected PHAdjustmentData(Handle h, long handle) { super(h, handle); }
     protected PHAdjustmentData(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFormatIdentifier:formatVersion:data:")
     public PHAdjustmentData(String formatIdentifier, String formatVersion, NSData data) { super((SkipInit) null); initObject(init(formatIdentifier, formatVersion, data)); }
     /*</constructors>*/
     /*<properties>*/

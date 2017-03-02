@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLRenderPassDepthAttachmentDescriptor() {}
+    protected MTLRenderPassDepthAttachmentDescriptor(Handle h, long handle) { super(h, handle); }
     protected MTLRenderPassDepthAttachmentDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -53,6 +54,16 @@ import org.robovm.apple.dispatch.*;
     public native double getClearDepth();
     @Property(selector = "setClearDepth:")
     public native void setClearDepth(double v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "depthResolveFilter")
+    public native MTLMultisampleDepthResolveFilter getDepthResolveFilter();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setDepthResolveFilter:")
+    public native void setDepthResolveFilter(MTLMultisampleDepthResolveFilter v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

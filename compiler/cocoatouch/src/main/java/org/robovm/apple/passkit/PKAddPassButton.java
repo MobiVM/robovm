@@ -48,7 +48,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKAddPassButton() {}
+    protected PKAddPassButton(Handle h, long handle) { super(h, handle); }
     protected PKAddPassButton(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAddPassButtonStyle:")
     public PKAddPassButton(PKAddPassButtonStyle style) { super((SkipInit) null); initObject(init(style)); }
     /*</constructors>*/
     /*<properties>*/

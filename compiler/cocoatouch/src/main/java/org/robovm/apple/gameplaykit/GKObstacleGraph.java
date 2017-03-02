@@ -31,7 +31,9 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKObstacleGraph/*</name>*/ 
@@ -43,8 +45,12 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKObstacleGraph() {}
+    protected GKObstacleGraph(Handle h, long handle) { super(h, handle); }
     protected GKObstacleGraph(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithObstacles:bufferRadius:")
     public GKObstacleGraph(NSArray<GKPolygonObstacle> obstacles, float bufferRadius) { super((SkipInit) null); initObject(init(obstacles, bufferRadius)); }
+    @Method(selector = "initWithObstacles:bufferRadius:nodeClass:")
+    public GKObstacleGraph(NSArray<GKPolygonObstacle> obstacles, float bufferRadius, Class<?> nodeClass) { super((SkipInit) null); initObject(init(obstacles, bufferRadius, nodeClass)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "obstacles")
@@ -56,10 +62,12 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "initWithObstacles:bufferRadius:")
     protected native @Pointer long init(NSArray<GKPolygonObstacle> obstacles, float bufferRadius);
+    @Method(selector = "initWithObstacles:bufferRadius:nodeClass:")
+    protected native @Pointer long init(NSArray<GKPolygonObstacle> obstacles, float bufferRadius, Class<?> nodeClass);
     @Method(selector = "connectNodeUsingObstacles:")
     public native void connectNode(GKGraphNode2D node);
     @Method(selector = "connectNodeUsingObstacles:ignoringObstacles:")
-    public native void connectNodeIgnoringObstacles(GKGraphNode2D node, NSArray<?> obstaclesToIgnore);
+    public native void connectNodeIgnoringObstacles(GKGraphNode2D node, NSArray<GKPolygonObstacle> obstaclesToIgnore);
     @Method(selector = "connectNodeUsingObstacles:ignoringBufferRadiusOfObstacles:")
     public native void connectNodeIgnoringBufferRadiusOfObstacles(GKGraphNode2D node, NSArray<GKPolygonObstacle> obstaclesBufferRadiusToIgnore);
     @Method(selector = "addObstacles:")
@@ -76,5 +84,7 @@ import org.robovm.apple.foundation.*;
     public native void unlockConnectionBetweenNodes(GKGraphNode2D startNode, GKGraphNode2D endNode);
     @Method(selector = "isConnectionLockedFromNode:toNode:")
     public native boolean isConnectionLockedBetweenNodes(GKGraphNode2D startNode, GKGraphNode2D endNode);
+    @Method(selector = "classForGenericArgumentAtIndex:")
+    public native Class<?> classForGenericArgumentAtIndex(@MachineSizedUInt long index);
     /*</methods>*/
 }

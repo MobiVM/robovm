@@ -47,10 +47,12 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EASession() {}
+    protected EASession(Handle h, long handle) { super(h, handle); }
     protected EASession(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 3.0 and later.
      */
+    @Method(selector = "initWithAccessory:forProtocol:")
     public EASession(EAAccessory accessory, String protocolString) { super((SkipInit) null); initObject(init(accessory, protocolString)); }
     /*</constructors>*/
     /*<properties>*/

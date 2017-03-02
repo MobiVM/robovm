@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioFile() {}
+    protected AVAudioFile(Handle h, long handle) { super(h, handle); }
     protected AVAudioFile(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initForReading:error:")
     public AVAudioFile(NSURL fileURL) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -64,6 +66,7 @@ import org.robovm.apple.audiounit.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    @Method(selector = "initForReading:commonFormat:interleaved:error:")
     public AVAudioFile(NSURL fileURL, AVAudioCommonFormat format, boolean interleaved) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -71,6 +74,7 @@ import org.robovm.apple.audiounit.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    @Method(selector = "initForWriting:settings:error:")
     public AVAudioFile(NSURL fileURL, AVAudioSettings settings) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -78,6 +82,7 @@ import org.robovm.apple.audiounit.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    @Method(selector = "initForWriting:settings:commonFormat:interleaved:error:")
     public AVAudioFile(NSURL fileURL, AVAudioSettings settings, AVAudioCommonFormat format, boolean interleaved) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();

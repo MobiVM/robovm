@@ -47,7 +47,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKModifyBadgeOperation() {}
+    protected CKModifyBadgeOperation(Handle h, long handle) { super(h, handle); }
     protected CKModifyBadgeOperation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithBadgeValue:")
     public CKModifyBadgeOperation(@MachineSizedUInt long badgeValue) { super((SkipInit) null); initObject(init(badgeValue)); }
     /*</constructors>*/
     /*<properties>*/

@@ -42,7 +42,15 @@ public enum /*<name>*/LAAccessControlOperation/*</name>*/ implements ValuedEnum 
     CreateItem(0L),
     UseItem(1L),
     CreateKey(2L),
-    UseKeySign(3L);
+    UseKeySign(3L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    UseKeyDecrypt(4L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    UseKeyKeyExchange(5L);
     /*</values>*/
 
     /*<bind>*/

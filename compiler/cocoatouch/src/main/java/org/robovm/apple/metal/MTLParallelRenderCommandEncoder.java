@@ -59,6 +59,21 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "renderCommandEncoder")
     public native MTLRenderCommandEncoder newRenderCommandEncoder();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setColorStoreAction:atIndex:")
+    public native void setColorStoreAction(MTLStoreAction storeAction, @MachineSizedUInt long colorAttachmentIndex);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setDepthStoreAction:")
+    public native void setDepthStoreAction(MTLStoreAction storeAction);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setStencilStoreAction:")
+    public native void setStencilStoreAction(MTLStoreAction storeAction);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")

@@ -47,8 +47,11 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MCBrowserViewController() {}
+    protected MCBrowserViewController(Handle h, long handle) { super(h, handle); }
     protected MCBrowserViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithServiceType:session:")
     public MCBrowserViewController(String serviceType, MCSession session) { super((SkipInit) null); initObject(init(serviceType, session)); }
+    @Method(selector = "initWithBrowser:session:")
     public MCBrowserViewController(MCNearbyServiceBrowser browser, MCSession session) { super((SkipInit) null); initObject(init(browser, session)); }
     /*</constructors>*/
     /*<properties>*/

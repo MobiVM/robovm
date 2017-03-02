@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKPushPayload() {}
+    protected PKPushPayload(Handle h, long handle) { super(h, handle); }
     protected PKPushPayload(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

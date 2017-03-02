@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLArrayType() {}
+    protected MTLArrayType(Handle h, long handle) { super(h, handle); }
     protected MTLArrayType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

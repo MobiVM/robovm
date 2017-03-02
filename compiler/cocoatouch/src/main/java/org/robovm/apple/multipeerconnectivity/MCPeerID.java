@@ -47,7 +47,9 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MCPeerID() {}
+    protected MCPeerID(Handle h, long handle) { super(h, handle); }
     protected MCPeerID(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDisplayName:")
     public MCPeerID(String myDisplayName) { super((SkipInit) null); initObject(init(myDisplayName)); }
     /*</constructors>*/
     /*<properties>*/

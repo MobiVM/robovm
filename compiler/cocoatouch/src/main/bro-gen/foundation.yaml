@@ -81,23 +81,25 @@ typedefs:
     'void (^)(NSURLCredential * _Nullable)': '@Block VoidBlock1<NSURLCredential>'
     'void (^)(NSTimer * _Nonnull)': '@Block VoidBlock1<NSTimer>'
     NSPropertyListReadOptions: NSPropertyListMutabilityOptions
-    vector_uint2: '@ByVal VectorInt2'
-    vector_int2: '@ByVal VectorInt2'
-    'vector_int2 *': VectorInt2.VectorInt2Ptr
-    vector_uint3: '@ByVal VectorInt3'
-    vector_int3: '@ByVal VectorInt3'
-    'vector_int3 *': VectorInt3.VectorInt3Ptr
-    vector_uint4: '@ByVal VectorInt4'
-    vector_int4: '@ByVal VectorInt4'
-    'vector_int4 *': VectorInt4.VectorInt4Ptr
-    vector_float2: '@ByVal VectorFloat2'
-    'vector_float2 *': VectorFloat2.VectorFloat2Ptr
-    vector_float3: '@ByVal VectorFloat3'
-    'vector_float3 *': VectorFloat3.VectorFloat3Ptr
-    vector_float4: '@ByVal VectorFloat4'
-    'vector_float4 *': VectorFloat4.VectorFloat4Ptr
-    matrix_float4x4: '@ByVal MatrixFloat4x4'
-    'matrix_float4x4 *': MatrixFloat4x4.MatrixFloat4x4Ptr
+structdefs:
+    vector_uint2: 'VectorInt2'
+    vector_int2: 'VectorInt2'
+    vector_uint3: 'VectorInt3'
+    vector_int3: 'VectorInt3'
+    vector_uint4: 'VectorInt4'
+    vector_int4: 'VectorInt4'
+    vector_float2: 'VectorFloat2'
+    vector_float3: 'VectorFloat3'
+    vector_float4: 'VectorFloat4'
+    matrix_float2x2: 'MatrixFloat2x4'
+    matrix_float3x2: 'MatrixFloat3x4'
+    matrix_float4x2: 'MatrixFloat4x4'
+    matrix_float2x3: 'MatrixFloat2x4'
+    matrix_float3x3: 'MatrixFloat3x4'
+    matrix_float4x3: 'MatrixFloat4x4'
+    matrix_float2x4: 'MatrixFloat2x4'
+    matrix_float3x4: 'MatrixFloat3x4'
+    matrix_float4x4: 'MatrixFloat4x4'
 
 private_typedefs:
     ObjectType: NSObject
@@ -5383,10 +5385,11 @@ values:
     NSNotFound:
         exclude: true
 
-    NS(.*):
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?NS.*):
         class: Foundation
         readonly: true
-        name: '#{g[0]}'
+        name: 'Value__#{g[0]}'
 
 constants:
     # Garbage
@@ -5443,6 +5446,7 @@ constants:
         class: NSURLResponse
         name: '#{g[0]}'
 
-    (NS.*):
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?NS.*):
         class: Foundation
-        name: '#{g[0]}'
+        name: 'Constant__#{g[0]}'

@@ -54,6 +54,11 @@ import org.robovm.apple.coregraphics.*;
     public void beginLoadingChildItems(NSIndexPath indexPath, @Block VoidBlock1<NSError> completionHandler) {}
     @NotImplemented("childItemsDisplayPlaybackProgressAtIndexPath:")
     public boolean childItemsDisplayPlaybackProgress(NSIndexPath indexPath) { return false; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("contentItemForIdentifier:completionHandler:")
+    public void getContentItem(String identifier, @Block VoidBlock2<MPContentItem, NSError> completionHandler) {}
     @NotImplemented("numberOfChildItemsAtIndexPath:")
     public @MachineSizedSInt long getNumberOfChildItems(NSIndexPath indexPath) { return 0; }
     @NotImplemented("contentItemAtIndexPath:")

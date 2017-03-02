@@ -46,14 +46,16 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLTexture() {}
+    protected MDLTexture(Handle h, long handle) { super(h, handle); }
     protected MDLTexture(SkipInit skipInit) { super(skipInit); }
-    public MDLTexture(NSData pixelData, boolean topLeftOrigin, String name, VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super((SkipInit) null); initObject(init(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube)); }
-    public MDLTexture(String name) { super(create(name)); retain(getHandle()); }
-    public MDLTexture(String name, NSBundle bundleOrNil) { super(create(name, bundleOrNil)); retain(getHandle()); }
+    @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
+    public MDLTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super((SkipInit) null); initObject(init(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube)); }
+    public MDLTexture(String name) { super((Handle) null, create(name)); retain(getHandle()); }
+    public MDLTexture(String name, NSBundle bundleOrNil) { super((Handle) null, create(name, bundleOrNil)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dimensions")
-    public native VectorInt2 getDimensions();
+    public native @ByVal VectorInt2 getDimensions();
     @Property(selector = "rowStride")
     public native @MachineSizedSInt long getRowStride();
     @Property(selector = "channelCount")
@@ -66,6 +68,10 @@ import org.robovm.apple.coregraphics.*;
     public native boolean isCube();
     @Property(selector = "setIsCube:")
     public native void setIsCube(boolean v);
+    @Property(selector = "hasAlphaValues")
+    public native boolean hasAlphaValues();
+    @Property(selector = "setHasAlphaValues:")
+    public native void setHasAlphaValues(boolean v);
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "setName:")
@@ -74,7 +80,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
-    protected native @Pointer long init(NSData pixelData, boolean topLeftOrigin, String name, VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube);
+    protected native @Pointer long init(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube);
     @Method(selector = "writeToURL:")
     public native boolean write(NSURL URL);
     @Method(selector = "writeToURL:type:")
@@ -98,8 +104,8 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "textureCubeWithImagesNamed:bundle:")
     public static native MDLTexture newTextureCube(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> names, NSBundle bundleOrNil);
     @Method(selector = "irradianceTextureCubeWithTexture:name:dimensions:")
-    public static native MDLTexture newIrradianceTextureCube(MDLTexture texture, String name, VectorInt2 dimensions);
+    public static native MDLTexture newIrradianceTextureCube(MDLTexture texture, String name, @ByVal VectorInt2 dimensions);
     @Method(selector = "irradianceTextureCubeWithTexture:name:dimensions:roughness:")
-    public static native MDLTexture newIrradianceTextureCube(MDLTexture texture, String name, VectorInt2 dimensions, float roughness);
+    public static native MDLTexture newIrradianceTextureCube(MDLTexture texture, String name, @ByVal VectorInt2 dimensions, float roughness);
     /*</methods>*/
 }

@@ -44,17 +44,19 @@ import org.robovm.apple.gameplaykit.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKNode/*</name>*/ 
     extends /*<extends>*/UIResponder/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIFocusItem/*</implements>*/ {
 
     /*<ptr>*/public static class SKNodePtr extends Ptr<SKNode, SKNodePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKNode() {}
-    protected SKNode(long handle) { super(handle); }
+    @Deprecated protected SKNode(long handle) { super(handle); }
+    protected SKNode(Handle h, long handle) { super(h, handle); }
     protected SKNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public SKNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
-    public SKNode(String filename) { super(create(filename)); retain(getHandle()); }
+    public SKNode(String filename) { super((Handle) null, create(filename)); retain(getHandle()); }
     /*</constructors>*/
     public SKNode(File file) {
         this(file.getAbsolutePath());
@@ -128,6 +130,17 @@ import org.robovm.apple.gameplaykit.*;
     public native NSArray<SKConstraint> getConstraints();
     @Property(selector = "setConstraints:")
     public native void setConstraints(NSArray<SKConstraint> v);
+    @Property(selector = "canBecomeFocused")
+    public native boolean canBecomeFocused();
+    @Property(selector = "preferredFocusEnvironments")
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> getPreferredFocusEnvironments();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "preferredFocusedView")
+    public native UIView getPreferredFocusedView();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -147,6 +160,9 @@ import org.robovm.apple.gameplaykit.*;
     public native void removeAllChildren();
     @Method(selector = "removeFromParent")
     public native void removeFromParent();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "moveToParent:")
     public native void moveToParent(SKNode parent);
     @Method(selector = "childNodeWithName:")
@@ -190,13 +206,15 @@ import org.robovm.apple.gameplaykit.*;
     public native boolean equalsTo(SKNode node);
     @Method(selector = "nodeWithFileNamed:")
     protected static native @Pointer long create(String filename);
-    @Method(selector = "obstaclesFromSpriteTextures:accuracy:")
-    public static native NSArray<GKPolygonObstacle> getObstaclesFromSpriteTextures(NSArray<SKNode> sprites, float accuracy);
-    @Method(selector = "obstaclesFromNodeBounds:")
-    public static native NSArray<GKPolygonObstacle> getObstaclesFromNodeBounds(NSArray<SKNode> nodes);
-    @Method(selector = "obstaclesFromNodePhysicsBodies:")
-    public static native NSArray<GKPolygonObstacle> getObstaclesFromNodePhysicsBodies(NSArray<SKNode> nodes);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
+    @Method(selector = "setNeedsFocusUpdate")
+    public native void setNeedsFocusUpdate();
+    @Method(selector = "updateFocusIfNeeded")
+    public native void updateFocusIfNeeded();
+    @Method(selector = "shouldUpdateFocusInContext:")
+    public native boolean shouldUpdateFocus(UIFocusUpdateContext context);
+    @Method(selector = "didUpdateFocusInContext:withAnimationCoordinator:")
+    public native void didUpdateFocus(UIFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
     /*</methods>*/
 }

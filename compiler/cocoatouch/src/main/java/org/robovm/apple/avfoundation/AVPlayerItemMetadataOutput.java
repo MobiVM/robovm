@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVPlayerItemMetadataOutput() {}
+    protected AVPlayerItemMetadataOutput(Handle h, long handle) { super(h, handle); }
     protected AVPlayerItemMetadataOutput(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithIdentifiers:")
     public AVPlayerItemMetadataOutput(@org.robovm.rt.bro.annotation.Marshaler(AVMetadataIdentifier.AsListMarshaler.class) List<AVMetadataIdentifier> identifiers) { super((SkipInit) null); initObject(init(identifiers)); }
     /*</constructors>*/
     /*<properties>*/

@@ -53,6 +53,7 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKCameraNode() {}
+    protected SKCameraNode(Handle h, long handle) { super(h, handle); }
     protected SKCameraNode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

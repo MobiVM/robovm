@@ -55,8 +55,10 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetReaderAudioMixOutput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetReaderAudioMixOutput() {}
+    protected AVAssetReaderAudioMixOutput() {}
+    protected AVAssetReaderAudioMixOutput(Handle h, long handle) { super(h, handle); }
     protected AVAssetReaderAudioMixOutput(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAudioTracks:audioSettings:")
     public AVAssetReaderAudioMixOutput(NSArray<AVAssetTrack> audioTracks, AVAudioSettings audioSettings) { super((SkipInit) null); initObject(init(audioTracks, audioSettings)); }
     /*</constructors>*/
     /*<properties>*/

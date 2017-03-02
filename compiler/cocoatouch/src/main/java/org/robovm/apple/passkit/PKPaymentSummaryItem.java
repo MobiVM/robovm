@@ -48,12 +48,13 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKPaymentSummaryItem() {}
+    protected PKPaymentSummaryItem(Handle h, long handle) { super(h, handle); }
     protected PKPaymentSummaryItem(SkipInit skipInit) { super(skipInit); }
-    public PKPaymentSummaryItem(String label, NSDecimalNumber amount) { super(create(label, amount)); retain(getHandle()); }
+    public PKPaymentSummaryItem(String label, NSDecimalNumber amount) { super((Handle) null, create(label, amount)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public PKPaymentSummaryItem(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type) { super(create(label, amount, type)); retain(getHandle()); }
+    public PKPaymentSummaryItem(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type) { super((Handle) null, create(label, amount, type)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "label")

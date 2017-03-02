@@ -239,9 +239,13 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 8.0 and later.
      */
     public static final HKDietaryQuantityTypeIdentifier Caffeine = new HKDietaryQuantityTypeIdentifier("Caffeine");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKDietaryQuantityTypeIdentifier Water = new HKDietaryQuantityTypeIdentifier("Water");
     /*</constants>*/
     
-    private static /*<name>*/HKDietaryQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKDietaryQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/FatTotal, FatPolyunsaturated, FatMonounsaturated, FatSaturated, Cholesterol, Sodium, Carbohydrates, Fiber, Sugar, EnergyConsumed, Protein, VitaminA, VitaminB6, VitaminB12, VitaminC, VitaminD, VitaminE, VitaminK, Calcium, Iron, Thiamin, Riboflavin, Niacin, Folate, Biotin, PantothenicAcid, Phosphorus, Iodine, Magnesium, Zinc, Selenium, Copper, Manganese, Chromium, Molybdenum, Chloride, Potassium, Caffeine/*</value_list>*/};
+    private static /*<name>*/HKDietaryQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKDietaryQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/FatTotal, FatPolyunsaturated, FatMonounsaturated, FatSaturated, Cholesterol, Sodium, Carbohydrates, Fiber, Sugar, EnergyConsumed, Protein, VitaminA, VitaminB6, VitaminB12, VitaminC, VitaminD, VitaminE, VitaminK, Calcium, Iron, Thiamin, Riboflavin, Niacin, Folate, Biotin, PantothenicAcid, Phosphorus, Iodine, Magnesium, Zinc, Selenium, Copper, Manganese, Chromium, Molybdenum, Chloride, Potassium, Caffeine, Water/*</value_list>*/};
     
     /*<name>*/HKDietaryQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -454,6 +458,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierDietaryCaffeine", optional=true)
         public static native NSString Caffeine();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierDietaryWater", optional=true)
+        public static native NSString Water();
         /*</values>*/
     }
 }

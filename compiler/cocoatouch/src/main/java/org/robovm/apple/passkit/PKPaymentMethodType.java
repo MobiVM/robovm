@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,14 +38,14 @@ import org.robovm.apple.contacts.*;
  * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/PKPaymentMethodType/*</name>*/ extends Bits</*<name>*/PKPaymentMethodType/*</name>*/> {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/PKPaymentMethodType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    public static final PKPaymentMethodType Unknown = new PKPaymentMethodType(0L);
-    public static final PKPaymentMethodType Debit = new PKPaymentMethodType(1L);
-    public static final PKPaymentMethodType Credit = new PKPaymentMethodType(2L);
-    public static final PKPaymentMethodType Prepaid = new PKPaymentMethodType(3L);
-    public static final PKPaymentMethodType Store = new PKPaymentMethodType(4L);
+    Unknown(0L),
+    Debit(1L),
+    Credit(2L),
+    Prepaid(3L),
+    Store(4L);
     /*</values>*/
 
     /*<bind>*/
@@ -53,17 +53,17 @@ public final class /*<name>*/PKPaymentMethodType/*</name>*/ extends Bits</*<name
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/PKPaymentMethodType/*</name>*/[] values = _values(/*<name>*/PKPaymentMethodType/*</name>*/.class);
+    private final long n;
 
-    public /*<name>*/PKPaymentMethodType/*</name>*/(long value) { super(value); }
-    private /*<name>*/PKPaymentMethodType/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/PKPaymentMethodType/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/PKPaymentMethodType/*</name>*/(value, mask);
-    }
-    protected /*<name>*/PKPaymentMethodType/*</name>*/[] _values() {
-        return values;
-    }
-    public static /*<name>*/PKPaymentMethodType/*</name>*/[] values() {
-        return values.clone();
+    private /*<name>*/PKPaymentMethodType/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/PKPaymentMethodType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/PKPaymentMethodType/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/PKPaymentMethodType/*</name>*/.class.getName());
     }
 }

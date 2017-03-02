@@ -51,6 +51,7 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKView() {}
+    protected SKView(Handle h, long handle) { super(h, handle); }
     protected SKView(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public SKView(CGRect frame) {
@@ -131,10 +132,54 @@ import org.robovm.apple.gameplaykit.*;
      */
     @Property(selector = "setShouldCullNonVisibleNodes:")
     public native void setShouldCullNonVisibleNodes(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "preferredFramesPerSecond")
+    public native @MachineSizedSInt long getPreferredFramesPerSecond();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setPreferredFramesPerSecond:")
+    public native void setPreferredFramesPerSecond(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "delegate")
+    public native SKViewDelegate getDelegate();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(SKViewDelegate v);
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "frameInterval")
     public native @MachineSizedSInt long getFrameInterval();
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "setFrameInterval:")
     public native void setFrameInterval(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "preferredFrameRate")
+    public native float getPreferredFrameRate();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "setPreferredFrameRate:")
+    public native void setPreferredFrameRate(float v);
     @Property(selector = "scene")
     public native SKScene getScene();
     /*</properties>*/

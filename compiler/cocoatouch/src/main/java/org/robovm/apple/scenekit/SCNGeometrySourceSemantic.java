@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -99,24 +101,16 @@ import org.robovm.apple.opengles.*;
     public static final SCNGeometrySourceSemantic Color = new SCNGeometrySourceSemantic("Color");
     public static final SCNGeometrySourceSemantic Texcoord = new SCNGeometrySourceSemantic("Texcoord");
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
+    public static final SCNGeometrySourceSemantic Tangent = new SCNGeometrySourceSemantic("Tangent");
     public static final SCNGeometrySourceSemantic VertexCrease = new SCNGeometrySourceSemantic("VertexCrease");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SCNGeometrySourceSemantic EdgeCrease = new SCNGeometrySourceSemantic("EdgeCrease");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SCNGeometrySourceSemantic BoneWeights = new SCNGeometrySourceSemantic("BoneWeights");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SCNGeometrySourceSemantic BoneIndices = new SCNGeometrySourceSemantic("BoneIndices");
     /*</constants>*/
     
-    private static /*<name>*/SCNGeometrySourceSemantic/*</name>*/[] values = new /*<name>*/SCNGeometrySourceSemantic/*</name>*/[] {/*<value_list>*/Vertex, Normal, Color, Texcoord, VertexCrease, EdgeCrease, BoneWeights, BoneIndices/*</value_list>*/};
+    private static /*<name>*/SCNGeometrySourceSemantic/*</name>*/[] values = new /*<name>*/SCNGeometrySourceSemantic/*</name>*/[] {/*<value_list>*/Vertex, Normal, Color, Texcoord, Tangent, VertexCrease, EdgeCrease, BoneWeights, BoneIndices/*</value_list>*/};
     
     /*<name>*/SCNGeometrySourceSemantic/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -148,23 +142,16 @@ import org.robovm.apple.opengles.*;
         @GlobalValue(symbol="SCNGeometrySourceSemanticTexcoord", optional=true)
         public static native NSString Texcoord();
         /**
-         * @since Available in iOS 8.0 and later.
+         * @since Available in iOS 10.0 and later.
          */
+        @GlobalValue(symbol="SCNGeometrySourceSemanticTangent", optional=true)
+        public static native NSString Tangent();
         @GlobalValue(symbol="SCNGeometrySourceSemanticVertexCrease", optional=true)
         public static native NSString VertexCrease();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNGeometrySourceSemanticEdgeCrease", optional=true)
         public static native NSString EdgeCrease();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNGeometrySourceSemanticBoneWeights", optional=true)
         public static native NSString BoneWeights();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNGeometrySourceSemanticBoneIndices", optional=true)
         public static native NSString BoneIndices();
         /*</values>*/

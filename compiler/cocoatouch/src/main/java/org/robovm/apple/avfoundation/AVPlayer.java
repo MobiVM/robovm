@@ -56,8 +56,11 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVPlayer() {}
+    protected AVPlayer(Handle h, long handle) { super(h, handle); }
     protected AVPlayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:")
     public AVPlayer(NSURL URL) { super((SkipInit) null); initObject(init(URL)); }
+    @Method(selector = "initWithPlayerItem:")
     public AVPlayer(AVPlayerItem item) { super((SkipInit) null); initObject(init(item)); }
     /*</constructors>*/
     /*<properties>*/
@@ -69,12 +72,32 @@ import org.robovm.apple.audiounit.*;
     public native float getRate();
     @Property(selector = "setRate:")
     public native void setRate(float v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "timeControlStatus")
+    public native AVPlayerTimeControlStatus getTimeControlStatus();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "reasonForWaitingToPlay")
+    public native String getReasonForWaitingToPlay();
     @Property(selector = "currentItem")
     public native AVPlayerItem getCurrentItem();
     @Property(selector = "actionAtItemEnd")
     public native AVPlayerActionAtItemEnd getActionAtItemEnd();
     @Property(selector = "setActionAtItemEnd:")
     public native void setActionAtItemEnd(AVPlayerActionAtItemEnd v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "automaticallyWaitsToMinimizeStalling")
+    public native boolean automaticallyWaitsToMinimizeStalling();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setAutomaticallyWaitsToMinimizeStalling:")
+    public native void setAutomaticallyWaitsToMinimizeStalling(boolean v);
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -162,6 +185,22 @@ import org.robovm.apple.audiounit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerWaitingToMinimizeStallsReason", optional=true)
+    public static native NSString WaitingToMinimizeStallsReason();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerWaitingWhileEvaluatingBufferingRateReason", optional=true)
+    public static native NSString WaitingWhileEvaluatingBufferingRateReason();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="AVPlayerWaitingWithNoItemToPlayReason", optional=true)
+    public static native NSString WaitingWithNoItemToPlayReason();
+    
     @Method(selector = "initWithURL:")
     protected native @Pointer long init(NSURL URL);
     @Method(selector = "initWithPlayerItem:")
@@ -170,6 +209,11 @@ import org.robovm.apple.audiounit.*;
     public native void play();
     @Method(selector = "pause")
     public native void pause();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "playImmediatelyAtRate:")
+    public native void playImmediatelyAtRate(float rate);
     @Method(selector = "replaceCurrentItemWithPlayerItem:")
     public native void replaceCurrentItem(AVPlayerItem item);
     @Method(selector = "currentTime")

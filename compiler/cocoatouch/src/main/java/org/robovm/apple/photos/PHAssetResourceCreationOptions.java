@@ -49,6 +49,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAssetResourceCreationOptions() {}
+    protected PHAssetResourceCreationOptions(Handle h, long handle) { super(h, handle); }
     protected PHAssetResourceCreationOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -45,8 +45,11 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public ACAccountCredential() {}
+    protected ACAccountCredential(Handle h, long handle) { super(h, handle); }
     protected ACAccountCredential(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithOAuthToken:tokenSecret:")
     public ACAccountCredential(String token, String secret) { super((SkipInit) null); initObject(init(token, secret)); }
+    @Method(selector = "initWithOAuth2Token:refreshToken:expiryDate:")
     public ACAccountCredential(String token, String refreshToken, NSDate expiryDate) { super((SkipInit) null); initObject(init(token, refreshToken, expiryDate)); }
     /*</constructors>*/
     /*<properties>*/

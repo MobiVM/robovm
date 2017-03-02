@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -43,18 +45,9 @@ import org.robovm.apple.opengles.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/SCNWrapMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Clamp(1L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Repeat(2L),
     ClampToBorder(3L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     Mirror(4L);
     /*</values>*/
 

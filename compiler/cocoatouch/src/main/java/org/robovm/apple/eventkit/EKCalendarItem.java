@@ -49,7 +49,8 @@ import org.robovm.apple.mapkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKCalendarItem() {}
-    protected EKCalendarItem(long handle) { super(handle); }
+    @Deprecated protected EKCalendarItem(long handle) { super(handle); }
+    protected EKCalendarItem(Handle h, long handle) { super(h, handle); }
     protected EKCalendarItem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

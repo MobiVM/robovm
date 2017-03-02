@@ -46,7 +46,8 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CKServerChangeToken.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKServerChangeToken() {}
+    protected CKServerChangeToken() {}
+    protected CKServerChangeToken(Handle h, long handle) { super(h, handle); }
     protected CKServerChangeToken(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

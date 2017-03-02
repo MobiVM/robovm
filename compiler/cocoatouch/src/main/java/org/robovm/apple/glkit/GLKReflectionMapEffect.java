@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GLKReflectionMapEffect() {}
+    protected GLKReflectionMapEffect(Handle h, long handle) { super(h, handle); }
     protected GLKReflectionMapEffect(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

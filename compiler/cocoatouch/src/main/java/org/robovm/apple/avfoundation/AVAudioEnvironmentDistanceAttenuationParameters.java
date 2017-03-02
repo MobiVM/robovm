@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioEnvironmentDistanceAttenuationParameters() {}
+    protected AVAudioEnvironmentDistanceAttenuationParameters(Handle h, long handle) { super(h, handle); }
     protected AVAudioEnvironmentDistanceAttenuationParameters(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

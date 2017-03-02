@@ -55,7 +55,8 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetResourceLoadingDataRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetResourceLoadingDataRequest() {}
+    protected AVAssetResourceLoadingDataRequest() {}
+    protected AVAssetResourceLoadingDataRequest(Handle h, long handle) { super(h, handle); }
     protected AVAssetResourceLoadingDataRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

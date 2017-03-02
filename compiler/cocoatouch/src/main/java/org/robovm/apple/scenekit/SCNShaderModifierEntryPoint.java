@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -121,21 +123,9 @@ import org.robovm.apple.opengles.*;
     }
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SCNShaderModifierEntryPoint Geometry = new SCNShaderModifierEntryPoint("Geometry");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SCNShaderModifierEntryPoint Surface = new SCNShaderModifierEntryPoint("Surface");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SCNShaderModifierEntryPoint LightingModel = new SCNShaderModifierEntryPoint("LightingModel");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SCNShaderModifierEntryPoint Fragment = new SCNShaderModifierEntryPoint("Fragment");
     /*</constants>*/
     
@@ -162,24 +152,12 @@ import org.robovm.apple.opengles.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNShaderModifierEntryPointGeometry", optional=true)
         public static native NSString Geometry();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNShaderModifierEntryPointSurface", optional=true)
         public static native NSString Surface();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNShaderModifierEntryPointLightingModel", optional=true)
         public static native NSString LightingModel();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNShaderModifierEntryPointFragment", optional=true)
         public static native NSString Fragment();
         /*</values>*/

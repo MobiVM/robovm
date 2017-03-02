@@ -49,12 +49,14 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKCircleView() {}
+    protected MKCircleView(Handle h, long handle) { super(h, handle); }
     protected MKCircleView(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
+    @Method(selector = "initWithCircle:")
     public MKCircleView(MKCircle circle) { super((SkipInit) null); initObject(init(circle)); }
     /*</constructors>*/
     /*<properties>*/

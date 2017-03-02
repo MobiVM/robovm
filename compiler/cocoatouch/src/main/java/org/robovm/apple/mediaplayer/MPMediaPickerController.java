@@ -46,7 +46,9 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPMediaPickerController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected MPMediaPickerController(Handle h, long handle) { super(h, handle); }
     protected MPMediaPickerController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithMediaTypes:")
     public MPMediaPickerController(MPMediaType mediaTypes) { super((SkipInit) null); initObject(init(mediaTypes)); }
     /*</constructors>*/
     /*<properties>*/
@@ -70,6 +72,16 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "setShowsCloudItems:")
     public native void setShowsCloudItems(boolean v);
+    /**
+     * @since Available in iOS 9.2 and later.
+     */
+    @Property(selector = "showsItemsWithProtectedAssets")
+    public native boolean showsItemsWithProtectedAssets();
+    /**
+     * @since Available in iOS 9.2 and later.
+     */
+    @Property(selector = "setShowsItemsWithProtectedAssets:")
+    public native void setShowsItemsWithProtectedAssets(boolean v);
     @Property(selector = "prompt")
     public native String getPrompt();
     @Property(selector = "setPrompt:")

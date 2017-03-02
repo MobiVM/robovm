@@ -45,6 +45,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMActionSet.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMActionSet(Handle h, long handle) { super(h, handle); }
     protected HMActionSet(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -64,6 +65,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "uniqueIdentifier")
     public native NSUUID getUniqueIdentifier();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "lastExecutionDate")
+    public native NSDate getLastExecutionDate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

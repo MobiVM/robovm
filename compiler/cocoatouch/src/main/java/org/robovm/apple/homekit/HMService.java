@@ -46,6 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HMService() {}
+    protected HMService(Handle h, long handle) { super(h, handle); }
     protected HMService(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -74,6 +75,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "isUserInteractive")
     public native boolean isUserInteractive();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "isPrimaryService")
+    public native boolean isPrimaryService();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "linkedServices")
+    public native NSArray<HMService> getLinkedServices();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

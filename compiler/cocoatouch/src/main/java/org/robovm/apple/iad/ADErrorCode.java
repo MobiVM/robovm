@@ -37,7 +37,9 @@ import org.robovm.apple.avkit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 @ForceLinkClass(ADError.class)
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
@@ -50,7 +52,8 @@ public enum /*<name>*/ADErrorCode/*</name>*/ implements NSErrorCode {
     ConfigurationError(4L),
     BannerVisibleWithoutContent(5L),
     ApplicationInactive(6L),
-    AdUnloaded(7L);
+    AdUnloaded(7L),
+    AssetLoadFailure(8L);
     /*</values>*/
 
     /*<bind>*/

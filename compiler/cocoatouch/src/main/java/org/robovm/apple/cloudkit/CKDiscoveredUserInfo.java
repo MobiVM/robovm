@@ -35,7 +35,9 @@ import org.robovm.apple.contacts.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKDiscoveredUserInfo/*</name>*/ 
@@ -46,7 +48,8 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CKDiscoveredUserInfo.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKDiscoveredUserInfo() {}
+    protected CKDiscoveredUserInfo() {}
+    protected CKDiscoveredUserInfo(Handle h, long handle) { super(h, handle); }
     protected CKDiscoveredUserInfo(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

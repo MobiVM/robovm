@@ -51,9 +51,9 @@ public enum /*<name>*/AUTypeEffect/*</name>*/ implements AUSubType {
     Distortion(1684632436L),
     Delay(1684368505L),
     SampleDelay(1935961209L),
+    NBandEQ(1851942257L),
     Reverb2(1920361010L),
-    AUiPodEQ(1768973681L),
-    NBandEQ(1851942257L);
+    AUiPodEQ(1768973681L);
     /*</values>*/
 
     /*<bind>*/

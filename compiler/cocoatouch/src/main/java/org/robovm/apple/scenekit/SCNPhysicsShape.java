@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNPhysicsShape/*</name>*/ 
@@ -52,10 +52,25 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNPhysicsShape() {}
+    protected SCNPhysicsShape(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsShape(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "options")
+    public native NSDictionary<?, ?> getOptions();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "sourceObject")
+    public native NSObject getSourceObject();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "transforms")
+    public native NSArray<NSValue> getTransforms();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

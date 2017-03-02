@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -98,9 +100,17 @@ import org.robovm.apple.opengles.*;
     public static final SCNLightType Omni = new SCNLightType("Omni");
     public static final SCNLightType Directional = new SCNLightType("Directional");
     public static final SCNLightType Spot = new SCNLightType("Spot");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final SCNLightType IES = new SCNLightType("IES");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final SCNLightType Probe = new SCNLightType("Probe");
     /*</constants>*/
     
-    private static /*<name>*/SCNLightType/*</name>*/[] values = new /*<name>*/SCNLightType/*</name>*/[] {/*<value_list>*/Ambient, Omni, Directional, Spot/*</value_list>*/};
+    private static /*<name>*/SCNLightType/*</name>*/[] values = new /*<name>*/SCNLightType/*</name>*/[] {/*<value_list>*/Ambient, Omni, Directional, Spot, IES, Probe/*</value_list>*/};
     
     /*<name>*/SCNLightType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -131,6 +141,16 @@ import org.robovm.apple.opengles.*;
         public static native NSString Directional();
         @GlobalValue(symbol="SCNLightTypeSpot", optional=true)
         public static native NSString Spot();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="SCNLightTypeIES", optional=true)
+        public static native NSString IES();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="SCNLightTypeProbe", optional=true)
+        public static native NSString Probe();
         /*</values>*/
     }
 }

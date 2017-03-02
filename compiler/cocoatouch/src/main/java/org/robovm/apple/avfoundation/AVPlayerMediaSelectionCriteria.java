@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVPlayerMediaSelectionCriteria() {}
+    protected AVPlayerMediaSelectionCriteria(Handle h, long handle) { super(h, handle); }
     protected AVPlayerMediaSelectionCriteria(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPreferredLanguages:preferredMediaCharacteristics:")
     public AVPlayerMediaSelectionCriteria(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> preferredLanguages, @org.robovm.rt.bro.annotation.Marshaler(AVMediaCharacteristic.AsListMarshaler.class) List<AVMediaCharacteristic> preferredMediaCharacteristics) { super((SkipInit) null); initObject(init(preferredLanguages, preferredMediaCharacteristics)); }
     /*</constructors>*/
     /*<properties>*/

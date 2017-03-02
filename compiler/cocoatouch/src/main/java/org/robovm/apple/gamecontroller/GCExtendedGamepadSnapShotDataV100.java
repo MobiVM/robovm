@@ -99,11 +99,15 @@ import org.robovm.apple.dispatch.*;
     @StructMember(15) public native GCExtendedGamepadSnapShotDataV100 setRightTrigger(float rightTrigger);
     /*</members>*/
     /*<methods>*/
-    public boolean setData(NSData data) { return setData(this, data); }
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @Bridge(symbol="GCExtendedGamepadSnapShotDataV100FromNSData", optional=true)
-    private static native boolean setData(@ByVal GCExtendedGamepadSnapShotDataV100 snapshotData, NSData data);
-    public NSData getData() { return getData(this); }
+    public native boolean setData(NSData data);
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @Bridge(symbol="NSDataFromGCExtendedGamepadSnapShotDataV100", optional=true)
-    private static native NSData getData(@ByVal GCExtendedGamepadSnapShotDataV100 snapshotData);
+    public native NSData getData();
     /*</methods>*/
 }

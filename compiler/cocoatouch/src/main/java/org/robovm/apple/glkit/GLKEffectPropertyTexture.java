@@ -50,6 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GLKEffectPropertyTexture() {}
+    protected GLKEffectPropertyTexture(Handle h, long handle) { super(h, handle); }
     protected GLKEffectPropertyTexture(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

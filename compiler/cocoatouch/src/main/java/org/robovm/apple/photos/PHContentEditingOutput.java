@@ -49,8 +49,11 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHContentEditingOutput() {}
+    protected PHContentEditingOutput(Handle h, long handle) { super(h, handle); }
     protected PHContentEditingOutput(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithContentEditingInput:")
     public PHContentEditingOutput(PHContentEditingInput contentEditingInput) { super((SkipInit) null); initObject(init(contentEditingInput)); }
+    @Method(selector = "initWithPlaceholderForCreatedAsset:")
     public PHContentEditingOutput(PHObjectPlaceholder placeholderForCreatedAsset) { super((SkipInit) null); initObject(init(placeholderForCreatedAsset)); }
     /*</constructors>*/
     /*<properties>*/
