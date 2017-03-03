@@ -466,12 +466,6 @@ struct TrycatchContext {
 #endif
 };
 
-typedef struct ShadowFrame {
-    struct ShadowFrame* prev;
-    void* functionAddress;
-    jint lineNumber;
-} ShadowFrame;
-
 struct Env {
     JNIEnv jni;
     VM* vm;
@@ -482,7 +476,6 @@ struct Env {
     GatewayFrame* gatewayFrames;
     TrycatchContext* trycatchContext;
     jint attachCount;
-    ShadowFrame* shadowFrame;
 };
 
 typedef struct DebugGcRoot {

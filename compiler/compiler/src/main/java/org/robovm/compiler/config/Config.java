@@ -72,7 +72,6 @@ import org.robovm.compiler.plugin.objc.InterfaceBuilderClassesPlugin;
 import org.robovm.compiler.plugin.objc.ObjCBlockPlugin;
 import org.robovm.compiler.plugin.objc.ObjCMemberPlugin;
 import org.robovm.compiler.plugin.objc.ObjCProtocolProxyPlugin;
-import org.robovm.compiler.plugin.shadowframe.ShadowFramePlugin;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.Target;
 import org.robovm.compiler.target.ios.IOSTarget;
@@ -177,9 +176,6 @@ public class Config {
 
     @Element(required = false)
     private Tools tools;
-    
-    @Element(required = false)
-    private boolean useLineNumbers;
 
     private SigningIdentity iosSignIdentity;
     private ProvisioningProfile iosProvisioningProfile;
@@ -233,8 +229,7 @@ public class Config {
                 new ObjCMemberPlugin(),
                 new ObjCBlockPlugin(),
                 new AnnotationImplPlugin(),
-                new LambdaPlugin(),         
-                new ShadowFramePlugin()
+                new LambdaPlugin()
                 ));
         this.loadPluginsFromClassPath();
     }
@@ -306,14 +301,6 @@ public class Config {
 
     public boolean isClean() {
         return clean;
-    }
-
-    public boolean isUseLineNumbers() {
-        return useLineNumbers;
-    }
-
-    public void setUseLineNumbers(boolean useLineNumbers) {
-        this.useLineNumbers = useLineNumbers;
     }
 
     public boolean isDebug() {
