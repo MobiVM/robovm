@@ -38,9 +38,14 @@ public class DISubprogram extends DIMap {
 		map.put("scopeLine", new DIMapValueInteger(line));
 	}
 	
+	public void setCompileUnit(DIMapValueReference cu) {
+		map.put("unit", cu);
+	}
+	
 	@Override
 	public String getDIName() {
 		return DI_NAME;
 	}
+
 
 }

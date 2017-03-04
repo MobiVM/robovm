@@ -31,7 +31,7 @@ public abstract class DIMap extends Metadata {
 			if (!first) {
 				sb.append(", ");
 			}
-			sb.append(entry.getKey()).append(":").append(entry.getValue());
+			sb.append(entry.getKey()).append(": ").append(entry.getValue());
 			first = false;
 		}
 		

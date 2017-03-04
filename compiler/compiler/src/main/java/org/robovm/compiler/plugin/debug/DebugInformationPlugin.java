@@ -25,7 +25,6 @@ import org.robovm.compiler.llvm.UnnamedMetadata;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.debug.DICompileUnit;
 import org.robovm.compiler.llvm.debug.DIFile;
-import org.robovm.compiler.llvm.debug.DILexicalBlock;
 import org.robovm.compiler.llvm.debug.DILocation;
 import org.robovm.compiler.llvm.debug.DISubprogram;
 import org.robovm.compiler.llvm.debug.DISubroutineType;
@@ -97,7 +96,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	UnnamedMetadata picLevel = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new IntegerConstant(1), new MetadataString("PIC Level"), new IntegerConstant(2) }));
     	UnnamedMetadata ident = moduleBuilder.newUnnamedMetadata(new MetadataNode(new Value[]{ new MetadataString("RoboVM 2.3.0")}));
     	
-    	moduleBuilder.addNamedMetadata(new NamedMetadata("llvm.db.cu", diCuMeta));
+    	moduleBuilder.addNamedMetadata(new NamedMetadata("llvm.dbg.cu", diCuMeta));
     	moduleBuilder.addNamedMetadata(new NamedMetadata("llvm.ident", new UnnamedMetadata[] { ident }));
     	moduleBuilder.addNamedMetadata(new NamedMetadata("llvm.module.flags", new UnnamedMetadata[] { dwarfVersion, debugInfoVersion, picLevel }));
     	moduleBuilder.addFunctionDeclaration(LLVM_DBG_DECLARE_DECLARATION);
@@ -140,7 +139,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                         if (tag != null) {
                         	currentLineNumber = tag.getLineNumber();
                         	methodLineNumber = Math.min(methodLineNumber, currentLineNumber);
-                        	instruction.addMetadata(new DebugMetadata(moduleBuilder.newUnnamedMetadata(new DILocation(new DIMapValueReference(diSubNode), currentLineNumber, 15)).ref()));
+                        	instruction.addMetadata(new DebugMetadata(moduleBuilder.newUnnamedMetadata(new DILocation(new DIMapValueReference(diSubNode), currentLineNumber, 0)).ref()));
                         }
                     }
                 }
@@ -150,18 +149,11 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         diSub.setType(new DIMapValueReference(moduleBuilder.newUnnamedMetadata(diSubType)));
         diSub.setFile(new DIMapValueReference(diFileMeta));
         diSub.setScope(new DIMapValueReference(diFileMeta));
+        diSub.setCompileUnit(new DIMapValueReference(diCuMeta));
         diSub.setName(function.getName());
         diSub.setLine(methodLineNumber);
         
-        function.addMetadata(new DebugMetadata(diSubNode.ref()));
-        
-        DILexicalBlock diBlock = new DILexicalBlock();
-        diBlock.setFile(new DIMapValueReference(diFileMeta));
-        diBlock.setScope(new DIMapValueReference(diSubNode));
-        diBlock.setLine(methodLineNumber);
-        diBlock.setColumn(12);
-        moduleBuilder.newUnnamedMetadata(diBlock);
-        
+        function.addMetadata(new DebugMetadata(diSubNode.ref()));        
     }
     
     private File getSourceFile(Config config, Clazz clazz) {
