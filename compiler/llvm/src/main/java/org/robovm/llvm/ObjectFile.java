@@ -18,6 +18,8 @@ package org.robovm.llvm;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.bytedeco.javacpp.BytePointer;
@@ -58,10 +60,31 @@ public class ObjectFile implements AutoCloseable {
         while (LLVM.LLVMIsSymbolIteratorAtEnd(getRef(), it) == 0) {
             String name = LLVM.LLVMGetSymbolName(it).getString();
             long address = LLVM.LLVMGetSymbolAddress(it);
-            long size = LLVM.LLVMGetSymbolSize(it);
-            result.add(new Symbol(name, address, size));
+            //bug: doesnt work on llvm 39
+            //long size = LLVM.LLVMGetSymbolSize(it);
+            result.add(new Symbol(name, address, 0));
             LLVM.LLVMMoveToNextSymbol(it);
         }
+        //LLVM 3.9 bug, got no size, so calculate it on our own
+        if (result.size() > 0) {
+        	Collections.sort(result, new Comparator<Symbol>() {
+                public int compare(Symbol o1, Symbol o2) {
+                    return Long.compare(o1.getAddress(), o2.getAddress());
+                }
+            });
+            
+            Symbol prevSymbol = null;
+            for (Symbol symbol : result) {
+            	if (prevSymbol != null) {
+            		prevSymbol.setSize(symbol.getAddress() - prevSymbol.getAddress());
+            	}
+            	prevSymbol = symbol;
+            }
+       
+            result.get(result.size() - 1).setSize(8192);
+
+        }
+        
         LLVM.LLVMDisposeSymbolIterator(it);
         return result;
     }

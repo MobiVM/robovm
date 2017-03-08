@@ -22,7 +22,7 @@ package org.robovm.llvm;
 public class Symbol {
     private final String name;
     private final long address;
-    private final long size;
+    private long size;
 
     Symbol(String name, long address, long size) {
         this.name = name;
@@ -40,6 +40,10 @@ public class Symbol {
 
     public long getSize() {
         return size;
+    }
+    
+    public void setSize(long size) {
+    	this.size = size;
     }
 
     @Override

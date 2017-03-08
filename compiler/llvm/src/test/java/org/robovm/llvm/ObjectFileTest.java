@@ -52,7 +52,7 @@ public class ObjectFileTest {
                     assertEquals(1, symbols.size());
                     assertEquals("_foo", symbols.get(0).getName());
                     assertTrue(symbols.get(0).getAddress() == 0);
-                    //assertTrue(symbols.get(0).getSize() > 0); this returns 0 with llvm 3.9
+                    assertTrue(symbols.get(0).getSize() > 0);
                 }
             }
         }
@@ -99,7 +99,6 @@ public class ObjectFileTest {
     }
 
     @Test
-    @Ignore
     public void testLineNumberInfo() throws Exception {
         String cc = "gcc";
         String symbolPrefix = "";
@@ -113,7 +112,20 @@ public class ObjectFileTest {
                 "int main() {\n" 
         	  + "  int i = 42;\n"	
               + "  return i / 42;\n"
-              + "}\n");
+              + "}\n"
+              + "\n"
+              + "int another() {\n"
+              + "  int j= 45;\n"
+              + "  return j / 44;\n"
+              + "}\n"
+              + "\n"
+              + "void foobar() {\n"
+              + "  int ao = another();\n"
+              + "  if (ao > 0) {\n"
+              + "     another();\n"
+              + "  }\n"
+              + "  return;\n"
+              + "}");
         DefaultExecutor executor = new DefaultExecutor();
         executor.setWorkingDirectory(cFile.getParentFile());
         executor.execute(new CommandLine(cc)
@@ -126,13 +138,13 @@ public class ObjectFileTest {
         File oFile = new File(cFile.getParentFile(), cFile.getName().substring(0, cFile.getName().lastIndexOf('.')) + ".o");
         try (ObjectFile objectFile = ObjectFile.load(oFile)) {
             for (Symbol symbol : objectFile.getSymbols()) {
-                //if (symbol.getSize() > 0) {
+                if (symbol.getSize() > 0) {
                     List<LineInfo> lineInfos = objectFile.getLineInfos(symbol);
                     if (!lineInfos.isEmpty() && symbol.getName().equals(symbolPrefix + "main")) {
                         mainLineInfos = lineInfos;
                         break;
                     }
-                //}
+                }
             }
         }
         
