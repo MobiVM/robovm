@@ -1,8 +1,7 @@
 %GatewayFrame = type {i8*, i8*, i8*}
 %StackFrame = type {i8*, i8*}
-%ShadowFrame = type {%ShadowFrame*, i8*, i32}
 %Thread = type {i32} ; Incomplete. Just enough to get threadId
-%Env = type {i8*, i8*, i8*, %Thread*, i8*, i8*, %GatewayFrame*, i8*, i32, %ShadowFrame*}
+%Env = type {i8*, i8*, i8*, %Thread*, i8*, i8*, %GatewayFrame*, i8*, i32}
 %DebugEnv = type {%Env, i8*, i8*, i8*, i8*, i8, i8}
 %TypeInfo = type {i32, i32, i32, i32, i32, [0 x i32]}
 %VITable = type {i16, [0 x i8*]}
@@ -97,7 +96,7 @@ declare %Object* @_bcNewMultiArray(%Env*, i32, i32*, %Object*)
 declare void @_bcSetObjectArrayElement(%Env*, %Object*, i32, %Object*)
 
 declare %Object* @_bcLdcString(%Env*, %Object**, i8*, i32)
-
+        
 declare void @_bcMonitorEnter(%Env*, %Object*)
 declare void @_bcMonitorExit(%Env*, %Object*)
 
@@ -115,10 +114,6 @@ declare void @_bcDetachThreadFromCallback(%Env*)
 declare i8* @_bcCopyStruct(%Env*, i8*, i32)
 
 declare void @_bcHookInstrumented(%Env*, i32, i32, i8*, i8*)
-
-declare void @rvmPushShadowFrame(%Env*, i8*)
-declare void @rvmPopShadowFrame(%Env*)
-declare void @rvmPushShadowFrameLineNumber(%Env*, i32)
 
 declare i8* @llvm.frameaddress(i32) nounwind readnone
 declare void @llvm.memcpy.p0i8.p0i8.i32(i8*, i8*, i32, i32, i1)
@@ -351,15 +346,15 @@ define private void @intrinsics.java_lang_System_arraycopy_C(%Env* %env, %Object
     %1 = bitcast %Object* %src to %CharArray*
     %2 = getelementptr %CharArray* %1, i32 0, i32 2
     %3 = getelementptr i16* %2, i32 %srcPos
-
+    
     %4 = bitcast %Object* %dst to %CharArray*
     %5 = getelementptr %CharArray* %4, i32 0, i32 2
     %6 = getelementptr i16* %5, i32 %dstPos
-
+    
     %s1 = bitcast i16* %6 to i8*
     %s2 = bitcast i16* %3 to i8*
     %n = sext i32 %length to i64
-
+    
     call void @_bcMoveMemory16(i8* %s1, i8* %s2, i64 %n)
     ret void
 }
@@ -958,10 +953,10 @@ define private void @pushNativeFrame(%Env* %env) alwaysinline {
     %pc = call i8* @getpc()
     store volatile i8* %prevStackFrame, i8** %sf_prev
     store volatile i8* %pc, i8** %sf_returnAddress
-
+    
     %prev_gw = call %GatewayFrame* @Env_gatewayFrames(%Env* %env)
     %prev_gw_i8p = bitcast %GatewayFrame* %prev_gw to i8*
-
+    
     ; Create the GatewayFrame
     %gw = alloca %GatewayFrame
     %gw_prev = getelementptr %GatewayFrame* %gw, i32 0, i32 0
@@ -971,7 +966,7 @@ define private void @pushNativeFrame(%Env* %env) alwaysinline {
     %sf_i8p = bitcast %StackFrame* %sf to i8*
     store volatile i8* %sf_i8p, i8** %gw_frameAddress
     store volatile i8* null, i8** %gw_proxyMethod
-
+    
     call void @Env_gatewayFrames_store(%Env* %env, %GatewayFrame* %gw)
 
     ret void
@@ -985,31 +980,3 @@ define private void @popNativeFrame(%Env* %env) alwaysinline {
     call void @Env_gatewayFrames_store(%Env* %env, %GatewayFrame* %prev_gw)
     ret void
 }
-
-define private void @pushShadowFrame(%Env* %env, %ShadowFrame* %frame) alwaysinline {
-    ; Store Env->shadowFrame in shadowFrame->prev
-    %1 = getelementptr %Env* %env, i32 0, i32 9
-    %prevFrame = load volatile %ShadowFrame** %1
-    %2 = getelementptr %ShadowFrame* %frame, i32 0, i32 0
-    store volatile %ShadowFrame* %prevFrame, %ShadowFrame** %2
-
-    ; Store shadowFrame in Env->shadowFrame
-    store volatile %ShadowFrame* %frame, %ShadowFrame** %1
-    ret void
-}
-
-define private void @popShadowFrame(%Env* %env) alwaysinline {
-    %1 = getelementptr %Env* %env, i32 0, i32 9
-    %frame = load volatile %ShadowFrame** %1
-    %2 = getelementptr %ShadowFrame* %frame, i32 0, i32 0
-    %prevFrame = load volatile %ShadowFrame** %2
-    store %ShadowFrame* %prevFrame, %ShadowFrame** %1
-    ret void
-}
-
-define private void @pushShadowFrameLineNumber(%ShadowFrame* %frame, i32 %lineNumber) alwaysinline {
-    %__shadowFrame_lineNumber = getelementptr %ShadowFrame* %frame, i32 0, i32 2
-    store i32 %lineNumber, i32* %__shadowFrame_lineNumber
-    ret void
-}
-
