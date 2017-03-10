@@ -7,7 +7,7 @@
     <version>2.3.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <properties> 
+    <properties>
         <ij.plugin>true</ij.plugin>
         <idea.home>/Applications/IntelliJ IDEA CE.app/Contents/</idea.home>
     </properties>
@@ -27,7 +27,7 @@
                     <groupId>com.mobidevelop.robovm</groupId>
                     <artifactId>robovm-compiler</artifactId>
                     <version>${project.version}</version>
-                </dependency>                
+                </dependency>
             </dependencies>
         </profile>
 
@@ -188,7 +188,7 @@
                     <version>1.0.0</version>
                     <scope>system</scope>
                     <systemPath>${idea.home}/lib/slf4j-log4j12-1.7.10.jar</systemPath>
-                </dependency>            
+                </dependency>
             </dependencies>
         </profile>
     </profiles>
@@ -237,6 +237,17 @@
                 <exclusion>
                     <groupId>com.mobidevelop.robovm</groupId>
                     <artifactId>robovm-dist-compiler</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.mobidevelop.robovm</groupId>
+            <artifactId>robovm-ibxcode</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mobidevelop.robovm</groupId>
+                    <artifactId>robovm-compiler</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

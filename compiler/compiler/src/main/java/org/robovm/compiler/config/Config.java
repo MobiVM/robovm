@@ -1082,7 +1082,7 @@ public class Config {
     }
 
     public static class Builder {
-        final Config config;
+        protected final Config config;
 
         Builder(Config config) {
             this.config = config;
