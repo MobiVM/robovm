@@ -18,7 +18,8 @@ public class ByteBufferPacket extends ByteBufferReader {
     }
 
     public ByteBufferPacket(int capacity) {
-        super(ByteBuffer.allocateDirect(capacity));
+        super(ByteBuffer.allocate(capacity));
+        reset();
     }
 
     @Override
@@ -66,7 +67,7 @@ public class ByteBufferPacket extends ByteBufferReader {
             // make capacity twice bigger that required
             long requiredCap = (afterWritePos + capacity - 1) / capacity;
             requiredCap *= capacity * 2;
-            ByteBuffer buffer = ByteBuffer.allocateDirect((int) requiredCap);
+            ByteBuffer buffer = ByteBuffer.allocate((int) requiredCap);
             // copy old buffer
             int oldPosition = byteBuffer.position();
             byteBuffer.position(0);
@@ -136,11 +137,11 @@ public class ByteBufferPacket extends ByteBufferReader {
         return this;
     }
 
-    public void writeFromInputStream(InputStream is) throws IOException {
-        writeFromInputStream(is, byteBuffer.remaining());
+    public void fillFromInputStream(InputStream is) throws IOException {
+        fillFromInputStream(is, byteBuffer.remaining());
     }
 
-    public void writeFromInputStream(InputStream is, int count) throws IOException {
+    public void fillFromInputStream(InputStream is, int count) throws IOException {
         // will put to byte buffer
         wants(count);
         int bytesRead = is.read(byteBuffer.array(), byteBuffer.position(), count);

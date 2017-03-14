@@ -58,7 +58,7 @@ public class HooksChannel {
 
             // read handshake
             ByteBufferPacket buffer = new ByteBufferPacket();
-            buffer.writeFromInputStream(inputStream, 4);
+            buffer.fillFromInputStream(inputStream, 4);
             buffer.setPosition(0);
             if (buffer.readUnsignedInt32() != HookConsts.handshake.QUESTION)
                 throw new DebuggerException("Handshake failed!");
@@ -67,32 +67,32 @@ public class HooksChannel {
             buffer.writeUnsignedInt32(HookConsts.handshake.ANSWER);
             buffer.dumpToOutputStream(outputStream);
 
+            while (!socketThread.isInterrupted()) {
+                // read entire response header
+                buffer.reset();
+                buffer.fillFromInputStream(inputStream, 9);
+                byte cmd = buffer.readByte();
+                long reqId = buffer.readLong();
+                long payloadSize = buffer.readLong();
+                // also pick up the payload
+                if (payloadSize != 0)
+                    buffer.fillFromInputStream(inputStream, (int) payloadSize);
 
-            // read entire response header
-            buffer.reset();
-            buffer.writeFromInputStream(inputStream, 9);
-            byte cmd = buffer.readByte();
-            long reqId = buffer.readLong();
-            long payloadSize = buffer.readLong();
-            // also pick up the payload
-            if (payloadSize != 0)
-                buffer.writeFromInputStream(inputStream, (int) payloadSize);
-
-            if (reqId == 0) {
-                // looks to be event
-                if (!this.isEvent(cmd))
-                    throw new DebuggerException("Non event response received with reqId == 0");
-            } else {
-                // its request
-                HookReqHolder holder = requestsInProgress.remove(reqId);
-                if (holder == null)
-                    throw new DebuggerException("Unexpected response id " + reqId + ", cmd = " + cmd);
-                // notify thread that there is an result
-                Object response = createPayloadObject(cmd, buffer);
-                holder.setResponse(response);
-                holder.notify();
+                if (reqId == 0) {
+                    // looks to be event
+                    if (!this.isEvent(cmd))
+                        throw new DebuggerException("Non event response received with reqId == 0");
+                } else {
+                    // its request
+                    HookReqHolder holder = requestsInProgress.remove(reqId);
+                    if (holder == null)
+                        throw new DebuggerException("Unexpected response id " + reqId + ", cmd = " + cmd);
+                    // notify thread that there is an result
+                    Object response = createPayloadObject(cmd, buffer);
+                    holder.setResponse(response);
+                    holder.notify();
+                }
             }
-
         } catch (Throwable e) {
             e.printStackTrace();
         }

@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Arrays;
 
 /**
@@ -39,7 +40,7 @@ public abstract class ByteBufferReader {
          * sanity checks that there is enough data
          */
     protected void expects(int bytes) {
-        if (this.position() + bytes >= this.size())
+        if (this.position() + bytes > this.size())
             throw new BufferUnderflowException();
     }
 
@@ -100,7 +101,9 @@ public abstract class ByteBufferReader {
         expects(size);
 
         try {
-            return new String(byteBuffer.array(), byteBuffer.position(), size, "UTF-8");
+            String res = new String(byteBuffer.array(), byteBuffer.position(), size, "UTF-8");
+            byteBuffer.position(byteBuffer.position() + size);
+            return res;
         } catch (UnsupportedEncodingException e) {
             throw new DebuggerException(e);
         }
@@ -110,6 +113,14 @@ public abstract class ByteBufferReader {
         if (!byteBuffer.hasRemaining())
             return "";
         return readString(byteBuffer.remaining());
+    }
+
+    public String readStringWithLen() {
+        expects(4);
+        int stringLen = byteBuffer.getInt();
+        if (stringLen == 0)
+            return "";
+        return readString(stringLen);
     }
 
     public void skip(int bytesToSkip) {
@@ -133,5 +144,8 @@ public abstract class ByteBufferReader {
         os.write(byteBuffer.array(), byteBufferDataStart(), size());
     }
 
+    public void setByteOrder(ByteOrder order) {
+        byteBuffer.order(order);
+    }
 
 }
