@@ -117,7 +117,7 @@ public class ByteBufferPacket extends ByteBufferReader {
     }
 
     public ByteBufferPacket writeLong(long l) {
-        wants(4);
+        wants(8);
         byteBuffer.putLong(l);
         return this;
     }

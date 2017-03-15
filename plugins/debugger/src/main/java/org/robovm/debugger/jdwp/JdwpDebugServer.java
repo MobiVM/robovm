@@ -3,6 +3,7 @@ package org.robovm.debugger.jdwp;
 import org.robovm.compiler.config.Arch;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqSetHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwmVmClassPathsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesWithGenericsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmVersionHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmIdSizesHandler;
@@ -191,6 +192,7 @@ public class JdwpDebugServer {
         // VirtualMachine Command Set (1)
         registerHandler(new JdwpVmVersionHandler());
         registerHandler(new JdwpVmIdSizesHandler());
+        registerHandler(new JdwmVmClassPathsHandler());
         registerHandler(new JdwpVmAllClassesWithGenericsHandler());
 
         // EventRequest Command Set (15)

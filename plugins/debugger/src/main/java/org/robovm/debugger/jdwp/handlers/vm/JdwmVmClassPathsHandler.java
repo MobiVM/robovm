@@ -6,20 +6,18 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
  * @author Demyan Kimitsa
- * Returns reference types for all classes currently loaded by the target VM. Both the JNI signature and the generic
- * signature are returned for each class
+ * Retrieve the classpath and bootclasspath of the target VM. If the classpath is not defined, returns an empty list.
+ * If the bootclasspath is not defined returns an empty list.
  */
-public class JdwpVmAllClassesWithGenericsHandler implements IJdwpRequestHandler {
+public class JdwmVmClassPathsHandler implements IJdwpRequestHandler {
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-
-
-        output.writeInt32(1); // TODO: implement
-        output.writeByte((byte) 1);
-        output.writeLong(1);
-        output.writeStringWithLen("org.java.Object");
-        output.writeStringWithLen("");
-        output.writeInt32(3);
+        // base dir
+        output.writeStringWithLen(".");
+        // there is no class path
+        output.writeInt32(0);
+        // there is no boot class path
+        output.writeInt32(0);
 
         return JdwpConsts.Error.NONE;
     }
@@ -31,11 +29,11 @@ public class JdwpVmAllClassesWithGenericsHandler implements IJdwpRequestHandler 
 
     @Override
     public byte getCommand() {
-        return 20;
+        return 13;
     }
 
     @Override
     public String toString() {
-        return "VirtualMachine(1).AllClassesWithGeneric(20)";
+        return "VirtualMachine(1).ClassPaths(13)";
     }
 }

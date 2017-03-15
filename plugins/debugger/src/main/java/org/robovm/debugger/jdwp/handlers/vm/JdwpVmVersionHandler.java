@@ -34,4 +34,10 @@ public class JdwpVmVersionHandler implements IJdwpRequestHandler {
     public byte getCommand() {
         return 1;
     }
+
+    @Override
+    public String toString() {
+        return "VirtualMachine(1).Version(1)";
+    }
+
 }

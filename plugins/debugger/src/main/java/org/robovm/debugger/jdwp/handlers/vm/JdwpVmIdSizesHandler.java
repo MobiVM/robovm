@@ -37,4 +37,10 @@ public class JdwpVmIdSizesHandler implements IJdwpRequestHandler {
     public byte getCommand() {
         return 7;
     }
+
+    @Override
+    public String toString() {
+        return "VirtualMachine(1).IDSizes(7)";
+    }
+
 }
