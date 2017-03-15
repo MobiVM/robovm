@@ -2,9 +2,13 @@ package org.robovm.debugger.jdwp;
 
 import org.robovm.compiler.config.Arch;
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.execution.ExecutionControlCenter;
+import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearAllBreakpointsHandler;
+import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqSetHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwmVmClassPathsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesWithGenericsHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmDisposeHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmVersionHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmIdSizesHandler;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
@@ -39,6 +43,8 @@ public class JdwpDebugServer {
     private Map<Integer, IJdwpRequestHandler> handlers = new HashMap<>();
     private ByteBufferPacket headerBuffer = new ByteBufferPacket();
 
+    // TODO: temporaly put here
+    private ExecutionControlCenter executionControlCenter;
 
     public JdwpDebugServer(boolean jdwpClienMode, int jdwpPort) {
         this.jdwpClientMode = jdwpClienMode;
@@ -52,6 +58,8 @@ public class JdwpDebugServer {
 
         headerBuffer = new ByteBufferPacket();
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
+
+        executionControlCenter = new ExecutionControlCenter();
 
         registerHandlers();
     }
@@ -96,7 +104,6 @@ public class JdwpDebugServer {
             // run JDPW packet cycle
             while (!socketThread.isInterrupted()) {
                 header.readFromStream(inputStream, packet);
-                log.debug("JDWP req: cmdset " + header.commandset + ", cmd " + header.command );
 
                 // read payload if any
                 packet.reset();
@@ -108,10 +115,13 @@ public class JdwpDebugServer {
                 IJdwpRequestHandler handler = handlers.get(makeHandlerKey(header.commandset, header.command));
                 outPacket.reset();
                 short errorCode;
-                if (handler != null)
+                if (handler != null) {
+                    log.debug("handling req: " + handler.toString());
                     errorCode = handler.handle(packet, outPacket);
-                else
+                } else {
+                    log.debug("unhanndled req: cmdset " + header.commandset + ", cmd " + header.command );
                     errorCode = JdwpConsts.Error.NOT_IMPLEMENTED;
+                }
 
                 // send response
                 sendResponse(header.id, errorCode, outPacket);
@@ -191,12 +201,15 @@ public class JdwpDebugServer {
     private void registerHandlers() {
         // VirtualMachine Command Set (1)
         registerHandler(new JdwpVmVersionHandler());
-        registerHandler(new JdwpVmIdSizesHandler());
         registerHandler(new JdwmVmClassPathsHandler());
         registerHandler(new JdwpVmAllClassesWithGenericsHandler());
+        registerHandler(new JdwpVmDisposeHandler()); // 6
+        registerHandler(new JdwpVmIdSizesHandler()); // 7
 
         // EventRequest Command Set (15)
-        registerHandler(new JdwpEventReqSetHandler());
+        registerHandler(new JdwpEventReqSetHandler(executionControlCenter));
+        registerHandler(new JdwpEventReqClearHandler(executionControlCenter));
+        registerHandler(new JdwpEventReqClearAllBreakpointsHandler(executionControlCenter));
     }
 
     public static void main(String[] args) throws IOException {

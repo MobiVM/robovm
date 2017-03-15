@@ -64,7 +64,6 @@ public class JdwpConsts {
         public static final int INVALID_COUNT = 512;
     }
 
-
     public static class EventKind {
         public static final int SINGLE_STEP = 1;
         public static final int BREAKPOINT = 2;

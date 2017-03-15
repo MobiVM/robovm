@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
@@ -72,8 +73,7 @@ public class DbgLogger {
 
 
     private static class DbgFormatter extends Formatter {
-        // format string for printing the log record
-        private static final String format = LoggingSupport.getSimpleFormat();
+        private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss.SSS");
         private final Date date = new Date();
 
         private static final String LINE_SEPARATOR = System.getProperty("line.separator");
@@ -83,7 +83,7 @@ public class DbgLogger {
             StringBuilder sb = new StringBuilder();
 
             date.setTime(record.getMillis());
-            sb.append(date).append(" ").append(record.getLevel().getLocalizedName())
+            sb.append(dateFormat.format(date)).append(" ").append(record.getLevel().getLocalizedName())
                     .append(": ").append(formatMessage(record)).append(LINE_SEPARATOR);
 
             if (record.getThrown() != null) {

@@ -1,9 +1,16 @@
 package org.robovm.debugger.jdwp.handlers.eventrequest;
 
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.execution.ExecutionControlCenter;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
+import org.robovm.debugger.jdwp.vo.JdwpEventRequest;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author Demyan Kimitsa
@@ -12,53 +19,150 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * are the VM Start Event and the VM Death Event which are automatically generated events
  */
 public class JdwpEventReqSetHandler implements IJdwpRequestHandler {
-    private int requestCounter = 100;
+
+    private final ExecutionControlCenter center;
+
+    public JdwpEventReqSetHandler(ExecutionControlCenter center) {
+        this.center = center;
+    }
 
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         // parse input
         byte eventKind = payload.readByte();
         byte suspendPolicy = payload.readByte();
-        int modifierCount = payload.readInt32();
-        for (int i = 0; i < modifierCount; i++) {
-            byte modKind = payload.readByte();
-            if (modKind == 1) {
-                int count = payload.readInt32();
-            } else if (modKind == 2) {
-                int exprID = payload.readInt32();
-            } else if (modKind == 3) {
-                long threadID = payload.readLong();
-            } else if (modKind == 4) {
-                long referenceTypeID = payload.readLong();
-            } else if (modKind == 5) {
-                String classPattern = payload.readStringWithLen();
-            } else if (modKind == 6) {
-                String classPattern = payload.readStringWithLen();
-            } else if (modKind == 7) {
-                byte tag = payload.readByte();
-                long classID = payload.readLong();
-                long methodID = payload.readLong();
-                long index = payload.readLong();
-            } else if (modKind == 8) {
-                long referenceTypeID = payload.readLong();
-                boolean caught = payload.readByte() != 0;
-                boolean uncaught = payload.readByte() != 0;
-            } else if (modKind == 9) {
-                long referenceTypeID = payload.readLong();
-                long fieldID = payload.readLong();
-            } else if (modKind == 10) {
-                long thread = payload.readLong();
-                int size = payload.readInt32();
-                int depth = payload.readInt32();
-            } else if (modKind == 11) {
-                long instance = payload.readLong();
-            } else {
-                throw new DebuggerException("unsupported modifier kind " + modKind);
-            }
-        }
 
-        output.writeInt32(requestCounter++);// TODO: requestID
-        return JdwpConsts.Error.NONE;
+        // values to be set by modifiers
+        long threadID = 0;
+        int caseCount = 0;
+        Set<Long> referenceTypeIDs = null;
+        List<String> classMatchPatterns = null;
+        List<String> classExcludePatterns = null;
+        List<JdwpEventRequest.ExceptionMod> exceptions = null;
+        List<JdwpEventRequest.LocationMod> locations = null;
+        Set<Long> instancesIDs = null;
+        JdwpEventRequest.StepMod stepMod = null;
+
+        int modifierCount = payload.readInt32();
+        try {
+            for (int i = 0; i < modifierCount; i++) {
+                byte modKind = payload.readByte();
+                if (modKind == 1) {
+                    // Case Count - if modKind is 1
+                    // Limit the requested event to be reported at most once after a given number of occurrences. The event
+                    // is not reported the first count - 1 times this filter is reached. To request a one-off event,
+                    // call this method with a count of 1.
+                    caseCount = payload.readInt32();
+                } else if (modKind == 2) {
+                    // Case Conditional - if modKind is 2
+                    // Conditional on expression, For the future
+                    // ignoring
+                    int exprID = payload.readInt32();
+                } else if (modKind == 3) {
+                    // Case ThreadOnly - if modKind is 3
+                    // Restricts reported events to those in the given thread. This modifier can be used with any event kind
+                    // except for class unload.
+                    if (eventKind == JdwpConsts.EventKind.CLASS_UNLOAD)
+                        throw new DebuggerException(JdwpConsts.Error.INVALID_EVENT_TYPE);
+                    if (threadID != 0)
+                        throw new DebuggerException("Unexpected ThreadID mod duplicate", JdwpConsts.Error.INVALID_THREAD);
+                    threadID = payload.readLong();
+                } else if (modKind == 4) {
+                    // Case ClassOnly - if modKind is 4
+                    // For class prepare events, restricts the events generated by this request to be the preparation of the
+                    // given reference type and any subtypes.
+                    if (referenceTypeIDs == null)
+                        referenceTypeIDs = new HashSet<>();
+                    referenceTypeIDs.add(payload.readLong());
+                } else if (modKind == 5) {
+                    // Case ClassMatch - if modKind is 5
+                    // Restricts reported events to those for classes whose name matches the given restricted regular expression.
+                    // Required class pattern. Matches are limited to exact matches of the given class pattern and matches of
+                    // patterns that begin or end with '*'; for example, "*.Foo" or "java.*".
+                    if (classMatchPatterns == null)
+                        classMatchPatterns = new ArrayList<>();
+                    classMatchPatterns.add(payload.readStringWithLen());
+                } else if (modKind == 6) {
+                    // Case ClassExclude - if modKind is 6
+                    // Restricts reported events to those for classes whose name does not match the given restricted regular
+                    // expression
+                    if (classExcludePatterns == null)
+                        classExcludePatterns = new ArrayList<>();
+                    classExcludePatterns.add(payload.readStringWithLen());
+                } else if (modKind == 7) {
+                    // Case LocationOnly - if modKind is 7
+                    // Restricts reported events to those that occur at the given location. This modifier can be used with
+                    // breakpoint, field access, field modification, step, and exception event kinds.
+                    if (eventKind != JdwpConsts.EventKind.SINGLE_STEP && eventKind != JdwpConsts.EventKind.BREAKPOINT &&
+                            eventKind != JdwpConsts.EventKind.EXCEPTION) {
+                        throw new DebuggerException(JdwpConsts.Error.INVALID_LOCATION);
+                    }
+                    byte tag = payload.readByte();
+                    long classID = payload.readLong();
+                    long methodID = payload.readLong();
+                    long index = payload.readLong();
+                    if (locations == null)
+                        locations = new ArrayList<>();
+                    locations.add(new JdwpEventRequest.LocationMod(tag, classID, methodID, index));
+                } else if (modKind == 8) {
+                    // Case ExceptionOnly - if modKind is 8
+                    // Restricts reported exceptions by their class and whether they are caught or uncaught. This modifier
+                    // can be used with exception event kinds only.
+                    if (eventKind == JdwpConsts.EventKind.EXCEPTION)
+                        throw new DebuggerException(JdwpConsts.Error.INVALID_EVENT_TYPE);
+
+                    // Exception to report. Null (0) means report exceptions of all types. A non-null type restricts the reported
+                    // exception events to exceptions of the given type or any of its subtypes.
+                    long exceptionRefTypeID = payload.readLong();
+                    boolean caught = payload.readByte() != 0; // Report caught exceptions
+                    boolean uncaught = payload.readByte() != 0; // Report uncaught exceptions.
+                    if (exceptions == null)
+                        exceptions = new ArrayList<>();
+                    exceptions.add(new JdwpEventRequest.ExceptionMod(exceptionRefTypeID, caught, uncaught));
+                } else if (modKind == 9) {
+                    // Case FieldOnly - if modKind is 9
+                    long referenceTypeID = payload.readLong();
+                    long fieldID = payload.readLong();
+                    // TODO: don't think RoboVM can handle this, skipping for now
+                } else if (modKind == 10) {
+                    // Case Step - if modKind is 10
+                    // Restricts reported step events to those which satisfy depth and size constraints. This modifier can
+                    // be used with step event kinds only.
+                    if (eventKind == JdwpConsts.EventKind.SINGLE_STEP)
+                        throw new DebuggerException(JdwpConsts.Error.INVALID_EVENT_TYPE);
+                    if (stepMod != null)
+                        throw new DebuggerException("Only one STEP modifier per thread allowed", JdwpConsts.Error.INVALID_LOCATION);
+                    long stepThreadID = payload.readLong();
+                    if (threadID != 0 && threadID != stepThreadID)
+                        throw new DebuggerException(JdwpConsts.Error.INVALID_LOCATION);
+                    threadID = stepThreadID;
+                    int stepSize = payload.readInt32();
+                    int stepDepth = payload.readInt32();
+                    stepMod = new JdwpEventRequest.StepMod(stepSize, stepDepth);
+                } else if (modKind == 11) {
+                    // Case InstanceOnly - if modKind is 11
+                    // Restricts reported events to those whose active 'this' object is the given object. Match value is the
+                    // null object for static methods.
+                    if (instancesIDs == null)
+                        instancesIDs = new HashSet<>();
+                    instancesIDs.add(payload.readLong());
+                } else {
+                    throw new DebuggerException("unsupported modifier kind " + modKind, JdwpConsts.Error.NOT_IMPLEMENTED);
+                }
+            }
+
+            // parsed all data, register event
+            int requestId = center.jdwpSetEventRequest(eventKind, suspendPolicy, threadID, caseCount, referenceTypeIDs,
+                    classMatchPatterns, classExcludePatterns, exceptions, locations, instancesIDs, stepMod);
+            output.writeInt32(requestId);
+
+            return JdwpConsts.Error.NONE;
+
+        } catch (DebuggerException e) {
+            if (e.getCode() != -1)
+                return (short) e.getCode();
+            throw e;
+        }
     }
 
     @Override
@@ -69,5 +173,10 @@ public class JdwpEventReqSetHandler implements IJdwpRequestHandler {
     @Override
     public byte getCommand() {
         return 1;
+    }
+
+    @Override
+    public String toString() {
+        return "EventRequest(15).Set(1)";
     }
 }
