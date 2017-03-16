@@ -18,8 +18,13 @@ public abstract class ByteBufferReader {
     protected ByteBuffer byteBuffer;
 
 
-    public ByteBufferReader(ByteBuffer bb) {
+    protected ByteBufferReader(ByteBuffer bb) {
         byteBuffer = bb;
+    }
+
+
+    public static ByteBufferReader wrap(ByteBuffer bb) {
+        return new RangeByteBufferReader(bb);
     }
 
     public abstract int position();
@@ -30,15 +35,31 @@ public abstract class ByteBufferReader {
 
     protected abstract int byteBufferDataStart();
 
-    public abstract boolean hasRemaining();
-
     public abstract void reset();
 
     public abstract ByteBuffer getByteBuffer();
 
-        /**
-         * sanity checks that there is enough data
-         */
+    /** returns absolute position in bottom byte buffer */
+    public int absolutePosition() {
+        return byteBufferDataStart() + position();
+    }
+
+    /** helper just to reduce amount to casting */
+    public void setPosition(long position) {
+        setPosition((int)position);
+    }
+
+    public boolean hasRemaining() {
+        return position() < size();
+    }
+
+    public int bytesRemaining() {
+        return size() - position();
+    }
+
+    /**
+     * sanity checks that there is enough data
+     */
     protected void expects(int bytes) {
         if (this.position() + bytes > this.size())
             throw new BufferUnderflowException();
@@ -101,8 +122,28 @@ public abstract class ByteBufferReader {
         expects(size);
 
         try {
-            String res = new String(byteBuffer.array(), byteBuffer.position(), size, "UTF-8");
-            byteBuffer.position(byteBuffer.position() + size);
+            String res;
+            int byteBufPos = byteBuffer.position();
+            byte[] byteArray;
+            int byteArrayOffs;
+            if (byteBuffer.hasArray()) {
+                byteArray = byteBuffer.array();
+                byteArrayOffs = byteBuffer.position();
+            } else {
+                byteArray = new byte[size];
+                byteArrayOffs = 0;
+                byteBuffer.get(byteArray);
+            }
+            // get the string len
+            int strLen = size;
+            for (int i = 0; i < size; i++) {
+                if (byteArray[byteArrayOffs + i] == 0) {
+                    strLen = i;
+                    break;
+                }
+            }
+            res = new String(byteArray, byteArrayOffs, strLen, "UTF-8");
+            byteBuffer.position(byteBufPos + size);
             return res;
         } catch (UnsupportedEncodingException e) {
             throw new DebuggerException(e);
@@ -148,4 +189,19 @@ public abstract class ByteBufferReader {
         byteBuffer.order(order);
     }
 
+    public ByteBufferReader sliceAt(int pos, int size) {
+        return new RangeByteBufferReader(this, pos, size);
+    }
+
+    public ByteBufferReader slice(int offest, int size) {
+        return new RangeByteBufferReader(this, position() + offest, size);
+    }
+
+    public ByteBufferReader slice(int size) {
+        return new RangeByteBufferReader(this, position(), size);
+    }
+
+    public ByteBufferReader slice() {
+        return new RangeByteBufferReader(this, position(), bytesRemaining());
+    }
 }

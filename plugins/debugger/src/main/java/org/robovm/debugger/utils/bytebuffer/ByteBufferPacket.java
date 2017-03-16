@@ -10,7 +10,7 @@ import java.nio.ByteBuffer;
  * Byte buffer that is boxed
  */
 public class ByteBufferPacket extends ByteBufferReader {
-    public static final int DEFAULT_CAPACITY = 1024;
+    private static final int DEFAULT_CAPACITY = 1024;
 
 
     public ByteBufferPacket() {
@@ -41,11 +41,6 @@ public class ByteBufferPacket extends ByteBufferReader {
     @Override
     protected int byteBufferDataStart() {
         return 0;
-    }
-
-    @Override
-    public boolean hasRemaining() {
-        return byteBuffer.hasRemaining();
     }
 
     @Override
@@ -98,7 +93,7 @@ public class ByteBufferPacket extends ByteBufferReader {
 
     public ByteBufferPacket writeUnsignedInt32(long l) {
         wants(4);
-        int i = (short) (l & 0xFFFFFFFF);
+        int i = (int) l;
         byteBuffer.putInt(i);
         return this;
     }

@@ -7,13 +7,21 @@ import java.nio.ByteBuffer;
  */
 class RangeByteBufferReader extends ByteBufferReader{
     /** virtual data start -- first byte accessible */
-    protected int virtualStart;
+    private int virtualStart;
 
     /** virtual data end -- last byte accessible */
-    protected int virtualLimit;
+    private int virtualLimit;
+
+    public RangeByteBufferReader(ByteBuffer bb) {
+        super(bb.duplicate().asReadOnlyBuffer());
+        byteBuffer.order(bb.order());
+        virtualStart = 0;
+        virtualLimit = bb.limit();
+    }
 
     public RangeByteBufferReader(ByteBufferReader other, int offs, int size) {
         super(other.byteBuffer.duplicate().asReadOnlyBuffer());
+        byteBuffer.order(other.byteBuffer.order());
         if (other instanceof RangeByteBufferReader) {
             RangeByteBufferReader o = (RangeByteBufferReader) other;
             virtualStart = o.virtualStart + offs;
@@ -35,7 +43,7 @@ class RangeByteBufferReader extends ByteBufferReader{
 
     @Override
     public int position() {
-        return byteBuffer.position() - virtualLimit;
+        return byteBuffer.position() - virtualStart;
     }
 
     @Override
@@ -50,11 +58,6 @@ class RangeByteBufferReader extends ByteBufferReader{
     @Override
     protected int byteBufferDataStart() {
         return virtualStart;
-    }
-
-    @Override
-    public boolean hasRemaining() {
-        return virtualStart < virtualLimit;
     }
 
     @Override
