@@ -413,6 +413,7 @@ classes:
                 name: showBanner
     GKPeerPickerController: {} # DONE
     GKPlayer: # DONE
+        extends: NSObject # TODO: this added intentionally as super GKBasePlayer is ios10 only
         methods:
             '+loadPlayersForIdentifiers:withCompletionHandler:':
                 name: loadPlayers
