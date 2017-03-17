@@ -33,6 +33,10 @@ public class DbgLogger {
         impl.log(Level.INFO, this.tag + message);
     }
 
+    public void info(String message) {
+        impl.log(Level.INFO, this.tag + message);
+    }
+
     public void warn(String message) {
         impl.log(Level.WARNING, this.tag + message);
     }

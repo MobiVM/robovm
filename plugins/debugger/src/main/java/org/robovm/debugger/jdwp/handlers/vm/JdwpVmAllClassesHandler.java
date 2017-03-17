@@ -11,14 +11,13 @@ import java.util.List;
 
 /**
  * @author Demyan Kimitsa
- * Returns reference types for all classes currently loaded by the target VM. Both the JNI signature and the generic
- * signature are returned for each class
+ * Returns reference types for all classes currently loaded by the target VM.
  */
-public class JdwpVmAllClassesWithGenericsHandler implements IJdwpRequestHandler {
+public class JdwpVmAllClassesHandler implements IJdwpRequestHandler {
 
     private final VmDebuggerState vmDebuggerState;
 
-    public JdwpVmAllClassesWithGenericsHandler(VmDebuggerState vmDebuggerState) {
+    public JdwpVmAllClassesHandler(VmDebuggerState vmDebuggerState) {
         this.vmDebuggerState = vmDebuggerState;
     }
 
@@ -35,8 +34,6 @@ public class JdwpVmAllClassesWithGenericsHandler implements IJdwpRequestHandler 
             output.writeLong(classInfo.getRefId());
             // signature
             output.writeStringWithLen(classInfo.getSignature());
-            // genericSignature - The generic signature, an empty string if there is none.
-            output.writeStringWithLen("");
             // status
             output.writeInt32(Converter.jdwpClassStatus(classInfo));
         }
@@ -51,11 +48,11 @@ public class JdwpVmAllClassesWithGenericsHandler implements IJdwpRequestHandler 
 
     @Override
     public byte getCommand() {
-        return 20;
+        return 3;
     }
 
     @Override
     public String toString() {
-        return "VirtualMachine(1).AllClassesWithGeneric(20)";
+        return "VirtualMachine(1).AllClasses(3)";
     }
 }

@@ -7,38 +7,36 @@ import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
-import java.util.List;
-
 /**
  * @author Demyan Kimitsa
- * Returns reference types for all classes currently loaded by the target VM. Both the JNI signature and the generic
- * signature are returned for each class
+ * Returns reference types for all the classes loaded by the target VM which match the given signature.
+ * In RoboVM one instance is possible
  */
-public class JdwpVmAllClassesWithGenericsHandler implements IJdwpRequestHandler {
+public class JdwpVmClassesBySignatureHandler implements IJdwpRequestHandler{
 
     private final VmDebuggerState vmDebuggerState;
 
-    public JdwpVmAllClassesWithGenericsHandler(VmDebuggerState vmDebuggerState) {
+    public JdwpVmClassesBySignatureHandler(VmDebuggerState vmDebuggerState) {
         this.vmDebuggerState = vmDebuggerState;
     }
 
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-
-        List<ClassInfo> classes = this.vmDebuggerState.classes();
-
-        output.writeInt32(classes.size());
-        for (ClassInfo classInfo : classes) {
+        String signature = payload.readStringWithLen();
+        ClassInfo classInfo = vmDebuggerState.classBySignature(signature);
+        if(classInfo != null) {
+            // Number of reference types that follow.
+            output.writeInt32(1);
             // refTypeTag
             output.writeByte(Converter.jdwpTypeTag(classInfo));
             // typeID
             output.writeLong(classInfo.getRefId());
-            // signature
-            output.writeStringWithLen(classInfo.getSignature());
-            // genericSignature - The generic signature, an empty string if there is none.
-            output.writeStringWithLen("");
             // status
             output.writeInt32(Converter.jdwpClassStatus(classInfo));
+        } else {
+            // no class found
+            // TODO: logging here
+            output.writeInt32(0); // Number of reference types that follow.
         }
 
         return JdwpConsts.Error.NONE;
@@ -51,11 +49,11 @@ public class JdwpVmAllClassesWithGenericsHandler implements IJdwpRequestHandler 
 
     @Override
     public byte getCommand() {
-        return 20;
+        return 2;
     }
 
     @Override
     public String toString() {
-        return "VirtualMachine(1).AllClassesWithGeneric(20)";
+        return "VirtualMachine(1).ClassesBySignature(2)";
     }
 }

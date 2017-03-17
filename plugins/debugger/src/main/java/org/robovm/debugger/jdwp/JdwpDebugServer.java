@@ -1,13 +1,16 @@
 package org.robovm.debugger.jdwp;
 
 import org.robovm.compiler.config.Arch;
+import org.robovm.debugger.Debugger;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.execution.ExecutionControlCenter;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearAllBreakpointsHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqSetHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwmVmClassPathsHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesWithGenericsHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmClassesBySignatureHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmDisposeHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmVersionHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmIdSizesHandler;
@@ -42,11 +45,10 @@ public class JdwpDebugServer {
     private Socket socket;
     private Map<Integer, IJdwpRequestHandler> handlers = new HashMap<>();
     private ByteBufferPacket headerBuffer = new ByteBufferPacket();
+    private final Debugger debugger;
 
-    // TODO: temporaly put here
-    private ExecutionControlCenter executionControlCenter;
 
-    public JdwpDebugServer(boolean jdwpClienMode, int jdwpPort) {
+    public JdwpDebugServer(Debugger debugger, boolean jdwpClienMode, int jdwpPort) {
         this.jdwpClientMode = jdwpClienMode;
         this.jdwpPort = jdwpPort;
         this.socketThread = new Thread(new Runnable() {
@@ -59,12 +61,12 @@ public class JdwpDebugServer {
         headerBuffer = new ByteBufferPacket();
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
 
-        executionControlCenter = new ExecutionControlCenter();
-
-        registerHandlers();
+        this.debugger = debugger;
     }
 
     public void start() {
+        registerHandlers();
+
         this.socketThread.start();
     }
 
@@ -200,87 +202,32 @@ public class JdwpDebugServer {
 
     private void registerHandlers() {
         // VirtualMachine Command Set (1)
-        registerHandler(new JdwpVmVersionHandler());
-        registerHandler(new JdwmVmClassPathsHandler());
-        registerHandler(new JdwpVmAllClassesWithGenericsHandler());
+        registerHandler(new JdwpVmVersionHandler()); // 1
+        registerHandler(new JdwpVmClassesBySignatureHandler(debugger.debuggerState())); // 2
+        registerHandler(new JdwpVmAllClassesHandler(debugger.debuggerState())); // 3
+        // AllThreads Command (4)
+        // TopLevelThreadGroups Command (5)
         registerHandler(new JdwpVmDisposeHandler()); // 6
         registerHandler(new JdwpVmIdSizesHandler()); // 7
+        // Suspend Command (8)
+        // Resume Command (9)
+        // Exit Command (10)
+        // CreateString Command (11)
+        // Capabilities Command (12)
+        registerHandler(new JdwmVmClassPathsHandler()); // 13
+        // DisposeObjects Command (14)
+        // HoldEvents Command (15)
+        // ReleaseEvents Command (16)
+        // CapabilitiesNew Command (17)
+        // RedefineClasses Command (18)
+        // SetDefaultStratum Command (19)
+        registerHandler(new JdwpVmAllClassesWithGenericsHandler(debugger.debuggerState())); // 20
+        // InstanceCounts Command (21)
 
         // EventRequest Command Set (15)
-        registerHandler(new JdwpEventReqSetHandler(executionControlCenter));
-        registerHandler(new JdwpEventReqClearHandler(executionControlCenter));
-        registerHandler(new JdwpEventReqClearAllBreakpointsHandler(executionControlCenter));
+        registerHandler(new JdwpEventReqSetHandler(debugger.executionControlCenter()));
+        registerHandler(new JdwpEventReqClearHandler(debugger.executionControlCenter()));
+        registerHandler(new JdwpEventReqClearAllBreakpointsHandler(debugger.executionControlCenter()));
     }
-
-    public static void main(String[] args) throws IOException {
-        List<File> sourcePath = new ArrayList<>();
-        Arch arch = null;
-        File logDir = null;
-        boolean logToConsole = false;
-        boolean jdwpClienMode = false;
-        int jdwpPort = -1;
-
-        try {
-            int i = 0;
-            while (i < args.length) {
-                if ("-sourcepath".equals(args[i])) {
-                    for (String p : args[++i].split(File.pathSeparator)) {
-                        sourcePath.add(new File(p));
-                    }
-                } else if ("-arch".equals(args[i])) {
-                    String s = args[++i];
-                    arch = Arch.valueOf(s);
-                } else if ("-logdir".equals(args[i])) {
-                    logDir = new File(args[++i]);
-                } else if ("-logToConsole".equals(args[i])) {
-                    logToConsole = true;
-                } else if ("-jdwpClientMode".equals(args[i])) {
-                    jdwpClienMode = true;
-                } else if ("-jdwpPort".equals(args[i])) {
-                    jdwpPort = Integer.valueOf(args[++i]);
-                } else {
-                    throw new IllegalArgumentException("Unrecognized option: " + args[i]);
-                }
-                i++;
-            }
-
-            if (jdwpPort == -1)
-                throw new IllegalArgumentException("Missing jdwpPort argument");
-        } catch (Throwable t) {
-            String message = t.getMessage();
-            if (t instanceof ArrayIndexOutOfBoundsException) {
-                message = "Missing argument";
-            }
-            if (t instanceof IndexOutOfBoundsException) {
-                message = "Missing argument";
-            }
-
-            printUsageAndExit(message);
-        }
-
-        DbgLogger.setup(null, logToConsole);
-        JdwpDebugServer server = new JdwpDebugServer(jdwpClienMode, jdwpPort);
-        server.start();
-    }
-
-    private static void printUsageAndExit(String errorMessage) {
-        if (errorMessage != null) {
-            System.err.format("JdwpDebugServer: %s\n", errorMessage);
-        }
-
-        System.err.println("Usage: JdwpDebugServer [-options]");
-        System.err.println("Options:");
-        System.err.println("  -sourcepath <list> : separated list of directories, JAR archives, and ZIP \n"
-                + "                        archives to search for source files.");
-        System.err.println("  -arch <name>          The name of the LLVM arch to compile for. Allowed values\n"
-                + "                        are 'auto', 'x86', 'x86_64', 'thumbv7', 'arm64'. Default is\n"
-                + "                        'auto' which means use the LLVM default.");
-        System.err.println("  -logdir <dir>         The directory to put log file to. Default is temp dir");
-        System.err.println("  -verbose              Output log messages to console");
-        System.err.println("  -jdwpClientMode        Specifies that JDWP server shall connect instead of listening");
-        System.err.println("  -jdwpPort <value>     TCP port JDWP server should listen or connects to");
-        System.exit(errorMessage != null ? 1 : 0);
-    }
-
 
 }

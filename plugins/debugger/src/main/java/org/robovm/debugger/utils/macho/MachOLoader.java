@@ -1,6 +1,7 @@
 package org.robovm.debugger.utils.macho;
 
 import org.robovm.debugger.utils.bytebuffer.ByteBufferArrayReader;
+import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
 import org.robovm.debugger.utils.macho.cmds.SegmentCommand;
 import org.robovm.debugger.utils.macho.cmds.SymtabCommand;
@@ -26,9 +27,11 @@ import java.util.Map;
 public class MachOLoader {
     private final ByteBufferReader rootReader;
     private final MachHeader machOHeader;
+    private final int machOCpuType;
     private List<SegmentCommand> segments = new ArrayList<>();
     private Map<String, Long> symTable = new HashMap<>();
     private SegmentCommand dataSegment;
+
 
     public MachOLoader(File executable, int cpuType) throws MachOException {
 
@@ -53,6 +56,7 @@ public class MachOLoader {
         if (header.cputype() != cpuType)
             throw new MachOException("CPU type " + cpuType + " is not present in mach-o file");
         machOHeader = header;
+        machOCpuType = cpuType;
 
         // get some useful data
         readCommandData(rootReader, machOHeader);
@@ -98,12 +102,12 @@ public class MachOLoader {
                         if (nlist.isTypePreboundUndefined())
                             continue;
                     }
-                    if (nlist.n_desc() == 0)
+                    if (nlist.n_sect() == 0)
                         continue;
 
                     // save offset to NList as there is too much of symbols
                     String sym = stringReader.readStringZ((int) nlist.n_strx());
-                    symTable.put(sym, nlist.n_value());
+                    symTable.put(sym, nlist.getByteBufferOffset());
                 }
             }
 
@@ -132,6 +136,20 @@ public class MachOLoader {
         }
     }
 
+    public boolean isPatform64Bit() {
+        switch (machOCpuType) {
+            case MachOConsts.cpu_type.CPU_TYPE_X86_64:
+            case MachOConsts.cpu_type.CPU_TYPE_ARM64:
+                return true;
+
+            case MachOConsts.cpu_type.CPU_TYPE_X86:
+            case MachOConsts.cpu_type.CPU_TYPE_ARM:
+                return false;
+        }
+
+        throw new RuntimeException("Unknown CPU type to get data bit width " + machOCpuType);
+    }
+
     public long resolveSymbol(String symbolName) {
         Long nlistAddr = symTable.get("_" + symbolName);
         if (nlistAddr == null)
@@ -143,7 +161,7 @@ public class MachOLoader {
         return nlist.n_value();
     }
 
-    public ByteBufferReader readSymbolData(String symbolName) {
+    public ByteBufferMemoryReader readSymbolData(String symbolName) {
         // not likely to happen but data segment is required
         if (dataSegment == null)
             return null;
@@ -164,14 +182,20 @@ public class MachOLoader {
         if (section.offset() == 0 || section.size() == 0)
             return null;
 
-        // sanity: this should not happen
-        long sectionFileOffset = nlist.n_value() - section.addr();
-        if (sectionFileOffset < 0 || sectionFileOffset >= section.size())
+        // return entire data segment reader, just set position to start of data
+        ByteBufferMemoryReader dataSegmentReader = readDataSegment();
+        dataSegmentReader.setAddress(nlist.n_value());
+        return dataSegmentReader;
+    }
+
+    public ByteBufferMemoryReader readDataSegment() {
+        // not likely to happen but data segment is required
+        if (dataSegment == null)
             return null;
 
-        // make a slice, limit in size till end of section as size of symbol is not known
-        return rootReader.slice((int)(section.offset() + sectionFileOffset),
-                (int)(section.size() - sectionFileOffset));
+        // TODO: it is assumed that data segment is not interrupted and represent one piece in file
+        return new ByteBufferMemoryReader(rootReader, (int)dataSegment.fileoff(), (int)dataSegment.filesize(),
+                dataSegment.vmaddr(), isPatform64Bit());
     }
 
     public static void main(String[] argv) {
@@ -182,11 +206,11 @@ public class MachOLoader {
             System.out.println("Segments:");
             System.out.println(String.format("  %-30s | %10s | %16s | %16s", "", "size", "file_offs", "vm_addr"));
             for (SegmentCommand segment : loader.segments) {
-                System.out.println(String.format("  %-30s | %10d | %16X | %16X", segment.segname(),
+                System.out.println(String.format("  %-30s | %10X | %16X | %16X", segment.segname(),
                         segment.filesize(), segment.fileoff(), segment.vmaddr()));
                 int idx = 0;
                 for (Section section : segment.sections()) {
-                    System.out.println(String.format("  %4d:%-25s | %10d | %16X | %16X",
+                    System.out.println(String.format("  %4d:%-25s | %10X | %16X | %16X",
                             segment.firstSectionIdx() + idx, section.sectname(), section.size(), section.offset(), section.addr()));
                     idx++;
                 }

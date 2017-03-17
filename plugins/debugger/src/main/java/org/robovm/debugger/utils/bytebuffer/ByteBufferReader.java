@@ -113,9 +113,17 @@ public abstract class ByteBufferReader {
         return sb.toString();
     }
 
+    /**
+     * peeks string at position, doesn't change current pos
+     * @param at offset to read string at
+     * @return string read at specified offset
+     */
     public String readStringZ(int at) {
+        int oldPos = position();
         setPosition(at);
-        return readStringZ();
+        String s = readStringZ();
+        setPosition(oldPos);
+        return s;
     }
 
     public String readString(int size) {
