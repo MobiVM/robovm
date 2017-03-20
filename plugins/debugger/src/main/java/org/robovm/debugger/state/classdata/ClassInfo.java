@@ -1,6 +1,7 @@
 package org.robovm.debugger.state.classdata;
 
 import org.robovm.debugger.jdwp.handlers.RefIdHolder;
+import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
 
 /**
@@ -9,7 +10,7 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
  * it is being parsed right from application
  * class info hash is produced in Linker.java
  */
-public class ClassInfo implements RefIdHolder.IRefIdObject {
+public class ClassInfo extends BaseModifiersInfo {
     //typedef struct {
     //    Class* clazz;
     //    jint flags;
@@ -35,29 +36,24 @@ public class ClassInfo implements RefIdHolder.IRefIdObject {
     //    void* attributes;
     //} ClassInfo;
 
-    /** class info reference id that is to be reported to debugger */
-    long refId;
-
-    /** pointer to clazz data for lazy load once required */
-    long clazzPtr;
 
     /** class info flags */
-    int flags;
+    private int flags;
 
-    String className;
-    String superclassName;
+    private String className;
+    private String superclassName;
 
-    FieldInfo[] fields;
-    MethodInfo[] methods;
+    private FieldInfo[] fields;
+    private MethodInfo[] methods;
 
     // out of header position
-    int endOfHeaderPos;
+    private int endOfHeaderPos;
 
     void readClassInfoHeader(ByteBufferMemoryReader reader) {
         int pointerSize = reader.pointerSize();
 
         //    Class* clazz;
-        clazzPtr = reader.readPointer();
+        long clazzPtr = reader.readPointer();
         //    jint flags;
         flags = reader.readInt32();
         //    const char* className;
@@ -136,20 +132,6 @@ public class ClassInfo implements RefIdHolder.IRefIdObject {
     }
 
 
-    @Override
-    public long getRefId() {
-        return refId;
-    }
-
-    @Override
-    public void setRefId(long refId) {
-        this.refId = refId;
-    }
-
-    public int getFlags() {
-        return flags;
-    }
-
     public String getName() {
         return className;
     }
@@ -168,7 +150,12 @@ public class ClassInfo implements RefIdHolder.IRefIdObject {
         return methods;
     }
 
-    public boolean isInterface() {
-        return (flags & ClassDataConsts.classinfo.INTERFACE) != 0;
+    @Override
+    protected int convertModifiers() {
+        return Converter.classModifiers(flags);
+    }
+
+    public boolean hasError() {
+        return (flags & ClassDataConsts.classinfo.ERROR) != 0;
     }
 }

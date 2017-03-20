@@ -5,7 +5,6 @@ import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.FieldInfo;
-import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
@@ -32,9 +31,9 @@ public class JdwpRegTypeFieldsHandler implements IJdwpRequestHandler {
         output.writeInt32(fields.length);
         for (FieldInfo fieldInfo : fields) {
             output.writeLong(fieldInfo.getRefId());
-            output.writeStringWithLen(fieldInfo.name);
-            output.writeStringWithLen(fieldInfo.desc);
-            output.writeInt32(Converter.jdwpModifierBits(fieldInfo));
+            output.writeStringWithLen(fieldInfo.getName());
+            output.writeStringWithLen(fieldInfo.getDesc());
+            output.writeInt32(fieldInfo.modifiers());
         }
 
         return JdwpConsts.Error.NONE;

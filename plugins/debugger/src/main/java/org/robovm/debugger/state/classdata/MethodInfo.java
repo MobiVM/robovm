@@ -1,6 +1,6 @@
 package org.robovm.debugger.state.classdata;
 
-import org.robovm.debugger.jdwp.handlers.RefIdHolder;
+import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
 
 /**
@@ -9,7 +9,7 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
  * it is being parsed right from application
  * class info hash is produced in Linker.java
  */
-public class MethodInfo implements RefIdHolder.IRefIdObject {
+public class MethodInfo extends BaseModifiersInfo {
     //typedef struct {
     //    jint flags;
     //    jint vtableIndex;
@@ -24,47 +24,45 @@ public class MethodInfo implements RefIdHolder.IRefIdObject {
     //    void** targetFnPtr;
     //    void* callbackImpl;
     //} MethodInfo;
-    int flags;
-    String name;
-    String desc;
-    private long refId;
+    private int flags;
+    private String name;
+    private String desc;
 
 
     public void readMethodInfo(ByteBufferMemoryReader reader) {
         flags = reader.readInt16();
+
         int vtableIndex = reader.readInt16();
         name = reader.readStringZAtPtr(reader.readPointer());
 
-        // TODO: check compact descriptors
-        // like str__28_29B_00
         if ((flags & ClassDataConsts.methodinfo.COMPACT_DESC) != 0) {
             switch (reader.readByte()) {
                 case ClassDataConsts.desc.B:
-                    desc = "B";
+                    desc = "()B";
                     break;
                 case ClassDataConsts.desc.C:
-                    desc = "C";
+                    desc = "()C";
                     break;
                 case ClassDataConsts.desc.D:
-                    desc = "D";
+                    desc = "()D";
                     break;
                 case ClassDataConsts.desc.F:
-                    desc = "F";
+                    desc = "()F";
                     break;
                 case ClassDataConsts.desc.I:
-                    desc = "I";
+                    desc = "()I";
                     break;
                 case ClassDataConsts.desc.J:
-                    desc = "J";
+                    desc = "()J";
                     break;
                 case ClassDataConsts.desc.S:
-                    desc = "S";
+                    desc = "()S";
                     break;
                 case ClassDataConsts.desc.Z:
-                    desc = "Z";
+                    desc = "()Z";
                     break;
                 case ClassDataConsts.desc.V:
-                    desc = "V";
+                    desc = "()V";
                     break;
             }
         } else {
@@ -83,7 +81,7 @@ public class MethodInfo implements RefIdHolder.IRefIdObject {
         if (!isAbstract()) {
             impl = reader.readPointer();
             size = reader.readInt32();
-            if (isSyncronized())
+            if (isSynchronized())
                 synchronizedImpl = reader.readPointer();
             if (!isNative()) {
                 linetable = reader.readPointer();
@@ -97,16 +95,12 @@ public class MethodInfo implements RefIdHolder.IRefIdObject {
             callbackImpl = reader.readPointer();
     }
 
-    boolean isAbstract() {
-        return (flags & ClassDataConsts.methodinfo.ABSTRACT) != 0;
+    public String getName() {
+        return name;
     }
 
-    boolean isSyncronized() {
-        return (flags & ClassDataConsts.methodinfo.SYNCHRONIZED) != 0;
-    }
-
-    boolean isNative() {
-        return (flags & ClassDataConsts.methodinfo.NATIVE) != 0;
+    public String getDesc() {
+        return desc;
     }
 
     boolean isBroCallback() {
@@ -118,12 +112,7 @@ public class MethodInfo implements RefIdHolder.IRefIdObject {
     }
 
     @Override
-    public void setRefId(long refId) {
-        this.refId = refId;
-    }
-
-    @Override
-    public long getRefId() {
-        return refId;
+    protected int convertModifiers() {
+        return Converter.methodModifiers(flags);
     }
 }

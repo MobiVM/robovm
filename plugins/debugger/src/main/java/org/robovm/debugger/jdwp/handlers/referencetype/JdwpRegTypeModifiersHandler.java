@@ -4,7 +4,6 @@ import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.classdata.ClassInfo;
-import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
@@ -27,7 +26,7 @@ public class JdwpRegTypeModifiersHandler implements IJdwpRequestHandler {
         if (classInfo == null)
             return JdwpConsts.Error.INVALID_OBJECT;
 
-        output.writeInt32(Converter.jdwpModifierBits(classInfo));
+        output.writeInt32(classInfo.modifiers());
         return JdwpConsts.Error.NONE;
     }
 

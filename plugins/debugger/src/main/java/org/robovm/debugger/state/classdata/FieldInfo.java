@@ -1,6 +1,6 @@
 package org.robovm.debugger.state.classdata;
 
-import org.robovm.debugger.jdwp.handlers.RefIdHolder;
+import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
 
 /**
@@ -9,7 +9,7 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
  * it is being parsed right from application
  * class info hash is produced in Linker.java
  */
-public class FieldInfo implements RefIdHolder.IRefIdObject {
+public class FieldInfo extends BaseModifiersInfo {
     //typedef struct {
     //    jint flags;
     //    jint access;
@@ -20,15 +20,14 @@ public class FieldInfo implements RefIdHolder.IRefIdObject {
     //} FieldInfo;
 
 
-    private long refId;
-    public int flags;
-    public int access;
-    public String name;
-    public String desc;
-    public int offset;
+    private int flags;
+    private String name;
+    private String desc;
+    private int offset;
 
     public void readFieldInfo(ByteBufferMemoryReader reader) {
         flags = reader.readInt16();
+
         name = reader.readStringZAtPtr(reader.readPointer());
 
         if ((flags >> 12) != 0) {
@@ -54,13 +53,20 @@ public class FieldInfo implements RefIdHolder.IRefIdObject {
         }
     }
 
-    @Override
-    public void setRefId(long refId) {
-        this.refId = refId;
+    public String getName() {
+        return name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public int getOffset() {
+        return offset;
     }
 
     @Override
-    public long getRefId() {
-        return refId;
+    protected int convertModifiers() {
+        return Converter.fieldModifiers(flags);
     }
 }

@@ -3,8 +3,6 @@ package org.robovm.debugger.utils;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.state.classdata.ClassDataConsts;
 import org.robovm.debugger.state.classdata.ClassInfo;
-import org.robovm.debugger.state.classdata.FieldInfo;
-import org.robovm.debugger.state.classdata.MethodInfo;
 
 /**
  * @author Demyan Kimitsa
@@ -13,20 +11,19 @@ import org.robovm.debugger.state.classdata.MethodInfo;
 public final class Converter {
 
     public static byte jdwpTypeTag(ClassInfo classInfo) {
-        if ((classInfo.getFlags() & ClassDataConsts.classinfo.INTERFACE) != 0)
+        if (classInfo.isInterface())
             return JdwpConsts.TypeTag.INTERFACE;
-        return  JdwpConsts.TypeTag.CLASS;
+        return JdwpConsts.TypeTag.CLASS;
     }
 
     public static int jdwpClassStatus(ClassInfo classInfo) {
-        if ((classInfo.getFlags() & ClassDataConsts.classinfo.ERROR) != 0)
+        if (classInfo.hasError())
             return JdwpConsts.ClassStatus.ERROR;
         // TODO: check if these are valid
         return JdwpConsts.ClassStatus.INITIALIZED | JdwpConsts.ClassStatus.VERIFIED;
     }
 
-    public static int jdwpModifierBits(ClassInfo classInfo) {
-        int flags = classInfo.getFlags();
+    public static int classModifiers(int flags) {
         int jdwpFlags = 0;
 
         if ((flags & ClassDataConsts.classinfo.PUBLIC) != 0)
@@ -53,35 +50,76 @@ public final class Converter {
         return jdwpFlags;
     }
 
-    public static int jdwpModifierBits(FieldInfo fieldInfo) {
+    public static int fieldModifiers(int flags) {
         int jdwpFlags = 0;
-        int flags = fieldInfo.flags;
-//        if ((flags & FI_ACCESS_MASK) == FI_PUBLIC) jdwpFlags |= ACC_PUBLIC;
-//        if ((flags & FI_ACCESS_MASK) == FI_PRIVATE) jdwpFlags |= ACC_PRIVATE;
-//        if ((flags & FI_ACCESS_MASK) == FI_PROTECTED) jdwpFlags |= ACC_PROTECTED;
-//        if (flags & FI_STATIC) jdwpFlags |= ACC_STATIC;
-//        if (flags & FI_FINAL) jdwpFlags |= ACC_FINAL;
-//        if (flags & FI_VOLATILE) jdwpFlags |= ACC_VOLATILE;
-//        if (flags & FI_TRANSIENT) jdwpFlags |= ACC_TRANSIENT;
-//        if (flags & FI_SYNTHETIC) jdwpFlags |= ACC_SYNTHETIC;
-//        if (flags & FI_ENUM) jdwpFlags |= ACC_ENUM;
+        if ((flags & ClassDataConsts.fieldinfo.ACCESS_MASK) == ClassDataConsts.fieldinfo.PUBLIC)
+            jdwpFlags |= JdwpConsts.Modifiers.PUBLIC;
+
+        if ((flags & ClassDataConsts.fieldinfo.ACCESS_MASK) == ClassDataConsts.fieldinfo.PRIVATE)
+            jdwpFlags |= JdwpConsts.Modifiers.PRIVATE;
+
+        if ((flags & ClassDataConsts.fieldinfo.ACCESS_MASK) == ClassDataConsts.fieldinfo.PROTECTED)
+            jdwpFlags |= JdwpConsts.Modifiers.PROTECTED;
+
+        if ((flags & ClassDataConsts.fieldinfo.STATIC) !=0 )
+                jdwpFlags |= JdwpConsts.Modifiers.STATIC;
+
+        if ((flags & ClassDataConsts.fieldinfo.FINAL) != 0)
+                jdwpFlags |= JdwpConsts.Modifiers.FINAL;
+
+        if ((flags & ClassDataConsts.fieldinfo.VOLATILE) != 0)
+                jdwpFlags |= JdwpConsts.Modifiers.VOLATILE;
+
+        if ((flags & ClassDataConsts.fieldinfo.TRANSIENT) != 0)
+                jdwpFlags |= JdwpConsts.Modifiers.TRANSIENT;
+
+        if ((flags & ClassDataConsts.fieldinfo.SYNTHETIC) != 0)
+                jdwpFlags |= JdwpConsts.Modifiers.SYNTHETIC;
+
+        if ((flags & ClassDataConsts.fieldinfo.ENUM) != 0)
+                jdwpFlags |= JdwpConsts.Modifiers.ENUM;
+
         return jdwpFlags;
     }
 
-    public static int jdwpModifierBits(MethodInfo methodInfo) {
-//        jint access = 0;
-//        if ((flags & MI_ACCESS_MASK) == MI_PUBLIC) access |= ACC_PUBLIC;
-//        if ((flags & MI_ACCESS_MASK) == MI_PRIVATE) access |= ACC_PRIVATE;
-//        if ((flags & MI_ACCESS_MASK) == MI_PROTECTED) access |= ACC_PROTECTED;
-//        if (flags & MI_STATIC) access |= ACC_STATIC;
-//        if (flags & MI_FINAL) access |= ACC_FINAL;
-//        if (flags & MI_SYNCHRONIZED) access |= ACC_SYNCHRONIZED;
-//        if (flags & MI_BRIDGE) access |= ACC_BRIDGE;
-//        if (flags & MI_VARARGS) access |= ACC_VARARGS;
-//        if (flags & MI_NATIVE) access |= ACC_NATIVE;
-//        if (flags & MI_ABSTRACT) access |= ACC_ABSTRACT;
-//        if (flags & MI_STRICT) access |= ACC_STRICT;
-//        if (flags & MI_SYNTHETIC) access |= ACC_SYNTHETIC;
-        return 0;
+    public static int methodModifiers(int flags) {
+        int jdwpFlags = 0;
+        if ((flags & ClassDataConsts.methodinfo.ACCESS_MASK) == ClassDataConsts.methodinfo.PUBLIC)
+            jdwpFlags |= JdwpConsts.Modifiers.PUBLIC;
+
+        if ((flags & ClassDataConsts.methodinfo.ACCESS_MASK) == ClassDataConsts.methodinfo.PRIVATE)
+            jdwpFlags |= JdwpConsts.Modifiers.PRIVATE;
+
+        if ((flags & ClassDataConsts.methodinfo.ACCESS_MASK) == ClassDataConsts.methodinfo.PROTECTED)
+            jdwpFlags |= JdwpConsts.Modifiers.PROTECTED;
+
+        if ((flags & ClassDataConsts.methodinfo.STATIC) != 0)
+            jdwpFlags |= JdwpConsts.Modifiers.STATIC;
+
+        if ((flags & ClassDataConsts.methodinfo.FINAL) != 0)
+            jdwpFlags |= JdwpConsts.Modifiers.FINAL;
+
+        if ((flags & ClassDataConsts.methodinfo.SYNCHRONIZED) != 0)
+            jdwpFlags |= JdwpConsts.Modifiers.SYNCHRONIZED;
+
+        if ((flags & ClassDataConsts.methodinfo.BRIDGE) != 0)
+            jdwpFlags |= JdwpConsts.Modifiers.BRIDGE;
+
+        if ((flags & ClassDataConsts.methodinfo.VARARGS) != 0)
+            jdwpFlags |= JdwpConsts.Modifiers.VARARGS;
+
+        if ((flags & ClassDataConsts.methodinfo.NATIVE) != 0)
+            jdwpFlags |= JdwpConsts.Modifiers.NATIVE;
+
+        if ((flags & ClassDataConsts.methodinfo.ABSTRACT) != 0)
+            jdwpFlags |= JdwpConsts.Modifiers.ABSTRACT;
+
+        if ((flags & ClassDataConsts.methodinfo.STRICT) != 0)
+            jdwpFlags |= JdwpConsts.Modifiers.STRICT;
+
+        if ((flags & ClassDataConsts.methodinfo.SYNTHETIC) != 0)
+            jdwpFlags |= JdwpConsts.Modifiers.SYNTHETIC;
+
+        return jdwpFlags;
     }
 }
