@@ -1,25 +1,27 @@
 package org.robovm.debugger.jdwp;
 
-import org.robovm.compiler.config.Arch;
 import org.robovm.debugger.Debugger;
 import org.robovm.debugger.DebuggerException;
-import org.robovm.debugger.execution.ExecutionControlCenter;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearAllBreakpointsHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqSetHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeClassLoaderHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeFieldsHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeModifiersHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeSignatureHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwmVmClassPathsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesWithGenericsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmClassesBySignatureHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmDisposeHandler;
-import org.robovm.debugger.jdwp.handlers.vm.JdwpVmVersionHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmIdSizesHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmVersionHandler;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.jdwp.protocol.JdwpRequestHeader;
+import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
@@ -27,9 +29,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.nio.ByteOrder;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -197,14 +197,19 @@ public class JdwpDebugServer {
 
 
     private void registerHandler(IJdwpRequestHandler handler) {
-        handlers.put(makeHandlerKey(handler.getCommandSet(), handler.getCommand()), handler);
+        Integer key = makeHandlerKey(handler.getCommandSet(), handler.getCommand());
+        if (handlers.containsKey(key))
+            throw new RuntimeException("Internal error: specified JDWP handler key already registered");
+        handlers.put(key, handler);
     }
 
     private void registerHandlers() {
+        VmDebuggerState state = debugger.debuggerState();
+
         // VirtualMachine Command Set (1)
         registerHandler(new JdwpVmVersionHandler()); // 1
-        registerHandler(new JdwpVmClassesBySignatureHandler(debugger.debuggerState())); // 2
-        registerHandler(new JdwpVmAllClassesHandler(debugger.debuggerState())); // 3
+        registerHandler(new JdwpVmClassesBySignatureHandler(state)); // 2
+        registerHandler(new JdwpVmAllClassesHandler(state)); // 3
         // AllThreads Command (4)
         // TopLevelThreadGroups Command (5)
         registerHandler(new JdwpVmDisposeHandler()); // 6
@@ -221,8 +226,28 @@ public class JdwpDebugServer {
         // CapabilitiesNew Command (17)
         // RedefineClasses Command (18)
         // SetDefaultStratum Command (19)
-        registerHandler(new JdwpVmAllClassesWithGenericsHandler(debugger.debuggerState())); // 20
+        registerHandler(new JdwpVmAllClassesWithGenericsHandler(state)); // 20
         // InstanceCounts Command (21)
+
+        //ReferenceType Command Set (2)
+        registerHandler(new JdwpRegTypeSignatureHandler(state)); // 1
+        registerHandler(new JdwpRegTypeClassLoaderHandler()); // 2
+        registerHandler(new JdwpRegTypeModifiersHandler(state)); // 3
+        registerHandler(new JdwpRegTypeFieldsHandler(state)); // 4
+        //Methods (5)
+        //GetValues (6)
+        //SourceFile (7)
+        //NestedTypes (8)
+        //Status (9)
+        //Interfaces (10)
+        //ClassObject (11)
+        //SourceDebugExtension (12)
+        //SignatureWithGeneric (13)
+        //FieldsWithGeneric (14)
+        //MethodsWithGeneric (15)
+        //Instances (16)
+        //ClassFileVersion (17)
+        //ConstantPool (18)
 
         // EventRequest Command Set (15)
         registerHandler(new JdwpEventReqSetHandler(debugger.executionControlCenter()));

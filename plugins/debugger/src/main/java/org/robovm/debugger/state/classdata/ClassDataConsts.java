@@ -18,6 +18,52 @@ public class ClassDataConsts {
         public static final int ERROR = 0x100;
         public static final int INITIALIZED = 0x200;
         public static final int FINALIZABLE = 0x400;
+    }
 
+    public static final class fieldinfo {
+        public static final int ACCESS_MASK = 0x3;
+        public static final int PUBLIC = 0x1;
+        public static final int PRIVATE = 0x2;
+        public static final int PROTECTED = 0x3;
+        public static final int STATIC = 0x4;
+        public static final int FINAL = 0x8;
+        public static final int VOLATILE = 0x10;
+        public static final int TRANSIENT = 0x20;
+        public static final int SYNTHETIC = 0x40;
+        public static final int ENUM = 0x80;
+        public static final int ATTRIBUTES = 0x100;
+    }
+
+    public static final class methodinfo {
+        public static final int ACCESS_MASK = 0x3;
+        public static final int PUBLIC = 0x1;
+        public static final int PRIVATE = 0x2;
+        public static final int PROTECTED = 0x3;
+        public static final int STATIC = 0x4;
+        public static final int FINAL = 0x8;
+        public static final int SYNCHRONIZED = 0x10;
+        public static final int BRIDGE = 0x20;
+        public static final int VARARGS = 0x40;
+        public static final int NATIVE = 0x80;
+        public static final int ABSTRACT = 0x100;
+        public static final int STRICT = 0x200;
+        public static final int SYNTHETIC = 0x400;
+        public static final int ATTRIBUTES = 0x800;
+        public static final int BRO_BRIDGE = 0x1000;
+        public static final int BRO_CALLBACK = 0x2000;
+        public static final int COMPACT_DESC = 0x4000;
+    }
+
+    public static final class desc {
+        // as described in classinfo.c
+        public static final int B = 1;
+        public static final int C = 2;
+        public static final int D = 3;
+        public static final int F = 4;
+        public static final int I = 5;
+        public static final int J = 6;
+        public static final int S = 7;
+        public static final int Z = 8;
+        public static final int V = 9;
     }
 }

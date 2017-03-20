@@ -8,7 +8,7 @@ package org.robovm.debugger.utils.bytebuffer;
 public class ByteBufferMemoryReader extends RangeByteBufferReader {
     private final long startAddr;
     private final boolean is64bit;
-    private final long pointerSize;
+    private final int pointerSize;
 
     public ByteBufferMemoryReader(ByteBufferReader other, int offs, int size, long startAddr, boolean is64bit) {
         super(other, offs, size);
@@ -40,7 +40,7 @@ public class ByteBufferMemoryReader extends RangeByteBufferReader {
         return is64bit ? readLong() : readUnsignedInt32();
     }
 
-    public long pointerSize() {
+    public int pointerSize() {
         return pointerSize;
     }
 

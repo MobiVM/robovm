@@ -173,7 +173,7 @@ public abstract class ByteBufferReader {
     }
 
     public void skip(int bytesToSkip) {
-        setPosition(byteBuffer.position() + bytesToSkip);
+        setPosition(position() + bytesToSkip);
     }
 
     public byte[] readBytes() {

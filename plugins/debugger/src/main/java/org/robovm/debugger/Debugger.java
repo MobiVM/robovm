@@ -45,7 +45,7 @@ public class Debugger {
         this.jdwpPort = jdwpPort;
 
         DbgLogger.setup(null, logToConsole);
-        debuggerState = VmDebuggerState.create(appfile, arch);
+        debuggerState = new VmDebuggerState(appfile, arch);
         executionControlCenter = new ExecutionControlCenter();
         jdwpServer = new JdwpDebugServer(this, jdwpClienMode, jdwpPort);
         hooksChannel = null;

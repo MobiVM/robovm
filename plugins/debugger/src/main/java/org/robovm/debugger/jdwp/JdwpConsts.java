@@ -142,8 +142,19 @@ public class JdwpConsts {
         public static final int ERROR = 8;
     }
 
-    static class InvokeOptions {
+    public static class InvokeOptions {
         public static final int INVOKE_SINGLE_THREADED = 0x01;
         public static final int INVOKE_NONVIRTUAL = 0x02;
+    }
+
+    public static class Modifiers {
+        public static final int PUBLIC = 0x0001;
+        public static final int FINAL = 0x0010;
+        public static final int SUPER = 0x0020;
+        public static final int INTERFACE = 0x0200;
+        public static final int ABSTRACT = 0x0400;
+        public static final int SYNTHETIC = 0x1000;
+        public static final int ANNOTATION = 0x2000;
+        public static final int ENUM = 0x4000;
     }
 }

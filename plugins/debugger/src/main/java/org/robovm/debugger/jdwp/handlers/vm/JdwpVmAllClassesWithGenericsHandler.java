@@ -25,7 +25,7 @@ public class JdwpVmAllClassesWithGenericsHandler implements IJdwpRequestHandler 
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
 
-        List<ClassInfo> classes = this.vmDebuggerState.classes();
+        List<ClassInfo> classes = this.vmDebuggerState.classInfoLoader().classes();
 
         output.writeInt32(classes.size());
         for (ClassInfo classInfo : classes) {

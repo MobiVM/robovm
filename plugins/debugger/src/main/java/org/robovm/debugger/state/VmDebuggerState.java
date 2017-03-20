@@ -2,17 +2,16 @@ package org.robovm.debugger.state;
 
 import org.robovm.compiler.config.Arch;
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.jdwp.handlers.RefIdHolder;
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.ClassInfoLoader;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
+import org.robovm.debugger.state.classdata.FieldInfo;
+import org.robovm.debugger.state.classdata.MethodInfo;
+import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
 import org.robovm.debugger.utils.macho.MachOException;
 import org.robovm.debugger.utils.macho.MachOLoader;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author Demyan Kimitsa
@@ -20,52 +19,65 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class VmDebuggerState {
 
-    AtomicLong classRefGen = new AtomicLong();
-    AtomicLong methodsRefGen = new AtomicLong();
-    AtomicLong fieldRefGen = new AtomicLong();
+    // maps of references to objects
+    RefIdHolder<ClassInfo> classRefIdHolder = new RefIdHolder<>(RefIdHolder.RefIdType.CLASS_TYPE);
+    RefIdHolder<MethodInfo> methodsRefIdHolder = new RefIdHolder<>(RefIdHolder.RefIdType.METHOD_TYPE);
+    RefIdHolder<FieldInfo> fieldRefIdHolder = new RefIdHolder<>(RefIdHolder.RefIdType.FIELD_TYPE);
+    RefIdHolder referenceRefIdHolder = new RefIdHolder(RefIdHolder.RefIdType.REFERENCE_TYPE);
+    RefIdHolder frameRefIdHolder = new RefIdHolder(RefIdHolder.RefIdType.FRAME_TYPE);
 
     MachOLoader appFileLoader;
+    ByteBufferMemoryReader appFileDataMemoryReader;
     ClassInfoLoader classInfoLoader;
 
-    private VmDebuggerState() {
-    }
 
-    public static VmDebuggerState create(File appFile, Arch arch) {
+    public VmDebuggerState(File appFile, Arch arch) {
         try {
-            VmDebuggerState state = new VmDebuggerState();
 
             // load and parse binary, will dig some useful info from it
-            MachOLoader appFileLoader = new MachOLoader(appFile, MachOLoader.cpuTypeFromString(arch.toString()));
+            appFileLoader  = new MachOLoader(appFile, MachOLoader.cpuTypeFromString(arch.toString()));
+            appFileDataMemoryReader = appFileLoader.readDataSegment();
 
             // now load all classes info
             long bcBootClassesHash = appFileLoader.resolveSymbol("_bcBootClassesHash");
             long bcClassesHash = appFileLoader.resolveSymbol("_bcClassesHash");
-            ClassInfoLoader classInfoLoader = new ClassInfoLoader(appFileLoader.readDataSegment(),
-                    state.classRefGen, bcBootClassesHash, bcClassesHash);
-
-            // now start the state
-            state.attach(appFileLoader, classInfoLoader);
-
-            return state;
+            classInfoLoader = new ClassInfoLoader(classRefIdHolder, methodsRefIdHolder, fieldRefIdHolder,
+                    appFileDataMemoryReader, bcBootClassesHash, bcClassesHash);
         } catch (MachOException e) {
             throw new DebuggerException(e);
         }
     }
 
-    private void attach(MachOLoader appFileLoader, ClassInfoLoader classInfoLoader) {
-        this.appFileLoader = appFileLoader;
-        this.classInfoLoader = classInfoLoader;
+
+    public RefIdHolder<ClassInfo> classRefIdHolder() {
+        return classRefIdHolder;
     }
 
-    public List<ClassInfo> classes() {
-        return Collections.unmodifiableList(new ArrayList<>(this.classInfoLoader.classes().values()));
+    public RefIdHolder<MethodInfo> methodsRefIdHolder() {
+        return methodsRefIdHolder;
     }
 
-    public ClassInfo classBySignature(String signature) {
-        if (signature.startsWith("L") && signature.endsWith(";")) {
-            String className = signature.substring(1, signature.length() - 1);
-            return this.classInfoLoader.classes().get(className);
-        }
-        return null;
+    public RefIdHolder<FieldInfo> fieldRefIdHolder() {
+        return fieldRefIdHolder;
+    }
+
+    public RefIdHolder referenceRefIdHolder() {
+        return referenceRefIdHolder;
+    }
+
+    public RefIdHolder frameRefIdHolder() {
+        return frameRefIdHolder;
+    }
+
+    public MachOLoader appFileLoader() {
+        return appFileLoader;
+    }
+
+    public ByteBufferMemoryReader appFileDataMemoryReader() {
+        return appFileDataMemoryReader;
+    }
+
+    public ClassInfoLoader classInfoLoader() {
+        return classInfoLoader;
     }
 }

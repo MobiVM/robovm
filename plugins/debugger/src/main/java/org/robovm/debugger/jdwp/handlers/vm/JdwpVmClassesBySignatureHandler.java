@@ -23,7 +23,7 @@ public class JdwpVmClassesBySignatureHandler implements IJdwpRequestHandler{
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         String signature = payload.readStringWithLen();
-        ClassInfo classInfo = vmDebuggerState.classBySignature(signature);
+        ClassInfo classInfo = vmDebuggerState.classInfoLoader().classBySignature(signature);
         if(classInfo != null) {
             // Number of reference types that follow.
             output.writeInt32(1);
