@@ -7,9 +7,12 @@ import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqSetHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeClassLoaderHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeFieldsHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeMethodsHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeModifiersHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeSignatureHandler;
-import org.robovm.debugger.jdwp.handlers.vm.JdwmVmClassPathsHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmCapabilitiesHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmCapabilitiesNewHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmClassPathsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesWithGenericsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmClassesBySignatureHandler;
@@ -218,23 +221,23 @@ public class JdwpDebugServer {
         // Resume Command (9)
         // Exit Command (10)
         // CreateString Command (11)
-        // Capabilities Command (12)
-        registerHandler(new JdwmVmClassPathsHandler()); // 13
+        registerHandler(new JdwpVmCapabilitiesHandler()); // 12
+        registerHandler(new JdwpVmClassPathsHandler()); // 13
         // DisposeObjects Command (14)
         // HoldEvents Command (15)
         // ReleaseEvents Command (16)
-        // CapabilitiesNew Command (17)
-        // RedefineClasses Command (18)
-        // SetDefaultStratum Command (19)
+        registerHandler(new JdwpVmCapabilitiesNewHandler()); // 17
+        // RedefineClasses Command (18) -- NOT_IMPLEMENTED
+        // SetDefaultStratum Command (19) -- NOT_IMPLEMENTED
         registerHandler(new JdwpVmAllClassesWithGenericsHandler(state)); // 20
-        // InstanceCounts Command (21)
+        // InstanceCounts Command (21) -- NOT_IMPLEMENTED
 
         //ReferenceType Command Set (2)
         registerHandler(new JdwpRegTypeSignatureHandler(state)); // 1
         registerHandler(new JdwpRegTypeClassLoaderHandler()); // 2
         registerHandler(new JdwpRegTypeModifiersHandler(state)); // 3
         registerHandler(new JdwpRegTypeFieldsHandler(state)); // 4
-        //Methods (5)
+        registerHandler(new JdwpRegTypeMethodsHandler(state)); // 5
         //GetValues (6)
         //SourceFile (7)
         //NestedTypes (8)

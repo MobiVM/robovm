@@ -85,6 +85,12 @@ public class ByteBufferPacket extends ByteBufferReader {
         return this;
     }
 
+    public ByteBufferPacket writeBoolean(boolean b) {
+        wants(1);
+        byteBuffer.put((byte) (b ? 1 : 0));
+        return this;
+    }
+
     public ByteBufferPacket writeInt32(int i) {
         wants(4);
         byteBuffer.putInt(i);

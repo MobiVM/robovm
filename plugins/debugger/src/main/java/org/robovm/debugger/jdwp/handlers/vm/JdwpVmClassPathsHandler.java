@@ -9,7 +9,7 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * Retrieve the classpath and bootclasspath of the target VM. If the classpath is not defined, returns an empty list.
  * If the bootclasspath is not defined returns an empty list.
  */
-public class JdwmVmClassPathsHandler implements IJdwpRequestHandler {
+public class JdwpVmClassPathsHandler implements IJdwpRequestHandler {
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         // base dir
