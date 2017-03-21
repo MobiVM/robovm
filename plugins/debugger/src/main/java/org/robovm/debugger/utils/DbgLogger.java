@@ -1,7 +1,5 @@
 package org.robovm.debugger.utils;
 
-import sun.util.logging.LoggingSupport;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +12,6 @@ import java.util.logging.Formatter;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 /**
  * @author Demyan Kimitsa

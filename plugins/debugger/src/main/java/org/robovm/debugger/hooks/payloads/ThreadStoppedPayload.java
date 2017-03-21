@@ -1,5 +1,7 @@
 package org.robovm.debugger.hooks.payloads;
 
+import java.util.Arrays;
+
 /**
  * @author Demyan Kimitsa
  */
@@ -24,5 +26,16 @@ public class ThreadStoppedPayload {
         this.throwable = throwable;
         this.isCaught = isCaught;
         this.callStack = callStack;
+    }
+
+    @Override
+    public String toString() {
+        return "ThreadStoppedPayload{" +
+                "threadObj=" + threadObj +
+                ", thread=" + thread +
+                ", throwable=" + throwable +
+                ", isCaught=" + isCaught +
+                ", callStack=" + Arrays.toString(callStack) +
+                '}';
     }
 }

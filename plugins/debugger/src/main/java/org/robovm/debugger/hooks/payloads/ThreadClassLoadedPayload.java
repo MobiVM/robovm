@@ -1,5 +1,7 @@
 package org.robovm.debugger.hooks.payloads;
 
+import java.util.Arrays;
+
 /**
  * @author Demyan Kimitsa
  */
@@ -16,5 +18,16 @@ public class ThreadClassLoadedPayload {
         this.clazz = clazz;
         this.classInfo = classInfo;
         this.callStack = callStack;
+    }
+
+    @Override
+    public String toString() {
+        return "ThreadClassLoadedPayload{" +
+                "threadObj=" + threadObj +
+                ", thread=" + thread +
+                ", clazz=" + clazz +
+                ", classInfo=" + classInfo +
+                ", callStack=" + (callStack != null ? Arrays.toString(callStack) : null) +
+                '}';
     }
 }

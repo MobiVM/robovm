@@ -17,9 +17,21 @@ public abstract class ByteBufferReader {
     /** real byte buffer we are working with */
     protected ByteBuffer byteBuffer;
 
+    /** for pointers operation -- specifies it width */
+    protected final boolean is64bit;
+
+    /** pre-calculated pointer size  */
+    protected final int pointerSize;
+
+
+    public ByteBufferReader(ByteBuffer byteBuffer, boolean is64bit) {
+        this.byteBuffer = byteBuffer;
+        this.is64bit = is64bit;
+        pointerSize = is64bit ? 8 : 4;
+    }
 
     protected ByteBufferReader(ByteBuffer bb) {
-        byteBuffer = bb;
+        this(bb, false);
     }
 
 
@@ -97,7 +109,7 @@ public abstract class ByteBufferReader {
     }
 
     public long readLong() {
-        expects(4);
+        expects(8);
         return byteBuffer.getLong();
     }
 
@@ -172,6 +184,24 @@ public abstract class ByteBufferReader {
         return readString(stringLen);
     }
 
+    public long readPointer() {
+        return readPointer(false);
+    }
+
+    public long readPointer(boolean alligned) {
+        if (alligned) {
+            long oldAddr = position();
+            long allignedAddr = (oldAddr + pointerSize - 1) & ~(pointerSize - 1);
+            if (oldAddr != allignedAddr)
+                setPosition(allignedAddr);
+        }
+        return is64bit ? readLong() : readUnsignedInt32();
+    }
+
+    public int pointerSize() {
+        return pointerSize;
+    }
+
     public void skip(int bytesToSkip) {
         setPosition(position() + bytesToSkip);
     }
@@ -198,18 +228,18 @@ public abstract class ByteBufferReader {
     }
 
     public ByteBufferReader sliceAt(int pos, int size) {
-        return new RangeByteBufferReader(this, pos, size);
+        return new RangeByteBufferReader(this, pos, size, is64bit);
     }
 
     public ByteBufferReader slice(int offest, int size) {
-        return new RangeByteBufferReader(this, position() + offest, size);
+        return new RangeByteBufferReader(this, position() + offest, size, is64bit);
     }
 
     public ByteBufferReader slice(int size) {
-        return new RangeByteBufferReader(this, position(), size);
+        return new RangeByteBufferReader(this, position(), size, is64bit);
     }
 
     public ByteBufferReader slice() {
-        return new RangeByteBufferReader(this, position(), bytesRemaining());
+        return new RangeByteBufferReader(this, position(), bytesRemaining(), is64bit);
     }
 }

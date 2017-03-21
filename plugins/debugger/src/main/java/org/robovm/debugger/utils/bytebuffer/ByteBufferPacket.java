@@ -14,11 +14,15 @@ public class ByteBufferPacket extends ByteBufferReader {
 
 
     public ByteBufferPacket() {
-        this(DEFAULT_CAPACITY);
+        this(DEFAULT_CAPACITY, false);
     }
 
-    public ByteBufferPacket(int capacity) {
-        super(ByteBuffer.allocate(capacity));
+    public ByteBufferPacket(boolean is64Bit) {
+        this(DEFAULT_CAPACITY, is64Bit);
+    }
+
+    public ByteBufferPacket(int capacity, boolean is64Bit) {
+        super(ByteBuffer.allocate(capacity), is64Bit);
         reset();
     }
 
@@ -145,9 +149,14 @@ public class ByteBufferPacket extends ByteBufferReader {
     public void fillFromInputStream(InputStream is, int count) throws IOException {
         // will put to byte buffer
         wants(count);
-        int bytesRead = is.read(byteBuffer.array(), byteBuffer.position(), count);
-        if (count != bytesRead)
-            throw new BufferOverflowException();
+        int offset = 0;
+        while (count > 0) {
+            int bytesRead = is.read(byteBuffer.array(), byteBuffer.position() + offset, count);
+            if (bytesRead <= 0)
+                throw new BufferOverflowException();
+            offset += bytesRead;
+            count -= bytesRead;
+        }
     }
 
     public void writeBytes(byte[] bytes) {

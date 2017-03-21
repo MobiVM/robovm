@@ -11,4 +11,12 @@ public class InvokeCmdPayload {
         this.resultPtr = resultPtr;
         this.exceptionPrt = exceptionPrt;
     }
+
+    @Override
+    public String toString() {
+        return "InvokeCmdPayload{" +
+                "resultPtr=" + resultPtr +
+                ", exceptionPrt=" + exceptionPrt +
+                '}';
+    }
 }

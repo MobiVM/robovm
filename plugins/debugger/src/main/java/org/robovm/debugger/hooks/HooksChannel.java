@@ -6,15 +6,18 @@ import org.robovm.debugger.hooks.payloads.ThreadCallStackPayload;
 import org.robovm.debugger.hooks.payloads.ThreadClassLoadedPayload;
 import org.robovm.debugger.hooks.payloads.ThreadEventPayload;
 import org.robovm.debugger.hooks.payloads.ThreadStoppedPayload;
+import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.ByteBuffer;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,17 +27,20 @@ import java.util.Map;
  * Check hooks.c for reference
  */
 public class HooksChannel {
+    DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
 
     private final int DEFAULT_TIMEOUT = 5000;
     private final Thread socketThread;
     private final int hooksPort;
+    private final boolean is64bit;
     private Socket socket;
     private long reqIdCounter = 100;
     private final Map<Long, HookReqHolder> requestsInProgress = new HashMap<>();
     private final ByteBufferPacket headerBuffer = new ByteBufferPacket();
 
-    public HooksChannel(int hooksPort) {
+    public HooksChannel(boolean is64bit, int hooksPort) {
         this.hooksPort = hooksPort;
+        this.is64bit = is64bit;
         this.socketThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -57,20 +63,30 @@ public class HooksChannel {
             OutputStream outputStream = socket.getOutputStream();
 
             // read handshake
-            ByteBufferPacket buffer = new ByteBufferPacket();
-            buffer.fillFromInputStream(inputStream, 4);
+            ByteBufferPacket buffer = new ByteBufferPacket(is64bit);
+            buffer.fillFromInputStream(inputStream, 8);
             buffer.setPosition(0);
-            if (buffer.readUnsignedInt32() != HookConsts.handshake.QUESTION)
+            long handshake = buffer.readLong();
+            if (handshake != HookConsts.handshake.QUESTION)
                 throw new DebuggerException("Handshake failed!");
             // send handshake
-            buffer.setPosition(0);
-            buffer.writeUnsignedInt32(HookConsts.handshake.ANSWER);
+            buffer.reset();
+            buffer.writeLong(HookConsts.handshake.ANSWER);
             buffer.dumpToOutputStream(outputStream);
 
+            // now read robovmBaseSymbol
+            buffer.reset();
+            buffer.fillFromInputStream(inputStream, buffer.pointerSize());
+            buffer.setPosition(0);
+            long robovmBaseSymbol = buffer.readPointer();
+            // TODO: do something with it
+
+            // handshake complete, process messages
             while (!socketThread.isInterrupted()) {
                 // read entire response header
                 buffer.reset();
-                buffer.fillFromInputStream(inputStream, 9);
+                buffer.fillFromInputStream(inputStream, 1 + 8 + 8);
+                buffer.setPosition(0);
                 byte cmd = buffer.readByte();
                 long reqId = buffer.readLong();
                 long payloadSize = buffer.readLong();
@@ -82,6 +98,10 @@ public class HooksChannel {
                     // looks to be event
                     if (!this.isEvent(cmd))
                         throw new DebuggerException("Non event response received with reqId == 0");
+
+                    // lets create event
+                    Object response = createPayloadObject(cmd, buffer);
+                    log.debug(response.toString());
                 } else {
                     // its request
                     HookReqHolder holder = requestsInProgress.remove(reqId);
@@ -362,5 +382,30 @@ public class HooksChannel {
         }
 
         return false;
+    }
+
+    public static void main(String[] argv) {
+        int port;
+
+        if ("-port".equals(argv[0])) {
+            port = Integer.parseInt(argv[1]);
+        } else if ("-file".equals(argv[0])) {
+            try {
+                File file = new File(argv[1]);
+                if (file.exists())
+                    file.delete();
+                while (!file.exists() || file.length() == 0) {
+                    Thread.sleep(200);
+                }
+                port = Integer.parseInt(new String(Files.readAllBytes(file.toPath())));
+            } catch (InterruptedException | IOException e) {
+                throw new DebuggerException("File IO error", e);
+            }
+        } else {
+            throw new DebuggerException("Unknown arg !");
+        }
+
+        HooksChannel hooksChannel = new HooksChannel(true, port);
+        hooksChannel.start();
     }
 }

@@ -15,4 +15,14 @@ public class ThreadCallStackPayload {
         this.lineNumber = lineNumber;
         this.fp = fp;
     }
+
+    @Override
+    public String toString() {
+        return "ThreadCallStackPayload{" +
+                "clazzName='" + clazzName + '\'' +
+                ", impl=" + impl +
+                ", lineNumber=" + lineNumber +
+                ", fp=" + fp +
+                '}';
+    }
 }

@@ -19,4 +19,13 @@ public class ThreadEventPayload {
         this.thread = thread;
         this.exceptionPrt = 0;
     }
+
+    @Override
+    public String toString() {
+        return "ThreadEventPayload{" +
+                "threadObj=" + threadObj +
+                ", thread=" + thread +
+                ", exceptionPrt=" + exceptionPrt +
+                '}';
+    }
 }
