@@ -1,4 +1,4 @@
-package org.robovm.debugger.jdwp.handlers;
+package org.robovm.debugger.state.refid;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +27,7 @@ public class RefIdHolder<T extends RefIdHolder.IRefIdObject> {
     }
 
     private final AtomicLong generator;
-    private final Map<Long, T> idToObject;
+    protected final Map<Long, T> idToObject;
     private final long refIdStep;
 
     public RefIdHolder(RefIdType type) {
@@ -45,6 +45,12 @@ public class RefIdHolder<T extends RefIdHolder.IRefIdObject> {
         }
 
         return obj;
+    }
+
+    public T removeObject(T obj) {
+        synchronized (idToObject) {
+            return idToObject.remove(obj.getRefId());
+        }
     }
 
     public T objectById(long refId) {

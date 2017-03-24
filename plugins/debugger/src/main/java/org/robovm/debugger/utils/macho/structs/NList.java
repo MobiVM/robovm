@@ -35,6 +35,9 @@ public class NList {
     }
 
     private NList read32(ByteBufferReader reader) {
+        // byte buffer offset
+        byteBufferOffset = reader.absolutePosition();
+
         //uint32_t n_strx;	/* index into the string table */
         n_strx = reader.readUnsignedInt32();
         //uint8_t n_type;		/* type flag, see below */
@@ -109,19 +112,11 @@ public class NList {
         return (n_type & MachOConsts.nlist.N_TYPE) == MachOConsts.nlist.N_TYPE_INDR;
     }
 
-    private static ByteBufferArrayReader.ObjectReader<NList> objectReader32 = new ByteBufferArrayReader.ObjectReader<NList>() {
-        @Override
-        public NList readObject(ByteBufferReader reader, NList object) {
-            return object == null ? (new NList()).read32(reader) : object.read64(reader);
-        }
-    };
+    private static ByteBufferArrayReader.ObjectReader<NList> objectReader32 = (reader, object) ->
+            object == null ? (new NList()).read32(reader) : object.read32(reader);
 
-    private static ByteBufferArrayReader.ObjectReader<NList> objectReader64 = new ByteBufferArrayReader.ObjectReader<NList>() {
-        @Override
-        public NList readObject(ByteBufferReader reader, NList object) {
-            return object == null ? (new NList()).read64(reader) : object.read64(reader);
-        }
-    };
+    private static ByteBufferArrayReader.ObjectReader<NList> objectReader64 = (reader, object) ->
+            object == null ? (new NList()).read64(reader) : object.read64(reader);
 
     public static  ByteBufferArrayReader.ObjectReader<NList> OBJECT_READER(boolean is64b) {
         return is64b ? objectReader64 : objectReader32;

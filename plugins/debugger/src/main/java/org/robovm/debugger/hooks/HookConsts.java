@@ -5,7 +5,7 @@ package org.robovm.debugger.hooks;
  * Constants for hook channel operations
  * check hooks.c for details
  */
-final class HookConsts {
+public final class HookConsts {
 
     final static class handshake {
         static final long QUESTION = 0x526f626f564d3f3fL; // RoboVM??
@@ -35,16 +35,52 @@ final class HookConsts {
         static final byte CLASS_FILTER = 70;
     }
 
-    final static class events {
+    public final static class events {
         // events
-        static final int THREAD_ATTACHED = 100;
-        static final int THREAD_STARTED = 101;
-        static final int THREAD_DETTACHED = 102;
-        static final int THREAD_SUSPENDED = 103;
-        static final int THREAD_RESUMED = 104;
-        static final int BREAKPOINT = 105;
-        static final int THREAD_STEPPED = 106;
-        static final int CLASS_LOAD = 107;
-        static final int EXCEPTION = 108;
+        public static final byte THREAD_ATTACHED = 100;
+        public static final byte THREAD_STARTED = 101;
+        public static final byte THREAD_DETTACHED = 102;
+        public static final byte THREAD_SUSPENDED = 103;
+        public static final byte THREAD_RESUMED = 104;
+        public static final byte BREAKPOINT = 105;
+        public static final byte THREAD_STEPPED = 106;
+        public static final byte CLASS_LOAD = 107;
+        public static final byte EXCEPTION = 108;
+    }
+
+    public static String commandToString(int cmd) {
+        switch(cmd) {
+            case commands.READ_MEMORY: return "READ_MEMORY";
+            case commands.READ_CSTRING: return "READ_CSTRING";
+            case commands.WRITE_MEMORY: return "WRITE_MEMORY";
+            case commands.WRITE_AND_BITS: return "WRITE_AND_BITS";
+            case commands.WRITE_OR_BITS: return "WRITE_OR_BITS";
+            case commands.ALLOCATE: return "ALLOCATE";
+            case commands.FREE: return "FREE";
+
+            // thread operations
+            case commands.THREAD_SUSPEND: return "THREAD_SUSPEND";
+            case commands.THREAD_RESUME: return "THREAD_RESUME";
+            case commands.THREAD_STEP: return "THREAD_STEP";
+            case commands.THREAD_INVOKE: return "THREAD_INVOKE";
+            case commands.THREAD_NEWSTRING: return "THREAD_NEWSTRING";
+            case commands.THREAD_NEWARRAY: return "THREAD_NEWARRAY";
+            case commands.THREAD_NEWINSTANCE: return "THREAD_NEWINSTANCE";
+
+            // class operations
+            case commands.CLASS_FILTER: return "CLASS_FILTER";
+
+            case events.THREAD_ATTACHED: return "THREAD_ATTACHED";
+            case events.THREAD_STARTED: return "THREAD_STARTED";
+            case events.THREAD_DETTACHED: return "THREAD_DETTACHED";
+            case events.THREAD_SUSPENDED: return "THREAD_SUSPENDED";
+            case events.THREAD_RESUMED: return "THREAD_RESUMED";
+            case events.BREAKPOINT: return "BREAKPOINT";
+            case events.THREAD_STEPPED: return "THREAD_STEPPED";
+            case events.CLASS_LOAD: return "CLASS_LOAD";
+            case events.EXCEPTION: return "EXCEPTION";
+        }
+
+        return "UNKNOWN_" + cmd;
     }
 }

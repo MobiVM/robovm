@@ -1,7 +1,7 @@
 package org.robovm.debugger.state.classdata;
 
 import org.robovm.debugger.jdwp.JdwpConsts;
-import org.robovm.debugger.jdwp.handlers.RefIdHolder;
+import org.robovm.debugger.state.refid.RefIdHolder;
 
 /**
  * @author Demyan Kimitsa

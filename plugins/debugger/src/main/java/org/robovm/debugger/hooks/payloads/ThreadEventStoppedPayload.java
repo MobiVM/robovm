@@ -5,14 +5,16 @@ import java.util.Arrays;
 /**
  * @author Demyan Kimitsa
  */
-public class ThreadStoppedPayload {
+public class ThreadEventStoppedPayload {
+    public final int eventId;
     public final long threadObj;
     public final long thread;
     public final long throwable;
     public final boolean isCaught;
     public final ThreadCallStackPayload[] callStack;
 
-    public ThreadStoppedPayload(long threadObj, long thread, ThreadCallStackPayload[] callStack) {
+    public ThreadEventStoppedPayload(int eventId, long threadObj, long thread, ThreadCallStackPayload[] callStack) {
+        this.eventId = eventId;
         this.threadObj = threadObj;
         this.thread = thread;
         this.throwable = 0;
@@ -20,7 +22,8 @@ public class ThreadStoppedPayload {
         this.callStack = callStack;
     }
 
-    public ThreadStoppedPayload(long threadObj, long thread, long throwable, boolean isCaught, ThreadCallStackPayload[] callStack) {
+    public ThreadEventStoppedPayload(int eventId, long threadObj, long thread, long throwable, boolean isCaught, ThreadCallStackPayload[] callStack) {
+        this.eventId = eventId;
         this.threadObj = threadObj;
         this.thread = thread;
         this.throwable = throwable;
@@ -30,7 +33,7 @@ public class ThreadStoppedPayload {
 
     @Override
     public String toString() {
-        return "ThreadStoppedPayload{" +
+        return "ThreadEventStoppedPayload{" +
                 "threadObj=" + threadObj +
                 ", thread=" + thread +
                 ", throwable=" + throwable +

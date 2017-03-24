@@ -1,6 +1,7 @@
 package org.robovm.debugger.state.classdata;
 
-import org.robovm.debugger.jdwp.handlers.RefIdHolder;
+import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
 import org.robovm.debugger.utils.macho.MachOException;
 import org.robovm.debugger.utils.macho.MachOLoader;
@@ -11,7 +12,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author Demyan Kimitsa
@@ -22,8 +22,13 @@ public class ClassInfoLoader {
     final ByteBufferMemoryReader reader;
 
     // name to class info
-    private final Map<String, ClassInfo> nameToClass = new HashMap<>();
+    private final Map<String, ClassInfo> nameToClassInfo = new HashMap<>();
+    // class info address (as was read from mach-o) to class info
+    private final Map<Long, ClassInfo> addrToClassInfo = new HashMap<>();
     private final List<ClassInfo> classes;
+
+    // once class is loaded
+    private final Map<Long, ClassInfo> classAddrToClassInfo = new HashMap<>();
 
     // reference counters
     final RefIdHolder<ClassInfo> classRefIdHolder;
@@ -45,7 +50,7 @@ public class ClassInfoLoader {
 
 
         // create flat list of classes
-        classes = Collections.unmodifiableList(new ArrayList<>(this.nameToClass.values()));
+        classes = Collections.unmodifiableList(new ArrayList<>(this.nameToClassInfo.values()));
     }
 
     private void parseHash( long hash) {
@@ -71,17 +76,22 @@ public class ClassInfoLoader {
             ClassInfo classInfo = new ClassInfo();
             classInfo.readClassInfoHeader(reader);
             classRefIdHolder.addObject(classInfo);
-            nameToClass.put(classInfo.getName(), classInfo);
+            nameToClassInfo.put(classInfo.getName(), classInfo);
+            addrToClassInfo.put(classInfoPtr, classInfo);
             base += pointerSize;
         }
     }
 
     public ClassInfo classInfoByName(String name) {
-        return nameToClass.get(name);
+        return nameToClassInfo.get(name);
     }
 
     public ClassInfo classRefId(long refId) {
         return this.classRefIdHolder.objectById(refId);
+    }
+
+    public ClassInfo classByLoadedAddr(long classPointer) {
+        return classAddrToClassInfo.get(classPointer);
     }
 
     public List<ClassInfo> classes() {
@@ -91,9 +101,27 @@ public class ClassInfoLoader {
     public ClassInfo classBySignature(String signature) {
         if (signature.startsWith("L") && signature.endsWith(";")) {
             String className = signature.substring(1, signature.length() - 1);
-            return nameToClass.get(className);
+            return nameToClassInfo.get(className);
         }
         return null;
+    }
+
+    /**
+     * Notification that class was loaded in target
+     * @param classInfoPtr pointer to class info structure s
+     * @param clazzPtr pointer to loaded class object
+     */
+    public void onClassLoaded(long classInfoPtr, long clazzPtr) {
+        // find class info by class its memory location
+        ClassInfo classInfo = addrToClassInfo.get(classInfoPtr);
+        if (classInfo == null) {
+            // TODO: warn
+            throw new DebuggerException("TODO: unknown class info ptr!");
+        }
+
+        // set class info pointer
+        classInfo.setClazzPtr(clazzPtr);
+        classAddrToClassInfo.put(clazzPtr, classInfo);
     }
 
     public FieldInfo[] classFields(ClassInfo classInfo) {
@@ -112,16 +140,17 @@ public class ClassInfoLoader {
             long bcBootClassesHash = loader.resolveSymbol("_bcBootClassesHash");
             long bcClassesHash = loader.resolveSymbol("_bcClassesHash");
             ClassInfoLoader classInfoLoader = new ClassInfoLoader(
-                    new RefIdHolder<ClassInfo>(RefIdHolder.RefIdType.CLASS_TYPE),
-                    new RefIdHolder<MethodInfo>(RefIdHolder.RefIdType.METHOD_TYPE),
-                    new RefIdHolder<FieldInfo>(RefIdHolder.RefIdType.FIELD_TYPE),
+                    new RefIdHolder<>(RefIdHolder.RefIdType.CLASS_TYPE),
+                    new RefIdHolder<>(RefIdHolder.RefIdType.METHOD_TYPE),
+                    new RefIdHolder<>(RefIdHolder.RefIdType.FIELD_TYPE),
                     loader.readDataSegment(), bcBootClassesHash, bcClassesHash);
             for (ClassInfo info : classInfoLoader.classes)
                 info.loadData(classInfoLoader);
-            System.out.println("Loaded " + classInfoLoader.nameToClass.size() + " classes");
+            System.out.println("Loaded " + classInfoLoader.nameToClassInfo.size() + " classes");
         } catch (MachOException e) {
             e.printStackTrace();
         }
 
     }
+
 }

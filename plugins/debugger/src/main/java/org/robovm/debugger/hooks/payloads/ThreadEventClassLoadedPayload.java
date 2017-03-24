@@ -5,14 +5,14 @@ import java.util.Arrays;
 /**
  * @author Demyan Kimitsa
  */
-public class ThreadClassLoadedPayload {
+public class ThreadEventClassLoadedPayload {
     public final long threadObj;
     public final long thread;
     public final long clazz;
     public final long classInfo;
     public final ThreadCallStackPayload[] callStack;
 
-    public ThreadClassLoadedPayload(long threadObj, long thread, long clazz, long classInfo, ThreadCallStackPayload[] callStack) {
+    public ThreadEventClassLoadedPayload(long threadObj, long thread, long clazz, long classInfo, ThreadCallStackPayload[] callStack) {
         this.threadObj = threadObj;
         this.thread = thread;
         this.clazz = clazz;
@@ -22,7 +22,7 @@ public class ThreadClassLoadedPayload {
 
     @Override
     public String toString() {
-        return "ThreadClassLoadedPayload{" +
+        return "ThreadEventClassLoadedPayload{" +
                 "threadObj=" + threadObj +
                 ", thread=" + thread +
                 ", clazz=" + clazz +

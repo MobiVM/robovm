@@ -2,16 +2,20 @@ package org.robovm.debugger.state;
 
 import org.robovm.compiler.config.Arch;
 import org.robovm.debugger.DebuggerException;
-import org.robovm.debugger.jdwp.handlers.RefIdHolder;
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.ClassInfoLoader;
 import org.robovm.debugger.state.classdata.FieldInfo;
 import org.robovm.debugger.state.classdata.MethodInfo;
+import org.robovm.debugger.state.instances.VmThread;
+import org.robovm.debugger.state.refid.InstanceRefIdHolder;
+import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
 import org.robovm.debugger.utils.macho.MachOException;
 import org.robovm.debugger.utils.macho.MachOLoader;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Demyan Kimitsa
@@ -23,12 +27,16 @@ public class VmDebuggerState {
     RefIdHolder<ClassInfo> classRefIdHolder = new RefIdHolder<>(RefIdHolder.RefIdType.CLASS_TYPE);
     RefIdHolder<MethodInfo> methodsRefIdHolder = new RefIdHolder<>(RefIdHolder.RefIdType.METHOD_TYPE);
     RefIdHolder<FieldInfo> fieldRefIdHolder = new RefIdHolder<>(RefIdHolder.RefIdType.FIELD_TYPE);
-    RefIdHolder referenceRefIdHolder = new RefIdHolder(RefIdHolder.RefIdType.REFERENCE_TYPE);
+    InstanceRefIdHolder referenceRefIdHolder = new InstanceRefIdHolder();
     RefIdHolder frameRefIdHolder = new RefIdHolder(RefIdHolder.RefIdType.FRAME_TYPE);
+
+    // list of active threads
+    List<VmThread> threads = new ArrayList<>();
 
     MachOLoader appFileLoader;
     ByteBufferMemoryReader appFileDataMemoryReader;
     ClassInfoLoader classInfoLoader;
+    boolean isTarget64bit;
 
 
     public VmDebuggerState(File appFile, Arch arch) {
@@ -43,6 +51,8 @@ public class VmDebuggerState {
             long bcClassesHash = appFileLoader.resolveSymbol("_bcClassesHash");
             classInfoLoader = new ClassInfoLoader(classRefIdHolder, methodsRefIdHolder, fieldRefIdHolder,
                     appFileDataMemoryReader, bcBootClassesHash, bcClassesHash);
+
+            isTarget64bit = appFileLoader.isPatform64Bit();
         } catch (MachOException e) {
             throw new DebuggerException(e);
         }
@@ -61,7 +71,7 @@ public class VmDebuggerState {
         return fieldRefIdHolder;
     }
 
-    public RefIdHolder referenceRefIdHolder() {
+    public InstanceRefIdHolder referenceRefIdHolder() {
         return referenceRefIdHolder;
     }
 
@@ -79,5 +89,13 @@ public class VmDebuggerState {
 
     public ClassInfoLoader classInfoLoader() {
         return classInfoLoader;
+    }
+
+    public boolean isTarget64bit() {
+        return isTarget64bit;
+    }
+
+    public List<VmThread> threads() {
+        return threads;
     }
 }

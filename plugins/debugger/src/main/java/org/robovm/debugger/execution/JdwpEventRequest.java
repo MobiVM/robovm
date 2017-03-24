@@ -1,4 +1,4 @@
-package org.robovm.debugger.jdwp.vo;
+package org.robovm.debugger.execution;
 
 import java.util.List;
 import java.util.Set;

@@ -82,6 +82,11 @@ public abstract class ByteBufferReader {
         return byteBuffer.get();
     }
 
+    public boolean readBoolean() {
+        expects(1);
+        return byteBuffer.get() != 0;
+    }
+
     public int readInt32() {
         expects(4);
         return byteBuffer.getInt();

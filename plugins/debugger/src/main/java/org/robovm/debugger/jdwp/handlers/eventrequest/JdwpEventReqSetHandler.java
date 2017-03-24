@@ -4,7 +4,7 @@ import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.execution.ExecutionControlCenter;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.jdwp.vo.JdwpEventRequest;
+import org.robovm.debugger.execution.JdwpEventRequest;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 import java.util.ArrayList;
@@ -108,14 +108,14 @@ public class JdwpEventReqSetHandler implements IJdwpRequestHandler {
                     // Case ExceptionOnly - if modKind is 8
                     // Restricts reported exceptions by their class and whether they are caught or uncaught. This modifier
                     // can be used with exception event kinds only.
-                    if (eventKind == JdwpConsts.EventKind.EXCEPTION)
+                    if (eventKind != JdwpConsts.EventKind.EXCEPTION)
                         throw new DebuggerException(JdwpConsts.Error.INVALID_EVENT_TYPE);
 
                     // Exception to report. Null (0) means report exceptions of all types. A non-null type restricts the reported
                     // exception events to exceptions of the given type or any of its subtypes.
                     long exceptionRefTypeID = payload.readLong();
-                    boolean caught = payload.readByte() != 0; // Report caught exceptions
-                    boolean uncaught = payload.readByte() != 0; // Report uncaught exceptions.
+                    boolean caught = payload.readBoolean(); // Report caught exceptions
+                    boolean uncaught = payload.readBoolean(); // Report uncaught exceptions.
                     if (exceptions == null)
                         exceptions = new ArrayList<>();
                     exceptions.add(new JdwpEventRequest.ExceptionMod(exceptionRefTypeID, caught, uncaught));
@@ -128,7 +128,7 @@ public class JdwpEventReqSetHandler implements IJdwpRequestHandler {
                     // Case Step - if modKind is 10
                     // Restricts reported step events to those which satisfy depth and size constraints. This modifier can
                     // be used with step event kinds only.
-                    if (eventKind == JdwpConsts.EventKind.SINGLE_STEP)
+                    if (eventKind != JdwpConsts.EventKind.SINGLE_STEP)
                         throw new DebuggerException(JdwpConsts.Error.INVALID_EVENT_TYPE);
                     if (stepMod != null)
                         throw new DebuggerException("Only one STEP modifier per thread allowed", JdwpConsts.Error.INVALID_LOCATION);
@@ -152,7 +152,7 @@ public class JdwpEventReqSetHandler implements IJdwpRequestHandler {
             }
 
             // parsed all data, register event
-            int requestId = center.jdwpSetEventRequest(eventKind, suspendPolicy, threadID, caseCount, referenceTypeIDs,
+            int requestId = center.jdwpSetEventRequest(eventKind, suspendPolicy, caseCount, threadID, referenceTypeIDs,
                     classMatchPatterns, classExcludePatterns, exceptions, locations, instancesIDs, stepMod);
             output.writeInt32(requestId);
 

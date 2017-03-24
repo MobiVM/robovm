@@ -1,6 +1,6 @@
 package org.robovm.debugger.state.classdata;
 
-import org.robovm.debugger.jdwp.handlers.RefIdHolder;
+import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
 
@@ -36,6 +36,8 @@ public class ClassInfo extends BaseModifiersInfo {
     //    void* attributes;
     //} ClassInfo;
 
+    /** clazz ptr once loaded */
+    private long clazzPtr;
 
     /** class info flags */
     private int flags;
@@ -49,8 +51,12 @@ public class ClassInfo extends BaseModifiersInfo {
     // out of header position
     private int endOfHeaderPos;
 
+    private long ptr;
+
     void readClassInfoHeader(ByteBufferMemoryReader reader) {
         int pointerSize = reader.pointerSize();
+
+        ptr = reader.address();
 
         //    Class* clazz;
         long clazzPtr = reader.readPointer();
@@ -131,6 +137,13 @@ public class ClassInfo extends BaseModifiersInfo {
         }
     }
 
+    public long getClazzPtr() {
+        return clazzPtr;
+    }
+
+    public void setClazzPtr(long clazzPtr) {
+        this.clazzPtr = clazzPtr;
+    }
 
     public String getName() {
         return className;

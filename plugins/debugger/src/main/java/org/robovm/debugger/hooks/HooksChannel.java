@@ -3,9 +3,9 @@ package org.robovm.debugger.hooks;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.hooks.payloads.InvokeCmdPayload;
 import org.robovm.debugger.hooks.payloads.ThreadCallStackPayload;
-import org.robovm.debugger.hooks.payloads.ThreadClassLoadedPayload;
+import org.robovm.debugger.hooks.payloads.ThreadEventClassLoadedPayload;
 import org.robovm.debugger.hooks.payloads.ThreadEventPayload;
-import org.robovm.debugger.hooks.payloads.ThreadStoppedPayload;
+import org.robovm.debugger.hooks.payloads.ThreadEventStoppedPayload;
 import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
@@ -16,37 +16,49 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.IntSupplier;
 
 /**
  * @author Demyan Kimitsa
  * Class implements itnerface to hooks server as it is implemented device side
  * Check hooks.c for reference
  */
-public class HooksChannel {
+public class HooksChannel implements IHooksApi{
     DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
 
-    private final int DEFAULT_TIMEOUT = 5000;
+    private final static int DEFAULT_TIMEOUT = 5000;
+    private final static int PORT_FILE_WAIT_TIMEOUT = 60000;
     private final Thread socketThread;
-    private final int hooksPort;
+    private final IntSupplier hooksPortSupplier;
     private final boolean is64bit;
     private Socket socket;
     private long reqIdCounter = 100;
     private final Map<Long, HookReqHolder> requestsInProgress = new HashMap<>();
-    private final ByteBufferPacket headerBuffer = new ByteBufferPacket();
+    private final ByteBufferPacket headerBuffer;
+    private final IHooksEventsHandler eventsHandler;
 
-    public HooksChannel(boolean is64bit, int hooksPort) {
-        this.hooksPort = hooksPort;
+    private HooksChannel(boolean is64bit, IntSupplier hooksPortSupplier, IHooksEventsHandler eventsHandler) {
+        this.hooksPortSupplier = hooksPortSupplier;
         this.is64bit = is64bit;
-        this.socketThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                doSocketWork();
-            }
-        });
+        this.eventsHandler = eventsHandler;
+        this.socketThread = new Thread(() -> doSocketWork());
+
+        headerBuffer = new ByteBufferPacket();
+        headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
+    }
+
+    /** when port is known */
+    public HooksChannel(boolean is64bit, int port, IHooksEventsHandler eventsHandler) {
+        this(is64bit, () -> port, eventsHandler);
+    }
+
+    /** when port to be read from simulator port file  */
+    public HooksChannel(boolean is64bit, File portFile, IHooksEventsHandler eventsHandler) {
+        this(is64bit, () -> readFromPortFile(portFile), eventsHandler);
     }
 
     public void start() {
@@ -57,13 +69,16 @@ public class HooksChannel {
     private void doSocketWork() {
         // establish connection
         try {
+            int port = hooksPortSupplier.getAsInt();
             socket = new Socket();
-            socket.connect(new InetSocketAddress("127.0.0.1", hooksPort), 1000);
+            socket.connect(new InetSocketAddress("127.0.0.1", port), 1000);
+            socket.setTcpNoDelay(true);
             InputStream inputStream = socket.getInputStream();
             OutputStream outputStream = socket.getOutputStream();
 
             // read handshake
             ByteBufferPacket buffer = new ByteBufferPacket(is64bit);
+            buffer.setByteOrder(ByteOrder.BIG_ENDIAN);
             buffer.fillFromInputStream(inputStream, 8);
             buffer.setPosition(0);
             long handshake = buffer.readLong();
@@ -76,10 +91,12 @@ public class HooksChannel {
 
             // now read robovmBaseSymbol
             buffer.reset();
-            buffer.fillFromInputStream(inputStream, buffer.pointerSize());
+            buffer.fillFromInputStream(inputStream, 8);
             buffer.setPosition(0);
-            long robovmBaseSymbol = buffer.readPointer();
-            // TODO: do something with it
+            long robovmBaseSymbol = buffer.readLong();
+
+            // deliver callback that connected to device
+            eventsHandler.attached(this, robovmBaseSymbol);
 
             // handshake complete, process messages
             while (!socketThread.isInterrupted()) {
@@ -100,17 +117,20 @@ public class HooksChannel {
                         throw new DebuggerException("Non event response received with reqId == 0");
 
                     // lets create event
-                    Object response = createPayloadObject(cmd, buffer);
-                    log.debug(response.toString());
+                    Object payload = createPayloadObject(cmd, buffer);
+                    this.eventsHandler.handleEvent(payload);
                 } else {
-                    // its request
+                    // its response to request request
                     HookReqHolder holder = requestsInProgress.remove(reqId);
                     if (holder == null)
                         throw new DebuggerException("Unexpected response id " + reqId + ", cmd = " + cmd);
+
+                    log.debug("Received reps2req: " + reqId + " cmd:" + cmd);
+
                     // notify thread that there is an result
                     Object response = createPayloadObject(cmd, buffer);
                     holder.setResponse(response);
-                    holder.notify();
+                    holder.release();
                 }
             }
         } catch (Throwable e) {
@@ -121,6 +141,9 @@ public class HooksChannel {
 
 
     private <T> T sendCommand(byte cmd, ByteBufferPacket payload) {
+        if (Thread.currentThread().getId() == socketThread.getId())
+            throw new DebuggerException("Send command should not be invoked from response listening thread due blocking of last");
+
         // TODO: synchronizations to be done
         long reqId = reqIdCounter++;
         headerBuffer.reset();
@@ -134,21 +157,27 @@ public class HooksChannel {
         requestsInProgress.put(reqId, holder);
 
         try {
-            socket.getChannel().write(new ByteBuffer[]{headerBuffer.getByteBuffer(), payload.getByteBuffer()});
+            headerBuffer.dumpToOutputStream(socket.getOutputStream());
+            payload.dumpToOutputStream(socket.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        log.debug("sent " + cmd);
         try {
-            holder.wait(DEFAULT_TIMEOUT);
+            if (!holder.aquire(DEFAULT_TIMEOUT))
+                throw new DebuggerException("timeout performing req:" + reqId + "cmd " + cmd);
+
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            throw new DebuggerException(e);
         }
+        log.debug("received " + holder.response);
 
         //noinspection unchecked
         return (T) holder.response;
     }
 
+    @Override
     public byte[] readMemory(long addr, int numBytes) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(addr);
@@ -156,12 +185,14 @@ public class HooksChannel {
         return sendCommand(HookConsts.commands.READ_MEMORY, packet);
     }
 
+    @Override
     public String readCString(long addr) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(addr);
         return sendCommand(HookConsts.commands.READ_CSTRING, packet);
     }
 
+    @Override
     public void writeMemory(long addr, byte[] data) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(addr);
@@ -170,6 +201,7 @@ public class HooksChannel {
         sendCommand(HookConsts.commands.WRITE_MEMORY, packet);
     }
 
+    @Override
     public void andBits(long addr, byte mask) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(addr);
@@ -178,6 +210,7 @@ public class HooksChannel {
     }
 
 
+    @Override
     public void orBits(long addr, byte mask) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(addr);
@@ -185,18 +218,21 @@ public class HooksChannel {
         sendCommand(HookConsts.commands.WRITE_OR_BITS, packet);
     }
 
+    @Override
     public long allocate(int numBytes) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeInt32(numBytes);
         return sendCommand(HookConsts.commands.ALLOCATE, packet);
     }
 
+    @Override
     public void free(long addr) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(addr);
         sendCommand(HookConsts.commands.FREE, packet);
     }
 
+    @Override
     public void classFilter(boolean isSet, String className) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeByte((byte) (isSet ? -1 : 0));
@@ -206,18 +242,21 @@ public class HooksChannel {
         sendCommand(HookConsts.commands.CLASS_FILTER, packet);
     }
 
+    @Override
     public void threadSuspend(long thread) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(thread);
         sendCommand(HookConsts.commands.THREAD_SUSPEND, packet);
     }
 
+    @Override
     public void threadResume(long thread) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(thread);
         sendCommand(HookConsts.commands.THREAD_RESUME, packet);
     }
 
+    @Override
     public void threadStep(long thread, long pcLow, long pcHigh, long pcLow2, long pcHigh2) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(thread);
@@ -228,15 +267,18 @@ public class HooksChannel {
         sendCommand(HookConsts.commands.THREAD_STEP, packet);
     }
 
+    @Override
     public void threadInvoke(long thread, long classOrObjectPtr, String methodName, String descriptor,
                              boolean isClassMethod, byte returnType, Object[] arguments) {
         // TODO: implement
     }
 
+    @Override
     public void newInstance(long thread, long classPtr, String methodName, String descriptor, Object[] arguments) {
         // TODO: implement
     }
 
+    @Override
     public InvokeCmdPayload newString(long thread, String s) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(thread);
@@ -246,6 +288,7 @@ public class HooksChannel {
         return sendCommand(HookConsts.commands.THREAD_NEWSTRING, packet);
     }
 
+    @Override
     public InvokeCmdPayload newArray(long thread, int arrayLength, String elementName) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(thread);
@@ -300,7 +343,7 @@ public class HooksChannel {
             {
                 long threadObj = reader.readLong();
                 long thread = reader.readLong();
-                res = new ThreadEventPayload(threadObj, thread);
+                res = new ThreadEventPayload(cmd, threadObj, thread);
                 break;
             }
 
@@ -309,7 +352,7 @@ public class HooksChannel {
                 long threadObj = reader.readLong();
                 long thread = reader.readLong();
                 long throwable = reader.readLong();
-                res = new ThreadEventPayload(threadObj, thread, throwable);
+                res = new ThreadEventPayload(cmd, threadObj, thread, throwable);
                 break;
             }
 
@@ -319,7 +362,7 @@ public class HooksChannel {
                 long threadObj = reader.readLong();
                 long thread = reader.readLong();
                 ThreadCallStackPayload[] callStack = readCallStack(reader);
-                res = new ThreadStoppedPayload(threadObj, thread, callStack);
+                res = new ThreadEventStoppedPayload(cmd, threadObj, thread, callStack);
                 break;
             }
 
@@ -329,7 +372,7 @@ public class HooksChannel {
                 long throwable = reader.readLong();
                 boolean isCaught = reader.readByte() != 0;
                 ThreadCallStackPayload[] callStack = readCallStack(reader);
-                res = new ThreadStoppedPayload(threadObj, thread, throwable, isCaught, callStack);
+                res = new ThreadEventStoppedPayload(cmd, threadObj, thread, throwable, isCaught, callStack);
                 break;
             }
 
@@ -341,7 +384,7 @@ public class HooksChannel {
                 ThreadCallStackPayload[] callStack = null;;
                 if (reader.hasRemaining())
                     callStack = readCallStack(reader);
-                res = new ThreadClassLoadedPayload(threadObj, thread, clazz, classInfo, callStack);
+                res = new ThreadEventClassLoadedPayload(threadObj, thread, clazz, classInfo, callStack);
                 break;
 
             default:
@@ -384,6 +427,20 @@ public class HooksChannel {
         return false;
     }
 
+    public static int readFromPortFile(File portFile) {
+        try {
+            long ts = System.currentTimeMillis();
+            while (!portFile.exists() || portFile.length() == 0) {
+                if (System.currentTimeMillis() - ts > PORT_FILE_WAIT_TIMEOUT)
+                    throw new DebuggerException("Timeout while waiting simulator port file");
+                Thread.sleep(200);
+            }
+            return Integer.parseInt(new String(Files.readAllBytes(portFile.toPath())));
+        } catch (InterruptedException | IOException e) {
+            throw new DebuggerException(e);
+        }
+    }
+
     public static void main(String[] argv) {
         int port;
 
@@ -392,8 +449,8 @@ public class HooksChannel {
         } else if ("-file".equals(argv[0])) {
             try {
                 File file = new File(argv[1]);
-                if (file.exists())
-                    file.delete();
+//                if (file.exists())
+//                    file.delete();
                 while (!file.exists() || file.length() == 0) {
                     Thread.sleep(200);
                 }
@@ -405,7 +462,18 @@ public class HooksChannel {
             throw new DebuggerException("Unknown arg !");
         }
 
-        HooksChannel hooksChannel = new HooksChannel(true, port);
+        final HooksChannel hooksChannel = new HooksChannel(true, port, new IHooksEventsHandler() {
+            @Override
+            public void attached(IHooksApi api, long robovmBaseSymbol) {
+
+            }
+
+            @Override
+            public void handleEvent(Object payload) {
+                System.out.println(payload);
+            }
+        });
+        DbgLogger.setup(null, true);
         hooksChannel.start();
     }
 }

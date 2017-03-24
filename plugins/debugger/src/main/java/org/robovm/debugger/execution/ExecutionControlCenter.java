@@ -1,13 +1,18 @@
 package org.robovm.debugger.execution;
 
+import org.robovm.debugger.execution.predicates.EventClassNameMatchPredicate;
+import org.robovm.debugger.execution.predicates.EventClassTypeIdPredicate;
+import org.robovm.debugger.execution.predicates.EventExceptionPredicate;
+import org.robovm.debugger.execution.predicates.EventInstanceIdPredicate;
+import org.robovm.debugger.execution.predicates.EventThreadRefIdPredicate;
 import org.robovm.debugger.jdwp.JdwpConsts;
-import org.robovm.debugger.jdwp.vo.JdwpEventRequest;
 import org.robovm.debugger.utils.DbgLogger;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * @author Demyan Kimitsa
@@ -28,18 +33,54 @@ public class ExecutionControlCenter {
      * TODO: this method is called in context of JDWP server receiving thread. add synchronization to
      * elements once required
      */
-    public int jdwpSetEventRequest(byte eventKind, byte suspendPolicy, long threadID, int caseCount, Set<Long> referenceTypeIDs,
+    public int jdwpSetEventRequest(byte eventKind, byte suspendPolicy, int caseCount, long threadID,  Set<Long> referenceTypeIDs,
                                    List<String> classMatchPatterns, List<String> classExcludePatterns,
                                    List<JdwpEventRequest.ExceptionMod> exceptions, List<JdwpEventRequest.LocationMod> locations,
                                    Set<Long> instancesIDs, JdwpEventRequest.StepMod stepMod) {
-        // TODO: need to validate all refTypes against data in state once it is there
+        List<Predicate<EventData>> predicates = new ArrayList<>();
+
+        if (threadID > 0) {
+            // TODO: validate
+            predicates.add(new EventThreadRefIdPredicate(threadID));
+        }
+
+        if (referenceTypeIDs != null) {
+            // TODO: validate
+            predicates.add(new EventClassTypeIdPredicate(referenceTypeIDs));
+        }
+
+        if (classMatchPatterns != null)
+            predicates.add(new EventClassNameMatchPredicate(classMatchPatterns, false));
+
+        if (classExcludePatterns != null)
+            predicates.add(new EventClassNameMatchPredicate(classExcludePatterns, true));
+
+        if (exceptions != null) {
+            // TODO: validate
+            predicates.add(new EventExceptionPredicate(exceptions));
+        }
+
+        if (locations != null) {
+            // TODO: set breakpoints
+//        locations;
+        }
+
+        if (instancesIDs != null)
+            predicates.add(new EventInstanceIdPredicate(instancesIDs));
+
+        if (stepMod != null) {
+            // TODO: enable steps
+//        stepMod;
+        }
+
+
         // meanwhile just adding items to the list
         int requestId = eventRequestCounter += 1;
         JdwpEventRequest request = new JdwpEventRequest(requestId, eventKind, suspendPolicy, threadID, caseCount, referenceTypeIDs,
                 classMatchPatterns, classExcludePatterns, exceptions, locations, instancesIDs, stepMod);
 
         log.debug("jdwpSetEventRequest: " + request);
-        eventRequests.add(request);
+//        eventRequests.add(request);
 
         return requestId;
     }
