@@ -9,6 +9,9 @@ import org.robovm.debugger.hooks.payloads.ThreadEventClassLoadedPayload;
 import org.robovm.debugger.hooks.payloads.ThreadEventPayload;
 import org.robovm.debugger.hooks.payloads.ThreadEventStoppedPayload;
 import org.robovm.debugger.hooks.unitls.TargetByteBufferReader;
+import org.robovm.debugger.jdwp.JdwpConsts;
+import org.robovm.debugger.jdwp.events.JdwpClassLoadedEventData;
+import org.robovm.debugger.jdwp.events.JdwpEventData;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.instances.VmThread;
@@ -16,6 +19,7 @@ import org.robovm.debugger.utils.DbgLogger;
 
 import java.io.File;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author  Demyan Kimitsa
@@ -72,15 +76,10 @@ public class DebuggerLogic implements IHooksEventsHandler {
         long robovmBaseSymbolMachO = state.appFileLoader().resolveSymbol("robovmBaseSymbol");
         runtimeMemoryOffset = robovmBaseSymbol - robovmBaseSymbolMachO;
 
-        // TODO: send VM attached event
+        // TODO: send VM_START event
 
         // start thread to listen for events
-        this.hooksEventsThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                processEventsCycle();
-            }
-        });
+        this.hooksEventsThread = new Thread(() -> processEventsCycle());
         this.hooksEventsThread.start();
     }
 
@@ -93,6 +92,11 @@ public class DebuggerLogic implements IHooksEventsHandler {
     }
 
     private void processEventsCycle() {
+        // start of working with target device/simulator
+        hooksApi.threadResume(0);
+
+        // TODO: apply all possible pending breakpoints here
+
         while (!hooksEventsThread.isInterrupted()) {
             Object o = null;
             try {
@@ -111,57 +115,118 @@ public class DebuggerLogic implements IHooksEventsHandler {
     }
 
     private void processSingleEvent(Object o) {
+        JdwpEventData eventData;
         if (o instanceof ThreadEventClassLoadedPayload) {
-            ThreadEventClassLoadedPayload event = (ThreadEventClassLoadedPayload) o;
-
-            // mark class info as loaded
-            state.classInfoLoader().onClassLoaded(toMachOAddr(event.classInfo), event.clazz);
-
-            // deliver to JDWP
-
+            eventData = processClassLoadedEvent((ThreadEventClassLoadedPayload) o);
         } else if (o instanceof ThreadEventPayload) {
-            ThreadEventPayload event = (ThreadEventPayload) o;
-            if (event.eventId == HookConsts.events.THREAD_ATTACHED) {
-                // adding a thread
-                VmThread thread = state.referenceRefIdHolder().objectByAddr(event.threadObj);
-                if (thread == null) {
-                    ClassInfo ci = getClassInfo(event.threadObj);
-                    thread = new VmThread(event.threadObj, ci);
-                    state.referenceRefIdHolder().addObject(thread);
-                    state.threads().add(thread);
-
-                    // process as event
-                } else {
-                    // TODO: warning double attached thread !
-                }
-
-            } else if (event.eventId == HookConsts.events.THREAD_STARTED) {
-                VmThread thread = state.referenceRefIdHolder().objectByAddr(event.threadObj);
-                if (thread != null) {
-                    thread.setStatus(VmThread.Status.STARTED);
-                } else {
-                    // TODO: should not happen
-                }
-
-            } else if (event.eventId == HookConsts.events.THREAD_RESUMED) {
-                // there is no corresponding JDWP event
-            } else if (event.eventId == HookConsts.events.THREAD_SUSPENDED) {
-                // there is no corresponding JDWP event
-            } else if (event.eventId == HookConsts.events.THREAD_DETTACHED) {
-
-            } else {
-                throw new DebuggerException("Unsupported ThreadEventPayload eventId " + event.eventId);
-            }
-
+            eventData = processThreadEvent((ThreadEventPayload) o);
         } else if (o instanceof ThreadEventStoppedPayload) {
-            ThreadEventStoppedPayload event = (ThreadEventStoppedPayload) o;
+            eventData = processThreadStoppedEvent((ThreadEventStoppedPayload) o);
         } else {
             throw new DebuggerException("Unsupported Hooks object received " + o);
         }
+
+        if (eventData == null) {
+            // there is no event generated, as there is no support of these event in JDWP
+            return;
+        }
+
+        // filter data through event requests and deliver them to JDPW
     }
 
-    private void jdwpReportClassLoaded(ThreadEventClassLoadedPayload event) {
+    /**
+     * processes class load event -- marks class info as loaded
+     */
+    private JdwpEventData processClassLoadedEvent(ThreadEventClassLoadedPayload event) {
+        // mark class info as loaded
+        ClassInfo classInfo = state.classInfoLoader().onClassLoaded(toMachOAddr(event.classInfo), event.clazz);
 
+        // TODO: there is possible event with thread id and stack traces in case it is filtere
+        if (event.callStack != null) {
+            VmThread thread = state.referenceRefIdHolder().objectByAddr(event.threadObj);
+            if (thread == null)
+                throw new DebuggerException("Thread " + Long.toHexString(event.threadObj) + " is not recognized!");
+            resumeThread(thread);
+        }
+
+        // jdpw object
+        return new JdwpClassLoadedEventData(JdwpConsts.EventKind.CLASS_PREPARE, 0, classInfo);
+    }
+
+    /**
+     * processes thread events -- updates state
+     */
+    private JdwpEventData processThreadEvent(ThreadEventPayload event) {
+        // get corresponding thread object
+        VmThread thread = state.referenceRefIdHolder().objectByAddr(event.threadObj);
+        if (event.eventId == HookConsts.events.THREAD_ATTACHED || event.eventId == HookConsts.events.THREAD_STARTED) {
+            if (thread != null)
+                throw new DebuggerException("Thread " + Long.toHexString(event.threadObj) + " already attached/started!");
+
+            // attach thread
+            ClassInfo ci = getClassInfo(event.threadObj);
+            thread = new VmThread(event.threadObj, event.thread, ci);
+            state.referenceRefIdHolder().addObject(thread);
+            state.threads().add(thread);
+
+            // doesn't generate any event to JDWP
+            return null;
+        }
+
+        if (thread == null)
+            throw new DebuggerException("Thread " + Long.toHexString(event.threadObj) + " is not recognized!");
+
+        switch (event.eventId) {
+            case HookConsts.events.THREAD_RESUMED:
+                thread.setStatus(VmThread.Status.RESUMED);
+                // there is no corresponding JDPW event
+                return null;
+
+            case HookConsts.events.THREAD_DETTACHED:
+                // remove thread
+                state.referenceRefIdHolder().removeObject(thread);
+                state.threads().remove(thread);
+                return new JdwpEventData(JdwpConsts.EventKind.THREAD_END, thread.getRefId());
+
+            default:
+                throw new DebuggerException("Unsupported ThreadEventPayload eventId " + event.eventId);
+        }
+    }
+
+    /** thread stopped event */
+    private JdwpEventData processThreadStoppedEvent(ThreadEventStoppedPayload event) {
+        // get corresponding thread object
+        VmThread thread = state.referenceRefIdHolder().objectByAddr(event.threadObj);
+
+        if (thread == null)
+            throw new DebuggerException("Thread " + Long.toHexString(event.threadObj) + " is not recognized!");
+
+        switch (event.eventId) {
+            case HookConsts.events.THREAD_SUSPENDED:
+                thread.setStatus(VmThread.Status.SUPENDED);
+                // no corresponding JDWP events here
+                return null;
+
+            case HookConsts.events.EXCEPTION:
+//                thread.setStatus(VmThread.Status.SUPENDED);
+                // temporaly resume thread
+                resumeThread(thread);
+                return null;
+
+            case HookConsts.events.THREAD_STEPPED:
+                thread.setStatus(VmThread.Status.SUPENDED);
+
+            case HookConsts.events.BREAKPOINT:
+                thread.setStatus(VmThread.Status.SUPENDED);
+
+            default:
+                throw new DebuggerException("Unsupported ThreadEventStoppedPayload eventId " + event.eventId);
+        }
+    }
+
+    private void resumeThread(VmThread thread) {
+        hooksApi.threadResume(thread.getThreadPtr());
+        thread.setStatus(VmThread.Status.RESUMED);
     }
 
     private ClassInfo getClassInfo(long objectPtr) {

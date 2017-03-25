@@ -2,6 +2,7 @@ package org.robovm.debugger.execution;
 
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * @author Demyan Kimitsa
@@ -11,31 +12,21 @@ public class JdwpEventRequest {
     public final int requestId;
     public final byte eventKind;
     public final byte suspendPolicy;
-    public final long threadID;
-    public final int caseCount;
-    public final Set<Long> referenceTypeIDs;
-    public final List<String> classMatchPatterns;
-    public final List<String> classExcludePatterns;
-    public final List<ExceptionMod> exceptions;
-    public final List<LocationMod> locations;
-    public final Set<Long> instancesIDs;
-    public final StepMod step;
+    public final List<Predicate<EventData>> predicates;
 
-    public JdwpEventRequest(int requestId, byte eventKind, byte suspendPolicy, long threadID, int caseCount,
-                            Set<Long> referenceTypeIDs, List<String> classMatchPatterns, List<String> classExcludePatterns,
-                            List<ExceptionMod> exceptions, List<LocationMod> locations, Set<Long> instancesIDs, StepMod step) {
+    public JdwpEventRequest(int requestId, byte eventKind, byte suspendPolicy, List<Predicate<EventData>> predicates) {
         this.requestId = requestId;
         this.eventKind = eventKind;
         this.suspendPolicy = suspendPolicy;
-        this.threadID = threadID;
-        this.caseCount = caseCount;
-        this.referenceTypeIDs = referenceTypeIDs;
-        this.classMatchPatterns = classMatchPatterns;
-        this.classExcludePatterns = classExcludePatterns;
-        this.exceptions = exceptions;
-        this.locations = locations;
-        this.instancesIDs = instancesIDs;
-        this.step = step;
+        this.predicates = predicates;
+    }
+
+    public boolean test(EventData data) {
+        // test through all predicates
+        for (Predicate<EventData> predicate : predicates)
+            if (!predicate.test(data))
+                return false;
+        return true;
     }
 
     /** VO for step modifier */
@@ -84,15 +75,7 @@ public class JdwpEventRequest {
                 "requestId=" + requestId +
                 ", eventKind=" + eventKind +
                 ", suspendPolicy=" + suspendPolicy +
-                ", threadID=" + threadID +
-                ", caseCount=" + caseCount +
-                ", referenceTypeIDs=" + referenceTypeIDs +
-                ", classMatchPatterns=" + classMatchPatterns +
-                ", classExcludePatterns=" + classExcludePatterns +
-                ", exceptions=" + exceptions +
-                ", locations=" + locations +
-                ", instancesIDs=" + instancesIDs +
-                ", step=" + step +
+                ", predicates=" + predicates +
                 '}';
     }
 }

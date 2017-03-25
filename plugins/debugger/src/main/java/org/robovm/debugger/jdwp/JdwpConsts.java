@@ -65,31 +65,31 @@ public class JdwpConsts {
     }
 
     public static class EventKind {
-        public static final int SINGLE_STEP = 1;
-        public static final int BREAKPOINT = 2;
-        public static final int FRAME_POP = 3;
-        public static final int EXCEPTION = 4;
-        public static final int USER_DEFINED = 5;
-        public static final int THREAD_START = 6;
-        public static final int THREAD_DEATH = 7;
-        public static final int THREAD_END = 7;
-        public static final int CLASS_PREPARE = 8;
-        public static final int CLASS_UNLOAD = 9;
-        public static final int CLASS_LOAD = 10;
-        public static final int FIELD_ACCESS = 20;
-        public static final int FIELD_MODIFICATION = 21;
-        public static final int EXCEPTION_CATCH = 30;
-        public static final int METHOD_ENTRY = 40;
-        public static final int METHOD_EXIT = 41;
-        public static final int METHOD_EXIT_WITH_RETURN_VALUE = 42;
-        public static final int MONITOR_CONTENDED_ENTER = 43;
-        public static final int MONITOR_CONTENDED_ENTERED = 44;
-        public static final int MONITOR_WAIT = 45;
-        public static final int MONITOR_WAITED = 46;
-        public static final int VM_START = 90;
-        public static final int VM_INIT = 90;
-        public static final int VM_DEATH = 99;
-        public static final int VM_DISCONNECTED = 100;
+        public static final byte SINGLE_STEP = 1;
+        public static final byte BREAKPOINT = 2;
+        public static final byte FRAME_POP = 3;
+        public static final byte EXCEPTION = 4;
+        public static final byte USER_DEFINED = 5;
+        public static final byte THREAD_START = 6;
+        public static final byte THREAD_DEATH = 7;
+        public static final byte THREAD_END = 7;
+        public static final byte CLASS_PREPARE = 8;
+        public static final byte CLASS_UNLOAD = 9;
+        public static final byte CLASS_LOAD = 10;
+        public static final byte FIELD_ACCESS = 20;
+        public static final byte FIELD_MODIFICATION = 21;
+        public static final byte EXCEPTION_CATCH = 30;
+        public static final byte METHOD_ENTRY = 40;
+        public static final byte METHOD_EXIT = 41;
+        public static final byte METHOD_EXIT_WITH_RETURN_VALUE = 42;
+        public static final byte MONITOR_CONTENDED_ENTER = 43;
+        public static final byte MONITOR_CONTENDED_ENTERED = 44;
+        public static final byte MONITOR_WAIT = 45;
+        public static final byte MONITOR_WAITED = 46;
+        public static final byte VM_START = 90;
+        public static final byte VM_INIT = 90;
+        public static final byte VM_DEATH = 99;
+        public static final byte VM_DISCONNECTED = 100;
     }
 
     public static class SuspendPolicy {

@@ -111,7 +111,7 @@ public class ClassInfoLoader {
      * @param classInfoPtr pointer to class info structure s
      * @param clazzPtr pointer to loaded class object
      */
-    public void onClassLoaded(long classInfoPtr, long clazzPtr) {
+    public ClassInfo onClassLoaded(long classInfoPtr, long clazzPtr) {
         // find class info by class its memory location
         ClassInfo classInfo = addrToClassInfo.get(classInfoPtr);
         if (classInfo == null) {
@@ -122,6 +122,8 @@ public class ClassInfoLoader {
         // set class info pointer
         classInfo.setClazzPtr(clazzPtr);
         classAddrToClassInfo.put(clazzPtr, classInfo);
+
+        return classInfo;
     }
 
     public FieldInfo[] classFields(ClassInfo classInfo) {

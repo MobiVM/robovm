@@ -76,12 +76,11 @@ public class ExecutionControlCenter {
 
         // meanwhile just adding items to the list
         int requestId = eventRequestCounter += 1;
-        JdwpEventRequest request = new JdwpEventRequest(requestId, eventKind, suspendPolicy, threadID, caseCount, referenceTypeIDs,
-                classMatchPatterns, classExcludePatterns, exceptions, locations, instancesIDs, stepMod);
+        JdwpEventRequest request = new JdwpEventRequest(requestId, eventKind, suspendPolicy, predicates);
 
         log.debug("jdwpSetEventRequest: " + request);
-//        eventRequests.add(request);
 
+        eventRequests.add(request);
         return requestId;
     }
 
@@ -101,7 +100,8 @@ public class ExecutionControlCenter {
             if (req.requestId == requestID) {
                 if (req.eventKind != eventKind)
                     return JdwpConsts.Error.INVALID_EVENT_TYPE;
-                // TODO: perform device side removal of breakpoint etc
+
+                onEventRequestRemoved(req);
                 it.remove();
 
                 return JdwpConsts.Error.NONE;
@@ -121,9 +121,13 @@ public class ExecutionControlCenter {
         while (it.hasNext()) {
             JdwpEventRequest req = it.next();
             if (req.eventKind == JdwpConsts.EventKind.BREAKPOINT) {
+                onEventRequestRemoved(req);
                 it.remove();
-                // TODO: perform device side removal of breakpoint
             }
         }
+    }
+
+    protected void onEventRequestRemoved(JdwpEventRequest request) {
+        // TODO: perform device side removal of breakpoint
     }
 }

@@ -13,27 +13,33 @@ public class VmThread extends VmInstance {
         STARTED,
         SUPENDED,
         SUSPEND_PENDING,
-        RESUMED,
-        RESUME_PENDING
+        RESUMED
     }
 
-    Status status;
-    int suspendReqCount;
+    private final long threadPtr;
+    private Status status;
+    private int suspendReqCount;
 
-    public VmThread(long objectPtr, ClassInfo classInfo) {
+    public VmThread(long objectPtr, long threadPtr, ClassInfo classInfo) {
         super(objectPtr, classInfo);
+        this.threadPtr = threadPtr;
         status = Status.ATTACHED;
     }
 
-    public int suspend() {
+    public int suspended() {
         suspendReqCount += 1;
         return suspendReqCount;
     }
 
-    public int resume() {
+    public int resumed() {
         if (suspendReqCount > 0)
             suspendReqCount -= 1;
         return suspendReqCount;
+    }
+
+
+    public long getThreadPtr() {
+        return threadPtr;
     }
 
     public Status getStatus() {
