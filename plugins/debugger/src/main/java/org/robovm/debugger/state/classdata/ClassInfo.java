@@ -1,5 +1,6 @@
 package org.robovm.debugger.state.classdata;
 
+import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
@@ -44,6 +45,7 @@ public class ClassInfo extends BaseModifiersInfo {
 
     private String className;
     private String superclassName;
+    private ClassInfo[] interfaces;
 
     private FieldInfo[] fields;
     private MethodInfo[] methods;
@@ -51,12 +53,8 @@ public class ClassInfo extends BaseModifiersInfo {
     // out of header position
     private int endOfHeaderPos;
 
-    private long ptr;
-
     void readClassInfoHeader(ByteBufferMemoryReader reader) {
         int pointerSize = reader.pointerSize();
-
-        ptr = reader.address();
 
         //    Class* clazz;
         long clazzPtr = reader.readPointer();
@@ -105,8 +103,15 @@ public class ClassInfo extends BaseModifiersInfo {
             reader.skip(reader.pointerSize());
         }
 
-        // TODO: skip interface names for now
-        reader.skip(reader.pointerSize() * interfaceCount);
+        // reading interfaces
+        interfaces = new ClassInfo[interfaceCount];
+        for (int idx = 0; idx < interfaceCount; idx++) {
+            long ptr = reader.readPointer();
+            String interfaceName = reader.readStringZAtPtr(ptr);
+            interfaces[idx] = loader.classInfoByName(interfaceName);
+            if (interfaces[idx] == null)
+                throw new DebuggerException("Interface '" + interfaceName + "' not found in " + className);
+        }
 
         readFields(reader, fieldCount, loader.fieldRefIdHolder);
         readMethods(reader, methodCount, loader.methodsRefIdHolder);
