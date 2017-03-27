@@ -15,21 +15,32 @@
  */
 package org.robovm.compiler.plugin.debug;
 
+import org.robovm.compiler.Functions;
 import org.robovm.compiler.ModuleBuilder;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.llvm.ArrayType;
+import org.robovm.compiler.llvm.Constant;
+import org.robovm.compiler.llvm.ZeroInitializer;
 import org.robovm.compiler.llvm.BasicBlock;
+import org.robovm.compiler.llvm.Call;
+import org.robovm.compiler.llvm.ConstantBitcast;
 import org.robovm.compiler.llvm.Function;
+import org.robovm.compiler.llvm.Global;
 import org.robovm.compiler.llvm.Instruction;
 import org.robovm.compiler.llvm.IntegerConstant;
+import org.robovm.compiler.llvm.Linkage;
 import org.robovm.compiler.llvm.MetadataString;
+import org.robovm.compiler.llvm.Type;
+import org.robovm.compiler.llvm.Value;
+import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.debug.dwarf.DIBaseItem;
 import org.robovm.compiler.llvm.debug.dwarf.DICompileUnit;
 import org.robovm.compiler.llvm.debug.dwarf.DICompositeType;
 import org.robovm.compiler.llvm.debug.dwarf.DIFileDescriptor;
+import org.robovm.compiler.llvm.debug.dwarf.DIItemList;
 import org.robovm.compiler.llvm.debug.dwarf.DILineNumber;
 import org.robovm.compiler.llvm.debug.dwarf.DIMutableItemList;
-import org.robovm.compiler.llvm.debug.dwarf.DIItemList;
 import org.robovm.compiler.llvm.debug.dwarf.DISubprogram;
 import org.robovm.compiler.llvm.debug.dwarf.DwarfConst;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
@@ -42,7 +53,9 @@ import soot.tagkit.SourceFileTag;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * provides only line number debug information for now
@@ -70,11 +83,29 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         DIItemList dwarfVersion =  new DIItemList(v(2), v("Dwarf Version"), v(2));
         DIItemList debugInfoVersion = new DIItemList(v(2), v("Debug Info Version"), v(2));
         classBundle.flags = new DIItemList(mb, "llvm.module.flags", dwarfVersion.get(), debugInfoVersion.get());
+
+        if (config.isDebug()) {
+            classBundle.hookInstrumentedLines = new HashSet<>();
+            // create references to use to inject hooks
+            classBundle.hookInstrumentedBpTableWrap = new RefConstantWrap();
+            classBundle.hookInstrumentedBpTableRef = new ConstantBitcast(classBundle.hookInstrumentedBpTableWrap, Type.I8_PTR);
+        }
     }
 
     @Override
-    public void afterClass(Config config, Clazz clazz, ModuleBuilder moduleBuilder) throws IOException {
-        super.afterClass(config, clazz, moduleBuilder);
+    public void afterClass(Config config, Clazz clazz, ModuleBuilder mb) throws IOException {
+        super.afterClass(config, clazz, mb);
+
+        if (config.isDebug()) {
+            // size of the array to keep bp bits
+            int arraySize = (classBundle.hookInstrumentedMaxLineNo + 7) / 8;
+            // global value to this array (without values as zeroinit)
+            Global bpTable = new Global(clazz.getClassName().replace('/', '.') + "[bptable]",
+                    Linkage.internal, new ZeroInitializer(new ArrayType(arraySize, Type.I8)));
+            mb.addGlobal(bpTable);
+            // update wrapper to propper ref
+            classBundle.hookInstrumentedBpTableWrap.setRef(bpTable.ref());
+        }
 
         // cleanup
         classBundle = null;
@@ -130,6 +161,11 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                     currentLineNumber = tag.getLineNumber();
                     methodLineNumber = Math.min(methodLineNumber, currentLineNumber);
                     instruction.addMetadata((new DILineNumber(currentLineNumber, 0, diSubprogram)).get());
+
+                    if (config.isDebug()) {
+                        // add hooks instrumented callback to enable stepping/breakpoints
+                        injectHookInstrumented(currentLineNumber, function, unit, instruction);
+                    }
                 }
             }
         }
@@ -137,6 +173,35 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         diSubprogram.setScopeLineNo(methodLineNumber);
         diSubprogram.setDefLineNo(methodLineNumber);
         classBundle.diMethods.add(diSubprogram);
+    }
+
+
+    /** injects calls to _bcHookInstrumented to allow breakpoints/step by step debugging */
+    private void injectHookInstrumented(int lineNo, Function function, Unit unit, Instruction instruction) {
+        // TODO: this is quick and dirty implementation just to move forward
+        // probably this will cause extra stops or unwanted ones
+
+        // skip already hooked lines
+        if (classBundle.hookInstrumentedLines.contains(lineNo))
+            return;
+
+        BasicBlock block = instruction.getBasicBlock();
+        // prepare a call to following function:
+        // void _bcHookInstrumented(DebugEnv* debugEnv, jint lineNumber, jint lineNumberOffset, jbyte* bptable, void* pc)
+
+        // pick params
+        Value debugEnv = function.getParameterRef(0);
+        Variable pc = function.newVariable(Type.I8_PTR);
+        Call getPcCall = new Call(pc, Functions.GETPC, new Value[0]);
+        block.insertBefore(instruction, getPcCall);
+
+        // lineNumberOffset is zero as single breakpoint table per class
+        Call bcHookInstrumented = new Call(Functions.BC_HOOK_INSTRUMENTED, debugEnv, new IntegerConstant(lineNo),
+                new IntegerConstant(0), classBundle.hookInstrumentedBpTableRef, pc.ref());
+        block.insertBefore(instruction, bcHookInstrumented);
+
+        classBundle.hookInstrumentedMaxLineNo = Math.max(classBundle.hookInstrumentedMaxLineNo, lineNo);
+        classBundle.hookInstrumentedLines.add(lineNo);
     }
 
 
@@ -164,6 +229,35 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         DIMutableItemList<DISubprogram> diMethods;
         DIBaseItem diCompileUnit;
         DIBaseItem flags;
+
+        // information for debugger
+        Set<Integer> hookInstrumentedLines;
+        int hookInstrumentedMaxLineNo;
+        ConstantBitcast hookInstrumentedBpTableRef;
+        RefConstantWrap hookInstrumentedBpTableWrap;
+    }
+
+    /** wrapper for reference constant, as size of BP table during run is not known */
+    private static class RefConstantWrap extends Constant {
+	    Constant ref;
+
+        public void setRef(Constant ref) {
+            this.ref = ref;
+        }
+
+        @Override
+        public Type getType() {
+            if (ref == null)
+                throw new IllegalArgumentException("Wrap reference is not set");
+            return ref.getType();
+        }
+
+        @Override
+        public String toString() {
+            if (ref == null)
+                throw new IllegalArgumentException("Wrap reference is not set");
+            return ref.toString();
+        }
     }
 
 	private IntegerConstant v(int i) {
