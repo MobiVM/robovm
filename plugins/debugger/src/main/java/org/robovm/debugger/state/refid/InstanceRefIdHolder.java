@@ -34,10 +34,15 @@ public class InstanceRefIdHolder extends RefIdHolder<VmInstance> {
         }
     }
 
-    public <T extends VmInstance> T objectByAddr(long addr) {
+    public <T extends VmInstance> T instanceByAddr(long addr) {
         synchronized (idToObject) {
             //noinspection unchecked
             return (T)addrToObject.get(addr);
         }
+    }
+
+    public <T extends VmInstance> T instanceById(long refId) {
+        //noinspection unchecked
+        return (T)super.objectById(refId);
     }
 }

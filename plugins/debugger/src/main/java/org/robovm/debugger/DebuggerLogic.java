@@ -5,6 +5,7 @@ import org.robovm.debugger.hooks.HookConsts;
 import org.robovm.debugger.hooks.HooksChannel;
 import org.robovm.debugger.hooks.IHooksApi;
 import org.robovm.debugger.hooks.IHooksEventsHandler;
+import org.robovm.debugger.hooks.payloads.ThreadCallStackPayload;
 import org.robovm.debugger.hooks.payloads.ThreadEventClassLoadedPayload;
 import org.robovm.debugger.hooks.payloads.ThreadEventPayload;
 import org.robovm.debugger.hooks.payloads.ThreadEventStoppedPayload;
@@ -12,14 +13,19 @@ import org.robovm.debugger.hooks.unitls.TargetByteBufferReader;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.events.JdwpClassLoadedEventData;
 import org.robovm.debugger.jdwp.events.JdwpEventData;
+import org.robovm.debugger.jdwp.events.JdwpThreadStoppedEventData;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.classdata.ClassInfo;
+import org.robovm.debugger.state.classdata.MethodInfo;
+import org.robovm.debugger.state.instances.VmInstance;
+import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.DbgLogger;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author  Demyan Kimitsa
@@ -132,6 +138,7 @@ public class DebuggerLogic implements IHooksEventsHandler {
         }
 
         // filter data through event requests and deliver them to JDPW
+
     }
 
     /**
@@ -143,14 +150,14 @@ public class DebuggerLogic implements IHooksEventsHandler {
 
         // TODO: there is possible event with thread id and stack traces in case it is filtere
         if (event.callStack != null) {
-            VmThread thread = state.referenceRefIdHolder().objectByAddr(event.threadObj);
+            VmThread thread = state.referenceRefIdHolder().instanceByAddr(event.threadObj);
             if (thread == null)
                 throw new DebuggerException("Thread " + Long.toHexString(event.threadObj) + " is not recognized!");
             resumeThread(thread);
         }
 
         // jdpw object
-        return new JdwpClassLoadedEventData(JdwpConsts.EventKind.CLASS_PREPARE, 0, classInfo);
+        return new JdwpClassLoadedEventData(JdwpConsts.EventKind.CLASS_PREPARE, null, classInfo);
     }
 
     /**
@@ -158,7 +165,7 @@ public class DebuggerLogic implements IHooksEventsHandler {
      */
     private JdwpEventData processThreadEvent(ThreadEventPayload event) {
         // get corresponding thread object
-        VmThread thread = state.referenceRefIdHolder().objectByAddr(event.threadObj);
+        VmThread thread = state.referenceRefIdHolder().instanceByAddr(event.threadObj);
         if (event.eventId == HookConsts.events.THREAD_ATTACHED || event.eventId == HookConsts.events.THREAD_STARTED) {
             if (thread != null)
                 throw new DebuggerException("Thread " + Long.toHexString(event.threadObj) + " already attached/started!");
@@ -186,7 +193,7 @@ public class DebuggerLogic implements IHooksEventsHandler {
                 // remove thread
                 state.referenceRefIdHolder().removeObject(thread);
                 state.threads().remove(thread);
-                return new JdwpEventData(JdwpConsts.EventKind.THREAD_END, thread.getRefId());
+                return new JdwpEventData(JdwpConsts.EventKind.THREAD_END, thread);
 
             default:
                 throw new DebuggerException("Unsupported ThreadEventPayload eventId " + event.eventId);
@@ -196,10 +203,17 @@ public class DebuggerLogic implements IHooksEventsHandler {
     /** thread stopped event */
     private JdwpEventData processThreadStoppedEvent(ThreadEventStoppedPayload event) {
         // get corresponding thread object
-        VmThread thread = state.referenceRefIdHolder().objectByAddr(event.threadObj);
+        VmThread thread = state.referenceRefIdHolder().instanceByAddr(event.threadObj);
 
         if (thread == null)
             throw new DebuggerException("Thread " + Long.toHexString(event.threadObj) + " is not recognized!");
+
+        // convert call stack
+        VmStackTrace[] callStack = convertCallStack(event.callStack);
+        if (callStack.length == 0) {
+            // TODO: log
+            return null;
+        }
 
         switch (event.eventId) {
             case HookConsts.events.THREAD_SUSPENDED:
@@ -208,16 +222,16 @@ public class DebuggerLogic implements IHooksEventsHandler {
                 return null;
 
             case HookConsts.events.EXCEPTION:
-//                thread.setStatus(VmThread.Status.SUPENDED);
-                // temporaly resume thread
                 resumeThread(thread);
-                return null;
+                ClassInfo ci = getClassInfo(event.throwable);
+                VmInstance exception = new VmInstance(event.throwable, ci);
+                return new JdwpThreadStoppedEventData(JdwpConsts.EventKind.EXCEPTION, thread, callStack[0], exception);
 
             case HookConsts.events.THREAD_STEPPED:
-                thread.setStatus(VmThread.Status.SUPENDED);
+                return new JdwpThreadStoppedEventData(JdwpConsts.EventKind.SINGLE_STEP, thread, callStack[0], null);
 
             case HookConsts.events.BREAKPOINT:
-                thread.setStatus(VmThread.Status.SUPENDED);
+                return new JdwpThreadStoppedEventData(JdwpConsts.EventKind.BREAKPOINT, thread, callStack[0], null);
 
             default:
                 throw new DebuggerException("Unsupported ThreadEventStoppedPayload eventId " + event.eventId);
@@ -236,6 +250,43 @@ public class DebuggerLogic implements IHooksEventsHandler {
 
         // class has to be loaded
         return state.classInfoLoader().classByLoadedAddr(classPointer);
+    }
+
+
+    private VmStackTrace[] convertCallStack(ThreadCallStackPayload[] callStack) {
+        List<VmStackTrace> result = new ArrayList<>();
+        for (ThreadCallStackPayload entry : callStack) {
+            VmStackTrace stackTrace = convertStackTrace(entry);
+            if (stackTrace != null)
+                result.add(stackTrace);
+        }
+
+        return result.toArray(new VmStackTrace[result.size()]);
+    }
+
+
+    private VmStackTrace convertStackTrace(ThreadCallStackPayload payload) {
+        ClassInfo classInfo = state.classInfoLoader().classInfoByName(payload.clazzName);
+        // TODO: warning
+        if (classInfo == null)
+            return null;
+
+        // find method
+        MethodInfo[] methods = state.classInfoLoader().classMethods(classInfo);
+        long implPtr = toMachOAddr(payload.impl);
+        MethodInfo methodInfo = null;
+        for (MethodInfo mi : methods) {
+            if (mi.getImplPtr() == implPtr) {
+                methodInfo = mi;
+                break;
+            }
+        }
+
+        // TODO: warning
+        if (methodInfo == null)
+            return null;
+
+        return new VmStackTrace(classInfo, methodInfo, payload.lineNumber);
     }
 
 

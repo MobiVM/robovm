@@ -27,6 +27,7 @@ public class MethodInfo extends BaseModifiersInfo {
     private int flags;
     private String name;
     private String desc;
+    private long implPtr;
 
 
     public void readMethodInfo(ByteBufferMemoryReader reader) {
@@ -74,12 +75,11 @@ public class MethodInfo extends BaseModifiersInfo {
             reader.skip(reader.pointerSize());
         }
 
-        long impl = 0;
         int size = 0;
         long synchronizedImpl = 0;
         long linetable = 0;
         if (!isAbstract()) {
-            impl = reader.readPointer();
+            implPtr = reader.readPointer();
             size = reader.readInt32();
             if (isSynchronized())
                 synchronizedImpl = reader.readPointer();
@@ -101,6 +101,10 @@ public class MethodInfo extends BaseModifiersInfo {
 
     public String getDesc() {
         return desc;
+    }
+
+    public long getImplPtr() {
+        return implPtr;
     }
 
     boolean isBroCallback() {

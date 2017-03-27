@@ -2,36 +2,24 @@ package org.robovm.debugger.execution.predicates;
 
 import org.robovm.debugger.execution.EventData;
 
-import java.util.List;
-import java.util.function.Predicate;
-
 /**
  * @author Demyan Kimitsa
  * Predicate that matches against class name pattern
  */
-public class EventClassNameMatchPredicate implements Predicate<EventData> {
-    private final List<String> patterns;
+public class EventClassNameMatchPredicate extends EventPredicate {
+    private final String pattern;
     private final boolean negative;
 
-    public EventClassNameMatchPredicate(List<String> patterns, boolean negative) {
-        this.patterns = patterns;
+    public EventClassNameMatchPredicate(byte eventKind, String pattern, boolean negative) {
+        super(eventKind);
+        this.pattern = pattern;
         this.negative = negative;
     }
 
     @Override
     public boolean test(EventData eventData) {
-        boolean result = applyPatterns(eventData.getClassName());
+        boolean result = matchPattern(pattern, eventData.getClassName());
         return negative ? !result : result;
-    }
-
-    private boolean applyPatterns(String className) {
-        for (String p : patterns) {
-            if (matchPattern(p, className))
-                return true;
-        }
-
-        // doesn't match
-        return false;
     }
 
     private static boolean matchPattern(String pattern, String str) {

@@ -2,22 +2,24 @@ package org.robovm.debugger.execution.predicates;
 
 import org.robovm.debugger.execution.EventData;
 
-import java.util.Set;
-import java.util.function.Predicate;
-
 /**
  * @author Demyan Kimitsa
  * Predicate that matches against class type id
  */
-public class EventClassTypeIdPredicate implements Predicate<EventData> {
-    private final Set<Long> classTypeIDs;
+public class EventClassTypeIdPredicate extends EventPredicate {
+    private final long classTypeId;
 
-    public EventClassTypeIdPredicate(Set<Long> classTypeIDs) {
-        this.classTypeIDs = classTypeIDs;
+    public EventClassTypeIdPredicate(int modifier, long classTypeId) {
+        super(modifier);
+        this.classTypeId = classTypeId;
     }
 
     @Override
     public boolean test(EventData eventData) {
-        return classTypeIDs.contains(eventData.getClassTypeId());
+        return classTypeId == eventData.getClassTypeId();
+    }
+
+    public long classTypeId() {
+        return classTypeId;
     }
 }

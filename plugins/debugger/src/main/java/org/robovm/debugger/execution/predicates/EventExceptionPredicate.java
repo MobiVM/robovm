@@ -1,30 +1,34 @@
 package org.robovm.debugger.execution.predicates;
 
 import org.robovm.debugger.execution.EventData;
-import org.robovm.debugger.execution.JdwpEventRequest;
-
-import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * @author Demyan Kimitsa
- * Predicate that matches exception
+ *         Predicate that matches exception
  */
-public class EventExceptionPredicate implements Predicate<EventData> {
-    private final List<JdwpEventRequest.ExceptionMod> modifiers;
+public class EventExceptionPredicate extends EventPredicate {
+    public final long refTypeId;
+    public final boolean caught;
+    public final boolean uncaught;
 
-    public EventExceptionPredicate(List<JdwpEventRequest.ExceptionMod> modifiers) {
-        this.modifiers = modifiers;
+    public EventExceptionPredicate(int modifier, long refTypeId, boolean caught, boolean uncaught) {
+        super(modifier);
+        this.refTypeId = refTypeId;
+        this.caught = caught;
+        this.uncaught = uncaught;
+    }
+
+    public long refTypeId() {
+        return refTypeId;
     }
 
     @Override
     public boolean test(EventData eventData) {
-        for (JdwpEventRequest.ExceptionMod modifier : modifiers) {
-            if (modifier.refTypeID != eventData.getExceptionTypeId())
-                continue;
-            if  (modifier.caught && eventData.isExceptionCaught() || modifier.uncaught && !eventData.isExceptionCaught())
-                return true;
-        }
+        // TODO: handle subtypes
+        if (refTypeId != 0 && refTypeId != eventData.getExceptionTypeId())
+            return false;
+        if (caught && eventData.isExceptionCaught() || uncaught && !eventData.isExceptionCaught())
+            return true;
 
         // doesn't match
         return false;

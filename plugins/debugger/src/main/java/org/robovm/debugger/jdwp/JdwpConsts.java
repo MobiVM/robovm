@@ -92,6 +92,21 @@ public class JdwpConsts {
         public static final byte VM_DISCONNECTED = 100;
     }
 
+    public static class EventModifier {
+        public static final byte CASE_COUNT = 1;
+        public static final byte CONDITIONAL = 2;
+        public static final byte THREAD_ONLY = 3;
+        public static final byte CLASS_ONLY = 4;
+        public static final byte CLASS_MATCH = 5;
+        public static final byte CLASS_EXCLUDE = 6;
+        public static final byte LOCATION_ONLY = 7;
+        public static final byte EXCEPTION_ONLY = 8;
+        public static final byte FIELD_ONLY = 9;
+        public static final byte STEP = 10;
+        public static final byte INSTANCE_ONLY = 11;
+        public static final byte SOURCE_NAME_MATCH = 12;
+    }
+
     public static class SuspendPolicy {
         public static final int NONE = 0;
         public static final int EVENT_THREAD = 1;
@@ -117,22 +132,22 @@ public class JdwpConsts {
     }
 
     public static class Tag {
-        public static final int ARRAY = 91;
-        public static final int BYTE = 66;
-        public static final int CHAR = 67;
-        public static final int OBJECT = 76;
-        public static final int FLOAT = 70;
-        public static final int DOUBLE = 68;
-        public static final int INT = 73;
-        public static final int LONG = 74;
-        public static final int SHORT = 83;
-        public static final int VOID = 86;
-        public static final int BOOLEAN = 90;
-        public static final int STRING = 115;
-        public static final int THREAD = 116;
-        public static final int THREAD_GROUP = 103;
-        public static final int CLASS_LOADER = 108;
-        public static final int CLASS_OBJECT = 99;
+        public static final byte ARRAY = 91;
+        public static final byte BYTE = 66;
+        public static final byte CHAR = 67;
+        public static final byte OBJECT = 76;
+        public static final byte FLOAT = 70;
+        public static final byte DOUBLE = 68;
+        public static final byte INT = 73;
+        public static final byte LONG = 74;
+        public static final byte SHORT = 83;
+        public static final byte VOID = 86;
+        public static final byte BOOLEAN = 90;
+        public static final byte STRING = 115;
+        public static final byte THREAD = 116;
+        public static final byte THREAD_GROUP = 103;
+        public static final byte CLASS_LOADER = 108;
+        public static final byte CLASS_OBJECT = 99;
     }
 
     public static class ClassStatus {

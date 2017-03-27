@@ -1,6 +1,7 @@
 package org.robovm.debugger.jdwp.events;
 
 import org.robovm.debugger.execution.EventData;
+import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
@@ -9,17 +10,17 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  */
 public class JdwpEventData extends EventData {
     private final byte eventKind;
-    private final long threadId;
+    private final VmThread thread;
 
-    public JdwpEventData(byte eventKind, long threadId) {
+    public JdwpEventData(byte eventKind, VmThread thread) {
         this.eventKind = eventKind;
-        this.threadId = threadId;
+        this.thread = thread;
     }
 
     public void dump(ByteBufferPacket packet, int requestId) {
         packet.writeByte(eventKind);
         packet.writeInt32(requestId);
-        packet.writeLong(threadId);
+        packet.writeLong(getThreadRefId());
 
         dumpCustomData(packet);
     }
@@ -29,6 +30,6 @@ public class JdwpEventData extends EventData {
 
     @Override
     public long getThreadRefId() {
-        return threadId;
+        return thread != null ? thread.getRefId() : 0;
     }
 }

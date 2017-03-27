@@ -1,6 +1,7 @@
 package org.robovm.debugger.jdwp.events;
 
 import org.robovm.debugger.state.classdata.ClassInfo;
+import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -11,8 +12,8 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 public class JdwpClassLoadedEventData extends JdwpEventData {
     private final ClassInfo classInfo;
 
-    public JdwpClassLoadedEventData(byte eventKind, long threadId, ClassInfo classInfo) {
-        super(eventKind, threadId);
+    public JdwpClassLoadedEventData(byte eventKind, VmThread thread, ClassInfo classInfo) {
+        super(eventKind, thread);
         this.classInfo = classInfo;
     }
 
