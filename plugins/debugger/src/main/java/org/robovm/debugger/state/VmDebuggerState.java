@@ -2,6 +2,7 @@ package org.robovm.debugger.state;
 
 import org.robovm.compiler.config.Arch;
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.execution.JdwpEventRequest;
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.ClassInfoLoader;
 import org.robovm.debugger.state.classdata.FieldInfo;
@@ -32,6 +33,12 @@ public class VmDebuggerState {
 
     // list of active threads
     List<VmThread> threads = new ArrayList<>();
+
+    // counter of request set
+    private int jdwpEventRequestCounter = 100;
+    // list of active event filters as received from JDWP
+    private List<JdwpEventRequest> jdwpEventRequests = new ArrayList<>();
+
 
     MachOLoader appFileLoader;
     ByteBufferMemoryReader appFileDataMemoryReader;
@@ -97,5 +104,13 @@ public class VmDebuggerState {
 
     public List<VmThread> threads() {
         return threads;
+    }
+
+    public int allocateJdwpEventRequestId() {
+        return jdwpEventRequestCounter++;
+    }
+
+    public List<JdwpEventRequest> jdwpEventRequests() {
+        return jdwpEventRequests;
     }
 }

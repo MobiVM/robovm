@@ -1,11 +1,12 @@
 package org.robovm.debugger.hooks;
 
 import org.robovm.debugger.DebuggerException;
-import org.robovm.debugger.hooks.payloads.InvokeCmdPayload;
-import org.robovm.debugger.hooks.payloads.ThreadCallStackPayload;
-import org.robovm.debugger.hooks.payloads.ThreadEventClassLoadedPayload;
-import org.robovm.debugger.hooks.payloads.ThreadEventPayload;
-import org.robovm.debugger.hooks.payloads.ThreadEventStoppedPayload;
+import org.robovm.debugger.hooks.payloads.HooksCallStackEntry;
+import org.robovm.debugger.hooks.payloads.HooksClassLoadedEventPayload;
+import org.robovm.debugger.hooks.payloads.HooksCmdResponse;
+import org.robovm.debugger.hooks.payloads.HooksEventPayload;
+import org.robovm.debugger.hooks.payloads.HooksThreadEventPayload;
+import org.robovm.debugger.hooks.payloads.HooksThreadStoppedEventPayload;
 import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
@@ -27,7 +28,7 @@ import java.util.function.IntSupplier;
  * Class implements itnerface to hooks server as it is implemented device side
  * Check hooks.c for reference
  */
-public class HooksChannel implements IHooksApi{
+public class HooksChannel implements IHooksApi {
     DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
 
     private final static int DEFAULT_TIMEOUT = 5000;
@@ -51,12 +52,16 @@ public class HooksChannel implements IHooksApi{
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
     }
 
-    /** when port is known */
+    /**
+     * when port is known
+     */
     public HooksChannel(boolean is64bit, int port, IHooksEventsHandler eventsHandler) {
         this(is64bit, () -> port, eventsHandler);
     }
 
-    /** when port to be read from simulator port file  */
+    /**
+     * when port to be read from simulator port file
+     */
     public HooksChannel(boolean is64bit, File portFile, IHooksEventsHandler eventsHandler) {
         this(is64bit, () -> readFromPortFile(portFile), eventsHandler);
     }
@@ -96,7 +101,7 @@ public class HooksChannel implements IHooksApi{
             long robovmBaseSymbol = buffer.readLong();
 
             // deliver callback that connected to device
-            eventsHandler.attached(this, robovmBaseSymbol);
+            eventsHandler.onHooksTargetAttached(this, robovmBaseSymbol);
 
             // handshake complete, process messages
             while (!socketThread.isInterrupted()) {
@@ -117,8 +122,8 @@ public class HooksChannel implements IHooksApi{
                         throw new DebuggerException("Non event response received with reqId == 0");
 
                     // lets create event
-                    Object payload = createPayloadObject(cmd, buffer);
-                    this.eventsHandler.handleEvent(payload);
+                    HooksEventPayload payload = createEventPayloadObject(cmd, buffer);
+                    this.eventsHandler.onHooksTargetEvent(payload);
                 } else {
                     // its response to request request
                     HookReqHolder holder = requestsInProgress.remove(reqId);
@@ -128,7 +133,7 @@ public class HooksChannel implements IHooksApi{
                     log.debug("Received reps2req: " + reqId + " cmd:" + cmd);
 
                     // notify thread that there is an result
-                    Object response = createPayloadObject(cmd, buffer);
+                    HooksCmdResponse response = createCmdPayloadObject(cmd, buffer);
                     holder.setResponse(response);
                     holder.release();
                 }
@@ -279,7 +284,7 @@ public class HooksChannel implements IHooksApi{
     }
 
     @Override
-    public InvokeCmdPayload newString(long thread, String s) {
+    public HooksCmdResponse newString(long thread, String s) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(thread);
         byte[] bytes = s.getBytes();
@@ -289,7 +294,7 @@ public class HooksChannel implements IHooksApi{
     }
 
     @Override
-    public InvokeCmdPayload newArray(long thread, int arrayLength, String elementName) {
+    public HooksCmdResponse newArray(long thread, int arrayLength, String elementName) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(thread);
         packet.writeInt32(arrayLength);
@@ -300,19 +305,19 @@ public class HooksChannel implements IHooksApi{
     }
 
 
-    private Object createPayloadObject(byte cmd, ByteBufferReader reader) {
-        Object res = null;
+    private HooksCmdResponse createCmdPayloadObject(byte cmd, ByteBufferReader reader) {
+        HooksCmdResponse res = null;
         switch (cmd) {
             case HookConsts.commands.READ_MEMORY:
-                res = reader.readBytes();
+                res = new HooksCmdResponse(reader.readBytes());
                 break;
 
             case HookConsts.commands.READ_CSTRING:
-                res = reader.readString();
+                res = new HooksCmdResponse(reader.readString());
                 break;
 
             case HookConsts.commands.ALLOCATE:
-                res = reader.readLong();
+                res = new HooksCmdResponse(reader.readLong());
                 break;
 
             case HookConsts.commands.WRITE_MEMORY:
@@ -332,27 +337,34 @@ public class HooksChannel implements IHooksApi{
             case HookConsts.commands.THREAD_NEWINSTANCE: {
                 long resultPtr = reader.readLong();
                 long throwable = reader.readLong();
-                res = new InvokeCmdPayload(resultPtr, throwable);
+                res = new HooksCmdResponse(resultPtr, throwable);
                 break;
             }
 
+            default:
+                throw new DebuggerException("Unrecognized Hooks command " + cmd);
+        }
 
+        return res;
+    }
+
+    private HooksEventPayload createEventPayloadObject(byte event, ByteBufferReader reader) {
+        HooksEventPayload res = null;
+        switch (event) {
             case HookConsts.events.THREAD_ATTACHED:
             case HookConsts.events.THREAD_STARTED:
-            case HookConsts.events.THREAD_RESUMED:
-            {
+            case HookConsts.events.THREAD_RESUMED: {
                 long threadObj = reader.readLong();
                 long thread = reader.readLong();
-                res = new ThreadEventPayload(cmd, threadObj, thread);
+                res = new HooksThreadEventPayload(event, threadObj, thread);
                 break;
             }
 
-            case HookConsts.events.THREAD_DETTACHED:
-            {
+            case HookConsts.events.THREAD_DETTACHED: {
                 long threadObj = reader.readLong();
                 long thread = reader.readLong();
                 long throwable = reader.readLong();
-                res = new ThreadEventPayload(cmd, threadObj, thread, throwable);
+                res = new HooksThreadEventPayload(event, threadObj, thread, throwable);
                 break;
             }
 
@@ -361,8 +373,8 @@ public class HooksChannel implements IHooksApi{
             case HookConsts.events.BREAKPOINT: {
                 long threadObj = reader.readLong();
                 long thread = reader.readLong();
-                ThreadCallStackPayload[] callStack = readCallStack(reader);
-                res = new ThreadEventStoppedPayload(cmd, threadObj, thread, callStack);
+                HooksCallStackEntry[] callStack = readCallStack(reader);
+                res = new HooksThreadStoppedEventPayload(event, threadObj, thread, callStack);
                 break;
             }
 
@@ -371,8 +383,8 @@ public class HooksChannel implements IHooksApi{
                 long thread = reader.readLong();
                 long throwable = reader.readLong();
                 boolean isCaught = reader.readByte() != 0;
-                ThreadCallStackPayload[] callStack = readCallStack(reader);
-                res = new ThreadEventStoppedPayload(cmd, threadObj, thread, throwable, isCaught, callStack);
+                HooksCallStackEntry[] callStack = readCallStack(reader);
+                res = new HooksThreadStoppedEventPayload(event, threadObj, thread, throwable, isCaught, callStack);
                 break;
             }
 
@@ -381,30 +393,29 @@ public class HooksChannel implements IHooksApi{
                 long thread = reader.readLong();
                 long clazz = reader.readLong();
                 long classInfo = reader.readLong();
-                ThreadCallStackPayload[] callStack = null;;
+                HooksCallStackEntry[] callStack = null;
                 if (reader.hasRemaining())
                     callStack = readCallStack(reader);
-                res = new ThreadEventClassLoadedPayload(threadObj, thread, clazz, classInfo, callStack);
+                res = new HooksClassLoadedEventPayload(event, threadObj, thread, clazz, classInfo, callStack);
                 break;
 
             default:
-                throw new DebuggerException("Unrecognized Hooks command/event " + cmd);
+                throw new DebuggerException("Unrecognized Hooks event " + event);
         }
 
         return res;
     }
 
-
-    private ThreadCallStackPayload[] readCallStack(ByteBufferReader reader) {
+    private HooksCallStackEntry[] readCallStack(ByteBufferReader reader) {
         int count = reader.readInt32();
-        ThreadCallStackPayload[] res = new ThreadCallStackPayload[count];
+        HooksCallStackEntry[] res = new HooksCallStackEntry[count];
         for (int idx = 0; idx < count; idx++) {
             long impl = reader.readLong();
             int lineNumber = reader.readInt32();
             long fp = reader.readLong();
             int clazzNameLen = reader.readInt32();
             String clazzName = reader.readString(clazzNameLen);
-            res[idx] = new ThreadCallStackPayload(clazzName, impl, lineNumber, fp);
+            res[idx] = new HooksCallStackEntry(clazzName, impl, lineNumber, fp);
         }
 
         return res;
@@ -464,15 +475,14 @@ public class HooksChannel implements IHooksApi{
 
         final HooksChannel hooksChannel = new HooksChannel(true, port, new IHooksEventsHandler() {
             @Override
-            public void attached(IHooksApi api, long robovmBaseSymbol) {
-
+            public void onHooksTargetAttached(IHooksApi api, long robovmBaseSymbol) {
             }
 
             @Override
-            public void handleEvent(Object payload) {
-                System.out.println(payload);
+            public void onHooksTargetEvent(HooksEventPayload eventPayload) {
             }
         });
+
         DbgLogger.setup(null, true);
         hooksChannel.start();
     }

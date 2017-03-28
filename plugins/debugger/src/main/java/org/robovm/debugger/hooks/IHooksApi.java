@@ -1,6 +1,6 @@
 package org.robovm.debugger.hooks;
 
-import org.robovm.debugger.hooks.payloads.InvokeCmdPayload;
+import org.robovm.debugger.hooks.payloads.HooksCmdResponse;
 
 /**
  * @author Demyan Kimitsa
@@ -22,6 +22,6 @@ public interface IHooksApi {
     void threadInvoke(long thread, long classOrObjectPtr, String methodName, String descriptor,
                       boolean isClassMethod, byte returnType, Object[] arguments);
     void newInstance(long thread, long classPtr, String methodName, String descriptor, Object[] arguments);
-    InvokeCmdPayload newString(long thread, String s);
-    InvokeCmdPayload newArray(long thread, int arrayLength, String elementName) ;
+    HooksCmdResponse newString(long thread, String s);
+    HooksCmdResponse newArray(long thread, int arrayLength, String elementName) ;
 }

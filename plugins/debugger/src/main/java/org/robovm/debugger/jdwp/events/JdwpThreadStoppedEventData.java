@@ -42,4 +42,10 @@ public class JdwpThreadStoppedEventData extends JdwpEventData {
             packet.writeLong(location.getLineNumber());
         }
     }
+
+    @Override
+    public boolean cancelIfNotHandled() {
+        // don't stop application if there is no interested instance in it
+        return true;
+    }
 }

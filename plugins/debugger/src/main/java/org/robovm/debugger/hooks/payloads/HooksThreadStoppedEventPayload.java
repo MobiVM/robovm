@@ -4,17 +4,17 @@ import java.util.Arrays;
 
 /**
  * @author Demyan Kimitsa
+ * Event for breakpoint/step/exception case
  */
-public class ThreadEventStoppedPayload {
-    public final int eventId;
+public class HooksThreadStoppedEventPayload extends HooksEventPayload{
     public final long threadObj;
     public final long thread;
     public final long throwable;
     public final boolean isCaught;
-    public final ThreadCallStackPayload[] callStack;
+    public final HooksCallStackEntry[] callStack;
 
-    public ThreadEventStoppedPayload(int eventId, long threadObj, long thread, ThreadCallStackPayload[] callStack) {
-        this.eventId = eventId;
+    public HooksThreadStoppedEventPayload(int eventId, long threadObj, long thread, HooksCallStackEntry[] callStack) {
+        super(eventId);
         this.threadObj = threadObj;
         this.thread = thread;
         this.throwable = 0;
@@ -22,8 +22,8 @@ public class ThreadEventStoppedPayload {
         this.callStack = callStack;
     }
 
-    public ThreadEventStoppedPayload(int eventId, long threadObj, long thread, long throwable, boolean isCaught, ThreadCallStackPayload[] callStack) {
-        this.eventId = eventId;
+    public HooksThreadStoppedEventPayload(int eventId, long threadObj, long thread, long throwable, boolean isCaught, HooksCallStackEntry[] callStack) {
+        super(eventId);
         this.threadObj = threadObj;
         this.thread = thread;
         this.throwable = throwable;
@@ -33,7 +33,7 @@ public class ThreadEventStoppedPayload {
 
     @Override
     public String toString() {
-        return "ThreadEventStoppedPayload{" +
+        return "HooksThreadStoppedEventPayload{" +
                 "threadObj=" + threadObj +
                 ", thread=" + thread +
                 ", throwable=" + throwable +

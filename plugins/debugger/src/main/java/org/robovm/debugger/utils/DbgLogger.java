@@ -19,6 +19,12 @@ import java.util.logging.Logger;
  */
 public class DbgLogger {
     private static Logger impl;
+    static {
+        impl = Logger.getLogger("Debugger");
+        impl.setLevel(Level.ALL);
+        impl.setUseParentHandlers(false);
+    }
+
     private final String tag;
 
     private DbgLogger(String tag) {
@@ -52,9 +58,6 @@ public class DbgLogger {
     }
 
     public static void setup(File logFile, boolean enableConsole) {
-        impl = Logger.getLogger("Debugger");
-        impl.setLevel(Level.ALL);
-        impl.setUseParentHandlers(false);
         if (logFile != null) {
             try {
                 FileHandler handler = new FileHandler(logFile.getAbsolutePath());

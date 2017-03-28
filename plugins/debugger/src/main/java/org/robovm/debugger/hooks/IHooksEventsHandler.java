@@ -1,9 +1,11 @@
 package org.robovm.debugger.hooks;
 
+import org.robovm.debugger.hooks.payloads.HooksEventPayload;
+
 /**
  * @author Demyan Kimitsa
  */
 public interface IHooksEventsHandler {
-    void attached(IHooksApi api, long robovmBaseSymbol);
-    void handleEvent(Object eventPayload);
+    void onHooksTargetAttached(IHooksApi api, long robovmBaseSymbol);
+    void onHooksTargetEvent(HooksEventPayload eventPayload);
 }

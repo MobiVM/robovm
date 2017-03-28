@@ -1,6 +1,5 @@
 package org.robovm.debugger.jdwp;
 
-import org.robovm.debugger.Debugger;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearAllBreakpointsHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearHandler;
@@ -10,11 +9,11 @@ import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeFieldsHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeMethodsHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeModifiersHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeSignatureHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesWithGenericsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmCapabilitiesHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmCapabilitiesNewHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmClassPathsHandler;
-import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesHandler;
-import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesWithGenericsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmClassesBySignatureHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmDisposeHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmIdSizesHandler;
@@ -39,7 +38,7 @@ import java.util.Map;
  * @author Demyan Kimitsa
  * JDWP server implementation
  */
-public class JdwpDebugServer {
+public class JdwpDebugServer implements IJdwpServerApi{
     private final DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
     private static final String JDWP_HANDSHAKE = "JDWP-Handshake";
     private final Thread socketThread;
@@ -48,35 +47,31 @@ public class JdwpDebugServer {
     private Socket socket;
     private Map<Integer, IJdwpRequestHandler> handlers = new HashMap<>();
     private ByteBufferPacket headerBuffer = new ByteBufferPacket();
-    private final Debugger debugger;
+    private final VmDebuggerState state;
+    private final IJdwpServerDelegate delegate;
 
 
-    public JdwpDebugServer(Debugger debugger, boolean jdwpClienMode, int jdwpPort) {
+    public JdwpDebugServer(VmDebuggerState state, IJdwpServerDelegate delegate, boolean jdwpClienMode, int jdwpPort) {
+        this.state = state;
+        this.delegate = delegate;
         this.jdwpClientMode = jdwpClienMode;
         this.jdwpPort = jdwpPort;
-        this.socketThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                doSocketWork();
-            }
-        });
 
+        socketThread = new Thread(() -> doSocketWork());
         headerBuffer = new ByteBufferPacket();
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
-
-        this.debugger = debugger;
     }
 
     public void start() {
         registerHandlers();
 
-        this.socketThread.start();
+        socketThread.start();
     }
 
     public void cleanup() {
-        this.socketThread.interrupt();
+        socketThread.interrupt();
         try {
-            this.socketThread.join(2000);
+            socketThread.join(2000);
         } catch (InterruptedException ignored) {
         }
     }
@@ -105,6 +100,8 @@ public class JdwpDebugServer {
             // send it back
             packet.dumpToOutputStream(socket.getOutputStream());
 
+            // notify delegate
+            delegate.onJdwpHandshakeComplete(this);
 
             // run JDPW packet cycle
             while (!socketThread.isInterrupted()) {
@@ -140,14 +137,37 @@ public class JdwpDebugServer {
 
 
     private void sendResponse(int id, short errorCode, ByteBufferPacket payload) throws IOException {
-        headerBuffer.reset();
-        headerBuffer.writeInt32(11 + payload.size());
-        headerBuffer.writeInt32(id);
-        headerBuffer.writeByte((byte) 0x80); // Reply packet
-        headerBuffer.writeInt16(errorCode);
+        synchronized (socket) {
+            headerBuffer.reset();
+            headerBuffer.writeInt32(11 + payload.size());
+            headerBuffer.writeInt32(id);
+            headerBuffer.writeByte((byte) 0x80); // Reply packet
+            headerBuffer.writeInt16(errorCode);
 
-        headerBuffer.dumpToOutputStream(socket.getOutputStream());
-        payload.dumpToOutputStream(socket.getOutputStream());
+            headerBuffer.dumpToOutputStream(socket.getOutputStream());
+            payload.dumpToOutputStream(socket.getOutputStream());
+        }
+    }
+
+    @Override
+    public void sendEvent(byte suspendPolicy, int eventsCount, ByteBufferPacket payload) {
+        synchronized (socket) {
+            headerBuffer.reset();
+            headerBuffer.writeInt32(11 + payload.size());
+            headerBuffer.writeInt32(0); // int
+            headerBuffer.writeByte((byte) 0); // flags
+            headerBuffer.writeByte((byte) 100); // composite command
+
+            headerBuffer.writeByte(suspendPolicy); // flags
+            headerBuffer.writeInt32(eventsCount);
+
+            try {
+                headerBuffer.dumpToOutputStream(socket.getOutputStream());
+                payload.dumpToOutputStream(socket.getOutputStream());
+            } catch (IOException e) {
+                throw new DebuggerException(e);
+            }
+        }
     }
 
     private void establishConnection() throws DebuggerException {
@@ -207,8 +227,6 @@ public class JdwpDebugServer {
     }
 
     private void registerHandlers() {
-        VmDebuggerState state = debugger.debuggerState();
-
         // VirtualMachine Command Set (1)
         registerHandler(new JdwpVmVersionHandler()); // 1
         registerHandler(new JdwpVmClassesBySignatureHandler(state)); // 2
@@ -253,9 +271,9 @@ public class JdwpDebugServer {
         //ConstantPool (18)
 
         // EventRequest Command Set (15)
-        registerHandler(new JdwpEventReqSetHandler(debugger.executionControlCenter()));
-        registerHandler(new JdwpEventReqClearHandler(debugger.executionControlCenter()));
-        registerHandler(new JdwpEventReqClearAllBreakpointsHandler(debugger.executionControlCenter()));
+        registerHandler(new JdwpEventReqSetHandler(delegate));
+        registerHandler(new JdwpEventReqClearHandler(delegate));
+        registerHandler(new JdwpEventReqClearAllBreakpointsHandler(delegate));
     }
 
 }

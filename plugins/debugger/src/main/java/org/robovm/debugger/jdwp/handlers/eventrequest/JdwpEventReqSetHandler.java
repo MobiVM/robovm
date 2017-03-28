@@ -1,7 +1,7 @@
 package org.robovm.debugger.jdwp.handlers.eventrequest;
 
 import org.robovm.debugger.DebuggerException;
-import org.robovm.debugger.execution.ExecutionControlCenter;
+import org.robovm.debugger.execution.IJdwpEventDelegate;
 import org.robovm.debugger.execution.predicates.EventClassNameMatchPredicate;
 import org.robovm.debugger.execution.predicates.EventClassTypeIdPredicate;
 import org.robovm.debugger.execution.predicates.EventExceptionPredicate;
@@ -26,9 +26,9 @@ import java.util.List;
  */
 public class JdwpEventReqSetHandler implements IJdwpRequestHandler {
 
-    private final ExecutionControlCenter center;
+    private final IJdwpEventDelegate center;
 
-    public JdwpEventReqSetHandler(ExecutionControlCenter center) {
+    public JdwpEventReqSetHandler(IJdwpEventDelegate center) {
         this.center = center;
     }
 

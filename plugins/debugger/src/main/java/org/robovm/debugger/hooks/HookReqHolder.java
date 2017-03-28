@@ -1,5 +1,7 @@
 package org.robovm.debugger.hooks;
 
+import org.robovm.debugger.hooks.payloads.HooksCmdResponse;
+
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
@@ -9,14 +11,14 @@ import java.util.concurrent.TimeUnit;
  */
 public class HookReqHolder {
     public final byte cmd;
-    public volatile Object response;
+    public volatile HooksCmdResponse response;
     public final Semaphore semaphore = new Semaphore(0);
 
     public HookReqHolder(byte cmd) {
         this.cmd = cmd;
     }
 
-    public void setResponse(Object response) {
+    public void setResponse(HooksCmdResponse response) {
         this.response = response;
     }
 

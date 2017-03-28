@@ -1,6 +1,6 @@
 package org.robovm.debugger.jdwp.handlers.eventrequest;
 
-import org.robovm.debugger.execution.ExecutionControlCenter;
+import org.robovm.debugger.execution.IJdwpEventDelegate;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -10,9 +10,9 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  */
 public class JdwpEventReqClearHandler implements IJdwpRequestHandler {
 
-    private final ExecutionControlCenter center;
+    private final IJdwpEventDelegate center;
 
-    public JdwpEventReqClearHandler(ExecutionControlCenter center) {
+    public JdwpEventReqClearHandler(IJdwpEventDelegate center) {
         this.center = center;
     }
 

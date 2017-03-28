@@ -10,10 +10,10 @@ import java.util.function.Predicate;
  * Event container as received from JDWP Event Set command
  */
 public class JdwpEventRequest {
-    public final int requestId;
-    public final byte eventKind;
-    public final byte suspendPolicy;
-    public final List<EventPredicate> predicates;
+    private final int requestId;
+    private final byte eventKind;
+    private final byte suspendPolicy;
+    private final List<EventPredicate> predicates;
 
     public JdwpEventRequest(int requestId, byte eventKind, byte suspendPolicy, List<EventPredicate> predicates) {
         this.requestId = requestId;
@@ -28,6 +28,22 @@ public class JdwpEventRequest {
             if (!predicate.test(data))
                 return false;
         return true;
+    }
+
+    public int requestId() {
+        return requestId;
+    }
+
+    public byte eventKind() {
+        return eventKind;
+    }
+
+    public byte suspendPolicy() {
+        return suspendPolicy;
+    }
+
+    public List<EventPredicate> predicates() {
+        return predicates;
     }
 
     @Override

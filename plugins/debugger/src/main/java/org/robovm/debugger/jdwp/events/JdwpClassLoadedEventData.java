@@ -24,4 +24,11 @@ public class JdwpClassLoadedEventData extends JdwpEventData {
         packet.writeStringWithLen(classInfo.getSignature());
         packet.writeInt32(Converter.jdwpClassStatus(classInfo));
     }
+
+    @Override
+    public boolean cancelIfNotHandled() {
+        // don't stop application if there is no interested instance in it
+        return thread() != null;
+    }
+
 }
