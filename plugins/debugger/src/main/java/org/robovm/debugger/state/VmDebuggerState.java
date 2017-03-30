@@ -17,12 +17,15 @@ import org.robovm.debugger.utils.macho.MachOLoader;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Demyan Kimitsa
  * TODO: here all internal state of VM and debugger will go
  */
 public class VmDebuggerState {
+
+    private final String LOCK_NOT_ACQUIRED = "Lock has to be acquired before accessing state members";
 
     // maps of references to objects
     RefIdHolder<ClassInfo> classRefIdHolder = new RefIdHolder<>(RefIdHolder.RefIdType.CLASS_TYPE);
@@ -45,6 +48,10 @@ public class VmDebuggerState {
     ClassInfoLoader classInfoLoader;
     boolean isTarget64bit;
 
+    /**
+     * lock that is used for main logic synchronization
+     */
+    ReentrantLock centralLock = new ReentrantLock();
 
     public VmDebuggerState(File appFile, Arch arch) {
         try {
@@ -95,6 +102,9 @@ public class VmDebuggerState {
     }
 
     public ClassInfoLoader classInfoLoader() {
+        if (!centralLock.isHeldByCurrentThread())
+            throw new DebuggerException(LOCK_NOT_ACQUIRED);
+
         return classInfoLoader;
     }
 
@@ -103,6 +113,9 @@ public class VmDebuggerState {
     }
 
     public List<VmThread> threads() {
+        if (!centralLock.isHeldByCurrentThread())
+            throw new DebuggerException(LOCK_NOT_ACQUIRED);
+
         return threads;
     }
 
@@ -111,6 +124,13 @@ public class VmDebuggerState {
     }
 
     public List<JdwpEventRequest> jdwpEventRequests() {
+        if (!centralLock.isHeldByCurrentThread())
+            throw new DebuggerException(LOCK_NOT_ACQUIRED);
+
         return jdwpEventRequests;
+    }
+
+    public ReentrantLock centralLock() {
+        return centralLock;
     }
 }

@@ -4,7 +4,6 @@ import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.classdata.ClassInfo;
-import org.robovm.debugger.state.classdata.FieldInfo;
 import org.robovm.debugger.state.classdata.MethodInfo;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -17,26 +16,29 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  */
 public class JdwpRegTypeMethodsHandler implements IJdwpRequestHandler {
 
-    private final VmDebuggerState vmDebuggerState;
+    private final VmDebuggerState state;
 
-    public JdwpRegTypeMethodsHandler(VmDebuggerState vmDebuggerState) {
-        this.vmDebuggerState = vmDebuggerState;
+    public JdwpRegTypeMethodsHandler(VmDebuggerState state) {
+        this.state = state;
     }
 
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         long referenceTypeID = payload.readLong();
-        ClassInfo classInfo = vmDebuggerState.classInfoLoader().classRefId(referenceTypeID);
-        if (classInfo == null)
-            return JdwpConsts.Error.INVALID_OBJECT;
-        MethodInfo[] fields = vmDebuggerState.classInfoLoader().classMethods(classInfo);
 
-        output.writeInt32(fields.length);
-        for (MethodInfo methodInfo : fields) {
-            output.writeLong(methodInfo.getRefId());
-            output.writeStringWithLen(methodInfo.getName());
-            output.writeStringWithLen(methodInfo.getDesc());
-            output.writeInt32(methodInfo.modifiers());
+        synchronized (state.centralLock()) {
+            ClassInfo classInfo = state.classInfoLoader().classRefId(referenceTypeID);
+            if (classInfo == null)
+                return JdwpConsts.Error.INVALID_OBJECT;
+            MethodInfo[] fields = state.classInfoLoader().classMethods(classInfo);
+
+            output.writeInt32(fields.length);
+            for (MethodInfo methodInfo : fields) {
+                output.writeLong(methodInfo.getRefId());
+                output.writeStringWithLen(methodInfo.getName());
+                output.writeStringWithLen(methodInfo.getDesc());
+                output.writeInt32(methodInfo.modifiers());
+            }
         }
 
         return JdwpConsts.Error.NONE;

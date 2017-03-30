@@ -47,6 +47,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * @author  Demyan Kimitsa
+ * Main debugger logic class
+ * TODO: this file got big and need to be sliced into several delegates
  */
 public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebuggerToolbox, DebuggerThread.Catcher {
     private final DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
@@ -194,7 +196,9 @@ public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebu
             }
 
             while (eventPayload != null) {
-                processSingleEvent(eventPayload);
+                synchronized (state.centralLock()) {
+                    processSingleEvent(eventPayload);
+                }
                 eventPayload = hooksEventsQueue.poll();
             }
 
@@ -392,7 +396,12 @@ public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebu
      */
     @Override
     public int jdwpSetEventRequest(byte eventKind, byte suspendPolicy, List<EventPredicate> predicates) {
+        synchronized (state.centralLock()) {
+            return syncJdwpSetEventRequest(eventKind, suspendPolicy, predicates);
+        }
+    }
 
+    private int syncJdwpSetEventRequest(byte eventKind, byte suspendPolicy, List<EventPredicate> predicates) {
         // validate predicates
         long itemId;
         for (EventPredicate predicate : predicates) {
@@ -461,22 +470,24 @@ public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebu
      */
     @Override
     public short jdwpClearEventRequest(byte eventKind, int requestID) {
-        Iterator<JdwpEventRequest> it = state.jdwpEventRequests().iterator();
-        while (it.hasNext()) {
-            JdwpEventRequest req = it.next();
-            if (req.requestId() == requestID) {
-                if (req.eventKind() != eventKind)
-                    return JdwpConsts.Error.INVALID_EVENT_TYPE;
+        synchronized (state.centralLock()) {
+            Iterator<JdwpEventRequest> it = state.jdwpEventRequests().iterator();
+            while (it.hasNext()) {
+                JdwpEventRequest req = it.next();
+                if (req.requestId() == requestID) {
+                    if (req.eventKind() != eventKind)
+                        return JdwpConsts.Error.INVALID_EVENT_TYPE;
 
-                onEventRequestRemoved(req);
-                it.remove();
+                    onEventRequestRemoved(req);
+                    it.remove();
 
-                return JdwpConsts.Error.NONE;
+                    return JdwpConsts.Error.NONE;
+                }
             }
-        }
 
-        // not found
-        return JdwpConsts.Error.INVALID_EVENT_TYPE;
+            // not found
+            return JdwpConsts.Error.INVALID_EVENT_TYPE;
+        }
     }
 
     /**
@@ -484,12 +495,14 @@ public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebu
      */
     @Override
     public void jdwpClearAllBreakpoints() {
-        Iterator<JdwpEventRequest> it = state.jdwpEventRequests().iterator();
-        while (it.hasNext()) {
-            JdwpEventRequest req = it.next();
-            if (req.eventKind() == JdwpConsts.EventKind.BREAKPOINT) {
-                onEventRequestRemoved(req);
-                it.remove();
+        synchronized (state.centralLock()) {
+            Iterator<JdwpEventRequest> it = state.jdwpEventRequests().iterator();
+            while (it.hasNext()) {
+                JdwpEventRequest req = it.next();
+                if (req.eventKind() == JdwpConsts.EventKind.BREAKPOINT) {
+                    onEventRequestRemoved(req);
+                    it.remove();
+                }
             }
         }
     }

@@ -15,27 +15,29 @@ import java.util.List;
  */
 public class JdwpVmAllClassesHandler implements IJdwpRequestHandler {
 
-    private final VmDebuggerState vmDebuggerState;
+    private final VmDebuggerState state;
 
-    public JdwpVmAllClassesHandler(VmDebuggerState vmDebuggerState) {
-        this.vmDebuggerState = vmDebuggerState;
+    public JdwpVmAllClassesHandler(VmDebuggerState state) {
+        this.state = state;
     }
 
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
 
-        List<ClassInfo> classes = this.vmDebuggerState.classInfoLoader().classes();
+        synchronized (state.centralLock()) {
+            List<ClassInfo> classes = this.state.classInfoLoader().classes();
 
-        output.writeInt32(classes.size());
-        for (ClassInfo classInfo : classes) {
-            // refTypeTag
-            output.writeByte(Converter.jdwpTypeTag(classInfo));
-            // typeID
-            output.writeLong(classInfo.getRefId());
-            // signature
-            output.writeStringWithLen(classInfo.getSignature());
-            // status
-            output.writeInt32(Converter.jdwpClassStatus(classInfo));
+            output.writeInt32(classes.size());
+            for (ClassInfo classInfo : classes) {
+                // refTypeTag
+                output.writeByte(Converter.jdwpTypeTag(classInfo));
+                // typeID
+                output.writeLong(classInfo.getRefId());
+                // signature
+                output.writeStringWithLen(classInfo.getSignature());
+                // status
+                output.writeInt32(Converter.jdwpClassStatus(classInfo));
+            }
         }
 
         return JdwpConsts.Error.NONE;

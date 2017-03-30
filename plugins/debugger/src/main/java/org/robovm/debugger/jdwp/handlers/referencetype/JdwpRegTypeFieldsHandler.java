@@ -14,26 +14,29 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  */
 public class JdwpRegTypeFieldsHandler implements IJdwpRequestHandler {
 
-    private final VmDebuggerState vmDebuggerState;
+    private final VmDebuggerState state;
 
-    public JdwpRegTypeFieldsHandler(VmDebuggerState vmDebuggerState) {
-        this.vmDebuggerState = vmDebuggerState;
+    public JdwpRegTypeFieldsHandler(VmDebuggerState state) {
+        this.state = state;
     }
 
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         long referenceTypeID = payload.readLong();
-        ClassInfo classInfo = vmDebuggerState.classInfoLoader().classRefId(referenceTypeID);
-        if (classInfo == null)
-            return JdwpConsts.Error.INVALID_OBJECT;
-        FieldInfo[] fields = vmDebuggerState.classInfoLoader().classFields(classInfo);
 
-        output.writeInt32(fields.length);
-        for (FieldInfo fieldInfo : fields) {
-            output.writeLong(fieldInfo.getRefId());
-            output.writeStringWithLen(fieldInfo.getName());
-            output.writeStringWithLen(fieldInfo.getDesc());
-            output.writeInt32(fieldInfo.modifiers());
+        synchronized (state.centralLock()) {
+            ClassInfo classInfo = state.classInfoLoader().classRefId(referenceTypeID);
+            if (classInfo == null)
+                return JdwpConsts.Error.INVALID_OBJECT;
+            FieldInfo[] fields = state.classInfoLoader().classFields(classInfo);
+
+            output.writeInt32(fields.length);
+            for (FieldInfo fieldInfo : fields) {
+                output.writeLong(fieldInfo.getRefId());
+                output.writeStringWithLen(fieldInfo.getName());
+                output.writeStringWithLen(fieldInfo.getDesc());
+                output.writeInt32(fieldInfo.modifiers());
+            }
         }
 
         return JdwpConsts.Error.NONE;

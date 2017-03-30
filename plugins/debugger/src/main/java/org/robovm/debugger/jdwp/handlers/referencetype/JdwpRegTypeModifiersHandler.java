@@ -13,20 +13,24 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * java.lang.Integer.TYPE), the value of the returned bit mask is undefined.
  */
 public class JdwpRegTypeModifiersHandler implements IJdwpRequestHandler {
-    private final VmDebuggerState vmDebuggerState;
+    private final VmDebuggerState state;
 
-    public JdwpRegTypeModifiersHandler(VmDebuggerState vmDebuggerState) {
-        this.vmDebuggerState = vmDebuggerState;
+    public JdwpRegTypeModifiersHandler(VmDebuggerState state) {
+        this.state = state;
     }
 
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         long referenceTypeID = payload.readLong();
-        ClassInfo classInfo = vmDebuggerState.classInfoLoader().classRefId(referenceTypeID);
-        if (classInfo == null)
-            return JdwpConsts.Error.INVALID_OBJECT;
 
-        output.writeInt32(classInfo.modifiers());
+        synchronized (state.centralLock()) {
+            ClassInfo classInfo = state.classInfoLoader().classRefId(referenceTypeID);
+            if (classInfo == null)
+                return JdwpConsts.Error.INVALID_OBJECT;
+
+            output.writeInt32(classInfo.modifiers());
+        }
+
         return JdwpConsts.Error.NONE;
     }
 

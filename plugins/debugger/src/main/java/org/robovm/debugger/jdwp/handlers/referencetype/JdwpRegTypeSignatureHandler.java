@@ -11,20 +11,24 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * Returns the JNI signature of a reference type.
  */
 public class JdwpRegTypeSignatureHandler implements IJdwpRequestHandler {
-    private final VmDebuggerState vmDebuggerState;
+    private final VmDebuggerState state;
 
-    public JdwpRegTypeSignatureHandler(VmDebuggerState vmDebuggerState) {
-        this.vmDebuggerState = vmDebuggerState;
+    public JdwpRegTypeSignatureHandler(VmDebuggerState state) {
+        this.state = state;
     }
 
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         long referenceTypeID = payload.readLong();
-        ClassInfo classInfo = vmDebuggerState.classInfoLoader().classRefId(referenceTypeID);
-        if (classInfo == null)
-            return JdwpConsts.Error.INVALID_OBJECT;
 
-        output.writeStringWithLen(classInfo.getSignature());
+        synchronized (state.centralLock()) {
+            ClassInfo classInfo = state.classInfoLoader().classRefId(referenceTypeID);
+            if (classInfo == null)
+                return JdwpConsts.Error.INVALID_OBJECT;
+
+            output.writeStringWithLen(classInfo.getSignature());
+        }
+
         return JdwpConsts.Error.NONE;
     }
 

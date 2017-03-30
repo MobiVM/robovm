@@ -14,29 +14,32 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  */
 public class JdwpVmClassesBySignatureHandler implements IJdwpRequestHandler{
 
-    private final VmDebuggerState vmDebuggerState;
+    private final VmDebuggerState state;
 
-    public JdwpVmClassesBySignatureHandler(VmDebuggerState vmDebuggerState) {
-        this.vmDebuggerState = vmDebuggerState;
+    public JdwpVmClassesBySignatureHandler(VmDebuggerState state) {
+        this.state = state;
     }
 
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         String signature = payload.readStringWithLen();
-        ClassInfo classInfo = vmDebuggerState.classInfoLoader().classBySignature(signature);
-        if(classInfo != null) {
-            // Number of reference types that follow.
-            output.writeInt32(1);
-            // refTypeTag
-            output.writeByte(Converter.jdwpTypeTag(classInfo));
-            // typeID
-            output.writeLong(classInfo.getRefId());
-            // status
-            output.writeInt32(Converter.jdwpClassStatus(classInfo));
-        } else {
-            // no class found
-            // TODO: logging here
-            output.writeInt32(0); // Number of reference types that follow.
+
+        synchronized (state.centralLock()) {
+            ClassInfo classInfo = state.classInfoLoader().classBySignature(signature);
+            if (classInfo != null) {
+                // Number of reference types that follow.
+                output.writeInt32(1);
+                // refTypeTag
+                output.writeByte(Converter.jdwpTypeTag(classInfo));
+                // typeID
+                output.writeLong(classInfo.getRefId());
+                // status
+                output.writeInt32(Converter.jdwpClassStatus(classInfo));
+            } else {
+                // no class found
+                // TODO: logging here
+                output.writeInt32(0); // Number of reference types that follow.
+            }
         }
 
         return JdwpConsts.Error.NONE;
