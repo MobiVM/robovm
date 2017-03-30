@@ -21,15 +21,15 @@ public class VmStackTrace implements RefIdHolder.IRefIdObject {
         this.lineNumber = lineNumber;
     }
 
-    public ClassInfo getClassInfo() {
+    public ClassInfo classInfo() {
         return classInfo;
     }
 
-    public MethodInfo getMethodInfo() {
+    public MethodInfo methodInfo() {
         return methodInfo;
     }
 
-    public int getLineNumber() {
+    public int lineNumber() {
         return lineNumber;
     }
 

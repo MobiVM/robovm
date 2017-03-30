@@ -26,9 +26,9 @@ public class JdwpThreadStoppedEventData extends JdwpEventData {
         // write location
         // TODO: is other types possible like array ?
         packet.writeByte(JdwpConsts.Tag.OBJECT);
-        packet.writeLong(location.getClassInfo().getRefId());
-        packet.writeLong(location.getMethodInfo().getRefId());
-        packet.writeLong(location.getLineNumber());
+        packet.writeLong(location.classInfo().getRefId());
+        packet.writeLong(location.methodInfo().getRefId());
+        packet.writeLong(location.lineNumber());
 
         // exception
         if (exception != null) {
@@ -37,9 +37,9 @@ public class JdwpThreadStoppedEventData extends JdwpEventData {
 
             // exception location
             // TODO: check if it is valid
-            packet.writeLong(location.getClassInfo().getRefId());
-            packet.writeLong(location.getMethodInfo().getRefId());
-            packet.writeLong(location.getLineNumber());
+            packet.writeLong(location.classInfo().getRefId());
+            packet.writeLong(location.methodInfo().getRefId());
+            packet.writeLong(location.lineNumber());
         }
     }
 

@@ -46,6 +46,14 @@ public class JdwpEventRequest {
         return predicates;
     }
 
+    public <T> T predicateByKind(byte modifierKind) {
+        for (EventPredicate predicate : predicates)
+            if (predicate.modifierKind() == modifierKind)
+                //noinspection unchecked
+                return (T)predicate;
+        return null;
+    }
+
     @Override
     public String toString() {
         return "JdwpEventRequest{" +

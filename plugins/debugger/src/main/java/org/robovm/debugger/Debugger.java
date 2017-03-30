@@ -4,6 +4,7 @@ import org.robovm.debugger.execution.JdwpEventRequest;
 import org.robovm.debugger.execution.predicates.EventClassTypeIdPredicate;
 import org.robovm.debugger.execution.predicates.EventExceptionPredicate;
 import org.robovm.debugger.execution.predicates.EventInstanceIdPredicate;
+import org.robovm.debugger.execution.predicates.EventLocationPredicate;
 import org.robovm.debugger.execution.predicates.EventPredicate;
 import org.robovm.debugger.execution.predicates.EventStepModPredicate;
 import org.robovm.debugger.execution.predicates.EventThreadRefIdPredicate;
@@ -31,20 +32,23 @@ import org.robovm.debugger.state.instances.VmInstance;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.DbgLogger;
+import org.robovm.debugger.utils.DebuggerThread;
+import org.robovm.debugger.utils.IDebuggerToolbox;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 import java.io.File;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * @author  Demyan Kimitsa
- * TODO: temporal file to handle logic and events
  */
-public class DebuggerLogic implements IHooksEventsHandler, IJdwpServerDelegate {
+public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebuggerToolbox, DebuggerThread.Catcher {
     private final DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
 
     /**
@@ -55,12 +59,12 @@ public class DebuggerLogic implements IHooksEventsHandler, IJdwpServerDelegate {
     /**
      * thread that is reading events from hooks interface
      */
-    Thread hooksEventsThread;
+    private Thread hooksEventsThread;
 
     /**
      * queue to keep events from hooks channel
      */
-    LinkedBlockingQueue<HooksEventPayload> hooksEventsQueue = new LinkedBlockingQueue<>();
+    private LinkedBlockingQueue<HooksEventPayload> hooksEventsQueue = new LinkedBlockingQueue<>();
 
     /**
      * debugger state
@@ -96,14 +100,25 @@ public class DebuggerLogic implements IHooksEventsHandler, IJdwpServerDelegate {
      * diff of address of base symbol, used to offset mach-o addresses due PIE/ASLR mode
      * (e.g. runtimeMemoryOffset = robovmBaseSymbol(runtime) - robovmBaseSymbol(mach-o)
      */
-    long runtimeMemoryOffset;
+    private long runtimeMemoryOffset;
 
     /**
      * reader of device memory
      */
-    TargetByteBufferReader deviceMemoryReader;
+    private TargetByteBufferReader deviceMemoryReader;
 
-    public DebuggerLogic(DebuggerConfig config) {
+
+    /**
+     * list of threads associated with debugger
+     */
+    private List<DebuggerThread> debuggerThreads = new ArrayList<>();
+
+    /**
+     * list of event request ids that that went to target/simulator
+     */
+    private Set<Integer> requestIdsInTarget = new HashSet<>();
+
+    public Debugger(DebuggerConfig config) {
         // setup logger
         if (config.logDir() != null) {
             DbgLogger.setup(new File(config.logDir(), "debugger"+System.currentTimeMillis() + ".log"), config.logToConsole());
@@ -112,11 +127,11 @@ public class DebuggerLogic implements IHooksEventsHandler, IJdwpServerDelegate {
         // save references
         this.config = config;
         this.state = new VmDebuggerState(config.appfile(), config.arch());
-        this.jdwpServer = new JdwpDebugServer(state, this, config.jdwpClienMode(), config.jdwpPort()) ;
+        this.jdwpServer = new JdwpDebugServer(this, state, this, config.jdwpClienMode(), config.jdwpPort()) ;
         if (config.hooksPortFile() != null)
-            this.hooksChannel = new HooksChannel(!config.arch().is32Bit(), config.hooksPortFile(), this);
+            this.hooksChannel = new HooksChannel(this, !config.arch().is32Bit(), config.hooksPortFile(), this);
         else
-            this.hooksChannel = new HooksChannel(!config.arch().is32Bit(), config.hooksPort(), this);
+            this.hooksChannel = new HooksChannel(this, !config.arch().is32Bit(), config.hooksPort(), this);
 
         jdwpEventPayload = new ByteBufferPacket();
         jdwpEventPayload.setByteOrder(ByteOrder.BIG_ENDIAN);
@@ -414,6 +429,13 @@ public class DebuggerLogic implements IHooksEventsHandler, IJdwpServerDelegate {
                             throw new DebuggerException(JdwpConsts.Error.INVALID_THREAD);
                     }
                     break;
+                case JdwpConsts.EventModifier.LOCATION_ONLY:
+                    EventLocationPredicate locationPredicate = (EventLocationPredicate) predicate;
+                    if (state.classRefIdHolder().objectById(locationPredicate.classId()) == null)
+                        throw new DebuggerException(JdwpConsts.Error.INVALID_CLASS);
+                    if (state.methodsRefIdHolder().objectById(locationPredicate.methodId()) == null)
+                        throw new DebuggerException(JdwpConsts.Error.INVALID_METHODID);
+                    break;
             }
         }
 
@@ -423,14 +445,16 @@ public class DebuggerLogic implements IHooksEventsHandler, IJdwpServerDelegate {
 
         log.debug("jdwpSetEventRequest: " + request);
 
+        // apply event to target before adding it to list as it could fail with exception due wrong location etc
+        onEventRequestSet(request);
+
         state.jdwpEventRequests().add(request);
         return requestId;
     }
 
 
     /**
-     * Clear previously set event request
-     *
+     * Clears previously set event request
      * @param eventKind Event kind to clear
      * @param requestID ID of request to clear
      * @return JDWP error code
@@ -470,9 +494,93 @@ public class DebuggerLogic implements IHooksEventsHandler, IJdwpServerDelegate {
         }
     }
 
-    protected void onEventRequestRemoved(JdwpEventRequest request) {
-        // TODO: perform device side removal of breakpoint
+    private void onEventRequestSet(JdwpEventRequest request) {
+        if (requestIdsInTarget.contains(request.requestId()))
+            throw new DebuggerException("Request with id " + request.requestId() + " already registered with target");
+
+        switch (request.eventKind() ) {
+            case JdwpConsts.EventKind.BREAKPOINT:
+                // find location
+                EventLocationPredicate location = request.predicateByKind(JdwpConsts.EventModifier.LOCATION_ONLY);
+                if (location == null)
+                    throw new DebuggerException(JdwpConsts.Error.INVALID_LOCATION);
+
+                // TODO: apply it to target
+                break;
+
+            case JdwpConsts.EventKind.SINGLE_STEP:
+                EventStepModPredicate stepMod = request.predicateByKind(JdwpConsts.EventModifier.STEP);
+                if (stepMod == null) {
+                    // probably this is wrong error code but this should not happen ever
+                    throw new DebuggerException(JdwpConsts.Error.INVALID_EVENT_TYPE);
+                }
+
+                // TODO: apply it to target
+                break;
+
+            default:
+                // this event request either doesn't affect target or not fully supported
+                return;
+        }
+
+        requestIdsInTarget.add(request.requestId());
     }
+
+    private void onEventRequestRemoved(JdwpEventRequest request) {
+        // check if this request has touched the targets
+        if (!requestIdsInTarget.contains(request.requestId()))
+            return;
+
+        switch (request.eventKind() ) {
+            case JdwpConsts.EventKind.BREAKPOINT:
+                // remove from device
+                break;
+
+            case JdwpConsts.EventKind.SINGLE_STEP:
+                // SHOULD NOT HAPPEN ?
+                break;
+        }
+    }
+
+    /**
+     * Toolbox method to create customized thread
+     * @param r runnable to run in thread
+     * @param name to give to thread
+     * @return custom thread
+     */
+    @Override
+    public Thread createThread(Runnable r, String name) {
+        // return debugger thread to catch exceptions
+        DebuggerThread thread = new DebuggerThread(this, r, name);
+
+        // also remember all threads to be able to shutdown these if required
+        debuggerThreads.add(thread);
+
+        return thread;
+    }
+
+    @Override
+    public void onException(Thread thread, Throwable t) {
+        log.error("Thread " + thread.getName() + " crashed", t);
+        shutdown();
+    }
+
+
+    public void shutdown() {
+        // stop all threads
+        for (DebuggerThread t : debuggerThreads) {
+            t.interrupt();
+            try {
+                t.join(100);
+            } catch (InterruptedException ignored) {
+            }
+        }
+
+        // shutdown JDWP and hooks
+        jdwpServer.shutdown();
+        hooksChannel.shutdown();
+    }
+
 
     private VmStackTrace[] convertCallStack(HooksCallStackEntry[] callStack) {
         List<VmStackTrace> result = new ArrayList<>();
@@ -522,9 +630,12 @@ public class DebuggerLogic implements IHooksEventsHandler, IJdwpServerDelegate {
     }
 
 
-    public static void main(String[] argv) {
+    public static void main(String[] argv) throws InterruptedException {
         DebuggerConfig config = DebuggerConfig.fromCommandLine(argv);
-        DebuggerLogic debugger = new DebuggerLogic(config);
+        Debugger debugger = new Debugger(config);
         debugger.start();
+
+        // as all threads are daemon now
+        Thread.sleep(Long.MAX_VALUE);
     }
 }

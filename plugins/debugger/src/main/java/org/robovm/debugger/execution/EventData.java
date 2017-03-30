@@ -1,6 +1,7 @@
 package org.robovm.debugger.execution;
 
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.state.instances.VmStackTrace;
 
 /**
  * @author Demyan Kimitsa
@@ -30,6 +31,10 @@ public abstract class EventData {
     }
 
     public boolean isExceptionCaught() {
+        throw new DebuggerException(EXCEPTION_MSG);
+    }
+
+    public VmStackTrace getStoppeedLocation() {
         throw new DebuggerException(EXCEPTION_MSG);
     }
 }

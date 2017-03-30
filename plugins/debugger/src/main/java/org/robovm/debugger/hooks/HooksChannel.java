@@ -8,6 +8,7 @@ import org.robovm.debugger.hooks.payloads.HooksEventPayload;
 import org.robovm.debugger.hooks.payloads.HooksThreadEventPayload;
 import org.robovm.debugger.hooks.payloads.HooksThreadStoppedEventPayload;
 import org.robovm.debugger.utils.DbgLogger;
+import org.robovm.debugger.utils.IDebuggerToolbox;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
 
@@ -29,7 +30,7 @@ import java.util.function.IntSupplier;
  * Check hooks.c for reference
  */
 public class HooksChannel implements IHooksApi {
-    DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
+    private DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
 
     private final static int DEFAULT_TIMEOUT = 5000;
     private final static int PORT_FILE_WAIT_TIMEOUT = 60000;
@@ -41,12 +42,14 @@ public class HooksChannel implements IHooksApi {
     private final Map<Long, HookReqHolder> requestsInProgress = new HashMap<>();
     private final ByteBufferPacket headerBuffer;
     private final IHooksEventsHandler eventsHandler;
+    private final IDebuggerToolbox toolbox;
 
-    private HooksChannel(boolean is64bit, IntSupplier hooksPortSupplier, IHooksEventsHandler eventsHandler) {
+    private HooksChannel(IDebuggerToolbox toolbox, boolean is64bit, IntSupplier hooksPortSupplier, IHooksEventsHandler eventsHandler) {
+        this.toolbox = toolbox;
         this.hooksPortSupplier = hooksPortSupplier;
         this.is64bit = is64bit;
         this.eventsHandler = eventsHandler;
-        this.socketThread = new Thread(() -> doSocketWork());
+        this.socketThread = toolbox.createThread(() -> doSocketWork(), "HooksChannel socket thread");
 
         headerBuffer = new ByteBufferPacket();
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
@@ -55,21 +58,32 @@ public class HooksChannel implements IHooksApi {
     /**
      * when port is known
      */
-    public HooksChannel(boolean is64bit, int port, IHooksEventsHandler eventsHandler) {
-        this(is64bit, () -> port, eventsHandler);
+    public HooksChannel(IDebuggerToolbox toolbox, boolean is64bit, int port, IHooksEventsHandler eventsHandler) {
+        this(toolbox, is64bit, () -> port, eventsHandler);
     }
 
     /**
      * when port to be read from simulator port file
      */
-    public HooksChannel(boolean is64bit, File portFile, IHooksEventsHandler eventsHandler) {
-        this(is64bit, () -> readFromPortFile(portFile), eventsHandler);
+    public HooksChannel(IDebuggerToolbox toolbox, boolean is64bit, File portFile, IHooksEventsHandler eventsHandler) {
+        this(toolbox, is64bit, () -> readFromPortFile(portFile), eventsHandler);
     }
 
     public void start() {
         this.socketThread.start();
     }
 
+
+    public void shutdown() {
+        // don't bother about thread as it is already killed in debugger
+        if (socket != null && !socket.isClosed()) {
+            try {
+                socket.close();
+            } catch (IOException ignored) {
+            }
+        }
+
+    }
 
     private void doSocketWork() {
         // establish connection
@@ -473,7 +487,8 @@ public class HooksChannel implements IHooksApi {
             throw new DebuggerException("Unknown arg !");
         }
 
-        final HooksChannel hooksChannel = new HooksChannel(true, port, new IHooksEventsHandler() {
+        IDebuggerToolbox toolbox = (r, name) -> new Thread(r, name);
+        final HooksChannel hooksChannel = new HooksChannel(toolbox, true, port, new IHooksEventsHandler() {
             @Override
             public void onHooksTargetAttached(IHooksApi api, long robovmBaseSymbol) {
             }

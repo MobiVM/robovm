@@ -22,6 +22,7 @@ import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.jdwp.protocol.JdwpRequestHeader;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.utils.DbgLogger;
+import org.robovm.debugger.utils.IDebuggerToolbox;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 import java.io.IOException;
@@ -49,15 +50,18 @@ public class JdwpDebugServer implements IJdwpServerApi{
     private ByteBufferPacket headerBuffer = new ByteBufferPacket();
     private final VmDebuggerState state;
     private final IJdwpServerDelegate delegate;
+    private final IDebuggerToolbox toolbox;
 
 
-    public JdwpDebugServer(VmDebuggerState state, IJdwpServerDelegate delegate, boolean jdwpClienMode, int jdwpPort) {
+    public JdwpDebugServer(IDebuggerToolbox toolbox, VmDebuggerState state, IJdwpServerDelegate delegate,
+                           boolean jdwpClienMode, int jdwpPort) {
+        this.toolbox = toolbox;
         this.state = state;
         this.delegate = delegate;
         this.jdwpClientMode = jdwpClienMode;
         this.jdwpPort = jdwpPort;
 
-        socketThread = new Thread(() -> doSocketWork());
+        socketThread = toolbox.createThread(() -> doSocketWork(), "JDWP server socket thread");
         headerBuffer = new ByteBufferPacket();
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
     }
@@ -68,11 +72,13 @@ public class JdwpDebugServer implements IJdwpServerApi{
         socketThread.start();
     }
 
-    public void cleanup() {
-        socketThread.interrupt();
-        try {
-            socketThread.join(2000);
-        } catch (InterruptedException ignored) {
+    public void shutdown() {
+        // don't bother about thread as it is already killed in debugger
+        if (socket != null && !socket.isClosed()) {
+            try {
+                socket.close();
+            } catch (IOException ignored) {
+            }
         }
     }
 
