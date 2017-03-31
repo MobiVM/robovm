@@ -39,6 +39,7 @@
     <module>dist</module>
     <module>plugins/templates</module>
     <module>plugins/maven</module>
+    <module>plugins/ibxcode</module>
   </modules>
 
 </project>

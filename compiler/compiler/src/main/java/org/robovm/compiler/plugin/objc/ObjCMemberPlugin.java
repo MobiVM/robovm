@@ -93,6 +93,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
     public static final String NOT_IMPLEMENTED = "L" + OBJC_ANNOTATIONS_PACKAGE + "/NotImplemented;";
     public static final String IBACTION = "L" + OBJC_ANNOTATIONS_PACKAGE + "/IBAction;";
     public static final String IBOUTLET = "L" + OBJC_ANNOTATIONS_PACKAGE + "/IBOutlet;";
+    public static final String IBINSPECTABLE = "L" + OBJC_ANNOTATIONS_PACKAGE + "/IBInspectable;";
     public static final String IBOUTLETCOLLECTION = "L" + OBJC_ANNOTATIONS_PACKAGE + "/IBOutletCollection;";
     public static final String NATIVE_CLASS = "L" + OBJC_ANNOTATIONS_PACKAGE + "/NativeClass;";
     public static final String CUSTOM_CLASS = "L" + OBJC_ANNOTATIONS_PACKAGE + "/CustomClass;";
@@ -900,6 +901,8 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
                 }
             } else {
                 annotation = getAnnotation(field, IBOUTLET);
+                if (annotation == null)
+                    annotation = getAnnotation(field, IBINSPECTABLE);
             }
 
             // skip fields without annotations
@@ -908,10 +911,10 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
 
             // validate against static/final
             if (field.isStatic()) {
-                throw new CompilerException("Objective-C @IBOutlet/@IBOutletCollection method " + field + " must not be static.");
+                throw new CompilerException("Objective-C @IBOutlet/@IBOutletCollection/@IBInspectable field " + field + " must not be static.");
             }
             if (field.isFinal()) {
-                throw new CompilerException("Objective-C @IBOutlet/@IBOutletCollection method " + field + " must not be final.");
+                throw new CompilerException("Objective-C @IBOutlet/@IBOutletCollection/@IBInspectable field " + field + " must not be final.");
             }
 
             // create a setter method
@@ -999,6 +1002,16 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
             }
 
             transformObjCProperty(annotation, "@IBOutlet", sootClass, method, selectors, overridables, extensions);
+            return;
+        }
+        annotation = getAnnotation(method, IBINSPECTABLE);
+        if (annotation != null) {
+            if (method.isStatic()) {
+                throw new CompilerException("Objective-C @IBInspectable method "
+                        + method + " must not be static.");
+            }
+
+            transformObjCProperty(annotation, "@IBInspectable", sootClass, method, selectors, overridables, extensions);
             return;
         }
         annotation = getAnnotation(method, IBOUTLETCOLLECTION);
@@ -1363,6 +1376,9 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         AnnotationTag annotation = getAnnotation(method, PROPERTY);
         if (annotation == null) {
             annotation = getAnnotation(method, IBOUTLET);
+        }
+        if (annotation == null) {
+            annotation = getAnnotation(method, IBINSPECTABLE);
         }
         if (annotation == null) {
             annotation = getAnnotation(method, IBOUTLETCOLLECTION);

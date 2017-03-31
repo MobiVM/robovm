@@ -53,6 +53,11 @@
                 description="Create an IPA for App Store or ad-hoc distribution">
             <add-to-group group-id="BuildMenu" anchor="last"/>
         </action>
+        <action id="org.robovm.idea.open-ibxcode" class="org.robovm.idea.actions.GenerateXCodeProjectAction" text="Open XCode"
+                description="Generate and open XCode project to edit xib/storyboard in Interface Builder">
+            <add-to-group group-id="BuildMenu" anchor="last"/>
+        </action>
+
     </actions>
 
 </idea-plugin>
