@@ -11,9 +11,13 @@ import org.robovm.debugger.state.classdata.ClassInfo;
 public final class Converter {
 
     public static byte jdwpTypeTag(ClassInfo classInfo) {
-        if (classInfo.isInterface())
+        if (classInfo.isArray())
+            return JdwpConsts.TypeTag.ARRAY;
+        else if (classInfo.isInterface())
             return JdwpConsts.TypeTag.INTERFACE;
-        return JdwpConsts.TypeTag.CLASS;
+        else
+            return JdwpConsts.TypeTag.CLASS;
+
     }
 
     public static int jdwpClassStatus(ClassInfo classInfo) {

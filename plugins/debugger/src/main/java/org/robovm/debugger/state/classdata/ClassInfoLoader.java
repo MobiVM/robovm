@@ -21,14 +21,14 @@ public class ClassInfoLoader {
 
     final ByteBufferMemoryReader reader;
 
-    // name to class info
-    private final Map<String, ClassInfo> nameToClassInfo = new HashMap<>();
+    // signature to data info
+    private final Map<String, ClassInfo> signatureToDataInfo = new HashMap<>();
     // class info address (as was read from mach-o) to class info
-    private final Map<Long, ClassInfo> addrToClassInfo = new HashMap<>();
-    private final List<ClassInfo> classes;
-
-    // once class is loaded
-    private final Map<Long, ClassInfo> classAddrToClassInfo = new HashMap<>();
+    private final Map<Long, ClassInfo> classInfoAddrToClassInfo = new HashMap<>();
+    // contains array and classes
+    private final List<ClassInfo> dataInfos;
+    // matches Class object to class info (this object is received once class is loaded)
+    private final Map<Long, ClassInfo> classObjAddrToDataInfo = new HashMap<>();
 
     // reference counters
     final RefIdHolder<ClassInfo> classRefIdHolder;
@@ -50,7 +50,7 @@ public class ClassInfoLoader {
 
 
         // create flat list of classes
-        classes = Collections.unmodifiableList(new ArrayList<>(this.nameToClassInfo.values()));
+        dataInfos = Collections.unmodifiableList(new ArrayList<>(this.signatureToDataInfo.values()));
     }
 
     private void parseHash( long hash) {
@@ -73,47 +73,46 @@ public class ClassInfoLoader {
             long classInfoPtr = reader.readPointer();
             reader.setAddress(classInfoPtr);
 
-            ClassInfo classInfo = new ClassInfo();
+            ClassInfoImpl classInfo = new ClassInfoImpl();
             classInfo.readClassInfoHeader(reader);
             classRefIdHolder.addObject(classInfo);
-            nameToClassInfo.put(classInfo.getName(), classInfo);
-            addrToClassInfo.put(classInfoPtr, classInfo);
+            signatureToDataInfo.put(classInfo.getSignature(), classInfo);
+            classInfoAddrToClassInfo.put(classInfoPtr, classInfo);
             base += pointerSize;
         }
     }
 
-    public ClassInfo classInfoByName(String name) {
-        return nameToClassInfo.get(name);
+    public ClassInfo classInfoBySignature(String signature) {
+        return signatureToDataInfo.get(signature);
     }
 
     public ClassInfo classRefId(long refId) {
         return this.classRefIdHolder.objectById(refId);
     }
 
-    public ClassInfo classByLoadedAddr(long classPointer) {
-        return classAddrToClassInfo.get(classPointer);
+    public ClassInfo classByClazzAddr(long classPointer) {
+        return classObjAddrToDataInfo.get(classPointer);
     }
 
     public List<ClassInfo> classes() {
-        return classes;
+        return dataInfos;
     }
 
-    public ClassInfo classBySignature(String signature) {
-        if (signature.startsWith("L") && signature.endsWith(";")) {
-            String className = signature.substring(1, signature.length() - 1);
-            return nameToClassInfo.get(className);
-        }
-        return null;
+    public ClassInfo dataTypeInfoBySignature(String signature) {
+        return signatureToDataInfo.get(signature);
     }
+
+
 
     /**
      * Notification that class was loaded in target
-     * @param classInfoPtr pointer to class info structure s
-     * @param clazzPtr pointer to loaded class object
+     * @param classInfoPtr pointer to class info structure (machO space )
+     * @param clazzPtr pointer to loaded class object (runtime space) -- as there is a mix of primitive classes objects from
+     *                 machO and array/object class objects from runtime
      */
     public ClassInfo onClassLoaded(long classInfoPtr, long clazzPtr) {
         // find class info by class its memory location
-        ClassInfo classInfo = addrToClassInfo.get(classInfoPtr);
+        ClassInfo classInfo = classInfoAddrToClassInfo.get(classInfoPtr);
         if (classInfo == null) {
             // TODO: warn
             throw new DebuggerException("TODO: unknown class info ptr!");
@@ -121,9 +120,77 @@ public class ClassInfoLoader {
 
         // set class info pointer
         classInfo.setClazzPtr(clazzPtr);
-        classAddrToClassInfo.put(clazzPtr, classInfo);
+        classObjAddrToDataInfo.put(clazzPtr, classInfo);
 
         return classInfo;
+    }
+
+    /**
+     * call from runtime class info loader once runtime class is resolved -- e.g. array or generic
+     * @param classInfo that was build by runtime loader
+     * @param clazzPtr pointer to clazz structure
+     */
+    public void registerRuntimeClassInfo(ClassInfo classInfo, long clazzPtr) {
+        // attach ID to it
+        classRefIdHolder.addObject(classInfo);
+        signatureToDataInfo.put(classInfo.getSignature(), classInfo);
+        // map pointer to class info
+        classObjAddrToDataInfo.put(clazzPtr, classInfo);
+    }
+
+    public ClassInfo buildPrimitiveClassInfo(char signature, long clazzPtr) {
+        // TODO: here will be more logic once there is field access is implemented
+        String signatureStr = String.valueOf(signature);
+        switch (signature) {
+            case 'Z':
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+
+            case 'B':
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+
+            case 'C':
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+
+            case 'S':
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+
+            case 'I':
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+
+            case 'J':
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+
+            case 'F':
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+
+            case 'D':
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+
+            case 'V':
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+        }
+
+        return null;
+    }
+
+    /**
+     * adds primitives data type infos by reading their
+     */
+    private void createPrimitivesDataInfo(MachOLoader appFileLoader) {
+        String[] signatures = new String[]{"Z", "B", "C", "S", "I", "J", "F", "D", "V"};
+        for (String signature : signatures) {
+            ClassInfoPrimitiveImpl primitiveInfo = createPrimitiveDataInfo(appFileLoader, signature);
+            classRefIdHolder.addObject(primitiveInfo);
+        }
+    }
+
+    private ClassInfoPrimitiveImpl createPrimitiveDataInfo(MachOLoader appFileLoader, String signature) {
+        // get clazz ptr for primitives
+        // refer to class.c#findClassByDescriptor
+        long clazzPtr = appFileLoader.resolveSymbol("_prim_" + signature);
+        if (clazzPtr < 0)
+            throw new DebuggerException("Cant resolve clazz for primitive " + signature);
+        return new ClassInfoPrimitiveImpl(signature, clazzPtr);
     }
 
     public FieldInfo[] classFields(ClassInfo classInfo) {
@@ -146,9 +213,9 @@ public class ClassInfoLoader {
                     new RefIdHolder<>(RefIdHolder.RefIdType.METHOD_TYPE),
                     new RefIdHolder<>(RefIdHolder.RefIdType.FIELD_TYPE),
                     loader.readDataSegment(), bcBootClassesHash, bcClassesHash);
-            for (ClassInfo info : classInfoLoader.classes)
-                info.loadData(classInfoLoader);
-            System.out.println("Loaded " + classInfoLoader.nameToClassInfo.size() + " classes");
+            for (ClassInfo info : classInfoLoader.dataInfos)
+                ((ClassInfoImpl)info).loadData(classInfoLoader);
+            System.out.println("Loaded " + classInfoLoader.signatureToDataInfo.size() + " classes");
         } catch (MachOException e) {
             e.printStackTrace();
         }

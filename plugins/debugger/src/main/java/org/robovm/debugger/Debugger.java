@@ -28,6 +28,7 @@ import org.robovm.debugger.jdwp.events.JdwpThreadStoppedEventData;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.MethodInfo;
+import org.robovm.debugger.state.classdata.RuntimeClassInfoLoader;
 import org.robovm.debugger.state.instances.VmInstance;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
@@ -109,6 +110,10 @@ public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebu
      */
     private TargetByteBufferReader deviceMemoryReader;
 
+    /**
+     * class info loader that resolves class info for classes created in runtime
+     */
+    private RuntimeClassInfoLoader runtimeClassInfoLoader;
 
     /**
      * list of threads associated with debugger
@@ -164,6 +169,7 @@ public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebu
         // calculate runtime to mach-o memory offset
         long robovmBaseSymbolMachO = state.appFileLoader().resolveSymbol("robovmBaseSymbol");
         runtimeMemoryOffset = robovmBaseSymbol - robovmBaseSymbolMachO;
+        runtimeClassInfoLoader = new RuntimeClassInfoLoader(state.classInfoLoader(), deviceMemoryReader);
 
         // TODO: send VM_START event
 
@@ -275,7 +281,6 @@ public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebu
         }
     }
 
-
     /**
      * processes class load event -- marks class info as loaded
      */
@@ -305,7 +310,7 @@ public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebu
                 throw new DebuggerException("Thread " + Long.toHexString(event.threadObj()) + " already attached/started!");
 
             // attach thread
-            ClassInfo ci = getClassInfo(event.threadObj());
+            ClassInfo ci = runtimeClassInfoLoader.resolveObjectRuntimeDataTypeInfo(event.threadObj());
             thread = new VmThread(event.threadObj(), event.thread(), ci);
             state.referenceRefIdHolder().addObject(thread);
             state.threads().add(thread);
@@ -357,7 +362,7 @@ public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebu
 
             case HookConsts.events.EXCEPTION:
                 resumeThread(thread);
-                ClassInfo ci = getClassInfo(event.throwable);
+                ClassInfo ci = runtimeClassInfoLoader.resolveObjectRuntimeDataTypeInfo(event.throwable);
                 VmInstance exception = new VmInstance(event.throwable, ci);
                 return new JdwpThreadStoppedEventData(JdwpConsts.EventKind.EXCEPTION, thread, callStack[0], exception);
 
@@ -375,15 +380,6 @@ public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebu
     private void resumeThread(VmThread thread) {
         hooksApi.threadResume(thread.getThreadPtr());
         thread.setStatus(VmThread.Status.RESUMED);
-    }
-
-    private ClassInfo getClassInfo(long objectPtr) {
-        // get pointer to class structure from Object, refer to types.h, struct Object
-        deviceMemoryReader.setAddress(objectPtr);
-        long classPointer = deviceMemoryReader.readPointer();
-
-        // class has to be loaded
-        return state.classInfoLoader().classByLoadedAddr(classPointer);
     }
 
 
@@ -607,7 +603,7 @@ public class Debugger implements IHooksEventsHandler, IJdwpServerDelegate, IDebu
     }
 
     private VmStackTrace convertStackTrace(HooksCallStackEntry payload) {
-        ClassInfo classInfo = state.classInfoLoader().classInfoByName(payload.clazzName());
+        ClassInfo classInfo = state.classInfoLoader().classInfoBySignature(payload.clazzName());
         // TODO: warning
         if (classInfo == null)
             return null;

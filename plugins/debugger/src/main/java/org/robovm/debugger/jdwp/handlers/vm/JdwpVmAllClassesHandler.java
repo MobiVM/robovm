@@ -27,8 +27,13 @@ public class JdwpVmAllClassesHandler implements IJdwpRequestHandler {
         synchronized (state.centralLock()) {
             List<ClassInfo> classes = this.state.classInfoLoader().classes();
 
-            output.writeInt32(classes.size());
+            // write dummy count field as there could be primitives
+            output.writeInt32(0);
+            int cnt = 0;
             for (ClassInfo classInfo : classes) {
+                if (classInfo.isPrimitive())
+                    continue;
+
                 // refTypeTag
                 output.writeByte(Converter.jdwpTypeTag(classInfo));
                 // typeID
@@ -37,7 +42,13 @@ public class JdwpVmAllClassesHandler implements IJdwpRequestHandler {
                 output.writeStringWithLen(classInfo.getSignature());
                 // status
                 output.writeInt32(Converter.jdwpClassStatus(classInfo));
+
+                cnt += 1;
             }
+
+            // now write proper count value
+            output.setPosition(0);
+            output.writeInt32(cnt);
         }
 
         return JdwpConsts.Error.NONE;

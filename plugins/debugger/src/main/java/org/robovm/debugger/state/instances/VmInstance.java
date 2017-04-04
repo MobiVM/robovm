@@ -1,7 +1,7 @@
 package org.robovm.debugger.state.instances;
 
-import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.state.classdata.ClassInfo;
+import org.robovm.debugger.state.refid.RefIdHolder;
 
 /**
  * @author Demyan Kimitsa
