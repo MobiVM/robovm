@@ -1,4 +1,4 @@
-package org.robovm.debugger.jdwp.events;
+package org.robovm.debugger.jdwp.handlers.eventrequest.events;
 
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.instances.VmThread;
@@ -20,8 +20,8 @@ public class JdwpClassLoadedEventData extends JdwpEventData {
     @Override
     protected void dumpCustomData(ByteBufferPacket packet) {
         packet.writeByte(Converter.jdwpTypeTag(classInfo));
-        packet.writeLong(classInfo.getRefId());
-        packet.writeStringWithLen(classInfo.getSignature());
+        packet.writeLong(classInfo.refId());
+        packet.writeStringWithLen(classInfo.signature());
         packet.writeInt32(Converter.jdwpClassStatus(classInfo));
     }
 

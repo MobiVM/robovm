@@ -23,12 +23,16 @@ public class VmInstance  implements RefIdHolder.IRefIdObject{
     }
 
     @Override
-    public long getRefId() {
+    public long refId() {
         return refId;
     }
 
-    public long getObjectPtr() {
+    public long objectPtr() {
         return objectPtr;
+    }
+
+    public ClassInfo classInfo() {
+        return classInfo;
     }
 
     @Override

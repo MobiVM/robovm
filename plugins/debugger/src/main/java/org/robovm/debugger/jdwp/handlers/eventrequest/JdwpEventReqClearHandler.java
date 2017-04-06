@@ -1,6 +1,6 @@
 package org.robovm.debugger.jdwp.handlers.eventrequest;
 
-import org.robovm.debugger.execution.IJdwpEventDelegate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.IJdwpEventDelegate;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 

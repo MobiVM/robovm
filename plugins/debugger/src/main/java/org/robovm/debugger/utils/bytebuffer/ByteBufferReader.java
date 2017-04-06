@@ -39,6 +39,10 @@ public abstract class ByteBufferReader {
         return new RangeByteBufferReader(bb);
     }
 
+    public static ByteBufferReader wrap(byte[] bytes) {
+        return new RangeByteBufferReader(ByteBuffer.wrap(bytes));
+    }
+
     public abstract int position();
 
     public abstract int size();
@@ -113,11 +117,24 @@ public abstract class ByteBufferReader {
         return res;
     }
 
+    public char readChar16() {
+        return (char) readUnsignedInt16();
+    }
+
     public long readLong() {
         expects(8);
         return byteBuffer.getLong();
     }
 
+    public float readFloat() {
+        expects(4);
+        return byteBuffer.getFloat();
+    }
+
+    public double readDouble() {
+        expects(8);
+        return byteBuffer.getDouble();
+    }
 
     public String readStringZ() {
         // at least one byte is needed

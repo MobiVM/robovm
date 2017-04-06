@@ -1,6 +1,6 @@
-package org.robovm.debugger.execution.predicates;
+package org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates;
 
-import org.robovm.debugger.execution.EventData;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.EventData;
 import org.robovm.debugger.state.instances.VmStackTrace;
 
 /**
@@ -37,7 +37,7 @@ public class EventLocationPredicate extends EventPredicate {
         VmStackTrace location = eventData.getStoppeedLocation();
         if (location == null)
             return false;
-        return classId == location.classInfo().getRefId() && methodId == location.methodInfo().getRefId() &&
+        return classId == location.classInfo().refId() && methodId == location.methodInfo().refId() &&
                 index == location.lineNumber();
     }
 }

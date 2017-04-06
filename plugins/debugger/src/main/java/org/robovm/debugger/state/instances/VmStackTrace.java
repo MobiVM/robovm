@@ -39,7 +39,7 @@ public class VmStackTrace implements RefIdHolder.IRefIdObject {
     }
 
     @Override
-    public long getRefId() {
+    public long refId() {
         return refId;
     }
 }

@@ -32,7 +32,7 @@ public class JdwpVmClassesBySignatureHandler implements IJdwpRequestHandler{
                 // refTypeTag
                 output.writeByte(Converter.jdwpTypeTag(classInfo));
                 // typeID
-                output.writeLong(classInfo.getRefId());
+                output.writeLong(classInfo.refId());
                 // status
                 output.writeInt32(Converter.jdwpClassStatus(classInfo));
             } else {

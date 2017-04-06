@@ -34,7 +34,7 @@ public abstract class BaseModifiersInfo implements RefIdHolder.IRefIdObject{
     }
 
     @Override
-    public long getRefId() {
+    public long refId() {
         return refId;
     }
 

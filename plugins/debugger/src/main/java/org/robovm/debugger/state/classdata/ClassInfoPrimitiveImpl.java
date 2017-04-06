@@ -1,6 +1,9 @@
 package org.robovm.debugger.state.classdata;
 
 import org.robovm.debugger.jdwp.JdwpConsts;
+import org.robovm.debugger.runtime.ValueManipulator;
+import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
 
 /**
  * @author Demyan Kimitsa
@@ -8,15 +11,28 @@ import org.robovm.debugger.jdwp.JdwpConsts;
 */
 public class ClassInfoPrimitiveImpl extends ClassInfo {
     private final String signature;
+    private final int size;
+    private final ValueManipulator manipulator;
 
-    public ClassInfoPrimitiveImpl(String signature, long clazzPtr) {
+    public ClassInfoPrimitiveImpl(String signature, long clazzPtr, int size, ValueManipulator manipulator) {
         super(Type.PRIMITIVE);
         this.signature = signature;
+        this.size = size;
+        this.manipulator = manipulator;
+
         setClazzPtr(clazzPtr);
     }
 
+    public int size() {
+        return size;
+    }
+
+    public ValueManipulator manipulator() {
+        return manipulator;
+    }
+
     @Override
-    public String getSignature() {
+    public String signature() {
         return signature;
     }
 
@@ -43,4 +59,20 @@ public class ClassInfoPrimitiveImpl extends ClassInfo {
         // ACC_PUBLIC, ACC_PRIVATE, ACC_PROTECTED are in the 3 least significant bits
         return JdwpConsts.Modifiers.PUBLIC;
     }
+
+
+
+    private interface TargetReader {
+        Object read(ByteBufferReader reader);
+    }
+
+    private interface TargetWritter {
+        void write(ByteBufferPacket packet, Object value);
+    }
+
+    private interface JdwpWritter {
+        void write(ByteBufferPacket packet, Object value);
+    }
+
+
 }

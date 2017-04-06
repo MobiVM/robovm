@@ -22,8 +22,12 @@ public class ClassInfoArrayImpl extends ClassInfo {
         this.elementType = elementType;
     }
 
+    public ClassInfo elementType() {
+        return elementType;
+    }
+
     @Override
-    public String getSignature() {
+    public String signature() {
         return signature;
     }
 

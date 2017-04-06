@@ -1,6 +1,5 @@
-package org.robovm.debugger.jdwp.events;
+package org.robovm.debugger.jdwp.handlers.eventrequest.events;
 
-import org.robovm.debugger.execution.EventData;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -38,7 +37,7 @@ public class JdwpEventData extends EventData {
 
     @Override
     public long getThreadRefId() {
-        return thread != null ? thread.getRefId() : 0;
+        return thread != null ? thread.refId() : 0;
     }
 
     /**

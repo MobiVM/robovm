@@ -2,7 +2,7 @@ package org.robovm.debugger.state;
 
 import org.robovm.compiler.config.Arch;
 import org.robovm.debugger.DebuggerException;
-import org.robovm.debugger.execution.JdwpEventRequest;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpEventRequest;
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.ClassInfoLoader;
 import org.robovm.debugger.state.classdata.FieldInfo;

@@ -151,7 +151,7 @@ public class ClassInfoImpl extends ClassInfo {
     }
 
     @Override
-    public String getSignature() {
+    public String signature() {
         return signature;
     }
 

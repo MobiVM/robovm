@@ -1,4 +1,4 @@
-package org.robovm.debugger.jdwp.events;
+package org.robovm.debugger.jdwp.handlers.eventrequest.events;
 
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.state.instances.VmInstance;
@@ -26,19 +26,19 @@ public class JdwpThreadStoppedEventData extends JdwpEventData {
         // write location
         // TODO: is other types possible like array ?
         packet.writeByte(JdwpConsts.Tag.OBJECT);
-        packet.writeLong(location.classInfo().getRefId());
-        packet.writeLong(location.methodInfo().getRefId());
+        packet.writeLong(location.classInfo().refId());
+        packet.writeLong(location.methodInfo().refId());
         packet.writeLong(location.lineNumber());
 
         // exception
         if (exception != null) {
             packet.writeByte(JdwpConsts.Tag.OBJECT);
-            packet.writeLong(exception.getRefId());
+            packet.writeLong(exception.refId());
 
             // exception location
             // TODO: check if it is valid
-            packet.writeLong(location.classInfo().getRefId());
-            packet.writeLong(location.methodInfo().getRefId());
+            packet.writeLong(location.classInfo().refId());
+            packet.writeLong(location.methodInfo().refId());
             packet.writeLong(location.lineNumber());
         }
     }

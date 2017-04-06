@@ -121,9 +121,25 @@ public class ByteBufferPacket extends ByteBufferReader {
         return this;
     }
 
+    public ByteBufferPacket writeChar16(char c) {
+        return writeUnsignedInt16(c);
+    }
+
     public ByteBufferPacket writeLong(long l) {
         wants(8);
         byteBuffer.putLong(l);
+        return this;
+    }
+
+    public ByteBufferPacket writeFloat(float f) {
+        wants(4);
+        byteBuffer.putFloat(f);
+        return this;
+    }
+
+    public ByteBufferPacket writeDouble(double d) {
+        wants(8);
+        byteBuffer.putDouble(d);
         return this;
     }
 

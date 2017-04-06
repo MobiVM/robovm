@@ -42,7 +42,7 @@ public abstract class ClassInfo extends BaseModifiersInfo {
         return type == Type.PRIMITIVE;
     }
 
-    public abstract String getSignature();
+    public abstract String signature();
     public abstract FieldInfo[] fields(ClassInfoLoader loader);
     public abstract MethodInfo[] methods(ClassInfoLoader loader);
     public abstract boolean hasError();

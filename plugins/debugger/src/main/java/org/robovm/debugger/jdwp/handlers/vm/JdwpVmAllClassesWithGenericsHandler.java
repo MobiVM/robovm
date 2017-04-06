@@ -35,9 +35,9 @@ public class JdwpVmAllClassesWithGenericsHandler implements IJdwpRequestHandler 
                 // refTypeTag
                 output.writeByte(Converter.jdwpTypeTag(classInfo));
                 // typeID
-                output.writeLong(classInfo.getRefId());
+                output.writeLong(classInfo.refId());
                 // signature
-                output.writeStringWithLen(classInfo.getSignature());
+                output.writeStringWithLen(classInfo.signature());
                 // genericSignature - The generic signature, an empty string if there is none.
                 output.writeStringWithLen("");
                 // status

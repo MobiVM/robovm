@@ -1,4 +1,4 @@
-package org.robovm.debugger.execution;
+package org.robovm.debugger.jdwp.handlers.eventrequest.events;
 
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.state.instances.VmStackTrace;

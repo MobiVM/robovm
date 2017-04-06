@@ -21,7 +21,7 @@ public class InstanceRefIdHolder extends RefIdHolder<VmInstance> {
     @Override
     public VmInstance addObject(VmInstance obj) {
         synchronized (idToObject) {
-            addrToObject.put(obj.getObjectPtr(), obj);
+            addrToObject.put(obj.objectPtr(), obj);
             return super.addObject(obj);
         }
     }
@@ -29,7 +29,7 @@ public class InstanceRefIdHolder extends RefIdHolder<VmInstance> {
     @Override
     public VmInstance removeObject(VmInstance obj) {
         synchronized (idToObject) {
-            addrToObject.remove(obj.getObjectPtr());
+            addrToObject.remove(obj.objectPtr());
             return super.removeObject(obj);
         }
     }

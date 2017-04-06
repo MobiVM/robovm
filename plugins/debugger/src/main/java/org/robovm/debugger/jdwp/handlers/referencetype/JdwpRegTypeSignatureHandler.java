@@ -26,7 +26,7 @@ public class JdwpRegTypeSignatureHandler implements IJdwpRequestHandler {
             if (classInfo == null)
                 return JdwpConsts.Error.INVALID_OBJECT;
 
-            output.writeStringWithLen(classInfo.getSignature());
+            output.writeStringWithLen(classInfo.signature());
         }
 
         return JdwpConsts.Error.NONE;

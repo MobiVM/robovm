@@ -34,7 +34,7 @@ public class JdwpRegTypeMethodsHandler implements IJdwpRequestHandler {
 
             output.writeInt32(fields.length);
             for (MethodInfo methodInfo : fields) {
-                output.writeLong(methodInfo.getRefId());
+                output.writeLong(methodInfo.refId());
                 output.writeStringWithLen(methodInfo.getName());
                 output.writeStringWithLen(methodInfo.getDesc());
                 output.writeInt32(methodInfo.modifiers());

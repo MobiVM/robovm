@@ -37,9 +37,9 @@ public class JdwpVmAllClassesHandler implements IJdwpRequestHandler {
                 // refTypeTag
                 output.writeByte(Converter.jdwpTypeTag(classInfo));
                 // typeID
-                output.writeLong(classInfo.getRefId());
+                output.writeLong(classInfo.refId());
                 // signature
-                output.writeStringWithLen(classInfo.getSignature());
+                output.writeStringWithLen(classInfo.signature());
                 // status
                 output.writeInt32(Converter.jdwpClassStatus(classInfo));
 

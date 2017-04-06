@@ -14,7 +14,7 @@ public class RefIdHolder<T extends RefIdHolder.IRefIdObject> {
     /** interface for object to work with this clss */
     public interface IRefIdObject {
         void setRefId(long refId);
-        long getRefId();
+        long refId();
     }
 
     /** types of ref-ids */
@@ -49,7 +49,7 @@ public class RefIdHolder<T extends RefIdHolder.IRefIdObject> {
 
     public T removeObject(T obj) {
         synchronized (idToObject) {
-            return idToObject.remove(obj.getRefId());
+            return idToObject.remove(obj.refId());
         }
     }
 
@@ -60,7 +60,7 @@ public class RefIdHolder<T extends RefIdHolder.IRefIdObject> {
     }
 
     public RefIdType typeOf(T obj) {
-        long refIdTypeIdx = obj.getRefId() % refIdStep;
+        long refIdTypeIdx = obj.refId() % refIdStep;
         return RefIdType.values()[(int) refIdTypeIdx];
     }
 }

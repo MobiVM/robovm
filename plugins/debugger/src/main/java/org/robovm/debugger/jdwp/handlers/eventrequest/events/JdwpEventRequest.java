@@ -1,6 +1,6 @@
-package org.robovm.debugger.execution;
+package org.robovm.debugger.jdwp.handlers.eventrequest.events;
 
-import org.robovm.debugger.execution.predicates.EventPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPredicate;
 
 import java.util.List;
 import java.util.function.Predicate;

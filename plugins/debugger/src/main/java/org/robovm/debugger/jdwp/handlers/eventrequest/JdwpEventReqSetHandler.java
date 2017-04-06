@@ -1,16 +1,16 @@
 package org.robovm.debugger.jdwp.handlers.eventrequest;
 
 import org.robovm.debugger.DebuggerException;
-import org.robovm.debugger.execution.IJdwpEventDelegate;
-import org.robovm.debugger.execution.predicates.EventClassNameMatchPredicate;
-import org.robovm.debugger.execution.predicates.EventClassTypeIdPredicate;
-import org.robovm.debugger.execution.predicates.EventExceptionPredicate;
-import org.robovm.debugger.execution.predicates.EventInstanceIdPredicate;
-import org.robovm.debugger.execution.predicates.EventLocationPredicate;
-import org.robovm.debugger.execution.predicates.EventModCountPredicate;
-import org.robovm.debugger.execution.predicates.EventPredicate;
-import org.robovm.debugger.execution.predicates.EventStepModPredicate;
-import org.robovm.debugger.execution.predicates.EventThreadRefIdPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.IJdwpEventDelegate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventClassNameMatchPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventClassTypeIdPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventExceptionPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventInstanceIdPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventLocationPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventModCountPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventStepModPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventThreadRefIdPredicate;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;

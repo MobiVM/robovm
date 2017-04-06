@@ -1,6 +1,7 @@
 package org.robovm.debugger.state.classdata;
 
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.runtime.ValueManipulator;
 import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
 import org.robovm.debugger.utils.macho.MachOException;
@@ -76,7 +77,7 @@ public class ClassInfoLoader {
             ClassInfoImpl classInfo = new ClassInfoImpl();
             classInfo.readClassInfoHeader(reader);
             classRefIdHolder.addObject(classInfo);
-            signatureToDataInfo.put(classInfo.getSignature(), classInfo);
+            signatureToDataInfo.put(classInfo.signature(), classInfo);
             classInfoAddrToClassInfo.put(classInfoPtr, classInfo);
             base += pointerSize;
         }
@@ -133,7 +134,7 @@ public class ClassInfoLoader {
     public void registerRuntimeClassInfo(ClassInfo classInfo, long clazzPtr) {
         // attach ID to it
         classRefIdHolder.addObject(classInfo);
-        signatureToDataInfo.put(classInfo.getSignature(), classInfo);
+        signatureToDataInfo.put(classInfo.signature(), classInfo);
         // map pointer to class info
         classObjAddrToDataInfo.put(clazzPtr, classInfo);
     }
@@ -143,54 +144,43 @@ public class ClassInfoLoader {
         String signatureStr = String.valueOf(signature);
         switch (signature) {
             case 'Z':
-                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+                // boolean
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr, 1, ValueManipulator.Boolean);
 
             case 'B':
-                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+                // byte
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr, 1, ValueManipulator.Byte);
 
             case 'C':
-                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+                // char
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr, 2, ValueManipulator.Character);
 
             case 'S':
-                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+                // short
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr, 2, ValueManipulator.Short);
 
             case 'I':
-                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+                // int
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr, 4, ValueManipulator.Integer);
 
             case 'J':
-                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+                // long
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr, 8, ValueManipulator.Long);
 
             case 'F':
-                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+                // float
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr, 4, ValueManipulator.Float);
 
             case 'D':
-                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+                // double
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr, 8, ValueManipulator.Double);
 
             case 'V':
-                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr);
+                // void
+                return new ClassInfoPrimitiveImpl(signatureStr, clazzPtr, 0, ValueManipulator.Void);
         }
 
         return null;
-    }
-
-    /**
-     * adds primitives data type infos by reading their
-     */
-    private void createPrimitivesDataInfo(MachOLoader appFileLoader) {
-        String[] signatures = new String[]{"Z", "B", "C", "S", "I", "J", "F", "D", "V"};
-        for (String signature : signatures) {
-            ClassInfoPrimitiveImpl primitiveInfo = createPrimitiveDataInfo(appFileLoader, signature);
-            classRefIdHolder.addObject(primitiveInfo);
-        }
-    }
-
-    private ClassInfoPrimitiveImpl createPrimitiveDataInfo(MachOLoader appFileLoader, String signature) {
-        // get clazz ptr for primitives
-        // refer to class.c#findClassByDescriptor
-        long clazzPtr = appFileLoader.resolveSymbol("_prim_" + signature);
-        if (clazzPtr < 0)
-            throw new DebuggerException("Cant resolve clazz for primitive " + signature);
-        return new ClassInfoPrimitiveImpl(signature, clazzPtr);
     }
 
     public FieldInfo[] classFields(ClassInfo classInfo) {

@@ -1,6 +1,7 @@
 package org.robovm.debugger.jdwp;
 
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.delegates.AllDelegates;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearAllBreakpointsHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqSetHandler;
@@ -22,7 +23,6 @@ import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.jdwp.protocol.JdwpRequestHeader;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.utils.DbgLogger;
-import org.robovm.debugger.utils.IDebuggerToolbox;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 import java.io.IOException;
@@ -48,20 +48,17 @@ public class JdwpDebugServer implements IJdwpServerApi{
     private Socket socket;
     private Map<Integer, IJdwpRequestHandler> handlers = new HashMap<>();
     private ByteBufferPacket headerBuffer = new ByteBufferPacket();
-    private final VmDebuggerState state;
     private final IJdwpServerDelegate delegate;
-    private final IDebuggerToolbox toolbox;
+    private final AllDelegates delegates;
 
 
-    public JdwpDebugServer(IDebuggerToolbox toolbox, VmDebuggerState state, IJdwpServerDelegate delegate,
-                           boolean jdwpClienMode, int jdwpPort) {
-        this.toolbox = toolbox;
-        this.state = state;
+    public JdwpDebugServer(AllDelegates delegates, IJdwpServerDelegate delegate, boolean jdwpClienMode, int jdwpPort) {
+        this.delegates = delegates;
         this.delegate = delegate;
         this.jdwpClientMode = jdwpClienMode;
         this.jdwpPort = jdwpPort;
 
-        socketThread = toolbox.createThread(() -> doSocketWork(), "JDWP server socket thread");
+        socketThread = delegates.createThread(() -> doSocketWork(), "JDWP server socket thread");
         headerBuffer = new ByteBufferPacket();
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
     }
@@ -233,6 +230,8 @@ public class JdwpDebugServer implements IJdwpServerApi{
     }
 
     private void registerHandlers() {
+        VmDebuggerState state = delegates.state();
+
         // VirtualMachine Command Set (1)
         registerHandler(new JdwpVmVersionHandler()); // 1
         registerHandler(new JdwpVmClassesBySignatureHandler(state)); // 2
@@ -277,9 +276,9 @@ public class JdwpDebugServer implements IJdwpServerApi{
         //ConstantPool (18)
 
         // EventRequest Command Set (15)
-        registerHandler(new JdwpEventReqSetHandler(delegate));
-        registerHandler(new JdwpEventReqClearHandler(delegate));
-        registerHandler(new JdwpEventReqClearAllBreakpointsHandler(delegate));
+        registerHandler(new JdwpEventReqSetHandler(delegates));
+        registerHandler(new JdwpEventReqClearHandler(delegates));
+        registerHandler(new JdwpEventReqClearAllBreakpointsHandler(delegates));
     }
 
 }
