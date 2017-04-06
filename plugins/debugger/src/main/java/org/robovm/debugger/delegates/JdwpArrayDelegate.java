@@ -29,7 +29,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
     public int jdwpArrayLength(long arrayId) throws DebuggerException {
         VmArrayInstance instance;
         try {
-            instance = delegates.state.referenceRefIdHolder().instanceById(arrayId);
+            instance = delegates.state().referenceRefIdHolder().instanceById(arrayId);
         } catch (ClassCastException e) {
             throw new DebuggerException(JdwpConsts.Error.INVALID_ARRAY);
         }
@@ -44,7 +44,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
     public void jdwpArrayGetValue(long arrayId, int index, int length, ByteBufferPacket writer) throws DebuggerException {
         VmArrayInstance instance;
         try {
-            instance = delegates.state.referenceRefIdHolder().instanceById(arrayId);
+            instance = delegates.state().referenceRefIdHolder().instanceById(arrayId);
         } catch (ClassCastException e) {
             throw new DebuggerException(JdwpConsts.Error.INVALID_ARRAY);
         }
@@ -70,7 +70,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
             int pointerSize = delegates.runtime.deviceMemoryReader.pointerSize();
             delegates.runtime.deviceMemoryReader.setAddress(instance.dataPtr() + pointerSize * index);
             reader = ByteBufferReader.wrap(delegates.runtime.deviceMemoryReader.readBytes(pointerSize * length));
-            manipulator = null;
+            manipulator = null; // TODO: !!!!!!!!
         }
 
         // write JDPW array region header
@@ -88,7 +88,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
     public void jdwpArraySetValue(long arrayId, int index, int length, ByteBufferReader reader) throws DebuggerException {
         VmArrayInstance instance;
         try {
-            instance = delegates.state.referenceRefIdHolder().instanceById(arrayId);
+            instance = delegates.state().referenceRefIdHolder().instanceById(arrayId);
         } catch (ClassCastException e) {
             throw new DebuggerException(JdwpConsts.Error.INVALID_ARRAY);
         }

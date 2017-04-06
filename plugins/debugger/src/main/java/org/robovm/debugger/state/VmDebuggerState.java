@@ -7,6 +7,7 @@ import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.ClassInfoLoader;
 import org.robovm.debugger.state.classdata.FieldInfo;
 import org.robovm.debugger.state.classdata.MethodInfo;
+import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.state.refid.InstanceRefIdHolder;
 import org.robovm.debugger.state.refid.RefIdHolder;
@@ -60,8 +61,11 @@ public class VmDebuggerState {
             appFileLoader  = new MachOLoader(appFile, MachOLoader.cpuTypeFromString(arch.toString()));
             appFileDataMemoryReader = appFileLoader.readDataSegment();
 
+            // now load all classes info
+            long bcBootClassesHash = appFileLoader.resolveSymbol("_bcBootClassesHash");
+            long bcClassesHash = appFileLoader.resolveSymbol("_bcClassesHash");
             classInfoLoader = new ClassInfoLoader(classRefIdHolder, methodsRefIdHolder, fieldRefIdHolder,
-                    appFileLoader, appFileDataMemoryReader);
+                    appFileDataMemoryReader, bcBootClassesHash, bcClassesHash);
 
             isTarget64bit = appFileLoader.isPatform64Bit();
         } catch (MachOException e) {
@@ -86,7 +90,7 @@ public class VmDebuggerState {
         return referenceRefIdHolder;
     }
 
-    public RefIdHolder frameRefIdHolder() {
+    public RefIdHolder<VmStackTrace> frameRefIdHolder() {
         return frameRefIdHolder;
     }
 

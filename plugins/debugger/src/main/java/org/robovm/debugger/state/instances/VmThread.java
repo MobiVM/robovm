@@ -9,40 +9,54 @@ import org.robovm.debugger.state.classdata.ClassInfo;
 public class VmThread extends VmInstance {
 
     public enum Status {
-        ATTACHED,
-        STARTED,
         SUPENDED,
-        SUSPEND_PENDING,
-        RESUMED
+        RUNNING
     }
 
     private final long threadPtr;
     private Status status;
-    private int suspendReqCount;
+    private int suspendCount;
+    private VmStackTrace[] stack;
 
     public VmThread(long objectPtr, long threadPtr, ClassInfo classInfo) {
         super(objectPtr, classInfo);
         this.threadPtr = threadPtr;
-        status = Status.ATTACHED;
+        status = Status.RUNNING;
     }
 
-    public int suspended() {
-        suspendReqCount += 1;
-        return suspendReqCount;
+    public int suspendCount() {
+        return suspendCount;
     }
 
-    public int resumed() {
-        if (suspendReqCount > 0)
-            suspendReqCount -= 1;
-        return suspendReqCount;
+    public int suspend() {
+        suspendCount += 1;
+        return suspendCount;
+    }
+
+    public int resume() {
+        if (suspendCount > 0) {
+            suspendCount -= 1;
+            return suspendCount;
+        }
+
+        // already resumed
+        return -1;
     }
 
 
-    public long getThreadPtr() {
+    public long threadPtr() {
         return threadPtr;
     }
 
-    public Status getStatus() {
+    public VmStackTrace[] stack() {
+        return stack;
+    }
+
+    public void setStack(VmStackTrace[] stack) {
+        this.stack = stack;
+    }
+
+    public Status status() {
         return status;
     }
 

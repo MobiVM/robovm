@@ -7,11 +7,11 @@ import java.util.Arrays;
  * Event for breakpoint/step/exception case
  */
 public class HooksThreadStoppedEventPayload extends HooksEventPayload{
-    public final long threadObj;
-    public final long thread;
-    public final long throwable;
-    public final boolean isCaught;
-    public final HooksCallStackEntry[] callStack;
+    private final long threadObj;
+    private final long thread;
+    private final long throwable;
+    private final boolean isCaught;
+    private final HooksCallStackEntry[] callStack;
 
     public HooksThreadStoppedEventPayload(int eventId, long threadObj, long thread, HooksCallStackEntry[] callStack) {
         super(eventId);
@@ -29,6 +29,26 @@ public class HooksThreadStoppedEventPayload extends HooksEventPayload{
         this.throwable = throwable;
         this.isCaught = isCaught;
         this.callStack = callStack;
+    }
+
+    public long threadObj() {
+        return threadObj;
+    }
+
+    public long thread() {
+        return thread;
+    }
+
+    public long throwable() {
+        return throwable;
+    }
+
+    public boolean isCaught() {
+        return isCaught;
+    }
+
+    public HooksCallStackEntry[] callStack() {
+        return callStack;
     }
 
     @Override

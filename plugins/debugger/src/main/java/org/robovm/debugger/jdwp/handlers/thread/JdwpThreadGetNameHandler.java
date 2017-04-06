@@ -7,7 +7,7 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 /**
  * @author Demyan Kimitsa
  */
-public class JdwpThreadGetNameHandler extends IJdwpRequestHandler {
+public class JdwpThreadGetNameHandler implements IJdwpRequestHandler {
 
     private final VmDebuggerState state;
 

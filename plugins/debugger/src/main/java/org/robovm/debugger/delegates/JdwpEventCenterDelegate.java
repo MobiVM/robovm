@@ -282,23 +282,48 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
     private void processSingleEvent(HooksEventPayload eventPayload) {
         JdwpEventData eventData;
+        VmThread stoppedThread = null;
+        VmStackTrace[] stoppedThreadCallStack = null;
+
         switch (eventPayload.eventId()) {
             case HookConsts.events.CLASS_LOAD:
-                eventData = processClassLoadedEvent((HooksClassLoadedEventPayload) eventPayload);
+                HooksClassLoadedEventPayload classLoadEvent = (HooksClassLoadedEventPayload) eventPayload;
+                if (classLoadEvent.threadObj() != 0 && classLoadEvent.callStack() != null) {
+                    // event with thread id and stack traces
+                    // TODO: it should stop but it is not clear at the moment how to use it, so resume
+                    VmThread classLoadThread = getThread(classLoadEvent.eventId(), classLoadEvent.threadObj());
+                    VmStackTrace[] classLoadThreadCallStack = convertCallStack(classLoadEvent.eventId(), classLoadEvent.callStack());
+                    delegates.threads().onThreadSuspended(classLoadThread, classLoadThreadCallStack, false);
+                }
+
+                eventData = processClassLoadedEvent(classLoadEvent);
                 break;
 
             case HookConsts.events.THREAD_ATTACHED:
             case HookConsts.events.THREAD_STARTED:
             case HookConsts.events.THREAD_DETTACHED:
             case HookConsts.events.THREAD_RESUMED:
-            case HookConsts.events.THREAD_SUSPENDED:
                 eventData = processThreadEvent((HooksThreadEventPayload) eventPayload);
                 break;
 
             case HookConsts.events.THREAD_STEPPED:
             case HookConsts.events.BREAKPOINT:
             case HookConsts.events.EXCEPTION:
-                eventData = processThreadStoppedEvent((HooksThreadStoppedEventPayload) eventPayload);
+            case HookConsts.events.THREAD_SUSPENDED:
+                // need to get thread and stack objects here as these will be required to notify that thread is stopped
+                HooksThreadStoppedEventPayload stoppedEvent = (HooksThreadStoppedEventPayload) eventPayload;
+
+                // get corresponding thread object and stack
+                stoppedThread = getThread(stoppedEvent.eventId(), stoppedEvent.threadObj());
+                stoppedThreadCallStack = convertCallStack(stoppedEvent.eventId(), stoppedEvent.callStack());
+
+                if (eventPayload.eventId() == HookConsts.events.THREAD_SUSPENDED) {
+                    // there is no JDWP event for this, just update call stack
+                    delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, false);
+                    eventData = null;
+                } else {
+                    eventData = processThreadStoppedEvent(stoppedEvent, stoppedThread, stoppedThreadCallStack);
+                }
                 break;
 
             default:
@@ -311,14 +336,25 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         }
 
         // filter data through event requests and deliver them to JDPW
-        deliverEventToJdpwFiltered(eventData);
+        int suspendPolicy = deliverEventToJdpwFiltered(eventData);
+        if (suspendPolicy < 0) {
+            // event didn't pass filters
+            if (stoppedThread != null)
+                delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, false);
+        } else {
+            if (suspendPolicy == JdwpConsts.SuspendPolicy.ALL) {
+                // suspend all threads (stopped one already suspended)
+                delegates.threads().suspendAllOtherThreads(stoppedThread);
+            }
+        }
     }
 
     /**
      * filters event through predicate, dumps it to byte buffer packet and send it to JDWP client
      * @param eventData prepared event data
+     * @return negative if not processed, otherwise suspend policy
      */
-    private void deliverEventToJdpwFiltered(JdwpEventData eventData) {
+    private int deliverEventToJdpwFiltered(JdwpEventData eventData) {
         int processed = 0;
         byte suspendPolicy = JdwpConsts.SuspendPolicy.NONE;
         jdwpEventPayload.reset();
@@ -339,14 +375,10 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
         if (processed > 0) {
             delegates.jdwpServerApi().sendEvent(suspendPolicy, processed, jdwpEventPayload);
-            if (suspendPolicy == JdwpConsts.SuspendPolicy.ALL) {
-                // TODO: suspend all threads
-            }
+            return suspendPolicy;
         } else {
-            if (eventData.thread() != null && eventData.cancelIfNotHandled()) {
-                // event is not handled and marked to be canceled
-                resumeThread(eventData.thread());
-            }
+            // there was no event processed
+            return -1;
         }
     }
 
@@ -355,14 +387,9 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
      */
     private JdwpEventData processClassLoadedEvent(HooksClassLoadedEventPayload event) {
         // mark class info as loaded
-        ClassInfo classInfo = delegates.state().classInfoLoader().onClassLoaded(delegates.runtime().toMachOAddr(event.classInfo()), event.clazz());
-        VmThread thread = null;
-        if (event.callStack() != null) {
-            // TODO: there is possible event with thread id and stack traces in case it is filtere
-            thread = delegates.state().referenceRefIdHolder().instanceByAddr(event.threadObj());
-            if (thread == null)
-                throw new DebuggerException("Thread " + Long.toHexString(event.threadObj()) + " is not recognized!");
-        }
+        ClassInfo classInfo = delegates.state().classInfoLoader().onClassLoaded(delegates.runtime().toMachOAddr(event.classInfo()),
+                event.clazz());
+        VmThread thread = event.threadObj() != 0 ? getThread(event.eventId(), event.threadObj()) : null;
 
         // jdpw object
         return new JdwpClassLoadedEventData(JdwpConsts.EventKind.CLASS_PREPARE, thread, classInfo);
@@ -393,7 +420,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
         switch (event.eventId()) {
             case HookConsts.events.THREAD_RESUMED:
-                thread.setStatus(VmThread.Status.RESUMED);
+                thread.setStatus(VmThread.Status.RUNNING);
                 // there is no corresponding JDPW event
                 return null;
 
@@ -409,30 +436,11 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     }
 
     /** thread stopped event */
-    private JdwpEventData processThreadStoppedEvent(HooksThreadStoppedEventPayload event) {
-        // get corresponding thread object
-        VmThread thread = delegates.state().referenceRefIdHolder().instanceByAddr(event.threadObj);
-
-        if (thread == null)
-            throw new DebuggerException("Thread " + Long.toHexString(event.threadObj) + " is not recognized!");
-
-        // convert call stack
-        VmStackTrace[] callStack = convertCallStack(event.callStack);
-        if (callStack.length == 0) {
-            // TODO: log
-            return null;
-        }
-
+    private JdwpEventData processThreadStoppedEvent(HooksThreadStoppedEventPayload event, VmThread thread, VmStackTrace[] callStack) {
         switch (event.eventId()) {
-            case HookConsts.events.THREAD_SUSPENDED:
-                thread.setStatus(VmThread.Status.SUPENDED);
-                // no corresponding JDWP events here
-                return null;
-
             case HookConsts.events.EXCEPTION:
-                resumeThread(thread);
-                ClassInfo ci = delegates.runtime().classInfoLoader().resolveObjectRuntimeDataTypeInfo(event.throwable);
-                VmInstance exception = new VmInstance(event.throwable, ci);
+                ClassInfo ci = delegates.runtime().classInfoLoader().resolveObjectRuntimeDataTypeInfo(event.throwable());
+                VmInstance exception = new VmInstance(event.throwable(), ci);
                 return new JdwpThreadStoppedEventData(JdwpConsts.EventKind.EXCEPTION, thread, callStack[0], exception);
 
             case HookConsts.events.THREAD_STEPPED:
@@ -446,22 +454,27 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         }
     }
 
-    private VmStackTrace[] convertCallStack(HooksCallStackEntry[] callStack) {
+    private VmStackTrace[] convertCallStack(int eventId, HooksCallStackEntry[] callStack) {
         List<VmStackTrace> result = new ArrayList<>();
         for (HooksCallStackEntry entry : callStack) {
-            VmStackTrace stackTrace = convertStackTrace(entry);
+            VmStackTrace stackTrace = convertStackTrace(eventId, entry);
             if (stackTrace != null)
                 result.add(stackTrace);
         }
 
+        if (result.size() == 0)
+            delegates.log().error(HookConsts.commandToString(eventId) + ": Empty callstack!");
+
         return result.toArray(new VmStackTrace[result.size()]);
     }
 
-    private VmStackTrace convertStackTrace(HooksCallStackEntry payload) {
+    private VmStackTrace convertStackTrace(int eventId, HooksCallStackEntry payload) {
         ClassInfo classInfo = delegates.state().classInfoLoader().classInfoBySignature(payload.clazzName());
-        // TODO: warning
-        if (classInfo == null)
+        if (classInfo == null) {
+            delegates.log().error(HookConsts.commandToString(eventId) + ": Failed to get get stack entry. Class is not known " +
+                    payload.clazzName());
             return null;
+        }
 
         // find method
         MethodInfo[] methods = delegates.state().classInfoLoader().classMethods(classInfo);
@@ -474,10 +487,20 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
             }
         }
 
-        // TODO: warning
-        if (methodInfo == null)
+        if (methodInfo == null) {
+            delegates.log().error(HookConsts.commandToString(eventId) + ": Failed to get get stack entry. Method not found for impl " +
+                    Long.toHexString(payload.impl()) + " class " + payload.clazzName());
             return null;
+        }
 
         return new VmStackTrace(classInfo, methodInfo, payload.lineNumber());
+    }
+
+    private VmThread getThread(int eventId, long threadObj) {
+        VmThread thread = delegates.state().referenceRefIdHolder().instanceByAddr(threadObj);
+        if (thread == null)
+            throw new DebuggerException(HookConsts.commandToString(eventId) +
+                    ": Thread " + Long.toHexString(threadObj) + " is not recognized!");
+        return thread;
     }
 }

@@ -6,6 +6,7 @@ import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPre
 import org.robovm.debugger.hooks.IHooksApi;
 import org.robovm.debugger.jdwp.IJdwpServerApi;
 import org.robovm.debugger.jdwp.handlers.array.IJdwpArrayDelegate;
+import org.robovm.debugger.jdwp.handlers.thread.IJdwpThreadDelegate;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.DebuggerThread;
@@ -20,7 +21,7 @@ import java.util.List;
  * keeps all delegate in one place and implements all their interfaces
  * also provides lock protection of data
  */
-public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDebuggerToolbox {
+public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDebuggerToolbox, IJdwpThreadDelegate {
 
     private final DbgLogger log = DbgLogger.get("Delegates");
 
@@ -45,6 +46,11 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     private JdwpArrayDelegate arrays;
 
     /**
+     * interface to thread delegates
+     */
+    private ThreadDelegate threads;
+
+    /**
      * API to JDWPServer set once JDWP handshake complete used if not set lot of activities will not happen
      */
     private IJdwpServerApi jdwpServerApi;
@@ -62,6 +68,7 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     public AllDelegates(DebuggerThread.Catcher catcher, VmDebuggerState state) {
         this.toolBox = new DebuggerToolBox(catcher);
         this.state = state;
+        this.threads = new ThreadDelegate(this);
     }
 
     public void onConnectedToTarget(IHooksApi api, long runtimeMemoryOffset) {
@@ -115,6 +122,10 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
         return runtime;
     }
 
+    public ThreadDelegate threads() {
+        return threads;
+    }
+
     //
     // JDWP event delegates
     //
@@ -161,6 +172,26 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     public void jdwpArraySetValue(long arrayId, int index, int length, ByteBufferReader reader) throws DebuggerException {
         synchronized (state.centralLock()) {
             arrays.jdwpArraySetValue(arrayId, index, length, reader);
+        }
+    }
+
+
+    //
+    // JDWP threads delegate
+    //
+
+
+    @Override
+    public void jdwpSuspendThread(long threadId) throws DebuggerException {
+        synchronized (state.centralLock()) {
+            threads.jdwpSuspendThread(threadId);
+        }
+    }
+
+    @Override
+    public void jdwpResumeThread(long threadId) throws DebuggerException {
+        synchronized (state.centralLock()) {
+            threads.jdwpResumeThread(threadId);
         }
     }
 
