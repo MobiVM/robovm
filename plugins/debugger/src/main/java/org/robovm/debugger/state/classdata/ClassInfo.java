@@ -7,7 +7,6 @@ package org.robovm.debugger.state.classdata;
 public abstract class ClassInfo extends BaseModifiersInfo {
 
     /**
-     * @author Demyan Kimitsa
      * specifies type of class/array/primitive information structure
      */
     public enum Type {
@@ -26,7 +25,7 @@ public abstract class ClassInfo extends BaseModifiersInfo {
         this.type = type;
     }
 
-    public long getClazzPtr() {
+    public long clazzPtr() {
         return clazzPtr;
     }
 

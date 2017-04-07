@@ -22,8 +22,9 @@ public class FieldInfo extends BaseModifiersInfo {
 
     private int flags;
     private String name;
-    private String desc;
+    private String signature;
     private int offset;
+    private ClassInfo typeInfo;
 
     public void readFieldInfo(ByteBufferMemoryReader reader) {
         flags = reader.readInt16();
@@ -32,17 +33,17 @@ public class FieldInfo extends BaseModifiersInfo {
 
         if ((flags >> 12) != 0) {
             switch ((flags >> 12) & 0xf) {
-                case ClassDataConsts.desc.B: desc = "B"; break;
-                case ClassDataConsts.desc.C: desc = "C"; break;
-                case ClassDataConsts.desc.D: desc = "D"; break;
-                case ClassDataConsts.desc.F: desc = "F"; break;
-                case ClassDataConsts.desc.I: desc = "I"; break;
-                case ClassDataConsts.desc.J: desc = "J"; break;
-                case ClassDataConsts.desc.S: desc = "S"; break;
-                case ClassDataConsts.desc.Z: desc = "Z"; break;
+                case ClassDataConsts.desc.B: signature = "B"; break;
+                case ClassDataConsts.desc.C: signature = "C"; break;
+                case ClassDataConsts.desc.D: signature = "D"; break;
+                case ClassDataConsts.desc.F: signature = "F"; break;
+                case ClassDataConsts.desc.I: signature = "I"; break;
+                case ClassDataConsts.desc.J: signature = "J"; break;
+                case ClassDataConsts.desc.S: signature = "S"; break;
+                case ClassDataConsts.desc.Z: signature = "Z"; break;
             }
         } else {
-            desc = reader.readStringZAtPtr(reader.readPointer());
+            signature = reader.readStringZAtPtr(reader.readPointer());
         }
 
         offset = reader.readInt32();
@@ -53,16 +54,24 @@ public class FieldInfo extends BaseModifiersInfo {
         }
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String signature() {
+        return signature;
     }
 
-    public int getOffset() {
+    public int offset() {
         return offset;
+    }
+
+    public ClassInfo typeInfo() {
+        return typeInfo;
+    }
+
+    public void setTypeInfo(ClassInfo typeInfo) {
+        this.typeInfo = typeInfo;
     }
 
     @Override

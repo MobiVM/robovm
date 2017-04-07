@@ -33,8 +33,8 @@ public class JdwpRegTypeFieldsHandler implements IJdwpRequestHandler {
             output.writeInt32(fields.length);
             for (FieldInfo fieldInfo : fields) {
                 output.writeLong(fieldInfo.refId());
-                output.writeStringWithLen(fieldInfo.getName());
-                output.writeStringWithLen(fieldInfo.getDesc());
+                output.writeStringWithLen(fieldInfo.name());
+                output.writeStringWithLen(fieldInfo.signature());
                 output.writeInt32(fieldInfo.modifiers());
             }
         }

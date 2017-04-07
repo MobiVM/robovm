@@ -1,9 +1,7 @@
 package org.robovm.debugger.delegates;
 
 import org.robovm.debugger.hooks.unitls.TargetByteBufferReader;
-import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.RuntimeClassInfoLoader;
-import org.robovm.debugger.state.instances.VmInstance;
 
 /**
  * @author Demyan Kimitsa
@@ -37,17 +35,6 @@ public class RuntimeUtils {
         this.runtimeClassInfoLoader = new RuntimeClassInfoLoader(delegates.state().classInfoLoader(), deviceMemoryReader);
     }
 
-    public String getStringObjectValue(VmInstance strInstance) {
-        return null;
-    }
-
-    public void readFieldValue(VmInstance instance, String field) {
-        ClassInfo classInfo = instance.classInfo();
-//        fields = classInfo.fields()
-    }
-
-
-
     /**
      * Converts runtime address to one that can be used with mach-o image
      * (runtime address differs due PIE/ASLR protection)
@@ -59,6 +46,21 @@ public class RuntimeUtils {
         return runtimeAddr - runtimeMemoryOffset;
     }
 
+
+    /**
+     * Converts mach-o address to one that can be used with target
+     * (runtime address differs due PIE/ASLR protection)
+     *
+     * @param machOAddr as it was read from mach-o space
+     * @return address that can be use with device
+     */
+    public long toRuntimeAddr(long machOAddr) {
+        return machOAddr + runtimeMemoryOffset;
+    }
+
+    public TargetByteBufferReader deviceMemoryReader() {
+        return deviceMemoryReader;
+    }
 
     public RuntimeClassInfoLoader classInfoLoader() {
         return runtimeClassInfoLoader;

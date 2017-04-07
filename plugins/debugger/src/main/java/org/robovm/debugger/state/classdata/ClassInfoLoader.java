@@ -212,4 +212,16 @@ public class ClassInfoLoader {
 
     }
 
+    public static boolean isArraySignature(String signature) {
+        return signature.length() > 1 && signature.startsWith("[");
+    }
+
+    public static boolean isClassSignature(String signature) {
+        return signature.length() > 2 && signature.startsWith("L") && signature.endsWith(";");
+    }
+
+    public static boolean isPrimitiveSignature(String signature) {
+        return signature.length() == 1 && "ZBCSIJFD".contains(signature);
+
+    }
 }

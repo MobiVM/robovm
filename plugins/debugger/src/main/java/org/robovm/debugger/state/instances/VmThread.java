@@ -13,14 +13,25 @@ public class VmThread extends VmInstance {
         RUNNING
     }
 
+    /** native (not java) thread object pointer */
     private final long threadPtr;
+
+    /** thread name */
+    private final String name;
+
+    /** thread group */
+    private final VmThreadGroup threadGroup;
+
     private Status status;
     private int suspendCount;
     private VmStackTrace[] stack;
 
-    public VmThread(long objectPtr, long threadPtr, ClassInfo classInfo) {
+
+    public VmThread(long objectPtr, long threadPtr, ClassInfo classInfo, String name, VmThreadGroup threadGroup) {
         super(objectPtr, classInfo);
         this.threadPtr = threadPtr;
+        this.name = name;
+        this.threadGroup = threadGroup;
         status = Status.RUNNING;
     }
 
@@ -43,6 +54,13 @@ public class VmThread extends VmInstance {
         return -1;
     }
 
+    public String name() {
+        return name;
+    }
+
+    public VmThreadGroup threadGroup() {
+        return threadGroup;
+    }
 
     public long threadPtr() {
         return threadPtr;

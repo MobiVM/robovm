@@ -66,4 +66,25 @@ public class ClassDataConsts {
         public static final int Z = 8;
         public static final int V = 9;
     }
+
+    public static final class signatures {
+        // class names that corresponds to JdwpConsts.tag
+        // tag STRING = 115;
+        public static final String JAVA_LANG_STRING = "Ljava/lang/String;";
+        // tag THREAD = 116;
+        public static final String JAVA_LANG_THREAD = "Ljava/lang/Thread;";
+        // tag THREAD_GROUP = 103;
+        public static final String JAVA_LANG_THREADGROUP = "Ljava/lang/ThreadGroup;";
+        // tag CLASS_LOADER = 108;
+        public static final String JAVA_LANG_CLASS_LOADER = "Ljava/lang/ClassLoader;";
+        // tag CLASS_OBJECT = 99;
+        public static final String JAVA_LANG_CLASS = "Ljava/lang/Class;";
+
+    }
+
+    public static final class fields {
+        public static final String JAVA_LANG_STRING_VALUE = "value";
+        public static final String JAVA_LANG_STRING_OFFSET = "offset";
+        public static final String JAVA_LANG_STRING_COUNT = "count";
+    }
 }

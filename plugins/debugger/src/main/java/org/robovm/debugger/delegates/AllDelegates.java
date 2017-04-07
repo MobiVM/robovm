@@ -1,11 +1,11 @@
 package org.robovm.debugger.delegates;
 
 import org.robovm.debugger.DebuggerException;
-import org.robovm.debugger.jdwp.handlers.eventrequest.events.IJdwpEventDelegate;
-import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPredicate;
 import org.robovm.debugger.hooks.IHooksApi;
 import org.robovm.debugger.jdwp.IJdwpServerApi;
 import org.robovm.debugger.jdwp.handlers.array.IJdwpArrayDelegate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.IJdwpEventDelegate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPredicate;
 import org.robovm.debugger.jdwp.handlers.thread.IJdwpThreadDelegate;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.utils.DbgLogger;
@@ -65,6 +65,11 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
      */
     RuntimeUtils runtime;
 
+    /**
+     * Instance operation delegate
+     */
+    InstanceUtils instances;
+
     public AllDelegates(DebuggerThread.Catcher catcher, VmDebuggerState state) {
         this.toolBox = new DebuggerToolBox(catcher);
         this.state = state;
@@ -74,6 +79,7 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     public void onConnectedToTarget(IHooksApi api, long runtimeMemoryOffset) {
         this.hooksApi = api;
         this.runtime = new RuntimeUtils(this, runtimeMemoryOffset);
+        this.instances = new InstanceUtils(this);
 
         // ping event center that is attached to start picking data
         events.onConnectedToTarget();
@@ -124,6 +130,10 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
 
     public ThreadDelegate threads() {
         return threads;
+    }
+
+    public InstanceUtils instances() {
+        return instances;
     }
 
     //

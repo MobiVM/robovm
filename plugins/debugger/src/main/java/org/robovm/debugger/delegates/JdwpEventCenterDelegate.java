@@ -1,15 +1,6 @@
 package org.robovm.debugger.delegates;
 
 import org.robovm.debugger.DebuggerException;
-import org.robovm.debugger.jdwp.handlers.eventrequest.events.IJdwpEventDelegate;
-import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpEventRequest;
-import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventClassTypeIdPredicate;
-import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventExceptionPredicate;
-import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventInstanceIdPredicate;
-import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventLocationPredicate;
-import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPredicate;
-import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventStepModPredicate;
-import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventThreadRefIdPredicate;
 import org.robovm.debugger.hooks.HookConsts;
 import org.robovm.debugger.hooks.payloads.HooksCallStackEntry;
 import org.robovm.debugger.hooks.payloads.HooksClassLoadedEventPayload;
@@ -17,9 +8,18 @@ import org.robovm.debugger.hooks.payloads.HooksEventPayload;
 import org.robovm.debugger.hooks.payloads.HooksThreadEventPayload;
 import org.robovm.debugger.hooks.payloads.HooksThreadStoppedEventPayload;
 import org.robovm.debugger.jdwp.JdwpConsts;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.IJdwpEventDelegate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpClassLoadedEventData;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpEventData;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpEventRequest;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpThreadStoppedEventData;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventClassTypeIdPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventExceptionPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventInstanceIdPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventLocationPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventStepModPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventThreadRefIdPredicate;
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.MethodInfo;
 import org.robovm.debugger.state.instances.VmInstance;
@@ -407,7 +407,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
             // attach thread
             ClassInfo ci = delegates.runtime().classInfoLoader().resolveObjectRuntimeDataTypeInfo(event.threadObj());
-            thread = new VmThread(event.threadObj(), event.thread(), ci);
+            thread = delegates.instances().instanceByPointer(event.threadObj(), event.thread(), true);
             delegates.state().referenceRefIdHolder().addObject(thread);
             delegates.state().threads().add(thread);
 

@@ -141,4 +141,8 @@ public class RuntimeClassInfoLoader {
         return classLoader.onClassLoaded(classInfoPtr, clazzPtr);
     }
 
+    public ClassInfoLoader loader() {
+        return classLoader;
+    }
+
 }

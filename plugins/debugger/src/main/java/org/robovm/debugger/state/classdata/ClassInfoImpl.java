@@ -43,6 +43,7 @@ public class ClassInfoImpl extends ClassInfo {
     private String className;
     private String signature;
     private String superclassName;
+    private String superclassSignature;
     private ClassInfo[] interfaces;
 
     private FieldInfo[] fields;
@@ -83,7 +84,12 @@ public class ClassInfoImpl extends ClassInfo {
         // save position to continue once loadData is called
         endOfHeaderPos = reader.position();
 
-
+        // read little bit more to get super class name
+        if (!isInterface()) {
+            reader.skip(2 + 2 + 2); // interfaceCount +  fieldCount +  methodCount
+            superclassName = reader.readStringZAtPtr(reader.readPointer());
+            superclassSignature = "L" + superclassName + ";";
+        }
     }
 
     void loadData(ClassInfoLoader loader) {
@@ -98,8 +104,8 @@ public class ClassInfoImpl extends ClassInfo {
         int methodCount = reader.readInt16();
 
         if (!isInterface()) {
-            // get super name
-            superclassName = reader.readStringZAtPtr(reader.readPointer());
+            // skip super name as already has been read
+            reader.skip(reader.pointerSize());
         }
 
         if ((flags & ClassDataConsts.classinfo.ATTRIBUTES) != 0) {
@@ -112,6 +118,7 @@ public class ClassInfoImpl extends ClassInfo {
         for (int idx = 0; idx < interfaceCount; idx++) {
             long ptr = reader.readPointer();
             String interfaceName = reader.readStringZAtPtr(ptr);
+            // TODO: to signature ?
             interfaces[idx] = loader.classInfoBySignature(interfaceName);
             if (interfaces[idx] == null)
                 throw new DebuggerException("Interface '" + interfaceName + "' not found in " + className);
@@ -146,8 +153,16 @@ public class ClassInfoImpl extends ClassInfo {
         }
     }
 
-    public String getName() {
+    public String className() {
         return className;
+    }
+
+    public String superclassName() {
+        return superclassName;
+    }
+
+    public String superclassSignature() {
+        return superclassSignature;
     }
 
     @Override
