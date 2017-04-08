@@ -104,9 +104,9 @@ public abstract class ByteBufferReader {
         return res;
     }
 
-    public int readInt16() {
+    public short readInt16() {
         expects(2);
-        return (int) byteBuffer.getShort();
+        return byteBuffer.getShort();
     }
 
     public int readUnsignedInt16() {

@@ -1,6 +1,5 @@
 package org.robovm.debugger.utils;
 
-import org.jetbrains.annotations.NonNls;
 
 /**
  * @author Demyan Kimitsa
@@ -15,7 +14,7 @@ public class DebuggerThread extends Thread {
 
     private final Catcher catcher;
 
-    public DebuggerThread(Catcher catcher, Runnable target, @NonNls String name) {
+    public DebuggerThread(Catcher catcher, Runnable target, String name) {
         super(target, name);
         this.catcher = catcher;
         // all threads are daemon to not block idea/eclipse exit

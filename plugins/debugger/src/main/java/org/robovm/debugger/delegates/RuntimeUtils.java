@@ -12,11 +12,6 @@ public class RuntimeUtils {
     private final AllDelegates delegates;
 
     /**
-     * class info loader that resolves class info for classes created in runtime
-     */
-    private final RuntimeClassInfoLoader runtimeClassInfoLoader;
-
-    /**
      * diff of address of base symbol, used to offset mach-o addresses due PIE/ASLR mode
      * (e.g. runtimeMemoryOffset = robovmBaseSymbol(runtime) - robovmBaseSymbol(mach-o)
      */
@@ -25,14 +20,13 @@ public class RuntimeUtils {
     /**
      * reader of device memory
      */
-    final TargetByteBufferReader deviceMemoryReader;
+    private final TargetByteBufferReader deviceMemoryReader;
 
 
     public RuntimeUtils(AllDelegates delegates, long runtimeMemoryOffset) {
         this.delegates = delegates;
         this.runtimeMemoryOffset = runtimeMemoryOffset;
         this.deviceMemoryReader = new TargetByteBufferReader(delegates.hooksApi(), delegates.state().isTarget64bit());
-        this.runtimeClassInfoLoader = new RuntimeClassInfoLoader(delegates.state().classInfoLoader(), deviceMemoryReader);
     }
 
     /**
@@ -60,9 +54,5 @@ public class RuntimeUtils {
 
     public TargetByteBufferReader deviceMemoryReader() {
         return deviceMemoryReader;
-    }
-
-    public RuntimeClassInfoLoader classInfoLoader() {
-        return runtimeClassInfoLoader;
     }
 }

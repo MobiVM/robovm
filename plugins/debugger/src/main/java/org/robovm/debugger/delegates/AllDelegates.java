@@ -63,12 +63,12 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     /**
      * Runtime utils
      */
-    RuntimeUtils runtime;
+    private RuntimeUtils runtime;
 
     /**
      * Instance operation delegate
      */
-    InstanceUtils instances;
+    private InstanceUtils instances;
 
     public AllDelegates(DebuggerThread.Catcher catcher, VmDebuggerState state) {
         this.toolBox = new DebuggerToolBox(catcher);

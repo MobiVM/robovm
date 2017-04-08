@@ -83,8 +83,17 @@ public class ClassDataConsts {
     }
 
     public static final class fields {
+        // java.lang.String
         public static final String JAVA_LANG_STRING_VALUE = "value";
         public static final String JAVA_LANG_STRING_OFFSET = "offset";
         public static final String JAVA_LANG_STRING_COUNT = "count";
+
+        // java.lang.Thread
+        public static final String JAVA_LANG_THREAD_NAME = "name";
+        public static final String JAVA_LANG_THREAD_GROUP = "group";
+
+        // java.lang.ThreadGroup
+        public static final String JAVA_LANG_THREADGROUP_NAME = "name";
+        public static final String JAVA_LANG_THREADGROUP_PARENT = "parent";
     }
 }
