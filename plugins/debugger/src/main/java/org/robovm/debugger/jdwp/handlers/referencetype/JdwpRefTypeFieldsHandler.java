@@ -4,18 +4,19 @@ import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.classdata.ClassInfo;
+import org.robovm.debugger.state.classdata.FieldInfo;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
  * @author Demyan Kimitsa
- * Returns the modifiers (also known as access flags) for a reference type. The returned bit mask contains information on
- * the declaration of the reference type. If the reference type is an array or a primitive class (for example,
- * java.lang.Integer.TYPE), the value of the returned bit mask is undefined.
+ * Returns information for each field in a reference type. Inherited fields are not included. The field list will
+ * include any synthetic fields created by the compiler. Fields are returned in the order they occur in the class file.
  */
-public class JdwpRegTypeModifiersHandler implements IJdwpRequestHandler {
+public class JdwpRefTypeFieldsHandler implements IJdwpRequestHandler {
+
     private final VmDebuggerState state;
 
-    public JdwpRegTypeModifiersHandler(VmDebuggerState state) {
+    public JdwpRefTypeFieldsHandler(VmDebuggerState state) {
         this.state = state;
     }
 
@@ -27,8 +28,15 @@ public class JdwpRegTypeModifiersHandler implements IJdwpRequestHandler {
             ClassInfo classInfo = state.classInfoLoader().classRefId(referenceTypeID);
             if (classInfo == null)
                 return JdwpConsts.Error.INVALID_OBJECT;
+            FieldInfo[] fields = state.classInfoLoader().classFields(classInfo);
 
-            output.writeInt32(classInfo.modifiers());
+            output.writeInt32(fields.length);
+            for (FieldInfo fieldInfo : fields) {
+                output.writeLong(fieldInfo.refId());
+                output.writeStringWithLen(fieldInfo.name());
+                output.writeStringWithLen(fieldInfo.signature());
+                output.writeInt32(fieldInfo.modifiers());
+            }
         }
 
         return JdwpConsts.Error.NONE;
@@ -41,12 +49,11 @@ public class JdwpRegTypeModifiersHandler implements IJdwpRequestHandler {
 
     @Override
     public byte getCommand() {
-        return 3;
+        return 4;
     }
 
     @Override
     public String toString() {
-        return "ReferenceType(2).Modifiers(3)";
+        return "ReferenceType(2).Fields(4)";
     }
-
 }

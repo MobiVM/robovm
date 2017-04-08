@@ -14,11 +14,11 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * (identified with the name "<clinit>") if present, and any synthetic methods created by the compiler.
  * Methods are returned in the order they occur in the class file.
  */
-public class JdwpRegTypeMethodsHandler implements IJdwpRequestHandler {
+public class JdwpRefTypeMethodsHandler implements IJdwpRequestHandler {
 
     private final VmDebuggerState state;
 
-    public JdwpRegTypeMethodsHandler(VmDebuggerState state) {
+    public JdwpRefTypeMethodsHandler(VmDebuggerState state) {
         this.state = state;
     }
 

@@ -10,10 +10,10 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * @author Demyan Kimitsa
  * Returns the JNI signature of a reference type.
  */
-public class JdwpRegTypeSignatureHandler implements IJdwpRequestHandler {
+public class JdwpRefTypeSignatureHandler implements IJdwpRequestHandler {
     private final VmDebuggerState state;
 
-    public JdwpRegTypeSignatureHandler(VmDebuggerState state) {
+    public JdwpRefTypeSignatureHandler(VmDebuggerState state) {
         this.state = state;
     }
 

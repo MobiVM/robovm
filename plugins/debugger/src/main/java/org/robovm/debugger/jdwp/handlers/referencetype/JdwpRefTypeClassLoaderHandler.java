@@ -9,7 +9,7 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * Returns the instance of java.lang.ClassLoader which loaded a given reference type. If the reference type was
  * loaded by the system class loader, the returned object ID is null.
  */
-public class JdwpRegTypeClassLoaderHandler implements IJdwpRequestHandler {
+public class JdwpRefTypeClassLoaderHandler implements IJdwpRequestHandler {
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         // loaded by the system class loader, the returned object ID is null

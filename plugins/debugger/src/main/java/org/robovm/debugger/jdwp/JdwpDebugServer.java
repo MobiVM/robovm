@@ -5,11 +5,10 @@ import org.robovm.debugger.delegates.AllDelegates;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearAllBreakpointsHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqSetHandler;
-import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeClassLoaderHandler;
-import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeFieldsHandler;
-import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeMethodsHandler;
-import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeModifiersHandler;
-import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRegTypeSignatureHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeFieldsHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeMethodsHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeModifiersHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeSignatureHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesWithGenericsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmCapabilitiesHandler;
@@ -256,11 +255,11 @@ public class JdwpDebugServer implements IJdwpServerApi{
         // InstanceCounts Command (21) -- NOT_IMPLEMENTED
 
         //ReferenceType Command Set (2)
-        registerHandler(new JdwpRegTypeSignatureHandler(state)); // 1
-        registerHandler(new JdwpRegTypeClassLoaderHandler()); // 2
-        registerHandler(new JdwpRegTypeModifiersHandler(state)); // 3
-        registerHandler(new JdwpRegTypeFieldsHandler(state)); // 4
-        registerHandler(new JdwpRegTypeMethodsHandler(state)); // 5
+        registerHandler(new JdwpRefTypeSignatureHandler(state)); // 1
+        registerHandler(new JdwpRefTypeClassLoaderHandler()); // 2
+        registerHandler(new JdwpRefTypeModifiersHandler(state)); // 3
+        registerHandler(new JdwpRefTypeFieldsHandler(state)); // 4
+        registerHandler(new JdwpRefTypeMethodsHandler(state)); // 5
         //GetValues (6)
         //SourceFile (7)
         //NestedTypes (8)
