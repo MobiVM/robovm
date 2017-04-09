@@ -25,7 +25,7 @@ public class JdwpRefTypeFieldsHandler implements IJdwpRequestHandler {
         long referenceTypeID = payload.readLong();
 
         synchronized (state.centralLock()) {
-            ClassInfo classInfo = state.classInfoLoader().classRefId(referenceTypeID);
+            ClassInfo classInfo = state.classInfoLoader().classInfoByRefId(referenceTypeID);
             if (classInfo == null)
                 return JdwpConsts.Error.INVALID_OBJECT;
             FieldInfo[] fields = state.classInfoLoader().classFields(classInfo);

@@ -119,4 +119,15 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
                 suspendThread(thread);
         }
     }
+
+    /**
+     * @return any suspended thread to perform newInstance operations within
+     */
+    public VmThread anySuspendedThread() {
+        for (VmThread thread : delegates.state().threads()) {
+            if (thread.status() == VmThread.Status.SUPENDED)
+                return thread;
+        }
+        return null;
+    }
 }

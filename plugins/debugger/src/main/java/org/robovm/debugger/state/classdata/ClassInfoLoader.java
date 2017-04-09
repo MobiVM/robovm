@@ -87,7 +87,7 @@ public class ClassInfoLoader {
         return signatureToDataInfo.get(signature);
     }
 
-    public ClassInfo classRefId(long refId) {
+    public ClassInfo classInfoByRefId(long refId) {
         return this.classRefIdHolder.objectById(refId);
     }
 

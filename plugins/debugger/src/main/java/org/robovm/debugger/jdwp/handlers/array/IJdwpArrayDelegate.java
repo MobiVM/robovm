@@ -37,4 +37,12 @@ public interface IJdwpArrayDelegate {
      * @throws DebuggerException with JDWP error code if something went wrong
      */
     void jdwpArraySetValue(long arrayId, int index, int length, ByteBufferReader reader) throws DebuggerException;
+
+    /**
+     * creates new instance of array
+     * @param arrayTypeId -- type of array to create
+     * @param length -- number of elements to create
+     * @return instance id of new array
+     */
+    long jdwpArrayCreateInstance(long arrayTypeId, int length);
 }

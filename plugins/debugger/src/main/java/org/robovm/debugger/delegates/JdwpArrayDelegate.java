@@ -1,6 +1,7 @@
 package org.robovm.debugger.delegates;
 
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.hooks.payloads.HooksCmdResponse;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.handlers.array.IJdwpArrayDelegate;
 import org.robovm.debugger.runtime.ValueManipulator;
@@ -8,6 +9,7 @@ import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.ClassInfoArrayImpl;
 import org.robovm.debugger.state.classdata.ClassInfoPrimitiveImpl;
 import org.robovm.debugger.state.instances.VmArrayInstance;
+import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
@@ -134,5 +136,27 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
         delegates.runtime().deviceMemoryReader().setAddress(instance.dataPtr() + primType.size() * index);
         byte[] bytes = delegates.runtime().deviceMemoryReader().readBytes(primType.size() * length);
         return new String(bytes, Charset.forName("UTF-16"));
+    }
+
+    @Override
+    public long jdwpArrayCreateInstance(long arrayTypeId, int length) {
+        ClassInfoArrayImpl classInfoArray = (ClassInfoArrayImpl) delegates.state().classInfoLoader().classInfoByRefId(arrayTypeId);
+        if (classInfoArray == null)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_ARRAY);
+
+        // there is a need of thread to perform this operation in context of
+        // find any stopped thread
+        VmThread thread = delegates.threads().anySuspendedThread();
+        if (thread == null) {
+            // TODO: hooks api requires to give a thread for this API
+            throw new DebuggerException(JdwpConsts.Error.INTERNAL);
+        }
+
+        HooksCmdResponse res = delegates.hooksApi().newArray(thread.threadPtr(), length, classInfoArray.elementType().signature());
+        if (res.exceptionPrt() != 0 || res.result() == null) {
+            throw new DebuggerException(JdwpConsts.Error.INTERNAL);
+        }
+        VmArrayInstance arrayInstance = delegates.instances().instanceByPointer(res.result(), classInfoArray, null, true);
+        return arrayInstance.refId();
     }
 }

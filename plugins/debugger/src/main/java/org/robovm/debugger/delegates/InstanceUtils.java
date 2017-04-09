@@ -1,6 +1,7 @@
 package org.robovm.debugger.delegates;
 
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.hooks.payloads.HooksCmdResponse;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.state.classdata.ClassDataConsts;
 import org.robovm.debugger.state.classdata.ClassInfo;
@@ -54,12 +55,36 @@ public class InstanceUtils {
     }
 
     /**
+     * creates a java sting in Vm and returns instance ref id to it
+     * @param value of string to create
+     * @return string instance ref id
+     */
+    public long createVmStringInstance(String value) {
+        // there is a need of thread to perform this operation in context of
+        // find any stopped thread
+        VmThread thread = delegates.threads().anySuspendedThread();
+        if (thread == null) {
+            // TODO: hooks api requires to give a thread for this API
+            throw new DebuggerException(JdwpConsts.Error.INTERNAL);
+        }
+
+        HooksCmdResponse res = delegates.hooksApi().newString(thread.threadPtr(), value);
+        if (res.exceptionPrt() != 0 || res.result() == null) {
+            throw new DebuggerException(JdwpConsts.Error.INTERNAL);
+        }
+
+        ClassInfo classInfo = delegates.state().classInfoLoader().classInfoBySignature(ClassDataConsts.signatures.JAVA_LANG_STRING);
+        VmStringInstance stringInstance = delegates.instances().instanceByPointer(res.result(), classInfo, null, true);
+        return stringInstance.refId();
+    }
+
+    /**
      * returns string value from VmStringInstance
      * reads from device if required or returns value previously read
      * @param stringInstance which keep object pointer
      * @return java string
      */
-    private String readStringValue(VmStringInstance stringInstance) {
+    public String readStringValue(VmStringInstance stringInstance) {
         if (stringInstance.value() != null)
             return stringInstance.value();
 
@@ -148,18 +173,21 @@ public class InstanceUtils {
     /**
      * returns instance by pointer by looking into reference id map first and allocates if required
      * @param objectPtr from target
+     * @param ci class info if known
+     * @param param optional param to give it to instantiator (like thread ptr)
      * @param allocate to create an VM instance from pointer
      * @param <T> type to case result to
      * @return created object or null
      * @throws ClassCastException if result cast to <T> fails
      */
     @SuppressWarnings("unchecked")
-    public <T extends VmInstance> T instanceByPointer(long objectPtr, Object param, boolean allocate) throws ClassCastException {
+    public <T extends VmInstance> T instanceByPointer(long objectPtr, ClassInfo ci, Object param, boolean allocate) throws ClassCastException {
         // get it from map first
         VmInstance instance = delegates.state().referenceRefIdHolder().instanceByAddr(objectPtr);
         if (instance == null && allocate) {
-            // trying to allocate one
-            ClassInfo ci = runtimeClassInfoLoader.resolveObjectRuntimeDataTypeInfo(objectPtr);
+            // trying to allocate new one, fetch class info if not specified
+            if (ci == null)
+                ci = runtimeClassInfoLoader.resolveObjectRuntimeDataTypeInfo(objectPtr);
             if (ci == null)
                 throw new DebuggerException("Cannot resolve type for instance " + Long.toHexString(objectPtr));
 
@@ -177,6 +205,10 @@ public class InstanceUtils {
         }
 
         return (T) instance;
+    }
+
+    public <T extends VmInstance> T instanceByPointer(long objectPtr, Object param, boolean allocate) throws ClassCastException {
+        return instanceByPointer(objectPtr, null, param, allocate);
     }
 
     private Instantiator instantiatorForClass(ClassInfoImpl ci) {

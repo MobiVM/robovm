@@ -28,4 +28,14 @@ public interface IJdwpEventDelegate {
      * remove all breakpoint event types
      */
     void jdwpClearAllBreakpoints();
+
+    /**
+     * stops sending events to JDPW but keeps buffering them
+     */
+    void jdwpHoldEvents();
+
+    /**
+     * resumes sending of all events -- also sends buffered events
+     */
+    void jdwpReleaseEvents();
 }

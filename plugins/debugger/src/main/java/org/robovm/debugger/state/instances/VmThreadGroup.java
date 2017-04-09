@@ -16,4 +16,12 @@ public class VmThreadGroup extends VmInstance{
         this.name = name;
         this.parent = parent;
     }
+
+    public String name() {
+        return name;
+    }
+
+    public VmThreadGroup parent() {
+        return parent;
+    }
 }
