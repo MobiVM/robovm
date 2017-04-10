@@ -6,14 +6,17 @@ import org.robovm.debugger.jdwp.IJdwpServerApi;
 import org.robovm.debugger.jdwp.handlers.array.IJdwpArrayDelegate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.IJdwpEventDelegate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPredicate;
+import org.robovm.debugger.jdwp.handlers.objectreference.IJdwpInstanceDelegate;
 import org.robovm.debugger.jdwp.handlers.thread.IJdwpThreadDelegate;
 import org.robovm.debugger.state.VmDebuggerState;
+import org.robovm.debugger.state.instances.VmStringInstance;
 import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.DebuggerThread;
 import org.robovm.debugger.utils.IDebuggerToolbox;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
 
+import java.nio.ByteOrder;
 import java.util.List;
 
 /**
@@ -21,7 +24,8 @@ import java.util.List;
  * keeps all delegate in one place and implements all their interfaces
  * also provides lock protection of data
  */
-public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDebuggerToolbox, IJdwpThreadDelegate {
+public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDebuggerToolbox, IJdwpThreadDelegate,
+        IJdwpInstanceDelegate {
 
     private final DbgLogger log = DbgLogger.get("Delegates");
 
@@ -66,6 +70,11 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     private RuntimeUtils runtime;
 
     /**
+     * Shared byte buffer packet that can be used for operations with target once central lock is taken
+     */
+    private final ByteBufferPacket sharedTargetPacket;
+
+    /**
      * Instance operation delegate
      */
     private InstanceUtils instances;
@@ -74,6 +83,8 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
         this.toolBox = new DebuggerToolBox(catcher);
         this.state = state;
         this.threads = new ThreadDelegate(this);
+        this.sharedTargetPacket = new ByteBufferPacket(state.isTarget64bit());
+        this.sharedTargetPacket.setByteOrder(ByteOrder.LITTLE_ENDIAN); // targets are little endian
     }
 
     public void onConnectedToTarget(IHooksApi api, long runtimeMemoryOffset) {
@@ -134,6 +145,10 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
 
     public InstanceUtils instances() {
         return instances;
+    }
+
+    public ByteBufferPacket sharedTargetPacket() {
+        return sharedTargetPacket;
     }
 
     //
@@ -234,6 +249,39 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     public void jdwpResumeThread(long threadId) throws DebuggerException {
         synchronized (state.centralLock()) {
             threads.jdwpResumeThread(threadId);
+        }
+    }
+
+
+    @Override
+    public void jdwpSuspendAllThreads() {
+        synchronized (state.centralLock()) {
+            threads.jdwpSuspendAllThreads();
+        }
+    }
+
+    @Override
+    public void jdwpResumeAllThreads() {
+        synchronized (state.centralLock()) {
+            threads.jdwpResumeAllThreads();
+        }
+    }
+
+
+    //
+    // JDPW instance delegate
+    //
+    @Override
+    public VmStringInstance jdwpCreateStringInstance(String value) {
+        synchronized (state.centralLock()) {
+            return instances.createVmStringInstance(value);
+        }
+    }
+
+    @Override
+    public String jdwpGetStringValue(long stringRefId) {
+        synchronized (state.centralLock()) {
+            return instances.readStringValue(stringRefId);
         }
     }
 

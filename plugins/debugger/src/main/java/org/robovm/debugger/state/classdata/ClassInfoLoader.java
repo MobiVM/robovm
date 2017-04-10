@@ -191,6 +191,19 @@ public class ClassInfoLoader {
         return classInfo.methods(this);
     }
 
+    public static boolean isArraySignature(String signature) {
+        return signature.length() > 1 && signature.startsWith("[");
+    }
+
+    public static boolean isClassSignature(String signature) {
+        return signature.length() > 2 && signature.startsWith("L") && signature.endsWith(";");
+    }
+
+    public static boolean isPrimitiveSignature(String signature) {
+        return signature.length() == 1 && "ZBCSIJFD".contains(signature);
+
+    }
+
 
     public static void main(String[] argv) {
         // for debug purpose
@@ -209,19 +222,6 @@ public class ClassInfoLoader {
         } catch (MachOException e) {
             e.printStackTrace();
         }
-
-    }
-
-    public static boolean isArraySignature(String signature) {
-        return signature.length() > 1 && signature.startsWith("[");
-    }
-
-    public static boolean isClassSignature(String signature) {
-        return signature.length() > 2 && signature.startsWith("L") && signature.endsWith(";");
-    }
-
-    public static boolean isPrimitiveSignature(String signature) {
-        return signature.length() == 1 && "ZBCSIJFD".contains(signature);
 
     }
 }

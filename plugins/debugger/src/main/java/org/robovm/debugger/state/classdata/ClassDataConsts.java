@@ -80,6 +80,8 @@ public class ClassDataConsts {
         // tag CLASS_OBJECT = 99;
         public static final String JAVA_LANG_CLASS = "Ljava/lang/Class;";
 
+        // other consts
+        public static final String JAVA_LANG_OBJECT = "Ljava/lang/Object;";
     }
 
     public static final class fields {

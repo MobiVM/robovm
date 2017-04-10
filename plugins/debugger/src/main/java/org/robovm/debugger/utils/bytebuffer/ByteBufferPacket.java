@@ -179,4 +179,9 @@ public class ByteBufferPacket extends ByteBufferReader {
         wants(bytes.length);
         byteBuffer.put(bytes);
     }
+
+    public void writePacket(ByteBufferPacket packet) {
+        wants(packet.bytesRemaining());
+        byteBuffer.put(packet.getByteBuffer().array(), packet.byteBufferDataStart(), packet.bytesRemaining());
+    }
 }

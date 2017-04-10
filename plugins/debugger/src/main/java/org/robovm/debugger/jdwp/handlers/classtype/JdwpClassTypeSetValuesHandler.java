@@ -1,5 +1,6 @@
 package org.robovm.debugger.jdwp.handlers.classtype;
 
+import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -11,7 +12,7 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 public class JdwpClassTypeSetValuesHandler implements IJdwpRequestHandler {
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        return 0;
+        return JdwpConsts.Error.NOT_IMPLEMENTED;
     }
 
     @Override

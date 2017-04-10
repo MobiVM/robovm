@@ -126,4 +126,14 @@ public final class Converter {
 
         return jdwpFlags;
     }
+
+    /**
+     * returns instance tag
+     * @param classInfo of instance
+     * @return JDPW presentation of instance
+     */
+    public static byte jdwpInstanceTag(ClassInfo classInfo) {
+        // TODO: implement !!!
+        return 0;
+    }
 }

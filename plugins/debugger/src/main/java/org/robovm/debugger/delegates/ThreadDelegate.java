@@ -51,6 +51,20 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
     }
 
 
+    @Override
+    public void jdwpSuspendAllThreads() {
+        for (VmThread thread : delegates.state().threads())
+            if (thread.status() == VmThread.Status.RUNNING)
+                suspendThread(thread);
+    }
+
+    @Override
+    public void jdwpResumeAllThreads() {
+        for (VmThread thread : delegates.state().threads())
+            if (thread.status() == VmThread.Status.SUPENDED)
+                resumeThread(thread);
+    }
+
     /**
      * called once thread is suspended (as notification from hooks)
      * @param thread object
@@ -71,15 +85,6 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
         }
 
         // mark as suspended
-
-    }
-
-    public void onThreadSuspended(VmThread thread, VmStackTrace[] stack) {
-        onThreadSuspended(thread, stack, true);
-    }
-
-    public void onTheadResumed(VmThread thread) {
-        // res
 
     }
 

@@ -13,15 +13,15 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
  */
 public class ValueManipulator {
 
-    private interface Reader {
+    protected interface Reader {
         Object read(ByteBufferReader reader);
     }
 
-    private interface Writer {
+    protected interface Writer {
         void write(ByteBufferPacket writer, Object o);
     }
 
-    private interface ArrayReader {
+    protected interface ArrayReader {
         Object read(ByteBufferReader reader, int length);
     }
 
@@ -174,40 +174,4 @@ public class ValueManipulator {
             reader -> {throw new DebuggerException("invalid access for type VOID");},
             (writer, o) -> {throw new DebuggerException("invalid access for type VOID");},
             (reader, length) -> {throw new DebuggerException("invalid access for type VOID");});
-
-
-    /**
-     * Special subclass for object manipulations
-     */
-    public static class ObjectValueManipulator extends ValueManipulator {
-        private final InstanceRefIdHolder refIdHolder;
-
-        public ObjectValueManipulator(InstanceRefIdHolder refIdHolder) {
-            super(
-                    fromDevice -> {
-                        long ptr = fromDevice.readLong();
-                        return ptr != 0 ? refIdHolder.instanceByAddr(ptr) : null;
-                    },
-                    fromJdwp -> {
-                        long refId = fromJdwp.readLong();
-                        return refId != 0 ? refIdHolder.objectById(refId) : null;
-                    },
-                    (writer, o) -> {
-                        VmInstance instance = (VmInstance) o;
-                        writer.writeLong(instance != null ? instance.objectPtr() : 0);
-                    },
-                    (jdwpWriter, o) -> {
-                        VmInstance instance = (VmInstance) o;
-                        jdwpWriter.writeByte(JdwpConsts.Tag.OBJECT);
-                        jdwpWriter.writeLong(instance != null ? instance.refId() : 0);
-                    },
-                    (reader, length) -> {
-                        boolean[] arr = new boolean[length];
-                        for (int idx = 0; idx < length; idx ++)
-                            arr[idx] = reader.readBoolean();
-                        return arr;
-                    });
-            this.refIdHolder = refIdHolder;
-        }
-    }
 }

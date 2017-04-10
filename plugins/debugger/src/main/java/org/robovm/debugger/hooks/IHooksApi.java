@@ -1,6 +1,7 @@
 package org.robovm.debugger.hooks;
 
 import org.robovm.debugger.hooks.payloads.HooksCmdResponse;
+import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
  * @author Demyan Kimitsa
@@ -11,6 +12,7 @@ public interface IHooksApi {
     byte[] readMemory(long addr, int numBytes) ;
     String readCString(long addr);
     void writeMemory(long addr, byte[] data);
+    void writeMemory(long addr, ByteBufferPacket packet);
     void andBits(long addr, byte mask);
     void orBits(long addr, byte mask);
     long allocate(int numBytes);

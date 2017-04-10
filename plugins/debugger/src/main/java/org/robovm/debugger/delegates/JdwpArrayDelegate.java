@@ -72,7 +72,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
             int pointerSize = delegates.runtime().deviceMemoryReader().pointerSize();
             delegates.runtime().deviceMemoryReader().setAddress(instance.dataPtr() + pointerSize * index);
             reader = ByteBufferReader.wrap(delegates.runtime().deviceMemoryReader().readBytes(pointerSize * length));
-            manipulator = null; // TODO: !!!!!!!!
+            manipulator = delegates.instances().objectManipulator();
         }
 
         // write JDPW array region header
@@ -102,7 +102,31 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
         if (index < 0 || length <= 0 || index + length >= instance.length())
             throw new DebuggerException(JdwpConsts.Error.INVALID_LENGTH);
 
-        // TODO: write to
+        // read a memory block from device
+        ByteBufferPacket packet = delegates.sharedTargetPacket();
+        packet.reset();
+        long destAddr;
+        ValueManipulator manipulator;
+        ClassInfo elementType = instance.elementType();
+        if (elementType.isPrimitive()) {
+            ClassInfoPrimitiveImpl primType = (ClassInfoPrimitiveImpl) elementType;
+            manipulator = primType.manipulator();
+            destAddr = instance.dataPtr() + primType.size() * index;
+        } else {
+            // class or array, read pointers
+            destAddr = instance.dataPtr() + packet.pointerSize() * index;
+            manipulator = delegates.instances().objectManipulator();
+        }
+
+
+        // now dump elements one by one
+        for (int idx = 0; idx < length; idx++) {
+            Object element = manipulator.readFromJdwp(reader);
+            manipulator.writeToDevice(packet, element);
+        }
+
+        // put to device
+        delegates.hooksApi().writeMemory(destAddr, packet);
     }
 
     public VmArrayInstance createArrayInstance(long objectPtr, ClassInfoArrayImpl ci) {

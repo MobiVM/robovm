@@ -3,6 +3,7 @@ package org.robovm.debugger.delegates;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.hooks.payloads.HooksCmdResponse;
 import org.robovm.debugger.jdwp.JdwpConsts;
+import org.robovm.debugger.runtime.ValueManipulator;
 import org.robovm.debugger.state.classdata.ClassDataConsts;
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.ClassInfoArrayImpl;
@@ -18,6 +19,8 @@ import org.robovm.debugger.state.instances.VmInstance;
 import org.robovm.debugger.state.instances.VmStringInstance;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.state.instances.VmThreadGroup;
+import org.robovm.debugger.utils.Converter;
+import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,8 +49,7 @@ public class InstanceUtils {
 
     public InstanceUtils(AllDelegates delegates) {
         this.delegates = delegates;
-        this.runtimeClassInfoLoader = new RuntimeClassInfoLoader(delegates.state().classInfoLoader(),
-                delegates.runtime().deviceMemoryReader());
+        this.runtimeClassInfoLoader = new RuntimeClassInfoLoader(delegates);
     }
 
     public RuntimeClassInfoLoader classInfoLoader() {
@@ -59,7 +61,7 @@ public class InstanceUtils {
      * @param value of string to create
      * @return string instance ref id
      */
-    public long createVmStringInstance(String value) {
+    public VmStringInstance createVmStringInstance(String value) {
         // there is a need of thread to perform this operation in context of
         // find any stopped thread
         VmThread thread = delegates.threads().anySuspendedThread();
@@ -75,7 +77,7 @@ public class InstanceUtils {
 
         ClassInfo classInfo = delegates.state().classInfoLoader().classInfoBySignature(ClassDataConsts.signatures.JAVA_LANG_STRING);
         VmStringInstance stringInstance = delegates.instances().instanceByPointer(res.result(), classInfo, null, true);
-        return stringInstance.refId();
+        return stringInstance;
     }
 
     /**
@@ -102,25 +104,56 @@ public class InstanceUtils {
         return str;
     }
 
-    @SuppressWarnings("unchecked")
-    private <T> T getFieldValue(long objectPtr, ClassInfo ci, String fieldName) {
+    /** wrapper that takes object reference as param */
+    public String readStringValue(long stringRefId) {
+        VmStringInstance stringInstance = delegates.state().referenceRefIdHolder().instanceById(stringRefId);
+        if (stringInstance == null)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_OBJECT);
+
+        return readStringValue(stringInstance);
+    }
+
+    /**
+     * reads class instance field value
+     * @param objectPtr pointer to object
+     * @param ci class info
+     * @param fieldName field name to set
+     * @param <T> type to cast result to
+     * @throws DebuggerException if something wrong
+     * @return fields value
+     */
+    public <T> T getFieldValue(long objectPtr, ClassInfo ci, String fieldName) throws DebuggerException {
         FieldInfo[] fields = ci.fields(runtimeClassInfoLoader.loader());
-        FieldInfo fieldInfo = null;
+        FieldInfo fi = null;
         if (fields != null) {
-            for (FieldInfo fi : fields) {
-                if (fieldName.equals(fi.name())) {
-                    fieldInfo = fi;
+            for (FieldInfo fieldInfo : fields) {
+                if (fieldName.equals(fieldInfo.name())) {
+                    fi = fieldInfo;
                     break;
                 }
             }
         }
 
-        if (fieldInfo == null)
+        if (fi == null)
             throw new DebuggerException("Field " + fieldName + " not found in " + ci.signature());
 
-        String signature = fieldInfo.signature();
+        return getFieldValue(objectPtr, ci, fi);
+    }
+
+    /**
+     * reads class instance field value
+     * @param objectPtr pointer to object
+     * @param ci class info
+     * @param fi field info structure
+     * @param <T> type to cast result to
+     * @throws DebuggerException if something wrong
+     * @return fields value
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T getFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi) throws DebuggerException {
+        String signature = fi.signature();
         // is resolved already ?
-        ClassInfo fieldTypeInfo = fieldInfo.typeInfo();
+        ClassInfo fieldTypeInfo = fi.typeInfo();
         // check from known signatures
         if (fieldTypeInfo == null)
             fieldTypeInfo = runtimeClassInfoLoader.loader().classInfoBySignature(signature);
@@ -130,29 +163,70 @@ public class InstanceUtils {
                 // read data from object itself, keep it null
             } else if (ClassInfoLoader.isPrimitiveSignature(signature)) {
                 // primitive, type data is not loaded yet
-                // get primitive clazz pointer from device memory (check class.c)
-                long clazzPrt = delegates.state().appFileLoader().resolveSymbol("_prim_" + signature);
-                delegates.runtime().deviceMemoryReader().setAddress(delegates.runtime().toRuntimeAddr(clazzPrt));;
-                clazzPrt = delegates.runtime().deviceMemoryReader().readPointer();
-
-                fieldTypeInfo = runtimeClassInfoLoader.resolveRuntimeDataTypeInfo(signature, clazzPrt);
+                fieldTypeInfo = runtimeClassInfoLoader.buildPrimitiveClassInfo(signature.charAt(0));
             } else {
-                throw new DebuggerException("Failed to resolve type info for field " + fieldName + " in " + ci.signature());
+                throw new DebuggerException("Failed to resolve type info for field " + fi.name() + " in " + ci.signature());
             }
         }
 
         // can read data now
         T result;
-        delegates.runtime().deviceMemoryReader().setAddress(objectPtr + fieldInfo.offset());
+        ValueManipulator valueManipulator;
+        delegates.runtime().deviceMemoryReader().setAddress(objectPtr + fi.offset());
         if (fieldTypeInfo != null && fieldTypeInfo.isPrimitive()) {
             ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) fieldTypeInfo;
-            result = (T) primitiveInfo.manipulator().readFromDevice(delegates.runtime().deviceMemoryReader());
+            valueManipulator = primitiveInfo.manipulator();
         } else {
-            long fieldObjectPtr = delegates.runtime().deviceMemoryReader().readPointer();
-            result = (T)instanceByPointer(fieldObjectPtr, null, true);
+            valueManipulator = manipulator;
         }
 
+        result = (T) valueManipulator.readFromDevice(delegates.runtime().deviceMemoryReader());
         return result;
+    }
+
+    /**
+     * writes class instance field value
+     * @param objectPtr pointer to object
+     * @param ci class info
+     * @param fi field info structure
+     * @throws DebuggerException if something wrong
+     * @return fields value
+     */
+    @SuppressWarnings("unchecked")
+    public void setFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, Object value) throws DebuggerException {
+        String signature = fi.signature();
+        // is resolved already ?
+        ClassInfo fieldTypeInfo = fi.typeInfo();
+        // check from known signatures
+        if (fieldTypeInfo == null)
+            fieldTypeInfo = runtimeClassInfoLoader.loader().classInfoBySignature(signature);
+        // try to build signature
+        if (fieldTypeInfo == null) {
+            if (ClassInfoLoader.isArraySignature(signature)) {
+                // read data from object itself, keep it null
+            } else if (ClassInfoLoader.isPrimitiveSignature(signature)) {
+                // primitive, type data is not loaded yet
+                fieldTypeInfo = runtimeClassInfoLoader.buildPrimitiveClassInfo(signature.charAt(0));
+            } else {
+                throw new DebuggerException("Failed to resolve type info for field " + fi.name() + " in " + ci.signature());
+            }
+        }
+
+        // can write data now
+        ByteBufferPacket packet = delegates.sharedTargetPacket();
+        packet.reset();
+        ValueManipulator valueManipulator;
+        delegates.runtime().deviceMemoryReader().setAddress(objectPtr + fi.offset());
+        if (fieldTypeInfo != null && fieldTypeInfo.isPrimitive()) {
+            ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) fieldTypeInfo;
+            valueManipulator = primitiveInfo.manipulator();
+        } else {
+            valueManipulator = manipulator;
+        }
+        valueManipulator.writeToDevice(packet, value);
+
+        // now put values to device
+        delegates.hooksApi().writeMemory(objectPtr + fi.offset(), packet);
     }
 
     /**
@@ -211,6 +285,10 @@ public class InstanceUtils {
         return instanceByPointer(objectPtr, null, param, allocate);
     }
 
+    public <T extends VmInstance> T instanceByPointer(long objectPtr) throws ClassCastException {
+        return instanceByPointer(objectPtr, null, null, true);
+    }
+
     private Instantiator instantiatorForClass(ClassInfoImpl ci) {
         Instantiator res = instantiatorForClassRefId.get(ci.refId());
         if (res != null)
@@ -258,6 +336,20 @@ public class InstanceUtils {
         return res;
     }
 
+    /**
+     * @return object manipulator that works with object/arrays
+     */
+    public ValueManipulator objectManipulator() {
+        return manipulator;
+    }
+
+    /**
+     * interface that create instance wrapper for pointer
+     */
+    private interface Instantiator {
+        VmInstance instance(ClassInfo ci, long objectPtr, Object optional);
+    }
+
     private VmStringInstance createStringInstance(ClassInfo ci, long objectPtr, Object readValue) {
         VmStringInstance stringInstance = new VmStringInstance(objectPtr, ci);
         // read string value if required
@@ -296,10 +388,37 @@ public class InstanceUtils {
         return new VmInstance(objectPtr, ci);
     }
 
+
     /**
-     * interface that create instance wrapper for pointer
+     * Special subclass for object manipulations
      */
-    private interface Instantiator {
-        VmInstance instance(ClassInfo ci, long objectPtr, Object optional);
+    private class Manipulator extends ValueManipulator {
+        private Manipulator() {
+            super(
+                    fromDevice -> {
+                        long ptr = fromDevice.readLong();
+                        return ptr != 0 ? instanceByPointer(ptr) : null;
+                    },
+                    fromJdwp -> {
+                        long refId = fromJdwp.readLong();
+                        return refId != 0 ? delegates.state().referenceRefIdHolder().objectById(refId) : null;
+                    },
+                    (writer, o) -> {
+                        VmInstance instance = (VmInstance) o;
+                        writer.writeLong(instance != null ? instance.objectPtr() : 0);
+                    },
+                    (jdwpWriter, o) -> {
+                        VmInstance instance = (VmInstance) o;
+                        jdwpWriter.writeByte(instance != null ? Converter.jdwpInstanceTag(instance.classInfo()) : JdwpConsts.Tag.OBJECT);
+                        jdwpWriter.writeLong(instance != null ? instance.refId() : 0);
+                    },
+                    (reader, length) -> {
+                        VmInstance[] arr = new VmInstance[length];
+                        for (int idx = 0; idx < length; idx ++)
+                            arr[idx] = instanceByPointer(reader.readPointer());
+                        return arr;
+                    });
+        }
     }
+    private Manipulator manipulator = new Manipulator();
 }

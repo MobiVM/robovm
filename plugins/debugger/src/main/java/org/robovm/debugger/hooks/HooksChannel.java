@@ -221,6 +221,16 @@ public class HooksChannel implements IHooksApi {
     }
 
     @Override
+    public void writeMemory(long addr, ByteBufferPacket data) {
+        data.setPosition(0);
+        ByteBufferPacket packet = new ByteBufferPacket();
+        packet.writeLong(addr);
+        packet.writeInt32(data.size());
+        packet.writePacket(data);
+        sendCommand(HookConsts.commands.WRITE_MEMORY, packet);
+    }
+
+    @Override
     public void andBits(long addr, byte mask) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(addr);

@@ -1,7 +1,7 @@
 package org.robovm.debugger.state.classdata;
 
 import org.robovm.debugger.DebuggerException;
-import org.robovm.debugger.hooks.unitls.TargetByteBufferReader;
+import org.robovm.debugger.delegates.AllDelegates;
 
 /**
  * @author Demyan Kimitsa
@@ -10,20 +10,11 @@ import org.robovm.debugger.hooks.unitls.TargetByteBufferReader;
  */
 public class RuntimeClassInfoLoader {
 
-    /**
-     * class loader to ask for already resolved data and to store results to
-     */
-    private final ClassInfoLoader classLoader;
-
-    /**
-     * byte buffer reader that allows to read target memory
-     */
-    private final TargetByteBufferReader deviceMemoryReader;
+    private final AllDelegates delegates;
 
 
-    public RuntimeClassInfoLoader(ClassInfoLoader classLoader, TargetByteBufferReader deviceMemoryReader) {
-        this.classLoader = classLoader;
-        this.deviceMemoryReader = deviceMemoryReader;
+    public RuntimeClassInfoLoader(AllDelegates delegates) {
+        this.delegates = delegates;
     }
 
     /**
@@ -32,7 +23,7 @@ public class RuntimeClassInfoLoader {
      * @return data type info for giver clazz pointer
      */
     public ClassInfo resolveRuntimeDataTypeInfo(long clazzPointer) {
-        ClassInfo dataTypeInfo = classLoader.classByClazzAddr(clazzPointer);
+        ClassInfo dataTypeInfo = delegates.state().classInfoLoader().classByClazzAddr(clazzPointer);
         if (dataTypeInfo == null) {
             String signature = readClazzSignature(clazzPointer);
             dataTypeInfo = resolveRuntimeDataTypeInfo(signature, clazzPointer);
@@ -47,8 +38,8 @@ public class RuntimeClassInfoLoader {
      * @return data type info for giver clazz pointer
      */
     public ClassInfo resolveObjectRuntimeDataTypeInfo(long objectPtr) {
-        deviceMemoryReader.setAddress(objectPtr);
-        long clazzPointer = deviceMemoryReader.readPointer();
+        delegates.runtime().deviceMemoryReader().setAddress(objectPtr);
+        long clazzPointer = delegates.runtime().deviceMemoryReader().readPointer();
         return resolveRuntimeDataTypeInfo(clazzPointer);
     }
 
@@ -58,7 +49,7 @@ public class RuntimeClassInfoLoader {
      * @return data type info for giver clazz pointer
      */
     public ClassInfo resolveRuntimeDataTypeInfo(String signature, long clazzPtr) {
-        ClassInfo info = classLoader.classInfoBySignature(signature);
+        ClassInfo info = delegates.state().classInfoLoader().classInfoBySignature(signature);
         if (info != null)
             return info;
 
@@ -66,11 +57,11 @@ public class RuntimeClassInfoLoader {
         char firstChar = signature.charAt(0);
         if (signature.length() == 1) {
             // build primitive type
-            info = classLoader.buildPrimitiveClassInfo(firstChar, clazzPtr);
+            info = delegates.state().classInfoLoader().buildPrimitiveClassInfo(firstChar, clazzPtr);
         } else if (firstChar == '[') {
             // building array
             String componentTypeSignature = signature.substring(1);
-            ClassInfo componentType = classLoader.classInfoBySignature(componentTypeSignature);
+            ClassInfo componentType = delegates.state().classInfoLoader().classInfoBySignature(componentTypeSignature);
             if (componentType == null) {
                 // unknown type, read it from Class object to resolve
                 long componentClazzPtr = readClazzComponentType(clazzPtr);
@@ -84,10 +75,21 @@ public class RuntimeClassInfoLoader {
             throw new DebuggerException("Unable to resolve runtime class for " + signature);
 
         // register class info
-        classLoader.registerRuntimeClassInfo(info, clazzPtr);
+        delegates.state().classInfoLoader().registerRuntimeClassInfo(info, clazzPtr);
 
         return info;
     }
+
+
+    public ClassInfo buildPrimitiveClassInfo(char signature) {
+        // get primitive clazz pointer from device memory (check class.c)
+        long clazzPrt = delegates.state().appFileLoader().resolveSymbol("_prim_" + signature);
+        delegates.runtime().deviceMemoryReader().setAddress(delegates.runtime().toRuntimeAddr(clazzPrt));;
+        clazzPrt = delegates.runtime().deviceMemoryReader().readPointer();
+
+        return delegates.state().classInfoLoader().buildPrimitiveClassInfo(signature, clazzPrt);
+    }
+
 
     /**
      * reads component type of array's clazz
@@ -95,8 +97,8 @@ public class RuntimeClassInfoLoader {
      * @return clazzPointer to component type of array
      */
     public long readClazzComponentType(long clazzPointer) {
-        long pointerSize = deviceMemoryReader.pointerSize();
-        deviceMemoryReader.setAddress(clazzPointer +
+        long pointerSize = delegates.runtime().deviceMemoryReader().pointerSize();
+        delegates.runtime().deviceMemoryReader().setAddress(clazzPointer +
                 pointerSize +  // skip struct Object.*clazz
                 pointerSize +  // skip struct Object.*lock
                         pointerSize + // skip void* _data;
@@ -107,7 +109,7 @@ public class RuntimeClassInfoLoader {
                 pointerSize + // skip const char* name;        // The name in modified UTF-8.
                 pointerSize + // skip Object* classLoader;
                 pointerSize);  // skip Class* superclass;       // Superclass pointer. Only java.lang.Object, primitive classes and interfaces have NULL here.
-        return deviceMemoryReader.readPointer();
+        return delegates.runtime().deviceMemoryReader().readPointer();
     }
 
 
@@ -117,8 +119,8 @@ public class RuntimeClassInfoLoader {
      * @return signature of clazz
      */
     public String readClazzSignature(long clazzPointer) {
-        long pointerSize = deviceMemoryReader.pointerSize();
-        deviceMemoryReader.setAddress(clazzPointer +
+        long pointerSize = delegates.runtime().deviceMemoryReader().pointerSize();
+        delegates.runtime().deviceMemoryReader().setAddress(clazzPointer +
                 pointerSize +  // skip struct Object.*clazz
                 pointerSize +  // skip struct Object.*lock
                 pointerSize + // skip void* _data;
@@ -126,8 +128,8 @@ public class RuntimeClassInfoLoader {
                 pointerSize + // skip TypeInfo* typeInfo;      // Info on all types this class implements.
                 pointerSize + // skip VITable* vitable;
                 pointerSize); // skip ITables* itables;
-        long ptr = deviceMemoryReader.readPointer();
-        return deviceMemoryReader.readStringZAtPtr(ptr);
+        long ptr = delegates.runtime().deviceMemoryReader().readPointer();
+        return delegates.runtime().deviceMemoryReader().readStringZAtPtr(ptr);
     }
 
     /**
@@ -138,11 +140,11 @@ public class RuntimeClassInfoLoader {
      * @return corresponding data type info
      */
     public ClassInfo onClassLoaded(long classInfoPtr, long clazzPtr) {
-        return classLoader.onClassLoaded(classInfoPtr, clazzPtr);
+        return delegates.state().classInfoLoader().onClassLoaded(classInfoPtr, clazzPtr);
     }
 
     public ClassInfoLoader loader() {
-        return classLoader;
+        return delegates.state().classInfoLoader();
     }
 
 }
