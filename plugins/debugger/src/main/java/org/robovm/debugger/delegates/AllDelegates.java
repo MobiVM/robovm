@@ -160,6 +160,25 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
         }
     }
 
+    /**
+     * stops sending events to JDPW but keeps buffering them
+     */
+    @Override
+    public void jdwpHoldEvents() {
+        synchronized (state.centralLock()) {
+            events.jdwpHoldEvents();
+        }
+    }
+
+    /**
+     * resumes sending of all events -- also sends buffered events
+     */
+    @Override
+    public void jdwpReleaseEvents() {
+        synchronized (state.centralLock()) {
+            events.jdwpReleaseEvents();
+        }
+    }
 
     //
     // JDWP array delegates
@@ -185,11 +204,24 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
         }
     }
 
+    /**
+     * creates new instance of array
+     *
+     * @param arrayTypeId -- type of array to create
+     * @param length      -- number of elements to create
+     * @return instance id of new array
+     */
+    @Override
+    public long jdwpArrayCreateInstance(long arrayTypeId, int length) {
+        synchronized (state.centralLock()) {
+            return arrays.jdwpArrayCreateInstance(arrayTypeId, length);
+        }
+    }
+
 
     //
     // JDWP threads delegate
     //
-
 
     @Override
     public void jdwpSuspendThread(long threadId) throws DebuggerException {

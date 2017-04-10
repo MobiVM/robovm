@@ -167,24 +167,22 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
      */
     @Override
     public short jdwpClearEventRequest(byte eventKind, int requestID) {
-        synchronized (delegates.state().centralLock()) {
-            Iterator<JdwpEventRequest> it = delegates.state().jdwpEventRequests().iterator();
-            while (it.hasNext()) {
-                JdwpEventRequest req = it.next();
-                if (req.requestId() == requestID) {
-                    if (req.eventKind() != eventKind)
-                        return JdwpConsts.Error.INVALID_EVENT_TYPE;
+        Iterator<JdwpEventRequest> it = delegates.state().jdwpEventRequests().iterator();
+        while (it.hasNext()) {
+            JdwpEventRequest req = it.next();
+            if (req.requestId() == requestID) {
+                if (req.eventKind() != eventKind)
+                    return JdwpConsts.Error.INVALID_EVENT_TYPE;
 
-                    onEventRequestRemoved(req);
-                    it.remove();
+                onEventRequestRemoved(req);
+                it.remove();
 
-                    return JdwpConsts.Error.NONE;
-                }
+                return JdwpConsts.Error.NONE;
             }
-
-            // not found
-            return JdwpConsts.Error.INVALID_EVENT_TYPE;
         }
+
+        // not found
+        return JdwpConsts.Error.INVALID_EVENT_TYPE;
     }
 
     /**
@@ -192,16 +190,30 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
      */
     @Override
     public void jdwpClearAllBreakpoints() {
-        synchronized (delegates.state().centralLock()) {
-            Iterator<JdwpEventRequest> it = delegates.state().jdwpEventRequests().iterator();
-            while (it.hasNext()) {
-                JdwpEventRequest req = it.next();
-                if (req.eventKind() == JdwpConsts.EventKind.BREAKPOINT) {
-                    onEventRequestRemoved(req);
-                    it.remove();
-                }
+        Iterator<JdwpEventRequest> it = delegates.state().jdwpEventRequests().iterator();
+        while (it.hasNext()) {
+            JdwpEventRequest req = it.next();
+            if (req.eventKind() == JdwpConsts.EventKind.BREAKPOINT) {
+                onEventRequestRemoved(req);
+                it.remove();
             }
         }
+    }
+
+    /**
+     * stops sending events to JDPW but keeps buffering them
+     */
+    @Override
+    public void jdwpHoldEvents() {
+        // TODO: implement
+    }
+
+    /**
+     * resumes sending of all events -- also sends buffered events
+     */
+    @Override
+    public void jdwpReleaseEvents() {
+        // TODO: implement
     }
 
     private void onEventRequestSet(JdwpEventRequest request) {
@@ -406,7 +418,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 throw new DebuggerException("Thread " + Long.toHexString(event.threadObj()) + " already attached/started!");
 
             // attach thread
-            ClassInfo ci = delegates.runtime().classInfoLoader().resolveObjectRuntimeDataTypeInfo(event.threadObj());
+            ClassInfo ci = delegates.instances().classInfoLoader().resolveObjectRuntimeDataTypeInfo(event.threadObj());
             thread = delegates.instances().instanceByPointer(event.threadObj(), event.thread(), true);
             delegates.state().referenceRefIdHolder().addObject(thread);
             delegates.state().threads().add(thread);
@@ -439,7 +451,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     private JdwpEventData processThreadStoppedEvent(HooksThreadStoppedEventPayload event, VmThread thread, VmStackTrace[] callStack) {
         switch (event.eventId()) {
             case HookConsts.events.EXCEPTION:
-                ClassInfo ci = delegates.runtime().classInfoLoader().resolveObjectRuntimeDataTypeInfo(event.throwable());
+                ClassInfo ci = delegates.instances().classInfoLoader().resolveObjectRuntimeDataTypeInfo(event.throwable());
                 VmInstance exception = new VmInstance(event.throwable(), ci);
                 return new JdwpThreadStoppedEventData(JdwpConsts.EventKind.EXCEPTION, thread, callStack[0], exception);
 

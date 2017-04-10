@@ -5,6 +5,7 @@ import org.robovm.debugger.delegates.AllDelegates;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearAllBreakpointsHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqSetHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeClassLoaderHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeFieldsHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeMethodsHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeModifiersHandler;
