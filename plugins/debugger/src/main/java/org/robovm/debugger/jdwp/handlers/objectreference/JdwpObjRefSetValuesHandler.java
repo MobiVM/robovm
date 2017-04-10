@@ -1,5 +1,7 @@
 package org.robovm.debugger.jdwp.handlers.objectreference;
 
+import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -8,9 +10,29 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * Sets the value of one or more instance fields. Each field must be member of the object's type or one of its superclasses, superinterfaces, or implemented interface
  */
 public class JdwpObjRefSetValuesHandler implements IJdwpRequestHandler {
+    private final IJdwpInstanceDelegate delegate;
+
+    public JdwpObjRefSetValuesHandler(IJdwpInstanceDelegate delegate) {
+        this.delegate = delegate;
+    }
+
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        return 0;
+        long objectId = payload.readLong();
+        int count = payload.readInt32();
+
+
+        // set values to target
+        try {
+            // all field ids and values are multiplexed in data flow, so it will be handled in delegate
+            delegate.jdwpFieldSetValues(objectId, count, payload);
+        } catch (DebuggerException e) {
+            if (e.getCode() < 0)
+                throw e;
+            return (short) e.getCode();
+        }
+
+        return JdwpConsts.Error.NONE;
     }
 
     @Override

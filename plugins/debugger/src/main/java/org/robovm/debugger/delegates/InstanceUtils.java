@@ -21,6 +21,7 @@ import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.state.instances.VmThreadGroup;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -149,8 +150,23 @@ public class InstanceUtils {
      * @throws DebuggerException if something wrong
      * @return fields value
      */
-    @SuppressWarnings("unchecked")
     public <T> T getFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi) throws DebuggerException {
+        return getFieldValue(objectPtr, ci, fi, null);
+    }
+
+
+    /**
+     * reads class instance field value
+     * @param objectPtr pointer to object
+     * @param ci class info
+     * @param fi field info structure
+     * @param <T> type to cast result to
+     * @param jdwpOutput used to optionally save result to JDPW output buffer
+     * @throws DebuggerException if something wrong
+     * @return fields value
+     */
+    @SuppressWarnings("unchecked")
+    private <T> T getFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, ByteBufferPacket jdwpOutput) throws DebuggerException {
         String signature = fi.signature();
         // is resolved already ?
         ClassInfo fieldTypeInfo = fi.typeInfo();
@@ -181,7 +197,36 @@ public class InstanceUtils {
         }
 
         result = (T) valueManipulator.readFromDevice(delegates.runtime().deviceMemoryReader());
+
+        // dump to JDPW if asked
+        if (jdwpOutput != null)
+            valueManipulator.writeToJdwp(jdwpOutput, result);
+
         return result;
+    }
+
+
+    /**
+     * Reads a list of instance field values
+     * @param objectId to read data from
+     * @param fields list of field ids to read data from
+     * @param packet JDPW packet buffer to put JDPW data
+     */
+    public void jdwpFieldGetValues(long objectId, long[] fields, ByteBufferPacket packet) {
+        VmInstance instance = delegates.state().referenceRefIdHolder().instanceById(objectId);
+        if (instance == null)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_OBJECT);
+        // fields has to be loaded so no need to parse them just make a run to check if these exists
+        for (long fieldId : fields)
+            if (delegates.state().fieldRefIdHolder().objectById(fieldId) == null)
+                throw new DebuggerException(JdwpConsts.Error.INVALID_FIELDID);
+
+        // perform read
+        for (long fieldId : fields) {
+            FieldInfo fieldInfo = delegates.state().fieldRefIdHolder().objectById(fieldId);
+            getFieldValue(instance.objectPtr(), instance.classInfo(), fieldInfo, packet);
+
+        }
     }
 
     /**
@@ -189,11 +234,12 @@ public class InstanceUtils {
      * @param objectPtr pointer to object
      * @param ci class info
      * @param fi field info structure
+     * @param fromJdpw if not null value shall be picked here using manipulator
      * @throws DebuggerException if something wrong
      * @return fields value
      */
     @SuppressWarnings("unchecked")
-    public void setFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, Object value) throws DebuggerException {
+    private void setFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, Object value, ByteBufferReader fromJdpw) throws DebuggerException {
         String signature = fi.signature();
         // is resolved already ?
         ClassInfo fieldTypeInfo = fi.typeInfo();
@@ -213,8 +259,6 @@ public class InstanceUtils {
         }
 
         // can write data now
-        ByteBufferPacket packet = delegates.sharedTargetPacket();
-        packet.reset();
         ValueManipulator valueManipulator;
         delegates.runtime().deviceMemoryReader().setAddress(objectPtr + fi.offset());
         if (fieldTypeInfo != null && fieldTypeInfo.isPrimitive()) {
@@ -223,11 +267,35 @@ public class InstanceUtils {
         } else {
             valueManipulator = manipulator;
         }
+
+        ByteBufferPacket packet = delegates.sharedTargetPacket();
+        packet.reset();
+
+        // if specified -- pick value from jdpw payload
+        if (fromJdpw != null)
+            value = valueManipulator.readFromJdwp(fromJdpw);
+
         valueManipulator.writeToDevice(packet, value);
 
         // now put values to device
         delegates.hooksApi().writeMemory(objectPtr + fi.offset(), packet);
     }
+
+
+    public void jdwpFieldSetValues(long objectId, int fieldsCount, ByteBufferPacket payload) {
+        VmInstance instance = delegates.state().referenceRefIdHolder().instanceById(objectId);
+        if (instance == null)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_OBJECT);
+
+        // there is no way to get fields only as these are multiplexed with data, so let start working
+        // if there is something wrong it will be interrupted in the middle, e.g. operation is not atomic
+        while (fieldsCount-- > 0) {
+            long fieldId = payload.readLong();
+            FieldInfo fieldInfo = delegates.state().fieldRefIdHolder().objectById(fieldId);
+            setFieldValue(instance.objectPtr(), instance.classInfo(), fieldInfo, null, payload);
+        }
+    }
+
 
     /**
      * Returns existing instance, throws exception if not found

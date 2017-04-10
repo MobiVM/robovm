@@ -1,5 +1,7 @@
 package org.robovm.debugger.jdwp.handlers.objectreference;
 
+import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -9,9 +11,32 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * superinterfaces, or implemented interfaces.
  */
 public class JdwpObjRefGetValuesHandler implements IJdwpRequestHandler {
+    private final IJdwpInstanceDelegate delegate;
+
+    public JdwpObjRefGetValuesHandler(IJdwpInstanceDelegate delegate) {
+        this.delegate = delegate;
+    }
+
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        return 0;
+        long objectId = payload.readLong();
+        int count = payload.readInt32();
+        long[] fields = new long[count];
+        for (int idx = 0; idx < count; idx++) {
+            fields[idx] = payload.readLong();
+        }
+
+
+        // get values from target
+        try {
+            delegate.jdwpFieldGetValues(objectId, fields, output);
+        } catch (DebuggerException e) {
+            if (e.getCode() < 0)
+                throw e;
+            return (short) e.getCode();
+        }
+
+        return JdwpConsts.Error.NONE;
     }
 
     @Override

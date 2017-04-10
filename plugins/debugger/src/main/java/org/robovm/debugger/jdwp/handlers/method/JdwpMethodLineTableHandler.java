@@ -5,7 +5,8 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
  * @author Demyan Kimitsa
- * Returns line number information for the method, if present. The line table maps source line numbers to the initial code index of the line.
+ * Returns line number information for the method, if present. The line table maps source line numbers to the initial
+ * code index of the line.
  */
 public class JdwpMethodLineTableHandler implements IJdwpRequestHandler {
     @Override

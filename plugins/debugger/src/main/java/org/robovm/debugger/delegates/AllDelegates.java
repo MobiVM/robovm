@@ -285,6 +285,20 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
         }
     }
 
+    @Override
+    public void jdwpFieldGetValues(long objectId, long[] fields, ByteBufferPacket output) {
+        synchronized (state.centralLock()) {
+            instances.jdwpFieldGetValues(objectId, fields, output);
+        }
+    }
+
+    @Override
+    public void jdwpFieldSetValues(long objectId, int fieldsCount, ByteBufferPacket payload) {
+        synchronized (state.centralLock()) {
+            instances.jdwpFieldSetValues(objectId, fieldsCount, payload);
+        }
+    }
+
     //
     // Debugger toolbox implementation
     //
