@@ -36,7 +36,7 @@ public class JdwpRefTypeMethodsHandler implements IJdwpRequestHandler {
             for (MethodInfo methodInfo : fields) {
                 output.writeLong(methodInfo.refId());
                 output.writeStringWithLen(methodInfo.getName());
-                output.writeStringWithLen(methodInfo.getDesc());
+                output.writeStringWithLen(methodInfo.getSignature());
                 output.writeInt32(methodInfo.modifiers());
             }
         }

@@ -1,6 +1,7 @@
 package org.robovm.debugger.jdwp.handlers.referencetype;
 
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
+import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
@@ -8,6 +9,13 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * Returns the interfaces declared as implemented by this class
  */
 public class JdwpRefTypeInterfacesHandler implements IJdwpRequestHandler {
+
+    private final VmDebuggerState state;
+
+    public JdwpRefTypeInterfacesHandler(VmDebuggerState state) {
+        this.state = state;
+    }
+
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         return 0;

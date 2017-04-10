@@ -1,5 +1,6 @@
 package org.robovm.debugger.jdwp.handlers.referencetype;
 
+import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -10,7 +11,9 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 public class JdwpRefTypeSourceFileHandler implements IJdwpRequestHandler{
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        return 0;
+        // TODO: currently there is no such information available
+        // revert back once there is variable inforamtion in place
+        return JdwpConsts.Error.ABSENT_INFORMATION;
     }
 
     @Override

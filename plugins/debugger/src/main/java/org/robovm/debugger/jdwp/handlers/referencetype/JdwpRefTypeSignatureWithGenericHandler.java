@@ -5,9 +5,9 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
  * @author Demyan Kimitsa
- * Returns information, including the generic signature if any, for each field in a reference type. Inherited fields are not included.
+ * Returns the JNI signature of a reference type along with the generic signature if there is one.
  */
-public class JdwpRefFieldsWithGenericHandler implements IJdwpRequestHandler {
+public class JdwpRefTypeSignatureWithGenericHandler implements IJdwpRequestHandler {
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         return 0;
@@ -20,12 +20,12 @@ public class JdwpRefFieldsWithGenericHandler implements IJdwpRequestHandler {
 
     @Override
     public byte getCommand() {
-        return 14;
+        return 13;
     }
 
     @Override
     public String toString() {
-        return "ReferenceType(2).FieldsWithGeneric(14)";
+        return "ReferenceType(2).SignatureWithGeneric(13)";
     }
 
 }

@@ -1,7 +1,7 @@
 package org.robovm.debugger.jdwp.handlers.referencetype;
 
-import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.jdwp.handlers.objectreference.IJdwpInstanceDelegate;
+import org.robovm.debugger.jdwp.handlers.objectreference.JdwpObjRefGetValuesHandler;
 
 /**
  * @author Demyan Kimitsa
@@ -10,11 +10,15 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * superinterfaces, or implemented interfaces. Access control is not enforced; for example,
  * the values of private fields can be obtained.
  */
-public class JdwpRefTypeGetValuesHandler implements IJdwpRequestHandler {
+public class JdwpRefTypeGetValuesHandler extends JdwpObjRefGetValuesHandler {
+
+    public JdwpRefTypeGetValuesHandler(IJdwpInstanceDelegate delegate) {
+        super(delegate);
+    }
 
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        return 0;
+    protected boolean isStatic() {
+        return true;
     }
 
     @Override

@@ -3,18 +3,16 @@ package org.robovm.debugger.jdwp.handlers.referencetype;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
-import org.robovm.debugger.state.classdata.ClassInfo;
-import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
  * @author Demyan Kimitsa
- * Returns the current status of the reference type.
+ * Returns the class file major and minor version numbers, as defined in the class file format of the Java Virtual Machine specification.
  */
-public class JdwpRefTypeStatusHandler implements IJdwpRequestHandler {
+public class JdwpRefTypeClassFileVersionHandler implements IJdwpRequestHandler {
     private final VmDebuggerState state;
 
-    public JdwpRefTypeStatusHandler(VmDebuggerState state) {
+    public JdwpRefTypeClassFileVersionHandler(VmDebuggerState state) {
         this.state = state;
     }
 
@@ -23,10 +21,12 @@ public class JdwpRefTypeStatusHandler implements IJdwpRequestHandler {
         long refTypeId = payload.readLong();
 
         synchronized (state.centralLock()) {
-            ClassInfo ci = state.classRefIdHolder().objectById(refTypeId);
-            if (ci == null)
-                return JdwpConsts.Error.INVALID_OBJECT;
-            output.writeInt32(Converter.jdwpClassStatus(ci));
+            if (state.referenceRefIdHolder().objectById(refTypeId) == null)
+                return JdwpConsts.Error.INVALID_CLASS;
+
+            // return Java 1.8
+            output.writeInt32(1);
+            output.writeInt32(8);
         }
 
         return JdwpConsts.Error.NONE;
@@ -39,12 +39,12 @@ public class JdwpRefTypeStatusHandler implements IJdwpRequestHandler {
 
     @Override
     public byte getCommand() {
-        return 9;
+        return 17;
     }
 
     @Override
     public String toString() {
-        return "ReferenceType(2).Status(9)";
+        return "ReferenceType(2).ClassFileVersion(17)";
     }
 
 }

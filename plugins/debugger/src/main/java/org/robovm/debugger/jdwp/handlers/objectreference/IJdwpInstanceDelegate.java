@@ -11,6 +11,6 @@ public interface IJdwpInstanceDelegate {
     VmStringInstance jdwpCreateStringInstance(String value);
     String jdwpGetStringValue(long stringRefId);
 
-    void jdwpFieldGetValues(long objectId, long[] fields, ByteBufferPacket output);
+    void jdwpFieldGetValues(long objectId, long[] fields, boolean staticFields, ByteBufferPacket output);
     void jdwpFieldSetValues(long objectId, int fieldsCount, ByteBufferPacket payload);
 }

@@ -5,9 +5,9 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
  * @author Demyan Kimitsa
- * Returns the class file major and minor version numbers, as defined in the class file format of the Java Virtual Machine specification.
+ * Returns information, including the generic signature if any, for each field in a reference type. Inherited fields are not included.
  */
-public class JdwpRefClassFileVersionHandler implements IJdwpRequestHandler {
+public class JdwpRefTypeFieldsWithGenericHandler implements IJdwpRequestHandler {
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         return 0;
@@ -20,12 +20,12 @@ public class JdwpRefClassFileVersionHandler implements IJdwpRequestHandler {
 
     @Override
     public byte getCommand() {
-        return 17;
+        return 14;
     }
 
     @Override
     public String toString() {
-        return "ReferenceType(2).ClassFileVersion(17)";
+        return "ReferenceType(2).FieldsWithGeneric(14)";
     }
 
 }

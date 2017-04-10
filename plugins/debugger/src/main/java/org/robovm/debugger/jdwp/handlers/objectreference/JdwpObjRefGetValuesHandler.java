@@ -26,10 +26,10 @@ public class JdwpObjRefGetValuesHandler implements IJdwpRequestHandler {
             fields[idx] = payload.readLong();
         }
 
-
         // get values from target
         try {
-            delegate.jdwpFieldGetValues(objectId, fields, output);
+            output.writeInt32(fields.length);
+            delegate.jdwpFieldGetValues(objectId, fields, isStatic(), output);
         } catch (DebuggerException e) {
             if (e.getCode() < 0)
                 throw e;
@@ -37,6 +37,15 @@ public class JdwpObjRefGetValuesHandler implements IJdwpRequestHandler {
         }
 
         return JdwpConsts.Error.NONE;
+    }
+
+    /**
+     * implementation wise it will be very similar to get static field ReferenceType(2).getValues
+     * so it will reuse same class but will override is static (and identifiers)
+     * @return true if handle for static fields
+     */
+    protected boolean isStatic() {
+        return false;
     }
 
     @Override

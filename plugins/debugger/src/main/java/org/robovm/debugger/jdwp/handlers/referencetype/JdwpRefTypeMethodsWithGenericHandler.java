@@ -7,7 +7,7 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * @author Demyan Kimitsa
  * Returns information, including the generic signature if any, for each method in a reference type. Inherited methodss are not included.
  */
-public class JdwpRefMethodsWithGenericHandler implements IJdwpRequestHandler {
+public class JdwpRefTypeMethodsWithGenericHandler implements IJdwpRequestHandler {
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         return 0;

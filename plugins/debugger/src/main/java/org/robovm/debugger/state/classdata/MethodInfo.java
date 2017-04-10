@@ -99,7 +99,7 @@ public class MethodInfo extends BaseModifiersInfo {
         return name;
     }
 
-    public String getDesc() {
+    public String getSignature() {
         return desc;
     }
 

@@ -208,23 +208,43 @@ public class InstanceUtils {
 
     /**
      * Reads a list of instance field values
-     * @param objectId to read data from
+     * @param objectOrClassId identifier of object or type
      * @param fields list of field ids to read data from
+     * @param isStatic tells that static fields has to be read
      * @param packet JDPW packet buffer to put JDPW data
      */
-    public void jdwpFieldGetValues(long objectId, long[] fields, ByteBufferPacket packet) {
-        VmInstance instance = delegates.state().referenceRefIdHolder().instanceById(objectId);
-        if (instance == null)
-            throw new DebuggerException(JdwpConsts.Error.INVALID_OBJECT);
+    public void jdwpFieldGetValues(long objectOrClassId, long[] fields, boolean isStatic, ByteBufferPacket packet) {
+        ClassInfo ci;
+        long baseDataPointer;
+        if (isStatic) {
+            ci = delegates.state().classRefIdHolder().objectById(objectOrClassId);
+            if (ci == null)
+                throw new DebuggerException(JdwpConsts.Error.INVALID_CLASS);
+            // check if class is loaded
+            if (ci.clazzPtr() == 0)
+                throw new DebuggerException(JdwpConsts.Error.CLASS_NOT_PREPARED);
+            baseDataPointer = ci.clazzPtr();
+        } else {
+            VmInstance instance = delegates.state().referenceRefIdHolder().instanceById(objectOrClassId);
+            if (instance == null)
+                throw new DebuggerException(JdwpConsts.Error.INVALID_OBJECT);
+            baseDataPointer = instance.objectPtr();
+            ci = instance.classInfo();
+        }
+
         // fields has to be loaded so no need to parse them just make a run to check if these exists
-        for (long fieldId : fields)
-            if (delegates.state().fieldRefIdHolder().objectById(fieldId) == null)
+        for (long fieldId : fields) {
+            FieldInfo fieldInfo = delegates.state().fieldRefIdHolder().objectById(fieldId);
+            if (fieldInfo == null)
                 throw new DebuggerException(JdwpConsts.Error.INVALID_FIELDID);
+            if (fieldInfo.isStatic() != isStatic)
+                throw new DebuggerException(JdwpConsts.Error.INVALID_FIELDID);
+        }
 
         // perform read
         for (long fieldId : fields) {
             FieldInfo fieldInfo = delegates.state().fieldRefIdHolder().objectById(fieldId);
-            getFieldValue(instance.objectPtr(), instance.classInfo(), fieldInfo, packet);
+            getFieldValue(baseDataPointer, ci, fieldInfo, packet);
 
         }
     }
