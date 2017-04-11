@@ -25,7 +25,7 @@ public class JdwpObjRefSetValuesHandler implements IJdwpRequestHandler {
         // set values to target
         try {
             // all field ids and values are multiplexed in data flow, so it will be handled in delegate
-            delegate.jdwpFieldSetValues(objectId, count, payload);
+            delegate.jdwpFieldSetValues(objectId, count, false, payload);
         } catch (DebuggerException e) {
             if (e.getCode() < 0)
                 throw e;

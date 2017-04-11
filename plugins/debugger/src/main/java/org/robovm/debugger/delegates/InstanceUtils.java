@@ -302,17 +302,31 @@ public class InstanceUtils {
     }
 
 
-    public void jdwpFieldSetValues(long objectId, int fieldsCount, ByteBufferPacket payload) {
-        VmInstance instance = delegates.state().referenceRefIdHolder().instanceById(objectId);
-        if (instance == null)
-            throw new DebuggerException(JdwpConsts.Error.INVALID_OBJECT);
+    public void jdwpFieldSetValues(long objectOrClassId, int fieldsCount, boolean isStatic, ByteBufferPacket payload) {
+        ClassInfo ci;
+        long baseDataPointer;
+        if (isStatic) {
+            ci = delegates.state().classRefIdHolder().objectById(objectOrClassId);
+            if (ci == null)
+                throw new DebuggerException(JdwpConsts.Error.INVALID_CLASS);
+            // check if class is loaded
+            if (ci.clazzPtr() == 0)
+                throw new DebuggerException(JdwpConsts.Error.CLASS_NOT_PREPARED);
+            baseDataPointer = ci.clazzPtr();
+        } else {
+            VmInstance instance = delegates.state().referenceRefIdHolder().instanceById(objectOrClassId);
+            if (instance == null)
+                throw new DebuggerException(JdwpConsts.Error.INVALID_OBJECT);
+            baseDataPointer = instance.objectPtr();
+            ci = instance.classInfo();
+        }
 
         // there is no way to get fields only as these are multiplexed with data, so let start working
         // if there is something wrong it will be interrupted in the middle, e.g. operation is not atomic
         while (fieldsCount-- > 0) {
             long fieldId = payload.readLong();
             FieldInfo fieldInfo = delegates.state().fieldRefIdHolder().objectById(fieldId);
-            setFieldValue(instance.objectPtr(), instance.classInfo(), fieldInfo, null, payload);
+            setFieldValue(baseDataPointer, ci, fieldInfo, null, payload);
         }
     }
 

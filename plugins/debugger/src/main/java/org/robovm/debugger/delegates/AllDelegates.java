@@ -294,9 +294,9 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     }
 
     @Override
-    public void jdwpFieldSetValues(long objectId, int fieldsCount, ByteBufferPacket payload) {
+    public void jdwpFieldSetValues(long objectId, int fieldsCount, boolean isStatic, ByteBufferPacket payload) {
         synchronized (state.centralLock()) {
-            instances.jdwpFieldSetValues(objectId, fieldsCount, payload);
+            instances.jdwpFieldSetValues(objectId, fieldsCount, isStatic, payload);
         }
     }
 

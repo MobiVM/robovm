@@ -1,6 +1,8 @@
 package org.robovm.debugger.jdwp.handlers.classtype;
 
+import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.jdwp.JdwpConsts;
+import org.robovm.debugger.jdwp.handlers.objectreference.IJdwpInstanceDelegate;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -10,9 +12,29 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * superinterfaces, or implemented interfaces.
  */
 public class JdwpClassTypeSetValuesHandler implements IJdwpRequestHandler {
+    private final IJdwpInstanceDelegate delegate;
+
+    public JdwpClassTypeSetValuesHandler(IJdwpInstanceDelegate delegate) {
+        this.delegate = delegate;
+    }
+
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        return JdwpConsts.Error.NOT_IMPLEMENTED;
+        long objectId = payload.readLong();
+        int count = payload.readInt32();
+
+
+        // set values to target
+        try {
+            // all field ids and values are multiplexed in data flow, so it will be handled in delegate
+            delegate.jdwpFieldSetValues(objectId, count, true, payload);
+        } catch (DebuggerException e) {
+            if (e.getCode() < 0)
+                throw e;
+            return (short) e.getCode();
+        }
+
+        return JdwpConsts.Error.NONE;
     }
 
     @Override
