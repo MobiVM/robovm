@@ -37,11 +37,19 @@ public class JdwpRefTypeMethodsHandler implements IJdwpRequestHandler {
                 output.writeLong(methodInfo.refId());
                 output.writeStringWithLen(methodInfo.getName());
                 output.writeStringWithLen(methodInfo.getSignature());
+                String signatureWithGeneric = getGenericSignature();
+                if (signatureWithGeneric != null)
+                    output.writeStringWithLen(signatureWithGeneric);
                 output.writeInt32(methodInfo.modifiers());
             }
         }
 
         return JdwpConsts.Error.NONE;
+    }
+
+    protected String getGenericSignature() {
+        // return null as there is no generic signature is expected in this handler
+        return null;
     }
 
     @Override

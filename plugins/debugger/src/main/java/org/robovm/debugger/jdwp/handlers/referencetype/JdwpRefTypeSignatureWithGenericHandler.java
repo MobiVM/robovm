@@ -1,16 +1,21 @@
 package org.robovm.debugger.jdwp.handlers.referencetype;
 
-import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.state.VmDebuggerState;
 
 /**
  * @author Demyan Kimitsa
  * Returns the JNI signature of a reference type along with the generic signature if there is one.
  */
-public class JdwpRefTypeSignatureWithGenericHandler implements IJdwpRequestHandler {
+public class JdwpRefTypeSignatureWithGenericHandler extends JdwpRefTypeSignatureHandler {
+
+    public JdwpRefTypeSignatureWithGenericHandler(VmDebuggerState state) {
+        super(state);
+    }
+
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        return 0;
+    protected String getGenericSignature() {
+        // return empty string just to have this string to be reported
+        return "";
     }
 
     @Override

@@ -35,11 +35,19 @@ public class JdwpRefTypeFieldsHandler implements IJdwpRequestHandler {
                 output.writeLong(fieldInfo.refId());
                 output.writeStringWithLen(fieldInfo.name());
                 output.writeStringWithLen(fieldInfo.signature());
+                String signatureWithGeneric = getGenericSignature();
+                if (signatureWithGeneric != null)
+                    output.writeStringWithLen(signatureWithGeneric);
                 output.writeInt32(fieldInfo.modifiers());
             }
         }
 
         return JdwpConsts.Error.NONE;
+    }
+
+    protected String getGenericSignature() {
+        // return null as there is no generic signature is expected in this handler
+        return null;
     }
 
     @Override

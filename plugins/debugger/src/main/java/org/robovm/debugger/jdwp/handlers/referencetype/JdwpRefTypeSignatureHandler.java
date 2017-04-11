@@ -27,9 +27,17 @@ public class JdwpRefTypeSignatureHandler implements IJdwpRequestHandler {
                 return JdwpConsts.Error.INVALID_OBJECT;
 
             output.writeStringWithLen(classInfo.signature());
+            String signatureWithGeneric = getGenericSignature();
+            if (signatureWithGeneric != null)
+                output.writeStringWithLen(signatureWithGeneric);
         }
 
         return JdwpConsts.Error.NONE;
+    }
+
+    protected String getGenericSignature() {
+        // to subclass to override
+        return null;
     }
 
     @Override
