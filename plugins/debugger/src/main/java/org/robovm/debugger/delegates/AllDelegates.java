@@ -9,6 +9,7 @@ import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPre
 import org.robovm.debugger.jdwp.handlers.objectreference.IJdwpInstanceDelegate;
 import org.robovm.debugger.jdwp.handlers.thread.IJdwpThreadDelegate;
 import org.robovm.debugger.state.VmDebuggerState;
+import org.robovm.debugger.state.instances.VmClassInstance;
 import org.robovm.debugger.state.instances.VmStringInstance;
 import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.DebuggerThread;
@@ -296,6 +297,13 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     public void jdwpFieldSetValues(long objectId, int fieldsCount, ByteBufferPacket payload) {
         synchronized (state.centralLock()) {
             instances.jdwpFieldSetValues(objectId, fieldsCount, payload);
+        }
+    }
+
+    @Override
+    public VmClassInstance jdwpGetClazzObject(long objectId) throws DebuggerException {
+        synchronized (state.centralLock()) {
+            return instances.getClazzObject(objectId);
         }
     }
 

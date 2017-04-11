@@ -332,6 +332,20 @@ public class InstanceUtils {
         return (T) instance;
     }
 
+
+    public VmClassInstance getClazzObject(long objectId) {
+        VmInstance instance = delegates.state().referenceRefIdHolder().instanceById(objectId);
+        if (instance == null)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_OBJECT);
+        if (instance.classInfo().clazzPtr() == 0)
+            throw new DebuggerException(JdwpConsts.Error.CLASS_NOT_PREPARED);
+
+        ClassInfo ci = delegates.state().classInfoLoader().classInfoBySignature(ClassDataConsts.signatures.JAVA_LANG_CLASS);
+        VmClassInstance clazzInstance = instanceByPointer(instance.classInfo().clazzPtr(), ci, null, true);
+
+        return clazzInstance;
+    }
+
     /**
      * returns instance by pointer by looking into reference id map first and allocates if required
      * @param objectPtr from target
