@@ -183,6 +183,12 @@ public class ClassInfoImpl extends ClassInfo {
     }
 
     @Override
+    public ClassInfo[] interfaces(ClassInfoLoader loader) {
+        loadData(loader);
+        return interfaces;
+    }
+
+    @Override
     public boolean hasError() {
         return (flags & ClassDataConsts.classinfo.ERROR) != 0;
     }

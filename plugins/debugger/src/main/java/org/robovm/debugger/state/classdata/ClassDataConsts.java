@@ -82,6 +82,9 @@ public class ClassDataConsts {
 
         // other consts
         public static final String JAVA_LANG_OBJECT = "Ljava/lang/Object;";
+        public static final String JAVA_LANG_CLONABLE = "Ljava/lang/Cloneable;";
+        public static final String JAVA_LANG_SERIALIZABLE = "Ljava/io/Serializable;";
+
     }
 
     public static final class fields {

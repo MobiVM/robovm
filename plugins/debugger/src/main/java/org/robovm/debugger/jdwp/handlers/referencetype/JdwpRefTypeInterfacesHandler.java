@@ -1,7 +1,9 @@
 package org.robovm.debugger.jdwp.handlers.referencetype;
 
+import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
+import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
@@ -18,7 +20,23 @@ public class JdwpRefTypeInterfacesHandler implements IJdwpRequestHandler {
 
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        return 0;
+        long referenceTypeID = payload.readLong();
+
+        synchronized (state.centralLock()) {
+            ClassInfo classInfo = state.classInfoLoader().classInfoByRefId(referenceTypeID);
+            if (classInfo == null)
+                return JdwpConsts.Error.INVALID_OBJECT;
+            if (!classInfo.isClass() || !classInfo.isArray())
+                return JdwpConsts.Error.INVALID_CLASS;
+
+            ClassInfo[] interfaces = classInfo.interfaces(state.classInfoLoader());
+            output.writeInt32(interfaces.length);
+            for (ClassInfo intf : interfaces) {
+                output.writeLong(intf.refId());
+            }
+        }
+
+        return JdwpConsts.Error.NONE;
     }
 
     @Override

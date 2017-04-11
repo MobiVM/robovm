@@ -39,13 +39,19 @@ public class ClassInfoPrimitiveImpl extends ClassInfo {
     @Override
     public FieldInfo[] fields(ClassInfoLoader loader) {
         // there is no fields to report in array
-        return null;
+        return new FieldInfo[0];
     }
 
     @Override
     public MethodInfo[] methods(ClassInfoLoader loader) {
         // there is no methods to report in array
-        return null;
+        return new MethodInfo[0];
+    }
+
+    @Override
+    public ClassInfo[] interfaces(ClassInfoLoader loader) {
+        // there is interface in primitive classes
+        return new ClassInfo[0];
     }
 
     @Override

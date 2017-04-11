@@ -48,6 +48,7 @@ public abstract class ClassInfo extends BaseModifiersInfo {
     public abstract String signature();
     public abstract FieldInfo[] fields(ClassInfoLoader loader);
     public abstract MethodInfo[] methods(ClassInfoLoader loader);
+    public abstract ClassInfo[] interfaces(ClassInfoLoader loader);
     public abstract boolean hasError();
 
 }

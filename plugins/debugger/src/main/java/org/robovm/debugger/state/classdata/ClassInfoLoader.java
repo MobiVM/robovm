@@ -224,4 +224,18 @@ public class ClassInfoLoader {
         }
 
     }
+
+    /**
+     * @return interface that array clas implements
+     */
+    public ClassInfo[] constArraysInterfaces() {
+        if (constArraysInterfaces == null) {
+            constArraysInterfaces = new ClassInfo[2];
+            constArraysInterfaces[0] = classInfoBySignature(ClassDataConsts.signatures.JAVA_LANG_CLONABLE);
+            constArraysInterfaces[1] = classInfoBySignature(ClassDataConsts.signatures.JAVA_LANG_SERIALIZABLE);
+        }
+
+        return constArraysInterfaces;
+    }
+    private ClassInfo[] constArraysInterfaces;
 }

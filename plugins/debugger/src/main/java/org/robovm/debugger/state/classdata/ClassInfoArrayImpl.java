@@ -44,6 +44,12 @@ public class ClassInfoArrayImpl extends ClassInfo {
     }
 
     @Override
+    public ClassInfo[] interfaces(ClassInfoLoader loader) {
+        // check these constants from loader
+        return loader.constArraysInterfaces();
+    }
+
+    @Override
     public boolean hasError() {
         return false;
     }
