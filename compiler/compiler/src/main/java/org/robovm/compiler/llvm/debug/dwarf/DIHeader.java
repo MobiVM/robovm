@@ -38,6 +38,10 @@ public class DIHeader extends Metadata{
         return this;
     }
 
+    public DIHeader add(long v) {
+        values.add(Long.toString(v));
+        return this;
+    }
     public DIHeader add(boolean v) {
         values.add(v ? "1" : "0");
         return this;
