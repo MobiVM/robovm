@@ -28,6 +28,7 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Builder;
 import org.robovm.compiler.llvm.Function;
 
+import org.robovm.llvm.ObjectFile;
 import soot.SootMethod;
 
 /**
@@ -60,7 +61,7 @@ public abstract class AbstractCompilerPlugin extends CompilerPlugin {
             ModuleBuilder moduleBuilder, Function function) throws IOException {}
 
     @Override
-    public void afterObjectFile(Config config, Clazz clazz, File objectFile) throws IOException {}
+    public void afterObjectFile(Config config, Clazz clazz, File objectFile, ObjectFile objectFileData) throws IOException {}
 
     @Override
     public void beforeLinker(Config config, Linker linker, Set<Clazz> classes) throws IOException {}

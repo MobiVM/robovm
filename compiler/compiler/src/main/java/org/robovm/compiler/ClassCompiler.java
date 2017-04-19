@@ -16,35 +16,6 @@
  */
 package org.robovm.compiler;
 
-import static org.robovm.compiler.Annotations.*;
-import static org.robovm.compiler.Functions.*;
-import static org.robovm.compiler.Types.*;
-import static org.robovm.compiler.llvm.Type.*;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.RejectedExecutionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.tuple.Triple;
@@ -61,6 +32,7 @@ import org.robovm.compiler.llvm.And;
 import org.robovm.compiler.llvm.ArrayConstantBuilder;
 import org.robovm.compiler.llvm.Bitcast;
 import org.robovm.compiler.llvm.Br;
+import org.robovm.compiler.llvm.ByteArrayConstant;
 import org.robovm.compiler.llvm.Constant;
 import org.robovm.compiler.llvm.ConstantBitcast;
 import org.robovm.compiler.llvm.Fence;
@@ -88,6 +60,7 @@ import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
 import org.robovm.compiler.plugin.CompilerPlugin;
+import org.robovm.compiler.plugin.debug.DebugInformationTools;
 import org.robovm.compiler.trampoline.Checkcast;
 import org.robovm.compiler.trampoline.Instanceof;
 import org.robovm.compiler.trampoline.Invoke;
@@ -108,7 +81,7 @@ import org.robovm.llvm.binding.Attribute;
 import org.robovm.llvm.binding.CodeGenFileType;
 import org.robovm.llvm.binding.CodeGenOptLevel;
 import org.robovm.llvm.binding.RelocMode;
-
+import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
 import soot.BooleanType;
 import soot.ByteType;
 import soot.CharType;
@@ -129,6 +102,35 @@ import soot.jimple.JimpleBody;
 import soot.jimple.internal.JReturnVoidStmt;
 import soot.tagkit.ConstantValueTag;
 import soot.tagkit.Tag;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static org.robovm.compiler.Annotations.*;
+import static org.robovm.compiler.Functions.*;
+import static org.robovm.compiler.Types.*;
+import static org.robovm.compiler.llvm.Type.*;
 
 /**
  *
@@ -417,124 +419,52 @@ public class ClassCompiler {
                     ByteArrayOutputStream oFileBytes = new ByteArrayOutputStream();
                     targetMachine.assemble(asm, clazz.getClassName(), oFileBytes);                                                                                               
                     new HfsCompressor().compress(oFile, oFileBytes.toByteArray(), config);
-                    
-                    for (CompilerPlugin plugin : config.getCompilerPlugins()) {
-                        plugin.afterObjectFile(config, clazz, oFile);
-                    }
 
-                    /*
-                     * Read out line number info from the .o file if any and
-                     * assemble into a separate .o file.
-                     */
-                    String symbolPrefix = config.getOs().getFamily() == OS.Family.darwin ? "_" : "";
-                    symbolPrefix += Symbols.EXTERNAL_SYMBOL_PREFIX;
-                    ModuleBuilder linesMb = null;
+                    ModuleBuilder linesMb;
+                    ModuleBuilder debugInfoMb = null;
                     try (ObjectFile objectFile = ObjectFile.load(oFile)) {
-                        for (Symbol symbol : objectFile.getSymbols()) {
-                            if (symbol.getSize() > 0 && symbol.getName().startsWith(symbolPrefix)) {
-                                List<LineInfo> lineInfos = objectFile.getLineInfos(symbol);
-                                if (!lineInfos.isEmpty()) {
-                                    Collections.sort(lineInfos, new Comparator<LineInfo>() {
-                                        public int compare(LineInfo o1, LineInfo o2) {
-                                            return Long.compare(o1.getAddress(), o2.getAddress());
-                                        }
-                                    });
-                                    
-                                    // The base address of the method which will be used to calculate offsets into the method
-                                    long baseAddress = symbol.getAddress();
-                                    // The first line number in the method. All other line numbers in the table will be deltas against this.
-                                    int firstLineNumber = lineInfos.get(0).getLineNumber();
-                                    // Calculate the max address and line number offsets
-                                    long maxAddressOffset = 0;
-                                    long maxLineOffset = 0;
-                                    for (LineInfo lineInfo : lineInfos) {
-                                        maxAddressOffset = Math.max(maxAddressOffset, lineInfo.getAddress() - baseAddress);
-                                        maxLineOffset = Math.max(maxLineOffset, lineInfo.getLineNumber() - firstLineNumber);
-                                    }
+                        // notify plugins
+                        for (CompilerPlugin plugin : config.getCompilerPlugins()) {
+                            plugin.afterObjectFile(config, clazz, oFile, objectFile);
+                        }
 
-                                    // Calculate the number of bytes needed to represent the highest offsets.
-                                    // Either 1, 2 or 4 bytes will be used.
-                                    int addressOffsetSize = (maxAddressOffset & ~0xff) == 0 ? 1 : ((maxAddressOffset & ~0xffff) == 0 ? 2 : 4);
-                                    int lineOffsetSize = (maxLineOffset & ~0xff) == 0 ? 1 : ((maxLineOffset & ~0xffff) == 0 ? 2 : 4);
-                                    
-                                    // The size of the address offsets table. We skip the first LineInfo as its offset is always 0.
-                                    int addressOffsetTableSize = addressOffsetSize * (lineInfos.size() - 1);
-                                    // Pad size of address offset table to make sure line offsets are aligned properly 
-                                    int addressOffsetPadding = (lineOffsetSize - (addressOffsetTableSize & (lineOffsetSize - 1))) & (lineOffsetSize - 1);
-                                    addressOffsetTableSize += addressOffsetPadding;
-                                    
-                                    // The first 32 bits of the line number info contains the number of line numbers
-                                    // minus the first. The 4 most significant bits are used to store the number of
-                                    // bytes needed by each entry in each table.
-                                    int flags = 0;
-                                    flags = addressOffsetSize - 1;
-                                    flags <<= 2;
-                                    flags |= lineOffsetSize - 1;
-                                    flags <<= 28;
-                                    flags |= (lineInfos.size() - 1) & 0x0fffffff;
+                        /*
+                         * Read out line number info from the .o file if any and
+                         * assemble into a separate .o file.
+                         */
+                        linesMb = buildLineNumberData(config, clazz, objectFile);
 
-                                    StructureConstantBuilder builder = new StructureConstantBuilder();
-                                    builder
-                                        .add(new IntegerConstant(flags))
-                                        .add(new IntegerConstant(firstLineNumber));
-                                    
-                                    for (LineInfo lineInfo : lineInfos.subList(1, lineInfos.size())) {
-                                        if (addressOffsetSize == 1) {
-                                            builder.add(new IntegerConstant((byte) (lineInfo.getAddress() - baseAddress)));
-                                        } else if (addressOffsetSize == 2) {
-                                            builder.add(new IntegerConstant((short) (lineInfo.getAddress() - baseAddress)));
-                                        } else {
-                                            builder.add(new IntegerConstant((int) (lineInfo.getAddress() - baseAddress)));
-                                        }
-                                    }
-
-                                    // Padding
-                                    for (int i = 0; i < addressOffsetPadding; i++) {
-                                        builder.add(new IntegerConstant((byte) 0));
-                                    }
-
-                                    for (LineInfo lineInfo : lineInfos.subList(1, lineInfos.size())) {
-                                        if (lineOffsetSize == 1) {
-                                            builder.add(new IntegerConstant((byte) (lineInfo.getLineNumber() - firstLineNumber)));
-                                        } else if (lineOffsetSize == 2) {
-                                            builder.add(new IntegerConstant((short) (lineInfo.getLineNumber() - firstLineNumber)));
-                                        } else {
-                                            builder.add(new IntegerConstant((int) (lineInfo.getLineNumber() - firstLineNumber)));
-                                        }
-                                    }
-
-                                    // Extract the method's name and descriptor from the symbol and
-                                    // build the linetable symbol name.
-                                    String methodName = symbol.getName().substring(symbol.getName().lastIndexOf('.') + 1);
-                                    methodName = methodName.substring(0, methodName.indexOf('('));
-                                    String methodDesc = symbol.getName().substring(symbol.getName().lastIndexOf('('));
-                                    String linetableSymbol = Symbols.linetableSymbol(clazz.getInternalName(), methodName, methodDesc);
-                                    if (linesMb == null) {
-                                        linesMb = new ModuleBuilder();
-                                    }
-                                    linesMb.addGlobal(new Global(linetableSymbol, builder.build(), true));
-                                }
-                            }
+                        /*
+                         * read out debug info binary data amd assemble into a separate .o file
+                         */
+                        if (config.isDebug()) {
+                            debugInfoMb = buildDebugInfoData(config, clazz);
                         }
                     }
+
                     if (linesMb != null) {
-                        byte[] linesData = linesMb.build().toString().getBytes("UTF-8");
-                        if (config.isDumpIntermediates()) {
-                            File linesLlFile = config.getLinesLlFile(clazz);
-                            linesLlFile.getParentFile().mkdirs();
-                            FileUtils.writeByteArrayToFile(linesLlFile, linesData);
-                        }
-                        try (Module linesModule = Module.parseIR(context, linesData, clazz.getClassName() + ".lines")) {
-                            File linesOFile = config.getLinesOFile(clazz);
-                            ByteArrayOutputStream linesOBytes = new ByteArrayOutputStream();
-                            targetMachine.emit(linesModule, linesOBytes, CodeGenFileType.ObjectFile);
-                            new HfsCompressor().compress(linesOFile, linesOBytes.toByteArray(), config);
-                        }
+                        File linesLlFile = config.isDumpIntermediates() ? config.getLinesLlFile(clazz) : null;
+                        File linesOFile = config.getLinesOFile(clazz);
+                        createObjectFileFromData(config, context, targetMachine, linesMb, clazz.getClassName() + ".lines",
+                                linesLlFile, linesOFile);
                     } else {
                         // Make sure there's no stale lines.o file lingering
                         File linesOFile = config.getLinesOFile(clazz);
                         if (linesOFile.exists()) {
                             linesOFile.delete();
+                        }
+                    }
+
+                    if (debugInfoMb != null) {
+                        File debugInfoLlFile = config.isDumpIntermediates() ? config.getDebugInfoLlFile(clazz) : null;
+                        File debugInfoOFile = config.getDebugInfoOFile(clazz);
+                        createObjectFileFromData(config, context, targetMachine, debugInfoMb, clazz.getClassName() + ".debuginfo",
+                                debugInfoLlFile, debugInfoOFile);
+                    } else {
+                        // Make sure there's no stale debuginfo.o file lingering
+                        File debugInfoOFile = config.getDebugInfoOFile(clazz);
+                        if (debugInfoOFile.exists()) {
+                            debugInfoOFile.delete();
                         }
                     }
                 }
@@ -554,6 +484,136 @@ public class ClassCompiler {
             }
             throw new CompilerException(t);
         }
+    }
+
+    private static void createObjectFileFromData(Config config, Context context, TargetMachine targetMachine, ModuleBuilder mb,
+                                                 String dataName, File llFile, File oFile) throws IOException, InterruptedException {
+        byte[] data = mb.build().toString().getBytes("UTF-8");
+        if (llFile != null) {
+            llFile.getParentFile().mkdirs();
+            FileUtils.writeByteArrayToFile(llFile, data);
+        }
+        try (Module module = Module.parseIR(context, data, dataName)) {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            targetMachine.emit(module, bytes, CodeGenFileType.ObjectFile);
+            new HfsCompressor().compress(oFile, bytes.toByteArray(), config);
+        }
+
+    }
+
+    private static ModuleBuilder buildLineNumberData(Config config, Clazz clazz, ObjectFile objectFile) {
+        ModuleBuilder linesMb = null;
+        String symbolPrefix = config.getOs().getFamily() == OS.Family.darwin ? "_" : "";
+        symbolPrefix += Symbols.EXTERNAL_SYMBOL_PREFIX;
+
+        for (Symbol symbol : objectFile.getSymbols()) {
+            if (symbol.getSize() > 0 && symbol.getName().startsWith(symbolPrefix)) {
+                List<LineInfo> lineInfos = objectFile.getLineInfos(symbol);
+                if (!lineInfos.isEmpty()) {
+                    Collections.sort(lineInfos, new Comparator<LineInfo>() {
+                        public int compare(LineInfo o1, LineInfo o2) {
+                            return Long.compare(o1.getAddress(), o2.getAddress());
+                        }
+                    });
+
+                    // The base address of the method which will be used to calculate offsets into the method
+                    long baseAddress = symbol.getAddress();
+                    // The first line number in the method. All other line numbers in the table will be deltas against this.
+                    int firstLineNumber = lineInfos.get(0).getLineNumber();
+                    // Calculate the max address and line number offsets
+                    long maxAddressOffset = 0;
+                    long maxLineOffset = 0;
+                    for (LineInfo lineInfo : lineInfos) {
+                        maxAddressOffset = Math.max(maxAddressOffset, lineInfo.getAddress() - baseAddress);
+                        maxLineOffset = Math.max(maxLineOffset, lineInfo.getLineNumber() - firstLineNumber);
+                    }
+
+                    // Calculate the number of bytes needed to represent the highest offsets.
+                    // Either 1, 2 or 4 bytes will be used.
+                    int addressOffsetSize = (maxAddressOffset & ~0xff) == 0 ? 1 : ((maxAddressOffset & ~0xffff) == 0 ? 2 : 4);
+                    int lineOffsetSize = (maxLineOffset & ~0xff) == 0 ? 1 : ((maxLineOffset & ~0xffff) == 0 ? 2 : 4);
+
+                    // The size of the address offsets table. We skip the first LineInfo as its offset is always 0.
+                    int addressOffsetTableSize = addressOffsetSize * (lineInfos.size() - 1);
+                    // Pad size of address offset table to make sure line offsets are aligned properly
+                    int addressOffsetPadding = (lineOffsetSize - (addressOffsetTableSize & (lineOffsetSize - 1))) & (lineOffsetSize - 1);
+                    addressOffsetTableSize += addressOffsetPadding;
+
+                    // The first 32 bits of the line number info contains the number of line numbers
+                    // minus the first. The 4 most significant bits are used to store the number of
+                    // bytes needed by each entry in each table.
+                    int flags = 0;
+                    flags = addressOffsetSize - 1;
+                    flags <<= 2;
+                    flags |= lineOffsetSize - 1;
+                    flags <<= 28;
+                    flags |= (lineInfos.size() - 1) & 0x0fffffff;
+
+                    StructureConstantBuilder builder = new StructureConstantBuilder();
+                    builder
+                            .add(new IntegerConstant(flags))
+                            .add(new IntegerConstant(firstLineNumber));
+
+                    for (LineInfo lineInfo : lineInfos.subList(1, lineInfos.size())) {
+                        if (addressOffsetSize == 1) {
+                            builder.add(new IntegerConstant((byte) (lineInfo.getAddress() - baseAddress)));
+                        } else if (addressOffsetSize == 2) {
+                            builder.add(new IntegerConstant((short) (lineInfo.getAddress() - baseAddress)));
+                        } else {
+                            builder.add(new IntegerConstant((int) (lineInfo.getAddress() - baseAddress)));
+                        }
+                    }
+
+                    // Padding
+                    for (int i = 0; i < addressOffsetPadding; i++) {
+                        builder.add(new IntegerConstant((byte) 0));
+                    }
+
+                    for (LineInfo lineInfo : lineInfos.subList(1, lineInfos.size())) {
+                        if (lineOffsetSize == 1) {
+                            builder.add(new IntegerConstant((byte) (lineInfo.getLineNumber() - firstLineNumber)));
+                        } else if (lineOffsetSize == 2) {
+                            builder.add(new IntegerConstant((short) (lineInfo.getLineNumber() - firstLineNumber)));
+                        } else {
+                            builder.add(new IntegerConstant((int) (lineInfo.getLineNumber() - firstLineNumber)));
+                        }
+                    }
+
+                    // Extract the method's name and descriptor from the symbol and
+                    // build the linetable symbol name.
+                    String methodName = symbol.getName().substring(symbol.getName().lastIndexOf('.') + 1);
+                    methodName = methodName.substring(0, methodName.indexOf('('));
+                    String methodDesc = symbol.getName().substring(symbol.getName().lastIndexOf('('));
+                    String linetableSymbol = Symbols.linetableSymbol(clazz.getInternalName(), methodName, methodDesc);
+                    if (linesMb == null) {
+                        linesMb = new ModuleBuilder();
+                    }
+                    linesMb.addGlobal(new Global(linetableSymbol, builder.build(), true));
+                }
+            }
+        }
+
+        return linesMb;
+    }
+
+    private static ModuleBuilder buildDebugInfoData(Config config, Clazz clazz) throws IOException {
+        ModuleBuilder debugInfoMb = null;
+
+        DebugObjectFileInfo debugInfo = clazz.getAttachment(DebugObjectFileInfo.class);
+        if (debugInfo != null) {
+            // read all binary data to file
+            byte[] debugDataBytes = DebugInformationTools.dumpDebugInfo(debugInfo);
+            String debugInfoSymbol = Symbols.debugInfoSymbol(clazz.getInternalName());
+            debugInfoMb = new ModuleBuilder();
+            debugInfoMb.addGlobal(new Global(debugInfoSymbol, new ByteArrayConstant(debugDataBytes), true));
+
+            if (config.isDumpIntermediates()) {
+                File f = new File(config.getDebugInfoOFile(clazz).getAbsolutePath() + ".dump");
+                DebugInformationTools.dumpDebugInfoAsText(debugInfo, f);
+            }
+        }
+
+        return debugInfoMb;
     }
 
     private static PassManager createPassManager(Config config) {

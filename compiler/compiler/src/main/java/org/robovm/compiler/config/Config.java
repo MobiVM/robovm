@@ -604,6 +604,14 @@ public class Config {
         return new File(getCacheDir(clazz.getPath()), getFileName(clazz, "class.lines.ll"));
     }
 
+    public File getDebugInfoOFile(Clazz clazz) {
+        return new File(getCacheDir(clazz.getPath()), getFileName(clazz, "class.debuginfo.o"));
+    }
+
+    public File getDebugInfoLlFile(Clazz clazz) {
+        return new File(getCacheDir(clazz.getPath()), getFileName(clazz, "class.debuginfo.ll"));
+    }
+
     public File getInfoFile(Clazz clazz) {
         return new File(getCacheDir(clazz.getPath()), getFileName(clazz, "class.info"));
     }

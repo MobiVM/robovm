@@ -15,8 +15,10 @@
  */
 package org.robovm.compiler.plugin.debug;
 
+import org.robovm.compiler.Annotations;
 import org.robovm.compiler.Functions;
 import org.robovm.compiler.ModuleBuilder;
+import org.robovm.compiler.Symbols;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.llvm.Alloca;
@@ -53,6 +55,10 @@ import org.robovm.compiler.llvm.debug.dwarf.DwarfConst;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.PluginArguments;
+import org.robovm.llvm.ObjectFile;
+import org.robovm.llvm.debuginfo.DebugMethodInfo;
+import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
+import org.robovm.llvm.debuginfo.DebugVariableInfo;
 import soot.Local;
 import soot.LocalVariable;
 import soot.PatchingChain;
@@ -62,20 +68,20 @@ import soot.ValueBox;
 import soot.tagkit.LineNumberTag;
 import soot.tagkit.SourceFileTag;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * provides only line number debug information for now
  */
 public class DebugInformationPlugin extends AbstractCompilerPlugin {
-    private ClassDataBundle classBundle;
+
 
     public DebugInformationPlugin() {
 	}
@@ -88,8 +94,13 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     public void beforeClass(Config config, Clazz clazz, ModuleBuilder mb) throws IOException {
     	super.beforeClass(config, clazz, mb);
 
+        ClassDataBundle classBundle = clazz.getAttachment(ClassDataBundle.class);
+        if (classBundle != null)
+            clazz.removeAttachement(classBundle);
+
     	// keep all data for class in one structure, allows to reset thing by placing null there
         classBundle = new ClassDataBundle();
+        clazz.attach(classBundle);;
         classBundle.diFile = new DIItemList(mb, v("/"), v(getSourceFile(clazz)));
         classBundle.diFileDescriptor = new DIFileDescriptor(mb, classBundle.diFile);
         classBundle.diMethods = new DIMutableItemList<>(mb);
@@ -99,16 +110,14 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         classBundle.flags = new DIItemList(mb, "llvm.module.flags", dwarfVersion.get(), debugInfoVersion.get());
 
         if (config.isDebug()) {
-            classBundle.hookInstrumentedLines = new HashSet<>();
-            // create references to use to inject hooks
-            classBundle.hookInstrumentedBpTableWrap = new RefConstantWrap();
-            classBundle.hookInstrumentedBpTableRef = new ConstantBitcast(classBundle.hookInstrumentedBpTableWrap, Type.I8_PTR);
-
             // create dummy variable type
             // TODO: rework it to proper types once
             // today this information is not required as everything is received on java level
             classBundle.dummyJavaVariableType = new DIDerivedType(mb, DwarfConst.Tag.TAG_pointer_type,
                     "DummyType", 0, 32, 32, classBundle.diFile, null);
+
+            // create a list where method inforation will be saved
+            classBundle.methods = new ArrayList<>();
 
             // register llvm.dbg.declare
             mb.addFunctionDeclaration(new FunctionDeclaration(Functions.LLVM_DBG_DECLARE));
@@ -119,24 +128,17 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     public void afterClass(Config config, Clazz clazz, ModuleBuilder mb) throws IOException {
         super.afterClass(config, clazz, mb);
 
+        ClassDataBundle classBundle = clazz.getAttachment(ClassDataBundle.class);
         if (config.isDebug()) {
             // size of the array to keep bp bits
-            int arraySize = (classBundle.hookInstrumentedMaxLineNo + 7) / 8;
-            // global value to this array (without values as zeroinit)
-            Global bpTable = new Global(clazz.getClassName().replace('/', '.') + "[bptable]",
-                    Linkage.internal, new ZeroInitializer(new ArrayType(arraySize, Type.I8)));
-            mb.addGlobal(bpTable);
-            // update wrapper to propper ref
-            classBundle.hookInstrumentedBpTableWrap.setRef(bpTable.ref());
         }
-
-        // cleanup
-        classBundle = null;
     }
 
     @Override
     public void afterMethod(Config config, Clazz clazz, SootMethod method, ModuleBuilder mb, Function function) throws IOException {
         super.afterMethod(config, clazz, method, mb, function);
+
+        ClassDataBundle classBundle = clazz.getAttachment(ClassDataBundle.class);
 
         // don't try to generate shadow frames for native or abstract methods
         // or methods that don't have any instructions in them
@@ -165,38 +167,58 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         diSubprogram.setFileContext(classBundle.diFileDescriptor);
         diSubprogram.setLlvmFunction(function.ref());
 
+        // build unit to line map
+        Map<Unit, Integer> unitToLine = new HashMap<>();
+        for (Unit unit : method.getActiveBody().getUnits()) {
+            LineNumberTag tag = (LineNumberTag) unit.getTag("LineNumberTag");
+            if (tag != null)
+                unitToLine.put(unit, tag.getLineNumber());
+
+        }
+
+        // find out if debug information to be fetched for this method
+        // skip debug information for class initializer, generated callbacks and bridge methods
+        boolean includeDebuggerInfo = config.isDebug() && !"<clinit>".equals(method.getName())
+                && !Annotations.hasCallbackAnnotation(method)
+                && !Annotations.hasBridgeAnnotation(method);
+
         // maps for debugger
         Map<Unit, Instruction> unitToInstruction = new HashMap<>();
-        Map<Unit, Integer> unitToLine = new HashMap<>();
+        Map<Integer, Instruction> hookInstructionLines = new HashMap<>();
         Map<Integer, Alloca> varIndexToAlloca = new HashMap<>();
         Map<Local, Alloca> localToAlloca = new HashMap<>();
 
         // find line numbers
         int methodLineNumber = Integer.MAX_VALUE;
-        int currentLineNumber = 0;
+        int methodEndLineNumber = Integer.MIN_VALUE;
         for (BasicBlock bb : function.getBasicBlocks()) {
-            for (int i = 0; i < bb.getInstructions().size(); i++) {
-                Instruction instruction = bb.getInstructions().get(i);
+            for (Instruction instruction : bb.getInstructions()) {
                 List<Object> units = instruction.getAttachments();
+                Integer lineNumObj = null;
                 for (Object object : units) {
                     if (!(object instanceof Unit))
                         continue;
                     Unit unit = (Unit) object;
-                    LineNumberTag tag = (LineNumberTag) unit.getTag("LineNumberTag");
-                    if (tag != null) {
-                        currentLineNumber = tag.getLineNumber();
-                        methodLineNumber = Math.min(methodLineNumber, currentLineNumber);
-                        instruction.addMetadata((new DILineNumber(currentLineNumber, 0, diSubprogram)).get());
+
+                    // attach line number metadata only once
+                    if (lineNumObj == null) {
+                        lineNumObj = unitToLine.get(object);
+                        if (lineNumObj != null) {
+                            int currentLineNumber = lineNumObj;
+                            methodLineNumber = Math.min(methodLineNumber, currentLineNumber);
+                            methodEndLineNumber = Math.max(methodEndLineNumber, currentLineNumber);
+                            instruction.addMetadata((new DILineNumber(currentLineNumber, 0, diSubprogram)).get());
+                        }
                     }
 
-                    if (config.isDebug()) {
+                    // build map for debugger
+                    if (includeDebuggerInfo) {
                         if (!unitToInstruction.containsKey(unit))
                             unitToInstruction.put(unit, instruction);
-                        unitToLine.put(unit, currentLineNumber);
                     }
                 }
 
-                if (config.isDebug()) {
+                if (includeDebuggerInfo) {
                     // if it is alloca -- save it to map (
                     if (instruction instanceof Alloca) {
                         Alloca alloca = (Alloca) instruction;
@@ -219,9 +241,10 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
                             localToAlloca.put(local, alloca);
                         }
-                    } else if (currentLineNumber != -1) {
-                        // add hooks instrumented callback to enable stepping/breakpoints
-                        injectHookInstrumented(currentLineNumber, function, instruction);
+                    } else if (lineNumObj != null && !hookInstructionLines.containsKey(lineNumObj)) {
+                        // make a list of instruction to instrument hooks for debugger
+                        // only if there is line number attached to it
+                        hookInstructionLines.put(lineNumObj, instruction);
                     }
                 }
             }
@@ -231,52 +254,156 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         diSubprogram.setDefLineNo(methodLineNumber);
         classBundle.diMethods.add(diSubprogram);
 
+        if (!includeDebuggerInfo) {
+            return;
+        }
 
-        if (config.isDebug()) {
-            DIMutableItemList<DILocalVariable> diVariableList = new DIMutableItemList<>(mb);
-            // insert variables
-            for (LocalVariable var : method.getActiveBody().getLocalVariables()) {
-                // find corresponding local alloca
-                Alloca alloca = varIndexToAlloca.get(var.getIndex());
-                if (alloca == null) {
-                    // try to find it in patching chain
-                    Local local = findLocalInChain(method.getActiveBody().getUnits(), var);
-                    if (local != null) {
-                        alloca = localToAlloca.get(local);
-                    }
+        //
+        //
+        // debugger only part bellow
+        //
+        //
+
+        // instrument hooks call, there is known line range, create global for method breakpoints
+        int arraySize = ((methodEndLineNumber - methodLineNumber + 1) + 7) / 8;
+        // global value to this array (without values as zeroinit)
+        Global bpTable = new Global(Symbols.bptableSymbol(method), Linkage.internal,
+                new ZeroInitializer(new ArrayType(arraySize, Type.I8)));
+        mb.addGlobal(bpTable);
+        // cast to byte pointer
+        ConstantBitcast bpTableRef = new ConstantBitcast(bpTable.ref(), Type.I8_PTR);
+        for (Map.Entry<Integer, Instruction> e : hookInstructionLines.entrySet()) {
+            int lineNo = e.getKey();
+            injectHookInstrumented(lineNo, methodLineNumber - lineNo, function, bpTableRef, e.getValue());
+        }
+
+        // build local variable list
+        int variableIdx = 1;
+        List<VariableDataBundle> variables = new ArrayList<>();
+        DIMutableItemList<DILocalVariable> diVariableList = new DIMutableItemList<>(mb);
+
+        // insert variables
+        for (LocalVariable var : method.getActiveBody().getLocalVariables()) {
+            // find corresponding local alloca
+            Alloca alloca = varIndexToAlloca.get(var.getIndex());
+            if (alloca == null) {
+                // try to find it in patching chain
+                Local local = findLocalInChain(method.getActiveBody().getUnits(), var);
+                if (local != null) {
+                    alloca = localToAlloca.get(local);
                 }
-
-                if (alloca == null) {
-                    // TODO: investigate better way resolving allocas
-                    // TODO: from compilation of runtime it looks like it often fails on exception blocks
-                    config.getLogger().error("Unable to resolve variable %s in class %s", var.getName(), clazz.getClassName());
-                    continue;
-                }
-
-
-                // add llvm.dbg.declare call
-                Integer lineNo = unitToLine.get(var.getStartUnit());
-                DILocalVariable diLocalVariable = new DILocalVariable(mb, var.getName(), lineNo != null ? lineNo : methodLineNumber,
-                        classBundle.diFile, diSubprogram,
-                        classBundle.dummyJavaVariableType);
-
-                // get instruction to work with
-                Instruction instr = unitToInstruction.get(var.getStartUnit());
-
-                // right after alloca
-                Call call = new Call(Functions.LLVM_DBG_DECLARE,
-                        new MetadataValue(new VariableRef(alloca.getResult().getName(), new PointerType(alloca.getResult().getType()))),
-                        diLocalVariable.get());
-                call.addMetadata((new DILineNumber(lineNo != null ? lineNo : methodLineNumber, 0, diSubprogram)).get());
-                instr.getBasicBlock().insertBefore(instr, call);
-
-                        // save variable to the list
-                diVariableList.add(diLocalVariable);
             }
 
-            diSubprogram.setVariables(diVariableList);
+            if (alloca == null) {
+                // TODO: investigate better way resolving allocas
+                // TODO: from compilation of runtime it looks like it often fails on exception blocks
+                config.getLogger().error("Unable to resolve variable %s in class %s", var.getName(), clazz.getClassName());
+                continue;
+            }
+
+            // get line number information
+            Integer lineObj = unitToLine.get(var.getStartUnit());
+            int varStartLine = lineObj != null ? lineObj : methodLineNumber;
+            int varEndLine;
+            if (var.getEndUnit() != null) {
+                lineObj = unitToLine.get(var.getEndUnit());
+                varEndLine = lineObj != null ? lineObj : methodLineNumber;
+            } else {
+                varEndLine = methodEndLineNumber;
+            }
+            if (varStartLine > varEndLine)
+                varEndLine = varStartLine;
+
+            // variable is known, remember it
+            // use special dwarf name just to be able make difference of variables with same name (e.g. there could be
+            // multiple "i" variables
+            variableIdx += 1;
+            String dwarfName = "dw" + variableIdx + "_" + var.getName();
+            VariableDataBundle variableBundle = new VariableDataBundle(var.getName(), dwarfName, var.getDescriptor(), varStartLine, varEndLine);
+            variables.add(variableBundle);
+
+            // add llvm.dbg.declare call
+            DILocalVariable diLocalVariable = new DILocalVariable(mb, dwarfName, varStartLine,
+                    classBundle.diFile, diSubprogram,
+                    classBundle.dummyJavaVariableType);
+
+            // get instruction to work with
+            Instruction instr = unitToInstruction.get(var.getStartUnit());
+
+            // right after alloca
+            Call call = new Call(Functions.LLVM_DBG_DECLARE,
+                    new MetadataValue(new VariableRef(alloca.getResult().getName(), new PointerType(alloca.getResult().getType()))),
+                    diLocalVariable.get());
+            call.addMetadata((new DILineNumber(varStartLine, 0, diSubprogram)).get());
+            instr.getBasicBlock().insertBefore(instr, call);
+
+            // save variable to the list
+            diVariableList.add(diLocalVariable);
         }
+
+        diSubprogram.setVariables(diVariableList);
+
+        // remember method debug information
+        classBundle.methods.add(new MethodDataBundle(function.getName(), methodLineNumber, methodEndLineNumber, variables));
     }
+
+    @Override
+    public void afterObjectFile(Config config, Clazz clazz, File objectFile, ObjectFile objectFileData) throws IOException {
+        super.afterObjectFile(config, clazz, objectFile, objectFileData);
+
+        ClassDataBundle classBundle = clazz.getAttachment(ClassDataBundle.class);
+
+        // pick DWARF debug information about local variables from objective file
+        if (config.isDebug()) {
+
+            // get debug information from objective file and write it to file cache
+            DebugObjectFileInfo debugInfo = objectFileData.getDebugInfo();
+            if (debugInfo != null) {
+                // now it is a task to combine it with data received during compilation
+                List<DebugMethodInfo> methods = new ArrayList<>();
+                for (MethodDataBundle methodBundle :  classBundle.methods) {
+                    DebugMethodInfo dbgMethodInfo = debugInfo.methodBySignature(methodBundle.signature);
+                    if (dbgMethodInfo == null) {
+                        config.getLogger().warn("Failed to get debug information for method %s in class %s",
+                                methodBundle.signature, clazz.getClassName());
+                        continue;
+                    }
+
+                    // get variables
+                    List<DebugVariableInfo> variables = new ArrayList<>();
+                    for (VariableDataBundle variableBudnle : methodBundle.variables) {
+                        DebugVariableInfo dbgVariableInfo =  dbgMethodInfo.variableByName(variableBudnle.dwarfName);
+                        if (dbgVariableInfo == null) {
+                            config.getLogger().warn("Failed to get debug information for variable %s in method %s in class %s",
+                                    variableBudnle.name, methodBundle.signature, clazz.getClassName());
+                            continue;
+                        }
+
+                        // save variable
+                        variables.add(new DebugVariableInfo(variableBudnle.name, variableBudnle.typeSignature, false /* FIXME */,
+                                variableBudnle.startLine, variableBudnle.finalLine, dbgVariableInfo.register(), dbgVariableInfo.offset()));
+                    }
+
+                    // save method
+                    methods.add(new DebugMethodInfo(dbgMethodInfo.signature(),  variables.toArray(new DebugVariableInfo[variables.size()]),
+                            methodBundle.startLine, methodBundle.finalLine));
+                }
+
+                // dump final info to file
+                DebugObjectFileInfo finalDebugInfo = clazz.getAttachment(DebugObjectFileInfo.class);
+                if (finalDebugInfo != null)
+                    clazz.removeAttachement(finalDebugInfo);
+                finalDebugInfo = new DebugObjectFileInfo(methods.toArray(new DebugMethodInfo[methods.size()]));
+
+                // save as attachment to class file
+                clazz.attach(finalDebugInfo);
+            }
+        }
+
+        // reset bundle data
+        clazz.removeAttachement(classBundle);
+    }
+
 
     /**
      * tryies to find local variable in chain in case there is no direct map of idx to it
@@ -306,14 +433,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
 
     /** injects calls to _bcHookInstrumented to allow breakpoints/step by step debugging */
-    private void injectHookInstrumented(int lineNo, Function function, Instruction instruction) {
-        // TODO: this is quick and dirty implementation just to move forward
-        // probably this will cause extra stops or unwanted ones
-
-        // skip already hooked lines
-        if (classBundle.hookInstrumentedLines.contains(lineNo))
-            return;
-
+    private void injectHookInstrumented(int lineNo, int lineNumberOffset, Function function, Constant bpTableRef, Instruction instruction) {
         BasicBlock block = instruction.getBasicBlock();
         // prepare a call to following function:
         // void _bcHookInstrumented(DebugEnv* debugEnv, jint lineNumber, jint lineNumberOffset, jbyte* bptable, void* pc)
@@ -326,11 +446,8 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
         // lineNumberOffset is zero as single breakpoint table per class
         Call bcHookInstrumented = new Call(Functions.BC_HOOK_INSTRUMENTED, debugEnv, new IntegerConstant(lineNo),
-                new IntegerConstant(0), classBundle.hookInstrumentedBpTableRef, pc.ref());
+                new IntegerConstant(lineNumberOffset), bpTableRef, pc.ref());
         block.insertBefore(instruction, bcHookInstrumented);
-
-        classBundle.hookInstrumentedMaxLineNo = Math.max(classBundle.hookInstrumentedMaxLineNo, lineNo);
-        classBundle.hookInstrumentedLines.add(lineNo);
     }
 
 
@@ -360,38 +477,50 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         DIBaseItem flags;
 
         // information for debugger
-        Set<Integer> hookInstrumentedLines;
-        int hookInstrumentedMaxLineNo;
-        ConstantBitcast hookInstrumentedBpTableRef;
-        RefConstantWrap hookInstrumentedBpTableWrap;
 
         // basic type definitions (required for debugger purpose)
         // TODO: probably there should be proper data type specified but as we use these debug data only to pick
         // variable location information -- nobody cares (e.g. there is no debuger that relies on this data)
         // if future it shall be fixed
         DIBaseItem dummyJavaVariableType;
+
+        // debug information for methods
+        List<MethodDataBundle> methods;
     }
 
-    /** wrapper for reference constant, as size of BP table during run is not known */
-    private static class RefConstantWrap extends Constant {
-	    Constant ref;
+    /**
+     * Data bundle that contains debug information about variables -- required for debugger only
+     */
+    private static class VariableDataBundle {
+	    final String name;
+        final String dwarfName;
+        final String typeSignature;
+        final int startLine;
+        final int finalLine;
 
-        public void setRef(Constant ref) {
-            this.ref = ref;
+        public VariableDataBundle(String name, String dwarfName, String typeSignature, int startLine, int finalLine) {
+            this.name = name;
+            this.dwarfName = dwarfName;
+            this.typeSignature = typeSignature;
+            this.startLine = startLine;
+            this.finalLine = finalLine;
         }
+    }
 
-        @Override
-        public Type getType() {
-            if (ref == null)
-                throw new IllegalArgumentException("Wrap reference is not set");
-            return ref.getType();
-        }
+    /**
+     * Data bundle that contains debug information about variables -- required for debugger only
+     */
+    private static class MethodDataBundle {
+        final String signature;
+        final int startLine;
+        final int finalLine;
+        final List<VariableDataBundle> variables;
 
-        @Override
-        public String toString() {
-            if (ref == null)
-                throw new IllegalArgumentException("Wrap reference is not set");
-            return ref.toString();
+        public MethodDataBundle(String signature, int startLine, int finalLine, List<VariableDataBundle> variables) {
+            this.signature = signature;
+            this.startLine = startLine;
+            this.finalLine = finalLine;
+            this.variables = variables;
         }
     }
 
