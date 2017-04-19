@@ -2,6 +2,8 @@
 #include <llvm-c/Object.h>
 #include <llvm-c/TargetMachine.h>
 #include <llvm/DebugInfo/DIContext.h>
+#include <llvm/DebugInfo/DWARFContext.h>
+#include <llvm/DebugInfo/DWARFFormValue.h>
 #include <llvm/IRReader/IRReader.h>
 #include <llvm/IR/LLVMContext.h>
 #include <llvm/IR/Module.h>
@@ -25,6 +27,7 @@
 #include <llvm/Target/TargetMachine.h>
 #include <llvm/Target/TargetOptions.h>
 #include <llvm/Target/TargetSubtargetInfo.h>
+#include <llvm/Support/Dwarf.h>
 #include <llvm/Support/FormattedStream.h>
 #include <llvm/Support/TargetRegistry.h>
 #include <llvm/Support/MemoryBuffer.h>
@@ -45,6 +48,7 @@
 
 using namespace llvm;
 using namespace llvm::object;
+using namespace dwarf;
 
 DEFINE_SIMPLE_CONVERSION_FUNCTIONS(Target, LLVMTargetRef)
 DEFINE_SIMPLE_CONVERSION_FUNCTIONS(TargetMachine, LLVMTargetMachineRef)
@@ -55,6 +59,14 @@ inline OwningBinary<ObjectFile> *unwrap(LLVMObjectFileRef OF) {
   return reinterpret_cast<OwningBinary<ObjectFile> *>(OF);
 }
 
+inline raw_ostream& dump_u32(raw_ostream &os, uint32_t u32) {
+    // dump as little endian
+    os << (uint8_t)(u32 & 0xFF);
+    os << (uint8_t)((u32 >> 8) & 0xFF);
+    os << (uint8_t)((u32 >> 16) & 0xFF);
+    os << (uint8_t)((u32 >> 24) & 0xFF);
+    return os;
+}
 const char *llvmHostTriple = LLVM_HOST_TRIPLE;
 
 class raw_java_ostream : public raw_ostream {
@@ -389,3 +401,97 @@ size_t LLVMCopySectionContents(LLVMSectionIteratorRef SI, char* Dest, size_t Des
   memcpy(Dest, Contents, (size_t) Size);
   return Size;
 }
+
+
+/**
+ * recursive routine that handles everything inside routine unit
+ * extracts variable name for now (can extract lexical blocks in future if required
+ */
+static void LLVMInternalDumpDwarfSubroutineDebugData(DWARFCompileUnit *cu,  const DWARFDebugInfoEntryMinimal *entry, raw_ostream &os) {
+    if (entry->getTag() == DW_TAG_formal_parameter || entry->getTag() == DW_TAG_variable) {
+        do {
+            // get name and location
+            const char *name = entry->getAttributeValueAsString(cu, DW_AT_name, NULL);
+            if (!name)
+                break;
+
+            DWARFFormValue value;
+            if (!entry->getAttributeValue(cu, DW_AT_location, value))
+                break;
+            Optional<ArrayRef<uint8_t>> data = value.getAsBlock();
+            if (!data.hasValue())
+                break;
+
+            size_t len = data.getValue().size();
+            StringRef strRef((const char *)data.getValue().data(), len);
+            DataExtractor extractor(strRef, cu->getContext().isLittleEndian(), 0);
+
+            uint32_t offset = 0;
+            uint8_t reg = extractor.getU8(&offset);
+            int32_t reg_offset = (int32_t)extractor.getSLEB128(&offset);
+
+            // flags -- currently only if it is parameter
+            uint8_t flags = entry->getTag() == DW_TAG_formal_parameter  ? 1 : 0;
+
+            // dump variable data
+            dump_u32(os, strlen(name));
+            os << name;
+            os << flags;
+            os << reg;
+            dump_u32(os, reg_offset);
+        } while (false);
+    }
+
+    if (entry->hasChildren()) {
+        LLVMInternalDumpDwarfSubroutineDebugData(cu, entry->getFirstChild(), os);
+    }
+    entry = entry->getSibling();
+    if (entry)
+        LLVMInternalDumpDwarfSubroutineDebugData(cu, entry, os);
+}
+
+void LLVMDumpDwarfDebugData(LLVMObjectFileRef o, void *JOStream) {
+    raw_java_ostream& os = *((raw_java_ostream*) JOStream);
+    DWARFContext * ctx = (DWARFContext *)DIContext::getDWARFContext(*(unwrap(o)->getBinary()));
+    int cuNum = ctx->getNumCompileUnits();
+
+    for (int idx = 0; idx < cuNum; idx++) {
+        DWARFCompileUnit *cu = ctx->getCompileUnitAtIndex(idx);
+
+        const DWARFDebugInfoEntryMinimal *entry = cu->getCompileUnitDIE(false);
+        if (entry == NULL && entry->getTag() != DW_TAG_compile_unit)
+            continue;
+        entry = entry->getFirstChild();
+        if (!entry)
+            continue;
+
+        do {
+            // expect subprogram
+            if (entry->isSubprogramDIE()) {
+                // dump subprogram name
+                const char *name = entry->getAttributeValueAsString(cu, DW_AT_name, NULL);
+                if (name && strlen(name)) {
+                    // starting subrotine block
+                    dump_u32(os, (uint32_t)strlen(name));
+                    os << name;
+
+                    const DWARFDebugInfoEntryMinimal *routineEntry = entry->getFirstChild();
+                    if (routineEntry)
+                        LLVMInternalDumpDwarfSubroutineDebugData(cu, routineEntry, os);
+
+                    // end of subrotine zero marker
+                    dump_u32(os, 0);
+                }
+            }
+
+            // check next level element
+            entry = entry->getSibling();
+        } while (entry);
+
+        // end of stream marker
+        dump_u32(os, 0);
+    }
+
+    os.flush();
+}
+
