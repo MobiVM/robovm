@@ -1,6 +1,7 @@
 package org.robovm.debugger.jdwp.handlers.vm;
 
 import org.robovm.debugger.jdwp.JdwpConsts;
+import org.robovm.debugger.jdwp.handlers.thread.IJdwpThreadDelegate;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -9,8 +10,16 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * Resumes execution of the application after the suspend command or an event has stopped it
  */
 public class JdwpVmResumeHandler implements IJdwpRequestHandler {
+
+    IJdwpThreadDelegate delegate;
+
+    public JdwpVmResumeHandler(IJdwpThreadDelegate delegate) {
+        this.delegate = delegate;
+    }
+
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
+        delegate.jdwpResumeAllThreads();
         return JdwpConsts.Error.NONE;
     }
 

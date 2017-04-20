@@ -22,6 +22,8 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
     @Override
     public void jdwpSuspendThread(long threadId) throws DebuggerException {
         VmThread thread = getThread(threadId);
+        if (thread == null)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_THREAD);
         suspendThread(thread);;
     }
 
@@ -37,6 +39,8 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
     @Override
     public void jdwpResumeThread(long threadId) throws DebuggerException {
         VmThread thread = getThread(threadId);
+        if (thread == null)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_THREAD);
         resumeThread(thread);
     }
 

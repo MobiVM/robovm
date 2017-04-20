@@ -1,7 +1,9 @@
 package org.robovm.debugger.jdwp.handlers.thread;
 
+import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
+import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 /**
@@ -19,7 +21,21 @@ public class JdwpThreadGetNameHandler implements IJdwpRequestHandler {
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         long threadId = payload.readLong();
 
-        return 0;
+        synchronized (state.centralLock()) {
+            VmThread thread;
+            try {
+                thread = state.referenceRefIdHolder().instanceById(threadId);
+            } catch (ClassCastException e){
+                return JdwpConsts.Error.INVALID_THREAD;
+            }
+
+            if (thread == null)
+                return JdwpConsts.Error.INVALID_THREAD;
+
+            output.writeStringWithLen(thread.name());
+        }
+
+        return JdwpConsts.Error.NONE;
     }
 
     @Override

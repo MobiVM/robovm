@@ -289,8 +289,8 @@ public class JdwpDebugServer implements IJdwpServerApi{
         registerHandler(new JdwpVmTopLevelThreadGroupsHandler(state)); // TopLevelThreadGroups Command (5)
         registerHandler(new JdwpVmDisposeHandler()); // 6
         registerHandler(new JdwpVmIdSizesHandler()); // 7
-        registerHandler(new JdwpVmSuspendHandler()); // Suspend Command (8) // TODO:
-        registerHandler(new JdwpVmResumeHandler()); // Resume Command (9) // TODO:
+        registerHandler(new JdwpVmSuspendHandler(delegates)); // Suspend Command (8)
+        registerHandler(new JdwpVmResumeHandler(delegates)); // Resume Command (9)
         // Exit Command (10) -- NOT_IMPLEMENTED
         registerHandler(new JdwpVmCreateStringHandler(delegates));// CreateString Command (11)
         registerHandler(new JdwpVmCapabilitiesHandler()); // 12
@@ -374,26 +374,26 @@ public class JdwpDebugServer implements IJdwpServerApi{
         // ThreadReference Command Set (11)
         //
         registerHandler(new JdwpThreadGetNameHandler(state)); // Name (1)
-        registerHandler(new JdwpThreadSuspendHandler()); // Suspend (2) // TODO:
-        registerHandler(new JdwpThreadResumeHandler()); // Resume (3) // TODO:
-        registerHandler(new JdwpThreadStatusHandler()); // Status (4) // TODO:
-        registerHandler(new JdwpThreadThreadGroupHandler()); // ThreadGroup (5) // TODO:
-        registerHandler(new JdwpThreadFramesHandler()); // Frames (6) // TODO:
-        registerHandler(new JdwpThreadFramesCountHandler()); // FrameCount (7) // TODO:
+        registerHandler(new JdwpThreadSuspendHandler(delegates)); // Suspend (2)
+        registerHandler(new JdwpThreadResumeHandler(delegates)); // Resume (3)
+        registerHandler(new JdwpThreadStatusHandler(state)); // Status (4)
+        registerHandler(new JdwpThreadThreadGroupHandler(state)); // ThreadGroup (5)
+        registerHandler(new JdwpThreadFramesHandler(state)); // Frames (6)
+        registerHandler(new JdwpThreadFramesCountHandler(state)); // FrameCount (7)
         // OwnedMonitors (8) -- NOT_IMPLEMENTED
         // CurrentContendedMonitor (9) -- NOT_IMPLEMENTED
         // Stop (10) -- NOT_IMPLEMENTED
         // Interrupt (11) -- NOT_IMPLEMENTED
-        registerHandler(new JdwpThreadSuspendCountHandler()); // SuspendCount (12) // TODO:
+        registerHandler(new JdwpThreadSuspendCountHandler(state)); // SuspendCount (12)
         // OwnedMonitorsStackDepthInfo (13) -- NOT_IMPLEMENTED
         // ForceEarlyReturn (14) -- NOT_IMPLEMENTED
 
         //
         // ThreadGroupReference Command Set (12)
         //
-        registerHandler(new JdwpThreadGroupNameHandler()); // Name (1) // TODO:
-        registerHandler(new JdwpThreadGroupParentHandler()); // Parent (2) // TODO:
-        registerHandler(new JdwpThreadGroupChildrenHandler()); // Children (3) // TODO:
+        registerHandler(new JdwpThreadGroupNameHandler(state)); // Name (1)
+        registerHandler(new JdwpThreadGroupParentHandler(state)); // Parent (2)
+        registerHandler(new JdwpThreadGroupChildrenHandler(state)); // Children (3)
 
         //
         // ArrayReference Command Set (13)
