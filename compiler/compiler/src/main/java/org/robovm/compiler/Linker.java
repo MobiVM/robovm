@@ -418,6 +418,18 @@ public class Linker {
             }
         }
 
+        /*
+         * Assemble the debug info files for all linked classes into the module
+         */
+        if (config.isDebug()) {
+            for (Clazz clazz : linkClasses) {
+                File f = config.getDebugInfoOFile(clazz);
+                if (f.exists() && f.length() > 0) {
+                    objectFiles.add(f);
+                }
+            }
+        }
+
         config.getTarget().build(objectFiles);
     }
 
