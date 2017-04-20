@@ -25,7 +25,7 @@ public class JdwpVmClassesBySignatureHandler implements IJdwpRequestHandler{
         String signature = payload.readStringWithLen();
 
         synchronized (state.centralLock()) {
-            ClassInfo classInfo = state.classInfoLoader().dataTypeInfoBySignature(signature);
+            ClassInfo classInfo = state.classInfoLoader().classInfoBySignature(signature);
             if (classInfo != null) {
                 // Number of reference types that follow.
                 output.writeInt32(1);

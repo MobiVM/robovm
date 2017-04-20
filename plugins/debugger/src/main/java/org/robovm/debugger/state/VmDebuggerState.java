@@ -62,10 +62,8 @@ public class VmDebuggerState {
             appFileDataMemoryReader = appFileLoader.readDataSegment();
 
             // now load all classes info
-            long bcBootClassesHash = appFileLoader.resolveSymbol("_bcBootClassesHash");
-            long bcClassesHash = appFileLoader.resolveSymbol("_bcClassesHash");
             classInfoLoader = new ClassInfoLoader(classRefIdHolder, methodsRefIdHolder, fieldRefIdHolder,
-                    appFileDataMemoryReader, bcBootClassesHash, bcClassesHash);
+                    appFileLoader, appFileDataMemoryReader);
 
             isTarget64bit = appFileLoader.isPatform64Bit();
         } catch (MachOException e) {

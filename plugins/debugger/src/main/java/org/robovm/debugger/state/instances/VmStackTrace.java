@@ -14,11 +14,13 @@ public class VmStackTrace implements RefIdHolder.IRefIdObject {
     private final ClassInfo classInfo;
     private final MethodInfo methodInfo;
     private final int lineNumber;
+    private final long fp;
 
-    public VmStackTrace(ClassInfo classInfo, MethodInfo methodInfo, int lineNumber) {
+    public VmStackTrace(ClassInfo classInfo, MethodInfo methodInfo, int lineNumber, long fp) {
         this.classInfo = classInfo;
         this.methodInfo = methodInfo;
         this.lineNumber = lineNumber;
+        this.fp = fp;
     }
 
     public ClassInfo classInfo() {
@@ -31,6 +33,10 @@ public class VmStackTrace implements RefIdHolder.IRefIdObject {
 
     public int lineNumber() {
         return lineNumber;
+    }
+
+    public long fp() {
+        return fp;
     }
 
     @Override

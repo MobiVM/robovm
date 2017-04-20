@@ -2,22 +2,69 @@ package org.robovm.debugger.jdwp;
 
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.delegates.AllDelegates;
+import org.robovm.debugger.jdwp.handlers.array.JdwpArrayGetLength;
+import org.robovm.debugger.jdwp.handlers.array.JdwpArrayGetValues;
+import org.robovm.debugger.jdwp.handlers.array.JdwpArraySetValues;
+import org.robovm.debugger.jdwp.handlers.arraytype.JdwpArrayTypeNewInstanceHandler;
+import org.robovm.debugger.jdwp.handlers.classtype.JdwpClassTypeInvokeMethodHandler;
+import org.robovm.debugger.jdwp.handlers.classtype.JdwpClassTypeNewInstanceHandler;
+import org.robovm.debugger.jdwp.handlers.classtype.JdwpClassTypeSetValuesHandler;
+import org.robovm.debugger.jdwp.handlers.classtype.JdwpClassTypeSuperclassHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearAllBreakpointsHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqClearHandler;
 import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqSetHandler;
+import org.robovm.debugger.jdwp.handlers.method.JdwpMethodLineTableHandler;
+import org.robovm.debugger.jdwp.handlers.method.JdwpMethodVariableTableHandler;
+import org.robovm.debugger.jdwp.handlers.method.JdwpMethodVariableTableWithGenericsHandler;
+import org.robovm.debugger.jdwp.handlers.objectreference.JdwpObjRefGetValuesHandler;
+import org.robovm.debugger.jdwp.handlers.objectreference.JdwpObjRefInvokeMethodHandler;
+import org.robovm.debugger.jdwp.handlers.objectreference.JdwpObjRefReferenceTypeHandler;
+import org.robovm.debugger.jdwp.handlers.objectreference.JdwpObjRefSetValuesHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeClassFileVersionHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeClassLoaderHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeClassObjectHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeFieldsHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeFieldsWithGenericHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeGetValuesHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeInterfacesHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeMethodsHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeMethodsWithGenericHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeModifiersHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeNestedTypesHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeSignatureHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeSignatureWithGenericHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeSourceFileHandler;
+import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeStatusHandler;
+import org.robovm.debugger.jdwp.handlers.stackframe.JdwpStackFrameGetValuesHandler;
+import org.robovm.debugger.jdwp.handlers.stackframe.JdwpStackFrameSetValuesHandler;
+import org.robovm.debugger.jdwp.handlers.stackframe.JdwpStackFrameThisObjectHandler;
+import org.robovm.debugger.jdwp.handlers.string.JdwpStringGetValueHandler;
+import org.robovm.debugger.jdwp.handlers.thread.JdwpThreadFramesCountHandler;
+import org.robovm.debugger.jdwp.handlers.thread.JdwpThreadFramesHandler;
+import org.robovm.debugger.jdwp.handlers.thread.JdwpThreadGetNameHandler;
+import org.robovm.debugger.jdwp.handlers.thread.JdwpThreadResumeHandler;
+import org.robovm.debugger.jdwp.handlers.thread.JdwpThreadStatusHandler;
+import org.robovm.debugger.jdwp.handlers.thread.JdwpThreadSuspendCountHandler;
+import org.robovm.debugger.jdwp.handlers.thread.JdwpThreadSuspendHandler;
+import org.robovm.debugger.jdwp.handlers.thread.JdwpThreadThreadGroupHandler;
+import org.robovm.debugger.jdwp.handlers.threadgroup.JdwpThreadGroupChildrenHandler;
+import org.robovm.debugger.jdwp.handlers.threadgroup.JdwpThreadGroupNameHandler;
+import org.robovm.debugger.jdwp.handlers.threadgroup.JdwpThreadGroupParentHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllClassesWithGenericsHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmAllThreadsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmCapabilitiesHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmCapabilitiesNewHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmClassPathsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmClassesBySignatureHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmCreateStringHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmDisposeHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmHoldEventsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmIdSizesHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmReleaseEventsHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmResumeHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmSuspendHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmTopLevelThreadGroupsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmVersionHandler;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.jdwp.protocol.JdwpRequestHeader;
@@ -232,53 +279,151 @@ public class JdwpDebugServer implements IJdwpServerApi{
     private void registerHandlers() {
         VmDebuggerState state = delegates.state();
 
+        //
         // VirtualMachine Command Set (1)
+        //
         registerHandler(new JdwpVmVersionHandler()); // 1
         registerHandler(new JdwpVmClassesBySignatureHandler(state)); // 2
         registerHandler(new JdwpVmAllClassesHandler(state)); // 3
-        // AllThreads Command (4)
-        // TopLevelThreadGroups Command (5)
+        registerHandler(new JdwpVmAllThreadsHandler(state)); // AllThreads Command (4)
+        registerHandler(new JdwpVmTopLevelThreadGroupsHandler(state)); // TopLevelThreadGroups Command (5)
         registerHandler(new JdwpVmDisposeHandler()); // 6
         registerHandler(new JdwpVmIdSizesHandler()); // 7
-        // Suspend Command (8)
-        // Resume Command (9)
-        // Exit Command (10)
-        // CreateString Command (11)
+        registerHandler(new JdwpVmSuspendHandler()); // Suspend Command (8) // TODO:
+        registerHandler(new JdwpVmResumeHandler()); // Resume Command (9) // TODO:
+        // Exit Command (10) -- NOT_IMPLEMENTED
+        registerHandler(new JdwpVmCreateStringHandler(delegates));// CreateString Command (11)
         registerHandler(new JdwpVmCapabilitiesHandler()); // 12
         registerHandler(new JdwpVmClassPathsHandler()); // 13
-        // DisposeObjects Command (14)
-        // HoldEvents Command (15)
-        // ReleaseEvents Command (16)
+        // DisposeObjects Command (14) -- NOT_IMPLEMENTED
+        registerHandler(new JdwpVmHoldEventsHandler(delegates)); // HoldEvents Command (15)
+        registerHandler(new JdwpVmReleaseEventsHandler(delegates)); // ReleaseEvents Command (16)
         registerHandler(new JdwpVmCapabilitiesNewHandler()); // 17
         // RedefineClasses Command (18) -- NOT_IMPLEMENTED
         // SetDefaultStratum Command (19) -- NOT_IMPLEMENTED
         registerHandler(new JdwpVmAllClassesWithGenericsHandler(state)); // 20
         // InstanceCounts Command (21) -- NOT_IMPLEMENTED
 
-        //ReferenceType Command Set (2)
+        //
+        // ReferenceType Command Set (2)
+        //
         registerHandler(new JdwpRefTypeSignatureHandler(state)); // 1
         registerHandler(new JdwpRefTypeClassLoaderHandler()); // 2
         registerHandler(new JdwpRefTypeModifiersHandler(state)); // 3
         registerHandler(new JdwpRefTypeFieldsHandler(state)); // 4
         registerHandler(new JdwpRefTypeMethodsHandler(state)); // 5
-        //GetValues (6)
-        //SourceFile (7)
-        //NestedTypes (8)
-        //Status (9)
-        //Interfaces (10)
-        //ClassObject (11)
-        //SourceDebugExtension (12)
-        //SignatureWithGeneric (13)
-        //FieldsWithGeneric (14)
-        //MethodsWithGeneric (15)
-        //Instances (16)
-        //ClassFileVersion (17)
-        //ConstantPool (18)
+        registerHandler(new JdwpRefTypeGetValuesHandler(delegates)); //GetValues (6)
+        registerHandler(new JdwpRefTypeSourceFileHandler()); //SourceFile (7) // TODO:
+        registerHandler(new JdwpRefTypeNestedTypesHandler()); //NestedTypes (8) // TODO:
+        registerHandler(new JdwpRefTypeStatusHandler(state)); //Status (9)
+        registerHandler(new JdwpRefTypeInterfacesHandler(state)); //Interfaces (10)
+        registerHandler(new JdwpRefTypeClassObjectHandler(delegates)); //ClassObject (11)
+        //SourceDebugExtension (12) -- NOT_IMPLEMENTED           
+        registerHandler(new JdwpRefTypeSignatureWithGenericHandler(state)); //SignatureWithGeneric (13)
+        registerHandler(new JdwpRefTypeFieldsWithGenericHandler(state)); //FieldsWithGeneric (14)
+        registerHandler(new JdwpRefTypeMethodsWithGenericHandler(state)); //MethodsWithGeneric (15)
+        //Instances (16) -- NOT_IMPLEMENTED
+        registerHandler(new JdwpRefTypeClassFileVersionHandler(state)); //ClassFileVersion (17)
+        //ConstantPool (18) -- NOT_IMPLEMENTED
+
+        //
+        // ClassType Command Set (3)
+        //
+        registerHandler(new JdwpClassTypeSuperclassHandler(state)); // Superclass (1)
+        registerHandler(new JdwpClassTypeSetValuesHandler(delegates)); // SetValues (2)
+        registerHandler(new JdwpClassTypeInvokeMethodHandler()); //InvokeMethod (3) // TODO:
+        registerHandler(new JdwpClassTypeNewInstanceHandler()); //NewInstance (4) // TODO:
+
+        //
+        // ArrayType Command Set (4)
+        //
+        registerHandler(new JdwpArrayTypeNewInstanceHandler(delegates)); // NewInstance (1)
+
+        // InterfaceType Command Set (5) -- EMPTY
+
+        //
+        // Method Command Set (6)
+        //
+        registerHandler(new JdwpMethodLineTableHandler(state)); // LineTable (1)
+        registerHandler(new JdwpMethodVariableTableHandler(state)); // VariableTable (2)
+        // Bytecodes (3) -- NOT_IMPLEMENTED
+        // IsObsolete (4) -- NOT_IMPLEMENTED
+        registerHandler(new JdwpMethodVariableTableWithGenericsHandler(state)); // VariableTableWithGeneric (5)
+
+        // Field Command Set (8) -- EMPTY
+
+        //
+        // ObjectReference Command Set (9)
+        //
+        registerHandler(new JdwpObjRefReferenceTypeHandler(state)); // ReferenceType (1)
+        registerHandler(new JdwpObjRefGetValuesHandler(delegates)); // GetValues (2)
+        registerHandler(new JdwpObjRefSetValuesHandler(delegates)); // SetValues (3)
+        //MonitorInfo (5) -- NOT_IMPLEMENTED
+        registerHandler(new JdwpObjRefInvokeMethodHandler()); // InvokeMethod (6) // TODO:
+        // DisableCollection (7) -- NOT_IMPLEMENTED
+        // EnableCollection (8) -- NOT_IMPLEMENTED
+        // IsCollected (9) -- NOT_IMPLEMENTED
+        // ReferringObjects (10) -- NOT_IMPLEMENTED
+
+        //
+        // StringReference Command Set (10)
+        //
+        registerHandler(new JdwpStringGetValueHandler(delegates)); // Value (1)
+
+        //
+        // ThreadReference Command Set (11)
+        //
+        registerHandler(new JdwpThreadGetNameHandler(state)); // Name (1)
+        registerHandler(new JdwpThreadSuspendHandler()); // Suspend (2) // TODO:
+        registerHandler(new JdwpThreadResumeHandler()); // Resume (3) // TODO:
+        registerHandler(new JdwpThreadStatusHandler()); // Status (4) // TODO:
+        registerHandler(new JdwpThreadThreadGroupHandler()); // ThreadGroup (5) // TODO:
+        registerHandler(new JdwpThreadFramesHandler()); // Frames (6) // TODO:
+        registerHandler(new JdwpThreadFramesCountHandler()); // FrameCount (7) // TODO:
+        // OwnedMonitors (8) -- NOT_IMPLEMENTED
+        // CurrentContendedMonitor (9) -- NOT_IMPLEMENTED
+        // Stop (10) -- NOT_IMPLEMENTED
+        // Interrupt (11) -- NOT_IMPLEMENTED
+        registerHandler(new JdwpThreadSuspendCountHandler()); // SuspendCount (12) // TODO:
+        // OwnedMonitorsStackDepthInfo (13) -- NOT_IMPLEMENTED
+        // ForceEarlyReturn (14) -- NOT_IMPLEMENTED
+
+        //
+        // ThreadGroupReference Command Set (12)
+        //
+        registerHandler(new JdwpThreadGroupNameHandler()); // Name (1) // TODO:
+        registerHandler(new JdwpThreadGroupParentHandler()); // Parent (2) // TODO:
+        registerHandler(new JdwpThreadGroupChildrenHandler()); // Children (3) // TODO:
+
+        //
+        // ArrayReference Command Set (13)
+        //
+        registerHandler(new JdwpArrayGetLength(delegates)); // Length (1)
+        registerHandler(new JdwpArrayGetValues(delegates)); // GetValues (2)
+        registerHandler(new JdwpArraySetValues(delegates)); // SetValues (3)
+
+        //
+        // ClassLoaderReference Command Set (14)
+        //
+        // VisibleClasses (1) // TODO:
 
         // EventRequest Command Set (15)
         registerHandler(new JdwpEventReqSetHandler(delegates));
         registerHandler(new JdwpEventReqClearHandler(delegates));
         registerHandler(new JdwpEventReqClearAllBreakpointsHandler(delegates));
+
+        //
+        // StackFrame Command Set (16)
+        //
+        registerHandler(new JdwpStackFrameGetValuesHandler(delegates)); // GetValues (1)
+        registerHandler(new JdwpStackFrameSetValuesHandler(delegates)); // SetValues (2)
+        registerHandler(new JdwpStackFrameThisObjectHandler()); //ThisObject (3) // TODO:
+        // PopFrames (4) -- NOT_IMPLEMENTED
+
+        //
+        // ClassObjectReference Command Set (17)
+        //
+        // ReflectedType (1) // TODO:
     }
 
 }

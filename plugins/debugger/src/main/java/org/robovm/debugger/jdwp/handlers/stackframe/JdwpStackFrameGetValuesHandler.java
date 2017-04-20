@@ -1,5 +1,7 @@
 package org.robovm.debugger.jdwp.handlers.stackframe;
 
+import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -9,9 +11,37 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * Even if local variable information is not available, values can be retrieved if the front-end is able to determine the correct local variable index
  */
 public class JdwpStackFrameGetValuesHandler implements IJdwpRequestHandler {
+
+    private final IJdwpStackFrameDelegate delegate;
+
+    public JdwpStackFrameGetValuesHandler(IJdwpStackFrameDelegate delegate) {
+        this.delegate = delegate;
+    }
+
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        return 0;
+        long threadId = payload.readLong();
+        long frameId = payload.readLong();
+        int slots = payload.readInt32();
+
+        int[] varIndexes = new int[slots];
+        byte[] varTags = new byte[slots];
+        for (int idx = 0; idx < slots; idx++) {
+            varIndexes[idx] = payload.readInt32();
+            varTags[idx] = payload.readByte();
+        }
+
+        try {
+            delegate.getFrameValues(threadId, frameId, varIndexes, varTags, output);
+        } catch (ClassCastException e) {
+            return JdwpConsts.Error.INVALID_OBJECT;
+        } catch (DebuggerException e) {
+            if (e.getCode() < 0)
+                throw e;
+            return (short) e.getCode();
+        }
+
+        return JdwpConsts.Error.NONE;
     }
 
     @Override

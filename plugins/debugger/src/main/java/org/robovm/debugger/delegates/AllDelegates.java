@@ -7,6 +7,7 @@ import org.robovm.debugger.jdwp.handlers.array.IJdwpArrayDelegate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.IJdwpEventDelegate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPredicate;
 import org.robovm.debugger.jdwp.handlers.objectreference.IJdwpInstanceDelegate;
+import org.robovm.debugger.jdwp.handlers.stackframe.IJdwpStackFrameDelegate;
 import org.robovm.debugger.jdwp.handlers.thread.IJdwpThreadDelegate;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.instances.VmClassInstance;
@@ -26,7 +27,7 @@ import java.util.List;
  * also provides lock protection of data
  */
 public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDebuggerToolbox, IJdwpThreadDelegate,
-        IJdwpInstanceDelegate {
+        IJdwpInstanceDelegate, IJdwpStackFrameDelegate {
 
     private final DbgLogger log = DbgLogger.get("Delegates");
 
@@ -80,6 +81,11 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
      */
     private InstanceUtils instances;
 
+    /**
+     * delegate that handles stack frame operations
+     */
+    private StackFrameDelegate stackframes;
+
     public AllDelegates(DebuggerThread.Catcher catcher, VmDebuggerState state) {
         this.toolBox = new DebuggerToolBox(catcher);
         this.state = state;
@@ -92,6 +98,7 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
         this.hooksApi = api;
         this.runtime = new RuntimeUtils(this, runtimeMemoryOffset);
         this.instances = new InstanceUtils(this);
+        this.stackframes = new StackFrameDelegate(this);
 
         // ping event center that is attached to start picking data
         events.onConnectedToTarget();
@@ -146,6 +153,10 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
 
     public InstanceUtils instances() {
         return instances;
+    }
+
+    public StackFrameDelegate stackframes() {
+        return stackframes;
     }
 
     public ByteBufferPacket sharedTargetPacket() {
@@ -304,6 +315,24 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
     public VmClassInstance jdwpGetClazzObject(long objectId) throws DebuggerException {
         synchronized (state.centralLock()) {
             return instances.getClazzObject(objectId);
+        }
+    }
+
+
+    //
+    // Stack Frame delegate implementation
+    //
+    @Override
+    public void getFrameValues(long threadId, long frameId, int[] varIndexes, byte[] varTags, ByteBufferPacket output) {
+        synchronized (state.centralLock()) {
+            stackframes.getFrameValues(threadId, frameId, varIndexes, varTags, output);
+        }
+    }
+
+    @Override
+    public void setFrameValues(long threadId, long frameId, ByteBufferPacket payload, int count) {
+        synchronized (state.centralLock()) {
+            stackframes.setFrameValues(threadId, frameId, payload, count);
         }
     }
 

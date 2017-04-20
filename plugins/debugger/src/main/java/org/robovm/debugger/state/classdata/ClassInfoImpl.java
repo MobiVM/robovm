@@ -1,9 +1,13 @@
 package org.robovm.debugger.state.classdata;
 
+import org.robovm.compiler.plugin.debug.DebugInformationTools;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
+import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
+
+import java.nio.ByteBuffer;
 
 /**
  * @author Demyan Kimitsa
@@ -49,6 +53,9 @@ public class ClassInfoImpl extends ClassInfo {
     private FieldInfo[] fields;
     private MethodInfo[] methods;
 
+    // debug information for class
+    private DebugObjectFileInfo debugInfo;
+
     // out of header position
     private int endOfHeaderPos;
 
@@ -93,11 +100,15 @@ public class ClassInfoImpl extends ClassInfo {
     }
 
     void loadData(ClassInfoLoader loader) {
-        ByteBufferMemoryReader reader = loader.reader;
         // set to zero if already read
         if (endOfHeaderPos == 0)
             return;
 
+        // read debug information to not mess with buffer position later
+        debugInfo = readDebugInfo(loader);
+
+
+        ByteBufferMemoryReader reader = loader.reader;
         reader.setPosition(endOfHeaderPos);
         int interfaceCount = reader.readInt16();
         int fieldCount = reader.readInt16();
@@ -131,6 +142,25 @@ public class ClassInfoImpl extends ClassInfo {
         endOfHeaderPos = 0;
     }
 
+    private DebugObjectFileInfo readDebugInfo(ClassInfoLoader loader) {
+        String debugInfoSymbol = "_[J]" + className + "[debuginfo]";
+        // get pointer to pointer symbol
+        long addr = loader.appFileLoader.resolveSymbol(debugInfoSymbol);
+        if (addr < 0) {
+            // TODO: warning symbol not found
+            return null;
+        }
+
+        // read pointer value
+        loader.reader.setAddress(addr);
+        addr = loader.reader.readPointer();
+
+        // set address to pointer value and slice to byte buffer
+        loader.reader.setAddress(addr);
+        ByteBuffer buffer = loader.reader.sliceToByteBuffer();
+        return DebugInformationTools.readDebugInfo(buffer);
+    }
+
     private void readFields(ByteBufferMemoryReader reader, int fieldCount, RefIdHolder<FieldInfo> fieldRefIdHolder) {
         // refer: bc.c#loadFields
         // refer: classinfo.c#readFieldInfo
@@ -149,6 +179,8 @@ public class ClassInfoImpl extends ClassInfo {
         for (int idx = 0; idx < methodCount; idx++) {
             methods[idx] = new MethodInfo();
             methods[idx].readMethodInfo(reader);
+            if (debugInfo != null)
+                methods[idx].setDebugInfo(debugInfo.methodBySignature(methods[idx].getSignature()));
             methodsRefIdHolder.addObject(methods[idx]);
         }
     }

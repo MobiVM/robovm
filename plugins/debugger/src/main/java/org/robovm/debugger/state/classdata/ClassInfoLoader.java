@@ -20,6 +20,7 @@ import java.util.Map;
  */
 public class ClassInfoLoader {
 
+    final MachOLoader appFileLoader;
     final ByteBufferMemoryReader reader;
 
     // signature to data info
@@ -38,14 +39,16 @@ public class ClassInfoLoader {
 
 
     public ClassInfoLoader(RefIdHolder<ClassInfo> classRefIdHolder, RefIdHolder<MethodInfo> methodsRefIdHolder,
-                           RefIdHolder<FieldInfo> fieldRefIdHolder, ByteBufferMemoryReader reader,
-                           long bcBootClassesHash, long bcClassesHash) {
+                           RefIdHolder<FieldInfo> fieldRefIdHolder, MachOLoader appFileLoader, ByteBufferMemoryReader reader) {
         this.classRefIdHolder = classRefIdHolder;
         this.methodsRefIdHolder = methodsRefIdHolder;
         this.fieldRefIdHolder = fieldRefIdHolder;
         this.reader = reader;
+        this.appFileLoader = appFileLoader;
 
         // parse
+        long bcBootClassesHash = appFileLoader.resolveSymbol("_bcBootClassesHash");
+        long bcClassesHash = appFileLoader.resolveSymbol("_bcClassesHash");
         parseHash(this.reader.setAddress(bcBootClassesHash).readPointer());
         parseHash(this.reader.setAddress(bcClassesHash).readPointer());
 
@@ -97,10 +100,6 @@ public class ClassInfoLoader {
 
     public List<ClassInfo> classes() {
         return dataInfos;
-    }
-
-    public ClassInfo dataTypeInfoBySignature(String signature) {
-        return signatureToDataInfo.get(signature);
     }
 
 
@@ -209,13 +208,11 @@ public class ClassInfoLoader {
         // for debug purpose
         try {
             MachOLoader loader = new MachOLoader(new File(argv[0]), MachOLoader.cpuTypeFromString(argv[1]));
-            long bcBootClassesHash = loader.resolveSymbol("_bcBootClassesHash");
-            long bcClassesHash = loader.resolveSymbol("_bcClassesHash");
             ClassInfoLoader classInfoLoader = new ClassInfoLoader(
                     new RefIdHolder<>(RefIdHolder.RefIdType.CLASS_TYPE),
                     new RefIdHolder<>(RefIdHolder.RefIdType.METHOD_TYPE),
                     new RefIdHolder<>(RefIdHolder.RefIdType.FIELD_TYPE),
-                    loader.readDataSegment(), bcBootClassesHash, bcClassesHash);
+                    loader, loader.readDataSegment());
             for (ClassInfo info : classInfoLoader.dataInfos)
                 ((ClassInfoImpl)info).loadData(classInfoLoader);
             System.out.println("Loaded " + classInfoLoader.signatureToDataInfo.size() + " classes");

@@ -2,6 +2,7 @@ package org.robovm.debugger.state.classdata;
 
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
+import org.robovm.llvm.debuginfo.DebugMethodInfo;
 
 /**
  * @author Demyan Kimitsa
@@ -29,6 +30,8 @@ public class MethodInfo extends BaseModifiersInfo {
     private String desc;
     private long implPtr;
 
+    // debug information if available
+    private DebugMethodInfo debugInfo;
 
     public void readMethodInfo(ByteBufferMemoryReader reader) {
         flags = reader.readInt16();
@@ -105,6 +108,14 @@ public class MethodInfo extends BaseModifiersInfo {
 
     public long getImplPtr() {
         return implPtr;
+    }
+
+    public DebugMethodInfo debugInfo() {
+        return debugInfo;
+    }
+
+    public void setDebugInfo(DebugMethodInfo debugInfo) {
+        this.debugInfo = debugInfo;
     }
 
     boolean isBroCallback() {

@@ -264,4 +264,11 @@ public abstract class ByteBufferReader {
     public ByteBufferReader slice() {
         return new RangeByteBufferReader(this, position(), bytesRemaining(), is64bit);
     }
+
+    /**
+     * WARNING: will not be able to slize to remaining bytes limited by reader, will slice to end of byte-buffer
+     */
+    public ByteBuffer sliceToByteBuffer() {
+        return byteBuffer.slice();
+    }
 }

@@ -505,7 +505,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
             return null;
         }
 
-        return new VmStackTrace(classInfo, methodInfo, payload.lineNumber());
+        return new VmStackTrace(classInfo, methodInfo, payload.lineNumber(), payload.fp());
     }
 
     private VmThread getThread(int eventId, long threadObj) {

@@ -1,17 +1,22 @@
 package org.robovm.debugger.jdwp.handlers.method;
 
-import org.robovm.debugger.jdwp.JdwpConsts;
-import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.state.VmDebuggerState;
 
 /**
  * @author Demyan Kimitsa
  * Returns variable information for the method, including generic signatures for the variables. The variable table includes arguments and locals declared within the method.
+ *
+ * Implementation is same as JdwpMethodVariableTableHandler so just tell it to dump generics
  */
-public class JdwpMethodVariableTableWithGenericsHandler implements IJdwpRequestHandler {
+public class JdwpMethodVariableTableWithGenericsHandler extends JdwpMethodVariableTableHandler {
+
+    public JdwpMethodVariableTableWithGenericsHandler(VmDebuggerState state) {
+        super(state);
+    }
+
     @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        return JdwpConsts.Error.ABSENT_INFORMATION;
+    protected boolean shallWriteEmptyGeneric() {
+        return true;
     }
 
     @Override

@@ -13,7 +13,6 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.nio.file.Files;
 
 /**
  * @author Demyan Kimitsa
@@ -62,7 +61,7 @@ public class DebugInformationTools {
     }
 
 
-    public static DebugObjectFileInfo readDebugInfo(ByteBuffer buffer) throws IOException {
+    public static DebugObjectFileInfo readDebugInfo(ByteBuffer buffer) {
         // big endian, as data was written with DataOutputStream which is big endian only
         buffer.order(ByteOrder.BIG_ENDIAN);
 

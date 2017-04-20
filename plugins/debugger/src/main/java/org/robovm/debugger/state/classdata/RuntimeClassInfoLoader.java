@@ -81,6 +81,12 @@ public class RuntimeClassInfoLoader {
     }
 
 
+    public ClassInfo buildPrimitiveClassInfo(String signature) {
+        if (signature.length() != 1)
+            throw new DebuggerException("Invalid signature for primitive " + signature);
+        return buildPrimitiveClassInfo(signature.charAt(0));
+    }
+
     public ClassInfo buildPrimitiveClassInfo(char signature) {
         // get primitive clazz pointer from device memory (check class.c)
         long clazzPrt = delegates.state().appFileLoader().resolveSymbol("_prim_" + signature);

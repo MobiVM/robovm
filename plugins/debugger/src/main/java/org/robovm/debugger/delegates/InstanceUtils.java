@@ -186,17 +186,27 @@ public class InstanceUtils {
         }
 
         // can read data now
-        T result;
+        return (T) getMemoryValue(objectPtr + fi.offset(), fieldTypeInfo, jdwpOutput);
+    }
+
+    /**
+     * reads value of object of known type from memory
+     * @param objectPtr pointer to object/primitive
+     * @param ci class info of data (null if it is object)
+     * @param jdwpOutput if not null -- also outputs data to buffer packet
+     * @return object read
+     */
+    public Object getMemoryValue(long objectPtr, ClassInfo ci, ByteBufferPacket jdwpOutput) {
         ValueManipulator valueManipulator;
-        delegates.runtime().deviceMemoryReader().setAddress(objectPtr + fi.offset());
-        if (fieldTypeInfo != null && fieldTypeInfo.isPrimitive()) {
-            ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) fieldTypeInfo;
+        delegates.runtime().deviceMemoryReader().setAddress(objectPtr);
+        if (ci != null && ci.isPrimitive()) {
+            ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) ci;
             valueManipulator = primitiveInfo.manipulator();
         } else {
             valueManipulator = manipulator;
         }
 
-        result = (T) valueManipulator.readFromDevice(delegates.runtime().deviceMemoryReader());
+        Object result = valueManipulator.readFromDevice(delegates.runtime().deviceMemoryReader());
 
         // dump to JDPW if asked
         if (jdwpOutput != null)
@@ -256,7 +266,6 @@ public class InstanceUtils {
      * @param fi field info structure
      * @param fromJdpw if not null value shall be picked here using manipulator
      * @throws DebuggerException if something wrong
-     * @return fields value
      */
     @SuppressWarnings("unchecked")
     private void setFieldValue(long objectPtr, ClassInfo ci, FieldInfo fi, Object value, ByteBufferReader fromJdpw) throws DebuggerException {
@@ -279,28 +288,37 @@ public class InstanceUtils {
         }
 
         // can write data now
+        setMemoryValue(objectPtr + fi.offset(), fieldTypeInfo, value, fromJdpw);
+    }
+
+    /**
+     * Writes value directly to memory
+     * @param objectPtr pointer to object/primitive to be put to
+     * @param ci class info of data (null if it is object)
+     * @param value if there is value itself
+     * @param fromJdpw if specified then manipulator will pick value from jdwp payload
+     */
+    public void setMemoryValue(long objectPtr, ClassInfo ci, Object value, ByteBufferReader fromJdpw) {
+        // can write data now
         ValueManipulator valueManipulator;
-        delegates.runtime().deviceMemoryReader().setAddress(objectPtr + fi.offset());
-        if (fieldTypeInfo != null && fieldTypeInfo.isPrimitive()) {
-            ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) fieldTypeInfo;
+        if (ci != null && ci.isPrimitive()) {
+            ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) ci;
             valueManipulator = primitiveInfo.manipulator();
         } else {
             valueManipulator = manipulator;
         }
 
-        ByteBufferPacket packet = delegates.sharedTargetPacket();
-        packet.reset();
-
         // if specified -- pick value from jdpw payload
         if (fromJdpw != null)
             value = valueManipulator.readFromJdwp(fromJdpw);
 
+        ByteBufferPacket packet = delegates.sharedTargetPacket();
+        packet.reset();
         valueManipulator.writeToDevice(packet, value);
 
         // now put values to device
-        delegates.hooksApi().writeMemory(objectPtr + fi.offset(), packet);
+        delegates.hooksApi().writeMemory(objectPtr, packet);
     }
-
 
     public void jdwpFieldSetValues(long objectOrClassId, int fieldsCount, boolean isStatic, ByteBufferPacket payload) {
         ClassInfo ci;
@@ -455,7 +473,7 @@ public class InstanceUtils {
     /**
      * @return object manipulator that works with object/arrays
      */
-    public ValueManipulator objectManipulator() {
+    ValueManipulator objectManipulator() {
         return manipulator;
     }
 
@@ -484,7 +502,7 @@ public class InstanceUtils {
         return new VmThread(objectPtr, (Long)threadPtr, ci, name, threadGroup);
     }
 
-    private VmThreadGroup createThreadGroupInstance(ClassInfo ci, long objectPtr, Object unused) {
+    private VmThreadGroup createThreadGroupInstance(ClassInfo ci, long objectPtr, @SuppressWarnings("unused") Object unused) {
         VmStringInstance nameInstance = getFieldValue(objectPtr, ci, ClassDataConsts.fields.JAVA_LANG_THREADGROUP_NAME);
         String name = readStringValue(nameInstance);
         VmThreadGroup parent = getFieldValue(objectPtr, ci, ClassDataConsts.fields.JAVA_LANG_THREADGROUP_PARENT);
@@ -492,15 +510,15 @@ public class InstanceUtils {
         return new VmThreadGroup(objectPtr, ci, name, parent );
     }
 
-    private VmClassLoaderInstance createClassLoaderInstance(ClassInfo ci, long objectPtr, Object unused) {
+    private VmClassLoaderInstance createClassLoaderInstance(ClassInfo ci, long objectPtr, @SuppressWarnings("unused")Object unused) {
         return new VmClassLoaderInstance(objectPtr, ci);
     }
 
-    private VmClassInstance createClassInstance(ClassInfo ci, long objectPtr, Object unused) {
+    private VmClassInstance createClassInstance(ClassInfo ci, long objectPtr, @SuppressWarnings("unused")Object unused) {
         return new VmClassInstance(objectPtr, ci);
     }
 
-    private VmInstance createGenericInstance(ClassInfo ci, long objectPtr, Object unused) {
+    private VmInstance createGenericInstance(ClassInfo ci, long objectPtr, @SuppressWarnings("unused")Object unused) {
         return new VmInstance(objectPtr, ci);
     }
 
