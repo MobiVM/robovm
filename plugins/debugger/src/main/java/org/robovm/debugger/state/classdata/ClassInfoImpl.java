@@ -131,11 +131,10 @@ public class ClassInfoImpl extends ClassInfo {
         interfaces = new ClassInfo[interfaceCount];
         for (int idx = 0; idx < interfaceCount; idx++) {
             long ptr = reader.readPointer();
-            String interfaceName = reader.readStringZAtPtr(ptr);
-            // TODO: to signature ?
-            interfaces[idx] = loader.classInfoBySignature(interfaceName);
+            String interfaceSignature = "L" + reader.readStringZAtPtr(ptr) + ";";
+            interfaces[idx] = loader.classInfoBySignature(interfaceSignature);
             if (interfaces[idx] == null)
-                throw new DebuggerException("Interface '" + interfaceName + "' not found in " + className);
+                throw new DebuggerException("Interface '" + interfaceSignature + "' not found in " + className);
         }
 
         readFields(reader, fieldCount, loader.fieldRefIdHolder);
@@ -146,7 +145,7 @@ public class ClassInfoImpl extends ClassInfo {
     }
 
     private DebugObjectFileInfo readDebugInfo(ClassInfoLoader loader) {
-        String debugInfoSymbol = "_[J]" + className + "[debuginfo]";
+        String debugInfoSymbol = "[j]" + className.replace('/', '.') + "[debuginfo]";
         // get pointer to pointer symbol
         long addr = loader.appFileLoader.resolveSymbol(debugInfoSymbol);
         if (addr < 0) {

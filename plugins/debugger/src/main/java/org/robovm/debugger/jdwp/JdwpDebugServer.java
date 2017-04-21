@@ -129,7 +129,10 @@ public class JdwpDebugServer implements IJdwpServerApi{
     private void doSocketWork() {
         // establish connection
         try {
-            establishConnection();
+            socket = establishConnection();
+            if (socket == null) // interrupted
+                return;
+
             InputStream inputStream = socket.getInputStream();
 
             JdwpRequestHeader header = new JdwpRequestHeader();
@@ -154,7 +157,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
             delegate.onJdwpHandshakeComplete(this);
 
             // run JDPW packet cycle
-            while (!socketThread.isInterrupted()) {
+            while (!Thread.interrupted()) {
                 header.readFromStream(inputStream, packet);
 
                 // read payload if any
@@ -178,10 +181,8 @@ public class JdwpDebugServer implements IJdwpServerApi{
                 // send response
                 sendResponse(header.id, errorCode, outPacket);
             }
-        } catch (DebuggerException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new DebuggerException(e);
         }
     }
 
@@ -220,20 +221,20 @@ public class JdwpDebugServer implements IJdwpServerApi{
         }
     }
 
-    private void establishConnection() throws DebuggerException {
+    private Socket establishConnection() throws DebuggerException {
+        Socket s = null;
         if (jdwpClientMode) {
             // connect to server
             while (!Thread.interrupted()) {
                 try {
-                    socket = new Socket();
-                    socket.connect(new InetSocketAddress("127.0.0.1", jdwpPort), 1000);
+                    s = new Socket();
+                    s.connect(new InetSocketAddress("127.0.0.1", jdwpPort), 200);
                     break;
                 } catch (IOException e) {
                     // timeout
-                    socket = null;
+                    s = null;
                 }
             }
-
         } else {
             // listen for connection
             ServerSocket serverSocket;
@@ -244,9 +245,9 @@ public class JdwpDebugServer implements IJdwpServerApi{
             }
 
             try {
-                serverSocket.setSoTimeout(1000);
+                serverSocket.setSoTimeout(200);
             } catch (SocketException e) {
-                throw new DebuggerException("Failed to accept connection", e);
+                throw new DebuggerException("Failed setup server socket connection", e);
             }
 
             while (!Thread.interrupted()) {
@@ -259,8 +260,12 @@ public class JdwpDebugServer implements IJdwpServerApi{
         }
 
         // interrupt or connected
-        if (socket == null)
-            throw new DebuggerException("Interrupted while establishing JDWP connection");
+        if (s == null) {
+            // thread is interrupted
+            log.debug("Interrupted while establishing JDWP connection");
+        }
+
+        return s;
     }
 
 

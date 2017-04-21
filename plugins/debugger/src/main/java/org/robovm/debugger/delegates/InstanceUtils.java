@@ -47,10 +47,13 @@ public class InstanceUtils {
      */
     private final RuntimeClassInfoLoader runtimeClassInfoLoader;
 
+    /** object data type manipulator */
+    private final Manipulator manipulator;
 
     public InstanceUtils(AllDelegates delegates) {
         this.delegates = delegates;
         this.runtimeClassInfoLoader = new RuntimeClassInfoLoader(delegates);
+        this.manipulator = new Manipulator(this);
     }
 
     public RuntimeClassInfoLoader classInfoLoader() {
@@ -99,7 +102,7 @@ public class InstanceUtils {
         int offset = getFieldValue(objectPtr, ci, ClassDataConsts.fields.JAVA_LANG_STRING_OFFSET);
 
         // receive chars from array
-        String str = delegates.arrays().readArrayString(value, offset, count);
+        String str = count == 0 ? "" : delegates.arrays().readArrayString(value, offset, count);
         stringInstance.setValue(str);
 
         return str;
@@ -176,7 +179,7 @@ public class InstanceUtils {
         // try to build signature
         if (fieldTypeInfo == null) {
             if (ClassInfoLoader.isArraySignature(signature)) {
-                // read data from object itself, keep it null
+                // array class info is being build dynamically so there is no option to get this value
             } else if (ClassInfoLoader.isPrimitiveSignature(signature)) {
                 // primitive, type data is not loaded yet
                 fieldTypeInfo = runtimeClassInfoLoader.buildPrimitiveClassInfo(signature.charAt(0));
@@ -410,6 +413,8 @@ public class InstanceUtils {
                 Instantiator instantiator = instantiatorForClass((ClassInfoImpl) ci);
                 instance = instantiator.instance(ci, objectPtr, param);
             }
+
+            delegates.state().referenceRefIdHolder().addObject(instance);
         }
 
         return (T) instance;
@@ -526,20 +531,20 @@ public class InstanceUtils {
     /**
      * Special subclass for object manipulations
      */
-    private class Manipulator extends ValueManipulator {
-        private Manipulator() {
+    private static class Manipulator extends ValueManipulator {
+        private Manipulator(InstanceUtils utils) {
             super(
                     fromDevice -> {
-                        long ptr = fromDevice.readLong();
-                        return ptr != 0 ? instanceByPointer(ptr) : null;
+                        long ptr = fromDevice.readPointer();
+                        return ptr != 0 ? utils.instanceByPointer(ptr) : null;
                     },
                     fromJdwp -> {
                         long refId = fromJdwp.readLong();
-                        return refId != 0 ? delegates.state().referenceRefIdHolder().objectById(refId) : null;
+                        return refId != 0 ? utils.delegates.state().referenceRefIdHolder().objectById(refId) : null;
                     },
                     (writer, o) -> {
                         VmInstance instance = (VmInstance) o;
-                        writer.writeLong(instance != null ? instance.objectPtr() : 0);
+                        writer.writePointer(instance != null ? instance.objectPtr() : 0);
                     },
                     (jdwpWriter, o) -> {
                         VmInstance instance = (VmInstance) o;
@@ -549,10 +554,10 @@ public class InstanceUtils {
                     (reader, length) -> {
                         VmInstance[] arr = new VmInstance[length];
                         for (int idx = 0; idx < length; idx ++)
-                            arr[idx] = instanceByPointer(reader.readPointer());
+                            arr[idx] = utils.instanceByPointer(reader.readPointer());
                         return arr;
-                    });
+                    }
+            );
         }
     }
-    private Manipulator manipulator = new Manipulator();
 }

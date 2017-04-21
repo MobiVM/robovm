@@ -25,12 +25,10 @@ public class TargetByteBufferReader extends ByteBufferReader {
     protected void expects(int bytes) {
         // when primitive data being read -- it will call expects to validate that there is data in buffer
         // it is proper plate to read out data from device
-        if (byteBuffer == null) {
+        if (byteBuffer == null || byteBuffer.limit() < bytes) {
             byteBuffer = ByteBuffer.allocate((int) (bytes * 1.5));
             // x86 and apple arms are little endian
             byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
-        } else if (byteBuffer.limit() < bytes){
-            byteBuffer.limit((int) (bytes * 1.5));
         }
 
         byteBuffer.position(0);

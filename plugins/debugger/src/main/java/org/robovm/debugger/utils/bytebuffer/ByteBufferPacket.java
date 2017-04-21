@@ -184,4 +184,11 @@ public class ByteBufferPacket extends ByteBufferReader {
         wants(packet.bytesRemaining());
         byteBuffer.put(packet.getByteBuffer().array(), packet.byteBufferDataStart(), packet.bytesRemaining());
     }
+
+    public void writePointer(long addr) {
+        if(is64bit)
+            writeLong(addr);
+        else
+            writeUnsignedInt32(addr);
+    }
 }

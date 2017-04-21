@@ -23,6 +23,7 @@ public class DebuggerConfig {
     private int jdwpPort = -1;
     private File hooksPortFile;
     private int hooksPort = -1;
+    private boolean standalone;
 
     private  DebuggerConfig() {
     }
@@ -61,6 +62,10 @@ public class DebuggerConfig {
 
     public int hooksPort() {
         return hooksPort;
+    }
+
+    public boolean isStandalone() {
+        return standalone;
     }
 
     public static class Builder {
@@ -107,6 +112,10 @@ public class DebuggerConfig {
 
         public void setHooksPort(int hooksPort) {
             config.hooksPort = hooksPort;
+        }
+
+        private void setStandalone(boolean b) {
+            config.standalone = b;
         }
     }
 
@@ -176,6 +185,7 @@ public class DebuggerConfig {
         builder.setJdwpPort(jdwpPort);
         builder.setHooksPortFile(hooksPortFile);
         builder.setHooksPort(hooksPort);
+        builder.setStandalone(true);
 
         return builder.build();
     }

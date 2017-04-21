@@ -20,7 +20,7 @@ import java.io.File;
  * TODO: this file got big and need to be sliced into several delegates
  */
 public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJdwpServerDelegate {
-    private final DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
+    private final DbgLogger log;
 
     /**
      * config debugger was started with
@@ -31,7 +31,6 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
      * all delegates and logic in one place
      */
     private final AllDelegates delegates;
-
 
     /**
      * debugger state
@@ -51,9 +50,11 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
 
     public Debugger(DebuggerConfig config) {
         // setup logger
-        if (config.logDir() != null) {
-            DbgLogger.setup(new File(config.logDir(), "debugger"+System.currentTimeMillis() + ".log"), config.logToConsole());
-        }
+        File logFile = config.logDir() != null ? new File(config.logDir(), "debugger"+System.currentTimeMillis() + ".log") : null;
+        DbgLogger.setup(logFile, config.logToConsole());
+
+        // can now create log as logger is initialized
+        this.log = DbgLogger.get(this.getClass().getSimpleName());
 
         // save references
         this.config = config;
@@ -77,12 +78,24 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
         this.hooksChannel.start();
     }
 
-    public void shutdown() {
+    private volatile boolean shutingDown;
+    private void shutdown() {
+        // only one shutdown is allowed
+        synchronized (this) {
+            if (shutingDown)
+                return;
+            shutingDown = true;
+        }
+
         delegates.shutdown();
 
         // shutdown JDWP and hooks
         jdwpServer.shutdown();
         hooksChannel.shutdown();
+
+        // if it is standalone run -- terminate app
+        if (config.isStandalone())
+            System.exit(-1);
     }
 
     @Override

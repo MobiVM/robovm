@@ -99,6 +99,8 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
         this.runtime = new RuntimeUtils(this, runtimeMemoryOffset);
         this.instances = new InstanceUtils(this);
         this.stackframes = new StackFrameDelegate(this);
+        this.events = new JdwpEventCenterDelegate(this);
+        this.arrays = new JdwpArrayDelegate(this);
 
         // ping event center that is attached to start picking data
         events.onConnectedToTarget();

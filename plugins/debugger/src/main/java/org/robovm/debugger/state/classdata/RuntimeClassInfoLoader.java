@@ -89,8 +89,10 @@ public class RuntimeClassInfoLoader {
 
     public ClassInfo buildPrimitiveClassInfo(char signature) {
         // get primitive clazz pointer from device memory (check class.c)
-        long clazzPrt = delegates.state().appFileLoader().resolveSymbol("_prim_" + signature);
-        delegates.runtime().deviceMemoryReader().setAddress(delegates.runtime().toRuntimeAddr(clazzPrt));;
+        long clazzPrt = delegates.state().appFileLoader().resolveSymbol("prim_" + signature);
+        if (clazzPrt < 0)
+            throw new DebuggerException("Failed to resolve primitive clazz symbol prim_" + signature);
+        delegates.runtime().deviceMemoryReader().setAddress(delegates.runtime().toRuntimeAddr(clazzPrt));
         clazzPrt = delegates.runtime().deviceMemoryReader().readPointer();
 
         return delegates.state().classInfoLoader().buildPrimitiveClassInfo(signature, clazzPrt);

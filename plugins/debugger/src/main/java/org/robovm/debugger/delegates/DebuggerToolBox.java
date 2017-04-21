@@ -48,7 +48,7 @@ public class DebuggerToolBox implements IDebuggerToolbox {
         for (DebuggerThread t : debuggerThreads) {
             t.interrupt();
             try {
-                t.join(100);
+                t.join(500);
             } catch (InterruptedException ignored) {
             }
         }

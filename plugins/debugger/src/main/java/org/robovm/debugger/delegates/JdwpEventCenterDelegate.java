@@ -78,7 +78,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
      */
     public void onConnectedToTarget() {
         // start thread to listen for events
-        this.hooksEventsThread = new Thread(() -> processEventsCycle());
+        this.hooksEventsThread = delegates.toolBox().createThread(() -> processEventsCycle(), "EventCenterThread");
         this.hooksEventsThread.start();
    }
 
@@ -278,8 +278,8 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
             try {
                 eventPayload = hooksEventsQueue.take();
             } catch (InterruptedException e) {
-                // TODO: should not happen
-                e.printStackTrace();
+                // silently exit as probably
+                return;
             }
 
             while (eventPayload != null) {
@@ -418,9 +418,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 throw new DebuggerException("Thread " + Long.toHexString(event.threadObj()) + " already attached/started!");
 
             // attach thread
-            ClassInfo ci = delegates.instances().classInfoLoader().resolveObjectRuntimeDataTypeInfo(event.threadObj());
             thread = delegates.instances().instanceByPointer(event.threadObj(), event.thread(), true);
-            delegates.state().referenceRefIdHolder().addObject(thread);
             delegates.state().threads().add(thread);
 
             // doesn't generate any event to JDWP
@@ -449,6 +447,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
     /** thread stopped event */
     private JdwpEventData processThreadStoppedEvent(HooksThreadStoppedEventPayload event, VmThread thread, VmStackTrace[] callStack) {
+        VmStackTrace topTrace = callStack.length > 0 ? callStack[0] : null;
         switch (event.eventId()) {
             case HookConsts.events.EXCEPTION:
                 ClassInfo ci = delegates.instances().classInfoLoader().resolveObjectRuntimeDataTypeInfo(event.throwable());
@@ -481,7 +480,8 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     }
 
     private VmStackTrace convertStackTrace(int eventId, HooksCallStackEntry payload) {
-        ClassInfo classInfo = delegates.state().classInfoLoader().classInfoBySignature(payload.clazzName());
+        String signature = "L" + payload.clazzName() + ";";
+        ClassInfo classInfo = delegates.state().classInfoLoader().classInfoBySignature(signature);
         if (classInfo == null) {
             delegates.log().error(HookConsts.commandToString(eventId) + ": Failed to get get stack entry. Class is not known " +
                     payload.clazzName());

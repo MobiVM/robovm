@@ -50,9 +50,9 @@ public class VmDebuggerState {
     boolean isTarget64bit;
 
     /**
-     * lock that is used for main logic synchronization
+     * Central synchronization object
      */
-    ReentrantLock centralLock = new ReentrantLock();
+    Object centralLock = new Object();
 
     public VmDebuggerState(File appFile, Arch arch) {
         try {
@@ -101,7 +101,7 @@ public class VmDebuggerState {
     }
 
     public ClassInfoLoader classInfoLoader() {
-        if (!centralLock.isHeldByCurrentThread())
+        if (!Thread.holdsLock(centralLock))
             throw new DebuggerException(LOCK_NOT_ACQUIRED);
 
         return classInfoLoader;
@@ -112,7 +112,7 @@ public class VmDebuggerState {
     }
 
     public List<VmThread> threads() {
-        if (!centralLock.isHeldByCurrentThread())
+        if (!Thread.holdsLock(centralLock))
             throw new DebuggerException(LOCK_NOT_ACQUIRED);
 
         return threads;
@@ -123,13 +123,13 @@ public class VmDebuggerState {
     }
 
     public List<JdwpEventRequest> jdwpEventRequests() {
-        if (!centralLock.isHeldByCurrentThread())
+        if (!Thread.holdsLock(centralLock))
             throw new DebuggerException(LOCK_NOT_ACQUIRED);
 
         return jdwpEventRequests;
     }
 
-    public ReentrantLock centralLock() {
+    public Object centralLock() {
         return centralLock;
     }
 }

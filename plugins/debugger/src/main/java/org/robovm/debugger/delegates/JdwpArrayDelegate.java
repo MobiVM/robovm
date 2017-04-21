@@ -132,6 +132,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
     public VmArrayInstance createArrayInstance(long objectPtr, ClassInfoArrayImpl ci) {
         // skip object structure and read length
         long dataPtr = objectPtr + delegates.runtime().deviceMemoryReader().pointerSize() * 2;
+        delegates.runtime().deviceMemoryReader().setAddress(dataPtr);
         int length = delegates.runtime().deviceMemoryReader().readInt32();
 
         // calculate data pointer
@@ -148,18 +149,19 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
     }
 
     public String readArrayString(VmArrayInstance instance, int index, int length) {
-        if (!instance.elementType().isPrimitive() || "C".equals(instance.elementType().signature())) {
+        if (!instance.elementType().isPrimitive() || !"C".equals(instance.elementType().signature())) {
             throw new DebuggerException("Wrong array element type while trying to get string from array: " +
                     instance.elementType().signature());
         }
 
-        if (index < 0 || index <= 0 || index + length >= instance.length())
+        if (index < 0 || length <= 0 || index + length > instance.length())
             throw new DebuggerException(JdwpConsts.Error.INVALID_LENGTH);
 
         ClassInfoPrimitiveImpl primType = (ClassInfoPrimitiveImpl) instance.elementType();
         delegates.runtime().deviceMemoryReader().setAddress(instance.dataPtr() + primType.size() * index);
         byte[] bytes = delegates.runtime().deviceMemoryReader().readBytes(primType.size() * length);
-        return new String(bytes, Charset.forName("UTF-16"));
+        // using UTF-16LE here as target is little endian and each char is short which means that low byte will go first
+        return new String(bytes, Charset.forName("UTF-16LE"));
     }
 
     @Override

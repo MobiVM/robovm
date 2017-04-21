@@ -153,13 +153,13 @@ public class HooksChannel implements IHooksApi {
                 }
             }
         } catch (Throwable e) {
-            e.printStackTrace();
+            throw new DebuggerException(e);
         }
 
     }
 
 
-    private <T> T sendCommand(byte cmd, ByteBufferPacket payload) {
+    private HooksCmdResponse sendCommand(byte cmd, ByteBufferPacket payload) {
         if (Thread.currentThread().getId() == socketThread.getId())
             throw new DebuggerException("Send command should not be invoked from response listening thread due blocking of last");
 
@@ -193,22 +193,26 @@ public class HooksChannel implements IHooksApi {
         log.debug("received " + holder.response);
 
         //noinspection unchecked
-        return (T) holder.response;
+        return holder.response;
     }
 
     @Override
     public byte[] readMemory(long addr, int numBytes) {
+        log.debug("readMemory @" + Long.toHexString(addr) + ", " + numBytes);
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(addr);
         packet.writeInt32(numBytes);
-        return sendCommand(HookConsts.commands.READ_MEMORY, packet);
+
+        HooksCmdResponse resp = sendCommand(HookConsts.commands.READ_MEMORY, packet);
+        return resp.result();
     }
 
     @Override
     public String readCString(long addr) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(addr);
-        return sendCommand(HookConsts.commands.READ_CSTRING, packet);
+        HooksCmdResponse resp = sendCommand(HookConsts.commands.READ_CSTRING, packet);
+        return resp.result();
     }
 
     @Override
@@ -251,7 +255,9 @@ public class HooksChannel implements IHooksApi {
     public long allocate(int numBytes) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeInt32(numBytes);
-        return sendCommand(HookConsts.commands.ALLOCATE, packet);
+        HooksCmdResponse resp = sendCommand(HookConsts.commands.ALLOCATE, packet);
+        return resp.result();
+
     }
 
     @Override
