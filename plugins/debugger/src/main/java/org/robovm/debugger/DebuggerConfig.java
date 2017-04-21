@@ -119,6 +119,8 @@ public class DebuggerConfig {
         boolean logToConsole = false;
         boolean jdwpClienMode = false;
         int jdwpPort = -1;
+        File hooksPortFile = null;
+        int hooksPort = -1;
 
         try {
             int i = 0;
@@ -140,6 +142,10 @@ public class DebuggerConfig {
                     jdwpClienMode = true;
                 } else if ("-jdwpPort".equals(args[i])) {
                     jdwpPort = Integer.valueOf(args[++i]);
+                } else if ("-hooksPortFile".equals(args[i])) {
+                    hooksPortFile = new File(args[++i]);
+                } else if ("-hooksPort".equals(args[i])) {
+                    hooksPort = Integer.valueOf(args[++i]);
                 } else {
                     throw new IllegalArgumentException("Unrecognized option: " + args[i]);
                 }
@@ -168,6 +174,8 @@ public class DebuggerConfig {
         builder.setLogToConsole(logToConsole);
         builder.setJdwpClienMode(jdwpClienMode);
         builder.setJdwpPort(jdwpPort);
+        builder.setHooksPortFile(hooksPortFile);
+        builder.setHooksPort(hooksPort);
 
         return builder.build();
     }
@@ -181,16 +189,19 @@ public class DebuggerConfig {
 
         ps.println("Usage: Debugger [-options]");
         ps.println("Options:");
-        ps.println("  -sourcepath <list> : separated list of directories, JAR archives, and ZIP \n"
-                + "                        archives to search for source files.");
-        ps.println("  -arch <name>          The name of the LLVM arch to compile for. Allowed values\n"
-                + "                        are 'auto', 'x86', 'x86_64', 'thumbv7', 'arm64'. Default is\n"
-                + "                        'auto' which means use the LLVM default.");
-        ps.println("  -appfile<file>        The path to compiled application file");
-        ps.println("  -logdir <dir>         The directory to put log file to. Default is temp dir");
-        ps.println("  -verbose              Output log messages to console");
+        ps.println("  -sourcepath <list> :   separated list of directories, JAR archives, and ZIP \n"
+                + "                          archives to search for source files.");
+        ps.println("  -arch <name>           The name of the LLVM arch to compile for. Allowed values\n"
+                + "                          are 'auto', 'x86', 'x86_64', 'thumbv7', 'arm64'. Default is\n"
+                + "                         'auto' which means use the LLVM default.");
+        ps.println("  -appfile<file>         The path to compiled application file");
+        ps.println("  -logdir <dir>          The directory to put log file to. Default is temp dir");
+        ps.println("  -verbose               Output log messages to console");
         ps.println("  -jdwpClientMode        Specifies that JDWP server shall connect instead of listening");
-        ps.println("  -jdwpPort <value>     TCP port JDWP server should listen or connects to");
+        ps.println("  -jdwpPort <value>      TCP port JDWP server should listen or connects to");
+        ps.println("  -hooksPortFile <value> File where target have written TCT port simulator is listened on for debugger");
+        ps.println("  -hooksPort <value>     TCT port simulator is listened on for debugger");
+
 
         return new String(baos.toByteArray(), StandardCharsets.UTF_8);
     }

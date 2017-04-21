@@ -59,7 +59,7 @@ public class VmDebuggerState {
 
             // load and parse binary, will dig some useful info from it
             appFileLoader  = new MachOLoader(appFile, MachOLoader.cpuTypeFromString(arch.toString()));
-            appFileDataMemoryReader = appFileLoader.readDataSegment();
+            appFileDataMemoryReader = appFileLoader.memoryReader();
 
             // now load all classes info
             classInfoLoader = new ClassInfoLoader(classRefIdHolder, methodsRefIdHolder, fieldRefIdHolder,

@@ -212,7 +212,7 @@ public class ClassInfoLoader {
                     new RefIdHolder<>(RefIdHolder.RefIdType.CLASS_TYPE),
                     new RefIdHolder<>(RefIdHolder.RefIdType.METHOD_TYPE),
                     new RefIdHolder<>(RefIdHolder.RefIdType.FIELD_TYPE),
-                    loader, loader.readDataSegment());
+                    loader, loader.memoryReader());
             for (ClassInfo info : classInfoLoader.dataInfos)
                 ((ClassInfoImpl)info).loadData(classInfoLoader);
             System.out.println("Loaded " + classInfoLoader.signatureToDataInfo.size() + " classes");

@@ -94,8 +94,11 @@ public class ClassInfoImpl extends ClassInfo {
         // read little bit more to get super class name
         if (!isInterface()) {
             reader.skip(2 + 2 + 2); // interfaceCount +  fieldCount +  methodCount
-            superclassName = reader.readStringZAtPtr(reader.readPointer());
-            superclassSignature = "L" + superclassName + ";";
+            long superNamePtr = reader.readPointer();
+            if (superNamePtr != 0) {
+                superclassName = reader.readStringZAtPtr(superNamePtr);
+                superclassSignature = "L" + superclassName + ";";
+            }
         }
     }
 

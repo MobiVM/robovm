@@ -54,7 +54,7 @@ public class MachOLoader {
 
         MachHeader header = parseMachHeader(rootReader, magic);
         if (header.cputype() != cpuType)
-            throw new MachOException("CPU type " + cpuType + " is not present in mach-o file");
+            throw new MachOException("CPU type " + Integer.toHexString(cpuType) + " is not present in mach-o file");
         machOHeader = header;
         machOCpuType = cpuType;
 
@@ -161,41 +161,35 @@ public class MachOLoader {
         return nlist.n_value();
     }
 
-    public ByteBufferMemoryReader readSymbolData(String symbolName) {
-        // not likely to happen but data segment is required
-        if (dataSegment == null)
-            return null;
-        Long nlistAddr = symTable.get("_" + symbolName);
-        if (nlistAddr == null)
-            return null;
+    public ByteBufferMemoryReader memoryReader() {
+        // after test it clear that some data is read from __TEXT section (consts) so need to pick proper sections into
+        // list
+        List<ByteBufferMemoryReader.MemoryRegion> regions = new ArrayList<>();
+        for (SegmentCommand segCmd : segments) {
+            boolean isText = "__TEXT".equals(segCmd.segname());
+            boolean isData = "__DATA".equals(segCmd.segname());
+            if (!isText && !isData)
+                continue;
+            for (Section sec : segCmd.sections()) {
+                if (isText) {
+                    if (!"__const".equals(sec.sectname()))
+                        continue;
+                } else if (isData) {
+                    if (!"__const".equals(sec.sectname()) && !"__data".equals(sec.sectname()))
+                        continue;
+                } else {
+                    continue;
+                }
 
-        rootReader.setPosition(nlistAddr);
-        NList nlist = NList.OBJECT_READER(machOHeader.is64b()).readObject(rootReader, null);
-
-        // check if belongs to data segment s
-        int sectNo = nlist.n_sect() - dataSegment.firstSectionIdx();
-        if (sectNo < 0 || sectNo >= dataSegment.sections().length)
-            return null;
-        Section section = dataSegment.sections()[sectNo];
-
-        // check if this section is mapped in file
-        if (section.offset() == 0 || section.size() == 0)
-            return null;
-
-        // return entire data segment reader, just set position to start of data
-        ByteBufferMemoryReader dataSegmentReader = readDataSegment();
-        dataSegmentReader.setAddress(nlist.n_value());
-        return dataSegmentReader;
-    }
-
-    public ByteBufferMemoryReader readDataSegment() {
+                regions.add(new ByteBufferMemoryReader.MemoryRegion(sec.addr(), sec.addr() + sec.size() - 1, (int)sec.offset()));
+            }
+        }
         // not likely to happen but data segment is required
         if (dataSegment == null)
             return null;
 
-        // TODO: it is assumed that data segment is not interrupted and represent one piece in file
-        return new ByteBufferMemoryReader(rootReader, (int)dataSegment.fileoff(), (int)dataSegment.filesize(),
-                dataSegment.vmaddr(), isPatform64Bit());
+        return new ByteBufferMemoryReader(rootReader, 0, rootReader.size(), isPatform64Bit(),
+                regions.toArray(new ByteBufferMemoryReader.MemoryRegion[regions.size()]));
     }
 
     public static void main(String[] argv) {
