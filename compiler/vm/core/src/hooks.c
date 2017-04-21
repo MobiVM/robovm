@@ -207,7 +207,7 @@ static jlong readChannelLong(int socket, ChannelError* error) {
 
 static jboolean checkError(ChannelError* error) {
     if(error->errorCode) {
-        DEBUGF("Error: %s, errno: ", error->message, error->errorCode);
+        DEBUGF("Error: %s, errno: %d", error->message, error->errorCode);
         DEBUG("Closing client socket");
         close(clientSocket);
         return TRUE;
