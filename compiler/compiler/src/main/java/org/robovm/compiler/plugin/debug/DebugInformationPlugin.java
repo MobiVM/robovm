@@ -384,8 +384,12 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                                 variableBudnle.startLine, variableBudnle.finalLine, dbgVariableInfo.register(), dbgVariableInfo.offset()));
                     }
 
+                    // remove class prefix from method name
+                    String methodName = dbgMethodInfo.signature();
+                    if (methodName.startsWith("[J]" + clazz.getClassName() + "."))
+                        methodName = methodName.substring(clazz.getClassName().length() + 4);
                     // save method
-                    methods.add(new DebugMethodInfo(dbgMethodInfo.signature(),  variables.toArray(new DebugVariableInfo[variables.size()]),
+                    methods.add(new DebugMethodInfo(methodName,  variables.toArray(new DebugVariableInfo[variables.size()]),
                             methodBundle.startLine, methodBundle.finalLine));
                 }
 
