@@ -1371,6 +1371,9 @@ void _rvmHookExceptionRaised(Env* env, Object* throwable, jboolean isCaught) {
     // we might be invoking a function due to a debugger
     // request while suspended. Don't report the exception
     // in that case.
+    // dkimitsa: also all exception are ignored till application code is started otherwise debugger got bored with
+    //           bunch of ErrnoException during VM initialization. As result it stops on it and debugger has to resume
+    //           thread which will break in final wait_for_resume startup logic
     if(debugEnv->ignoreExceptions) {
         return;
     }

@@ -295,6 +295,8 @@ Env* rvmCreateEnv(VM* vm) {
         DebugEnv* debugEnv = (DebugEnv*)env;
         debugEnv->reqId = 0;
         debugEnv->suspended = FALSE;
+        // dkimitsa: ignore VM initialization exception till app entry point as these exc wil will break wait_for_resume startup logic
+        debugEnv->ignoreExceptions = TRUE;
     }
     rvmInitJNIEnv(env);
     return env;
@@ -478,6 +480,11 @@ jboolean rvmRun(Env* env) {
     Options* options = env->vm->options;
     Class* clazz = NULL;
 
+    if(options->enableHooks) {
+        // dkimitsa: enable breakpoints right before app start
+        DebugEnv* debugEnv = (DebugEnv*)env;
+        debugEnv->ignoreExceptions = FALSE;
+    }
     rvmHookBeforeAppEntryPoint(env, options->mainClass);
     clazz = rvmFindClassUsingLoader(env, options->mainClass, systemClassLoader);
     if (clazz) {
