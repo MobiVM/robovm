@@ -56,6 +56,7 @@ import org.robovm.compiler.llvm.Store;
 import org.robovm.compiler.llvm.StructureConstant;
 import org.robovm.compiler.llvm.StructureConstantBuilder;
 import org.robovm.compiler.llvm.StructureType;
+import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
@@ -605,7 +606,14 @@ public class ClassCompiler {
             byte[] debugDataBytes = DebugInformationTools.dumpDebugInfo(debugInfo);
             String debugInfoSymbol = Symbols.debugInfoSymbol(clazz.getInternalName());
             debugInfoMb = new ModuleBuilder();
-            debugInfoMb.addGlobal(new Global(debugInfoSymbol, new ByteArrayConstant(debugDataBytes), true));
+            Global debugInfoSymbolGlobal = new Global(debugInfoSymbol, new ByteArrayConstant(debugDataBytes), true);
+            debugInfoMb.addGlobal(debugInfoSymbolGlobal);
+
+            // also need to add reference to @llvm.used otherwise linker will drop out this data as not used
+            Global usedGlobal = new Global("llvm.used", Linkage.appending, new ConstantBitcast(debugInfoSymbolGlobal.ref(), Type.I8_PTR),
+                    false, "llvm.metadata");
+            debugInfoMb.addGlobal(usedGlobal);
+
 
             if (config.isDumpIntermediates()) {
                 File f = new File(config.getDebugInfoOFile(clazz).getAbsolutePath() + ".dump");
