@@ -65,9 +65,13 @@ public class ByteBufferMemoryReader extends RangeByteBufferReader {
     public long address() {
         if (activeRegion == null)
             throw new IllegalArgumentException("Address has not been set!");
-        return activeRegion.startAddr + activeRegion.offset - position();
+        return activeRegion.startAddr + (position() - activeRegion.offset);
     }
 
+    @Override
+    public void skip(int bytesToSkip) {
+        setAddress(address() + bytesToSkip);
+    }
 
     public String readStringZAtPtr(long addr) {
         MemoryRegion r = findRegion(addr);

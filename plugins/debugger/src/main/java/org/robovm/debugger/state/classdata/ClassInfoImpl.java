@@ -57,7 +57,7 @@ public class ClassInfoImpl extends ClassInfo {
     private DebugObjectFileInfo debugInfo;
 
     // out of header position
-    private int endOfHeaderPos;
+    private long endOfHeaderPos;
 
     public ClassInfoImpl() {
         super(Type.CLASS);
@@ -89,7 +89,7 @@ public class ClassInfoImpl extends ClassInfo {
         // refer to classinfo.c/readClassInfo for some magic details
 
         // save position to continue once loadData is called
-        endOfHeaderPos = reader.position();
+        endOfHeaderPos = reader.address();
 
         // read little bit more to get super class name
         if (!isInterface()) {
@@ -112,7 +112,7 @@ public class ClassInfoImpl extends ClassInfo {
 
 
         ByteBufferMemoryReader reader = loader.reader;
-        reader.setPosition(endOfHeaderPos);
+        reader.setAddress(endOfHeaderPos);
         int interfaceCount = reader.readInt16();
         int fieldCount = reader.readInt16();
         int methodCount = reader.readInt16();
@@ -153,11 +153,7 @@ public class ClassInfoImpl extends ClassInfo {
             return null;
         }
 
-        // read pointer value
-        loader.reader.setAddress(addr);
-        addr = loader.reader.readPointer();
-
-        // set address to pointer value and slice to byte buffer
+        // read value
         loader.reader.setAddress(addr);
         ByteBuffer buffer = loader.reader.sliceToByteBuffer();
         return DebugInformationTools.readDebugInfo(buffer);

@@ -104,17 +104,25 @@ public class DebugInformationTools {
             methods[methodIdx] = new DebugMethodInfo(methodSignature, variables, methodStartLine, methodEndLine);
         }
 
-        return null;
+        return new DebugObjectFileInfo(methods);
     }
 
     static String getStringWithLen(ByteBuffer buffer) {
         int strLen = buffer.getInt();
+        if (strLen == 0)
+            return "";
         String str = null;
         try {
-             str = new String(buffer.array(), buffer.position(), strLen, "UTF-8");
+            if (buffer.hasArray()) {
+                str = new String(buffer.array(), buffer.position(), strLen, "UTF-8");
+                buffer.position(buffer.position() + strLen);
+            } else {
+                byte[] buff = new byte[strLen];
+                buffer.get(buff);
+                str = new String(buff, "UTF-8");
+            }
         } catch (UnsupportedEncodingException ignored) {
         }
-        buffer.position(buffer.position() + strLen);
 
         return str;
     }
