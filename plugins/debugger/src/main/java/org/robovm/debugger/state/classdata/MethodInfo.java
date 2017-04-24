@@ -70,7 +70,8 @@ public class MethodInfo extends BaseModifiersInfo {
                     break;
             }
         } else {
-            desc = reader.readStringZAtPtr(reader.readPointer());
+            // combine name + parameter definition to make signature
+            desc = name + reader.readStringZAtPtr(reader.readPointer());
         }
 
         if ((flags & ClassDataConsts.methodinfo.ATTRIBUTES) != 0) {

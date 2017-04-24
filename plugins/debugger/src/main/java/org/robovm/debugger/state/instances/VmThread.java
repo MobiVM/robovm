@@ -81,4 +81,9 @@ public class VmThread extends VmInstance {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "thread (" + refId() + ", " + name + ", " + threadGroup.name() + ")";
+    }
 }

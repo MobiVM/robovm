@@ -40,4 +40,9 @@ public class EventLocationPredicate extends EventPredicate {
         return classId == location.classInfo().refId() && methodId == location.methodInfo().refId() &&
                 index == location.lineNumber();
     }
+
+    @Override
+    public String toString() {
+        return "Location{" + "classId=" + classId + ", methodId=" + methodId + ", index=" + index +"} ";
+    }
 }

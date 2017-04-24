@@ -34,4 +34,8 @@ public class EventExceptionPredicate extends EventPredicate {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "exceptionType=" + refTypeId + "(caught=" + caught + ", uncaught=" + uncaught + ")";
+    }
 }

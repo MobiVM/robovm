@@ -26,7 +26,7 @@ public class JdwpRefTypeInterfacesHandler implements IJdwpRequestHandler {
             ClassInfo classInfo = state.classInfoLoader().classInfoByRefId(referenceTypeID);
             if (classInfo == null)
                 return JdwpConsts.Error.INVALID_OBJECT;
-            if (!classInfo.isClass() || !classInfo.isArray())
+            if (!classInfo.isClass() && !classInfo.isArray())
                 return JdwpConsts.Error.INVALID_CLASS;
 
             ClassInfo[] interfaces = classInfo.interfaces(state.classInfoLoader());

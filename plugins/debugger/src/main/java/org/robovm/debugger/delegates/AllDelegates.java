@@ -92,22 +92,29 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
         this.threads = new ThreadDelegate(this);
         this.sharedTargetPacket = new ByteBufferPacket(state.isTarget64bit());
         this.sharedTargetPacket.setByteOrder(ByteOrder.LITTLE_ENDIAN); // targets are little endian
+        this.events = new JdwpEventCenterDelegate(this);
     }
 
     public void onConnectedToTarget(IHooksApi api, long runtimeMemoryOffset) {
-        this.hooksApi = api;
-        this.runtime = new RuntimeUtils(this, runtimeMemoryOffset);
-        this.instances = new InstanceUtils(this);
-        this.stackframes = new StackFrameDelegate(this);
-        this.events = new JdwpEventCenterDelegate(this);
-        this.arrays = new JdwpArrayDelegate(this);
+        synchronized (state.centralLock()) {
+            this.hooksApi = api;
+            this.runtime = new RuntimeUtils(this, runtimeMemoryOffset);
+            this.instances = new InstanceUtils(this);
+            this.stackframes = new StackFrameDelegate(this);
+            this.arrays = new JdwpArrayDelegate(this);
 
-        // ping event center that is attached to start picking data
-        events.onConnectedToTarget();
+            // ping event center that is attached to start picking data
+            events.onConnectedToTarget();
+        }
     }
 
     public void onConnectedToJdwp(IJdwpServerApi api) {
-        jdwpServerApi = api;
+        synchronized (state.centralLock()) {
+            jdwpServerApi = api;
+
+            // ping event center that there is a connection to JDWP
+            events.onConnectedToJdpw();
+        }
     }
 
     public void shutdown() {

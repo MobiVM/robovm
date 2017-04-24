@@ -85,7 +85,7 @@ public class JdwpEventReqSetHandler implements IJdwpRequestHandler {
                         // Required class pattern. Matches are limited to exact matches of the given class pattern and matches of
                         // patterns that begin or end with '*'; for example, "*.Foo" or "java.*".
                         String machPattern = payload.readStringWithLen();
-                        eventPredicates.add(new EventClassNameMatchPredicate(modKind, machPattern, true));
+                        eventPredicates.add(new EventClassNameMatchPredicate(modKind, machPattern, false));
                         break;
 
                     case JdwpConsts.EventModifier.CLASS_EXCLUDE:
@@ -158,10 +158,11 @@ public class JdwpEventReqSetHandler implements IJdwpRequestHandler {
                         throw new DebuggerException("unsupported modifier kind " + modKind, JdwpConsts.Error.NOT_IMPLEMENTED);
                 }
 
-                // parsed all data, register event
-                int requestId = center.jdwpSetEventRequest(eventKind, suspendPolicy, eventPredicates);
-                output.writeInt32(requestId);
             }
+
+            // parsed all data, register event
+            int requestId = center.jdwpSetEventRequest(eventKind, suspendPolicy, eventPredicates);
+            output.writeInt32(requestId);
 
             return JdwpConsts.Error.NONE;
         } catch (DebuggerException e) {

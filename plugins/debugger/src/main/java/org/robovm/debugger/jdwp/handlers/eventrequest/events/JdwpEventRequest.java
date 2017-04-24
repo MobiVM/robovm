@@ -1,5 +1,6 @@
 package org.robovm.debugger.jdwp.handlers.eventrequest.events;
 
+import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPredicate;
 
 import java.util.List;
@@ -58,8 +59,8 @@ public class JdwpEventRequest {
     public String toString() {
         return "JdwpEventRequest{" +
                 "requestId=" + requestId +
-                ", eventKind=" + eventKind +
-                ", suspendPolicy=" + suspendPolicy +
+                ", eventKind=" + JdwpConsts.stringEventKind(eventKind) +
+                ", suspendPolicy=" + JdwpConsts.stringSuspendPolicy(suspendPolicy) +
                 ", predicates=" + predicates +
                 '}';
     }

@@ -4,6 +4,7 @@ package org.robovm.debugger.jdwp;
  * @author Demyan Kimitsa
  */
 public class JdwpConsts {
+
     public static class Error {
         public static final int NONE = 0;
         public static final int INVALID_THREAD = 10;
@@ -182,4 +183,51 @@ public class JdwpConsts {
         public static final int ANNOTATION = 0x2000;
         public static final int ENUM = 0x4000;
     }
+
+    /**
+     * Converts event kind value to string presentation
+     */
+    public static String stringEventKind(byte eventKind) {
+        switch (eventKind) {
+            case EventKind.SINGLE_STEP: return "SINGLE_STEP";
+            case EventKind.BREAKPOINT: return "BREAKPOINT";
+            case EventKind.FRAME_POP: return "FRAME_POP";
+            case EventKind.EXCEPTION: return "EXCEPTION";
+            case EventKind.USER_DEFINED: return "USER_DEFINED";
+            case EventKind.THREAD_START: return "THREAD_START";
+            case EventKind.THREAD_DEATH: return "THREAD_DEATH";
+            case EventKind.CLASS_PREPARE: return "CLASS_PREPARE";
+            case EventKind.CLASS_UNLOAD: return "CLASS_UNLOAD";
+            case EventKind.CLASS_LOAD: return "CLASS_LOAD";
+            case EventKind.FIELD_ACCESS: return "FIELD_ACCESS";
+            case EventKind.FIELD_MODIFICATION: return "FIELD_MODIFICATION";
+            case EventKind.EXCEPTION_CATCH: return "EXCEPTION_CATCH";
+            case EventKind.METHOD_ENTRY: return "METHOD_ENTRY";
+            case EventKind.METHOD_EXIT: return "METHOD_EXIT";
+            case EventKind.METHOD_EXIT_WITH_RETURN_VALUE: return "METHOD_EXIT_WITH_RETURN_VALUE";
+            case EventKind.MONITOR_CONTENDED_ENTER: return "MONITOR_CONTENDED_ENTER";
+            case EventKind.MONITOR_CONTENDED_ENTERED: return "MONITOR_CONTENDED_ENTERED";
+            case EventKind.MONITOR_WAIT: return "MONITOR_WAIT";
+            case EventKind.MONITOR_WAITED: return "MONITOR_WAITED";
+            case EventKind.VM_START: return "VM_START";
+            case EventKind.VM_DEATH: return "VM_DEATH";
+            case EventKind.VM_DISCONNECTED: return "VM_DISCONNECTED";
+            default:
+                return Byte.toString(eventKind);
+        }
+    }
+
+    /**
+     * Converts suspend policy value to string presentation
+     */
+    public static String stringSuspendPolicy(byte suspendPolicy) {
+        switch (suspendPolicy) {
+            case SuspendPolicy.ALL: return "ALL";
+            case SuspendPolicy.EVENT_THREAD: return "EVENT_THREAD";
+            case SuspendPolicy.NONE: return "NONE";
+            default:
+                return Byte.toString(suspendPolicy);
+        }
+    }
+
 }

@@ -21,10 +21,12 @@ import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPre
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventStepModPredicate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventThreadRefIdPredicate;
 import org.robovm.debugger.state.classdata.ClassInfo;
+import org.robovm.debugger.state.classdata.ClassInfoImpl;
 import org.robovm.debugger.state.classdata.MethodInfo;
 import org.robovm.debugger.state.instances.VmInstance;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
+import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
 import java.nio.ByteOrder;
@@ -40,6 +42,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * Delegate that handles events from hooks.c and also event requests from JDWP
  */
 public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
+    private DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
 
     // all delegates and logic parts
     private final AllDelegates delegates;
@@ -64,6 +67,15 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
      */
     private LinkedBlockingQueue<HooksEventPayload> hooksEventsQueue = new LinkedBlockingQueue<>();
 
+    // counter of request set
+    private int jdwpEventRequestCounter = 100;
+
+    // list of active event filters as received from JDWP
+    private List<JdwpEventRequest> jdwpEventRequests = new ArrayList<>();
+
+    /** local flag that VM was resumed */
+    private boolean vmResumed;
+
 
     public JdwpEventCenterDelegate(AllDelegates delegates) {
         this.delegates = delegates;
@@ -79,11 +91,39 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     public void onConnectedToTarget() {
         // start thread to listen for events
         this.hooksEventsThread = delegates.toolBox().createThread(() -> processEventsCycle(), "EventCenterThread");
+
+        // there is a need to resume VM and do other things with target itself
+        // do this in entry of that tread as it is not allowed here -- as this callback is being called from
+        // hooks socket listening thread which will cause deadlock
         this.hooksEventsThread.start();
-   }
+    }
 
 
-   public void postEventFromHooks(HooksEventPayload eventPayload) {
+    /**
+     * Called once JDPW connection is established
+     */
+    public void onConnectedToJdpw() {
+        // if there is connection to hooks established -- resume VM
+        resumeVm();
+    }
+
+
+    /**
+     * Resumes target VM
+     */
+    private void resumeVm() {
+        if (vmResumed)
+            return;
+        vmResumed = true;
+
+        if (delegates.hooksApi() == null)
+            throw new DebuggerException("Hooks API is required to be set to resume VM");
+
+        delegates.hooksApi().threadResume(0);
+    }
+
+
+    public void postEventFromHooks(HooksEventPayload eventPayload) {
        // can't directly handle event payload here as callback is called from HooksChannel loop
        // as handling events often will cause sending message back to device which will cause
        // blocking of receiving thread on waiting for response
@@ -146,15 +186,15 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         }
 
         // meanwhile just adding items to the list
-        int requestId = delegates.state().allocateJdwpEventRequestId();
+        int requestId = allocateJdwpEventRequestId();
         JdwpEventRequest request = new JdwpEventRequest(requestId, eventKind, suspendPolicy, predicates);
 
-        delegates.log().debug("jdwpSetEventRequest: " + request);
+        log.debug("jdwpSetEventRequest: " + request);
 
         // apply event to target before adding it to list as it could fail with exception due wrong location etc
-        onEventRequestSet(request);
+        applyRequestToTarget(request);
 
-        delegates.state().jdwpEventRequests().add(request);
+        jdwpEventRequests.add(request);
         return requestId;
     }
 
@@ -167,14 +207,14 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
      */
     @Override
     public short jdwpClearEventRequest(byte eventKind, int requestID) {
-        Iterator<JdwpEventRequest> it = delegates.state().jdwpEventRequests().iterator();
+        Iterator<JdwpEventRequest> it = jdwpEventRequests.iterator();
         while (it.hasNext()) {
             JdwpEventRequest req = it.next();
             if (req.requestId() == requestID) {
                 if (req.eventKind() != eventKind)
                     return JdwpConsts.Error.INVALID_EVENT_TYPE;
 
-                onEventRequestRemoved(req);
+                removeRequestFromTarget(req);
                 it.remove();
 
                 return JdwpConsts.Error.NONE;
@@ -190,11 +230,11 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
      */
     @Override
     public void jdwpClearAllBreakpoints() {
-        Iterator<JdwpEventRequest> it = delegates.state().jdwpEventRequests().iterator();
+        Iterator<JdwpEventRequest> it = jdwpEventRequests.iterator();
         while (it.hasNext()) {
             JdwpEventRequest req = it.next();
             if (req.eventKind() == JdwpConsts.EventKind.BREAKPOINT) {
-                onEventRequestRemoved(req);
+                removeRequestFromTarget(req);
                 it.remove();
             }
         }
@@ -216,7 +256,11 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         // TODO: implement
     }
 
-    private void onEventRequestSet(JdwpEventRequest request) {
+    private void applyRequestToTarget(JdwpEventRequest request) {
+        // doesn't do anything if there is no connection with hooks yet
+        if (delegates.hooksApi() == null)
+            return;
+
         if (requestIdsInTarget.contains(request.requestId()))
             throw new DebuggerException("Request with id " + request.requestId() + " already registered with target");
 
@@ -248,7 +292,11 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         requestIdsInTarget.add(request.requestId());
     }
 
-    private void onEventRequestRemoved(JdwpEventRequest request) {
+    private void removeRequestFromTarget(JdwpEventRequest request) {
+        // doesn't do anything if there is no connection with hooks yet
+        if (delegates.hooksApi() == null)
+            return;
+
         // check if this request has touched the targets
         if (!requestIdsInTarget.contains(request.requestId()))
             return;
@@ -266,12 +314,20 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
 
     private void processEventsCycle() {
-        // TODO: send VM_START event
+        synchronized (delegates.state().centralLock()) {
+            if (delegates.jdwpServerApi() != null) {
+                // TODO: will not send VM_START as there is no main thread value yet
 
-        // start of working with target device/simulator
-        delegates.hooksApi().threadResume(0); // TODO: remove from here ! 
+                // resume application (on debugger attached) and
+                resumeVm();
 
-        // TODO: apply all possible pending breakpoints here
+                // apply breakpoints if any
+                for (JdwpEventRequest request : jdwpEventRequests) {
+                    applyRequestToTarget(request);
+                }
+            }
+        }
+
 
         while (!hooksEventsThread.isInterrupted()) {
             HooksEventPayload eventPayload = null;
@@ -372,8 +428,10 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         jdwpEventPayload.reset();
         if (delegates.jdwpServerApi() != null) {
             // there is JDWP server attached
-            List<JdwpEventRequest> requests = delegates.state().jdwpEventRequests();
-            for (JdwpEventRequest request : requests) {
+            for (JdwpEventRequest request : jdwpEventRequests) {
+                // check if event type matched
+                if (eventData.eventKind() != request.eventKind())
+                    continue;
                 if (!request.test(eventData))
                     continue;
 
@@ -401,10 +459,13 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         // mark class info as loaded
         ClassInfo classInfo = delegates.state().classInfoLoader().onClassLoaded(delegates.runtime().toMachOAddr(event.classInfo()),
                 event.clazz());
+        if (!classInfo.isClass())
+            throw new DebuggerException("Class load event for not class " + classInfo.signature());
+
         VmThread thread = event.threadObj() != 0 ? getThread(event.eventId(), event.threadObj()) : null;
 
         // jdpw object
-        return new JdwpClassLoadedEventData(JdwpConsts.EventKind.CLASS_PREPARE, thread, classInfo);
+        return new JdwpClassLoadedEventData(JdwpConsts.EventKind.CLASS_PREPARE, thread, (ClassInfoImpl) classInfo);
     }
 
     /**
@@ -421,6 +482,8 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
             thread = delegates.instances().instanceByPointer(event.threadObj(), event.thread(), true);
             delegates.state().threads().add(thread);
 
+            log.debug("THREAD_STARTED: " + thread);
+
             // doesn't generate any event to JDWP
             return null;
         }
@@ -430,11 +493,16 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
         switch (event.eventId()) {
             case HookConsts.events.THREAD_RESUMED:
+                log.debug("THREAD_RESUMED: " + thread);
+
                 thread.setStatus(VmThread.Status.RUNNING);
                 // there is no corresponding JDPW event
+
                 return null;
 
             case HookConsts.events.THREAD_DETTACHED:
+                log.debug("THREAD_DETTACHED: " + thread);
+
                 // remove thread
                 delegates.state().referenceRefIdHolder().removeObject(thread);
                 delegates.state().threads().remove(thread);
@@ -452,13 +520,13 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
             case HookConsts.events.EXCEPTION:
                 ClassInfo ci = delegates.instances().classInfoLoader().resolveObjectRuntimeDataTypeInfo(event.throwable());
                 VmInstance exception = new VmInstance(event.throwable(), ci);
-                return new JdwpThreadStoppedEventData(JdwpConsts.EventKind.EXCEPTION, thread, callStack[0], exception);
+                return new JdwpThreadStoppedEventData(JdwpConsts.EventKind.EXCEPTION, thread, topTrace, exception, event.isCaught());
 
             case HookConsts.events.THREAD_STEPPED:
-                return new JdwpThreadStoppedEventData(JdwpConsts.EventKind.SINGLE_STEP, thread, callStack[0], null);
+                return new JdwpThreadStoppedEventData(JdwpConsts.EventKind.SINGLE_STEP, thread, topTrace);
 
             case HookConsts.events.BREAKPOINT:
-                return new JdwpThreadStoppedEventData(JdwpConsts.EventKind.BREAKPOINT, thread, callStack[0], null);
+                return new JdwpThreadStoppedEventData(JdwpConsts.EventKind.BREAKPOINT, thread, topTrace);
 
             default:
                 throw new DebuggerException("Unsupported HooksThreadStoppedEventPayload eventId " + event.eventId());
@@ -474,7 +542,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         }
 
         if (result.size() == 0)
-            delegates.log().error(HookConsts.commandToString(eventId) + ": Empty callstack!");
+            log.error(HookConsts.commandToString(eventId) + ": Empty callstack!");
 
         return result.toArray(new VmStackTrace[result.size()]);
     }
@@ -483,7 +551,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         String signature = "L" + payload.clazzName() + ";";
         ClassInfo classInfo = delegates.state().classInfoLoader().classInfoBySignature(signature);
         if (classInfo == null) {
-            delegates.log().error(HookConsts.commandToString(eventId) + ": Failed to get get stack entry. Class is not known " +
+            log.error(HookConsts.commandToString(eventId) + ": Failed to get get stack entry. Class is not known " +
                     payload.clazzName());
             return null;
         }
@@ -500,7 +568,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         }
 
         if (methodInfo == null) {
-            delegates.log().error(HookConsts.commandToString(eventId) + ": Failed to get get stack entry. Method not found for impl " +
+            log.error(HookConsts.commandToString(eventId) + ": Failed to get get stack entry. Method not found for impl " +
                     Long.toHexString(payload.impl()) + " class " + payload.clazzName());
             return null;
         }
@@ -514,5 +582,9 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
             throw new DebuggerException(HookConsts.commandToString(eventId) +
                     ": Thread " + Long.toHexString(threadObj) + " is not recognized!");
         return thread;
+    }
+
+    private int allocateJdwpEventRequestId() {
+        return jdwpEventRequestCounter++;
     }
 }

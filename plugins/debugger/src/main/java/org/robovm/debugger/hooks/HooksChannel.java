@@ -130,6 +130,8 @@ public class HooksChannel implements IHooksApi {
                 if (payloadSize != 0)
                     buffer.fillFromInputStream(inputStream, (int) payloadSize);
 
+//                log.debug("Received: " + reqId + " cmd:" + cmd);
+
                 if (reqId == 0) {
                     // looks to be event
                     if (!this.isEvent(cmd))
@@ -143,8 +145,6 @@ public class HooksChannel implements IHooksApi {
                     HookReqHolder holder = requestsInProgress.remove(reqId);
                     if (holder == null)
                         throw new DebuggerException("Unexpected response id " + reqId + ", cmd = " + cmd);
-
-                    log.debug("Received reps2req: " + reqId + " cmd:" + cmd);
 
                     // notify thread that there is an result
                     HooksCmdResponse response = createCmdPayloadObject(cmd, buffer);
@@ -182,7 +182,6 @@ public class HooksChannel implements IHooksApi {
             e.printStackTrace();
         }
 
-        log.debug("sent " + cmd);
         try {
             if (!holder.aquire(DEFAULT_TIMEOUT))
                 throw new DebuggerException("timeout performing req:" + reqId + "cmd " + cmd);
@@ -190,7 +189,6 @@ public class HooksChannel implements IHooksApi {
         } catch (InterruptedException e) {
             throw new DebuggerException(e);
         }
-        log.debug("received " + holder.response);
 
         //noinspection unchecked
         return holder.response;
@@ -198,7 +196,7 @@ public class HooksChannel implements IHooksApi {
 
     @Override
     public byte[] readMemory(long addr, int numBytes) {
-        log.debug("readMemory @" + Long.toHexString(addr) + ", " + numBytes);
+//        log.debug("readMemory @" + Long.toHexString(addr) + ", " + numBytes);
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeLong(addr);
         packet.writeInt32(numBytes);

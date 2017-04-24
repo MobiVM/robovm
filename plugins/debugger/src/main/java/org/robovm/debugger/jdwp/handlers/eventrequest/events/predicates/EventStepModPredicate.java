@@ -24,6 +24,12 @@ public class EventStepModPredicate extends EventPredicate {
 
     @Override
     public boolean test(EventData eventData) {
+        // TODO: implement !
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "step{" + "threadId=" + threadId + ", size=" + size + ", depth=" + depth + "} ";
     }
 }

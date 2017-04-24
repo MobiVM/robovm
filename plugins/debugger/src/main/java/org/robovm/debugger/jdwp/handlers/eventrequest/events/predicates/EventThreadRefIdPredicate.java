@@ -21,9 +21,11 @@ public class EventThreadRefIdPredicate extends EventPredicate {
 
     @Override
     public boolean test(EventData eventData) {
-        // TODO: this also has to check for subtypes
         return eventData.getThreadRefId() == threadRefId;
     }
 
-
+    @Override
+    public String toString() {
+        return "threadRefId{" + threadRefId + "}";
+    }
 }

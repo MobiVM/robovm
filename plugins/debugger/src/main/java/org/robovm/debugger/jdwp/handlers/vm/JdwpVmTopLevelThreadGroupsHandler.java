@@ -30,7 +30,6 @@ public class JdwpVmTopLevelThreadGroupsHandler implements IJdwpRequestHandler {
             output.writeInt32(0);
             List<VmThread> threads = state.threads();
             Set<Long> reportedGroups = new HashSet<>();
-            output.writeInt32(threads.size());
             for (VmThread thread : threads) {
                 VmThreadGroup group = thread.threadGroup();
                 if (group.parent() != null)

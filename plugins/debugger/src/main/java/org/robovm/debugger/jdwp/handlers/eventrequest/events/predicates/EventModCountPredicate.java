@@ -16,8 +16,23 @@ public class EventModCountPredicate extends EventPredicate {
 
     @Override
     public boolean test(EventData eventData) {
-        if (modCount > 0)
-            modCount -= 1;
-        return modCount == 0;
+        if (modCount < 0)
+            return false;
+
+        if (modCount == 1) {
+            // passed this predicate, this allowed only once, make it never run again
+            // TODO: probably it is good idea to disable entire filter at this moment to minimize future filtering passes
+            modCount = -1;
+            return true;
+        }
+
+        // keep counting
+        modCount -= 1;
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "count=" + modCount;
     }
 }

@@ -14,11 +14,35 @@ public class JdwpThreadStoppedEventData extends JdwpEventData {
 
     private final VmStackTrace location;
     private final VmInstance exception;
+    private final boolean caught;
 
-    public JdwpThreadStoppedEventData(byte eventKind, VmThread thread, VmStackTrace location, VmInstance exception) {
+    public JdwpThreadStoppedEventData(byte eventKind, VmThread thread, VmStackTrace location) {
+        super(eventKind, thread);
+        this.location = location;
+        this.exception = null;
+        this.caught = false;
+    }
+
+    public JdwpThreadStoppedEventData(byte eventKind, VmThread thread, VmStackTrace location, VmInstance exception, boolean caught) {
         super(eventKind, thread);
         this.location = location;
         this.exception = exception;
+        this.caught = caught;
+    }
+
+    @Override
+    public long getExceptionTypeId() {
+        return exception.classInfo().refId();
+    }
+
+    @Override
+    public boolean isExceptionCaught() {
+        return caught;
+    }
+
+    @Override
+    public VmStackTrace getStoppeedLocation() {
+        return location;
     }
 
     @Override

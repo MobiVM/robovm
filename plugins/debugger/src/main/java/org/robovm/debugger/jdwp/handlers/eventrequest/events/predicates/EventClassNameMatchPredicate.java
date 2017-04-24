@@ -29,4 +29,9 @@ public class EventClassNameMatchPredicate extends EventPredicate {
             return str.regionMatches(0, pattern, 0, pattern.length() - 1);
         } else return pattern.equals(str);
     }
+
+    @Override
+    public String toString() {
+        return "className" + (negative ? "!=" : "=") + pattern;
+    }
 }

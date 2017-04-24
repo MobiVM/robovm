@@ -22,4 +22,9 @@ public class EventClassTypeIdPredicate extends EventPredicate {
     public long classTypeId() {
         return classTypeId;
     }
+
+    @Override
+    public String toString() {
+        return "classTypeId=" + classTypeId;
+    }
 }

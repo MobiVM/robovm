@@ -23,8 +23,10 @@ public final class Converter {
     public static int jdwpClassStatus(ClassInfo classInfo) {
         if (classInfo.hasError())
             return JdwpConsts.ClassStatus.ERROR;
-        // TODO: check if these are valid
-        return JdwpConsts.ClassStatus.INITIALIZED | JdwpConsts.ClassStatus.VERIFIED;
+        if (classInfo.clazzPtr() != 0)
+            return JdwpConsts.ClassStatus.VERIFIED | JdwpConsts.ClassStatus.PREPARED | JdwpConsts.ClassStatus.INITIALIZED;
+        else
+            return JdwpConsts.ClassStatus.VERIFIED;
     }
 
     public static int classModifiers(int flags) {

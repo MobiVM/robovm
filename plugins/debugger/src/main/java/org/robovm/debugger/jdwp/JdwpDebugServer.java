@@ -205,8 +205,9 @@ public class JdwpDebugServer implements IJdwpServerApi{
         synchronized (socket) {
             headerBuffer.reset();
             headerBuffer.writeInt32(11 + payload.size());
-            headerBuffer.writeInt32(0); // int
+            headerBuffer.writeInt32(0); // id
             headerBuffer.writeByte((byte) 0); // flags
+            headerBuffer.writeByte((byte) 64); // composite set -- events
             headerBuffer.writeByte((byte) 100); // composite command
 
             headerBuffer.writeByte(suspendPolicy); // flags
@@ -252,7 +253,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
 
             while (!Thread.interrupted()) {
                 try {
-                    socket = serverSocket.accept();
+                    s = serverSocket.accept();
                     break;
                 } catch (IOException ignored) {
                 }

@@ -22,7 +22,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Demyan Kimitsa
- * TODO: here all internal state of VM and debugger will go
  */
 public class VmDebuggerState {
 
@@ -37,12 +36,6 @@ public class VmDebuggerState {
 
     // list of active threads
     List<VmThread> threads = new ArrayList<>();
-
-    // counter of request set
-    private int jdwpEventRequestCounter = 100;
-    // list of active event filters as received from JDWP
-    private List<JdwpEventRequest> jdwpEventRequests = new ArrayList<>();
-
 
     MachOLoader appFileLoader;
     ByteBufferMemoryReader appFileDataMemoryReader;
@@ -116,17 +109,6 @@ public class VmDebuggerState {
             throw new DebuggerException(LOCK_NOT_ACQUIRED);
 
         return threads;
-    }
-
-    public int allocateJdwpEventRequestId() {
-        return jdwpEventRequestCounter++;
-    }
-
-    public List<JdwpEventRequest> jdwpEventRequests() {
-        if (!Thread.holdsLock(centralLock))
-            throw new DebuggerException(LOCK_NOT_ACQUIRED);
-
-        return jdwpEventRequests;
     }
 
     public Object centralLock() {
