@@ -24,12 +24,12 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
         VmThread thread = getThread(threadId);
         if (thread == null)
             throw new DebuggerException(JdwpConsts.Error.INVALID_THREAD);
-        suspendThread(thread);;
+        suspendThread(thread);
     }
 
     public void suspendThread(VmThread thread) throws DebuggerException {
         // suspend only if suspend count was 0 (after call it is 1)
-        int suspendCount = thread.suspend();
+        int suspendCount = thread.markSuspended();
         if (suspendCount == 1) {
             delegates.hooksApi().threadSuspend(thread.threadPtr());
             thread.setStatus(VmThread.Status.SUPENDED);
@@ -46,7 +46,8 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
 
     public void resumeThread(VmThread thread) throws DebuggerException {
         // resume if suspend count now is zero
-        int suspendCount = thread.resume();
+        int suspendCount = thread.suspendCount();
+        thread.markResumed();
         if (suspendCount == 1) {
             delegates.hooksApi().threadResume(thread.threadPtr());
             thread.setStatus(VmThread.Status.RUNNING);
@@ -58,38 +59,38 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
     @Override
     public void jdwpSuspendAllThreads() {
         for (VmThread thread : delegates.state().threads())
-            if (thread.status() == VmThread.Status.RUNNING)
-                suspendThread(thread);
+            suspendThread(thread);
     }
 
     @Override
     public void jdwpResumeAllThreads() {
         for (VmThread thread : delegates.state().threads())
-            if (thread.status() == VmThread.Status.SUPENDED)
-                resumeThread(thread);
+            resumeThread(thread);
     }
 
     /**
      * called once thread is suspended (as notification from hooks)
      * @param thread object
      * @param stack call stack
-     * @param reported tells that this suspend event is not going to be reported to JDWP and if thread is not suspended
-     *                 it should be immediately resumed. Otherwise stack shall be updated
+     * @param keepSuspended if true thread will be moved to suspended in state.
+     *                      otherwise if suspend is not expected -- thread will be release in target
      */
-    public void onThreadSuspended(VmThread thread, VmStackTrace[] stack, boolean reported) {
-        if (!reported) {
+    public void onThreadSuspended(VmThread thread, VmStackTrace[] stack, boolean keepSuspended) {
+        if (keepSuspended) {
+            setThreadStack(thread, stack);
+            thread.markSuspended();
+            thread.setStatus(VmThread.Status.SUPENDED);
+        } else {
             if (thread.suspendCount() == 0) {
                 // thread is not suspended and this event is filtered out, so resume thread
                 delegates.hooksApi().threadResume(thread.threadPtr());
             } else {
-                // TODO: there is a case that stack is updated but JDPW client doesn't know about it
-                // update stack
+                // update thread stack, don't touch anything else
                 setThreadStack(thread, stack);
             }
         }
 
         // mark as suspended
-
     }
 
     private VmThread getThread(long threadId) {

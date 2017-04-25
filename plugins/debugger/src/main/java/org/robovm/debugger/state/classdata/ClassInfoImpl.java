@@ -138,7 +138,7 @@ public class ClassInfoImpl extends ClassInfo {
         }
 
         readFields(reader, fieldCount, loader.fieldRefIdHolder);
-        readMethods(reader, methodCount, loader.methodsRefIdHolder);
+        readMethods(reader, methodCount, loader);
 
         // data is read
         endOfHeaderPos = 0;
@@ -170,15 +170,22 @@ public class ClassInfoImpl extends ClassInfo {
         }
     }
 
-    private void readMethods(ByteBufferMemoryReader reader, int methodCount, RefIdHolder<MethodInfo> methodsRefIdHolder) {
+    private void readMethods(ByteBufferMemoryReader reader, int methodCount, ClassInfoLoader loader) {
         // refer: bc.c#loadMethod
         // refer: classinfo.c#readMethodInfo
+        RefIdHolder<MethodInfo> methodsRefIdHolder = loader.methodsRefIdHolder;
         methods = new MethodInfo[methodCount];
         for (int idx = 0; idx < methodCount; idx++) {
             methods[idx] = new MethodInfo();
             methods[idx].readMethodInfo(reader);
-            if (debugInfo != null)
-                methods[idx].setDebugInfo(debugInfo.methodBySignature(methods[idx].getSignature()));
+            if (debugInfo != null) {
+                methods[idx].setDebugInfo(debugInfo.methodBySignature(methods[idx].name() + methods[idx].signature()));
+
+                // resolve break point table for it
+                String bpTableSymbol = "[j]" + className.replace('/', '.') + "." + methods[idx].name() + methods[idx].signature() + "[bptable]";
+                long addr = loader.appFileLoader.resolveSymbol(bpTableSymbol);
+                methods[idx].setBpTableAddr(addr);
+            }
             methodsRefIdHolder.addObject(methods[idx]);
         }
     }

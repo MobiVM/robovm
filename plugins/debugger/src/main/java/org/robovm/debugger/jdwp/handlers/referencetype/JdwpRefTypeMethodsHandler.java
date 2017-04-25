@@ -35,8 +35,8 @@ public class JdwpRefTypeMethodsHandler implements IJdwpRequestHandler {
             output.writeInt32(fields.length);
             for (MethodInfo methodInfo : fields) {
                 output.writeLong(methodInfo.refId());
-                output.writeStringWithLen(methodInfo.getName());
-                output.writeStringWithLen(methodInfo.getSignature());
+                output.writeStringWithLen(methodInfo.name());
+                output.writeStringWithLen(methodInfo.signature());
                 String signatureWithGeneric = getGenericSignature();
                 if (signatureWithGeneric != null)
                     output.writeStringWithLen(signatureWithGeneric);

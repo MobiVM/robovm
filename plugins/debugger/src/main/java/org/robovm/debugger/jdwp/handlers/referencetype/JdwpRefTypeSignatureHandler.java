@@ -24,7 +24,7 @@ public class JdwpRefTypeSignatureHandler implements IJdwpRequestHandler {
         synchronized (state.centralLock()) {
             ClassInfo classInfo = state.classInfoLoader().classInfoByRefId(referenceTypeID);
             if (classInfo == null)
-                return JdwpConsts.Error.INVALID_OBJECT;
+                return JdwpConsts.Error.INVALID_CLASS;
 
             output.writeStringWithLen(classInfo.signature());
             String signatureWithGeneric = getGenericSignature();

@@ -29,9 +29,12 @@ public class MethodInfo extends BaseModifiersInfo {
     private String name;
     private String desc;
     private long implPtr;
+    private int methodCodeSize;
 
     // debug information if available
     private DebugMethodInfo debugInfo;
+    // mach-o address of breakpoint table for method. <=0 if missing
+    private long bpTableAddr;
 
     public void readMethodInfo(ByteBufferMemoryReader reader) {
         flags = reader.readInt16();
@@ -70,8 +73,7 @@ public class MethodInfo extends BaseModifiersInfo {
                     break;
             }
         } else {
-            // combine name + parameter definition to make signature
-            desc = name + reader.readStringZAtPtr(reader.readPointer());
+            desc = reader.readStringZAtPtr(reader.readPointer());
         }
 
         if ((flags & ClassDataConsts.methodinfo.ATTRIBUTES) != 0) {
@@ -79,12 +81,11 @@ public class MethodInfo extends BaseModifiersInfo {
             reader.skip(reader.pointerSize());
         }
 
-        int size = 0;
         long synchronizedImpl = 0;
         long linetable = 0;
         if (!isAbstract()) {
             implPtr = reader.readPointer();
-            size = reader.readInt32();
+            methodCodeSize = reader.readInt32();
             if (isSynchronized())
                 synchronizedImpl = reader.readPointer();
             if (!isNative()) {
@@ -99,16 +100,20 @@ public class MethodInfo extends BaseModifiersInfo {
             callbackImpl = reader.readPointer();
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public String getSignature() {
+    public String signature() {
         return desc;
     }
 
-    public long getImplPtr() {
+    public long implPtr() {
         return implPtr;
+    }
+
+    public int methodCodeSize() {
+        return methodCodeSize;
     }
 
     public DebugMethodInfo debugInfo() {
@@ -117,6 +122,17 @@ public class MethodInfo extends BaseModifiersInfo {
 
     public void setDebugInfo(DebugMethodInfo debugInfo) {
         this.debugInfo = debugInfo;
+    }
+
+    /**
+     * sets address of BP table for method, WARNING address is in mach-o address space
+     */
+    public void setBpTableAddr(long addr) {
+        this.bpTableAddr = addr;
+    }
+
+    public long bpTableAddr() {
+        return bpTableAddr;
     }
 
     boolean isBroCallback() {

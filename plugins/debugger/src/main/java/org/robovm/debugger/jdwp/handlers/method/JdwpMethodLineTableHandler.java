@@ -28,16 +28,22 @@ public class JdwpMethodLineTableHandler implements IJdwpRequestHandler {
             MethodInfo methodInfo = state.methodsRefIdHolder().objectById(methodId);
             if (methodInfo == null)
                 return JdwpConsts.Error.INVALID_METHODID;
+
+            int startLine;
+            int finalLine;
+
             DebugMethodInfo debugInfo = methodInfo.debugInfo();
             if (debugInfo == null) {
                 // should not happen
-                // TODO: log
-                return JdwpConsts.Error.ABSENT_INFORMATION;
+                // TODO: temporal solution just to keep going, FIXME:
+                startLine = -1;
+                finalLine = 1000;
+            } else {
+                startLine = debugInfo.startLine();
+                finalLine = debugInfo.finalLine();
             }
 
             // dump line numbers as code index
-            int startLine = debugInfo.startLine();
-            int finalLine = debugInfo.finalLine();
             output.writeLong(startLine); // start code index
             output.writeLong(finalLine); // end code index
 

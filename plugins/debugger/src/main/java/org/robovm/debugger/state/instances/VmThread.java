@@ -39,12 +39,12 @@ public class VmThread extends VmInstance {
         return suspendCount;
     }
 
-    public int suspend() {
+    public int markSuspended() {
         suspendCount += 1;
         return suspendCount;
     }
 
-    public int resume() {
+    public int markResumed() {
         if (suspendCount > 0) {
             suspendCount -= 1;
             return suspendCount;

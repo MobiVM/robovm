@@ -57,5 +57,4 @@ public class JdwpThreadFramesCountHandler implements IJdwpRequestHandler {
     public String toString() {
         return "ThreadReference(11).FramesCount(7)";
     }
-
 }

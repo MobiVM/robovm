@@ -35,7 +35,7 @@ public class JdwpVmResumeHandler implements IJdwpRequestHandler {
 
     @Override
     public String toString() {
-        return "VirtualMachine(1).Suspend(9)";
+        return "VirtualMachine(1).Resume(9)";
     }
 
 }

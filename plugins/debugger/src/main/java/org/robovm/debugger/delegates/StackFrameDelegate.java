@@ -54,7 +54,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
         RuntimeClassInfoLoader loader = delegates.instances().classInfoLoader();
         for (int idx : varIndexes) {
             // check if index in range and
-            if (idx >= variables.length || variables[idx].startLine() < stackLineNumber || variables[idx].finalLine() > stackLineNumber) {
+            if (idx >= variables.length || variables[idx].startLine() < stackLineNumber || stackLineNumber > variables[idx].finalLine() ) {
                 throw new DebuggerException(JdwpConsts.Error.INVALID_SLOT);
             }
 
@@ -70,6 +70,9 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
                 throw new DebuggerException(JdwpConsts.Error.CLASS_NOT_PREPARED);
             }
         }
+
+        // tell JDWP number of variables about to be written
+        output.writeInt32(varIndexes.length);
 
         // now can fetch data
         for (int idx : varIndexes) {

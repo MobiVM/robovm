@@ -320,7 +320,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
         registerHandler(new JdwpRefTypeFieldsHandler(state)); // 4
         registerHandler(new JdwpRefTypeMethodsHandler(state)); // 5
         registerHandler(new JdwpRefTypeGetValuesHandler(delegates)); //GetValues (6)
-        registerHandler(new JdwpRefTypeSourceFileHandler()); //SourceFile (7) // TODO:
+        registerHandler(new JdwpRefTypeSourceFileHandler(state)); //SourceFile (7)
         registerHandler(new JdwpRefTypeNestedTypesHandler()); //NestedTypes (8) // TODO:
         registerHandler(new JdwpRefTypeStatusHandler(state)); //Status (9)
         registerHandler(new JdwpRefTypeInterfacesHandler(state)); //Interfaces (10)

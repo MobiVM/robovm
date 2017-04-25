@@ -15,6 +15,7 @@ public class JdwpEventRequest {
     private final byte eventKind;
     private final byte suspendPolicy;
     private final List<EventPredicate> predicates;
+    private boolean canceled;
 
     public JdwpEventRequest(int requestId, byte eventKind, byte suspendPolicy, List<EventPredicate> predicates) {
         this.requestId = requestId;
@@ -53,6 +54,14 @@ public class JdwpEventRequest {
                 //noinspection unchecked
                 return (T)predicate;
         return null;
+    }
+
+    public boolean isCanceled() {
+        return canceled;
+    }
+
+    public void setCanceled(boolean canceled) {
+        this.canceled = canceled;
     }
 
     @Override

@@ -40,23 +40,27 @@ public class JdwpThreadFramesHandler implements IJdwpRequestHandler {
                 return JdwpConsts.Error.THREAD_NOT_SUSPENDED;
 
             VmStackTrace[] stack = thread.stack();
-            int lastFrame = length < 0 ? stack.length - 1 : startFrame + length - 1;
-            if (startFrame > stack.length - 1 || lastFrame > stack.length - 1 || startFrame > lastFrame)
-                return JdwpConsts.Error.INTERNAL;
+            int lastFrame = -1;
+            if (stack != null)
+                lastFrame = length < 0 ? stack.length - 1 : startFrame + length - 1;
+            if (stack == null || startFrame > stack.length - 1 || lastFrame > stack.length - 1 || startFrame > lastFrame) {
+                // wrong indexes or there is no stack, report zero entries
+                output.writeInt32(0);
+            } else {
+                // frames The number of frames retrieved
+                output.writeInt32(lastFrame - startFrame + 1);
 
-            // frames The number of frames retreived
-            output.writeInt32(lastFrame - startFrame + 1);
-
-            // dump each frame location
-            for (int i = startFrame; i <= lastFrame; i++) {
-                VmStackTrace frame = stack[i];
-                // frame id
-                output.writeLong(frame.refId());
-                // location
-                output.writeByte(Converter.jdwpTypeTag(frame.classInfo()));
-                output.writeLong(frame.classInfo().refId());
-                output.writeLong(frame.methodInfo().refId());
-                output.writeLong(frame.lineNumber());
+                // dump each frame location
+                for (int i = startFrame; i <= lastFrame; i++) {
+                    VmStackTrace frame = stack[i];
+                    // frame id
+                    output.writeLong(frame.refId());
+                    // location
+                    output.writeByte(Converter.jdwpTypeTag(frame.classInfo()));
+                    output.writeLong(frame.classInfo().refId());
+                    output.writeLong(frame.methodInfo().refId());
+                    output.writeLong(frame.lineNumber());
+                }
             }
         }
 

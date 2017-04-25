@@ -17,6 +17,7 @@ import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventCla
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventExceptionPredicate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventInstanceIdPredicate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventLocationPredicate;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventModCountPredicate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPredicate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventStepModPredicate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventThreadRefIdPredicate;
@@ -75,6 +76,9 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
     /** local flag that VM was resumed */
     private boolean vmResumed;
+
+    /** active step-in event request to be able to resume suspended thread and keep step in */
+    private JdwpEventRequest activeStepInRequest;
 
 
     public JdwpEventCenterDelegate(AllDelegates delegates) {
@@ -179,8 +183,13 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                     EventLocationPredicate locationPredicate = (EventLocationPredicate) predicate;
                     if (delegates.state().classRefIdHolder().objectById(locationPredicate.classId()) == null)
                         throw new DebuggerException(JdwpConsts.Error.INVALID_CLASS);
-                    if (delegates.state().methodsRefIdHolder().objectById(locationPredicate.methodId()) == null)
+                    MethodInfo methodInfo = delegates.state().methodsRefIdHolder().objectById(locationPredicate.methodId());
+                    if (methodInfo == null)
                         throw new DebuggerException(JdwpConsts.Error.INVALID_METHODID);
+                    if (methodInfo.debugInfo() == null ||  methodInfo.bpTableAddr() <= 0)
+                        throw new DebuggerException(JdwpConsts.Error.INVALID_LOCATION);
+                    if (locationPredicate.index() < methodInfo.debugInfo().startLine() || locationPredicate.index() > methodInfo.debugInfo().finalLine())
+                        throw new DebuggerException(JdwpConsts.Error.INVALID_LOCATION);
                     break;
             }
         }
@@ -271,7 +280,9 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 if (location == null)
                     throw new DebuggerException(JdwpConsts.Error.INVALID_LOCATION);
 
-                // TODO: apply it to target
+                // apply it to target
+                MethodInfo methodInfo = delegates.state().methodsRefIdHolder().objectById(location.methodId());
+                delegates.runtime().setBreakPoint(methodInfo, (int) location.index());
                 break;
 
             case JdwpConsts.EventKind.SINGLE_STEP:
@@ -281,7 +292,24 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                     throw new DebuggerException(JdwpConsts.Error.INVALID_EVENT_TYPE);
                 }
 
-                // TODO: apply it to target
+                VmThread thread = delegates.state().referenceRefIdHolder().instanceById(stepMod.threadId());
+                if (thread == null)
+                    throw new DebuggerException(JdwpConsts.Error.INVALID_THREAD);
+
+                // thread shall be suspended
+                if (thread.suspendCount() == 0)
+                    throw new DebuggerException(JdwpConsts.Error.THREAD_NOT_SUSPENDED);
+
+                // apply it to target
+                // size modifier is ignored as stepping in hooks implemented as line only
+                delegates.runtime().step(thread, stepMod.depth());
+
+                // resume thread
+                delegates.threads().resumeThread(thread);
+
+                // if it is step in -- remember the request to be able to resume it in case some of
+                // criteria doesn't pass (e.g. class is filtered out)
+                activeStepInRequest = (stepMod.depth() == JdwpConsts.StepDepth.INTO) ? request : null;
                 break;
 
             default:
@@ -303,11 +331,18 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
         switch (request.eventKind() ) {
             case JdwpConsts.EventKind.BREAKPOINT:
+                EventLocationPredicate location = request.predicateByKind(JdwpConsts.EventModifier.LOCATION_ONLY);
+                if (location == null)
+                    throw new DebuggerException(JdwpConsts.Error.INVALID_LOCATION);
+
                 // remove from device
+                MethodInfo methodInfo = delegates.state().methodsRefIdHolder().objectById(location.methodId());
+                delegates.runtime().clearBreakPoint(methodInfo, (int) location.index());
                 break;
 
             case JdwpConsts.EventKind.SINGLE_STEP:
-                // SHOULD NOT HAPPEN ?
+                if (request == activeStepInRequest)
+                    activeStepInRequest = null;
                 break;
         }
     }
@@ -385,8 +420,12 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 stoppedThreadCallStack = convertCallStack(stoppedEvent.eventId(), stoppedEvent.callStack());
 
                 if (eventPayload.eventId() == HookConsts.events.THREAD_SUSPENDED) {
-                    // there is no JDWP event for this, just update call stack
+                    // there is no JDWP event for this
+                    // notify that thread is suspended and if it is expected it will update stack,
+                    // otherwise thread will be released
                     delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, false);
+
+                    // no event to be processed
                     eventData = null;
                 } else {
                     eventData = processThreadStoppedEvent(stoppedEvent, stoppedThread, stoppedThreadCallStack);
@@ -404,11 +443,29 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
         // filter data through event requests and deliver them to JDPW
         int suspendPolicy = deliverEventToJdpwFiltered(eventData);
-        if (suspendPolicy < 0) {
-            // event didn't pass filters
+        if (suspendPolicy <= 0) {
+            if (suspendPolicy < 0) {
+                // event was filtered out
+                // if the event is thread stepped, and there is step in event request is active resume everything
+                if (eventPayload.eventId() == HookConsts.events.THREAD_STEPPED && activeStepInRequest != null &&
+                        !activeStepInRequest.isCanceled() && stoppedThread != null) {
+                    // check thread
+                    EventStepModPredicate stepMod = activeStepInRequest.predicateByKind(JdwpConsts.EventModifier.STEP);
+                    if (stepMod.threadId() == stoppedThread.refId() && stoppedThread.suspendCount() == 0) {
+                        // step again, resume
+                        delegates.runtime().step(stoppedThread, stepMod.depth());
+                        delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, false);
+                        return;
+                    }
+                }
+                // event didn't pass filters no need to keep suspended thread
+            }
+
+            // or it pass but suspend policy is none
             if (stoppedThread != null)
                 delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, false);
         } else {
+            delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, true);
             if (suspendPolicy == JdwpConsts.SuspendPolicy.ALL) {
                 // suspend all threads (stopped one already suspended)
                 delegates.threads().suspendAllOtherThreads(stoppedThread);
@@ -428,10 +485,18 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         if (delegates.jdwpServerApi() != null) {
             // there is JDWP server attached
             for (JdwpEventRequest request : jdwpEventRequests) {
+                if (request.isCanceled())
+                    continue;
                 // check if event type matched
                 if (eventData.eventKind() != request.eventKind())
                     continue;
-                if (!request.test(eventData))
+                boolean testResult = request.test(eventData);
+                // check if there was case counter and it has been decremented to zero -- in this case this
+                // event will never fire again so mark it as canceled
+                EventModCountPredicate predicate = request.predicateByKind(JdwpConsts.EventModifier.CASE_COUNT);
+                if (predicate != null && predicate.modCount() < 0)
+                    request.setCanceled(true);
+                if (!testResult)
                     continue;
 
                 // event filtered through, deliver to JDWP client
@@ -560,7 +625,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         long implPtr = delegates.runtime().toMachOAddr(payload.impl());
         MethodInfo methodInfo = null;
         for (MethodInfo mi : methods) {
-            if (mi.getImplPtr() == implPtr) {
+            if (mi.implPtr() == implPtr) {
                 methodInfo = mi;
                 break;
             }

@@ -1,6 +1,7 @@
 package org.robovm.debugger.jdwp.handlers.eventrequest.events;
 
 import org.robovm.debugger.jdwp.JdwpConsts;
+import org.robovm.debugger.state.classdata.ClassInfoImpl;
 import org.robovm.debugger.state.instances.VmInstance;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
@@ -43,6 +44,11 @@ public class JdwpThreadStoppedEventData extends JdwpEventData {
     @Override
     public VmStackTrace getStoppeedLocation() {
         return location;
+    }
+
+    @Override
+    public String getClassName() {
+        return (location.classInfo() instanceof ClassInfoImpl) ? ((ClassInfoImpl)location.classInfo()).className() : null;
     }
 
     @Override

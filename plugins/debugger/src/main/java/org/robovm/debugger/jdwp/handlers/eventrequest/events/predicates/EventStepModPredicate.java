@@ -22,10 +22,17 @@ public class EventStepModPredicate extends EventPredicate {
         return threadId;
     }
 
+    public int size() {
+        return size;
+    }
+
+    public int depth() {
+        return depth;
+    }
+
     @Override
     public boolean test(EventData eventData) {
-        // TODO: implement !
-        return false;
+        return eventData.getThreadRefId() == threadId;
     }
 
     @Override

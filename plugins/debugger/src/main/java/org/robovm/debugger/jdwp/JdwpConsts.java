@@ -184,6 +184,17 @@ public class JdwpConsts {
         public static final int ENUM = 0x4000;
     }
 
+    public static class StepDepth {
+        public static final int INTO = 0;
+        public static final int OVER = 1;
+        public static final int OUT = 2;
+    }
+
+    public static class StepSize {
+        public static final int MIN = 0;
+        public static final int LINE = 1;
+    }
+
     /**
      * Converts event kind value to string presentation
      */
