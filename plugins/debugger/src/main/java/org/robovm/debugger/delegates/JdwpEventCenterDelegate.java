@@ -330,7 +330,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
 
         while (!hooksEventsThread.isInterrupted()) {
-            HooksEventPayload eventPayload = null;
+            HooksEventPayload eventPayload;
             try {
                 eventPayload = hooksEventsQueue.take();
             } catch (InterruptedException e) {
@@ -344,7 +344,6 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 }
                 eventPayload = hooksEventsQueue.poll();
             }
-
         }
     }
 

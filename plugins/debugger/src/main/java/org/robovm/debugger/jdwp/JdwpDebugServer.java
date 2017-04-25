@@ -97,6 +97,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
     private ByteBufferPacket headerBuffer = new ByteBufferPacket();
     private final IJdwpServerDelegate delegate;
     private final AllDelegates delegates;
+    private int eventRequestSerial = 0x10000000;
 
 
     public JdwpDebugServer(AllDelegates delegates, IJdwpServerDelegate delegate, boolean jdwpClienMode, int jdwpPort) {
@@ -204,13 +205,13 @@ public class JdwpDebugServer implements IJdwpServerApi{
     public void sendEvent(byte suspendPolicy, int eventsCount, ByteBufferPacket payload) {
         synchronized (socket) {
             headerBuffer.reset();
-            headerBuffer.writeInt32(11 + payload.size());
-            headerBuffer.writeInt32(0); // id
+            headerBuffer.writeInt32(11 + 5 + payload.size());
+            headerBuffer.writeInt32(eventRequestSerial++); // id
             headerBuffer.writeByte((byte) 0); // flags
             headerBuffer.writeByte((byte) 64); // composite set -- events
             headerBuffer.writeByte((byte) 100); // composite command
 
-            headerBuffer.writeByte(suspendPolicy); // flags
+            headerBuffer.writeByte(suspendPolicy);
             headerBuffer.writeInt32(eventsCount);
 
             try {
