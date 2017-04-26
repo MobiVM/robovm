@@ -613,7 +613,7 @@ static void handleThreadStep(jlong reqId, ChannelError* error) {
     jlong pchigh2 = readChannelLong(clientSocket, error);
     if(checkError(error)) return;
 
-    DEBUGF("Stepping thread %p, id %u, pclow: %p, pchigh: %p, pclow2: %p, pchigh2: %p", thread, thread->threadId, pclow, pchigh, pclow2, pchigh2);
+    DEBUGF("Stepping thread %p, id %u, pclow: 0x%llx, pchigh: 0x%llx, pclow2: 0x%llx, pchigh2: 0x%llx", thread, thread->threadId, pclow, pchigh, pclow2, pchigh2);
     DebugEnv *debugEnv = (DebugEnv *) thread->env;
     rvmLockMutex(&debugEnv->suspendMutex);
     // the order of the next few lines is important
