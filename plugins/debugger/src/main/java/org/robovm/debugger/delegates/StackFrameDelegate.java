@@ -54,7 +54,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
         RuntimeClassInfoLoader loader = delegates.instances().classInfoLoader();
         for (int idx : varIndexes) {
             // check if index in range and
-            if (idx >= variables.length || variables[idx].startLine() < stackLineNumber || stackLineNumber > variables[idx].finalLine() ) {
+            if (idx >= variables.length || stackLineNumber < variables[idx].startLine() || stackLineNumber > variables[idx].finalLine() ) {
                 throw new DebuggerException(JdwpConsts.Error.INVALID_SLOT);
             }
 

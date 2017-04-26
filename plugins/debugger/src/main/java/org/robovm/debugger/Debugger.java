@@ -79,7 +79,7 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
     }
 
     private volatile boolean shutingDown;
-    private void shutdown() {
+    public void shutdown() {
         // only one shutdown is allowed
         synchronized (this) {
             if (shutingDown)

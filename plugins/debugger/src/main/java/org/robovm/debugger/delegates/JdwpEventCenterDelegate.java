@@ -108,7 +108,8 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
      */
     public void onConnectedToJdpw() {
         // if there is connection to hooks established -- resume VM
-        resumeVm();
+        if (delegates.hooksApi() != null)
+            resumeVm();
     }
 
 
