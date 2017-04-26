@@ -345,6 +345,13 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
         }
     }
 
+    @Override
+    public void getFrameVariable(long threadId, long frameId, String variableName, ByteBufferPacket output) {
+        synchronized (state.centralLock()) {
+            stackframes.getFrameVariable(threadId, frameId, variableName, output);
+        }
+    }
+
     //
     // Debugger toolbox implementation
     //

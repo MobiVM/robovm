@@ -25,4 +25,13 @@ public interface IJdwpStackFrameDelegate {
      * @param count number of frame values to set
      */
     void setFrameValues(long threadId, long frameId, ByteBufferPacket payload, int count);
+
+    /**
+     * gets frame local variable by its name (actually to get this value only)
+     * @param threadId of thread
+     * @param frameId stack frame to check variables in
+     * @param variableName of variable to fetch
+     * @param output to write variable to
+     */
+    void getFrameVariable(long threadId, long frameId, String variableName, ByteBufferPacket output);
 }

@@ -143,7 +143,7 @@ public class JdwpEventReqSetHandler implements IJdwpRequestHandler {
                         long stepThreadID = payload.readLong();
                         int stepSize = payload.readInt32();
                         int stepDepth = payload.readInt32();
-                        eventPredicates.add(new EventStepModPredicate(eventKind, stepThreadID, stepSize, stepDepth));
+                        eventPredicates.add(new EventStepModPredicate(modKind, stepThreadID, stepSize, stepDepth));
                         break;
 
                     case JdwpConsts.EventModifier.INSTANCE_ONLY:
@@ -151,7 +151,7 @@ public class JdwpEventReqSetHandler implements IJdwpRequestHandler {
                         // Restricts reported events to those whose active 'this' object is the given object. Match value is the
                         // null object for static methods.
                         long instanceId = payload.readLong();
-                        eventPredicates.add(new EventInstanceIdPredicate(eventKind, instanceId));
+                        eventPredicates.add(new EventInstanceIdPredicate(modKind, instanceId));
                         break;
 
                     default:

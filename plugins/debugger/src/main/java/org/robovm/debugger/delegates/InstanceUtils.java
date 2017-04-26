@@ -462,15 +462,13 @@ public class InstanceUtils {
                 ClassInfoImpl superclass = (ClassInfoImpl) runtimeClassInfoLoader.loader().classInfoBySignature(superclassSignature);
                 if (superclass != null)
                     res = instantiatorForClass(superclass);
-                else
-                    res = this::createGenericInstance;
             }
+            if (res == null)
+                res = this::createGenericInstance;
         }
 
         // if there is an res -- save it
-        if (res != null) {
-            instantiatorForClassRefId.put(ci.refId(), res);
-        }
+        instantiatorForClassRefId.put(ci.refId(), res);
 
         return res;
     }
@@ -548,8 +546,14 @@ public class InstanceUtils {
                     },
                     (jdwpWriter, o) -> {
                         VmInstance instance = (VmInstance) o;
-                        jdwpWriter.writeByte(instance != null ? Converter.jdwpInstanceTag(instance.classInfo()) : JdwpConsts.Tag.OBJECT);
-                        jdwpWriter.writeLong(instance != null ? instance.refId() : 0);
+                        if (instance != null) {
+                            byte typeTag = Converter.jdwpInstanceTag(instance.classInfo(), utils.delegates.state().classInfoLoader());
+                            jdwpWriter.writeByte(typeTag);
+                            jdwpWriter.writeLong(instance.refId());
+                        } else {
+                            jdwpWriter.writeByte(JdwpConsts.Tag.OBJECT);
+                            jdwpWriter.writeLong(0);
+                        }
                     },
                     (reader, length) -> {
                         VmInstance[] arr = new VmInstance[length];

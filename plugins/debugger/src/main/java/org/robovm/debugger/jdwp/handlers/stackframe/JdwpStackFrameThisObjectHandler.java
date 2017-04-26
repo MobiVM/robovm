@@ -1,5 +1,7 @@
 package org.robovm.debugger.jdwp.handlers.stackframe;
 
+import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -9,9 +11,27 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  * contain the null object reference
  */
 public class JdwpStackFrameThisObjectHandler implements IJdwpRequestHandler {
+    private final IJdwpStackFrameDelegate delegate;
+
+    public JdwpStackFrameThisObjectHandler(IJdwpStackFrameDelegate delegate) {
+        this.delegate = delegate;
+    }
+
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        return 0;
+        long threadId = payload.readLong();
+        long frameId = payload.readLong();
+        try {
+            delegate.getFrameVariable(threadId, frameId, "this", output);
+        } catch (ClassCastException e) {
+            return JdwpConsts.Error.INVALID_OBJECT;
+        } catch (DebuggerException e) {
+            if (e.getCode() < 0)
+                throw e;
+            return (short) e.getCode();
+        }
+
+        return JdwpConsts.Error.NONE;
     }
 
     @Override

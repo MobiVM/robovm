@@ -83,6 +83,54 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
     }
 
     /**
+     * gets frame local variable by its name (actually to get this value only)
+     */
+    @Override
+    public void getFrameVariable(long threadId, long frameId, String variableName, ByteBufferPacket output) {
+        VmDebuggerState state = delegates.state();
+        // get variables just to validate that these are there and cast is working
+        VmThread thread = state.referenceRefIdHolder().instanceById(threadId);
+        if (thread == null)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_THREAD);
+        VmStackTrace frame = state.frameRefIdHolder().objectById(frameId);
+        if (frame == null)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_FRAMEID);
+
+        // check if method has debug information
+        DebugMethodInfo debugInfo = frame.methodInfo().debugInfo();
+        if (debugInfo == null)
+            throw new DebuggerException(JdwpConsts.Error.INTERNAL);
+
+        // move through variables and validate them
+        DebugVariableInfo[] variables = debugInfo.localvariables();
+        DebugVariableInfo variable = null;
+        int stackLineNumber = frame.lineNumber();
+        for (DebugVariableInfo v : variables) {
+            if (stackLineNumber >= v.startLine() && stackLineNumber <= v.finalLine() && v.name().equals(variableName)) {
+                variable = v;
+                break;
+            }
+        }
+
+        if (variable != null) {
+            // read variable right to JDPW output
+            // check if variable is loaded
+            ClassInfo ci = state.classInfoLoader().classInfoBySignature(variable.typeSignature());
+            if (ci == null || ci.clazzPtr() == 0) {
+                // should not happen
+                throw new DebuggerException(JdwpConsts.Error.CLASS_NOT_PREPARED);
+            }
+
+
+            long addr = getVariableAddress(frame, variable);
+            delegates.instances().getMemoryValue(addr, ci, output);
+        } else {
+            output.writeByte(JdwpConsts.Tag.OBJECT);
+            output.writeLong(0);
+        }
+    }
+
+    /**
      * sets frame local variables to values
      *
      * @param threadId of thread

@@ -78,7 +78,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     private boolean vmResumed;
 
     /** active step-in event request to be able to resume suspended thread and keep step in */
-    private JdwpEventRequest activeStepInRequest;
+    private RuntimeUtils.RuntimeStepReference activeStepInRequest;
 
 
     public JdwpEventCenterDelegate(AllDelegates delegates) {
@@ -302,14 +302,11 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
                 // apply it to target
                 // size modifier is ignored as stepping in hooks implemented as line only
-                delegates.runtime().step(thread, stepMod.depth());
-
-                // resume thread
-                delegates.threads().resumeThread(thread);
+                RuntimeUtils.RuntimeStepReference ref = delegates.runtime().step(thread, stepMod.depth());
 
                 // if it is step in -- remember the request to be able to resume it in case some of
                 // criteria doesn't pass (e.g. class is filtered out)
-                activeStepInRequest = (stepMod.depth() == JdwpConsts.StepDepth.INTO) ? request : null;
+                activeStepInRequest = (ref != null && stepMod.depth() == JdwpConsts.StepDepth.INTO) ? ref.setPayload(request) : null;
                 break;
 
             default:
@@ -341,7 +338,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 break;
 
             case JdwpConsts.EventKind.SINGLE_STEP:
-                if (request == activeStepInRequest)
+                if (activeStepInRequest != null && request == activeStepInRequest.payload())
                     activeStepInRequest = null;
                 break;
         }
@@ -447,13 +444,14 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
             if (suspendPolicy < 0) {
                 // event was filtered out
                 // if the event is thread stepped, and there is step in event request is active resume everything
-                if (eventPayload.eventId() == HookConsts.events.THREAD_STEPPED && activeStepInRequest != null &&
-                        !activeStepInRequest.isCanceled() && stoppedThread != null) {
-                    // check thread
-                    EventStepModPredicate stepMod = activeStepInRequest.predicateByKind(JdwpConsts.EventModifier.STEP);
+                if (eventPayload.eventId() == HookConsts.events.THREAD_STEPPED && stoppedThread != null && activeStepInRequest != null &&
+                        !((JdwpEventRequest)activeStepInRequest.payload()).isCanceled()) {
+                    JdwpEventRequest request = activeStepInRequest.payload();
+                    EventStepModPredicate stepMod = request.predicateByKind(JdwpConsts.EventModifier.STEP);
+
                     if (stepMod.threadId() == stoppedThread.refId() && stoppedThread.suspendCount() == 0) {
-                        // step again, resume
-                        delegates.runtime().step(stoppedThread, stepMod.depth());
+                        // step again
+                        delegates.runtime().restep(stoppedThread, activeStepInRequest);
                         delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, false);
                         return;
                     }

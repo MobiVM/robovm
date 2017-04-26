@@ -31,19 +31,21 @@ public class JdwpMethodVariableTableHandler implements IJdwpRequestHandler {
             DebugMethodInfo debugInfo = methodInfo.debugInfo();
             if (debugInfo == null) {
                 // should not happen
-                // TODO: log
                 return JdwpConsts.Error.ABSENT_INFORMATION;
             }
 
             //argCnt The number of words in the frame used by arguments. Eight-byte arguments use two words; all others use one.
-            // todo: probably wrong
-            output.writeInt32(0);
+            int argCount = 0;
+            output.writeInt32(argCount); // will write value later
             //slots The number of variables.
             output.writeInt32(debugInfo.localvariables().length);
 
             DebugVariableInfo[] variables = debugInfo.localvariables();
             for (int idx = 0; idx < variables.length; idx++) {
                 DebugVariableInfo variable = variables[idx];
+
+                if (variable.isArgument())
+                    argCount += 1;
 
                 //codeIndex First code index at which the variable is visible (unsigned). Used in conjunction with length.
                 // The variable can be get or set only when the current codeIndex <= current frame code index < codeIndex + length
@@ -62,6 +64,10 @@ public class JdwpMethodVariableTableHandler implements IJdwpRequestHandler {
                 // slot The local variable's index in its frame
                 output.writeInt32(idx);
             }
+
+            // update argument count value
+            output.setPosition(0);
+            output.writeInt32(argCount);
 
             return JdwpConsts.Error.NONE;
         }

@@ -3,6 +3,11 @@ package org.robovm.debugger.utils;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.state.classdata.ClassDataConsts;
 import org.robovm.debugger.state.classdata.ClassInfo;
+import org.robovm.debugger.state.classdata.ClassInfoImpl;
+import org.robovm.debugger.state.classdata.ClassInfoLoader;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Demyan Kimitsa
@@ -132,10 +137,58 @@ public final class Converter {
     /**
      * returns instance tag
      * @param classInfo of instance
+     * @param loader loader to find out super class if required
      * @return JDPW presentation of instance
      */
-    public static byte jdwpInstanceTag(ClassInfo classInfo) {
-        // TODO: implement !!!
-        return 0;
+    public static byte jdwpInstanceTag(ClassInfo classInfo, ClassInfoLoader loader) {
+        if (classInfo.isArray())
+            return JdwpConsts.Tag.ARRAY;
+
+        ClassInfoImpl ci = (ClassInfoImpl) classInfo;
+        // check if it is already cached
+        Byte bo = classInfoToTagMap.get(ci.refId());
+        if (bo != null)
+            return bo;
+
+        byte tag = 0;
+        switch (ci.signature()) {
+            case ClassDataConsts.signatures.JAVA_LANG_STRING:
+                tag = JdwpConsts.Tag.STRING;
+                break;
+
+            case ClassDataConsts.signatures.JAVA_LANG_THREAD:
+                tag = JdwpConsts.Tag.THREAD;
+                break;
+
+            case ClassDataConsts.signatures.JAVA_LANG_THREADGROUP:
+                tag = JdwpConsts.Tag.THREAD_GROUP;
+                break;
+
+            case ClassDataConsts.signatures.JAVA_LANG_CLASS_LOADER:
+                tag = JdwpConsts.Tag.CLASS_LOADER;
+                break;
+
+            case ClassDataConsts.signatures.JAVA_LANG_CLASS:
+                tag = JdwpConsts.Tag.CLASS_OBJECT;
+                break;
+        }
+
+        // not found, get from super
+        if (tag == 0) {
+            // try finding by supers
+            String superclassSignature = ci.superclassSignature();
+            if (superclassSignature != null) {
+                ClassInfoImpl superclass = (ClassInfoImpl) loader.classInfoBySignature(superclassSignature);
+                if (superclass != null)
+                    tag = jdwpInstanceTag(superclass, loader);
+            }
+            if (tag == 0)
+                tag = JdwpConsts.Tag.OBJECT;
+        }
+
+        classInfoToTagMap.put(ci.refId(), tag);
+        return tag;
     }
+
+    private static Map<Long, Byte> classInfoToTagMap = new HashMap<>();
 }

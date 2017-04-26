@@ -424,7 +424,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
         //
         registerHandler(new JdwpStackFrameGetValuesHandler(delegates)); // GetValues (1)
         registerHandler(new JdwpStackFrameSetValuesHandler(delegates)); // SetValues (2)
-        registerHandler(new JdwpStackFrameThisObjectHandler()); //ThisObject (3) // TODO:
+        registerHandler(new JdwpStackFrameThisObjectHandler(delegates));
         // PopFrames (4) -- NOT_IMPLEMENTED
 
         //

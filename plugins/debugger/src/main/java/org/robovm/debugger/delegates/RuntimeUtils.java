@@ -97,7 +97,7 @@ public class RuntimeUtils {
      * @param thread to step
      * @param depth of step, {@link org.robovm.debugger.jdwp.JdwpConsts.StepDepth}
      */
-    public void step(VmThread thread, int depth) {
+    public RuntimeStepReference step(VmThread thread, int depth) {
         long pclow;
         long pchigh;
         long pclow2;
@@ -115,7 +115,7 @@ public class RuntimeUtils {
             // find out previous not native entry
             VmStackTrace prevStackEntry = null;
             for (int idx = 1; idx < stack.length; idx++) {
-                if (stack[idx].methodInfo().isNative() || stack[idx].methodInfo().isBridge())
+                if (stack[idx].methodInfo().isNative())
                     continue;
                 prevStackEntry = stack[idx];
                 break;
@@ -141,15 +141,52 @@ public class RuntimeUtils {
                     pchigh2 = 0;
                 } else {
                     // if prevStackEntry then there is no java method in stack bellow
-                    return;
+                    return null;
                 }
             } else {
                 // should not happen
-                return;
+                return null;
             }
         }
 
         // apply to target
         delegates.hooksApi().threadStep(thread.threadPtr(), pclow, pchigh, pclow2, pchigh2);
+
+        // return reference
+        return new RuntimeStepReference(pclow, pchigh, pclow2, pchigh2);
+    }
+
+
+    public void restep(VmThread thread, RuntimeStepReference ref) {
+        // apply to target
+        delegates.hooksApi().threadStep(thread.threadPtr(), ref.pclow, ref.pchigh, ref.pclow2, ref.pchigh2);
+    }
+
+    /**
+     * container to keep configuration of step performed as step often required to reproduce
+     */
+    public static class RuntimeStepReference {
+        private final long pclow;
+        private final long pchigh;
+        private final long pclow2;
+        private final long pchigh2;
+        private Object payload;
+
+        private RuntimeStepReference(long pclow, long pchigh, long pclow2, long pchigh2) {
+            this.pclow = pclow;
+            this.pchigh = pchigh;
+            this.pclow2 = pclow2;
+            this.pchigh2 = pchigh2;
+        }
+
+        public <T> T payload() {
+            //noinspection unchecked
+            return (T)payload;
+        }
+
+        public RuntimeStepReference setPayload(Object payload) {
+            this.payload = payload;
+            return this;
+        }
     }
 }

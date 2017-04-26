@@ -43,8 +43,8 @@ public class JdwpMethodLineTableHandler implements IJdwpRequestHandler {
 
             output.writeInt32(finalLine - startLine + 1); // count map entrie
             for (int lineNo = startLine; lineNo <= finalLine; lineNo++) {
-                output.writeLong(startLine); // code index
-                output.writeInt32(startLine); // line number
+                output.writeLong(lineNo); // code index
+                output.writeInt32(lineNo); // line number
             }
 
             return JdwpConsts.Error.NONE;
