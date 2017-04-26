@@ -36,6 +36,7 @@ import org.robovm.compiler.llvm.Linkage;
 import org.robovm.compiler.llvm.MetadataString;
 import org.robovm.compiler.llvm.MetadataValue;
 import org.robovm.compiler.llvm.PointerType;
+import org.robovm.compiler.llvm.Store;
 import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
@@ -65,6 +66,7 @@ import soot.PatchingChain;
 import soot.SootMethod;
 import soot.Unit;
 import soot.ValueBox;
+import soot.jimple.internal.JIdentityStmt;
 import soot.tagkit.LineNumberTag;
 import soot.tagkit.SourceFileTag;
 
@@ -72,6 +74,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -186,6 +189,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         Map<Unit, Instruction> unitToInstruction = new HashMap<>();
         Map<Integer, Instruction> hookInstructionLines = new HashMap<>();
         Map<Integer, Alloca> varIndexToAlloca = new HashMap<>();
+        Map<Integer, Integer> varIndexToArgNo = new HashMap<>();
         Map<Local, Alloca> localToAlloca = new HashMap<>();
 
         // find line numbers
@@ -242,9 +246,22 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                             localToAlloca.put(local, alloca);
                         }
                     } else if (lineNumObj != null && !hookInstructionLines.containsKey(lineNumObj)) {
+                        // skip this instruction if it is bounded with JIdentityStmt as it would result in case
+                        // when breakpoint is hit before argument variables got initialized
+                        boolean containIdentityStmt = false;
+                        if (instruction instanceof Store) {
+                            for (Object o: instruction.getAttachments()) {
+                                if (o instanceof JIdentityStmt) {
+                                    containIdentityStmt = true;
+                                    break;
+                                }
+                            }
+                        }
+
                         // make a list of instruction to instrument hooks for debugger
                         // only if there is line number attached to it
-                        hookInstructionLines.put(lineNumObj, instruction);
+                        if (!containIdentityStmt)
+                            hookInstructionLines.put(lineNumObj, instruction);
                     }
                 }
             }
@@ -275,6 +292,21 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         for (Map.Entry<Integer, Instruction> e : hookInstructionLines.entrySet()) {
             int lineNo = e.getKey();
             injectHookInstrumented(lineNo, methodLineNumber - lineNo, function, bpTableRef, e.getValue());
+        }
+
+        // build map of local index to argument no
+        int firstArgNo;
+        if (!method.isStatic()) {
+            // add map of this, as first argument, it always goes as index=0
+            varIndexToArgNo.put(0, 1);
+            // skip it in arg map
+            firstArgNo = 3;
+        } else {
+            firstArgNo = 2;
+        }
+        for (int idx = 0; idx < method.getParameterCount(); idx++) {
+            int localIdx = method.getActiveBody().getParameterLocal(idx).getIndex();
+            varIndexToArgNo.put(localIdx, firstArgNo + idx);
         }
 
         // build local variable list
@@ -319,11 +351,16 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             // multiple "i" variables
             variableIdx += 1;
             String dwarfName = "dw" + variableIdx + "_" + var.getName();
-            VariableDataBundle variableBundle = new VariableDataBundle(var.getName(), dwarfName, var.getDescriptor(), varStartLine, varEndLine);
+            VariableDataBundle variableBundle = new VariableDataBundle(var.getIndex(), var.getName(), dwarfName, var.getDescriptor(),
+                    varStartLine, varEndLine);
             variables.add(variableBundle);
 
+            // get arg idx if it is there
+            Integer argIdxObj = varIndexToArgNo.get(var.getIndex());
+            int argIdx = argIdxObj != null ? argIdxObj : 0;
+
             // add llvm.dbg.declare call
-            DILocalVariable diLocalVariable = new DILocalVariable(mb, dwarfName, varStartLine,
+            DILocalVariable diLocalVariable = new DILocalVariable(mb, dwarfName, varStartLine, argIdx,
                     classBundle.diFile, diSubprogram,
                     classBundle.dummyJavaVariableType);
 
@@ -342,6 +379,14 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         }
 
         diSubprogram.setVariables(diVariableList);
+
+        // sort variables by index to make sure arguments pop to top
+        Collections.sort(variables, new Comparator<VariableDataBundle>() {
+            @Override
+            public int compare(VariableDataBundle o1, VariableDataBundle o2) {
+                return o1.codeIndex - o2.codeIndex;
+            }
+        });
 
         // remember method debug information
         classBundle.methods.add(new MethodDataBundle(function.getName(), methodLineNumber, methodEndLineNumber, variables));
@@ -380,7 +425,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                         }
 
                         // save variable
-                        variables.add(new DebugVariableInfo(variableBudnle.name, variableBudnle.typeSignature, false /* FIXME */,
+                        variables.add(new DebugVariableInfo(variableBudnle.name, variableBudnle.typeSignature, dbgVariableInfo.isArgument(),
                                 variableBudnle.startLine, variableBudnle.finalLine, dbgVariableInfo.register(), dbgVariableInfo.offset()));
                     }
 
@@ -496,13 +541,15 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
      * Data bundle that contains debug information about variables -- required for debugger only
      */
     private static class VariableDataBundle {
+        final int codeIndex;
 	    final String name;
         final String dwarfName;
         final String typeSignature;
         final int startLine;
         final int finalLine;
 
-        public VariableDataBundle(String name, String dwarfName, String typeSignature, int startLine, int finalLine) {
+        public VariableDataBundle(int codeIndex, String name, String dwarfName, String typeSignature, int startLine, int finalLine) {
+            this.codeIndex = codeIndex;
             this.name = name;
             this.dwarfName = dwarfName;
             this.typeSignature = typeSignature;
