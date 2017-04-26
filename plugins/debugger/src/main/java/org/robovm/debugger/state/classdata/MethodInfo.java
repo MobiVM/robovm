@@ -143,6 +143,15 @@ public class MethodInfo extends BaseModifiersInfo {
         return (flags & ClassDataConsts.methodinfo.BRO_BRIDGE) != 0;
     }
 
+    /**
+     * marks method as native due lack of ability to work with it as with pure java one
+     * e.g. if there is not enough debug information etc
+     */
+    public void markAsNative() {
+        flags |= ClassDataConsts.methodinfo.NATIVE;
+        reloadModifiers();
+    }
+
     @Override
     protected int convertModifiers() {
         return Converter.methodModifiers(flags);

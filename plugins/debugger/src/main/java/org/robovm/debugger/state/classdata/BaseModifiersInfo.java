@@ -28,6 +28,10 @@ public abstract class BaseModifiersInfo implements RefIdHolder.IRefIdObject{
         return modifiers;
     }
 
+    protected void reloadModifiers() {
+        modifiers = convertModifiers();
+    }
+
     @Override
     public void setRefId(long refId) {
         this.refId = refId;

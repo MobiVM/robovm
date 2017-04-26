@@ -5,6 +5,7 @@ import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
+import org.robovm.llvm.debuginfo.DebugMethodInfo;
 import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
 
 import java.nio.ByteBuffer;
@@ -176,17 +177,38 @@ public class ClassInfoImpl extends ClassInfo {
         RefIdHolder<MethodInfo> methodsRefIdHolder = loader.methodsRefIdHolder;
         methods = new MethodInfo[methodCount];
         for (int idx = 0; idx < methodCount; idx++) {
-            methods[idx] = new MethodInfo();
-            methods[idx].readMethodInfo(reader);
-            if (debugInfo != null) {
-                methods[idx].setDebugInfo(debugInfo.methodBySignature(methods[idx].name() + methods[idx].signature()));
-
-                // resolve break point table for it
-                String bpTableSymbol = "[j]" + className.replace('/', '.') + "." + methods[idx].name() + methods[idx].signature() + "[bptable]";
-                long addr = loader.appFileLoader.resolveSymbol(bpTableSymbol);
-                methods[idx].setBpTableAddr(addr);
+            MethodInfo methodInfo = new MethodInfo();
+            methods[idx] = methodInfo;
+            methodInfo.readMethodInfo(reader);
+            if (methodInfo.isBridge() || methodInfo.isBroCallback() || methodInfo.isBroCallback() || methodInfo.isBroBridge()) {
+                // mark bridge and callbacks as native just to keep debugger away from attempts to get information about
+                // these methods(line tables etc)
+                methodInfo.markAsNative();
             }
-            methodsRefIdHolder.addObject(methods[idx]);
+
+            if (!methodInfo.isNative()) {
+                DebugMethodInfo methodDebugInfo = null;
+                long bpTableAddr = -1;
+                if (debugInfo != null) {
+                    methodDebugInfo = debugInfo.methodBySignature(methodInfo.name() + methodInfo.signature());
+
+                    // resolve break point table for it
+                    if (methodDebugInfo != null) {
+                        String bpTableSymbol = "[j]" + className.replace('/', '.') + "." + methodInfo.name() + methodInfo.signature() + "[bptable]";
+                        bpTableAddr = loader.appFileLoader.resolveSymbol(bpTableSymbol);
+                    }
+                }
+
+                if (methodDebugInfo != null) {
+                    methodInfo.setDebugInfo(methodDebugInfo);
+                    methodInfo.setBpTableAddr(bpTableAddr);
+                } else {
+                    // there is no debug info and it will not be possible to work with this method, so mark it as native
+                    // to keep debugger away from it
+                    methodInfo.markAsNative();;
+                }
+            }
+            methodsRefIdHolder.addObject(methodInfo);
         }
     }
 
