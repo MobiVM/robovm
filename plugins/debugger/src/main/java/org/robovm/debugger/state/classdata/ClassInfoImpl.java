@@ -42,6 +42,9 @@ public class ClassInfoImpl extends ClassInfo {
     //    void* attributes;
     //} ClassInfo;
 
+    // empty reference just for caces where isClass/isPrimitive/isArray is called
+    public static ClassInfo EMPTY = new ClassInfoEmptyImpl(Type.CLASS);
+
     /** class info flags */
     private int flags;
 

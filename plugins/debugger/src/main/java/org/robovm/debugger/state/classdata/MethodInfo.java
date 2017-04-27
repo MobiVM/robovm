@@ -35,6 +35,8 @@ public class MethodInfo extends BaseModifiersInfo {
     private DebugMethodInfo debugInfo;
     // mach-o address of breakpoint table for method. <=0 if missing
     private long bpTableAddr;
+    // call specification for method build from desc fiend
+    private CallSpec callspec;
 
     public void readMethodInfo(ByteBufferMemoryReader reader) {
         flags = reader.readInt16();
@@ -152,8 +154,29 @@ public class MethodInfo extends BaseModifiersInfo {
         reloadModifiers();
     }
 
+    public CallSpec callspec() {
+        return callspec;
+    }
+
+    public void setCallspec(CallSpec callspec) {
+        this.callspec = callspec;
+    }
+
     @Override
     protected int convertModifiers() {
         return Converter.methodModifiers(flags);
+    }
+
+    /**
+     * spec for parameters and return type of method
+     */
+    public static class CallSpec {
+        public final ClassInfo returnType;
+        public final ClassInfo[] arguments;
+
+        public CallSpec(ClassInfo returnType, ClassInfo[] arguments) {
+            this.returnType = returnType;
+            this.arguments = arguments;
+        }
     }
 }

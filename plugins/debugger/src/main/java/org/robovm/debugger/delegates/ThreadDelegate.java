@@ -130,6 +130,13 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
         }
     }
 
+    public void resumeAllOtherThreads(VmThread stoppedThread) {
+        for (VmThread thread : delegates.state().threads()) {
+            if (thread != stoppedThread)
+                resumeThread(thread);
+        }
+    }
+
     /**
      * @return any suspended thread to perform newInstance operations within
      */

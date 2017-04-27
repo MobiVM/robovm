@@ -23,4 +23,15 @@ public interface IJdwpInstanceDelegate {
      */
     VmClassInstance jdwpGetClazzObject(long objectId) throws DebuggerException;
 
+    /**
+     *  @param objectOrClassId class id or instance id
+     * @param threadId thread to invoke on
+     * @param methodId method to invoke
+     * @param isStatic true if method is static
+     * @param singleThread otherwise, all thread started
+     * @param args values of arguments
+     * @param output to write result and exception back
+     */
+    void jdwpInvokeMethod(long objectOrClassId, long threadId, long methodId, boolean isStatic,
+                          boolean singleThread, Object[] args, ByteBufferPacket output);
 }

@@ -59,6 +59,7 @@ import org.robovm.debugger.jdwp.handlers.vm.JdwpVmClassPathsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmClassesBySignatureHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmCreateStringHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmDisposeHandler;
+import org.robovm.debugger.jdwp.handlers.vm.JdwpVmExitHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmHoldEventsHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmIdSizesHandler;
 import org.robovm.debugger.jdwp.handlers.vm.JdwpVmReleaseEventsHandler;
@@ -181,6 +182,11 @@ public class JdwpDebugServer implements IJdwpServerApi{
 
                 // send response
                 sendResponse(header.id, errorCode, outPacket);
+
+                if (errorCode == JdwpConsts.Error.VM_DEAD) {
+                    // it was exit command, terminate everything via exception
+                    throw new DebuggerException("Terminating due exit command");
+                }
             }
         } catch (IOException e) {
             throw new DebuggerException(e);
@@ -298,6 +304,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
         registerHandler(new JdwpVmIdSizesHandler()); // 7
         registerHandler(new JdwpVmSuspendHandler(delegates)); // Suspend Command (8)
         registerHandler(new JdwpVmResumeHandler(delegates)); // Resume Command (9)
+        registerHandler(new JdwpVmExitHandler());
         // Exit Command (10) -- NOT_IMPLEMENTED
         registerHandler(new JdwpVmCreateStringHandler(delegates));// CreateString Command (11)
         registerHandler(new JdwpVmCapabilitiesHandler()); // 12
@@ -338,7 +345,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
         //
         registerHandler(new JdwpClassTypeSuperclassHandler(state)); // Superclass (1)
         registerHandler(new JdwpClassTypeSetValuesHandler(delegates)); // SetValues (2)
-        registerHandler(new JdwpClassTypeInvokeMethodHandler()); //InvokeMethod (3) // TODO:
+        registerHandler(new JdwpClassTypeInvokeMethodHandler(delegates)); //InvokeMethod (3)
         registerHandler(new JdwpClassTypeNewInstanceHandler()); //NewInstance (4) // TODO:
 
         //
@@ -366,7 +373,7 @@ public class JdwpDebugServer implements IJdwpServerApi{
         registerHandler(new JdwpObjRefGetValuesHandler(delegates)); // GetValues (2)
         registerHandler(new JdwpObjRefSetValuesHandler(delegates)); // SetValues (3)
         //MonitorInfo (5) -- NOT_IMPLEMENTED
-        registerHandler(new JdwpObjRefInvokeMethodHandler()); // InvokeMethod (6) // TODO:
+        registerHandler(new JdwpObjRefInvokeMethodHandler(delegates)); // InvokeMethod (6)
         // DisableCollection (7) -- NOT_IMPLEMENTED
         // EnableCollection (8) -- NOT_IMPLEMENTED
         // IsCollected (9) -- NOT_IMPLEMENTED

@@ -11,6 +11,7 @@ import org.robovm.debugger.state.classdata.ClassInfoImpl;
 import org.robovm.debugger.state.classdata.ClassInfoLoader;
 import org.robovm.debugger.state.classdata.ClassInfoPrimitiveImpl;
 import org.robovm.debugger.state.classdata.FieldInfo;
+import org.robovm.debugger.state.classdata.MethodInfo;
 import org.robovm.debugger.state.classdata.RuntimeClassInfoLoader;
 import org.robovm.debugger.state.instances.VmArrayInstance;
 import org.robovm.debugger.state.instances.VmClassInstance;
@@ -23,7 +24,10 @@ import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
 
+import java.nio.ByteOrder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -474,6 +478,136 @@ public class InstanceUtils {
     }
 
     /**
+     * invokes the method of class or instance
+     */
+    public void jdwpInvokeMethod(long objectOrClassId, long threadId, long methodId, boolean isStatic,
+                                 boolean singleThread, Object[] args, ByteBufferPacket output) {
+
+        // get thread
+        VmThread thread = delegates.state().referenceRefIdHolder().instanceById(threadId);
+        if (thread == null)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_THREAD);
+        if (thread.suspendCount() == 0)
+            throw new DebuggerException(JdwpConsts.Error.THREAD_NOT_SUSPENDED);
+
+        // get method
+        MethodInfo methodInfo = delegates.state().methodsRefIdHolder().objectById(methodId);
+        if (methodInfo == null)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_METHODID);
+
+        // get class or instance pointer
+        long classOrInstancePtr;
+        if (isStatic) {
+            ClassInfo ci = delegates.state().classRefIdHolder().objectById(objectOrClassId);
+            if (ci == null)
+                throw new DebuggerException(JdwpConsts.Error.INVALID_CLASS);
+            // check if class is loaded
+            if (ci.clazzPtr() == 0)
+                throw new DebuggerException(JdwpConsts.Error.CLASS_NOT_PREPARED);
+            classOrInstancePtr = ci.clazzPtr();
+        } else {
+            VmInstance instance = delegates.state().referenceRefIdHolder().instanceById(objectOrClassId);
+            if (instance == null)
+                throw new DebuggerException(JdwpConsts.Error.INVALID_OBJECT);
+            classOrInstancePtr = instance.objectPtr();
+        }
+
+        // get method arguments types and return type
+        MethodInfo.CallSpec callspec = methodInfo.callspec();
+        if (callspec == null) {
+            callspec = buildCallSpec(methodInfo.signature());
+            methodInfo.setCallspec(callspec);
+        }
+
+        // sanity 1
+        if (args.length != callspec.arguments.length)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_METHODID);
+
+        ByteBufferPacket argsBuffer = null;
+        if (args.length > 0) {
+            // write values to special buffer
+            // intentionally marked as 64 to save pointers as longs
+            // refer to method.c/setArgs for details of how array/object data is fetched
+            argsBuffer = new ByteBufferPacket(args.length * 8, true);
+            argsBuffer.setByteOrder(ByteOrder.LITTLE_ENDIAN);
+            for (int idx = 0; idx < args.length; idx++) {
+                // write using class spec
+                // if client send wrong data it will fail on class cast during manipulator operations
+
+                ClassInfo valueClassInfo = callspec.arguments[idx];
+                ValueManipulator valueManipulator;
+
+                if (valueClassInfo.isPrimitive()) {
+                    ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) valueClassInfo;
+                    valueManipulator = primitiveInfo.manipulator();
+                } else {
+                    valueManipulator = manipulator;
+                }
+
+                // there is one trick. data is being written as jvalue which is 8 bytes long
+                // so while writing we have to do back in force
+                // refer to method.c/setArgs for details
+                int pos = argsBuffer.position();
+                argsBuffer.writeLong(0);
+                argsBuffer.setPosition(pos);
+                valueManipulator.writeToDevice(argsBuffer, args[idx]);
+                // move pos to end of buf
+                argsBuffer.setPosition(argsBuffer.size());
+            }
+        }
+
+        // find out return code for hooks
+        // refer to hooks.c/invokeClassMethod
+        byte returnType;
+        if (callspec.returnType == null)
+            returnType = 'V';
+        else if (callspec.returnType.isPrimitive())
+            returnType = (byte) callspec.returnType.signature().charAt(0);
+        else
+            returnType = 'L'; // array or object
+
+        // resume all threads if not single threaded
+        if (!singleThread)
+            delegates.threads().resumeAllOtherThreads(thread);
+
+        // invoke now
+        HooksCmdResponse res = delegates.hooksApi().threadInvoke(thread.threadPtr(), classOrInstancePtr, methodInfo.name(),
+                methodInfo.signature(), isStatic, returnType, argsBuffer);
+
+        // write received result to output buffer
+        if (callspec.returnType == null) {
+            output.writeByte(JdwpConsts.Tag.VOID);
+        } else if (callspec.returnType.isPrimitive()) {
+            // now is a trick of how to make different types from long without checking types
+            // write it to buffer and then read it back using manipulator
+            if (argsBuffer == null)
+                argsBuffer = new ByteBufferPacket(8, true);
+            else
+                argsBuffer.reset();
+            argsBuffer.writeLong(res.result());
+
+            // read it back
+            ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) callspec.returnType;
+            argsBuffer.setPosition(0);
+            Object value = primitiveInfo.manipulator().readFromDevice(argsBuffer);
+            primitiveInfo.manipulator().writeToJdwp(output, value);
+        } else {
+            // array or object
+            VmInstance value = instanceByPointer(res.result());
+            manipulator.writeToJdwp(output, value);
+        }
+
+        // send exception if any
+        if (res.exceptionPrt() == 0) {
+            output.writeByte(JdwpConsts.Tag.OBJECT);
+            output.writeLong(0);
+        } else {
+            VmInstance value = instanceByPointer(res.exceptionPrt());
+            manipulator.writeToJdwp(output, value);
+        }
+    }
+
+    /**
      * @return object manipulator that works with object/arrays
      */
     ValueManipulator objectManipulator() {
@@ -525,6 +659,89 @@ public class InstanceUtils {
         return new VmInstance(objectPtr, ci);
     }
 
+    /**
+     * parses method signature into classinfos of arguments and return type
+     * @param signature of method
+     * @return spec to call this method
+     */
+    private MethodInfo.CallSpec buildCallSpec(String signature) {
+        if (!signature.startsWith("("))
+            throw new DebuggerException("wrong method signature " + signature);
+        int div = signature.indexOf(')');
+        if (div < 0)
+            throw new DebuggerException("wrong method signature " + signature);
+
+        // return type and argument signatures
+        String returnSignature = signature.substring(div + 1);
+        String arguments = signature.substring(1, div);
+
+        // deal with return type
+        ClassInfo retType = null;
+        char returnSignatureC = returnSignature.charAt(0);
+        if (returnSignature.length() == 1) {
+            // primitive
+            if (returnSignatureC != 'V')
+                retType = classInfoLoader().getPrimitiveClassInfo(returnSignatureC);
+        } else {
+            if (returnSignatureC == 'L')
+                retType = ClassInfoImpl.EMPTY;
+            else if (returnSignatureC == '[')
+                retType = ClassInfoArrayImpl.EMPTY;
+            else
+                throw new DebuggerException("wrong method signature " + signature);
+        }
+
+        // deal with argument type
+        List<ClassInfo> argumentTypes = new ArrayList<>();
+        if (arguments.length() != 0) {
+            int[] pos = {0};
+            while (pos[0] < arguments.length()) {
+                char c = getNextParameterType(arguments, pos);
+                if (c == 'L')
+                    argumentTypes.add(ClassInfoImpl.EMPTY);
+                else if (c == '[')
+                    argumentTypes.add(ClassInfoArrayImpl.EMPTY);
+                else {
+                    // primitive
+                    argumentTypes.add(classInfoLoader().getPrimitiveClassInfo(c));
+                }
+            }
+        }
+
+        return new MethodInfo.CallSpec(retType, argumentTypes.toArray(new ClassInfo[argumentTypes.size()]));
+    }
+
+    /**
+     * picks next parameter type from signature
+     * check method.c/rvmGetNextParameterType
+     */
+    private char getNextParameterType(String signature, int[] pos) {
+        char c = signature.charAt(pos[0]);
+        pos[0] += 1;
+        switch (c) {
+            case 'B':
+            case 'Z':
+            case 'S':
+            case 'C':
+            case 'I':
+            case 'J':
+            case 'F':
+            case 'D':
+                return c;
+            case '[':
+                // skip array type as not important
+                getNextParameterType(signature, pos);
+                return c;
+            case 'L':
+                while (signature.charAt(pos[0]) != ';')
+                    pos[0] += 1;
+                pos[0] += 1;
+                return c;
+        }
+
+        // should not happen
+        throw new DebuggerException("wrong method signature " + signature);
+    }
 
     /**
      * Special subclass for object manipulations

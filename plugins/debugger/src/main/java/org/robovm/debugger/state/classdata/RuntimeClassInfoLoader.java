@@ -80,6 +80,12 @@ public class RuntimeClassInfoLoader {
         return info;
     }
 
+    public ClassInfo getPrimitiveClassInfo(char signature) {
+        ClassInfo info = loader().classInfoBySignature(String.valueOf(signature));
+        if (info == null)
+            info = buildPrimitiveClassInfo(signature);
+        return info;
+    }
 
     public ClassInfo buildPrimitiveClassInfo(String signature) {
         if (signature.length() != 1)

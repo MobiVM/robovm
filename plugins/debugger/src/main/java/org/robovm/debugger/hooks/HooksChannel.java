@@ -301,9 +301,31 @@ public class HooksChannel implements IHooksApi {
     }
 
     @Override
-    public void threadInvoke(long thread, long classOrObjectPtr, String methodName, String descriptor,
-                             boolean isClassMethod, byte returnType, Object[] arguments) {
-        // TODO: implement
+    public HooksCmdResponse threadInvoke(long thread, long classOrObjectPtr, String methodName, String descriptor,
+                             boolean isClassMethod, byte returnType, ByteBufferPacket arguments) {
+        long argumentsPtr = 0;
+        // if there are arguments -- allocate memory and write them there
+        if (arguments != null) {
+            argumentsPtr = allocate(arguments.size());
+            writeMemory(argumentsPtr, arguments);
+        }
+
+        ByteBufferPacket packet = new ByteBufferPacket();
+        packet.writeLong(thread);
+        packet.writeLong(classOrObjectPtr);
+        packet.writeStringWithLen(methodName);
+        packet.writeStringWithLen(descriptor);
+        packet.writeBoolean(isClassMethod);
+        packet.writeByte(returnType);
+        packet.writeLong(argumentsPtr);
+        HooksCmdResponse resp = sendCommand(HookConsts.commands.THREAD_INVOKE, packet);
+
+        if (argumentsPtr != 0) {
+            // release memory up from arguments
+            free(argumentsPtr);
+        }
+
+        return resp;
     }
 
     @Override

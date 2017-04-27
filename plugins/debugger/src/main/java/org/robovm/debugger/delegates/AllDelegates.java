@@ -327,6 +327,13 @@ public class AllDelegates implements IJdwpEventDelegate, IJdwpArrayDelegate, IDe
         }
     }
 
+    @Override
+    public void jdwpInvokeMethod(long objectOrClassId, long threadId, long methodId, boolean isStatic,
+                                 boolean singleThread, Object[] args, ByteBufferPacket output) {
+        synchronized (state.centralLock()) {
+            instances.jdwpInvokeMethod(objectOrClassId, threadId, methodId, isStatic, singleThread,  args, output);
+        }
+    }
 
     //
     // Stack Frame delegate implementation

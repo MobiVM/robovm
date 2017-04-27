@@ -12,7 +12,7 @@ public class JdwpVmExitHandler implements IJdwpRequestHandler {
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
         int exitCode = payload.readInt32();
-        return JdwpConsts.Error.NONE;
+        return JdwpConsts.Error.VM_DEAD;
     }
 
     @Override

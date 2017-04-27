@@ -7,6 +7,9 @@ package org.robovm.debugger.state.classdata;
  * refer class.c#createArrayClass
  */
 public class ClassInfoArrayImpl extends ClassInfo {
+    // empty reference just for caces where isClass/isPrimitive/isArray is called
+    public static ClassInfo EMPTY = new ClassInfoEmptyImpl(Type.ARRAY);
+
     private final String signature;
     private final ClassInfo elementType;
     private ClassInfo[] interfaces;
