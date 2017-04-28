@@ -22,7 +22,7 @@ public class JdwpArrayGetLength implements IJdwpRequestHandler {
         long arrayId = payload.readLong();
 
         try {
-            delegate.jdwpArrayLength(arrayId);
+            output.writeInt32(delegate.jdwpArrayLength(arrayId));
         } catch (DebuggerException e) {
             if (e.getCode() < 0)
                 throw  e;

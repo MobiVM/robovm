@@ -14,6 +14,7 @@ import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferReader;
 
+import java.nio.ByteOrder;
 import java.nio.charset.Charset;
 
 /**
@@ -49,13 +50,13 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
     public void jdwpArrayGetValue(long arrayId, int index, int length, ByteBufferPacket writer) throws DebuggerException {
         VmArrayInstance instance;
         try {
-            instance = delegates.instances().existingInstanceByPointer(arrayId);
+            instance = delegates.state().referenceRefIdHolder().instanceById(arrayId);
         } catch (ClassCastException e) {
             throw new DebuggerException(JdwpConsts.Error.INVALID_ARRAY);
         }
 
         // check if index and length is withing bounds
-        if (index < 0 || length <= 0 || index + length >= instance.length())
+        if (index < 0 || length <= 0 || index + length > instance.length())
             throw new DebuggerException(JdwpConsts.Error.INVALID_LENGTH);
 
         // read a memory block from device
@@ -75,14 +76,27 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
             manipulator = delegates.instances().objectManipulator();
         }
 
+        // targets are little endian
+        reader.setByteOrder(ByteOrder.LITTLE_ENDIAN);
+
         // write JDPW array region header
-        writer.writeByte(Converter.jdwpTypeTag(instance.classInfo()));
+        writer.writeByte(Converter.jdwpSimpleInstanceTag(elementType));
         writer.writeInt32(length);
 
         // now dump elements one by one
-        for (int idx = 0; idx < length; idx++) {
-            Object element = manipulator.readFromDevice(reader);
-            manipulator.writeToJdwp(writer, element);
+        if (elementType.isPrimitive()) {
+            for (int idx = 0; idx < length; idx++) {
+                Object element = manipulator.readFromDevice(reader);
+                // if elements are primitives, write them as to device, otherwise these will be tagged which is not required
+                manipulator.writeToDevice(writer, element);
+            }
+
+        } else {
+            // write tagged objects
+            for (int idx = 0; idx < length; idx++) {
+                Object element = manipulator.readFromDevice(reader);
+                manipulator.writeToJdwp(writer, element);
+            }
         }
     }
 
@@ -99,7 +113,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
             throw new DebuggerException(JdwpConsts.Error.INVALID_OBJECT);
 
         // check if index and length is withing bounds
-        if (index < 0 || length <= 0 || index + length >= instance.length())
+        if (index < 0 || length <= 0 || index + length > instance.length())
             throw new DebuggerException(JdwpConsts.Error.INVALID_LENGTH);
 
         // read a memory block from device
@@ -138,12 +152,15 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
         // calculate data pointer
         dataPtr += 4; // length field
         // now align by size of data
-        int elementSize;
-        if (ci.elementType().isPrimitive())
-            elementSize = ((ClassInfoPrimitiveImpl)ci.elementType()).size();
-        else
-            elementSize = delegates.runtime().deviceMemoryReader().pointerSize();
-        dataPtr = (dataPtr + elementSize - 1) & ~(elementSize - 1);
+        int alignSize;
+        if (ci.elementType().isPrimitive()) {
+            alignSize = ((ClassInfoPrimitiveImpl) ci.elementType()).size();
+            if (alignSize > 4)
+                alignSize =  delegates.runtime().deviceMemoryReader().pointerSize();
+        } else {
+            alignSize = delegates.runtime().deviceMemoryReader().pointerSize();
+        }
+        dataPtr = (dataPtr + alignSize - 1) & ~(alignSize - 1);
 
         return new VmArrayInstance(objectPtr, ci, length, dataPtr);
     }
@@ -168,7 +185,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
     public long jdwpArrayCreateInstance(long arrayTypeId, int length) {
         ClassInfoArrayImpl classInfoArray = (ClassInfoArrayImpl) delegates.state().classInfoLoader().classInfoByRefId(arrayTypeId);
         if (classInfoArray == null)
-            throw new DebuggerException(JdwpConsts.Error.INVALID_ARRAY);
+            throw new DebuggerException(JdwpConsts.Error.INVALID_CLASS);
 
         // there is a need of thread to perform this operation in context of
         // find any stopped thread

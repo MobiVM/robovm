@@ -190,5 +190,20 @@ public final class Converter {
         return tag;
     }
 
+    /**
+     * returns simple tag without finding specific classes (like thread)
+     */
+    public static byte jdwpSimpleInstanceTag(ClassInfo elementType) {
+        byte tag;
+        if (elementType.isPrimitive())
+            tag = (byte) elementType.signature().charAt(0);
+        else if (elementType.isArray())
+            tag = '[';
+        else
+            tag = 'L';
+        return tag;
+    }
+
     private static Map<Long, Byte> classInfoToTagMap = new HashMap<>();
+
 }
