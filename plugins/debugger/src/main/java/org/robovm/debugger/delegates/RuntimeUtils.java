@@ -6,6 +6,9 @@ import org.robovm.debugger.state.classdata.MethodInfo;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author Demyan Kimitsa
  * provides utilities to work with taget
@@ -25,6 +28,10 @@ public class RuntimeUtils {
      */
     private final TargetByteBufferReader deviceMemoryReader;
 
+    /**
+     * set if classname that are currently set in device
+     */
+    private Set<String> activeClassFilters;
 
     public RuntimeUtils(AllDelegates delegates, long runtimeMemoryOffset) {
         this.delegates = delegates;
@@ -160,6 +167,46 @@ public class RuntimeUtils {
     public void restep(VmThread thread, RuntimeStepReference ref) {
         // apply to target
         delegates.hooksApi().threadStep(thread.threadPtr(), ref.pclow, ref.pchigh, ref.pclow2, ref.pchigh2);
+    }
+
+
+    public void setClassLoadFilter(Set<String> filters) {
+        Set<String> filtersToSet = null;
+        Set<String> filtersToRemove = null;
+
+        if (activeClassFilters == null || activeClassFilters.isEmpty()) {
+            if (filters == null || filters.isEmpty())
+                return; // no change
+
+            filtersToSet = filters;
+        } else {
+            if (filters == null || filters.isEmpty()) {
+                filtersToRemove = activeClassFilters;
+            } else {
+                // find a difference
+                filtersToSet = new HashSet<>(filters);
+                filtersToSet.removeAll(activeClassFilters);
+                filtersToRemove = new HashSet<>(activeClassFilters);
+                filtersToRemove.removeAll(filters);
+
+            }
+        }
+
+        // remove filters
+        if (filtersToRemove != null && !filtersToRemove.isEmpty()) {
+            for (String className : filtersToRemove) {
+                delegates.hooksApi().classFilter(false, className);
+            }
+        }
+
+        // add new filters
+        if (filtersToSet != null && !filtersToSet.isEmpty()) {
+            for (String className : filtersToSet) {
+                delegates.hooksApi().classFilter(true, className);
+            }
+        }
+
+        activeClassFilters = filters;
     }
 
     /**

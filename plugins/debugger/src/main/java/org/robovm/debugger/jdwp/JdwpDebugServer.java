@@ -345,8 +345,8 @@ public class JdwpDebugServer implements IJdwpServerApi{
         //
         registerHandler(new JdwpClassTypeSuperclassHandler(state)); // Superclass (1)
         registerHandler(new JdwpClassTypeSetValuesHandler(delegates)); // SetValues (2)
-        registerHandler(new JdwpClassTypeInvokeMethodHandler(delegates)); //InvokeMethod (3)
-        registerHandler(new JdwpClassTypeNewInstanceHandler()); //NewInstance (4) // TODO:
+        registerHandler(new JdwpClassTypeInvokeMethodHandler(delegates)); // InvokeMethod (3)
+        registerHandler(new JdwpClassTypeNewInstanceHandler(delegates)); // NewInstance (4)
 
         //
         // ArrayType Command Set (4)

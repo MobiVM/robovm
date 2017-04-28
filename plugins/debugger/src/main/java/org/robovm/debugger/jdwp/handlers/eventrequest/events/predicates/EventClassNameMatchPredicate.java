@@ -16,13 +16,25 @@ public class EventClassNameMatchPredicate extends EventPredicate {
         this.negative = negative;
     }
 
+    public String pattern() {
+        return pattern;
+    }
+
+    public boolean isNegative() {
+        return negative;
+    }
+
+    public boolean isExact() {
+        return !pattern.startsWith("*") && !pattern.endsWith("*");
+    }
+
     @Override
     public boolean test(EventData eventData) {
         boolean result = matchPattern(pattern, eventData.getClassName());
         return negative ? !result : result;
     }
 
-    private static boolean matchPattern(String pattern, String str) {
+    public static boolean matchPattern(String pattern, String str) {
         if (pattern.startsWith("*")) {
             return str.regionMatches(str.length() - (pattern.length() - 1), pattern, 1, pattern.length() - 1);
         } else if (pattern.endsWith("*")) {

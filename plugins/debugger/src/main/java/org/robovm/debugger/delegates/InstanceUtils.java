@@ -556,12 +556,19 @@ public class InstanceUtils {
             }
         }
 
+        boolean createInstance = isStatic && "<init>".equals(methodInfo.name());
+        ClassInfo specReturnType = callspec.returnType;
+        // there is workaround as this method is being used to create new instances as well (e.g. calling constructor)
+        // it check against <init> method name and replaces void to object type
+        if (specReturnType == null && createInstance)
+            specReturnType = ClassInfoImpl.EMPTY;
+
         // find out return code for hooks
         // refer to hooks.c/invokeClassMethod
         byte returnType;
-        if (callspec.returnType == null)
-            returnType = 'V';
-        else if (callspec.returnType.isPrimitive())
+        if (specReturnType == null)
+            returnType = (byte) ("<init>".equals(methodInfo.name()) ? 'L' : 'V');
+        else if (specReturnType.isPrimitive())
             returnType = (byte) callspec.returnType.signature().charAt(0);
         else
             returnType = 'L'; // array or object
@@ -571,19 +578,27 @@ public class InstanceUtils {
             delegates.threads().resumeAllOtherThreads(thread);
 
         // invoke now
-        HooksCmdResponse res = delegates.hooksApi().threadInvoke(thread.threadPtr(), classOrInstancePtr, methodInfo.name(),
-                methodInfo.signature(), isStatic, returnType, argsBuffer);
+        HooksCmdResponse res;
+        if (createInstance) {
+            res = delegates.hooksApi().newInstance(thread.threadPtr(), classOrInstancePtr, methodInfo.name(),
+                    methodInfo.signature(), argsBuffer);
+        } else {
+            res = delegates.hooksApi().threadInvoke(thread.threadPtr(), classOrInstancePtr, methodInfo.name(),
+                    methodInfo.signature(), isStatic, returnType, argsBuffer);
+        }
 
         // write received result to output buffer
-        if (callspec.returnType == null) {
+        if (specReturnType == null) {
             output.writeByte(JdwpConsts.Tag.VOID);
-        } else if (callspec.returnType.isPrimitive()) {
+        } else if (specReturnType.isPrimitive()) {
             // now is a trick of how to make different types from long without checking types
             // write it to buffer and then read it back using manipulator
-            if (argsBuffer == null)
+            if (argsBuffer == null) {
                 argsBuffer = new ByteBufferPacket(8, true);
-            else
+                argsBuffer.setByteOrder(ByteOrder.LITTLE_ENDIAN);
+            } else {
                 argsBuffer.reset();
+            }
             argsBuffer.writeLong(res.result());
 
             // read it back

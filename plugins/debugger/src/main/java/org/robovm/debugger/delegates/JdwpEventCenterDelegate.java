@@ -13,6 +13,7 @@ import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpClassLoadedEven
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpEventData;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpEventRequest;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.JdwpThreadStoppedEventData;
+import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventClassNameMatchPredicate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventClassTypeIdPredicate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventExceptionPredicate;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventInstanceIdPredicate;
@@ -201,10 +202,12 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
         log.debug("jdwpSetEventRequest: " + request);
 
+        // save
+        jdwpEventRequests.add(request);
+
         // apply event to target before adding it to list as it could fail with exception due wrong location etc
         applyRequestToTarget(request);
 
-        jdwpEventRequests.add(request);
         return requestId;
     }
 
@@ -224,8 +227,8 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 if (req.eventKind() != eventKind)
                     return JdwpConsts.Error.INVALID_EVENT_TYPE;
 
-                removeRequestFromTarget(req);
                 it.remove();
+                removeRequestFromTarget(req);
 
                 return JdwpConsts.Error.NONE;
             }
@@ -310,6 +313,54 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 activeStepInRequest = (ref != null && stepMod.depth() == JdwpConsts.StepDepth.INTO) ? ref.setPayload(request) : null;
                 break;
 
+            case JdwpConsts.EventKind.CLASS_PREPARE:
+                // check if there is class name filtering and suspend policy is other than
+                if (request.suspendPolicy() == JdwpConsts.SuspendPolicy.ALL || request.suspendPolicy() == JdwpConsts.SuspendPolicy.EVENT_THREAD) {
+                    Set<String> classNamesToReport = null;
+                    // get list of class names that matches to this event
+                    for (EventPredicate p : request.predicates()) {
+                        if (!(p instanceof EventClassNameMatchPredicate))
+                            continue;
+
+                        EventClassNameMatchPredicate predicate = (EventClassNameMatchPredicate) p;
+                        if (classNamesToReport == null) {
+                            // so there is any predicate, get all known classes for start
+                            classNamesToReport = new HashSet<>(delegates.state().classInfoLoader().allClassNames());
+                        }
+
+                        // filter things
+                        String pattern = predicate.pattern().replace('.', '/');
+                        boolean negative = predicate.isNegative();
+                        if (predicate.isExact()) {
+                            // corner case -- there is only one to be left/removed
+                            if (negative) {
+                                classNamesToReport.remove(pattern);
+                            } else {
+                                boolean pass = classNamesToReport.contains(pattern);
+                                classNamesToReport.clear();
+                                if (pass)
+                                    classNamesToReport.add(pattern);
+                            }
+                        } else {
+                            // need to walk through all classes
+                            // removing not matching
+                            // keeping only matching
+                            classNamesToReport.removeIf(v -> EventClassNameMatchPredicate.matchPattern(pattern, v) == negative);
+                        }
+                    }
+
+                    if (classNamesToReport != null && !classNamesToReport.isEmpty()) {
+                        // there are some classes to listen on
+
+                        // build new set of classes to listen on
+                        request.setFilteredClassNames(classNamesToReport);
+
+                        // update the list and put to divece
+                        udpateActiveClassFilters();
+                    }
+                }
+                break;
+
             default:
                 // this event request either doesn't affect target or not fully supported
                 return;
@@ -342,9 +393,30 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 if (activeStepInRequest != null && request == activeStepInRequest.payload())
                     activeStepInRequest = null;
                 break;
+
+            case JdwpConsts.EventKind.CLASS_PREPARE:
+                // check if there is class name filtering and suspend policy is other than
+                if (request.filteredClassNames() != null &&  (request.suspendPolicy() == JdwpConsts.SuspendPolicy.ALL ||
+                        request.suspendPolicy() == JdwpConsts.SuspendPolicy.EVENT_THREAD)) {
+                    // request is already removed from the list, update the list
+                    udpateActiveClassFilters();
+                }
+                break;
         }
     }
 
+    private void udpateActiveClassFilters() {
+        // make total list of classes
+        Set<String> allClassesToFilter = new HashSet<>();
+        for (JdwpEventRequest r : jdwpEventRequests) {
+            if (r.eventKind() == JdwpConsts.EventKind.CLASS_PREPARE && r.filteredClassNames() != null) {
+                allClassesToFilter.addAll(r.filteredClassNames());
+            }
+        }
+
+        // put to device
+        delegates.runtime().setClassLoadFilter(allClassesToFilter);
+    }
 
     private void processEventsCycle() {
         synchronized (delegates.state().centralLock()) {
@@ -390,10 +462,8 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 HooksClassLoadedEventPayload classLoadEvent = (HooksClassLoadedEventPayload) eventPayload;
                 if (classLoadEvent.threadObj() != 0 && classLoadEvent.callStack() != null) {
                     // event with thread id and stack traces
-                    // TODO: it should stop but it is not clear at the moment how to use it, so resume
-                    VmThread classLoadThread = getThread(classLoadEvent.eventId(), classLoadEvent.threadObj());
-                    VmStackTrace[] classLoadThreadCallStack = convertCallStack(classLoadEvent.eventId(), classLoadEvent.callStack());
-                    delegates.threads().onThreadSuspended(classLoadThread, classLoadThreadCallStack, false);
+                    stoppedThread = getThread(classLoadEvent.eventId(), classLoadEvent.threadObj());
+                    stoppedThreadCallStack = convertCallStack(classLoadEvent.eventId(), classLoadEvent.callStack());
                 }
 
                 eventData = processClassLoadedEvent(classLoadEvent);
@@ -464,10 +534,12 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
             if (stoppedThread != null)
                 delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, false);
         } else {
-            delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, true);
-            if (suspendPolicy == JdwpConsts.SuspendPolicy.ALL) {
-                // suspend all threads (stopped one already suspended)
-                delegates.threads().suspendAllOtherThreads(stoppedThread);
+            if (stoppedThread != null) {
+                delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, true);
+                if (suspendPolicy == JdwpConsts.SuspendPolicy.ALL) {
+                    // suspend all threads (stopped one already suspended)
+                    delegates.threads().suspendAllOtherThreads(stoppedThread);
+                }
             }
         }
     }

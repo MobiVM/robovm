@@ -82,9 +82,4 @@ public class JdwpThreadStoppedEventData extends JdwpEventData {
         return true;
     }
 
-    private String makeClassName(ClassInfo classInfo) {
-        if (classInfo instanceof ClassInfoImpl)
-            return ((ClassInfoImpl)classInfo).className().replace('/','.');
-        return null;
-    }
 }

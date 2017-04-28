@@ -4,7 +4,7 @@ import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.handlers.eventrequest.events.predicates.EventPredicate;
 
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.Set;
 
 /**
  * @author Demyan Kimitsa
@@ -16,6 +16,7 @@ public class JdwpEventRequest {
     private final byte suspendPolicy;
     private final List<EventPredicate> predicates;
     private boolean canceled;
+    private Set<String> filteredClassNames;
 
     public JdwpEventRequest(int requestId, byte eventKind, byte suspendPolicy, List<EventPredicate> predicates) {
         this.requestId = requestId;
@@ -26,7 +27,7 @@ public class JdwpEventRequest {
 
     public boolean test(EventData data) {
         // test through all predicates
-        for (Predicate<EventData> predicate : predicates)
+        for (EventPredicate predicate : predicates)
             if (!predicate.test(data))
                 return false;
         return true;
@@ -72,5 +73,13 @@ public class JdwpEventRequest {
                 ", suspendPolicy=" + JdwpConsts.stringSuspendPolicy(suspendPolicy) +
                 ", predicates=" + predicates +
                 '}';
+    }
+
+    public void setFilteredClassNames(Set<String> filteredClassNames) {
+        this.filteredClassNames = filteredClassNames;
+    }
+
+    public Set<String> filteredClassNames() {
+        return filteredClassNames;
     }
 }

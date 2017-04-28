@@ -1,17 +1,19 @@
 package org.robovm.debugger.jdwp.handlers.classtype;
 
-import org.robovm.debugger.jdwp.JdwpConsts;
-import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
-import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
+import org.robovm.debugger.jdwp.handlers.objectreference.IJdwpInstanceDelegate;
 
 /**
  * @author Demyan Kimitsa
  * Creates a new object of this type, invoking the specified constructor. The constructor method ID must be a member of the class type.
+ *
+ * Format and functionality is same as in JdwpClassTypeInvokeMethodHandler,
+ * the only moment is that constructor signature defined to return void, e.g. ()V so
+ * instance handler shall do this workaround check to setup proper return type
  */
-public class JdwpClassTypeNewInstanceHandler implements IJdwpRequestHandler {
-    @Override
-    public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        return JdwpConsts.Error.NOT_IMPLEMENTED;
+public class JdwpClassTypeNewInstanceHandler extends JdwpClassTypeInvokeMethodHandler {
+
+    public JdwpClassTypeNewInstanceHandler(IJdwpInstanceDelegate delegate) {
+        super(delegate);
     }
 
     @Override

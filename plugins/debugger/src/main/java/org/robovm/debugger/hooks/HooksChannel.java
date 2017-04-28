@@ -269,9 +269,7 @@ public class HooksChannel implements IHooksApi {
     public void classFilter(boolean isSet, String className) {
         ByteBufferPacket packet = new ByteBufferPacket();
         packet.writeByte((byte) (isSet ? -1 : 0));
-        byte[] bytes = className.getBytes();
-        packet.writeInt32(bytes.length);
-        packet.writeBytes(bytes);
+        packet.writeStringWithLen(className);
         sendCommand(HookConsts.commands.CLASS_FILTER, packet);
     }
 
@@ -329,8 +327,28 @@ public class HooksChannel implements IHooksApi {
     }
 
     @Override
-    public void newInstance(long thread, long classPtr, String methodName, String descriptor, Object[] arguments) {
-        // TODO: implement
+    public HooksCmdResponse newInstance(long thread, long classOrObjectPtr, String methodName, String descriptor, ByteBufferPacket arguments) {
+        long argumentsPtr = 0;
+        // if there are arguments -- allocate memory and write them there
+        if (arguments != null) {
+            argumentsPtr = allocate(arguments.size());
+            writeMemory(argumentsPtr, arguments);
+        }
+
+        ByteBufferPacket packet = new ByteBufferPacket();
+        packet.writeLong(thread);
+        packet.writeLong(classOrObjectPtr);
+        packet.writeStringWithLen(methodName);
+        packet.writeStringWithLen(descriptor);
+        packet.writeLong(argumentsPtr);
+        HooksCmdResponse resp = sendCommand(HookConsts.commands.THREAD_NEWINSTANCE, packet);
+
+        if (argumentsPtr != 0) {
+            // release memory up from arguments
+            free(argumentsPtr);
+        }
+
+        return resp;
     }
 
     @Override

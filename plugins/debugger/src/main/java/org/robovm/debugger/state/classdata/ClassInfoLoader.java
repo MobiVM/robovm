@@ -11,8 +11,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Demyan Kimitsa
@@ -221,6 +223,22 @@ public class ClassInfoLoader {
         }
 
     }
+
+    /** returns all known class names, used for class prepare filtering */
+    public Set<String> allClassNames() {
+        if (allClassNames == null) {
+            allClassNames = new HashSet<>();
+            for (ClassInfo ci : classes()) {
+                if (!ci.isClass())
+                    continue;
+                ClassInfoImpl classInfo = (ClassInfoImpl) ci;
+                allClassNames.add(classInfo.className());
+            }
+        }
+
+        return allClassNames;
+    }
+    private Set<String>allClassNames;
 
     /**
      * @return interface that array clas implements

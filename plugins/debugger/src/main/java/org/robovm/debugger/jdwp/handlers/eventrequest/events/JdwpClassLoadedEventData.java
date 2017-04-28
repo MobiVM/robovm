@@ -11,15 +11,17 @@ import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
  */
 public class JdwpClassLoadedEventData extends JdwpEventData {
     private final ClassInfoImpl classInfo;
+    private final String className;
 
     public JdwpClassLoadedEventData(byte eventKind, VmThread thread, ClassInfoImpl classInfo) {
         super(eventKind, thread);
         this.classInfo = classInfo;
+        this.className = makeClassName(classInfo);
     }
 
     @Override
     public String getClassName() {
-        return classInfo.className();
+        return className;
     }
 
     @Override

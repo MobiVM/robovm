@@ -1,5 +1,7 @@
 package org.robovm.debugger.jdwp.handlers.eventrequest.events;
 
+import org.robovm.debugger.state.classdata.ClassInfo;
+import org.robovm.debugger.state.classdata.ClassInfoImpl;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -48,5 +50,11 @@ public class JdwpEventData extends EventData {
      */
     public boolean cancelIfNotHandled() {
         return false;
+    }
+
+    protected String makeClassName(ClassInfo classInfo) {
+        if (classInfo instanceof ClassInfoImpl)
+            return ((ClassInfoImpl)classInfo).className().replace('/','.');
+        return null;
     }
 }
