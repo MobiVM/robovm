@@ -51,6 +51,9 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
     @Override
     public void beforeLaunch(Config config, LaunchParameters parameters) {
         cleanup();
+
+        if (!config.isDebug())
+            return;
         
         // fetch values passed from Idea/Eclipse
         Map<String, String> arguments = parseArguments(config);
@@ -98,6 +101,9 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
 
     @Override
     public void afterLaunch(Config config, LaunchParameters parameters, Process process) {
+        if (!config.isDebug())
+            return;
+
         // create and start the debugger
         debugger = new Debugger(debuggerConfig);
         debugger.start();
