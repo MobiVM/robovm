@@ -291,7 +291,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         ConstantBitcast bpTableRef = new ConstantBitcast(bpTable.ref(), Type.I8_PTR);
         for (Map.Entry<Integer, Instruction> e : hookInstructionLines.entrySet()) {
             int lineNo = e.getKey();
-            injectHookInstrumented(lineNo, methodLineNumber - lineNo, function, bpTableRef, e.getValue());
+            injectHookInstrumented(lineNo, lineNo - methodLineNumber, function, bpTableRef, e.getValue());
         }
 
         // build map of local index to argument no
