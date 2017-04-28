@@ -291,7 +291,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         ConstantBitcast bpTableRef = new ConstantBitcast(bpTable.ref(), Type.I8_PTR);
         for (Map.Entry<Integer, Instruction> e : hookInstructionLines.entrySet()) {
             int lineNo = e.getKey();
-            injectHookInstrumented(lineNo, lineNo - methodLineNumber, function, bpTableRef, e.getValue());
+            injectHookInstrumented(diSubprogram, lineNo, lineNo - methodLineNumber, function, bpTableRef, e.getValue());
         }
 
         // build map of local index to argument no
@@ -482,7 +482,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
 
     /** injects calls to _bcHookInstrumented to allow breakpoints/step by step debugging */
-    private void injectHookInstrumented(int lineNo, int lineNumberOffset, Function function, Constant bpTableRef, Instruction instruction) {
+    private void injectHookInstrumented(DISubprogram diSubprogram, int lineNo, int lineNumberOffset, Function function, Constant bpTableRef, Instruction instruction) {
         BasicBlock block = instruction.getBasicBlock();
         // prepare a call to following function:
         // void _bcHookInstrumented(DebugEnv* debugEnv, jint lineNumber, jint lineNumberOffset, jbyte* bptable, void* pc)
@@ -497,6 +497,9 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         Call bcHookInstrumented = new Call(Functions.BC_HOOK_INSTRUMENTED, debugEnv, new IntegerConstant(lineNo),
                 new IntegerConstant(lineNumberOffset), bpTableRef, pc.ref());
         block.insertBefore(instruction, bcHookInstrumented);
+
+        // attach line number metadata otherwise stack entry will have previous line number index
+        bcHookInstrumented.addMetadata((new DILineNumber(lineNo, 0, diSubprogram)).get());
     }
 
 
