@@ -905,7 +905,15 @@ public class Config {
         osArchCacheDir.mkdirs();
 
         this.clazzes = new Clazzes(this, realBootclasspath, classpath);
-		  this.stripArchivesConfig = stripArchivesBuilder == null ? StripArchivesConfig.DEFAULT : stripArchivesBuilder.build();
+        
+        if(this.stripArchivesConfig == null) {
+            if(stripArchivesBuilder == null) {
+                this.stripArchivesConfig = StripArchivesConfig.DEFAULT;
+            }
+            else {
+                this.stripArchivesConfig = stripArchivesBuilder.build();
+            }
+        }
 
         mergeConfigsFromClasspath();
 
