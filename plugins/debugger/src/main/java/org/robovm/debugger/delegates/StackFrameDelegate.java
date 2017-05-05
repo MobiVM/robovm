@@ -201,11 +201,15 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
         // get the memory address to read from based on debug information
         long addr;
         if (variableInfo.register() == DebugVariableInfo.OP_fbreg) {
-            // FP register on x86
+            // FP register on x86 and ARM64
             addr = frame.fp() + variableInfo.offset();
+        } else  if (variableInfo.register() == DebugVariableInfo.OP_breg13) {
+            // SP register on ARM 32bit
+            // align using SpFpOffset during frame was built
+            addr = (frame.fp() - frame.methodInfo().spFpOffset()) & ~(frame.methodInfo().spFpAlign() - 1);
         } else {
             // TODO:
-            throw new DebuggerException("add ARM support once emitSpFpOffset is handled as well");
+            throw new DebuggerException("Unexpected register for stack trace variable " + DebugVariableInfo.registerName(variableInfo.register()));
         }
 
         return addr;

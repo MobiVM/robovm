@@ -136,6 +136,10 @@ public class MachOLoader {
         }
     }
 
+    public int cpuType() {
+        return machOCpuType;
+    }
+
     public boolean isPatform64Bit() {
         switch (machOCpuType) {
             case MachOConsts.cpu_type.CPU_TYPE_X86_64:
@@ -172,7 +176,8 @@ public class MachOLoader {
                 continue;
             for (Section sec : segCmd.sections()) {
                 if (isText) {
-                    if (!"__const".equals(sec.sectname()))
+                    // spFpOffset is in text section
+                    if (!"__const".equals(sec.sectname()) && !"__text".equals(sec.sectname()))
                         continue;
                 } else if (isData) {
                     if (!"__const".equals(sec.sectname()) && !"__data".equals(sec.sectname()))

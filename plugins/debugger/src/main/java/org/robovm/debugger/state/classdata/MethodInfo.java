@@ -37,6 +37,9 @@ public class MethodInfo extends BaseModifiersInfo {
     private long bpTableAddr;
     // call specification for method build from desc fiend
     private CallSpec callspec;
+    // SP to FP offset and align for ARM targets
+    private int spFpOffset;
+    private int spFpAlign;
 
     public void readMethodInfo(ByteBufferMemoryReader reader) {
         flags = reader.readInt16();
@@ -122,8 +125,10 @@ public class MethodInfo extends BaseModifiersInfo {
         return debugInfo;
     }
 
-    public void setDebugInfo(DebugMethodInfo debugInfo) {
+    public void setDebugInfo(DebugMethodInfo debugInfo, int spFpOffset, int spFpAlign) {
         this.debugInfo = debugInfo;
+        this.spFpAlign = spFpAlign;
+        this.spFpOffset = spFpOffset;
     }
 
     /**
@@ -135,6 +140,14 @@ public class MethodInfo extends BaseModifiersInfo {
 
     public long bpTableAddr() {
         return bpTableAddr;
+    }
+
+    public int spFpOffset() {
+        return spFpOffset;
+    }
+
+    public int spFpAlign() {
+        return spFpAlign;
     }
 
     boolean isBroCallback() {

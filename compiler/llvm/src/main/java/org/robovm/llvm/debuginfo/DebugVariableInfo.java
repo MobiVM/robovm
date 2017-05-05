@@ -6,7 +6,7 @@ package org.robovm.llvm.debuginfo;
  */
 public class DebugVariableInfo {
     // register names from DwarfConsts
-    public final static int OP_reg13 = 0x5d;
+    public final static int OP_breg13 = 0x7d;
     public final static int OP_fbreg = 0x91;
 
     private final String name;
@@ -75,10 +75,10 @@ public class DebugVariableInfo {
     }
 
     public static String registerName(int register) {
-        if (register == OP_reg13)
-            return "ARM_FB";
+        if (register == OP_breg13)
+            return "OP_breg13";
         else if (register == OP_fbreg)
-            return "BP";
+            return "OP_fbreg";
         else
             return "OP_" + Integer.toHexString(register);
     }
