@@ -124,6 +124,12 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
             // register llvm.dbg.declare
             mb.addFunctionDeclaration(new FunctionDeclaration(Functions.LLVM_DBG_DECLARE));
+
+            if (config.getTarget().getArch().isArm()) {
+                // add global variable to emit sp-fp offset
+                // refer to 04-emit-sp-fp-offset-on-arm for details
+                mb.addGlobal(new Global("robovm.emitSpFpOffsets", Type.I8));
+            }
         }
     }
 
