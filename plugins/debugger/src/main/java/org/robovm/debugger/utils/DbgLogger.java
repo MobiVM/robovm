@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Formatter;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
 public class DbgLogger {
     private static Logger impl;
     static {
-        impl = Logger.getLogger("Debugger");
+        impl = Logger.getLogger("robovm-debugger");
         impl.setLevel(Level.ALL);
         impl.setUseParentHandlers(false);
     }
@@ -58,6 +59,10 @@ public class DbgLogger {
     }
 
     public static void setup(File logFile, boolean enableConsole) {
+        // just in case debugger is being run second time -- remove all handlers
+        for (Handler h : impl.getHandlers())
+            impl.removeHandler(h);
+
         if (logFile != null) {
             try {
                 FileHandler handler = new FileHandler(logFile.getAbsolutePath());
