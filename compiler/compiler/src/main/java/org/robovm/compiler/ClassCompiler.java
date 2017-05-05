@@ -29,7 +29,9 @@ import org.robovm.compiler.config.OS;
 import org.robovm.compiler.llvm.Alias;
 import org.robovm.compiler.llvm.AliasRef;
 import org.robovm.compiler.llvm.And;
+import org.robovm.compiler.llvm.ArrayConstant;
 import org.robovm.compiler.llvm.ArrayConstantBuilder;
+import org.robovm.compiler.llvm.ArrayType;
 import org.robovm.compiler.llvm.Bitcast;
 import org.robovm.compiler.llvm.Br;
 import org.robovm.compiler.llvm.ByteArrayConstant;
@@ -439,7 +441,7 @@ public class ClassCompiler {
                          * read out debug info binary data amd assemble into a separate .o file
                          */
                         if (config.isDebug()) {
-                            debugInfoMb = buildDebugInfoData(config, clazz);
+                            debugInfoMb = buildDebugInfoData(config, clazz, objectFile);
                         }
                     }
 
@@ -597,7 +599,7 @@ public class ClassCompiler {
         return linesMb;
     }
 
-    private static ModuleBuilder buildDebugInfoData(Config config, Clazz clazz) throws IOException {
+    private static ModuleBuilder buildDebugInfoData(Config config, Clazz clazz, ObjectFile objectFile) throws IOException {
         ModuleBuilder debugInfoMb = null;
 
         DebugObjectFileInfo debugInfo = clazz.getAttachment(DebugObjectFileInfo.class);
@@ -609,11 +611,54 @@ public class ClassCompiler {
             Global debugInfoSymbolGlobal = new Global(debugInfoSymbol, new ByteArrayConstant(debugDataBytes), true);
             debugInfoMb.addGlobal(debugInfoSymbolGlobal);
 
-            // also need to add reference to @llvm.used otherwise linker will drop out this data as not used
-            Global usedGlobal = new Global("llvm.used", Linkage.appending, new ConstantBitcast(debugInfoSymbolGlobal.ref(), Type.I8_PTR),
-                    false, "llvm.metadata");
-            debugInfoMb.addGlobal(usedGlobal);
+            // use a list for used as spfp offset data will go there as well
+            List<Value> usedGlobalValues = new ArrayList<>();
+            usedGlobalValues.add(new ConstantBitcast(debugInfoSymbolGlobal.ref(), Type.I8_PTR));
 
+            // add reference to spFpOfsset symbols to llvm.used otherwise linker will remove them
+            if (config.getTarget().getArch().isArm()) {
+                List<Value> spfpGlobals = new ArrayList<>();
+
+                // cant get this information during debugger run as linker removes this information
+                // other option would be to add it to llvm.used field in patch but this is longer way than analize it
+                // during compile path
+                String prefix = "_[J]";
+                String suffix = ".spfpoffset";
+                for (Symbol symbol : objectFile.getSymbols()) {
+                    String symbName = symbol.getName();
+                    if (symbol.getSize() <= 0 || !symbName.startsWith(prefix) || !symbName.endsWith(suffix))
+                        continue;
+
+                    // substring to skip '_' as llvm will make it '__' in result
+                    Global spfp = new Global(symbName.substring(1), Type.I32);
+                    // add it as global to ba able reference it
+                    debugInfoMb.addGlobal(spfp);
+
+                    spfpGlobals.add(spfp.ref());
+                }
+
+                if (!spfpGlobals.isEmpty()) {
+                    // create dummy array to keep spfpoffset from being dropped by linker. this array is not going to be
+                    // used directly
+                    ArrayConstant globals = new ArrayConstant(new ArrayType(spfpGlobals.size(), new PointerType(Type.I32)),
+                            spfpGlobals.toArray(new Value[spfpGlobals.size()]));
+                    Global arrGlobal = new Global(clazz.getClassName() + "[spfprefs]", globals, true);
+                    debugInfoMb.addGlobal(arrGlobal);
+                    usedGlobalValues.add(new ConstantBitcast(arrGlobal.ref(), Type.I8_PTR));
+                }
+            }
+
+            // also need to add reference to @llvm.used otherwise linker will drop out this data as not used
+            Global usedGlobal;
+            if (usedGlobalValues.size() > 1) {
+                ArrayConstant usedValuesArr = new ArrayConstant(new ArrayType(usedGlobalValues.size(), Type.I8_PTR),
+                        usedGlobalValues.toArray(new Value[usedGlobalValues.size()]));
+                usedGlobal = new Global("llvm.used", Linkage.appending, usedValuesArr, false, "llvm.metadata");
+            } else {
+                usedGlobal = new Global("llvm.used", Linkage.appending, new ConstantBitcast(debugInfoSymbolGlobal.ref(), Type.I8_PTR),
+                        false, "llvm.metadata");
+            }
+            debugInfoMb.addGlobal(usedGlobal);
 
             if (config.isDumpIntermediates()) {
                 File f = new File(config.getDebugInfoOFile(clazz).getAbsolutePath() + ".dump");
