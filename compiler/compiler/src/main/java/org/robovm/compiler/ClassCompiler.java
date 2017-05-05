@@ -789,7 +789,11 @@ public class ClassCompiler {
         ClazzInfo ci = clazz.resetClazzInfo();
 
         mb = new ModuleBuilder();
-        
+
+        for (CompilerPlugin compilerPlugin : config.getCompilerPlugins()) {
+            compilerPlugin.helloClass(config, clazz);
+        }
+
         for (CompilerPlugin compilerPlugin : config.getCompilerPlugins()) {
             compilerPlugin.beforeClass(config, clazz, mb);
         }

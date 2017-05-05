@@ -76,9 +76,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * provides only line number debug information for now
@@ -94,16 +96,34 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     }
 
     @Override
-    public void beforeClass(Config config, Clazz clazz, ModuleBuilder mb) throws IOException {
-    	super.beforeClass(config, clazz, mb);
+    public void helloClass(Config config, Clazz clazz) {
+        super.helloClass(config, clazz);
 
         ClassDataBundle classBundle = clazz.getAttachment(ClassDataBundle.class);
         if (classBundle != null)
             clazz.removeAttachement(classBundle);
 
-    	// keep all data for class in one structure, allows to reset thing by placing null there
+        // keep all data for class in one structure, allows to reset thing by placing null there
         classBundle = new ClassDataBundle();
-        clazz.attach(classBundle);;
+        clazz.attach(classBundle);
+
+        if (config.isDebug()) {
+            // make a list of java methods as it is in class
+            // as during compilation class going to be heavily adjusted and lot of synthetics method will appear
+            classBundle.methodsBeforeCompile = new HashSet<>();
+            for (SootMethod m : clazz.getSootClass().getMethods()) {
+                if (m.isAbstract() || m.isNative())
+                    continue;
+                classBundle.methodsBeforeCompile.add(m.getSignature());
+            }
+        }
+    }
+
+    @Override
+    public void beforeClass(Config config, Clazz clazz, ModuleBuilder mb) throws IOException {
+    	super.beforeClass(config, clazz, mb);
+
+        ClassDataBundle classBundle = clazz.getAttachment(ClassDataBundle.class);
         classBundle.diFile = new DIItemList(mb, v("/"), v(getSourceFile(clazz)));
         classBundle.diFileDescriptor = new DIFileDescriptor(mb, classBundle.diFile);
         classBundle.diMethods = new DIMutableItemList<>(mb);
@@ -114,7 +134,6 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
         if (config.isDebug()) {
             // create dummy variable type
-            // TODO: rework it to proper types once
             // today this information is not required as everything is received on java level
             classBundle.dummyJavaVariableType = new DIDerivedType(mb, DwarfConst.Tag.TAG_pointer_type,
                     "DummyType", 0, 32, 32, classBundle.diFile, null);
@@ -130,16 +149,6 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                 // refer to 04-emit-sp-fp-offset-on-arm for details
                 mb.addGlobal(new Global("robovm.emitSpFpOffsets", Type.I8));
             }
-        }
-    }
-
-    @Override
-    public void afterClass(Config config, Clazz clazz, ModuleBuilder mb) throws IOException {
-        super.afterClass(config, clazz, mb);
-
-        ClassDataBundle classBundle = clazz.getAttachment(ClassDataBundle.class);
-        if (config.isDebug()) {
-            // size of the array to keep bp bits
         }
     }
 
@@ -189,7 +198,8 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         // skip debug information for class initializer, generated callbacks and bridge methods
         boolean includeDebuggerInfo = config.isDebug() && !"<clinit>".equals(method.getName())
                 && !Annotations.hasCallbackAnnotation(method)
-                && !Annotations.hasBridgeAnnotation(method);
+                && !Annotations.hasBridgeAnnotation(method)
+                && classBundle.methodsBeforeCompile.contains(method.getSignature());
 
         // maps for debugger
         Map<Unit, Instruction> unitToInstruction = new HashMap<>();
@@ -537,13 +547,15 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         // information for debugger
 
         // basic type definitions (required for debugger purpose)
-        // TODO: probably there should be proper data type specified but as we use these debug data only to pick
         // variable location information -- nobody cares (e.g. there is no debuger that relies on this data)
         // if future it shall be fixed
         DIBaseItem dummyJavaVariableType;
 
         // debug information for methods
         List<MethodDataBundle> methods;
+
+        // method signatures before compilation starts
+        Set<String> methodsBeforeCompile;
     }
 
     /**
@@ -557,7 +569,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         final int startLine;
         final int finalLine;
 
-        public VariableDataBundle(int codeIndex, String name, String dwarfName, String typeSignature, int startLine, int finalLine) {
+        VariableDataBundle(int codeIndex, String name, String dwarfName, String typeSignature, int startLine, int finalLine) {
             this.codeIndex = codeIndex;
             this.name = name;
             this.dwarfName = dwarfName;
@@ -576,7 +588,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         final int finalLine;
         final List<VariableDataBundle> variables;
 
-        public MethodDataBundle(String signature, int startLine, int finalLine, List<VariableDataBundle> variables) {
+        MethodDataBundle(String signature, int startLine, int finalLine, List<VariableDataBundle> variables) {
             this.signature = signature;
             this.startLine = startLine;
             this.finalLine = finalLine;

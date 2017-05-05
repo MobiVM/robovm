@@ -51,6 +51,16 @@ public abstract class CompilerPlugin extends Plugin {
 
     /**
      * Called just before a class is about to be compiled. Modifications to the
+     * underlying {@link SootClass} ({@link Clazz#getSootClass()}) are not allowed
+     * this stage. Used to allow plugins to evaluate class before modification
+     *
+     * @param config the current {@link Config}.
+     * @param clazz the {@link Clazz} being compiled.
+     */
+    public void helloClass(Config config, Clazz clazz) {}
+
+    /**
+     * Called just before a class is about to be compiled. Modifications to the
      * underlying {@link SootClass} ({@link Clazz#getSootClass()}) should be
      * done at this stage.
      * 

@@ -45,6 +45,9 @@ public abstract class AbstractCompilerPlugin extends CompilerPlugin {
     public void beforeConfig(Builder builder, Config config) throws IOException {}
 
     @Override
+    public void helloClass(Config config, Clazz clazz) {}
+
+    @Override
     public void beforeClass(Config config, Clazz clazz, ModuleBuilder moduleBuilder)
             throws IOException {}
 
