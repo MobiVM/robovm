@@ -520,16 +520,22 @@ static void handleClassFilter(jlong reqId, ChannelError* error) {
         }
     } else {
         ClassFilter* prev = 0;
-        for(ClassFilter* f = classFilters; f; prev = f, f = f->next) {
+        ClassFilter* f = classFilters;
+        // dkimitsa: reworked the cycle as fields were accessing after filter released which made debugger not happy
+        while (f) {
+            ClassFilter* next = f->next;
             if(!strcmp(f->className, className)) {
+                if(!prev) {
+                    classFilters = next;
+                } else {
+                    prev->next = next;
+                }
                 free(f->className);
                 free(f);
-                if(!prev) {
-                    classFilters = f->next;
-                } else {
-                    prev->next = f->next;
-                }
+            } else {
+                prev = f;
             }
+            f = next;
         }
     }
     rvmUnlockMutex(&classFilterMutex);
