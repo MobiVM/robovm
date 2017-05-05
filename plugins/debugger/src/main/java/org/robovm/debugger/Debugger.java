@@ -62,10 +62,7 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
         this.delegates = new AllDelegates(this, state);
 
         this.jdwpServer = new JdwpDebugServer(delegates, this, config.jdwpClienMode(), config.jdwpPort()) ;
-        if (config.hooksPortFile() != null)
-            this.hooksChannel = new HooksChannel(delegates, !config.arch().is32Bit(), config.hooksPortFile(), this);
-        else
-            this.hooksChannel = new HooksChannel(delegates, !config.arch().is32Bit(), config.hooksPort(), this);
+        this.hooksChannel = new HooksChannel(delegates, !config.arch().is32Bit(), config.hooksConnection(), this);
 
     }
 

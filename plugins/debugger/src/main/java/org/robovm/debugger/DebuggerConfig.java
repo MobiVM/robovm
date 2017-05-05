@@ -1,19 +1,26 @@
 package org.robovm.debugger;
 
 import org.robovm.compiler.config.Arch;
+import org.robovm.debugger.hooks.HooksChannel;
+import org.robovm.debugger.hooks.IHooksConnection;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.IntSupplier;
 
 /**
  * @author Demyan Kimitsas
- * Configuration file that is to start debugger
+ *         Configuration file that is to start debugger
  */
 public class DebuggerConfig {
+    public final static int TARGET_WAIT_TIMEOUT = 60000;
+
     private List<File> sourcePath;
     private Arch arch;
     private File logDir;
@@ -21,11 +28,10 @@ public class DebuggerConfig {
     private boolean logToConsole;
     private boolean jdwpClienMode;
     private int jdwpPort = -1;
-    private File hooksPortFile;
-    private int hooksPort = -1;
     private boolean standalone;
+    private IHooksConnection hooksConnection;
 
-    private  DebuggerConfig() {
+    private DebuggerConfig() {
     }
 
     public List<File> sourcePath() {
@@ -56,12 +62,8 @@ public class DebuggerConfig {
         return jdwpPort;
     }
 
-    public File hooksPortFile() {
-        return hooksPortFile;
-    }
-
-    public int hooksPort() {
-        return hooksPort;
+    public IHooksConnection hooksConnection() {
+        return hooksConnection;
     }
 
     public boolean isStandalone() {
@@ -72,8 +74,7 @@ public class DebuggerConfig {
         private final DebuggerConfig config = new DebuggerConfig();
 
         public DebuggerConfig build() {
-            if (config.arch == null || config.appfile == null || config.jdwpPort < 0 ||
-                    (config.hooksPort < 0 && config.hooksPortFile == null))
+            if (config.arch == null || config.appfile == null || config.jdwpPort < 0 || config.hooksConnection == null)
                 throw new DebuggerException("Missing required parameters in config");
             return config;
         }
@@ -106,12 +107,30 @@ public class DebuggerConfig {
             config.jdwpPort = jdwpPort;
         }
 
-        public void setHooksPortFile(File hooksPortFile) {
-            config.hooksPortFile = hooksPortFile;
+        public void setHooksPortFile(File portFile) {
+            IntSupplier portSupplier = () -> {
+                try {
+                    long ts = System.currentTimeMillis();
+                    while (!portFile.exists() || portFile.length() == 0) {
+                        if (System.currentTimeMillis() - ts > DebuggerConfig.TARGET_WAIT_TIMEOUT)
+                            throw new DebuggerException("Timeout while waiting simulator port file");
+                        Thread.sleep(200);
+                    }
+                    return Integer.parseInt(new String(Files.readAllBytes(portFile.toPath())));
+                } catch (InterruptedException | IOException e) {
+                    throw new DebuggerException(e);
+                }
+            };
+
+            config.hooksConnection = new HooksChannel.SocketHooksConnection(portSupplier);
         }
 
         public void setHooksPort(int hooksPort) {
-            config.hooksPort = hooksPort;
+            config.hooksConnection = new HooksChannel.SocketHooksConnection(() -> hooksPort);
+        }
+
+        public void setHooksConnection(IHooksConnection conn) {
+            config.hooksConnection = conn;
         }
 
         private void setStandalone(boolean b) {

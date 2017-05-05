@@ -33,20 +33,18 @@ public class HooksChannel implements IHooksApi {
     private DbgLogger log = DbgLogger.get(this.getClass().getSimpleName());
 
     private final static int DEFAULT_TIMEOUT = 5000;
-    private final static int PORT_FILE_WAIT_TIMEOUT = 60000;
     private final Thread socketThread;
-    private final IntSupplier hooksPortSupplier;
     private final boolean is64bit;
-    private Socket socket;
+    private IHooksConnection hooksConnection;
     private long reqIdCounter = 100;
     private final Map<Long, HookReqHolder> requestsInProgress = new HashMap<>();
     private final ByteBufferPacket headerBuffer;
     private final IHooksEventsHandler eventsHandler;
     private final IDebuggerToolbox toolbox;
 
-    private HooksChannel(IDebuggerToolbox toolbox, boolean is64bit, IntSupplier hooksPortSupplier, IHooksEventsHandler eventsHandler) {
+    public HooksChannel(IDebuggerToolbox toolbox, boolean is64bit, IHooksConnection connection, IHooksEventsHandler eventsHandler) {
         this.toolbox = toolbox;
-        this.hooksPortSupplier = hooksPortSupplier;
+        this.hooksConnection = connection;
         this.is64bit = is64bit;
         this.eventsHandler = eventsHandler;
         this.socketThread = toolbox.createThread(() -> doSocketWork(), "HooksChannel socket thread");
@@ -55,31 +53,17 @@ public class HooksChannel implements IHooksApi {
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
     }
 
-    /**
-     * when port is known
-     */
-    public HooksChannel(IDebuggerToolbox toolbox, boolean is64bit, int port, IHooksEventsHandler eventsHandler) {
-        this(toolbox, is64bit, () -> port, eventsHandler);
-    }
-
-    /**
-     * when port to be read from simulator port file
-     */
-    public HooksChannel(IDebuggerToolbox toolbox, boolean is64bit, File portFile, IHooksEventsHandler eventsHandler) {
-        this(toolbox, is64bit, () -> readFromPortFile(portFile), eventsHandler);
-    }
-
     public void start() {
         this.socketThread.start();
     }
 
-
     public void shutdown() {
         // don't bother about thread as it is already killed in debugger
-        if (socket != null && !socket.isClosed()) {
+        if (hooksConnection != null) {
             try {
-                socket.close();
-            } catch (IOException ignored) {
+                hooksConnection.disconnect();
+                hooksConnection = null;
+            } catch (Throwable ignored) {
             }
         }
 
@@ -88,12 +72,9 @@ public class HooksChannel implements IHooksApi {
     private void doSocketWork() {
         // establish connection
         try {
-            int port = hooksPortSupplier.getAsInt();
-            socket = new Socket();
-            socket.connect(new InetSocketAddress("127.0.0.1", port), 1000);
-            socket.setTcpNoDelay(true);
-            InputStream inputStream = socket.getInputStream();
-            OutputStream outputStream = socket.getOutputStream();
+            hooksConnection.connect();
+            InputStream inputStream = hooksConnection.getInputStream();
+            OutputStream outputStream = hooksConnection.getOutputStream();
 
             // read handshake
             ByteBufferPacket buffer = new ByteBufferPacket(is64bit);
@@ -176,8 +157,9 @@ public class HooksChannel implements IHooksApi {
         requestsInProgress.put(reqId, holder);
 
         try {
-            headerBuffer.dumpToOutputStream(socket.getOutputStream());
-            payload.dumpToOutputStream(socket.getOutputStream());
+            OutputStream outputStream = hooksConnection.getOutputStream();
+            headerBuffer.dumpToOutputStream(outputStream);
+            payload.dumpToOutputStream(outputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -506,17 +488,41 @@ public class HooksChannel implements IHooksApi {
         return false;
     }
 
-    public static int readFromPortFile(File portFile) {
-        try {
-            long ts = System.currentTimeMillis();
-            while (!portFile.exists() || portFile.length() == 0) {
-                if (System.currentTimeMillis() - ts > PORT_FILE_WAIT_TIMEOUT)
-                    throw new DebuggerException("Timeout while waiting simulator port file");
-                Thread.sleep(200);
-            }
-            return Integer.parseInt(new String(Files.readAllBytes(portFile.toPath())));
-        } catch (InterruptedException | IOException e) {
-            throw new DebuggerException(e);
+
+    /**
+     * Connection for socket case (local host simulator)
+     */
+    public static class SocketHooksConnection implements IHooksConnection {
+        private final IntSupplier hooksPortSupplier;
+        private Socket socket;
+
+        public SocketHooksConnection(IntSupplier hooksPortSupplier) {
+            this.hooksPortSupplier = hooksPortSupplier;
+        }
+
+        @Override
+        public void connect() throws IOException {
+            int port = hooksPortSupplier.getAsInt();
+            socket = new Socket();
+            socket.connect(new InetSocketAddress("127.0.0.1", port), 1000);
+            socket.setTcpNoDelay(true);
+            OutputStream outputStream = socket.getOutputStream();
+        }
+
+        @Override
+        public void disconnect() throws IOException {
+            if (socket != null && socket.isClosed())
+                socket.close();
+        }
+
+        @Override
+        public InputStream getInputStream() throws IOException {
+            return socket.getInputStream();
+        }
+
+        @Override
+        public OutputStream getOutputStream() throws IOException {
+            return socket.getOutputStream();
         }
     }
 
@@ -542,7 +548,8 @@ public class HooksChannel implements IHooksApi {
         }
 
         IDebuggerToolbox toolbox = (r, name) -> new Thread(r, name);
-        final HooksChannel hooksChannel = new HooksChannel(toolbox, true, port, new IHooksEventsHandler() {
+        final HooksChannel hooksChannel = new HooksChannel(toolbox, true, new SocketHooksConnection(() -> port),
+                new IHooksEventsHandler() {
             @Override
             public void onHooksTargetAttached(IHooksApi api, long robovmBaseSymbol) {
             }

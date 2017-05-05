@@ -7,10 +7,17 @@ import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.PluginArguments;
 import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.Target;
+import org.robovm.compiler.target.ios.IOSDeviceLaunchParameters;
 import org.robovm.compiler.target.ios.IOSTarget;
+import org.robovm.debugger.hooks.IHooksConnection;
+import org.robovm.libimobiledevice.IDeviceConnection;
+import org.robovm.libimobiledevice.util.AppLauncherCallback;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -63,15 +70,28 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         boolean jdwpClientMode = argumentBoolValue(arguments, ARG_KEY_CLIENT_MODE);
         boolean logConsole = config.isDumpIntermediates() || argumentValue(arguments, ARG_KEY_CLIENT_MODE, false);
 
-        // parameters to target
-        File hooksPortFile;
+        // common parameters to target
+        parameters.getArguments().add("-rvm:EnableHooks");
+        parameters.getArguments().add("-rvm:WaitForResume");
+
+        Target target = config.getTarget();
+
+        // now create debugger config
+        DebuggerConfig.Builder builder = new DebuggerConfig.Builder();
+        builder.setJdwpPort(jdwpPort);
+        builder.setJdwpClienMode(jdwpClientMode);
+        builder.setLogToConsole(logConsole);
+        builder.setLogDir(new File(logDir));
+        builder.setAppfile(new File(config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir(), config.getExecutableName()));
+        builder.setArch(target.getArch());
 
         // make list of arguments for target
-        Target target = config.getTarget();
         if (IOSTarget.isSimulatorArch(target.getArch())) {
             // launching on simulator, it can write down port number to file on local system
+            File hooksPortFile;
             try {
                 hooksPortFile = File.createTempFile("robovm-dbg-sim", ".port");
+                builder.setHooksPortFile(hooksPortFile);
             } catch (IOException e) {
                 throw new CompilerException("Failed to create simulator debuuger port file", e);
             }
@@ -79,22 +99,15 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
             parameters.getArguments().add("-rvm:PrintDebugPort=" + hooksPortFile.getAbsolutePath());
         } else {
             // launching on device
-            throw new CompilerException("TODO: launch on device is not implemented yet");
+            IOSDeviceLaunchParameters deviceLaunchParameters = (IOSDeviceLaunchParameters) parameters;
+            DebuggerLauncherCallback callback = new DebuggerLauncherCallback();
+            deviceLaunchParameters.setAppLauncherCallback(callback);
+            deviceLaunchParameters.getArguments().add("-rvm:PrintDebugPort");
+
+            // wait for hooks channel from launch callback
+            builder.setHooksConnection(callback);
         }
 
-        // common parameters to target
-        parameters.getArguments().add("-rvm:EnableHooks");
-        parameters.getArguments().add("-rvm:WaitForResume");
-
-        // now create debugger config
-        DebuggerConfig.Builder builder = new DebuggerConfig.Builder();
-        builder.setHooksPortFile(hooksPortFile);
-        builder.setJdwpPort(jdwpPort);
-        builder.setJdwpClienMode(jdwpClientMode);
-        builder.setLogToConsole(logConsole);
-        builder.setLogDir(new File(logDir));
-        builder.setAppfile(new File(config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir(), config.getExecutableName()));
-        builder.setArch(target.getArch());
 
         debuggerConfig = builder.build();
     }
@@ -156,5 +169,93 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
             throw new CompilerException("Missing required debugger argument " + key);
 
         return Boolean.parseBoolean(v);
+    }
+
+    /**
+     * callback to receive hook port from device to connect debugger to.
+     * device will print out [DEBUG] hooks: debugPort=
+     * check hooks.c/_rvmHookSetupTCPChannel for details
+     * implements hooks connection interface to provide in and out streams
+     */
+    private class DebuggerLauncherCallback implements AppLauncherCallback, IHooksConnection {
+        private final static String tag = "[DEBUG] hooks: debugPort=";
+        private volatile Integer hooksPort;
+        private IDeviceConnection deviceConnection;
+        private String incompleteLine;
+        private AppLauncherInfo launchInfo;
+
+
+        @Override
+        public void setAppLaunchInfo(AppLauncherInfo info) {
+            launchInfo = info;
+        }
+
+        @Override
+        public byte[] filterOutput(byte[] data) {
+            if (hooksPort == null) {
+                // port is not received yet, keep working
+                String str = new String(data,  Charset.forName("UTF-8"));
+                if (incompleteLine != null) {
+                    str = incompleteLine + str;
+                    incompleteLine = null;
+                }
+
+                int lookingPos = 0;
+                int newLineIdx = str.indexOf('\n');
+                while (newLineIdx >= 0 && newLineIdx + 1 < str.length()) {
+                    // get next new line
+                    if (str.startsWith(tag, lookingPos)) {
+                        // got it
+                        hooksPort = Integer.parseInt(str.substring(lookingPos + tag.length(), newLineIdx).trim());
+                        break;
+                    } else {
+                        // move to next line
+                        lookingPos = newLineIdx + 1;
+                        newLineIdx = str.indexOf('\n', newLineIdx + 1);
+                    }
+                }
+
+                // keep trailing line (without eol)
+                if (hooksPort == null && lookingPos < str.length()) {
+                    incompleteLine = lookingPos != 0 ? str.substring(lookingPos) : str;
+                }
+            }
+
+            return data;
+        }
+
+        /**
+         * waits till port hooks port is available and establish connection
+         */
+        @Override
+        public void connect() throws IOException {
+            try {
+                long ts = System.currentTimeMillis();
+                while (hooksPort == null) {
+                    if (System.currentTimeMillis() - ts > DebuggerConfig.TARGET_WAIT_TIMEOUT)
+                        throw new DebuggerException("Timeout while waiting simulator port file");
+                    Thread.sleep(200);
+                }
+
+                deviceConnection = launchInfo.getDevice().connect(hooksPort);
+            } catch (InterruptedException e) {
+                throw new DebuggerException(e);
+            }
+        }
+
+        @Override
+        public void disconnect() throws IOException {
+            deviceConnection.close();
+        }
+
+        @Override
+        public InputStream getInputStream() throws IOException {
+            return deviceConnection.getInputStream();
+        }
+
+        @Override
+        public OutputStream getOutputStream() throws IOException {
+            return deviceConnection.getOutputStream();
+        }
     }
 }
