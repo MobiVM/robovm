@@ -75,6 +75,7 @@ import org.robovm.compiler.plugin.objc.ObjCMemberPlugin;
 import org.robovm.compiler.plugin.objc.ObjCProtocolProxyPlugin;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.Target;
+import org.robovm.compiler.target.framework.FrameworkTarget;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
@@ -850,6 +851,8 @@ public class Config {
                 target = new ConsoleTarget();
             } else if (IOSTarget.TYPE.equals(targetType)) {
                 target = new IOSTarget();
+            } else if (FrameworkTarget.TYPE.equals(targetType)) {
+                target = new FrameworkTarget();
             } else {
                 for (TargetPlugin plugin : getTargetPlugins()) {
                     if (plugin.getTarget().getType().equals(targetType)) {
@@ -905,15 +908,7 @@ public class Config {
         osArchCacheDir.mkdirs();
 
         this.clazzes = new Clazzes(this, realBootclasspath, classpath);
-        
-        if(this.stripArchivesConfig == null) {
-            if(stripArchivesBuilder == null) {
-                this.stripArchivesConfig = StripArchivesConfig.DEFAULT;
-            }
-            else {
-                this.stripArchivesConfig = stripArchivesBuilder.build();
-            }
-        }
+		  this.stripArchivesConfig = stripArchivesBuilder == null ? StripArchivesConfig.DEFAULT : stripArchivesBuilder.build();
 
         mergeConfigsFromClasspath();
 
