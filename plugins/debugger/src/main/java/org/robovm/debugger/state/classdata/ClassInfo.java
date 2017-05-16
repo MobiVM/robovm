@@ -46,9 +46,35 @@ public abstract class ClassInfo extends BaseModifiersInfo {
     }
 
     public abstract String signature();
+    public abstract String superclassSignature();
     public abstract FieldInfo[] fields(ClassInfoLoader loader);
     public abstract MethodInfo[] methods(ClassInfoLoader loader);
     public abstract ClassInfo[] interfaces(ClassInfoLoader loader);
     public abstract boolean hasError();
+
+    /**
+     * Finds field info in class and super classes if not found
+     * @param fieldName of field to get
+     * @param loader to load field info if class is not loaded
+     * @return
+     */
+    public FieldInfo getField(String fieldName, ClassInfoLoader loader) {
+        ClassInfo ci = this;
+        while (ci != null) {
+            FieldInfo[] fields = ci.fields(loader);
+            FieldInfo fi = null;
+            if (fields != null) {
+                for (FieldInfo fieldInfo : fields) {
+                    if (fieldName.equals(fieldInfo.name())) {
+                        return fieldInfo;
+                    }
+                }
+            }
+
+            ci = loader.classInfoBySignature(ci.superclassSignature());
+        }
+
+        return null;
+    }
 
 }

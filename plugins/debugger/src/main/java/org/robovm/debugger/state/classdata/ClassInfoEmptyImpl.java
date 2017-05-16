@@ -20,6 +20,11 @@ public class ClassInfoEmptyImpl extends ClassInfo {
     }
 
     @Override
+    public String superclassSignature() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public FieldInfo[] fields(ClassInfoLoader loader) {
         throw new UnsupportedOperationException();
     }

@@ -131,17 +131,7 @@ public class InstanceUtils {
      * @return fields value
      */
     public <T> T getFieldValue(long objectPtr, ClassInfo ci, String fieldName) throws DebuggerException {
-        FieldInfo[] fields = ci.fields(runtimeClassInfoLoader.loader());
-        FieldInfo fi = null;
-        if (fields != null) {
-            for (FieldInfo fieldInfo : fields) {
-                if (fieldName.equals(fieldInfo.name())) {
-                    fi = fieldInfo;
-                    break;
-                }
-            }
-        }
-
+        FieldInfo fi = ci.getField(fieldName, runtimeClassInfoLoader.loader());
         if (fi == null)
             throw new DebuggerException("Field " + fieldName + " not found in " + ci.signature());
 

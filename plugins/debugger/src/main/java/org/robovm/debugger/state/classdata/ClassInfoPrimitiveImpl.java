@@ -37,6 +37,11 @@ public class ClassInfoPrimitiveImpl extends ClassInfo {
     }
 
     @Override
+    public String superclassSignature() {
+        return null;
+    }
+
+    @Override
     public FieldInfo[] fields(ClassInfoLoader loader) {
         // there is no fields to report in array
         return new FieldInfo[0];

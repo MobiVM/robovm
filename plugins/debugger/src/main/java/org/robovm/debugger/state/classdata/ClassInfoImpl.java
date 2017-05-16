@@ -255,6 +255,7 @@ public class ClassInfoImpl extends ClassInfo {
         return superclassName;
     }
 
+    @Override
     public String superclassSignature() {
         return superclassSignature;
     }
