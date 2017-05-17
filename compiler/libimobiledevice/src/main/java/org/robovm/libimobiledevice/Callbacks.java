@@ -63,7 +63,12 @@ class Callbacks {
                     done = true;
                     callback.error(error.toString());
                 } else {
-                    if ("Complete".equals(status.toString())) {
+                	/*
+                	 * Since ios 10.3.1 status maybe null when completed see issues
+                	 * https://github.com/MobiDevelop/robovm/issues/126
+                	 * https://github.com/libimobiledevice/ideviceinstaller/issues/70
+                	 */
+                    if (status == null || "Complete".equals(status.toString())) {
                         done = true;
                         callback.success();
                     } else {
