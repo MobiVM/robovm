@@ -205,8 +205,9 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
             addr = frame.fp() + variableInfo.offset();
         } else  if (variableInfo.register() == DebugVariableInfo.OP_breg13) {
             // SP register on ARM 32bit
-            // align using SpFpOffset during frame was built
+            // align using SpFpOffset data
             addr = (frame.fp() - frame.methodInfo().spFpOffset()) & ~(frame.methodInfo().spFpAlign() - 1);
+            addr += variableInfo.offset();
         } else {
             // TODO:
             throw new DebuggerException("Unexpected register for stack trace variable " + DebugVariableInfo.registerName(variableInfo.register()));
