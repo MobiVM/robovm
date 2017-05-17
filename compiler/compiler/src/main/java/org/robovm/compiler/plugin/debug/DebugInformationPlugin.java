@@ -36,7 +36,6 @@ import org.robovm.compiler.llvm.Linkage;
 import org.robovm.compiler.llvm.MetadataString;
 import org.robovm.compiler.llvm.MetadataValue;
 import org.robovm.compiler.llvm.PointerType;
-import org.robovm.compiler.llvm.Store;
 import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
@@ -62,11 +61,9 @@ import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
 import org.robovm.llvm.debuginfo.DebugVariableInfo;
 import soot.Local;
 import soot.LocalVariable;
-import soot.PatchingChain;
 import soot.SootMethod;
 import soot.Unit;
-import soot.ValueBox;
-import soot.jimple.internal.JIdentityStmt;
+import soot.jimple.IdentityStmt;
 import soot.tagkit.LineNumberTag;
 import soot.tagkit.SourceFileTag;
 
@@ -77,7 +74,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -203,10 +199,9 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
         // maps for debugger
         Map<Unit, Instruction> unitToInstruction = new HashMap<>();
-        Map<Integer, Instruction> hookInstructionLines = new HashMap<>();
         Map<Integer, Alloca> varIndexToAlloca = new HashMap<>();
         Map<Integer, Integer> varIndexToArgNo = new HashMap<>();
-        Map<Local, Alloca> localToAlloca = new HashMap<>();
+        Map<Instruction, Integer> instructionToLineNo = new HashMap<>();
 
         // find line numbers
         int methodLineNumber = Integer.MAX_VALUE;
@@ -228,6 +223,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                             methodLineNumber = Math.min(methodLineNumber, currentLineNumber);
                             methodEndLineNumber = Math.max(methodEndLineNumber, currentLineNumber);
                             instruction.addMetadata((new DILineNumber(currentLineNumber, 0, diSubprogram)).get());
+                            instructionToLineNo.put(instruction, lineNumObj);
                         }
                     }
 
@@ -247,39 +243,25 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                             if (!(o instanceof Local))
                                 continue;
                             Local local = (Local) o;
-                            if (local.getIndex() < 0)
+                            if (local.getVariableTableIndex() < 0)
                                 continue;
 
-                            if (varIndexToAlloca.containsKey(local.getIndex())) {
-                                // if there is more than one index used for local then we can't
-                                // connect it with local variable and lets invalidate this index
-                                // with null value. coresponding Locals should be picked from ValueBox
-                                varIndexToAlloca.put(local.getIndex(), null);
-                            } else {
-                                varIndexToAlloca.put(local.getIndex(), alloca);
-                            }
-
-                            localToAlloca.put(local, alloca);
-                        }
-                    } else if (lineNumObj != null && !hookInstructionLines.containsKey(lineNumObj)) {
-                        // skip this instruction if it is bounded with JIdentityStmt as it would result in case
-                        // when breakpoint is hit before argument variables got initialized
-                        boolean containIdentityStmt = false;
-                        if (instruction instanceof Store) {
-                            for (Object o: instruction.getAttachments()) {
-                                if (o instanceof JIdentityStmt) {
-                                    containIdentityStmt = true;
-                                    break;
+                            Set<Integer> varIndexes = local.getSameSlotVariables();
+                            if (varIndexes == null)
+                                varIndexes = Collections.singleton(local.getVariableTableIndex());
+                            for (Integer varIdx : varIndexes) {
+                                if (varIndexToAlloca.containsKey(varIdx)) {
+                                    // if there is more than one index used for local then we can't
+                                    // connect it with local variable and lets invalidate this index
+                                    // with null value. corresponding Locals should be picked from ValueBox
+                                    varIndexToAlloca.put(varIdx, null);
+                                } else {
+                                    varIndexToAlloca.put(varIdx, alloca);
                                 }
                             }
                         }
-
-                        // make a list of instruction to instrument hooks for debugger
-                        // only if there is line number attached to it
-                        if (!containIdentityStmt)
-                            hookInstructionLines.put(lineNumObj, instruction);
                     }
-                }
+                } // if (includeDebuggerInfo)
             }
         }
 
@@ -297,17 +279,45 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         //
         //
 
-        // instrument hooks call, there is known line range, create global for method breakpoints
-        int arraySize = ((methodEndLineNumber - methodLineNumber + 1) + 7) / 8;
-        // global value to this array (without values as zeroinit)
-        Global bpTable = new Global(Symbols.bptableSymbol(method), Linkage.internal,
-                new ZeroInitializer(new ArrayType(arraySize, Type.I8)));
-        mb.addGlobal(bpTable);
-        // cast to byte pointer
-        ConstantBitcast bpTableRef = new ConstantBitcast(bpTable.ref(), Type.I8_PTR);
-        for (Map.Entry<Integer, Instruction> e : hookInstructionLines.entrySet()) {
-            int lineNo = e.getKey();
-            injectHookInstrumented(diSubprogram, lineNo, lineNo - methodLineNumber, function, bpTableRef, e.getValue());
+        // make a list of instructions for instrumented hook call
+        // need to skip identity instructions, otherwise there is a risk that debugger will stop before arguments are
+        // being copied to locals
+        Unit firstHooksUnit = null;
+        for (Unit unit : method.getActiveBody().getUnits()) {
+            if (!(unit instanceof IdentityStmt)) {
+                firstHooksUnit = unit;
+                break;
+            }
+        }
+
+        Instruction firstHooksInst = firstHooksUnit != null ? unitToInstruction.get(firstHooksUnit) : null;
+        if (firstHooksInst != null) {
+            // get all instruction that are subject to be instrumented after last Identity Statement
+            Map<Integer, Instruction> hookInstructionLines = new HashMap<>();
+            for (BasicBlock bb : function.getBasicBlocks()) {
+                for (Instruction instruction : bb.getInstructions()) {
+                    if (firstHooksInst != null && firstHooksInst != instruction)
+                        continue;
+                    firstHooksInst = null;
+                    Integer lineNo = instructionToLineNo.get(instruction);
+                    if (lineNo == null || hookInstructionLines.containsKey(lineNo))
+                        continue;
+                    hookInstructionLines.put(lineNo, instruction);
+                }
+            }
+
+            // instrument hooks call, there is known line range, create global for method breakpoints
+            int arraySize = ((methodEndLineNumber - methodLineNumber + 1) + 7) / 8;
+            // global value to this array (without values as zeroinit)
+            Global bpTable = new Global(Symbols.bptableSymbol(method), Linkage.internal,
+                    new ZeroInitializer(new ArrayType(arraySize, Type.I8)));
+            mb.addGlobal(bpTable);
+            // cast to byte pointer
+            ConstantBitcast bpTableRef = new ConstantBitcast(bpTable.ref(), Type.I8_PTR);
+            for (Map.Entry<Integer, Instruction> e : hookInstructionLines.entrySet()) {
+                int lineNo = e.getKey();
+                injectHookInstrumented(diSubprogram, lineNo, lineNo - methodLineNumber, function, bpTableRef, e.getValue());
+            }
         }
 
         // build map of local index to argument no
@@ -321,7 +331,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             firstArgNo = 2;
         }
         for (int idx = 0; idx < method.getParameterCount(); idx++) {
-            int localIdx = method.getActiveBody().getParameterLocal(idx).getIndex();
+            int localIdx = method.getActiveBody().getParameterLocal(idx).getVariableTableIndex();
             varIndexToArgNo.put(localIdx, firstArgNo + idx);
         }
 
@@ -332,20 +342,15 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
         // insert variables
         for (LocalVariable var : method.getActiveBody().getLocalVariables()) {
+            // skip local variables that attached to zero length code sequences
+            if (var.getStartUnit() == null)
+                continue;
+
             // find corresponding local alloca
             Alloca alloca = varIndexToAlloca.get(var.getIndex());
             if (alloca == null) {
-                // try to find it in patching chain
-                Local local = findLocalInChain(method.getActiveBody().getUnits(), var);
-                if (local != null) {
-                    alloca = localToAlloca.get(local);
-                }
-            }
-
-            if (alloca == null) {
-                // TODO: investigate better way resolving allocas
-                // TODO: from compilation of runtime it looks like it often fails on exception blocks
-                config.getLogger().error("Unable to resolve variable %s in class %s", var.getName(), clazz.getClassName());
+                config.getLogger().error("Unable to resolve variable %s in method %s, class %s", var.getName(),
+                        method.getName(), clazz.getClassName());
                 continue;
             }
 
@@ -469,34 +474,6 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         clazz.removeAttachement(classBundle);
     }
 
-
-    /**
-     * tryies to find local variable in chain in case there is no direct map of idx to it
-     * @param chain pacthing chain of units
-     * @param var local variable
-     * @return local or null if not found
-     */
-    private Local findLocalInChain(PatchingChain<Unit> chain, LocalVariable var) {
-        Unit endUnit = var.getEndUnit();
-        if (endUnit == null)
-            endUnit = chain.getLast();
-        Iterator<Unit> it = chain.iterator(var.getStartUnit(), endUnit);
-        while (it.hasNext()) {
-            Unit u = it.next();
-            for (ValueBox box : u.getUseBoxes()) {
-                if (!(box.getValue() instanceof Local))
-                    continue;
-                Local local = (Local) box.getValue();
-                if (local.getIndex() == var.getIndex())
-                    return local;
-            }
-
-        }
-
-        return null;
-    }
-
-
     /** injects calls to _bcHookInstrumented to allow breakpoints/step by step debugging */
     private void injectHookInstrumented(DISubprogram diSubprogram, int lineNo, int lineNumberOffset, Function function, Constant bpTableRef, Instruction instruction) {
         BasicBlock block = instruction.getBasicBlock();
@@ -517,7 +494,6 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         // attach line number metadata otherwise stack entry will have previous line number index
         bcHookInstrumented.addMetadata((new DILineNumber(lineNo, 0, diSubprogram)).get());
     }
-
 
     /** Simple file name resolved, for LineNumbers there is no need in absolute file location, just in name */
     private String getSourceFile(Clazz clazz) {
