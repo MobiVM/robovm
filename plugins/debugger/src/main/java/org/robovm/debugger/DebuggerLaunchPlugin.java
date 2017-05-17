@@ -202,7 +202,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
 
                 int lookingPos = 0;
                 int newLineIdx = str.indexOf('\n');
-                while (newLineIdx >= 0 && newLineIdx + 1 < str.length()) {
+                while (newLineIdx >= 0 ) {
                     // get next new line
                     if (str.startsWith(tag, lookingPos)) {
                         // got it
