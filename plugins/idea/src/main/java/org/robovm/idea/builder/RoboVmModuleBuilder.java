@@ -128,6 +128,8 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
         }
 
         if (buildSystem != BuildSystem.None) {
+            super.setupRootModel(modifiableRootModel);
+
             // apply the template
             final Project project = modifiableRootModel.getProject();
             StartupManager.getInstance(project).runWhenProjectIsInitialized(new DumbAwareRunnable() {
@@ -163,7 +165,6 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
             final VirtualFile contentRoot = LocalFileSystem.getInstance()
                     .findFileByIoFile(new File(modifiableRootModel.getProject().getBasePath()));
             applyTemplate(modifiableRootModel.getProject());
-            contentRoot.refresh(false, true);
             for (ContentEntry entry : modifiableRootModel.getContentEntries()) {
                 for (SourceFolder srcFolder : entry.getSourceFolders()) {
                     entry.removeSourceFolder(srcFolder);
@@ -222,6 +223,10 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                     new File(project.getBasePath() + "/" + robovmDir + "/build.gradle").getAbsolutePath());
         }
 
+        // refresh to let idea see changes on fs
+        final VirtualFile contentRoot = LocalFileSystem.getInstance().findFileByIoFile(new File(project.getBasePath()));
+        contentRoot.refresh(false, true);
+
         RoboVmPlugin.logInfo(project, "Project created in %s", project.getBasePath());
     }
 
@@ -241,9 +246,11 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                         projectDataManager);
                 gradleProjectImportBuilder.getControl(project).getProjectSettings()
                         .setDistributionType(DistributionType.WRAPPED);
+                gradleProjectImportBuilder.getControl(project).getProjectSettings().
+                        setResolveModulePerSourceSet(false);
                 GradleProjectImportProvider gradleProjectImportProvider = new GradleProjectImportProvider(
                         gradleProjectImportBuilder);
-                AddModuleWizard wizard = new AddModuleWizard((Project) null, files[0].getPath(),
+                AddModuleWizard wizard = new AddModuleWizard(project, files[0].getPath(),
                         new ProjectImportProvider[] { gradleProjectImportProvider });
                 if (wizard.getStepCount() <= 0 || wizard.showAndGet()) {
                     ImportModuleAction.createFromWizard(project, wizard);
