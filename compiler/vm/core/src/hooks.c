@@ -1437,6 +1437,17 @@ void _rvmHookInstrumented(DebugEnv* debugEnv, jint lineNumber, jint lineNumberOf
 
         rvmLockMutex(&debugEnv->suspendMutex);
 
+        // dkimitsa: disable stepping as prepareCallStack will call rvm method like new String() which will
+        // cause regression enter into _rvmHookInstrumented
+        // the order of the next few lines is important
+        // as we don't use a lock in getSuspendedEvent()
+        // around stepping and suspended.
+        debugEnv->stepping = FALSE;
+        debugEnv->pclow = 0;
+        debugEnv->pchigh = 0;
+        debugEnv->pclow2 = 0;
+        debugEnv->pchigh2 = 0;
+
         if (IS_DEBUG_ENABLED) {
             Method* method = rvmFindMethodAtAddress(env, pc);
             DEBUGF("Suspending thread %p with id %u due to event %d at %s.%s%s:%d (pc=%p)", env->currentThread,
