@@ -146,17 +146,6 @@ public class RuntimeClassInfoLoader {
         return delegates.runtime().deviceMemoryReader().readStringZAtPtr(ptr);
     }
 
-    /**
-     * Notification that class was loaded
-     *
-     * @param classInfoPtr runtime pointer to class info (mach-o space)
-     * @param clazzPtr runtime pointer to clazz structure (runtime space)
-     * @return corresponding data type info
-     */
-    public ClassInfo onClassLoaded(long classInfoPtr, long clazzPtr) {
-        return delegates.state().classInfoLoader().onClassLoaded(classInfoPtr, clazzPtr);
-    }
-
     public ClassInfoLoader loader() {
         return delegates.state().classInfoLoader();
     }

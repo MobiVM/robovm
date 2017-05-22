@@ -20,11 +20,11 @@ public class JdwpRefTypeClassObjectHandler implements IJdwpRequestHandler {
 
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        long instanceId = payload.readLong();
+        long referenceTypeId = payload.readLong();
 
         // get values from target
         try {
-            VmClassInstance clazzInstance = delegate.jdwpGetClazzObject(instanceId);
+            VmClassInstance clazzInstance = delegate.jdwpGetClazzObject(referenceTypeId);
             output.writeLong(clazzInstance.refId());
         } catch (DebuggerException e) {
             if (e.getCode() < 0)

@@ -195,7 +195,12 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
             throw new DebuggerException(JdwpConsts.Error.INTERNAL);
         }
 
-        HooksCmdResponse res = delegates.hooksApi().newArray(thread.threadPtr(), length, classInfoArray.elementType().signature());
+        String elementTypeSignature = classInfoArray.elementType().signature();
+        if (classInfoArray.elementType().isClass()) {
+            // as hooks doesn't expect to receive leading L and tailing ; as it calls rvmFindClass which expects class name
+            elementTypeSignature = elementTypeSignature.substring(1, elementTypeSignature.length() - 1);
+        }
+        HooksCmdResponse res = delegates.hooksApi().newArray(thread.threadPtr(), length, elementTypeSignature);
         if (res.exceptionPrt() != 0 || res.result() == null) {
             throw new DebuggerException(JdwpConsts.Error.INTERNAL);
         }

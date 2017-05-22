@@ -28,11 +28,10 @@ public class JdwpClassObjRefReflectedTypeHandler implements IJdwpRequestHandler 
             try {
                 // get class instance
                 VmClassInstance classInstance = state.referenceRefIdHolder().instanceById(classObjectId);
-                // now by it address get class info
-                ClassInfo classInfo = state.classInfoLoader().classByClazzAddr(classInstance.objectPtr());
-                if (classInfo == null)
+                if (classInstance == null)
                     return JdwpConsts.Error.INVALID_OBJECT;
-
+                // now by it address get class info
+                ClassInfo classInfo = classInstance.representedClassInfo();
                 output.writeByte(Converter.jdwpTypeTag(classInfo));
                 output.writeLong(classInfo.refId());
             } catch (ClassCastException e) {

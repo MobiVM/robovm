@@ -362,17 +362,14 @@ public class InstanceUtils {
     }
 
 
-    public VmClassInstance getClazzObject(long objectId) {
-        VmInstance instance = delegates.state().referenceRefIdHolder().instanceById(objectId);
-        if (instance == null)
-            throw new DebuggerException(JdwpConsts.Error.INVALID_OBJECT);
-        if (instance.classInfo().clazzPtr() == 0)
+    public VmClassInstance getClazzObject(long referenceTypeId) {
+        ClassInfo referenceType = delegates.state().classRefIdHolder().objectById(referenceTypeId);
+        if (referenceType == null)
+            throw new DebuggerException(JdwpConsts.Error.INVALID_CLASS);
+        if (referenceType.clazzPtr() == 0)
             throw new DebuggerException(JdwpConsts.Error.CLASS_NOT_PREPARED);
 
-        ClassInfo ci = delegates.state().classInfoLoader().classInfoBySignature(ClassDataConsts.signatures.JAVA_LANG_CLASS);
-        VmClassInstance clazzInstance = instanceByPointer(instance.classInfo().clazzPtr(), ci, null, true);
-
-        return clazzInstance;
+        return instanceByPointer(referenceType.clazzPtr(), null, true);
     }
 
     /**
@@ -527,10 +524,12 @@ public class InstanceUtils {
                 ClassInfo valueClassInfo = callspec.arguments[idx];
                 ValueManipulator valueManipulator;
 
+                Object value = args[idx];
                 if (valueClassInfo.isPrimitive()) {
                     ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) valueClassInfo;
                     valueManipulator = primitiveInfo.manipulator();
                 } else {
+                    value = delegates.state().referenceRefIdHolder().instanceById((Long)value);
                     valueManipulator = manipulator;
                 }
 
@@ -540,7 +539,7 @@ public class InstanceUtils {
                 int pos = argsBuffer.position();
                 argsBuffer.writeLong(0);
                 argsBuffer.setPosition(pos);
-                valueManipulator.writeToDevice(argsBuffer, args[idx]);
+                valueManipulator.writeToDevice(argsBuffer, value);
                 // move pos to end of buf
                 argsBuffer.setPosition(argsBuffer.size());
             }
@@ -657,7 +656,8 @@ public class InstanceUtils {
     }
 
     private VmClassInstance createClassInstance(ClassInfo ci, long objectPtr, @SuppressWarnings("unused")Object unused) {
-        return new VmClassInstance(objectPtr, ci);
+        ClassInfo representedClassInfo = runtimeClassInfoLoader.resolveRuntimeDataTypeInfo(objectPtr);
+        return new VmClassInstance(objectPtr, ci, representedClassInfo);
     }
 
     private VmInstance createGenericInstance(ClassInfo ci, long objectPtr, @SuppressWarnings("unused")Object unused) {

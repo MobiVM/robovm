@@ -34,8 +34,8 @@ public class JdwpThreadStatusHandler implements IJdwpRequestHandler {
             if (thread == null)
                 return JdwpConsts.Error.INVALID_THREAD;
 
-            // TODO: check about statuses
-            output.writeInt32(thread.suspendCount() > 0 ? JdwpConsts.ThreadStatus.WAIT : JdwpConsts.ThreadStatus.RUNNING);
+            // return running all time as for now, as status (wait/sleeping) is not available on object level 
+            output.writeInt32(JdwpConsts.ThreadStatus.RUNNING);
             output.writeInt32(thread.suspendCount() > 0 ? JdwpConsts.SuspendStatus.SUSPEND_STATUS_SUSPENDED : 0);
         }
 

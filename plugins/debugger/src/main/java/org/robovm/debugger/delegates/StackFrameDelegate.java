@@ -58,16 +58,18 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
                 throw new DebuggerException(JdwpConsts.Error.INVALID_SLOT);
             }
 
-            // check if variable is loaded
+            // check if type is loaded, dont bother about array signatures as these class infos will be resolved runtime
             classinfos[idx] = loader.loader().classInfoBySignature(variables[idx].typeSignature());
-            if (classinfos[idx] == null && ClassInfoLoader.isPrimitiveSignature(variables[idx].typeSignature())) {
-                // if it is primitive -- build primitite type info
-                classinfos[idx] = loader.buildPrimitiveClassInfo(variables[idx].typeSignature());
-            }
+            if (classinfos[idx] == null && !ClassInfoLoader.isArraySignature(variables[idx].typeSignature())) {
+                if (ClassInfoLoader.isPrimitiveSignature(variables[idx].typeSignature())) {
+                    // if it is primitive -- build primitive type info
+                    classinfos[idx] = loader.buildPrimitiveClassInfo(variables[idx].typeSignature());
+                }
 
-            if (classinfos[idx] == null || classinfos[idx].clazzPtr() == 0) {
-                // should not happen
-                throw new DebuggerException(JdwpConsts.Error.CLASS_NOT_PREPARED);
+                if (classinfos[idx] == null || classinfos[idx].clazzPtr() == 0) {
+                    // should not happen
+                    throw new DebuggerException(JdwpConsts.Error.CLASS_NOT_PREPARED);
+                }
             }
         }
 
@@ -169,24 +171,28 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
             int idx = fromJdpw.readInt32();
 
             // check if index in range and
-            if (idx >= variables.length || variables[idx].startLine() < stackLineNumber || variables[idx].finalLine() > stackLineNumber) {
+            if (idx >= variables.length || stackLineNumber < variables[idx].startLine() || stackLineNumber > variables[idx].finalLine() ) {
                 throw new DebuggerException(JdwpConsts.Error.INVALID_SLOT);
             }
 
-            // check if variable is loaded
-            ClassInfo ci = loader.loader().classInfoBySignature(variables[idx].typeSignature());
-            if (ci == null && ClassInfoLoader.isPrimitiveSignature(variables[idx].typeSignature())) {
-                // if it is primitive -- build primitite type info
-                ci = loader.buildPrimitiveClassInfo(variables[idx].typeSignature());
-            }
+            // check if type is loaded, dont bother about array signatures as these class infos will be resolved runtime
+            ClassInfo ci  = loader.loader().classInfoBySignature(variables[idx].typeSignature());
+            if (ci == null && !ClassInfoLoader.isArraySignature(variables[idx].typeSignature())) {
+                if (ClassInfoLoader.isPrimitiveSignature(variables[idx].typeSignature())) {
+                    // if it is primitive -- build primitive type info
+                    ci = loader.buildPrimitiveClassInfo(variables[idx].typeSignature());
+                }
 
-            if (ci == null || ci.clazzPtr() == 0) {
-                // should not happen
-                throw new DebuggerException(JdwpConsts.Error.CLASS_NOT_PREPARED);
+                if (ci == null || ci.clazzPtr() == 0) {
+                    // should not happen
+                    throw new DebuggerException(JdwpConsts.Error.CLASS_NOT_PREPARED);
+                }
             }
 
             // write variable value right from jdpw payload
             long addr = getVariableAddress(frame, variables[idx]);
+            // the value is tagger, so just skip tag
+            int tag = fromJdpw.readByte();
             delegates.instances().setMemoryValue(addr, ci, null, fromJdpw);
         }
     }

@@ -6,6 +6,7 @@ import org.robovm.debugger.jdwp.handlers.array.JdwpArrayGetLength;
 import org.robovm.debugger.jdwp.handlers.array.JdwpArrayGetValues;
 import org.robovm.debugger.jdwp.handlers.array.JdwpArraySetValues;
 import org.robovm.debugger.jdwp.handlers.arraytype.JdwpArrayTypeNewInstanceHandler;
+import org.robovm.debugger.jdwp.handlers.classobjectreference.JdwpClassObjRefReflectedTypeHandler;
 import org.robovm.debugger.jdwp.handlers.classtype.JdwpClassTypeInvokeMethodHandler;
 import org.robovm.debugger.jdwp.handlers.classtype.JdwpClassTypeNewInstanceHandler;
 import org.robovm.debugger.jdwp.handlers.classtype.JdwpClassTypeSetValuesHandler;
@@ -16,8 +17,11 @@ import org.robovm.debugger.jdwp.handlers.eventrequest.JdwpEventReqSetHandler;
 import org.robovm.debugger.jdwp.handlers.method.JdwpMethodLineTableHandler;
 import org.robovm.debugger.jdwp.handlers.method.JdwpMethodVariableTableHandler;
 import org.robovm.debugger.jdwp.handlers.method.JdwpMethodVariableTableWithGenericsHandler;
+import org.robovm.debugger.jdwp.handlers.objectreference.JdwpObjRefDisableCollectionHandler;
+import org.robovm.debugger.jdwp.handlers.objectreference.JdwpObjRefEnableCollectionHandler;
 import org.robovm.debugger.jdwp.handlers.objectreference.JdwpObjRefGetValuesHandler;
 import org.robovm.debugger.jdwp.handlers.objectreference.JdwpObjRefInvokeMethodHandler;
+import org.robovm.debugger.jdwp.handlers.objectreference.JdwpObjRefIsCollectedHandler;
 import org.robovm.debugger.jdwp.handlers.objectreference.JdwpObjRefReferenceTypeHandler;
 import org.robovm.debugger.jdwp.handlers.objectreference.JdwpObjRefSetValuesHandler;
 import org.robovm.debugger.jdwp.handlers.referencetype.JdwpRefTypeClassFileVersionHandler;
@@ -374,9 +378,9 @@ public class JdwpDebugServer implements IJdwpServerApi{
         registerHandler(new JdwpObjRefSetValuesHandler(delegates)); // SetValues (3)
         //MonitorInfo (5) -- NOT_IMPLEMENTED
         registerHandler(new JdwpObjRefInvokeMethodHandler(delegates)); // InvokeMethod (6)
-        // DisableCollection (7) -- NOT_IMPLEMENTED
-        // EnableCollection (8) -- NOT_IMPLEMENTED
-        // IsCollected (9) -- NOT_IMPLEMENTED
+        registerHandler(new JdwpObjRefDisableCollectionHandler()); // DisableCollection (7)
+        registerHandler(new JdwpObjRefEnableCollectionHandler()); // EnableCollection (8)
+        registerHandler(new JdwpObjRefIsCollectedHandler(state)); // IsCollected (9)
         // ReferringObjects (10) -- NOT_IMPLEMENTED
 
         //
@@ -436,7 +440,6 @@ public class JdwpDebugServer implements IJdwpServerApi{
 
         //
         // ClassObjectReference Command Set (17)
-        //
-        // ReflectedType (1) // TODO:
+        registerHandler(new JdwpClassObjRefReflectedTypeHandler(state)); // ReflectedType (1)
     }
 }
