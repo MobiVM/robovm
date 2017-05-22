@@ -240,14 +240,6 @@ jboolean rvmInitOptions(int argc, char* argv[], Options* options, jboolean ignor
         if (i >= 0 && options->resourcesPath[i] == '/') {
             options->resourcesPath[i] = '\0';
         }
-        if (argc == 0) {
-#if defined(DARWIN)
-            // Called via JNI and on Darwin. Assume this is a framework. Use the
-            // Resources folder next to the image.
-            strncat(options->resourcesPath, "/Resources",
-                    sizeof(options->resourcesPath) - strlen(options->resourcesPath) - 1);
-#endif
-        }
     }
 
     // Look for a robovm.ini in the resources path
