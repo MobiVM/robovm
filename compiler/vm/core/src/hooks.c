@@ -1201,9 +1201,11 @@ static inline void suspendLoop(DebugEnv* debugEnv) {
         // or a new instance request (see handleNewInstance, handleNewString, handleNewArray)
         // we temporarily reset the suspend flag, set the ignore exceptions flag, invoke the
         // method, then go back into waiting for being woken up again
+        // Also ignore any instrumented bp/stepping as these will be triggered during request execution
         if(debugEnv->reqId != 0) {
             debugEnv->suspended = FALSE;
             debugEnv->ignoreExceptions = TRUE;
+            debugEnv->ignoreInstrumented = TRUE;
             switch(debugEnv->command) {
                 case CMD_THREAD_INVOKE:
                     invokeMethod(debugEnv);
@@ -1221,6 +1223,7 @@ static inline void suspendLoop(DebugEnv* debugEnv) {
                     DEBUGF("Unknown invoke/newinstance command %d", debugEnv->command);
             }
             debugEnv->ignoreExceptions = FALSE;
+            debugEnv->ignoreInstrumented = FALSE;
             debugEnv->suspended = TRUE;
         }
     }
@@ -1244,6 +1247,10 @@ static jboolean prepareCallStack(Env* env, char event, CallStack** callStack, ji
     // rvmHookExceptionRaised
     jboolean oldIgnoreException = debugEnv->ignoreExceptions;
     debugEnv->ignoreExceptions = TRUE;
+    // need to ignore exceptions, as the callstack unwinding will call runtime api which will cause BP to be triggered
+    // in the middle of operation
+    jboolean oldIgnoreInstrumented = debugEnv->ignoreInstrumented;
+    debugEnv->ignoreInstrumented = TRUE;
 
     *callStack = rvmCaptureCallStack(env);
     if (rvmExceptionCheck(env)) {
@@ -1266,8 +1273,10 @@ static jboolean prepareCallStack(Env* env, char event, CallStack** callStack, ji
     }
     *payloadSize = sizeof(jint) + (*length) * (sizeof(jlong) * 2 + sizeof(jint) * 2) + classNamesSize;
 
-    // reset old exception handling
+    // reset old exception handling/instrumented flag
     debugEnv->ignoreExceptions = oldIgnoreException;
+    debugEnv->ignoreInstrumented = oldIgnoreInstrumented;
+
 
     if(length == 0) {
         ERRORF("No frames on callstack of thread %p for event %d.", env->currentThread, event);
@@ -1430,23 +1439,16 @@ void _rvmHookExceptionRaised(Env* env, Object* throwable, jboolean isCaught) {
 }
 
 void _rvmHookInstrumented(DebugEnv* debugEnv, jint lineNumber, jint lineNumberOffset, jbyte* bptable, void* pc) {
+    // dkimitsa: exit as operation is in middle of stack unwinding/object creation or method invocation
+    if (debugEnv->ignoreInstrumented)
+        return;
+
     Env* env = (Env*) debugEnv;
 
     char event = 0;
     if ((event = getSuspendedEvent(debugEnv, lineNumberOffset, bptable, pc)) != 0) {
 
         rvmLockMutex(&debugEnv->suspendMutex);
-
-        // dkimitsa: disable stepping as prepareCallStack will call rvm method like new String() which will
-        // cause regression enter into _rvmHookInstrumented
-        // the order of the next few lines is important
-        // as we don't use a lock in getSuspendedEvent()
-        // around stepping and suspended.
-        debugEnv->stepping = FALSE;
-        debugEnv->pclow = 0;
-        debugEnv->pchigh = 0;
-        debugEnv->pclow2 = 0;
-        debugEnv->pchigh2 = 0;
 
         if (IS_DEBUG_ENABLED) {
             Method* method = rvmFindMethodAtAddress(env, pc);

@@ -495,6 +495,9 @@ typedef struct {
     jboolean stepping;
     jboolean ignoreExceptions;
 
+    // used to ignore instrumented bp/stepping
+    jboolean ignoreInstrumented;
+
     // used for invoking methods/creating new
     // instances on a thread
     jbyte command;
