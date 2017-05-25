@@ -422,8 +422,14 @@ public class RoboVmPlugin {
                     try {
                         out = new FileOutputStream(f);
                         IOUtils.copy(in, out);
-                    } finally {
                         IOUtils.closeQuietly(out);
+                        out = null;
+                        // set last modification time stamp as it was inside tar otherwise
+                        // robovm will see new time stamp and will rebuild all classes that were inside jar
+                        f.setLastModified(entry.getLastModifiedDate().getTime());
+                    } finally {
+                        if (out != null)
+                            IOUtils.closeQuietly(out);
                     }
                 }
             }
