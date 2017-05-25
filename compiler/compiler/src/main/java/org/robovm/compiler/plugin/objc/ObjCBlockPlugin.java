@@ -87,7 +87,8 @@ public class ObjCBlockPlugin extends AbstractCompilerPlugin {
     public static final String OBJC_PACKAGE = "org/robovm/objc";
     public static final String OBJC_ANNOTATIONS_PACKAGE = OBJC_PACKAGE + "/annotation";
     public static final String BLOCK = "L" + OBJC_ANNOTATIONS_PACKAGE + "/Block;";
-    public static final String RUNNABLE_AS_OBJC_BLOCK_MARSHALER = 
+    public static final String TYPE_ENCODING = "L" + OBJC_ANNOTATIONS_PACKAGE + "/TypeEncoding;";
+    public static final String RUNNABLE_AS_OBJC_BLOCK_MARSHALER =
             OBJC_PACKAGE + "/RunnableAsObjCBlockMarshaler";
 
     static Pattern BLOCK_ANNOTATION_PATTERN = Pattern.compile("@[\\w\\d_]+\\s*");
@@ -114,7 +115,8 @@ public class ObjCBlockPlugin extends AbstractCompilerPlugin {
     private SootClass java_lang_Double = null;
 
     private boolean initialized = false;
-    
+    private Config config;
+
     private void init() {
         if (initialized) {
             return;
@@ -133,6 +135,7 @@ public class ObjCBlockPlugin extends AbstractCompilerPlugin {
     
     @Override
     public void beforeClass(Config config, Clazz clazz, ModuleBuilder moduleBuilder) throws IOException {
+        this.config = config;
         init();
         SootClass sootClass = clazz.getSootClass();
         if (!sootClass.isInterface()) {
@@ -531,16 +534,32 @@ public class ObjCBlockPlugin extends AbstractCompilerPlugin {
         MethodVisitor mv = cw.visitMethod(ACC_PRIVATE | ACC_STATIC, name, desc, signature, null);
         mv.visitAnnotation(CALLBACK, true).visitEnd();
 
+        // create a dummy soot method just to be able to fetch @encoding information from it
+        // using TypeEncoding
+        SootMethod methodForEncoder = new SootMethod(name, rawParamTypes, unboxedTypes[0]);
+        // just dummy declaring class
+        methodForEncoder.setDeclaringClass(targetMethod.getDeclaringClass());
+        methodForEncoder.setDeclared(true);
         for (String s : targetMethodAnnotations[0]) {
             mv.visitAnnotation(s, true).visitEnd();
+            addRuntimeVisibleAnnotation(methodForEncoder, s);
         }
         for (int i = 1; i < targetMethodAnnotations.length; i++) {
             for (String s : targetMethodAnnotations[i]) {
                 // We add 1 parameter first so annotations for the first 
                 // parameter should be added at index 1.
                 mv.visitParameterAnnotation(i, s, true).visitEnd();
+                addRuntimeVisibleParameterAnnotation(methodForEncoder, i, s);
             }
         }
+
+        // build and add encoding
+        TypeEncoder encoder = new TypeEncoder();
+        String typeEncoding = encoder.encode(methodForEncoder, !config.getArch().is32Bit());
+        // attach @TypeEncoding annotation to allow ObjCBlock to use it to create proper description
+        AnnotationVisitor av = mv.visitAnnotation(TYPE_ENCODING, true);
+        av.visit("value", typeEncoding);
+        av.visitEnd();
 
         mv.visitCode();
         
