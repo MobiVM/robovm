@@ -32,6 +32,9 @@ import org.robovm.rt.bro.annotation.Pointer;
  */
 public class RunnableAsObjCBlockMarshaler implements Runnable {
 
+    private static final Selector COPY_SELECTOR = Selector.register("copy");
+    private static final Selector RELEASE_SELECTOR = Selector.register("release");
+
     private static ObjCBlock.Wrapper WRAPPER = 
             new ObjCBlock.Wrapper(RunnableAsObjCBlockMarshaler.class);
     
@@ -50,6 +53,8 @@ public class RunnableAsObjCBlockMarshaler implements Runnable {
         if (block.hasObject()) {
             return (Runnable) block.object();
         }
+        handle = ObjCRuntime.ptr_objc_msgSend(handle, COPY_SELECTOR.getHandle());
+        ObjCBlock.setHandle(block, handle);
         return new RunnableAsObjCBlockMarshaler(block);
     }
     
@@ -129,5 +134,10 @@ public class RunnableAsObjCBlockMarshaler implements Runnable {
     @TypeEncoding("v@?")
     private static void invoked(ObjCBlock block) {
         ((Runnable) block.object()).run();
+    }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        ObjCRuntime.void_objc_msgSend(this.objCBlock.getHandle(), RELEASE_SELECTOR.getHandle());
     }
 }

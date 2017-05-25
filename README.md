@@ -9,7 +9,13 @@ RoboVM is an ahead-of-time compiler for Java bytecode, targeting Linux, Mac OS X
 
 This is a fork of the [last open-source release of RoboVM](https://github.com/robovm/robovm).
 
-**iOS 10 and XCode 8** are fully supported, for details please read [this wiki article](https://github.com/MobiDevelop/robovm/wiki/iOS-10-and-XCode-8-compatibility).
+## Key Features
+
+**iOS 10.3 and XCode 8.3** are fully supported, for details please read [this wiki article](https://github.com/MobiDevelop/robovm/wiki/iOS-10-and-XCode-8-compatibility).
+
+**Interface Builder Integration** is also available, details in [this wiki article](https://github.com/MobiDevelop/robovm/wiki/Is-XCode-interface-builder-supported%3F).
+
+**Debugging support** is currently under heavy development, get a pre-release IDEA plugin from [here](https://github.com/MobiDevelop/robovm/wiki/Implementing-a-Debugger).
 
 ## Using RoboVM
 

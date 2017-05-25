@@ -22,6 +22,7 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.ios.IOSTarget;
+import org.robovm.compiler.target.ios.IOSDeviceLaunchParameters;
 
 /**
  *
@@ -42,7 +43,11 @@ public class IOSDeviceTask extends AbstractRoboVMTask {
                 return;
             }
             Config config = compiler.getConfig();
-            LaunchParameters launchParameters = config.getTarget().createLaunchParameters();
+            IOSDeviceLaunchParameters launchParameters = (IOSDeviceLaunchParameters) config.getTarget().createLaunchParameters();
+			String udid = (String) project.getProperties().get("robovm.device.udid");	
+			if(udid != null && !udid.isEmpty()){
+				launchParameters.setDeviceId(udid);
+			}
             compiler.launch(launchParameters);
         } catch (Throwable t) {
             throw new GradleException("Failed to launch IOS Device", t);

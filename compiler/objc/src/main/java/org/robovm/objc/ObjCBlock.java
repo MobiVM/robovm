@@ -82,6 +82,10 @@ public final class ObjCBlock extends Struct<ObjCBlock> {
     
     @StructMember(6)
     public native ObjCBlock wrapper_addr(@Pointer long wrapper_addr);
+
+    public static void setHandle(ObjCBlock block, long handle) {
+        block.setHandle(handle);
+    }
     
     public Object object() {
         return VM.castAddressToObject(object_addr());

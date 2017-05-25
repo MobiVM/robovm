@@ -71,6 +71,25 @@ import com.dd.plist.PropertyListParser;
  *
  */
 public class IOSTarget extends AbstractTarget {
+    final List<String> excludedKeys = Arrays.asList(
+        "com.apple.developer.icloud-container-development-container-identifiers",
+        "com.apple.developer.icloud-container-environment",
+        "com.apple.developer.icloud-container-identifiers",
+        "com.apple.developer.icloud-services",
+        "com.apple.developer.restricted-resource-mode",
+        "com.apple.developer.ubiquity-container-identifiers",
+        "com.apple.developer.ubiquity-kvstore-identifier",
+        "inter-app-audio",
+        "com.apple.developer.homekit",
+        "com.apple.developer.healthkit",
+        "com.apple.developer.in-app-payments",
+        "com.apple.developer.associated-domains",
+        "com.apple.security.application-groups",
+        "com.apple.developer.maps",
+        "com.apple.developer.networking.vpn.api",
+        "com.apple.external-accessory.wireless-configuration"
+    );
+
     public static final String TYPE = "ios";
 
     private static File iosSimPath;
@@ -461,7 +480,7 @@ public class IOSTarget extends AbstractTarget {
             if (provisioningProfile != null) {
                 NSDictionary profileEntitlements = provisioningProfile.getEntitlements();
                 for (String key : profileEntitlements.allKeys()) {
-                    if (dict.objectForKey(key) == null) {
+                    if (dict.objectForKey(key) == null && !excludedKeys.contains(key)) {
                         dict.put(key, profileEntitlements.objectForKey(key));
                     }
                 }
