@@ -124,18 +124,6 @@ Keychain password to use when unlocking the `codesign` keychain.
 
 Read the keychain password to use when unlocking the `codesign` keychain from the specified file.
 
-## License Management
-To activate your license use the `activateLicense` task:
-
-```
-gradle :activateLicense -Probovm.licenseKey=<your-key>
-```
-
-To deactivate your license use the `deactivateLicense` task:
-
-```
-gradle :deactivateLicense
-```
 
 ## Debugging
 You can instruct the RoboVM Gradle plugin to compile and run your app in debug mode:
