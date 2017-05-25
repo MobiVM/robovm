@@ -44,6 +44,7 @@ import soot.VoidType;
 public class TypeEncoder {
     public static final String SELECTOR = "org.robovm.objc.Selector";
     public static final String OBJC_CLASS = "org.robovm.objc.ObjCClass";
+    public static final String OBJC_BLOCK = "org.robovm.objc.ObjCBlock";
 
     public String encode(SootMethod method, boolean is64bit) {
         StringBuilder sb = new StringBuilder();
@@ -90,6 +91,9 @@ public class TypeEncoder {
         }
         if (OBJC_CLASS.equals(t.getClassName())) {
             return "#";
+        }
+        if (OBJC_BLOCK.equals(t.getClassName())) {
+            return "@?";
         }
         if (Types.isStruct(t)) {
             if (hasAnno(method, idx, BY_VAL)) {

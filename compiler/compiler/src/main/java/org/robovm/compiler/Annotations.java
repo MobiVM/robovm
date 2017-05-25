@@ -502,12 +502,12 @@ public class Annotations {
         }
         VisibilityParameterAnnotationTag ptag = 
                 new VisibilityParameterAnnotationTag(method.getParameterCount(), RUNTIME_VISIBLE);
-        ArrayList<VisibilityAnnotationTag> l = new ArrayList<VisibilityAnnotationTag>();
         for (int i = 0; i < method.getParameterCount(); i++) {
-            l.add(new VisibilityAnnotationTag(RUNTIME_VISIBLE));
+            ptag.addVisibilityAnnotation(new VisibilityAnnotationTag(RUNTIME_VISIBLE));
+
         }
         method.addTag(ptag);
-        return l.get(paramIndex);
+        return ptag.getVisibilityAnnotations().get(paramIndex);
     }
     
     public static void addRuntimeVisibleParameterAnnotation(SootMethod method, int paramIndex, String annotationType) {

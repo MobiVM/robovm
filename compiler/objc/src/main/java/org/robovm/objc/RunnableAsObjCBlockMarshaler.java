@@ -16,6 +16,7 @@
 package org.robovm.objc;
 
 import org.robovm.objc.annotation.Block;
+import org.robovm.objc.annotation.TypeEncoding;
 import org.robovm.rt.bro.Struct;
 import org.robovm.rt.bro.annotation.Bridge;
 import org.robovm.rt.bro.annotation.Callback;
@@ -125,6 +126,7 @@ public class RunnableAsObjCBlockMarshaler implements Runnable {
     private static native void invoke(@Pointer long target, ObjCBlock block);
     
     @Callback
+    @TypeEncoding("v@?")
     private static void invoked(ObjCBlock block) {
         ((Runnable) block.object()).run();
     }
