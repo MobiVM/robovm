@@ -43,45 +43,33 @@ import org.robovm.apple.audiounit.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureDeviceType/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVContentKeySessionDelegateAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements AVContentKeySessionDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVCaptureDeviceType.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
+    /*<properties>*/
+    
+    /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInMicrophone", optional=true)
-    public static native String BuiltInMicrophone();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInWideAngleCamera", optional=true)
-    public static native String BuiltInWideAngleCamera();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInTelephotoCamera", optional=true)
-    public static native String BuiltInTelephotoCamera();
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDualCamera", optional=true)
-    public static native String BuiltInDualCamera();
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.2.
-     */
-    @Deprecated
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDuoCamera", optional=true)
-    public static native String BuiltInDuoCamera();
+    @NotImplemented("contentKeySession:didProvideContentKeyRequest:")
+    public void didProvideContentKeyRequest(AVContentKeySession session, AVContentKeyRequest keyRequest) {}
+    @NotImplemented("contentKeySession:didProvideRenewingContentKeyRequest:")
+    public void didProvideRenewingContentKeyRequest(AVContentKeySession session, AVContentKeyRequest keyRequest) {}
+    @NotImplemented("contentKeySession:didProvidePersistableContentKeyRequest:")
+    public void didProvidePersistableContentKeyRequest(AVContentKeySession session, AVPersistableContentKeyRequest keyRequest) {}
+    @NotImplemented("contentKeySession:contentKeyRequest:didFailWithError:")
+    public void didFailWithError(AVContentKeySession session, AVContentKeyRequest keyRequest, NSError err) {}
+    @NotImplemented("contentKeySession:shouldRetryContentKeyRequest:reason:")
+    public boolean shouldRetryContentKeyRequest(AVContentKeySession session, AVContentKeyRequest keyRequest, String retryReason) { return false; }
+    @NotImplemented("contentKeySessionContentProtectionSessionIdentifierDidChange:")
+    public void contentKeySessionContentProtectionSessionIdentifierDidChange(AVContentKeySession session) {}
     /*</methods>*/
 }

@@ -167,6 +167,11 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVAudioSessionInterruptionOptionKey", optional=true)
         public static native NSString Option();
+        /**
+         * @since Available in iOS 10.3 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionInterruptionWasSuspendedKey", optional=true)
+        public static native NSString WasSuspended();
     }
     /*</keys>*/
 }

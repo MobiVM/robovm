@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,43 +43,42 @@ import org.robovm.apple.audiounit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 4.0 and later.
+ * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVVideoCompositionInstruction/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureResolvedPhotoSettings/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements AVVideoCompositionInstructionProtocol/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class AVVideoCompositionInstructionPtr extends Ptr<AVVideoCompositionInstruction, AVVideoCompositionInstructionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(AVVideoCompositionInstruction.class); }/*</bind>*/
+    /*<ptr>*/public static class AVCaptureResolvedPhotoSettingsPtr extends Ptr<AVCaptureResolvedPhotoSettings, AVCaptureResolvedPhotoSettingsPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVCaptureResolvedPhotoSettings.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVVideoCompositionInstruction() {}
-    protected AVVideoCompositionInstruction(Handle h, long handle) { super(h, handle); }
-    protected AVVideoCompositionInstruction(SkipInit skipInit) { super(skipInit); }
+    protected AVCaptureResolvedPhotoSettings() {}
+    protected AVCaptureResolvedPhotoSettings(Handle h, long handle) { super(h, handle); }
+    protected AVCaptureResolvedPhotoSettings(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "timeRange")
-    public native @ByVal CMTimeRange getTimeRange();
-    @Property(selector = "backgroundColor")
-    public native CGColor getBackgroundColor();
-    @Property(selector = "layerInstructions")
-    public native NSArray<AVVideoCompositionLayerInstruction> getLayerInstructions();
-    @Property(selector = "enablePostProcessing")
-    public native boolean isPostProcessingEnabled();
+    @Property(selector = "uniqueID")
+    public native long getUniqueID();
+    @Property(selector = "photoDimensions")
+    public native @ByVal CMVideoDimensions getPhotoDimensions();
+    @Property(selector = "rawPhotoDimensions")
+    public native @ByVal CMVideoDimensions getRawPhotoDimensions();
+    @Property(selector = "previewDimensions")
+    public native @ByVal CMVideoDimensions getPreviewDimensions();
+    @Property(selector = "livePhotoMovieDimensions")
+    public native @ByVal CMVideoDimensions getLivePhotoMovieDimensions();
+    @Property(selector = "isFlashEnabled")
+    public native boolean isFlashEnabled();
+    @Property(selector = "isStillImageStabilizationEnabled")
+    public native boolean isStillImageStabilizationEnabled();
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 10.2 and later.
      */
-    @Property(selector = "requiredSourceTrackIDs")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsIntegerListMarshaler.class) List<Integer> getRequiredSourceTrackIDs();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @Property(selector = "passthroughTrackID")
-    public native int getPassthroughTrackID();
-    @Property(selector = "containsTweening")
-    public native boolean containsTweening();
+    @Property(selector = "isDualCameraFusionEnabled")
+    public native boolean isDualCameraFusionEnabled();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

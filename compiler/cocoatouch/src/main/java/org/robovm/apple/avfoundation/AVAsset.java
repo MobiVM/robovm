@@ -167,6 +167,11 @@ import org.robovm.apple.audiounit.*;
     @Property(selector = "containsFragments")
     public native boolean containsFragments();
     /**
+     * @since Available in iOS 10.2 and later.
+     */
+    @Property(selector = "overallDurationHint")
+    public native @ByVal CMTime getOverallDurationHint();
+    /**
      * @since Available in iOS 4.3 and later.
      */
     @Property(selector = "isPlayable")

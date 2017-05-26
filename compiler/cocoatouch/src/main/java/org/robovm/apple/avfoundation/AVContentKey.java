@@ -44,44 +44,42 @@ import org.robovm.apple.audiounit.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation")/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureDeviceType/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVContentKey/*</name>*/ 
     extends /*<extends>*/CocoaUtility/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVCaptureDeviceType.class); }/*</bind>*/
+    /*<bind>*/static { Bro.bind(AVContentKey.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 10.3 and later.
      */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInMicrophone", optional=true)
-    public static native String BuiltInMicrophone();
+    @GlobalValue(symbol="AVContentKeySystemFairPlayStreaming", optional=true)
+    public static native String SystemFairPlayStreaming();
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 10.3 and later.
      */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInWideAngleCamera", optional=true)
-    public static native String BuiltInWideAngleCamera();
+    @GlobalValue(symbol="AVContentKeyRequestRetryReasonTimedOut", optional=true)
+    public static native String RequestRetryReasonTimedOut();
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 10.3 and later.
      */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInTelephotoCamera", optional=true)
-    public static native String BuiltInTelephotoCamera();
+    @GlobalValue(symbol="AVContentKeyRequestRetryReasonReceivedResponseWithExpiredLease", optional=true)
+    public static native String RequestRetryReasonReceivedResponseWithExpiredLease();
     /**
-     * @since Available in iOS 10.2 and later.
+     * @since Available in iOS 10.3 and later.
      */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDualCamera", optional=true)
-    public static native String BuiltInDualCamera();
+    @GlobalValue(symbol="AVContentKeyRequestRetryReasonReceivedObsoleteContentKey", optional=true)
+    public static native String RequestRetryReasonReceivedObsoleteContentKey();
     /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.2.
+     * @since Available in iOS 10.3 and later.
      */
-    @Deprecated
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDuoCamera", optional=true)
-    public static native String BuiltInDuoCamera();
+    @GlobalValue(symbol="AVContentKeyRequestProtocolVersionsKey", optional=true)
+    public static native String RequestProtocolVersionsKey();
     /*</methods>*/
 }

@@ -42,46 +42,29 @@ import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 10.3 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureDeviceType/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+/*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVContentKeyResponse/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVCaptureDeviceType.class); }/*</bind>*/
+    /*<ptr>*/public static class AVContentKeyResponsePtr extends Ptr<AVContentKeyResponse, AVContentKeyResponsePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVContentKeyResponse.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
+    /*<constructors>*/
+    public AVContentKeyResponse() {}
+    protected AVContentKeyResponse(Handle h, long handle) { super(h, handle); }
+    protected AVContentKeyResponse(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInMicrophone", optional=true)
-    public static native String BuiltInMicrophone();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInWideAngleCamera", optional=true)
-    public static native String BuiltInWideAngleCamera();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInTelephotoCamera", optional=true)
-    public static native String BuiltInTelephotoCamera();
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDualCamera", optional=true)
-    public static native String BuiltInDualCamera();
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.2.
-     */
-    @Deprecated
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDuoCamera", optional=true)
-    public static native String BuiltInDuoCamera();
+    @Method(selector = "contentKeyResponseWithFairPlayStreamingKeyResponseData:")
+    public static native AVContentKeyResponse contentKeyResponseWithFairPlayStreamingKeyResponseData(NSData keyResponseData);
     /*</methods>*/
 }

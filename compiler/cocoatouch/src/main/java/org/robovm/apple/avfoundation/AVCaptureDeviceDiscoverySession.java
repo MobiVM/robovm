@@ -42,46 +42,31 @@ import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 10.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureDeviceType/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+/*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureDeviceDiscoverySession/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVCaptureDeviceType.class); }/*</bind>*/
+    /*<ptr>*/public static class AVCaptureDeviceDiscoverySessionPtr extends Ptr<AVCaptureDeviceDiscoverySession, AVCaptureDeviceDiscoverySessionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVCaptureDeviceDiscoverySession.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
+    /*<constructors>*/
+    protected AVCaptureDeviceDiscoverySession() {}
+    protected AVCaptureDeviceDiscoverySession(Handle h, long handle) { super(h, handle); }
+    protected AVCaptureDeviceDiscoverySession(SkipInit skipInit) { super(skipInit); }
+    public AVCaptureDeviceDiscoverySession(NSArray<NSString> deviceTypes, String mediaType, AVCaptureDevicePosition position) { super((Handle) null, create(deviceTypes, mediaType, position)); retain(getHandle()); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "devices")
+    public native NSArray<AVCaptureDevice> getDevices();
+    /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInMicrophone", optional=true)
-    public static native String BuiltInMicrophone();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInWideAngleCamera", optional=true)
-    public static native String BuiltInWideAngleCamera();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInTelephotoCamera", optional=true)
-    public static native String BuiltInTelephotoCamera();
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDualCamera", optional=true)
-    public static native String BuiltInDualCamera();
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.2.
-     */
-    @Deprecated
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDuoCamera", optional=true)
-    public static native String BuiltInDuoCamera();
+    @Method(selector = "discoverySessionWithDeviceTypes:mediaType:position:")
+    protected static native @Pointer long create(NSArray<NSString> deviceTypes, String mediaType, AVCaptureDevicePosition position);
     /*</methods>*/
 }
