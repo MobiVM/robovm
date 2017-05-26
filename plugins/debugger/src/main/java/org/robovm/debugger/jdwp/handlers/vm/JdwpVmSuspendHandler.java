@@ -19,7 +19,7 @@ public class JdwpVmSuspendHandler implements IJdwpRequestHandler {
 
     @Override
     public short handle(ByteBufferPacket payload, ByteBufferPacket output) {
-        delegate.jdwpResumeAllThreads();
+        delegate.jdwpSuspendAllThreads();
         return JdwpConsts.Error.NONE;
     }
 

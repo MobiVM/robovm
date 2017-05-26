@@ -3,6 +3,7 @@ package org.robovm.debugger.jdwp.handlers.thread;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
+import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
 
@@ -37,7 +38,10 @@ public class JdwpThreadFramesCountHandler implements IJdwpRequestHandler {
             if (thread.suspendCount() == 0)
                 return JdwpConsts.Error.THREAD_NOT_SUSPENDED;
 
-            output.writeInt32(thread.stack().length);
+            // there are possibility that thread suspend request is sent but thread itself is not suspended yet
+            // as suspend event is being sent only when thread is stopped on hookInstrumented
+            VmStackTrace[] stack = thread.stack();
+            output.writeInt32(stack != null ? stack.length : 0);
         }
 
         return JdwpConsts.Error.NONE;
