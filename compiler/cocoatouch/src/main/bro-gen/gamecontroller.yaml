@@ -65,6 +65,7 @@ classes:
                 type: '@Block VoidBlock2<GCGamepad, GCControllerElement>'
     GCMicroGamepad: {}
     GCMicroGamepadSnapshot: {}
+    GCEventViewController: {}
 
 protocols: {}
 
