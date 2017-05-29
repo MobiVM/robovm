@@ -58,6 +58,26 @@ import org.robovm.apple.dispatch.*;
     public native String getLabel();
     @Property(selector = "setLabel:")
     public native void setLabel(String v);
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "kernelStartTime")
+    public native double getKernelStartTime();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "kernelEndTime")
+    public native double getKernelEndTime();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "GPUStartTime")
+    public native double getGPUStartTime();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "GPUEndTime")
+    public native double getGPUEndTime();
     @Property(selector = "status")
     public native MTLCommandBufferStatus getStatus();
     @Property(selector = "error")
@@ -75,6 +95,8 @@ import org.robovm.apple.dispatch.*;
     public native void presentDrawable(MTLDrawable drawable);
     @Method(selector = "presentDrawable:atTime:")
     public native void presentDrawableAtTime(MTLDrawable drawable, double presentationTime);
+    @Method(selector = "presentDrawable:afterMinimumDuration:")
+    public native void presentDrawableAfterMinimumDuration(MTLDrawable drawable, double duration);
     @Method(selector = "waitUntilScheduled")
     public native void waitUntilScheduled();
     @Method(selector = "addCompletedHandler:")
