@@ -1,5 +1,5 @@
 package: org.robovm.apple.glkit
-include: [foundation.yaml, corefoundation.yaml, coregraphics.yaml, opengles.yaml, uikit.yaml, dispatch.yaml]
+include: [foundation.yaml, corefoundation.yaml, coregraphics.yaml, opengles.yaml, uikit.yaml, dispatch.yaml, modelio.yaml]
 library: GLKit
 framework: GLKit
 clang_args: ['-x', 'objective-c']
@@ -133,6 +133,16 @@ classes:
                 name: pausesOnWillResignActive
             'resumeOnDidBecomeActive':
                 name: resumesOnDidBecomeActive
+
+    GLKMesh:
+        methods:
+            '-init.*':
+                name: init
+            '+newMeshesFromAsset:sourceMeshes:error:':
+                name: newMeshes
+    GLKMeshBuffer: {}
+    GLKMeshBufferAllocator: {}
+    GLKSubmesh: {}
 
 protocols:
     GLKNamedEffect: {} # DONE
