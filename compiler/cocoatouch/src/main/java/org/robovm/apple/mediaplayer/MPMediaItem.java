@@ -236,6 +236,11 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "dateAdded")
     public native NSDate getDateAdded();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "playbackStoreID")
+    public native String getPlaybackStoreID();
     /*</properties>*/
     /*<members>*//*</members>*/
     @Override

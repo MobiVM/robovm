@@ -177,9 +177,13 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final MPMediaItemProperty DateAdded = new MPMediaItemProperty("DateAdded");
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    public static final MPMediaItemProperty PlaybackStoreID = new MPMediaItemProperty("PlaybackStoreID");
     /*</constants>*/
     
-    private static /*<name>*/MPMediaItemProperty/*</name>*/[] values = new /*<name>*/MPMediaItemProperty/*</name>*/[] {/*<value_list>*/ItemPersistentID, MediaType, Title, AlbumTitle, AlbumPersistentID, Artist, ArtistPersistentID, AlbumArtist, AlbumArtistPersistentID, Genre, GenrePersistentID, Composer, ComposerPersistentID, PlaybackDuration, AlbumTrackNumber, AlbumTrackCount, DiscNumber, DiscCount, Artwork, IsExplicit, Lyrics, IsCompilation, ReleaseDate, BeatsPerMinute, Comments, AssetURL, IsCloudItem, HasProtectedAsset, PodcastTitle, PodcastPersistentID, PlayCount, SkipCount, Rating, LastPlayedDate, UserGrouping, BookmarkTime, DateAdded/*</value_list>*/};
+    private static /*<name>*/MPMediaItemProperty/*</name>*/[] values = new /*<name>*/MPMediaItemProperty/*</name>*/[] {/*<value_list>*/ItemPersistentID, MediaType, Title, AlbumTitle, AlbumPersistentID, Artist, ArtistPersistentID, AlbumArtist, AlbumArtistPersistentID, Genre, GenrePersistentID, Composer, ComposerPersistentID, PlaybackDuration, AlbumTrackNumber, AlbumTrackCount, DiscNumber, DiscCount, Artwork, IsExplicit, Lyrics, IsCompilation, ReleaseDate, BeatsPerMinute, Comments, AssetURL, IsCloudItem, HasProtectedAsset, PodcastTitle, PodcastPersistentID, PlayCount, SkipCount, Rating, LastPlayedDate, UserGrouping, BookmarkTime, DateAdded, PlaybackStoreID/*</value_list>*/};
     
     /*<name>*/MPMediaItemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -327,6 +331,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="MPMediaItemPropertyDateAdded", optional=true)
         public static native NSString DateAdded();
+        /**
+         * @since Available in iOS 10.3 and later.
+         */
+        @GlobalValue(symbol="MPMediaItemPropertyPlaybackStoreID", optional=true)
+        public static native NSString PlaybackStoreID();
         /*</values>*/
     }
 }

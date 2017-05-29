@@ -45,7 +45,15 @@ public enum /*<name>*/MPErrorCode/*</name>*/ implements ValuedEnum {
     CloudServiceCapabilityMissing(2L),
     NetworkConnectionFailed(3L),
     NotFound(4L),
-    NotSupported(5L);
+    NotSupported(5L),
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
+    Cancelled(6L),
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    RequestTimedOut(7L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MPErrorCode.class); }/*</bind>*/
