@@ -57,6 +57,10 @@ classes:
                 trim_after_first_colon: true
             '+placeLightProbesWithDensity:heuristic:usingIrradianceDataSource:':
                 name: placeLightProbes
+            '-setComponent:forProtocol:':
+                name: setComponentForProtocol
+            '-setObject:forKeyedSubscript:':
+                name: setObjectForKeyedSubscript
     MDLCamera: # DONE
         methods:
             '-frameBoundingBox:setNearAndFar:':
@@ -210,6 +214,8 @@ classes:
                 name: getBoundingBox
             '-enumerateChildObjectsOfClass:root:usingBlock:stopPointer:':
                 name: enumerateChildObjects
+            '-setObject:forKeyedSubscript:':
+                name: setObjectForKeyedSubscript
     MDLObjectContainer: {} # DONE
     MDLPhotometricLight: # DONE
         methods:
@@ -329,6 +335,19 @@ classes:
                 name: getSpatialLocation
             '-voxelBoundingBoxAtIndex:':
                 name: getVoxelBoundingBox
+
+    MDLMaterialPropertyConnection:
+        methods:
+            '-init.*':
+                name: init
+    MDLMaterialPropertyGraph:
+        methods:
+            '-init.*':
+                name: init
+    MDLMaterialPropertyNode:
+        methods:
+            '-init.*':
+                name: init
 
 protocols:
     MDLLightProbeIrradianceDataSource:

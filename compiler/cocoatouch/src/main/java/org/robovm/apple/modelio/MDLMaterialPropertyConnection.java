@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,35 +33,37 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ModelIO") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MDLObjectContainer/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MDLMaterialPropertyConnection/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements MDLObjectContainerComponent/*</implements>*/ {
+    /*<implements>*/implements MDLNamed/*</implements>*/ {
 
-    /*<ptr>*/public static class MDLObjectContainerPtr extends Ptr<MDLObjectContainer, MDLObjectContainerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MDLObjectContainer.class); }/*</bind>*/
+    /*<ptr>*/public static class MDLMaterialPropertyConnectionPtr extends Ptr<MDLMaterialPropertyConnection, MDLMaterialPropertyConnectionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MDLMaterialPropertyConnection.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MDLObjectContainer() {}
-    protected MDLObjectContainer(Handle h, long handle) { super(h, handle); }
-    protected MDLObjectContainer(SkipInit skipInit) { super(skipInit); }
+    protected MDLMaterialPropertyConnection() {}
+    protected MDLMaterialPropertyConnection(Handle h, long handle) { super(h, handle); }
+    protected MDLMaterialPropertyConnection(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithOutput:input:")
+    public MDLMaterialPropertyConnection(MDLMaterialProperty output, MDLMaterialProperty input) { super((SkipInit) null); initObject(init(output, input)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "count")
-    public native @MachineSizedUInt long getCount();
-    @Property(selector = "objects")
-    public native NSArray<MDLObject> getObjects();
+    @Property(selector = "output")
+    public native MDLMaterialProperty getOutput();
+    @Property(selector = "input")
+    public native MDLMaterialProperty getInput();
+    @Property(selector = "name")
+    public native String getName();
+    @Property(selector = "setName:")
+    public native void setName(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "addObject:")
-    public native void addObject(MDLObject object);
-    @Method(selector = "removeObject:")
-    public native void removeObject(MDLObject object);
-    @Method(selector = "objectAtIndexedSubscript:")
-    public native MDLObject objectAtIndexedSubscript(@MachineSizedUInt long index);
+    @Method(selector = "initWithOutput:input:")
+    protected native @Pointer long init(MDLMaterialProperty output, MDLMaterialProperty input);
     /*</methods>*/
 }
