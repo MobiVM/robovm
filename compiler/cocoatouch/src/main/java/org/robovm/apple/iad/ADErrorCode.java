@@ -53,7 +53,9 @@ public enum /*<name>*/ADErrorCode/*</name>*/ implements NSErrorCode {
     BannerVisibleWithoutContent(5L),
     ApplicationInactive(6L),
     AdUnloaded(7L),
-    AssetLoadFailure(8L);
+    AssetLoadFailure(8L),
+    AdResponseValidateFailure(9L),
+    AdAssetLoadPending(10L);
     /*</values>*/
 
     /*<bind>*/
