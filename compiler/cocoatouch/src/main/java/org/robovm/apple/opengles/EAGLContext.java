@@ -92,5 +92,7 @@ import org.robovm.apple.foundation.*;
     public native boolean presentRenderbuffer(@MachineSizedUInt long target);
     @Method(selector = "presentRenderbuffer:atTime:")
     public native boolean presentRenderbuffer(@MachineSizedUInt long target, double presentationTime);
+    @Method(selector = "presentRenderbuffer:afterMinimumDuration:")
+    public native boolean presentRenderbufferAfterMinDuration(@MachineSizedUInt long target, double duration);
     /*</methods>*/
 }
