@@ -1,5 +1,5 @@
 package: org.robovm.apple.photos
-include: [foundation.yaml, coregraphics.yaml, uikit.yaml, corelocation.yaml, avfoundation.yaml]
+include: [foundation.yaml, coregraphics.yaml, uikit.yaml, corelocation.yaml, avfoundation.yaml, coreimage.yaml, coremedia.yaml, imageio.yaml]
 library: Photos
 framework: Photos
 clang_args: ['-x', 'objective-c']
@@ -37,6 +37,7 @@ enums:
     PHImageRequestOptionsResizeMode: {}
     PHVideoRequestOptionsVersion: {}
     PHVideoRequestOptionsDeliveryMode: {}
+    PHLivePhotoFrameType: {}
         
 classes:
     PHLivePhotoRequestOptions: {}
@@ -453,8 +454,16 @@ classes:
         properties:
             'progressHandler':
                 type: '@Block VoidBlock3<Double, NSError, BooleanPtr>'
+    PHLivePhotoEditingContext:
+        methods:
+            '-prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:':
+                name: prepareLivePhotoForPlayback
+            '-saveLivePhotoToOutput:options:completionHandler:':
+                name: saveLivePhoto
 
 protocols:
+    PHLivePhotoFrame: {}
+
     PHPhotoLibraryChangeObserver: # DONE
         methods:
             '-photoLibraryDidChange:':

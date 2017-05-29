@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,8 +51,6 @@ import org.robovm.apple.avfoundation.*;
     /*<bind>*/static { ObjCRuntime.bind(PHLivePhoto.class); }/*</bind>*/
     /*<constants>*/
     public static final int RequestIDInvalid = 0;
-    public static final long FrameTypePhoto = 0L;
-    public static final long FrameTypeVideo = 1L;
     /*</constants>*/
     /*<constructors>*/
     public PHLivePhoto() {}

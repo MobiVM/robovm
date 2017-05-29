@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,36 +38,27 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 9.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PHAssetResourceCreationOptions/*</name>*/ 
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PHLivePhotoFrameAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements PHLivePhotoFrame/*</implements>*/ {
 
-    /*<ptr>*/public static class PHAssetResourceCreationOptionsPtr extends Ptr<PHAssetResourceCreationOptions, PHAssetResourceCreationOptionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PHAssetResourceCreationOptions.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public PHAssetResourceCreationOptions() {}
-    protected PHAssetResourceCreationOptions(Handle h, long handle) { super(h, handle); }
-    protected PHAssetResourceCreationOptions(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "originalFilename")
-    public native String getOriginalFilename();
-    @Property(selector = "setOriginalFilename:")
-    public native void setOriginalFilename(String v);
-    @Property(selector = "uniformTypeIdentifier")
-    public native String getUniformTypeIdentifier();
-    @Property(selector = "setUniformTypeIdentifier:")
-    public native void setUniformTypeIdentifier(String v);
-    @Property(selector = "shouldMoveFile")
-    public native boolean shouldMoveFile();
-    @Property(selector = "setShouldMoveFile:")
-    public native void setShouldMoveFile(boolean v);
+    @NotImplemented("image")
+    public CIImage getImage() { return null; }
+    @NotImplemented("time")
+    public @ByVal CMTime getTime() { return null; }
+    @NotImplemented("type")
+    public PHLivePhotoFrameType getType() { return null; }
+    @NotImplemented("renderScale")
+    public @MachineSizedFloat double getRenderScale() { return 0; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
