@@ -39,8 +39,8 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/HMCharacteristicValueContactState/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    None(0L),
-    Detected(1L);
+    Detected(0L),
+    None(1L);
     /*</values>*/
 
     /*<bind>*/
