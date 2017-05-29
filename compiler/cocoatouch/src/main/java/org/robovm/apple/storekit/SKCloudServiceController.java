@@ -69,6 +69,11 @@ import org.robovm.apple.uikit.*;
     public native void requestStorefrontIdentifierWithCompletionHandler(@Block VoidBlock2<String, NSError> completionHandler);
     @Method(selector = "requestCapabilitiesWithCompletionHandler:")
     public native void requestCapabilitiesWithCompletionHandler(@Block VoidBlock2<SKCloudServiceCapability, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Method(selector = "requestPersonalizationTokenForClientToken:withCompletionHandler:")
+    public native void requestPersonalizationTokenForClientToken$withCompletionHandler$(String clientToken, @Block VoidBlock2<String, NSError> completionHandler);
     @Method(selector = "authorizationStatus")
     public static native SKCloudServiceAuthorizationStatus authorizationStatus();
     @Method(selector = "requestAuthorization:")
