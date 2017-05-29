@@ -67,6 +67,9 @@ public final class /*<name>*/UIViewAnimationOptions/*</name>*/ extends Bits</*<n
     public static final UIViewAnimationOptions TransitionCrossDissolve = new UIViewAnimationOptions(5242880L);
     public static final UIViewAnimationOptions TransitionFlipFromTop = new UIViewAnimationOptions(6291456L);
     public static final UIViewAnimationOptions TransitionFlipFromBottom = new UIViewAnimationOptions(7340032L);
+    public static final UIViewAnimationOptions PreferredFramesPerSecondDefault = new UIViewAnimationOptions(0L);
+    public static final UIViewAnimationOptions PreferredFramesPerSecond60 = new UIViewAnimationOptions(50331648L);
+    public static final UIViewAnimationOptions PreferredFramesPerSecond30 = new UIViewAnimationOptions(117440512L);
     /*</values>*/
 
     private static final /*<name>*/UIViewAnimationOptions/*</name>*/[] values = _values(/*<name>*/UIViewAnimationOptions/*</name>*/.class);
