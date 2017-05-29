@@ -222,5 +222,9 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "collectionView:moveItemAtIndexPath:toIndexPath:")
     public native void moveItemAt(UICollectionView collectionView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath);
+    @Method(selector = "indexTitlesForCollectionView:")
+    public native NSArray<?> indexTitlesForCollectionView(UICollectionView collectionView);
+    @Method(selector = "collectionView:indexPathForIndexTitle:atIndex:")
+    public native NSIndexPath indexPathForIndexTitle(UICollectionView collectionView, String title, @MachineSizedSInt long index);
     /*</methods>*/
 }

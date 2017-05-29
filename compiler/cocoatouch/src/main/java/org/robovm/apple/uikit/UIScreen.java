@@ -196,6 +196,11 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "nativeScale")
     public native @MachineSizedFloat double getNativeScale();
     /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "maximumFramesPerSecond")
+    public native @MachineSizedSInt long getMaximumFramesPerSecond();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "focusedItem")

@@ -453,6 +453,20 @@ classes:
                 name: init
     CKSubscription: {}
 
+    CKAcceptSharesOperation: {}
+    CKDatabaseNotification: {}
+    CKDiscoverAllUserIdentitiesOperation: {}
+    CKDiscoverUserIdentitiesOperation: {}
+    CKFetchDatabaseChangesOperation: {}
+    CKFetchRecordZoneChangesOperation:
+        methods:
+            '-init.*':
+                name: init
+    CKFetchRecordZoneChangesOptions: {}
+    CKFetchShareMetadataOperation: {}
+    CKFetchShareParticipantsOperation: {}
+    CKFetchWebAuthTokenOperation: {}
+
 protocols:
     CKRecordValue: # DONE
         adapter: false

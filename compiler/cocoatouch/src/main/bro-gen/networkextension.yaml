@@ -1,5 +1,5 @@
 package: org.robovm.apple.networkextension
-include: [foundation.yaml]
+include: [foundation.yaml, security.yaml]
 library: NetworkExtension
 framework: NetworkExtension
 clang_args: ['-x', 'objective-c']
@@ -186,7 +186,102 @@ classes:
     NEVPNProtocolIKEv2: {} # DONE
     NEVPNIKEv2SecurityAssociationParameters: {} # DONE
 
-protocols: {}
+    NEAppProxyFlow:
+        methods:
+            '-openWithLocalEndpoint:completionHandler:':
+                name: open
+    NEAppProxyProvider:
+        methods:
+            '-startProxyWithOptions:completionHandler:':
+                name: startProxy
+            '-stopProxyWithReason:completionHandler:':
+                name: stopProxy
+    NEAppProxyProviderManager:
+        methods:
+            '+loadAllFromPreferencesWithCompletionHandler:':
+                name: loadAllProxies
+    NEAppProxyTCPFlow:
+        methods:
+            '-readDataWithCompletionHandler:':
+                name: readData
+            '-writeData:withCompletionHandler:':
+                name: writeData
+    NEAppProxyUDPFlow:
+        methods:
+            '-readDatagramsWithCompletionHandler:':
+                name: readDatagrams
+            '-writeDatagrams:sentByEndpoints:completionHandler:':
+                name: writeDatagrams
+    NEFilterControlProvider:
+        methods:
+            '-handleRemediationForFlow:completionHandler:':
+                trim_after_first_colon: true
+            '-handleNewFlow:completionHandler:':
+                trim_after_first_colon: true
+    NEFlowMetaData: {}
+    NEIPv4Route:
+        methods:
+            '-init.*':
+                name: init
+    NEIPv4Settings:
+        methods:
+            '-init.*':
+                name: init
+    NEIPv6Route:
+        methods:
+            '-init.*':
+                name: init
+    NEIPv6Settings:
+        methods:
+            '-init.*':
+                name: init
+    NEPacket:
+        methods:
+            '-init.*':
+                name: init
+    NEPacketTunnelFlow:
+        methods:
+            '-readPacketsWithCompletionHandler:':
+                name: readPackets
+            '-writePackets:withProtocols:':
+                name: writePackets
+            '-readPacketObjectsWithCompletionHandler:':
+                name: readPacketObjects
+    NEPacketTunnelNetworkSettings: {}
+    NEPacketTunnelProvider:
+        methods:
+            '-startTunnelWithOptions:completionHandler:':
+                name: startTunnel
+            '-stopTunnelWithReason:completionHandler:':
+                name: stopTunnel
+            '-createTCPConnectionThroughTunnelToEndpoint:enableTLS:TLSParameters:delegate:':
+                name: createTCPConnection
+            '-createUDPSessionThroughTunnelToEndpoint:fromEndpoint:':
+                name: createUDPSession
+    NETunnelProviderManager:
+        methods:
+            '+loadAllFromPreferencesWithCompletionHandler:':
+                name: loadAllTunnels
+    NETunnelProviderProtocol: {}
+    NETunnelProviderSession:
+        methods:
+            '-startTunnelWithOptions:andReturnError:':
+                name: startTunnel
+            '-sendProviderMessage:returnError:responseHandler:':
+                name: sendProviderMessage
+    NWBonjourServiceEndpoint:
+        methods:
+            '+endpointWithName:type:domain:':
+                name: create
+                constructor: true
+
+protocols:
+    NWTCPConnectionAuthenticationDelegate:
+        methods:
+            '-provideIdentityForConnection:completionHandler:':
+                name: provideIdentityForConnection
+            '-evaluateTrustForConnection:peerCertificateChain:completionHandler:':
+                name: evaluateTrustForConnection
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

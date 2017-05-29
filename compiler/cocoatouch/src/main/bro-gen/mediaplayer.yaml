@@ -292,7 +292,32 @@ classes:
                 trim_after_first_colon: true
             '-volumeThumbRectForBounds:volumeSliderRect:value:':
                 name: getVolumeThumbRect
-
+    MPChangeLanguageOptionCommandEvent: {}
+    MPChangePlaybackPositionCommandEvent: {}
+    MPChangeRepeatModeCommandEvent: {}
+    MPChangeShuffleModeCommandEvent: {}
+    MPMusicPlayerApplicationController:
+        methods:
+            '-performQueueTransaction:completionHandler:':
+                trim_after_first_colon: true
+    MPMusicPlayerControllerMutableQueue:
+        methods:
+            '-insertQueueDescriptor:afterItem:':
+                trim_after_first_colon: true
+    MPMusicPlayerControllerQueue: {}
+    MPMusicPlayerMediaItemQueueDescriptor:
+        methods:
+            '-setStartTime:forItem:':
+                trim_after_first_colon: true
+            '-setEndTime:forItem:':
+                trim_after_first_colon: true
+    MPMusicPlayerQueueDescriptor: {}
+    MPMusicPlayerStoreQueueDescriptor:
+        methods:
+            '-setStartTime:forItemWithStoreID:':
+                trim_after_first_colon: true
+            '-setEndTime:forItemWithStoreID:':
+                trim_after_first_colon: true
 protocols:
     MPMediaPickerControllerDelegate: # DONE
         methods:

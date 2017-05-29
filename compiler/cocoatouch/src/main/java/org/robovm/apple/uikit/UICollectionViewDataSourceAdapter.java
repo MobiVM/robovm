@@ -72,5 +72,9 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("collectionView:moveItemAtIndexPath:toIndexPath:")
     public void moveItemAt(UICollectionView collectionView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath) {}
+    @NotImplemented("indexTitlesForCollectionView:")
+    public NSArray<?> indexTitlesForCollectionView(UICollectionView collectionView) { return null; }
+    @NotImplemented("collectionView:indexPathForIndexTitle:atIndex:")
+    public NSIndexPath indexPathForIndexTitle(UICollectionView collectionView, String title, @MachineSizedSInt long index) { return null; }
     /*</methods>*/
 }

@@ -66,6 +66,10 @@ import org.robovm.apple.coregraphics.*;
     public native MDLVertexFormat getFormat();
     @Property(selector = "setFormat:")
     public native void setFormat(MDLVertexFormat v);
+    @Property(selector = "bufferSize")
+    public native @MachineSizedUInt long getBufferSize();
+    @Property(selector = "setBufferSize:")
+    public native void setBufferSize(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,6 +56,10 @@ public final class /*<name>*/PHAssetMediaSubtype/*</name>*/ extends Bits</*<name
      * @since Available in iOS 9.1 and later.
      */
     public static final PHAssetMediaSubtype PhotoLive = new PHAssetMediaSubtype(8L);
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    public static final PHAssetMediaSubtype PhotoDepthEffect = new PHAssetMediaSubtype(16L);
     public static final PHAssetMediaSubtype VideoStreamed = new PHAssetMediaSubtype(65536L);
     public static final PHAssetMediaSubtype VideoHighFrameRate = new PHAssetMediaSubtype(131072L);
     public static final PHAssetMediaSubtype VideoTimelapse = new PHAssetMediaSubtype(262144L);

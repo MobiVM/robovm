@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -67,6 +70,14 @@ public enum /*<name>*/PHAssetCollectionSubtype/*</name>*/ implements ValuedEnum 
      * @since Available in iOS 9.0 and later.
      */
     SmartAlbumScreenshots(211L),
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    SmartAlbumDepthEffect(212L),
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    SmartAlbumLivePhotos(213L),
     Any(Bro.IS_32BIT ? 0x7fffffffL : 0x7fffffffffffffffL);
     /*</values>*/
 

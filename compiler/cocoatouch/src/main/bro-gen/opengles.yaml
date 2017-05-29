@@ -25,6 +25,8 @@ classes:
                 name: presentRenderbuffer
             '-presentRenderbuffer:atTime:':
                 name: presentRenderbuffer
+            '-presentRenderbuffer:afterMinimumDuration:':
+                name: presentRenderbufferAfterMinDuration
     EAGLSharegroup: {} # DONE
 
 protocols:

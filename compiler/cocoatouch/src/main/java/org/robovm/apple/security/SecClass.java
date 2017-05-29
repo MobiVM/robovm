@@ -91,11 +91,11 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 2.0 and later.
      */
-    public static final SecClass GenericPassword = new SecClass("GenericPassword");
+    public static final SecClass InternetPassword = new SecClass("InternetPassword");
     /**
      * @since Available in iOS 2.0 and later.
      */
-    public static final SecClass InternetPassword = new SecClass("InternetPassword");
+    public static final SecClass GenericPassword = new SecClass("GenericPassword");
     /**
      * @since Available in iOS 2.0 and later.
      */
@@ -110,7 +110,7 @@ import org.robovm.apple.dispatch.*;
     public static final SecClass Identity = new SecClass("Identity");
     /*</constants>*/
     
-    private static /*<name>*/SecClass/*</name>*/[] values = new /*<name>*/SecClass/*</name>*/[] {/*<value_list>*/GenericPassword, InternetPassword, Certificate, Key, Identity/*</value_list>*/};
+    private static /*<name>*/SecClass/*</name>*/[] values = new /*<name>*/SecClass/*</name>*/[] {/*<value_list>*/InternetPassword, GenericPassword, Certificate, Key, Identity/*</value_list>*/};
     
     /*<name>*/SecClass/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -136,13 +136,13 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 2.0 and later.
          */
-        @GlobalValue(symbol="kSecClassGenericPassword", optional=true)
-        public static native CFType GenericPassword();
+        @GlobalValue(symbol="kSecClassInternetPassword", optional=true)
+        public static native CFType InternetPassword();
         /**
          * @since Available in iOS 2.0 and later.
          */
-        @GlobalValue(symbol="kSecClassInternetPassword", optional=true)
-        public static native CFType InternetPassword();
+        @GlobalValue(symbol="kSecClassGenericPassword", optional=true)
+        public static native CFType GenericPassword();
         /**
          * @since Available in iOS 2.0 and later.
          */

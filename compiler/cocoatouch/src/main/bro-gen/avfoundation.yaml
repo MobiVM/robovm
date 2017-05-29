@@ -69,6 +69,8 @@ enums:
     AVAudioSessionIOType : {prefix: AVAudioSessionIOType}
     AVCaptureColorSpace : {prefix: AVCaptureColorSpace_}
     AVPlayerLooperStatus : {prefix : AVPlayerLooperStatus}
+    AVMusicTrackLoopCount: {}
+    AVContentKeyRequestStatus: {}
     
 categories:
     NSValueAVFoundationExtensions: # DONE
@@ -2274,14 +2276,7 @@ classes:
                 parameters:
                     videoLayers:
                         type: NSArray<CALayer>
-    AVVideoCompositionInstruction: # DONE
-        properties:
-            'enablePostProcessing':
-                name: postProcessingEnabled
-            'layerInstructions':
-                type: NSArray<AVVideoCompositionLayerInstruction>
-            'requiredSourceTrackIDs':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsIntegerListMarshaler.class) List<Integer>'
+    AVVideoCompositionInstruction: {}# DONE
     AVVideoCompositionLayerInstruction: # DONE
         skip_handle_constructor: false
         methods:
@@ -2317,7 +2312,124 @@ classes:
                 return_marshaler: CFType.NoRetainMarshaler
                 annotations: ['@WeaklyLinked']
 
+    AVCapturePhotoOutput:
+        methods:
+            '-capturePhotoWithSettings:delegate:':
+                name: capturePhotoWithSettings
+            '-setPreparedPhotoSettingsArray:completionHandler:':
+                name: setPreparedPhotoSettingsArray
+            '+JPEGPhotoDataRepresentationForJPEGSampleBuffer:previewPhotoSampleBuffer:':
+                name: JPEGPhotoDataRepresentationForJPEGSampleBuffer
+            '+DNGPhotoDataRepresentationForRawSampleBuffer:previewPhotoSampleBuffer:':
+                name: DNGPhotoDataRepresentationForRawSampleBuffer
+
+    AVCapturePhotoSettings:
+        methods:
+            '+photoSettings':
+                exclude: true
+            '+photoSettingsWithFormat:':
+                name: create
+                constructor: true
+            '+photoSettingsWithRawPixelFormatType:':
+                name: create
+                constructor: true
+            '+photoSettingsWithRawPixelFormatType:processedFormat:':
+                name: create
+                constructor: true
+            '+photoSettingsFromPhotoSettings:':
+                name: create
+                constructor: true
+
+    AVCapturePhotoBracketSettings:
+        methods:
+            '+photoBracketSettingsWithRawPixelFormatType:processedFormat:bracketedSettings:':
+                name: create
+                constructor: true
+
+    AVCaptureResolvedPhotoSettings: {}
+
+    AVCaptureDeviceDiscoverySession:
+        methods:
+            '+discoverySessionWithDeviceTypes:mediaType:position:':
+                name: create
+                constructor: true
+                parameters:
+                    deviceTypes:
+                        type: NSArray<NSString>
+
+    AVContentKeyRequest:
+        methods:
+            '-makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:':
+                trim_after_first_colon: true
+
+
+    AVContentKeyResponse: {}
+
+    AVContentKeySession:
+        methods:
+            '-setDelegate:queue:':
+                name: setDelegate
+            '-processContentKeyRequestWithIdentifier:initializationData:options:':
+                trim_after_first_colon: true
+            '+contentKeySessionWithKeySystem:storageDirectoryAtURL:':
+                name: create
+                constructor: true
+            '+pendingExpiredSessionReportsWithAppIdentifier:storageDirectoryAtURL:':
+                trim_after_first_colon: true
+            '+removePendingExpiredSessionReports:withAppIdentifier:storageDirectoryAtURL:':
+                trim_after_first_colon: true
+
+    AVPersistableContentKeyRequest:
+        methods:
+            '-persistableContentKeyFromKeyVendorResponse:options:error:':
+                trim_after_first_colon: true
 protocols:
+    AVCapturePhotoCaptureDelegate:
+        methods:
+            '-captureOutput:willBeginCaptureForResolvedSettings:':
+                name: willBeginCaptureForResolvedSettings
+            '-captureOutput:willCapturePhotoForResolvedSettings:':
+                name: willCapturePhotoForResolvedSettings
+            '-captureOutput:didCapturePhotoForResolvedSettings:':
+                name: didCapturePhotoForResolvedSettings
+            '-captureOutput:didFinishProcessingPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:':
+                name: didFinishProcessingPhotoSampleBuffer
+            '-captureOutput:didFinishProcessingRawPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:':
+                name: didFinishProcessingRawPhotoSampleBuffer
+            '-captureOutput:didFinishRecordingLivePhotoMovieForEventualFileAtURL:resolvedSettings:':
+                name: didFinishRecordingLivePhotoMovieForEventualFileAtURL
+            '-captureOutput:didFinishProcessingLivePhotoToMovieFileAtURL:duration:photoDisplayTime:resolvedSettings:error:':
+                name: didFinishProcessingLivePhotoToMovieFileAtURL
+            '-captureOutput:didFinishCaptureForResolvedSettings:error:':
+                name: didFinishCaptureForResolvedSettings
+
+    AVContentKeyRecipient:
+        skip_adapter: true
+
+    AVContentKeySessionDelegate:
+        methods:
+            '-contentKeySession:didProvideContentKeyRequest:':
+                name: didProvideContentKeyRequest
+            '-contentKeySession:didProvideRenewingContentKeyRequest:':
+                name: didProvideRenewingContentKeyRequest
+            '-contentKeySession:didProvidePersistableContentKeyRequest:':
+                name: didProvidePersistableContentKeyRequest
+            '-contentKeySession:contentKeyRequest:didFailWithError:':
+                name: didFailWithError
+            '-contentKeySession:shouldRetryContentKeyRequest:reason:':
+                name: shouldRetryContentKeyRequest
+
+    AVVideoCompositionInstruction:
+        name: AVVideoCompositionInstructionProtocol
+        skip_adapter: true
+        properties:
+            'enablePostProcessing':
+                name: postProcessingEnabled
+            'layerInstructions':
+                type: NSArray<AVVideoCompositionLayerInstruction>
+            'requiredSourceTrackIDs':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsIntegerListMarshaler.class) List<Integer>'
+
     AVAssetDownloadDelegate: # DONE
         methods:
             '-URLSession:assetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:':
@@ -3053,6 +3165,9 @@ values:
         name: '#{g[0]}'
     AVVideoYCbCrMatrix_(.*):
         class: AVVideoYCbCrMatrix
+        name: '#{g[0]}'
+    AVContentKey(.*):
+        class: AVContentKey
         name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version

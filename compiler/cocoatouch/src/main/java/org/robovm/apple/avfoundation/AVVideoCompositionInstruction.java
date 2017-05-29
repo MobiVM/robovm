@@ -49,7 +49,7 @@ import org.robovm.apple.audiounit.*;
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVVideoCompositionInstruction/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements AVVideoCompositionInstructionProtocol/*</implements>*/ {
 
     /*<ptr>*/public static class AVVideoCompositionInstructionPtr extends Ptr<AVVideoCompositionInstruction, AVVideoCompositionInstructionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AVVideoCompositionInstruction.class); }/*</bind>*/
@@ -78,6 +78,8 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "passthroughTrackID")
     public native int getPassthroughTrackID();
+    @Property(selector = "containsTweening")
+    public native boolean containsTweening();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

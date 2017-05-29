@@ -154,7 +154,32 @@ classes:
                 type: PKPaymentNetwork
     PKShippingMethod: {} # DONE
 
-protocols: 
+    PKLabeledValue:
+        methods:
+            '-init.*':
+                name: init
+    PKPaymentAuthorizationController:
+        methods:
+            '+canMakePaymentsUsingNetworks:capabilities:':
+                name: canMakePayments
+    PKSuicaPassProperties: {}
+
+protocols:
+    PKPaymentAuthorizationControllerDelegate:
+        methods:
+            '-paymentAuthorizationController:didAuthorizePayment:completion:':
+                name: didAuthorizePayment
+            '-paymentAuthorizationControllerDidFinish:':
+                name: didFinish
+            '-paymentAuthorizationControllerWillAuthorizePayment:':
+                name: willAuthorizePayment
+            '-paymentAuthorizationController:didSelectShippingMethod:completion:':
+                name: didSelectShippingMethod
+            '-paymentAuthorizationController:didSelectShippingContact:completion:':
+                name: didSelectShippingContact
+            '-paymentAuthorizationController:didSelectPaymentMethod:completion:':
+                name: didSelectPaymentMethod
+
     PKAddPassesViewControllerDelegate: # DONE
         methods:
             '-addPassesViewControllerDidFinish:':

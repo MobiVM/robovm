@@ -149,7 +149,11 @@ public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 10.0 and later.
      */
-    NotAuthorizedForMicrophoneAccess(89L);
+    NotAuthorizedForMicrophoneAccess(89L),
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    IncompatibleNetwork(90L);
     /*</values>*/
 
     /*<bind>*/

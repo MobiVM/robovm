@@ -64,6 +64,16 @@ import org.robovm.apple.contacts.*;
     public native String getPrimaryAccountSuffix();
     @Property(selector = "setPrimaryAccountSuffix:")
     public native void setPrimaryAccountSuffix(String v);
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
+    @Property(selector = "cardDetails")
+    public native NSArray<PKLabeledValue> getCardDetails();
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
+    @Property(selector = "setCardDetails:")
+    public native void setCardDetails(NSArray<PKLabeledValue> v);
     @Property(selector = "localizedDescription")
     public native String getLocalizedDescription();
     @Property(selector = "setLocalizedDescription:")
@@ -76,6 +86,16 @@ import org.robovm.apple.contacts.*;
     public native String getPaymentNetwork();
     @Property(selector = "setPaymentNetwork:")
     public native void setPaymentNetwork(String v);
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
+    @Property(selector = "requiresFelicaSecureElement")
+    public native boolean requiresFelicaSecureElement();
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
+    @Property(selector = "setRequiresFelicaSecureElement:")
+    public native void setRequiresFelicaSecureElement(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

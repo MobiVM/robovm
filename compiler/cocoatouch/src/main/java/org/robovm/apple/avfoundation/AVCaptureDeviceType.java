@@ -72,6 +72,11 @@ import org.robovm.apple.audiounit.*;
     @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInTelephotoCamera", optional=true)
     public static native String BuiltInTelephotoCamera();
     /**
+     * @since Available in iOS 10.2 and later.
+     */
+    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDualCamera", optional=true)
+    public static native String BuiltInDualCamera();
+    /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 10.2.
      */

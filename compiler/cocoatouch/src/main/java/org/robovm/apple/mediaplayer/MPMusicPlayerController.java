@@ -148,9 +148,16 @@ import org.robovm.apple.coregraphics.*;
     public static native NSString NowPlayingItemDidChangeNotification();
     @GlobalValue(symbol="MPMusicPlayerControllerVolumeDidChangeNotification", optional=true)
     public static native NSString VolumeDidChangeNotification();
+    @GlobalValue(symbol="MPMusicPlayerControllerQueueDidChangeNotification", optional=true)
+    public static native NSString QueueDidChangeNotification();
     
     @Method(selector = "applicationMusicPlayer")
     public static native MPMusicPlayerController getApplicationMusicPlayer();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Method(selector = "applicationQueuePlayer")
+    public static native MPMusicPlayerApplicationController applicationQueuePlayer();
     @Method(selector = "systemMusicPlayer")
     public static native MPMusicPlayerController getSystemMusicPlayer();
     /**
@@ -169,6 +176,26 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "setQueueWithStoreIDs:")
     public native void setQueueWithStoreIDs(NSArray<?> storeIDs);
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
+    @Method(selector = "setQueueWithDescriptor:")
+    public native void setQueueWithDescriptor(MPMusicPlayerQueueDescriptor descriptor);
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Method(selector = "prependQueueDescriptor:")
+    public native void prependQueueDescriptor(MPMusicPlayerQueueDescriptor descriptor);
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Method(selector = "appendQueueDescriptor:")
+    public native void appendQueueDescriptor(MPMusicPlayerQueueDescriptor descriptor);
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
+    @Method(selector = "prepareToPlayWithCompletionHandler:")
+    public native void prepareToPlayWithCompletionHandler(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "skipToNextItem")
     public native void skipToNextItem();
     @Method(selector = "skipToBeginning")
