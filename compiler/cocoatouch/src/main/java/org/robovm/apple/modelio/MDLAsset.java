@@ -64,6 +64,8 @@ import org.robovm.apple.coregraphics.*;
     }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "components")
+    public native NSArray<?> getComponents();
     @Property(selector = "boundingBox")
     public native @ByVal MDLAxisAlignedBoundingBox getBoundingBox();
     @Property(selector = "frameInterval")
@@ -109,6 +111,14 @@ import org.robovm.apple.coregraphics.*;
     }
     @Method(selector = "exportAssetToURL:error:")
     private native boolean export(NSURL URL, NSError.NSErrorPtr error);
+    @Method(selector = "setComponent:forProtocol:")
+    public native void setComponentForProtocol(MDLComponent component, ObjCProtocol protocol);
+    @Method(selector = "componentConformingToProtocol:")
+    public native MDLComponent componentConformingToProtocol(ObjCProtocol protocol);
+    @Method(selector = "objectForKeyedSubscript:")
+    public native MDLComponent objectForKeyedSubscript(ObjCProtocol key);
+    @Method(selector = "setObject:forKeyedSubscript:")
+    public native void setObjectForKeyedSubscript(MDLComponent obj, ObjCProtocol key);
     @Method(selector = "childObjectsOfClass:")
     public native NSArray<MDLObject> childObjectsOfClass(Class<?> objectClass);
     @Method(selector = "boundingBoxAtTime:")

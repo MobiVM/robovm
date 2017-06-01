@@ -336,6 +336,16 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "setShortcutItems:")
     public native void setShortcutItems(NSArray<UIApplicationShortcutItem> v);
     /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "supportsAlternateIcons")
+    public native boolean supportsAlternateIcons();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "alternateIconName")
+    public native String getAlternateIconName();
+    /**
      * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
@@ -652,6 +662,11 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "setNewsstandIconImage:")
     public native void setNewsstandIconImage(UIImage image);
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Method(selector = "setAlternateIconName:completionHandler:")
+    public native void setAlternateIcon(String alternateIconName, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 6.0 and later.
      */

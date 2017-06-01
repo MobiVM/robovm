@@ -470,6 +470,7 @@ classes:
                 name: init
     MKLocalSearchCompletion: {}
     MKLocalSearchCompleter: {}
+    MKDistanceFormatter: {}
 
 protocols:
     MKAnnotation: {} # DONE

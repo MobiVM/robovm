@@ -542,13 +542,6 @@ public class IOSTarget extends AbstractTarget {
     protected Process doLaunch(LaunchParameters launchParameters) throws IOException {
         prepareLaunch(getAppDir());
         Process process = super.doLaunch(launchParameters);
-        /*if (launchParameters instanceof IOSSimulatorLaunchParameters) {
-            File script = File.createTempFile("BISTF", ".scpt");
-            FileUtils.copyURLToFile(getClass().getResource("/BringIOSSimulatorToFront.scpt"), script);
-            new Executor(config.getHome().isDev() ? config.getLogger() : Logger.NULL_LOGGER, "osascript")
-                    .args(script)
-                    .execAsync();
-        }*/
         return process;
     }
 

@@ -45,7 +45,16 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @NotImplemented("presentedTime")
+    public double getPresentedTime() { return 0; }
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @NotImplemented("drawableID")
+    public @MachineSizedUInt long getDrawableID() { return 0; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -53,5 +62,15 @@ import org.robovm.apple.dispatch.*;
     public void present() {}
     @NotImplemented("presentAtTime:")
     public void presentAtTime(double presentationTime) {}
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @NotImplemented("presentAfterMinimumDuration:")
+    public void presentAfterMinimumDuration(double duration) {}
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @NotImplemented("addPresentedHandler:")
+    public void addPresentedHandler(@Block VoidBlock1<MTLDrawable> block) {}
     /*</methods>*/
 }

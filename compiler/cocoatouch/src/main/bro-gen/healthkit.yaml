@@ -482,7 +482,18 @@ classes:
             '-init.*':
                 name: init
 
-protocols: {}
+    HKActivitySummary: {}
+    HKActivitySummaryQuery:
+        methods:
+            '-init.*':
+                name: init
+    HKDocumentQuery:
+        methods:
+            '-init.*':
+                name: init
+
+protocols:
+    HKWorkoutSessionDelegate: {}
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

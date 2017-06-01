@@ -85,6 +85,18 @@ functions:
         class: SecCertificate
         name: 'get#{g[0]}'
         return_marshaler: CFString.AsStringNoRetainMarshaler
+    SecCertificateCopy(CommonName):
+        class: SecCertificate
+        name: 'get#{g[0]}'
+        parameters:
+            commonName:
+                type: String
+    SecCertificateCopy(EmailAddresses):
+        class: SecCertificate
+        name: 'get#{g[0]}'
+        parameters:
+            emailAddresses:
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
     SecCertificate(.*):
         class: SecCertificate
         name: '#{g[0]}'

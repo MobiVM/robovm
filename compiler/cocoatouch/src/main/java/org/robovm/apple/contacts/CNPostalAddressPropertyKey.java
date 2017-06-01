@@ -92,9 +92,17 @@ import org.robovm.apple.foundation.*;
      */
     public static final CNPostalAddressPropertyKey Street = new CNPostalAddressPropertyKey("Street");
     /**
+     * @since Available in iOS 10.3 and later.
+     */
+    public static final CNPostalAddressPropertyKey SubLocality = new CNPostalAddressPropertyKey("SubLocality");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final CNPostalAddressPropertyKey City = new CNPostalAddressPropertyKey("City");
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    public static final CNPostalAddressPropertyKey SubAdministrativeArea = new CNPostalAddressPropertyKey("SubAdministrativeArea");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -113,7 +121,7 @@ import org.robovm.apple.foundation.*;
     public static final CNPostalAddressPropertyKey ISOCountryCode = new CNPostalAddressPropertyKey("ISOCountryCode");
     /*</constants>*/
     
-    private static /*<name>*/CNPostalAddressPropertyKey/*</name>*/[] values = new /*<name>*/CNPostalAddressPropertyKey/*</name>*/[] {/*<value_list>*/Street, City, State, PostalCode, Country, ISOCountryCode/*</value_list>*/};
+    private static /*<name>*/CNPostalAddressPropertyKey/*</name>*/[] values = new /*<name>*/CNPostalAddressPropertyKey/*</name>*/[] {/*<value_list>*/Street, SubLocality, City, SubAdministrativeArea, State, PostalCode, Country, ISOCountryCode/*</value_list>*/};
     
     /*<name>*/CNPostalAddressPropertyKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -142,10 +150,20 @@ import org.robovm.apple.foundation.*;
         @GlobalValue(symbol="CNPostalAddressStreetKey", optional=true)
         public static native NSString Street();
         /**
+         * @since Available in iOS 10.3 and later.
+         */
+        @GlobalValue(symbol="CNPostalAddressSubLocalityKey", optional=true)
+        public static native NSString SubLocality();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="CNPostalAddressCityKey", optional=true)
         public static native NSString City();
+        /**
+         * @since Available in iOS 10.3 and later.
+         */
+        @GlobalValue(symbol="CNPostalAddressSubAdministrativeAreaKey", optional=true)
+        public static native NSString SubAdministrativeArea();
         /**
          * @since Available in iOS 9.0 and later.
          */

@@ -756,6 +756,15 @@ classes:
                     lockedObjects:
                         type: NSSet<NSManagedObject>
 
+    NSPersistentContainer:
+        methods:
+            '-init.*':
+                name: init
+            '+persistentContainerWithName:':
+                exclude: true
+            '+persistentContainerWithName:managedObjectModel:':
+                exclude: true
+
 protocols:
     NSFetchedResultsControllerDelegate: # DONE
         methods:

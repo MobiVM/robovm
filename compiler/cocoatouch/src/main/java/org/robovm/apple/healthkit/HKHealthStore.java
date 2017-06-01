@@ -102,7 +102,7 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "deleteObjectsOfType:predicate:withCompletion:")
-    public native void deleteObjectsOfType(HKObjectType objectType, NSPredicate predicate, @Block VoidBlock3<Boolean, Long, NSError> completion);
+    public native void deleteObjectsOfType(HKObjectType objectType, NSPredicate predicate, @Block("(,@MachineSizedUInt,)") VoidBlock3<Boolean, Long, NSError> completion);
     @Method(selector = "executeQuery:")
     public native void executeQuery(HKQuery query);
     @Method(selector = "stopQuery:")

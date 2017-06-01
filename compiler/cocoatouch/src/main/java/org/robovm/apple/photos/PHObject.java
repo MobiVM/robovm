@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/

@@ -49,7 +49,7 @@ import org.robovm.apple.audiounit.*;
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVURLAsset/*</name>*/ 
     extends /*<extends>*/AVAsset/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements AVContentKeyRecipient/*</implements>*/ {
 
     /*<ptr>*/public static class AVURLAssetPtr extends Ptr<AVURLAsset, AVURLAssetPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AVURLAsset.class); }/*</bind>*/
@@ -75,6 +75,11 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "assetCache")
     public native AVAssetCache getAssetCache();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "mayRequireContentKeysForMediaDataProcessing")
+    public native boolean mayRequireContentKeysForMediaDataProcessing();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

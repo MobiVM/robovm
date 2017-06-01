@@ -1,5 +1,5 @@
 package: org.robovm.apple.gameplaykit
-include: [foundation.yaml]
+include: [foundation.yaml, spritekit.yaml]
 library: GameplayKit
 framework: GameplayKit
 clang_args: ['-x', 'objective-c']
@@ -456,8 +456,120 @@ classes:
             '+treeWithMaxNumberOfChildren:':
                 exclude: true
 
+    GKAgent3D: {}
+    GKBillowNoiseSource:
+        methods:
+            '+billowNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:':
+                exclude: true
+            '-init.*':
+                name: init
+    GKCheckerboardNoiseSource:
+        methods:
+            '+checkerboardNoiseWithSquareSize:':
+                exclude: true
+    GKCoherentNoiseSource: {}
+    GKCompositeBehavior:
+        methods:
+            '-setWeight:forBehavior:':
+                name: setWeightforBehavior
+            '-setObject:forKeyedSubscript:':
+                name: setObjectforKeyedSubscript
+            '+behaviorWithBehaviors:':
+                name: create0
+                constructor: true
+            '+behaviorWithBehaviors:andWeights:':
+                name: create0
+                constructor: true
+    GKConstantNoiseSource:
+        methods:
+            '+constantNoiseWithValue':
+                exclude: true
+    GKCylindersNoiseSource:
+        methods:
+            '+cylindersNoiseWithFrequency:':
+                exclude: true
+    GKDecisionNode:
+        methods:
+            '-createBranch.*':
+                name: createBranch
+    GKDecisionTree:
+        methods:
+            '-init.*':
+                name: init
+    GKGraphNode3D:
+        methods:
+            '+nodeWithPoint:':
+                exclude: true
+    GKMonteCarloStrategist: {}
+    GKNoise:
+        methods:
+            '-init.*':
+                name: init
+            '+noiseWithNoiseSource:':
+                exclude: true
+            '+noiseWithNoiseSource:gradientColors:':
+                exclude: true
+            '+noiseWithComponentNoises:selectionNoise:':
+                name: create
+                constructor: true
+            '+noiseWithComponentNoises:selectionNoise:componentBoundaries:boundaryBlendDistances:':
+                name: create
+                constructor: true
+            '-applyTurbulenceWithFrequency:power:roughness:seed:':
+                name: applyTurbulence
+            '-clampWithLowerBound:upperBound:':
+                name: clamp
+            '-remapValuesToTerracesWithPeaks:terracesInverted:':
+                name: remapValuesToTerraces
+            '-displaceXWithNoise:yWithNoise:zWithNoise:':
+                name: displaceX
+
+    GKNoiseMap:
+        methods:
+            '-init.*':
+                name: init
+            '-setValue:atPosition:':
+                name: setValueAtPosition
+            '+noiseMapWithNoise:':
+                exclude: true
+            '+noiseMapWithNoise:size:origin:sampleCount:seamless:':
+                exclude: true
+    GKNoiseSource: {}
+    GKPerlinNoiseSource:
+        methods:
+            '-init.*':
+                name: init
+            '+perlinNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:':
+                exclude: true
+    GKRidgedNoiseSource:
+        methods:
+            '-init.*':
+                name: init
+            '+ridgedNoiseSourceWithFrequency:octaveCount:lacunarity:seed:':
+                exclude: true
+    GKSKNodeComponent:
+        methods:
+            '+componentWithNode:':
+                exclude: true
+    GKScene:
+        methods:
+            '-addGraph:name:':
+                trim_after_first_colon: true
+    GKSphereObstacle: {}
+    GKSpheresNoiseSource: {}
+    GKVoronoiNoiseSource:
+        methods:
+            '-init.*':
+                name: init
+            '+voronoiNoiseWithFrequency:displacement:distanceEnabled:seed:':
+                exclude: true
+
 
 protocols:
+    GKSceneRootNodeType:
+        skip_adapter: true
+    GKStrategist: {}
+
     GKAgentDelegate: # DONE
         methods:
             '-agentWillUpdate:':

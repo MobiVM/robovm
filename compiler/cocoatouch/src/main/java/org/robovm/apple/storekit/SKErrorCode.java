@@ -51,7 +51,11 @@ public enum /*<name>*/SKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 9.3 and later.
      */
-    CloudServiceNetworkConnectionFailed(7L);
+    CloudServiceNetworkConnectionFailed(7L),
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    CloudServiceRevoked(8L);
     /*</values>*/
 
     /*<bind>*/

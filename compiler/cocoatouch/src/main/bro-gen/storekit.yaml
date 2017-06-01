@@ -109,7 +109,18 @@ classes:
                     parameters:
                         type: SKStoreProductParameters
 
+    SKCloudServiceSetupViewController:
+        methods:
+            '-loadWithOptions:completionHandler:':
+                name: load
+    SKStoreReviewController: {}
+
 protocols:
+    SKCloudServiceSetupViewControllerDelegate:
+        methods:
+            '-cloudServiceSetupViewControllerDidDismiss:':
+                  name: didDismiss
+    
     SKPaymentTransactionObserver: # DONE
         methods:
             '-paymentQueue:updatedTransactions:':
@@ -204,6 +215,12 @@ values:
     SKCloudServiceCapabilitiesDidChangeNotification:
         class: SKCloudServiceController
         name: CapabilitiesDidChangeNotification
+
+    # SKCloudServiceSetup
+    SKCloudServiceSetup(.*):
+        class: SKCloudServiceSetupOptions
+        name: '#{g[0]}'
+        type: NSString
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?SK.*):

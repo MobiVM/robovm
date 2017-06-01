@@ -76,6 +76,10 @@ public enum /*<name>*/NSURLErrorCode/*</name>*/ implements NSErrorCode {
      * @since Available in iOS 2.0 and later.
      */
     DataLengthExceedsMaximum(-1103L),
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    FileOutsideSafeArea(-1104L),
     SecureConnectionFailed(-1200L),
     ServerCertificateHasBadDate(-1201L),
     ServerCertificateUntrusted(-1202L),

@@ -51,8 +51,18 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "street")
     public native String getStreet();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "subLocality")
+    public native String getSubLocality();
     @Property(selector = "city")
     public native String getCity();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "subAdministrativeArea")
+    public native String getSubAdministrativeArea();
     @Property(selector = "state")
     public native String getState();
     @Property(selector = "postalCode")

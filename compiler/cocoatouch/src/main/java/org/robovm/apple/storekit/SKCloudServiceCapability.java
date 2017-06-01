@@ -41,6 +41,10 @@ public final class /*<name>*/SKCloudServiceCapability/*</name>*/ extends Bits</*
     /*<values>*/
     public static final SKCloudServiceCapability None = new SKCloudServiceCapability(0L);
     public static final SKCloudServiceCapability MusicCatalogPlayback = new SKCloudServiceCapability(1L);
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
+    public static final SKCloudServiceCapability MusicCatalogSubscriptionEligible = new SKCloudServiceCapability(2L);
     public static final SKCloudServiceCapability AddToCloudMusicLibrary = new SKCloudServiceCapability(256L);
     /*</values>*/
 

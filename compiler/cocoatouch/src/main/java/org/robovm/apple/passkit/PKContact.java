@@ -70,12 +70,16 @@ import org.robovm.apple.contacts.*;
     public native void setPhoneNumber(CNPhoneNumber v);
     /**
      * @since Available in iOS 9.2 and later.
+     * @deprecated Deprecated in iOS 10.3.
      */
+    @Deprecated
     @Property(selector = "supplementarySubLocality")
     public native String getSupplementarySubLocality();
     /**
      * @since Available in iOS 9.2 and later.
+     * @deprecated Deprecated in iOS 10.3.
      */
+    @Deprecated
     @Property(selector = "setSupplementarySubLocality:")
     public native void setSupplementarySubLocality(String v);
     /*</properties>*/

@@ -1097,6 +1097,16 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 2.0 and later.
          */
+        @GlobalValue(symbol="kSecAttrIsSensitive", optional=true)
+        public static native CFType IsSensitive();
+        /**
+         * @since Available in iOS 2.0 and later.
+         */
+        @GlobalValue(symbol="kSecAttrIsExtractable", optional=true)
+        public static native CFType IsExtractable();
+        /**
+         * @since Available in iOS 2.0 and later.
+         */
         @GlobalValue(symbol="kSecAttrApplicationTag", optional=true)
         public static native CFType ApplicationTag();
         /**

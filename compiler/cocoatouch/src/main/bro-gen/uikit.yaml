@@ -859,6 +859,8 @@ classes:
                 parameters:
                     options:
                         type: UIApplicationOpenURLOptions
+            '-setAlternateIconName:completionHandler:':
+                name: setAlternateIcon
     UIApplicationShortcutIcon: # DONE
         methods:
             '+iconWith.*':
@@ -3740,6 +3742,8 @@ protocols:
                 name: canMoveItemAt
             '-collectionView:moveItemAtIndexPath:toIndexPath:':
                 name: moveItemAt
+            '-collectionView:indexPathForIndexTitle:atIndex:':
+                name: indexPathForIndexTitle
     UICollectionViewDataSourcePrefetching: # DONE
         methods:
             '-collectionView:prefetchItemsAtIndexPaths:':

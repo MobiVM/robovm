@@ -454,6 +454,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyMediaType", optional=true)
         public static native NSString MediaType();
+        /**
+         * @since Available in iOS 10.3 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyAssetURL", optional=true)
+        public static native NSString AssetURL();
     }
     /*</keys>*/
 }

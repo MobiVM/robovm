@@ -153,11 +153,6 @@ import org.robovm.apple.dispatch.*;
     @Bridge(symbol="SecKeyDecrypt", optional=true)
     protected native OSStatus decrypt0(SecPadding padding, @Pointer long cipherText, @MachineSizedUInt long cipherTextLen, BytePtr plainText, MachineSizedUIntPtr plainTextLen);
     /**
-     * @since Available in iOS 2.0 and later.
-     */
-    @Bridge(symbol="SecKeyGetBlockSize", optional=true)
-    public native @MachineSizedUInt long getBlockSize();
-    /**
      * @since Available in iOS 10.0 and later.
      */
     @Bridge(symbol="SecKeyCreateRandomKey", optional=true)
@@ -167,6 +162,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Bridge(symbol="SecKeyCreateWithData", optional=true)
     public static native SecKey createWithData(NSData keyData, NSDictionary attributes, NSError error);
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    @Bridge(symbol="SecKeyGetBlockSize", optional=true)
+    public native @MachineSizedUInt long getBlockSize();
     /**
      * @since Available in iOS 10.0 and later.
      */

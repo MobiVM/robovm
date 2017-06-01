@@ -269,7 +269,9 @@ protocols:
                 trim_after_first_colon: true
             '-presentDrawable:atTime:':    
                 name: presentDrawableAtTime
-            '-addCompletedHandler:':    
+            '-presentDrawable:afterMinimumDuration:':
+                name: presentDrawableAfterMinimumDuration
+            '-addCompletedHandler:':
                 trim_after_first_colon: true
                 parameters:
                     block:

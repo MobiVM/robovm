@@ -142,6 +142,11 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "canAddPaymentPassWithPrimaryAccountIdentifier:")
     public native boolean canAddPaymentPass(String primaryAccountIdentifier);
     /**
+     * @since Available in iOS 10.1 and later.
+     */
+    @Method(selector = "canAddFelicaPass")
+    public native boolean canAddFelicaPass();
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "activatePaymentPass:withActivationData:completion:")

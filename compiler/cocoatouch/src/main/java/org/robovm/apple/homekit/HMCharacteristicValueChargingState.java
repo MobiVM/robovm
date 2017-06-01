@@ -40,7 +40,11 @@ import org.robovm.apple.corelocation.*;
 public enum /*<name>*/HMCharacteristicValueChargingState/*</name>*/ implements ValuedEnum {
     /*<values>*/
     None(0L),
-    InProgress(1L);
+    InProgress(1L),
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    NotChargeable(2L);
     /*</values>*/
 
     /*<bind>*/

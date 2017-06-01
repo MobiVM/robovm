@@ -83,6 +83,7 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     OneComponent8(1278226488L),
     TwoComponent8(843264056L),
     _30RGBLEPackedWideGamut(1999843442L),
+    ARGB2101010LEPacked(1815162994L),
     OneComponent16Half(1278226536L),
     OneComponent32Float(1278226534L),
     TwoComponent16Half(843264104L),
