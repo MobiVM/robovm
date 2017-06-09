@@ -384,6 +384,10 @@ public class InstanceUtils {
      */
     @SuppressWarnings("unchecked")
     public <T extends VmInstance> T instanceByPointer(long objectPtr, ClassInfo ci, Object param, boolean allocate) throws ClassCastException {
+        // handle null case
+        if (objectPtr == 0)
+            return null;
+
         // get it from map first
         VmInstance instance = delegates.state().referenceRefIdHolder().instanceByAddr(objectPtr);
         if (instance == null && allocate) {
