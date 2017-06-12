@@ -43,7 +43,12 @@ import org.robovm.apple.corefoundation.*;
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    public AudioBuffer() {}
+    public AudioBuffer(int numberChannels) {
+        this.setNumberChannels(numberChannels);
+    }
+    /*</constructors>*/
     public AudioBuffer(long handle) {
         super(handle);
     }
