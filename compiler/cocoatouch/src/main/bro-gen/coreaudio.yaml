@@ -49,7 +49,6 @@ classes:
             name: outputDataSize
             visibility: private
     AudioBuffer: # DONE
-        skip_def_constructor: true
         mNumberChannels:
             name: numberChannels
         mDataByteSize:
