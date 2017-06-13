@@ -58,12 +58,12 @@ classes:
             name: data
             exclude: true
     AudioBufferList: # DONE
+        skip_def_constructor: true
         mNumberBuffers:
             name: numberBuffers
             visibility: protected
         mBuffers:
             name: buffers0
-            type: AudioBuffer.AudioBufferPtr
             visibility: protected
     AudioStreamBasicDescription: # DONE
         mSampleRate:
