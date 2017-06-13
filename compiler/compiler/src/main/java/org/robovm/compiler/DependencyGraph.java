@@ -16,11 +16,7 @@
  */
 package org.robovm.compiler;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
@@ -206,26 +202,32 @@ public class DependencyGraph {
     }
 
     private void visitReachableNodes(Node node, Set<Node> visited) {
-        if (!visited.contains(node)) {
-            visited.add(node);
-            for (Node child : node.strongEdges) {
-                visitReachableNodes(child, visited);
-            }
-            for (Node child : node.weakEdges) {
-                if (treeShakerMode == TreeShakerMode.conservative && child instanceof MethodNode) {
-                    MethodNode mnode = (MethodNode) child;
-                    if (!mnode.isWeaklyLinked()) {
-                        visitReachableNodes(child, visited);
-                    }
-                } else if (treeShakerMode == TreeShakerMode.aggressive) {
-                    if (child instanceof MethodNode) {
-                        MethodNode mnode = (MethodNode) child;
-                        if (mnode.isStronglyLinked() || (!mnode.isWeaklyLinked() && "<init>".equals(mnode.name))) {
-                            visitReachableNodes(child, visited);
-                        }
+        Set<Node> pending = new HashSet<>();
+        pending.add(node);
+        while (pending.size() > 0) {
+            Iterator<Node> iterator = pending.iterator();
+            Node visiting = iterator.next();
+            iterator.remove();
+            if (visited.add(visiting)) {
+                for (Node child : visiting.strongEdges) {
+                    pending.add(child);
                 }
-                } else {
-                    visitReachableNodes(child, visited);
+                for (Node child : visiting.weakEdges) {
+                    if (treeShakerMode == TreeShakerMode.conservative && child instanceof MethodNode) {
+                        MethodNode mnode = (MethodNode) child;
+                        if (!mnode.isWeaklyLinked()) {
+                            pending.add(child);
+                        }
+                    } else if (treeShakerMode == TreeShakerMode.aggressive) {
+                        if (child instanceof MethodNode) {
+                            MethodNode mnode = (MethodNode) child;
+                            if (mnode.isStronglyLinked() || (!mnode.isWeaklyLinked() && "<init>".equals(mnode.name))) {
+                                pending.add(child);
+                            }
+                        }
+                    } else {
+                        pending.add(child);
+                    }
                 }
             }
         }
