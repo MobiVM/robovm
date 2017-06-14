@@ -438,7 +438,7 @@ public class IOSTarget extends AbstractTarget {
             args.add(entitlementsPList);
         }
         if (preserveMetadata) {
-            args.add("--preserve-metadata=identifier,entitlements,resource-rules");
+            args.add("--preserve-metadata=identifier,entitlements");
         }
         if (verbose) {
             args.add("--verbose");
