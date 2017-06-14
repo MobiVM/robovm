@@ -74,6 +74,10 @@ public abstract class AbstractTarget implements Target {
     }
 
     @Override
+    public void prepareLaunch() throws IOException {
+    }
+
+    @Override
     public LaunchParameters createLaunchParameters() {
         return new LaunchParameters();
     }

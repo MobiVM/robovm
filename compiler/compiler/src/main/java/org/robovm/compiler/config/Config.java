@@ -199,6 +199,7 @@ public class Config {
     private boolean skipLinking = false;
     private boolean skipInstall = false;
     private boolean dumpIntermediates = false;
+    private boolean buildForRunning = false;
     private int threads = Runtime.getRuntime().availableProcessors();
     private Logger logger = Logger.NULL_LOGGER;
 
@@ -316,6 +317,10 @@ public class Config {
 
     public boolean isDumpIntermediates() {
         return dumpIntermediates;
+    }
+
+    public boolean isBuildForRunning() {
+        return buildForRunning;
     }
 
     public boolean isSkipRuntimeLib() {
@@ -1207,6 +1212,11 @@ public class Config {
 
         public Builder dumpIntermediates(boolean b) {
             config.dumpIntermediates = b;
+            return this;
+        }
+
+        public Builder buildForRunning(boolean b) {
+            config.buildForRunning = b;
             return this;
         }
 

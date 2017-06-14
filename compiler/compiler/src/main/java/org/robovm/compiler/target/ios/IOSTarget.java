@@ -371,6 +371,12 @@ public class IOSTarget extends AbstractTarget {
         FileUtils.copyFile(profile.getFile(), new File(destDir, "embedded.mobileprovision"));
     }
 
+    @Override
+    public void prepareLaunch() throws IOException {
+        prepareLaunch(getAppDir());
+    }
+
+
     protected void prepareLaunch(File appDir) throws IOException {
         super.doInstall(appDir, getExecutable(), appDir);
         createInfoPList(appDir);
@@ -540,7 +546,6 @@ public class IOSTarget extends AbstractTarget {
 
     @Override
     protected Process doLaunch(LaunchParameters launchParameters) throws IOException {
-        prepareLaunch(getAppDir());
         Process process = super.doLaunch(launchParameters);
         return process;
     }

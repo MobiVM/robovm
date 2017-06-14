@@ -207,6 +207,7 @@ public class RoboVmCompileTask implements CompileTask {
                 builder.addPluginArgument("debug:logconsole=true");
             }
             builder.home(home);
+            builder.buildForRunning(true);
             Config config = builder.build();
             AppCompiler compiler = new AppCompiler(config);
             if(progress.isCanceled()) {
