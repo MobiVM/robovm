@@ -166,11 +166,7 @@ public class DependencyGraph {
      * creating this {@link DependencyGraph}.
      */
     public Set<String> findReachableClasses() {
-        if (reachableNodes.isEmpty()) {
-            for (ClassNode node : roots) {
-                visitReachableNodes(node, reachableNodes);
-            }
-        }
+        validateReachableNodes();
         Set<String> classes = new HashSet<>();
         for (Node node : reachableNodes) {
             if (node instanceof ClassNode) {
@@ -186,11 +182,7 @@ public class DependencyGraph {
      * method owner, method name and method descriptor.
      */
     public Set<Triple<String, String, String>> findReachableMethods() {
-        if (reachableNodes.isEmpty()) {
-            for (ClassNode node : roots) {
-                visitReachableNodes(node, reachableNodes);
-            }
-        }
+        validateReachableNodes();
         Set<Triple<String, String, String>> methods = new HashSet<>();
         for (Node node : reachableNodes) {
             if (node instanceof MethodNode) {
@@ -201,32 +193,50 @@ public class DependencyGraph {
         return methods;
     }
 
+    private void validateReachableNodes() {
+        if (reachableNodes.isEmpty()) {
+            for (ClassNode node : roots) {
+                visitReachableNodes(node, reachableNodes);
+            }
+        }
+    }
+
     private void visitReachableNodes(Node node, Set<Node> visited) {
         Set<Node> pending = new HashSet<>();
+        Queue<Node> queue = new LinkedList<>();
         pending.add(node);
-        while (pending.size() > 0) {
-            Iterator<Node> iterator = pending.iterator();
-            Node visiting = iterator.next();
-            iterator.remove();
+        queue.add(node);
+        Node visiting;
+        while ((visiting = queue.poll()) != null) {
+            if (!pending.remove(visiting))
+                throw new IllegalStateException();
             if (visited.add(visiting)) {
                 for (Node child : visiting.strongEdges) {
-                    pending.add(child);
+                    if (pending.add(child)) {
+                        queue.add(child);
+                    }
                 }
                 for (Node child : visiting.weakEdges) {
                     if (treeShakerMode == TreeShakerMode.conservative && child instanceof MethodNode) {
                         MethodNode mnode = (MethodNode) child;
                         if (!mnode.isWeaklyLinked()) {
-                            pending.add(child);
+                            if (pending.add(child)) {
+                                queue.add(child);
+                            }
                         }
                     } else if (treeShakerMode == TreeShakerMode.aggressive) {
                         if (child instanceof MethodNode) {
                             MethodNode mnode = (MethodNode) child;
                             if (mnode.isStronglyLinked() || (!mnode.isWeaklyLinked() && "<init>".equals(mnode.name))) {
-                                pending.add(child);
+                                if (pending.add(child)) {
+                                    queue.add(child);
+                                }
                             }
                         }
                     } else {
-                        pending.add(child);
+                        if (pending.add(child)) {
+                            queue.add(child);
+                        }
                     }
                 }
             }
