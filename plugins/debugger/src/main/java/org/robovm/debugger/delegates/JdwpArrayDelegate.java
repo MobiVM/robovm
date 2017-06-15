@@ -88,7 +88,7 @@ public class JdwpArrayDelegate implements IJdwpArrayDelegate {
             int pointerSize = delegates.runtime().deviceMemoryReader().pointerSize();
             delegates.runtime().deviceMemoryReader().setAddress(instance.dataPtr() + pointerSize * index);
             reader = ByteBufferReader.wrap(delegates.runtime().deviceMemoryReader().readBytes(pointerSize * length),
-                    delegates.runtime().deviceMemoryReader().isIs64bit());
+                    delegates.runtime().deviceMemoryReader().is64bit());
             manipulator = delegates.instances().objectManipulator();
         }
 

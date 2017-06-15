@@ -62,7 +62,7 @@ public abstract class ByteBufferReader {
         return new RangeByteBufferReader(ByteBuffer.wrap(bytes), is64bit);
     }
 
-    public boolean isIs64bit() {
+    public boolean is64bit() {
         return is64bit;
     }
 
