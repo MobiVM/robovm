@@ -34,6 +34,13 @@ class RangeByteBufferReader extends ByteBufferReader{
         virtualLimit = bb.limit();
     }
 
+    public RangeByteBufferReader(ByteBuffer bb, boolean is64bit) {
+        super(bb.duplicate().asReadOnlyBuffer(), is64bit);
+        byteBuffer.order(bb.order());
+        virtualStart = 0;
+        virtualLimit = bb.limit();
+    }
+
     public RangeByteBufferReader(ByteBufferReader other, int offs, int size, boolean is64bit) {
         super(other.byteBuffer.duplicate().asReadOnlyBuffer(), is64bit);
         byteBuffer.order(other.byteBuffer.order());

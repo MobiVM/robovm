@@ -58,6 +58,14 @@ public abstract class ByteBufferReader {
         return new RangeByteBufferReader(ByteBuffer.wrap(bytes));
     }
 
+    public static ByteBufferReader wrap(byte[] bytes, boolean is64bit) {
+        return new RangeByteBufferReader(ByteBuffer.wrap(bytes), is64bit);
+    }
+
+    public boolean isIs64bit() {
+        return is64bit;
+    }
+
     public abstract int position();
 
     public abstract int size();
