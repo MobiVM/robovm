@@ -16,11 +16,7 @@
  */
 package org.robovm.compiler;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
@@ -170,11 +166,7 @@ public class DependencyGraph {
      * creating this {@link DependencyGraph}.
      */
     public Set<String> findReachableClasses() {
-        if (reachableNodes.isEmpty()) {
-            for (ClassNode node : roots) {
-                visitReachableNodes(node, reachableNodes);
-            }
-        }
+        validateReachableNodes();
         Set<String> classes = new HashSet<>();
         for (Node node : reachableNodes) {
             if (node instanceof ClassNode) {
@@ -190,11 +182,7 @@ public class DependencyGraph {
      * method owner, method name and method descriptor.
      */
     public Set<Triple<String, String, String>> findReachableMethods() {
-        if (reachableNodes.isEmpty()) {
-            for (ClassNode node : roots) {
-                visitReachableNodes(node, reachableNodes);
-            }
-        }
+        validateReachableNodes();
         Set<Triple<String, String, String>> methods = new HashSet<>();
         for (Node node : reachableNodes) {
             if (node instanceof MethodNode) {
@@ -205,27 +193,51 @@ public class DependencyGraph {
         return methods;
     }
 
-    private void visitReachableNodes(Node node, Set<Node> visited) {
-        if (!visited.contains(node)) {
-            visited.add(node);
-            for (Node child : node.strongEdges) {
-                visitReachableNodes(child, visited);
+    private void validateReachableNodes() {
+        if (reachableNodes.isEmpty()) {
+            for (ClassNode node : roots) {
+                visitReachableNodes(node, reachableNodes);
             }
-            for (Node child : node.weakEdges) {
-                if (treeShakerMode == TreeShakerMode.conservative && child instanceof MethodNode) {
-                    MethodNode mnode = (MethodNode) child;
-                    if (!mnode.isWeaklyLinked()) {
-                        visitReachableNodes(child, visited);
+        }
+    }
+
+    private void visitReachableNodes(Node node, Set<Node> visited) {
+        Set<Node> pending = new HashSet<>();
+        Queue<Node> queue = new LinkedList<>();
+        pending.add(node);
+        queue.add(node);
+        Node visiting;
+        while ((visiting = queue.poll()) != null) {
+            if (!pending.remove(visiting))
+                throw new IllegalStateException();
+            if (visited.add(visiting)) {
+                for (Node child : visiting.strongEdges) {
+                    if (pending.add(child)) {
+                        queue.add(child);
                     }
-                } else if (treeShakerMode == TreeShakerMode.aggressive) {
-                    if (child instanceof MethodNode) {
-                        MethodNode mnode = (MethodNode) child;
-                        if (mnode.isStronglyLinked() || (!mnode.isWeaklyLinked() && "<init>".equals(mnode.name))) {
-                            visitReachableNodes(child, visited);
-                        }
                 }
-                } else {
-                    visitReachableNodes(child, visited);
+                for (Node child : visiting.weakEdges) {
+                    if (treeShakerMode == TreeShakerMode.conservative && child instanceof MethodNode) {
+                        MethodNode mnode = (MethodNode) child;
+                        if (!mnode.isWeaklyLinked()) {
+                            if (pending.add(child)) {
+                                queue.add(child);
+                            }
+                        }
+                    } else if (treeShakerMode == TreeShakerMode.aggressive) {
+                        if (child instanceof MethodNode) {
+                            MethodNode mnode = (MethodNode) child;
+                            if (mnode.isStronglyLinked() || (!mnode.isWeaklyLinked() && "<init>".equals(mnode.name))) {
+                                if (pending.add(child)) {
+                                    queue.add(child);
+                                }
+                            }
+                        }
+                    } else {
+                        if (pending.add(child)) {
+                            queue.add(child);
+                        }
+                    }
                 }
             }
         }
