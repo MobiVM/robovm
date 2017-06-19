@@ -79,6 +79,11 @@ public interface Target {
     boolean canLaunchInPlace();
 
     /**
+     * performs prepare launch activities
+     */
+    void prepareLaunch() throws IOException;
+
+    /**
      * Builds a binary out of the specified object files.
      */
     void build(List<File> objectFiles) throws IOException;
