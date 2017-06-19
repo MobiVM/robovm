@@ -199,7 +199,7 @@ public class Config {
     private boolean skipLinking = false;
     private boolean skipInstall = false;
     private boolean dumpIntermediates = false;
-    private boolean buildForRunning = false;
+    private boolean manuallyPreparedForLaunch = false;
     private int threads = Runtime.getRuntime().availableProcessors();
     private Logger logger = Logger.NULL_LOGGER;
 
@@ -319,8 +319,8 @@ public class Config {
         return dumpIntermediates;
     }
 
-    public boolean isBuildForRunning() {
-        return buildForRunning;
+    public boolean isManuallyPreparedForLaunch() {
+        return manuallyPreparedForLaunch;
     }
 
     public boolean isSkipRuntimeLib() {
@@ -1215,8 +1215,8 @@ public class Config {
             return this;
         }
 
-        public Builder buildForRunning(boolean b) {
-            config.buildForRunning = b;
+        public Builder manuallyPreparedForLaunch(boolean b) {
+            config.manuallyPreparedForLaunch = b;
             return this;
         }
 

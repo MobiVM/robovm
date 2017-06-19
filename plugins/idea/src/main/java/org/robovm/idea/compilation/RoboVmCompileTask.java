@@ -207,7 +207,12 @@ public class RoboVmCompileTask implements CompileTask {
                 builder.addPluginArgument("debug:logconsole=true");
             }
             builder.home(home);
-            builder.buildForRunning(true);
+
+            // mark that prepare for launch was done already performed and no need to do it during launch
+            // this is required to unfreeze IDEA as prepareForLaunch is called in blocking manner that is
+            // against contract
+            builder.manuallyPreparedForLaunch(true);
+
             Config config = builder.build();
             AppCompiler compiler = new AppCompiler(config);
             if(progress.isCanceled()) {
@@ -218,7 +223,18 @@ public class RoboVmCompileTask implements CompileTask {
 
             // Start the build in a separate thread, check if
             // user canceled it.
-            RoboVmCompilerThread thread = new RoboVmCompilerThread(compiler, progress);
+            RoboVmCompilerThread thread = new RoboVmCompilerThread(compiler, progress) {
+                protected void doCompile() throws Exception {
+                    compiler.build();
+                    // perform prepare for launch here, as doing this in lauch task will block UI due bad design
+                    if (config.getTarget().canLaunch()) {
+                        long start = System.currentTimeMillis();
+                        config.getTarget().prepareLaunch();
+                        long duration = System.currentTimeMillis() - start;
+                        config.getLogger().info("Prepared for launch in %.2f seconds", duration / 1000.0);
+                    }
+                }
+            };
             thread.compile();
             if(progress.isCanceled()) {
                 RoboVmPlugin.logInfo(context.getProject(), "Build canceled");

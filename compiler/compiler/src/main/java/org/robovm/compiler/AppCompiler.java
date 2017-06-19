@@ -56,7 +56,6 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.TreeShakerMode;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
-import org.robovm.compiler.config.StripArchivesConfig;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.plugin.LaunchPlugin;
@@ -467,13 +466,6 @@ public class AppCompiler {
         linker.link(linkClasses);
         long duration = System.currentTimeMillis() - start;
         config.getLogger().info("Linked %d classes in %.2f seconds", linkClasses.size(), duration / 1000.0);
-
-        if (config.isBuildForRunning() && config.getTarget().canLaunch()) {
-            start = System.currentTimeMillis();
-            config.getTarget().prepareLaunch();
-            duration = System.currentTimeMillis() - start;
-            config.getLogger().info("Prepared for launch in %.2f seconds", duration / 1000.0);
-        }
     }
 
     public static void main(String[] args) throws IOException {
