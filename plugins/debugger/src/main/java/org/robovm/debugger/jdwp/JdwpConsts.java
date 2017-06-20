@@ -130,9 +130,9 @@ public class JdwpConsts {
     }
 
     public static class TypeTag {
-        public static final int CLASS = 1;
-        public static final int INTERFACE = 2;
-        public static final int ARRAY = 3;
+        public static final byte CLASS = 1;
+        public static final byte INTERFACE = 2;
+        public static final byte ARRAY = 3;
     }
 
     public static class ThreadStatus {

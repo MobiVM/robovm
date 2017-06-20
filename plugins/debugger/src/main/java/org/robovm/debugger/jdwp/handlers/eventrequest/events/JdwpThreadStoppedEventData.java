@@ -73,8 +73,7 @@ public class JdwpThreadStoppedEventData extends JdwpEventData {
     @Override
     protected void dumpCustomData(ByteBufferPacket packet) {
         // write location
-        // TODO: is other types possible like array ?
-        packet.writeByte(JdwpConsts.Tag.OBJECT);
+        packet.writeByte(JdwpConsts.TypeTag.CLASS);
         packet.writeLong(location.classInfo().refId());
         packet.writeLong(location.methodInfo().refId());
         packet.writeLong(location.lineNumber());
