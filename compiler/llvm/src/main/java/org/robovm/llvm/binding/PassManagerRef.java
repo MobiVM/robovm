@@ -9,9 +9,9 @@
 package org.robovm.llvm.binding;
 
 public class PassManagerRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected PassManagerRef(long cPtr, boolean futureUse) {
+  protected PassManagerRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

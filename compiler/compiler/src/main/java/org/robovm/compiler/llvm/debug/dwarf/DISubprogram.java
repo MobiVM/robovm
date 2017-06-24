@@ -31,6 +31,7 @@ public class DISubprogram extends DIBaseItem {
     private DIBaseItem fileContext;
     private DICompositeType subrotineType;
     private FunctionRef llvmFunction;
+    private DIMutableItemList<DILocalVariable> variables;
 
     public DISubprogram(ModuleBuilder builder) {
         super(builder);
@@ -84,7 +85,7 @@ public class DISubprogram extends DIBaseItem {
         //metadata, ;; Function declaration descriptor
         builder.add(null);
         //metadata  ;; List of function variables
-        builder.add(null); // for now
+        builder.add(variables != null ? variables.get() : null);
         // }
 
         return builder.build();
@@ -137,5 +138,9 @@ public class DISubprogram extends DIBaseItem {
 
     public void setLlvmFunction(FunctionRef llvmFunction) {
         this.llvmFunction = llvmFunction;
+    }
+
+    public void setVariables(DIMutableItemList<DILocalVariable> variables) {
+        this.variables = variables;
     }
 }

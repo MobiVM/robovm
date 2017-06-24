@@ -207,7 +207,7 @@ static jlong readChannelLong(int socket, ChannelError* error) {
 
 static jboolean checkError(ChannelError* error) {
     if(error->errorCode) {
-        DEBUGF("Error: %s, errno: ", error->message, error->errorCode);
+        DEBUGF("Error: %s, errno: %d", error->message, error->errorCode);
         DEBUG("Closing client socket");
         close(clientSocket);
         return TRUE;
@@ -520,16 +520,22 @@ static void handleClassFilter(jlong reqId, ChannelError* error) {
         }
     } else {
         ClassFilter* prev = 0;
-        for(ClassFilter* f = classFilters; f; prev = f, f = f->next) {
+        ClassFilter* f = classFilters;
+        // dkimitsa: reworked the cycle as fields were accessing after filter released which made debugger not happy
+        while (f) {
+            ClassFilter* next = f->next;
             if(!strcmp(f->className, className)) {
+                if(!prev) {
+                    classFilters = next;
+                } else {
+                    prev->next = next;
+                }
                 free(f->className);
                 free(f);
-                if(!prev) {
-                    classFilters = f->next;
-                } else {
-                    prev->next = f->next;
-                }
+            } else {
+                prev = f;
             }
+            f = next;
         }
     }
     rvmUnlockMutex(&classFilterMutex);
@@ -613,7 +619,7 @@ static void handleThreadStep(jlong reqId, ChannelError* error) {
     jlong pchigh2 = readChannelLong(clientSocket, error);
     if(checkError(error)) return;
 
-    DEBUGF("Stepping thread %p, id %u, pclow: %p, pchigh: %p, pclow2: %p, pchigh2: %p", thread, thread->threadId, pclow, pchigh, pclow2, pchigh2);
+    DEBUGF("Stepping thread %p, id %u, pclow: 0x%llx, pchigh: 0x%llx, pclow2: 0x%llx, pchigh2: 0x%llx", thread, thread->threadId, pclow, pchigh, pclow2, pchigh2);
     DebugEnv *debugEnv = (DebugEnv *) thread->env;
     rvmLockMutex(&debugEnv->suspendMutex);
     // the order of the next few lines is important
@@ -1195,9 +1201,11 @@ static inline void suspendLoop(DebugEnv* debugEnv) {
         // or a new instance request (see handleNewInstance, handleNewString, handleNewArray)
         // we temporarily reset the suspend flag, set the ignore exceptions flag, invoke the
         // method, then go back into waiting for being woken up again
+        // Also ignore any instrumented bp/stepping as these will be triggered during request execution
         if(debugEnv->reqId != 0) {
             debugEnv->suspended = FALSE;
             debugEnv->ignoreExceptions = TRUE;
+            debugEnv->ignoreInstrumented = TRUE;
             switch(debugEnv->command) {
                 case CMD_THREAD_INVOKE:
                     invokeMethod(debugEnv);
@@ -1215,6 +1223,7 @@ static inline void suspendLoop(DebugEnv* debugEnv) {
                     DEBUGF("Unknown invoke/newinstance command %d", debugEnv->command);
             }
             debugEnv->ignoreExceptions = FALSE;
+            debugEnv->ignoreInstrumented = FALSE;
             debugEnv->suspended = TRUE;
         }
     }
@@ -1238,6 +1247,10 @@ static jboolean prepareCallStack(Env* env, char event, CallStack** callStack, ji
     // rvmHookExceptionRaised
     jboolean oldIgnoreException = debugEnv->ignoreExceptions;
     debugEnv->ignoreExceptions = TRUE;
+    // need to ignore exceptions, as the callstack unwinding will call runtime api which will cause BP to be triggered
+    // in the middle of operation
+    jboolean oldIgnoreInstrumented = debugEnv->ignoreInstrumented;
+    debugEnv->ignoreInstrumented = TRUE;
 
     *callStack = rvmCaptureCallStack(env);
     if (rvmExceptionCheck(env)) {
@@ -1260,8 +1273,10 @@ static jboolean prepareCallStack(Env* env, char event, CallStack** callStack, ji
     }
     *payloadSize = sizeof(jint) + (*length) * (sizeof(jlong) * 2 + sizeof(jint) * 2) + classNamesSize;
 
-    // reset old exception handling
+    // reset old exception handling/instrumented flag
     debugEnv->ignoreExceptions = oldIgnoreException;
+    debugEnv->ignoreInstrumented = oldIgnoreInstrumented;
+
 
     if(length == 0) {
         ERRORF("No frames on callstack of thread %p for event %d.", env->currentThread, event);
@@ -1371,6 +1386,9 @@ void _rvmHookExceptionRaised(Env* env, Object* throwable, jboolean isCaught) {
     // we might be invoking a function due to a debugger
     // request while suspended. Don't report the exception
     // in that case.
+    // dkimitsa: also all exception are ignored till application code is started otherwise debugger got bored with
+    //           bunch of ErrnoException during VM initialization. As result it stops on it and debugger has to resume
+    //           thread which will break in final wait_for_resume startup logic
     if(debugEnv->ignoreExceptions) {
         return;
     }
@@ -1421,6 +1439,10 @@ void _rvmHookExceptionRaised(Env* env, Object* throwable, jboolean isCaught) {
 }
 
 void _rvmHookInstrumented(DebugEnv* debugEnv, jint lineNumber, jint lineNumberOffset, jbyte* bptable, void* pc) {
+    // dkimitsa: exit as operation is in middle of stack unwinding/object creation or method invocation
+    if (debugEnv->ignoreInstrumented)
+        return;
+
     Env* env = (Env*) debugEnv;
 
     char event = 0;

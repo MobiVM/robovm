@@ -3321,6 +3321,10 @@ public class LLVM implements LLVMConstants {
     return LLVMJNI.CopySectionContents(SectionIteratorRef.getCPtr(SI), Dest);
   }
 
+  public static void DumpDwarfDebugData(ObjectFileRef o, java.io.OutputStream OutputStream) {
+    LLVMJNI.DumpDwarfDebugData(ObjectFileRef.getCPtr(o), OutputStream);
+  }
+
   public static ModuleRef ClangCompileFile(ContextRef Context, String Data, String FileName, String Triple, StringOut ErrorMessage) {
     long cPtr = LLVMJNI.ClangCompileFile(ContextRef.getCPtr(Context), Data, FileName, Triple, StringOut.getCPtr(ErrorMessage), ErrorMessage);
     return (cPtr == 0) ? null : new ModuleRef(cPtr, false);

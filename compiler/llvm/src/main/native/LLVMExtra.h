@@ -96,6 +96,11 @@ LLVMBool LLVMTargetMachineEmitToOutputStream(LLVMTargetMachineRef T, LLVMModuleR
 
 void LLVMGetLineInfoForAddressRange(LLVMObjectFileRef O, uint64_t Address, uint64_t Size, int* OutSize, uint64_t** Out);
 size_t LLVMCopySectionContents(LLVMSectionIteratorRef SI, char* Dest, size_t DestSize);
+
+
+// dumps DWARF debug information into output stream
+void LLVMDumpDwarfDebugData(LLVMObjectFileRef o, void *OutputStream);
+
 #ifdef __cplusplus
 }
 #endif

@@ -88,9 +88,9 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.robovm</groupId>
+      <groupId>com.mobidevelop.robovm</groupId>
       <artifactId>robovm-soot</artifactId>
-      <version>2.5.0-2</version>
+      <version>2.5.0-4</version>
     </dependency>
     <dependency>
       <groupId>com.mobidevelop.robovm</groupId>
