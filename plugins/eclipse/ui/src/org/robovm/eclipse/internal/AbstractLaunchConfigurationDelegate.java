@@ -163,13 +163,20 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
 
             if (ILaunchManager.DEBUG_MODE.equals(mode)) {
                 configBuilder.debug(true);
+                
+                File logDir = new File(projectRoot, "robovm-logs");
+                logDir.mkdirs();
+                                
                 String sourcepaths = RoboVMPlugin.getSourcePaths(javaProject);
                 configBuilder.addPluginArgument("debug:sourcepath=" + sourcepaths);
                 configBuilder.addPluginArgument("debug:jdwpport=" + debuggerPort);
-                configBuilder.addPluginArgument("debug:logdir=" + new File(projectRoot, "robovm-logs").getAbsolutePath());
+                configBuilder.addPluginArgument("debug:logdir=" + logDir.getAbsolutePath());
+                configBuilder.addPluginArgument("debug:clientmode=false");
+                configBuilder.addPluginArgument("debug:logconsole=true");
+                
                 // check if we have the debug plugin
                 for (Plugin plugin : configBuilder.getPlugins()) {
-                    if ("DebugLaunchPlugin".equals(plugin.getClass().getSimpleName())) {
+                    if ("DebuggerLaunchPlugin".equals(plugin.getClass().getSimpleName())) {
                         hasDebugPlugin = true;
                     }
                 }
@@ -338,6 +345,12 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
         Map<String, Argument> defaultArguments = connector.defaultArguments();
         defaultArguments.get("hostname").setValue("localhost");
         defaultArguments.get("port").setValue("" + port);
+        
+        try {
+        	Thread.sleep(5000); //waiting at least 5 secs before attempting to connect.
+        }
+        catch (InterruptedException e) {}
+        
         int retries = 60;
         CoreException exception = null;
         while (retries > 0) {
