@@ -36,6 +36,17 @@
         <type>tar.gz</type>
       </dependency>
       <dependency>
+      	<groupId>com.mobidevelop.robovm</groupId>
+            <artifactId>robovm-debugger</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mobidevelop.robovm</groupId>
+                    <artifactId>robovm-compiler</artifactId>
+                </exclusion>
+            </exclusions>
+      </dependency>
+      <dependency>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-templater</artifactId>
         <version>${robovm.version}</version>
