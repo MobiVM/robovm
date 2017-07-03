@@ -38,7 +38,7 @@
       <dependency>
       	<groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-debugger</artifactId>
-            <version>${project.version}</version>
+            <version>${robovm.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.mobidevelop.robovm</groupId>
@@ -93,6 +93,10 @@
             <artifactItem>
               <groupId>com.mobidevelop.robovm</groupId>
               <artifactId>robovm-dist-compiler</artifactId>
+            </artifactItem>
+            <artifactItem>
+              <groupId>com.mobidevelop.robovm</groupId>
+              <artifactId>robovm-debugger</artifactId>
             </artifactItem>
             <artifactItem>
               <groupId>com.mobidevelop.robovm</groupId>

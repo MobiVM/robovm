@@ -634,8 +634,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
             log.debug("THREAD_STARTED: " + thread);
 
-            // doesn't generate any event to JDWP
-            return null;
+            return new JdwpEventData(JdwpConsts.EventKind.THREAD_START, thread);
         }
 
         if (thread == null)
