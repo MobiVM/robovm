@@ -9,8 +9,8 @@
 package org.robovm.llvm.binding;
 
 public class IntArray {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected IntArray(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;

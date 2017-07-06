@@ -62,7 +62,8 @@ functions:
             properties:
                 type: CGImageDestinationProperties
     CGImageDestinationFinalize:
-        exclude: true
+        class: CGImageDestination
+        name: finalizeDestination
     CGImageDestination(.*):
         class: CGImageDestination
         name: '#{g[0]}'

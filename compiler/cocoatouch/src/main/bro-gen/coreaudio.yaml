@@ -49,7 +49,6 @@ classes:
             name: outputDataSize
             visibility: private
     AudioBuffer: # DONE
-        skip_def_constructor: true
         mNumberChannels:
             name: numberChannels
         mDataByteSize:
@@ -59,12 +58,12 @@ classes:
             name: data
             exclude: true
     AudioBufferList: # DONE
+        skip_def_constructor: true
         mNumberBuffers:
             name: numberBuffers
             visibility: protected
         mBuffers:
             name: buffers0
-            type: AudioBuffer.AudioBufferPtr
             visibility: protected
     AudioStreamBasicDescription: # DONE
         mSampleRate:

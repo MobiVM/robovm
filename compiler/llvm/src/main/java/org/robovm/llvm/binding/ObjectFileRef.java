@@ -9,9 +9,9 @@
 package org.robovm.llvm.binding;
 
 public class ObjectFileRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected ObjectFileRef(long cPtr, boolean futureUse) {
+  protected ObjectFileRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

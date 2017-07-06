@@ -56,7 +56,6 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.TreeShakerMode;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
-import org.robovm.compiler.config.StripArchivesConfig;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.plugin.LaunchPlugin;

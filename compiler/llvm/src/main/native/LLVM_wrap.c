@@ -8,7 +8,11 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
+
+#ifndef SWIGJAVA
 #define SWIGJAVA
+#endif
+
 
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
@@ -77,9 +81,11 @@
 #endif
 
 /* exporting methods */
-#if (__GNUC__ >= 4) || (__GNUC__ == 3 && __GNUC_MINOR__ >= 4)
-#  ifndef GCC_HASCLASSVISIBILITY
-#    define GCC_HASCLASSVISIBILITY
+#if defined(__GNUC__)
+#  if (__GNUC__ >= 4) || (__GNUC__ == 3 && __GNUC_MINOR__ >= 4)
+#    ifndef GCC_HASCLASSVISIBILITY
+#      define GCC_HASCLASSVISIBILITY
+#    endif
 #  endif
 #endif
 
@@ -118,6 +124,19 @@
 # define _SCL_SECURE_NO_DEPRECATE
 #endif
 
+/* Deal with Apple's deprecated 'AssertMacros.h' from Carbon-framework */
+#if defined(__APPLE__) && !defined(__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES)
+# define __ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES 0
+#endif
+
+/* Intel's compiler complains if a variable which was never initialised is
+ * cast to void, which is a common idiom which we use to indicate that we
+ * are aware a variable isn't used.  So we just silence that warning.
+ * See: https://github.com/swig/swig/issues/192 for more discussion.
+ */
+#ifdef __INTEL_COMPILER
+# pragma warning disable 592
+#endif
 
 
 /* Fix for jlong on some versions of gcc on Windows */
@@ -3847,8 +3866,11 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstInt(JNIEnv *j
     bae = (*jenv)->GetByteArrayElements(jenv, ba, 0);
     sz = (*jenv)->GetArrayLength(jenv, ba);
     arg2 = 0;
-    for(i=0; i<sz; i++) {
-      arg2 = (arg2 << 8) | (unsigned long long)(unsigned char)bae[i];
+    if (sz > 0) {
+      arg2 = (unsigned long long)(signed char)bae[0];
+      for(i=1; i<sz; i++) {
+        arg2 = (arg2 << 8) | (unsigned long long)(unsigned char)bae[i];
+      }
     }
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
   }
@@ -3963,6 +3985,7 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ConstIntGetZExtV
     
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
     bigint = (*jenv)->NewObject(jenv, clazz, mid, ba);
+    (*jenv)->DeleteLocalRef(jenv, ba);
     jresult = bigint;
   }
   return jresult;
@@ -11207,6 +11230,7 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_SizeOfTypeInBits
     
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
     bigint = (*jenv)->NewObject(jenv, clazz, mid, ba);
+    (*jenv)->DeleteLocalRef(jenv, ba);
     jresult = bigint;
   }
   return jresult;
@@ -11239,6 +11263,7 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_StoreSizeOfType(
     
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
     bigint = (*jenv)->NewObject(jenv, clazz, mid, ba);
+    (*jenv)->DeleteLocalRef(jenv, ba);
     jresult = bigint;
   }
   return jresult;
@@ -11271,6 +11296,7 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ABISizeOfType(JN
     
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
     bigint = (*jenv)->NewObject(jenv, clazz, mid, ba);
+    (*jenv)->DeleteLocalRef(jenv, ba);
     jresult = bigint;
   }
   return jresult;
@@ -11370,8 +11396,11 @@ SWIGEXPORT jint JNICALL Java_org_robovm_llvm_binding_LLVMJNI_ElementAtOffset(JNI
     bae = (*jenv)->GetByteArrayElements(jenv, ba, 0);
     sz = (*jenv)->GetArrayLength(jenv, ba);
     arg3 = 0;
-    for(i=0; i<sz; i++) {
-      arg3 = (arg3 << 8) | (unsigned long long)(unsigned char)bae[i];
+    if (sz > 0) {
+      arg3 = (unsigned long long)(signed char)bae[0];
+      for(i=1; i<sz; i++) {
+        arg3 = (arg3 << 8) | (unsigned long long)(unsigned char)bae[i];
+      }
     }
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
   }
@@ -11409,6 +11438,7 @@ SWIGEXPORT jobject JNICALL Java_org_robovm_llvm_binding_LLVMJNI_OffsetOfElement(
     
     (*jenv)->ReleaseByteArrayElements(jenv, ba, bae, 0);
     bigint = (*jenv)->NewObject(jenv, clazz, mid, ba);
+    (*jenv)->DeleteLocalRef(jenv, ba);
     jresult = bigint;
   }
   return jresult;
@@ -12597,6 +12627,28 @@ SWIGEXPORT jlong JNICALL Java_org_robovm_llvm_binding_LLVMJNI_CopySectionContent
     (*jenv)->ReleaseByteArrayElements(jenv, jarg2, arg2, 0); 
   }
   return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_robovm_llvm_binding_LLVMJNI_DumpDwarfDebugData(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg2) {
+  LLVMObjectFileRef arg1 = (LLVMObjectFileRef) 0 ;
+  void *arg2 = (void *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(LLVMObjectFileRef *)&jarg1; 
+  {
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, NULL);
+      return ;
+    }
+    arg2 = (void *) AllocOutputStreamWrapper(jenv, jarg2);
+    if (!arg2) return ;
+  }
+  LLVMDumpDwarfDebugData(arg1,arg2);
+  {
+    FreeOutputStreamWrapper(arg2);
+  }
 }
 
 

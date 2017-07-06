@@ -9,9 +9,9 @@
 package org.robovm.llvm.binding;
 
 public class ContextRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected ContextRef(long cPtr, boolean futureUse) {
+  protected ContextRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

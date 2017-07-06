@@ -199,6 +199,7 @@ public class Config {
     private boolean skipLinking = false;
     private boolean skipInstall = false;
     private boolean dumpIntermediates = false;
+    private boolean manuallyPreparedForLaunch = false;
     private int threads = Runtime.getRuntime().availableProcessors();
     private Logger logger = Logger.NULL_LOGGER;
 
@@ -316,6 +317,10 @@ public class Config {
 
     public boolean isDumpIntermediates() {
         return dumpIntermediates;
+    }
+
+    public boolean isManuallyPreparedForLaunch() {
+        return manuallyPreparedForLaunch;
     }
 
     public boolean isSkipRuntimeLib() {
@@ -603,6 +608,14 @@ public class Config {
 
     public File getLinesLlFile(Clazz clazz) {
         return new File(getCacheDir(clazz.getPath()), getFileName(clazz, "class.lines.ll"));
+    }
+
+    public File getDebugInfoOFile(Clazz clazz) {
+        return new File(getCacheDir(clazz.getPath()), getFileName(clazz, "class.debuginfo.o"));
+    }
+
+    public File getDebugInfoLlFile(Clazz clazz) {
+        return new File(getCacheDir(clazz.getPath()), getFileName(clazz, "class.debuginfo.ll"));
     }
 
     public File getInfoFile(Clazz clazz) {
@@ -1207,6 +1220,11 @@ public class Config {
 
         public Builder dumpIntermediates(boolean b) {
             config.dumpIntermediates = b;
+            return this;
+        }
+
+        public Builder manuallyPreparedForLaunch(boolean b) {
+            config.manuallyPreparedForLaunch = b;
             return this;
         }
 

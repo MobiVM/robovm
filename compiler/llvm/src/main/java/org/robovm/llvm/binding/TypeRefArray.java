@@ -9,8 +9,8 @@
 package org.robovm.llvm.binding;
 
 public class TypeRefArray {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected TypeRefArray(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;

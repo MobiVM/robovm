@@ -16,11 +16,6 @@
  */
 package org.robovm.compiler;
 
-import static org.robovm.compiler.Types.*;
-import static org.robovm.compiler.llvm.Type.*;
-
-import java.util.List;
-
 import org.robovm.compiler.llvm.Alloca;
 import org.robovm.compiler.llvm.Argument;
 import org.robovm.compiler.llvm.BasicBlockRef;
@@ -38,6 +33,11 @@ import org.robovm.compiler.llvm.TailCall;
 import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
+
+import java.util.List;
+
+import static org.robovm.compiler.Types.*;
+import static org.robovm.compiler.llvm.Type.*;
 
 /**
  * @author niklas
@@ -158,6 +158,8 @@ public class Functions {
     public static final FunctionRef PUSH_NATIVE_FRAME = new FunctionRef("pushNativeFrame", new FunctionType(VOID, ENV_PTR));
     public static final FunctionRef POP_NATIVE_FRAME = new FunctionRef("popNativeFrame", new FunctionType(VOID, ENV_PTR));
     public static final FunctionRef GETPC = new FunctionRef("getpc", new FunctionType(I8_PTR));
+
+    public static final FunctionRef LLVM_DBG_DECLARE = new FunctionRef("llvm.dbg.declare", new FunctionType(VOID, METADATA, METADATA));
 
     public static FunctionRef getArrayLoad(soot.Type sootType) {
         if (sootType.equals(soot.BooleanType.v())) {

@@ -9,8 +9,8 @@
 package org.robovm.llvm.binding;
 
 public class BasicBlockRefArray {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected BasicBlockRefArray(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;

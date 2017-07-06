@@ -16,10 +16,95 @@
  */
 package org.robovm.compiler;
 
-import static org.robovm.compiler.Annotations.*;
-import static org.robovm.compiler.Functions.*;
-import static org.robovm.compiler.Types.*;
-import static org.robovm.compiler.llvm.Type.*;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.tuple.Triple;
+import org.robovm.compiler.clazz.Clazz;
+import org.robovm.compiler.clazz.ClazzInfo;
+import org.robovm.compiler.clazz.Dependency;
+import org.robovm.compiler.clazz.MethodInfo;
+import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.OS;
+import org.robovm.compiler.llvm.Alias;
+import org.robovm.compiler.llvm.AliasRef;
+import org.robovm.compiler.llvm.And;
+import org.robovm.compiler.llvm.ArrayConstant;
+import org.robovm.compiler.llvm.ArrayConstantBuilder;
+import org.robovm.compiler.llvm.ArrayType;
+import org.robovm.compiler.llvm.Bitcast;
+import org.robovm.compiler.llvm.Br;
+import org.robovm.compiler.llvm.ByteArrayConstant;
+import org.robovm.compiler.llvm.Constant;
+import org.robovm.compiler.llvm.ConstantBitcast;
+import org.robovm.compiler.llvm.Fence;
+import org.robovm.compiler.llvm.Function;
+import org.robovm.compiler.llvm.FunctionDeclaration;
+import org.robovm.compiler.llvm.FunctionRef;
+import org.robovm.compiler.llvm.Getelementptr;
+import org.robovm.compiler.llvm.Global;
+import org.robovm.compiler.llvm.GlobalRef;
+import org.robovm.compiler.llvm.Icmp;
+import org.robovm.compiler.llvm.IntegerConstant;
+import org.robovm.compiler.llvm.Label;
+import org.robovm.compiler.llvm.Linkage;
+import org.robovm.compiler.llvm.Load;
+import org.robovm.compiler.llvm.NullConstant;
+import org.robovm.compiler.llvm.Ordering;
+import org.robovm.compiler.llvm.PackedStructureConstantBuilder;
+import org.robovm.compiler.llvm.PointerType;
+import org.robovm.compiler.llvm.Ret;
+import org.robovm.compiler.llvm.Store;
+import org.robovm.compiler.llvm.StructureConstant;
+import org.robovm.compiler.llvm.StructureConstantBuilder;
+import org.robovm.compiler.llvm.StructureType;
+import org.robovm.compiler.llvm.Type;
+import org.robovm.compiler.llvm.Value;
+import org.robovm.compiler.llvm.Variable;
+import org.robovm.compiler.llvm.VariableRef;
+import org.robovm.compiler.plugin.CompilerPlugin;
+import org.robovm.compiler.plugin.debug.DebugInformationTools;
+import org.robovm.compiler.trampoline.Checkcast;
+import org.robovm.compiler.trampoline.Instanceof;
+import org.robovm.compiler.trampoline.Invoke;
+import org.robovm.compiler.trampoline.Invokeinterface;
+import org.robovm.compiler.trampoline.Invokevirtual;
+import org.robovm.compiler.trampoline.Trampoline;
+import org.robovm.compiler.util.io.HfsCompressor;
+import org.robovm.llvm.Context;
+import org.robovm.llvm.LineInfo;
+import org.robovm.llvm.Module;
+import org.robovm.llvm.ObjectFile;
+import org.robovm.llvm.PassManager;
+import org.robovm.llvm.PassManagerBuilder;
+import org.robovm.llvm.Symbol;
+import org.robovm.llvm.Target;
+import org.robovm.llvm.TargetMachine;
+import org.robovm.llvm.binding.Attribute;
+import org.robovm.llvm.binding.CodeGenFileType;
+import org.robovm.llvm.binding.CodeGenOptLevel;
+import org.robovm.llvm.binding.RelocMode;
+import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
+import soot.BooleanType;
+import soot.ByteType;
+import soot.CharType;
+import soot.DoubleType;
+import soot.FloatType;
+import soot.IntType;
+import soot.LongType;
+import soot.Modifier;
+import soot.PrimType;
+import soot.RefLikeType;
+import soot.ShortType;
+import soot.SootClass;
+import soot.SootField;
+import soot.SootMethod;
+import soot.VoidType;
+import soot.jimple.Jimple;
+import soot.jimple.JimpleBody;
+import soot.jimple.internal.JReturnVoidStmt;
+import soot.tagkit.ConstantValueTag;
+import soot.tagkit.Tag;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -45,90 +130,10 @@ import java.util.concurrent.RejectedExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.tuple.Triple;
-import org.robovm.compiler.clazz.Clazz;
-import org.robovm.compiler.clazz.ClazzInfo;
-import org.robovm.compiler.clazz.Dependency;
-import org.robovm.compiler.clazz.MethodInfo;
-import org.robovm.compiler.config.Arch;
-import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.OS;
-import org.robovm.compiler.llvm.Alias;
-import org.robovm.compiler.llvm.AliasRef;
-import org.robovm.compiler.llvm.And;
-import org.robovm.compiler.llvm.ArrayConstantBuilder;
-import org.robovm.compiler.llvm.Bitcast;
-import org.robovm.compiler.llvm.Br;
-import org.robovm.compiler.llvm.Constant;
-import org.robovm.compiler.llvm.ConstantBitcast;
-import org.robovm.compiler.llvm.Fence;
-import org.robovm.compiler.llvm.Function;
-import org.robovm.compiler.llvm.FunctionDeclaration;
-import org.robovm.compiler.llvm.FunctionRef;
-import org.robovm.compiler.llvm.Getelementptr;
-import org.robovm.compiler.llvm.Global;
-import org.robovm.compiler.llvm.GlobalRef;
-import org.robovm.compiler.llvm.Icmp;
-import org.robovm.compiler.llvm.IntegerConstant;
-import org.robovm.compiler.llvm.Label;
-import org.robovm.compiler.llvm.Linkage;
-import org.robovm.compiler.llvm.Load;
-import org.robovm.compiler.llvm.NullConstant;
-import org.robovm.compiler.llvm.Ordering;
-import org.robovm.compiler.llvm.PackedStructureConstantBuilder;
-import org.robovm.compiler.llvm.PointerType;
-import org.robovm.compiler.llvm.Ret;
-import org.robovm.compiler.llvm.Store;
-import org.robovm.compiler.llvm.StructureConstant;
-import org.robovm.compiler.llvm.StructureConstantBuilder;
-import org.robovm.compiler.llvm.StructureType;
-import org.robovm.compiler.llvm.Value;
-import org.robovm.compiler.llvm.Variable;
-import org.robovm.compiler.llvm.VariableRef;
-import org.robovm.compiler.plugin.CompilerPlugin;
-import org.robovm.compiler.trampoline.Checkcast;
-import org.robovm.compiler.trampoline.Instanceof;
-import org.robovm.compiler.trampoline.Invoke;
-import org.robovm.compiler.trampoline.Invokeinterface;
-import org.robovm.compiler.trampoline.Invokevirtual;
-import org.robovm.compiler.trampoline.Trampoline;
-import org.robovm.compiler.util.io.HfsCompressor;
-import org.robovm.llvm.Context;
-import org.robovm.llvm.LineInfo;
-import org.robovm.llvm.Module;
-import org.robovm.llvm.ObjectFile;
-import org.robovm.llvm.PassManager;
-import org.robovm.llvm.PassManagerBuilder;
-import org.robovm.llvm.Symbol;
-import org.robovm.llvm.Target;
-import org.robovm.llvm.TargetMachine;
-import org.robovm.llvm.binding.Attribute;
-import org.robovm.llvm.binding.CodeGenFileType;
-import org.robovm.llvm.binding.CodeGenOptLevel;
-import org.robovm.llvm.binding.RelocMode;
-
-import soot.BooleanType;
-import soot.ByteType;
-import soot.CharType;
-import soot.DoubleType;
-import soot.FloatType;
-import soot.IntType;
-import soot.LongType;
-import soot.Modifier;
-import soot.PrimType;
-import soot.RefLikeType;
-import soot.ShortType;
-import soot.SootClass;
-import soot.SootField;
-import soot.SootMethod;
-import soot.VoidType;
-import soot.jimple.Jimple;
-import soot.jimple.JimpleBody;
-import soot.jimple.internal.JReturnVoidStmt;
-import soot.tagkit.ConstantValueTag;
-import soot.tagkit.Tag;
+import static org.robovm.compiler.Annotations.*;
+import static org.robovm.compiler.Functions.*;
+import static org.robovm.compiler.Types.*;
+import static org.robovm.compiler.llvm.Type.*;
 
 /**
  *
@@ -417,124 +422,52 @@ public class ClassCompiler {
                     ByteArrayOutputStream oFileBytes = new ByteArrayOutputStream();
                     targetMachine.assemble(asm, clazz.getClassName(), oFileBytes);                                                                                               
                     new HfsCompressor().compress(oFile, oFileBytes.toByteArray(), config);
-                    
-                    for (CompilerPlugin plugin : config.getCompilerPlugins()) {
-                        plugin.afterObjectFile(config, clazz, oFile);
-                    }
 
-                    /*
-                     * Read out line number info from the .o file if any and
-                     * assemble into a separate .o file.
-                     */
-                    String symbolPrefix = config.getOs().getFamily() == OS.Family.darwin ? "_" : "";
-                    symbolPrefix += Symbols.EXTERNAL_SYMBOL_PREFIX;
-                    ModuleBuilder linesMb = null;
+                    ModuleBuilder linesMb;
+                    ModuleBuilder debugInfoMb = null;
                     try (ObjectFile objectFile = ObjectFile.load(oFile)) {
-                        for (Symbol symbol : objectFile.getSymbols()) {
-                            if (symbol.getSize() > 0 && symbol.getName().startsWith(symbolPrefix)) {
-                                List<LineInfo> lineInfos = objectFile.getLineInfos(symbol);
-                                if (!lineInfos.isEmpty()) {
-                                    Collections.sort(lineInfos, new Comparator<LineInfo>() {
-                                        public int compare(LineInfo o1, LineInfo o2) {
-                                            return Long.compare(o1.getAddress(), o2.getAddress());
-                                        }
-                                    });
-                                    
-                                    // The base address of the method which will be used to calculate offsets into the method
-                                    long baseAddress = symbol.getAddress();
-                                    // The first line number in the method. All other line numbers in the table will be deltas against this.
-                                    int firstLineNumber = lineInfos.get(0).getLineNumber();
-                                    // Calculate the max address and line number offsets
-                                    long maxAddressOffset = 0;
-                                    long maxLineOffset = 0;
-                                    for (LineInfo lineInfo : lineInfos) {
-                                        maxAddressOffset = Math.max(maxAddressOffset, lineInfo.getAddress() - baseAddress);
-                                        maxLineOffset = Math.max(maxLineOffset, lineInfo.getLineNumber() - firstLineNumber);
-                                    }
+                        // notify plugins
+                        for (CompilerPlugin plugin : config.getCompilerPlugins()) {
+                            plugin.afterObjectFile(config, clazz, oFile, objectFile);
+                        }
 
-                                    // Calculate the number of bytes needed to represent the highest offsets.
-                                    // Either 1, 2 or 4 bytes will be used.
-                                    int addressOffsetSize = (maxAddressOffset & ~0xff) == 0 ? 1 : ((maxAddressOffset & ~0xffff) == 0 ? 2 : 4);
-                                    int lineOffsetSize = (maxLineOffset & ~0xff) == 0 ? 1 : ((maxLineOffset & ~0xffff) == 0 ? 2 : 4);
-                                    
-                                    // The size of the address offsets table. We skip the first LineInfo as its offset is always 0.
-                                    int addressOffsetTableSize = addressOffsetSize * (lineInfos.size() - 1);
-                                    // Pad size of address offset table to make sure line offsets are aligned properly 
-                                    int addressOffsetPadding = (lineOffsetSize - (addressOffsetTableSize & (lineOffsetSize - 1))) & (lineOffsetSize - 1);
-                                    addressOffsetTableSize += addressOffsetPadding;
-                                    
-                                    // The first 32 bits of the line number info contains the number of line numbers
-                                    // minus the first. The 4 most significant bits are used to store the number of
-                                    // bytes needed by each entry in each table.
-                                    int flags = 0;
-                                    flags = addressOffsetSize - 1;
-                                    flags <<= 2;
-                                    flags |= lineOffsetSize - 1;
-                                    flags <<= 28;
-                                    flags |= (lineInfos.size() - 1) & 0x0fffffff;
+                        /*
+                         * Read out line number info from the .o file if any and
+                         * assemble into a separate .o file.
+                         */
+                        linesMb = buildLineNumberData(config, clazz, objectFile);
 
-                                    StructureConstantBuilder builder = new StructureConstantBuilder();
-                                    builder
-                                        .add(new IntegerConstant(flags))
-                                        .add(new IntegerConstant(firstLineNumber));
-                                    
-                                    for (LineInfo lineInfo : lineInfos.subList(1, lineInfos.size())) {
-                                        if (addressOffsetSize == 1) {
-                                            builder.add(new IntegerConstant((byte) (lineInfo.getAddress() - baseAddress)));
-                                        } else if (addressOffsetSize == 2) {
-                                            builder.add(new IntegerConstant((short) (lineInfo.getAddress() - baseAddress)));
-                                        } else {
-                                            builder.add(new IntegerConstant((int) (lineInfo.getAddress() - baseAddress)));
-                                        }
-                                    }
-
-                                    // Padding
-                                    for (int i = 0; i < addressOffsetPadding; i++) {
-                                        builder.add(new IntegerConstant((byte) 0));
-                                    }
-
-                                    for (LineInfo lineInfo : lineInfos.subList(1, lineInfos.size())) {
-                                        if (lineOffsetSize == 1) {
-                                            builder.add(new IntegerConstant((byte) (lineInfo.getLineNumber() - firstLineNumber)));
-                                        } else if (lineOffsetSize == 2) {
-                                            builder.add(new IntegerConstant((short) (lineInfo.getLineNumber() - firstLineNumber)));
-                                        } else {
-                                            builder.add(new IntegerConstant((int) (lineInfo.getLineNumber() - firstLineNumber)));
-                                        }
-                                    }
-
-                                    // Extract the method's name and descriptor from the symbol and
-                                    // build the linetable symbol name.
-                                    String methodName = symbol.getName().substring(symbol.getName().lastIndexOf('.') + 1);
-                                    methodName = methodName.substring(0, methodName.indexOf('('));
-                                    String methodDesc = symbol.getName().substring(symbol.getName().lastIndexOf('('));
-                                    String linetableSymbol = Symbols.linetableSymbol(clazz.getInternalName(), methodName, methodDesc);
-                                    if (linesMb == null) {
-                                        linesMb = new ModuleBuilder();
-                                    }
-                                    linesMb.addGlobal(new Global(linetableSymbol, builder.build(), true));
-                                }
-                            }
+                        /*
+                         * read out debug info binary data amd assemble into a separate .o file
+                         */
+                        if (config.isDebug()) {
+                            debugInfoMb = buildDebugInfoData(config, clazz, objectFile);
                         }
                     }
+
                     if (linesMb != null) {
-                        byte[] linesData = linesMb.build().toString().getBytes("UTF-8");
-                        if (config.isDumpIntermediates()) {
-                            File linesLlFile = config.getLinesLlFile(clazz);
-                            linesLlFile.getParentFile().mkdirs();
-                            FileUtils.writeByteArrayToFile(linesLlFile, linesData);
-                        }
-                        try (Module linesModule = Module.parseIR(context, linesData, clazz.getClassName() + ".lines")) {
-                            File linesOFile = config.getLinesOFile(clazz);
-                            ByteArrayOutputStream linesOBytes = new ByteArrayOutputStream();
-                            targetMachine.emit(linesModule, linesOBytes, CodeGenFileType.ObjectFile);
-                            new HfsCompressor().compress(linesOFile, linesOBytes.toByteArray(), config);
-                        }
+                        File linesLlFile = config.isDumpIntermediates() ? config.getLinesLlFile(clazz) : null;
+                        File linesOFile = config.getLinesOFile(clazz);
+                        createObjectFileFromData(config, context, targetMachine, linesMb, clazz.getClassName() + ".lines",
+                                linesLlFile, linesOFile);
                     } else {
                         // Make sure there's no stale lines.o file lingering
                         File linesOFile = config.getLinesOFile(clazz);
                         if (linesOFile.exists()) {
                             linesOFile.delete();
+                        }
+                    }
+
+                    if (debugInfoMb != null) {
+                        File debugInfoLlFile = config.isDumpIntermediates() ? config.getDebugInfoLlFile(clazz) : null;
+                        File debugInfoOFile = config.getDebugInfoOFile(clazz);
+                        createObjectFileFromData(config, context, targetMachine, debugInfoMb, clazz.getClassName() + ".debuginfo",
+                                debugInfoLlFile, debugInfoOFile);
+                    } else {
+                        // Make sure there's no stale debuginfo.o file lingering
+                        File debugInfoOFile = config.getDebugInfoOFile(clazz);
+                        if (debugInfoOFile.exists()) {
+                            debugInfoOFile.delete();
                         }
                     }
                 }
@@ -554,6 +487,186 @@ public class ClassCompiler {
             }
             throw new CompilerException(t);
         }
+    }
+
+    private static void createObjectFileFromData(Config config, Context context, TargetMachine targetMachine, ModuleBuilder mb,
+                                                 String dataName, File llFile, File oFile) throws IOException, InterruptedException {
+        byte[] data = mb.build().toString().getBytes("UTF-8");
+        if (llFile != null) {
+            llFile.getParentFile().mkdirs();
+            FileUtils.writeByteArrayToFile(llFile, data);
+        }
+        try (Module module = Module.parseIR(context, data, dataName)) {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            targetMachine.emit(module, bytes, CodeGenFileType.ObjectFile);
+            new HfsCompressor().compress(oFile, bytes.toByteArray(), config);
+        }
+
+    }
+
+    private static ModuleBuilder buildLineNumberData(Config config, Clazz clazz, ObjectFile objectFile) {
+        ModuleBuilder linesMb = null;
+        String symbolPrefix = config.getOs().getFamily() == OS.Family.darwin ? "_" : "";
+        symbolPrefix += Symbols.EXTERNAL_SYMBOL_PREFIX;
+
+        for (Symbol symbol : objectFile.getSymbols()) {
+            if (symbol.getSize() > 0 && symbol.getName().startsWith(symbolPrefix)) {
+                List<LineInfo> lineInfos = objectFile.getLineInfos(symbol);
+                if (!lineInfos.isEmpty()) {
+                    Collections.sort(lineInfos, new Comparator<LineInfo>() {
+                        public int compare(LineInfo o1, LineInfo o2) {
+                            return Long.compare(o1.getAddress(), o2.getAddress());
+                        }
+                    });
+
+                    // The base address of the method which will be used to calculate offsets into the method
+                    long baseAddress = symbol.getAddress();
+                    // The first line number in the method. All other line numbers in the table will be deltas against this.
+                    int firstLineNumber = lineInfos.get(0).getLineNumber();
+                    // Calculate the max address and line number offsets
+                    long maxAddressOffset = 0;
+                    long maxLineOffset = 0;
+                    for (LineInfo lineInfo : lineInfos) {
+                        maxAddressOffset = Math.max(maxAddressOffset, lineInfo.getAddress() - baseAddress);
+                        maxLineOffset = Math.max(maxLineOffset, lineInfo.getLineNumber() - firstLineNumber);
+                    }
+
+                    // Calculate the number of bytes needed to represent the highest offsets.
+                    // Either 1, 2 or 4 bytes will be used.
+                    int addressOffsetSize = (maxAddressOffset & ~0xff) == 0 ? 1 : ((maxAddressOffset & ~0xffff) == 0 ? 2 : 4);
+                    int lineOffsetSize = (maxLineOffset & ~0xff) == 0 ? 1 : ((maxLineOffset & ~0xffff) == 0 ? 2 : 4);
+
+                    // The size of the address offsets table. We skip the first LineInfo as its offset is always 0.
+                    int addressOffsetTableSize = addressOffsetSize * (lineInfos.size() - 1);
+                    // Pad size of address offset table to make sure line offsets are aligned properly
+                    int addressOffsetPadding = (lineOffsetSize - (addressOffsetTableSize & (lineOffsetSize - 1))) & (lineOffsetSize - 1);
+                    addressOffsetTableSize += addressOffsetPadding;
+
+                    // The first 32 bits of the line number info contains the number of line numbers
+                    // minus the first. The 4 most significant bits are used to store the number of
+                    // bytes needed by each entry in each table.
+                    int flags = 0;
+                    flags = addressOffsetSize - 1;
+                    flags <<= 2;
+                    flags |= lineOffsetSize - 1;
+                    flags <<= 28;
+                    flags |= (lineInfos.size() - 1) & 0x0fffffff;
+
+                    StructureConstantBuilder builder = new StructureConstantBuilder();
+                    builder
+                            .add(new IntegerConstant(flags))
+                            .add(new IntegerConstant(firstLineNumber));
+
+                    for (LineInfo lineInfo : lineInfos.subList(1, lineInfos.size())) {
+                        if (addressOffsetSize == 1) {
+                            builder.add(new IntegerConstant((byte) (lineInfo.getAddress() - baseAddress)));
+                        } else if (addressOffsetSize == 2) {
+                            builder.add(new IntegerConstant((short) (lineInfo.getAddress() - baseAddress)));
+                        } else {
+                            builder.add(new IntegerConstant((int) (lineInfo.getAddress() - baseAddress)));
+                        }
+                    }
+
+                    // Padding
+                    for (int i = 0; i < addressOffsetPadding; i++) {
+                        builder.add(new IntegerConstant((byte) 0));
+                    }
+
+                    for (LineInfo lineInfo : lineInfos.subList(1, lineInfos.size())) {
+                        if (lineOffsetSize == 1) {
+                            builder.add(new IntegerConstant((byte) (lineInfo.getLineNumber() - firstLineNumber)));
+                        } else if (lineOffsetSize == 2) {
+                            builder.add(new IntegerConstant((short) (lineInfo.getLineNumber() - firstLineNumber)));
+                        } else {
+                            builder.add(new IntegerConstant((int) (lineInfo.getLineNumber() - firstLineNumber)));
+                        }
+                    }
+
+                    // Extract the method's name and descriptor from the symbol and
+                    // build the linetable symbol name.
+                    String methodName = symbol.getName().substring(symbol.getName().lastIndexOf('.') + 1);
+                    methodName = methodName.substring(0, methodName.indexOf('('));
+                    String methodDesc = symbol.getName().substring(symbol.getName().lastIndexOf('('));
+                    String linetableSymbol = Symbols.linetableSymbol(clazz.getInternalName(), methodName, methodDesc);
+                    if (linesMb == null) {
+                        linesMb = new ModuleBuilder();
+                    }
+                    linesMb.addGlobal(new Global(linetableSymbol, builder.build(), true));
+                }
+            }
+        }
+
+        return linesMb;
+    }
+
+    private static ModuleBuilder buildDebugInfoData(Config config, Clazz clazz, ObjectFile objectFile) throws IOException {
+        ModuleBuilder debugInfoMb = null;
+
+        DebugObjectFileInfo debugInfo = clazz.getAttachment(DebugObjectFileInfo.class);
+        if (debugInfo != null) {
+            // read all binary data to file
+            byte[] debugDataBytes = DebugInformationTools.dumpDebugInfo(debugInfo);
+            String debugInfoSymbol = Symbols.debugInfoSymbol(clazz.getInternalName());
+            debugInfoMb = new ModuleBuilder();
+            Global debugInfoSymbolGlobal = new Global(debugInfoSymbol, new ByteArrayConstant(debugDataBytes), true);
+            debugInfoMb.addGlobal(debugInfoSymbolGlobal);
+
+            // use a list for used as spfp offset data will go there as well
+            List<Value> usedGlobalValues = new ArrayList<>();
+            usedGlobalValues.add(new ConstantBitcast(debugInfoSymbolGlobal.ref(), Type.I8_PTR));
+
+            // add reference to spFpOfsset symbols to llvm.used otherwise linker will remove them
+            if (config.getTarget().getArch().isArm()) {
+                List<Value> spfpGlobals = new ArrayList<>();
+
+                // cant get this information during debugger run as linker removes this information
+                // other option would be to add it to llvm.used field in patch but this is longer way than analize it
+                // during compile path
+                String prefix = "_[J]";
+                String suffix = ".spfpoffset";
+                for (Symbol symbol : objectFile.getSymbols()) {
+                    String symbName = symbol.getName();
+                    if (symbol.getSize() <= 0 || !symbName.startsWith(prefix) || !symbName.endsWith(suffix))
+                        continue;
+
+                    // substring to skip '_' as llvm will make it '__' in result
+                    Global spfp = new Global(symbName.substring(1), Type.I32);
+                    // add it as global to ba able reference it
+                    debugInfoMb.addGlobal(spfp);
+
+                    spfpGlobals.add(spfp.ref());
+                }
+
+                if (!spfpGlobals.isEmpty()) {
+                    // create dummy array to keep spfpoffset from being dropped by linker. this array is not going to be
+                    // used directly
+                    ArrayConstant globals = new ArrayConstant(new ArrayType(spfpGlobals.size(), new PointerType(Type.I32)),
+                            spfpGlobals.toArray(new Value[spfpGlobals.size()]));
+                    Global arrGlobal = new Global(clazz.getClassName() + "[spfprefs]", globals, true);
+                    debugInfoMb.addGlobal(arrGlobal);
+                    usedGlobalValues.add(new ConstantBitcast(arrGlobal.ref(), Type.I8_PTR));
+                }
+            }
+
+            // also need to add reference to @llvm.used otherwise linker will drop out this data as not used
+            Global usedGlobal;
+            if (usedGlobalValues.size() > 1) {
+                ArrayConstant usedValuesArr = new ArrayConstant(new ArrayType(usedGlobalValues.size(), Type.I8_PTR),
+                        usedGlobalValues.toArray(new Value[usedGlobalValues.size()]));
+                usedGlobal = new Global("llvm.used", Linkage.appending, usedValuesArr, false, "llvm.metadata");
+            } else {
+                usedGlobal = new Global("llvm.used", Linkage.appending, new ConstantBitcast(debugInfoSymbolGlobal.ref(), Type.I8_PTR),
+                        false, "llvm.metadata");
+            }
+            debugInfoMb.addGlobal(usedGlobal);
+
+            if (config.isDumpIntermediates()) {
+                File f = new File(config.getDebugInfoOFile(clazz).getAbsolutePath() + ".dump");
+                DebugInformationTools.dumpDebugInfoAsText(debugInfo, f);
+            }
+        }
+
+        return debugInfoMb;
     }
 
     private static PassManager createPassManager(Config config) {
@@ -676,7 +789,11 @@ public class ClassCompiler {
         ClazzInfo ci = clazz.resetClazzInfo();
 
         mb = new ModuleBuilder();
-        
+
+        for (CompilerPlugin compilerPlugin : config.getCompilerPlugins()) {
+            compilerPlugin.helloClass(config, clazz);
+        }
+
         for (CompilerPlugin compilerPlugin : config.getCompilerPlugins()) {
             compilerPlugin.beforeClass(config, clazz, mb);
         }

@@ -9,8 +9,8 @@
 package org.robovm.llvm.binding;
 
 public class MemoryBufferRefOut {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected MemoryBufferRefOut(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
