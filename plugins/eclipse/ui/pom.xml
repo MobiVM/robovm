@@ -38,7 +38,7 @@
       <dependency>
       	<groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-debugger</artifactId>
-            <version>${project.version}</version>
+            <version>${robovm.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.mobidevelop.robovm</groupId>
@@ -51,6 +51,17 @@
         <artifactId>robovm-templater</artifactId>
         <version>${robovm.version}</version>
       </dependency>
+      <dependency>
+        <groupId>com.mobidevelop.robovm</groupId>
+        <artifactId>robovm-ibxcode</artifactId>
+        <version>${robovm.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.bcel</groupId> <!-- required for ibxcode -->
+        <artifactId>bcel</artifactId>
+        <version>6.0</version>
+      </dependency>
+      
     </dependencies>
   </dependencyManagement>
 
@@ -93,6 +104,18 @@
             <artifactItem>
               <groupId>com.mobidevelop.robovm</groupId>
               <artifactId>robovm-dist-compiler</artifactId>
+            </artifactItem>
+            <artifactItem>
+              <groupId>com.mobidevelop.robovm</groupId>
+              <artifactId>robovm-debugger</artifactId>
+            </artifactItem>
+            <artifactItem>
+              <groupId>com.mobidevelop.robovm</groupId>
+              <artifactId>robovm-ibxcode</artifactId>
+            </artifactItem>
+            <artifactItem>
+		      <groupId>org.apache.bcel</groupId> <!-- required for ibxcode -->
+		      <artifactId>bcel</artifactId>
             </artifactItem>
             <artifactItem>
               <groupId>com.mobidevelop.robovm</groupId>
