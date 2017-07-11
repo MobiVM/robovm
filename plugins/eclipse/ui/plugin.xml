@@ -33,7 +33,7 @@
       preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
       project="true"/>
   </extension>
-  <extension point="org.eclipse.ui.newWizards">
+<!--  <extension point="org.eclipse.ui.newWizards">
     <category id="org.robovm.eclipse.wizards.category" name="RoboVM"/>
     <wizard
       canFinishEarly="false"
@@ -47,7 +47,7 @@
       preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
       project="false"/>
   </extension>
-<!--  <extension point="org.eclipse.ui.newWizards">
+  <extension point="org.eclipse.ui.newWizards">
     <category id="org.robovm.eclipse.wizards.category" name="RoboVM"/>
     <wizard
       canFinishEarly="false"
@@ -440,6 +440,7 @@
       </menu>
     </menuContribution>
   </extension>
+<!--  
   <extension point="org.eclipse.ui.editors">
     <editor id="org.robovm.eclipse.ib.StoryboardEditor"
                name="iOS Storyboard Editor"
@@ -454,4 +455,5 @@
                launcher="org.robovm.eclipse.internal.ib.XcodeLauncher">
     </editor>
   </extension>
+-->  
 </plugin>

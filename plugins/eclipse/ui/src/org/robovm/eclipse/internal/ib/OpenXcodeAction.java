@@ -17,7 +17,14 @@
 package org.robovm.eclipse.internal.ib;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -37,12 +44,28 @@ public class OpenXcodeAction implements IObjectActionDelegate {
             return;
         }
         for (Object o : ((IStructuredSelection) selection).toList()) {
-            IProject project = toProject(o);
+            final IProject project = toProject(o);
             if (project != null) {
-                IBIntegratorProxy ib = IBIntegratorManager.getInstance().getIBIntegrator(project);
-                if (ib != null) {
-                    ib.openProject();
-                }
+                final IBIntegratorProxy ib = IBIntegratorManager.getInstance().getIBIntegrator(project);
+                if (ib == null)
+                    continue;
+                Job job = new Job("Opening Xcode") {
+                    @Override
+                    protected IStatus run(IProgressMonitor monitor) {
+                        SubMonitor subMonitor = SubMonitor.convert(monitor, 2);
+                        try {
+                            project.build(IncrementalProjectBuilder.AUTO_BUILD, monitor);
+                            subMonitor.worked(1);
+                            ib.openProject();
+                            subMonitor.worked(1);
+                        } catch (CoreException e) {
+                            return Status.CANCEL_STATUS;
+                        }
+                        return Status.OK_STATUS;
+                    }
+                };
+                job.schedule();
+                break;
             }
         }
     }
