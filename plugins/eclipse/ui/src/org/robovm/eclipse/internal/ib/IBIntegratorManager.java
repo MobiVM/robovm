@@ -45,20 +45,10 @@ import org.robovm.eclipse.RoboVMPlugin;
  * 
  */
 public class IBIntegratorManager implements IResourceChangeListener {
-    private static boolean hasIBIntegrator;
     private static IBIntegratorManager instance;
 
     private final Map<IProject, IBIntegratorProxy> daemons = new HashMap<IProject, IBIntegratorProxy>();
 
-    static {
-        try {
-            IBIntegratorProxy.getIBIntegratorClass();
-            hasIBIntegrator = true;
-        } catch (Throwable t) {
-            hasIBIntegrator = false;
-            RoboVMPlugin.getConsoleLogger().warn(t.getMessage());
-        }
-    }
 
     public static IBIntegratorManager getInstance() {
         if (instance == null) {
@@ -68,14 +58,24 @@ public class IBIntegratorManager implements IResourceChangeListener {
     }
 
     public IBIntegratorProxy getIBIntegrator(IProject project) {
-        return daemons.get(project);
+    	IBIntegratorProxy proxy =  daemons.get(project);
+    	if (proxy != null) {
+    		// dkimitsa: update class path as it could be changed 
+            IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+            IJavaProject javaProject = JavaCore.create(project);
+
+            List<File> classpath;
+			try {
+				classpath = new ArrayList<>(resolveClasspath(root, javaProject));
+	            proxy.setClasspath(classpath);
+			} catch (JavaModelException e) {
+			}
+    	}
+    	return proxy;
     }
 
     public void start(IProgressMonitor monitor) throws CoreException {
         if (!System.getProperty("os.name").toLowerCase().contains("mac os x")) {
-            return;
-        }
-        if (!hasIBIntegrator) {
             return;
         }
 
@@ -107,37 +107,12 @@ public class IBIntegratorManager implements IResourceChangeListener {
                 File dir = RoboVMPlugin.getBuildDir(name);
                 dir.mkdirs();
                 RoboVMPlugin.consoleDebug("Starting Interface Builder integrator daemon for project %s", name);
-                proxy = new IBIntegratorProxy(RoboVMPlugin.getRoboVMHome(), RoboVMPlugin.getConsoleLogger(), name, dir);
+                proxy = new IBIntegratorProxy(RoboVMPlugin.getRoboVMHome(), RoboVMPlugin.getConsoleLogger(), name, project.getLocation().toFile(), dir);
                 proxy.start();
                 daemons.put(project, proxy);
-            } catch (RuntimeException e) {
-                if (e.getClass().getSimpleName().equals("UnlicensedException")) {
-                    RoboVMPlugin.getConsoleLogger().warn("Failed to start Interface Builder "
-                            + "integrator for project " + name + ": " + e.getMessage());
-                } else {
-                    throw e;
-                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
-
-        if (proxy != null) {
-            IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-            IJavaProject javaProject = JavaCore.create(project);
-
-            File infoPlist = RoboVMPlugin.getRoboVMProjectInfoPlist(project);
-            if (infoPlist != null) {
-                proxy.setInfoPlist(infoPlist);
-            }
-
-            List<File> classpath = new ArrayList<>(resolveClasspath(root, javaProject));
-            proxy.setClasspath(classpath);
-
-            proxy.setSourceFolders(getOutputLocations(javaProject));
-
-            Set<File> resourcePaths = RoboVMPlugin.getRoboVMProjectResourcePaths(project);
-            proxy.setResourceFolders(resourcePaths);
         }
     }
 
@@ -227,14 +202,16 @@ public class IBIntegratorManager implements IResourceChangeListener {
                             shutdownDaemonIfRunning(project);
                             return false;
                         }
-                    } else if ((resource.getType() & IResource.FILE) != 0) {
+                    }/**
+                    dkimitsa: no need to monitor file change as entire project will be regenerated 
+                     else if ((resource.getType() & IResource.FILE) != 0) {
                         if ("robovm.xml".equals(resource.getName())) {
                             // A robovm.xml has been modified in some way. Could
                             // be a change to the resource folders.
                             projectChanged(resource.getProject());
                             return false;
                         }
-                    }
+                    } */
                     return true;
                 }
             });

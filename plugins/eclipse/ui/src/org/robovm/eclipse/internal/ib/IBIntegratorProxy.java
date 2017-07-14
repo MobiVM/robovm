@@ -17,202 +17,100 @@
 package org.robovm.eclipse.internal.ib;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Home;
 import org.robovm.compiler.log.Logger;
+import org.robovm.ibxcode.IBXcodeProject;
 
 /**
  * 
  */
 public class IBIntegratorProxy {
-    private static Class<?> ibintegratorClass;
-    private final Object instance;
 
-    static Class<?> getIBIntegratorClass() {
-        if (ibintegratorClass == null) {
-            try {
-                ibintegratorClass = Class.forName("com.robovm.ibintegrator.IBIntegrator");
-            } catch (ClassNotFoundException e) {
-                throw new Error("The RoboVM Interface Builder integrator has not "
-                        + "been compiled into this version of the RoboVM for Eclipse plugin");
-            }
-        }
-        return ibintegratorClass;
-    }
-
-    public IBIntegratorProxy(Home home, Logger logger, String projectName, File target) {
-        try {
-            try {
-                instance = getIBIntegratorClass().getConstructor(Home.class, Logger.class, String.class, File.class)
-                        .newInstance(home, logger, projectName, target);
-            } catch (InvocationTargetException e) {
-                throw e.getCause() != null ? e.getCause() : e;
-            }
-        } catch (Error | RuntimeException e) {
-            throw e;
-        } catch (Throwable t) {
-            throw new Error(t);
-        }
-    }
-
-    public void setInfoPlist(final File file) {
-        try {
-            try {
-                getIBIntegratorClass().getMethod("setInfoPlist", File.class).invoke(instance, file);
-            } catch (InvocationTargetException e) {
-                throw e.getCause() != null ? e.getCause() : e;
-            }
-        } catch (Error | RuntimeException e) {
-            throw e;
-        } catch (Throwable t) {
-            throw new Error(t);
-        }
-    }
-
-    public void setResourceFolders(Set<File> resourceFolders) {
-        try {
-            try {
-                getIBIntegratorClass().getMethod("setResourceFolders", Set.class).invoke(instance, resourceFolders);
-            } catch (InvocationTargetException e) {
-                throw e.getCause() != null ? e.getCause() : e;
-            }
-        } catch (Error | RuntimeException e) {
-            throw e;
-        } catch (Throwable t) {
-            throw new Error(t);
-        }
+	private final Home home;
+	private final String projectName;
+	private final File projectLocation;
+	private final File target;
+	private List<File> classpath;
+	private final Logger logger;
+	
+    public IBIntegratorProxy(Home home, Logger logger, String projectName, File projectLocation, File target) {
+    	this.home = home;
+    	this.logger = logger;
+    	this.projectName = projectName;
+    	this.projectLocation = projectLocation;
+    	this.target = target;
     }
 
     public void setClasspath(List<File> classpath) {
-        try {
-            try {
-                getIBIntegratorClass().getMethod("setClasspath", List.class).invoke(instance, classpath);
-            } catch (InvocationTargetException e) {
-                throw e.getCause() != null ? e.getCause() : e;
-            }
-        } catch (Error | RuntimeException e) {
-            throw e;
-        } catch (Throwable t) {
-            throw new Error(t);
-        }
-    }
-
-    public void setSourceFolders(Set<File> sourceFolders) {
-        try {
-            try {
-                getIBIntegratorClass().getMethod("setSourceFolders", Set.class).invoke(instance, sourceFolders);
-            } catch (InvocationTargetException e) {
-                throw e.getCause() != null ? e.getCause() : e;
-            }
-        } catch (Error | RuntimeException e) {
-            throw e;
-        } catch (Throwable t) {
-            throw new Error(t);
-        }
+    	this.classpath = classpath;
     }
 
     public File newIOSStoryboard(String name, File path) {
-        try {
-            try {
-                return (File) getIBIntegratorClass().getMethod("newIOSStoryboard", String.class, File.class)
-                        .invoke(instance, name, path);
-            } catch (InvocationTargetException e) {
-                throw e.getCause() != null ? e.getCause() : e;
-            }
-        } catch (Error | RuntimeException e) {
-            throw e;
-        } catch (Throwable t) {
-            throw new Error(t);
-        }
+    	throw new RuntimeException("Not available");
     }
 
     public File newIOSView(String name, File path) {
-        try {
-            try {
-                return (File) getIBIntegratorClass().getMethod("newIOSView", String.class, File.class)
-                        .invoke(instance, name, path);
-            } catch (InvocationTargetException e) {
-                throw e.getCause() != null ? e.getCause() : e;
-            }
-        } catch (Error | RuntimeException e) {
-            throw e;
-        } catch (Throwable t) {
-            throw new Error(t);
-        }
+    	throw new RuntimeException("Not available");
     }
 
     public File newIOSViewController(String name, File path) {
-        try {
-            try {
-                return (File) getIBIntegratorClass().getMethod("newIOSViewController", String.class, File.class)
-                        .invoke(instance, name, path);
-            } catch (InvocationTargetException e) {
-                throw e.getCause() != null ? e.getCause() : e;
-            }
-        } catch (Error | RuntimeException e) {
-            throw e;
-        } catch (Throwable t) {
-            throw new Error(t);
-        }
+    	throw new RuntimeException("Not available");
     }
 
     public void openProject() {
+        // load the robovm.xml file
+    	IBConfigBuilder builder;
+    	IBXcodeProject ibXcodeProject;
         try {
-            try {
-                getIBIntegratorClass().getMethod("openProject").invoke(instance);
-            } catch (InvocationTargetException e) {
-                throw e.getCause() != null ? e.getCause() : e;
+        	builder = new IBConfigBuilder();;
+            builder.logger(this.logger);
+            builder.readProjectProperties(this.projectLocation, false);
+            builder.readProjectConfig(this.projectLocation, false);
+            
+            // set the user classpath entries
+            builder.clearBootClasspathEntries();
+            builder.clearClasspathEntries();
+            for (File path : classpath) {
+                builder.addClasspathEntry(path);
             }
-        } catch (Error | RuntimeException e) {
-            throw e;
-        } catch (Throwable t) {
-            throw new Error(t);
+
+
+            Config config = builder.build();
+            ibXcodeProject = new IBXcodeProject(config);
+        } catch (IOException e) {
+            return;
         }
+
+        File exportDir = new File(this.target, ".ib");
+        ibXcodeProject.generate(this.projectLocation, exportDir, this.projectName, true);
+
+    	
     }
 
     public void openProjectFile(String file) {
-        try {
-            try {
-                getIBIntegratorClass().getMethod("openProjectFile", String.class)
-                        .invoke(instance, file);
-            } catch (InvocationTargetException e) {
-                throw e.getCause() != null ? e.getCause() : e;
-            }
-        } catch (Error | RuntimeException e) {
-            throw e;
-        } catch (Throwable t) {
-            throw new Error(t);
-        }
+    	throw new RuntimeException("Not available");
     }
 
     public void start() {
-        try {
-            try {
-                getIBIntegratorClass().getMethod("start").invoke(instance);
-            } catch (InvocationTargetException e) {
-                throw e.getCause() != null ? e.getCause() : e;
-            }
-        } catch (Error | RuntimeException e) {
-            throw e;
-        } catch (Throwable t) {
-            throw new Error(t);
-        }
     }
 
     public void shutDown() {
-        try {
-            try {
-                getIBIntegratorClass().getMethod("shutDown").invoke(instance);
-            } catch (InvocationTargetException e) {
-                throw e.getCause() != null ? e.getCause() : e;
-            }
-        } catch (Error | RuntimeException e) {
-            throw e;
-        } catch (Throwable t) {
-            throw new Error(t);
+    }
+    
+    static class IBConfigBuilder extends Config.Builder {
+        IBConfigBuilder() throws IOException {
+        }
+
+        @Override
+        public Config build() throws IOException {
+            // do not build any complex config as it is time consuming and not required at all for this task
+            return this.config;
         }
     }
+
 }
