@@ -80,6 +80,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         repositorySystem = createRepositorySystem();
         repositorySystemSession = createRepositorySystemSession();
         remoteRepositories = createRemoteRepositories();
+        setGroup("MobiVM");
     }
 
     public AppCompiler build(OS os, Arch arch, String targetType) {
