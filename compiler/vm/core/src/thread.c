@@ -666,7 +666,7 @@ void rvmChangeThreadPriority(Env* env, Thread* thread, jint priority) {
     if(priority > 10) rvmAbort("Thread priority must be <= Thread.MAX_PRIORITY");
     int minPriority = sched_get_priority_min(policy);
     int maxPriority = sched_get_priority_max(policy);
-    param.sched_priority = minPriority + roundf((priority - 1.0f) / 9.0f * maxPriority - minPriority);
+    param.sched_priority = minPriority + roundf((priority - 1.0f) / 9.0f * (maxPriority - minPriority));
     ret = pthread_setschedparam(thread->pThread, policy, &param);
     if(ret != 0) rvmAbort("pthread_attr_getschedpolicy failed");
 }
