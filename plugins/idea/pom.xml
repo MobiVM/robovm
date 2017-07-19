@@ -141,13 +141,6 @@
                     <systemPath>${idea.home}/plugins/android/lib/android.jar</systemPath>
                 </dependency>
                 <dependency>
-                    <groupId>org.jetbrains.plugin.android</groupId>
-                    <artifactId>common</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/common.jar</systemPath>
-                </dependency>
-                <dependency>
                     <groupId>org.jetbrains.plugin</groupId>
                     <artifactId>android-common</artifactId>
                     <version>1.0.0</version>
