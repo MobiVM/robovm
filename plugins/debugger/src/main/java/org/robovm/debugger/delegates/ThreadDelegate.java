@@ -30,6 +30,9 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
      */
     private final AllDelegates delegates;
 
+    /** flag that hooks was moved forward from hand break */
+    private boolean vmResumed;
+
     public ThreadDelegate(AllDelegates delegates) {
         this.delegates = delegates;
     }
@@ -79,6 +82,12 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
 
     @Override
     public void jdwpResumeAllThreads() {
+        if (!vmResumed) {
+            vmResumed = true;
+            // tell hooks that we can start
+            delegates.hooksApi().threadResume(0);
+        }
+
         for (VmThread thread : delegates.state().threads())
             resumeThread(thread);
     }
@@ -161,5 +170,12 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
                 return thread;
         }
         return null;
+    }
+
+    /**
+     * @return true if VMResume has been performed
+     */
+    public boolean isVmResumed() {
+        return vmResumed;
     }
 }

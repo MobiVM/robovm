@@ -91,7 +91,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     private List<JdwpEventRequest> jdwpEventRequests = new ArrayList<>();
 
     /** local flag that VM was resumed */
-    private boolean vmResumed;
+    private boolean vmStartedNotified;
 
     /** active step-in event request to be able to resume suspended thread and keep step in */
     private RuntimeUtils.RuntimeStepReference activeStepInRequest;
@@ -125,22 +125,29 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     public void onConnectedToJdpw() {
         // if there is connection to hooks established -- resume VM
         if (delegates.hooksApi() != null)
-            resumeVm();
+            notifyVmStarted();
     }
 
 
     /**
      * Resumes target VM
      */
-    private void resumeVm() {
-        if (vmResumed)
+    private void notifyVmStarted() {
+        if (vmStartedNotified)
             return;
-        vmResumed = true;
+        vmStartedNotified = true;
 
         if (delegates.hooksApi() == null)
             throw new DebuggerException("Hooks API is required to be set to resume VM");
 
-        delegates.hooksApi().threadResume(0);
+        // suspend all thread
+        delegates.threads().jdwpSuspendAllThreads();
+
+        // send VM started notification, keep all thread suspended, e.g. keep hooks on handbreak till VM resume is received
+        jdwpEventPayload.reset();
+        JdwpEventData data = new JdwpEventData(JdwpConsts.EventKind.VM_START, null);
+        data.dump(jdwpEventPayload, 0);
+        delegates.jdwpServerApi().sendEvent(JdwpConsts.SuspendPolicy.ALL, 1, jdwpEventPayload);
     }
 
 
@@ -436,10 +443,8 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     private void processEventsCycle() {
         synchronized (delegates.state().centralLock()) {
             if (delegates.jdwpServerApi() != null) {
-                // TODO: will not send VM_START as there is no main thread value yet
-
-                // resume application (on debugger attached) and
-                resumeVm();
+                // hooks channels is connected, notify that VM is started
+                notifyVmStarted();
 
                 // apply breakpoints if any
                 for (JdwpEventRequest request : jdwpEventRequests) {
