@@ -72,7 +72,9 @@ public class RoboVmGlobalConfig implements Configurable {
     }
 
     public static boolean isCompileOnSave() {
-        return PropertiesComponent.getInstance().getBoolean(ROBOVM_COMPILE_ON_SAVE, true);
+        // dkimitsa: forced to return false as compile on saved is not required for new xcode pluggin
+        return false;
+//        return PropertiesComponent.getInstance().getBoolean(ROBOVM_COMPILE_ON_SAVE, true);
     }
 
     public void setCompileOnSave(boolean isCompileOnSave) {
