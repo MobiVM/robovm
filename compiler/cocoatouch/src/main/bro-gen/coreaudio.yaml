@@ -9,7 +9,7 @@ typedefs: {}
     
 enums:
     AudioErrorCode: {first: kAudio_UnimplementedError, prefix: kAudio_, suffix: Error}
-    AudioFormat: {first: kAudioFormatLinearPCM, prefix: kAudioFormat, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler}
+    AudioFormat: {first: kAudioFormatLinearPCM, prefix: kAudioFormat}
     AudioFormatFlags: 
         first: kAudioFormatFlagIsFloat
         bits: true
