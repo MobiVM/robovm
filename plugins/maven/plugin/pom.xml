@@ -15,7 +15,7 @@
   <packaging>maven-plugin</packaging>
 
   <name>RoboVM Maven Plugin</name>
-  <url>https://github.com/mobidevelop/robovm</url>
+  <url>https://github.com/MobiVM/robovm</url>
   <description>
     The RoboVM Maven Plugin provides a way to build RoboVM based distribution bundles.
   </description>

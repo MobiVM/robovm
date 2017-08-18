@@ -13,7 +13,7 @@
     <name>RoboVM XCode/IB project generator</name>
     <version>2.3.2-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <url>http://github.com/mobidevelop/robovm</url>
+    <url>http://github.com/MobiVM/robovm</url>
     <description>
       The RoboVM doesn't provide any functionality to edit xib/storyboards at iOS side.
       All changes to be done in Interface Builder. To simplify it simple xcode project is

@@ -14,20 +14,20 @@
   <artifactId>robovm-parent</artifactId>
   <name>RoboVM Parent</name>
   <packaging>pom</packaging>
-  <url>http://github.com/mobidevelop/robovm</url>
+  <url>http://github.com/MobiVM/robovm</url>
   <description>
     The RoboVM compiler translates Java bytecode into native ARM or x86 code. Apps run directly on the CPU. No interpreter or virtual machine involved.
   </description>
   <inceptionYear>2012</inceptionYear>
 
   <issueManagement>
-    <url>https://github.com/mobidevelop/robovm</url>
+    <url>https://github.com/MobiVM/robovm</url>
   </issueManagement>
 
   <scm>
-    <url>https://github.com/mobidevelop/robovm</url>
-    <connection>scm:git:https://github.com/mobidevelop/robovm.git</connection>
-    <developerConnection>scm:git:https://github.com/mobidevelop/robovm.git</developerConnection>
+    <url>https://github.com/MobiVM/robovm</url>
+    <connection>scm:git:https://github.com/MobiVM/robovm.git</connection>
+    <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>
   </scm>
 
   <properties>

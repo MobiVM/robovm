@@ -14,7 +14,7 @@
     <name>RoboVM Debugger</name>
     <version>2.3.2-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <url>http://github.com/mobidevelop/robovm</url>
+    <url>http://github.com/MobiVM/robovm</url>
     <description>
         Software debugger implementation for RoboVM
     </description>

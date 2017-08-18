@@ -13,9 +13,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git://github.com/mobidevelop/robovm.git</connection>
+        <connection>scm:git:git://github.com/MobiVM/robovm.git</connection>
         <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>
-        <url>https://github.com/mobidevelop/robovm.git</url>
+        <url>https://github.com/MobiVM/robovm.git</url>
       <tag>HEAD</tag>
   </scm>
 
