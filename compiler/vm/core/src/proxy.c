@@ -327,18 +327,21 @@ static ITables* createITables(Env* env, Class* superclass, jint interfacesCount,
         count += countInterfacesForITables(env, interfaces[i]);
         if (rvmExceptionOccurred(env)) return NULL;
     }
-    if (count == 0) return NULL;
 
     ITables* itables = rvmAllocateMemory(env, sizeof(ITables) + sizeof(ITable*) * count);
     if (!itables) return NULL;
 
     itables->count = count;
-    jint index = 0;
-    for (i = 0; i < interfacesCount; i++) {
-        initITableArray(env, interfaces[i], &index, itables->table);
-        if (rvmExceptionOccurred(env)) return NULL;
+
+    // fix for Proxy.getProxyClass returns null for an empty interface #173
+    if (count != 0) {
+        jint index = 0;
+        for (i = 0; i < interfacesCount; i++) {
+            initITableArray(env, interfaces[i], &index, itables->table);
+            if (rvmExceptionOccurred(env)) return NULL;
+        }
+        itables->cache = itables->table[0];
     }
-    itables->cache = itables->table[0];
 
     return itables;
 }
