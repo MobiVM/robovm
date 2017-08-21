@@ -182,7 +182,7 @@ public class LambdaClassGenerator {
         // invoke dynamic call. We need to handle that parameter separately as
         // it's not part of the method signature of the implementation
         boolean paramsContainReceiver = isInstanceMethod
-                & !caller.getName().equals(implMethod.getMethodRef().declaringClass().getName())
+//                && !caller.getName().equals(implMethod.getMethodRef().declaringClass().getName())
                 && parameters.size() > implMethod.getMethodRef().parameterTypes().size();
         int paramsIndex = 0;
         int localIndex = 1; // we start at slot index 1, because this occupies
