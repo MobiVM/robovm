@@ -18,6 +18,8 @@ package org.robovm.debugger.state.classdata;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.delegates.AllDelegates;
 
+import java.util.regex.Pattern;
+
 /**
  * @author Demyan Kimitsa
  * Helper that resolved data using static loader and creates new data infos for upcoming primitives and
@@ -84,6 +86,12 @@ public class RuntimeClassInfoLoader {
             }
 
             info = new ClassInfoArrayImpl(signature, componentType);
+        } else {
+            // check for dynamically created proxy classes
+            if (Pattern.matches(".*/\\$Proxy\\d+$", signature)) {
+                // it is proxy, return simple java object
+                info = delegates.state().classInfoLoader().classInfoBySignature(ClassDataConsts.signatures.JAVA_LANG_OBJECT);
+            }
         }
 
         if (info == null)
@@ -130,7 +138,7 @@ public class RuntimeClassInfoLoader {
         delegates.runtime().deviceMemoryReader().setAddress(clazzPointer +
                 pointerSize +  // skip struct Object.*clazz
                 pointerSize +  // skip struct Object.*lock
-                        pointerSize + // skip void* _data;
+                pointerSize + // skip void* _data;
                 pointerSize + // skip void* gcDescriptor;
                 pointerSize + // skip TypeInfo* typeInfo;      // Info on all types this class implements.
                 pointerSize + // skip VITable* vitable;
