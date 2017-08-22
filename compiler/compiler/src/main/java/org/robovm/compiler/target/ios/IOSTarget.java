@@ -301,6 +301,13 @@ public class IOSTarget extends AbstractTarget {
         int majorVersionNumber = -1;
         try {
             majorVersionNumber = Integer.parseInt(minVersion.substring(0, minVersion.indexOf('.')));
+            int minMajorSupportedVersion = Integer.parseInt(minVersion.substring(0, config.getOs().getMinVersion().indexOf('.')));
+
+            if (majorVersionNumber < minMajorSupportedVersion) {
+                throw new CompilerException("MinimumOSVersion of " + minVersion + " is not supported. "
+                    + "The minimum version for this platform is " + config.getOs().getMinVersion());
+            }
+
         } catch (NumberFormatException e) {
             throw new CompilerException("Failed to get major version number from "
                     + "MinimumOSVersion string '" + minVersion + "'");
