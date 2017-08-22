@@ -34,6 +34,7 @@ classes:
     CBCentral: {} # DONE
     CBManager: {} # DONE
     CBCentralManager: # DONE
+        extends: NSObject # TODO: this added intentionally, super CBManager is ios10 only
         methods:
             '-initWithDelegate:queue:':
                 name: init
