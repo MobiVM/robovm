@@ -150,6 +150,7 @@ classes:
             '-writeValue:forDescriptor:':
                 trim_after_first_colon: true
     CBPeripheralManager: # DONE
+        extends: NSObject # TODO: this added intentionally, super CBManager is ios10 only
         properties:
             'isAdvertising':
                 name: advertising

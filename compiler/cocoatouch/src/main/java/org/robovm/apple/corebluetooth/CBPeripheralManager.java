@@ -39,7 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreBluetooth") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CBPeripheralManager/*</name>*/ 
-    extends /*<extends>*/CBManager/*</extends>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class CBPeripheralManagerPtr extends Ptr<CBPeripheralManager, CBPeripheralManagerPtr> {}/*</ptr>*/
