@@ -226,6 +226,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         classpathEntries.add(new File(project.getBuildDir(), "classes/java/main"));
         classpathEntries.add(new File(project.getBuildDir(), "classes/groovy/main"));
         classpathEntries.add(new File(project.getBuildDir(), "classes/scala/main"));
+        classpathEntries.add(new File(project.getBuildDir(), "classes/kotlin/main"));
         classpathEntries.add(new File(project.getBuildDir(), "resources/main"));
 
         if (project.hasProperty("output.classesDir")) {
