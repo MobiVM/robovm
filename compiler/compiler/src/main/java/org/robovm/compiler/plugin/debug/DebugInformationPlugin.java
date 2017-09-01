@@ -192,7 +192,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
         // find out if debug information to be fetched for this method
         // skip debug information for class initializer, generated callbacks and bridge methods
-        boolean includeDebuggerInfo = config.isDebug() && !"<clinit>".equals(method.getName())
+        boolean includeDebuggerInfo = config.isDebug()
                 && !Annotations.hasCallbackAnnotation(method)
                 && !Annotations.hasBridgeAnnotation(method)
                 && classBundle.methodsBeforeCompile.contains(method.getSignature());

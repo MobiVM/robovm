@@ -13,14 +13,14 @@
   <packaging>pom</packaging>
 
   <scm>
-    <url>https://github.com/mobidevelop/robovm</url>
-    <connection>scm:git:git://github.com/mobidevelop/robovm.git</connection>
+    <url>https://github.com/MobiVM/robovm</url>
+    <connection>scm:git:git://github.com/MobiVM/robovm.git</connection>
     <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>
   </scm>
 
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/mobidevelop/robovm/issues</url>
+    <url>https://github.com/MobiVM/robovm/issues</url>
   </issueManagement>
 
   <licenses>
