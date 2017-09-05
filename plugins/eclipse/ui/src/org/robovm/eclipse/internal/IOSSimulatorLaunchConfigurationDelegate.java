@@ -39,7 +39,7 @@ public class IOSSimulatorLaunchConfigurationDelegate extends AbstractLaunchConfi
     public static final String TYPE_NAME = "iOS Simulator App";
     public static final String ATTR_IOS_SIM_DEVICE_TYPE = RoboVMPlugin.PLUGIN_ID + ".IOS_SIM_DEVICE_TYPE";
     public static final String ATTR_IOS_SIM_ARCH = RoboVMPlugin.PLUGIN_ID + ".IOS_SIM_ARCH";
-    public static final Arch DEFAULT_ARCH = Arch.x86_64;
+    public static final Arch DEFAULT_ARCH = Arch.x86;
 
     @Override
     protected Arch getArch(ILaunchConfiguration configuration, String mode) throws CoreException {
