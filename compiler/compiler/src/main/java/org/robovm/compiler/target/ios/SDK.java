@@ -16,21 +16,31 @@
  */
 package org.robovm.compiler.target.ios;
 
+import static java.util.Collections.emptyList;
+import static org.apache.commons.lang3.Validate.notNull;
+
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-
-import org.apache.commons.exec.util.StringUtils;
-import org.robovm.compiler.util.ToolchainUtil;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.dd.plist.NSDictionary;
 import com.dd.plist.NSObject;
 import com.dd.plist.PropertyListParser;
+import org.apache.commons.exec.util.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.robovm.compiler.util.ToolchainUtil;
 
 /**
  * Contains info on an SDK installed on the system.
  */
 public class SDK implements Comparable<SDK> {
+    private static final String SDK_XCODE_8_3_AND_UP_INSTALL_LOCATION = "/Library/Developer/CoreSimulator/Profiles/Runtimes";
+    private static final String IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX = "iOS ([0-9]{1,2}).([0-9]{1,2}).simruntime";
+    private static final Pattern IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX_PATTERN = Pattern.compile(IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX);
+
     private String displayName;
     private String minimalDisplayName;
     private String canonicalName;
@@ -44,7 +54,13 @@ public class SDK implements Comparable<SDK> {
     private String platformBuild;
     private String platformVersion;
     private String platformName;
-    
+
+    /**
+     * Create an SDK instance for an SDK downloaded by Xcode  8.2 or before.
+     *
+     * @deprecated since 9-sep-2017, doesn't support SDK's downloaded with Xcode 8.3 and up
+     */
+    @Deprecated
     public static SDK create(File root) throws Exception {
         File sdkSettingsFile = new File(root, "SDKSettings.plist");
         File sdkSysVersionFile = new File(root, "System/Library/CoreServices/SystemVersion.plist");
@@ -97,10 +113,66 @@ public class SDK implements Comparable<SDK> {
     }
     
     private static List<SDK> listSDKs(String platform) {
+        List<SDK> allSdks = new ArrayList<>();
+
+        allSdks.addAll(listOldFileFormatSdks(platform));
+
+        allSdks.addAll(listNewFileFormatSdks());
+
+        return allSdks;
+    }
+
+    private static Collection<? extends SDK> listNewFileFormatSdks() {
+        File sdksDir = new File(SDK_XCODE_8_3_AND_UP_INSTALL_LOCATION);
+        if (!sdksDir.isDirectory()) {
+            return emptyList();
+        }
+
+        List<SDK> sdks = new ArrayList<>();
+
+        for (File sdkRoot : notNull(sdksDir.listFiles())) {
+            if (sdkRoot.getName().matches(IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX)) {
+                sdks.add(createNewFileFormatSdk(sdkRoot));
+            }
+        }
+
+        return sdks;
+    }
+
+    /**
+     * New directory format SDK's, as downloaded by Xcode version >= 8.3.
+     * <p>Fills only some of the data of the SDK, but enough to use it as Simulator.</p>
+     */
+    static SDK createNewFileFormatSdk(File sdkRootDir) {
+
+        Matcher matcher = IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX_PATTERN.matcher(sdkRootDir.getName());
+        Validate.isTrue(matcher.find());
+
+        String majorVersion = matcher.group(1);
+        String minorVersion = matcher.group(2);
+
+        String name = sdkRootDir.getName();
+
+        SDK sdk = new SDK();
+        sdk.major = Integer.valueOf(majorVersion);
+        sdk.minor = Integer.valueOf(minorVersion);
+        sdk.minimalDisplayName = name;
+        sdk.displayName = name;
+        sdk.canonicalName = name;
+        sdk.version = majorVersion + "." + minorVersion;
+        sdk.root = sdkRootDir;
+
+        return sdk;
+    }
+
+    /**
+     * Old style SDK's, as downloaded by Xcode version < 8.3.
+     */
+    private static Collection<? extends SDK> listOldFileFormatSdks(String platform) {
         try {
             List<SDK> sdks = new ArrayList<SDK>();
-            File sdksDir = new File(ToolchainUtil.findXcodePath() + "/Platforms/" 
-                                    + platform + ".platform/Developer/SDKs");
+            File sdksDir = new File(ToolchainUtil.findXcodePath() + "/Platforms/"
+                    + platform + ".platform/Developer/SDKs");
             if (sdksDir.exists() && sdksDir.isDirectory()) {
                 for (File root : sdksDir.listFiles()) {
                     try {
@@ -109,7 +181,7 @@ public class SDK implements Comparable<SDK> {
                     }
                 }
             }
-            
+
             return sdks;
         } catch (RuntimeException e) {
             throw e;
@@ -117,7 +189,7 @@ public class SDK implements Comparable<SDK> {
             throw new RuntimeException(t);
         }
     }
-    
+
     public static List<SDK> listDeviceSDKs() {
         return listSDKs("iPhoneOS");
     }
