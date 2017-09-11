@@ -58,7 +58,7 @@ public class SDK implements Comparable<SDK> {
     /**
      * Create an SDK instance for an SDK downloaded by Xcode  8.2 or before.
      *
-     * @deprecated since 9-sep-2017, doesn't support SDK's downloaded with Xcode 8.3 and up
+     * @deprecated since 9-sep-2017, doesn't support SDKs downloaded with Xcode 8.3 and up
      */
     @Deprecated
     public static SDK create(File root) throws Exception {
@@ -140,7 +140,7 @@ public class SDK implements Comparable<SDK> {
     }
 
     /**
-     * New directory format SDK's, as downloaded by Xcode version >= 8.3.
+     * New directory format SDKs, as downloaded by Xcode version >= 8.3.
      * <p>Fills only some of the data of the SDK, but enough to use it as Simulator.</p>
      */
     static SDK createNewFileFormatSdk(File sdkRootDir) {
@@ -166,7 +166,7 @@ public class SDK implements Comparable<SDK> {
     }
 
     /**
-     * Old style SDK's, as downloaded by Xcode version < 8.3.
+     * Old style SDKs, as downloaded by Xcode version < 8.3.
      */
     private static Collection<? extends SDK> listOldFileFormatSdks(String platform) {
         try {
