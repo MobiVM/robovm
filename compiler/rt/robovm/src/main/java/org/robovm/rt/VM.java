@@ -253,4 +253,19 @@ public final class VM {
     public native static final float[] newFloatArray(long address, int size);
 
     public native static final double[] newDoubleArray(long address, int size);
+
+    /**
+     * Enables garbage collection, GC_enable()
+     */
+    public static native void gcEnable();
+
+    /**
+     * Disables garbage collection, GC_disable()
+     */
+    public static native void gcDisable();
+
+    /**
+     * @return whether garbage collection is disabled, GC_is_disabled
+     */
+    public static native boolean gcIsDisabled();
 }
