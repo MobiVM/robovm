@@ -15,6 +15,7 @@
  */
 #include <string.h>
 #include <robovm.h>
+#include <gc.h>
 #include "reflection_helpers.h"
 
 static char* createClasspathFromClasspathEntries(Env* env, ClasspathEntry* first) {
@@ -446,4 +447,16 @@ ObjectArray* Java_org_robovm_rt_VM_listClasses0(Env* env, Class* c, Class* insta
 
 void Java_org_robovm_rt_VM_generateHeapDump(Env* env, Class* c) {
     rvmGenerateHeapDump(env);
+}
+
+void Java_org_robovm_rt_VM_gcDisable(Env* env, Class* c) {
+    GC_enable();
+}
+
+void Java_org_robovm_rt_VM_gcEnable(Env* env, Class* c) {
+    GC_disable();
+}
+
+jboolean Java_org_robovm_rt_VM_gcIsDisabled(Env* env, Class* c) {
+    return GC_is_disabled();
 }
