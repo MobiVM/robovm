@@ -53,7 +53,9 @@ import org.robovm.apple.corelocation.*;
     public UIGraphicsRenderer() {}
     protected UIGraphicsRenderer(Handle h, long handle) { super(h, handle); }
     protected UIGraphicsRenderer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithBounds:")
     public UIGraphicsRenderer(@ByVal CGRect bounds) { super((SkipInit) null); initObject(init(bounds)); }
+    @Method(selector = "initWithBounds:format:")
     public UIGraphicsRenderer(@ByVal CGRect bounds, UIGraphicsRendererFormat format) { super((SkipInit) null); initObject(init(bounds, format)); }
     /*</constructors>*/
     /*<properties>*/

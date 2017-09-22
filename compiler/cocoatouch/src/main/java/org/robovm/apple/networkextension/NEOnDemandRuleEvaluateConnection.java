@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -45,6 +46,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NEOnDemandRuleEvaluateConnection() {}
+    protected NEOnDemandRuleEvaluateConnection(Handle h, long handle) { super(h, handle); }
     protected NEOnDemandRuleEvaluateConnection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

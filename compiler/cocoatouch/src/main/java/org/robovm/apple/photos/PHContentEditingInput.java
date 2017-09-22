@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,6 +52,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHContentEditingInput() {}
+    protected PHContentEditingInput(Handle h, long handle) { super(h, handle); }
     protected PHContentEditingInput(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -86,6 +90,11 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "audiovisualAsset")
     public native AVAsset getAudiovisualAsset();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "livePhoto")
+    public native PHLivePhoto getLivePhoto();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

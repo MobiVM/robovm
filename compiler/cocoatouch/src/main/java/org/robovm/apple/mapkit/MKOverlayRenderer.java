@@ -49,7 +49,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKOverlayRenderer() {}
+    protected MKOverlayRenderer(Handle h, long handle) { super(h, handle); }
     protected MKOverlayRenderer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithOverlay:")
     public MKOverlayRenderer(MKOverlay overlay) { super((SkipInit) null); initObject(init(overlay)); }
     /*</constructors>*/
     /*<properties>*/

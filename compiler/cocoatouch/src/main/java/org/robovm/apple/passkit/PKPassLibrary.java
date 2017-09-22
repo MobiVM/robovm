@@ -77,6 +77,7 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKPassLibrary() {}
+    protected PKPassLibrary(Handle h, long handle) { super(h, handle); }
     protected PKPassLibrary(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -131,10 +132,20 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "openPaymentSetup")
     public native void openPaymentSetup();
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "presentPaymentPass:")
+    public native void presentPaymentPass(PKPaymentPass pass);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "canAddPaymentPassWithPrimaryAccountIdentifier:")
     public native boolean canAddPaymentPass(String primaryAccountIdentifier);
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
+    @Method(selector = "canAddFelicaPass")
+    public native boolean canAddFelicaPass();
     /**
      * @since Available in iOS 8.0 and later.
      */

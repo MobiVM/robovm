@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,6 +52,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHObjectPlaceholder() {}
+    protected PHObjectPlaceholder(Handle h, long handle) { super(h, handle); }
     protected PHObjectPlaceholder(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

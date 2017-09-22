@@ -47,6 +47,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CMStepCounter() {}
+    protected CMStepCounter(Handle h, long handle) { super(h, handle); }
     protected CMStepCounter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

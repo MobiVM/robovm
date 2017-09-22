@@ -48,7 +48,7 @@ import org.robovm.rt.bro.ptr.VoidPtr;
     @Marshaler(ObjCClass.Marshaler.class)
 })
 public abstract class ObjCObject extends NativeObject {
-    
+
     private static volatile boolean logRetainRelease = false;
 
     public static class ObjCObjectPtr extends Ptr<ObjCObject, ObjCObjectPtr> {}
@@ -169,13 +169,25 @@ public abstract class ObjCObject extends NativeObject {
     }
 
     @SuppressWarnings("unchecked")
-    static <T extends ObjCObject> T getPeerObject(long handle) {
+    protected static <T extends ObjCObject> T getPeerObject(long handle) {
         synchronized (objcBridgeLock) {
             ObjCObjectRef ref = peers.get(handle);
             T o = ref != null ? (T) ref.get() : null;
             return o;
         }
     }
+
+    /**
+     * this notification callback from <init> callback for custom object.
+     * It is called to save corresponding java part in ObjectOwnershipHelper
+     * as it is the only place that keeps custom object from GC while native part is
+     * retained
+     * @param handle of native object
+     */
+    protected static void retainCustomObjectFromCb(long handle) {
+        ObjectOwnershipHelper.retainObject(handle);
+    }
+
 
     private static void setPeerObject(long handle, ObjCObject o) {
         synchronized (objcBridgeLock) {
@@ -254,6 +266,7 @@ public abstract class ObjCObject extends NativeObject {
         if (handle == 0L) {
             return null;
         }
+
         if (cls == ObjCClass.class) {
             return (T) ObjCClass.toObjCClass(handle);
         }
@@ -387,7 +400,7 @@ public abstract class ObjCObject extends NativeObject {
 
     static class ObjectOwnershipHelper {
         private static final LongMap<Object> CUSTOM_OBJECTS = new LongMap<>();
-        
+
         private static final long retainCount = Selector.register("retainCount").getHandle();
         private static final long retain = Selector.register("retain").getHandle();
         private static final long originalRetain = Selector.register("original_retain").getHandle();
@@ -443,16 +456,25 @@ public abstract class ObjCObject extends NativeObject {
             }
         }
 
+        /**
+         * instead of tracking object in retain callback following direct api is used.
+         * as with retain there are known issues that retain could be called inside dealoc cycle
+         * which will cause hard to handle side effects
+         * @param self pointer from native part
+         */
+        public static void retainObject(long self) {
+            synchronized (CUSTOM_OBJECTS) {
+                ObjCObject obj = ObjCObject.getPeerObject(self);
+                CUSTOM_OBJECTS.put(self, obj);
+            }
+        }
+
         @Callback
         private static @Pointer long retain(@Pointer long self, @Pointer long sel) {
+            // TODO: this method is being kept here only for logRetainRelease
+            // but these functionality is not useful anymore due creation of custom
+            // objects in cb<init>
             int count = ObjCRuntime.int_objc_msgSend(self, retainCount);
-            if (count <= 1) {
-                synchronized (CUSTOM_OBJECTS) {
-                    ObjCClass cls = ObjCClass.toObjCClass(ObjCRuntime.object_getClass(self));
-                    ObjCObject obj = ObjCObject.toObjCObject(cls.getType(), self, 0);
-                    CUSTOM_OBJECTS.put(self, obj);
-                }
-            }
             long cls = ObjCRuntime.object_getClass(self);
             if (logRetainRelease) {
                 logRetainRelease(cls, self, count, true);
@@ -463,9 +485,16 @@ public abstract class ObjCObject extends NativeObject {
 
         @Callback
         private static void release(@Pointer long self, @Pointer long sel) {
+            // this callback is required to remove reference to java counterpart once
+            // native part is being released. dealloc can't be used for purpose
+            // as there is direct retain in afterMarshaled for custom objects
             int count = ObjCRuntime.int_objc_msgSend(self, retainCount);
             if (count <= 2) {
                 synchronized (CUSTOM_OBJECTS) {
+                    // at this moment there is no reference kept for java object
+                    // and it is subject for GC if not being referenced anywhere
+                    // once GC comes it will cause release() to be called in dispose
+                    // which will also release native part
                     CUSTOM_OBJECTS.remove(self);
                 }
             }

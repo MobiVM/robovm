@@ -23,6 +23,7 @@
 #endif
 #include "private.h"
 #include "utlist.h"
+#include <math.h>
 
 /*
  * This code has been heavily inspired by Android's dalvik/vm/Thread.cpp code.
@@ -650,8 +651,24 @@ jint rvmChangeThreadStatus(Env* env, Thread* thread, jint newStatus) {
     return oldStatus;
 }
 
-void rvmChangeThreadPriority(Env* env, Thread* thread, jint priority) {
-    // TODO: Implement rvmChangeThreadPriority()
+void rvmChangeThreadPriority(Env* env, Thread* thread, jint priority) {   
+    pthread_attr_t tattr;
+    int ret;
+    ret = pthread_attr_init(&tattr);
+    if(ret != 0) rvmAbort("pthread_attr_init failed");
+    struct sched_param param;
+    ret = pthread_attr_getschedparam(&tattr, &param);
+    if(ret != 0) rvmAbort("pthread_attr_getschedparam failed");
+    int policy;
+    ret = pthread_attr_getschedpolicy(&tattr, &policy);
+    if(ret != 0) rvmAbort("pthread_attr_getschedpolicy failed");
+    if(priority < 1) rvmAbort("Thread priority must be >= Thread.MIN_PRIORITY");
+    if(priority > 10) rvmAbort("Thread priority must be <= Thread.MAX_PRIORITY");
+    int minPriority = sched_get_priority_min(policy);
+    int maxPriority = sched_get_priority_max(policy);
+    param.sched_priority = minPriority + roundf((priority - 1.0f) / 9.0f * (maxPriority - minPriority));
+    ret = pthread_setschedparam(thread->pThread, policy, &param);
+    if(ret != 0) rvmAbort("pthread_attr_getschedpolicy failed");
 }
 
 void rvmThreadNameChanged(Env* env, Thread* thread) {

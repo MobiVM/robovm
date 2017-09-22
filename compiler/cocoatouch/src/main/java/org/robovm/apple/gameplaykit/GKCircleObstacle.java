@@ -28,10 +28,13 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.spritekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKCircleObstacle/*</name>*/ 
@@ -43,7 +46,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKCircleObstacle() {}
+    protected GKCircleObstacle(Handle h, long handle) { super(h, handle); }
     protected GKCircleObstacle(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRadius:")
     public GKCircleObstacle(float radius) { super((SkipInit) null); initObject(init(radius)); }
     /*</constructors>*/
     /*<properties>*/
@@ -52,9 +57,9 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "setRadius:")
     public native void setRadius(float v);
     @Property(selector = "position")
-    public native VectorFloat2 getPosition();
-    @Property(selector = "setPosition:", strongRef = true)
-    public native void setPosition(VectorFloat2 v);
+    public native @ByVal VectorFloat2 getPosition();
+    @Property(selector = "setPosition:")
+    public native void setPosition(@ByVal VectorFloat2 v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

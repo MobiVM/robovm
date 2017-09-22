@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,6 +60,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NEVPNConnection() {}
+    protected NEVPNConnection(Handle h, long handle) { super(h, handle); }
     protected NEVPNConnection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -67,6 +69,16 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "status")
     public native NEVPNStatus getStatus();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "connectedDate")
+    public native NSDate getConnectedDate();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "manager")
+    public native NEVPNManager getManager();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -75,6 +87,16 @@ import org.robovm.apple.foundation.*;
      */
     @GlobalValue(symbol="NEVPNStatusDidChangeNotification", optional=true)
     public static native NSString StatusDidChangeNotification();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="NEVPNConnectionStartOptionUsername", optional=true)
+    public static native String NEVPNConnectionStartOptionUsername();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="NEVPNConnectionStartOptionPassword", optional=true)
+    public static native String NEVPNConnectionStartOptionPassword();
     
     /**
      * @since Available in iOS 8.0 and later.
@@ -90,6 +112,20 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "startVPNTunnelAndReturnError:")
     private native boolean startVPNTunnel(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public boolean startVPNTunnel(NSDictionary<?, ?> options) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = startVPNTunnel(options, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "startVPNTunnelWithOptions:andReturnError:")
+    private native boolean startVPNTunnel(NSDictionary<?, ?> options, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 8.0 and later.
      */

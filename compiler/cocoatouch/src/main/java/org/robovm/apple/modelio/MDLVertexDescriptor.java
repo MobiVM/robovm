@@ -46,7 +46,9 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLVertexDescriptor() {}
+    protected MDLVertexDescriptor(Handle h, long handle) { super(h, handle); }
     protected MDLVertexDescriptor(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithVertexDescriptor:")
     public MDLVertexDescriptor(MDLVertexDescriptor vertexDescriptor) { super((SkipInit) null); initObject(init(vertexDescriptor)); }
     /*</constructors>*/
     /*<properties>*/
@@ -72,6 +74,8 @@ import org.robovm.apple.coregraphics.*;
     public native MDLVertexAttribute getAttribute(String name);
     @Method(selector = "addOrReplaceAttribute:")
     public native void addOrReplaceAttribute(MDLVertexAttribute attribute);
+    @Method(selector = "removeAttributeNamed:")
+    public native void removeAttributeNamed(String name);
     @Method(selector = "reset")
     public native void reset();
     @Method(selector = "setPackedStrides")

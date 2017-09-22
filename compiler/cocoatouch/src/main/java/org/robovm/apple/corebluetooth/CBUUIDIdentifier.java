@@ -95,9 +95,10 @@ import org.robovm.apple.dispatch.*;
     public static final CBUUIDIdentifier ServerCharacteristicConfiguration = new CBUUIDIdentifier("ServerCharacteristicConfiguration");
     public static final CBUUIDIdentifier CharacteristicFormat = new CBUUIDIdentifier("CharacteristicFormat");
     public static final CBUUIDIdentifier CharacteristicAggregateFormat = new CBUUIDIdentifier("CharacteristicAggregateFormat");
+    public static final CBUUIDIdentifier CharacteristicValidRange = new CBUUIDIdentifier("CharacteristicValidRange");
     /*</constants>*/
     
-    private static /*<name>*/CBUUIDIdentifier/*</name>*/[] values = new /*<name>*/CBUUIDIdentifier/*</name>*/[] {/*<value_list>*/CharacteristicExtendedProperties, CharacteristicUserDescription, ClientCharacteristicConfiguration, ServerCharacteristicConfiguration, CharacteristicFormat, CharacteristicAggregateFormat/*</value_list>*/};
+    private static /*<name>*/CBUUIDIdentifier/*</name>*/[] values = new /*<name>*/CBUUIDIdentifier/*</name>*/[] {/*<value_list>*/CharacteristicExtendedProperties, CharacteristicUserDescription, ClientCharacteristicConfiguration, ServerCharacteristicConfiguration, CharacteristicFormat, CharacteristicAggregateFormat, CharacteristicValidRange/*</value_list>*/};
     
     /*<name>*/CBUUIDIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -132,6 +133,8 @@ import org.robovm.apple.dispatch.*;
         public static native NSString CharacteristicFormat();
         @GlobalValue(symbol="CBUUIDCharacteristicAggregateFormatString", optional=true)
         public static native NSString CharacteristicAggregateFormat();
+        @GlobalValue(symbol="CBUUIDCharacteristicValidRangeString", optional=true)
+        public static native NSString CharacteristicValidRange();
         /*</values>*/
     }
 }

@@ -44,6 +44,8 @@ public abstract class AbstractRoboVMBuildTask extends AbstractRoboVMTask {
                 }
                 builder.archs(archs);
             }
+            
+            builder.dumpIntermediates(extension.isDumpIntermediates());
 
             AppCompiler compiler = new AppCompiler(builder.build());
             compiler.build();

@@ -48,6 +48,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CAInterAppAudioTransportView() {}
+    protected CAInterAppAudioTransportView(Handle h, long handle) { super(h, handle); }
     protected CAInterAppAudioTransportView(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

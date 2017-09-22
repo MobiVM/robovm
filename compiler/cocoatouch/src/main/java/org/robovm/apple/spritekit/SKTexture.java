@@ -51,15 +51,17 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKTexture() {}
+    protected SKTexture(Handle h, long handle) { super(h, handle); }
     protected SKTexture(SkipInit skipInit) { super(skipInit); }
-    public SKTexture(String name) { super(create(name)); retain(getHandle()); }
-    public SKTexture(@ByVal CGRect rect, SKTexture texture) { super(create(rect, texture)); retain(getHandle()); }
-    public SKTexture(CGImage image) { super(create(image)); retain(getHandle()); }
-    public SKTexture(UIImage image) { super(create(image)); retain(getHandle()); }
-    public SKTexture(NSData pixelData, @ByVal CGSize size) { super(create(pixelData, size)); retain(getHandle()); }
-    public SKTexture(NSData pixelData, @ByVal CGSize size, boolean flipped) { super(create(pixelData, size, flipped)); retain(getHandle()); }
-    public SKTexture(NSData pixelData, @ByVal CGSize size, int rowLength, int alignment) { super(create(pixelData, size, rowLength, alignment)); retain(getHandle()); }
-    public SKTexture(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKTexture(String name) { super((Handle) null, create(name)); retain(getHandle()); }
+    public SKTexture(@ByVal CGRect rect, SKTexture texture) { super((Handle) null, create(rect, texture)); retain(getHandle()); }
+    public SKTexture(CGImage image) { super((Handle) null, create(image)); retain(getHandle()); }
+    public SKTexture(UIImage image) { super((Handle) null, create(image)); retain(getHandle()); }
+    public SKTexture(NSData pixelData, @ByVal CGSize size) { super((Handle) null, create(pixelData, size)); retain(getHandle()); }
+    public SKTexture(NSData pixelData, @ByVal CGSize size, boolean flipped) { super((Handle) null, create(pixelData, size, flipped)); retain(getHandle()); }
+    public SKTexture(NSData pixelData, @ByVal CGSize size, int rowLength, int alignment) { super((Handle) null, create(pixelData, size, rowLength, alignment)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public SKTexture(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "filteringMode")
@@ -70,11 +72,6 @@ import org.robovm.apple.gameplaykit.*;
     public native boolean usesMipmaps();
     @Property(selector = "setUsesMipmaps:")
     public native void setUsesMipmaps(boolean v);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "CGImage")
-    public native CGImage getCGImage();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -95,6 +92,11 @@ import org.robovm.apple.gameplaykit.*;
     public native @ByVal CGRect getTextureRect();
     @Method(selector = "size")
     public native @ByVal CGSize size();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "CGImage")
+    public native CGImage CGImage();
     @Method(selector = "preloadWithCompletionHandler:")
     public native void preload(@Block Runnable completionHandler);
     @Method(selector = "textureWithImageNamed:")
@@ -126,6 +128,6 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

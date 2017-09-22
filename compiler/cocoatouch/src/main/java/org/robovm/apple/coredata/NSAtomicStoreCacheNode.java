@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSAtomicStoreCacheNode() {}
+    protected NSAtomicStoreCacheNode(Handle h, long handle) { super(h, handle); }
     protected NSAtomicStoreCacheNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithObjectID:")
     public NSAtomicStoreCacheNode(NSManagedObjectID moid) { super((SkipInit) null); initObject(init(moid)); }
     /*</constructors>*/
     /*<properties>*/

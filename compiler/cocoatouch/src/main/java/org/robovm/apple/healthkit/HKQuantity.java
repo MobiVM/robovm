@@ -44,7 +44,8 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKQuantity.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKQuantity() {}
+    protected HKQuantity() {}
+    protected HKQuantity(Handle h, long handle) { super(h, handle); }
     protected HKQuantity(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

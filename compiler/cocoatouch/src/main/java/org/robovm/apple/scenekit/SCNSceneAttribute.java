@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -97,9 +99,6 @@ import org.robovm.apple.opengles.*;
     public static final SCNSceneAttribute StartTime = new SCNSceneAttribute("StartTime");
     public static final SCNSceneAttribute EndTime = new SCNSceneAttribute("EndTime");
     public static final SCNSceneAttribute FrameRate = new SCNSceneAttribute("FrameRate");
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     public static final SCNSceneAttribute UpAxis = new SCNSceneAttribute("UpAxis");
     /*</constants>*/
     
@@ -132,9 +131,6 @@ import org.robovm.apple.opengles.*;
         public static native NSString EndTime();
         @GlobalValue(symbol="SCNSceneFrameRateAttributeKey", optional=true)
         public static native NSString FrameRate();
-        /**
-         * @since Available in iOS 8.0 and later.
-         */
         @GlobalValue(symbol="SCNSceneUpAxisAttributeKey", optional=true)
         public static native NSString UpAxis();
         /*</values>*/

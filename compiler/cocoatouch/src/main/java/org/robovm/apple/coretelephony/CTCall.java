@@ -46,17 +46,22 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CTCall() {}
+    protected CTCall(Handle h, long handle) { super(h, handle); }
     protected CTCall(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "callState")
     public native CTCallState getCallState();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "callID")
     public native String getCallID();
     /*</properties>*/

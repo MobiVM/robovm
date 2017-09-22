@@ -47,20 +47,21 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CBUUID() {}
+    protected CBUUID(Handle h, long handle) { super(h, handle); }
     protected CBUUID(SkipInit skipInit) { super(skipInit); }
-    public CBUUID(String theString) { super(create(theString)); retain(getHandle()); }
-    public CBUUID(NSData theData) { super(create(theData)); retain(getHandle()); }
+    public CBUUID(String theString) { super((Handle) null, create(theString)); retain(getHandle()); }
+    public CBUUID(NSData theData) { super((Handle) null, create(theData)); retain(getHandle()); }
     /**
      * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @WeaklyLinked
-    public CBUUID(CFUUID theUUID) { super(create(theUUID)); retain(getHandle()); }
+    public CBUUID(CFUUID theUUID) { super((Handle) null, create(theUUID)); retain(getHandle()); }
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public CBUUID(NSUUID theUUID) { super(create(theUUID)); retain(getHandle()); }
+    public CBUUID(NSUUID theUUID) { super((Handle) null, create(theUUID)); retain(getHandle()); }
     /*</constructors>*/
     public CBUUID(CBUUIDIdentifier identifier) {
         super(create(identifier.value().toString()));

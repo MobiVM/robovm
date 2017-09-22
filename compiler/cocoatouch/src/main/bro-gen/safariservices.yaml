@@ -10,8 +10,10 @@ typedefs: {}
 enums:
     SSReadingListErrorCode: {first: SSReadingListErrorURLSchemeNotAllowed, prefix: SSReadingListError, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
     SFContentBlockerErrorCode: {}
+    SFErrorCode: {}
         
 classes:
+    SFContentBlockerState: {}
     SFContentBlockerError:
         extends: NSError
         annotations: ['@StronglyLinked']
@@ -23,6 +25,8 @@ classes:
         methods:
             '+reloadContentBlockerWithIdentifier:completionHandler:':
                 name: reloadContentBlocker
+            '+getStateOfContentBlockerWithIdentifier:completionHandler:':
+                name: getStateOfContentBlocker
     SFSafariViewController: # DONE
         methods:
             '-init.*':
@@ -65,6 +69,9 @@ values:
         name: getClassDomain
     SSReadingListErrorDomain:
         class: SSReadingListError
+        name: getClassDomain
+    SFErrorDomain:
+        class: SFErrorCode
         name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later version

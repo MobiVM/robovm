@@ -50,7 +50,6 @@ public enum /*<name>*/CTParagraphStyleSpecifier/*</name>*/ implements ValuedEnum
     LineHeightMultiple(7L),
     MaximumLineHeight(8L),
     MinimumLineHeight(9L),
-    LineSpacing(10L),
     ParagraphSpacing(11L),
     ParagraphSpacingBefore(12L),
     BaseWritingDirection(13L),

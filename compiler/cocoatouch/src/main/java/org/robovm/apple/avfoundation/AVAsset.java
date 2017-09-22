@@ -92,9 +92,10 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAsset() {}
-    protected AVAsset(long handle) { super(handle); }
+    @Deprecated protected AVAsset(long handle) { super(handle); }
+    protected AVAsset(Handle h, long handle) { super(h, handle); }
     protected AVAsset(SkipInit skipInit) { super(skipInit); }
-    public AVAsset(NSURL URL) { super(create(URL)); retain(getHandle()); }
+    public AVAsset(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "duration")
@@ -165,6 +166,11 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "containsFragments")
     public native boolean containsFragments();
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    @Property(selector = "overallDurationHint")
+    public native @ByVal CMTime getOverallDurationHint();
     /**
      * @since Available in iOS 4.3 and later.
      */

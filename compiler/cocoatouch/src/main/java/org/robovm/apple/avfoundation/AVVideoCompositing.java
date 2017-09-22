@@ -62,6 +62,11 @@ import org.robovm.apple.audiounit.*;
     @WeaklyLinked
     @Property(selector = "requiredPixelBufferAttributesForRenderContext")
     CVPixelBufferAttributes getRequiredPixelBufferAttributesForRenderContext();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "supportsWideColorSourceFrames")
+    boolean supportsWideColorSourceFrames();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "renderContextChanged:")

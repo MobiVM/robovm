@@ -19,6 +19,7 @@ enums:
     MKPinAnnotationColor: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
     MKMapType: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
     MKErrorCode: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    MKSearchCompletionFilterType: {}
         
 categories:
     NSValueMapKitGeometryExtensions: # DONE
@@ -378,6 +379,13 @@ classes:
                 parameters:
                     addressDictionary:
                         type: org.robovm.apple.addressbook.ABPersonAddress
+            '-initWithCoordinate:postalAddress:':
+                name: init
+                parameters:
+                    postalAddress:
+                        type: org.robovm.apple.contacts.CNPostalAddress
+            '-init.*':
+                name: init
     MKPointAnnotation: {} # DONE
     MKPolygon: # DONE
         properties:
@@ -460,6 +468,9 @@ classes:
         methods:
             '-initWithMapView:':
                 name: init
+    MKLocalSearchCompletion: {}
+    MKLocalSearchCompleter: {}
+    MKDistanceFormatter: {}
 
 protocols:
     MKAnnotation: {} # DONE
@@ -522,7 +533,13 @@ protocols:
         methods:
             '-intersectsMapRect:':
                 name: intersects
-                
+    MKLocalSearchCompleterDelegate:
+        methods:
+            '-completerDidUpdateResults:completer:':
+                name: didUpdateResults
+            '-completer:didFailWithError:':
+                name: didFailWithError
+
 functions:
     # MKCoordinateRegion
     MKCoordinateRegionMake:

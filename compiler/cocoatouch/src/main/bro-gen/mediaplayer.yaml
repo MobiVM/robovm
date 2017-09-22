@@ -28,6 +28,15 @@ enums:
     MPMusicShuffleMode: {first: MPMusicShuffleModeDefault, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
     MPRemoteCommandHandlerStatus: {}
     MPSeekCommandEventType: {}
+    MPMediaLibraryAuthorizationStatus: {}
+    MPErrorCode: {}
+    MPNowPlayingInfoMediaType: {}
+    MPShuffleType: {}
+    MPRepeatType: {}
+    MPChangeLanguageOptionSetting: {}
+    MPNowPlayingInfoLanguageOptionType: {}
+
+
 
 categories:
     UIViewController: # DONE
@@ -43,6 +52,9 @@ classes:
             supportedPlaybackRates:
                 type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsDoubleListMarshaler.class) List<Double>'
     MPChangePlaybackRateCommandEvent: {} # DONE
+    MPChangeRepeatModeCommand: {}
+    MPChangeShuffleModeCommand: {}
+    MPChangePlaybackPositionCommand: {}
     MPContentItem: # DONE
         methods:
             '-init.*':
@@ -99,6 +111,11 @@ classes:
         methods:
             '+defaultMediaLibrary':
                 name: getDefaultMediaLibrary
+            '-addItemWithProductID:completionHandler:':
+                trim_after_first_colon: true
+            '-getPlaylistWithUUID:creationMetadata:completionHandler:':
+                trim_after_first_colon: true
+
     MPMediaPickerController: # DONE
         skip_def_constructor: true
         methods:
@@ -108,6 +125,12 @@ classes:
         properties:
             'seedItems':
                 type: NSArray<MPMediaItem>
+        methods:
+            '-addItemWithProductID:completionHandler:':
+                trim_after_first_colon: true
+            '-addMediaItems:completionHandler:':
+                trim_after_first_colon: true
+    MPMediaPlaylistCreationMetadata: {}
     MPMediaPredicate: {} # DONE
     MPMediaPropertyPredicate: # DONE
         properties:
@@ -205,6 +228,14 @@ classes:
         methods:
             '+defaultCenter':
                 property: true
+    MPNowPlayingInfoLanguageOption:
+        methods:
+            '-init.*':
+                name: init
+    MPNowPlayingInfoLanguageOptionGroup:
+        methods:
+            '-init.*':
+                name: init
     MPPlayableContentManager: # DONE
         methods:
             '+sharedContentManager':
@@ -261,7 +292,32 @@ classes:
                 trim_after_first_colon: true
             '-volumeThumbRectForBounds:volumeSliderRect:value:':
                 name: getVolumeThumbRect
-
+    MPChangeLanguageOptionCommandEvent: {}
+    MPChangePlaybackPositionCommandEvent: {}
+    MPChangeRepeatModeCommandEvent: {}
+    MPChangeShuffleModeCommandEvent: {}
+    MPMusicPlayerApplicationController:
+        methods:
+            '-performQueueTransaction:completionHandler:':
+                trim_after_first_colon: true
+    MPMusicPlayerControllerMutableQueue:
+        methods:
+            '-insertQueueDescriptor:afterItem:':
+                trim_after_first_colon: true
+    MPMusicPlayerControllerQueue: {}
+    MPMusicPlayerMediaItemQueueDescriptor:
+        methods:
+            '-setStartTime:forItem:':
+                trim_after_first_colon: true
+            '-setEndTime:forItem:':
+                trim_after_first_colon: true
+    MPMusicPlayerQueueDescriptor: {}
+    MPMusicPlayerStoreQueueDescriptor:
+        methods:
+            '-setStartTime:forItemWithStoreID:':
+                trim_after_first_colon: true
+            '-setEndTime:forItemWithStoreID:':
+                trim_after_first_colon: true
 protocols:
     MPMediaPickerControllerDelegate: # DONE
         methods:
@@ -282,12 +338,18 @@ protocols:
                 name: getNumberOfChildItems
             '-contentItemAtIndexPath:':
                 name: getContentItem
+            '-contentItemForIdentifier:completionHandler:':
+                name: getContentItem
     MPPlayableContentDelegate: # DONE
         methods:
             '-playableContentManager:initiatePlaybackOfContentItemAtIndexPath:completionHandler:':
                 name: initiatePlayback
             '-playableContentManager:didUpdateContext:':
                 name: didUpdateContext
+            '-playableContentManager:initializePlaybackQueueWithCompletionHandler:':
+                name: initiatePlaybackQueue
+            '-playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:':
+                name: initializePlaybackQueueWithContent
 
 functions:
     MPVolumeSettingsAlert(Show|Hide):
@@ -353,7 +415,14 @@ values:
                 type: int
             DefaultPlaybackRate:
                 type: double
-        
+    MPNowPlayingInfoCollectionIdentifier:
+        dictionary: MPNowPlayingInfo
+        name: CollectionIdentifier
+
+    MPLanguageOptionCharacteristic(.*):
+        class: MPLanguageOptionCharacteristic
+        name: '#{g[0]}'
+
     MPMoviePlayerTimedMetadataKey(.*):
         class: MPTimedMetadata
         name: '#{g[0]}'
@@ -419,6 +488,10 @@ values:
                 type: double
             Curve:
                 type: UIViewAnimationCurve
+
+    MPErrorDomain:
+        class: MPErrorCode
+        name: 'ErrorDomain'
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?MP.*):

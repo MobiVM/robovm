@@ -34,10 +34,13 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 5.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIContext/*</name>*/ 
@@ -48,43 +51,69 @@ import org.robovm.apple.uikit.*;
     /*<bind>*/static { ObjCRuntime.bind(CIContext.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CIContext() {}
+    protected CIContext(Handle h, long handle) { super(h, handle); }
     protected CIContext(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public CIContext(CGContext cgctx, CIContextOptions options) { super((Handle) null, create(cgctx, options)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    public CIContext(CIContextOptions options) { super((Handle) null, create(options)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    public CIContext() { super((Handle) null, create()); retain(getHandle()); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    public CIContext(EAGLContext eaglContext) { super((Handle) null, create(eaglContext)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    public CIContext(EAGLContext eaglContext, CIContextOptions options) { super((Handle) null, create(eaglContext, options)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public CIContext(MTLDevice device) { super((Handle) null, create(device)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public CIContext(MTLDevice device, CIContextOptions options) { super((Handle) null, create(device, options)); retain(getHandle()); }
     /*</constructors>*/
     
-    public CIContext(CIContextOptions options) {
-        super(init(options));
-    }
-    public CIContext(EAGLContext eaglContext) {
-        super(init(eaglContext));
-    }
-    public CIContext(EAGLContext eaglContext, CIContextOptions options) {
-        super(init(eaglContext, options));
-    }
-    
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "workingColorSpace")
+    public native CGColorSpace getWorkingColorSpace();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "workingFormat")
+    public native int getWorkingFormat();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Method(selector = "drawImage:atPoint:fromRect:")
-    public native void drawImage(CIImage im, @ByVal CGPoint p, @ByVal CGRect src);
     @Method(selector = "drawImage:inRect:fromRect:")
-    public native void drawImage(CIImage im, @ByVal CGRect dest, @ByVal CGRect src);
+    public native void drawImage(CIImage image, @ByVal CGRect inRect, @ByVal CGRect fromRect);
     @WeaklyLinked
     @Method(selector = "createCGImage:fromRect:")
-    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage im, @ByVal CGRect r);
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect);
     @WeaklyLinked
     @Method(selector = "createCGImage:fromRect:format:colorSpace:")
-    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage im, @ByVal CGRect r, int f, CGColorSpace cs);
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect, int format, CGColorSpace colorSpace);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @WeaklyLinked
+    @Method(selector = "createCGImage:fromRect:format:colorSpace:deferred:")
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect, int format, CGColorSpace colorSpace, boolean deferred);
     @WeaklyLinked
     @Method(selector = "render:toBitmap:rowBytes:bounds:format:colorSpace:")
-    public native void render(CIImage im, VoidPtr data, @MachineSizedSInt long rb, @ByVal CGRect r, int f, CGColorSpace cs);
+    public native void render(CIImage image, VoidPtr data, @MachineSizedSInt long rowBytes, @ByVal CGRect bounds, int format, CGColorSpace colorSpace);
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -96,7 +125,18 @@ import org.robovm.apple.uikit.*;
      */
     @WeaklyLinked
     @Method(selector = "render:toCVPixelBuffer:bounds:colorSpace:")
-    public native void render(CIImage image, CVPixelBuffer buffer, @ByVal CGRect r, CGColorSpace cs);
+    public native void render(CIImage image, CVPixelBuffer buffer, @ByVal CGRect bounds, CGColorSpace colorSpace);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @WeaklyLinked
+    @Method(selector = "render:toMTLTexture:commandBuffer:bounds:colorSpace:")
+    public native void render(CIImage image, MTLTexture texture, MTLCommandBuffer commandBuffer, @ByVal CGRect bounds, CGColorSpace colorSpace);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "clearCaches")
+    public native void clearCaches();
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -108,22 +148,59 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "outputImageMaximumSize")
     public native @ByVal CGSize getOutputImageMaximumSize();
     /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "contextWithCGContext:options:")
+    protected static native @Pointer long create(CGContext cgctx, CIContextOptions options);
+    /**
      * @since Available in iOS 5.0 and later.
      */
-    @WeaklyLinked
     @Method(selector = "contextWithOptions:")
-    protected static native @Pointer long init(CIContextOptions options);
+    protected static native @Pointer long create(CIContextOptions options);
     /**
      * @since Available in iOS 5.0 and later.
      */
-    @WeaklyLinked
+    @Method(selector = "context")
+    protected static native @Pointer long create();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
     @Method(selector = "contextWithEAGLContext:")
-    protected static native @Pointer long init(EAGLContext eaglContext);
+    protected static native @Pointer long create(EAGLContext eaglContext);
     /**
      * @since Available in iOS 5.0 and later.
      */
-    @WeaklyLinked
     @Method(selector = "contextWithEAGLContext:options:")
-    protected static native @Pointer long init(EAGLContext eaglContext, CIContextOptions options);
+    protected static native @Pointer long create(EAGLContext eaglContext, CIContextOptions options);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "contextWithMTLDevice:")
+    protected static native @Pointer long create(MTLDevice device);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "contextWithMTLDevice:options:")
+    protected static native @Pointer long create(MTLDevice device, CIContextOptions options);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "TIFFRepresentationOfImage:format:colorSpace:options:")
+    public native NSData tiffRepresentationOfImage(CIImage image, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "JPEGRepresentationOfImage:colorSpace:options:")
+    public native NSData jpegRepresentationOfImage(CIImage image, CGColorSpace colorSpace, NSDictionary<?, ?> options);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "writeTIFFRepresentationOfImage:toURL:format:colorSpace:options:error:")
+    public native boolean writeTIFFRepresentationOfImage(CIImage image, NSURL url, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options, NSError.NSErrorPtr errorPtr);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "writeJPEGRepresentationOfImage:toURL:colorSpace:options:error:")
+    public native boolean writeJPEGRepresentationOfImage(CIImage image, NSURL url, CGColorSpace colorSpace, NSDictionary<?, ?> options, NSError.NSErrorPtr errorPtr);
     /*</methods>*/
 }

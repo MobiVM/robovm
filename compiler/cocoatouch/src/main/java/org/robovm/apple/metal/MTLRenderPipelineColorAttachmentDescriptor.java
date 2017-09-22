@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLRenderPipelineColorAttachmentDescriptor() {}
+    protected MTLRenderPipelineColorAttachmentDescriptor(Handle h, long handle) { super(h, handle); }
     protected MTLRenderPipelineColorAttachmentDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

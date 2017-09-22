@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureMetadataInput() {}
+    protected AVCaptureMetadataInput(Handle h, long handle) { super(h, handle); }
     protected AVCaptureMetadataInput(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFormatDescription:clock:")
     public AVCaptureMetadataInput(CMFormatDescription desc, CMClock clock) { super((SkipInit) null); initObject(init(desc, clock)); }
     /*</constructors>*/
     /*<properties>*/

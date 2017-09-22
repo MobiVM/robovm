@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioSessionDataSourceDescription() {}
+    protected AVAudioSessionDataSourceDescription(Handle h, long handle) { super(h, handle); }
     protected AVAudioSessionDataSourceDescription(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -58,6 +58,14 @@ public final class /*<name>*/AVAudioSessionCategoryOptions/*</name>*/ extends Bi
      * @since Available in iOS 9.0 and later.
      */
     public static final AVAudioSessionCategoryOptions InterruptSpokenAudioAndMixWithOthers = new AVAudioSessionCategoryOptions(17L);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final AVAudioSessionCategoryOptions AllowBluetoothA2DP = new AVAudioSessionCategoryOptions(32L);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final AVAudioSessionCategoryOptions AllowAirPlay = new AVAudioSessionCategoryOptions(64L);
     /*</values>*/
 
     /*<bind>*/

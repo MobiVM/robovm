@@ -49,6 +49,7 @@ import org.robovm.apple.mapkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKSource() {}
+    protected EKSource(Handle h, long handle) { super(h, handle); }
     protected EKSource(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

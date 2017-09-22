@@ -46,7 +46,15 @@ public enum /*<name>*/HKErrorCode/*</name>*/ implements NSErrorCode {
     ErrorAuthorizationDenied(4L),
     ErrorAuthorizationNotDetermined(5L),
     ErrorDatabaseInaccessible(6L),
-    ErrorUserCanceled(7L);
+    ErrorUserCanceled(7L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    ErrorAnotherWorkoutSessionStarted(8L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    ErrorUserExitedWorkoutSession(9L);
     /*</values>*/
 
     /*<bind>*/

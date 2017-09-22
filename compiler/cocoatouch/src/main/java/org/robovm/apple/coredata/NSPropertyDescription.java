@@ -45,8 +45,10 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSPropertyDescription() {}
+    protected NSPropertyDescription(Handle h, long handle) { super(h, handle); }
     protected NSPropertyDescription(SkipInit skipInit) { super(skipInit); }
-    public NSPropertyDescription(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithCoder:")
+    public NSPropertyDescription(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "entity")
@@ -134,6 +136,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

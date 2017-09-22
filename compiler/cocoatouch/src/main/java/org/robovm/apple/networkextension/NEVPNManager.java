@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,6 +60,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NEVPNManager() {}
+    protected NEVPNManager(Handle h, long handle) { super(h, handle); }
     protected NEVPNManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -94,14 +96,28 @@ import org.robovm.apple.foundation.*;
     public native void setLocalizedDescription(String v);
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Property(selector = "protocol")
     public native NEVPNProtocol getProtocol();
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Property(selector = "setProtocol:")
     public native void setProtocol(NEVPNProtocol v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "protocolConfiguration")
+    public native NEVPNProtocol getProtocolConfiguration();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setProtocolConfiguration:")
+    public native void setProtocolConfiguration(NEVPNProtocol v);
     /**
      * @since Available in iOS 8.0 and later.
      */

@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIMarkupTextPrintFormatter() {}
     protected UIMarkupTextPrintFormatter(Handle h, long handle) { super(h, handle); }
     protected UIMarkupTextPrintFormatter(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithMarkupText:")
     public UIMarkupTextPrintFormatter(String markupText) { super((SkipInit) null); initObject(init(markupText)); }
     /*</constructors>*/
     /*<properties>*/

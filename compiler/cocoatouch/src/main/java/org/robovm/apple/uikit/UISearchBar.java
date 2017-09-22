@@ -55,7 +55,9 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public UISearchBar() {}
     protected UISearchBar(Handle h, long handle) { super(h, handle); }
     protected UISearchBar(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
     public UISearchBar(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
     public UISearchBar(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

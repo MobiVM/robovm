@@ -55,6 +55,7 @@ import org.robovm.apple.corelocation.*;
     public UIPopoverController() {}
     protected UIPopoverController(Handle h, long handle) { super(h, handle); }
     protected UIPopoverController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithContentViewController:")
     public UIPopoverController(UIViewController viewController) { super((SkipInit) null); initObject(init(viewController)); }
     /*</constructors>*/
     /*<properties>*/

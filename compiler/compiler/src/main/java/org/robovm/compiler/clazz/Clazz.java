@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.clazz;
 
+import org.apache.commons.io.IOUtils;
+import soot.SootClass;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -24,10 +27,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-import org.apache.commons.io.IOUtils;
-
-import soot.SootClass;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -42,7 +44,12 @@ public abstract class Clazz implements Comparable<Clazz> {
 
     private ClazzInfo clazzInfo = null; 
     private SootClass sootClass = null;
-    
+
+    // added attachments fields as it is required to keep information in build cycle between calls
+    // as it is not possible to keep it in plugin (due to statement that different operations of plugin
+    // could happen in different threads
+    private transient List<Object> attachments;
+
     Clazz(Clazzes clazzes, String fileName, AbstractPath path) {
         this.clazzes = clazzes;
         this.fileName = fileName;
@@ -156,6 +163,33 @@ public abstract class Clazz implements Comparable<Clazz> {
             return false;
         }
         return true;
+    }
+
+    public void attach(Object o) {
+        if (attachments == null) {
+            attachments = new ArrayList<>();
+        }
+        attachments.add(o);
+    }
+
+    public boolean removeAttachement(Object o) {
+        if (attachments == null)
+            return false;
+        return attachments.remove(o);
+    }
+
+    public List<Object> getAttachments() {
+        return attachments == null ? Collections.emptyList() : attachments;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T getAttachment(Class<T> cls) {
+        for (Object o : getAttachments()) {
+            if (cls.isInstance(o)) {
+                return (T) o;
+            }
+        }
+        return null;
     }
 
     public abstract byte[] getBytes() throws IOException;

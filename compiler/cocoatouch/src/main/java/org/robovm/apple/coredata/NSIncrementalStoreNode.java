@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSIncrementalStoreNode() {}
+    protected NSIncrementalStoreNode(Handle h, long handle) { super(h, handle); }
     protected NSIncrementalStoreNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithObjectID:withValues:version:")
     public NSIncrementalStoreNode(NSManagedObjectID objectID, NSDictionary<NSString, ?> values, long version) { super((SkipInit) null); initObject(init(objectID, values, version)); }
     /*</constructors>*/
     /*<properties>*/

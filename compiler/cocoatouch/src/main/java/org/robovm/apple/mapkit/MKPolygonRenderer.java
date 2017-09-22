@@ -49,7 +49,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKPolygonRenderer() {}
+    protected MKPolygonRenderer(Handle h, long handle) { super(h, handle); }
     protected MKPolygonRenderer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPolygon:")
     public MKPolygonRenderer(MKPolygon polygon) { super((SkipInit) null); initObject(init(polygon)); }
     /*</constructors>*/
     /*<properties>*/

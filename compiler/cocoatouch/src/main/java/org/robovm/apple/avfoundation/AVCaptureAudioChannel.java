@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureAudioChannel() {}
+    protected AVCaptureAudioChannel(Handle h, long handle) { super(h, handle); }
     protected AVCaptureAudioChannel(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

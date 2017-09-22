@@ -81,6 +81,11 @@ import org.robovm.apple.coretext.*;
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getDateFormat(CFAllocator allocator, String tmplate, @MachineSizedUInt long options, CFLocale locale);
     @Bridge(symbol="CFDateFormatterGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="CFDateFormatterCreateISO8601Formatter", optional=true)
+    public static native CFDateFormatter createISO8601Formatter(CFAllocator allocator, CFISO8601DateFormatOptions formatOptions);
     @Bridge(symbol="CFDateFormatterCreate", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFDateFormatter create(CFAllocator allocator, CFLocale locale, CFDateFormatterStyle dateStyle, CFDateFormatterStyle timeStyle);
     @Bridge(symbol="CFDateFormatterGetLocale", optional=true)

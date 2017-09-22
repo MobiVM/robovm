@@ -71,6 +71,25 @@ import com.dd.plist.PropertyListParser;
  *
  */
 public class IOSTarget extends AbstractTarget {
+    final List<String> excludedKeys = Arrays.asList(
+        "com.apple.developer.icloud-container-development-container-identifiers",
+        "com.apple.developer.icloud-container-environment",
+        "com.apple.developer.icloud-container-identifiers",
+        "com.apple.developer.icloud-services",
+        "com.apple.developer.restricted-resource-mode",
+        "com.apple.developer.ubiquity-container-identifiers",
+        "com.apple.developer.ubiquity-kvstore-identifier",
+        "inter-app-audio",
+        "com.apple.developer.homekit",
+        "com.apple.developer.healthkit",
+        "com.apple.developer.in-app-payments",
+        "com.apple.developer.associated-domains",
+        "com.apple.security.application-groups",
+        "com.apple.developer.maps",
+        "com.apple.developer.networking.vpn.api",
+        "com.apple.external-accessory.wireless-configuration"
+    );
+
     public static final String TYPE = "ios";
 
     private static File iosSimPath;
@@ -110,20 +129,6 @@ public class IOSTarget extends AbstractTarget {
         return arch == Arch.thumbv7 || arch == Arch.arm64;
     }
 
-    public static synchronized File getIosSimPath() {
-        if (iosSimPath == null) {
-            try {
-                File path = File.createTempFile("ios-sim", "");
-                FileUtils.copyURLToFile(IOSTarget.class.getResource("/ios-sim"), path);
-                path.setExecutable(true);
-                path.deleteOnExit();
-                iosSimPath = path;
-            } catch (IOException e) {
-                throw new Error(e);
-            }
-        }
-        return iosSimPath;
-    }
 
     public List<SDK> getSDKs() {
         if (isSimulatorArch(arch)) {
@@ -225,6 +230,8 @@ public class IOSTarget extends AbstractTarget {
         if (env == null) {
             env = new HashMap<>();
         }
+        //Fix for #71, see http://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-8-logs
+        env.put("OS_ACTIVITY_DT_MODE", "");
 
         AppLauncher launcher = new AppLauncher(device, getAppDir()) {
             protected void log(String s, Object... args) {
@@ -294,6 +301,13 @@ public class IOSTarget extends AbstractTarget {
         int majorVersionNumber = -1;
         try {
             majorVersionNumber = Integer.parseInt(minVersion.substring(0, minVersion.indexOf('.')));
+            int minMajorSupportedVersion = Integer.parseInt(minVersion.substring(0, config.getOs().getMinVersion().indexOf('.')));
+
+            if (majorVersionNumber < minMajorSupportedVersion) {
+                throw new CompilerException("MinimumOSVersion of " + minVersion + " is not supported. "
+                    + "The minimum version for this platform is " + config.getOs().getMinVersion());
+            }
+
         } catch (NumberFormatException e) {
             throw new CompilerException("Failed to get major version number from "
                     + "MinimumOSVersion string '" + minVersion + "'");
@@ -364,6 +378,12 @@ public class IOSTarget extends AbstractTarget {
         FileUtils.copyFile(profile.getFile(), new File(destDir, "embedded.mobileprovision"));
     }
 
+    @Override
+    public void prepareLaunch() throws IOException {
+        prepareLaunch(getAppDir());
+    }
+
+
     protected void prepareLaunch(File appDir) throws IOException {
         super.doInstall(appDir, getExecutable(), appDir);
         createInfoPList(appDir);
@@ -431,7 +451,7 @@ public class IOSTarget extends AbstractTarget {
             args.add(entitlementsPList);
         }
         if (preserveMetadata) {
-            args.add("--preserve-metadata=identifier,entitlements,resource-rules");
+            args.add("--preserve-metadata=identifier,entitlements");
         }
         if (verbose) {
             args.add("--verbose");
@@ -473,7 +493,7 @@ public class IOSTarget extends AbstractTarget {
             if (provisioningProfile != null) {
                 NSDictionary profileEntitlements = provisioningProfile.getEntitlements();
                 for (String key : profileEntitlements.allKeys()) {
-                    if (dict.objectForKey(key) == null) {
+                    if (dict.objectForKey(key) == null && !excludedKeys.contains(key)) {
                         dict.put(key, profileEntitlements.objectForKey(key));
                     }
                 }
@@ -533,15 +553,11 @@ public class IOSTarget extends AbstractTarget {
 
     @Override
     protected Process doLaunch(LaunchParameters launchParameters) throws IOException {
-        prepareLaunch(getAppDir());
+        // in IDEA prepare for launch is happening during build phase to not block calling thread
+        // all other pluggins will prepare here
+        if (!config.isManuallyPreparedForLaunch())
+            prepareLaunch();
         Process process = super.doLaunch(launchParameters);
-        /*if (launchParameters instanceof IOSSimulatorLaunchParameters) {
-            File script = File.createTempFile("BISTF", ".scpt");
-            FileUtils.copyURLToFile(getClass().getResource("/BringIOSSimulatorToFront.scpt"), script);
-            new Executor(config.getHome().isDev() ? config.getLogger() : Logger.NULL_LOGGER, "osascript")
-                    .args(script)
-                    .execAsync();
-        }*/
         return process;
     }
 

@@ -46,6 +46,7 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKObject() {}
+    protected PKObject(Handle h, long handle) { super(h, handle); }
     protected PKObject(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

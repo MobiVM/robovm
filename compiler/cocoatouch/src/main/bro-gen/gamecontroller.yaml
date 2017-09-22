@@ -17,6 +17,7 @@ classes:
     GCEulerAngles: {}
     GCRotationRate: {}
     GCQuaternion: {}
+    GCMicroGamepadSnapShotDataV100: {}
 
     GCController: # DONE
         methods:
@@ -62,6 +63,9 @@ classes:
         properties:
             'valueChangedHandler':
                 type: '@Block VoidBlock2<GCGamepad, GCControllerElement>'
+    GCMicroGamepad: {}
+    GCMicroGamepadSnapshot: {}
+    GCEventViewController: {}
 
 protocols: {}
 
@@ -80,6 +84,10 @@ functions:
         
     (NSDataFromGCGamepadSnapShotDataV100):
         class: GCGamepadSnapShotDataV100
+        name: getData
+
+    (GCMicroGamepadSnapShotDataV100FromNSData):
+        class: GCMicroGamepadSnapShotDataV100
         name: getData
 
     # Make sure we don't miss any functions if new ones are introduced in a later version

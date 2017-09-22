@@ -53,9 +53,13 @@ import org.robovm.apple.corelocation.*;
     public UIAttachmentBehavior() {}
     protected UIAttachmentBehavior(Handle h, long handle) { super(h, handle); }
     protected UIAttachmentBehavior(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItem:attachedToAnchor:")
     public UIAttachmentBehavior(UIDynamicItem item, @ByVal CGPoint point) { super((SkipInit) null); initObject(init(item, point)); }
+    @Method(selector = "initWithItem:offsetFromCenter:attachedToAnchor:")
     public UIAttachmentBehavior(UIDynamicItem item, @ByVal UIOffset offset, @ByVal CGPoint point) { super((SkipInit) null); initObject(init(item, offset, point)); }
+    @Method(selector = "initWithItem:attachedToItem:")
     public UIAttachmentBehavior(UIDynamicItem item1, UIDynamicItem item2) { super((SkipInit) null); initObject(init(item1, item2)); }
+    @Method(selector = "initWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:")
     public UIAttachmentBehavior(UIDynamicItem item1, @ByVal UIOffset offset1, UIDynamicItem item2, @ByVal UIOffset offset2) { super((SkipInit) null); initObject(init(item1, offset1, item2, offset2)); }
     /*</constructors>*/
     /*<properties>*/

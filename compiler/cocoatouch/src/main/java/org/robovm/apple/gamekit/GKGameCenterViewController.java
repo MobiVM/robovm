@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKGameCenterViewController() {}
+    protected GKGameCenterViewController(Handle h, long handle) { super(h, handle); }
     protected GKGameCenterViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

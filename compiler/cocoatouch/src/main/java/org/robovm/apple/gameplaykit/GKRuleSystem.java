@@ -28,10 +28,13 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.spritekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKRuleSystem/*</name>*/ 
@@ -43,11 +46,12 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKRuleSystem() {}
+    protected GKRuleSystem(Handle h, long handle) { super(h, handle); }
     protected GKRuleSystem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "state")
-    public native NSMutableDictionary getState();
+    public native NSMutableDictionary<?, ?> getState();
     @Property(selector = "rules")
     public native NSArray<GKRule> getRules();
     @Property(selector = "agenda")

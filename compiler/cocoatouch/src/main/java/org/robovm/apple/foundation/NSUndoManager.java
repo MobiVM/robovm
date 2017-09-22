@@ -149,7 +149,9 @@ import org.robovm.apple.dispatch.*;
     
     /*<ptr>*/public static class NSUndoManagerPtr extends Ptr<NSUndoManager, NSUndoManagerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUndoManager.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int CloseGroupingRunLoopOrdering = 350000;
+    /*</constants>*/
     /*<constructors>*/
     public NSUndoManager() {}
     protected NSUndoManager(Handle h, long handle) { super(h, handle); }
@@ -209,8 +211,6 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @GlobalValue(symbol="NSUndoCloseGroupingRunLoopOrdering", optional=true)
-    public static native @MachineSizedUInt long getCloseGroupingRunLoopOrdering();
     /**
      * @since Available in iOS 5.0 and later.
      */

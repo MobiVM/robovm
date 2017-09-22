@@ -1,5 +1,5 @@
 package: org.robovm.apple.networkextension
-include: [foundation.yaml]
+include: [foundation.yaml, security.yaml]
 library: NetworkExtension
 framework: NetworkExtension
 clang_args: ['-x', 'objective-c']
@@ -20,7 +20,112 @@ enums:
     NEOnDemandRuleInterfaceType: {}
     NEEvaluateConnectionRuleAction: {}
 
+    NEAppProxyFlowError: {}
+    NEProviderStopReason: {}
+    NETunnelProviderError: {}
+    NETunnelProviderRoutingMethod: {}
+    NEFilterManagerError: {}
+    NEHotspotHelperCommandType: {}
+    NEHotspotHelperResult: {}
+    NEHotspotHelperConfidence: {}
+    NWTCPConnectionState: {}
+    NWUDPSessionState: {}
+    NWPathStatus: {}
+
 classes:
+    NEProvider:
+        methods:
+            '-createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:':
+                name: createTCPConnection
+            '-createUDPSessionToEndpoint:fromEndpoint:':
+                name: createUDPSession
+            '-displayMessage:completionHandler:':
+                name: displayMessage
+    NETunnelProvider:
+        methods:
+            '-handleAppMessage:completionHandler:':
+                trim_after_first_colon: true
+            '-setTunnelNetworkSettings:completionHandler:':
+                trim_after_first_colon: true
+    NETunnelNetworkSettings: {}
+    NEAppRule: {}
+    NEFilterFlow: {}
+    NEFilterBrowserFlow: {}
+    NEFilterSocketFlow: {}
+    NEFilterProvider:
+        methods:
+            '-startFilterWithCompletionHandler:':
+                name: startFilter
+            '-stopFilterWithReason:completionHandler:':
+                name: stopFilter
+    NEFilterDataProvider:
+        methods:
+            '-handleInboundDataFromFlow:readBytesStartOffset:readBytes:':
+                name: handleInboundData
+            '-handleOutboundDataFromFlow:readBytesStartOffset:readBytes:':
+                name: handleOutboundData
+    NEFilterDataVerdict:
+        methods:
+            '+remediateVerdictWithRemediationURLMapKey:remediationButtonTextMapKey:':
+                name: remediateVerdict
+            '+dataVerdictWithPassBytes:peekBytes:':
+                name: dataVerdict
+    NEFilterVerdict: {}
+    NEFilterNewFlowVerdict:
+        methods:
+            '+remediateVerdictWithRemediationURLMapKey:remediationButtonTextMapKey:':
+                name: remediateVerdict
+            '+URLAppendStringVerdictWithMapKey:':
+                name: URLAppendStringVerdict
+            '+filterDataVerdictWithFilterInbound:peekInboundBytes:filterOutbound:peekOutboundBytes:':
+                name: filterDataVerdict
+    NEFilterControlVerdict: {}
+    NEFilterRemediationVerdict: {}
+    NEFilterManager: {}
+    NEFilterProviderConfiguration: {}
+    NEHotspotNetwork: {}
+    NEHotspotHelperCommand: {}
+    NEHotspotHelperResponse: {}
+    NEHotspotHelper:
+        methods:
+            '+registerWithOptions:queue:handler:':
+                name: register
+                parameters:
+                    'queue':
+                        type: org.robovm.apple.dispatch.DispatchQueue
+    NWTCPConnection:
+        methods:
+            '-init.*':
+                name: init
+            '-readLength:completionHandler:':
+                name: read
+            '-readMinimumLength:maximumLength:completionHandler:':
+                name: read
+            '-write:completionHandler:':
+                name: write
+    NWUDPSession:
+        methods:
+            '-init.*':
+                name: init
+            '-setReadHandler:maxDatagrams:':
+                trim_after_first_colon: true
+            '-write.*':
+                trim_after_first_colon: true
+    NWPath: {}
+    NWEndpoint: {}
+    NWHostEndpoint:
+        methods:
+            '+endpointWithHostname:port:':
+                name: create
+    NEDNSSettings: {}
+    NWTLSParameters: {}
+    NEProxyServer:
+        methods:
+            '-init.*':
+                name: init
+    NEProxySettings: {}
+
+
     NEVPNError:
         extends: NSError
         annotations: ['@StronglyLinked']
@@ -54,6 +159,9 @@ classes:
             '-startVPNTunnelAndReturnError:':
                 name: startVPNTunnel
                 throws: NSErrorException
+            '-startVPNTunnelWithOptions:andReturnError:':
+                name: startVPNTunnel
+                throws: NSErrorException
     NEVPNManager: # DONE
         properties:
             'onDemandRules':
@@ -78,7 +186,102 @@ classes:
     NEVPNProtocolIKEv2: {} # DONE
     NEVPNIKEv2SecurityAssociationParameters: {} # DONE
 
-protocols: {}
+    NEAppProxyFlow:
+        methods:
+            '-openWithLocalEndpoint:completionHandler:':
+                name: open
+    NEAppProxyProvider:
+        methods:
+            '-startProxyWithOptions:completionHandler:':
+                name: startProxy
+            '-stopProxyWithReason:completionHandler:':
+                name: stopProxy
+    NEAppProxyProviderManager:
+        methods:
+            '+loadAllFromPreferencesWithCompletionHandler:':
+                name: loadAllProxies
+    NEAppProxyTCPFlow:
+        methods:
+            '-readDataWithCompletionHandler:':
+                name: readData
+            '-writeData:withCompletionHandler:':
+                name: writeData
+    NEAppProxyUDPFlow:
+        methods:
+            '-readDatagramsWithCompletionHandler:':
+                name: readDatagrams
+            '-writeDatagrams:sentByEndpoints:completionHandler:':
+                name: writeDatagrams
+    NEFilterControlProvider:
+        methods:
+            '-handleRemediationForFlow:completionHandler:':
+                trim_after_first_colon: true
+            '-handleNewFlow:completionHandler:':
+                trim_after_first_colon: true
+    NEFlowMetaData: {}
+    NEIPv4Route:
+        methods:
+            '-init.*':
+                name: init
+    NEIPv4Settings:
+        methods:
+            '-init.*':
+                name: init
+    NEIPv6Route:
+        methods:
+            '-init.*':
+                name: init
+    NEIPv6Settings:
+        methods:
+            '-init.*':
+                name: init
+    NEPacket:
+        methods:
+            '-init.*':
+                name: init
+    NEPacketTunnelFlow:
+        methods:
+            '-readPacketsWithCompletionHandler:':
+                name: readPackets
+            '-writePackets:withProtocols:':
+                name: writePackets
+            '-readPacketObjectsWithCompletionHandler:':
+                name: readPacketObjects
+    NEPacketTunnelNetworkSettings: {}
+    NEPacketTunnelProvider:
+        methods:
+            '-startTunnelWithOptions:completionHandler:':
+                name: startTunnel
+            '-stopTunnelWithReason:completionHandler:':
+                name: stopTunnel
+            '-createTCPConnectionThroughTunnelToEndpoint:enableTLS:TLSParameters:delegate:':
+                name: createTCPConnection
+            '-createUDPSessionThroughTunnelToEndpoint:fromEndpoint:':
+                name: createUDPSession
+    NETunnelProviderManager:
+        methods:
+            '+loadAllFromPreferencesWithCompletionHandler:':
+                name: loadAllTunnels
+    NETunnelProviderProtocol: {}
+    NETunnelProviderSession:
+        methods:
+            '-startTunnelWithOptions:andReturnError:':
+                name: startTunnel
+            '-sendProviderMessage:returnError:responseHandler:':
+                name: sendProviderMessage
+    NWBonjourServiceEndpoint:
+        methods:
+            '+endpointWithName:type:domain:':
+                name: create
+                constructor: true
+
+protocols:
+    NWTCPConnectionAuthenticationDelegate:
+        methods:
+            '-provideIdentityForConnection:completionHandler:':
+                name: provideIdentityForConnection
+            '-evaluateTrustForConnection:peerCertificateChain:completionHandler:':
+                name: evaluateTrustForConnection
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -91,6 +294,28 @@ values:
         class: NEVPNError
         name: getClassDomain
 
+    NEFilterErrorDomain:
+        class: NEFilterManagerError
+        name: getClassDomain
+
+    NETunnelProviderErrorDomain:
+        class: NETunnelProviderError
+        name: getClassDomain
+
+    NEAppProxyErrorDomain:
+        class: NEAppProxyFlowError
+        name: getClassDomain
+
+    # NEFilterProvider
+    NEFilterProvider(RemediationMapRemediationURLs|RemediationMapRemediationButtonTexts):
+        class: NEFilterProvider
+        name: '#{g[0]}'
+
+    # NEFilterManager
+    NEFilter(ConfigurationDidChangeNotification):
+        class: NEFilterManager
+        name: '#{g[0]}'
+
     # NEVPNManager
     NEVPN(ConfigurationChangeNotification):
         class: NEVPNManager
@@ -102,13 +327,22 @@ values:
         class: NEVPNConnection
         name: '#{g[0]}'
         type: NSString
-   
+    NEVPNConnection(StartOptionUsername|StartOptionPassword):
+        class: NEVPNConnection
+    # NEHotspotHelper
+    kNEHotspotHelper(OptionDisplayName):
+        class: NEHotspotHelper
+        name: '#{g[0]}'
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?NE.*):
         class: NetworkExtension
         name: 'Value__#{g[0]}'
 
 constants:
+    NEFilterFlowBytesMax:
+        exclude: true
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?NE.*):
         class: NetworkExtension

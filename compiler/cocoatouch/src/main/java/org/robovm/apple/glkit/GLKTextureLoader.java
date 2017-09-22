@@ -33,6 +33,7 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.modelio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,7 +51,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GLKTextureLoader() {}
+    protected GLKTextureLoader(Handle h, long handle) { super(h, handle); }
     protected GLKTextureLoader(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSharegroup:")
     public GLKTextureLoader(EAGLSharegroup sharegroup) { super((SkipInit) null); initObject(init(sharegroup)); }
     /*</constructors>*/
     /*<properties>*/
@@ -66,6 +69,9 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     @Method(selector = "textureWithContentsOfURL:options:queue:completionHandler:")
     public native void loadTexture(NSURL url, GLKTextureLoaderOptions options, DispatchQueue queue, @Block VoidBlock2<GLKTextureInfo, NSError> block);
+    @WeaklyLinked
+    @Method(selector = "textureWithName:scaleFactor:bundle:options:queue:completionHandler:")
+    public native void createTexture(String name, @MachineSizedFloat double scaleFactor, NSBundle bundle, GLKTextureLoaderOptions options, DispatchQueue queue, @Block VoidBlock2<GLKTextureInfo, NSError> block);
     @WeaklyLinked
     @Method(selector = "textureWithContentsOfData:options:queue:completionHandler:")
     public native void createTexture(NSData data, GLKTextureLoaderOptions options, DispatchQueue queue, @Block VoidBlock2<GLKTextureInfo, NSError> block);
@@ -97,6 +103,14 @@ import org.robovm.apple.dispatch.*;
     }
     @Method(selector = "textureWithContentsOfURL:options:error:")
     private static native GLKTextureInfo loadTexture(NSURL url, GLKTextureLoaderOptions options, NSError.NSErrorPtr outError);
+    public static GLKTextureInfo createTexture(String name, @MachineSizedFloat double scaleFactor, NSBundle bundle, GLKTextureLoaderOptions options) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       GLKTextureInfo result = createTexture(name, scaleFactor, bundle, options, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "textureWithName:scaleFactor:bundle:options:error:")
+    private static native GLKTextureInfo createTexture(String name, @MachineSizedFloat double scaleFactor, NSBundle bundle, GLKTextureLoaderOptions options, NSError.NSErrorPtr outError);
     public static GLKTextureInfo createTexture(NSData data, GLKTextureLoaderOptions options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        GLKTextureInfo result = createTexture(data, options, ptr);

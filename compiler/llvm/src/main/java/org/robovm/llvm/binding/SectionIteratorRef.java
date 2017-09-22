@@ -9,9 +9,9 @@
 package org.robovm.llvm.binding;
 
 public class SectionIteratorRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected SectionIteratorRef(long cPtr, boolean futureUse) {
+  protected SectionIteratorRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

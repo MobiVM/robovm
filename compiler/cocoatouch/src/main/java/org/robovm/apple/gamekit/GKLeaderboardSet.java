@@ -46,8 +46,10 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKLeaderboardSet() {}
+    protected GKLeaderboardSet(Handle h, long handle) { super(h, handle); }
     protected GKLeaderboardSet(SkipInit skipInit) { super(skipInit); }
-    public GKLeaderboardSet(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithCoder:")
+    public GKLeaderboardSet(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "title")
@@ -76,6 +78,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -51,9 +51,11 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKTextureAtlas() {}
+    protected SKTextureAtlas(Handle h, long handle) { super(h, handle); }
     protected SKTextureAtlas(SkipInit skipInit) { super(skipInit); }
-    public SKTextureAtlas(String name) { super(create(name)); retain(getHandle()); }
-    public SKTextureAtlas(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKTextureAtlas(String name) { super((Handle) null, create(name)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public SKTextureAtlas(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /**
      * Constructs a new texture atlas object from the specified texture files.
@@ -110,6 +112,6 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -47,6 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPRatingCommand() {}
+    protected MPRatingCommand(Handle h, long handle) { super(h, handle); }
     protected MPRatingCommand(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

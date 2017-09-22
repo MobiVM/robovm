@@ -201,6 +201,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="SKStoreProductParameterProviderToken", optional=true)
         public static native NSString ProviderToken();
+        /**
+         * @since Available in iOS 9.3 and later.
+         */
+        @GlobalValue(symbol="SKStoreProductParameterAdvertisingPartnerToken", optional=true)
+        public static native NSString AdvertisingPartnerToken();
     }
     /*</keys>*/
 }

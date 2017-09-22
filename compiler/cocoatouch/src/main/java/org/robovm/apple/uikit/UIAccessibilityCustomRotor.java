@@ -53,7 +53,8 @@ import org.robovm.apple.corelocation.*;
     public UIAccessibilityCustomRotor() {}
     protected UIAccessibilityCustomRotor(Handle h, long handle) { super(h, handle); }
     protected UIAccessibilityCustomRotor(SkipInit skipInit) { super(skipInit); }
-    public UIAccessibilityCustomRotor(String name, FunctionPtr itemSearchBlock) { super((SkipInit) null); initObject(init(name, itemSearchBlock)); }
+    @Method(selector = "initWithName:itemSearchBlock:")
+    public UIAccessibilityCustomRotor(String name, @Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> itemSearchBlock) { super((SkipInit) null); initObject(init(name, itemSearchBlock)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -61,13 +62,13 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "setName:")
     public native void setName(String v);
     @Property(selector = "itemSearchBlock")
-    public native FunctionPtr getItemSearchBlock();
+    public native @Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> getItemSearchBlock();
     @Property(selector = "setItemSearchBlock:")
-    public native void setItemSearchBlock(FunctionPtr v);
+    public native void setItemSearchBlock(@Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithName:itemSearchBlock:")
-    protected native @Pointer long init(String name, FunctionPtr itemSearchBlock);
+    protected native @Pointer long init(String name, @Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> itemSearchBlock);
     /*</methods>*/
 }

@@ -51,17 +51,22 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKVideoNode() {}
+    protected SKVideoNode(Handle h, long handle) { super(h, handle); }
     protected SKVideoNode(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithAVPlayer:")
     public SKVideoNode(AVPlayer player) { super((SkipInit) null); initObject(init(player)); }
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @Method(selector = "initWithFileNamed:")
     public SKVideoNode(String videoFile) { super((SkipInit) null); initObject(init(videoFile)); }
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @Method(selector = "initWithURL:")
     public SKVideoNode(NSURL url) { super((SkipInit) null); initObject(init(url)); }
+    @Method(selector = "initWithCoder:")
     public SKVideoNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

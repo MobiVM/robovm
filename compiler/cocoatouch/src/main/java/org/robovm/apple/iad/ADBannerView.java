@@ -37,7 +37,9 @@ import org.robovm.apple.avkit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("iAd") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ADBannerView/*</name>*/ 
@@ -49,10 +51,12 @@ import org.robovm.apple.avkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public ADBannerView() {}
+    protected ADBannerView(Handle h, long handle) { super(h, handle); }
     protected ADBannerView(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @Method(selector = "initWithAdType:")
     public ADBannerView(ADAdType type) { super((SkipInit) null); initObject(init(type)); }
     /*</constructors>*/
     public ADBannerView(CGRect frame) {
@@ -76,34 +80,6 @@ import org.robovm.apple.avkit.*;
     public native String getAdvertisingSection();
     @Property(selector = "setAdvertisingSection:")
     public native void setAdvertisingSection(String v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Property(selector = "requiredContentSizeIdentifiers")
-    public native @org.robovm.rt.bro.annotation.Marshaler(ADBannerContentSizeIdentifier.AsListMarshaler.class) List<ADBannerContentSizeIdentifier> getRequiredContentSizeIdentifiers();
-    /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Property(selector = "setRequiredContentSizeIdentifiers:")
-    public native void setRequiredContentSizeIdentifiers(@org.robovm.rt.bro.annotation.Marshaler(ADBannerContentSizeIdentifier.AsListMarshaler.class) List<ADBannerContentSizeIdentifier> v);
-    /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Property(selector = "currentContentSizeIdentifier")
-    public native ADBannerContentSizeIdentifier getCurrentContentSizeIdentifier();
-    /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Property(selector = "setCurrentContentSizeIdentifier:")
-    public native void setCurrentContentSizeIdentifier(ADBannerContentSizeIdentifier v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -114,13 +90,5 @@ import org.robovm.apple.avkit.*;
     protected native @Pointer long init(ADAdType type);
     @Method(selector = "cancelBannerViewAction")
     public native void cancelBannerViewAction();
-    /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @WeaklyLinked
-    @Method(selector = "sizeFromBannerContentSizeIdentifier:")
-    protected static native @ByVal CGSize getSizeForIdentifier(NSString contentSizeIdentifier);
     /*</methods>*/
 }

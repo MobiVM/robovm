@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NKLibrary() {}
+    protected NKLibrary(Handle h, long handle) { super(h, handle); }
     protected NKLibrary(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

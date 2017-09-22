@@ -95,9 +95,21 @@ import org.robovm.apple.contacts.*;
      */
     public static final PKPaymentNetwork Amex = new PKPaymentNetwork("Amex");
     /**
+     * @since Available in iOS 10.3 and later.
+     */
+    public static final PKPaymentNetwork CarteBancaire = new PKPaymentNetwork("CarteBancaire");
+    /**
+     * @since Available in iOS 9.2 and later.
+     */
+    public static final PKPaymentNetwork ChinaUnionPay = new PKPaymentNetwork("ChinaUnionPay");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final PKPaymentNetwork Discover = new PKPaymentNetwork("Discover");
+    /**
+     * @since Available in iOS 9.2 and later.
+     */
+    public static final PKPaymentNetwork Interac = new PKPaymentNetwork("Interac");
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -110,9 +122,25 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 8.0 and later.
      */
     public static final PKPaymentNetwork Visa = new PKPaymentNetwork("Visa");
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
+    public static final PKPaymentNetwork JCB = new PKPaymentNetwork("JCB");
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
+    public static final PKPaymentNetwork Suica = new PKPaymentNetwork("Suica");
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    public static final PKPaymentNetwork QuicPay = new PKPaymentNetwork("QuicPay");
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    public static final PKPaymentNetwork IDCredit = new PKPaymentNetwork("IDCredit");
     /*</constants>*/
     
-    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, Discover, MasterCard, PrivateLabel, Visa/*</value_list>*/};
+    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, CarteBancaire, ChinaUnionPay, Discover, Interac, MasterCard, PrivateLabel, Visa, JCB, Suica, QuicPay, IDCredit/*</value_list>*/};
     
     /*<name>*/PKPaymentNetwork/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -141,10 +169,25 @@ import org.robovm.apple.contacts.*;
         @GlobalValue(symbol="PKPaymentNetworkAmex", optional=true)
         public static native NSString Amex();
         /**
+         * @since Available in iOS 10.3 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkCarteBancaire", optional=true)
+        public static native NSString CarteBancaire();
+        /**
+         * @since Available in iOS 9.2 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkChinaUnionPay", optional=true)
+        public static native NSString ChinaUnionPay();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="PKPaymentNetworkDiscover", optional=true)
         public static native NSString Discover();
+        /**
+         * @since Available in iOS 9.2 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkInterac", optional=true)
+        public static native NSString Interac();
         /**
          * @since Available in iOS 8.0 and later.
          */
@@ -160,6 +203,26 @@ import org.robovm.apple.contacts.*;
          */
         @GlobalValue(symbol="PKPaymentNetworkVisa", optional=true)
         public static native NSString Visa();
+        /**
+         * @since Available in iOS 10.1 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkJCB", optional=true)
+        public static native NSString JCB();
+        /**
+         * @since Available in iOS 10.1 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkSuica", optional=true)
+        public static native NSString Suica();
+        /**
+         * @since Available in iOS 10.3 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkQuicPay", optional=true)
+        public static native NSString QuicPay();
+        /**
+         * @since Available in iOS 10.3 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkIDCredit", optional=true)
+        public static native NSString IDCredit();
         /*</values>*/
     }
 }

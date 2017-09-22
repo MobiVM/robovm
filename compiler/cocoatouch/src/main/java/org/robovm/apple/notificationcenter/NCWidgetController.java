@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 /*</imports>*/
 
@@ -46,6 +47,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NCWidgetController() {}
+    protected NCWidgetController(Handle h, long handle) { super(h, handle); }
     protected NCWidgetController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

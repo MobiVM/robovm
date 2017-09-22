@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,8 +52,9 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHFetchResultChangeDetails() {}
+    protected PHFetchResultChangeDetails(Handle h, long handle) { super(h, handle); }
     protected PHFetchResultChangeDetails(SkipInit skipInit) { super(skipInit); }
-    public PHFetchResultChangeDetails(PHFetchResult<T> fromResult, PHFetchResult<T> toResult, NSArray<T> changedObjects) { super(create(fromResult, toResult, changedObjects)); retain(getHandle()); }
+    public PHFetchResultChangeDetails(PHFetchResult<T> fromResult, PHFetchResult<T> toResult, NSArray<T> changedObjects) { super((Handle) null, create(fromResult, toResult, changedObjects)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "fetchResultBeforeChanges")

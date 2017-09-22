@@ -103,8 +103,11 @@ import org.robovm.apple.dispatch.*;
     public NSFileHandle() {}
     protected NSFileHandle(Handle h, long handle) { super(h, handle); }
     protected NSFileHandle(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFileDescriptor:closeOnDealloc:")
     public NSFileHandle(int fd, boolean closeopt) { super((SkipInit) null); initObject(init(fd, closeopt)); }
+    @Method(selector = "initWithCoder:")
     public NSFileHandle(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    @Method(selector = "initWithFileDescriptor:")
     public NSFileHandle(int fd) { super((SkipInit) null); initObject(init(fd)); }
     /*</constructors>*/
     /*<properties>*/

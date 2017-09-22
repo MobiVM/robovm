@@ -46,19 +46,24 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKAchievement() {}
+    protected GKAchievement(Handle h, long handle) { super(h, handle); }
     protected GKAchievement(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithIdentifier:")
     public GKAchievement(String identifier) { super((SkipInit) null); initObject(init(identifier)); }
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @Method(selector = "initWithIdentifier:player:")
     public GKAchievement(String identifier, GKPlayer player) { super((SkipInit) null); initObject(init(identifier, player)); }
     /**
      * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
+    @Method(selector = "initWithIdentifier:forPlayer:")
     public GKAchievement(String identifier, String playerID) { super((SkipInit) null); initObject(init(identifier, playerID)); }
-    public GKAchievement(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithCoder:")
+    public GKAchievement(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -88,13 +93,6 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "player")
     public native GKPlayer getPlayer();
-    /**
-     * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Property(selector = "isHidden")
-    public native boolean isHidden();
     /**
      * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0.
@@ -174,6 +172,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

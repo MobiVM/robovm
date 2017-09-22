@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -38,7 +39,10 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NEOnDemandRuleInterfaceType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Ethernet(1L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    Any(0L),
     /**
      * @since Available in iOS 8.0 and later.
      */

@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKVoiceChat() {}
+    protected GKVoiceChat(Handle h, long handle) { super(h, handle); }
     protected GKVoiceChat(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -53,12 +54,12 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "playerVoiceChatStateDidChangeHandler")
-    public native @Block VoidBlock2<GKPlayer, GKInviteRecipientResponse> getPlayerVoiceChatStateDidChangeHandler();
+    public native @Block VoidBlock2<GKPlayer, GKVoiceChatPlayerState> getPlayerVoiceChatStateDidChangeHandler();
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "setPlayerVoiceChatStateDidChangeHandler:")
-    public native void setPlayerVoiceChatStateDidChangeHandler(@Block VoidBlock2<GKPlayer, GKInviteRecipientResponse> v);
+    public native void setPlayerVoiceChatStateDidChangeHandler(@Block VoidBlock2<GKPlayer, GKVoiceChatPlayerState> v);
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "isActive")

@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVQueuePlayer() {}
+    protected AVQueuePlayer(Handle h, long handle) { super(h, handle); }
     protected AVQueuePlayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItems:")
     public AVQueuePlayer(NSArray<AVPlayerItem> items) { super((SkipInit) null); initObject(init(items)); }
     /*</constructors>*/
     /*<properties>*/

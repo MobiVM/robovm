@@ -45,6 +45,8 @@ protocols:
                 name: getFrame
             '-previewController:transitionImageForPreviewItem:contentRect:':
                 name: getTransitionImage
+            '-previewController:transitionViewForPreviewItem:':
+                name: getTransitionViewForPreviewItem
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

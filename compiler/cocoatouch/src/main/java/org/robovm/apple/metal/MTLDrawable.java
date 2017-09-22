@@ -46,13 +46,32 @@ import org.robovm.apple.dispatch.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "presentedTime")
+    double getPresentedTime();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "drawableID")
+    @MachineSizedUInt long getDrawableID();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "present")
     void present();
     @Method(selector = "presentAtTime:")
     void presentAtTime(double presentationTime);
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Method(selector = "presentAfterMinimumDuration:")
+    void presentAfterMinimumDuration(double duration);
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Method(selector = "addPresentedHandler:")
+    void addPresentedHandler(@Block VoidBlock1<MTLDrawable> block);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

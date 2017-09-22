@@ -122,6 +122,18 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
+    public static final CNContactPropertyKey OrganizationName = new CNContactPropertyKey("OrganizationName");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CNContactPropertyKey DepartmentName = new CNContactPropertyKey("DepartmentName");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final CNContactPropertyKey JobTitle = new CNContactPropertyKey("JobTitle");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     public static final CNContactPropertyKey PhoneticGivenName = new CNContactPropertyKey("PhoneticGivenName");
     /**
      * @since Available in iOS 9.0 and later.
@@ -132,17 +144,9 @@ import org.robovm.apple.foundation.*;
      */
     public static final CNContactPropertyKey PhoneticFamilyName = new CNContactPropertyKey("PhoneticFamilyName");
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    public static final CNContactPropertyKey OrganizationName = new CNContactPropertyKey("OrganizationName");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final CNContactPropertyKey DepartmentName = new CNContactPropertyKey("DepartmentName");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final CNContactPropertyKey JobTitle = new CNContactPropertyKey("JobTitle");
+    public static final CNContactPropertyKey PhoneticOrganizationName = new CNContactPropertyKey("PhoneticOrganizationName");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -205,7 +209,7 @@ import org.robovm.apple.foundation.*;
     public static final CNContactPropertyKey InstantMessageAddresses = new CNContactPropertyKey("InstantMessageAddresses");
     /*</constants>*/
     
-    private static /*<name>*/CNContactPropertyKey/*</name>*/[] values = new /*<name>*/CNContactPropertyKey/*</name>*/[] {/*<value_list>*/Identifier, NamePrefix, GivenName, MiddleName, FamilyName, PreviousFamilyName, NameSuffix, Nickname, PhoneticGivenName, PhoneticMiddleName, PhoneticFamilyName, OrganizationName, DepartmentName, JobTitle, Birthday, NonGregorianBirthday, Note, ImageData, ThumbnailImageData, ImageDataAvailable, Type, PhoneNumbers, EmailAddresses, PostalAddresses, Dates, UrlAddresses, Relations, SocialProfiles, InstantMessageAddresses/*</value_list>*/};
+    private static /*<name>*/CNContactPropertyKey/*</name>*/[] values = new /*<name>*/CNContactPropertyKey/*</name>*/[] {/*<value_list>*/Identifier, NamePrefix, GivenName, MiddleName, FamilyName, PreviousFamilyName, NameSuffix, Nickname, OrganizationName, DepartmentName, JobTitle, PhoneticGivenName, PhoneticMiddleName, PhoneticFamilyName, PhoneticOrganizationName, Birthday, NonGregorianBirthday, Note, ImageData, ThumbnailImageData, ImageDataAvailable, Type, PhoneNumbers, EmailAddresses, PostalAddresses, Dates, UrlAddresses, Relations, SocialProfiles, InstantMessageAddresses/*</value_list>*/};
     
     /*<name>*/CNContactPropertyKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -271,6 +275,21 @@ import org.robovm.apple.foundation.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
+        @GlobalValue(symbol="CNContactOrganizationNameKey", optional=true)
+        public static native NSString OrganizationName();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="CNContactDepartmentNameKey", optional=true)
+        public static native NSString DepartmentName();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="CNContactJobTitleKey", optional=true)
+        public static native NSString JobTitle();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
         @GlobalValue(symbol="CNContactPhoneticGivenNameKey", optional=true)
         public static native NSString PhoneticGivenName();
         /**
@@ -284,20 +303,10 @@ import org.robovm.apple.foundation.*;
         @GlobalValue(symbol="CNContactPhoneticFamilyNameKey", optional=true)
         public static native NSString PhoneticFamilyName();
         /**
-         * @since Available in iOS 9.0 and later.
+         * @since Available in iOS 10.0 and later.
          */
-        @GlobalValue(symbol="CNContactOrganizationNameKey", optional=true)
-        public static native NSString OrganizationName();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="CNContactDepartmentNameKey", optional=true)
-        public static native NSString DepartmentName();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="CNContactJobTitleKey", optional=true)
-        public static native NSString JobTitle();
+        @GlobalValue(symbol="CNContactPhoneticOrganizationNameKey", optional=true)
+        public static native NSString PhoneticOrganizationName();
         /**
          * @since Available in iOS 9.0 and later.
          */

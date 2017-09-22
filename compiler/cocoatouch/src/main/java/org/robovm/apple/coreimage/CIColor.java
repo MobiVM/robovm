@@ -34,46 +34,74 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 5.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIColor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class CIColorPtr extends Ptr<CIColor, CIColorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CIColor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CIColor() {}
+    protected CIColor(Handle h, long handle) { super(h, handle); }
     protected CIColor(SkipInit skipInit) { super(skipInit); }
-    public CIColor(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithRed:green:blue:alpha:colorSpace:")
+    public CIColor(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, @MachineSizedFloat double a, CGColorSpace colorSpace) { super((SkipInit) null); initObject(init(r, g, b, a, colorSpace)); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithRed:green:blue:colorSpace:")
+    public CIColor(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, CGColorSpace colorSpace) { super((SkipInit) null); initObject(init(r, g, b, colorSpace)); }
     /*</constructors>*/
     
     public CIColor(double r, double g, double b, double a) {
-        super(init(r, g, b, a));
+        super((Handle)null, create(r, g, b, a));
     }
     public CIColor(double r, double g, double b) {
-        super(init(r, g, b));
+        super((Handle)null, create(r, g, b));
     }
     public CIColor(String representation) {
-        super(init(representation));
+        super((Handle)null, create(representation));
     }
     
     /*<properties>*/
-    
+    @Property(selector = "numberOfComponents")
+    public native @MachineSizedUInt long getNumberOfComponents();
+    @Property(selector = "components")
+    protected native MachineSizedFloatPtr getComponents();
+    @Property(selector = "alpha")
+    public native @MachineSizedFloat double getAlpha();
+    @Property(selector = "colorSpace")
+    public native CGColorSpace getColorSpace();
+    @Property(selector = "red")
+    public native @MachineSizedFloat double getRed();
+    @Property(selector = "green")
+    public native @MachineSizedFloat double getGreen();
+    @Property(selector = "blue")
+    public native @MachineSizedFloat double getBlue();
+    @Property(selector = "stringRepresentation")
+    public native String getStringRepresentation();
     /*</properties>*/
     /*<members>*//*</members>*/
     
     public double[] getComponentsD() {
-        return components().toDoubleArray((int) getNumberOfComponents());
+        return getComponents().toDoubleArray((int) getNumberOfComponents());
     }
 
     public float[] getComponentsF() {
-        return components().toFloatArray((int) getNumberOfComponents());
+        return getComponents().toFloatArray((int) getNumberOfComponents());
     }
 
     /* UIKit extensions */
@@ -83,33 +111,83 @@ import org.robovm.apple.uikit.*;
     }
     
     /*<methods>*/
-    @Method(selector = "numberOfComponents")
-    public native @MachineSizedUInt long getNumberOfComponents();
-    @Method(selector = "components")
-    protected native MachineSizedFloatPtr components();
-    @Method(selector = "alpha")
-    public native @MachineSizedFloat double getAlpha();
-    @Method(selector = "colorSpace")
-    public native CGColorSpace getColorSpace();
-    @Method(selector = "red")
-    public native @MachineSizedFloat double getRed();
-    @Method(selector = "green")
-    public native @MachineSizedFloat double getGreen();
-    @Method(selector = "blue")
-    public native @MachineSizedFloat double getBlue();
-    @Method(selector = "stringRepresentation")
-    public native String getStringRepresentation();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithRed:green:blue:alpha:colorSpace:")
+    protected native @Pointer long init(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, @MachineSizedFloat double a, CGColorSpace colorSpace);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithRed:green:blue:colorSpace:")
+    protected native @Pointer long init(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, CGColorSpace colorSpace);
     @Method(selector = "colorWithCGColor:")
-    protected static native @Pointer long init(CGColor c);
+    protected static native @Pointer long create(CGColor c);
     @Method(selector = "colorWithRed:green:blue:alpha:")
-    protected static native @Pointer long init(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, @MachineSizedFloat double a);
+    protected static native @Pointer long create(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, @MachineSizedFloat double a);
     @Method(selector = "colorWithRed:green:blue:")
-    protected static native @Pointer long init(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b);
+    protected static native @Pointer long create(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "colorWithRed:green:blue:alpha:colorSpace:")
+    protected static native @Pointer long create(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, @MachineSizedFloat double a, CGColorSpace colorSpace);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "colorWithRed:green:blue:colorSpace:")
+    protected static native @Pointer long create(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, CGColorSpace colorSpace);
     @Method(selector = "colorWithString:")
-    protected static native @Pointer long init(String representation);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected static native @Pointer long create(String representation);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "blackColor")
+    public static native CIColor blackColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "whiteColor")
+    public static native CIColor whiteColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "grayColor")
+    public static native CIColor grayColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "redColor")
+    public static native CIColor redColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "greenColor")
+    public static native CIColor greenColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "blueColor")
+    public static native CIColor blueColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "cyanColor")
+    public static native CIColor cyanColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "magentaColor")
+    public static native CIColor magentaColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "yellowColor")
+    public static native CIColor yellowColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "clearColor")
+    public static native CIColor clearColor();
     /*</methods>*/
 }

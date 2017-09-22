@@ -49,6 +49,7 @@ import org.robovm.apple.uikit.*;
     /*</constants>*/
     /*<constructors>*/
     public EAAccessory() {}
+    protected EAAccessory(Handle h, long handle) { super(h, handle); }
     protected EAAccessory(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

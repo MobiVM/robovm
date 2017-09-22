@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -45,6 +46,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NEVPNIKEv2SecurityAssociationParameters() {}
+    protected NEVPNIKEv2SecurityAssociationParameters(Handle h, long handle) { super(h, handle); }
     protected NEVPNIKEv2SecurityAssociationParameters(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

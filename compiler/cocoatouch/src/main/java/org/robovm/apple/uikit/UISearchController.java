@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UISearchController() {}
     protected UISearchController(Handle h, long handle) { super(h, handle); }
     protected UISearchController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSearchResultsController:")
     public UISearchController(UIViewController searchResultsController) { super((SkipInit) null); initObject(init(searchResultsController)); }
     /*</constructors>*/
     /*<properties>*/

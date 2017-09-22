@@ -153,9 +153,64 @@ import org.robovm.apple.dispatch.*;
     @Bridge(symbol="SecKeyDecrypt", optional=true)
     protected native OSStatus decrypt0(SecPadding padding, @Pointer long cipherText, @MachineSizedUInt long cipherTextLen, BytePtr plainText, MachineSizedUIntPtr plainTextLen);
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SecKeyCreateRandomKey", optional=true)
+    public static native SecKey createRandomKey(NSDictionary parameters, NSError error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SecKeyCreateWithData", optional=true)
+    public static native SecKey createWithData(NSData keyData, NSDictionary attributes, NSError error);
+    /**
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="SecKeyGetBlockSize", optional=true)
     public native @MachineSizedUInt long getBlockSize();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SecKeyCopyExternalRepresentation", optional=true)
+    public native NSData copyExternalRepresentation(NSError error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SecKeyCopyAttributes", optional=true)
+    public native NSDictionary copyAttributes();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SecKeyCopyPublicKey", optional=true)
+    public native SecKey copyPublicKey();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SecKeyCreateSignature", optional=true)
+    public native NSData createSignature(String algorithm, NSData dataToSign, NSError error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SecKeyVerifySignature", optional=true)
+    public native boolean verifySignature(String algorithm, NSData signedData, NSData signature, NSError error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SecKeyCreateEncryptedData", optional=true)
+    public native NSData createEncryptedData(String algorithm, NSData plaintext, NSError error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SecKeyCreateDecryptedData", optional=true)
+    public native NSData createDecryptedData(String algorithm, NSData ciphertext, NSError error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SecKeyCopyKeyExchangeResult", optional=true)
+    public native NSData copyKeyExchangeResult(String algorithm, SecKey publicKey, NSDictionary parameters, NSError error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="SecKeyIsAlgorithmSupported", optional=true)
+    public native boolean isAlgorithmSupported(SecKeyOperationType operation, String algorithm);
     /*</methods>*/
 }

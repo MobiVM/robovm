@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKTurnBasedParticipant() {}
+    protected GKTurnBasedParticipant(Handle h, long handle) { super(h, handle); }
     protected GKTurnBasedParticipant(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -28,10 +28,13 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.spritekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKBehavior/*</name>*/ 
@@ -43,11 +46,12 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKBehavior() {}
+    protected GKBehavior(Handle h, long handle) { super(h, handle); }
     protected GKBehavior(SkipInit skipInit) { super(skipInit); }
-    public GKBehavior(GKGoal goal, float weight) { super(create(goal, weight)); retain(getHandle()); }
-    public GKBehavior(NSArray<GKGoal> goals) { super(create(goals)); retain(getHandle()); }
-    public GKBehavior(NSArray<GKGoal> goals, NSArray<NSNumber> weights) { super(create(goals, weights)); retain(getHandle()); }
-    public GKBehavior(NSDictionary weightedGoals) { super(create(weightedGoals)); retain(getHandle()); }
+    public GKBehavior(GKGoal goal, float weight) { super((Handle) null, create(goal, weight)); retain(getHandle()); }
+    public GKBehavior(NSArray<GKGoal> goals) { super((Handle) null, create(goals)); retain(getHandle()); }
+    public GKBehavior(NSArray<GKGoal> goals, NSArray<NSNumber> weights) { super((Handle) null, create(goals, weights)); retain(getHandle()); }
+    public GKBehavior(NSDictionary<?, ?> weightedGoals) { super((Handle) null, create(weightedGoals)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "goalCount")
@@ -70,13 +74,13 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "objectAtIndexedSubscript:")
     protected native GKGoal get(@MachineSizedUInt long idx);
     @Method(selector = "behaviorWithGoal:weight:")
-    private static native @Pointer long create(GKGoal goal, float weight);
+    protected static native @Pointer long create(GKGoal goal, float weight);
     @Method(selector = "behaviorWithGoals:")
-    private static native @Pointer long create(NSArray<GKGoal> goals);
+    protected static native @Pointer long create(NSArray<GKGoal> goals);
     @Method(selector = "behaviorWithGoals:andWeights:")
-    private static native @Pointer long create(NSArray<GKGoal> goals, NSArray<NSNumber> weights);
+    protected static native @Pointer long create(NSArray<GKGoal> goals, NSArray<NSNumber> weights);
     @Method(selector = "behaviorWithWeightedGoals:")
-    private static native @Pointer long create(NSDictionary weightedGoals);
+    protected static native @Pointer long create(NSDictionary<?, ?> weightedGoals);
     /*</methods>*/
     
     private static class Iterator implements java.util.Iterator<GKGoal> {

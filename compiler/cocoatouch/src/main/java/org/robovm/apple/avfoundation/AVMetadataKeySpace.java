@@ -126,9 +126,13 @@ import org.robovm.apple.audiounit.*;
      * @since Available in iOS 8.0 and later.
      */
     public static final AVMetadataKeySpace Icy = new AVMetadataKeySpace("Icy");
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    public static final AVMetadataKeySpace HLSDateRange = new AVMetadataKeySpace("HLSDateRange");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataKeySpace/*</name>*/[] values = new /*<name>*/AVMetadataKeySpace/*</name>*/[] {/*<value_list>*/Common, QuickTimeUserData, ISOUserData, QuickTimeMetadata, iTunes, ID3, Icy/*</value_list>*/};
+    private static /*<name>*/AVMetadataKeySpace/*</name>*/[] values = new /*<name>*/AVMetadataKeySpace/*</name>*/[] {/*<value_list>*/Common, QuickTimeUserData, ISOUserData, QuickTimeMetadata, iTunes, ID3, Icy, HLSDateRange/*</value_list>*/};
     
     /*<name>*/AVMetadataKeySpace/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -186,6 +190,11 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVMetadataKeySpaceIcy", optional=true)
         public static native NSString Icy();
+        /**
+         * @since Available in iOS 9.3 and later.
+         */
+        @GlobalValue(symbol="AVMetadataKeySpaceHLSDateRange", optional=true)
+        public static native NSString HLSDateRange();
         /*</values>*/
     }
 }

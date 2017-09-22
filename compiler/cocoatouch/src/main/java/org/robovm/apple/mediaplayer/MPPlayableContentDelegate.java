@@ -33,7 +33,9 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 7.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/MPPlayableContentDelegate/*</name>*/ 
@@ -48,8 +50,26 @@ import org.robovm.apple.coregraphics.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 7.1 and later.
+     */
     @Method(selector = "playableContentManager:initiatePlaybackOfContentItemAtIndexPath:completionHandler:")
     void initiatePlayback(MPPlayableContentManager contentManager, NSIndexPath indexPath, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 9.3.
+     */
+    @Deprecated
+    @Method(selector = "playableContentManager:initializePlaybackQueueWithCompletionHandler:")
+    void initiatePlaybackQueue(MPPlayableContentManager contentManager, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Method(selector = "playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:")
+    void initializePlaybackQueueWithContent(MPPlayableContentManager contentManager, NSArray<?> contentItems, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 8.4 and later.
+     */
     @Method(selector = "playableContentManager:didUpdateContext:")
     void didUpdateContext(MPPlayableContentManager contentManager, MPPlayableContentManagerContext context);
     /*</methods>*/

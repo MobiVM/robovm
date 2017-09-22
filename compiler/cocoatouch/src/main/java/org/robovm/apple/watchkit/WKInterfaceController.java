@@ -49,6 +49,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKInterfaceController() {}
+    protected WKInterfaceController(Handle h, long handle) { super(h, handle); }
     protected WKInterfaceController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -65,12 +66,13 @@ import org.robovm.apple.corelocation.*;
     public native void didDeactivate();
     @Method(selector = "table:didSelectRowAtIndex:")
     public native void didSelectRow(WKInterfaceTable table, @MachineSizedSInt long rowIndex);
-    @Method(selector = "handleActionWithIdentifier:forRemoteNotification:")
-    public native void handleAction(String identifier, UIRemoteNotification remoteNotification);
-    @Method(selector = "handleActionWithIdentifier:forLocalNotification:")
-    public native void handleAction(String identifier, UILocalNotification localNotification);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "handleActionWithIdentifier:forNotification:")
+    public native void handleAction(String identifier, org.robovm.apple.usernotifications.UNNotification notification);
     @Method(selector = "handleUserActivity:")
-    public native void handleUserActivity(NSDictionary userInfo);
+    public native void handleUserActivity(NSDictionary<?, ?> userInfo);
     @Method(selector = "setTitle:")
     public native void setTitle(String title);
     @Method(selector = "pushControllerWithName:context:")
@@ -89,6 +91,8 @@ import org.robovm.apple.corelocation.*;
     public native void dismissController();
     @Method(selector = "presentTextInputControllerWithSuggestions:allowedInputMode:completion:")
     public native void presentTextInputController(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> suggestions, WKTextInputMode inputMode, @Block VoidBlock1<NSArray<?>> completion);
+    @Method(selector = "presentTextInputControllerWithSuggestionsForLanguage:allowedInputMode:completion:")
+    public native void presentTextInputController(@Block Block1<String, NSArray<?>> suggestionsHandler, WKTextInputMode inputMode, @Block VoidBlock1<NSArray<?>> completion);
     @Method(selector = "dismissTextInputController")
     public native void dismissTextInputController();
     @Method(selector = "contextForSegueWithIdentifier:")
@@ -108,12 +112,29 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "clearAllMenuItems")
     public native void clearAllMenuItems();
     @Method(selector = "updateUserActivity:userInfo:webpageURL:")
-    public native void updateUserActivity(String type, NSDictionary userInfo, NSURL webpageURL);
+    public native void updateUserActivity(String type, NSDictionary<?, ?> userInfo, NSURL webpageURL);
     @Method(selector = "invalidateUserActivity")
     public native void invalidateUserActivity();
+    /**
+     * @since Available in iOS 8.2 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Method(selector = "handleActionWithIdentifier:forRemoteNotification:")
+    public native void handleAction(String identifier, UIRemoteNotification remoteNotification);
+    /**
+     * @since Available in iOS 8.2 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Method(selector = "handleActionWithIdentifier:forLocalNotification:")
+    public native void handleAction(String identifier, UILocalNotification localNotification);
     @Method(selector = "reloadRootControllersWithNames:contexts:")
     public static native void reloadRootControllers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> names, NSArray<NSObject> contexts);
+    /**
+     * @since Available in iOS 8.2 and later.
+     */
     @Method(selector = "openParentApplication:reply:")
-    public static native boolean openParentApplication(NSDictionary userInfo, @Block VoidBlock2<NSDictionary<?, ?>, NSError> reply);
+    public static native boolean openParentApplication(NSDictionary<?, ?> userInfo, @Block VoidBlock2<NSDictionary<?, ?>, NSError> reply);
     /*</methods>*/
 }

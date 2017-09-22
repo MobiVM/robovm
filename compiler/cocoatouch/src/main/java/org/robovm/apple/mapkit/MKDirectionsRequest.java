@@ -49,10 +49,12 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKDirectionsRequest() {}
+    protected MKDirectionsRequest(Handle h, long handle) { super(h, handle); }
     protected MKDirectionsRequest(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @Method(selector = "initWithContentsOfURL:")
     public MKDirectionsRequest(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
     /*<properties>*/

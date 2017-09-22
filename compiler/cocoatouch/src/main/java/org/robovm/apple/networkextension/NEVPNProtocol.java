@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -45,6 +46,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NEVPNProtocol() {}
+    protected NEVPNProtocol(Handle h, long handle) { super(h, handle); }
     protected NEVPNProtocol(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -79,6 +81,16 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "setPasswordReference:")
     public native void setPasswordReference(NSData v);
     /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "identityReference")
+    public native NSData getIdentityReference();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setIdentityReference:")
+    public native void setIdentityReference(NSData v);
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "identityData")
@@ -108,6 +120,16 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setDisconnectOnSleep:")
     public native void setDisconnectsOnSleep(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "proxySettings")
+    public native NEProxySettings getProxySettings();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setProxySettings:")
+    public native void setProxySettings(NEProxySettings v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

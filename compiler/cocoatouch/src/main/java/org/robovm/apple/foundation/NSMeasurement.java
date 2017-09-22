@@ -55,6 +55,7 @@ import org.robovm.apple.dispatch.*;
     protected NSMeasurement() {}
     protected NSMeasurement(Handle h, long handle) { super(h, handle); }
     protected NSMeasurement(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDoubleValue:unit:")
     public NSMeasurement(double doubleValue, T unit) { super((SkipInit) null); initObject(init(doubleValue, unit)); }
     /*</constructors>*/
     /*<properties>*/

@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVMutableCompositionTrack() {}
+    protected AVMutableCompositionTrack(Handle h, long handle) { super(h, handle); }
     protected AVMutableCompositionTrack(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

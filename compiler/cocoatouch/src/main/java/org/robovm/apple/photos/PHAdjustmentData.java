@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,7 +52,9 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAdjustmentData() {}
+    protected PHAdjustmentData(Handle h, long handle) { super(h, handle); }
     protected PHAdjustmentData(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFormatIdentifier:formatVersion:data:")
     public PHAdjustmentData(String formatIdentifier, String formatVersion, NSData data) { super((SkipInit) null); initObject(init(formatIdentifier, formatVersion, data)); }
     /*</constructors>*/
     /*<properties>*/

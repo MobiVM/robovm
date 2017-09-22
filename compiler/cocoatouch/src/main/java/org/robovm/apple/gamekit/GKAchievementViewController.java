@@ -48,6 +48,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKAchievementViewController() {}
+    protected GKAchievementViewController(Handle h, long handle) { super(h, handle); }
     protected GKAchievementViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

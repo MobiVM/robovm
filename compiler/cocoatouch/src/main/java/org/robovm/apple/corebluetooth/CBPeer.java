@@ -46,7 +46,8 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(CBPeer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CBPeer() {}
+    protected CBPeer() {}
+    protected CBPeer(Handle h, long handle) { super(h, handle); }
     protected CBPeer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

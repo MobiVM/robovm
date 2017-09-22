@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSExpressionDescription() {}
+    protected NSExpressionDescription(Handle h, long handle) { super(h, handle); }
     protected NSExpressionDescription(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

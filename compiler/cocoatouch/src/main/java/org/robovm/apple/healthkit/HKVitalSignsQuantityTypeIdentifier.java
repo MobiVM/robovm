@@ -96,6 +96,10 @@ import org.robovm.apple.foundation.*;
      */
     public static final HKVitalSignsQuantityTypeIdentifier BodyTemperature = new HKVitalSignsQuantityTypeIdentifier("BodyTemperature");
     /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKVitalSignsQuantityTypeIdentifier BasalBodyTemperature = new HKVitalSignsQuantityTypeIdentifier("BasalBodyTemperature");
+    /**
      * @since Available in iOS 8.0 and later.
      */
     public static final HKVitalSignsQuantityTypeIdentifier BloodPressureSystolic = new HKVitalSignsQuantityTypeIdentifier("BloodPressureSystolic");
@@ -109,7 +113,7 @@ import org.robovm.apple.foundation.*;
     public static final HKVitalSignsQuantityTypeIdentifier RespiratoryRate = new HKVitalSignsQuantityTypeIdentifier("RespiratoryRate");
     /*</constants>*/
     
-    private static /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/HeartRate, BodyTemperature, BloodPressureSystolic, BloodPressureDiastolic, RespiratoryRate/*</value_list>*/};
+    private static /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/HeartRate, BodyTemperature, BasalBodyTemperature, BloodPressureSystolic, BloodPressureDiastolic, RespiratoryRate/*</value_list>*/};
     
     /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -142,6 +146,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierBodyTemperature", optional=true)
         public static native NSString BodyTemperature();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierBasalBodyTemperature", optional=true)
+        public static native NSString BasalBodyTemperature();
         /**
          * @since Available in iOS 8.0 and later.
          */

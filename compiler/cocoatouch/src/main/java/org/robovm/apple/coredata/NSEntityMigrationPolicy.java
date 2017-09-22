@@ -46,6 +46,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSEntityMigrationPolicy() {}
+    protected NSEntityMigrationPolicy(Handle h, long handle) { super(h, handle); }
     protected NSEntityMigrationPolicy(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

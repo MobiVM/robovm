@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -45,10 +46,12 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NEEvaluateConnectionRule() {}
+    protected NEEvaluateConnectionRule(Handle h, long handle) { super(h, handle); }
     protected NEEvaluateConnectionRule(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @Method(selector = "initWithMatchDomains:andAction:")
     public NEEvaluateConnectionRule(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> domains, NEEvaluateConnectionRuleAction action) { super((SkipInit) null); initObject(init(domains, action)); }
     /*</constructors>*/
     /*<properties>*/

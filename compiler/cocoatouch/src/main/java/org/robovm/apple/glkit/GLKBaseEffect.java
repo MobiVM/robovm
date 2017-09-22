@@ -33,6 +33,7 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.modelio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GLKBaseEffect() {}
+    protected GLKBaseEffect(Handle h, long handle) { super(h, handle); }
     protected GLKBaseEffect(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

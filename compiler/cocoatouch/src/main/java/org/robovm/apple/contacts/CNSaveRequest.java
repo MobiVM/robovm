@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNSaveRequest() {}
+    protected CNSaveRequest(Handle h, long handle) { super(h, handle); }
     protected CNSaveRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -49,11 +49,12 @@ import org.robovm.apple.mapkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKCalendar() {}
+    protected EKCalendar(Handle h, long handle) { super(h, handle); }
     protected EKCalendar(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public EKCalendar(EKEntityType entityType, EKEventStore eventStore) { super(create(entityType, eventStore)); retain(getHandle()); }
+    public EKCalendar(EKEntityType entityType, EKEventStore eventStore) { super((Handle) null, create(entityType, eventStore)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "source")
@@ -103,6 +104,6 @@ import org.robovm.apple.mapkit.*;
      * @since Available in iOS 6.0 and later.
      */
     @Method(selector = "calendarForEntityType:eventStore:")
-    private static native @Pointer long create(EKEntityType entityType, EKEventStore eventStore);
+    protected static native @Pointer long create(EKEntityType entityType, EKEventStore eventStore);
     /*</methods>*/
 }

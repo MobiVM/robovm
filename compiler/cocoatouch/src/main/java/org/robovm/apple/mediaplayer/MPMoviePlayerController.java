@@ -36,7 +36,9 @@ import org.robovm.rt.annotation.WeaklyLinked;
 /*<javadoc>*/
 /**
  * @since Available in iOS 2.0 and later.
+ * @deprecated Deprecated in iOS 9.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMoviePlayerController/*</name>*/ 
@@ -252,7 +254,9 @@ import org.robovm.rt.annotation.WeaklyLinked;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPMoviePlayerController() {}
+    protected MPMoviePlayerController(Handle h, long handle) { super(h, handle); }
     protected MPMoviePlayerController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithContentURL:")
     public MPMoviePlayerController(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
     /*<properties>*/
@@ -293,70 +297,118 @@ import org.robovm.rt.annotation.WeaklyLinked;
      */
     @Property(selector = "readyForDisplay")
     public native boolean isReadyForDisplay();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Property(selector = "movieMediaTypes")
     public native MPMovieMediaTypeMask getMovieMediaTypes();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Property(selector = "movieSourceType")
     public native MPMovieSourceType getMovieSourceType();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Property(selector = "setMovieSourceType:")
     public native void setMovieSourceType(MPMovieSourceType v);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Property(selector = "duration")
     public native double getDuration();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Property(selector = "playableDuration")
     public native double getPlayableDuration();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Property(selector = "naturalSize")
     public native @ByVal CGSize getNaturalSize();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Property(selector = "initialPlaybackTime")
     public native double getInitialPlaybackTime();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Property(selector = "setInitialPlaybackTime:")
     public native void setInitialPlaybackTime(double v);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Property(selector = "endPlaybackTime")
     public native double getEndPlaybackTime();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Property(selector = "setEndPlaybackTime:")
     public native void setEndPlaybackTime(double v);
     /**
      * @since Available in iOS 4.3 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Property(selector = "allowsAirPlay")
     public native boolean allowsAirPlay();
     /**
      * @since Available in iOS 4.3 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Property(selector = "setAllowsAirPlay:")
     public native void setAllowsAirPlay(boolean v);
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Property(selector = "isAirPlayVideoActive")
     public native boolean isAirPlayVideoActive();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Property(selector = "timedMetadata")
     public native NSArray<MPTimedMetadata> getTimedMetadata();
     /**
      * @since Available in iOS 4.3 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Property(selector = "accessLog")
     public native MPMovieAccessLog getAccessLog();
     /**
      * @since Available in iOS 4.3 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Property(selector = "errorLog")
     public native MPMovieErrorLog getErrorLog();
-    /**
-     * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Property(selector = "useApplicationAudioSession")
-    public native boolean usesApplicationAudioSession();
-    /**
-     * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Property(selector = "setUseApplicationAudioSession:")
-    public native void setUsesApplicationAudioSession(boolean v);
     @Property(selector = "isPreparedToPlay")
     public native boolean isPreparedToPlay();
     @Property(selector = "currentPlaybackTime")
@@ -399,93 +451,137 @@ import org.robovm.rt.annotation.WeaklyLinked;
     @GlobalValue(symbol="MPMediaPlaybackIsPreparedToPlayDidChangeNotification", optional=true)
     public static native NSString IsPreparedToPlayDidChangeNotification();
     /*<methods>*/
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerScalingModeDidChangeNotification", optional=true)
     public static native NSString ScalingModeDidChangeNotification();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerPlaybackDidFinishNotification", optional=true)
     public static native NSString PlaybackDidFinishNotification();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerPlaybackDidFinishReasonUserInfoKey", optional=true)
     protected static native NSString PlaybackDidFinishReasonUserInfoKey();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerPlaybackStateDidChangeNotification", optional=true)
     public static native NSString PlaybackStateDidChangeNotification();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerLoadStateDidChangeNotification", optional=true)
     public static native NSString LoadStateDidChangeNotification();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerNowPlayingMovieDidChangeNotification", optional=true)
     public static native NSString NowPlayingMovieDidChangeNotification();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerWillEnterFullscreenNotification", optional=true)
     public static native NSString WillEnterFullscreenNotification();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerDidEnterFullscreenNotification", optional=true)
     public static native NSString DidEnterFullscreenNotification();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerWillExitFullscreenNotification", optional=true)
     public static native NSString WillExitFullscreenNotification();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerDidExitFullscreenNotification", optional=true)
     public static native NSString DidExitFullscreenNotification();
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification", optional=true)
     public static native NSString IsAirPlayVideoActiveDidChangeNotification();
     /**
      * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerReadyForDisplayDidChangeNotification", optional=true)
     public static native NSString ReadyForDisplayDidChangeNotification();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMovieMediaTypesAvailableNotification", optional=true)
     public static native NSString MediaTypesAvailableNotification();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMovieSourceTypeAvailableNotification", optional=true)
     public static native NSString SourceTypeAvailableNotification();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMovieDurationAvailableNotification", optional=true)
     public static native NSString DurationAvailableNotification();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMovieNaturalSizeAvailableNotification", optional=true)
     public static native NSString NaturalSizeAvailableNotification();
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerThumbnailImageRequestDidFinishNotification", optional=true)
     public static native NSString ThumbnailImageRequestDidFinishNotification();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataUpdatedNotification", optional=true)
     public static native NSString TimedMetadataUpdatedNotification();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataUserInfoKey", optional=true)
     protected static native NSString TimedMetadataUserInfoKey();
     
@@ -502,12 +598,16 @@ import org.robovm.rt.annotation.WeaklyLinked;
     public native UIImage getThumbnailImage(double playbackTime, MPMovieTimeOption option);
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Method(selector = "requestThumbnailImagesAtTimes:timeOption:")
     public native void requestThumbnailImages(NSArray<NSNumber> playbackTimes, MPMovieTimeOption option);
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     @Method(selector = "cancelAllThumbnailImageRequests")
     public native void cancelAllThumbnailImageRequests();
     @Method(selector = "prepareToPlay")

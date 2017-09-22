@@ -38,9 +38,8 @@ import org.robovm.apple.uikit.*;
  */
 @Deprecated
 /*</javadoc>*/
-@ForceLinkClass(GKVoiceChatServiceError.class)
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GKVoiceChatServiceErrorCode/*</name>*/ implements NSErrorCode {
+public enum /*<name>*/GKVoiceChatServiceErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Internal(32000L),
     NoRemotePackets(32001L),

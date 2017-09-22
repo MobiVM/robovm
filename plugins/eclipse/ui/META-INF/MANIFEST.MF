@@ -17,11 +17,14 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jdt.junit,
  org.eclipse.jdt.junit.runtime,
  org.eclipse.jdt.junit4.runtime
-Bundle-Version: 2.2.1.qualifier
+Bundle-Version: 2.3.3.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.robovm.eclipse.RoboVMPlugin
 Bundle-SymbolicName: org.robovm.eclipse.ui;singleton:=true
 Bundle-ClassPath: .,
  lib/commons-compress.jar,
  lib/robovm-dist-compiler.jar,
- lib/robovm-templater.jar
+ lib/robovm-templater.jar,
+ lib/robovm-debugger.jar,
+ lib/robovm-ibxcode.jar,
+ lib/bcel.jar

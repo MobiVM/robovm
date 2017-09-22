@@ -49,7 +49,8 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKPolyline() {}
-    protected MKPolyline(long handle) { super(handle); }
+    @Deprecated protected MKPolyline(long handle) { super(handle); }
+    protected MKPolyline(Handle h, long handle) { super(h, handle); }
     protected MKPolyline(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public MKPolyline(MKMapPoint[] points) {

@@ -48,7 +48,9 @@ import org.robovm.apple.security.*;
     /*<constructors>*/
     protected NSException(Handle h, long handle) { super(h, handle); }
     protected NSException(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:reason:userInfo:")
     public NSException(String aName, String aReason, NSDictionary<?, ?> aUserInfo) { super((SkipInit) null); initObject(init(aName, aReason, aUserInfo)); }
+    @Method(selector = "initWithCoder:")
     public NSException(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/

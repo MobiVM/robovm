@@ -47,11 +47,13 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EAWiFiUnconfiguredAccessoryBrowser() {}
+    protected EAWiFiUnconfiguredAccessoryBrowser(Handle h, long handle) { super(h, handle); }
     protected EAWiFiUnconfiguredAccessoryBrowser(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 8.0 and later.
      */
     @WeaklyLinked
+    @Method(selector = "initWithDelegate:queue:")
     public EAWiFiUnconfiguredAccessoryBrowser(EAWiFiUnconfiguredAccessoryBrowserDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(delegate, queue)); }
     /*</constructors>*/
     /*<properties>*/

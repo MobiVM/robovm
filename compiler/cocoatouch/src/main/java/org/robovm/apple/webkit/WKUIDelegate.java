@@ -62,6 +62,21 @@ import org.robovm.apple.security.*;
     void runJavaScriptConfirmPanel(WKWebView webView, String message, WKFrameInfo frame, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:completionHandler:")
     void runJavaScriptTextInputPanel(WKWebView webView, String prompt, String defaultText, WKFrameInfo frame, @Block VoidBlock1<String> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "webView:shouldPreviewElement:")
+    boolean shouldPreviewElement(WKWebView webView, WKPreviewElementInfo elementInfo);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "webView:previewingViewControllerForElement:defaultActions:")
+    UIViewController getPreviewingViewControllerForElement(WKWebView webView, WKPreviewElementInfo elementInfo, NSArray<?> previewActions);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "webView:commitPreviewingViewController:")
+    void commitPreviewingViewController(WKWebView webView, UIViewController previewingViewController);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -56,7 +56,8 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVComposition() {}
-    protected AVComposition(long handle) { super(handle); }
+    @Deprecated protected AVComposition(long handle) { super(handle); }
+    protected AVComposition(Handle h, long handle) { super(h, handle); }
     protected AVComposition(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

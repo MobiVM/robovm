@@ -33,6 +33,7 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.modelio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GLKEffectPropertyMaterial() {}
+    protected GLKEffectPropertyMaterial(Handle h, long handle) { super(h, handle); }
     protected GLKEffectPropertyMaterial(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

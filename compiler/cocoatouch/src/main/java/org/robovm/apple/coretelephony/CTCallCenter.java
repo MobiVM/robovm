@@ -46,22 +46,29 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CTCallCenter() {}
+    protected CTCallCenter(Handle h, long handle) { super(h, handle); }
     protected CTCallCenter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "currentCalls")
     public native NSSet<CTCall> getCurrentCalls();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "callEventHandler")
     public native @Block VoidBlock1<CTCall> getCallEventHandler();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @Property(selector = "setCallEventHandler:")
     public native void setCallEventHandler(@Block VoidBlock1<CTCall> v);
     /*</properties>*/

@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKProduct() {}
+    protected SKProduct(Handle h, long handle) { super(h, handle); }
     protected SKProduct(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

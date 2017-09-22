@@ -53,11 +53,14 @@ import org.robovm.apple.corelocation.*;
     public UIColor() {}
     protected UIColor(Handle h, long handle) { super(h, handle); }
     protected UIColor(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRed:green:blue:alpha:")
     public UIColor(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha) { super((SkipInit) null); initObject(init(red, green, blue, alpha)); }
+    @Method(selector = "initWithCGColor:")
     public UIColor(CGColor cgColor) { super((SkipInit) null); initObject(init(cgColor)); }
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @Method(selector = "initWithCIColor:")
     public UIColor(CIColor ciColor) { super((SkipInit) null); initObject(init(ciColor)); }
     /*</constructors>*/
     /*<properties>*/

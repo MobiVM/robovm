@@ -47,7 +47,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKFetchNotificationChangesOperation() {}
+    protected CKFetchNotificationChangesOperation(Handle h, long handle) { super(h, handle); }
     protected CKFetchNotificationChangesOperation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPreviousServerChangeToken:")
     public CKFetchNotificationChangesOperation(CKServerChangeToken previousServerChangeToken) { super((SkipInit) null); initObject(init(previousServerChangeToken)); }
     /*</constructors>*/
     /*<properties>*/

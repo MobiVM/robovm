@@ -55,6 +55,7 @@ import org.robovm.apple.dispatch.*;
     public NSUnit() {}
     protected NSUnit(Handle h, long handle) { super(h, handle); }
     protected NSUnit(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSymbol:")
     public NSUnit(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
     /*</constructors>*/
     /*<properties>*/

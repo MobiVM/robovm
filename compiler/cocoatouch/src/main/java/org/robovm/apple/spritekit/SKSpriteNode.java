@@ -44,22 +44,28 @@ import org.robovm.apple.gameplaykit.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKSpriteNode/*</name>*/ 
     extends /*<extends>*/SKNode/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements SKWarpable/*</implements>*/ {
 
     /*<ptr>*/public static class SKSpriteNodePtr extends Ptr<SKSpriteNode, SKSpriteNodePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKSpriteNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKSpriteNode() {}
+    protected SKSpriteNode(Handle h, long handle) { super(h, handle); }
     protected SKSpriteNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTexture:color:size:")
     public SKSpriteNode(SKTexture texture, UIColor color, @ByVal CGSize size) { super((SkipInit) null); initObject(init(texture, color, size)); }
+    @Method(selector = "initWithTexture:")
     public SKSpriteNode(SKTexture texture) { super((SkipInit) null); initObject(init(texture)); }
+    @Method(selector = "initWithImageNamed:")
     public SKSpriteNode(String name) { super((SkipInit) null); initObject(init(name)); }
+    @Method(selector = "initWithColor:size:")
     public SKSpriteNode(UIColor color, @ByVal CGSize size) { super((SkipInit) null); initObject(init(color, size)); }
+    @Method(selector = "initWithCoder:")
     public SKSpriteNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
-    public SKSpriteNode(SKTexture texture, @ByVal CGSize size) { super(create(texture, size)); retain(getHandle()); }
-    public SKSpriteNode(SKTexture texture, SKTexture normalMap) { super(create(texture, normalMap)); retain(getHandle()); }
-    public SKSpriteNode(String name, boolean generateNormalMap) { super(create(name, generateNormalMap)); retain(getHandle()); }
+    public SKSpriteNode(SKTexture texture, @ByVal CGSize size) { super((Handle) null, create(texture, size)); retain(getHandle()); }
+    public SKSpriteNode(SKTexture texture, SKTexture normalMap) { super((Handle) null, create(texture, normalMap)); retain(getHandle()); }
+    public SKSpriteNode(String name, boolean generateNormalMap) { super((Handle) null, create(name, generateNormalMap)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "texture")
@@ -140,6 +146,18 @@ import org.robovm.apple.gameplaykit.*;
      */
     @Property(selector = "setShader:")
     public native void setShader(SKShader v);
+    @Property(selector = "attributeValues")
+    public native NSDictionary<?, ?> getAttributeValues();
+    @Property(selector = "setAttributeValues:")
+    public native void setAttributeValues(NSDictionary<?, ?> v);
+    @Property(selector = "warpGeometry")
+    public native SKWarpGeometry getWarpGeometry();
+    @Property(selector = "setWarpGeometry:")
+    public native void setWarpGeometry(SKWarpGeometry v);
+    @Property(selector = "subdivisionLevels")
+    public native @MachineSizedSInt long getSubdivisionLevels();
+    @Property(selector = "setSubdivisionLevels:")
+    public native void setSubdivisionLevels(@MachineSizedSInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -153,6 +171,15 @@ import org.robovm.apple.gameplaykit.*;
     protected native @Pointer long init(UIColor color, @ByVal CGSize size);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "scaleToSize:")
+    public native void scaleToSize(@ByVal CGSize size);
+    @Method(selector = "valueForAttributeNamed:")
+    public native SKAttributeValue valueForAttribute(String key);
+    @Method(selector = "setValue:forAttributeNamed:")
+    public native void setValueForAttribute(SKAttributeValue value, String key);
     @Method(selector = "spriteNodeWithTexture:size:")
     protected static native @Pointer long create(SKTexture texture, @ByVal CGSize size);
     @Method(selector = "spriteNodeWithTexture:normalMap:")

@@ -47,7 +47,8 @@ import org.robovm.apple.mapkit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public EKObject() {}
-    protected EKObject(long handle) { super(handle); }
+    @Deprecated protected EKObject(long handle) { super(handle); }
+    protected EKObject(Handle h, long handle) { super(h, handle); }
     protected EKObject(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -22,6 +22,9 @@ classes:
     
     WKAccessibilityImageRegion: {} # DONE
     WKInterfaceController: # DONE
+        properties:
+            crownSequencer:
+                exclude: true  # as class is available for watchos only
         methods:
             '-awakeWithContext:':
                 name: awake
@@ -87,6 +90,17 @@ classes:
                 parameters:
                     reply:
                         type: '@Block VoidBlock2<NSDictionary<?, ?>, NSError>'
+            '-handleActionWithIdentifier:forNotification:':
+                name: handleAction
+                parameters:
+                    notification:
+                        type: 'org.robovm.apple.usernotifications.UNNotification'
+            '-presentTextInputControllerWithSuggestionsForLanguage:allowedInputMode:completion:':
+                name: presentTextInputController
+                parameters:
+                    suggestions:
+                        type: List<String>
+                        marshaler: NSArray.AsStringListMarshaler
     WKUserNotificationInterfaceController: # DONE
         methods:
             '-didReceiveRemoteNotification:withCompletion:':
@@ -96,6 +110,11 @@ classes:
                         type: UIRemoteNotification
             '-didReceiveLocalNotification:withCompletion:':
                 name: didReceiveLocalNotification
+            '-didReceiveNotification:withCompletion:':
+                name: didReceiveLocalNotification
+                parameters:
+                    notification:
+                        type: 'org.robovm.apple.usernotifications.UNNotification'
     WKInterfaceDevice: # DONE
         properties:
             'preferredContentSizeCategory':
@@ -158,7 +177,12 @@ classes:
                 name: scrollToRow
     WKInterfaceTimer: {} # DONE
 
-protocols: {}
+protocols:
+    WKImageAnimatable:
+        skip_adapter: true
+        methods:
+            '-startAnimatingWithImagesInRange:duration:repeatCount:':
+                name: startAnimatingWithImages
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

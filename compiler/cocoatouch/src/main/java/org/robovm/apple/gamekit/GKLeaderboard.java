@@ -46,16 +46,19 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKLeaderboard() {}
+    protected GKLeaderboard(Handle h, long handle) { super(h, handle); }
     protected GKLeaderboard(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @Method(selector = "initWithPlayers:")
     public GKLeaderboard(NSArray<GKPlayer> players) { super((SkipInit) null); initObject(init(players)); }
     /**
      * @since Available in iOS 4.1 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
+    @Method(selector = "initWithPlayerIDs:")
     public GKLeaderboard(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs) { super((SkipInit) null); initObject(init(playerIDs)); }
     /*</constructors>*/
     /*<properties>*/
@@ -132,13 +135,6 @@ import org.robovm.apple.uikit.*;
     @Deprecated
     @Method(selector = "initWithPlayerIDs:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs);
-    /**
-     * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Method(selector = "loadCategoriesWithCompletionHandler:")
-    public static native void loadCategories(@Block VoidBlock3<NSArray<NSString>, NSArray<NSString>, NSError> completionHandler);
     /**
      * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 7.0.

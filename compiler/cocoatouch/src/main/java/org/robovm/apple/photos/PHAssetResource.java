@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,6 +52,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAssetResource() {}
+    protected PHAssetResource(Handle h, long handle) { super(h, handle); }
     protected PHAssetResource(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -65,5 +69,10 @@ import org.robovm.apple.avfoundation.*;
     /*<methods>*/
     @Method(selector = "assetResourcesForAsset:")
     public static native NSArray<PHAssetResource> getAssetResources(PHAsset asset);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Method(selector = "assetResourcesForLivePhoto:")
+    public static native NSArray<PHAssetResource> assetResourcesForLivePhoto(PHLivePhoto livePhoto);
     /*</methods>*/
 }

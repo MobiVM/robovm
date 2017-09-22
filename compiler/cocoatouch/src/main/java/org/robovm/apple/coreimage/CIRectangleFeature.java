@@ -34,10 +34,13 @@ import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 8.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIRectangleFeature/*</name>*/ 
@@ -49,6 +52,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CIRectangleFeature() {}
+    protected CIRectangleFeature(Handle h, long handle) { super(h, handle); }
     protected CIRectangleFeature(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

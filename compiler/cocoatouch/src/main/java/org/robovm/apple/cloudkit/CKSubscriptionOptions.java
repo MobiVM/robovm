@@ -35,7 +35,9 @@ import org.robovm.apple.contacts.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/CKSubscriptionOptions/*</name>*/ extends Bits</*<name>*/CKSubscriptionOptions/*</name>*/> {

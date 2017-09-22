@@ -6,13 +6,13 @@
   <parent>
     <groupId>com.mobidevelop.robovm</groupId>
     <artifactId>robovm-parent</artifactId>
-    <version>2.2.1-SNAPSHOT</version>
+    <version>2.3.3-SNAPSHOT</version>
   </parent>
   
   <artifactId>robovm-compiler-parent</artifactId>
   <name>RoboVM Compiler Parent</name>
   <packaging>pom</packaging>
-  <url>http://github.com/mobidevelop/robovm</url>
+  <url>http://github.com/MobiVM/robovm</url>
   <description>
     The RoboVM compiler translates Java bytecode into native ARM or x86 code. Apps run directly on the CPU.
     No interpreter or virtual machine involved.

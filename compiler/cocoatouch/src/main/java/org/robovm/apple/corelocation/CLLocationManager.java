@@ -47,6 +47,7 @@ import org.robovm.apple.corebluetooth.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CLLocationManager() {}
+    protected CLLocationManager(Handle h, long handle) { super(h, handle); }
     protected CLLocationManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -54,20 +55,6 @@ import org.robovm.apple.corebluetooth.*;
     public native CLLocationManagerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(CLLocationManagerDelegate v);
-    /**
-     * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Property(selector = "purpose")
-    public native String getPurpose();
-    /**
-     * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Property(selector = "setPurpose:")
-    public native void setPurpose(String v);
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -205,13 +192,6 @@ import org.robovm.apple.corebluetooth.*;
      */
     @Method(selector = "stopMonitoringSignificantLocationChanges")
     public native void stopMonitoringSignificantLocationChanges();
-    /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @Method(selector = "startMonitoringForRegion:desiredAccuracy:")
-    public native void startMonitoring(CLRegion region, double accuracy);
     /**
      * @since Available in iOS 4.0 and later.
      */

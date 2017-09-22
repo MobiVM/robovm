@@ -49,15 +49,17 @@ import org.robovm.apple.audiounit.*;
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVURLAsset/*</name>*/ 
     extends /*<extends>*/AVAsset/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements AVContentKeyRecipient/*</implements>*/ {
 
     /*<ptr>*/public static class AVURLAssetPtr extends Ptr<AVURLAsset, AVURLAssetPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AVURLAsset.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVURLAsset() {}
-    protected AVURLAsset(long handle) { super(handle); }
+    protected AVURLAsset() {}
+    @Deprecated protected AVURLAsset(long handle) { super(handle); }
+    protected AVURLAsset(Handle h, long handle) { super(h, handle); }
     protected AVURLAsset(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:options:")
     public AVURLAsset(NSURL URL, AVURLAssetOptions options) { super((SkipInit) null); initObject(init(URL, options)); }
     /*</constructors>*/
     /*<properties>*/
@@ -68,6 +70,16 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "resourceLoader")
     public native AVAssetResourceLoader getResourceLoader();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "assetCache")
+    public native AVAssetCache getAssetCache();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Property(selector = "mayRequireContentKeysForMediaDataProcessing")
+    public native boolean mayRequireContentKeysForMediaDataProcessing();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioUnitTimePitch() {}
+    protected AVAudioUnitTimePitch(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitTimePitch(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

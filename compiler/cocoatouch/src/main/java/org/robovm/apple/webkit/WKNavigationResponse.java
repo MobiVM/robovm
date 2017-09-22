@@ -48,6 +48,7 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKNavigationResponse() {}
+    protected WKNavigationResponse(Handle h, long handle) { super(h, handle); }
     protected WKNavigationResponse(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

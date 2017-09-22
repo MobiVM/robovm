@@ -1,5 +1,5 @@
 package: org.robovm.apple.gameplaykit
-include: [foundation.yaml]
+include: [foundation.yaml, spritekit.yaml]
 library: GameplayKit
 framework: GameplayKit
 clang_args: ['-x', 'objective-c']
@@ -11,8 +11,14 @@ private_typedefs:
     ComponentType: GKComponent
     
 enums:
+    GKMeshGraphTriangulationMode: {}
+    GKRTreeSplitStrategy: {}
         
 classes:
+    GKTriangle: {} # Struct
+    GKQuad: {} # Struct
+    GKBox: {} # Struct
+
     GKAgent: {} # DONE
     GKAgent2D: # DONE
         methods:
@@ -209,7 +215,7 @@ classes:
             'diagonalsAllowed':
                 getter: areDiagonalsAllowed
         methods:
-            '-initFromGridStartingAt:width:height:diagonalsAllowed:':
+            '-init.*':
                 name: init
             '-nodeAtGridPosition:':
                 name: getNodeAtGridPosition
@@ -217,11 +223,21 @@ classes:
                 trim_after_first_colon: true
             '+graphFromGridStartingAt:width:height:diagonalsAllowed:':
                 exclude: true
+            '+graphFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:':
+                exclude: true
     GKGridGraphNode: # DONE
         methods:
             '-initWithGridPosition:':
                 name: init
             '+nodeWithGridPosition:':
+                exclude: true
+    GKMeshGraph:
+        methods:
+            '-init.*':
+                name: init
+            '+graphWithBufferRadius:minCoordinate:maxCoordinate:':
+                exclude: true
+            '+graphWithBufferRadius:minCoordinate:maxCoordinate:nodeClass:':
                 exclude: true
     GKLinearCongruentialRandomSource: # DONE
         methods:
@@ -249,7 +265,7 @@ classes:
             'obstacles':
                 type: NSArray<GKPolygonObstacle>
         methods:
-            '-initWithObstacles:bufferRadius:':
+            '-init.*':
                 name: init
                 parameters:
                     obstacles:
@@ -282,12 +298,11 @@ classes:
                 name: isConnectionLockedBetweenNodes
             '+graphWithObstacles:bufferRadius:':
                 exclude: true
+            '+graphWithObstacles:bufferRadius:nodeClass:':
+                exclude: true
     GKPath: # DONE
         methods:
-            '-initWithPoints:count:radius:cyclical:':
-                name: init
-                constructor: false
-            '-initWithGraphNodes:radius:':
+            '-init.*':
                 name: init
                 parameters:
                     graphNodes:
@@ -297,6 +312,8 @@ classes:
             '+pathWithPoints:count:radius:cyclical:':
                 exclude: true
             '+pathWithGraphNodes:radius:':
+                exclude: true
+            '+pathWithFloat3Points:count:radius:cyclical:':
                 exclude: true
     GKPolygonObstacle: # DONE
         methods:
@@ -408,8 +425,151 @@ classes:
                         type: 'Class<? extends GKState>'
             '+stateMachineWithStates:':
                 exclude: true
+    GKQuadtree:
+        methods:
+            '-init.*':
+                name: init
+            '-removeElement:withNode:':
+                trim_after_first_colon: true
+            '+quadtreeWithBoundingQuad:minimumCellSize:':
+                exclude: true
+    GKQuadtreeNode: {}
+    GKOctree:
+        methods:
+            '-init.*':
+                name: init
+            '-removeElement:withNode:':
+                trim_after_first_colon: true
+            '+octreeWithBoundingBox:minimumCellSize:':
+                exclude: true
+    GKOctreeNode: {}
+    GKRTree:
+        methods:
+            '-init.*':
+                name: init
+            '-addElement:boundingRectMin:boundingRectMax:splitStrategy:':
+                trim_after_first_colon: true
+            '-removeElement:boundingRectMin:boundingRectMax:':
+                trim_after_first_colon: true
+            '-elementsInBoundingRectMin:rectMax:':
+                name: elementsInBounding
+            '+treeWithMaxNumberOfChildren:':
+                exclude: true
+
+    GKAgent3D: {}
+    GKBillowNoiseSource:
+        methods:
+            '+billowNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:':
+                exclude: true
+            '-init.*':
+                name: init
+    GKCheckerboardNoiseSource:
+        methods:
+            '+checkerboardNoiseWithSquareSize:':
+                exclude: true
+    GKCoherentNoiseSource: {}
+    GKCompositeBehavior:
+        methods:
+            '-setWeight:forBehavior:':
+                name: setWeightforBehavior
+            '-setObject:forKeyedSubscript:':
+                name: setObjectforKeyedSubscript
+            '+behaviorWithBehaviors:':
+                name: create0
+                constructor: true
+            '+behaviorWithBehaviors:andWeights:':
+                name: create0
+                constructor: true
+    GKConstantNoiseSource:
+        methods:
+            '+constantNoiseWithValue':
+                exclude: true
+    GKCylindersNoiseSource:
+        methods:
+            '+cylindersNoiseWithFrequency:':
+                exclude: true
+    GKDecisionNode:
+        methods:
+            '-createBranch.*':
+                name: createBranch
+    GKDecisionTree:
+        methods:
+            '-init.*':
+                name: init
+    GKGraphNode3D:
+        methods:
+            '+nodeWithPoint:':
+                exclude: true
+    GKMonteCarloStrategist: {}
+    GKNoise:
+        methods:
+            '-init.*':
+                name: init
+            '+noiseWithNoiseSource:':
+                exclude: true
+            '+noiseWithNoiseSource:gradientColors:':
+                exclude: true
+            '+noiseWithComponentNoises:selectionNoise:':
+                name: create
+                constructor: true
+            '+noiseWithComponentNoises:selectionNoise:componentBoundaries:boundaryBlendDistances:':
+                name: create
+                constructor: true
+            '-applyTurbulenceWithFrequency:power:roughness:seed:':
+                name: applyTurbulence
+            '-clampWithLowerBound:upperBound:':
+                name: clamp
+            '-remapValuesToTerracesWithPeaks:terracesInverted:':
+                name: remapValuesToTerraces
+            '-displaceXWithNoise:yWithNoise:zWithNoise:':
+                name: displaceX
+
+    GKNoiseMap:
+        methods:
+            '-init.*':
+                name: init
+            '-setValue:atPosition:':
+                name: setValueAtPosition
+            '+noiseMapWithNoise:':
+                exclude: true
+            '+noiseMapWithNoise:size:origin:sampleCount:seamless:':
+                exclude: true
+    GKNoiseSource: {}
+    GKPerlinNoiseSource:
+        methods:
+            '-init.*':
+                name: init
+            '+perlinNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:':
+                exclude: true
+    GKRidgedNoiseSource:
+        methods:
+            '-init.*':
+                name: init
+            '+ridgedNoiseSourceWithFrequency:octaveCount:lacunarity:seed:':
+                exclude: true
+    GKSKNodeComponent:
+        methods:
+            '+componentWithNode:':
+                exclude: true
+    GKScene:
+        methods:
+            '-addGraph:name:':
+                trim_after_first_colon: true
+    GKSphereObstacle: {}
+    GKSpheresNoiseSource: {}
+    GKVoronoiNoiseSource:
+        methods:
+            '-init.*':
+                name: init
+            '+voronoiNoiseWithFrequency:displacement:distanceEnabled:seed:':
+                exclude: true
+
 
 protocols:
+    GKSceneRootNodeType:
+        skip_adapter: true
+    GKStrategist: {}
+
     GKAgentDelegate: # DONE
         methods:
             '-agentWillUpdate:':
@@ -458,6 +618,12 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    GKGameModel(MinScore|MaxScore):
+        class: GKGameModel
+        name: '#{g[0]}'
+    GK_VERSION:
+        exclude: true
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?GK.*):
         class: GameplayKit

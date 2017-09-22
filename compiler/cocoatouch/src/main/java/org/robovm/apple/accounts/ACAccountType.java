@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public ACAccountType() {}
+    protected ACAccountType(Handle h, long handle) { super(h, handle); }
     protected ACAccountType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

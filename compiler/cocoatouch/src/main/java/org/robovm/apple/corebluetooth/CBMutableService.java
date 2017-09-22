@@ -47,7 +47,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CBMutableService() {}
+    protected CBMutableService(Handle h, long handle) { super(h, handle); }
     protected CBMutableService(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithType:primary:")
     public CBMutableService(CBUUID UUID, boolean isPrimary) { super((SkipInit) null); initObject(init(UUID, isPrimary)); }
     /*</constructors>*/
     /*<properties>*/

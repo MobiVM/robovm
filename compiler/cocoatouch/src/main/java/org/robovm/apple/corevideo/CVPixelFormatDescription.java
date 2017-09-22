@@ -652,6 +652,26 @@ import org.robovm.apple.metal.*;
         @GlobalValue(symbol="kCVPixelFormatContainsRGB", optional=true)
         public static native CFString ContainsRGB();
         /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelFormatComponentRange", optional=true)
+        public static native CFString ComponentRange();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelFormatComponentRange_VideoRange", optional=true)
+        public static native CFString ComponentRange_VideoRange();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelFormatComponentRange_FullRange", optional=true)
+        public static native CFString ComponentRange_FullRange();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelFormatComponentRange_WideRange", optional=true)
+        public static native CFString ComponentRange_WideRange();
+        /**
          * @since Available in iOS 4.0 and later.
          */
         @GlobalValue(symbol="kCVPixelFormatPlanes", optional=true)

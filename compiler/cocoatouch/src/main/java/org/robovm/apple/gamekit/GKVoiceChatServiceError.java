@@ -38,25 +38,16 @@ import org.robovm.apple.uikit.*;
     extends /*<extends>*/NSError/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    protected GKVoiceChatServiceError(SkipInit skipInit) {
-        super(skipInit);
-    }
-    
     /*<ptr>*/public static class GKVoiceChatServiceErrorPtr extends Ptr<GKVoiceChatServiceError, GKVoiceChatServiceErrorPtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(GKVoiceChatServiceError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    protected GKVoiceChatServiceError(SkipInit skipInit) { //Manually edited!
+    	super(skipInit);
+    }
+    /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
-    @Override
-    public GKVoiceChatServiceErrorCode getErrorCode() {
-        GKVoiceChatServiceErrorCode code = null;
-        try {
-            code = GKVoiceChatServiceErrorCode.valueOf(getCode());
-        } catch (IllegalArgumentException e) {
-            // ignore
-        }
-        return code;
-    }
     /*<methods>*/
     @GlobalValue(symbol="GKVoiceChatServiceErrorDomain", optional=true)
     public static native String getClassDomain();

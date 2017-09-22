@@ -49,6 +49,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKLocalSearchResponse() {}
+    protected MKLocalSearchResponse(Handle h, long handle) { super(h, handle); }
     protected MKLocalSearchResponse(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

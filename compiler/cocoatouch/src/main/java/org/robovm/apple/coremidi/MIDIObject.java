@@ -142,7 +142,7 @@ import org.robovm.apple.corefoundation.*;
      * @since Available in iOS 4.2 and later.
      */
     @Bridge(symbol="MIDIObjectSetDictionaryProperty", optional=true)
-    public native MIDIError setDictionaryProperty(String propertyID, NSDictionary data);
+    public native MIDIError setDictionaryProperty(String propertyID, NSDictionary dict);
     /**
      * @since Available in iOS 4.2 and later.
      */

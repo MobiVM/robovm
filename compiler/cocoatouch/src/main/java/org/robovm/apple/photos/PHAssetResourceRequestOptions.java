@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,6 +52,7 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHAssetResourceRequestOptions() {}
+    protected PHAssetResourceRequestOptions(Handle h, long handle) { super(h, handle); }
     protected PHAssetResourceRequestOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -57,9 +61,9 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "setNetworkAccessAllowed:")
     public native void setNetworkAccessAllowed(boolean v);
     @Property(selector = "progressHandler")
-    public native VoidBlock1<Double> getProgressHandler();
+    public native @Block VoidDoubleBlock getProgressHandler();
     @Property(selector = "setProgressHandler:")
-    public native void setProgressHandler(VoidBlock1<Double> v);
+    public native void setProgressHandler(@Block VoidDoubleBlock v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -33,7 +33,7 @@
       preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
       project="true"/>
   </extension>
-  <extension point="org.eclipse.ui.newWizards">
+<!--  <extension point="org.eclipse.ui.newWizards">
     <category id="org.robovm.eclipse.wizards.category" name="RoboVM"/>
     <wizard
       canFinishEarly="false"
@@ -47,7 +47,7 @@
       preferredPerspectives="org.eclipse.jdt.ui.JavaPerspective"
       project="false"/>
   </extension>
-<!--  <extension point="org.eclipse.ui.newWizards">
+  <extension point="org.eclipse.ui.newWizards">
     <category id="org.robovm.eclipse.wizards.category" name="RoboVM"/>
     <wizard
       canFinishEarly="false"
@@ -428,11 +428,6 @@
     </objectContribution>
   </extension>
   <extension point="org.eclipse.ui.commands">
-    <command id="org.robovm.eclipse.OpenLicenseManager"
-          defaultHandler="org.robovm.eclipse.OpenLicenseManagerHandler"
-          name="RoboVM License Manager"/>
-  </extension>
-  <extension point="org.eclipse.ui.commands">
     <command id="org.robovm.eclipse.ClearRoboVMCache"
           defaultHandler="org.robovm.eclipse.ClearRoboVMCacheHandler"
           name="RoboVM License Manager"/>
@@ -440,17 +435,12 @@
   <extension point="org.eclipse.ui.menus">
     <menuContribution locationURI="menu:org.eclipse.ui.main.menu?before=window">
       <menu id="robovmMenu" label="RoboVM">
-        <command commandId="org.robovm.eclipse.OpenLicenseManager"
-              label="License Manager"/>
-      </menu>
-    </menuContribution>
-    <menuContribution locationURI="menu:org.eclipse.ui.main.menu?before=window">
-      <menu id="robovmMenu" label="RoboVM">
         <command commandId="org.robovm.eclipse.ClearRoboVMCache"
               label="Clear RoboVM Cache"/>
       </menu>
     </menuContribution>
   </extension>
+<!--  
   <extension point="org.eclipse.ui.editors">
     <editor id="org.robovm.eclipse.ib.StoryboardEditor"
                name="iOS Storyboard Editor"
@@ -465,4 +455,5 @@
                launcher="org.robovm.eclipse.internal.ib.XcodeLauncher">
     </editor>
   </extension>
+-->  
 </plugin>

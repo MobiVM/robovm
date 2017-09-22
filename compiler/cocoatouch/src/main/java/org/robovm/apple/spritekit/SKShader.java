@@ -53,10 +53,14 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKShader() {}
+    protected SKShader(Handle h, long handle) { super(h, handle); }
     protected SKShader(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSource:")
     public SKShader(String source) { super((SkipInit) null); initObject(init(source)); }
+    @Method(selector = "initWithSource:uniforms:")
     public SKShader(String source, NSArray<SKUniform> uniforms) { super((SkipInit) null); initObject(init(source, uniforms)); }
-    public SKShader(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithCoder:")
+    public SKShader(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     public SKShader(File file) {
         super(createWithFile(file.getAbsolutePath()));
@@ -70,6 +74,16 @@ import org.robovm.apple.gameplaykit.*;
     public native NSArray<SKUniform> getUniforms();
     @Property(selector = "setUniforms:")
     public native void setUniforms(NSArray<SKUniform> v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "attributes")
+    public native NSArray<SKAttribute> getAttributes();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setAttributes:")
+    public native void setAttributes(NSArray<SKAttribute> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -88,6 +102,6 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

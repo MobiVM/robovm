@@ -398,7 +398,28 @@ public final class ObjCClass extends ObjCObject {
             }
         }
         ObjCObject.ObjectOwnershipHelper.registerClass(handle);
-        ObjCRuntime.objc_registerClassPair(handle);                                  
+        ObjCRuntime.objc_registerClassPair(handle);
+
+        // register protocols now to allow conformsToProtocol works
+        // TODO: might impact performance
+        Class cls = type;
+        while (cls != null && cls != ObjCObject.class) {
+            Class<?>[] interfaces = cls.getInterfaces();
+            for (Class<?> inf : interfaces) {
+                if (inf != ObjCProtocol.class && ObjCProtocol.class.isAssignableFrom(inf)) {
+                    // register this interface to class
+                    // probably it would be good idea to attach annotation to be able specify direct name of protocol
+                    // mean while only simple name of it is used
+                    String protocolName = inf.getSimpleName();
+                    long protocolPtr = ObjCRuntime.objc_getProtocol(VM.getStringUTFChars(protocolName));
+                    if (protocolPtr != 0)
+                        ObjCRuntime.class_addProtocol(handle, protocolPtr);
+                }
+            }
+            // move to next class
+            cls = cls.getSuperclass();
+        }
+
         return new ObjCClass(handle, type, name, !isObjCProxy(type), false);
     }
     

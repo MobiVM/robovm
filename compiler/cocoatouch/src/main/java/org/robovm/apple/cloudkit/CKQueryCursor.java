@@ -46,7 +46,8 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CKQueryCursor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKQueryCursor() {}
+    protected CKQueryCursor() {}
+    protected CKQueryCursor(Handle h, long handle) { super(h, handle); }
     protected CKQueryCursor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

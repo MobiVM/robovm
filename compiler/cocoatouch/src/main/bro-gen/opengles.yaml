@@ -23,6 +23,10 @@ classes:
                 trim_after_first_colon: true
             '-presentRenderbuffer:':
                 name: presentRenderbuffer
+            '-presentRenderbuffer:atTime:':
+                name: presentRenderbuffer
+            '-presentRenderbuffer:afterMinimumDuration:':
+                name: presentRenderbufferAfterMinDuration
     EAGLSharegroup: {} # DONE
 
 protocols:

@@ -82,12 +82,18 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     _422YpCbCr8FullRange(2037741158L),
     OneComponent8(1278226488L),
     TwoComponent8(843264056L),
+    _30RGBLEPackedWideGamut(1999843442L),
+    ARGB2101010LEPacked(1815162994L),
     OneComponent16Half(1278226536L),
     OneComponent32Float(1278226534L),
     TwoComponent16Half(843264104L),
     TwoComponent32Float(843264102L),
     _64RGBAHalf(1380411457L),
-    _128RGBAFloat(1380410945L);
+    _128RGBAFloat(1380410945L),
+    _14Bayer_GRBG(1735549492L),
+    _14Bayer_RGGB(1919379252L),
+    _14Bayer_BGGR(1650943796L),
+    _14Bayer_GBRG(1734505012L);
     /*</values>*/
 
     public static class AsListMarshaler {

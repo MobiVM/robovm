@@ -46,7 +46,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKPass() {}
+    protected PKPass(Handle h, long handle) { super(h, handle); }
     protected PKPass(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithData:error:")
     public PKPass(NSData data) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();

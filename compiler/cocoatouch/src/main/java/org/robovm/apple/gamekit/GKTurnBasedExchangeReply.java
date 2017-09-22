@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKTurnBasedExchangeReply() {}
+    protected GKTurnBasedExchangeReply(Handle h, long handle) { super(h, handle); }
     protected GKTurnBasedExchangeReply(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

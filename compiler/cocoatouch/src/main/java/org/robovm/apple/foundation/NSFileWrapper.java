@@ -58,6 +58,7 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
+    @Method(selector = "initWithURL:options:error:")
     public NSFileWrapper(NSURL url, NSFileWrapperReadingOptions options) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -65,12 +66,16 @@ import org.robovm.apple.dispatch.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    @Method(selector = "initDirectoryWithFileWrappers:")
     public NSFileWrapper(@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSFileWrapper> childrenByPreferredName) { super((SkipInit) null); initObject(init(childrenByPreferredName)); }
+    @Method(selector = "initRegularFileWithContents:")
     public NSFileWrapper(NSData contents) { super((SkipInit) null); initObject(init(contents)); }
     /**
      * @since Available in iOS 4.0 and later.
      */
+    @Method(selector = "initSymbolicLinkWithDestinationURL:")
     public NSFileWrapper(NSURL url) { super((SkipInit) null); initObject(init(url)); }
+    @Method(selector = "initWithCoder:")
     public NSFileWrapper(NSCoder inCoder) { super((SkipInit) null); initObject(init(inCoder)); }
     /*</constructors>*/
     /*<properties>*/

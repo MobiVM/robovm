@@ -34,6 +34,7 @@ import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremidi.*;
 /*</imports>*/
 
+
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*/@Library("AudioToolbox")/*</annotations>*/
@@ -513,6 +514,16 @@ import org.robovm.apple.coremidi.*;
      */
     @Bridge(symbol="AudioQueueNewInput", optional=true)
     protected static native OSStatus createInput0(AudioStreamBasicDescription inFormat, FunctionPtr inCallbackProc, @Pointer long inUserData, NSRunLoop inCallbackRunLoop, String inCallbackRunLoopMode, int inFlags, AudioQueue.AudioQueuePtr outAQ);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="AudioQueueNewOutputWithDispatchQueue", optional=true)
+    protected static native OSStatus createOutputWithDispatchQueue0(AudioQueue.AudioQueuePtr outAQ, AudioStreamBasicDescription inFormat, int inFlags, org.robovm.apple.dispatch.DispatchQueue inCallbackDispatchQueue, @Block VoidBlock2<AudioQueue, AudioQueueBuffer> inCallbackBlock);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="AudioQueueNewInputWithDispatchQueue", optional=true)
+    protected static native OSStatus createInputWithDispatchQueue0(AudioQueue.AudioQueuePtr outAQ, AudioStreamBasicDescription inFormat, int inFlags, org.robovm.apple.dispatch.DispatchQueue inCallbackDispatchQueue, @Block VoidBlock5<AudioQueue, AudioQueueBuffer, AudioTimeStamp, Integer, AudioStreamPacketDescription> inCallbackBlock);
     /**
      * @since Available in iOS 2.0 and later.
      */

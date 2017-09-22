@@ -48,6 +48,7 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKContact() {}
+    protected PKContact(Handle h, long handle) { super(h, handle); }
     protected PKContact(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -67,6 +68,20 @@ import org.robovm.apple.contacts.*;
     public native CNPhoneNumber getPhoneNumber();
     @Property(selector = "setPhoneNumber:")
     public native void setPhoneNumber(CNPhoneNumber v);
+    /**
+     * @since Available in iOS 9.2 and later.
+     * @deprecated Deprecated in iOS 10.3.
+     */
+    @Deprecated
+    @Property(selector = "supplementarySubLocality")
+    public native String getSupplementarySubLocality();
+    /**
+     * @since Available in iOS 9.2 and later.
+     * @deprecated Deprecated in iOS 10.3.
+     */
+    @Deprecated
+    @Property(selector = "setSupplementarySubLocality:")
+    public native void setSupplementarySubLocality(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

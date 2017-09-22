@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CMPedometerData() {}
+    protected CMPedometerData(Handle h, long handle) { super(h, handle); }
     protected CMPedometerData(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -70,6 +71,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "currentCadence")
     public native NSNumber getCurrentCadence();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "averageActivePace")
+    public native NSNumber getAverageActivePace();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

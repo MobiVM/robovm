@@ -53,8 +53,11 @@ import org.robovm.apple.corelocation.*;
     public UICollectionViewController() {}
     protected UICollectionViewController(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCollectionViewLayout:")
     public UICollectionViewController(UICollectionViewLayout layout) { super((SkipInit) null); initObject(init(layout)); }
+    @Method(selector = "initWithNibName:bundle:")
     public UICollectionViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
     public UICollectionViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
@@ -219,5 +222,9 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "collectionView:moveItemAtIndexPath:toIndexPath:")
     public native void moveItemAt(UICollectionView collectionView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath);
+    @Method(selector = "indexTitlesForCollectionView:")
+    public native NSArray<?> indexTitlesForCollectionView(UICollectionView collectionView);
+    @Method(selector = "collectionView:indexPathForIndexTitle:atIndex:")
+    public native NSIndexPath indexPathForIndexTitle(UICollectionView collectionView, String title, @MachineSizedSInt long index);
     /*</methods>*/
 }

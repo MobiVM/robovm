@@ -57,8 +57,8 @@ public enum /*<name>*/CMSampleBufferErrorCode/*</name>*/ implements ValuedEnum {
     InvalidSampleData(-12742L),
     InvalidMediaFormat(-12743L),
     Invalidated(-12744L),
-    DataFailed(-12745L),
-    DataCanceled(-12746L);
+    DataFailed(-16750L),
+    DataCanceled(-16751L);
     /*</values>*/
 
     /*<bind>*/

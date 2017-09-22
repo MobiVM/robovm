@@ -47,12 +47,14 @@ import org.robovm.apple.corebluetooth.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CLRegion() {}
+    protected CLRegion(Handle h, long handle) { super(h, handle); }
     protected CLRegion(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
+    @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
     public CLRegion(@ByVal CLLocationCoordinate2D center, double radius, String identifier) { super((SkipInit) null); initObject(init(center, radius, identifier)); }
     /*</constructors>*/
     /*<properties>*/

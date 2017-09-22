@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNBox/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNBox() {}
+    protected SCNBox(Handle h, long handle) { super(h, handle); }
     protected SCNBox(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

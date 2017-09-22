@@ -16,10 +16,6 @@
  */
 package org.robovm.llvm;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.robovm.llvm.binding.IntOut;
 import org.robovm.llvm.binding.LLVM;
 import org.robovm.llvm.binding.LongArray;
@@ -28,6 +24,17 @@ import org.robovm.llvm.binding.MemoryBufferRefOut;
 import org.robovm.llvm.binding.ObjectFileRef;
 import org.robovm.llvm.binding.StringOut;
 import org.robovm.llvm.binding.SymbolIteratorRef;
+import org.robovm.llvm.debuginfo.DebugMethodInfo;
+import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
+import org.robovm.llvm.debuginfo.DebugVariableInfo;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -88,7 +95,71 @@ public class ObjectFile implements AutoCloseable {
         out.delete();
         return result;
     }
-    
+
+    /**
+     * Reads DWARF debug information from object file
+     * Currently it includes method and variable names
+     * @return debug information received from object file or null otherwise
+     */
+    public DebugObjectFileInfo getDebugInfo() {
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        LLVM.DumpDwarfDebugData(getRef(), os);
+        if (os.size() == 0)
+            return null;
+
+        ByteBuffer buffer = ByteBuffer.wrap(os.toByteArray(), 0, os.size());
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+
+        // read data
+        List<DebugMethodInfo> methods = new ArrayList<>();
+        while (buffer.hasRemaining()) {
+            // read method name
+            int strLen = buffer.getInt();
+            if (strLen == 0) // end of methods
+                break;
+            // read method name
+            String methodName = null;
+            try {
+                methodName =  new String(buffer.array(), buffer.position(), strLen, "UTF-8");
+            } catch (UnsupportedEncodingException ignored) {
+            }
+
+            buffer.position(buffer.position() + strLen);
+            if (methodName == null) // should not happen
+                break;
+
+            List<DebugVariableInfo> variables = new ArrayList<>();
+            // read local variables
+            while (buffer.hasRemaining()) {
+                strLen = buffer.getInt();
+                if (strLen == 0) // end of variable
+                    break;
+
+                // read variable name
+                String variableName = null;
+                try {
+                    variableName =  new String(buffer.array(), buffer.position(), strLen, "UTF-8");
+                } catch (UnsupportedEncodingException ignored) {
+                }
+                buffer.position(buffer.position() + strLen);
+                if (variableName == null) // should not happen
+                    break;
+
+                // read variable flags, reg, offset
+                byte flags = buffer.get();
+                int reg = (256 + buffer.get()) & 0xFF;
+                int offset = buffer.getInt();
+
+                // create variable struct
+                variables.add(new DebugVariableInfo(variableName, (flags & 1) == 1, reg, offset));
+            }
+
+            methods.add(new DebugMethodInfo(methodName, variables.toArray(new DebugVariableInfo[variables.size()])));
+        }
+
+        return new DebugObjectFileInfo(methods.toArray(new DebugMethodInfo[methods.size()]));
+    }
+
     public synchronized void dispose() {
         LLVM.DisposeObjectFile(getRef());
         ref = null;

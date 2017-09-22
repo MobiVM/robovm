@@ -5,7 +5,9 @@ framework: CoreData
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/CoreData.framework/Headers/CoreData.h
-typedefs: {}
+typedefs:
+    'void (^)(NSPersistentStoreDescription * _Nonnull, NSError * _Nullable)': '@Block VoidBlock2<NSPersistentStoreDescription, NSError>'
+
 enums:
     NSAttributeType: {first: NSUndefinedAttributeType, suffix: AttributeType, type: MachineUInt}
     NSCoreDataErrorCode: {first: NSManagedObjectValidationError, suffix: Error}
@@ -246,6 +248,10 @@ classes:
                 name: init
             '+fetchRequestWithEntityName:':
                 exclude: true
+            '-execute:':
+                name: execute
+                throws: NSErrorException
+
     NSFetchRequestExpression: # DONE
         methods:
             '+expressionForFetch:context:countOnly:':
@@ -307,6 +313,8 @@ classes:
     NSManagedObject: # DONE
         methods:
             '-initWithEntity:insertIntoManagedObjectContext:':
+                name: init
+            '-initWithContext:':
                 name: init
             '-hasFaultForRelationshipNamed:':
                 name: hasFaultForRelationship
@@ -417,6 +425,9 @@ classes:
                 parameters:
                     contexts:
                         type: NSArray<NSManagedObjectContext>
+            '-setQueryGenerationFromToken:error:':
+                throws: NSErrorException
+                trim_after_first_colon: true
     NSManagedObjectID: # DONE
         methods:
             '-URIRepresentation':
@@ -608,6 +619,8 @@ classes:
         properties:
             'persistentStores':
                 type: NSArray<NSPersistentStore>
+            'registeredStoreTypes':
+                type: 'NSDictionary<NSString, NSPersistentStore>'
         methods:
             '-initWithManagedObjectModel:':
                 name: init
@@ -623,6 +636,8 @@ classes:
                 parameters:
                     options:
                         type: NSPersistentStoreOptions
+            '-addPersistentStoreWithDescription:completionHandler:':
+                trim_after_first_colon: true
             '-removePersistentStore:error:':
                 trim_after_first_colon: true
                 throws: NSErrorException
@@ -662,9 +677,6 @@ classes:
                 trim_after_first_colon: true
             '-performBlockAndWait:':
                 trim_after_first_colon: true
-            '+registeredStoreTypes':
-                property: true
-                return_type: 'NSDictionary<NSString, NSPersistentStore>'
             '+registerStoreClass:forStoreType:':
                 name: registerStoreClassForType
                 parameters:
@@ -707,6 +719,7 @@ classes:
                 type: List<String>
                 marshaler: NSArray.AsStringListMarshaler
     NSPersistentStoreResult: {} # DONE
+    NSPersistentStoreDescription: {} # DONE
     NSPropertyDescription: # DONE
         properties:
             'validationPredicates':
@@ -724,6 +737,7 @@ classes:
                         type: List<String>
                         marshaler: NSArray.AsStringListMarshaler
     NSPropertyMapping: {} # DONE
+    NSQueryGenerationToken: {} # DONE
     NSRelationshipDescription: {} # DONE
     NSSaveChangesRequest: # DONE
         properties:
@@ -742,6 +756,15 @@ classes:
                     lockedObjects:
                         type: NSSet<NSManagedObject>
 
+    NSPersistentContainer:
+        methods:
+            '-init.*':
+                name: init
+            '+persistentContainerWithName:':
+                exclude: true
+            '+persistentContainerWithName:managedObjectModel:':
+                exclude: true
+
 protocols:
     NSFetchedResultsControllerDelegate: # DONE
         methods:
@@ -759,6 +782,9 @@ protocols:
         properties:
             'objects':
                 type: NSArray<NSManagedObject>
+    NSFetchRequestResult:
+        protocols: [NSObjectProtocol]
+        skip_adapter: true
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -820,6 +846,10 @@ values:
         class: NSManagedObjectContext
         name: '#{g[0]}'
         type: NSString
+    NSManagedObjectContext(.*Key):
+        class: NSManagedObjectContext
+        name: '#{g[0]}'
+        type: NSString
     NS(.*Objects)Key:
         dictionary: NSManagedObjectContextNotification
         name: '#{g[0]}'
@@ -843,7 +873,7 @@ values:
     # NSMergePolicy
     NS(.*MergePolicy):
         class: NSMergePolicy
-        name: 'get#{g[0]}'
+        name: 'get#{g[0]}Const'
         readonly: true
         type: NSMergePolicy
 

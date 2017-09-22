@@ -48,6 +48,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CABTMIDILocalPeripheralViewController() {}
+    protected CABTMIDILocalPeripheralViewController(Handle h, long handle) { super(h, handle); }
     protected CABTMIDILocalPeripheralViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -38,25 +38,16 @@ import org.robovm.apple.uikit.*;
     extends /*<extends>*/NSError/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    protected GKSessionError(SkipInit skipInit) {
-        super(skipInit);
-    }
-    
     /*<ptr>*/public static class GKSessionErrorPtr extends Ptr<GKSessionError, GKSessionErrorPtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(GKSessionError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    protected GKSessionError(SkipInit skipInit) { //Manually edited!
+    	super(skipInit);
+    }
+    /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
-    @Override
-    public GKSessionErrorCode getErrorCode() {
-        GKSessionErrorCode code = null;
-        try {
-            code = GKSessionErrorCode.valueOf(getCode());
-        } catch (IllegalArgumentException e) {
-            // ignore
-        }
-        return code;
-    }
     /*<methods>*/
     @GlobalValue(symbol="GKSessionErrorDomain", optional=true)
     public static native String getClassDomain();

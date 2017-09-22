@@ -213,7 +213,7 @@ import org.robovm.apple.coregraphics.*;
      */
     public static final CGImagePropertyExif SubsecTime = new CGImagePropertyExif("SubsecTime");
     /**
-     * @since Available in iOS 4.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
     public static final CGImagePropertyExif SubsecTimeOriginal = new CGImagePropertyExif("SubsecTimeOriginal");
     /**
@@ -545,7 +545,7 @@ import org.robovm.apple.coregraphics.*;
         @GlobalValue(symbol="kCGImagePropertyExifSubsecTime", optional=true)
         public static native CFString SubsecTime();
         /**
-         * @since Available in iOS 4.0 and later.
+         * @since Available in iOS 10.0 and later.
          */
         @GlobalValue(symbol="kCGImagePropertyExifSubsecTimeOriginal", optional=true)
         public static native CFString SubsecTimeOriginal();

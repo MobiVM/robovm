@@ -47,6 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CBService() {}
+    protected CBService(Handle h, long handle) { super(h, handle); }
     protected CBService(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

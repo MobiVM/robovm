@@ -46,13 +46,22 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLObject() {}
+    protected MDLObject(Handle h, long handle) { super(h, handle); }
     protected MDLObject(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "components")
+    public native NSArray<?> getComponents();
     @Property(selector = "parent")
     public native MDLObject getParent();
     @Property(selector = "setParent:", strongRef = true)
     public native void setParent(MDLObject v);
+    @Property(selector = "instance")
+    public native MDLObject getInstance();
+    @Property(selector = "setInstance:")
+    public native void setInstance(MDLObject v);
+    @Property(selector = "path")
+    public native String getPath();
     @Property(selector = "transform")
     public native MDLTransformComponent getTransform();
     @Property(selector = "setTransform:")
@@ -61,6 +70,10 @@ import org.robovm.apple.coregraphics.*;
     public native MDLObjectContainerComponent getChildren();
     @Property(selector = "setChildren:")
     public native void setChildren(MDLObjectContainerComponent v);
+    @Property(selector = "hidden")
+    public native boolean isHidden();
+    @Property(selector = "setHidden:")
+    public native void setHidden(boolean v);
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "setName:")
@@ -72,6 +85,14 @@ import org.robovm.apple.coregraphics.*;
     public native void setComponent(MDLComponent component, ObjCProtocol protocol);
     @Method(selector = "componentConformingToProtocol:")
     public native MDLComponent getComponent(ObjCProtocol protocol);
+    @Method(selector = "objectForKeyedSubscript:")
+    public native MDLComponent objectForKeyedSubscript(ObjCProtocol key);
+    @Method(selector = "setObject:forKeyedSubscript:")
+    public native void setObjectForKeyedSubscript(MDLComponent obj, ObjCProtocol key);
+    @Method(selector = "objectAtPath:")
+    public native MDLObject objectAtPath(String path);
+    @Method(selector = "enumerateChildObjectsOfClass:root:usingBlock:stopPointer:")
+    public native void enumerateChildObjects(Class<?> objectClass, MDLObject root, @Block VoidBlock2<MDLObject, BooleanPtr> block, BooleanPtr stopPointer);
     @Method(selector = "addChild:")
     public native void addChild(MDLObject child);
     @Method(selector = "boundingBoxAtTime:")

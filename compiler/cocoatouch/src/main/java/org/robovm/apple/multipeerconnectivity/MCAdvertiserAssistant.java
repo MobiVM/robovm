@@ -47,7 +47,9 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MCAdvertiserAssistant() {}
+    protected MCAdvertiserAssistant(Handle h, long handle) { super(h, handle); }
     protected MCAdvertiserAssistant(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithServiceType:discoveryInfo:session:")
     public MCAdvertiserAssistant(String serviceType, @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> info, MCSession session) { super((SkipInit) null); initObject(init(serviceType, info, session)); }
     /*</constructors>*/
     /*<properties>*/

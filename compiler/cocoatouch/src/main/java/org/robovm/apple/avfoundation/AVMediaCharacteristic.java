@@ -115,6 +115,10 @@ import org.robovm.apple.audiounit.*;
      */
     public static final AVMediaCharacteristic FrameBased = new AVMediaCharacteristic("FrameBased");
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final AVMediaCharacteristic UsesWideGamutColorSpace = new AVMediaCharacteristic("UsesWideGamutColorSpace");
+    /**
      * @since Available in iOS 5.0 and later.
      */
     public static final AVMediaCharacteristic IsMainProgramContent = new AVMediaCharacteristic("IsMainProgramContent");
@@ -156,7 +160,7 @@ import org.robovm.apple.audiounit.*;
     public static final AVMediaCharacteristic VoiceOverTranslation = new AVMediaCharacteristic("VoiceOverTranslation");
     /*</constants>*/
     
-    private static /*<name>*/AVMediaCharacteristic/*</name>*/[] values = new /*<name>*/AVMediaCharacteristic/*</name>*/[] {/*<value_list>*/Visual, Audible, Legible, FrameBased, IsMainProgramContent, IsAuxiliaryContent, ContainsOnlyForcedSubtitles, TranscribesSpokenDialogForAccessibility, DescribesMusicAndSoundForAccessibility, EasyToRead, DescribesVideoForAccessibility, LanguageTranslation, DubbedTranslation, VoiceOverTranslation/*</value_list>*/};
+    private static /*<name>*/AVMediaCharacteristic/*</name>*/[] values = new /*<name>*/AVMediaCharacteristic/*</name>*/[] {/*<value_list>*/Visual, Audible, Legible, FrameBased, UsesWideGamutColorSpace, IsMainProgramContent, IsAuxiliaryContent, ContainsOnlyForcedSubtitles, TranscribesSpokenDialogForAccessibility, DescribesMusicAndSoundForAccessibility, EasyToRead, DescribesVideoForAccessibility, LanguageTranslation, DubbedTranslation, VoiceOverTranslation/*</value_list>*/};
     
     /*<name>*/AVMediaCharacteristic/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -199,6 +203,11 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVMediaCharacteristicFrameBased", optional=true)
         public static native NSString FrameBased();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicUsesWideGamutColorSpace", optional=true)
+        public static native NSString UsesWideGamutColorSpace();
         /**
          * @since Available in iOS 5.0 and later.
          */

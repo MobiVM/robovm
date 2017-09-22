@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIImpactFeedbackGenerator() {}
     protected UIImpactFeedbackGenerator(Handle h, long handle) { super(h, handle); }
     protected UIImpactFeedbackGenerator(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithStyle:")
     public UIImpactFeedbackGenerator(UIImpactFeedbackStyle style) { super((SkipInit) null); initObject(init(style)); }
     /*</constructors>*/
     /*<properties>*/

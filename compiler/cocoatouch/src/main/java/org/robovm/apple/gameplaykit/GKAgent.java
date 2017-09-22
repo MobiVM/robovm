@@ -28,21 +28,25 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.spritekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKAgent/*</name>*/ 
     extends /*<extends>*/GKComponent/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKAgentPtr extends Ptr<GKAgent, GKAgentPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKAgent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKAgent() {}
+    protected GKAgent(Handle h, long handle) { super(h, handle); }
     protected GKAgent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -64,6 +68,8 @@ import org.robovm.apple.foundation.*;
     public native void setRadius(float v);
     @Property(selector = "speed")
     public native float getSpeed();
+    @Property(selector = "setSpeed:")
+    public native void setSpeed(float v);
     @Property(selector = "maxAcceleration")
     public native float getMaxAcceleration();
     @Property(selector = "setMaxAcceleration:")

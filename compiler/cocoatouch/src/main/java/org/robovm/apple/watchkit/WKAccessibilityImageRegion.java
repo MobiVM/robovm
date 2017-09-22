@@ -49,6 +49,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKAccessibilityImageRegion() {}
+    protected WKAccessibilityImageRegion(Handle h, long handle) { super(h, handle); }
     protected WKAccessibilityImageRegion(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

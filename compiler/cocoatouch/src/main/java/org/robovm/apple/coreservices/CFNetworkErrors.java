@@ -95,6 +95,7 @@ public enum /*<name>*/CFNetworkErrors/*</name>*/ implements ValuedEnum {
     URLErrorFileIsDirectory(-1101L),
     URLErrorNoPermissionsToReadFile(-1102L),
     URLErrorDataLengthExceedsMaximum(-1103L),
+    URLErrorFileOutsideSafeArea(-1104L),
     URLErrorSecureConnectionFailed(-1200L),
     URLErrorServerCertificateHasBadDate(-1201L),
     URLErrorServerCertificateUntrusted(-1202L),

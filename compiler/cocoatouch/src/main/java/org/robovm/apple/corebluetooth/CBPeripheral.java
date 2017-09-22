@@ -47,6 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CBPeripheral() {}
+    protected CBPeripheral(Handle h, long handle) { super(h, handle); }
     protected CBPeripheral(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -84,7 +85,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "maximumWriteValueLengthForType:")
-    public native @MachineSizedUInt long maximumWriteValueLengthForType$(CBCharacteristicWriteType type);
+    public native @MachineSizedUInt long maximumWriteValueLengthForType(CBCharacteristicWriteType type);
     @Method(selector = "writeValue:forCharacteristic:type:")
     public native void writeValue(NSData data, CBCharacteristic characteristic, CBCharacteristicWriteType type);
     @Method(selector = "setNotifyValue:forCharacteristic:")

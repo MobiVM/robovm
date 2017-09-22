@@ -42,6 +42,7 @@ public final class /*<name>*/CGBitmapInfo/*</name>*/ extends Bits</*<name>*/CGBi
     /*<values>*/
     public static final CGBitmapInfo None = new CGBitmapInfo(0L);
     public static final CGBitmapInfo AlphaInfoMask = new CGBitmapInfo(31L);
+    public static final CGBitmapInfo FloatInfoMask = new CGBitmapInfo(3840L);
     public static final CGBitmapInfo FloatComponents = new CGBitmapInfo(256L);
     public static final CGBitmapInfo ByteOrderMask = new CGBitmapInfo(28672L);
     public static final CGBitmapInfo ByteOrderDefault = new CGBitmapInfo(0L);

@@ -46,6 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public HMHomeManager() {}
+    protected HMHomeManager(Handle h, long handle) { super(h, handle); }
     protected HMHomeManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

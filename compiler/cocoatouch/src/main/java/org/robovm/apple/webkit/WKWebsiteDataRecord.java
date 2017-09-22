@@ -48,6 +48,7 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKWebsiteDataRecord() {}
+    protected WKWebsiteDataRecord(Handle h, long handle) { super(h, handle); }
     protected WKWebsiteDataRecord(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

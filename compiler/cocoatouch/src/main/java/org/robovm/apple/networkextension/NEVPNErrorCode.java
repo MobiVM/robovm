@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -42,7 +43,9 @@ public enum /*<name>*/NEVPNErrorCode/*</name>*/ implements NSErrorCode {
     ConfigurationInvalid(1L),
     ConfigurationDisabled(2L),
     ConnectionFailed(3L),
-    ConfigurationStale(4L);
+    ConfigurationStale(4L),
+    ConfigurationReadWriteFailed(5L),
+    ConfigurationUnknown(6L);
     /*</values>*/
 
     /*<bind>*/

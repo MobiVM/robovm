@@ -39,7 +39,23 @@ import org.robovm.apple.foundation.*;
 public enum /*<name>*/HKWorkoutEventType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Pause(1L),
-    Resume(2L);
+    Resume(2L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Lap(3L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Marker(4L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    MotionPaused(5L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    MotionResumed(6L);
     /*</values>*/
 
     /*<bind>*/

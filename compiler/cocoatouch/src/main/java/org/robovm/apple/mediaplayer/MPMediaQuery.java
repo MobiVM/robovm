@@ -46,7 +46,9 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPMediaQuery.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected MPMediaQuery(Handle h, long handle) { super(h, handle); }
     protected MPMediaQuery(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFilterPredicates:")
     public MPMediaQuery(NSSet<MPMediaPredicate> filterPredicates) { super((SkipInit) null); initObject(init(filterPredicates)); }
     /*</constructors>*/
     /*<properties>*/

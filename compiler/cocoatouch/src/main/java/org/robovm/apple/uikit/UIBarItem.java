@@ -55,6 +55,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public UIBarItem() {}
     protected UIBarItem(Handle h, long handle) { super(h, handle); }
     protected UIBarItem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UIBarItem(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

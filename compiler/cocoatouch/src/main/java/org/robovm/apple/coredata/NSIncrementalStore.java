@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSIncrementalStore() {}
+    protected NSIncrementalStore(Handle h, long handle) { super(h, handle); }
     protected NSIncrementalStore(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

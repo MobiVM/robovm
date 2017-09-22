@@ -49,6 +49,7 @@ import org.robovm.apple.iad.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVPlayerViewController() {}
+    protected AVPlayerViewController(Handle h, long handle) { super(h, handle); }
     protected AVPlayerViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -80,6 +81,16 @@ import org.robovm.apple.iad.*;
      */
     @Property(selector = "setAllowsPictureInPicturePlayback:")
     public native void setAllowsPictureInPicturePlayback(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "updatesNowPlayingInfoCenter")
+    public native boolean isUpdatesNowPlayingInfoCenter();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setUpdatesNowPlayingInfoCenter:")
+    public native void setUpdatesNowPlayingInfoCenter(boolean v);
     /**
      * @since Available in iOS 9.0 and later.
      */

@@ -45,6 +45,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMHome.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected HMHome(Handle h, long handle) { super(h, handle); }
     protected HMHome(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -100,6 +101,11 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<HMService> getServicesWithTypes(@org.robovm.rt.bro.annotation.Marshaler(HMServiceType.AsListMarshaler.class) List<HMServiceType> serviceTypes);
     @Method(selector = "unblockAccessory:completionHandler:")
     public native void unblockAccessory(HMAccessory accessory, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "addAndSetupAccessoriesWithCompletionHandler:")
+    public native void addAndSetupAccessoriesWithCompletionHandler(@Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 9.0 and later.
      */

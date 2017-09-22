@@ -45,7 +45,8 @@ import org.robovm.apple.uikit.*;
     /*<bind>*/static { ObjCRuntime.bind(SSReadingList.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public SSReadingList() {}
+    protected SSReadingList() {}
+    protected SSReadingList(Handle h, long handle) { super(h, handle); }
     protected SSReadingList(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

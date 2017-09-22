@@ -48,6 +48,7 @@ import org.robovm.apple.security.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKBackForwardList() {}
+    protected WKBackForwardList(Handle h, long handle) { super(h, handle); }
     protected WKBackForwardList(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

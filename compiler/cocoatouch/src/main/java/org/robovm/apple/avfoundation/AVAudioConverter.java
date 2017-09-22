@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioConverter() {}
+    protected AVAudioConverter(Handle h, long handle) { super(h, handle); }
     protected AVAudioConverter(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initFromFormat:toFormat:")
     public AVAudioConverter(AVAudioFormat fromFormat, AVAudioFormat toFormat) { super((SkipInit) null); initObject(init(fromFormat, toFormat)); }
     /*</constructors>*/
     /*<properties>*/

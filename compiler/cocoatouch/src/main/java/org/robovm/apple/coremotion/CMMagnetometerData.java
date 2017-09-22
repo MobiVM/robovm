@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CMMagnetometerData() {}
+    protected CMMagnetometerData(Handle h, long handle) { super(h, handle); }
     protected CMMagnetometerData(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -45,6 +45,7 @@ public class RoboVMPluginExtension {
     private String cacheDir;
     private String keychainPassword;
     private String keychainPasswordFile;
+    private boolean dumpIntermediates = false;
 
     public RoboVMPluginExtension(Project project) {
         this.project = project;
@@ -242,4 +243,12 @@ public class RoboVMPluginExtension {
     public void setKeychainPasswordFile(String keychainPasswordFile) {
         this.keychainPasswordFile = keychainPasswordFile;
     }
+
+	public boolean isDumpIntermediates() {
+		return dumpIntermediates;
+	}
+
+	public void setDumpIntermediates(boolean dumpIntermediates) {
+		this.dumpIntermediates = dumpIntermediates;
+	}
 }

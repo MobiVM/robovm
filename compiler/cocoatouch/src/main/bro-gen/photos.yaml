@@ -1,5 +1,5 @@
 package: org.robovm.apple.photos
-include: [foundation.yaml, coregraphics.yaml, uikit.yaml, corelocation.yaml, avfoundation.yaml]
+include: [foundation.yaml, coregraphics.yaml, uikit.yaml, corelocation.yaml, avfoundation.yaml, coreimage.yaml, coremedia.yaml, imageio.yaml]
 library: Photos
 framework: Photos
 clang_args: ['-x', 'objective-c']
@@ -37,8 +37,16 @@ enums:
     PHImageRequestOptionsResizeMode: {}
     PHVideoRequestOptionsVersion: {}
     PHVideoRequestOptionsDeliveryMode: {}
+    PHLivePhotoFrameType: {}
         
 classes:
+    PHLivePhotoRequestOptions: {}
+    PHLivePhoto:
+        methods:
+            '+requestLivePhotoWithResourceFileURLs:placeholderImage:targetSize:contentMode:resultHandler:':
+                name: requestLivePhoto
+            '+cancelLivePhotoRequestWithRequestID:':
+                name: cancelLivePhotoRequest
     PHAdjustmentData: # DONE
         methods:
             '-init.*':
@@ -204,10 +212,7 @@ classes:
                 trim_after_first_colon: true
             '+defaultManager':
                 property: true
-    PHAssetResourceRequestOptions: # DONE
-        properties:
-            'progressHandler':
-                type: VoidBlock1<Double>
+    PHAssetResourceRequestOptions: {} # DONE
     PHCachingImageManager: # DONE
         methods:
             '-startCachingImagesForAssets:targetSize:contentMode:options:':
@@ -399,6 +404,9 @@ classes:
             '-requestImageDataForAsset:options:resultHandler:':
                 trim_after_first_colon: true
                 annotations: ['@WeaklyLinked']
+            '-requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:':
+                trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
             '-cancelImageRequest:':
                 trim_after_first_colon: true
             '-requestPlayerItemForVideo:options:resultHandler:':
@@ -446,8 +454,16 @@ classes:
         properties:
             'progressHandler':
                 type: '@Block VoidBlock3<Double, NSError, BooleanPtr>'
+    PHLivePhotoEditingContext:
+        methods:
+            '-prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:':
+                name: prepareLivePhotoForPlayback
+            '-saveLivePhotoToOutput:options:completionHandler:':
+                name: saveLivePhoto
 
 protocols:
+    PHLivePhotoFrame: {}
+
     PHPhotoLibraryChangeObserver: # DONE
         methods:
             '-photoLibraryDidChange:':
@@ -508,12 +524,26 @@ values:
             Error:
                 type: NSError
    
+    PHLivePhoto(.*):
+        class: PHLivePhoto
+        name: '#{g[0]}'
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?PH.*):
         class: Photos
         name: 'Value__#{g[0]}'
 
 constants:
+    PHLivePhoto(.*):
+        class: PHLivePhoto
+        name: '#{g[0]}'
+    PHInvalidImageRequestID:
+        class: PHImageManager
+        name: 'InvalidImageRequestID'
+    PHInvalidAssetResourceDataRequestID:
+        class: PHAssetResourceManager
+        name: 'InvalidAssetResourceDataRequestID'
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?PH.*):
         class: Photos

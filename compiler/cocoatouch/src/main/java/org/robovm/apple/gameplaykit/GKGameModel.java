@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.spritekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -41,7 +42,10 @@ import org.robovm.apple.foundation.*;
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int MaxScore = 16777216;
+    public static final int MinScore = -16777216;
+    /*</constants>*/
     /*<properties>*/
     @Property(selector = "players")
     @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<GKGameModelPlayer> getPlayers();
@@ -61,6 +65,8 @@ import org.robovm.apple.foundation.*;
     boolean isWinForPlayer(GKGameModelPlayer player);
     @Method(selector = "isLossForPlayer:")
     boolean isLossForPlayer(GKGameModelPlayer player);
+    @Method(selector = "unapplyGameModelUpdate:")
+    void unapplyGameModelUpdate(GKGameModelUpdate gameModelUpdate);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

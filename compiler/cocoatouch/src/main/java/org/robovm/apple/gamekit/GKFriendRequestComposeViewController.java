@@ -34,7 +34,9 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.2 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKFriendRequestComposeViewController/*</name>*/ 
@@ -46,6 +48,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKFriendRequestComposeViewController() {}
+    protected GKFriendRequestComposeViewController(Handle h, long handle) { super(h, handle); }
     protected GKFriendRequestComposeViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

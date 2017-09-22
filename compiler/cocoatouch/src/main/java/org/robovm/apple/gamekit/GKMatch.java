@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKMatch() {}
+    protected GKMatch(Handle h, long handle) { super(h, handle); }
     protected GKMatch(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -118,7 +119,7 @@ import org.robovm.apple.uikit.*;
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
-    public boolean sendDataToPlayers(NSData data, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs, GKMatchSendDataMode mode) throws NSErrorException {
+    public boolean sendDataToPlayers(NSData data, List<String> playerIDs, GKMatchSendDataMode mode) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = sendDataToPlayers(data, playerIDs, mode, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }

@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNLight/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNLight() {}
+    protected SCNLight(Handle h, long handle) { super(h, handle); }
     protected SCNLight(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -63,6 +64,26 @@ import org.robovm.apple.opengles.*;
     public native UIColor getColor();
     @Property(selector = "setColor:")
     public native void setColor(UIColor v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "temperature")
+    public native @MachineSizedFloat double getTemperature();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setTemperature:")
+    public native void setTemperature(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "intensity")
+    public native @MachineSizedFloat double getIntensity();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setIntensity:")
+    public native void setIntensity(@MachineSizedFloat double v);
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "setName:")
@@ -79,141 +100,72 @@ import org.robovm.apple.opengles.*;
     public native @MachineSizedFloat double getShadowRadius();
     @Property(selector = "setShadowRadius:")
     public native void setShadowRadius(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "shadowMapSize")
     public native @ByVal CGSize getShadowMapSize();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShadowMapSize:")
     public native void setShadowMapSize(@ByVal CGSize v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "shadowSampleCount")
     public native @MachineSizedUInt long getShadowSampleCount();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShadowSampleCount:")
     public native void setShadowSampleCount(@MachineSizedUInt long v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "shadowMode")
     public native SCNShadowMode getShadowMode();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShadowMode:")
     public native void setShadowMode(SCNShadowMode v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "shadowBias")
     public native @MachineSizedFloat double getShadowBias();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setShadowBias:")
     public native void setShadowBias(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "orthographicScale")
     public native @MachineSizedFloat double getOrthographicScale();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setOrthographicScale:")
     public native void setOrthographicScale(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "zNear")
     public native @MachineSizedFloat double getZNear();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setZNear:")
     public native void setZNear(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "zFar")
     public native @MachineSizedFloat double getZFar();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setZFar:")
     public native void setZFar(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "attenuationStartDistance")
     public native @MachineSizedFloat double getAttenuationStartDistance();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAttenuationStartDistance:")
     public native void setAttenuationStartDistance(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "attenuationEndDistance")
     public native @MachineSizedFloat double getAttenuationEndDistance();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAttenuationEndDistance:")
     public native void setAttenuationEndDistance(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "attenuationFalloffExponent")
     public native @MachineSizedFloat double getAttenuationFalloffExponent();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setAttenuationFalloffExponent:")
     public native void setAttenuationFalloffExponent(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "spotInnerAngle")
     public native @MachineSizedFloat double getSpotInnerAngle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setSpotInnerAngle:")
     public native void setSpotInnerAngle(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "spotOuterAngle")
     public native @MachineSizedFloat double getSpotOuterAngle();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setSpotOuterAngle:")
     public native void setSpotOuterAngle(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "gobo")
     public native SCNMaterialProperty getGobo();
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
+    @Property(selector = "IESProfileURL")
+    public native NSURL getIESProfileURL();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setIESProfileURL:")
+    public native void setIESProfileURL(NSURL v);
     @Property(selector = "categoryBitMask")
     public native @MachineSizedUInt long getCategoryBitMask();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setCategoryBitMask:")
     public native void setCategoryBitMask(@MachineSizedUInt long v);
+    @Property(selector = "animationKeys")
+    public native NSArray<?> getAnimationKeys();
     @Property(selector = "technique")
     public native SCNTechnique getTechnique();
     @Property(selector = "setTechnique:")
@@ -229,29 +181,20 @@ import org.robovm.apple.opengles.*;
     public native void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
-    @Method(selector = "animationKeys")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAnimationKeys();
     @Method(selector = "animationForKey:")
     public native CAAnimation getAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "pauseAnimationForKey:")
     public native void pauseAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "resumeAnimationForKey:")
     public native void resumeAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "isAnimationForKeyPaused:")
     public native boolean isAnimationPaused(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setSpeed:forAnimationKey:")
+    public native void setSpeed(@MachineSizedFloat double speed, String key);
     /*</methods>*/
 }

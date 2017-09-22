@@ -875,7 +875,9 @@ import org.robovm.apple.dispatch.*;
     }
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     public boolean usesNoAuthenticationUI() {
         if (has(Keys.UseNoAuthenticationUI())) {
             CFBoolean val = get(Keys.UseNoAuthenticationUI(), CFBoolean.class);
@@ -885,9 +887,45 @@ import org.robovm.apple.dispatch.*;
     }
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     public SecAttributes setUsesNoAuthenticationUI(boolean usesNoAuthenticationUI) {
         set(Keys.UseNoAuthenticationUI(), CFBoolean.valueOf(usesNoAuthenticationUI));
+        return this;
+    }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public boolean usesAuthenticationUI() {
+        if (has(Keys.UseAuthenticationUI())) {
+            CFBoolean val = get(Keys.UseAuthenticationUI(), CFBoolean.class);
+            return val.booleanValue();
+        }
+        return false;
+    }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public SecAttributes setUsesAuthenticationUI(boolean usesAuthenticationUI) {
+        set(Keys.UseAuthenticationUI(), CFBoolean.valueOf(usesAuthenticationUI));
+        return this;
+    }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public org.robovm.apple.localauthentication.LAContext getUseAuthenticationContext() {
+        if (has(Keys.UseAuthenticationContext())) {
+            org.robovm.apple.localauthentication.LAContext val = get(Keys.UseAuthenticationContext(), org.robovm.apple.localauthentication.LAContext.class);
+            return val;
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public SecAttributes setUseAuthenticationContext(org.robovm.apple.localauthentication.LAContext useAuthenticationContext) {
+        set(Keys.UseAuthenticationContext(), useAuthenticationContext);
         return this;
     }
     /*</methods>*/
@@ -1059,6 +1097,16 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 2.0 and later.
          */
+        @GlobalValue(symbol="kSecAttrIsSensitive", optional=true)
+        public static native CFType IsSensitive();
+        /**
+         * @since Available in iOS 2.0 and later.
+         */
+        @GlobalValue(symbol="kSecAttrIsExtractable", optional=true)
+        public static native CFType IsExtractable();
+        /**
+         * @since Available in iOS 2.0 and later.
+         */
         @GlobalValue(symbol="kSecAttrApplicationTag", optional=true)
         public static native CFType ApplicationTag();
         /**
@@ -1112,6 +1160,16 @@ import org.robovm.apple.dispatch.*;
         @GlobalValue(symbol="kSecAttrCanUnwrap", optional=true)
         public static native CFType CanUnwrap();
         /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kSecAttrSyncViewHint", optional=true)
+        public static native CFType SyncViewHint();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kSecAttrTokenID", optional=true)
+        public static native CFType TokenID();
+        /**
          * @since Available in iOS 2.0 and later.
          */
         @GlobalValue(symbol="kSecUseItemList", optional=true)
@@ -1123,9 +1181,31 @@ import org.robovm.apple.dispatch.*;
         public static native CFType UseOperationPrompt();
         /**
          * @since Available in iOS 8.0 and later.
+         * @deprecated Deprecated in iOS 9.0.
          */
+        @Deprecated
         @GlobalValue(symbol="kSecUseNoAuthenticationUI", optional=true)
         public static native CFType UseNoAuthenticationUI();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kSecUseAuthenticationUI", optional=true)
+        public static native CFType UseAuthenticationUI();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kSecUseAuthenticationContext", optional=true)
+        public static native CFType UseAuthenticationContext();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="kSecAttrTokenIDSecureEnclave", optional=true)
+        public static native CFType TokenIDSecureEnclave();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kSecAttrAccessGroupToken", optional=true)
+        public static native CFType AccessGroupToken();
     }
     /*</keys>*/
 }

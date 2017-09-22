@@ -37,7 +37,9 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UISearchContainerViewController/*</name>*/ 
@@ -51,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UISearchContainerViewController() {}
     protected UISearchContainerViewController(Handle h, long handle) { super(h, handle); }
     protected UISearchContainerViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSearchController:")
     public UISearchContainerViewController(UISearchController searchController) { super((SkipInit) null); initObject(init(searchController)); }
     /*</constructors>*/
     /*<properties>*/

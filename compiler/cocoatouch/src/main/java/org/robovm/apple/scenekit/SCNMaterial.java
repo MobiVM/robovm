@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNMaterial/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNMaterial() {}
+    protected SCNMaterial(Handle h, long handle) { super(h, handle); }
     protected SCNMaterial(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -75,6 +76,26 @@ import org.robovm.apple.opengles.*;
     public native SCNMaterialProperty getMultiply();
     @Property(selector = "normal")
     public native SCNMaterialProperty getNormal();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "ambientOcclusion")
+    public native SCNMaterialProperty getAmbientOcclusion();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "selfIllumination")
+    public native SCNMaterialProperty getSelfIllumination();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "metalness")
+    public native SCNMaterialProperty getMetalness();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "roughness")
+    public native SCNMaterialProperty getRoughness();
     @Property(selector = "shininess")
     public native @MachineSizedFloat double getShininess();
     @Property(selector = "setShininess:")
@@ -111,40 +132,34 @@ import org.robovm.apple.opengles.*;
     public native boolean writesToDepthBuffer();
     @Property(selector = "setWritesToDepthBuffer:")
     public native void setWritesToDepthBuffer(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "readsFromDepthBuffer")
     public native boolean readsFromDepthBuffer();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setReadsFromDepthBuffer:")
     public native void setReadsFromDepthBuffer(boolean v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "fresnelExponent")
     public native @MachineSizedFloat double getFresnelExponent();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setFresnelExponent:")
     public native void setFresnelExponent(@MachineSizedFloat double v);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
-    @Property(selector = "shaderModifiers")
-    public native @org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> getShaderModifiers();
+    @Property(selector = "blendMode")
+    public native SCNBlendMode getBlendMode();
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
-    @Property(selector = "setShaderModifiers:")
-    public native void setShaderModifiers(@org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> v);
+    @Property(selector = "setBlendMode:")
+    public native void setBlendMode(SCNBlendMode v);
+    @Property(selector = "animationKeys")
+    public native NSArray<?> getAnimationKeys();
     @Property(selector = "program")
     public native SCNProgram getProgram();
     @Property(selector = "setProgram:")
     public native void setProgram(SCNProgram v);
+    @Property(selector = "shaderModifiers")
+    public native @org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> getShaderModifiers();
+    @Property(selector = "setShaderModifiers:")
+    public native void setShaderModifiers(@org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -156,38 +171,23 @@ import org.robovm.apple.opengles.*;
     public native void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
-    @Method(selector = "animationKeys")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAnimationKeys();
     @Method(selector = "animationForKey:")
     public native CAAnimation getAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "pauseAnimationForKey:")
     public native void pauseAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "resumeAnimationForKey:")
     public native void resumeAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "isAnimationForKeyPaused:")
     public native boolean isAnimationPaused(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
+    @Method(selector = "setSpeed:forAnimationKey:")
+    public native void setSpeed(@MachineSizedFloat double speed, String key);
     @Method(selector = "handleBindingOfSymbol:usingBlock:")
     public native void handleBindingOfSymbol(String symbol, @Block VoidBlock4<Integer, Integer, SCNNode, SCNRenderer> block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "handleUnbindingOfSymbol:usingBlock:")
     public native void handleUnbindingOfSymbol(String symbol, @Block VoidBlock4<Integer, Integer, SCNNode, SCNRenderer> block);
     /*</methods>*/

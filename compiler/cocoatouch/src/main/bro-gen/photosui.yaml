@@ -8,10 +8,19 @@ headers:
 typedefs:
     'void (^)(PHContentEditingOutput *)': '@Block VoidBlock1<PHContentEditingOutput>'
 enums:
-        
+    PHLivePhotoBadgeOptions: {}
+    PHLivePhotoViewPlaybackStyle: {}
+
 classes:
+    PHLivePhotoView: {}
 
 protocols:
+    PHLivePhotoViewDelegate:
+        methods:
+            '-livePhotoView:willBeginPlaybackWithStyle:':
+                name: willBeginPlayback
+            '-livePhotoView:didEndPlaybackWithStyle:':
+                name: didEndPlayback
     PHContentEditingController: # DONE
         properties:
             'shouldShowCancelConfirmation':

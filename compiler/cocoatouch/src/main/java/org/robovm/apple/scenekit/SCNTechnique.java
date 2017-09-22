@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,18 +52,31 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNTechnique() {}
+    protected SCNTechnique(Handle h, long handle) { super(h, handle); }
     protected SCNTechnique(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dictionaryRepresentation")
-    public native NSDictionary getDictionaryRepresentation();
+    public native NSDictionary<?, ?> getDictionaryRepresentation();
+    @Property(selector = "animationKeys")
+    public native NSArray<?> getAnimationKeys();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "handleBindingOfSymbol:usingBlock:")
     public native void handleBindingOfSymbol(String symbol, @Block VoidBlock4<Integer, Integer, SCNNode, SCNRenderer> block);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "objectForKeyedSubscript:")
+    public native NSObject objectForKeyedSubscript(NSObject key);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "setObject:forKeyedSubscript:")
+    public native void setObjectForKeyedSubscript(NSObject obj, NSObject key);
     @Method(selector = "techniqueWithDictionary:")
-    public static native SCNTechnique create(NSDictionary dictionary);
+    public static native SCNTechnique create(NSDictionary<?, ?> dictionary);
     @Method(selector = "techniqueBySequencingTechniques:")
     public static native SCNTechnique create(NSArray<SCNTechnique> techniques);
     @Method(selector = "addAnimation:forKey:")
@@ -70,29 +85,20 @@ import org.robovm.apple.opengles.*;
     public native void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
-    @Method(selector = "animationKeys")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAnimationKeys();
     @Method(selector = "animationForKey:")
     public native CAAnimation getAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "pauseAnimationForKey:")
     public native void pauseAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "resumeAnimationForKey:")
     public native void resumeAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "isAnimationForKeyPaused:")
     public native boolean isAnimationPaused(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setSpeed:forAnimationKey:")
+    public native void setSpeed(@MachineSizedFloat double speed, String key);
     /*</methods>*/
 }

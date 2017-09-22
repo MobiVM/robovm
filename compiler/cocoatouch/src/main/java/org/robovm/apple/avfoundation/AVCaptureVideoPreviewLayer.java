@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureVideoPreviewLayer() {}
+    protected AVCaptureVideoPreviewLayer(Handle h, long handle) { super(h, handle); }
     protected AVCaptureVideoPreviewLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSession:")
     public AVCaptureVideoPreviewLayer(AVCaptureSession session) { super((SkipInit) null); initObject(init(session)); }
     /*</constructors>*/
     /**

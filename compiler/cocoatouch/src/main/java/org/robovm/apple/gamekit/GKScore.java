@@ -46,19 +46,24 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKScore() {}
+    protected GKScore(Handle h, long handle) { super(h, handle); }
     protected GKScore(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLeaderboardIdentifier:")
     public GKScore(String identifier) { super((SkipInit) null); initObject(init(identifier)); }
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @Method(selector = "initWithLeaderboardIdentifier:player:")
     public GKScore(String identifier, GKPlayer player) { super((SkipInit) null); initObject(init(identifier, player)); }
     /**
      * @since Available in iOS 7.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
+    @Method(selector = "initWithLeaderboardIdentifier:forPlayer:")
     public GKScore(String identifier, String playerID) { super((SkipInit) null); initObject(init(identifier, playerID)); }
-    public GKScore(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithCoder:")
+    public GKScore(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "value")
@@ -183,6 +188,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

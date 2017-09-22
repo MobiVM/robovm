@@ -55,9 +55,10 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVOutputSettingsAssistant.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVOutputSettingsAssistant() {}
+    protected AVOutputSettingsAssistant() {}
+    protected AVOutputSettingsAssistant(Handle h, long handle) { super(h, handle); }
     protected AVOutputSettingsAssistant(SkipInit skipInit) { super(skipInit); }
-    public AVOutputSettingsAssistant(AVOutputSettingsPreset presetIdentifier) { super(create(presetIdentifier)); retain(getHandle()); }
+    public AVOutputSettingsAssistant(AVOutputSettingsPreset presetIdentifier) { super((Handle) null, create(presetIdentifier)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "audioSettings")

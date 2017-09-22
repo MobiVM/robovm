@@ -69,7 +69,8 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetTrack.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetTrack() {}
+    protected AVAssetTrack() {}
+    protected AVAssetTrack(Handle h, long handle) { super(h, handle); }
     protected AVAssetTrack(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

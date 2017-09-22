@@ -48,6 +48,8 @@ public final class /*<name>*/CVTimeStampFlags/*</name>*/ extends Bits</*<name>*/
     public static final CVTimeStampFlags RateScalarValid = new CVTimeStampFlags(16L);
     public static final CVTimeStampFlags TopField = new CVTimeStampFlags(65536L);
     public static final CVTimeStampFlags BottomField = new CVTimeStampFlags(131072L);
+    public static final CVTimeStampFlags VideoHostTimeValid = new CVTimeStampFlags(3L);
+    public static final CVTimeStampFlags IsInterlaced = new CVTimeStampFlags(196608L);
     /*</values>*/
 
     /*<bind>*/

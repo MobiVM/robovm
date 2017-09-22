@@ -52,5 +52,10 @@ import org.robovm.apple.contacts.*;
      */
     @GlobalValue(symbol="CKRecordTypeUserRecord", optional=true)
     public static native String User();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="CKRecordTypeShare", optional=true)
+    public static native String Share();
     /*</methods>*/
 }

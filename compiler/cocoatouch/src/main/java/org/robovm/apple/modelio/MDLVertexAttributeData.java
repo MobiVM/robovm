@@ -46,6 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLVertexAttributeData() {}
+    protected MDLVertexAttributeData(Handle h, long handle) { super(h, handle); }
     protected MDLVertexAttributeData(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -65,6 +66,10 @@ import org.robovm.apple.coregraphics.*;
     public native MDLVertexFormat getFormat();
     @Property(selector = "setFormat:")
     public native void setFormat(MDLVertexFormat v);
+    @Property(selector = "bufferSize")
+    public native @MachineSizedUInt long getBufferSize();
+    @Property(selector = "setBufferSize:")
+    public native void setBufferSize(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

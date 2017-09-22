@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSAttributeDescription() {}
+    protected NSAttributeDescription(Handle h, long handle) { super(h, handle); }
     protected NSAttributeDescription(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

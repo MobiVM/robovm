@@ -28,10 +28,13 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.spritekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGoal/*</name>*/ 
@@ -43,6 +46,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKGoal() {}
+    protected GKGoal(Handle h, long handle) { super(h, handle); }
     protected GKGoal(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

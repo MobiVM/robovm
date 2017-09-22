@@ -48,6 +48,7 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKPaymentMethod() {}
+    protected PKPaymentMethod(Handle h, long handle) { super(h, handle); }
     protected PKPaymentMethod(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNInstantMessageAddress() {}
+    protected CNInstantMessageAddress(Handle h, long handle) { super(h, handle); }
     protected CNInstantMessageAddress(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithUsername:service:")
     public CNInstantMessageAddress(String username, String service) { super((SkipInit) null); initObject(init(username, service)); }
     /*</constructors>*/
     public CNInstantMessageAddress(String username, CNInstantMessageService service) {

@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNProgram/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNProgram() {}
+    protected SCNProgram(Handle h, long handle) { super(h, handle); }
     protected SCNProgram(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -64,22 +65,51 @@ import org.robovm.apple.opengles.*;
     @Property(selector = "setFragmentShader:")
     public native void setFragmentShader(String v);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
+    @Property(selector = "vertexFunctionName")
+    public native String getVertexFunctionName();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setVertexFunctionName:")
+    public native void setVertexFunctionName(String v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "fragmentFunctionName")
+    public native String getFragmentFunctionName();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setFragmentFunctionName:")
+    public native void setFragmentFunctionName(String v);
     @Property(selector = "isOpaque")
     public native boolean isOpaque();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setOpaque:")
     public native void setOpaque(boolean v);
     @Property(selector = "delegate")
     public native SCNProgramDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(SCNProgramDelegate v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "library")
+    public native MTLLibrary getLibrary();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setLibrary:")
+    public native void setLibrary(MTLLibrary v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "handleBindingOfBufferNamed:frequency:usingBlock:")
+    public native void handleBindingOfBuffer(String name, SCNBufferFrequency frequency, @Block VoidBlock4<SCNBufferStream, SCNNode, SCNShadable, SCNRenderer> block);
     @Method(selector = "setSemantic:forSymbol:options:")
     public native void setSemanticForSymbol(SCNProgramSemantic semantic, String symbol, SCNProgramSemanticOptions options);
     @Method(selector = "semanticForSymbol:")

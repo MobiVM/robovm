@@ -50,7 +50,7 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     @Override
-    public GKErrorCode getErrorCode() {
+    public GKErrorCode getErrorCode() { //Manually edited!
         GKErrorCode code = null;
         try {
             code = GKErrorCode.valueOf(getCode());

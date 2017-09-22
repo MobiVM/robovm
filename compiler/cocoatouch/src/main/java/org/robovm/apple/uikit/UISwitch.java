@@ -53,7 +53,9 @@ import org.robovm.apple.corelocation.*;
     public UISwitch() {}
     protected UISwitch(Handle h, long handle) { super(h, handle); }
     protected UISwitch(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
     public UISwitch(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
     public UISwitch(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

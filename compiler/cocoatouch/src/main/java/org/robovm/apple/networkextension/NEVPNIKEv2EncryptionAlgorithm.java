@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -42,7 +43,13 @@ public enum /*<name>*/NEVPNIKEv2EncryptionAlgorithm/*</name>*/ implements Valued
     _3DES(2L),
     AES128(3L),
     AES256(4L),
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
     AES128GCM(5L),
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
     AES256GCM(6L);
     /*</values>*/
 

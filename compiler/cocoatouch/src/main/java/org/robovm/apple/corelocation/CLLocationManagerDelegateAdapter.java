@@ -51,13 +51,6 @@ import org.robovm.apple.corebluetooth.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    @NotImplemented("locationManager:didUpdateToLocation:fromLocation:")
-    public void didUpdateToLocation(CLLocationManager manager, CLLocation newLocation, CLLocation oldLocation) {}
-    /**
      * @since Available in iOS 6.0 and later.
      */
     @NotImplemented("locationManager:didUpdateLocations:")
@@ -81,7 +74,7 @@ import org.robovm.apple.corebluetooth.*;
      * @since Available in iOS 7.0 and later.
      */
     @NotImplemented("locationManager:didRangeBeacons:inRegion:")
-    public void didRangeBeacons(CLLocationManager manager, NSArray<?> beacons, CLBeaconRegion region) {}
+    public void didRangeBeacons(CLLocationManager manager, NSArray<CLBeacon> beacons, CLBeaconRegion region) {}
     /**
      * @since Available in iOS 7.0 and later.
      */

@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNMutableContact() {}
+    protected CNMutableContact(Handle h, long handle) { super(h, handle); }
     protected CNMutableContact(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -80,18 +81,6 @@ import org.robovm.apple.foundation.*;
     public native String getNickname();
     @Property(selector = "setNickname:")
     public native void setNickname(String v);
-    @Property(selector = "phoneticGivenName")
-    public native String getPhoneticGivenName();
-    @Property(selector = "setPhoneticGivenName:")
-    public native void setPhoneticGivenName(String v);
-    @Property(selector = "phoneticMiddleName")
-    public native String getPhoneticMiddleName();
-    @Property(selector = "setPhoneticMiddleName:")
-    public native void setPhoneticMiddleName(String v);
-    @Property(selector = "phoneticFamilyName")
-    public native String getPhoneticFamilyName();
-    @Property(selector = "setPhoneticFamilyName:")
-    public native void setPhoneticFamilyName(String v);
     @Property(selector = "organizationName")
     public native String getOrganizationName();
     @Property(selector = "setOrganizationName:")
@@ -104,6 +93,22 @@ import org.robovm.apple.foundation.*;
     public native String getJobTitle();
     @Property(selector = "setJobTitle:")
     public native void setJobTitle(String v);
+    @Property(selector = "phoneticGivenName")
+    public native String getPhoneticGivenName();
+    @Property(selector = "setPhoneticGivenName:")
+    public native void setPhoneticGivenName(String v);
+    @Property(selector = "phoneticMiddleName")
+    public native String getPhoneticMiddleName();
+    @Property(selector = "setPhoneticMiddleName:")
+    public native void setPhoneticMiddleName(String v);
+    @Property(selector = "phoneticFamilyName")
+    public native String getPhoneticFamilyName();
+    @Property(selector = "setPhoneticFamilyName:")
+    public native void setPhoneticFamilyName(String v);
+    @Property(selector = "phoneticOrganizationName")
+    public native String getPhoneticOrganizationName();
+    @Property(selector = "setPhoneticOrganizationName:")
+    public native void setPhoneticOrganizationName(String v);
     @Property(selector = "note")
     public native String getNote();
     @Property(selector = "setNote:")

@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNContactProperty() {}
+    protected CNContactProperty(Handle h, long handle) { super(h, handle); }
     protected CNContactProperty(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

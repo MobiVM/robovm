@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,9 +52,10 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHCollectionListChangeRequest() {}
+    protected PHCollectionListChangeRequest(Handle h, long handle) { super(h, handle); }
     protected PHCollectionListChangeRequest(SkipInit skipInit) { super(skipInit); }
-    public PHCollectionListChangeRequest(PHCollectionList collectionList) { super(create(collectionList)); retain(getHandle()); }
-    public PHCollectionListChangeRequest(PHCollectionList collectionList, PHFetchResult childCollections) { super(create(collectionList, childCollections)); retain(getHandle()); }
+    public PHCollectionListChangeRequest(PHCollectionList collectionList) { super((Handle) null, create(collectionList)); retain(getHandle()); }
+    public PHCollectionListChangeRequest(PHCollectionList collectionList, PHFetchResult<PHCollection> childCollections) { super((Handle) null, create(collectionList, childCollections)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "placeholderForCreatedCollectionList")
@@ -82,6 +86,6 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "changeRequestForCollectionList:")
     protected static native @Pointer long create(PHCollectionList collectionList);
     @Method(selector = "changeRequestForCollectionList:childCollections:")
-    protected static native @Pointer long create(PHCollectionList collectionList, PHFetchResult childCollections);
+    protected static native @Pointer long create(PHCollectionList collectionList, PHFetchResult<PHCollection> childCollections);
     /*</methods>*/
 }

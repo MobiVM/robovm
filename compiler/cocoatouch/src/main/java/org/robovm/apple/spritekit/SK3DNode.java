@@ -53,8 +53,11 @@ import org.robovm.apple.gameplaykit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SK3DNode() {}
+    protected SK3DNode(Handle h, long handle) { super(h, handle); }
     protected SK3DNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithViewportSize:")
     public SK3DNode(@ByVal CGSize viewportSize) { super((SkipInit) null); initObject(init(viewportSize)); }
+    @Method(selector = "initWithCoder:")
     public SK3DNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/

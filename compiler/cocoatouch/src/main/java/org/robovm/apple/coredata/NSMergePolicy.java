@@ -45,11 +45,38 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     /*<bind>*/static { ObjCRuntime.bind(NSMergePolicy.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSMergePolicy() {}
+    protected NSMergePolicy() {}
+    protected NSMergePolicy(Handle h, long handle) { super(h, handle); }
     protected NSMergePolicy(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithMergeType:")
     public NSMergePolicy(NSMergePolicyType ty) { super((SkipInit) null); initObject(init(ty)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "errorMergePolicy")
+    public static native NSMergePolicy getErrorMergePolicy();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "rollbackMergePolicy")
+    public static native NSMergePolicy getRollbackMergePolicy();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "overwriteMergePolicy")
+    public static native NSMergePolicy getOverwriteMergePolicy();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "mergeByPropertyObjectTrumpMergePolicy")
+    public static native NSMergePolicy getMergeByPropertyObjectTrumpMergePolicy();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "mergeByPropertyStoreTrumpMergePolicy")
+    public static native NSMergePolicy getMergeByPropertyStoreTrumpMergePolicy();
     @Property(selector = "mergeType")
     public native NSMergePolicyType getMergeType();
     /*</properties>*/
@@ -58,27 +85,27 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
      * @since Available in iOS 3.0 and later.
      */
     @GlobalValue(symbol="NSErrorMergePolicy", optional=true)
-    public static native NSMergePolicy getErrorMergePolicy();
+    public static native NSMergePolicy getErrorMergePolicyConst();
     /**
      * @since Available in iOS 3.0 and later.
      */
     @GlobalValue(symbol="NSMergeByPropertyStoreTrumpMergePolicy", optional=true)
-    public static native NSMergePolicy getMergeByPropertyStoreTrumpMergePolicy();
+    public static native NSMergePolicy getMergeByPropertyStoreTrumpMergePolicyConst();
     /**
      * @since Available in iOS 3.0 and later.
      */
     @GlobalValue(symbol="NSMergeByPropertyObjectTrumpMergePolicy", optional=true)
-    public static native NSMergePolicy getMergeByPropertyObjectTrumpMergePolicy();
+    public static native NSMergePolicy getMergeByPropertyObjectTrumpMergePolicyConst();
     /**
      * @since Available in iOS 3.0 and later.
      */
     @GlobalValue(symbol="NSOverwriteMergePolicy", optional=true)
-    public static native NSMergePolicy getOverwriteMergePolicy();
+    public static native NSMergePolicy getOverwriteMergePolicyConst();
     /**
      * @since Available in iOS 3.0 and later.
      */
     @GlobalValue(symbol="NSRollbackMergePolicy", optional=true)
-    public static native NSMergePolicy getRollbackMergePolicy();
+    public static native NSMergePolicy getRollbackMergePolicyConst();
     
     @Method(selector = "initWithMergeType:")
     protected native @Pointer long init(NSMergePolicyType ty);

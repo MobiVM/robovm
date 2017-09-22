@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAssetTrackGroup() {}
+    protected AVAssetTrackGroup(Handle h, long handle) { super(h, handle); }
     protected AVAssetTrackGroup(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

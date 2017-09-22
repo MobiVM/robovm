@@ -90,19 +90,27 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*/
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     public static final CTCallState Dialing = new CTCallState("Dialing");
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     public static final CTCallState Incoming = new CTCallState("Incoming");
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     public static final CTCallState Connected = new CTCallState("Connected");
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     public static final CTCallState Disconnected = new CTCallState("Disconnected");
     /*</constants>*/
     
@@ -131,22 +139,30 @@ import org.robovm.apple.corefoundation.*;
         /*<values>*/
         /**
          * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
          */
+        @Deprecated
         @GlobalValue(symbol="CTCallStateDialing", optional=true)
         public static native NSString Dialing();
         /**
          * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
          */
+        @Deprecated
         @GlobalValue(symbol="CTCallStateIncoming", optional=true)
         public static native NSString Incoming();
         /**
          * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
          */
+        @Deprecated
         @GlobalValue(symbol="CTCallStateConnected", optional=true)
         public static native NSString Connected();
         /**
          * @since Available in iOS 4.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
          */
+        @Deprecated
         @GlobalValue(symbol="CTCallStateDisconnected", optional=true)
         public static native NSString Disconnected();
         /*</values>*/

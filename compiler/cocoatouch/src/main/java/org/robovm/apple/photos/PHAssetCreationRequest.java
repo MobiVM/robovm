@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,8 +51,9 @@ import org.robovm.apple.avfoundation.*;
     /*<bind>*/static { ObjCRuntime.bind(PHAssetCreationRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
+    protected PHAssetCreationRequest(Handle h, long handle) { super(h, handle); }
     protected PHAssetCreationRequest(SkipInit skipInit) { super(skipInit); }
-    public PHAssetCreationRequest() { super(create()); retain(getHandle()); }
+    public PHAssetCreationRequest() { super((Handle) null, create()); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     

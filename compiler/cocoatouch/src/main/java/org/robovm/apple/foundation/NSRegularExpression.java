@@ -54,6 +54,7 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     protected NSRegularExpression(Handle h, long handle) { super(h, handle); }
     protected NSRegularExpression(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPattern:options:error:")
     public NSRegularExpression(String pattern, NSRegularExpressionOptions options) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();

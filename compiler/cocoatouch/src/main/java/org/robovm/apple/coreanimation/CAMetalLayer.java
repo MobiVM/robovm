@@ -50,6 +50,7 @@ import org.robovm.apple.metal.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CAMetalLayer() {}
+    protected CAMetalLayer(Handle h, long handle) { super(h, handle); }
     protected CAMetalLayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

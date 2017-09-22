@@ -41,13 +41,10 @@ import org.robovm.apple.uikit.*;
 public final class /*<name>*/CTFontTableOptions/*</name>*/ extends Bits</*<name>*/CTFontTableOptions/*</name>*/> {
     /*<values>*/
     public static final CTFontTableOptions None = new CTFontTableOptions(0L);
-    public static final CTFontTableOptions NoOptions = new CTFontTableOptions(0L);
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 6.0.
      */
-    @Deprecated
-    public static final CTFontTableOptions ExcludeSynthetic = new CTFontTableOptions(1L);
+    public static final CTFontTableOptions NoOptions = new CTFontTableOptions(0L);
     /*</values>*/
 
     /*<bind>*/

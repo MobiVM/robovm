@@ -38,6 +38,7 @@ enums:
     CGRectEdge: {prefix: CGRect, suffix: Edge, type: MachineUInt}
     CGTextDrawingMode: {}
     CGTextEncoding: {}
+    CGColorConversionInfoTransformType: {}
 
 classes:
     CoreGraphics:
@@ -118,7 +119,9 @@ functions:
     CGAffineTransform(.*):
         class: CGAffineTransform
         name: '#{g[0]}'
-
+    CGColorConversionInfoCreate(.*):
+        class: CGColorConversionInfo
+        name: 'create#{g[0]}'
     # CGBitmapContext
     CGBitmapContext(CreateImage):
         class: CGBitmapContext
@@ -137,6 +140,8 @@ functions:
         parameters:
             data:
                 type: IntPtr
+            bitmapInfo:
+                type: CGBitmapInfo
             releaseInfo:
                 type: '@Pointer long'
     CGBitmapContext(Create):
@@ -148,6 +153,8 @@ functions:
         parameters:
             data:
                 type: IntPtr
+            bitmapInfo:
+                type: CGBitmapInfo
     CGBitmapContext(GetData):
         class: CGBitmapContext
         name: '#{g[0]}'
@@ -1009,6 +1016,16 @@ values:
         class: CGSize
         name: '#{g[0]}'
 
+    # CGColorSpace
+    kCGColorSpace(.*):
+        class: CGColorSpace
+        name: '#{g[0]}'
+
+    # CGColorConversionInfo
+    kCGColorConversion(.*):
+        class: CGColorConversionInfo
+        name: '#{g[0]}'
+
     # Make sure we don't miss any values if new ones are introduced in a later CoreGraphics
     (k?CG.*):
         class: CoreGraphics
@@ -1016,7 +1033,7 @@ values:
 
 
 constants:
-    (CGFLOAT_IS_DOUBLE|CGFLOAT_DEFINED|CGVECTOR_DEFINED):
+    (CGFLOAT_IS_DOUBLE|CGFLOAT_DEFINED|CGVECTOR_DEFINED|CGFLOAT_MIN|CGFLOAT_MAX):
         exclude: true
 
     # CGFont
@@ -1027,6 +1044,11 @@ constants:
         name: '#{g[0]}'
     kCG(GlyphMax):
         class: CGFont
+        name: '#{g[0]}'
+
+    # CGImage
+    kCGImage(.*):
+        class: CGImage
         name: '#{g[0]}'
 
     # Make sure we don't miss any constants if new ones are introduced in a later CoreGraphics

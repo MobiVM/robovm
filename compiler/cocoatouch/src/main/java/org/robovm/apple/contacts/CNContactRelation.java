@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CNContactRelation() {}
+    protected CNContactRelation(Handle h, long handle) { super(h, handle); }
     protected CNContactRelation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:")
     public CNContactRelation(String name) { super((SkipInit) null); initObject(init(name)); }
     /*</constructors>*/
     /*<properties>*/

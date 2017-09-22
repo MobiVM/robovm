@@ -32,6 +32,7 @@ enums:
     SecTrustResultType: { first: kSecTrustResultInvalid }
     SecRevocationPolicyFlags: { first: kSecRevocationOCSPMethod, bits: true }
     SecErrorCode: { first: errSecSuccess }
+    SecKeyOperationType: {}
 
 classes:
     __SecAccessControl:
@@ -84,6 +85,18 @@ functions:
         class: SecCertificate
         name: 'get#{g[0]}'
         return_marshaler: CFString.AsStringNoRetainMarshaler
+    SecCertificateCopy(CommonName):
+        class: SecCertificate
+        name: 'get#{g[0]}'
+        parameters:
+            commonName:
+                type: String
+    SecCertificateCopy(EmailAddresses):
+        class: SecCertificate
+        name: 'get#{g[0]}'
+        parameters:
+            emailAddresses:
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
     SecCertificate(.*):
         class: SecCertificate
         name: '#{g[0]}'
@@ -296,9 +309,6 @@ functions:
         class: SecTrust
         name: '#{g[0]}'
 
-    (Sec.*):
-        name: '#{g[0]}'
-
     # SSLContext
     SSLContextGetTypeID:
         class: SSLContext
@@ -421,6 +431,10 @@ functions:
         class: SSLContext
         name: '#{g[0]}0'
         visibility: protected
+
+    Sec(.*):
+        class: Security
+        name: 'Function__#{g[0]}'
 
 values:
     # SecImportExport 
@@ -638,8 +652,19 @@ values:
             UseNoAuthenticationUI:
                 name: usesNoAuthenticationUI
                 type: boolean
-    kSec(UseItemList|UseOperationPrompt|UseNoAuthenticationUI):
+            UseAuthenticationUI:
+                name: usesAuthenticationUI
+                type: boolean
+            UseAuthenticationContext:
+                name: useAuthenticationContext
+                type: 'org.robovm.apple.localauthentication.LAContext'
+    kSec(UseItemList|UseOperationPrompt|UseNoAuthenticationUI|UseAuthenticationUI|UseAuthenticationContext):
         dictionary: SecAttributes
+        name: '#{g[0]}'
+        type: CFType
+
+    kSec(UseAuthenticationUIAllow|UseAuthenticationUIFail|UseAuthenticationUISkip):
+        class: SecAttributeValues
         name: '#{g[0]}'
         type: CFType
 
@@ -717,6 +742,13 @@ values:
                 type: boolean
             RevocationValidUntilDate:
                 type: NSDate
+    kSecKeyAlgorithm(.*):
+        class: SecKeyAlgorithm
+        name: '#{g[0]}'
+
+    kSecKeyKeyExchangeParameter(.*):
+        class: SecKeyKeyExchangeParameter
+        name: '#{g[0]}'
 
     (kSec.*):
         name: '#{g[0]}'

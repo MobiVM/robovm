@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNIKConstraint/*</name>*/ 
@@ -52,7 +52,13 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNIKConstraint() {}
+    protected SCNIKConstraint(Handle h, long handle) { super(h, handle); }
     protected SCNIKConstraint(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "initWithChainRootNode:")
+    public SCNIKConstraint(SCNNode chainRootNode) { super((SkipInit) null); initObject(initWithChainRootNode(chainRootNode)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "chainRootNode")
@@ -64,6 +70,11 @@ import org.robovm.apple.opengles.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "initWithChainRootNode:")
+    protected native @Pointer long initWithChainRootNode(SCNNode chainRootNode);
     @Method(selector = "setMaxAllowedRotationAngle:forJoint:")
     public native void setMaxAllowedRotationAngleForJoint(@MachineSizedFloat double angle, SCNNode node);
     @Method(selector = "maxAllowedRotationAngleForJoint:")

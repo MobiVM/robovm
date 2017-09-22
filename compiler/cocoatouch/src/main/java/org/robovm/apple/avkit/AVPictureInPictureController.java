@@ -49,7 +49,9 @@ import org.robovm.apple.iad.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVPictureInPictureController() {}
+    protected AVPictureInPictureController(Handle h, long handle) { super(h, handle); }
     protected AVPictureInPictureController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPlayerLayer:")
     public AVPictureInPictureController(AVPlayerLayer playerLayer) { super((SkipInit) null); initObject(init(playerLayer)); }
     /*</constructors>*/
     /*<properties>*/

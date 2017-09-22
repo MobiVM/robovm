@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKMatchRequest() {}
+    protected GKMatchRequest(Handle h, long handle) { super(h, handle); }
     protected GKMatchRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

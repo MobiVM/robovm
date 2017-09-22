@@ -49,7 +49,9 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MKDirections() {}
+    protected MKDirections(Handle h, long handle) { super(h, handle); }
     protected MKDirections(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRequest:")
     public MKDirections(MKDirectionsRequest request) { super((SkipInit) null); initObject(init(request)); }
     /*</constructors>*/
     /*<properties>*/

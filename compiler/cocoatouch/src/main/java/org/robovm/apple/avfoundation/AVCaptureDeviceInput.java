@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVCaptureDeviceInput() {}
+    protected AVCaptureDeviceInput(Handle h, long handle) { super(h, handle); }
     protected AVCaptureDeviceInput(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:error:")
     public AVCaptureDeviceInput(AVCaptureDevice device) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();

@@ -69,6 +69,7 @@ The simulator launcher properties can be set by project properties via `gradle.p
  * iPad-Pro
  * iPad-Retina
  * Apple-TV-1080p
+* `robovm.device.udid`: Select one of several USB-connected physical devices by UDID to run your app on.
 * `robovm.sdk.version`: Set the sdk version property.
 
 The arch can be specified using the `gradle.properties` or `-P` command line parameter. To launch on the simulator in 64-bit mode use:
@@ -83,6 +84,12 @@ To launch on device in 64-bit mode:
 
 ```
 gradle -Probovm.arch=arm64 launchIOSDevice
+```
+
+To launch on a device with a given UDID in 64-bit mode:
+
+```
+gradle -Probovm.arch=arm64 -Probovm.device.udid=eecfc85775e44c5b3061dc3571c848e4cfc3221a launchIOSDevice
 ```
 
 The `robovmArchive` task will by default include the archs listed in the `robovm.xml` file in the archive. Use the `robovm.archs` property to specify the archs to include in the archive:
@@ -117,18 +124,6 @@ Keychain password to use when unlocking the `codesign` keychain.
 
 Read the keychain password to use when unlocking the `codesign` keychain from the specified file.
 
-## License Management
-To activate your license use the `activateLicense` task:
-
-```
-gradle :activateLicense -Probovm.licenseKey=<your-key>
-```
-
-To deactivate your license use the `deactivateLicense` task:
-
-```
-gradle :deactivateLicense
-```
 
 ## Debugging
 You can instruct the RoboVM Gradle plugin to compile and run your app in debug mode:

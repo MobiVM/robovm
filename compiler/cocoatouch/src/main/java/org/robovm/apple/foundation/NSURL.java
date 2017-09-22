@@ -63,16 +63,21 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
+    @Method(selector = "initWithScheme:host:path:")
     public NSURL(String scheme, String host, String path) { super((SkipInit) null); initObject(init(scheme, host, path)); }
+    @Method(selector = "initWithString:")
     public NSURL(String URLString) { super((SkipInit) null); initObject(init(URLString)); }
+    @Method(selector = "initWithString:relativeToURL:")
     public NSURL(String URLString, NSURL baseURL) { super((SkipInit) null); initObject(init(URLString, baseURL)); }
     /**
      * @since Available in iOS 9.0 and later.
      */
+    @Method(selector = "initWithDataRepresentation:relativeToURL:")
     public NSURL(NSData data, NSURL baseURL) { super((SkipInit) null); initObject(init(data, baseURL)); }
     /**
      * @since Available in iOS 4.0 and later.
      */
+    @Method(selector = "initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:")
     public NSURL(NSData bookmarkData, NSURLBookmarkResolutionOptions options, NSURL relativeURL, BooleanPtr isStale) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();

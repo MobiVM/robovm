@@ -55,7 +55,9 @@ import org.robovm.apple.dispatch.*;
     public NSInvocationOperation() {}
     protected NSInvocationOperation(Handle h, long handle) { super(h, handle); }
     protected NSInvocationOperation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTarget:selector:object:")
     public NSInvocationOperation(NSObject target, Selector sel, NSObject arg) { super((SkipInit) null); initObject(init(target, sel, arg)); }
+    @Method(selector = "initWithInvocation:")
     public NSInvocationOperation(NSInvocation inv) { super((SkipInit) null); initObject(init(inv)); }
     /*</constructors>*/
     /*<properties>*/

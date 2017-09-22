@@ -47,7 +47,8 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(WKSecurityOrigin.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public WKSecurityOrigin() {}
+    protected WKSecurityOrigin() {}
+    protected WKSecurityOrigin(Handle h, long handle) { super(h, handle); }
     protected WKSecurityOrigin(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

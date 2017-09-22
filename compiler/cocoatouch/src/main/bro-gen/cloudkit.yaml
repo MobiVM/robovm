@@ -35,6 +35,12 @@ enums:
     CKSubscriptionType: {}
     CKSubscriptionOptions: { prefix: CKSubscriptionOptionsFires }
     CKRecordSavePolicy: {}
+    CKDatabaseScope: {}
+    CKShareParticipantAcceptanceStatus: {}
+    CKShareParticipantPermission: {}
+    CKShareParticipantType: {}
+    CKSubscriptionType: {}
+    CKQuerySubscriptionOptions: { prefix: CKQuerySubscriptionOptions}
 
 classes:
     CKError:
@@ -75,10 +81,21 @@ classes:
                 parameters:
                     completionHandler:
                         type: '@Block VoidBlock2<NSArray<CKDiscoveredUserInfo>, NSError>'
-            '-discoverUserInfoWithEmailAddress:completionHandler:':
+            '-discoverUserInfo.*':
                 name: discoverUserInfo
-            '-discoverUserInfoWithUserRecordID:completionHandler:':
-                name: discoverUserInfo
+            '-discoverUserIdentity.*':
+                trim_after_first_colon: true
+            '-fetchShareParticipant.*':
+                trim_after_first_colon: true
+            '-fetchShareMetadata.*':
+                name: fetchShareMetadata
+            '-acceptShareMetadata:completionHandler:':
+                name: acceptShareMetadata
+            '-fetchAllLongLivedOperationIDsWithCompletionHandler:':
+                name: fetchAllLongLivedOperationIDs
+            '-fetchLongLivedOperationWithID:completionHandler:':
+                name: fetchLongLivedOperation
+
     CKDatabase: # DONE
         methods:
             '-addOperation:':
@@ -221,6 +238,18 @@ classes:
         methods:
             '-init':
                 exclude: true
+            '-init.*':
+                name: init
+    CKQuerySubscription:
+        methods:
+            '-init.*':
+                name: init
+    CKRecordZoneSubscription:
+        methods:
+            '-init.*':
+                name: init
+    CKDatabaseSubscription:
+        methods:
             '-init.*':
                 name: init
     CKOperation: # DONE
@@ -405,6 +434,38 @@ classes:
                 annotations: ['@WeaklyLinked']
             '-init.*':
                 name: init
+    CKShare:
+        methods:
+            '-init.*':
+                name: init
+    CKUserIdentity: {}
+    CKShareParticipant: {}
+    CKShareMetadata: {}
+    CKUserIdentityLookupInfo:
+        methods:
+            '-initWithEmailAddress:':
+                trim_after_first_colon: true
+                constructor: false
+            '-initWithPhoneNumber:':
+                trim_after_first_colon: true
+                constructor: false
+            '-init.*':
+                name: init
+    CKSubscription: {}
+
+    CKAcceptSharesOperation: {}
+    CKDatabaseNotification: {}
+    CKDiscoverAllUserIdentitiesOperation: {}
+    CKDiscoverUserIdentitiesOperation: {}
+    CKFetchDatabaseChangesOperation: {}
+    CKFetchRecordZoneChangesOperation:
+        methods:
+            '-init.*':
+                name: init
+    CKFetchRecordZoneChangesOptions: {}
+    CKFetchShareMetadataOperation: {}
+    CKFetchShareParticipantsOperation: {}
+    CKFetchWebAuthTokenOperation: {}
 
 protocols:
     CKRecordValue: # DONE
@@ -420,7 +481,7 @@ values:
     CKErrorDomain:
         class: CKError
         name: getClassDomain
-    
+
     CK(PartialErrorsByItemID)Key:
         enum: CKErrorUserInfoKey
         name: '#{g[0]}'
@@ -441,6 +502,9 @@ values:
     CKOwnerDefaultName:
         class: CKContainer
         name: getDefaultOwnerName
+    CKCurrentUserDefaultName:
+        class: CKContainer
+        name: getDefaultCurrentUserName
     CK(AccountChangedNotification):
         class: CKContainer
         name: '#{g[0]}'
@@ -456,11 +520,26 @@ values:
         class: CKRecordType
         name: '#{g[0]}'
 
+    # CKRecord
+    CKRecordType(.*):
+        class: CKRecordType
+        name: '#{g[0]}'
+
+    # CKRecord
+    CKRecord(.*)Key:
+        class: CKRecord
+        name: '#{g[0]}Key'
+
     # CKRecordZone
     CKRecordZone(DefaultName):
         class: CKRecordZone
         name: 'get#{g[0]}'
-   
+
+    # CKShare
+    CKShare(.*)Key:
+        class: CKShare
+        name: '#{g[0]}Key'
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CK.*):
         class: CloudKit

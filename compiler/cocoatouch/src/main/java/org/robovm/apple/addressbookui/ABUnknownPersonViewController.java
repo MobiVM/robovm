@@ -49,6 +49,7 @@ import org.robovm.apple.addressbook.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public ABUnknownPersonViewController() {}
+    protected ABUnknownPersonViewController(Handle h, long handle) { super(h, handle); }
     protected ABUnknownPersonViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

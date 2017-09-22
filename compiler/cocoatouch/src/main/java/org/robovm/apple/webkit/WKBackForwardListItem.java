@@ -47,7 +47,8 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(WKBackForwardListItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public WKBackForwardListItem() {}
+    protected WKBackForwardListItem() {}
+    protected WKBackForwardListItem(Handle h, long handle) { super(h, handle); }
     protected WKBackForwardListItem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

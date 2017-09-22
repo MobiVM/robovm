@@ -9,9 +9,9 @@
 package org.robovm.llvm.binding;
 
 public class DiagnosticInfoRef {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
-  protected DiagnosticInfoRef(long cPtr, boolean futureUse) {
+  protected DiagnosticInfoRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 

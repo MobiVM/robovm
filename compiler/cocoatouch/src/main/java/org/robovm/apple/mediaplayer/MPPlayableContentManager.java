@@ -47,6 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPPlayableContentManager() {}
+    protected MPPlayableContentManager(Handle h, long handle) { super(h, handle); }
     protected MPPlayableContentManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -58,8 +59,21 @@ import org.robovm.apple.coregraphics.*;
     public native MPPlayableContentDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(MPPlayableContentDelegate v);
+    /**
+     * @since Available in iOS 8.4 and later.
+     */
     @Property(selector = "context")
     public native MPPlayableContentManagerContext getContext();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "nowPlayingIdentifiers")
+    public native NSArray<?> getNowPlayingIdentifiers();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setNowPlayingIdentifiers:")
+    public native void setNowPlayingIdentifiers(NSArray<?> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

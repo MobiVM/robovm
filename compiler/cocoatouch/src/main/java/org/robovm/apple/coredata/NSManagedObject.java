@@ -38,17 +38,29 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSManagedObject/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSFetchRequestResult/*</implements>*/ {
 
     /*<ptr>*/public static class NSManagedObjectPtr extends Ptr<NSManagedObject, NSManagedObjectPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSManagedObject.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSManagedObject() {}
+    protected NSManagedObject(Handle h, long handle) { super(h, handle); }
     protected NSManagedObject(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithEntity:insertIntoManagedObjectContext:")
     public NSManagedObject(NSEntityDescription entity, NSManagedObjectContext context) { super((SkipInit) null); initObject(init(entity, context)); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithContext:")
+    public NSManagedObject(NSManagedObjectContext moc) { super((SkipInit) null); initObject(init(moc)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
+    @Property(selector = "contextShouldIgnoreUnmodeledPropertyChanges")
+    public static native boolean isContextShouldIgnoreUnmodeledPropertyChanges();
     @Property(selector = "managedObjectContext")
     public native NSManagedObjectContext getManagedObjectContext();
     @Property(selector = "entity")
@@ -99,6 +111,11 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "initWithEntity:insertIntoManagedObjectContext:")
     protected native @Pointer long init(NSEntityDescription entity, NSManagedObjectContext context);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "initWithContext:")
+    protected native @Pointer long init(NSManagedObjectContext moc);
     /**
      * @since Available in iOS 3.0 and later.
      */
@@ -196,9 +213,14 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "validateForUpdate:")
     private native boolean validateForUpdate(NSError.NSErrorPtr error);
     /**
-     * @since Available in iOS 3.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    @Method(selector = "contextShouldIgnoreUnmodeledPropertyChanges")
-    public static native boolean shouldContextIgnoreUnmodeledPropertyChanges();
+    @Method(selector = "entity")
+    public static native NSEntityDescription entity();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "fetchRequest")
+    public static native NSFetchRequest fetchRequest();
     /*</methods>*/
 }

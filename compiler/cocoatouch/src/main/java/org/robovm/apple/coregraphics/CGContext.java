@@ -624,7 +624,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="CGContextShowGlyphsAtPositions", optional=true)
-    private native void showGlyphsAtPositions(@Pointer long glyphs, CGPoint positions, @MachineSizedUInt long count);
+    private native void showGlyphsAtPositions(@Pointer long glyphs, CGPoint Lpositions, @MachineSizedUInt long count);
     /**
      * @since Available in iOS 2.0 and later.
      */
@@ -699,7 +699,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="CGContextBeginTransparencyLayerWithRect", optional=true)
-    public native void beginTransparencyLayer(@ByVal CGRect rect, NSDictionary auxiliaryInfo);
+    public native void beginTransparencyLayer(@ByVal CGRect rect, NSDictionary auxInfo);
     /**
      * @since Available in iOS 2.0 and later.
      */

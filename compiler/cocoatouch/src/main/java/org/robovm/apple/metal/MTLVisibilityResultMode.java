@@ -41,6 +41,9 @@ public enum /*<name>*/MTLVisibilityResultMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Disabled(0L),
     Boolean(1L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     Counting(2L);
     /*</values>*/
 

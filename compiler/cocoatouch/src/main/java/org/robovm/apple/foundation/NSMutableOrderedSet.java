@@ -112,6 +112,7 @@ import org.robovm.apple.dispatch.*;
     public NSMutableOrderedSet() {}
     protected NSMutableOrderedSet(Handle h, long handle) { super(h, handle); }
     protected NSMutableOrderedSet(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCapacity:")
     public NSMutableOrderedSet(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
     /*</constructors>*/
     

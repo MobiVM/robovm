@@ -91,21 +91,10 @@ import org.robovm.apple.avkit.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    /**
-     * @since Available in iOS 4.2 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    public static final ADBannerContentSizeIdentifier Portrait = new ADBannerContentSizeIdentifier("Portrait");
-    /**
-     * @since Available in iOS 4.2 and later.
-     * @deprecated Deprecated in iOS 6.0.
-     */
-    @Deprecated
-    public static final ADBannerContentSizeIdentifier Landscape = new ADBannerContentSizeIdentifier("Landscape");
+    
     /*</constants>*/
     
-    private static /*<name>*/ADBannerContentSizeIdentifier/*</name>*/[] values = new /*<name>*/ADBannerContentSizeIdentifier/*</name>*/[] {/*<value_list>*/Portrait, Landscape/*</value_list>*/};
+    private static /*<name>*/ADBannerContentSizeIdentifier/*</name>*/[] values = new /*<name>*/ADBannerContentSizeIdentifier/*</name>*/[] {/*<value_list>*//*</value_list>*/};
     
     /*<name>*/ADBannerContentSizeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -128,20 +117,7 @@ import org.robovm.apple.avkit.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        /**
-         * @since Available in iOS 4.2 and later.
-         * @deprecated Deprecated in iOS 6.0.
-         */
-        @Deprecated
-        @GlobalValue(symbol="ADBannerContentSizeIdentifierPortrait", optional=true)
-        public static native NSString Portrait();
-        /**
-         * @since Available in iOS 4.2 and later.
-         * @deprecated Deprecated in iOS 6.0.
-         */
-        @Deprecated
-        @GlobalValue(symbol="ADBannerContentSizeIdentifierLandscape", optional=true)
-        public static native NSString Landscape();
+    
         /*</values>*/
     }
 }

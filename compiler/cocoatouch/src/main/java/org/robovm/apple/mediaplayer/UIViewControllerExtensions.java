@@ -51,8 +51,18 @@ import org.robovm.apple.coregraphics.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Method(selector = "presentMoviePlayerViewControllerAnimated:")
     public static native void presentMoviePlayerViewController(UIViewController thiz, MPMoviePlayerViewController moviePlayerViewController);
+    /**
+     * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
     @Method(selector = "dismissMoviePlayerViewControllerAnimated")
     public static native void dismissMoviePlayerViewController(UIViewController thiz);
     /*</methods>*/

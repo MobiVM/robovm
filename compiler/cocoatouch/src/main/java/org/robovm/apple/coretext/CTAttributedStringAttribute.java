@@ -91,6 +91,14 @@ import org.robovm.apple.uikit.*;
 
     /*<constants>*/
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CTAttributedStringAttribute RubyAnnotationSizeFactor = new CTAttributedStringAttribute("RubyAnnotationSizeFactor");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CTAttributedStringAttribute RubyAnnotationScaleToFit = new CTAttributedStringAttribute("RubyAnnotationScaleToFit");
+    /**
      * @since Available in iOS 3.2 and later.
      */
     public static final CTAttributedStringAttribute Font = new CTAttributedStringAttribute("Font");
@@ -110,6 +118,10 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 3.2 and later.
      */
     public static final CTAttributedStringAttribute ForegroundColor = new CTAttributedStringAttribute("ForegroundColor");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CTAttributedStringAttribute BackgroundColor = new CTAttributedStringAttribute("BackgroundColor");
     /**
      * @since Available in iOS 3.2 and later.
      */
@@ -139,12 +151,18 @@ import org.robovm.apple.uikit.*;
      */
     public static final CTAttributedStringAttribute VerticalForms = new CTAttributedStringAttribute("VerticalForms");
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CTAttributedStringAttribute HorizontalInVerticalForms = new CTAttributedStringAttribute("HorizontalInVerticalForms");
+    /**
      * @since Available in iOS 3.2 and later.
      */
     public static final CTAttributedStringAttribute GlyphInfo = new CTAttributedStringAttribute("GlyphInfo");
     /**
      * @since Available in iOS 3.2 and later.
+     * @deprecated Deprecated in iOS 9.0.
      */
+    @Deprecated
     public static final CTAttributedStringAttribute CharacterShape = new CTAttributedStringAttribute("CharacterShape");
     /**
      * @since Available in iOS 7.0 and later.
@@ -176,7 +194,7 @@ import org.robovm.apple.uikit.*;
     public static final CTAttributedStringAttribute RubyAnnotation = new CTAttributedStringAttribute("RubyAnnotation");
     /*</constants>*/
     
-    private static /*<name>*/CTAttributedStringAttribute/*</name>*/[] values = new /*<name>*/CTAttributedStringAttribute/*</name>*/[] {/*<value_list>*/Font, ForegroundColorFromContext, Kern, Ligature, ForegroundColor, ParagraphStyle, StrokeWidth, StrokeColor, UnderlineStyle, Superscript, UnderlineColor, VerticalForms, GlyphInfo, CharacterShape, Language, RunDelegate, BaselineClass, BaselineInfo, BaselineReferenceInfo, WritingDirection, RubyAnnotation/*</value_list>*/};
+    private static /*<name>*/CTAttributedStringAttribute/*</name>*/[] values = new /*<name>*/CTAttributedStringAttribute/*</name>*/[] {/*<value_list>*/RubyAnnotationSizeFactor, RubyAnnotationScaleToFit, Font, ForegroundColorFromContext, Kern, Ligature, ForegroundColor, BackgroundColor, ParagraphStyle, StrokeWidth, StrokeColor, UnderlineStyle, Superscript, UnderlineColor, VerticalForms, HorizontalInVerticalForms, GlyphInfo, CharacterShape, Language, RunDelegate, BaselineClass, BaselineInfo, BaselineReferenceInfo, WritingDirection, RubyAnnotation/*</value_list>*/};
     
     /*<name>*/CTAttributedStringAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -199,6 +217,16 @@ import org.robovm.apple.uikit.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCTRubyAnnotationSizeFactorAttributeName", optional=true)
+        public static native CFString RubyAnnotationSizeFactor();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCTRubyAnnotationScaleToFitAttributeName", optional=true)
+        public static native CFString RubyAnnotationScaleToFit();
         /**
          * @since Available in iOS 3.2 and later.
          */
@@ -224,6 +252,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCTForegroundColorAttributeName", optional=true)
         public static native CFString ForegroundColor();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCTBackgroundColorAttributeName", optional=true)
+        public static native CFString BackgroundColor();
         /**
          * @since Available in iOS 3.2 and later.
          */
@@ -260,13 +293,20 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="kCTVerticalFormsAttributeName", optional=true)
         public static native CFString VerticalForms();
         /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCTHorizontalInVerticalFormsAttributeName", optional=true)
+        public static native CFString HorizontalInVerticalForms();
+        /**
          * @since Available in iOS 3.2 and later.
          */
         @GlobalValue(symbol="kCTGlyphInfoAttributeName", optional=true)
         public static native CFString GlyphInfo();
         /**
          * @since Available in iOS 3.2 and later.
+         * @deprecated Deprecated in iOS 9.0.
          */
+        @Deprecated
         @GlobalValue(symbol="kCTCharacterShapeAttributeName", optional=true)
         public static native CFString CharacterShape();
         /**

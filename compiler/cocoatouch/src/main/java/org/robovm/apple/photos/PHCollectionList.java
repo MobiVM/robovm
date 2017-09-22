@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,9 +52,10 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHCollectionList() {}
+    protected PHCollectionList(Handle h, long handle) { super(h, handle); }
     protected PHCollectionList(SkipInit skipInit) { super(skipInit); }
-    public PHCollectionList(NSArray<PHCollection> collections, String title) { super(createTransientCollectionList(collections, title)); retain(getHandle()); }
-    public PHCollectionList(PHFetchResult<PHCollectionList> fetchResult, String title) { super(createTransientCollectionList(fetchResult, title)); retain(getHandle()); }
+    public PHCollectionList(NSArray<PHCollection> collections, String title) { super((Handle) null, createTransientCollectionList(collections, title)); retain(getHandle()); }
+    public PHCollectionList(PHFetchResult<PHCollectionList> fetchResult, String title) { super((Handle) null, createTransientCollectionList(fetchResult, title)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "collectionListType")

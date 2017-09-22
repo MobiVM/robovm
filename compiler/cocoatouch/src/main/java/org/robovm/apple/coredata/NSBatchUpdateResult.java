@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSBatchUpdateResult() {}
+    protected NSBatchUpdateResult(Handle h, long handle) { super(h, handle); }
     protected NSBatchUpdateResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

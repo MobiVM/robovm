@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MTLStructType() {}
+    protected MTLStructType(Handle h, long handle) { super(h, handle); }
     protected MTLStructType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

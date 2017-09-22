@@ -68,5 +68,35 @@ import org.robovm.apple.dispatch.*;
      */
     @Bridge(symbol="SecCertificateCopySubjectSummary", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getSubjectSummary();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Bridge(symbol="SecCertificateCopyCommonName", optional=true)
+    public native OSStatus getCommonName(String commonName);
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Bridge(symbol="SecCertificateCopyEmailAddresses", optional=true)
+    public native OSStatus getEmailAddresses(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> emailAddresses);
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Bridge(symbol="SecCertificateCopyNormalizedIssuerSequence", optional=true)
+    public native NSData copyNormalizedIssuerSequence();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Bridge(symbol="SecCertificateCopyNormalizedSubjectSequence", optional=true)
+    public native NSData copyNormalizedSubjectSequence();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Bridge(symbol="SecCertificateCopyPublicKey", optional=true)
+    public native SecKey copyPublicKey();
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
+    @Bridge(symbol="SecCertificateCopySerialNumber", optional=true)
+    public native NSData copySerialNumber();
     /*</methods>*/
 }

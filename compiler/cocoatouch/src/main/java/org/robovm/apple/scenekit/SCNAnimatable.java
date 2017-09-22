@@ -35,6 +35,8 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,7 +52,8 @@ import org.robovm.apple.opengles.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    @Property(selector = "animationKeys")
+    NSArray<?> getAnimationKeys();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "addAnimation:forKey:")
@@ -59,30 +62,21 @@ import org.robovm.apple.opengles.*;
     void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     void removeAnimation(String key);
-    @Method(selector = "animationKeys")
-    @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAnimationKeys();
     @Method(selector = "animationForKey:")
     CAAnimation getAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "pauseAnimationForKey:")
     void pauseAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "resumeAnimationForKey:")
     void resumeAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "isAnimationForKeyPaused:")
     boolean isAnimationPaused(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     void removeAnimation(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setSpeed:forAnimationKey:")
+    void setSpeed(@MachineSizedFloat double speed, String key);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

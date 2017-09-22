@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CMDeviceMotion() {}
+    protected CMDeviceMotion(Handle h, long handle) { super(h, handle); }
     protected CMDeviceMotion(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

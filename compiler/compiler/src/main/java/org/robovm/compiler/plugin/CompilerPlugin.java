@@ -27,6 +27,7 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Builder;
 import org.robovm.compiler.llvm.Function;
 
+import org.robovm.llvm.ObjectFile;
 import soot.SootClass;
 import soot.SootMethod;
 
@@ -47,6 +48,16 @@ public abstract class CompilerPlugin extends Plugin {
      *            configuration set on the {@link Builder} so far.
      */
     public abstract void beforeConfig(Builder builder, Config config) throws IOException;
+
+    /**
+     * Called just before a class is about to be compiled. Modifications to the
+     * underlying {@link SootClass} ({@link Clazz#getSootClass()}) are not allowed
+     * this stage. Used to allow plugins to evaluate class before modification
+     *
+     * @param config the current {@link Config}.
+     * @param clazz the {@link Clazz} being compiled.
+     */
+    public void helloClass(Config config, Clazz clazz) {}
 
     /**
      * Called just before a class is about to be compiled. Modifications to the
@@ -107,8 +118,9 @@ public abstract class CompilerPlugin extends Plugin {
      * @param config the current {@link Config}
      * @param clazz the {@link Clazz} being compiled
      * @param objectFile the object file
+     * @param objectFileData LLVM read object file data
      */
-    public abstract void afterObjectFile(Config config, Clazz clazz, File objectFile) throws IOException;
+    public abstract void afterObjectFile(Config config, Clazz clazz, File objectFile, ObjectFile objectFileData) throws IOException;
 
     /**
      * Called just before {@link Linker} is invoked.

@@ -47,6 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPSkipIntervalCommandEvent() {}
+    protected MPSkipIntervalCommandEvent(Handle h, long handle) { super(h, handle); }
     protected MPSkipIntervalCommandEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

@@ -33,6 +33,7 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.modelio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GLKTextureInfo() {}
+    protected GLKTextureInfo(Handle h, long handle) { super(h, handle); }
     protected GLKTextureInfo(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -61,12 +63,18 @@ import org.robovm.apple.dispatch.*;
     public native int getWidth();
     @Property(selector = "height")
     public native int getHeight();
+    @Property(selector = "depth")
+    public native int getDepth();
     @Property(selector = "alphaState")
     public native GLKTextureInfoAlphaState getAlphaState();
     @Property(selector = "textureOrigin")
     public native GLKTextureInfoOrigin getTextureOrigin();
     @Property(selector = "containsMipmaps")
     public native boolean containsMipmaps();
+    @Property(selector = "mimapLevelCount")
+    public native int getMimapLevelCount();
+    @Property(selector = "arrayLength")
+    public native int getArrayLength();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

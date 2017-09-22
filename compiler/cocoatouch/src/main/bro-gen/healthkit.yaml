@@ -27,6 +27,17 @@ enums:
     HKQuantityAggregationStyle: {}
     HKStatisticsOptions: {}
     HKMetricPrefix: {}
+    HKCategoryValueAppleStandHour: {}
+    HKFitzpatrickSkinType: {}
+    HKWheelchairUse: {}
+    HKCategoryValueCervicalMucusQuality: {}
+    HKCategoryValueOvulationTestResult: {}
+    HKCategoryValueMenstrualFlow: {}
+    HKCategoryValue: {}
+    HKWeatherCondition: {}
+    HKWorkoutSwimmingLocationType: {}
+    HKSwimmingStrokeStyle: {}
+    HKWorkoutSessionLocationType: {}
         
 classes:
     HKError:
@@ -35,6 +46,14 @@ classes:
         
     HKBiologicalSexObject: {} # DONE
     HKBloodTypeObject: {} # DONE
+    HKFitzpatrickSkinTypeObject: {}
+    HKWheelchairUseObject: {}
+    HKWorkoutConfiguration: {}
+    HKSourceRevision:
+        methods:
+            '-init.*':
+                name: init
+    HKActivitySummaryType: {}
     HKHealthStore: # DONE
         methods:
             '-authorizationStatusForType:':
@@ -54,6 +73,12 @@ classes:
                     objects:
                         type: NSArray<HKObject>
             '-deleteObject:withCompletion:':
+                trim_after_first_colon: true
+            '-deleteObjects:withCompletion:':
+                trim_after_first_colon: true
+            '-deleteObjectsOfType:predicate:withCompletion:':
+                trim_after_first_colon: true
+            '-splitTotalEnergy:startDate:endDate:resultsHandler:':
                 trim_after_first_colon: true
             '-executeQuery:':
                 trim_after_first_colon: true
@@ -86,6 +111,9 @@ classes:
                         type: NSSet<HKQuantityType>
                     completion:
                         type: '@Block VoidBlock2<NSDictionary<HKQuantityType, HKUnit>, NSError>'
+            '-startWatchAppWithWorkoutConfiguration:completion:':
+                name: startWatchApp
+
     HKObject: # DONE
         properties:
             'metadata':
@@ -94,6 +122,15 @@ classes:
             '-init':
                 exclude: true
     HKSample: {} # DONE
+    HKDocumentSample: {}
+    HKCDADocumentSample:
+        methods:
+            '+CDADocumentSampleWithData:startDate:endDate:metadata:validationError:':
+                name: create
+                parameters:
+                    metadata:
+                        type: HKMetadata
+    HKCDADocument: {}
     HKCategorySample: # DONE
         methods:
             '-init':
@@ -105,6 +142,13 @@ classes:
                         type: HKMetadata
             '+categorySampleWithType:value:startDate:endDate:':
                 name: create
+            '+categorySampleWithType:value:startDate:endDate:':
+                name: create
+            '+categorySampleWithType:value:startDate:endDate:device:metadata:':
+                name: create
+                parameters:
+                    metadata:
+                        type: HKMetadata
     HKCorrelation: # DONE
         properties:
             'objects':
@@ -125,11 +169,23 @@ classes:
                         type: NSSet<HKSample>
                     metadata:
                         type: HKMetadata
+            '+correlationWithType:startDate:endDate:objects:device:metadata:':
+                name: create
+                parameters:
+                    objects:
+                        type: NSSet<HKSample>
+                    metadata:
+                        type: HKMetadata
     HKQuantitySample: # DONE
         methods:
             '+quantitySampleWithType:quantity:startDate:endDate:':
                 name: create
             '+quantitySampleWithType:quantity:startDate:endDate:metadata:':
+                name: create
+                parameters:
+                    metadata:
+                        type: HKMetadata
+            '+quantitySampleWithType:quantity:startDate:endDate:device:metadata:':
                 name: create
                 parameters:
                     metadata:
@@ -153,6 +209,22 @@ classes:
                 parameters:
                     metadata:
                         type: HKMetadata
+            '+workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:':
+                name: create
+                parameters:
+                    metadata:
+                        type: HKMetadata
+            '+workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:device:metadata:':
+                name: create
+                parameters:
+                    metadata:
+                        type: HKMetadata
+            '+workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:':
+                name: create
+                parameters:
+                    metadata:
+                        type: HKMetadata
+
     HKObjectType: # DONE
         properties:
             'identifier':
@@ -184,6 +256,7 @@ classes:
                 property: true
     HKCharacteristicType: {} # DONE
     HKSampleType: {} # DONE
+    HKDocumentType: {}
     HKCategoryType: {} # DONE
     HKCorrelationType: {} # DONE
     HKQuantityType: # DONE
@@ -245,6 +318,12 @@ classes:
                 name: createPredicateForWorkoutsWithTotalEnergyBurned
             '+predicateForWorkoutsWithOperatorType:totalDistance:':
                 name: createPredicateForWorkoutsWithTotalDistance
+            '+predicateForObjectsWithDeviceProperty:allowedValues:':
+                trim_after_first_colon: true
+            '+predicateForWorkoutsWithOperatorType:totalSwimmingStrokeCount:':
+                name: createPredicateForWorkoutsWithTotalSwimmingStrokeCount
+            '+predicateForActivitySummariesBetweenStartDateComponents:endDateComponents:':
+                name: createPredicateForActivitySummariesBetweenDates
     HKAnchoredObjectQuery: # DONE
         methods:
             '-initWithType:predicate:anchor:limit:completionHandler:':
@@ -252,6 +331,8 @@ classes:
                 parameters:
                     handler:
                         type: '@Block("(,,@MachineSizedUInt,)") VoidBlock4<HKAnchoredObjectQuery, NSArray<HKSample>, Long, NSError>'
+            '-init.*':
+                name: init
     HKCorrelationQuery: # DONE
         properties:
             'samplePredicates':
@@ -367,8 +448,52 @@ classes:
                 exclude: true
             '+workoutEventWithType:date:':
                 name: create
+            '+workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:':
+                name: create
+                parameters:
+                    'metadata':
+                        type: HKMetadata
+            '+workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:device:metadata:':
+                name: create
+                parameters:
+                    'metadata':
+                        type: HKMetadata
+            '+workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:':
+                name: create
+                parameters:
+                    'metadata':
+                        type: HKMetadata
+            '+workoutEventWithType:date:metadata:':
+                name: create
+                parameters:
+                    'metadata':
+                        type: HKMetadata
+        properties:
+            'metadata':
+                type: HKMetadata
+    HKQueryAnchor:
+        methods:
+            '+anchorFromValue:':
+                name: create
+                constructor: true
+    HKDeletedObject: {}
+    HKDevice:
+        methods:
+            '-init.*':
+                name: init
 
-protocols: {}
+    HKActivitySummary: {}
+    HKActivitySummaryQuery:
+        methods:
+            '-init.*':
+                name: init
+    HKDocumentQuery:
+        methods:
+            '-init.*':
+                name: init
+
+protocols:
+    HKWorkoutSessionDelegate: {}
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -391,12 +516,12 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
-    HKQuantityTypeIdentifier(StepCount|DistanceWalkingRunning|DistanceCycling|BasalEnergyBurned|ActiveEnergyBurned|FlightsClimbed|NikeFuel):
+    HKQuantityTypeIdentifier(StepCount|DistanceWalkingRunning|DistanceCycling|DistanceWheelchair|BasalEnergyBurned|ActiveEnergyBurned|FlightsClimbed|NikeFuel|AppleExerciseTime|PushCount|DistanceSwimming|SwimmingStrokeCount):
         enum: HKFitnessQuantityTypeIdentifier
         name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
-    HKQuantityTypeIdentifier(HeartRate|BodyTemperature|BloodPressureSystolic|BloodPressureDiastolic|RespiratoryRate):
+    HKQuantityTypeIdentifier(HeartRate|BodyTemperature|BasalBodyTemperature|BloodPressureSystolic|BloodPressureDiastolic|RespiratoryRate):
         enum: HKVitalSignsQuantityTypeIdentifier
         name: '#{g[0]}'
         type: NSString
@@ -416,6 +541,16 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
+    HKQuantityTypeIdentifierUVExposure:
+        enum: HKUVExposureTypeIdentifier
+        name: 'UVExposure'
+        type: NSString
+        extends: HKQuantityTypeIdentifier
+    HKDocumentTypeIdentifier(.*):
+        enum: HKDocumentTypeIdentifier
+        name: '#{g[0]}'
+        type: NSString
+        extends: HKTypeIdentifier
     HKCategoryTypeIdentifier(.*):
         enum: HKCategoryTypeIdentifier
         name: '#{g[0]}'
@@ -441,7 +576,16 @@ values:
         enum: HKMetadataKey
         name: '#{g[0]}'
         type: NSString
-        
+
+    HKPredicateKeyPathCDA(.*):
+        enum: HKPredicateKeyPath
+        name: '#{g[0]}'
+        type: NSString
+        extends: NSPredicateKeyPath
+    HKDetailedCDAValidationErrorKey:
+        class: HKCDADocument
+        name: 'ValidationErrorKey'
+
     HKPredicateKeyPath(.*):
         enum: HKPredicateKeyPath
         name: '#{g[0]}'
@@ -458,6 +602,9 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: NSSortIdentifier
+    HKDeviceProperty(.*):
+        class: HKDevice
+        name: 'Property#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (HK.*):

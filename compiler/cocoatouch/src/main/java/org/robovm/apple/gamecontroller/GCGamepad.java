@@ -32,7 +32,9 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 7.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCGamepad/*</name>*/ 
@@ -44,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GCGamepad() {}
+    protected GCGamepad(Handle h, long handle) { super(h, handle); }
     protected GCGamepad(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

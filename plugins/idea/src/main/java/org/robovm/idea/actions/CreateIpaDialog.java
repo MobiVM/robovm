@@ -177,7 +177,7 @@ public class CreateIpaDialog extends DialogWrapper {
             archs.add(Arch.arm64);
         } else if(this.archs.getSelectedItem().toString().equals(ARCHS_32BIT)) {
             archs.add(Arch.thumbv7);
-        } else if(this.archs.getSelectedItem().toString().equals(ARCHS_ALL)) {
+        } else if(this.archs.getSelectedItem().toString().equals(ARCHS_64BIT)) {
             archs.add(Arch.arm64);
         }
         return new CreateIpaAction.IpaConfig(module, new File(this.destinationDir.getText()), signingIdentity, provisioningProile, archs);

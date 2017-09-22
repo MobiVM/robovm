@@ -44,7 +44,8 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(WCSession.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public WCSession() {}
+    protected WCSession() {}
+    protected WCSession(Handle h, long handle) { super(h, handle); }
     protected WCSession(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -52,21 +53,31 @@ import org.robovm.apple.foundation.*;
     public native WCSessionDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(WCSessionDelegate v);
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    @Property(selector = "activationState")
+    public native WCSessionActivationState getActivationState();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "hasContentPending")
+    public native boolean hasContentPending();
     @Property(selector = "isPaired")
     public native boolean isPaired();
     @Property(selector = "isWatchAppInstalled")
     public native boolean isWatchAppInstalled();
     @Property(selector = "isComplicationEnabled")
     public native boolean isComplicationEnabled();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "remainingComplicationUserInfoTransfers")
+    public native @MachineSizedUInt long getRemainingComplicationUserInfoTransfers();
     @Property(selector = "watchDirectoryURL")
     public native NSURL getWatchDirectoryURL();
     @Property(selector = "isReachable")
     public native boolean isReachable();
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    @Property(selector = "iOSDeviceNeedsUnlockAfterRebootForReachability")
-    public native boolean doesIOSDeviceNeedUnlockAfterRebootForReachability();
     @Property(selector = "applicationContext")
     public native NSDictionary<NSString, ?> getApplicationContext();
     @Property(selector = "receivedApplicationContext")

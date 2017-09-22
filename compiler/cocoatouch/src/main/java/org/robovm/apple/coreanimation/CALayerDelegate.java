@@ -55,6 +55,11 @@ import org.robovm.apple.metal.*;
     void displayLayer(CALayer layer);
     @Method(selector = "drawLayer:inContext:")
     void drawLayer(CALayer layer, CGContext ctx);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "layerWillDraw:")
+    void willDrawLayer(CALayer layer);
     @Method(selector = "layoutSublayersOfLayer:")
     void layoutSublayers(CALayer layer);
     @Method(selector = "actionForLayer:forKey:")

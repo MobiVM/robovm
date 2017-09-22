@@ -55,7 +55,9 @@ import org.robovm.apple.corelocation.*;
     public UIAlertView() {}
     protected UIAlertView(Handle h, long handle) { super(h, handle); }
     protected UIAlertView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
     public UIAlertView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
     public UIAlertView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     

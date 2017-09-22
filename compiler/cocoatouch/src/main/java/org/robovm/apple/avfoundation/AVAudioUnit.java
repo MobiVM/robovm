@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioUnit() {}
+    protected AVAudioUnit(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnit(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -82,5 +83,10 @@ import org.robovm.apple.audiounit.*;
     }
     @Method(selector = "loadAudioUnitPresetAtURL:error:")
     private native boolean loadAudioUnitPreset(NSURL url, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "instantiateWithComponentDescription:options:completionHandler:")
+    public static native void instantiate(@ByVal AudioComponentDescription audioComponentDescription, AudioComponentInstantiationOptions options, @Block VoidBlock2<AVAudioUnit, NSError> completionHandler);
     /*</methods>*/
 }

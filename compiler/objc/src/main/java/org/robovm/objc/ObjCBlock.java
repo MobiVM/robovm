@@ -20,6 +20,7 @@ import java.lang.reflect.Method;
 import java.util.IdentityHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.robovm.objc.annotation.TypeEncoding;
 import org.robovm.objc.block.VoidBooleanBlock;
 import org.robovm.rt.VM;
 import org.robovm.rt.bro.Struct;
@@ -27,6 +28,7 @@ import org.robovm.rt.bro.annotation.Callback;
 import org.robovm.rt.bro.annotation.MachineSizedUInt;
 import org.robovm.rt.bro.annotation.Pointer;
 import org.robovm.rt.bro.annotation.StructMember;
+import org.robovm.rt.bro.ptr.BytePtr;
 
 /**
  * {@link Struct} mapping the {@code Block_literal} struct used internally by
@@ -80,6 +82,10 @@ public final class ObjCBlock extends Struct<ObjCBlock> {
     
     @StructMember(6)
     public native ObjCBlock wrapper_addr(@Pointer long wrapper_addr);
+
+    public static void setHandle(ObjCBlock block, long handle) {
+        block.setHandle(handle);
+    }
     
     public Object object() {
         return VM.castAddressToObject(object_addr());
@@ -127,6 +133,12 @@ public final class ObjCBlock extends Struct<ObjCBlock> {
         
         @StructMember(3)
         public native Descriptor dispose_helper(@Pointer long dispose_helper);
+
+        @StructMember(4)
+        public native BytePtr signature();
+
+        @StructMember(4)
+        public native Descriptor signature(BytePtr value);
     }
     
     public static final class Wrapper {
@@ -145,7 +157,8 @@ public final class ObjCBlock extends Struct<ObjCBlock> {
                 DESCRIPTOR = new Descriptor()
                     .literal_size(ObjCBlock.sizeOf())
                     .copy_helper(copyImpl)
-                    .dispose_helper(disposeImpl);
+                    .dispose_helper(disposeImpl)
+                    .signature(null);
             } catch (Exception e) {
                 throw new Error(e);
             }
@@ -160,6 +173,7 @@ public final class ObjCBlock extends Struct<ObjCBlock> {
         private final int flags;
         private final IdentityHashMap<Object, AtomicInteger> refCounts = 
                 new IdentityHashMap<Object, AtomicInteger>();
+        private final Descriptor descriptor;
         
         public Wrapper(Class<?> callbacks) {
             this(findCallback(callbacks), false);
@@ -178,6 +192,18 @@ public final class ObjCBlock extends Struct<ObjCBlock> {
                 throw new IllegalArgumentException("Method " + method 
                         + " is not a @Callback method");
             }
+
+            TypeEncoding typeEncoding = method.getAnnotation(TypeEncoding.class);
+            if (typeEncoding != null) {
+                descriptor = new Descriptor()
+                        .literal_size(ObjCBlock.sizeOf())
+                        .copy_helper(DESCRIPTOR.copy_helper())
+                        .dispose_helper(DESCRIPTOR.dispose_helper())
+                        .signature(BytePtr.toBytePtrAsciiZ(typeEncoding.value()));
+            } else {
+                descriptor = DESCRIPTOR;
+            }
+
             callbackImpl = VM.getCallbackMethodImpl(method);
             int flags = BLOCK_HAS_COPY_DISPOSE | BLOCK_HAS_SIGNATURE;
             if (ObjCRuntime.isStret(method)) {
@@ -254,7 +280,7 @@ public final class ObjCBlock extends Struct<ObjCBlock> {
                 .isa(NSStackBlock)
                 .flags(flags)
                 .invoke(callbackImpl)
-                .descriptor(DESCRIPTOR)
+                .descriptor(descriptor)
                 .object(o)
                 .wrapper(this);
             return block;

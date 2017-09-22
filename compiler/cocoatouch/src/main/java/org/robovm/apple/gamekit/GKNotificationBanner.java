@@ -46,6 +46,7 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKNotificationBanner() {}
+    protected GKNotificationBanner(Handle h, long handle) { super(h, handle); }
     protected GKNotificationBanner(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

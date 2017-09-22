@@ -71,6 +71,13 @@ functions:
         class: MTAudioProcessingTap
         name: '#{g[0]}'
 
+    MTCopyLocalized(NameForMediaType|NameForMediaSubType):
+        class: MTFormatNames
+        name: 'get#{g[0]}'
+        return_type: String
+        return_marshaler: CFString.AsStringNoRetainMarshaler
+
+
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?MT.*):
         class: MediaToolbox

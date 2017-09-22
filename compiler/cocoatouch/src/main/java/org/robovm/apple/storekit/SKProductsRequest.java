@@ -46,10 +46,12 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SKProductsRequest() {}
+    protected SKProductsRequest(Handle h, long handle) { super(h, handle); }
     protected SKProductsRequest(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 3.0 and later.
      */
+    @Method(selector = "initWithProductIdentifiers:")
     public SKProductsRequest(@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String> productIdentifiers) { super((SkipInit) null); initObject(init(productIdentifiers)); }
     /*</constructors>*/
     /*<properties>*/

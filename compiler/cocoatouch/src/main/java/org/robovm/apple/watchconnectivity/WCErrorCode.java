@@ -53,7 +53,15 @@ public enum /*<name>*/WCErrorCode/*</name>*/ implements NSErrorCode {
     MessageReplyTimedOut(7012L),
     FileAccessDenied(7013L),
     DeliveryFailed(7014L),
-    InsufficientSpace(7015L);
+    InsufficientSpace(7015L),
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    SessionInactive(7016L),
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    TransferTimedOut(7017L);
     /*</values>*/
 
     /*<bind>*/

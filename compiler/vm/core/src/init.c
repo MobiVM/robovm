@@ -240,14 +240,6 @@ jboolean rvmInitOptions(int argc, char* argv[], Options* options, jboolean ignor
         if (i >= 0 && options->resourcesPath[i] == '/') {
             options->resourcesPath[i] = '\0';
         }
-        if (argc == 0) {
-#if defined(DARWIN)
-            // Called via JNI and on Darwin. Assume this is a framework. Use the
-            // Resources folder next to the image.
-            strncat(options->resourcesPath, "/Resources",
-                    sizeof(options->resourcesPath) - strlen(options->resourcesPath) - 1);
-#endif
-        }
     }
 
     // Look for a robovm.ini in the resources path
@@ -295,6 +287,8 @@ Env* rvmCreateEnv(VM* vm) {
         DebugEnv* debugEnv = (DebugEnv*)env;
         debugEnv->reqId = 0;
         debugEnv->suspended = FALSE;
+        // dkimitsa: ignore VM initialization exception till app entry point as these exc wil will break wait_for_resume startup logic
+        debugEnv->ignoreExceptions = TRUE;
     }
     rvmInitJNIEnv(env);
     return env;
@@ -478,6 +472,11 @@ jboolean rvmRun(Env* env) {
     Options* options = env->vm->options;
     Class* clazz = NULL;
 
+    if(options->enableHooks) {
+        // dkimitsa: enable breakpoints right before app start
+        DebugEnv* debugEnv = (DebugEnv*)env;
+        debugEnv->ignoreExceptions = FALSE;
+    }
     rvmHookBeforeAppEntryPoint(env, options->mainClass);
     clazz = rvmFindClassUsingLoader(env, options->mainClass, systemClassLoader);
     if (clazz) {

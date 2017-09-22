@@ -28,10 +28,13 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.spritekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGaussianDistribution/*</name>*/ 
@@ -43,8 +46,11 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKGaussianDistribution() {}
+    protected GKGaussianDistribution(Handle h, long handle) { super(h, handle); }
     protected GKGaussianDistribution(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRandomSource:lowestValue:highestValue:")
     public GKGaussianDistribution(GKRandom source, @MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive) { super((SkipInit) null); initObject(init(source, lowestInclusive, highestInclusive)); }
+    @Method(selector = "initWithRandomSource:mean:deviation:")
     public GKGaussianDistribution(GKRandom source, float mean, float deviation) { super((SkipInit) null); initObject(init(source, mean, deviation)); }
     /*</constructors>*/
     /*<properties>*/

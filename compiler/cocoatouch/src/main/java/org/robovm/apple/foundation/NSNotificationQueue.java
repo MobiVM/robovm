@@ -52,6 +52,7 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     protected NSNotificationQueue(Handle h, long handle) { super(h, handle); }
     protected NSNotificationQueue(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNotificationCenter:")
     public NSNotificationQueue(NSNotificationCenter notificationCenter) { super((SkipInit) null); initObject(init(notificationCenter)); }
     /*</constructors>*/
     /*<properties>*/

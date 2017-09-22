@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNFloor/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNFloor() {}
+    protected SCNFloor(Handle h, long handle) { super(h, handle); }
     protected SCNFloor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -68,13 +69,25 @@ import org.robovm.apple.opengles.*;
     @Property(selector = "setReflectionFalloffEnd:")
     public native void setReflectionFalloffEnd(@MachineSizedFloat double v);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
+    @Property(selector = "reflectionCategoryBitMask")
+    public native @MachineSizedUInt long getReflectionCategoryBitMask();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "setReflectionCategoryBitMask:")
+    public native void setReflectionCategoryBitMask(@MachineSizedUInt long v);
+    @Property(selector = "width")
+    public native @MachineSizedFloat double getWidth();
+    @Property(selector = "setWidth:")
+    public native void setWidth(@MachineSizedFloat double v);
+    @Property(selector = "length")
+    public native @MachineSizedFloat double getLength();
+    @Property(selector = "setLength:")
+    public native void setLength(@MachineSizedFloat double v);
     @Property(selector = "reflectionResolutionScaleFactor")
     public native @MachineSizedFloat double getReflectionResolutionScaleFactor();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setReflectionResolutionScaleFactor:")
     public native void setReflectionResolutionScaleFactor(@MachineSizedFloat double v);
     /*</properties>*/

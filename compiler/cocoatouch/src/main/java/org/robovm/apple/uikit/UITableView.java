@@ -63,7 +63,9 @@ import org.robovm.apple.corelocation.*;
     public UITableView() {}
     protected UITableView(Handle h, long handle) { super(h, handle); }
     protected UITableView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:style:")
     public UITableView(@ByVal CGRect frame, UITableViewStyle style) { super((SkipInit) null); initObject(init(frame, style)); }
+    @Method(selector = "initWithCoder:")
     public UITableView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UITableView(CGRect frame) {

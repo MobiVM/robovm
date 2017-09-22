@@ -48,6 +48,7 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.config.Resource.Walker;
+import org.robovm.compiler.config.StripArchivesConfig;
 import org.robovm.compiler.util.ToolchainUtil;
 import org.simpleframework.xml.Transient;
 
@@ -70,6 +71,10 @@ public abstract class AbstractTarget implements Target {
     @Override
     public boolean canLaunch() {
         return true;
+    }
+
+    @Override
+    public void prepareLaunch() throws IOException {
     }
 
     @Override
@@ -522,6 +527,7 @@ public abstract class AbstractTarget implements Target {
         config.getLogger().info("Creating stripped archive file %s", output);
 
         ZipOutputStream out = null;
+        final ArrayList<StripArchivesConfig.Pattern> patterns = config.getStripArchivesConfig().getPatterns();
         try {
             out = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(output)));
 
@@ -530,14 +536,19 @@ public abstract class AbstractTarget implements Target {
                 try {
                     archive = new ZipFile(path.getFile());
                     Enumeration<? extends ZipEntry> entries = archive.entries();
-                    while (entries.hasMoreElements()) {
+                    entryLoop : while (entries.hasMoreElements()) {
                         ZipEntry entry = entries.nextElement();
-                        if (entry.getName().toLowerCase().endsWith(".class")) {
-                            continue;
-                        }
                         if (entry.getName().startsWith("META-INF/robovm/")) {
                             // Don't include anything under META-INF/robovm/
                             continue;
+                        }
+                        for(StripArchivesConfig.Pattern pattern : patterns){
+                        	if(pattern.matches(entry.getName())){
+                        		if(pattern.isInclude()){
+                        			break;
+                        		}
+                        		continue entryLoop;
+                        	}
                         }
                         ZipEntry newEntry = new ZipEntry(entry.getName());
                         newEntry.setTime(entry.getTime());
@@ -560,14 +571,19 @@ public abstract class AbstractTarget implements Target {
                 String basePath = path.getFile().getAbsolutePath();
                 @SuppressWarnings("unchecked")
                 Collection<File> files = FileUtils.listFiles(path.getFile(), null, true);
-                for (File f : files) {
-                    if (f.getName().toLowerCase().endsWith(".class")) {
-                        continue;
-                    }
+                fileLoop: for (File f : files) {
                     String entryName = f.getAbsolutePath().substring(basePath.length() + 1);
                     if (entryName.startsWith("META-INF/robovm/")) {
                         // Don't include anything under META-INF/robovm/
                         continue;
+                    }
+                    for(StripArchivesConfig.Pattern pattern : patterns){
+                    	if(pattern.matches(entryName)){
+                    		if(pattern.isInclude()){
+                    			break;
+                    		}
+                    		continue fileLoop;
+                    	}
                     }
                     ZipEntry newEntry = new ZipEntry(entryName);
                     newEntry.setTime(f.lastModified());

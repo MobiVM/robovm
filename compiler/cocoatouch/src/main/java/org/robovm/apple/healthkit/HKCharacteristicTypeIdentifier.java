@@ -99,9 +99,17 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 8.0 and later.
      */
     public static final HKCharacteristicTypeIdentifier DateOfBirth = new HKCharacteristicTypeIdentifier("DateOfBirth");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKCharacteristicTypeIdentifier FitzpatrickSkinType = new HKCharacteristicTypeIdentifier("FitzpatrickSkinType");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKCharacteristicTypeIdentifier WheelchairUse = new HKCharacteristicTypeIdentifier("WheelchairUse");
     /*</constants>*/
     
-    private static /*<name>*/HKCharacteristicTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCharacteristicTypeIdentifier/*</name>*/[] {/*<value_list>*/BiologicalSex, BloodType, DateOfBirth/*</value_list>*/};
+    private static /*<name>*/HKCharacteristicTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCharacteristicTypeIdentifier/*</name>*/[] {/*<value_list>*/BiologicalSex, BloodType, DateOfBirth, FitzpatrickSkinType, WheelchairUse/*</value_list>*/};
     
     /*<name>*/HKCharacteristicTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -139,6 +147,16 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKCharacteristicTypeIdentifierDateOfBirth", optional=true)
         public static native NSString DateOfBirth();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKCharacteristicTypeIdentifierFitzpatrickSkinType", optional=true)
+        public static native NSString FitzpatrickSkinType();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKCharacteristicTypeIdentifierWheelchairUse", optional=true)
+        public static native NSString WheelchairUse();
         /*</values>*/
     }
 }

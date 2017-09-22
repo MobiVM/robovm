@@ -39,7 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreBluetooth") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CBCentralManager/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class CBCentralManagerPtr extends Ptr<CBCentralManager, CBCentralManagerPtr> {}/*</ptr>*/
@@ -47,13 +47,16 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CBCentralManager() {}
+    protected CBCentralManager(Handle h, long handle) { super(h, handle); }
     protected CBCentralManager(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
+    @Method(selector = "initWithDelegate:queue:")
     public CBCentralManager(CBCentralManagerDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(delegate, queue)); }
     /**
      * @since Available in iOS 7.0 and later.
      */
     @WeaklyLinked
+    @Method(selector = "initWithDelegate:queue:options:")
     public CBCentralManager(CBCentralManagerDelegate delegate, DispatchQueue queue, CBCentralManagerOptions options) { super((SkipInit) null); initObject(init(delegate, queue, options)); }
     /*</constructors>*/
     /*<properties>*/
@@ -61,8 +64,6 @@ import org.robovm.apple.dispatch.*;
     public native CBCentralManagerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(CBCentralManagerDelegate v);
-    @Property(selector = "state")
-    public native CBCentralManagerState getState();
     /**
      * @since Available in iOS 9.0 and later.
      */

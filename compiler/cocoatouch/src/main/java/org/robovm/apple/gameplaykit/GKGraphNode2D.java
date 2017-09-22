@@ -28,10 +28,13 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.spritekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGraphNode2D/*</name>*/ 
@@ -43,18 +46,20 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKGraphNode2D() {}
+    protected GKGraphNode2D(Handle h, long handle) { super(h, handle); }
     protected GKGraphNode2D(SkipInit skipInit) { super(skipInit); }
-    public GKGraphNode2D(VectorFloat2 point) { super((SkipInit) null); initObject(init(point)); }
+    @Method(selector = "initWithPoint:")
+    public GKGraphNode2D(@ByVal VectorFloat2 point) { super((SkipInit) null); initObject(init(point)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "position")
-    public native VectorFloat2 getPosition();
+    public native @ByVal VectorFloat2 getPosition();
     @Property(selector = "setPosition:")
-    public native void setPosition(VectorFloat2 v);
+    public native void setPosition(@ByVal VectorFloat2 v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPoint:")
-    protected native @Pointer long init(VectorFloat2 point);
+    protected native @Pointer long init(@ByVal VectorFloat2 point);
     /*</methods>*/
 }

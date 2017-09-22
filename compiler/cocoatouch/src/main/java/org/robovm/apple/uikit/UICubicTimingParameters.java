@@ -53,8 +53,11 @@ import org.robovm.apple.corelocation.*;
     public UICubicTimingParameters() {}
     protected UICubicTimingParameters(Handle h, long handle) { super(h, handle); }
     protected UICubicTimingParameters(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
     public UICubicTimingParameters(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithAnimationCurve:")
     public UICubicTimingParameters(UIViewAnimationCurve curve) { super((SkipInit) null); initObject(init(curve)); }
+    @Method(selector = "initWithControlPoint1:controlPoint2:")
     public UICubicTimingParameters(@ByVal CGPoint point1, @ByVal CGPoint point2) { super((SkipInit) null); initObject(init(point1, point2)); }
     /*</constructors>*/
     /*<properties>*/

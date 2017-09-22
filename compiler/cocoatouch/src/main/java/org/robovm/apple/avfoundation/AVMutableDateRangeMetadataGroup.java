@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVMutableDateRangeMetadataGroup() {}
+    protected AVMutableDateRangeMetadataGroup(Handle h, long handle) { super(h, handle); }
     protected AVMutableDateRangeMetadataGroup(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

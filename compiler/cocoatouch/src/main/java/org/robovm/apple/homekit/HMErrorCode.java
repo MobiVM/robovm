@@ -133,7 +133,27 @@ public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 9.0 and later.
      */
-    NotAuthorizedForLocationServices(85L);
+    NotAuthorizedForLocationServices(85L),
+    /**
+     * @since Available in iOS 9.3 and later.
+     */
+    ReferToUserManual(86L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    InvalidOrMissingAuthorizationData(87L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    BridgedAccessoryNotReachable(88L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    NotAuthorizedForMicrophoneAccess(89L),
+    /**
+     * @since Available in iOS 10.2 and later.
+     */
+    IncompatibleNetwork(90L);
     /*</values>*/
 
     /*<bind>*/

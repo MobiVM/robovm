@@ -45,7 +45,9 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSAsynchronousFetchRequest() {}
+    protected NSAsynchronousFetchRequest(Handle h, long handle) { super(h, handle); }
     protected NSAsynchronousFetchRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFetchRequest:completionBlock:")
     public NSAsynchronousFetchRequest(NSFetchRequest request, @Block VoidBlock1<NSAsynchronousFetchResult> blk) { super((SkipInit) null); initObject(init(request, blk)); }
     /*</constructors>*/
     /*<properties>*/

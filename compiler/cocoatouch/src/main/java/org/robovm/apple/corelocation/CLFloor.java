@@ -47,6 +47,7 @@ import org.robovm.apple.corebluetooth.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CLFloor() {}
+    protected CLFloor(Handle h, long handle) { super(h, handle); }
     protected CLFloor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

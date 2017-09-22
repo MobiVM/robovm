@@ -56,7 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAudioPCMBuffer() {}
+    protected AVAudioPCMBuffer(Handle h, long handle) { super(h, handle); }
     protected AVAudioPCMBuffer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPCMFormat:frameCapacity:")
     public AVAudioPCMBuffer(AVAudioFormat format, int frameCapacity) { super((SkipInit) null); initObject(init(format, frameCapacity)); }
     /*</constructors>*/
     /*<properties>*/

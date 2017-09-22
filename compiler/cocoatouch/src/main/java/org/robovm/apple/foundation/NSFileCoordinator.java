@@ -55,6 +55,7 @@ import org.robovm.apple.dispatch.*;
     public NSFileCoordinator() {}
     protected NSFileCoordinator(Handle h, long handle) { super(h, handle); }
     protected NSFileCoordinator(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFilePresenter:")
     public NSFileCoordinator(NSFilePresenter filePresenterOrNil) { super((SkipInit) null); initObject(init(filePresenterOrNil)); }
     /*</constructors>*/
     /*<properties>*/

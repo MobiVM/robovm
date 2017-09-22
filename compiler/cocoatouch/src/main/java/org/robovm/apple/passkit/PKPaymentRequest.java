@@ -48,6 +48,7 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PKPaymentRequest() {}
+    protected PKPaymentRequest(Handle h, long handle) { super(h, handle); }
     protected PKPaymentRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -80,20 +81,6 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "setRequiredBillingAddressFields:")
     public native void setRequiredBillingAddressFields(PKAddressField v);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
-    @Property(selector = "billingAddress")
-    public native ABRecord getBillingAddress();
-    /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
-    @Property(selector = "setBillingAddress:", strongRef = true)
-    public native void setBillingAddress(ABRecord v);
-    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "billingContact")
@@ -107,20 +94,6 @@ import org.robovm.apple.contacts.*;
     public native PKAddressField getRequiredShippingAddressFields();
     @Property(selector = "setRequiredShippingAddressFields:")
     public native void setRequiredShippingAddressFields(PKAddressField v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
-    @Property(selector = "shippingAddress")
-    public native ABRecord getShippingAddress();
-    /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
-    @Property(selector = "setShippingAddress:", strongRef = true)
-    public native void setShippingAddress(ABRecord v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -149,9 +122,41 @@ import org.robovm.apple.contacts.*;
     public native NSData getApplicationData();
     @Property(selector = "setApplicationData:")
     public native void setApplicationData(NSData v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
+    @Property(selector = "shippingAddress")
+    public native ABRecord getShippingAddress();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
+    @Property(selector = "setShippingAddress:", strongRef = true)
+    public native void setShippingAddress(ABRecord v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
+    @Property(selector = "billingAddress")
+    public native ABRecord getBillingAddress();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
+    @Property(selector = "setBillingAddress:", strongRef = true)
+    public native void setBillingAddress(ABRecord v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "availableNetworks")
+    public static native NSArray<?> availableNetworks();
     /*</methods>*/
 }

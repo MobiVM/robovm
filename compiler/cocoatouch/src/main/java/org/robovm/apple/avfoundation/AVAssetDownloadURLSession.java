@@ -55,56 +55,29 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetDownloadURLSession.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetDownloadURLSession() {}
+    protected AVAssetDownloadURLSession() {}
+    protected AVAssetDownloadURLSession(Handle h, long handle) { super(h, handle); }
     protected AVAssetDownloadURLSession(SkipInit skipInit) { super(skipInit); }
-    public AVAssetDownloadURLSession(NSURLSessionConfiguration configuration, AVAssetDownloadDelegate delegate, NSOperationQueue delegateQueue) { super(create(configuration, delegate, delegateQueue)); retain(getHandle()); }
-    public AVAssetDownloadURLSession(NSURLSessionConfiguration configuration) { super(create(configuration)); retain(getHandle()); }
-    public AVAssetDownloadURLSession(NSURLSessionConfiguration configuration, NSURLSessionDelegate delegate, NSOperationQueue queue) { super(create(configuration, delegate, queue)); retain(getHandle()); }
+    public AVAssetDownloadURLSession(NSURLSessionConfiguration configuration, AVAssetDownloadDelegate delegate, NSOperationQueue delegateQueue) { super((Handle) null, create(configuration, delegate, delegateQueue)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "assetDownloadTaskWithURLAsset:destinationURL:options:")
     public native AVAssetDownloadTask newAssetDownloadTask(AVURLAsset URLAsset, NSURL destinationURL, AVAssetDownloadTaskOptions options);
-    @Method(selector = "dataTaskWithRequest:")
-    public native NSURLSessionDataTask newDataTask(NSURLRequest request);
-    @Method(selector = "dataTaskWithURL:")
-    public native NSURLSessionDataTask newDataTask(NSURL url);
-    @Method(selector = "uploadTaskWithRequest:fromFile:")
-    public native NSURLSessionUploadTask newUploadTask(NSURLRequest request, NSURL fileURL);
-    @Method(selector = "uploadTaskWithRequest:fromData:")
-    public native NSURLSessionUploadTask newUploadTask(NSURLRequest request, NSData bodyData);
-    @Method(selector = "uploadTaskWithStreamedRequest:")
-    public native NSURLSessionUploadTask newUploadTask(NSURLRequest request);
-    @Method(selector = "downloadTaskWithRequest:")
-    public native NSURLSessionDownloadTask newDownloadTask(NSURLRequest request);
-    @Method(selector = "downloadTaskWithURL:")
-    public native NSURLSessionDownloadTask newDownloadTask(NSURL url);
-    @Method(selector = "downloadTaskWithResumeData:")
-    public native NSURLSessionDownloadTask newDownloadTask(NSData resumeData);
-    @Method(selector = "dataTaskWithRequest:completionHandler:")
-    public native NSURLSessionDataTask newDataTask(NSURLRequest request, @Block VoidBlock3<NSData, NSURLResponse, NSError> completionHandler);
-    @Method(selector = "dataTaskWithURL:completionHandler:")
-    public native NSURLSessionDataTask newDataTask(NSURL url, @Block VoidBlock3<NSData, NSURLResponse, NSError> completionHandler);
-    @Method(selector = "uploadTaskWithRequest:fromFile:completionHandler:")
-    public native NSURLSessionUploadTask newUploadTask(NSURLRequest request, NSURL fileURL, @Block VoidBlock3<NSData, NSURLResponse, NSError> completionHandler);
-    @Method(selector = "uploadTaskWithRequest:fromData:completionHandler:")
-    public native NSURLSessionUploadTask newUploadTask(NSURLRequest request, NSData bodyData, @Block VoidBlock3<NSData, NSURLResponse, NSError> completionHandler);
-    @Method(selector = "downloadTaskWithRequest:completionHandler:")
-    public native NSURLSessionDownloadTask newDownloadTask(NSURLRequest request, @Block VoidBlock3<NSURL, NSURLResponse, NSError> completionHandler);
-    @Method(selector = "downloadTaskWithURL:completionHandler:")
-    public native NSURLSessionDownloadTask newDownloadTask(NSURL url, @Block VoidBlock3<NSURL, NSURLResponse, NSError> completionHandler);
-    @Method(selector = "downloadTaskWithResumeData:completionHandler:")
-    public native NSURLSessionDownloadTask newDownloadTask(NSData resumeData, @Block VoidBlock3<NSURL, NSURLResponse, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:")
+    public native AVAssetDownloadTask newAssetDownloadTask(AVURLAsset URLAsset, String title, NSData artworkData, AVAssetDownloadTaskOptions options);
     @Method(selector = "sessionWithConfiguration:assetDownloadDelegate:delegateQueue:")
     protected static native @Pointer long create(NSURLSessionConfiguration configuration, AVAssetDownloadDelegate delegate, NSOperationQueue delegateQueue);
-    @Method(selector = "sharedSession")
-    public static native NSURLSession getSharedSession();
-    @Method(selector = "sessionWithConfiguration:")
-    protected static native @Pointer long create(NSURLSessionConfiguration configuration);
-    @Method(selector = "sessionWithConfiguration:delegate:delegateQueue:")
-    protected static native @Pointer long create(NSURLSessionConfiguration configuration, NSURLSessionDelegate delegate, NSOperationQueue queue);
     /*</methods>*/
 }

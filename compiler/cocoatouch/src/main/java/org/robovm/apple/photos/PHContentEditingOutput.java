@@ -32,6 +32,9 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coreimage.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,8 +52,11 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public PHContentEditingOutput() {}
+    protected PHContentEditingOutput(Handle h, long handle) { super(h, handle); }
     protected PHContentEditingOutput(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithContentEditingInput:")
     public PHContentEditingOutput(PHContentEditingInput contentEditingInput) { super((SkipInit) null); initObject(init(contentEditingInput)); }
+    @Method(selector = "initWithPlaceholderForCreatedAsset:")
     public PHContentEditingOutput(PHObjectPlaceholder placeholderForCreatedAsset) { super((SkipInit) null); initObject(init(placeholderForCreatedAsset)); }
     /*</constructors>*/
     /*<properties>*/

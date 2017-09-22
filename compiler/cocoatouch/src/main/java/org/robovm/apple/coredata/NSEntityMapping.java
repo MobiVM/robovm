@@ -45,6 +45,7 @@ import org.robovm.apple.foundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSEntityMapping() {}
+    protected NSEntityMapping(Handle h, long handle) { super(h, handle); }
     protected NSEntityMapping(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

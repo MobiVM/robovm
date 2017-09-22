@@ -41,7 +41,15 @@ public enum /*<name>*/MTLVertexStepFunction/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Constant(0L),
     PerVertex(1L),
-    PerInstance(2L);
+    PerInstance(2L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    PerPatch(3L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    PerPatchControlPoint(4L);
     /*</values>*/
 
     /*<bind>*/

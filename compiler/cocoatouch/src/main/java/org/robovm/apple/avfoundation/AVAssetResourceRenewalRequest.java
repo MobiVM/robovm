@@ -56,6 +56,7 @@ import org.robovm.apple.audiounit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AVAssetResourceRenewalRequest() {}
+    protected AVAssetResourceRenewalRequest(Handle h, long handle) { super(h, handle); }
     protected AVAssetResourceRenewalRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

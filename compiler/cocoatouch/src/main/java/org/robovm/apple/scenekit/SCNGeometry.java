@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNGeometry/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNGeometry() {}
+    protected SCNGeometry(Handle h, long handle) { super(h, handle); }
     protected SCNGeometry(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -67,62 +68,38 @@ import org.robovm.apple.opengles.*;
     public native SCNMaterial getFirstMaterial();
     @Property(selector = "setFirstMaterial:")
     public native void setFirstMaterial(SCNMaterial v);
+    @Property(selector = "geometrySources")
+    public native NSArray<SCNGeometrySource> getGeometrySources();
+    @Property(selector = "geometryElements")
+    public native NSArray<SCNGeometryElement> getGeometryElements();
     @Property(selector = "geometryElementCount")
     public native @MachineSizedSInt long getGeometryElementCount();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "levelsOfDetail")
     public native NSArray<SCNLevelOfDetail> getLevelsOfDetail();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setLevelsOfDetail:")
     public native void setLevelsOfDetail(NSArray<SCNLevelOfDetail> v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "subdivisionLevel")
     public native @MachineSizedUInt long getSubdivisionLevel();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setSubdivisionLevel:")
     public native void setSubdivisionLevel(@MachineSizedUInt long v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "edgeCreasesElement")
     public native SCNGeometryElement getEdgeCreasesElement();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setEdgeCreasesElement:")
     public native void setEdgeCreasesElement(SCNGeometryElement v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "edgeCreasesSource")
     public native SCNGeometrySource getEdgeCreasesSource();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setEdgeCreasesSource:")
     public native void setEdgeCreasesSource(SCNGeometrySource v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Property(selector = "shaderModifiers")
-    public native @org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> getShaderModifiers();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Property(selector = "setShaderModifiers:")
-    public native void setShaderModifiers(@org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> v);
+    @Property(selector = "animationKeys")
+    public native NSArray<?> getAnimationKeys();
     @Property(selector = "program")
     public native SCNProgram getProgram();
     @Property(selector = "setProgram:")
     public native void setProgram(SCNProgram v);
+    @Property(selector = "shaderModifiers")
+    public native @org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> getShaderModifiers();
+    @Property(selector = "setShaderModifiers:")
+    public native void setShaderModifiers(@org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -138,9 +115,6 @@ import org.robovm.apple.opengles.*;
     public native NSArray<SCNGeometrySource> getGeometrySourcesForSemantic(SCNGeometrySourceSemantic semantic);
     @Method(selector = "geometryElementAtIndex:")
     public native SCNGeometryElement getGeometryElement(@MachineSizedSInt long elementIndex);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "geometry")
     public static native SCNGeometry create();
     @Method(selector = "geometryWithSources:elements:")
@@ -151,47 +125,29 @@ import org.robovm.apple.opengles.*;
     public native void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
-    @Method(selector = "animationKeys")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAnimationKeys();
     @Method(selector = "animationForKey:")
     public native CAAnimation getAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "pauseAnimationForKey:")
     public native void pauseAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "resumeAnimationForKey:")
     public native void resumeAnimation(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "isAnimationForKeyPaused:")
     public native boolean isAnimationPaused(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "setSpeed:forAnimationKey:")
+    public native void setSpeed(@MachineSizedFloat double speed, String key);
     @Method(selector = "getBoundingBoxMin:max:")
     public native boolean getBoundingBox(SCNVector3.SCNVector3Ptr min, SCNVector3.SCNVector3Ptr max);
-    @Method(selector = "getBoundingSphereCenter:radius:")
-    public native boolean getBoundingSphere(SCNVector3.SCNVector3Ptr center, MachineSizedFloatPtr radius);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "setBoundingBoxMin:max:")
     public native void setBoundingBox(SCNVector3.SCNVector3Ptr min, SCNVector3.SCNVector3Ptr max);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
+    @Method(selector = "getBoundingSphereCenter:radius:")
+    public native boolean getBoundingSphere(SCNVector3.SCNVector3Ptr center, MachineSizedFloatPtr radius);
     @Method(selector = "handleBindingOfSymbol:usingBlock:")
     public native void handleBindingOfSymbol(String symbol, @Block VoidBlock4<Integer, Integer, SCNNode, SCNRenderer> block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "handleUnbindingOfSymbol:usingBlock:")
     public native void handleUnbindingOfSymbol(String symbol, @Block VoidBlock4<Integer, Integer, SCNNode, SCNRenderer> block);
     /*</methods>*/

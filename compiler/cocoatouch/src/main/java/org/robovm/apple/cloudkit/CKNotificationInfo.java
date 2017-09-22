@@ -47,6 +47,7 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKNotificationInfo() {}
+    protected CKNotificationInfo(Handle h, long handle) { super(h, handle); }
     protected CKNotificationInfo(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

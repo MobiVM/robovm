@@ -53,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIAccessibilityCustomRotorItemResult() {}
     protected UIAccessibilityCustomRotorItemResult(Handle h, long handle) { super(h, handle); }
     protected UIAccessibilityCustomRotorItemResult(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTargetElement:targetRange:")
     public UIAccessibilityCustomRotorItemResult(NSObject targetElement, UITextRange targetRange) { super((SkipInit) null); initObject(init(targetElement, targetRange)); }
     /*</constructors>*/
     /*<properties>*/

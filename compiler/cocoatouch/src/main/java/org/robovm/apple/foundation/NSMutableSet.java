@@ -92,6 +92,7 @@ import org.robovm.apple.dispatch.*;
     public NSMutableSet() {}
     protected NSMutableSet(Handle h, long handle) { super(h, handle); }
     protected NSMutableSet(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCapacity:")
     public NSMutableSet(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
     /*</constructors>*/
     

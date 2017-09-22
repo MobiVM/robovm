@@ -72,6 +72,7 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MPVolumeView() {}
+    protected MPVolumeView(Handle h, long handle) { super(h, handle); }
     protected MPVolumeView(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public MPVolumeView(CGRect frame) {

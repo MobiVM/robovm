@@ -46,7 +46,9 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLMeshBufferMap() {}
+    protected MDLMeshBufferMap(Handle h, long handle) { super(h, handle); }
     protected MDLMeshBufferMap(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithBytes:deallocator:")
     public MDLMeshBufferMap(@Pointer long bytes, @Block Runnable deallocator) { super((SkipInit) null); initObject(init(bytes, deallocator)); }
     /*</constructors>*/
     /*<properties>*/

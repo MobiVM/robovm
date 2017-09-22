@@ -49,6 +49,7 @@ import org.robovm.apple.corelocation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public WKUserNotificationInterfaceController() {}
+    protected WKUserNotificationInterfaceController(Handle h, long handle) { super(h, handle); }
     protected WKUserNotificationInterfaceController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -56,8 +57,23 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "didReceiveNotification:withCompletion:")
+    public native void didReceiveLocalNotification(org.robovm.apple.usernotifications.UNNotification notification, @Block VoidBlock1<WKUserNotificationInterfaceType> completionHandler);
+    /**
+     * @since Available in iOS 8.2 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "didReceiveRemoteNotification:withCompletion:")
     public native void didReceiveRemoteNotification(UIRemoteNotification remoteNotification, @Block VoidBlock1<WKUserNotificationInterfaceType> completionHandler);
+    /**
+     * @since Available in iOS 8.2 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "didReceiveLocalNotification:withCompletion:")
     public native void didReceiveLocalNotification(UILocalNotification localNotification, @Block VoidBlock1<WKUserNotificationInterfaceType> completionHandler);
     /*</methods>*/

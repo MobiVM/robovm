@@ -35,12 +35,12 @@ import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
 import org.robovm.apple.opengles.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNPlane/*</name>*/ 
@@ -52,6 +52,7 @@ import org.robovm.apple.opengles.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public SCNPlane() {}
+    protected SCNPlane(Handle h, long handle) { super(h, handle); }
     protected SCNPlane(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
@@ -71,24 +72,12 @@ import org.robovm.apple.opengles.*;
     public native @MachineSizedSInt long getHeightSegmentCount();
     @Property(selector = "setHeightSegmentCount:")
     public native void setHeightSegmentCount(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "cornerRadius")
     public native @MachineSizedFloat double getCornerRadius();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setCornerRadius:")
     public native void setCornerRadius(@MachineSizedFloat double v);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "cornerSegmentCount")
     public native @MachineSizedSInt long getCornerSegmentCount();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "setCornerSegmentCount:")
     public native void setCornerSegmentCount(@MachineSizedSInt long v);
     /*</properties>*/

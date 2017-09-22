@@ -46,6 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GCControllerElement() {}
+    protected GCControllerElement(Handle h, long handle) { super(h, handle); }
     protected GCControllerElement(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/

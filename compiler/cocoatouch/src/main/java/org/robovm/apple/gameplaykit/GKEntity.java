@@ -28,22 +28,28 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.spritekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKEntity/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKEntityPtr extends Ptr<GKEntity, GKEntityPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKEntity.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public GKEntity() {}
+    protected GKEntity(Handle h, long handle) { super(h, handle); }
     protected GKEntity(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public GKEntity(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "components")
@@ -59,5 +65,9 @@ import org.robovm.apple.foundation.*;
     public native void removeComponent(Class<? extends GKComponent> componentClass);
     @Method(selector = "componentForClass:")
     public native GKComponent getComponent(Class<? extends GKComponent> componentClass);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

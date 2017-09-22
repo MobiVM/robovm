@@ -56,7 +56,46 @@ enums:
     MTLStorageMode: {}
     MTLTextureUsage: {}
 
+    MTLPatchType: {}
+    MTLAttributeFormat: {}
+    MTLStepFunction: {}
+    MTLRenderStages: {}
+    MTLTessellationPartitionMode: {}
+    MTLTessellationFactorStepFunction: {}
+    MTLTessellationFactorFormat: {}
+    MTLTessellationControlPointIndexType: {}
+    MTLSamplerBorderColor: {}
+
 classes:
+    MTLAttribute: {}
+    MTLFunctionConstant: {}
+    MTLBufferLayoutDescriptor: {}
+    MTLBufferLayoutDescriptorArray:
+        methods:
+            '-objectAtIndexedSubscript:':
+                name: get
+            '-setObject:atIndexedSubscript:':
+                name: set
+    MTLAttributeDescriptor: {}
+    MTLAttributeDescriptorArray:
+        methods:
+            '-objectAtIndexedSubscript:':
+                name: get
+            '-setObject:atIndexedSubscript:':
+                name: set
+    MTLStageInputOutputDescriptor: {}
+    MTLHeapDescriptor: {}
+    MTLSizeAndAlign: {} # struct
+    MTLFunctionConstantValues:
+        methods:
+            '-setConstantValue:type:atIndex:':
+                trim_after_first_colon: true
+            '-setConstantValues:type:withRange':
+                trim_after_first_colon: true
+            '-setConstantValue:type:withName:':
+                trim_after_first_colon: true
+
+
     MTLCommandBufferError:
         extends: NSError
         annotations: ['@StronglyLinked']
@@ -172,6 +211,15 @@ classes:
                 exclude: true
 
 protocols:
+    MTLHeap:
+        methods:
+            '-newBufferWithLength:options:':
+                  name: newBuffer
+            '-newTextureWithDescriptor:':
+                  name: newTexture
+    MTLFence: {}
+
+
     MTLBlitCommandEncoder: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -201,6 +249,8 @@ protocols:
             '-newTextureWithDescriptor:offset:bytesPerRow:':
                 name: newTexture
                 return_marshaler: NSObject.NoRetainMarshaler
+            '-addDebugMarker:range:':
+                trim_after_first_colon: true
     MTLCommandBuffer: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -219,7 +269,9 @@ protocols:
                 trim_after_first_colon: true
             '-presentDrawable:atTime:':    
                 name: presentDrawableAtTime
-            '-addCompletedHandler:':    
+            '-presentDrawable:afterMinimumDuration:':
+                name: presentDrawableAfterMinimumDuration
+            '-addCompletedHandler:':
                 trim_after_first_colon: true
                 parameters:
                     block:
@@ -296,6 +348,8 @@ protocols:
                 trim_after_first_colon: true
             '-dispatchThreadgroups:threadsPerThreadgroup:':
                 trim_after_first_colon: true
+            '-dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:':
+                name: dispatchThreadgroups
     MTLComputePipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -360,6 +414,11 @@ protocols:
                 trim_after_first_colon: true
             '-supportsTextureSampleCount:':
                 trim_after_first_colon: true
+            '-heapBufferSizeAndAlignWithLength:options:':
+                trim_after_first_colon: true
+            '-newDefaultLibraryWithBundle:error:':
+                name: newDefaultLibrary
+                throws: NSErrorException
     MTLDrawable: # DONE
         methods:
             '-presentAtTime:':
@@ -382,6 +441,11 @@ protocols:
             '-newFunctionWithName:':
                 name: newFunction
                 return_marshaler: NSObject.NoRetainMarshaler
+            '-newFunctionWithName:constantValues:error:':
+                name: newFunction
+                throws: NSErrorException
+            '-newFunctionWithName:constantValues:completionHandler:':
+                name: newFunction
     MTLParallelRenderCommandEncoder: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -389,6 +453,8 @@ protocols:
         methods:
             '-renderCommandEncoder':
                 name: newRenderCommandEncoder
+            '-setColorStoreAction:atIndex:':
+                name: setColorStoreAction
     MTLRenderCommandEncoder: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -490,6 +556,27 @@ protocols:
                 trim_after_first_colon: true
             '-drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:':
                 trim_after_first_colon: true
+            '-setColorStoreAction:atIndex:':
+                name: setColorStoreAction
+            '-drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:':
+                trim_after_first_colon: true
+            '-drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:':
+                trim_after_first_colon: true
+            '-drawPrimitives:indirectBuffer:indirectBufferOffset:':
+                trim_after_first_colon: true
+            '-drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:':
+                trim_after_first_colon: true
+            '-setTessellationFactorBuffer:offset:instanceStride:':
+                trim_after_first_colon: true
+            '-drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:':
+                trim_after_first_colon: true
+            '-drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:':
+                trim_after_first_colon: true
+            '-updateFence:afterStages:':
+                trim_after_first_colon: true
+            '-waitForFence:beforeStages:':
+                trim_after_first_colon: true
+
     MTLRenderPipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -569,6 +656,8 @@ constants:
     MTLResourceCPUCacheModeShift:
         exclude: true
     MTLResourceStorageModeShift:
+        exclude: true
+    MTLResourceHazardTrackingModeShift:
         exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version

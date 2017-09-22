@@ -46,9 +46,16 @@ import org.robovm.apple.coregraphics.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MDLTransform() {}
+    protected MDLTransform(Handle h, long handle) { super(h, handle); }
     protected MDLTransform(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTransformComponent:")
     public MDLTransform(MDLTransformComponent component) { super((SkipInit) null); initObject(init(component)); }
-    public MDLTransform(MatrixFloat4x4 matrix) { super((SkipInit) null); initObject(init(matrix)); }
+    @Method(selector = "initWithTransformComponent:resetsTransform:")
+    public MDLTransform(MDLTransformComponent component, boolean resetsTransform) { super((SkipInit) null); initObject(init(component, resetsTransform)); }
+    @Method(selector = "initWithMatrix:")
+    public MDLTransform(@ByVal MatrixFloat4x4 matrix) { super((SkipInit) null); initObject(init(matrix)); }
+    @Method(selector = "initWithMatrix:resetsTransform:")
+    public MDLTransform(@ByVal MatrixFloat4x4 matrix, boolean resetsTransform) { super((SkipInit) null); initObject(init(matrix, resetsTransform)); }
     /*</constructors>*/
     public MDLTransform(boolean identity) {
         super((SkipInit) null);
@@ -56,29 +63,35 @@ import org.robovm.apple.coregraphics.*;
     }
     /*<properties>*/
     @Property(selector = "translation")
-    public native VectorFloat3 getTranslation();
+    public native @ByVal VectorFloat3 getTranslation();
     @Property(selector = "setTranslation:")
-    public native void setTranslation(VectorFloat3 v);
+    public native void setTranslation(@ByVal VectorFloat3 v);
     @Property(selector = "rotation")
-    public native VectorFloat3 getRotation();
+    public native @ByVal VectorFloat3 getRotation();
     @Property(selector = "setRotation:")
-    public native void setRotation(VectorFloat3 v);
+    public native void setRotation(@ByVal VectorFloat3 v);
     @Property(selector = "shear")
-    public native VectorFloat3 getShear();
+    public native @ByVal VectorFloat3 getShear();
     @Property(selector = "setShear:")
-    public native void setShear(VectorFloat3 v);
+    public native void setShear(@ByVal VectorFloat3 v);
     @Property(selector = "scale")
-    public native VectorFloat3 getScale();
+    public native @ByVal VectorFloat3 getScale();
     @Property(selector = "setScale:")
-    public native void setScale(VectorFloat3 v);
+    public native void setScale(@ByVal VectorFloat3 v);
     @Property(selector = "matrix")
-    public native MatrixFloat4x4 getMatrix();
-    @Property(selector = "setMatrix:", strongRef = true)
-    public native void setMatrix(MatrixFloat4x4 v);
+    public native @ByVal MatrixFloat4x4 getMatrix();
+    @Property(selector = "setMatrix:")
+    public native void setMatrix(@ByVal MatrixFloat4x4 v);
+    @Property(selector = "resetsTransform")
+    public native boolean resetsTransform();
+    @Property(selector = "setResetsTransform:")
+    public native void setResetsTransform(boolean v);
     @Property(selector = "minimumTime")
     public native double getMinimumTime();
     @Property(selector = "maximumTime")
     public native double getMaximumTime();
+    @Property(selector = "keyTimes")
+    public native NSArray<NSNumber> getKeyTimes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -86,34 +99,40 @@ import org.robovm.apple.coregraphics.*;
     protected native @Pointer long initWithIdentity();
     @Method(selector = "initWithTransformComponent:")
     protected native @Pointer long init(MDLTransformComponent component);
+    @Method(selector = "initWithTransformComponent:resetsTransform:")
+    protected native @Pointer long init(MDLTransformComponent component, boolean resetsTransform);
     @Method(selector = "initWithMatrix:")
-    protected native @Pointer long init(MatrixFloat4x4 matrix);
+    protected native @Pointer long init(@ByVal MatrixFloat4x4 matrix);
+    @Method(selector = "initWithMatrix:resetsTransform:")
+    protected native @Pointer long init(@ByVal MatrixFloat4x4 matrix, boolean resetsTransform);
     @Method(selector = "setIdentity")
     public native void setIdentity();
     @Method(selector = "translationAtTime:")
-    public native VectorFloat3 getTranslation(double time);
+    public native @ByVal VectorFloat3 getTranslation(double time);
     @Method(selector = "rotationAtTime:")
-    public native VectorFloat3 getRotation(double time);
+    public native @ByVal VectorFloat3 getRotation(double time);
     @Method(selector = "shearAtTime:")
-    public native VectorFloat3 getShear(double time);
+    public native @ByVal VectorFloat3 getShear(double time);
     @Method(selector = "scaleAtTime:")
-    public native VectorFloat3 getScale(double time);
+    public native @ByVal VectorFloat3 getScale(double time);
+    @Method(selector = "setMatrix:forTime:")
+    public native void setMatrix(@ByVal MatrixFloat4x4 matrix, double time);
     @Method(selector = "setTranslation:forTime:")
-    public native void setTranslation(VectorFloat3 translation, double time);
+    public native void setTranslation(@ByVal VectorFloat3 translation, double time);
     @Method(selector = "setRotation:forTime:")
-    public native void setRotation(VectorFloat3 rotation, double time);
+    public native void setRotation(@ByVal VectorFloat3 rotation, double time);
     @Method(selector = "setShear:forTime:")
-    public native void setShear(VectorFloat3 shear, double time);
+    public native void setShear(@ByVal VectorFloat3 shear, double time);
     @Method(selector = "setScale:forTime:")
-    public native void setScale(VectorFloat3 scale, double time);
+    public native void setScale(@ByVal VectorFloat3 scale, double time);
     @Method(selector = "rotationMatrixAtTime:")
-    public native MatrixFloat4x4 getRotationMatrix(double time);
+    public native @ByVal MatrixFloat4x4 getRotationMatrix(double time);
     @Method(selector = "setLocalTransform:forTime:")
-    public native void setLocalTransform(MatrixFloat4x4 transform, double time);
+    public native void setLocalTransform(@ByVal MatrixFloat4x4 transform, double time);
     @Method(selector = "setLocalTransform:")
-    public native void setLocalTransform(MatrixFloat4x4 transform);
+    public native void setLocalTransform(@ByVal MatrixFloat4x4 transform);
     @Method(selector = "localTransformAtTime:")
-    public native MatrixFloat4x4 getLocalTransform(double time);
+    public native @ByVal MatrixFloat4x4 getLocalTransform(double time);
     /*</methods>*/
     @Method(selector = "globalTransformWithObject:atTime:")
     public static native MatrixFloat4x4 getGlobalTransform(MDLObject object, double time);

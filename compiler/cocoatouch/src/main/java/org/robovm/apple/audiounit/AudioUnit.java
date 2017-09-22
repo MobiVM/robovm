@@ -528,6 +528,11 @@ import org.robovm.apple.uikit.*;
     }
     /*<methods>*/
     /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Bridge(symbol="AudioComponentInstantiate", optional=true)
+    public static native void instantiate(AudioComponent inComponent, AudioComponentInstantiationOptions inOptions, @Block VoidBlock2<AudioComponentInstance, OSStatus> inCompletionHandler);
+    /**
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="AudioUnitInitialize", optional=true)

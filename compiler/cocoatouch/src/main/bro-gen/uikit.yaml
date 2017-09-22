@@ -859,6 +859,8 @@ classes:
                 parameters:
                     options:
                         type: UIApplicationOpenURLOptions
+            '-setAlternateIconName:completionHandler:':
+                name: setAlternateIcon
     UIApplicationShortcutIcon: # DONE
         methods:
             '+iconWith.*':
@@ -3602,6 +3604,9 @@ protocols:
                 name: handleOpenURL
             '-application:openURL:sourceApplication:annotation:':
                 name: openURL
+                parameters:
+                    annotation:
+                        type: NSPropertyList
             '-application:openURL:options:':
                 name: openURL
                 parameters:
@@ -3737,6 +3742,8 @@ protocols:
                 name: canMoveItemAt
             '-collectionView:moveItemAtIndexPath:toIndexPath:':
                 name: moveItemAt
+            '-collectionView:indexPathForIndexTitle:atIndex:':
+                name: indexPathForIndexTitle
     UICollectionViewDataSourcePrefetching: # DONE
         methods:
             '-collectionView:prefetchItemsAtIndexPaths:':
@@ -4963,9 +4970,6 @@ values:
             Range:
                 type: NSRange
                 hint: Struct<?>
-    UILayoutPriority(.*):
-        class: UILayoutPriority
-        name: '#{g[0]}'
 
     # NSRunLoopMode
     UI(Tracking)RunLoopMode:
@@ -5501,6 +5505,10 @@ constants:
 
     UISegmentedControl(NoSegment):
         class: UISegmentedControl
+        name: '#{g[0]}'
+
+    UILayoutPriority(.*):
+        class: UILayoutPriority
         name: '#{g[0]}'
 
     # Make sure we don't miss any constants if new ones are introduced in a later UIKit

@@ -47,7 +47,9 @@ import org.robovm.apple.contacts.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CKModifySubscriptionsOperation() {}
+    protected CKModifySubscriptionsOperation(Handle h, long handle) { super(h, handle); }
     protected CKModifySubscriptionsOperation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSubscriptionsToSave:subscriptionIDsToDelete:")
     public CKModifySubscriptionsOperation(NSArray<CKSubscription> subscriptionsToSave, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> subscriptionIDsToDelete) { super((SkipInit) null); initObject(init(subscriptionsToSave, subscriptionIDsToDelete)); }
     /*</constructors>*/
     /*<properties>*/
