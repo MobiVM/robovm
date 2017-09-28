@@ -37,7 +37,7 @@ import org.robovm.compiler.util.ToolchainUtil;
  * Contains info on an SDK installed on the system.
  */
 public class SDK implements Comparable<SDK> {
-    private static final String SDK_XCODE_8_3_AND_UP_INSTALL_LOCATION = "/Library/Developer/CoreSimulator/Profiles/Runtimes";
+    private static final String ADDITIONAL_SDK_LOCATION = "/Library/Developer/CoreSimulator/Profiles/Runtimes";
     private static final String IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX = "iOS ([0-9]{1,2}).([0-9]{1,2}).simruntime";
     private static final Pattern IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX_PATTERN = Pattern.compile(IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX);
 
@@ -56,11 +56,8 @@ public class SDK implements Comparable<SDK> {
     private String platformName;
 
     /**
-     * Create an SDK instance for an SDK downloaded by Xcode  8.2 or before.
-     *
-     * @deprecated since 9-sep-2017, doesn't support SDKs downloaded with Xcode 8.3 and up
+     * Create an SDK instance for an SDK root which is bundled with Xcode.
      */
-    @Deprecated
     public static SDK create(File root) throws Exception {
         File sdkSettingsFile = new File(root, "SDKSettings.plist");
         File sdkSysVersionFile = new File(root, "System/Library/CoreServices/SystemVersion.plist");
@@ -115,15 +112,15 @@ public class SDK implements Comparable<SDK> {
     private static List<SDK> listSDKs(String platform) {
         List<SDK> allSdks = new ArrayList<>();
 
-        allSdks.addAll(listOldFileFormatSdks(platform));
+        allSdks.addAll(listBundledFileFormatSdks(platform));
 
-        allSdks.addAll(listNewFileFormatSdks());
+        allSdks.addAll(listAdditionalFileFormatSdks());
 
         return allSdks;
     }
 
-    private static Collection<? extends SDK> listNewFileFormatSdks() {
-        File sdksDir = new File(SDK_XCODE_8_3_AND_UP_INSTALL_LOCATION);
+    private static Collection<? extends SDK> listAdditionalFileFormatSdks() {
+        File sdksDir = new File(ADDITIONAL_SDK_LOCATION);
         if (!sdksDir.isDirectory()) {
             return emptyList();
         }
@@ -132,7 +129,7 @@ public class SDK implements Comparable<SDK> {
 
         for (File sdkRoot : notNull(sdksDir.listFiles())) {
             if (sdkRoot.getName().matches(IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX)) {
-                sdks.add(createNewFileFormatSdk(sdkRoot));
+                sdks.add(createAdditionalFileFormatSdk(sdkRoot));
             }
         }
 
@@ -143,7 +140,7 @@ public class SDK implements Comparable<SDK> {
      * New directory format SDKs, as downloaded by Xcode version >= 8.3.
      * <p>Fills only some of the data of the SDK, but enough to use it as Simulator.</p>
      */
-    static SDK createNewFileFormatSdk(File sdkRootDir) {
+    static SDK createAdditionalFileFormatSdk(File sdkRootDir) {
 
         Matcher matcher = IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX_PATTERN.matcher(sdkRootDir.getName());
         Validate.isTrue(matcher.find());
@@ -166,9 +163,9 @@ public class SDK implements Comparable<SDK> {
     }
 
     /**
-     * Old style SDKs, as downloaded by Xcode version < 8.3.
+     * List SDKs bundled with Xcode.
      */
-    private static Collection<? extends SDK> listOldFileFormatSdks(String platform) {
+    private static Collection<? extends SDK> listBundledFileFormatSdks(String platform) {
         try {
             List<SDK> sdks = new ArrayList<SDK>();
             File sdksDir = new File(ToolchainUtil.findXcodePath() + "/Platforms/"
