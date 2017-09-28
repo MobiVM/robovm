@@ -63,12 +63,16 @@ NSString *const defaultMimeType = @"application/octet-stream";
 
 - (NSURL *)JARFileURL {
     NSString *host = [[self host] stringByReplacingOccurrencesOfString:@"%3D" withString:@"="];
-    NSData *jarURLData = [[NSData alloc] initWithBase64EncodedString:host options:0];
-    NSString *jarURLString = [[NSString alloc] initWithData:jarURLData encoding:NSUTF8StringEncoding];
-    NSURL *jarURL = [NSURL URLWithString:jarURLString];
-    [jarURLData release];
-    [jarURLString release];
-    return jarURL;
+    if(host) {
+        NSData *jarURLData = [[NSData alloc] initWithBase64EncodedString:host options:0];
+        NSString *jarURLString = [[NSString alloc] initWithData:jarURLData encoding:NSUTF8StringEncoding];
+        NSURL *jarURL = [NSURL URLWithString:jarURLString];
+        [jarURLData release];
+        [jarURLString release];
+        return jarURL;
+    } else {
+        return nil;
+    }
 }
 @end
 
