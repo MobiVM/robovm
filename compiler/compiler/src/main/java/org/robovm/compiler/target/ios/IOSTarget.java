@@ -359,13 +359,6 @@ public class IOSTarget extends AbstractTarget {
                 boolean getTaskAllow = provisioningProfile.getType() == Type.Development;
                 signFrameworks(installDir, getTaskAllow);
                 codesignApp(signIdentity, getOrCreateEntitlementsPList(getTaskAllow, getBundleId()), installDir);
-                // For some odd reason there needs to be a symbolic link in the
-                // root of
-                // the app bundle named CodeResources pointing at
-                // _CodeSignature/CodeResources
-                new Executor(config.getLogger(), "ln")
-                        .args("-f", "-s", "_CodeSignature/CodeResources", new File(installDir, "CodeResources"))
-                        .exec();
             }
         }
     }
