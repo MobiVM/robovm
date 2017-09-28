@@ -10,9 +10,9 @@ import org.junit.Test;
 public class SDKTest {
 
     @Test
-    public void createNewFileFormatSdkWorksFor8_1() {
+    public void createAdditionalFileFormatSdkWorksFor8_1() {
         File rootDir = new File("/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 8.1.simruntime");
-        SDK sdk = SDK.createNewFileFormatSdk(rootDir);
+        SDK sdk = SDK.createAdditionalFileFormatSdk(rootDir);
 
         assertEquals(8, sdk.getMajor());
         assertEquals(1, sdk.getMinor());
@@ -20,9 +20,9 @@ public class SDKTest {
     }
 
     @Test
-    public void createNewFileFormatSdkWorksFor10_11() {
+    public void createAdditionalFileFormatSdkWorksFor10_11() {
         File rootDir = new File("/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 10.11.simruntime");
-        SDK sdk = SDK.createNewFileFormatSdk(rootDir);
+        SDK sdk = SDK.createAdditionalFileFormatSdk(rootDir);
 
         assertEquals(10, sdk.getMajor());
         assertEquals(11, sdk.getMinor());
