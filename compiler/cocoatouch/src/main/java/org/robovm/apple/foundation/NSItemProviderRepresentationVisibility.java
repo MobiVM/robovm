@@ -40,31 +40,36 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnit/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/NSItemProviderRepresentationVisibility/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    All(0L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Team(1L),
+    OwnProcess(3L);
+    /*</values>*/
 
-    /*<ptr>*/public static class NSUnitPtr extends Ptr<NSUnit, NSUnitPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSUnit.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected NSUnit() {}
-    protected NSUnit(Handle h, long handle) { super(h, handle); }
-    protected NSUnit(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithSymbol:")
-    public NSUnit(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "symbol")
-    public native String getSymbol();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/NSItemProviderRepresentationVisibility/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/NSItemProviderRepresentationVisibility/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NSItemProviderRepresentationVisibility/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/NSItemProviderRepresentationVisibility/*</name>*/.class.getName());
+    }
 }

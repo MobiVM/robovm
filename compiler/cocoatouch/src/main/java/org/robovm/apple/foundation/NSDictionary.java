@@ -598,13 +598,13 @@ import org.robovm.apple.dispatch.*;
     protected native boolean writeFile(String path, boolean atomically);
     @Method(selector = "writeToURL:atomically:")
     public native boolean write(NSURL url, boolean atomically);
-    @Method(selector = "initWithDictionary:")
-    protected native @Pointer long init(NSDictionary<?, ?> otherDictionary);
-    @Method(selector = "initWithObjects:forKeys:")
-    protected native @Pointer long init(NSArray<?> objects, NSArray<?> keys);
     @Method(selector = "dictionaryWithContentsOfFile:")
     protected static native NSDictionary<?, ?> read(String path);
     @Method(selector = "dictionaryWithContentsOfURL:")
     public static native NSDictionary<?, ?> read(NSURL url);
+    @Method(selector = "initWithDictionary:")
+    protected native @Pointer long init(NSDictionary<?, ?> otherDictionary);
+    @Method(selector = "initWithObjects:forKeys:")
+    protected native @Pointer long init(NSArray<?> objects, NSArray<?> keys);
     /*</methods>*/
 }

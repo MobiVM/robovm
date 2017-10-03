@@ -40,31 +40,29 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnit/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFileProviderService/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSUnitPtr extends Ptr<NSUnit, NSUnitPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSUnit.class); }/*</bind>*/
+    /*<ptr>*/public static class NSFileProviderServicePtr extends Ptr<NSFileProviderService, NSFileProviderServicePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NSFileProviderService.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NSUnit() {}
-    protected NSUnit(Handle h, long handle) { super(h, handle); }
-    protected NSUnit(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithSymbol:")
-    public NSUnit(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
+    public NSFileProviderService() {}
+    protected NSFileProviderService(Handle h, long handle) { super(h, handle); }
+    protected NSFileProviderService(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "symbol")
-    public native String getSymbol();
+    @Property(selector = "name")
+    public native NSString getName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
+    @Method(selector = "getFileProviderConnectionWithCompletionHandler:")
+    public native void getFileProviderConnectionWithCompletionHandler(@Block VoidBlock2<NSXPCConnection, NSError> completionHandler);
     /*</methods>*/
 }

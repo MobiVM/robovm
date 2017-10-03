@@ -112,6 +112,11 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "systemUptime")
     public native double getSystemUptime();
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "thermalState")
+    public native NSProcessInfoThermalState getThermalState();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "isLowPowerModeEnabled")
@@ -119,6 +124,11 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="NSProcessInfoThermalStateDidChangeNotification", optional=true)
+    public static native NSString ThermalStateDidChangeNotification();
     /**
      * @since Available in iOS 9.0 and later.
      */

@@ -148,7 +148,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "expressionForAggregate:")
-    public static native NSExpression createForAggregate(NSArray<?> subexpressions);
+    public static native NSExpression createForAggregate(NSArray<NSExpression> subexpressions);
     /**
      * @since Available in iOS 3.0 and later.
      */
@@ -168,7 +168,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 3.0 and later.
      */
     @Method(selector = "expressionForSubquery:usingIteratorVariable:predicate:")
-    public static native NSExpression createForSubquery(NSExpression expression, String variable, NSObject predicate);
+    public static native NSExpression createForSubquery(NSExpression expression, String variable, NSPredicate predicate);
     /**
      * @since Available in iOS 3.0 and later.
      */

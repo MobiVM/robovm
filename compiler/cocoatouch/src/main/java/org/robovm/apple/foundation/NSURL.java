@@ -45,7 +45,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSURL/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSItemProviderReading, NSItemProviderWriting/*</implements>*/ {
 
     /*<ptr>*/public static class NSURLPtr extends Ptr<NSURL, NSURLPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSURL.class); }/*</bind>*/
@@ -194,6 +194,12 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
      */
     @Property(selector = "URLByResolvingSymlinksInPath")
     public native NSURL getURLByResolvingSymlinksInPath();
+    @Property(selector = "readableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getReadableTypeIdentifiersForItemProvider();
+    @Property(selector = "writableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getWritableTypeIdentifiersForItemProvider0();
+    @Property(selector = "writableTypeIdentifiersForItemProvider")
+    public native NSArray<NSString> getWritableTypeIdentifiersForItemProvider();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -606,5 +612,19 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
      */
     @Method(selector = "URLByAppendingPathExtension:")
     public native NSURL newURLByAppendingPathExtension(String pathExtension);
+    public static NSURL createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSURL result = createProviderDataObject(data, typeIdentifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "objectWithItemProviderData:typeIdentifier:error:")
+    private static native NSURL createProviderDataObject(NSData data, String typeIdentifier, NSError.NSErrorPtr outError);
+    @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
+    public native NSItemProviderRepresentationVisibility getItemProviderVisibility(String typeIdentifier);
+    @Method(selector = "loadDataWithTypeIdentifier:forItemProviderCompletionHandler:")
+    public native NSProgress loadData(String typeIdentifier, @Block VoidBlock2<NSData, NSError> completionHandler);
+    @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
+    public static native NSItemProviderRepresentationVisibility getItemProviderVisibility0(String typeIdentifier);
     /*</methods>*/
 }

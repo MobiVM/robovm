@@ -85,6 +85,16 @@ import org.robovm.apple.coreservices.CFProxy;
     @Property(selector = "setAllowsCellularAccess:")
     public native void setAllowsCellularAccess(boolean v);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "waitsForConnectivity")
+    public native boolean isWaitsForConnectivity();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setWaitsForConnectivity:")
+    public native void setWaitsForConnectivity(boolean v);
+    /**
      * @since Available in iOS 7.0 and later.
      */
     @Property(selector = "isDiscretionary")
@@ -176,6 +186,16 @@ import org.robovm.apple.coreservices.CFProxy;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<ObjCClass> getProtocolClasses();
     @Property(selector = "setProtocolClasses:")
     public native void setProtocolClasses(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<ObjCClass> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "multipathServiceType")
+    public native NSURLSessionMultipathServiceType getMultipathServiceType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setMultipathServiceType:")
+    public native void setMultipathServiceType(NSURLSessionMultipathServiceType v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

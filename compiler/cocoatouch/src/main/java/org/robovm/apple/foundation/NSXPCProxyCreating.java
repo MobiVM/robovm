@@ -39,32 +39,31 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 10.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnit/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSUnitPtr extends Ptr<NSUnit, NSUnitPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSUnit.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSXPCProxyCreating/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected NSUnit() {}
-    protected NSUnit(Handle h, long handle) { super(h, handle); }
-    protected NSUnit(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithSymbol:")
-    public NSUnit(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
-    /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "symbol")
-    public native String getSymbol();
+    
     /*</properties>*/
-    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
+    @Method(selector = "remoteObjectProxy")
+    NSObject remoteObjectProxy();
+    @Method(selector = "remoteObjectProxyWithErrorHandler:")
+    NSObject remoteObjectProxyWithErrorHandler(@Block VoidBlock1<NSError> handler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "synchronousRemoteObjectProxyWithErrorHandler:")
+    NSObject synchronousRemoteObjectProxyWithErrorHandler(@Block VoidBlock1<NSError> handler);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

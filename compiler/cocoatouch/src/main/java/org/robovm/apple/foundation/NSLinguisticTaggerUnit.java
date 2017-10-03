@@ -39,32 +39,33 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 10.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnit/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSUnitPtr extends Ptr<NSUnit, NSUnitPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSUnit.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/NSLinguisticTaggerUnit/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Word(0L),
+    Sentence(1L),
+    Paragraph(2L),
+    Document(3L);
+    /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected NSUnit() {}
-    protected NSUnit(Handle h, long handle) { super(h, handle); }
-    protected NSUnit(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithSymbol:")
-    public NSUnit(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "symbol")
-    public native String getSymbol();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/NSLinguisticTaggerUnit/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/NSLinguisticTaggerUnit/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NSLinguisticTaggerUnit/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/NSLinguisticTaggerUnit/*</name>*/.class.getName());
+    }
 }

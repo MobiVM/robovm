@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSURLSessionTask/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSProgressReporting/*</implements>*/ {
 
     /*<ptr>*/public static class NSURLSessionTaskPtr extends Ptr<NSURLSessionTask, NSURLSessionTaskPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSURLSessionTask.class); }/*</bind>*/
@@ -65,6 +65,41 @@ import org.robovm.apple.dispatch.*;
     public native NSURLRequest getCurrentRequest();
     @Property(selector = "response")
     public native NSURLResponse getResponse();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "progress")
+    public native NSProgress getProgress();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "earliestBeginDate")
+    public native NSDate getEarliestBeginDate();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setEarliestBeginDate:")
+    public native void setEarliestBeginDate(NSDate v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "countOfBytesClientExpectsToSend")
+    public native long getCountOfBytesClientExpectsToSend();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setCountOfBytesClientExpectsToSend:")
+    public native void setCountOfBytesClientExpectsToSend(long v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "countOfBytesClientExpectsToReceive")
+    public native long getCountOfBytesClientExpectsToReceive();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setCountOfBytesClientExpectsToReceive:")
+    public native void setCountOfBytesClientExpectsToReceive(long v);
     @Property(selector = "countOfBytesReceived")
     public native long getCountOfBytesReceived();
     @Property(selector = "countOfBytesSent")

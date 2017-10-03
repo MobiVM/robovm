@@ -39,32 +39,31 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 10.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnit/*</name>*/ 
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSXPCProxyCreatingAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSXPCProxyCreating/*</implements>*/ {
 
-    /*<ptr>*/public static class NSUnitPtr extends Ptr<NSUnit, NSUnitPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSUnit.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected NSUnit() {}
-    protected NSUnit(Handle h, long handle) { super(h, handle); }
-    protected NSUnit(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithSymbol:")
-    public NSUnit(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "symbol")
-    public native String getSymbol();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
+    @NotImplemented("remoteObjectProxy")
+    public NSObject remoteObjectProxy() { return null; }
+    @NotImplemented("remoteObjectProxyWithErrorHandler:")
+    public NSObject remoteObjectProxyWithErrorHandler(@Block VoidBlock1<NSError> handler) { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @NotImplemented("synchronousRemoteObjectProxyWithErrorHandler:")
+    public NSObject synchronousRemoteObjectProxyWithErrorHandler(@Block VoidBlock1<NSError> handler) { return null; }
     /*</methods>*/
 }

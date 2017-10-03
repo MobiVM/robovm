@@ -40,31 +40,32 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 6.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnit/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/NSXPCConnectionOptions/*</name>*/ extends Bits</*<name>*/NSXPCConnectionOptions/*</name>*/> {
+    /*<values>*/
+    public static final NSXPCConnectionOptions None = new NSXPCConnectionOptions(0L);
+    public static final NSXPCConnectionOptions Privileged = new NSXPCConnectionOptions(4096L);
+    /*</values>*/
 
-    /*<ptr>*/public static class NSUnitPtr extends Ptr<NSUnit, NSUnitPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSUnit.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected NSUnit() {}
-    protected NSUnit(Handle h, long handle) { super(h, handle); }
-    protected NSUnit(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithSymbol:")
-    public NSUnit(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "symbol")
-    public native String getSymbol();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private static final /*<name>*/NSXPCConnectionOptions/*</name>*/[] values = _values(/*<name>*/NSXPCConnectionOptions/*</name>*/.class);
+
+    public /*<name>*/NSXPCConnectionOptions/*</name>*/(long value) { super(value); }
+    private /*<name>*/NSXPCConnectionOptions/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/NSXPCConnectionOptions/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/NSXPCConnectionOptions/*</name>*/(value, mask);
+    }
+    protected /*<name>*/NSXPCConnectionOptions/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/NSXPCConnectionOptions/*</name>*/[] values() {
+        return values.clone();
+    }
 }

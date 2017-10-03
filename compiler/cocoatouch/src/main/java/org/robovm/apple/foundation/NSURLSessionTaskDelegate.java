@@ -54,6 +54,16 @@ import org.robovm.apple.dispatch.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "URLSession:task:willBeginDelayedRequest:completionHandler:")
+    void willBeginDelayedRequest(NSURLSession session, NSURLSessionTask task, NSURLRequest request, @Block VoidBlock2<NSURLSessionDelayedRequestDisposition, NSURLRequest> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "URLSession:taskIsWaitingForConnectivity:")
+    void taskIsWaitingForConnectivity(NSURLSession session, NSURLSessionTask task);
     @Method(selector = "URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:")
     void willPerformHTTPRedirection(NSURLSession session, NSURLSessionTask task, NSHTTPURLResponse response, NSURLRequest request, @Block VoidBlock1<NSURLRequest> completionHandler);
     @Method(selector = "URLSession:task:didReceiveChallenge:completionHandler:")

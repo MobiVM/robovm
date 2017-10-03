@@ -42,8 +42,8 @@ import org.robovm.apple.dispatch.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSDirectoryEnumerator/*</name>*/ 
-    extends /*<extends>*/NSEnumerator/*</extends>*/ <NSObject>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSDirectoryEnumerator/*</name>*/ <T extends NSObject>
+    extends /*<extends>*/NSEnumerator/*</extends>*/ <T>
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class NSDirectoryEnumeratorPtr extends Ptr<NSDirectoryEnumerator, NSDirectoryEnumeratorPtr> {}/*</ptr>*/

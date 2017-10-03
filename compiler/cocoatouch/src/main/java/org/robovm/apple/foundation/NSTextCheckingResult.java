@@ -95,13 +95,13 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "phoneNumber")
     public native String getPhoneNumber();
-    @Property(selector = "addressComponents")
-    public native NSTextCheckingAddressComponents getAddressComponents();
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Property(selector = "numberOfRanges")
     public native @MachineSizedUInt long getNumberOfRanges();
+    @Property(selector = "addressComponents")
+    public native NSTextCheckingAddressComponents getAddressComponents();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -120,6 +120,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "rangeAtIndex:")
     public native @ByVal NSRange getRangeAt(@MachineSizedUInt long idx);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "rangeWithName:")
+    public native @ByVal NSRange rangeWithName(String name);
     /**
      * @since Available in iOS 5.0 and later.
      */

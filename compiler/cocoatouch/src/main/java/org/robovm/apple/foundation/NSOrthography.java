@@ -133,5 +133,10 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "dominantLanguageForScript:")
     public native String getDominantLanguageForScript(String script);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "defaultOrthographyForLanguage:")
+    public static native NSOrthography defaultOrthographyForLanguage(String language);
     /*</methods>*/
 }

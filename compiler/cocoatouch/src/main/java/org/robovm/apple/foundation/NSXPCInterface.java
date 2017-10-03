@@ -40,31 +40,39 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 6.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnit/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSXPCInterface/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSUnitPtr extends Ptr<NSUnit, NSUnitPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSUnit.class); }/*</bind>*/
+    /*<ptr>*/public static class NSXPCInterfacePtr extends Ptr<NSXPCInterface, NSXPCInterfacePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NSXPCInterface.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NSUnit() {}
-    protected NSUnit(Handle h, long handle) { super(h, handle); }
-    protected NSUnit(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithSymbol:")
-    public NSUnit(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
+    public NSXPCInterface() {}
+    protected NSXPCInterface(Handle h, long handle) { super(h, handle); }
+    protected NSXPCInterface(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "symbol")
-    public native String getSymbol();
+    @Property(selector = "protocol")
+    public native ObjCProtocol getProtocol();
+    @Property(selector = "setProtocol:", strongRef = true)
+    public native void setProtocol(ObjCProtocol v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
+    @Method(selector = "setClasses:forSelector:argumentIndex:ofReply:")
+    public native void setClasses(NSSet<?> classes, Selector sel, @MachineSizedUInt long arg, boolean ofReply);
+    @Method(selector = "classesForSelector:argumentIndex:ofReply:")
+    public native NSSet<?> getClassesForSelector(Selector sel, @MachineSizedUInt long arg, boolean ofReply);
+    @Method(selector = "setInterface:forSelector:argumentIndex:ofReply:")
+    public native void setInterface(NSXPCInterface ifc, Selector sel, @MachineSizedUInt long arg, boolean ofReply);
+    @Method(selector = "interfaceForSelector:argumentIndex:ofReply:")
+    public native NSXPCInterface getInterfaceForSelector(Selector sel, @MachineSizedUInt long arg, boolean ofReply);
+    @Method(selector = "interfaceWithProtocol:")
+    public static native NSXPCInterface interfaceWithProtocol(ObjCProtocol protocol);
     /*</methods>*/
 }

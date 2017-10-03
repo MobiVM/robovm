@@ -40,31 +40,41 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 6.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnit/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSXPCListener/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSUnitPtr extends Ptr<NSUnit, NSUnitPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSUnit.class); }/*</bind>*/
+    /*<ptr>*/public static class NSXPCListenerPtr extends Ptr<NSXPCListener, NSXPCListenerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NSXPCListener.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NSUnit() {}
-    protected NSUnit(Handle h, long handle) { super(h, handle); }
-    protected NSUnit(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithSymbol:")
-    public NSUnit(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
+    protected NSXPCListener() {}
+    protected NSXPCListener(Handle h, long handle) { super(h, handle); }
+    protected NSXPCListener(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "symbol")
-    public native String getSymbol();
+    @Property(selector = "delegate")
+    public native NSXPCListenerDelegate getDelegate();
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(NSXPCListenerDelegate v);
+    @Property(selector = "endpoint")
+    public native NSXPCListenerEndpoint getEndpoint();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
+    @Method(selector = "resume")
+    public native void resume();
+    @Method(selector = "suspend")
+    public native void suspend();
+    @Method(selector = "invalidate")
+    public native void invalidate();
+    @Method(selector = "serviceListener")
+    public static native NSXPCListener serviceListener();
+    @Method(selector = "anonymousListener")
+    public static native NSXPCListener anonymousListener();
     /*</methods>*/
 }

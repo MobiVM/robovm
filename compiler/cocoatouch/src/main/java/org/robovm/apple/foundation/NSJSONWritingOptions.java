@@ -48,6 +48,10 @@ public final class /*<name>*/NSJSONWritingOptions/*</name>*/ extends Bits</*<nam
     /*<values>*/
     public static final NSJSONWritingOptions None = new NSJSONWritingOptions(0L);
     public static final NSJSONWritingOptions PrettyPrinted = new NSJSONWritingOptions(1L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final NSJSONWritingOptions SortedKeys = new NSJSONWritingOptions(2L);
     /*</values>*/
 
     private static final /*<name>*/NSJSONWritingOptions/*</name>*/[] values = _values(/*<name>*/NSJSONWritingOptions/*</name>*/.class);

@@ -141,9 +141,13 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 8.0 and later.
      */
     public static final NSURLUbiquitousItemProperty ContainerDisplayName = new NSURLUbiquitousItemProperty("ContainerDisplayName");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final NSURLUbiquitousItemProperty IsShared = new NSURLUbiquitousItemProperty("IsShared");
     /*</constants>*/
     
-    private static /*<name>*/NSURLUbiquitousItemProperty/*</name>*/[] values = new /*<name>*/NSURLUbiquitousItemProperty/*</name>*/[] {/*<value_list>*/IsUbiquitousItem, HasUnresolvedConflicts, IsDownloaded, IsDownloading, IsUploaded, IsUploading, DownloadingStatus, DownloadingError, UploadingError, DownloadRequested, ContainerDisplayName/*</value_list>*/};
+    private static /*<name>*/NSURLUbiquitousItemProperty/*</name>*/[] values = new /*<name>*/NSURLUbiquitousItemProperty/*</name>*/[] {/*<value_list>*/IsUbiquitousItem, HasUnresolvedConflicts, IsDownloaded, IsDownloading, IsUploaded, IsUploading, DownloadingStatus, DownloadingError, UploadingError, DownloadRequested, ContainerDisplayName, IsShared/*</value_list>*/};
     
     /*<name>*/NSURLUbiquitousItemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -223,6 +227,11 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="NSURLUbiquitousItemContainerDisplayNameKey", optional=true)
         public static native NSString ContainerDisplayName();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="NSURLUbiquitousItemIsSharedKey", optional=true)
+        public static native NSString IsShared();
         /*</values>*/
     }
 }

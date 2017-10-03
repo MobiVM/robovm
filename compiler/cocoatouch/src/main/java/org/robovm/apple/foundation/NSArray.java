@@ -562,12 +562,12 @@ import org.robovm.apple.dispatch.*;
     protected native @MachineSizedUInt long indexOfObject(NSObject anObject);
     @Method(selector = "subarrayWithRange:")
     protected native NSArray<T> getSubarray(@ByVal NSRange range);
+    @Method(selector = "initWithArray:")
+    protected native @Pointer long init(NSArray<?> array);
     @Method(selector = "writeToFile:atomically:")
     protected native boolean writeFile(String path, boolean atomically);
     @Method(selector = "writeToURL:atomically:")
     public native boolean write(NSURL url, boolean atomically);
-    @Method(selector = "initWithArray:")
-    protected native @Pointer long init(NSArray<?> array);
     @Method(selector = "arrayWithContentsOfFile:")
     protected static native NSArray<?> readFile(String path);
     @Method(selector = "arrayWithContentsOfURL:")

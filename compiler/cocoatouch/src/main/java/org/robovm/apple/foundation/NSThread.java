@@ -144,6 +144,11 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 2.0 and later.
      */
+    @Property(selector = "isMainThread")
+    public static native boolean isCurrentThreadMainThread();
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
     @Property(selector = "mainThread")
     public static native NSThread getMainThread();
     /**
