@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,27 +35,28 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreAudioKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CABTMIDILocalPeripheralViewController/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AUViewController/*</name>*/ 
     extends /*<extends>*/UIViewController/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSExtensionRequestHandling/*</implements>*/ {
 
-    /*<ptr>*/public static class CABTMIDILocalPeripheralViewControllerPtr extends Ptr<CABTMIDILocalPeripheralViewController, CABTMIDILocalPeripheralViewControllerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CABTMIDILocalPeripheralViewController.class); }/*</bind>*/
+    /*<ptr>*/public static class AUViewControllerPtr extends Ptr<AUViewController, AUViewControllerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AUViewController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CABTMIDILocalPeripheralViewController() {}
-    protected CABTMIDILocalPeripheralViewController(Handle h, long handle) { super(h, handle); }
-    protected CABTMIDILocalPeripheralViewController(SkipInit skipInit) { super(skipInit); }
+    public AUViewController() {}
+    protected AUViewController(Handle h, long handle) { super(h, handle); }
+    protected AUViewController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "beginRequestWithExtensionContext:")
+    public native void beginRequest(NSExtensionContext context);
     /*</methods>*/
 }

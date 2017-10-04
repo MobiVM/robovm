@@ -1,5 +1,5 @@
 package: org.robovm.apple.coreaudiokit
-include: [foundation.yaml, audiounit.yaml, coreaudio.yaml, uikit.yaml]
+include: [foundation.yaml, audiotoolbox.yaml, coreaudio.yaml, uikit.yaml]
 library: CoreAudioKit
 framework: CoreAudioKit
 clang_args: ['-x', 'objective-c']
@@ -17,7 +17,11 @@ classes:
             '-contentWidth':
                 property: true
     CAInterAppAudioTransportView: {} # DONE
-
+    AUAudioUnitViewConfiguration: #since 11.0
+        methods:
+            '-initWithWidth:height:hostHasController:':
+                name: init
+    AUViewController: {} #since 9.0
 protocols: {}
 
 functions:
