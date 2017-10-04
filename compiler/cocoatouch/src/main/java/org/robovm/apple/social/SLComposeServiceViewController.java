@@ -166,5 +166,10 @@ import org.robovm.apple.accounts.*;
     public native boolean shouldScrollToTop(UIScrollView scrollView);
     @Method(selector = "scrollViewDidScrollToTop:")
     public native void didScrollToTop(UIScrollView scrollView);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "scrollViewDidChangeAdjustedContentInset:")
+    public native void scrollViewDidChangeAdjustedContentInset(UIScrollView scrollView);
     /*</methods>*/
 }
