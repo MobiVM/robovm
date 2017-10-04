@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -44,7 +47,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITableView/*</name>*/ 
     extends /*<extends>*/UIScrollView/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIDataSourceTranslating, UISpringLoadedInteractionSupporting/*</implements>*/ {
 
     public static class Notifications {
         public static NSObject observeSelectionDidChange(UITableView object, final VoidBlock1<UITableView> block) {
@@ -92,6 +95,26 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setPrefetchDataSource:", strongRef = true)
     public native void setPrefetchDataSource(UITableViewDataSourcePrefetching v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "dragDelegate")
+    public native UITableViewDragDelegate getDragDelegate();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setDragDelegate:", strongRef = true)
+    public native void setDragDelegate(UITableViewDragDelegate v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "dropDelegate")
+    public native UITableViewDropDelegate getDropDelegate();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setDropDelegate:", strongRef = true)
+    public native void setDropDelegate(UITableViewDropDelegate v);
     @Property(selector = "rowHeight")
     public native @MachineSizedFloat double getRowHeight();
     @Property(selector = "setRowHeight:")
@@ -145,6 +168,16 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "setSeparatorInset:")
     public native void setSeparatorInset(@ByVal UIEdgeInsets v);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "separatorInsetReference")
+    public native UITableViewSeparatorInsetReference getSeparatorInsetReference();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSeparatorInsetReference:")
+    public native void setSeparatorInsetReference(UITableViewSeparatorInsetReference v);
+    /**
      * @since Available in iOS 3.2 and later.
      */
     @Property(selector = "backgroundView")
@@ -160,6 +193,11 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<UITableViewCell> getVisibleCells();
     @Property(selector = "indexPathsForVisibleRows")
     public native NSArray<NSIndexPath> getIndexPathsForVisibleRows();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "hasUncommittedUpdates")
+    public native boolean hasUncommittedUpdates();
     @Property(selector = "isEditing")
     public native boolean isEditing();
     @Property(selector = "setEditing:")
@@ -267,6 +305,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setCellLayoutMarginsFollowReadableWidth:")
     public native void setCellLayoutMarginsFollowReadableWidth(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "insetsContentViewsToSafeArea")
+    public native boolean isInsetsContentViewsToSafeArea();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setInsetsContentViewsToSafeArea:")
+    public native void setInsetsContentViewsToSafeArea(boolean v);
     @Property(selector = "tableHeaderView")
     public native UIView getTableHeaderView();
     @Property(selector = "setTableHeaderView:")
@@ -285,6 +333,36 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setRemembersLastFocusedIndexPath:")
     public native void setRemembersLastFocusedIndexPath(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "dragInteractionEnabled")
+    public native boolean isDragInteractionEnabled();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setDragInteractionEnabled:")
+    public native void setDragInteractionEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "hasActiveDrag")
+    public native boolean hasActiveDrag();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "hasActiveDrop")
+    public native boolean hasActiveDrop();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isSpringLoaded")
+    public native boolean isSpringLoaded();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSpringLoaded:")
+    public native void setSpringLoaded(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     public void insertRow(NSIndexPath indexPath, UITableViewRowAnimation animation) {
@@ -324,13 +402,6 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(@ByVal CGRect frame, UITableViewStyle style);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
-    @Method(selector = "reloadData")
-    public native void reloadData();
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
-    @Method(selector = "reloadSectionIndexTitles")
-    public native void reloadSectionIndexTitles();
     @Method(selector = "numberOfRowsInSection:")
     public native @MachineSizedSInt long getNumberOfRowsInSection(@MachineSizedSInt long section);
     @Method(selector = "rectForSection:")
@@ -363,6 +434,11 @@ import org.robovm.apple.corelocation.*;
     public native void scrollToRow(NSIndexPath indexPath, UITableViewScrollPosition scrollPosition, boolean animated);
     @Method(selector = "scrollToNearestSelectedRowAtScrollPosition:animated:")
     public native void scrollToNearestSelectedRow(UITableViewScrollPosition scrollPosition, boolean animated);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "performBatchUpdates:completion:")
+    public native void performBatchUpdates(@Block Runnable updates, @Block VoidBooleanBlock completion);
     @Method(selector = "beginUpdates")
     public native void beginUpdates();
     @Method(selector = "endUpdates")
@@ -395,6 +471,13 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "moveRowAtIndexPath:toIndexPath:")
     public native void moveRow(NSIndexPath indexPath, NSIndexPath newIndexPath);
+    @Method(selector = "reloadData")
+    public native void reloadData();
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
+    @Method(selector = "reloadSectionIndexTitles")
+    public native void reloadSectionIndexTitles();
     @Method(selector = "setEditing:animated:")
     public native void setEditing(boolean editing, boolean animated);
     @Method(selector = "selectRowAtIndexPath:animated:scrollPosition:")
@@ -433,5 +516,15 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "registerClass:forHeaderFooterViewReuseIdentifier:")
     public native void registerReusableHeaderFooterViewClass(Class<? extends UITableViewHeaderFooterView> aClass, String identifier);
+    @Method(selector = "presentationSectionIndexForDataSourceSectionIndex:")
+    public native @MachineSizedSInt long presentationSectionIndexForDataSourceSectionIndex(@MachineSizedSInt long dataSourceSectionIndex);
+    @Method(selector = "dataSourceSectionIndexForPresentationSectionIndex:")
+    public native @MachineSizedSInt long dataSourceSectionIndexForPresentationSectionIndex(@MachineSizedSInt long presentationSectionIndex);
+    @Method(selector = "presentationIndexPathForDataSourceIndexPath:")
+    public native NSIndexPath presentationIndexPathForDataSourceIndexPath(NSIndexPath dataSourceIndexPath);
+    @Method(selector = "dataSourceIndexPathForPresentationIndexPath:")
+    public native NSIndexPath dataSourceIndexPathForPresentationIndexPath(NSIndexPath presentationIndexPath);
+    @Method(selector = "performUsingPresentationValues:")
+    public native void performUsingPresentationValues(@Block Runnable actionsToTranslate);
     /*</methods>*/
 }

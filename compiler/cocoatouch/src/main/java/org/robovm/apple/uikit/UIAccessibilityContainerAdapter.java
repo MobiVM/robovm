@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,6 +63,16 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("setAccessibilityElements:")
     public void setAccessibilityElements(NSArray<UIAccessibilityElement> v) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("accessibilityContainerType")
+    public UIAccessibilityContainerType getAccessibilityContainerType() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("setAccessibilityContainerType:")
+    public void setAccessibilityContainerType(UIAccessibilityContainerType v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,26 +54,26 @@ import org.robovm.apple.corelocation.*;
     private NSIndexPathExtensions() {}
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "section")
+    public static native @MachineSizedSInt long getSection(NSIndexPath thiz);
+    @Property(selector = "row")
+    public static native @MachineSizedSInt long getRow(NSIndexPath thiz);
     /**
      * @since Available in iOS 6.0 and later.
      */
     @Property(selector = "item")
     public static native @MachineSizedSInt long getItem(NSIndexPath thiz);
-    @Property(selector = "section")
-    public static native @MachineSizedSInt long getSection(NSIndexPath thiz);
-    @Property(selector = "row")
-    public static native @MachineSizedSInt long getRow(NSIndexPath thiz);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "indexPathForRow:inSection:")
+    protected static native NSIndexPath createIndexPathForRowInSection(ObjCClass clazz, @MachineSizedSInt long row, @MachineSizedSInt long section);
+    public static NSIndexPath createIndexPathForRowInSection(@MachineSizedSInt long row, @MachineSizedSInt long section) { return createIndexPathForRowInSection(ObjCClass.getByType(NSIndexPath.class), row, section); }
     /**
      * @since Available in iOS 6.0 and later.
      */
     @Method(selector = "indexPathForItem:inSection:")
     protected static native NSIndexPath createIndexPathForItemInSection(ObjCClass clazz, @MachineSizedSInt long item, @MachineSizedSInt long section);
     public static NSIndexPath createIndexPathForItemInSection(@MachineSizedSInt long item, @MachineSizedSInt long section) { return createIndexPathForItemInSection(ObjCClass.getByType(NSIndexPath.class), item, section); }
-    @Method(selector = "indexPathForRow:inSection:")
-    protected static native NSIndexPath createIndexPathForRowInSection(ObjCClass clazz, @MachineSizedSInt long row, @MachineSizedSInt long section);
-    public static NSIndexPath createIndexPathForRowInSection(@MachineSizedSInt long row, @MachineSizedSInt long section) { return createIndexPathForRowInSection(ObjCClass.getByType(NSIndexPath.class), row, section); }
     /*</methods>*/
 }

@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -44,7 +47,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UICollectionView/*</name>*/ 
     extends /*<extends>*/UIScrollView/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements UIDataSourceTranslating, UISpringLoadedInteractionSupporting/*</implements>*/ {
 
     /*<ptr>*/public static class UICollectionViewPtr extends Ptr<UICollectionView, UICollectionViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UICollectionView.class); }/*</bind>*/
@@ -91,6 +94,46 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setPrefetchingEnabled:")
     public native void setPrefetchingEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "dragDelegate")
+    public native UICollectionViewDragDelegate getDragDelegate();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setDragDelegate:", strongRef = true)
+    public native void setDragDelegate(UICollectionViewDragDelegate v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "dropDelegate")
+    public native UICollectionViewDropDelegate getDropDelegate();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setDropDelegate:", strongRef = true)
+    public native void setDropDelegate(UICollectionViewDropDelegate v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "dragInteractionEnabled")
+    public native boolean isDragInteractionEnabled();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setDragInteractionEnabled:")
+    public native void setDragInteractionEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "reorderingCadence")
+    public native UICollectionViewReorderingCadence getReorderingCadence();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setReorderingCadence:")
+    public native void setReorderingCadence(UICollectionViewReorderingCadence v);
     @Property(selector = "backgroundView")
     public native UIView getBackgroundView();
     @Property(selector = "setBackgroundView:")
@@ -105,6 +148,11 @@ import org.robovm.apple.corelocation.*;
     public native void setAllowsMultipleSelection(boolean v);
     @Property(selector = "indexPathsForSelectedItems")
     public native NSArray<NSIndexPath> getIndexPathsForSelectedItems();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "hasUncommittedUpdates")
+    public native boolean hasUncommittedUpdates();
     @Property(selector = "numberOfSections")
     public native @MachineSizedSInt long getNumberOfSections();
     @Property(selector = "visibleCells")
@@ -121,6 +169,26 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setRemembersLastFocusedIndexPath:")
     public native void setRemembersLastFocusedIndexPath(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "hasActiveDrag")
+    public native boolean hasActiveDrag();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "hasActiveDrop")
+    public native boolean hasActiveDrop();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isSpringLoaded")
+    public native boolean isSpringLoaded();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSpringLoaded:")
+    public native void setSpringLoaded(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     private UICollectionViewModel model;
@@ -244,5 +312,15 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "cancelInteractiveMovement")
     public native void cancelInteractiveMovement();
+    @Method(selector = "presentationSectionIndexForDataSourceSectionIndex:")
+    public native @MachineSizedSInt long presentationSectionIndexForDataSourceSectionIndex(@MachineSizedSInt long dataSourceSectionIndex);
+    @Method(selector = "dataSourceSectionIndexForPresentationSectionIndex:")
+    public native @MachineSizedSInt long dataSourceSectionIndexForPresentationSectionIndex(@MachineSizedSInt long presentationSectionIndex);
+    @Method(selector = "presentationIndexPathForDataSourceIndexPath:")
+    public native NSIndexPath presentationIndexPathForDataSourceIndexPath(NSIndexPath dataSourceIndexPath);
+    @Method(selector = "dataSourceIndexPathForPresentationIndexPath:")
+    public native NSIndexPath dataSourceIndexPathForPresentationIndexPath(NSIndexPath presentationIndexPath);
+    @Method(selector = "performUsingPresentationValues:")
+    public native void performUsingPresentationValues(@Block Runnable actionsToTranslate);
     /*</methods>*/
 }

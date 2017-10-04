@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,33 +58,72 @@ import org.robovm.apple.corelocation.*;
     protected NSFileProviderExtension(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Property(selector = "providerIdentifier")
     public native String getProviderIdentifier();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Property(selector = "documentStorageURL")
     public native NSURL getDocumentStorageURL();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "URLForItemWithPersistentIdentifier:")
-    public native NSURL getURLForItem(String identifier);
+    public native NSURL getURLForItem(NSString identifier);
     @Method(selector = "persistentIdentifierForItemAtURL:")
-    public native String getPersistentIdentifierForItem(NSURL url);
+    public native NSString getPersistentIdentifierForItem(NSURL url);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public NSFileProviderItem itemForIdentifier(NSString identifier) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSFileProviderItem result = itemForIdentifier(identifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "itemForIdentifier:error:")
+    private native NSFileProviderItem itemForIdentifier(NSString identifier, NSError.NSErrorPtr error);
     @Method(selector = "providePlaceholderAtURL:completionHandler:")
     public native void providePlaceholder(NSURL url, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "startProvidingItemAtURL:completionHandler:")
     public native void startProvidingItem(NSURL url, @Block VoidBlock1<NSError> completionHandler);
-    @Method(selector = "itemChangedAtURL:")
-    public native void itemChanged(NSURL url);
     @Method(selector = "stopProvidingItemAtURL:")
     public native void stopProvidingItem(NSURL url);
+    @Method(selector = "itemChangedAtURL:")
+    public native void itemChanged(NSURL url);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     public static boolean writePlaceholder(NSURL placeholderURL, NSURLProperties metadata) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = writePlaceholder(placeholderURL, metadata, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "writePlaceholderAtURL:withMetadata:error:")
     private static native boolean writePlaceholder(NSURL placeholderURL, NSURLProperties metadata, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "placeholderURLForURL:")
     public static native NSURL getPlaceholderURL(NSURL url);
     /*</methods>*/

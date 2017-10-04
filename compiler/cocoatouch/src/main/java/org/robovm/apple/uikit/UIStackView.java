@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -102,5 +105,15 @@ import org.robovm.apple.corelocation.*;
     public native void removeArrangedSubview(UIView view);
     @Method(selector = "insertArrangedSubview:atIndex:")
     public native void insertArrangedSubview(UIView view, @MachineSizedUInt long stackIndex);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "setCustomSpacing:afterView:")
+    public native void setCustomSpacing(@MachineSizedFloat double spacing, UIView arrangedSubview);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "customSpacingAfterView:")
+    public native @MachineSizedFloat double customSpacingAfterView(UIView arrangedSubview);
     /*</methods>*/
 }

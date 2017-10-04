@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -169,7 +172,9 @@ import org.robovm.apple.corelocation.*;
     }
     /**
      * @since Available in iOS 4.1 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     public NSURL getReferenceURL() {
         if (has(Keys.ReferenceURL())) {
             NSURL val = (NSURL) get(Keys.ReferenceURL());
@@ -179,7 +184,9 @@ import org.robovm.apple.corelocation.*;
     }
     /**
      * @since Available in iOS 4.1 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     public UIImagePickerControllerEditingInfo setReferenceURL(NSURL referenceURL) {
         set(Keys.ReferenceURL(), referenceURL);
         return this;
@@ -219,7 +226,9 @@ import org.robovm.apple.corelocation.*;
         public static native NSString MediaURL();
         /**
          * @since Available in iOS 4.1 and later.
+         * @deprecated Deprecated in iOS 11.0.
          */
+        @Deprecated
         @GlobalValue(symbol="UIImagePickerControllerReferenceURL", optional=true)
         public static native NSString ReferenceURL();
         /**
@@ -232,6 +241,16 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="UIImagePickerControllerLivePhoto", optional=true)
         public static native NSString LivePhoto();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="UIImagePickerControllerPHAsset", optional=true)
+        public static native NSString PHAsset();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="UIImagePickerControllerImageURL", optional=true)
+        public static native NSString ImageURL();
     }
     /*</keys>*/
 }

@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -44,7 +47,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIButton/*</name>*/ 
     extends /*<extends>*/UIControl/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UISpringLoadedInteractionSupporting, UIAccessibilityContentSizeCategoryImageAdjusting/*</implements>*/ {
 
     /*<ptr>*/public static class UIButtonPtr extends Ptr<UIButton, UIButtonPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIButton.class); }/*</bind>*/
@@ -127,6 +130,20 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "imageView")
     public native UIImageView getImageView();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isSpringLoaded")
+    public native boolean isSpringLoaded();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSpringLoaded:")
+    public native void setSpringLoaded(boolean v);
+    @Property(selector = "adjustsImageSizeForAccessibilityContentSizeCategory")
+    public native boolean adjustsImageSizeForAccessibilityContentSizeCategory();
+    @Property(selector = "setAdjustsImageSizeForAccessibilityContentSizeCategory:")
+    public native void setAdjustsImageSizeForAccessibilityContentSizeCategory(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

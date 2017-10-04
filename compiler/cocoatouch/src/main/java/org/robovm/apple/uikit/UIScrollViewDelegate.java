@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -87,6 +90,11 @@ import org.robovm.apple.corelocation.*;
     boolean shouldScrollToTop(UIScrollView scrollView);
     @Method(selector = "scrollViewDidScrollToTop:")
     void didScrollToTop(UIScrollView scrollView);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "scrollViewDidChangeAdjustedContentInset:")
+    void scrollViewDidChangeAdjustedContentInset(UIScrollView scrollView);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

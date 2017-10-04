@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -81,6 +84,26 @@ import org.robovm.apple.corelocation.*;
     public native boolean isInterruptible();
     @Property(selector = "setInterruptible:")
     public native void setInterruptible(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "scrubsLinearly")
+    public native boolean isScrubsLinearly();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setScrubsLinearly:")
+    public native void setScrubsLinearly(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "pausesOnCompletion")
+    public native boolean pausesOnCompletion();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setPausesOnCompletion:")
+    public native void setPausesOnCompletion(boolean v);
     @Property(selector = "state")
     public native UIViewAnimatingState getState();
     @Property(selector = "isRunning")

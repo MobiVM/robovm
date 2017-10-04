@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,6 +65,18 @@ public final class /*<name>*/NSLayoutFormatOptions/*</name>*/ extends Bits</*<na
     public static final NSLayoutFormatOptions DirectionLeftToRight = new NSLayoutFormatOptions(65536L);
     public static final NSLayoutFormatOptions DirectionRightToLeft = new NSLayoutFormatOptions(131072L);
     public static final NSLayoutFormatOptions DirectionMask = new NSLayoutFormatOptions(196608L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final NSLayoutFormatOptions SpacingEdgeToEdge = new NSLayoutFormatOptions(0L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final NSLayoutFormatOptions SpacingBaselineToBaseline = new NSLayoutFormatOptions(524288L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final NSLayoutFormatOptions SpacingMask = new NSLayoutFormatOptions(524288L);
     /*</values>*/
 
     private static final /*<name>*/NSLayoutFormatOptions/*</name>*/[] values = _values(/*<name>*/NSLayoutFormatOptions/*</name>*/.class);

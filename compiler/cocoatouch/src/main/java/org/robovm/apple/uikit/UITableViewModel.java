@@ -15,8 +15,6 @@
  */
 package org.robovm.apple.uikit;
 
-import java.util.List;
-
 import org.robovm.apple.foundation.NSArray;
 import org.robovm.apple.foundation.NSIndexPath;
 import org.robovm.apple.foundation.NSObject;
@@ -24,6 +22,8 @@ import org.robovm.objc.Selector;
 import org.robovm.objc.annotation.NotImplemented;
 import org.robovm.rt.bro.annotation.MachineSizedFloat;
 import org.robovm.rt.bro.annotation.MachineSizedSInt;
+
+import java.util.List;
 
 public class UITableViewModel extends UIScrollViewDelegateAdapter implements UITableViewDelegate, UITableViewDataSource {
     @NotImplemented("tableView:willDisplayCell:forRowAtIndexPath:")
@@ -189,4 +189,10 @@ public class UITableViewModel extends UIScrollViewDelegateAdapter implements UIT
     public void commitEditingStyleForRow(UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath) {}
     @NotImplemented("tableView:moveRowAtIndexPath:toIndexPath:")
     public void moveRow(UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath) {}
+    @NotImplemented("tableView:leadingSwipeActionsConfigurationForRowAtIndexPath:")
+    public UISwipeActionsConfiguration getLeadingSwipeActionsConfigurationForRow(UITableView tableView, NSIndexPath indexPath) { return null; }
+    @NotImplemented("tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:")
+    public UISwipeActionsConfiguration getTrailingSwipeActionsConfigurationForRow(UITableView tableView, NSIndexPath indexPath) { return null; }
+    @NotImplemented("tableView:shouldSpringLoadRowAtIndexPath:withContext:")
+    public boolean shouldSpringLoadRow(UITableView tableView, NSIndexPath indexPath, UISpringLoadedInteractionContext context) { return false; }
 }

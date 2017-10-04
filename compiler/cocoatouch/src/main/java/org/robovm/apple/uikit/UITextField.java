@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
@@ -46,7 +49,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITextField/*</name>*/ 
     extends /*<extends>*/UIControl/*</extends>*/ 
-    /*<implements>*/implements UITextInput, NSCoding/*</implements>*/ {
+    /*<implements>*/implements UITextInput, NSCoding, UIContentSizeCategoryAdjusting, UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting/*</implements>*/ {
 
     public static class Notifications {
         public static NSObject observeDidBeginEditing(UITextField object, final VoidBlock1<UITextField> block) {
@@ -391,6 +394,36 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setSpellCheckingType:")
     public native void setSpellCheckingType(UITextSpellCheckingType v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "smartQuotesType")
+    public native UITextSmartQuotesType getSmartQuotesType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSmartQuotesType:")
+    public native void setSmartQuotesType(UITextSmartQuotesType v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "smartDashesType")
+    public native UITextSmartDashesType getSmartDashesType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSmartDashesType:")
+    public native void setSmartDashesType(UITextSmartDashesType v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "smartInsertDeleteType")
+    public native UITextSmartInsertDeleteType getSmartInsertDeleteType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSmartInsertDeleteType:")
+    public native void setSmartInsertDeleteType(UITextSmartInsertDeleteType v);
     @Property(selector = "keyboardType")
     public native UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")
@@ -421,6 +454,38 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setTextContentType:")
     public native void setTextContentType(UITextContentType v);
+    @Property(selector = "adjustsFontForContentSizeCategory")
+    public native boolean adjustsFontForContentSizeCategory();
+    @Property(selector = "setAdjustsFontForContentSizeCategory:")
+    public native void setAdjustsFontForContentSizeCategory(boolean v);
+    @Property(selector = "textDragDelegate")
+    public native UITextDragDelegate getTextDragDelegate();
+    @Property(selector = "setTextDragDelegate:", strongRef = true)
+    public native void setTextDragDelegate(UITextDragDelegate v);
+    @Property(selector = "textDragInteraction")
+    public native UIDragInteraction getTextDragInteraction();
+    @Property(selector = "isTextDragActive")
+    public native boolean isTextDragActive();
+    @Property(selector = "textDragOptions")
+    public native UITextDragOptions getTextDragOptions();
+    @Property(selector = "setTextDragOptions:")
+    public native void setTextDragOptions(UITextDragOptions v);
+    @Property(selector = "textDropDelegate")
+    public native UITextDropDelegate getTextDropDelegate();
+    @Property(selector = "setTextDropDelegate:", strongRef = true)
+    public native void setTextDropDelegate(UITextDropDelegate v);
+    @Property(selector = "textDropInteraction")
+    public native UIDropInteraction getTextDropInteraction();
+    @Property(selector = "isTextDropActive")
+    public native boolean isTextDropActive();
+    @Property(selector = "pasteDelegate")
+    public native UITextPasteDelegate getPasteDelegate();
+    @Property(selector = "setPasteDelegate:", strongRef = true)
+    public native void setPasteDelegate(UITextPasteDelegate v);
+    @Property(selector = "pasteConfiguration")
+    public native UIPasteConfiguration getPasteConfiguration();
+    @Property(selector = "setPasteConfiguration:")
+    public native void setPasteConfiguration(UIPasteConfiguration v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -535,5 +600,9 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native void insertText(String text);
     @Method(selector = "deleteBackward")
     public native void deleteBackward();
+    @Method(selector = "pasteItemProviders:")
+    public native void pasteItemProviders(NSArray<NSItemProvider> itemProviders);
+    @Method(selector = "canPasteItemProviders:")
+    public native boolean canPasteItemProviders(NSArray<NSItemProvider> itemProviders);
     /*</methods>*/
 }

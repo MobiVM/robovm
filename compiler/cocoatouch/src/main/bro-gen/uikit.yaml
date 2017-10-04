@@ -1,5 +1,5 @@
 package: org.robovm.apple.uikit
-include: [foundation, coreanimation, coregraphics, coredata, coreimage, coretext, corelocation]
+include: [foundation, coreanimation, coregraphics, coredata, coreimage, coretext, corelocation, cloudkit, fileprovider, intents]
 library: UIKit
 framework: UIKit
 clang_args: ['-x', 'objective-c']
@@ -18,7 +18,6 @@ typedefs:
     'void (^)(UITextField * _Nonnull)': '@Block VoidBlock1<UITextField>'
     'void (^)(UITableViewRowAction * _Nonnull, NSIndexPath * _Nonnull)': '@Block VoidBlock2<UITableViewRowAction, NSIndexPath>'
     'void (^)(UIViewAnimatingPosition)': '@Block VoidBlock1<UIViewAnimatingPosition>'
-    'void (^)(UICloudSharingController * _Nonnull, void (^ _Nonnull)(CKShare * _Nullable, CKContainer * _Nullable, NSError * _Nullable))': '@Block(",(@Block)") VoidBlock2<UICloudSharingController, VoidBlock3<CKShare, CKContainer, NSError>>'
     UIGraphicsImageDrawingActions: '@Block VoidBlock1<UIGraphicsImageRendererContext>'
     UIGraphicsPDFDrawingActions: '@Block VoidBlock1<UIGraphicsPDFRendererContext>'
     UITextContentType: UITextContentType
@@ -201,6 +200,35 @@ enums:
     UIWebPaginationMode: {}
     UIWebViewNavigationType: {}
     NSWritingDirectionFormatType: {}
+    #ios11 bindings
+    UIScrollViewIndexDisplayMode: {}
+    UIScrollViewContentInsetAdjustmentBehavior: {prefix: UIScrollViewContentInsetAdjustment} #since 11.0
+    UIAccessibilityContainerType: {} #since 11.0
+    UITextSmartQuotesType: {} #since 11.0
+    UITextSmartDashesType: {} #since 11.0
+    UITextSmartInsertDeleteType: {} #since 11.0
+    UIAccessibilityCustomSystemRotorType: {} #since 11.0
+    UIPreferredPresentationStyle: {}
+    UIDropOperation: {} #since 11.0
+    UITextDragOptions: {prefix: UITextDragOption} #since 11.0
+    UITextDropAction: {} #since 11.0
+    UITextDropProgressMode: {} #since 11.0
+    UITextDropPerformer: {} #since 11.0
+    UITextDropEditability: {} #since 11.0
+    UICollectionViewReorderingCadence: {} #since 11.0
+    UICollectionViewDropIntent: {} #since 11.0
+    UICollectionViewCellDragState: {} #since 11.0
+    UICollectionViewFlowLayoutSectionInsetReference: {prefix: UICollectionViewFlowLayoutSectionInset} #since 11.0
+    UIImagePickerControllerImageURLExportPreset: {} #since 11.0
+    UINavigationItemLargeTitleDisplayMode: {}
+    UIContextualActionStyle: {} #since 11.0
+    UITableViewCellDragState: {} #since 11.0
+    UITableViewSeparatorInsetReference: {prefix: UITableViewSeparatorInset} #since 11.0
+    UITableViewDropIntent: {} #since 11.0
+    UISplitViewControllerPrimaryEdge: {} #since 11.0
+    UIDropSessionProgressIndicatorStyle: {} #since 11.0
+    UISpringLoadedInteractionEffectState: {} #since 11.0
+
 
 categories:
     CIColor: # DONE
@@ -373,6 +401,7 @@ classes:
     UIEdgeInsets: {}
     UIFloatRange: {}
     UIOffset: {}
+    NSDirectionalEdgeInsets: {} # since 11.0
 
     NSDataAsset: # DONE
         methods:
@@ -400,6 +429,9 @@ classes:
                         type: NSURLProperties
             '+placeholderURLForURL:':
                 name: getPlaceholderURL
+            '-itemForIdentifier:error:':
+                throws: NSErrorException
+                trim_after_first_colon: true
     NSLayoutAnchor: # DONE
         methods:
             '-constraintEqualToAnchor:':
@@ -455,8 +487,22 @@ classes:
                 name: lessThanOrEqualTo
     NSLayoutXAxisAnchor: # DONE
         extends: NSLayoutAnchor<NSLayoutXAxisAnchor>
+        methods:
+            '-constraintEqualToSystemSpacingAfterAnchor:multiplier:':
+                trim_after_first_colon: true
+            '-constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:':
+                trim_after_first_colon: true
+            '-constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:':
+                trim_after_first_colon: true
     NSLayoutYAxisAnchor: # DONE
         extends: NSLayoutAnchor<NSLayoutYAxisAnchor>
+        methods:
+            '-constraintEqualToSystemSpacingBelowAnchor:multiplier:':
+                trim_after_first_colon: true
+            '-constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:multiplier:':
+                trim_after_first_colon: true
+            '-constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:':
+                trim_after_first_colon: true
     NSLayoutConstraint: # DONE
         methods:
             '+constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:':
@@ -1033,12 +1079,6 @@ classes:
                 name: getAttributedTitle
             '-(set.*):forState:.*':
                 name: '#{g[0]}'
-   # UICloudSharingController: # DONE
-   #     methods:
-   #         '-init.*':                         >>>>> TODO need to update CloudKit
-    #            name: init     
-    #        '-activityItemSource':
-    #            property: true
     UICollectionReusableView: # DONE
         methods:
             '-didTransitionFromLayout:toLayout:':
@@ -1149,6 +1189,9 @@ classes:
         methods:
             '-init.*':
                 name: init
+            '-collectionView:shouldSpringLoadItemAtIndexPath:withContext:':
+                #trim_after_first_colon: true
+                name: shouldSpringLoadItem
     UICollectionViewFlowLayout: {} # DONE
     UICollectionViewFlowLayoutInvalidationContext: # DONE
         properties:
@@ -1329,6 +1372,8 @@ classes:
                 name: fromWhiteAlpha
             '+colorWithDisplayP3Red:green:blue:alpha:':
                 name: fromDisplayP3
+            '+colorNamed:inBundle:compatibleWithTraitCollection:':
+                name: fromResourceBundle
             '-colorWithAlphaComponent:':
                 name: addAlpha
             '-getHue:saturation:brightness:alpha:':
@@ -1589,6 +1634,10 @@ classes:
     UIFocusAnimationCoordinator: # DONE
         methods:
             '-addCoordinatedAnimations:completion:':
+                trim_after_first_colon: true
+            '-addCoordinatedFocusingAnimations:completion:':
+                trim_after_first_colon: true
+            '-addCoordinatedUnfocusingAnimations:completion:':
                 trim_after_first_colon: true
     UIFocusGuide: # DONE
         properties:
@@ -2218,6 +2267,10 @@ classes:
                         type: NSArray<NSDictionary>
                     options:
                         type: UIPasteboardOptions
+            '-setItemProviders:localOnly:expirationDate:':
+                trim_after_first_colon: true
+            '-setObjects:localOnly:expirationDate:':
+                trim_after_first_colon: true
     UIPercentDrivenInteractiveTransition: # DONE
         methods:
             '-updateInteractiveTransition:':
@@ -2703,6 +2756,8 @@ classes:
                 trim_after_first_colon: true
             '-insertArrangedSubview:atIndex:':
                 trim_after_first_colon: true
+            '-setCustomSpacing:afterView:':
+                trim_after_first_colon: true
     UIStepper: # DONE
         methods:
             '-backgroundImageForState:':
@@ -2900,6 +2955,8 @@ classes:
                 name: moveSection
             '-setEditing:animated:':
                 name: setEditing
+            '-performBatchUpdates:completion:':
+                trim_after_first_colon: true
     UITableViewCell: # DONE
         methods:
             '-init.*':
@@ -3477,6 +3534,91 @@ classes:
                 name: convertRectToWindow
             '-sendEvent:':
                 trim_after_first_colon: true
+    UIAccessibilityLocationDescriptor: #since 11.0
+        methods:
+            '-init.*':
+                name: init
+    UICloudSharingController: #since 10.0
+        methods:
+            '-initWithShare:container:':
+                name: init
+    UICollectionViewDropPlaceholder: {} #since 11.0
+    UICollectionViewDropProposal: #since 11.0
+        methods:
+            '-initWithDropOperation:intent:':
+                name: init
+    UICollectionViewPlaceholder: #since 11.0
+        methods:
+            '-initWithInsertionIndexPath:reuseIdentifier:':
+                name: init
+    UIContextualAction: #since 11.0
+        methods:
+            '+contextualActionWithStyle:title:handler:':
+                constructor: true
+                name: create
+    UIDragInteraction: {} #since 11.0
+    UIDragItem: {} #since 11.0
+    UIDragPreview: #since 11.0
+        methods:
+            '-initWithView:parameters:':
+                name: init
+            '+previewForURL:title:':
+                constructor: true
+                name: create
+    UIDragPreviewParameters: {} #since 11.0
+    UIDragPreviewTarget: #since 11.0
+        methods:
+            '-init.*':
+                name: init
+    UIDropInteraction: {} #since 11.0
+    UIDropProposal: {} #since 11.0
+    UIFocusDebugger: {} #since 11.0
+    UIFocusSystem: #since 11.0
+        methods:
+            '+environment:containsEnvironment:':
+                name: isEnvironmentContainsEnvironment
+    UIFontMetrics: #since 11.0
+        methods:
+            '-scaledFontForFont:maximumPointSize:':
+                name: scaledFont
+            '-scaledFontForFont:compatibleWithTraitCollection:':
+                name: scaledFont
+            '-scaledFontForFont:maximumPointSize:compatibleWithTraitCollection:':
+                name: scaledFont
+            '-scaledValueForValue:compatibleWithTraitCollection:':
+                name: scaledValue
+    UIPasteConfiguration: {} #since 11.0
+    UISpringLoadedInteraction: #since 11.0
+        methods:
+            '-initWithInteractionBehavior:interactionEffect:activationHandler:':
+                name: init
+    UISwipeActionsConfiguration: {} #since 11.0
+    UITableViewDropPlaceholder: {} #since 11.0
+    UITableViewDropProposal: #since 11.0
+        methods:
+            '-initWithDropOperation:intent:':
+                name: init
+    UITableViewPlaceholder: #since 11.0
+        methods:
+            '-initWithInsertionIndexPath:reuseIdentifier:rowHeight:':
+                name: init
+    UITargetedDragPreview: #since 11.0
+        methods:
+            '-init.*':
+                name: init
+            '+previewForURL:target:':
+                constructor: true
+                name: create
+            '+previewForURL:title:target:':
+                constructor: true
+                name: create
+    UITextDragPreviewRenderer: #since 11.0
+        methods:
+            '-init.*':
+                name: init
+            '-adjustFirstLineRect:bodyRect:lastLineRect:textOrigin:':
+                trim_after_first_colon: true
+    UITextDropProposal: {} #since 11.0
 
 protocols:
     NSLayoutManagerDelegate: # DONE
@@ -3708,26 +3850,13 @@ protocols:
                 name: shouldRequestHealthAuthorization
             '-application:userDidAcceptCloudKitShareWithMetadata:':
                 name: didAcceptCloudKitShare
-                exclude: true # >>>>> TODO need to update CloudKit
+            '-application:handleIntent:completionHandler:':
+                name: handleIntent
     UIBarPositioning: {} # DONE
     UIBarPositioningDelegate: # DONE
         methods:
             '-positionForBar:':
                 name: getPosition
-  #  UICloudSharingControllerDelegate: # DONE
-   #     methods:                    >>>>> TODO need to update CloudKit
-  #          '-cloudSharingController:failedToSaveShareWithError:':
-   #             name: failedToSaveShare
-   #         '-itemTitleForCloudSharingController:':
-   #             name: getItemTitle
-   #         '-itemThumbnailDataForCloudSharingController:':
-    #            name: getItemThumbnailData
-   #         '-itemTypeForCloudSharingController:':
-   #             name: getItemType
-   #         '-cloudSharingControllerDidSaveShare:':
-   #             name: didSaveShare
-   #         '-cloudSharingControllerDidStopSharing:':
-   #             name: didStopSharing
     UICollectionViewDataSource: # DONE
         methods:
             '-collectionView:cellForItemAtIndexPath:':
@@ -3794,6 +3923,8 @@ protocols:
                 name: didUpdateFocus
             '-indexPathForPreferredFocusedViewInCollectionView:':
                 name: getIndexPathForPreferredFocusedView
+            '-collectionView:shouldSpringLoadItemAtIndexPath:withContext:':
+                name: shouldSpringLoadItem
     UICollectionViewDelegateFlowLayout: # DONE
         methods:
             '-collectionView:layout:insetForSectionAtIndex:':
@@ -3874,6 +4005,8 @@ protocols:
                 name: didPickDocument
             '-documentPickerWasCancelled:':
                 name: wasCancelled
+            '-documentPicker:didPickDocumentsAtURLs:':
+                name: didPickDocuments
     UIDynamicAnimatorDelegate: # DONE
         methods:
             '-dynamicAnimatorWillResume:':
@@ -3998,6 +4131,10 @@ protocols:
                 name: getAccessibilityHint
             '-pickerView:accessibilityLabelForComponent:':
                 name: getAccessibilityLabel
+            '-pickerView:accessibilityAttributedLabelForComponent:':
+                name: getAccessibilityAttributedLabel
+            '-pickerView:accessibilityAttributedHintForComponent:':
+                name: getAccessibilityAttributedHint
     UIPickerViewDataSource: # DONE
         methods:
             '-numberOfComponentsInPickerView:':
@@ -4389,6 +4526,12 @@ protocols:
                 name: didUpdateFocus
             '-indexPathForPreferredFocusedViewInTableView:':
                 name: getIndexPathForPreferredFocusedView
+            '-tableView:leadingSwipeActionsConfigurationForRowAtIndexPath:':
+                name: getLeadingSwipeActionsConfigurationForRow
+            '-tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:':
+                name: getTrailingSwipeActionsConfigurationForRow
+            '-tableView:shouldSpringLoadRowAtIndexPath:withContext:':
+                name: shouldSpringLoadRow
     UITextDocumentProxy: # DONE
         methods:
             '-adjustTextPositionByCharacterOffset:':
@@ -4722,6 +4865,255 @@ protocols:
                 name: increaseSize
             '-decreaseSize:':
                 name: decreaseSize
+    # ios11 binding actions
+    UIAccelerometerDelegate: # it is replaced by coremotion but lets have it here for a while
+        methods:
+            '-accelerometer:didAccelerate:':
+                name: didAccelerate
+    UIAccessibilityContainerDataTable: #since 11.0
+        methods:
+            '-accessibilityDataTableCellElementForRow:column:':
+                name: provideElement
+    UIAccessibilityContainerDataTableCell: {} #since 11.0
+    UIAccessibilityContentSizeCategoryImageAdjusting: {} #since 11.0
+    UIAccessibilityReadingContent: {}
+    UICloudSharingControllerDelegate:
+        methods:
+            '-cloudSharingController:failedToSaveShareWithError:':
+                name: failedToSaveShare
+
+    UICollectionViewDragDelegate: #since 11.0
+        methods:
+            '-collectionView:itemsForBeginningDragSession:atIndexPath:':
+                name: itemsForBeginningDragSession
+            '-collectionView:itemsForAddingToDragSession:atIndexPath:point:':
+                name: itemsForAddingToDragSession
+            '-collectionView:dragPreviewParametersForItemAtIndexPath:':
+                name: dragPreviewParametersForItem
+            '-collectionView:dragSessionWillBegin:':
+                name: dragSessionWillBegin
+            '-collectionView:dragSessionDidEnd:':
+                name: dragSessionDidEnd
+            '-collectionView:dragSessionAllowsMoveOperation:':
+                name: dragSessionAllowsMoveOperation
+            '-collectionView:dragSessionIsRestrictedToDraggingApplication:':
+                name: dragSessionIsRestrictedToDraggingApplication
+    UICollectionViewDropCoordinator: #since 11.0
+        methods:
+            '-dropItem:toPlaceholder:':
+                name: dropItem
+            '-dropItem:toItemAtIndexPath:':
+                name: dropItem
+            '-dropItem:intoItemAtIndexPath:rect:':
+                name: dropItemIntoItem
+            '-dropItem:toTarget:':
+                name: dropItemToTarget
+    UICollectionViewDropDelegate: #since 11.0
+        methods:
+            '-collectionView:performDropWithCoordinator:':
+                name: performDrop
+            '-collectionView:canHandleDropSession:':
+                name: canHandleDropSession
+            '-collectionView:dropSessionDidEnter:':
+                name: dropSessionDidEnter
+            '-collectionView:dropSessionDidUpdate:withDestinationIndexPath:':
+                name: dropSessionDidUpdate
+            '-collectionView:dropSessionDidExit:':
+                name: dropSessionDidExit
+            '-collectionView:dropSessionDidEnd:':
+                name: dropSessionDidEnd
+            '-collectionView:dropPreviewParametersForItemAtIndexPath:':
+                name: dropPreviewParameters
+    UICollectionViewDropItem: {} #since 11.0
+    UICollectionViewDropPlaceholderContext: {} #since 11.0
+    UIContentContainer:
+        methods:
+            '-sizeForChildContentContainer:withParentContainerSize:':
+                name: sizeForChildContentContainer
+            '-viewWillTransitionToSize:withTransitionCoordinator:':
+                name: viewWillTransitionToSize
+            '-willTransitionToTraitCollection:withTransitionCoordinator:':
+                name: willTransitionToTraitCollection
+    UIContentSizeCategoryAdjusting: {} #since 10.0
+    UIDataSourceTranslating: {} #since 11.0
+    UIDragAnimating: {} #since 11.0
+    UIDragDropSession: {} #since 11.0
+    UIDragInteractionDelegate: #since 11.0
+        methods:
+            '-dragInteraction:itemsForBeginningSession:':
+                name: itemsForBeginningSession
+            '-dragInteraction:previewForLiftingItem:session:':
+                name: previewForLiftingItem
+            '-dragInteraction:willAnimateLiftWithAnimator:session:':
+                name: willAnimateLift
+            '-dragInteraction:sessionWillBegin:':
+                name: sessionWillBegin
+            '-dragInteraction:sessionAllowsMoveOperation:':
+                name: sessionAllowsMoveOperation
+            '-dragInteraction:sessionIsRestrictedToDraggingApplication:':
+                name: sessionIsRestrictedToDraggingApplication
+            '-dragInteraction:prefersFullSizePreviewsForSession:':
+                name: prefersFullSizePreviews
+            '-dragInteraction:sessionDidMove:':
+                name: sessionDidMove
+            '-dragInteraction:session:willEndWithOperation:':
+                name: sessionWillEnd
+            '-dragInteraction:session:didEndWithOperation:':
+                name: sessionDidEnd
+            '-dragInteraction:sessionDidTransferItems:':
+                name: sessionDidTransferItems
+            '-dragInteraction:itemsForAddingToSession:withTouchAtPoint:':
+                name: itemsForAddingToSession
+            '-dragInteraction:sessionForAddingItems:withTouchAtPoint:':
+                name: sessionForAddingItems
+            '-dragInteraction:session:willAddItems:forInteraction:':
+                name: sessionWillAddItems
+            '-dragInteraction:previewForCancellingItem:withDefault:':
+                name: previewForCancellingItem
+            '-dragInteraction:item:willAnimateCancelWithAnimator:':
+                name: itemWillAnimateCancel
+    UIDragSession: {} #since 11.0
+    UIDropInteractionDelegate: #since 11.0
+        methods:
+            '-dropInteraction:canHandleSession:':
+                name: canHandleSession
+            '-dropInteraction:sessionDidEnter:':
+                name: sessionDidEnter
+            '-dropInteraction:sessionDidUpdate:':
+                name: sessionDidUpdate
+            '-dropInteraction:sessionDidExit:':
+                name: sessionDidExit
+            '-dropInteraction:performDrop:':
+                name: performDrop
+            '-dropInteraction:concludeDrop:':
+                name: concludeDrop
+            '-dropInteraction:sessionDidEnd:':
+                name: sessionDidEnd
+            '-dropInteraction:previewForDroppingItem:withDefault:':
+                name: previewForDroppingItem
+            '-dropInteraction:item:willAnimateDropWithAnimator:':
+                name: itemWillAnimateDrop
+    UIDropSession: #since 11.0
+        methods:
+            '-loadObjectsOfClass:completion:':
+                name: loadObjects
+    UIFocusAnimationContext: {} #since 11.0
+    UIFocusDebuggerOutput: {} #since 11.0
+    UIInteraction: {} #since 11.0
+    UIItemProviderPresentationSizeProviding: {} #since 11.0
+    UIObjectRestoration:
+        methods:
+            '+objectWithRestorationIdentifierPath:coder:':
+                name: objectWithRestorationIdentifier
+    UIPasteConfigurationSupporting: {} #since 11.0
+    UIPopoverBackgroundViewMethods: {}
+    UIScrollViewAccessibilityDelegate: {}
+    UISpringLoadedInteractionBehavior: #since 11.0
+        methods:
+            '-shouldAllowInteraction:withContext:':
+                trim_after_first_colon: true
+    UISpringLoadedInteractionContext: {} #since 11.0
+    UISpringLoadedInteractionEffect: #since 11.0
+        methods:
+            '-interaction:didChangeWithContext:':
+                name: didChange
+    UISpringLoadedInteractionSupporting: {} #since 11.0
+    UITableViewDragDelegate: #since 11.0
+        methods:
+            '-tableView:itemsForBeginningDragSession:atIndexPath:':
+                name: itemsForBeginningDragSession
+            '-tableView:itemsForAddingToDragSession:atIndexPath:point:':
+                name: itemsForAddingToDragSession
+            '-tableView:dragPreviewParametersForRowAtIndexPath:':
+                name: dragPreviewParametersForRow
+            '-tableView:dragSessionWillBegin:':
+                name: dragSessionWillBegin
+            '-tableView:dragSessionDidEnd:':
+                name: dragSessionDidEnd
+            '-tableView:dragSessionAllowsMoveOperation:':
+                name: dragSessionAllowsMoveOperation
+            '-tableView:dragSessionIsRestrictedToDraggingApplication:':
+                name: dragSessionIsRestrictedToDraggingApplication
+    UITableViewDropCoordinator: #since 11.0
+        methods:
+            '-dropItem:toPlaceholder:':
+                name: dropItem
+            '-dropItem:toRowAtIndexPath:':
+                name: dropItem
+            '-dropItem:intoRowAtIndexPath:rect:':
+                name: dropItem
+            '-dropItem:toTarget:':
+                name: dropItem
+    UITableViewDropDelegate: #since 11.0
+        methods:
+            '-tableView:performDropWithCoordinator:':
+                name: performDrop
+            '-tableView:canHandleDropSession:':
+                name: canHandleDropSession
+            '-tableView:dropSessionDidEnter:':
+                name: dropSessionDidEnter
+            '-tableView:dropSessionDidUpdate:withDestinationIndexPath:':
+                name: dropSessionDidUpdate
+            '-tableView:dropSessionDidExit:':
+                name: dropSessionDidExit
+            '-tableView:dropSessionDidEnd:':
+                name: dropSessionDidEnd
+            '-tableView:dropPreviewParametersForRowAtIndexPath:':
+                name: dropPreviewParameters
+    UITableViewDropItem: {} #since 11.0
+    UITableViewDropPlaceholderContext: {} #since 11.0
+    UITextDragDelegate: #since 11.0
+        methods:
+            '-textDraggableView:itemsForDrag:':
+                name: itemsForDrag
+            '-textDraggableView:dragPreviewForLiftingItem:session:':
+                name: dragPreviewForLiftingItem
+            '-textDraggableView:willAnimateLiftWithAnimator:session:':
+                name: willAnimateLift
+            '-textDraggableView:dragSessionWillBegin:':
+                name: dragSessionWillBegin
+            '-textDraggableView:dragSessionDidEnd:withOperation:':
+                name: dragSessionDidEnd
+    UITextDragRequest: {} #since 11.0
+    UITextDraggable: {} #since 11.0
+    UITextDropDelegate: #since 11.0
+        methods:
+            '-textDroppableView:willBecomeEditableForDrop:':
+                name: willBecomeEditableForDrop
+            '-textDroppableView:proposalForDrop:':
+                name: proposalForDrop
+            '-textDroppableView:willPerformDrop:':
+                name: willPerformDrop
+            '-textDroppableView:previewForDroppingAllItemsWithDefault:':
+                name: previewForDroppingAllItemsWithDefault
+            '-textDroppableView:dropSessionDidEnter:':
+                name: dropSessionDidEnter
+            '-textDroppableView:dropSessionDidUpdate:':
+                name: dropSessionDidUpdate
+            '-textDroppableView:dropSessionDidExit:':
+                name: dropSessionDidExit
+            '-textDroppableView:dropSessionDidEnd:':
+                name: dropSessionDidEnd
+    UITextDropRequest: {} #since 11.0
+    UITextDroppable: {} #since 11.0
+    UITextPasteConfigurationSupporting: {} #since 11.0
+    UITextPasteDelegate: #since 11.0
+        methods:
+            '-textPasteConfigurationSupporting:transformPasteItem:':
+                name: transformPasteItem
+            '-textPasteConfigurationSupporting:combineItemAttributedStrings:forRange:':
+                name: combineItemAttributedStrings
+            '-textPasteConfigurationSupporting:performPasteOfAttributedString:toRange:':
+                name: performPasteOfAttributedString
+            '-textPasteConfigurationSupporting:shouldAnimatePasteOfAttributedString:toRange:':
+                name: shouldAnimatePasteOfAttributedString
+    UITextPasteItem: {} #since 11.0
+
+    UIViewControllerRestoration:
+        methods:
+            '+viewControllerWithRestorationIdentifierPath:coder:':
+                name: viewControllerWithRestorationIdentifier
+
 
 functions:
     # NSTextAlignment

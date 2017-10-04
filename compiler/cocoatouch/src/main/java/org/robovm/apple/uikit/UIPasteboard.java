@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -111,6 +114,16 @@ import org.robovm.apple.corelocation.*;
     public native void setPersistent(boolean v);
     @Property(selector = "changeCount")
     public native @MachineSizedSInt long getChangeCount();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "itemProviders")
+    public native NSArray<NSItemProvider> getItemProviders();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setItemProviders:")
+    public native void setItemProviders(NSArray<NSItemProvider> v);
     @Property(selector = "pasteboardTypes")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPasteboardTypes();
     @Property(selector = "numberOfItems")
@@ -218,6 +231,21 @@ import org.robovm.apple.corelocation.*;
     @GlobalValue(symbol="UIPasteboardTypeAutomatic", optional=true)
     public static native String getAutomaticType();
     
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "setItemProviders:localOnly:expirationDate:")
+    public native void setItemProviders(NSArray<NSItemProvider> itemProviders, boolean localOnly, NSDate expirationDate);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "setObjects:")
+    public native void setObjects(NSArray<?> objects);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "setObjects:localOnly:expirationDate:")
+    public native void setObjects(NSArray<?> objects, boolean localOnly, NSDate expirationDate);
     @Method(selector = "containsPasteboardTypes:")
     public native boolean contains(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> pasteboardTypes);
     @Method(selector = "dataForPasteboardType:")

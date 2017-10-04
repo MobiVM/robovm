@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -44,7 +47,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPopoverBackgroundView/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements UIPopoverBackgroundViewMethods/*</implements>*/ {
 
     /*<ptr>*/public static class UIPopoverBackgroundViewPtr extends Ptr<UIPopoverBackgroundView, UIPopoverBackgroundViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIPopoverBackgroundView.class); }/*</bind>*/
@@ -77,6 +80,11 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "arrowBase")
+    public static native @MachineSizedFloat double arrowBase();
+    @Method(selector = "contentViewInsets")
+    public static native @ByVal UIEdgeInsets contentViewInsets();
+    @Method(selector = "arrowHeight")
+    public static native @MachineSizedFloat double arrowHeight();
     /*</methods>*/
 }

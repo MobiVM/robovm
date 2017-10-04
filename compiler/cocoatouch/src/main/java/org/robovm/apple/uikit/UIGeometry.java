@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,6 +65,11 @@ import org.robovm.apple.corelocation.*;
     public static native String toString(@ByVal CGRect rect);
     @Bridge(symbol="NSStringFromCGAffineTransform", optional=true)
     public static native String toString(@ByVal CGAffineTransform transform);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="NSStringFromDirectionalEdgeInsets", optional=true)
+    public static native String toString(@ByVal NSDirectionalEdgeInsets insets);
     @Bridge(symbol="CGPointFromString", optional=true)
     public static native @ByVal CGPoint stringToCGPoint(String string);
     @Bridge(symbol="CGVectorFromString", optional=true)
@@ -72,5 +80,10 @@ import org.robovm.apple.corelocation.*;
     public static native @ByVal CGRect stringToCGRect(String string);
     @Bridge(symbol="CGAffineTransformFromString", optional=true)
     public static native @ByVal CGAffineTransform stringToCGAffineTransform(String string);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="NSDirectionalEdgeInsetsFromString", optional=true)
+    public static native @ByVal NSDirectionalEdgeInsets stringToNSDirectionalEdgeInsets(String string);
     /*</methods>*/
 }

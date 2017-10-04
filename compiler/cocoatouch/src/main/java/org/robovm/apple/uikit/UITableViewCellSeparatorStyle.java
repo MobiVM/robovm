@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -44,6 +47,11 @@ public enum /*<name>*/UITableViewCellSeparatorStyle/*</name>*/ implements Valued
     /*<values>*/
     None(0L),
     SingleLine(1L),
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     SingleLineEtched(2L);
     /*</values>*/
 

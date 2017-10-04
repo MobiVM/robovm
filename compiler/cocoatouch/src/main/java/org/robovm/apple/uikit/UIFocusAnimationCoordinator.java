@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +64,15 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "addCoordinatedAnimations:completion:")
     public native void addCoordinatedAnimations(@Block Runnable animations, @Block Runnable completion);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "addCoordinatedFocusingAnimations:completion:")
+    public native void addCoordinatedFocusingAnimations(@Block VoidBlock1<UIFocusAnimationContext> animations, @Block Runnable completion);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "addCoordinatedUnfocusingAnimations:completion:")
+    public native void addCoordinatedUnfocusingAnimations(@Block VoidBlock1<UIFocusAnimationContext> animations, @Block Runnable completion);
     /*</methods>*/
 }

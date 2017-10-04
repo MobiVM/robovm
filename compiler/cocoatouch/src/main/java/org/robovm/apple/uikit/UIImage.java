@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -188,14 +191,44 @@ import org.robovm.apple.corelocation.*;
     public native String getAccessibilityLabel();
     @Property(selector = "setAccessibilityLabel:")
     public native void setAccessibilityLabel(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "accessibilityAttributedLabel")
+    public native NSAttributedString getAccessibilityAttributedLabel();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAccessibilityAttributedLabel:")
+    public native void setAccessibilityAttributedLabel(NSAttributedString v);
     @Property(selector = "accessibilityHint")
     public native String getAccessibilityHint();
     @Property(selector = "setAccessibilityHint:")
     public native void setAccessibilityHint(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "accessibilityAttributedHint")
+    public native NSAttributedString getAccessibilityAttributedHint();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAccessibilityAttributedHint:")
+    public native void setAccessibilityAttributedHint(NSAttributedString v);
     @Property(selector = "accessibilityValue")
     public native String getAccessibilityValue();
     @Property(selector = "setAccessibilityValue:")
     public native void setAccessibilityValue(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "accessibilityAttributedValue")
+    public native NSAttributedString getAccessibilityAttributedValue();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAccessibilityAttributedValue:")
+    public native void setAccessibilityAttributedValue(NSAttributedString v);
     @Property(selector = "accessibilityTraits")
     public native UIAccessibilityTraits getAccessibilityTraits();
     @Property(selector = "setAccessibilityTraits:")

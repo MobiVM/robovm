@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -44,7 +47,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIBezierPath/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class UIBezierPathPtr extends Ptr<UIBezierPath, UIBezierPathPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIBezierPath.class); }/*</bind>*/
@@ -193,7 +196,5 @@ import org.robovm.apple.corelocation.*;
     public static native UIBezierPath newArc(@ByVal CGPoint center, @MachineSizedFloat double radius, @MachineSizedFloat double startAngle, @MachineSizedFloat double endAngle, boolean clockwise);
     @Method(selector = "bezierPathWithCGPath:")
     public static native UIBezierPath newPath(CGPath CGPath);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
     /*</methods>*/
 }

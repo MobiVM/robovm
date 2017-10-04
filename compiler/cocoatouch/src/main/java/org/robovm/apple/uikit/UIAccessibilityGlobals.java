@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -87,9 +90,16 @@ import org.robovm.apple.corelocation.*;
     public static native String VoiceOverIdentifier();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @GlobalValue(symbol="UIAccessibilityVoiceOverStatusChanged", optional=true)
     public static native NSString VoiceOverStatusChangedNotification();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityVoiceOverStatusDidChangeNotification", optional=true)
+    public static native NSString VoiceOverStatusDidChangeNotification();
     /**
      * @since Available in iOS 5.0 and later.
      */

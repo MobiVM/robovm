@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -44,7 +47,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIBarButtonItem/*</name>*/
     extends /*<extends>*/UIBarItem/*</extends>*/
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UISpringLoadedInteractionSupporting/*</implements>*/ {
 
     /*<ptr>*/public static class UIBarButtonItemPtr extends Ptr<UIBarButtonItem, UIBarButtonItemPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIBarButtonItem.class); }/*</bind>*/
@@ -191,6 +194,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "buttonGroup")
     public native UIBarButtonItemGroup getButtonGroup();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isSpringLoaded")
+    public native boolean isSpringLoaded();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSpringLoaded:")
+    public native void setSpringLoaded(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -67,6 +70,36 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setSpellCheckingType:")
     void setSpellCheckingType(UITextSpellCheckingType v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "smartQuotesType")
+    UITextSmartQuotesType getSmartQuotesType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSmartQuotesType:")
+    void setSmartQuotesType(UITextSmartQuotesType v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "smartDashesType")
+    UITextSmartDashesType getSmartDashesType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSmartDashesType:")
+    void setSmartDashesType(UITextSmartDashesType v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "smartInsertDeleteType")
+    UITextSmartInsertDeleteType getSmartInsertDeleteType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSmartInsertDeleteType:")
+    void setSmartInsertDeleteType(UITextSmartInsertDeleteType v);
     @Property(selector = "keyboardType")
     UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")

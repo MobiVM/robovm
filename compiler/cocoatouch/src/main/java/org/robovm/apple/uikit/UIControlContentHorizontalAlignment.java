@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -45,7 +48,15 @@ public enum /*<name>*/UIControlContentHorizontalAlignment/*</name>*/ implements 
     Center(0L),
     Left(1L),
     Right(2L),
-    Fill(3L);
+    Fill(3L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Leading(4L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Trailing(5L);
     /*</values>*/
 
     private final long n;

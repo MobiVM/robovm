@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,7 +66,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "beginPage")
     public native void beginPage();
     @Method(selector = "beginPageWithBounds:pageInfo:")
-    public native void beginPage(@ByVal CGRect bounds, NSDictionary<?, ?> pageInfo);
+    public native void beginPage(@ByVal CGRect bounds, NSDictionary<NSString, ?> pageInfo);
     @Method(selector = "setURL:forRect:")
     public native void setURLForRect(NSURL url, @ByVal CGRect rect);
     @Method(selector = "addDestinationWithName:atPoint:")

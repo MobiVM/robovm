@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
@@ -46,7 +49,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UISegmentedControl/*</name>*/ 
     extends /*<extends>*/UIControl/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UISpringLoadedInteractionSupporting/*</implements>*/ {
 
     /*<ptr>*/public static class UISegmentedControlPtr extends Ptr<UISegmentedControl, UISegmentedControlPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UISegmentedControl.class); }/*</bind>*/
@@ -113,6 +116,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UIColor getTintColor();
     @Property(selector = "setTintColor:")
     public native void setTintColor(UIColor v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isSpringLoaded")
+    public native boolean isSpringLoaded();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSpringLoaded:")
+    public native void setSpringLoaded(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /**

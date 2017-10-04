@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -120,5 +123,10 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("collectionView:targetContentOffsetForProposedContentOffset:")
     public @ByVal CGPoint getTargetContentOffsetForProposedContentOffset(UICollectionView collectionView, @ByVal CGPoint proposedContentOffset) { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("collectionView:shouldSpringLoadItemAtIndexPath:withContext:")
+    public boolean shouldSpringLoadItem(UICollectionView collectionView, NSIndexPath indexPath, UISpringLoadedInteractionContext context) { return false; }
     /*</methods>*/
 }
