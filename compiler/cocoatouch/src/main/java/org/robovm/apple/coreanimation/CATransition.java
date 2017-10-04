@@ -70,12 +70,6 @@ import org.robovm.apple.metal.*;
     public native float getEndProgress();
     @Property(selector = "setEndProgress:")
     public native void setEndProgress(float v);
-    @WeaklyLinked
-    @Property(selector = "filter")
-    public native CIFilter getFilter();
-    @WeaklyLinked
-    @Property(selector = "setFilter:")
-    public native void setFilter(CIFilter v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

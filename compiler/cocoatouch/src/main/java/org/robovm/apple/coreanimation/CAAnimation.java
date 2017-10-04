@@ -44,7 +44,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAAnimation/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding, CAMediaTiming, CAAction/*</implements>*/ {
+    /*<implements>*/implements CAMediaTiming, CAAction/*</implements>*/ {
 
     /*<ptr>*/public static class CAAnimationPtr extends Ptr<CAAnimation, CAAnimationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CAAnimation.class); }/*</bind>*/
@@ -54,8 +54,6 @@ import org.robovm.rt.annotation.WeaklyLinked;
     @Deprecated protected CAAnimation(long handle) { super(handle); }
     protected CAAnimation(Handle h, long handle) { super(h, handle); }
     protected CAAnimation(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public CAAnimation(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     
     /* SceneKit extensions */
@@ -149,10 +147,6 @@ import org.robovm.rt.annotation.WeaklyLinked;
     public native boolean shouldArchiveValue(String key);
     @Method(selector = "defaultValueForKey:")
     public static native NSObject getDefaultValue(String key);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "runActionForKey:object:arguments:")
     public native void runAction(String event, NSObject anObject, NSDictionary<NSString, ?> dict);
     /*</methods>*/

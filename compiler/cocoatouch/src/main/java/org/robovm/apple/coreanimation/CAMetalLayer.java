@@ -78,6 +78,16 @@ import org.robovm.apple.metal.*;
     public native boolean presentsWithTransaction();
     @Property(selector = "setPresentsWithTransaction:")
     public native void setPresentsWithTransaction(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "allowsNextDrawableTimeout")
+    public native boolean allowsNextDrawableTimeout();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAllowsNextDrawableTimeout:")
+    public native void setAllowsNextDrawableTimeout(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
