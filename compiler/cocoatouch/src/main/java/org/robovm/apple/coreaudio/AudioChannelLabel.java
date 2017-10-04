@@ -100,7 +100,25 @@ public enum /*<name>*/AudioChannelLabel/*</name>*/ implements ValuedEnum {
     Discrete_13(65549L),
     Discrete_14(65550L),
     Discrete_15(65551L),
-    Discrete_65535(131071L);
+    Discrete_65535(131071L),
+    HOA_ACN(500L),
+    HOA_ACN_0(131072L),
+    HOA_ACN_1(131073L),
+    HOA_ACN_2(131074L),
+    HOA_ACN_3(131075L),
+    HOA_ACN_4(131076L),
+    HOA_ACN_5(131077L),
+    HOA_ACN_6(131078L),
+    HOA_ACN_7(131079L),
+    HOA_ACN_8(131080L),
+    HOA_ACN_9(131081L),
+    HOA_ACN_10(131082L),
+    HOA_ACN_11(131083L),
+    HOA_ACN_12(131084L),
+    HOA_ACN_13(131085L),
+    HOA_ACN_14(131086L),
+    HOA_ACN_15(131087L),
+    HOA_ACN_65024(196096L);
     /*</values>*/
 
     /*<bind>*/

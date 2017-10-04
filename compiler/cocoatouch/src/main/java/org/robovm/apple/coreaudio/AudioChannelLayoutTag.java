@@ -162,6 +162,8 @@ public final class /*<name>*/AudioChannelLayoutTag/*</name>*/ extends Bits</*<na
     public static final AudioChannelLayoutTag DTS_8_1_A = new AudioChannelLayoutTag(11796489L);
     public static final AudioChannelLayoutTag DTS_8_1_B = new AudioChannelLayoutTag(11862025L);
     public static final AudioChannelLayoutTag DTS_6_1_D = new AudioChannelLayoutTag(11927559L);
+    public static final AudioChannelLayoutTag HOA_ACN_SN3D = new AudioChannelLayoutTag(12451840L);
+    public static final AudioChannelLayoutTag HOA_ACN_N3D = new AudioChannelLayoutTag(12517376L);
     public static final AudioChannelLayoutTag DiscreteInOrder = new AudioChannelLayoutTag(9633792L);
     public static final AudioChannelLayoutTag Unknown = new AudioChannelLayoutTag(-65536L);
     /*</values>*/
