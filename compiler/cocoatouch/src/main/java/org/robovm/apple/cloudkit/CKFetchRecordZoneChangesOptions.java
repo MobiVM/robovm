@@ -60,9 +60,9 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "setResultsLimit:")
     public native void setResultsLimit(@MachineSizedUInt long v);
     @Property(selector = "desiredKeys")
-    public native NSArray<?> getDesiredKeys();
+    public native NSArray<NSString> getDesiredKeys();
     @Property(selector = "setDesiredKeys:")
-    public native void setDesiredKeys(NSArray<?> v);
+    public native void setDesiredKeys(NSArray<NSString> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

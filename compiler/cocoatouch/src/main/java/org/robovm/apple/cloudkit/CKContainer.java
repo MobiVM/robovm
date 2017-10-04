@@ -187,7 +187,7 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 9.3 and later.
      */
     @Method(selector = "fetchAllLongLivedOperationIDsWithCompletionHandler:")
-    public native void fetchAllLongLivedOperationIDs(@Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    public native void fetchAllLongLivedOperationIDs(@Block VoidBlock2<NSArray<NSString>, NSError> completionHandler);
     /**
      * @since Available in iOS 9.3 and later.
      */

@@ -57,6 +57,11 @@ import org.robovm.apple.contacts.*;
     public native NSPersonNameComponents getNameComponents();
     @Property(selector = "userRecordID")
     public native CKRecordID getUserRecordID();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "contactIdentifiers")
+    public native NSArray<NSString> getContactIdentifiers();
     @Property(selector = "hasiCloudAccount")
     public native boolean isHasiCloudAccount();
     /*</properties>*/

@@ -73,6 +73,16 @@ import org.robovm.apple.contacts.*;
     public native @Block VoidBlock1<CKRecordZoneID> getRecordZoneWithIDWasDeletedBlock();
     @Property(selector = "setRecordZoneWithIDWasDeletedBlock:")
     public native void setRecordZoneWithIDWasDeletedBlock(@Block VoidBlock1<CKRecordZoneID> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "recordZoneWithIDWasPurgedBlock")
+    public native @Block VoidBlock1<CKRecordZoneID> getRecordZoneWithIDWasPurgedBlock();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setRecordZoneWithIDWasPurgedBlock:")
+    public native void setRecordZoneWithIDWasPurgedBlock(@Block VoidBlock1<CKRecordZoneID> v);
     @Property(selector = "changeTokenUpdatedBlock")
     public native @Block VoidBlock1<CKServerChangeToken> getChangeTokenUpdatedBlock();
     @Property(selector = "setChangeTokenUpdatedBlock:")

@@ -69,9 +69,9 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithUserRecordID:")
     protected native @Pointer long init(CKRecordID userRecordID);
     @Method(selector = "lookupInfosWithEmails:")
-    public static native NSArray<CKUserIdentityLookupInfo> lookupInfosWithEmails(NSArray<?> emails);
+    public static native NSArray<CKUserIdentityLookupInfo> lookupInfosWithEmails(NSArray<NSString> emails);
     @Method(selector = "lookupInfosWithPhoneNumbers:")
-    public static native NSArray<CKUserIdentityLookupInfo> lookupInfosWithPhoneNumbers(NSArray<?> phoneNumbers);
+    public static native NSArray<CKUserIdentityLookupInfo> lookupInfosWithPhoneNumbers(NSArray<NSString> phoneNumbers);
     @Method(selector = "lookupInfosWithRecordIDs:")
     public static native NSArray<CKUserIdentityLookupInfo> lookupInfosWithRecordIDs(NSArray<CKRecordID> recordIDs);
     /*</methods>*/

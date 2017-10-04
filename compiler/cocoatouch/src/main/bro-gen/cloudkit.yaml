@@ -1,5 +1,5 @@
 package: org.robovm.apple.cloudkit
-include: [foundation.yaml, corelocation.yaml, contacts.yaml]
+include: [foundation.yaml, corelocation.yaml, contacts.yaml, fileprovider.yaml]
 library: CloudKit
 framework: CloudKit
 clang_args: ['-x', 'objective-c']
@@ -41,6 +41,7 @@ enums:
     CKShareParticipantType: {}
     CKSubscriptionType: {}
     CKQuerySubscriptionOptions: { prefix: CKQuerySubscriptionOptions}
+    CKOperationGroupTransferSize: {} #since 11.0
 
 classes:
     CKError:
@@ -238,10 +239,6 @@ classes:
         methods:
             '-init':
                 exclude: true
-            '-init.*':
-                name: init
-    CKQuerySubscription:
-        methods:
             '-init.*':
                 name: init
     CKRecordZoneSubscription:
@@ -451,7 +448,6 @@ classes:
                 constructor: false
             '-init.*':
                 name: init
-    CKSubscription: {}
 
     CKAcceptSharesOperation: {}
     CKDatabaseNotification: {}
@@ -466,6 +462,12 @@ classes:
     CKFetchShareMetadataOperation: {}
     CKFetchShareParticipantsOperation: {}
     CKFetchWebAuthTokenOperation: {}
+    CKOperationConfiguration: {} #since 11.0
+    CKOperationGroup: {} #since 11.0
+    CKQuerySubscription: #since 10.0
+        methods:
+            '-init.*':
+                name: init
 
 protocols:
     CKRecordValue: # DONE

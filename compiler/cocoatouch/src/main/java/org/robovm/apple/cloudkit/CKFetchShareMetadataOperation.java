@@ -62,9 +62,9 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "setShouldFetchRootRecord:")
     public native void setShouldFetchRootRecord(boolean v);
     @Property(selector = "rootRecordDesiredKeys")
-    public native NSArray<?> getRootRecordDesiredKeys();
+    public native NSArray<NSString> getRootRecordDesiredKeys();
     @Property(selector = "setRootRecordDesiredKeys:")
-    public native void setRootRecordDesiredKeys(NSArray<?> v);
+    public native void setRootRecordDesiredKeys(NSArray<NSString> v);
     @Property(selector = "perShareMetadataBlock")
     public native @Block VoidBlock3<NSURL, CKShareMetadata, NSError> getPerShareMetadataBlock();
     @Property(selector = "setPerShareMetadataBlock:")
