@@ -41,22 +41,31 @@ import org.robovm.apple.iosurface.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CIFilterConstructor/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/CIQRCodeErrorCorrectionLevel/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    L(76L),
+    M(77L),
+    Q(81L),
+    H(72L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "filterWithName:")
-    CIFilter filterWithName(String name);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/CIQRCodeErrorCorrectionLevel/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/CIQRCodeErrorCorrectionLevel/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CIQRCodeErrorCorrectionLevel/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/CIQRCodeErrorCorrectionLevel/*</name>*/.class.getName());
+    }
 }

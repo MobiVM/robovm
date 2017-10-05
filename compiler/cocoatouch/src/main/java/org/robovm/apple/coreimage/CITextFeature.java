@@ -39,24 +39,39 @@ import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CIFilterConstructor/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CITextFeature/*</name>*/ 
+    extends /*<extends>*/CIFeature/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class CITextFeaturePtr extends Ptr<CITextFeature, CITextFeaturePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CITextFeature.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    public CITextFeature() {}
+    protected CITextFeature(Handle h, long handle) { super(h, handle); }
+    protected CITextFeature(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "bounds")
+    public native @ByVal CGRect getBounds();
+    @Property(selector = "topLeft")
+    public native @ByVal CGPoint getTopLeft();
+    @Property(selector = "topRight")
+    public native @ByVal CGPoint getTopRight();
+    @Property(selector = "bottomLeft")
+    public native @ByVal CGPoint getBottomLeft();
+    @Property(selector = "bottomRight")
+    public native @ByVal CGPoint getBottomRight();
+    @Property(selector = "subFeatures")
+    public native NSArray<?> getSubFeatures();
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "filterWithName:")
-    CIFilter filterWithName(String name);
+    
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

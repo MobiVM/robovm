@@ -39,24 +39,33 @@ import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CIFilterConstructor/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CIRenderInfo/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class CIRenderInfoPtr extends Ptr<CIRenderInfo, CIRenderInfoPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CIRenderInfo.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    public CIRenderInfo() {}
+    protected CIRenderInfo(Handle h, long handle) { super(h, handle); }
+    protected CIRenderInfo(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "kernelExecutionTime")
+    public native double getKernelExecutionTime();
+    @Property(selector = "passCount")
+    public native @MachineSizedSInt long getPassCount();
+    @Property(selector = "pixelsProcessed")
+    public native @MachineSizedSInt long getPixelsProcessed();
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "filterWithName:")
-    CIFilter filterWithName(String name);
+    
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

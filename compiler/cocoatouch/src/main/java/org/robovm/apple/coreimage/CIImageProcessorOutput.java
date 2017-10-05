@@ -39,10 +39,12 @@ import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 10.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CIFilterConstructor/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CIImageProcessorOutput/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -51,11 +53,25 @@ import org.robovm.apple.iosurface.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    @Property(selector = "region")
+    @ByVal CGRect getRegion();
+    @Property(selector = "bytesPerRow")
+    @MachineSizedUInt long getBytesPerRow();
+    @Property(selector = "format")
+    int getFormat();
+    @Property(selector = "baseAddress")
+    VoidPtr getBaseAddress();
+    @Property(selector = "surface")
+    IOSurface getSurface();
+    @Property(selector = "pixelBuffer")
+    CVPixelBuffer getPixelBuffer();
+    @Property(selector = "metalTexture")
+    MTLTexture getMetalTexture();
+    @Property(selector = "metalCommandBuffer")
+    MTLCommandBuffer getMetalCommandBuffer();
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "filterWithName:")
-    CIFilter filterWithName(String name);
+    
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

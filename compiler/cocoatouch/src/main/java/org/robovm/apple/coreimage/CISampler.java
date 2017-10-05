@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,28 +40,39 @@ import org.robovm.apple.iosurface.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CIColorKernel/*</name>*/ 
-    extends /*<extends>*/CIKernel/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CISampler/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CIColorKernelPtr extends Ptr<CIColorKernel, CIColorKernelPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CIColorKernel.class); }/*</bind>*/
+    /*<ptr>*/public static class CISamplerPtr extends Ptr<CISampler, CISamplerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CISampler.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CIColorKernel() {}
-    protected CIColorKernel(Handle h, long handle) { super(h, handle); }
-    protected CIColorKernel(SkipInit skipInit) { super(skipInit); }
+    public CISampler() {}
+    protected CISampler(Handle h, long handle) { super(h, handle); }
+    protected CISampler(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithImage:")
+    public CISampler(CIImage im) { super((SkipInit) null); initObject(initWithImage(im)); }
+    @Method(selector = "initWithImage:options:")
+    public CISampler(CIImage im, NSDictionary<?, ?> dict) { super((SkipInit) null); initObject(init(im, dict)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "definition")
+    public native CIFilterShape getDefinition();
+    @Property(selector = "extent")
+    public native @ByVal CGRect getExtent();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "applyWithExtent:arguments:")
-    public native CIImage apply(@ByVal CGRect extent, NSArray<?> args);
+    @Method(selector = "initWithImage:")
+    protected native @Pointer long initWithImage(CIImage im);
+    @Method(selector = "initWithImage:options:")
+    protected native @Pointer long init(CIImage im, NSDictionary<?, ?> dict);
+    @Method(selector = "samplerWithImage:")
+    public static native CISampler samplerWithImage(CIImage im);
     /*</methods>*/
 }

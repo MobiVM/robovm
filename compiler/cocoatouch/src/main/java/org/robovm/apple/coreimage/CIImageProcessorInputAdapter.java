@@ -39,24 +39,36 @@ import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CIFilterConstructor/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CIImageProcessorInputAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements CIImageProcessorInput/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    @NotImplemented("region")
+    public @ByVal CGRect getRegion() { return null; }
+    @NotImplemented("bytesPerRow")
+    public @MachineSizedUInt long getBytesPerRow() { return 0; }
+    @NotImplemented("format")
+    public int getFormat() { return 0; }
+    @NotImplemented("baseAddress")
+    public VoidPtr getBaseAddress() { return null; }
+    @NotImplemented("surface")
+    public IOSurface getSurface() { return null; }
+    @NotImplemented("pixelBuffer")
+    public CVPixelBuffer getPixelBuffer() { return null; }
+    @NotImplemented("metalTexture")
+    public MTLTexture getMetalTexture() { return null; }
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "filterWithName:")
-    CIFilter filterWithName(String name);
+    
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

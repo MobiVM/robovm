@@ -41,22 +41,33 @@ import org.robovm.apple.iosurface.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CIFilterConstructor/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/CIDataMatrixCodeECCVersion/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    _000(0L),
+    _050(50L),
+    _080(80L),
+    _100(100L),
+    _140(140L),
+    _200(200L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "filterWithName:")
-    CIFilter filterWithName(String name);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/CIDataMatrixCodeECCVersion/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/CIDataMatrixCodeECCVersion/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CIDataMatrixCodeECCVersion/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/CIDataMatrixCodeECCVersion/*</name>*/.class.getName());
+    }
 }

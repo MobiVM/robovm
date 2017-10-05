@@ -39,24 +39,29 @@ import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CIFilterConstructor/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CIRenderTask/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class CIRenderTaskPtr extends Ptr<CIRenderTask, CIRenderTaskPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CIRenderTask.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    public CIRenderTask() {}
+    protected CIRenderTask(Handle h, long handle) { super(h, handle); }
+    protected CIRenderTask(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "filterWithName:")
-    CIFilter filterWithName(String name);
+    @Method(selector = "waitUntilCompletedAndReturnError:")
+    public native CIRenderInfo waitUntilCompletedAndReturnError(NSError.NSErrorPtr error);
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }
