@@ -35,6 +35,7 @@ import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -105,13 +106,17 @@ import org.robovm.apple.metal.*;
      */
     public static final CIFormat ABGR8 = new CIFormat("ABGR8");
     /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public static final CIFormat RGBAf = new CIFormat("RGBAf");
-    /**
      * @since Available in iOS 6.0 and later.
      */
     public static final CIFormat RGBAh = new CIFormat("RGBAh");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CIFormat RGBA16 = new CIFormat("RGBA16");
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    public static final CIFormat RGBAf = new CIFormat("RGBAf");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -160,9 +165,41 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final CIFormat RGf = new CIFormat("RGf");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CIFormat L8 = new CIFormat("L8");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CIFormat L16 = new CIFormat("L16");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CIFormat Lh = new CIFormat("Lh");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CIFormat Lf = new CIFormat("Lf");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CIFormat LA8 = new CIFormat("LA8");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CIFormat LA16 = new CIFormat("LA16");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CIFormat LAh = new CIFormat("LAh");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final CIFormat LAf = new CIFormat("LAf");
     /*</constants>*/
     
-    private static /*<name>*/CIFormat/*</name>*/[] values = new /*<name>*/CIFormat/*</name>*/[] {/*<value_list>*/ARGB8, BGRA8, RGBA8, ABGR8, RGBAf, RGBAh, A8, A16, Ah, Af, R8, R16, Rh, Rf, RG8, RG16, RGh, RGf/*</value_list>*/};
+    private static /*<name>*/CIFormat/*</name>*/[] values = new /*<name>*/CIFormat/*</name>*/[] {/*<value_list>*/ARGB8, BGRA8, RGBA8, ABGR8, RGBAh, RGBA16, RGBAf, A8, A16, Ah, Af, R8, R16, Rh, Rf, RG8, RG16, RGh, RGf, L8, L16, Lh, Lf, LA8, LA16, LAh, LAf/*</value_list>*/};
     
     /*<name>*/CIFormat/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -200,15 +237,20 @@ import org.robovm.apple.metal.*;
         @GlobalValue(symbol="kCIFormatABGR8", optional=true)
         public static native int ABGR8();
         /**
-         * @since Available in iOS 7.0 and later.
-         */
-        @GlobalValue(symbol="kCIFormatRGBAf", optional=true)
-        public static native int RGBAf();
-        /**
          * @since Available in iOS 6.0 and later.
          */
         @GlobalValue(symbol="kCIFormatRGBAh", optional=true)
         public static native int RGBAh();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatRGBA16", optional=true)
+        public static native int RGBA16();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatRGBAf", optional=true)
+        public static native int RGBAf();
         /**
          * @since Available in iOS 9.0 and later.
          */
@@ -269,6 +311,46 @@ import org.robovm.apple.metal.*;
          */
         @GlobalValue(symbol="kCIFormatRGf", optional=true)
         public static native int RGf();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatL8", optional=true)
+        public static native int L8();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatL16", optional=true)
+        public static native int L16();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatLh", optional=true)
+        public static native int Lh();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatLf", optional=true)
+        public static native int Lf();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatLA8", optional=true)
+        public static native int LA8();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatLA16", optional=true)
+        public static native int LA16();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatLAh", optional=true)
+        public static native int LAh();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatLAf", optional=true)
+        public static native int LAf();
         /*</values>*/
     }
 }

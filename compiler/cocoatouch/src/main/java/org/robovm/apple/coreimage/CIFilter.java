@@ -35,6 +35,7 @@ import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -83,11 +84,11 @@ import org.robovm.apple.metal.*;
     @Property(selector = "setName:")
     public native void setName(String v);
     @Property(selector = "inputKeys")
-    public native NSArray<?> getInputKeys();
+    public native NSArray<NSString> getInputKeys();
     @Property(selector = "outputKeys")
-    public native NSArray<?> getOutputKeys();
+    public native NSArray<NSString> getOutputKeys();
     @Property(selector = "attributes")
-    public native NSDictionary<?, ?> getAttributes();
+    public native NSDictionary<NSString, ?> getAttributes();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -181,7 +182,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "registerFilterName:constructor:classAttributes:")
-    public static native void register(String name, CIFilterConstructor anObject, NSDictionary<?, ?> attributes);
+    public static native void register(String name, CIFilterConstructor anObject, NSDictionary<NSString, ?> attributes);
     /**
      * @since Available in iOS 9.0 and later.
      */

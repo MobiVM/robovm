@@ -20,6 +20,8 @@ classes:
         properties:
             'components':
                 visibility: protected
+            '(.*)Color':
+                omit_prefix: true
         methods:
             '-initWithCGColor:':
                 exclude: true
@@ -33,8 +35,6 @@ classes:
                 name: create # as conflicts with constructors in ios9+
                 visibility: protected
                 return_type: '@Pointer long'
-            '-(alpha|blue|colorSpace|green|numberOfComponents|red|stringRepresentation)':
-                property: true
     CIColorKernel: # DONE
         methods:
             '-applyWithExtent:arguments:':

@@ -35,6 +35,7 @@ import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,6 +94,56 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedFloat double getBlue();
     @Property(selector = "stringRepresentation")
     public native String getStringRepresentation();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "blackColor")
+    public static native CIColor blackColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "whiteColor")
+    public static native CIColor whiteColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "grayColor")
+    public static native CIColor grayColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "redColor")
+    public static native CIColor redColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "greenColor")
+    public static native CIColor greenColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "blueColor")
+    public static native CIColor blueColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "cyanColor")
+    public static native CIColor cyanColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "magentaColor")
+    public static native CIColor magentaColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "yellowColor")
+    public static native CIColor yellowColor();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "clearColor")
+    public static native CIColor clearColor();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -139,55 +190,5 @@ import org.robovm.apple.metal.*;
     protected static native @Pointer long create(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, CGColorSpace colorSpace);
     @Method(selector = "colorWithString:")
     protected static native @Pointer long create(String representation);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "blackColor")
-    public static native CIColor blackColor();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "whiteColor")
-    public static native CIColor whiteColor();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "grayColor")
-    public static native CIColor grayColor();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "redColor")
-    public static native CIColor redColor();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "greenColor")
-    public static native CIColor greenColor();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "blueColor")
-    public static native CIColor blueColor();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "cyanColor")
-    public static native CIColor cyanColor();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "magentaColor")
-    public static native CIColor magentaColor();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "yellowColor")
-    public static native CIColor yellowColor();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "clearColor")
-    public static native CIColor clearColor();
     /*</methods>*/
 }

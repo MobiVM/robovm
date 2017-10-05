@@ -35,6 +35,7 @@ import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +69,11 @@ import org.robovm.apple.metal.*;
     public native @ByVal CGPoint getBottomRight();
     @Property(selector = "messageString")
     public native String getMessageString();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "symbolDescriptor")
+    public native CIQRCodeDescriptor getSymbolDescriptor();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

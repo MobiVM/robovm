@@ -35,6 +35,7 @@ import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -79,6 +80,16 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithContentsOfURL:options:")
     public CIImage(NSURL url, CIImageOptions options) { super((SkipInit) null); initObject(init(url, options)); }
     /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithIOSurface:")
+    public CIImage(IOSurface surface) { super((SkipInit) null); initObject(init(surface)); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithIOSurface:options:")
+    public CIImage(IOSurface surface, CIImageOptions options) { super((SkipInit) null); initObject(init(surface, options)); }
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithCVImageBuffer:")
@@ -99,7 +110,7 @@ import org.robovm.apple.metal.*;
      */
     @WeaklyLinked
     @Method(selector = "initWithCVPixelBuffer:options:")
-    public CIImage(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(pixelBuffer, options)); }
+    public CIImage(CVPixelBuffer pixelBuffer, NSDictionary<NSString, ?> options) { super((SkipInit) null); initObject(init(pixelBuffer, options)); }
     @Method(selector = "initWithColor:")
     public CIImage(CIColor color) { super((SkipInit) null); initObject(init(color)); }
     /**
@@ -115,7 +126,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 5.0 and later.
      */
     @Property(selector = "properties")
-    public native NSDictionary<?, ?> getProperties();
+    public native NSDictionary<NSString, ?> getProperties();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -136,6 +147,11 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "CGImage")
     public native CGImage getCGImage();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "depthData")
+    public native org.robovm.apple.avfoundation.AVDepthData getDepthData();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -180,6 +196,16 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithContentsOfURL:options:")
     protected native @Pointer long init(NSURL url, CIImageOptions options);
     /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithIOSurface:")
+    protected native @Pointer long init(IOSurface surface);
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithIOSurface:options:")
+    protected native @Pointer long init(IOSurface surface, CIImageOptions options);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithCVImageBuffer:")
@@ -200,7 +226,7 @@ import org.robovm.apple.metal.*;
      */
     @WeaklyLinked
     @Method(selector = "initWithCVPixelBuffer:options:")
-    protected native @Pointer long init(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> options);
+    protected native @Pointer long init(CVPixelBuffer pixelBuffer, NSDictionary<NSString, ?> options);
     @Method(selector = "initWithColor:")
     protected native @Pointer long init(CIColor color);
     @Method(selector = "imageByApplyingTransform:")
@@ -217,6 +243,16 @@ import org.robovm.apple.metal.*;
     @WeaklyLinked
     @Method(selector = "imageTransformForOrientation:")
     public native @ByVal CGAffineTransform getImageTransformForOrientation(CGImagePropertyOrientation orientation);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "imageByApplyingCGOrientation:")
+    public native CIImage newImageByApplyingCGOrientation(CGImagePropertyOrientation orientation);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "imageTransformForCGOrientation:")
+    public native @ByVal CGAffineTransform imageTransformForCGOrientation(CGImagePropertyOrientation orientation);
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -239,6 +275,11 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "imageByApplyingFilter:withInputParameters:")
     public native CIImage newImageByApplyingFilter(String filterName, CIFilterInputParameters params);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "imageByApplyingFilter:")
+    public native CIImage newImageByApplyingFilter(String filterName);
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -275,6 +316,16 @@ import org.robovm.apple.metal.*;
     @Method(selector = "imageBySettingProperties:")
     public native CIImage newImageBySettingProperties(NSDictionary<?, ?> properties);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "imageBySamplingLinear")
+    public native CIImage newImageBySamplingLinear();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "imageBySamplingNearest")
+    public native CIImage newImageBySamplingNearest();
+    /**
      * @since Available in iOS 6.0 and later.
      */
     @Method(selector = "regionOfInterestForImage:inRect:")
@@ -290,7 +341,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "autoAdjustmentFiltersWithOptions:")
-    public native NSArray<CIFilter> getAutoAdjustmentFilters(NSDictionary<?, ?> options);
+    public native NSArray<CIFilter> getAutoAdjustmentFilters(NSDictionary<NSString, ?> options);
     /**
      * @since Available in iOS 9.0 and later.
      */
