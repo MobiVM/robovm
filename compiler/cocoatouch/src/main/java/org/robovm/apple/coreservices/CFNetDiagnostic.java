@@ -77,27 +77,37 @@ import org.robovm.apple.corefoundation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @Bridge(symbol="CFNetDiagnosticCreateWithStreams", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFNetDiagnostic create(CFAllocator alloc, NSInputStream readStream, NSOutputStream writeStream);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @Bridge(symbol="CFNetDiagnosticCreateWithURL", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFNetDiagnostic create(CFAllocator alloc, NSURL url);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @Bridge(symbol="CFNetDiagnosticSetName", optional=true)
     public native void setName(String name);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @Bridge(symbol="CFNetDiagnosticDiagnoseProblemInteractively", optional=true)
     public native CFNetDiagnosticStatus diagnoseProblemInteractively();
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @Bridge(symbol="CFNetDiagnosticCopyNetworkStatusPassively", optional=true)
     private native CFNetDiagnosticStatus getNetworkStatusPassively(NSString.NSStringPtr description);
     /*</methods>*/

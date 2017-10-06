@@ -93,11 +93,15 @@ import org.robovm.apple.corefoundation.*;
     public static final CFStreamSocketSecurityLevel None = new CFStreamSocketSecurityLevel("None");
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     public static final CFStreamSocketSecurityLevel SSLv2 = new CFStreamSocketSecurityLevel("SSLv2");
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     public static final CFStreamSocketSecurityLevel SSLv3 = new CFStreamSocketSecurityLevel("SSLv3");
     /**
      * @since Available in iOS 2.0 and later.
@@ -139,12 +143,16 @@ import org.robovm.apple.corefoundation.*;
         public static native CFString None();
         /**
          * @since Available in iOS 2.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
          */
+        @Deprecated
         @GlobalValue(symbol="kCFStreamSocketSecurityLevelSSLv2", optional=true)
         public static native CFString SSLv2();
         /**
          * @since Available in iOS 2.0 and later.
+         * @deprecated Deprecated in iOS 10.0.
          */
+        @Deprecated
         @GlobalValue(symbol="kCFStreamSocketSecurityLevelSSLv3", optional=true)
         public static native CFString SSLv3();
         /**
