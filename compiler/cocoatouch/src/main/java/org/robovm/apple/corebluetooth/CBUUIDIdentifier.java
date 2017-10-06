@@ -96,9 +96,13 @@ import org.robovm.apple.dispatch.*;
     public static final CBUUIDIdentifier CharacteristicFormat = new CBUUIDIdentifier("CharacteristicFormat");
     public static final CBUUIDIdentifier CharacteristicAggregateFormat = new CBUUIDIdentifier("CharacteristicAggregateFormat");
     public static final CBUUIDIdentifier CharacteristicValidRange = new CBUUIDIdentifier("CharacteristicValidRange");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CBUUIDIdentifier L2CAPPSMCharacteristic = new CBUUIDIdentifier("L2CAPPSMCharacteristic");
     /*</constants>*/
     
-    private static /*<name>*/CBUUIDIdentifier/*</name>*/[] values = new /*<name>*/CBUUIDIdentifier/*</name>*/[] {/*<value_list>*/CharacteristicExtendedProperties, CharacteristicUserDescription, ClientCharacteristicConfiguration, ServerCharacteristicConfiguration, CharacteristicFormat, CharacteristicAggregateFormat, CharacteristicValidRange/*</value_list>*/};
+    private static /*<name>*/CBUUIDIdentifier/*</name>*/[] values = new /*<name>*/CBUUIDIdentifier/*</name>*/[] {/*<value_list>*/CharacteristicExtendedProperties, CharacteristicUserDescription, ClientCharacteristicConfiguration, ServerCharacteristicConfiguration, CharacteristicFormat, CharacteristicAggregateFormat, CharacteristicValidRange, L2CAPPSMCharacteristic/*</value_list>*/};
     
     /*<name>*/CBUUIDIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -135,6 +139,11 @@ import org.robovm.apple.dispatch.*;
         public static native NSString CharacteristicAggregateFormat();
         @GlobalValue(symbol="CBUUIDCharacteristicValidRangeString", optional=true)
         public static native NSString CharacteristicValidRange();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="CBUUIDL2CAPPSMCharacteristicString", optional=true)
+        public static native NSString L2CAPPSMCharacteristic();
         /*</values>*/
     }
 }
