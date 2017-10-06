@@ -65,7 +65,9 @@ import org.robovm.apple.corefoundation.*;
     /*<properties>*/
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @Property(selector = "carrierToken")
     public native NSData getCarrierToken();
     /*</properties>*/

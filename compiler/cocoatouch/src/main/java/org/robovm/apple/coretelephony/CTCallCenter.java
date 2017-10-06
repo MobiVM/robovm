@@ -34,7 +34,9 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
+ * @deprecated Deprecated in iOS 10.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreTelephony") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CTCallCenter/*</name>*/ 
