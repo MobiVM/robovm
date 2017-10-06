@@ -55,6 +55,7 @@ enums:
     CMFormatDescriptionBridgeErrorCode: { first: kCMFormatDescriptionBridgeError_InvalidParameter }
     CMMetadataIdentifierErrorCode: { first: kCMMetadataIdentifierError_AllocationFailed }
     CMMetadataDataTypeRegistryErrorCode: { first: kCMMetadataDataTypeRegistryError_AllocationFailed }
+    CMPersistentTrackID: {first: kCMPersistentTrackID_Invalid, prefix: kCMPersistentTrackID_}
 
 classes:
     # Opaque Types
@@ -1314,6 +1315,10 @@ values:
                 type: CMMPEG2VideoProfile
     kCMFormatDescriptionKey_(.*):
         dictionary: CMVideoFormatDescriptionExtension
+        name: '#{g[0]}'
+        type: CFString
+    kCMHEVCTemporalLevelInfoKey_(.*):
+        dictionary: CMHEVCTemporalLevelInfo
         name: '#{g[0]}'
         type: CFString
     kCMFormatDescription(ConformsToMPEG2VideoProfile):

@@ -533,6 +533,16 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_Vendor", optional=true)
         public static native CFString Vendor();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_MasteringDisplayColorVolume", optional=true)
+        public static native CFString MasteringDisplayColorVolume();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_ContentLightLevelInfo", optional=true)
+        public static native CFString ContentLightLevelInfo();
     }
     /*</keys>*/
 }
