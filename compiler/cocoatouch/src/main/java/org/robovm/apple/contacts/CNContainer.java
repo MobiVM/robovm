@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CNContainer/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CNContainerPtr extends Ptr<CNContainer, CNContainerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CNContainer.class); }/*</bind>*/
@@ -47,6 +47,8 @@ import org.robovm.apple.foundation.*;
     public CNContainer() {}
     protected CNContainer(Handle h, long handle) { super(h, handle); }
     protected CNContainer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CNContainer(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -55,6 +57,8 @@ import org.robovm.apple.foundation.*;
     public native String getName();
     @Property(selector = "type")
     public native CNContainerType getType();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -64,5 +68,9 @@ import org.robovm.apple.foundation.*;
     public static native NSPredicate getPredicateForContactContainer(String contactIdentifier);
     @Method(selector = "predicateForContainerOfGroupWithIdentifier:")
     public static native NSPredicate getPredicateForGroupContainer(String groupIdentifier);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CNLabeledValue/*</name>*/ <T>
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CNLabeledValuePtr extends Ptr<CNLabeledValue, CNLabeledValuePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CNLabeledValue.class); }/*</bind>*/
@@ -47,6 +47,8 @@ import org.robovm.apple.foundation.*;
     public CNLabeledValue() {}
     protected CNLabeledValue(Handle h, long handle) { super(h, handle); }
     protected CNLabeledValue(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CNLabeledValue(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     public CNLabeledValue(String label, T value) {
         super((SkipInit)null);
@@ -102,6 +104,8 @@ import org.robovm.apple.foundation.*;
     public native String getLabel();
     @Property(selector = "value")
     private native NSObject getValue0();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -115,5 +119,9 @@ import org.robovm.apple.foundation.*;
     private native CNLabeledValue<T> setLabelAndValue(String label, NSObject value);
     @Method(selector = "localizedStringForLabel:")
     public static native String getLocalizedLabel(String label);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

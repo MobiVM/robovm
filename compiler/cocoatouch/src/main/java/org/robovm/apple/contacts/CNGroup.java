@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CNGroup/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CNGroupPtr extends Ptr<CNGroup, CNGroupPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CNGroup.class); }/*</bind>*/
@@ -47,12 +47,16 @@ import org.robovm.apple.foundation.*;
     public CNGroup() {}
     protected CNGroup(Handle h, long handle) { super(h, handle); }
     protected CNGroup(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CNGroup(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
     public native String getIdentifier();
     @Property(selector = "name")
     public native String getName();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -60,5 +64,9 @@ import org.robovm.apple.foundation.*;
     public static native NSPredicate getPredicateForGroups(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers);
     @Method(selector = "predicateForGroupsInContainerWithIdentifier:")
     public static native NSPredicate getPredicateForGroupsInContainer(String containerIdentifier);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

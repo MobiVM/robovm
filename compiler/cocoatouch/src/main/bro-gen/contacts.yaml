@@ -256,11 +256,15 @@ classes:
     CNMutableGroup: {} # DONE
     CNMutablePostalAddress: {} # DONE
     CNPhoneNumber: # DONE
+        skip_def_constructor: true
         methods:
             '-initWithStringValue:':
                 name: init
             '+phoneNumberWithStringValue:':
                 exclude: true
+            '+new':
+                constructor: true
+                name: create
     CNPostalAddress: # DONE
         methods:
             '+localizedStringForKey:':

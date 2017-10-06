@@ -38,25 +38,45 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CNPhoneNumber/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CNPhoneNumberPtr extends Ptr<CNPhoneNumber, CNPhoneNumberPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CNPhoneNumber.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CNPhoneNumber() {}
     protected CNPhoneNumber(Handle h, long handle) { super(h, handle); }
     protected CNPhoneNumber(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithStringValue:")
     public CNPhoneNumber(String string) { super((SkipInit) null); initObject(init(string)); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    public CNPhoneNumber() { super((Handle) null, create()); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public CNPhoneNumber(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "stringValue")
     public native String getStringValue();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithStringValue:")
     protected native @Pointer long init(String string);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "new")
+    protected static native @Pointer long create();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

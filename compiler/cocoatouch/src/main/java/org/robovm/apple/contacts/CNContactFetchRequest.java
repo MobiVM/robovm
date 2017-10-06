@@ -38,17 +38,19 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CNContactFetchRequest/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CNContactFetchRequestPtr extends Ptr<CNContactFetchRequest, CNContactFetchRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CNContactFetchRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CNContactFetchRequest() {}
+    protected CNContactFetchRequest() {}
     protected CNContactFetchRequest(Handle h, long handle) { super(h, handle); }
     protected CNContactFetchRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithKeysToFetch:")
     public CNContactFetchRequest(@org.robovm.rt.bro.annotation.Marshaler(CNContactPropertyKey.AsListMarshaler.class) List<CNContactPropertyKey> keysToFetch) { super((SkipInit) null); initObject(init(keysToFetch)); }
+    @Method(selector = "initWithCoder:")
+    public CNContactFetchRequest(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "predicate")
@@ -77,10 +79,16 @@ import org.robovm.apple.foundation.*;
     public native CNContactSortOrder getSortOrder();
     @Property(selector = "setSortOrder:")
     public native void setSortOrder(CNContactSortOrder v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithKeysToFetch:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(CNContactPropertyKey.AsListMarshaler.class) List<CNContactPropertyKey> keysToFetch);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
