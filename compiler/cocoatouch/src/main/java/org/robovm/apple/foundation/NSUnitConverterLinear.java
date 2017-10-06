@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnitConverterLinear/*</name>*/ 
     extends /*<extends>*/NSUnitConverter/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSUnitConverterLinearPtr extends Ptr<NSUnitConverterLinear, NSUnitConverterLinearPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUnitConverterLinear.class); }/*</bind>*/
@@ -59,12 +59,16 @@ import org.robovm.apple.dispatch.*;
     public NSUnitConverterLinear(double coefficient) { super((SkipInit) null); initObject(init(coefficient)); }
     @Method(selector = "initWithCoefficient:constant:")
     public NSUnitConverterLinear(double coefficient, double constant) { super((SkipInit) null); initObject(init(coefficient, constant)); }
+    @Method(selector = "initWithCoder:")
+    public NSUnitConverterLinear(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "coefficient")
     public native double getCoefficient();
     @Property(selector = "constant")
     public native double getConstant();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -72,5 +76,9 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(double coefficient);
     @Method(selector = "initWithCoefficient:constant:")
     protected native @Pointer long init(double coefficient, double constant);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

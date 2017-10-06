@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSSortDescriptor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSSortDescriptorPtr extends Ptr<NSSortDescriptor, NSSortDescriptorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSSortDescriptor.class); }/*</bind>*/
@@ -88,6 +88,8 @@ import org.robovm.apple.dispatch.*;
     public native @Block Block2<NSObject, NSObject, NSComparisonResult> getComparator();
     @Property(selector = "reversedSortDescriptor")
     public native NSSortDescriptor getReversedSortDescriptor();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -109,5 +111,7 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(String key, boolean ascending, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
     @Method(selector = "compareObject:toObject:")
     public native NSComparisonResult compare(NSObject object1, NSObject object2);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

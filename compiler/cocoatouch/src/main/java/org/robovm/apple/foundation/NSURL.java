@@ -45,7 +45,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSURL/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSItemProviderReading, NSItemProviderWriting/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, NSItemProviderReading, NSItemProviderWriting/*</implements>*/ {
 
     /*<ptr>*/public static class NSURLPtr extends Ptr<NSURL, NSURLPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSURL.class); }/*</bind>*/
@@ -85,6 +85,8 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    @Method(selector = "initWithCoder:")
+    public NSURL(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /**
      * @since Available in iOS 9.0 and later.
@@ -194,6 +196,8 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
      */
     @Property(selector = "URLByResolvingSymlinksInPath")
     public native NSURL getURLByResolvingSymlinksInPath();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "readableTypeIdentifiersForItemProvider")
     public static native NSArray<NSString> getReadableTypeIdentifiersForItemProvider();
     @Property(selector = "writableTypeIdentifiersForItemProvider")
@@ -612,6 +616,10 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
      */
     @Method(selector = "URLByAppendingPathExtension:")
     public native NSURL newURLByAppendingPathExtension(String pathExtension);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     public static NSURL createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSURL result = createProviderDataObject(data, typeIdentifier, ptr);

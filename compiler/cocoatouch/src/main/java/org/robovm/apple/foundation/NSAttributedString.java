@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass @WeaklyLinked/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSAttributedString/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSAttributedStringPtr extends Ptr<NSAttributedString, NSAttributedStringPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSAttributedString.class); }/*</bind>*/
@@ -61,6 +61,8 @@ import org.robovm.apple.dispatch.*;
     public NSAttributedString(String str, NSDictionary<NSString, ?> attrs) { super((SkipInit) null); initObject(init(str, attrs)); }
     @Method(selector = "initWithAttributedString:")
     public NSAttributedString(NSAttributedString attrStr) { super((SkipInit) null); initObject(init(attrStr)); }
+    @Method(selector = "initWithCoder:")
+    public NSAttributedString(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     public NSAttributedString(String str, NSAttributedStringAttributes attrs) {
         super((SkipInit)null);
@@ -96,6 +98,8 @@ import org.robovm.apple.dispatch.*;
     public native String getString();
     @Property(selector = "length")
     public native @MachineSizedUInt long length();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     @Override
@@ -392,5 +396,9 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "enumerateAttribute:inRange:options:usingBlock:")
     public native void enumerateAttribute(NSString attrName, @ByVal NSRange enumerationRange, NSAttributedStringEnumerationOptions opts, @Block("(,@ByVal,)") VoidBlock3<NSObject, NSRange, BooleanPtr> block);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

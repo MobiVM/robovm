@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSLocale/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     public static class Notifications {
         /**
@@ -68,6 +68,8 @@ import org.robovm.apple.dispatch.*;
     protected NSLocale(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLocaleIdentifier:")
     public NSLocale(String string) { super((SkipInit) null); initObject(init(string)); }
+    @Method(selector = "initWithCoder:")
+    public NSLocale(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     
     public NSLocale(Locale locale) {
@@ -190,6 +192,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "preferredLanguages")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPreferredLanguages();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -407,5 +411,9 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "lineDirectionForLanguage:")
     public static native NSLocaleLanguageDirection getLineDirection(String isoLangCode);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

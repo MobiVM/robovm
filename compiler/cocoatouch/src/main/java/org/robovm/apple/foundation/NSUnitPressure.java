@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnitPressure/*</name>*/ 
     extends /*<extends>*/NSDimension/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSUnitPressurePtr extends Ptr<NSUnitPressure, NSUnitPressurePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUnitPressure.class); }/*</bind>*/

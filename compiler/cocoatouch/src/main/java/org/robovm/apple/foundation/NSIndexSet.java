@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSIndexSet/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSIndexSetPtr extends Ptr<NSIndexSet, NSIndexSetPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSIndexSet.class); }/*</bind>*/
@@ -59,6 +59,8 @@ import org.robovm.apple.dispatch.*;
     public NSIndexSet(NSIndexSet indexSet) { super((SkipInit) null); initObject(init(indexSet)); }
     @Method(selector = "initWithIndex:")
     public NSIndexSet(@MachineSizedUInt long value) { super((SkipInit) null); initObject(init(value)); }
+    @Method(selector = "initWithCoder:")
+    public NSIndexSet(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "count")
@@ -67,6 +69,8 @@ import org.robovm.apple.dispatch.*;
     public native @MachineSizedUInt long first();
     @Property(selector = "lastIndex")
     public native @MachineSizedUInt long last();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public long[] getIndexesInRange(NSRange range, @MachineSizedUInt long maxIndexes) {
@@ -198,5 +202,9 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "enumerateRangesInRange:options:usingBlock:")
     public native void enumerateRangesInRange(@ByVal NSRange range, NSEnumerationOptions opts, @Block("(@ByVal,)") VoidBlock2<NSRange, BooleanPtr> block);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

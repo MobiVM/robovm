@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnitVolume/*</name>*/ 
     extends /*<extends>*/NSDimension/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSUnitVolumePtr extends Ptr<NSUnitVolume, NSUnitVolumePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUnitVolume.class); }/*</bind>*/

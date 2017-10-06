@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSExtensionItem/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSExtensionItemPtr extends Ptr<NSExtensionItem, NSExtensionItemPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSExtensionItem.class); }/*</bind>*/
@@ -55,6 +55,8 @@ import org.robovm.apple.dispatch.*;
     public NSExtensionItem() {}
     protected NSExtensionItem(Handle h, long handle) { super(h, handle); }
     protected NSExtensionItem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSExtensionItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "attributedTitle")
@@ -73,6 +75,8 @@ import org.robovm.apple.dispatch.*;
     public native NSDictionary<?, ?> getUserInfo();
     @Property(selector = "setUserInfo:")
     public native void setUserInfo(NSDictionary<?, ?> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -92,6 +96,9 @@ import org.robovm.apple.dispatch.*;
     @GlobalValue(symbol="NSExtensionItemAttachmentsKey", optional=true)
     public static native String AttachmentsKey();
     
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

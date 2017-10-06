@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSExpression/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSExpressionPtr extends Ptr<NSExpression, NSExpressionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSExpression.class); }/*</bind>*/
@@ -115,6 +115,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "expressionBlock")
     public native @Block Block3<NSObject, NSArray<NSExpression>, NSMutableDictionary<?, ?>, NSObject> getExpressionBlock();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -189,5 +191,7 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "expressionForConditional:trueExpression:falseExpression:")
     public static native NSExpression createForConditional(NSPredicate predicate, NSExpression trueExpression, NSExpression falseExpression);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

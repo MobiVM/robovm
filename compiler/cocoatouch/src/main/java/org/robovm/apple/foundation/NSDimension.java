@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSDimension/*</name>*/ 
     extends /*<extends>*/NSUnit/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSDimensionPtr extends Ptr<NSDimension, NSDimensionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSDimension.class); }/*</bind>*/

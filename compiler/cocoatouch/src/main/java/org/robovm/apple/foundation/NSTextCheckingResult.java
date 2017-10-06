@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextCheckingResult/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSTextCheckingResultPtr extends Ptr<NSTextCheckingResult, NSTextCheckingResultPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSTextCheckingResult.class); }/*</bind>*/
@@ -55,6 +55,8 @@ import org.robovm.apple.dispatch.*;
     public NSTextCheckingResult() {}
     protected NSTextCheckingResult(Handle h, long handle) { super(h, handle); }
     protected NSTextCheckingResult(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSTextCheckingResult(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "resultType")
@@ -102,6 +104,8 @@ import org.robovm.apple.dispatch.*;
     public native @MachineSizedUInt long getNumberOfRanges();
     @Property(selector = "addressComponents")
     public native NSTextCheckingAddressComponents getAddressComponents();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -172,5 +176,9 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "transitInformationCheckingResultWithRange:components:")
     public static native NSTextCheckingResult getTransitInformationCheckingResult(@ByVal NSRange range, NSTextCheckingTransitComponents components);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

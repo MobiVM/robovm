@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSPredicate/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSPredicatePtr extends Ptr<NSPredicate, NSPredicatePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSPredicate.class); }/*</bind>*/
@@ -61,6 +61,8 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 4.0 and later.
      */
     public NSPredicate(@Block Block2<NSObject, NSDictionary<NSString, ?>, Boolean> block) { super((Handle) null, create(block)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public NSPredicate(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     public NSPredicate(String predicateFormat, Object... arguments) {
         super(create(predicateFormat, arguments));
@@ -108,6 +110,8 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "predicateFormat")
     public native String getPredicateFormat();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -134,5 +138,9 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "predicateWithBlock:")
     protected static native @Pointer long create(@Block Block2<NSObject, NSDictionary<NSString, ?>, Boolean> block);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

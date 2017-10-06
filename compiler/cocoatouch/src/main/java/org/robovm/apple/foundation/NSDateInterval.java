@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSDateInterval/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSDateIntervalPtr extends Ptr<NSDateInterval, NSDateIntervalPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSDateInterval.class); }/*</bind>*/
@@ -69,6 +69,8 @@ import org.robovm.apple.dispatch.*;
     public native NSDate getEndDate();
     @Property(selector = "duration")
     public native double getDuration();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -88,5 +90,7 @@ import org.robovm.apple.dispatch.*;
     public native NSDateInterval getIntersection(NSDateInterval dateInterval);
     @Method(selector = "containsDate:")
     public native boolean containsDate(NSDate date);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

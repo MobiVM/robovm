@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSCharacterSet/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSCharacterSetPtr extends Ptr<NSCharacterSet, NSCharacterSetPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSCharacterSet.class); }/*</bind>*/
@@ -139,6 +139,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "URLFragmentAllowedCharacterSet")
     public static native NSCharacterSet getURLFragmentAllowedCharacterSet();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -160,5 +162,7 @@ import org.robovm.apple.dispatch.*;
     protected static native @Pointer long create(NSData data);
     @Method(selector = "characterSetWithContentsOfFile:")
     private static native @Pointer long createWithFile(String fName);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

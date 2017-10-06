@@ -4425,7 +4425,7 @@ protocols:
             '-handlePortMessage:':
                 trim_after_first_colon: true
     NSProgressReporting: {} # DONE
-#    NSSecureCoding: {}
+    NSSecureCoding: {skip_adapter: true}
     NSStreamDelegate: # DONE
         methods:
             '-stream:handleEvent:':

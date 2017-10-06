@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUUID/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSUUIDPtr extends Ptr<NSUUID, NSUUIDPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUUID.class); }/*</bind>*/
@@ -55,6 +55,8 @@ import org.robovm.apple.dispatch.*;
     public NSUUID() {}
     protected NSUUID(Handle h, long handle) { super(h, handle); }
     protected NSUUID(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSUUID(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     
     public NSUUID(UUID uuid) {
@@ -80,6 +82,8 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "UUIDString")
     public native String asString();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -100,5 +104,9 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(@Pointer long bytes);
     @Method(selector = "getUUIDBytes:")
     protected native void getUUIDBytes(@Pointer long uuid);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

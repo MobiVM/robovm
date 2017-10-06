@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnitDuration/*</name>*/ 
     extends /*<extends>*/NSDimension/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSUnitDurationPtr extends Ptr<NSUnitDuration, NSUnitDurationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUnitDuration.class); }/*</bind>*/

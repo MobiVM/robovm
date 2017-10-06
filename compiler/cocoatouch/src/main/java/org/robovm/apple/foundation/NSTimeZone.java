@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTimeZone/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     public static class Notifications {
         /**
@@ -71,6 +71,8 @@ import org.robovm.apple.dispatch.*;
     public NSTimeZone(String tzName) { super((SkipInit) null); initObject(init(tzName)); }
     @Method(selector = "initWithName:data:")
     public NSTimeZone(String tzName, NSData aData) { super((SkipInit) null); initObject(init(tzName, aData)); }
+    @Method(selector = "initWithCoder:")
+    public NSTimeZone(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -118,6 +120,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "nextDaylightSavingTimeTransition")
     public native NSDate getNextDaylightSavingTimeTransition();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -164,5 +168,9 @@ import org.robovm.apple.dispatch.*;
     public static native NSTimeZone fromGMTSecondsOffset(@MachineSizedSInt long seconds);
     @Method(selector = "timeZoneWithAbbreviation:")
     public static native NSTimeZone fromAbbreviation(String abbreviation);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

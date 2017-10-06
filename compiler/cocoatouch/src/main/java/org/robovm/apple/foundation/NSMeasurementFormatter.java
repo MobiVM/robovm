@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMeasurementFormatter/*</name>*/ 
     extends /*<extends>*/NSFormatter/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSMeasurementFormatterPtr extends Ptr<NSMeasurementFormatter, NSMeasurementFormatterPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSMeasurementFormatter.class); }/*</bind>*/
@@ -73,6 +73,8 @@ import org.robovm.apple.dispatch.*;
     public native NSNumberFormatter getNumberFormatter();
     @Property(selector = "setNumberFormatter:")
     public native void setNumberFormatter(NSNumberFormatter v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
