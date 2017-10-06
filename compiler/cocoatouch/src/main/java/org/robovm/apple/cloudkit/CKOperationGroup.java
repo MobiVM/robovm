@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.contacts.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKOperationGroup/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKOperationGroupPtr extends Ptr<CKOperationGroup, CKOperationGroupPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKOperationGroup.class); }/*</bind>*/
@@ -75,10 +76,14 @@ import org.robovm.apple.contacts.*;
     public native CKOperationGroupTransferSize getExpectedReceiveSize();
     @Property(selector = "setExpectedReceiveSize:")
     public native void setExpectedReceiveSize(CKOperationGroupTransferSize v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
     protected native @Pointer long initWithCoder(NSCoder aDecoder);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

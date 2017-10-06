@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.contacts.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKRecordZoneID/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKRecordZoneIDPtr extends Ptr<CKRecordZoneID, CKRecordZoneIDPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKRecordZoneID.class); }/*</bind>*/
@@ -51,16 +52,24 @@ import org.robovm.apple.contacts.*;
     protected CKRecordZoneID(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithZoneName:ownerName:")
     public CKRecordZoneID(String zoneName, String ownerName) { super((SkipInit) null); initObject(init(zoneName, ownerName)); }
+    @Method(selector = "initWithCoder:")
+    public CKRecordZoneID(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "zoneName")
     public native String getZoneName();
     @Property(selector = "ownerName")
     public native String getOwnerName();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithZoneName:ownerName:")
     protected native @Pointer long init(String zoneName, String ownerName);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

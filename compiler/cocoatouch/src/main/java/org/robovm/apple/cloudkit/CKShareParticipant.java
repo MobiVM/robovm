@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.contacts.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKShareParticipant/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKShareParticipantPtr extends Ptr<CKShareParticipant, CKShareParticipantPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKShareParticipant.class); }/*</bind>*/
@@ -49,6 +50,8 @@ import org.robovm.apple.contacts.*;
     protected CKShareParticipant() {}
     protected CKShareParticipant(Handle h, long handle) { super(h, handle); }
     protected CKShareParticipant(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CKShareParticipant(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "userIdentity")
@@ -63,9 +66,14 @@ import org.robovm.apple.contacts.*;
     public native CKShareParticipantPermission getPermission();
     @Property(selector = "setPermission:")
     public native void setPermission(CKShareParticipantPermission v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

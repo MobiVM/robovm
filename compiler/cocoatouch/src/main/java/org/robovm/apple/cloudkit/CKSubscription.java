@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.contacts.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKSubscription/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKSubscriptionPtr extends Ptr<CKSubscription, CKSubscriptionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKSubscription.class); }/*</bind>*/
@@ -129,6 +130,8 @@ import org.robovm.apple.contacts.*;
     @Deprecated
     @Property(selector = "setZoneID:")
     public native void setZoneID(CKRecordZoneID v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -167,5 +170,7 @@ import org.robovm.apple.contacts.*;
     @Deprecated
     @Method(selector = "initWithZoneID:subscriptionID:options:")
     protected native @Pointer long init(CKRecordZoneID zoneID, String subscriptionID, CKSubscriptionOptions subscriptionOptions);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

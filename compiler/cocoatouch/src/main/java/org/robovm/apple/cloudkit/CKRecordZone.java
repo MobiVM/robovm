@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.contacts.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKRecordZone/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKRecordZonePtr extends Ptr<CKRecordZone, CKRecordZonePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKRecordZone.class); }/*</bind>*/
@@ -53,12 +54,16 @@ import org.robovm.apple.contacts.*;
     public CKRecordZone(String zoneName) { super((SkipInit) null); initObject(init(zoneName)); }
     @Method(selector = "initWithZoneID:")
     public CKRecordZone(CKRecordZoneID zoneID) { super((SkipInit) null); initObject(init(zoneID)); }
+    @Method(selector = "initWithCoder:")
+    public CKRecordZone(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "zoneID")
     public native CKRecordZoneID getZoneID();
     @Property(selector = "capabilities")
     public native CKRecordZoneCapabilities getCapabilities();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -74,5 +79,9 @@ import org.robovm.apple.contacts.*;
     protected native @Pointer long init(CKRecordZoneID zoneID);
     @Method(selector = "defaultRecordZone")
     public static native CKRecordZone getDefaultRecordZone();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
