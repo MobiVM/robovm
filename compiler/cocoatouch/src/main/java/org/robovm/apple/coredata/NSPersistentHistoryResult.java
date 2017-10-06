@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,27 +33,27 @@ import org.robovm.apple.corespotlight.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSBatchUpdateResult/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSPersistentHistoryResult/*</name>*/ 
     extends /*<extends>*/NSPersistentStoreResult/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NSBatchUpdateResultPtr extends Ptr<NSBatchUpdateResult, NSBatchUpdateResultPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSBatchUpdateResult.class); }/*</bind>*/
+    /*<ptr>*/public static class NSPersistentHistoryResultPtr extends Ptr<NSPersistentHistoryResult, NSPersistentHistoryResultPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NSPersistentHistoryResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSBatchUpdateResult() {}
-    protected NSBatchUpdateResult(Handle h, long handle) { super(h, handle); }
-    protected NSBatchUpdateResult(SkipInit skipInit) { super(skipInit); }
+    public NSPersistentHistoryResult() {}
+    protected NSPersistentHistoryResult(Handle h, long handle) { super(h, handle); }
+    protected NSPersistentHistoryResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "result")
     public native NSObject getResult();
     @Property(selector = "resultType")
-    public native NSBatchUpdateRequestResultType getResultType();
+    public native NSPersistentHistoryResultType getResultType();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -38,7 +39,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("CoreData") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSQueryGenerationToken/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSQueryGenerationTokenPtr extends Ptr<NSQueryGenerationToken, NSQueryGenerationTokenPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSQueryGenerationToken.class); }/*</bind>*/
@@ -47,13 +48,20 @@ import org.robovm.apple.foundation.*;
     public NSQueryGenerationToken() {}
     protected NSQueryGenerationToken(Handle h, long handle) { super(h, handle); }
     protected NSQueryGenerationToken(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSQueryGenerationToken(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "currentQueryGenerationToken")
     public static native NSQueryGenerationToken getCurrentQueryGenerationToken();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

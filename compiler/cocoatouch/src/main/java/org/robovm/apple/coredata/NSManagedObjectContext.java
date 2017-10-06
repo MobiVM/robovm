@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -192,6 +193,16 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setAutomaticallyMergesChangesFromParent:")
     public native void setAutomaticallyMergesChangesFromParent(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "transactionAuthor")
+    public native String getTransactionAuthor();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setTransactionAuthor:")
+    public native void setTransactionAuthor(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     public void observeValue(String keyPath, NSObject object, NSKeyValueChangeInfo change) {}

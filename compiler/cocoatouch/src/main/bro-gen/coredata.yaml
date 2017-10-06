@@ -1,5 +1,5 @@
 package: org.robovm.apple.coredata
-include: [foundation.yaml]
+include: [foundation, corespotlight]
 library: CoreData
 framework: CoreData
 clang_args: ['-x', 'objective-c']
@@ -26,6 +26,9 @@ enums:
     NSStatusOnlyResultType: {}
     NSUpdatedObjectIDsResultType: {}
     NSUpdatedObjectsCountResultType: {}
+    NSFetchIndexElementType: {} #since 11.0
+    NSPersistentHistoryResultType: {} #since 11.0
+    NSPersistentHistoryChangeType: {} #since 11.0
 
     Ignored: {first: NSFetchRequestExpressionType, exclude: true}
 classes:
@@ -719,7 +722,12 @@ classes:
                 type: List<String>
                 marshaler: NSArray.AsStringListMarshaler
     NSPersistentStoreResult: {} # DONE
-    NSPersistentStoreDescription: {} # DONE
+    NSPersistentStoreDescription:
+        methods:
+            '-setOption:forKey:':
+                name: setOption
+            '-setValue:forPragmaNamed:':
+                name: setValue
     NSPropertyDescription: # DONE
         properties:
             'validationPredicates':
@@ -764,6 +772,27 @@ classes:
                 exclude: true
             '+persistentContainerWithName:managedObjectModel:':
                 exclude: true
+    NSCoreDataCoreSpotlightDelegate: #since 11.0
+        methods:
+            '-initForStoreWithDescription:model:':
+                name: init
+            '-searchableIndex:reindexAllSearchableItemsWithAcknowledgementHandler:':
+                name: reindexAllSearchableItems
+            '-searchableIndex:reindexSearchableItemsWithIdentifiers:acknowledgementHandler:':
+                name: reindexSearchableItems
+    NSFetchIndexDescription: #since 11.0
+        methods:
+            '-initWithName:elements:':
+                name: init
+    NSFetchIndexElementDescription: #since 11.0
+        methods:
+            '-initWithProperty:collationType:':
+                name: init
+    NSPersistentHistoryChange: {} #since 11.0
+    NSPersistentHistoryChangeRequest: {} #since 11.0
+    NSPersistentHistoryResult: {} #since 11.0
+    NSPersistentHistoryToken: {} #since 11.0
+    NSPersistentHistoryTransaction: {} #since 11.0
 
 protocols:
     NSFetchedResultsControllerDelegate: # DONE
@@ -818,6 +847,9 @@ values:
         class: NSPersistentStoreCoordinator
         name: '#{g[0]}'
         type: NSString
+    NSCoreDataCoreSpotlightExporter:
+        class: NSPersistentStoreCoordinator
+        name: CoreSpotlightExporter
     NS(.*)PersistentStoresKey:
         dictionary: NSPersistentStoreCoordinatorChangeNotification
         name: '#{g[0]}'
@@ -934,6 +966,17 @@ values:
     NSPersistentStore(.*)Key:
         dictionary: NSPersistentStoreOptions
         name: '#{g[0]}'
+        type: NSString
+    NSPersistentHistoryTrackingKey:
+        dictionary: NSPersistentStoreOptions
+        name: HistoryTrackingKey
+        type: NSString
+    NSBinaryStoreInsecureDecodingCompatibilityOption:
+        dictionary: NSPersistentStoreOptions
+        name: InsecureDecodingCompatibilityOption
+    NSBinaryStoreSecureDecodingClasses:
+        dictionary: NSPersistentStoreOptions
+        name: SecureDecodingClasses
         type: NSString
     NSPersistentStore(.*Ubiquitous.*)Option:
         dictionary: NSPersistentStoreOptions

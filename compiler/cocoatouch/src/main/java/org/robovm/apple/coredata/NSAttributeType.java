@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,6 +48,14 @@ public enum /*<name>*/NSAttributeType/*</name>*/ implements ValuedEnum {
     Boolean(800L),
     Date(900L),
     BinaryData(1000L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    UUID(1100L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    URI(1200L),
     /**
      * @since Available in iOS 3.0 and later.
      */

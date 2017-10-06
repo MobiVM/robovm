@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -75,12 +76,16 @@ import org.robovm.apple.foundation.*;
     public native void setUserInfo(NSDictionary<?, ?> v);
     /**
      * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @Property(selector = "isIndexed")
     public native boolean isIndexed();
     /**
      * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @Property(selector = "setIndexed:")
     public native void setIndexed(boolean v);
     /**
@@ -110,12 +115,16 @@ import org.robovm.apple.foundation.*;
     public native void setIndexedBySpotlight(boolean v);
     /**
      * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @Property(selector = "isStoredInExternalRecord")
     public native boolean isStoredInExternalRecord();
     /**
      * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @Property(selector = "setStoredInExternalRecord:")
     public native void setStoredInExternalRecord(boolean v);
     /**

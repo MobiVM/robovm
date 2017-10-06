@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,11 +55,11 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "constraint")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getConstraint();
     @Property(selector = "constraintValues")
-    public native NSDictionary<?, ?> getConstraintValues();
+    public native NSDictionary<NSString, ?> getConstraintValues();
     @Property(selector = "databaseObject")
     public native NSManagedObject getDatabaseObject();
     @Property(selector = "databaseSnapshot")
-    public native NSDictionary<?, ?> getDatabaseSnapshot();
+    public native NSDictionary<NSString, ?> getDatabaseSnapshot();
     @Property(selector = "conflictingObjects")
     public native NSArray<NSManagedObject> getConflictingObjects();
     @Property(selector = "conflictingSnapshots")
