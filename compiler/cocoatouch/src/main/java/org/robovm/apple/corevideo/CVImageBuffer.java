@@ -32,6 +32,7 @@ import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -99,6 +100,36 @@ import org.robovm.apple.metal.*;
     }
     /*<methods>*/
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CVYCbCrMatrixGetIntegerCodePointForString", optional=true)
+    public static native int toIntCodePointCVYCbCrMatrix(CFString yCbCrMatrixString);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CVColorPrimariesGetIntegerCodePointForString", optional=true)
+    public static native int toIntCodePointCVColorPrimaries(CFString colorPrimariesString);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CVTransferFunctionGetIntegerCodePointForString", optional=true)
+    public static native int toIntCodePointCVTransferFunction(CFString transferFunctionString);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CVYCbCrMatrixGetStringForIntegerCodePoint", optional=true)
+    public static native CFString intCodePointToStringCVYCbCrMatrix(int yCbCrMatrixCodePoint);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CVColorPrimariesGetStringForIntegerCodePoint", optional=true)
+    public static native CFString intCodePointToStringCVColorPrimaries(int colorPrimariesCodePoint);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CVTransferFunctionGetStringForIntegerCodePoint", optional=true)
+    public static native CFString intCodePointToStringCVTransferFunction(int transferFunctionCodePoint);
+    /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CVImageBufferGetEncodedSize", optional=true)
@@ -118,5 +149,10 @@ import org.robovm.apple.metal.*;
      */
     @Bridge(symbol="CVImageBufferIsFlipped", optional=true)
     public native boolean isFlipped();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="CVImageBufferCreateColorSpaceFromAttachments", optional=true)
+    public static native CGColorSpace createColorSpaceFromAttachments(CFDictionary attachments);
     /*</methods>*/
 }

@@ -32,6 +32,7 @@ import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -103,6 +104,10 @@ import org.robovm.apple.metal.*;
      */
     public static final CVImageBufferTransferFunction UseGamma = new CVImageBufferTransferFunction("UseGamma");
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CVImageBufferTransferFunction sRGB = new CVImageBufferTransferFunction("sRGB");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final CVImageBufferTransferFunction ITU_R_2020 = new CVImageBufferTransferFunction("ITU_R_2020");
@@ -110,9 +115,17 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final CVImageBufferTransferFunction SMPTE_ST_428_1 = new CVImageBufferTransferFunction("SMPTE_ST_428_1");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CVImageBufferTransferFunction SMPTE_ST_2084_PQ = new CVImageBufferTransferFunction("SMPTE_ST_2084_PQ");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CVImageBufferTransferFunction ITU_R_2100_HLG = new CVImageBufferTransferFunction("ITU_R_2100_HLG");
     /*</constants>*/
     
-    private static /*<name>*/CVImageBufferTransferFunction/*</name>*/[] values = new /*<name>*/CVImageBufferTransferFunction/*</name>*/[] {/*<value_list>*/ITU_R_709_2, SMPTE_240M_1995, UseGamma, ITU_R_2020, SMPTE_ST_428_1/*</value_list>*/};
+    private static /*<name>*/CVImageBufferTransferFunction/*</name>*/[] values = new /*<name>*/CVImageBufferTransferFunction/*</name>*/[] {/*<value_list>*/ITU_R_709_2, SMPTE_240M_1995, UseGamma, sRGB, ITU_R_2020, SMPTE_ST_428_1, SMPTE_ST_2084_PQ, ITU_R_2100_HLG/*</value_list>*/};
     
     /*<name>*/CVImageBufferTransferFunction/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -151,6 +164,11 @@ import org.robovm.apple.metal.*;
         @GlobalValue(symbol="kCVImageBufferTransferFunction_UseGamma", optional=true)
         public static native CFString UseGamma();
         /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferTransferFunction_sRGB", optional=true)
+        public static native CFString sRGB();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="kCVImageBufferTransferFunction_ITU_R_2020", optional=true)
@@ -160,6 +178,16 @@ import org.robovm.apple.metal.*;
          */
         @GlobalValue(symbol="kCVImageBufferTransferFunction_SMPTE_ST_428_1", optional=true)
         public static native CFString SMPTE_ST_428_1();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferTransferFunction_SMPTE_ST_2084_PQ", optional=true)
+        public static native CFString SMPTE_ST_2084_PQ();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferTransferFunction_ITU_R_2100_HLG", optional=true)
+        public static native CFString ITU_R_2100_HLG();
         /*</values>*/
     }
 }

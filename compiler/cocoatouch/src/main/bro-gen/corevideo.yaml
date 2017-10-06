@@ -1,5 +1,5 @@
 package: org.robovm.apple.corevideo
-include: [foundation.yaml, corefoundation.yaml, coregraphics.yaml, opengles.yaml, metal.yaml]
+include: [foundation.yaml, corefoundation.yaml, coregraphics.yaml, opengles.yaml, metal.yaml, iosurface.yaml]
 library: CoreVideo
 framework: CoreVideo
 clang_args: ['-x', 'objective-c']
@@ -304,6 +304,13 @@ functions:
         class: CVPixelFormatDescription
         name: '#{g[0]}'
 
+    (.*)GetIntegerCodePointForString:
+        class: CVImageBuffer
+        name: 'toIntCodePoint#{g[0]}'
+    (.*)GetStringForIntegerCodePoint:
+        class: CVImageBuffer
+        name: 'intCodePointToString#{g[0]}'
+
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CV.*):
         class: CoreVideo
@@ -596,6 +603,9 @@ values:
             OpenGLESCompatibility:
                 name: compatibleWithOpenGLES
                 type: boolean
+    kCVMetalTextureUsage:
+        class: CVMetalTexture
+        name: textureUsage
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CV.*):
