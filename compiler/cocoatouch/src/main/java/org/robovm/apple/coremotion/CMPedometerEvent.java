@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("CoreMotion") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CMPedometerEvent/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CMPedometerEventPtr extends Ptr<CMPedometerEvent, CMPedometerEventPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CMPedometerEvent.class); }/*</bind>*/
@@ -47,15 +47,22 @@ import org.robovm.apple.foundation.*;
     public CMPedometerEvent() {}
     protected CMPedometerEvent(Handle h, long handle) { super(h, handle); }
     protected CMPedometerEvent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CMPedometerEvent(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "date")
     public native NSDate getDate();
     @Property(selector = "type")
     public native CMPedometerEventType getType();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

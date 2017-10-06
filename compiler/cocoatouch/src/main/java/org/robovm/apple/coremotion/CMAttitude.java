@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("CoreMotion") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CMAttitude/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CMAttitudePtr extends Ptr<CMAttitude, CMAttitudePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CMAttitude.class); }/*</bind>*/
@@ -47,6 +47,8 @@ import org.robovm.apple.foundation.*;
     public CMAttitude() {}
     protected CMAttitude(Handle h, long handle) { super(h, handle); }
     protected CMAttitude(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CMAttitude(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "roll")
@@ -59,10 +61,16 @@ import org.robovm.apple.foundation.*;
     public native @ByVal CMRotationMatrix getRotationMatrix();
     @Property(selector = "quaternion")
     public native @ByVal CMQuaternion getQuaternion();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "multiplyByInverseOfAttitude:")
     public native void multiplyByInverseOfAttitude(CMAttitude attitude);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

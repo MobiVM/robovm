@@ -62,6 +62,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "magneticField")
     public native @ByVal CMCalibratedMagneticField getMagneticField();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "heading")
+    public native double getHeading();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
