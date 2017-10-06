@@ -226,6 +226,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCTFontVariationAxisNameKey", optional=true)
         public static native CFString Name();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCTFontVariationAxisHiddenKey", optional=true)
+        public static native CFString Hidden();
     }
     /*</keys>*/
 }

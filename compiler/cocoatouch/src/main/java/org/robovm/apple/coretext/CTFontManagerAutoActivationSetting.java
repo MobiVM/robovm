@@ -42,8 +42,7 @@ public enum /*<name>*/CTFontManagerAutoActivationSetting/*</name>*/ implements V
     /*<values>*/
     Default(0L),
     Disabled(1L),
-    Enabled(2L),
-    PromptUser(3L);
+    Enabled(2L);
     /*</values>*/
 
     /*<bind>*/

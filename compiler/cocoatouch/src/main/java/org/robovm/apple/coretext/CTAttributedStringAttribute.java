@@ -185,6 +185,10 @@ import org.robovm.apple.uikit.*;
      */
     public static final CTAttributedStringAttribute BaselineReferenceInfo = new CTAttributedStringAttribute("BaselineReferenceInfo");
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CTAttributedStringAttribute BaselineOffset = new CTAttributedStringAttribute("BaselineOffset");
+    /**
      * @since Available in iOS 6.0 and later.
      */
     public static final CTAttributedStringAttribute WritingDirection = new CTAttributedStringAttribute("WritingDirection");
@@ -194,7 +198,7 @@ import org.robovm.apple.uikit.*;
     public static final CTAttributedStringAttribute RubyAnnotation = new CTAttributedStringAttribute("RubyAnnotation");
     /*</constants>*/
     
-    private static /*<name>*/CTAttributedStringAttribute/*</name>*/[] values = new /*<name>*/CTAttributedStringAttribute/*</name>*/[] {/*<value_list>*/RubyAnnotationSizeFactor, RubyAnnotationScaleToFit, Font, ForegroundColorFromContext, Kern, Ligature, ForegroundColor, BackgroundColor, ParagraphStyle, StrokeWidth, StrokeColor, UnderlineStyle, Superscript, UnderlineColor, VerticalForms, HorizontalInVerticalForms, GlyphInfo, CharacterShape, Language, RunDelegate, BaselineClass, BaselineInfo, BaselineReferenceInfo, WritingDirection, RubyAnnotation/*</value_list>*/};
+    private static /*<name>*/CTAttributedStringAttribute/*</name>*/[] values = new /*<name>*/CTAttributedStringAttribute/*</name>*/[] {/*<value_list>*/RubyAnnotationSizeFactor, RubyAnnotationScaleToFit, Font, ForegroundColorFromContext, Kern, Ligature, ForegroundColor, BackgroundColor, ParagraphStyle, StrokeWidth, StrokeColor, UnderlineStyle, Superscript, UnderlineColor, VerticalForms, HorizontalInVerticalForms, GlyphInfo, CharacterShape, Language, RunDelegate, BaselineClass, BaselineInfo, BaselineReferenceInfo, BaselineOffset, WritingDirection, RubyAnnotation/*</value_list>*/};
     
     /*<name>*/CTAttributedStringAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -334,6 +338,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCTBaselineReferenceInfoAttributeName", optional=true)
         public static native CFString BaselineReferenceInfo();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCTBaselineOffsetAttributeName", optional=true)
+        public static native CFString BaselineOffset();
         /**
          * @since Available in iOS 6.0 and later.
          */

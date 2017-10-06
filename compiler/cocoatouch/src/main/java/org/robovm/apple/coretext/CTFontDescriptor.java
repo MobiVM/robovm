@@ -68,16 +68,7 @@ import org.robovm.apple.uikit.*;
     public interface ProgressHandler {
         boolean invoke(CTFontDescriptorMatchingState state, CTFontDescriptorProgressData data);
     }
-    private static final java.lang.reflect.Method cbProgress;
-    private static ProgressHandler progressHandler;
-    
-    static {
-        try {
-            cbProgress = CTFontDescriptor.class.getDeclaredMethod("cbProgress", CTFontDescriptorMatchingState.class, CFDictionary.class);
-        } catch (Throwable e) {
-            throw new Error(e);
-        }
-    }
+
     /*<ptr>*/public static class CTFontDescriptorPtr extends Ptr<CTFontDescriptor, CTFontDescriptorPtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(CTFontDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
@@ -86,10 +77,6 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
-    @Callback
-    private static boolean cbProgress(CTFontDescriptorMatchingState state, CFDictionary data) {
-        return progressHandler.invoke(state, new CTFontDescriptorProgressData(data));
-    }
 
     /**
      * @since Available in iOS 3.2 and later.
@@ -114,13 +101,12 @@ import org.robovm.apple.uikit.*;
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public static boolean matchFontDescriptors(List<CTFontDescriptor> descriptors, List<CTFontAttribute> mandatoryAttributes, ProgressHandler progressHandler) {
-        CTFontDescriptor.progressHandler = progressHandler;
+    public static boolean matchFontDescriptors(List<CTFontDescriptor> descriptors, List<CTFontAttribute> mandatoryAttributes, @Block Block2<CTFontDescriptorMatchingState, NSDictionary, Boolean> progressBlock) {
         CFSet set = CFMutableSet.create();
         for (CTFontAttribute attr : mandatoryAttributes) {
             set.add(attr.value());
         }
-        return matchFontDescriptors(CFArray.create(descriptors), set, new FunctionPtr(cbProgress));
+        return matchFontDescriptors(CFArray.create(descriptors), set, progressBlock);
     }
     /**
      * @since Available in iOS 3.2 and later.
@@ -173,7 +159,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 6.0 and later.
      */
     @Bridge(symbol="CTFontDescriptorMatchFontDescriptorsWithProgressHandler", optional=true)
-    protected static native boolean matchFontDescriptors(CFArray descriptors, CFSet mandatoryAttributes, FunctionPtr progressBlock);
+    protected static native boolean matchFontDescriptors(CFArray descriptors, CFSet mandatoryAttributes, @Block Block2<CTFontDescriptorMatchingState, NSDictionary, Boolean> progressBlock);
     /**
      * @since Available in iOS 3.2 and later.
      */
