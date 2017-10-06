@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,9 +29,10 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremidi.*;
+import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,20 +47,10 @@ import org.robovm.apple.coremidi.*;
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    public CAFFileHeader() {
-        this.setFileType(AudioFileType.valueOf(CAFFileHeaderInfo.Type.value()));
-        this.setFileVersion((short) CAFFileHeaderInfo.Version_Initial.value());
-    }
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
     
     /*</members>*/
-    @StructMember(0) public native AudioFileType getFileType();
-    @StructMember(0) private native CAFFileHeader setFileType(AudioFileType fileType);
-    @StructMember(1) public native short getFileVersion();
-    @StructMember(1) private native CAFFileHeader setFileVersion(short fileVersion);
-    @StructMember(2) public native short getFileFlags();
-    @StructMember(2) private native CAFFileHeader setFileFlags(short fileFlags);
     /*<methods>*//*</methods>*/
 }

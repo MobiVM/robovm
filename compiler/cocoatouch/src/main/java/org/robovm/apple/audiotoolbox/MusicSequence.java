@@ -29,9 +29,10 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremidi.*;
+import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -209,7 +210,7 @@ import org.robovm.apple.coremidi.*;
      * @throws OSStatusException 
      * @since Available in iOS 5.0 and later.
      */
-    public void loadFile(NSURL fileRef, MusicSequenceFileType fileTypeHint, MusicSequenceLoadFlags flags) throws OSStatusException {
+    public void loadFile(NSURL fileRef, MusicSequenceFileTypeID fileTypeHint, MusicSequenceLoadFlags flags) throws OSStatusException {
         OSStatus status = loadFile0(fileRef, fileTypeHint, flags);
         OSStatusException.throwIfNecessary(status);
     }
@@ -217,7 +218,7 @@ import org.robovm.apple.coremidi.*;
      * @throws OSStatusException 
      * @since Available in iOS 5.0 and later.
      */
-    public void loadFileData(NSData data, MusicSequenceFileType fileTypeHint, MusicSequenceLoadFlags flags) throws OSStatusException {
+    public void loadFileData(NSData data, MusicSequenceFileTypeID fileTypeHint, MusicSequenceLoadFlags flags) throws OSStatusException {
         OSStatus status = loadFileData0(data, fileTypeHint, flags);
         OSStatusException.throwIfNecessary(status);
     }
@@ -225,7 +226,7 @@ import org.robovm.apple.coremidi.*;
      * @throws OSStatusException 
      * @since Available in iOS 5.0 and later.
      */
-    public void createFile(NSURL fileRef, MusicSequenceFileType fileType, MusicSequenceFileFlags flags, short resolution) throws OSStatusException {
+    public void createFile(NSURL fileRef, MusicSequenceFileTypeID fileType, MusicSequenceFileFlags flags, short resolution) throws OSStatusException {
         OSStatus status = createFile0(fileRef, fileType, flags, resolution);
         OSStatusException.throwIfNecessary(status);
     }
@@ -233,7 +234,7 @@ import org.robovm.apple.coremidi.*;
      * @throws OSStatusException 
      * @since Available in iOS 5.0 and later.
      */
-    public NSData createFileData(MusicSequenceFileType fileType, MusicSequenceFileFlags flags, short resolution) throws OSStatusException {
+    public NSData createFileData(MusicSequenceFileTypeID fileType, MusicSequenceFileFlags flags, short resolution) throws OSStatusException {
         NSData.NSDataPtr ptr = new NSData.NSDataPtr();
         OSStatus status = createFileData0(fileType, flags, resolution, ptr);
         OSStatusException.throwIfNecessary(status);
@@ -378,22 +379,22 @@ import org.robovm.apple.coremidi.*;
      * @since Available in iOS 5.0 and later.
      */
     @Bridge(symbol="MusicSequenceFileLoad", optional=true)
-    protected native OSStatus loadFile0(NSURL inFileRef, MusicSequenceFileType inFileTypeHint, MusicSequenceLoadFlags inFlags);
+    protected native OSStatus loadFile0(NSURL inFileRef, MusicSequenceFileTypeID inFileTypeHint, MusicSequenceLoadFlags inFlags);
     /**
      * @since Available in iOS 5.0 and later.
      */
     @Bridge(symbol="MusicSequenceFileLoadData", optional=true)
-    protected native OSStatus loadFileData0(NSData inData, MusicSequenceFileType inFileTypeHint, MusicSequenceLoadFlags inFlags);
+    protected native OSStatus loadFileData0(NSData inData, MusicSequenceFileTypeID inFileTypeHint, MusicSequenceLoadFlags inFlags);
     /**
      * @since Available in iOS 5.0 and later.
      */
     @Bridge(symbol="MusicSequenceFileCreate", optional=true)
-    protected native OSStatus createFile0(NSURL inFileRef, MusicSequenceFileType inFileType, MusicSequenceFileFlags inFlags, short inResolution);
+    protected native OSStatus createFile0(NSURL inFileRef, MusicSequenceFileTypeID inFileType, MusicSequenceFileFlags inFlags, short inResolution);
     /**
      * @since Available in iOS 5.0 and later.
      */
     @Bridge(symbol="MusicSequenceFileCreateData", optional=true)
-    protected native OSStatus createFileData0(MusicSequenceFileType inFileType, MusicSequenceFileFlags inFlags, short inResolution, NSData.NSDataPtr outData);
+    protected native OSStatus createFileData0(MusicSequenceFileTypeID inFileType, MusicSequenceFileFlags inFlags, short inResolution, NSData.NSDataPtr outData);
     /**
      * @since Available in iOS 5.0 and later.
      */

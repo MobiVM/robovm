@@ -29,9 +29,10 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremidi.*;
+import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -131,7 +132,7 @@ import org.robovm.apple.coremidi.*;
      * @throws OSStatusException 
      * @since Available in iOS 2.0 and later.
      */
-    public static AudioFile openURL(NSURL fileRef, AudioFilePermission permissions, AudioFileType fileTypeHint) throws OSStatusException {
+    public static AudioFile openURL(NSURL fileRef, AudioFilePermissions permissions, AudioFileType fileTypeHint) throws OSStatusException {
         AudioFile.AudioFilePtr ptr = new AudioFile.AudioFilePtr();
         OSStatus status = openURL0(fileRef, permissions, fileTypeHint, ptr);
         OSStatusException.throwIfNecessary(status);
@@ -360,7 +361,7 @@ import org.robovm.apple.coremidi.*;
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="AudioFileOpenURL", optional=true)
-    protected static native OSStatus openURL0(NSURL inFileRef, AudioFilePermission inPermissions, AudioFileType inFileTypeHint, AudioFile.AudioFilePtr outAudioFile);
+    protected static native OSStatus openURL0(NSURL inFileRef, AudioFilePermissions inPermissions, AudioFileType inFileTypeHint, AudioFile.AudioFilePtr outAudioFile);
     /**
      * @since Available in iOS 2.0 and later.
      */

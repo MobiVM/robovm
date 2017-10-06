@@ -29,9 +29,10 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremidi.*;
+import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -43,6 +44,7 @@ public enum /*<name>*/AudioFileType/*</name>*/ implements ValuedEnum {
     AIFF(1095321158L),
     AIFC(1095321155L),
     WAVE(1463899717L),
+    RF64(1380333108L),
     SoundDesigner2(1399075430L),
     Next(1315264596L),
     MP3(1297106739L),
@@ -56,7 +58,8 @@ public enum /*<name>*/AudioFileType/*</name>*/ implements ValuedEnum {
     CAF(1667327590L),
     _3GP(862417008L),
     _3GP2(862416946L),
-    AMR(1634562662L);
+    AMR(1634562662L),
+    FLAC(1718378851L);
     /*</values>*/
 
     /*<bind>*/

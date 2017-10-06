@@ -23,22 +23,22 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.opengles.*;
-import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/AudioFileStreamPropertyFlags/*</name>*/ extends Bits</*<name>*/AudioFileStreamPropertyFlags/*</name>*/> {
     /*<values>*/
     public static final AudioFileStreamPropertyFlags None = new AudioFileStreamPropertyFlags(0L);
