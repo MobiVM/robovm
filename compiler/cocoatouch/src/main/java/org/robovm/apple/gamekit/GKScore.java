@@ -39,7 +39,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKScore/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSCoding, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKScorePtr extends Ptr<GKScore, GKScorePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKScore.class); }/*</bind>*/
@@ -132,6 +132,8 @@ import org.robovm.apple.uikit.*;
     @Deprecated
     @Property(selector = "setCategory:")
     public native void setCategory(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

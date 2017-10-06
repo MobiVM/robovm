@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,8 +34,8 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GKErrorCode/*</name>*/ implements NSErrorCode { //Manually edited!
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("GameKit")/*</annotations>*/
+public enum /*<name>*/GKErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Unknown(1L),
     Cancelled(2L),
@@ -68,10 +68,13 @@ public enum /*<name>*/GKErrorCode/*</name>*/ implements NSErrorCode { //Manually
     GameSessionRequestInvalid(29L);
     /*</values>*/
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(GKErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @GlobalValue(symbol="GKErrorDomain", optional=true)
+    public static native String getClassDomain();
+    /*</methods>*/
 
     private final long n;
 
@@ -83,7 +86,25 @@ public enum /*<name>*/GKErrorCode/*</name>*/ implements NSErrorCode { //Manually
                 return v;
             }
         }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+        throw new IllegalArgumentException("No constant with value " + n + " found in "
             + /*<name>*/GKErrorCode/*</name>*/.class.getName());
+    }
+
+    @StronglyLinked
+    public static class NSErrorWrap extends NSError {
+        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
+
+        @Override public NSErrorCode getErrorCode() {
+             try {
+                 return  /*<name>*/GKErrorCode/*</name>*/.valueOf(getCode());
+             } catch (IllegalArgumentException e) {
+                 return null;
+             }
+         }
+
+        public static String getClassDomain() {
+            /** must be incerted in value section */
+            return /*<name>*/GKErrorCode/*</name>*/.getClassDomain();
+        }
     }
 }

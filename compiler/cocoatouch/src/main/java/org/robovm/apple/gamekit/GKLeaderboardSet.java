@@ -39,7 +39,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKLeaderboardSet/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSCoding, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKLeaderboardSetPtr extends Ptr<GKLeaderboardSet, GKLeaderboardSetPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKLeaderboardSet.class); }/*</bind>*/
@@ -60,6 +60,8 @@ import org.robovm.apple.uikit.*;
     public native String getIdentifier();
     @Property(selector = "setIdentifier:")
     public native void setIdentifier(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

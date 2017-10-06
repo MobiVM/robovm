@@ -126,14 +126,14 @@ import org.robovm.apple.uikit.*;
      */
     @Deprecated
     @Property(selector = "inviteeResponseHandler")
-    public native @Block VoidBlock2<String, GKInviteeResponse> getInviteeResponseHandler();
+    public native @Block VoidBlock2<String, GKInviteRecipientResponse> getInviteeResponseHandler();
     /**
      * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @Property(selector = "setInviteeResponseHandler:")
-    public native void setInviteeResponseHandler(@Block VoidBlock2<String, GKInviteeResponse> v);
+    public native void setInviteeResponseHandler(@Block VoidBlock2<String, GKInviteRecipientResponse> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
