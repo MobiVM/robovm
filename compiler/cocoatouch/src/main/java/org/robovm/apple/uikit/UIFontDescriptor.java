@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIFontDescriptor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UIFontDescriptorPtr extends Ptr<UIFontDescriptor, UIFontDescriptorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIFontDescriptor.class); }/*</bind>*/
@@ -74,6 +74,8 @@ import org.robovm.apple.intents.*;
     public native UIFontDescriptorSymbolicTraits getSymbolicTraits();
     @Property(selector = "fontAttributes")
     public native UIFontDescriptorAttributes getFontAttributes();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public NSObject getValue(String attribute) {
@@ -124,5 +126,7 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "preferredFontDescriptorWithTextStyle:compatibleWithTraitCollection:")
     public static native UIFontDescriptor getPreferredFontDescriptor(UIFontTextStyle style, UITraitCollection traitCollection);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

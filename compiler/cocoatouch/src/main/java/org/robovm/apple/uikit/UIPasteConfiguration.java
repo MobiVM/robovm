@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPasteConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UIPasteConfigurationPtr extends Ptr<UIPasteConfiguration, UIPasteConfigurationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIPasteConfiguration.class); }/*</bind>*/
@@ -60,12 +60,16 @@ import org.robovm.apple.intents.*;
     public UIPasteConfiguration(NSArray<NSString> acceptableTypeIdentifiers) { super((SkipInit) null); initObject(initWithAcceptableTypeIdentifiers(acceptableTypeIdentifiers)); }
     @Method(selector = "initWithTypeIdentifiersForAcceptingClass:")
     public UIPasteConfiguration(Class<?> aClass) { super((SkipInit) null); initObject(initWithTypeIdentifiersForAcceptingClass(aClass)); }
+    @Method(selector = "initWithCoder:")
+    public UIPasteConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "acceptableTypeIdentifiers")
     public native NSArray<NSString> getAcceptableTypeIdentifiers();
     @Property(selector = "setAcceptableTypeIdentifiers:")
     public native void setAcceptableTypeIdentifiers(NSArray<NSString> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -77,5 +81,9 @@ import org.robovm.apple.intents.*;
     protected native @Pointer long initWithTypeIdentifiersForAcceptingClass(Class<?> aClass);
     @Method(selector = "addTypeIdentifiersForAcceptingClass:")
     public native void addTypeIdentifiersForAcceptingClass(Class<?> aClass);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITraitCollection/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UITraitCollectionPtr extends Ptr<UITraitCollection, UITraitCollectionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UITraitCollection.class); }/*</bind>*/
@@ -104,6 +104,8 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "displayGamut")
     public native UIDisplayGamut getDisplayGamut();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -141,5 +143,7 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "traitCollectionWithDisplayGamut:")
     protected static native @Pointer long create(UIDisplayGamut displayGamut);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

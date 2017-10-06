@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIImageAsset/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UIImageAssetPtr extends Ptr<UIImageAsset, UIImageAssetPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIImageAsset.class); }/*</bind>*/
@@ -60,7 +60,8 @@ import org.robovm.apple.intents.*;
     public UIImageAsset(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -72,5 +73,7 @@ import org.robovm.apple.intents.*;
     public native void registerImage(UIImage image, UITraitCollection traitCollection);
     @Method(selector = "unregisterImageWithTraitCollection:")
     public native void unregisterImage(UITraitCollection traitCollection);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

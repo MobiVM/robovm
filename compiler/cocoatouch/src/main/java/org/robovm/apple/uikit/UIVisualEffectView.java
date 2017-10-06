@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIVisualEffectView/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UIVisualEffectViewPtr extends Ptr<UIVisualEffectView, UIVisualEffectViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIVisualEffectView.class); }/*</bind>*/
@@ -68,6 +68,8 @@ import org.robovm.apple.intents.*;
     public native UIVisualEffect getEffect();
     @Property(selector = "setEffect:")
     public native void setEffect(UIVisualEffect v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

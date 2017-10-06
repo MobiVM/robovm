@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIColor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSItemProviderReading, NSItemProviderWriting/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, NSItemProviderReading, NSItemProviderWriting/*</implements>*/ {
 
     /*<ptr>*/public static class UIColorPtr extends Ptr<UIColor, UIColorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIColor.class); }/*</bind>*/
@@ -65,6 +65,8 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "initWithCIColor:")
     public UIColor(CIColor ciColor) { super((SkipInit) null); initObject(init(ciColor)); }
+    @Method(selector = "initWithCoder:")
+    public UIColor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "blackColor")
@@ -131,6 +133,8 @@ import org.robovm.apple.intents.*;
     @Deprecated
     @Property(selector = "underPageBackgroundColor")
     public static native UIColor underPageBackground();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "readableTypeIdentifiersForItemProvider")
     public static native NSArray<NSString> getReadableTypeIdentifiersForItemProvider();
     @Property(selector = "writableTypeIdentifiersForItemProvider")
@@ -250,6 +254,10 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "colorNamed:inBundle:compatibleWithTraitCollection:")
     public static native UIColor fromResourceBundle(String name, NSBundle bundle, UITraitCollection traitCollection);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     public static UIColor createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        UIColor result = createProviderDataObject(data, typeIdentifier, ptr);

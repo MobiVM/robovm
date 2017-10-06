@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIBezierPath/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UIBezierPathPtr extends Ptr<UIBezierPath, UIBezierPathPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIBezierPath.class); }/*</bind>*/
@@ -94,6 +94,8 @@ import org.robovm.apple.intents.*;
     public native boolean usesEvenOddFillRule();
     @Property(selector = "setUsesEvenOddFillRule:")
     public native void setUsesEvenOddFillRule(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -196,5 +198,7 @@ import org.robovm.apple.intents.*;
     public static native UIBezierPath newArc(@ByVal CGPoint center, @MachineSizedFloat double radius, @MachineSizedFloat double startAngle, @MachineSizedFloat double endAngle, boolean clockwise);
     @Method(selector = "bezierPathWithCGPath:")
     public static native UIBezierPath newPath(CGPath CGPath);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

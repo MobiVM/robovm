@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextTab/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSCoding, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSTextTabPtr extends Ptr<NSTextTab, NSTextTabPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSTextTab.class); }/*</bind>*/
@@ -68,6 +68,8 @@ import org.robovm.apple.intents.*;
     public native @MachineSizedFloat double getLocation();
     @Property(selector = "options")
     public native NSTextTabOptions getOptions();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

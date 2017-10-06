@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSParagraphStyle/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSParagraphStylePtr extends Ptr<NSParagraphStyle, NSParagraphStylePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSParagraphStyle.class); }/*</bind>*/
@@ -56,6 +56,8 @@ import org.robovm.apple.intents.*;
     public NSParagraphStyle() {}
     protected NSParagraphStyle(Handle h, long handle) { super(h, handle); }
     protected NSParagraphStyle(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSParagraphStyle(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "defaultParagraphStyle")
@@ -101,6 +103,8 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "allowsDefaultTighteningForTruncation")
     public native boolean allowsDefaultTighteningForTruncation();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     public void setLineSpacing(double v) {
         throw new UnsupportedOperationException("NSParagraphStyle is immutable");
@@ -181,5 +185,9 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @Method(selector = "defaultWritingDirectionForLanguage:")
     public static native NSWritingDirection getDefaultWritingDirection(String languageName);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

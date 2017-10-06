@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITextInputMode/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     public static class Notifications {
         /**
@@ -69,12 +69,16 @@ import org.robovm.apple.intents.*;
     public UITextInputMode() {}
     protected UITextInputMode(Handle h, long handle) { super(h, handle); }
     protected UITextInputMode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public UITextInputMode(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryLanguage")
     public native String getPrimaryLanguage();
     @Property(selector = "activeInputModes")
     public static native NSArray<UITextInputMode> getActiveInputModes();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -91,5 +95,9 @@ import org.robovm.apple.intents.*;
     @Deprecated
     @Method(selector = "currentInputMode")
     public static native UITextInputMode getCurrentInputMode();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
