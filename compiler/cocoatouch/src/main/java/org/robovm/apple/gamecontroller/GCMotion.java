@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,6 +61,8 @@ import org.robovm.apple.dispatch.*;
     public native @ByVal GCAcceleration getGravity();
     @Property(selector = "userAcceleration")
     public native @ByVal GCAcceleration getUserAcceleration();
+    @Property(selector = "hasAttitudeAndRotationRate")
+    public native boolean hasAttitudeAndRotationRate();
     @Property(selector = "attitude")
     public native @ByVal GCQuaternion getAttitude();
     @Property(selector = "rotationRate")

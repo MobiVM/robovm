@@ -1,5 +1,5 @@
 package: org.robovm.apple.gamecontroller
-include: [foundation.yaml, dispatch.yaml]
+include: [foundation.yaml, dispatch.yaml, uikit.yaml]
 library: GameController
 framework: GameController
 clang_args: ['-x', 'objective-c']
@@ -64,7 +64,10 @@ classes:
             'valueChangedHandler':
                 type: '@Block VoidBlock2<GCGamepad, GCControllerElement>'
     GCMicroGamepad: {}
-    GCMicroGamepadSnapshot: {}
+    GCMicroGamepadSnapshot:
+        methods:
+            '-initWithController:snapshotData:':
+                name: init
     GCEventViewController: {}
 
 protocols: {}
