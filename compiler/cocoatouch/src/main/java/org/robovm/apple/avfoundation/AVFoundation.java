@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,16 +50,73 @@ import org.robovm.apple.audiounit.*;
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/static { Bro.bind(AVFoundation.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int Constant__AVAUDIONODE_HAVE_AUAUDIOUNIT = 1;
+    /*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVAudioFileTypeKey", optional=true)
+    public static native String Value__AVAudioFileTypeKey();
+    /**
      * @since Available in iOS 4.0 and later.
      */
     @GlobalValue(symbol="AVCoreAnimationBeginTimeAtZero", optional=true)
     public static native double CoreAnimationBeginTimeAtZero();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVAssetWriterInputMediaDataLocationInterleavedWithMainMediaData", optional=true)
+    public static native String Value__AVAssetWriterInputMediaDataLocationInterleavedWithMainMediaData();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVAssetWriterInputMediaDataLocationBeforeMainMediaDataNotInterleaved", optional=true)
+    public static native String Value__AVAssetWriterInputMediaDataLocationBeforeMainMediaDataNotInterleaved();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVAssetDownloadedAssetEvictionPriorityImportant", optional=true)
+    public static native String Value__AVAssetDownloadedAssetEvictionPriorityImportant();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVAssetDownloadedAssetEvictionPriorityDefault", optional=true)
+    public static native String Value__AVAssetDownloadedAssetEvictionPriorityDefault();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVVideoApertureModeCleanAperture", optional=true)
+    public static native String Value__AVVideoApertureModeCleanAperture();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVVideoApertureModeProductionAperture", optional=true)
+    public static native String Value__AVVideoApertureModeProductionAperture();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVVideoApertureModeEncodedPixels", optional=true)
+    public static native String Value__AVVideoApertureModeEncodedPixels();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVRouteDetectorMultipleRoutesDetectedDidChangeNotification", optional=true)
+    public static native String Value__AVRouteDetectorMultipleRoutesDetectedDidChangeNotification();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVSampleBufferAudioRendererWasFlushedAutomaticallyNotification", optional=true)
+    public static native String Value__AVSampleBufferAudioRendererWasFlushedAutomaticallyNotification();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVSampleBufferAudioRendererFlushTimeKey", optional=true)
+    public static native String Value__AVSampleBufferAudioRendererFlushTimeKey();
     
     /**
      * @since Available in iOS 4.0 and later.

@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -95,6 +94,11 @@ import org.robovm.apple.audiounit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "setManualRenderingInputPCMFormat:inputBlock:")
+    public native boolean setManualRenderingInputPCMFormat(AVAudioFormat format, @Block Block1<Integer, AudioBufferList> block);
     /**
      * @since Available in iOS 9.0 and later.
      */

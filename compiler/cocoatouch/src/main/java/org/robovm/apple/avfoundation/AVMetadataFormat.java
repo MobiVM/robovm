@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -122,9 +121,13 @@ import org.robovm.apple.audiounit.*;
      * @since Available in iOS 8.0 and later.
      */
     public static final AVMetadataFormat HLSMetadata = new AVMetadataFormat("HLSMetadata");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final AVMetadataFormat Unknown = new AVMetadataFormat("Unknown");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataFormat/*</name>*/[] values = new /*<name>*/AVMetadataFormat/*</name>*/[] {/*<value_list>*/QuickTimeUserData, ISOUserData, QuickTimeMetadata, iTunesMetadata, ID3Metadata, HLSMetadata/*</value_list>*/};
+    private static /*<name>*/AVMetadataFormat/*</name>*/[] values = new /*<name>*/AVMetadataFormat/*</name>*/[] {/*<value_list>*/QuickTimeUserData, ISOUserData, QuickTimeMetadata, iTunesMetadata, ID3Metadata, HLSMetadata, Unknown/*</value_list>*/};
     
     /*<name>*/AVMetadataFormat/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -177,6 +180,11 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVMetadataFormatHLSMetadata", optional=true)
         public static native NSString HLSMetadata();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataFormatUnknown", optional=true)
+        public static native NSString Unknown();
         /*</values>*/
     }
 }

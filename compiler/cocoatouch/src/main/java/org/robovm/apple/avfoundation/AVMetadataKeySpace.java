@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -130,9 +129,13 @@ import org.robovm.apple.audiounit.*;
      * @since Available in iOS 9.3 and later.
      */
     public static final AVMetadataKeySpace HLSDateRange = new AVMetadataKeySpace("HLSDateRange");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final AVMetadataKeySpace AudioFile = new AVMetadataKeySpace("AudioFile");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataKeySpace/*</name>*/[] values = new /*<name>*/AVMetadataKeySpace/*</name>*/[] {/*<value_list>*/Common, QuickTimeUserData, ISOUserData, QuickTimeMetadata, iTunes, ID3, Icy, HLSDateRange/*</value_list>*/};
+    private static /*<name>*/AVMetadataKeySpace/*</name>*/[] values = new /*<name>*/AVMetadataKeySpace/*</name>*/[] {/*<value_list>*/Common, QuickTimeUserData, ISOUserData, QuickTimeMetadata, iTunes, ID3, Icy, HLSDateRange, AudioFile/*</value_list>*/};
     
     /*<name>*/AVMetadataKeySpace/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -195,6 +198,11 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVMetadataKeySpaceHLSDateRange", optional=true)
         public static native NSString HLSDateRange();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataKeySpaceAudioFile", optional=true)
+        public static native NSString AudioFile();
         /*</values>*/
     }
 }

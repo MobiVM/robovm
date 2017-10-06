@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,39 +38,36 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVFragmentedAsset/*</name>*/ 
-    extends /*<extends>*/AVURLAsset/*</extends>*/ 
-    /*<implements>*/implements AVFragmentMinding/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetDownloadStorageManager/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class AVFragmentedAssetPtr extends Ptr<AVFragmentedAsset, AVFragmentedAssetPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(AVFragmentedAsset.class); }/*</bind>*/
+    /*<ptr>*/public static class AVAssetDownloadStorageManagerPtr extends Ptr<AVAssetDownloadStorageManager, AVAssetDownloadStorageManagerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVAssetDownloadStorageManager.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVFragmentedAsset() {}
-    protected AVFragmentedAsset(Handle h, long handle) { super(h, handle); }
-    protected AVFragmentedAsset(SkipInit skipInit) { super(skipInit); }
-    public AVFragmentedAsset(NSURL URL, AVURLAssetOptions options) { super((Handle) null, create(URL, options)); retain(getHandle()); }
+    public AVAssetDownloadStorageManager() {}
+    protected AVAssetDownloadStorageManager(Handle h, long handle) { super(h, handle); }
+    protected AVAssetDownloadStorageManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "tracks")
-    public native NSArray<AVFragmentedAssetTrack> getTracks();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "fragmentedAssetWithURL:options:")
-    protected static native @Pointer long create(NSURL URL, AVURLAssetOptions options);
-    @Method(selector = "trackWithTrackID:")
-    public native AVFragmentedAssetTrack getTrack(int trackID);
-    @Method(selector = "tracksWithMediaType:")
-    public native NSArray<AVFragmentedAssetTrack> getTracksForMediaType(AVMediaType mediaType);
-    @Method(selector = "tracksWithMediaCharacteristic:")
-    public native NSArray<AVFragmentedAssetTrack> getTracksForMediaCharacteristic(AVMediaCharacteristic mediaCharacteristic);
+    @Method(selector = "setStorageManagementPolicy:forURL:")
+    public native void setStorageManagementPolicy(AVAssetDownloadStorageManagementPolicy storageManagementPolicy, NSURL downloadStorageURL);
+    @Method(selector = "storageManagementPolicyForURL:")
+    public native AVAssetDownloadStorageManagementPolicy storageManagementPolicyForURL(NSURL downloadStorageURL);
+    @Method(selector = "sharedDownloadStorageManager")
+    public static native AVAssetDownloadStorageManager sharedDownloadStorageManager();
     /*</methods>*/
 }

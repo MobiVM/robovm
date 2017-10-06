@@ -1,5 +1,5 @@
 package: org.robovm.apple.avfoundation
-include: [foundation.yaml, corefoundation.yaml, dispatch.yaml, coreanimation.yaml, coreimage.yaml, coregraphics.yaml, coreaudio.yaml, coremedia.yaml, corevideo.yaml, mediatoolbox.yaml, audiotoolbox.yaml, audiounit.yaml ]
+include: [foundation.yaml, corefoundation.yaml, dispatch.yaml, coreanimation.yaml, coreimage.yaml, coregraphics.yaml, coreaudio.yaml, coremedia.yaml, corevideo.yaml, mediatoolbox.yaml, audiotoolbox.yaml, ]
 library: AVFoundation
 framework: AVFoundation
 internal_frameworks: [AVFAudio]
@@ -14,7 +14,9 @@ typedefs:
     'void (^)(CMTime)': '@Block VoidBlock1<CMTime>'
     'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
     'void (^)(CMSampleBufferRef, AVCaptureBracketedStillImageSettings *, NSError *)': '@Block VoidBlock3<CMSampleBuffer, AVCaptureBracketedStillImageSettings, NSError>'
-    
+    AVVideoCodecType: NSString
+private_typedefs:
+    CGImagePropertyOrientation: org.robovm.apple.imageio.CGImagePropertyOrientation
 enums:
     AVAssetReferenceRestrictions: { first: AVAssetReferenceRestrictionForbidNone }
     AVAssetExportSessionStatus: { first: AVAssetExportSessionStatusUnknown }
@@ -71,7 +73,16 @@ enums:
     AVPlayerLooperStatus : {prefix : AVPlayerLooperStatus}
     AVMusicTrackLoopCount: {}
     AVContentKeyRequestStatus: {}
-    
+    AVAudioEngineManualRenderingError: {} #since 11.0
+    AVAudioEngineManualRenderingStatus: {} #since 11.0
+    AVAudioEngineManualRenderingMode: {} #since 11.0
+    AVAudioSessionRouteSharingPolicy: {} #since 11.0
+    AVAudioPlayerNodeCompletionCallbackType: {prefix: AVAudioPlayerNodeCompletion} #since 11.0
+    AVCaptureOutputDataDroppedReason: {} #since 11.0
+    AVCaptureLensStabilizationStatus: {} #since 11.0
+    AVDepthDataQuality: {} #since 11.0
+    AVDepthDataAccuracy: {} #since 11.0
+
 categories:
     NSValueAVFoundationExtensions: # DONE
         methods:
@@ -202,6 +213,8 @@ classes:
             '+sessionWith.*':
                 name: create
                 constructor: true
+            '-aggregateAssetDownloadTaskWithURLAsset:mediaSelections:assetTitle:assetArtworkData:options:':
+                trim_after_first_colon: true
     AVAssetExportSession: # DONE
         properties:
             'presetName':
@@ -665,6 +678,12 @@ classes:
             '-outputConnectionPointsForNode:outputBus:':
                 name: getOutputConnectionPoints
                 return_type: NSArray<AVAudioConnectionPoint>
+            '-enableManualRenderingMode:format:maximumFrameCount:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-renderOffline:toBuffer:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
     AVAudioEnvironmentDistanceAttenuationParameters: {} # DONE
     AVAudioEnvironmentNode: # DONE
         properties:
@@ -718,7 +737,10 @@ classes:
         properties:
             'audioUnit':
                 annotations: ['@WeaklyLinked']
-    AVAudioInputNode: {} # DONE
+    AVAudioInputNode: #since 8.0
+        methods:
+            '-setManualRenderingInputPCMFormat:inputBlock:':
+                trim_after_first_colon: true
     AVAudioOutputNode: {} # DONE
     AVAudioMixerNode: {} # DONE
     AVAudioMix: # DONE
@@ -790,6 +812,14 @@ classes:
             '-scheduleFile:atTime:completionHandler:':
                 trim_after_first_colon: true
             '-scheduleSegment:startingFrame:frameCount:atTime:completionHandler:':
+                trim_after_first_colon: true
+            '-scheduleBuffer:completionCallbackType:completionHandler:':
+                trim_after_first_colon: true
+            '-scheduleBuffer:atTime:options:completionCallbackType:completionHandler:':
+                trim_after_first_colon: true
+            '-scheduleFile:atTime:completionCallbackType:completionHandler:':
+                trim_after_first_colon: true
+            '-scheduleSegment:startingFrame:frameCount:atTime:completionCallbackType:completionHandler:':
                 trim_after_first_colon: true
             '-prepareWithFrameCount:':
                 name: prepare
@@ -1116,7 +1146,11 @@ classes:
         properties:
             'sampleBufferCallbackQueue':
                 annotations: ['@WeaklyLinked']
+        skip_def_constructor: true
         methods:
+            '+new':
+                constructor: true
+                name: create
             '-setSampleBufferDelegate:queue:':
                 trim_after_first_colon: true
                 annotations: ['@WeaklyLinked']
@@ -1281,7 +1315,11 @@ classes:
                 type: '@org.robovm.rt.bro.annotation.Marshaler(AVMetadataObjectType.AsListMarshaler.class) List<AVMetadataObjectType>'
             'metadataObjectsCallbackQueue':
                 annotations: ['@WeaklyLinked']
+        skip_def_constructor: true
         methods:
+            '+new':
+                constructor: true
+                name: create
             '-setMetadataObjectsDelegate:queue:':
                 trim_after_first_colon: true
                 annotations: ['@WeaklyLinked']
@@ -1289,7 +1327,11 @@ classes:
         properties:
             'metadata':
                 type: NSArray<AVMetadataItem>
+        skip_def_constructor: true
         methods:
+            '+new':
+                constructor: true
+                name: create
             '-recordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection:':
                 name: recordsVideoOrientationAndMirroringChangesAsMetadataTrack
             '-setRecordsVideoOrientationAndMirroringChanges:asMetadataTrackForConnection:':
@@ -1361,7 +1403,11 @@ classes:
                 type: '@org.robovm.rt.bro.annotation.Marshaler(CVPixelFormatType.AsListMarshaler.class) List<CVPixelFormatType>'
             'availableImageDataCodecTypes':
                 type: '@org.robovm.rt.bro.annotation.Marshaler(CMVideoCodecType.AsListMarshaler.class) List<CMVideoCodecType>'
+        skip_def_constructor: true
         methods:
+            '+new':
+                constructor: true
+                name: create
             '-captureStillImageAsynchronouslyFromConnection:completionHandler:':
                 name: captureStillImageAsynchronously
             '+jpegStillImageNSDataRepresentation:':
@@ -1389,7 +1435,11 @@ classes:
                 type: '@org.robovm.rt.bro.annotation.Marshaler(CMVideoCodecType.AsListMarshaler.class) List<CMVideoCodecType>'
             'sampleBufferCallbackQueue':
                 annotations: ['@WeaklyLinked']
+        skip_def_constructor: true
         methods:
+            '+new':
+                constructor: true
+                name: create
             '-setSampleBufferDelegate:queue:':
                 trim_after_first_colon: true
                 annotations: ['@WeaklyLinked']
@@ -1399,6 +1449,8 @@ classes:
                 parameters:
                     outputFileType:
                         type: String
+            '-recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:':
+                name: getRecommendedVideoSettings
     AVCaptureVideoPreviewLayer: # DONE
         properties:
             'videoGravity':
@@ -1465,7 +1517,7 @@ classes:
                 parameters:
                     items:
                         type: NSArray<AVMetadataItem>
-    AVFragmentedAsset: # DONE
+    AVFragmentedAsset: # it is mac only
         properties:
             'tracks':
                 type: NSArray<AVFragmentedAssetTrack>
@@ -2276,7 +2328,15 @@ classes:
                 parameters:
                     videoLayers:
                         type: NSArray<CALayer>
-    AVVideoCompositionInstruction: {}# DONE
+    AVVideoCompositionInstruction:
+        properties:
+            'enablePostProcessing':
+                name: postProcessingEnabled
+            'layerInstructions':
+                type: NSArray<AVVideoCompositionLayerInstruction>
+            'requiredSourceTrackIDs':
+                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsIntegerListMarshaler.class) List<Integer>'
+
     AVVideoCompositionLayerInstruction: # DONE
         skip_handle_constructor: false
         methods:
@@ -2313,7 +2373,11 @@ classes:
                 annotations: ['@WeaklyLinked']
 
     AVCapturePhotoOutput:
+        skip_def_constructor: true
         methods:
+            '+new':
+                constructor: true
+                name: create
             '-capturePhotoWithSettings:delegate:':
                 name: capturePhotoWithSettings
             '-setPreparedPhotoSettingsArray:completionHandler:':
@@ -2339,10 +2403,16 @@ classes:
             '+photoSettingsFromPhotoSettings:':
                 name: create
                 constructor: true
+            '+photoSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:':
+                name: create
+                constructor: true
 
     AVCapturePhotoBracketSettings:
         methods:
             '+photoBracketSettingsWithRawPixelFormatType:processedFormat:bracketedSettings:':
+                name: create
+                constructor: true
+            '+photoBracketSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:bracketedSettings:':
                 name: create
                 constructor: true
 
@@ -2363,7 +2433,11 @@ classes:
                 trim_after_first_colon: true
 
 
-    AVContentKeyResponse: {}
+    AVContentKeyResponse: #since 10.3
+        methods:
+            '+contentKeyResponseWithClearKeyData:initializationVector:':
+                constructor: true
+                name: create
 
     AVContentKeySession:
         methods:
@@ -2378,11 +2452,65 @@ classes:
                 trim_after_first_colon: true
             '+removePendingExpiredSessionReports:withAppIdentifier:storageDirectoryAtURL:':
                 trim_after_first_colon: true
-
+            '-makeSecureTokenForExpirationDateOfPersistableContentKey:completionHandler:':
+                trim_after_first_colon: true
     AVPersistableContentKeyRequest:
         methods:
             '-persistableContentKeyFromKeyVendorResponse:options:error:':
                 trim_after_first_colon: true
+    AVAggregateAssetDownloadTask: {} #since 11.0
+    AVAssetDownloadStorageManagementPolicy: {} #since 11.0
+    AVAssetDownloadStorageManager: #since 11.0
+        methods:
+            '-setStorageManagementPolicy:forURL:':
+                trim_after_first_colon: true
+    AVCameraCalibrationData: {} #since 11.0
+    AVCaptureDataOutputSynchronizer: #since 11.0
+        methods:
+            '-setDelegate:queue:':
+                trim_after_first_colon: true
+    AVCaptureDepthDataOutput: #since 11.0
+        skip_def_constructor: true
+        methods:
+            '+new':
+                constructor: true
+                name: create
+            '-setDelegate:callbackQueue:':
+                trim_after_first_colon: true
+    AVCapturePhoto: #since 11.0
+        methods:
+            '-fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:':
+                name: fileDataRepresentation
+    AVCaptureSynchronizedData: {} #since 11.0
+    AVCaptureSynchronizedDataCollection: {} #since 11.0
+    AVCaptureSynchronizedDepthData: {} #since 11.0
+    AVCaptureSynchronizedMetadataObjectData: {} #since 11.0
+    AVCaptureSynchronizedSampleBufferData: {} #since 11.0
+    AVDepthData: #since 11.0
+        methods:
+            '-depthDataByReplacingDepthDataMapWithPixelBuffer:error:':
+                throws: NSErrorException
+                trim_after_first_colon: true
+            '+depthDataFromDictionaryRepresentation:error:':
+                throws: NSErrorException
+                trim_after_first_colon: true
+    AVMutableAssetDownloadStorageManagementPolicy: {} #since 11.0
+    AVRouteDetector: {} #since 11.0
+    AVSampleBufferAudioRenderer: #since 11.0
+        methods:
+            '-flushFromSourceTime:completionHandler:':
+                name: flushFromSourceTime
+    AVSampleBufferRenderSynchronizer: #since 11.0
+        methods:
+            '-setRate:time:':
+                trim_after_first_colon: true
+            '-removeRenderer:atTime:completionHandler:':
+                trim_after_first_colon: true
+            '-addPeriodicTimeObserverForInterval:queue:usingBlock:':
+                name: addPeriodicTimeObserver
+            '-addBoundaryTimeObserverForTimes:queue:usingBlock:':
+                name: addBoundaryTimeObserver
+
 protocols:
     AVCapturePhotoCaptureDelegate:
         methods:
@@ -2402,6 +2530,8 @@ protocols:
                 name: didFinishProcessingLivePhotoToMovieFileAtURL
             '-captureOutput:didFinishCaptureForResolvedSettings:error:':
                 name: didFinishCaptureForResolvedSettings
+            '-captureOutput:didFinishProcessingPhoto:error:':
+                name: didFinishProcessingPhoto
 
     AVContentKeyRecipient:
         skip_adapter: true
@@ -2418,6 +2548,8 @@ protocols:
                 name: didFailWithError
             '-contentKeySession:shouldRetryContentKeyRequest:reason:':
                 name: shouldRetryContentKeyRequest
+            '-contentKeySession:didUpdatePersistableContentKey:forContentKeyIdentifier:':
+                name: didUpdatePersistableContentKey
 
     AVVideoCompositionInstruction:
         name: AVVideoCompositionInstructionProtocol
@@ -2442,6 +2574,12 @@ protocols:
                 name: didResolveMediaSelection
             '-URLSession:assetDownloadTask:didFinishDownloadingToURL:':
                 name: didFinishDownloadingToURL
+            '-URLSession:aggregateAssetDownloadTask:willDownloadToURL:':
+                name: willDownloadToURL
+            '-URLSession:aggregateAssetDownloadTask:didCompleteForMediaSelection:':
+                name: didCompleteForMediaSelection
+            '-URLSession:aggregateAssetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:forMediaSelection:':
+                name: didLoadTimeRange
     AVAssetResourceLoaderDelegate: # DONE
         methods:
             '-resourceLoader:shouldWaitForLoadingOfRequestedResource:':
@@ -2606,6 +2744,20 @@ protocols:
             '-renderContextChanged:':
                 trim_after_first_colon: true
             '-startVideoCompositionRequest:':
+                trim_after_first_colon: true
+    AVCaptureDataOutputSynchronizerDelegate: #since 11.0
+        methods:
+            '-dataOutputSynchronizer:didOutputSynchronizedDataCollection:':
+                name: didOutputSynchronizedDataCollection
+    AVCaptureDepthDataOutputDelegate: #since 11.0
+        methods:
+            '-depthDataOutput:didOutputDepthData:timestamp:connection:':
+                name: didOutputDepthData
+            '-depthDataOutput:didDropDepthData:timestamp:connection:reason:':
+                name: didDropDepthData
+    AVQueuedSampleBufferRendering: #since 11.0
+        methods:
+            '-requestMediaDataWhenReadyOnQueue:usingBlock:':
                 trim_after_first_colon: true
 
 functions:

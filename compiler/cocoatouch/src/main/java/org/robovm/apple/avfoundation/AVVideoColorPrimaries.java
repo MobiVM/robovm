@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -71,5 +70,10 @@ import org.robovm.apple.audiounit.*;
      */
     @GlobalValue(symbol="AVVideoColorPrimaries_P3_D65", optional=true)
     public static native String P3_D65();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVVideoColorPrimaries_ITU_R_2020", optional=true)
+    public static native String ITU_R_2020();
     /*</methods>*/
 }

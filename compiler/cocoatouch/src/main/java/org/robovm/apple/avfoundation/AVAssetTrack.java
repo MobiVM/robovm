@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -87,6 +86,11 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "isPlayable")
     public native boolean isPlayable();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isDecodable")
+    public native boolean isDecodable();
     @Property(selector = "isEnabled")
     public native boolean isEnabled();
     @Property(selector = "isSelfContained")

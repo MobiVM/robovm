@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -82,12 +81,55 @@ import org.robovm.apple.audiounit.*;
     public native void setMusicSequence(MusicSequence v);
     @Property(selector = "outputNode")
     public native AVAudioOutputNode getOutputNode();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "inputNode")
     public native AVAudioInputNode getInputNode();
     @Property(selector = "mainMixerNode")
     public native AVAudioMixerNode getMainMixerNode();
     @Property(selector = "isRunning")
     public native boolean isRunning();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isAutoShutdownEnabled")
+    public native boolean isAutoShutdownEnabled();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAutoShutdownEnabled:")
+    public native void setAutoShutdownEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "manualRenderingBlock")
+    public native @Block Block3<Integer, AudioBufferList, OSStatus.OSStatusPtr, AVAudioEngineManualRenderingStatus> getManualRenderingBlock();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isInManualRenderingMode")
+    public native boolean isInManualRenderingMode();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "manualRenderingMode")
+    public native AVAudioEngineManualRenderingMode getManualRenderingMode();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "manualRenderingFormat")
+    public native AVAudioFormat getManualRenderingFormat();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "manualRenderingMaximumFrameCount")
+    public native int getManualRenderingMaximumFrameCount();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "manualRenderingSampleTime")
+    public native long getManualRenderingSampleTime();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -144,5 +186,38 @@ import org.robovm.apple.audiounit.*;
      */
     @Method(selector = "outputConnectionPointsForNode:outputBus:")
     public native NSArray<AVAudioConnectionPoint> getOutputConnectionPoints(AVAudioNode node, @MachineSizedUInt long bus);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public boolean enableManualRenderingMode(AVAudioEngineManualRenderingMode mode, AVAudioFormat pcmFormat, int maximumFrameCount) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = enableManualRenderingMode(mode, pcmFormat, maximumFrameCount, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "enableManualRenderingMode:format:maximumFrameCount:error:")
+    private native boolean enableManualRenderingMode(AVAudioEngineManualRenderingMode mode, AVAudioFormat pcmFormat, int maximumFrameCount, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "disableManualRenderingMode")
+    public native void disableManualRenderingMode();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public AVAudioEngineManualRenderingStatus renderOffline(int numberOfFrames, AVAudioPCMBuffer buffer) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       AVAudioEngineManualRenderingStatus result = renderOffline(numberOfFrames, buffer, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "renderOffline:toBuffer:error:")
+    private native AVAudioEngineManualRenderingStatus renderOffline(int numberOfFrames, AVAudioPCMBuffer buffer, NSError.NSErrorPtr outError);
     /*</methods>*/
 }

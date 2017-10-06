@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +67,11 @@ import org.robovm.apple.audiounit.*;
     public native @ByVal CMVideoDimensions getRawPhotoDimensions();
     @Property(selector = "previewDimensions")
     public native @ByVal CMVideoDimensions getPreviewDimensions();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "embeddedThumbnailDimensions")
+    public native @ByVal CMVideoDimensions getEmbeddedThumbnailDimensions();
     @Property(selector = "livePhotoMovieDimensions")
     public native @ByVal CMVideoDimensions getLivePhotoMovieDimensions();
     @Property(selector = "isFlashEnabled")
@@ -79,6 +83,11 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "isDualCameraFusionEnabled")
     public native boolean isDualCameraFusionEnabled();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "expectedPhotoCount")
+    public native @MachineSizedUInt long getExpectedPhotoCount();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

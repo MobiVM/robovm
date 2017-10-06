@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,7 +92,7 @@ import org.robovm.apple.audiounit.*;
     @Property(selector = "mediaType")
     public native AVMediaType getMediaType();
     @Property(selector = "outputSettings")
-    protected native NSDictionary<?, ?> getOutputSettings();
+    protected native NSDictionary<NSString, ?> getOutputSettings();
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -204,6 +203,16 @@ import org.robovm.apple.audiounit.*;
     @Property(selector = "setSampleReferenceBaseURL:")
     public native void setSampleReferenceBaseURL(NSURL v);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "mediaDataLocation")
+    public native String getMediaDataLocation();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setMediaDataLocation:")
+    public native void setMediaDataLocation(String v);
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "performsMultiPassEncodingIfSupported")
@@ -227,12 +236,12 @@ import org.robovm.apple.audiounit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithMediaType:outputSettings:")
-    protected native @Pointer long init(AVMediaType mediaType, NSDictionary<?, ?> outputSettings);
+    protected native @Pointer long init(AVMediaType mediaType, NSDictionary<NSString, ?> outputSettings);
     /**
      * @since Available in iOS 6.0 and later.
      */
     @Method(selector = "initWithMediaType:outputSettings:sourceFormatHint:")
-    protected native @Pointer long init(AVMediaType mediaType, NSDictionary<?, ?> outputSettings, CMFormatDescription sourceFormatHint);
+    protected native @Pointer long init(AVMediaType mediaType, NSDictionary<NSString, ?> outputSettings, CMFormatDescription sourceFormatHint);
     @WeaklyLinked
     @Method(selector = "requestMediaDataWhenReadyOnQueue:usingBlock:")
     public native void requestMediaDataWhenReady(DispatchQueue queue, @Block Runnable block);

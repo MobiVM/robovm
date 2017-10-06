@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,9 +54,9 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureMetadataOutput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureMetadataOutput() {}
     protected AVCaptureMetadataOutput(Handle h, long handle) { super(h, handle); }
     protected AVCaptureMetadataOutput(SkipInit skipInit) { super(skipInit); }
+    public AVCaptureMetadataOutput() { super((Handle) null, create()); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "metadataObjectsDelegate")
@@ -87,5 +86,7 @@ import org.robovm.apple.audiounit.*;
     @WeaklyLinked
     @Method(selector = "setMetadataObjectsDelegate:queue:")
     public native void setMetadataObjectsDelegate(AVCaptureMetadataOutputObjectsDelegate objectsDelegate, DispatchQueue objectsCallbackQueue);
+    @Method(selector = "new")
+    protected static native @Pointer long create();
     /*</methods>*/
 }

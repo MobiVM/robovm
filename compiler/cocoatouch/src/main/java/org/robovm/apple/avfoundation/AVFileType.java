@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -159,6 +158,30 @@ import org.robovm.apple.audiounit.*;
      */
     public static final AVFileType EnhancedAC3 = new AVFileType("EnhancedAC3");
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final AVFileType JPEG = new AVFileType("JPEG");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final AVFileType DNG = new AVFileType("DNG");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final AVFileType HEIC = new AVFileType("HEIC");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final AVFileType AVCI = new AVFileType("AVCI");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final AVFileType HEIF = new AVFileType("HEIF");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final AVFileType TIFF = new AVFileType("TIFF");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final AVFileType StreamingKeyDeliveryContentKey = new AVFileType("StreamingKeyDeliveryContentKey");
@@ -168,7 +191,7 @@ import org.robovm.apple.audiounit.*;
     public static final AVFileType StreamingKeyDeliveryPersistentContentKey = new AVFileType("StreamingKeyDeliveryPersistentContentKey");
     /*</constants>*/
     
-    private static /*<name>*/AVFileType/*</name>*/[] values = new /*<name>*/AVFileType/*</name>*/[] {/*<value_list>*/QuickTimeMovie, MPEG4, AppleM4V, AppleM4A, _3GPP, _3GPP2, CoreAudioFormat, WAVE, AIFF, AIFC, AMR, MPEGLayer3, SunAU, AC3, EnhancedAC3, StreamingKeyDeliveryContentKey, StreamingKeyDeliveryPersistentContentKey/*</value_list>*/};
+    private static /*<name>*/AVFileType/*</name>*/[] values = new /*<name>*/AVFileType/*</name>*/[] {/*<value_list>*/QuickTimeMovie, MPEG4, AppleM4V, AppleM4A, _3GPP, _3GPP2, CoreAudioFormat, WAVE, AIFF, AIFC, AMR, MPEGLayer3, SunAU, AC3, EnhancedAC3, JPEG, DNG, HEIC, AVCI, HEIF, TIFF, StreamingKeyDeliveryContentKey, StreamingKeyDeliveryPersistentContentKey/*</value_list>*/};
     
     /*<name>*/AVFileType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -266,6 +289,36 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVFileTypeEnhancedAC3", optional=true)
         public static native NSString EnhancedAC3();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeJPEG", optional=true)
+        public static native NSString JPEG();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeDNG", optional=true)
+        public static native NSString DNG();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeHEIC", optional=true)
+        public static native NSString HEIC();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeAVCI", optional=true)
+        public static native NSString AVCI();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeHEIF", optional=true)
+        public static native NSString HEIF();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeTIFF", optional=true)
+        public static native NSString TIFF();
         /**
          * @since Available in iOS 9.0 and later.
          */

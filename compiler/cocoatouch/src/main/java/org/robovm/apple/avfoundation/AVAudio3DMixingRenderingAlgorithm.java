@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,7 +52,8 @@ public enum /*<name>*/AVAudio3DMixingRenderingAlgorithm/*</name>*/ implements Va
     SphericalHead(1L),
     HRTF(2L),
     SoundField(3L),
-    StereoPassThrough(5L);
+    StereoPassThrough(5L),
+    HRTFHQ(6L);
     /*</values>*/
 
     public static class AsListMarshaler {

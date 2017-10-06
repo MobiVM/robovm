@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,37 +38,32 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/AVVideoFieldMode/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Both(0L),
-    TopOnly(1L),
-    BottomOnly(2L),
-    Deinterlace(3L);
-    /*</values>*/
+/*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureSynchronizedData/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class AVCaptureSynchronizedDataPtr extends Ptr<AVCaptureSynchronizedData, AVCaptureSynchronizedDataPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVCaptureSynchronizedData.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/AVVideoFieldMode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/AVVideoFieldMode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AVVideoFieldMode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AVVideoFieldMode/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    protected AVCaptureSynchronizedData() {}
+    protected AVCaptureSynchronizedData(Handle h, long handle) { super(h, handle); }
+    protected AVCaptureSynchronizedData(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "timestamp")
+    public native @ByVal CMTime getTimestamp();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

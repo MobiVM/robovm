@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +67,21 @@ import org.robovm.apple.audiounit.*;
     public native @MachineSizedUInt long getNumberOfOutputs();
     @Property(selector = "lastRenderTime")
     public native AVAudioTime getLastRenderTime();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "AUAudioUnit")
+    public native AUAudioUnit getAUAudioUnit();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "latency")
+    public native double getLatency();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "outputPresentationLatency")
+    public native double getOutputPresentationLatency();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

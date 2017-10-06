@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,7 +54,7 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureDeviceFormat.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureDeviceFormat() {}
+    protected AVCaptureDeviceFormat() {}
     protected AVCaptureDeviceFormat(Handle h, long handle) { super(h, handle); }
     protected AVCaptureDeviceFormat(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
@@ -133,6 +132,26 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "supportedColorSpaces")
     public native NSArray<NSNumber> getSupportedColorSpaces();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "videoMinZoomFactorForDepthDataDelivery")
+    public native @MachineSizedFloat double getVideoMinZoomFactorForDepthDataDelivery();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "videoMaxZoomFactorForDepthDataDelivery")
+    public native @MachineSizedFloat double getVideoMaxZoomFactorForDepthDataDelivery();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "supportedDepthDataFormats")
+    public native NSArray<AVCaptureDeviceFormat> getSupportedDepthDataFormats();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "unsupportedCaptureOutputClasses")
+    public native NSArray<?> getUnsupportedCaptureOutputClasses();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

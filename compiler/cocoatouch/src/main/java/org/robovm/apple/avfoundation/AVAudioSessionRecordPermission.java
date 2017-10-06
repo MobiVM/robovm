@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,13 +45,12 @@ import org.robovm.apple.audiounit.*;
  * @since Available in iOS 8.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/AVAudioSessionRecordPermission/*</name>*/ extends Bits</*<name>*/AVAudioSessionRecordPermission/*</name>*/> {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/AVAudioSessionRecordPermission/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    public static final AVAudioSessionRecordPermission None = new AVAudioSessionRecordPermission(0L);
-    public static final AVAudioSessionRecordPermission Undetermined = new AVAudioSessionRecordPermission(1970168948L);
-    public static final AVAudioSessionRecordPermission Denied = new AVAudioSessionRecordPermission(1684369017L);
-    public static final AVAudioSessionRecordPermission Granted = new AVAudioSessionRecordPermission(1735552628L);
+    Undetermined(1970168948L),
+    Denied(1684369017L),
+    Granted(1735552628L);
     /*</values>*/
 
     /*<bind>*/
@@ -60,17 +58,17 @@ public final class /*<name>*/AVAudioSessionRecordPermission/*</name>*/ extends B
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/AVAudioSessionRecordPermission/*</name>*/[] values = _values(/*<name>*/AVAudioSessionRecordPermission/*</name>*/.class);
+    private final long n;
 
-    public /*<name>*/AVAudioSessionRecordPermission/*</name>*/(long value) { super(value); }
-    private /*<name>*/AVAudioSessionRecordPermission/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/AVAudioSessionRecordPermission/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/AVAudioSessionRecordPermission/*</name>*/(value, mask);
-    }
-    protected /*<name>*/AVAudioSessionRecordPermission/*</name>*/[] _values() {
-        return values;
-    }
-    public static /*<name>*/AVAudioSessionRecordPermission/*</name>*/[] values() {
-        return values.clone();
+    private /*<name>*/AVAudioSessionRecordPermission/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/AVAudioSessionRecordPermission/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AVAudioSessionRecordPermission/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/AVAudioSessionRecordPermission/*</name>*/.class.getName());
     }
 }

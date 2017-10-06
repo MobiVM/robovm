@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -138,7 +137,31 @@ public enum /*<name>*/AVErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 10.0 and later.
      */
-    OperationNotAllowed(-11862L);
+    OperationNotAllowed(-11862L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    ContentIsUnavailable(-11863L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    FormatUnsupported(-11864L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    MalformedDepth(-11865L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    ContentNotUpdated(-11866L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    NoLongerPlayable(-11867L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    NoCompatibleAlternatesForExternalDisplay(-11868L);
     /*</values>*/
 
     /*<bind>*/

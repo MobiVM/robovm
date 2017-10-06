@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +57,10 @@ import org.robovm.apple.audiounit.*;
     public AVContentKeyResponse() {}
     protected AVContentKeyResponse(Handle h, long handle) { super(h, handle); }
     protected AVContentKeyResponse(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public AVContentKeyResponse(NSData keyData, NSData initializationVector) { super((Handle) null, create(keyData, initializationVector)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -66,5 +69,10 @@ import org.robovm.apple.audiounit.*;
     /*<methods>*/
     @Method(selector = "contentKeyResponseWithFairPlayStreamingKeyResponseData:")
     public static native AVContentKeyResponse contentKeyResponseWithFairPlayStreamingKeyResponseData(NSData keyResponseData);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "contentKeyResponseWithClearKeyData:initializationVector:")
+    protected static native @Pointer long create(NSData keyData, NSData initializationVector);
     /*</methods>*/
 }

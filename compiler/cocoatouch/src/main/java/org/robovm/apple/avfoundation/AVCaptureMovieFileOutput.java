@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,9 +54,9 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureMovieFileOutput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureMovieFileOutput() {}
     protected AVCaptureMovieFileOutput(Handle h, long handle) { super(h, handle); }
     protected AVCaptureMovieFileOutput(SkipInit skipInit) { super(skipInit); }
+    public AVCaptureMovieFileOutput() { super((Handle) null, create()); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "movieFragmentInterval")
@@ -72,7 +71,7 @@ import org.robovm.apple.audiounit.*;
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "availableVideoCodecTypes")
-    public native NSArray<?> getAvailableVideoCodecTypes();
+    public native NSArray<NSString> getAvailableVideoCodecTypes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -80,12 +79,12 @@ import org.robovm.apple.audiounit.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "outputSettingsForConnection:")
-    public native NSDictionary<?, ?> getOutputSettings(AVCaptureConnection connection);
+    public native NSDictionary<NSString, ?> getOutputSettings(AVCaptureConnection connection);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "setOutputSettings:forConnection:")
-    public native void setOutputSettings(NSDictionary<?, ?> outputSettings, AVCaptureConnection connection);
+    public native void setOutputSettings(NSDictionary<NSString, ?> outputSettings, AVCaptureConnection connection);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -96,5 +95,7 @@ import org.robovm.apple.audiounit.*;
      */
     @Method(selector = "setRecordsVideoOrientationAndMirroringChanges:asMetadataTrackForConnection:")
     public native void setRecordsVideoOrientationAndMirroringChangesAsMetadataTrack(boolean doRecordChanges, AVCaptureConnection connection);
+    @Method(selector = "new")
+    protected static native @Pointer long create();
     /*</methods>*/
 }

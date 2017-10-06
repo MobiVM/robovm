@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,18 +57,32 @@ import org.robovm.apple.audiounit.*;
     public AVCapturePhotoSettings() {}
     protected AVCapturePhotoSettings(Handle h, long handle) { super(h, handle); }
     protected AVCapturePhotoSettings(SkipInit skipInit) { super(skipInit); }
-    public AVCapturePhotoSettings(NSDictionary<?, ?> format) { super((Handle) null, create(format)); retain(getHandle()); }
+    public AVCapturePhotoSettings(NSDictionary<NSString, ?> format) { super((Handle) null, create(format)); retain(getHandle()); }
     public AVCapturePhotoSettings(int rawPixelFormatType) { super((Handle) null, create(rawPixelFormatType)); retain(getHandle()); }
-    public AVCapturePhotoSettings(int rawPixelFormatType, NSDictionary<?, ?> processedFormat) { super((Handle) null, create(rawPixelFormatType, processedFormat)); retain(getHandle()); }
+    public AVCapturePhotoSettings(int rawPixelFormatType, NSDictionary<NSString, ?> processedFormat) { super((Handle) null, create(rawPixelFormatType, processedFormat)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public AVCapturePhotoSettings(int rawPixelFormatType, String rawFileType, NSDictionary<NSString, ?> processedFormat, String processedFileType) { super((Handle) null, create(rawPixelFormatType, rawFileType, processedFormat, processedFileType)); retain(getHandle()); }
     public AVCapturePhotoSettings(AVCapturePhotoSettings photoSettings) { super((Handle) null, create(photoSettings)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "uniqueID")
     public native long getUniqueID();
     @Property(selector = "format")
-    public native NSDictionary<?, ?> getFormat();
+    public native NSDictionary<NSString, ?> getFormat();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "processedFileType")
+    public native String getProcessedFileType();
     @Property(selector = "rawPhotoPixelFormatType")
     public native int getRawPhotoPixelFormatType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "rawFileType")
+    public native String getRawFileType();
     @Property(selector = "flashMode")
     public native AVCaptureFlashMode getFlashMode();
     @Property(selector = "setFlashMode:")
@@ -88,14 +101,84 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "setAutoDualCameraFusionEnabled:")
     public native void setAutoDualCameraFusionEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isDualCameraDualPhotoDeliveryEnabled")
+    public native boolean isDualCameraDualPhotoDeliveryEnabled();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setDualCameraDualPhotoDeliveryEnabled:")
+    public native void setDualCameraDualPhotoDeliveryEnabled(boolean v);
     @Property(selector = "isHighResolutionPhotoEnabled")
     public native boolean isHighResolutionPhotoEnabled();
     @Property(selector = "setHighResolutionPhotoEnabled:")
     public native void setHighResolutionPhotoEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isDepthDataDeliveryEnabled")
+    public native boolean isDepthDataDeliveryEnabled();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setDepthDataDeliveryEnabled:")
+    public native void setDepthDataDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "embedsDepthDataInPhoto")
+    public native boolean embedsDepthDataInPhoto();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setEmbedsDepthDataInPhoto:")
+    public native void setEmbedsDepthDataInPhoto(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isDepthDataFiltered")
+    public native boolean isDepthDataFiltered();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setDepthDataFiltered:")
+    public native void setDepthDataFiltered(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isCameraCalibrationDataDeliveryEnabled")
+    public native boolean isCameraCalibrationDataDeliveryEnabled();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setCameraCalibrationDataDeliveryEnabled:")
+    public native void setCameraCalibrationDataDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "metadata")
+    public native NSDictionary<NSString, ?> getMetadata();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setMetadata:")
+    public native void setMetadata(NSDictionary<NSString, ?> v);
     @Property(selector = "livePhotoMovieFileURL")
     public native NSURL getLivePhotoMovieFileURL();
     @Property(selector = "setLivePhotoMovieFileURL:")
     public native void setLivePhotoMovieFileURL(NSURL v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "livePhotoVideoCodecType")
+    public native NSString getLivePhotoVideoCodecType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setLivePhotoVideoCodecType:")
+    public native void setLivePhotoVideoCodecType(NSString v);
     @Property(selector = "livePhotoMovieMetadata")
     public native NSArray<AVMetadataItem> getLivePhotoMovieMetadata();
     @Property(selector = "setLivePhotoMovieMetadata:")
@@ -103,18 +186,38 @@ import org.robovm.apple.audiounit.*;
     @Property(selector = "availablePreviewPhotoPixelFormatTypes")
     public native NSArray<NSNumber> getAvailablePreviewPhotoPixelFormatTypes();
     @Property(selector = "previewPhotoFormat")
-    public native NSDictionary<?, ?> getPreviewPhotoFormat();
+    public native NSDictionary<NSString, ?> getPreviewPhotoFormat();
     @Property(selector = "setPreviewPhotoFormat:")
-    public native void setPreviewPhotoFormat(NSDictionary<?, ?> v);
+    public native void setPreviewPhotoFormat(NSDictionary<NSString, ?> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "availableEmbeddedThumbnailPhotoCodecTypes")
+    public native NSArray<NSString> getAvailableEmbeddedThumbnailPhotoCodecTypes();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "embeddedThumbnailPhotoFormat")
+    public native NSDictionary<NSString, ?> getEmbeddedThumbnailPhotoFormat();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setEmbeddedThumbnailPhotoFormat:")
+    public native void setEmbeddedThumbnailPhotoFormat(NSDictionary<NSString, ?> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "photoSettingsWithFormat:")
-    protected static native @Pointer long create(NSDictionary<?, ?> format);
+    protected static native @Pointer long create(NSDictionary<NSString, ?> format);
     @Method(selector = "photoSettingsWithRawPixelFormatType:")
     protected static native @Pointer long create(int rawPixelFormatType);
     @Method(selector = "photoSettingsWithRawPixelFormatType:processedFormat:")
-    protected static native @Pointer long create(int rawPixelFormatType, NSDictionary<?, ?> processedFormat);
+    protected static native @Pointer long create(int rawPixelFormatType, NSDictionary<NSString, ?> processedFormat);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "photoSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:")
+    protected static native @Pointer long create(int rawPixelFormatType, String rawFileType, NSDictionary<NSString, ?> processedFormat, String processedFileType);
     @Method(selector = "photoSettingsFromPhotoSettings:")
     protected static native @Pointer long create(AVCapturePhotoSettings photoSettings);
     /*</methods>*/

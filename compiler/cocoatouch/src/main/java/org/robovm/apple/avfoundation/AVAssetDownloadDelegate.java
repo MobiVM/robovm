@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -72,6 +71,21 @@ import org.robovm.apple.audiounit.*;
      */
     @Method(selector = "URLSession:assetDownloadTask:didResolveMediaSelection:")
     void didResolveMediaSelection(NSURLSession session, AVAssetDownloadTask assetDownloadTask, AVMediaSelection resolvedMediaSelection);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "URLSession:aggregateAssetDownloadTask:willDownloadToURL:")
+    void willDownloadToURL(NSURLSession session, AVAggregateAssetDownloadTask aggregateAssetDownloadTask, NSURL location);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "URLSession:aggregateAssetDownloadTask:didCompleteForMediaSelection:")
+    void didCompleteForMediaSelection(NSURLSession session, AVAggregateAssetDownloadTask aggregateAssetDownloadTask, AVMediaSelection mediaSelection);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "URLSession:aggregateAssetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:forMediaSelection:")
+    void didLoadTimeRange(NSURLSession session, AVAggregateAssetDownloadTask aggregateAssetDownloadTask, @ByVal CMTimeRange timeRange, NSArray<NSValue> loadedTimeRanges, @ByVal CMTimeRange timeRangeExpectedToLoad, AVMediaSelection mediaSelection);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

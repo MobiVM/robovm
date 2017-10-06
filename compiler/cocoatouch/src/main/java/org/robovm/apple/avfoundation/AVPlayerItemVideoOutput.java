@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,7 +65,7 @@ import org.robovm.apple.audiounit.*;
      */
     @WeaklyLinked
     @Method(selector = "initWithOutputSettings:")
-    public AVPlayerItemVideoOutput(NSDictionary<?, ?> outputSettings) { super((SkipInit) null); initObject(init(outputSettings)); }
+    public AVPlayerItemVideoOutput(NSDictionary<NSString, ?> outputSettings) { super((SkipInit) null); initObject(init(outputSettings)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -85,7 +84,7 @@ import org.robovm.apple.audiounit.*;
      */
     @WeaklyLinked
     @Method(selector = "initWithOutputSettings:")
-    protected native @Pointer long init(NSDictionary<?, ?> outputSettings);
+    protected native @Pointer long init(NSDictionary<NSString, ?> outputSettings);
     @Method(selector = "hasNewPixelBufferForItemTime:")
     public native boolean hasNewPixelBufferForItemTime(@ByVal CMTime itemTime);
     @WeaklyLinked

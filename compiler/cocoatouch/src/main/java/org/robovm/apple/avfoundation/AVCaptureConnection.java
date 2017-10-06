@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -207,6 +206,21 @@ import org.robovm.apple.audiounit.*;
     @Deprecated
     @Property(selector = "setEnablesVideoStabilizationWhenAvailable:")
     public native void setEnablesVideoStabilizationWhenAvailable(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isCameraIntrinsicMatrixDeliverySupported")
+    public native boolean isCameraIntrinsicMatrixDeliverySupported();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isCameraIntrinsicMatrixDeliveryEnabled")
+    public native boolean isCameraIntrinsicMatrixDeliveryEnabled();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setCameraIntrinsicMatrixDeliveryEnabled:")
+    public native void setCameraIntrinsicMatrixDeliveryEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

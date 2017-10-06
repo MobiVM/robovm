@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -76,11 +75,14 @@ import org.robovm.apple.audiounit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:")
-    public native void makeStreamingContentKeyRequestDataForApp(NSData appIdentifier, NSData contentIdentifier, NSDictionary<?, ?> options, @Block VoidBlock2<NSData, NSError> handler);
+    public native void makeStreamingContentKeyRequestDataForApp(NSData appIdentifier, NSData contentIdentifier, NSDictionary<NSString, ?> options, @Block VoidBlock2<NSData, NSError> handler);
     @Method(selector = "processContentKeyResponse:")
     public native void processContentKeyResponse(AVContentKeyResponse keyResponse);
     @Method(selector = "processContentKeyResponseError:")
     public native void processContentKeyResponseError(NSError error);
+    /**
+     * @since Available in iOS 10.3 and later.
+     */
     @Method(selector = "respondByRequestingPersistableContentKeyRequest")
     public native void respondByRequestingPersistableContentKeyRequest();
     /*</methods>*/
