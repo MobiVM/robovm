@@ -35,28 +35,37 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKOctreeNode/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKSCNNodeComponent/*</name>*/ 
+    extends /*<extends>*/GKComponent/*</extends>*/ 
+    /*<implements>*/implements GKAgentDelegate/*</implements>*/ {
 
-    /*<ptr>*/public static class GKOctreeNodePtr extends Ptr<GKOctreeNode, GKOctreeNodePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(GKOctreeNode.class); }/*</bind>*/
+    /*<ptr>*/public static class GKSCNNodeComponentPtr extends Ptr<GKSCNNodeComponent, GKSCNNodeComponentPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GKSCNNodeComponent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public GKOctreeNode() {}
-    protected GKOctreeNode(Handle h, long handle) { super(h, handle); }
-    protected GKOctreeNode(SkipInit skipInit) { super(skipInit); }
+    public GKSCNNodeComponent() {}
+    protected GKSCNNodeComponent(Handle h, long handle) { super(h, handle); }
+    protected GKSCNNodeComponent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNode:")
+    public GKSCNNodeComponent(SCNNode node) { super((SkipInit) null); initObject(initWithNode(node)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "box")
-    public native @ByVal GKBox getBox();
+    @Property(selector = "node")
+    public native SCNNode getNode();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithNode:")
+    protected native @Pointer long initWithNode(SCNNode node);
+    @Method(selector = "componentWithNode:")
+    public static native GKSCNNodeComponent componentWithNode(SCNNode node);
+    @Method(selector = "agentWillUpdate:")
+    public native void willUpdate(GKAgent agent);
+    @Method(selector = "agentDidUpdate:")
+    public native void didUpdate(GKAgent agent);
     /*</methods>*/
 }

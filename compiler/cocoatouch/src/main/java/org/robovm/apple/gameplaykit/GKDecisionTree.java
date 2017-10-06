@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.spritekit.*;
+import org.robovm.apple.scenekit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,7 +41,7 @@ import org.robovm.apple.spritekit.*;
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKDecisionTree/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKDecisionTreePtr extends Ptr<GKDecisionTree, GKDecisionTreePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKDecisionTree.class); }/*</bind>*/
@@ -52,6 +54,10 @@ import org.robovm.apple.spritekit.*;
     public GKDecisionTree(NSObject attribute) { super((SkipInit) null); initObject(init(attribute)); }
     @Method(selector = "initWithExamples:actions:attributes:")
     public GKDecisionTree(NSArray<?> examples, NSArray<?> actions, NSArray<?> attributes) { super((SkipInit) null); initObject(init(examples, actions, attributes)); }
+    @Method(selector = "initWithURL:error:")
+    public GKDecisionTree(NSURL url, NSError error) { super((SkipInit) null); initObject(init(url, error)); }
+    @Method(selector = "initWithCoder:")
+    public GKDecisionTree(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rootNode")
@@ -60,6 +66,8 @@ import org.robovm.apple.spritekit.*;
     public native GKRandomSource getRandomSource();
     @Property(selector = "setRandomSource:")
     public native void setRandomSource(GKRandomSource v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -67,7 +75,15 @@ import org.robovm.apple.spritekit.*;
     protected native @Pointer long init(NSObject attribute);
     @Method(selector = "initWithExamples:actions:attributes:")
     protected native @Pointer long init(NSArray<?> examples, NSArray<?> actions, NSArray<?> attributes);
+    @Method(selector = "initWithURL:error:")
+    protected native @Pointer long init(NSURL url, NSError error);
+    @Method(selector = "exportToURL:error:")
+    public native boolean exportToURL(NSURL url, NSError error);
     @Method(selector = "findActionForAnswers:")
     public native NSObject findActionForAnswers(NSDictionary<?, ?> answers);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

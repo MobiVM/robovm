@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.spritekit.*;
+import org.robovm.apple.scenekit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,9 +61,9 @@ import org.robovm.apple.spritekit.*;
     @Method(selector = "initWithBoundingBox:minimumCellSize:")
     protected native @Pointer long init(@ByVal GKBox box, float minCellSize);
     @Method(selector = "addElement:withPoint:")
-    public native GKOctreeNode addElement$withPoint$(NSObject element, @ByVal VectorFloat3 point);
+    public native GKOctreeNode addElement(NSObject element, @ByVal VectorFloat3 point);
     @Method(selector = "addElement:withBox:")
-    public native GKOctreeNode addElement$withBox$(NSObject element, @ByVal GKBox box);
+    public native GKOctreeNode addElement(NSObject element, @ByVal GKBox box);
     @Method(selector = "elementsAtPoint:")
     public native NSArray<?> elementsAtPoint(@ByVal VectorFloat3 point);
     @Method(selector = "elementsInBox:")

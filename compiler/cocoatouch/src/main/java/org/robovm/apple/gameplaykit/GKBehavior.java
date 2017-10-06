@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.spritekit.*;
+import org.robovm.apple.scenekit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,7 +53,7 @@ import org.robovm.apple.spritekit.*;
     public GKBehavior(GKGoal goal, float weight) { super((Handle) null, create(goal, weight)); retain(getHandle()); }
     public GKBehavior(NSArray<GKGoal> goals) { super((Handle) null, create(goals)); retain(getHandle()); }
     public GKBehavior(NSArray<GKGoal> goals, NSArray<NSNumber> weights) { super((Handle) null, create(goals, weights)); retain(getHandle()); }
-    public GKBehavior(NSDictionary<?, ?> weightedGoals) { super((Handle) null, create(weightedGoals)); retain(getHandle()); }
+    public GKBehavior(NSDictionary<GKGoal, NSNumber> weightedGoals) { super((Handle) null, create(weightedGoals)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "goalCount")
@@ -80,7 +82,7 @@ import org.robovm.apple.spritekit.*;
     @Method(selector = "behaviorWithGoals:andWeights:")
     protected static native @Pointer long create(NSArray<GKGoal> goals, NSArray<NSNumber> weights);
     @Method(selector = "behaviorWithWeightedGoals:")
-    protected static native @Pointer long create(NSDictionary<?, ?> weightedGoals);
+    protected static native @Pointer long create(NSDictionary<GKGoal, NSNumber> weightedGoals);
     /*</methods>*/
     
     private static class Iterator implements java.util.Iterator<GKGoal> {
