@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.corebluetooth.*;
+import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.corebluetooth.*;
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLPlacemark/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CLPlacemarkPtr extends Ptr<CLPlacemark, CLPlacemarkPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CLPlacemark.class); }/*</bind>*/
@@ -50,6 +51,8 @@ import org.robovm.apple.corebluetooth.*;
     protected CLPlacemark(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPlacemark:")
     public CLPlacemark(CLPlacemark placemark) { super((SkipInit) null); initObject(init(placemark)); }
+    @Method(selector = "initWithCoder:")
+    public CLPlacemark(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "location")
@@ -61,6 +64,11 @@ import org.robovm.apple.corebluetooth.*;
      */
     @Property(selector = "timeZone")
     public native NSTimeZone getTimeZone();
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @WeaklyLinked
     @Property(selector = "addressDictionary")
     public native ABPersonAddress getAddress();
@@ -90,10 +98,21 @@ import org.robovm.apple.corebluetooth.*;
     public native String getOcean();
     @Property(selector = "areasOfInterest")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAreasOfInterest();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "postalAddress")
+    public native CNPostalAddress getPostalAddress();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPlacemark:")
     protected native @Pointer long init(CLPlacemark placemark);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
