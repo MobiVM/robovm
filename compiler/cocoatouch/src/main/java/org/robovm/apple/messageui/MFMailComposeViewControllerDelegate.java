@@ -48,9 +48,6 @@ import org.robovm.apple.messages.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
     @Method(selector = "mailComposeController:didFinishWithResult:error:")
     void didFinish(MFMailComposeViewController controller, MFMailComposeResult result, NSError error);
     /*</methods>*/

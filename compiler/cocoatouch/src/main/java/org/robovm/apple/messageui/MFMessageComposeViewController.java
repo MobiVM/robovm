@@ -82,10 +82,19 @@ import org.robovm.apple.messages.*;
     public native String getBody();
     @Property(selector = "setBody:")
     public native void setBody(String v);
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @Property(selector = "subject")
     public native String getSubject();
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @Property(selector = "setSubject:")
     public native void setSubject(String v);
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @Property(selector = "attachments")
     public native @org.robovm.rt.bro.annotation.Marshaler(MFMessageComposeViewControllerAttachment.AsListMarshaler.class) List<MFMessageComposeViewControllerAttachment> getAttachments();
     /**
@@ -127,9 +136,6 @@ import org.robovm.apple.messages.*;
      */
     @Method(selector = "addAttachmentData:typeIdentifier:filename:")
     public native boolean addAttachment(NSData attachmentData, String uti, String filename);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
     @Method(selector = "canSendText")
     public static native boolean canSendText();
     /**
