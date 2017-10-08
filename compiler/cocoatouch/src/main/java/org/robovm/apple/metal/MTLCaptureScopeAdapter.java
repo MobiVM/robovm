@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,9 +34,9 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLResourceAdapter/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLCaptureScopeAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements MTLResource/*</implements>*/ {
+    /*<implements>*/implements MTLCaptureScope/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -51,37 +51,14 @@ import org.robovm.apple.dispatch.*;
     public void setLabel(String v) {}
     @NotImplemented("device")
     public MTLDevice getDevice() { return null; }
-    @NotImplemented("cpuCacheMode")
-    public MTLCPUCacheMode getCpuCacheMode() { return null; }
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @NotImplemented("storageMode")
-    public MTLStorageMode getStorageMode() { return null; }
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @NotImplemented("heap")
-    public MTLHeap getHeap() { return null; }
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @NotImplemented("allocatedSize")
-    public @MachineSizedUInt long getAllocatedSize() { return 0; }
+    @NotImplemented("commandQueue")
+    public MTLCommandQueue getCommandQueue() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("setPurgeableState:")
-    public MTLPurgeableState setPurgeableState(MTLPurgeableState state) { return null; }
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @NotImplemented("makeAliasable")
-    public void makeAliasable() {}
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @NotImplemented("isAliasable")
-    public boolean isAliasable() { return false; }
+    @NotImplemented("beginScope")
+    public void beginScope() {}
+    @NotImplemented("endScope")
+    public void endScope() {}
     /*</methods>*/
 }

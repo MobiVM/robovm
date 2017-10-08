@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,11 +33,11 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTLResource/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTLCaptureScope/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -52,37 +52,14 @@ import org.robovm.apple.dispatch.*;
     void setLabel(String v);
     @Property(selector = "device")
     MTLDevice getDevice();
-    @Property(selector = "cpuCacheMode")
-    MTLCPUCacheMode getCpuCacheMode();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "storageMode")
-    MTLStorageMode getStorageMode();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "heap")
-    MTLHeap getHeap();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "allocatedSize")
-    @MachineSizedUInt long getAllocatedSize();
+    @Property(selector = "commandQueue")
+    MTLCommandQueue getCommandQueue();
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "setPurgeableState:")
-    MTLPurgeableState setPurgeableState(MTLPurgeableState state);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "makeAliasable")
-    void makeAliasable();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "isAliasable")
-    boolean isAliasable();
+    @Method(selector = "beginScope")
+    void beginScope();
+    @Method(selector = "endScope")
+    void endScope();
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

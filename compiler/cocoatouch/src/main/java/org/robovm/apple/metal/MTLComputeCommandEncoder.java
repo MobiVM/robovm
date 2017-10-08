@@ -121,6 +121,11 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "setThreadgroupMemoryLength:atIndex:")
     public native void setThreadgroupMemoryLength(@MachineSizedUInt long length, @MachineSizedUInt long index);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "setImageblockWidth:height:")
+    public native void dispatchThreadgroups(@MachineSizedUInt long width, @MachineSizedUInt long height);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "setStageInRegion:")
@@ -133,6 +138,11 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:")
     public native void dispatchThreadgroups(MTLBuffer indirectBuffer, @MachineSizedUInt long indirectBufferOffset, @ByVal MTLSize threadsPerThreadgroup);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "dispatchThreads:threadsPerThreadgroup:")
+    public native void dispatchThread(@ByVal MTLSize threadsPerGrid, @ByVal MTLSize threadsPerThreadgroup);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "updateFence:")
@@ -142,6 +152,26 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "waitForFence:")
     public native void waitForFence(MTLFence fence);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "useResource:usage:")
+    public native void useResource(MTLResource resource, MTLResourceUsage usage);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "useResources:count:usage:")
+    public native void useResources(MTLResource resources, @MachineSizedUInt long count, MTLResourceUsage usage);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "useHeap:")
+    public native void useHeap(MTLHeap heap);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "useHeaps:count:")
+    public native void useHeaps(MTLHeap heaps, @MachineSizedUInt long count);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")

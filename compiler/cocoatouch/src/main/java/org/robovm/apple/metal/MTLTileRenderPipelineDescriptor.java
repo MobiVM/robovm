@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,50 +33,46 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLComputePipelineDescriptor/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLTileRenderPipelineDescriptor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MTLComputePipelineDescriptorPtr extends Ptr<MTLComputePipelineDescriptor, MTLComputePipelineDescriptorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MTLComputePipelineDescriptor.class); }/*</bind>*/
+    /*<ptr>*/public static class MTLTileRenderPipelineDescriptorPtr extends Ptr<MTLTileRenderPipelineDescriptor, MTLTileRenderPipelineDescriptorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MTLTileRenderPipelineDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTLComputePipelineDescriptor() {}
-    protected MTLComputePipelineDescriptor(Handle h, long handle) { super(h, handle); }
-    protected MTLComputePipelineDescriptor(SkipInit skipInit) { super(skipInit); }
+    public MTLTileRenderPipelineDescriptor() {}
+    protected MTLTileRenderPipelineDescriptor(Handle h, long handle) { super(h, handle); }
+    protected MTLTileRenderPipelineDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "label")
     public native String getLabel();
     @Property(selector = "setLabel:")
     public native void setLabel(String v);
-    @Property(selector = "computeFunction")
-    public native MTLFunction getComputeFunction();
-    @Property(selector = "setComputeFunction:")
-    public native void setComputeFunction(MTLFunction v);
-    @Property(selector = "threadGroupSizeIsMultipleOfThreadExecutionWidth")
-    public native boolean isThreadGroupSizeMultipleOfThreadExecutionWidth();
-    @Property(selector = "setThreadGroupSizeIsMultipleOfThreadExecutionWidth:")
-    public native void setThreadGroupSizeMultipleOfThreadExecutionWidth(boolean v);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "stageInputDescriptor")
-    public native MTLStageInputOutputDescriptor getStageInputDescriptor();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "setStageInputDescriptor:")
-    public native void setStageInputDescriptor(MTLStageInputOutputDescriptor v);
+    @Property(selector = "tileFunction")
+    public native MTLFunction getTileFunction();
+    @Property(selector = "setTileFunction:")
+    public native void setTileFunction(MTLFunction v);
+    @Property(selector = "rasterSampleCount")
+    public native @MachineSizedUInt long getRasterSampleCount();
+    @Property(selector = "setRasterSampleCount:")
+    public native void setRasterSampleCount(@MachineSizedUInt long v);
+    @Property(selector = "colorAttachments")
+    public native MTLTileRenderPipelineColorAttachmentDescriptorArray getColorAttachments();
+    @Property(selector = "threadgroupSizeMatchesTileSize")
+    public native boolean isThreadgroupSizeMatchesTileSize();
+    @Property(selector = "setThreadgroupSizeMatchesTileSize:")
+    public native void setThreadgroupSizeMatchesTileSize(boolean v);
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @Property(selector = "buffers")
-    public native MTLPipelineBufferDescriptorArray getBuffers();
+    @Property(selector = "tileBuffers")
+    public native MTLPipelineBufferDescriptorArray getTileBuffers();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

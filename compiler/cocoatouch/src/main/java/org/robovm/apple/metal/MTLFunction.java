@@ -85,10 +85,19 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "functionConstantsDictionary")
-    public native NSDictionary<?, ?> getFunctionConstantsDictionary();
+    public native NSDictionary<NSString, MTLFunctionConstant> getFunctionConstantsDictionary();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "newArgumentEncoderWithBufferIndex:")
+    public native MTLArgumentEncoder newArgumentEncoderWithBufferIndex(@MachineSizedUInt long bufferIndex);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "newArgumentEncoderWithBufferIndex:reflection:")
+    public native MTLArgumentEncoder newArgumentEncoder(@MachineSizedUInt long bufferIndex, MTLArgument.MTLArgumentPtr reflection);
     /*</methods>*/
 }

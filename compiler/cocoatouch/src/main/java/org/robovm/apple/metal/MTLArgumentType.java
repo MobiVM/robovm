@@ -42,7 +42,15 @@ public enum /*<name>*/MTLArgumentType/*</name>*/ implements ValuedEnum {
     Buffer(0L),
     ThreadgroupMemory(1L),
     Texture(2L),
-    Sampler(3L);
+    Sampler(3L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    ImageblockData(16L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Imageblock(17L);
     /*</values>*/
 
     /*<bind>*/

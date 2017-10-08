@@ -14,6 +14,7 @@ private_typedefs:
     'void (^)(void *, NSUInteger)': '@Block("(@Pointer,@MachineSizedUInt)") VoidBlock2<Long, Long>'
     'MTLAutoreleasedRenderPipelineReflection *': MTLRenderPipelineReflection.MTLRenderPipelineReflectionPtr
     'MTLAutoreleasedComputePipelineReflection *': MTLComputePipelineReflection.MTLComputePipelineReflectionPtr
+    '__IOSurface *': org.robovm.apple.iosurface.IOSurface
 
 enums:
     MTLBlitOption: {}
@@ -65,6 +66,11 @@ enums:
     MTLTessellationFactorFormat: {}
     MTLTessellationControlPointIndexType: {}
     MTLSamplerBorderColor: {}
+    MTLResourceUsage: {} #since 11.0
+    MTLReadWriteTextureTier: {} #since 11.0
+    MTLArgumentBuffersTier: {} #since 11.0
+    MTLStoreActionOptions: {prefix: MTLStoreActionOption} #since 11.0
+    MTLMutability: {} #since 11.0
 
 classes:
     MTLAttribute: {}
@@ -94,7 +100,8 @@ classes:
                 trim_after_first_colon: true
             '-setConstantValue:type:withName:':
                 trim_after_first_colon: true
-
+            '-setConstantValues:type:withRange:':
+                trim_after_first_colon: true
 
     MTLCommandBufferError:
         extends: NSError
@@ -107,6 +114,7 @@ classes:
         annotations: ['@StronglyLinked']
 
     # Structs
+    MTLSamplePosition: {}
     MTLClearColor: {} # DONE
     MTLDispatchThreadgroupsIndirectArguments: {} # DONE
     MTLDrawIndexedPrimitivesIndirectArguments: {} # DONE
@@ -152,6 +160,10 @@ classes:
         methods:
             '+renderPassDescriptor':
                 exclude: true
+            '-setSamplePositions:count:':
+                trim_after_first_colon: true
+            '-getSamplePositions:count:':
+                trim_after_first_colon: true
     MTLRenderPipelineColorAttachmentDescriptor: {} # DONE
     MTLRenderPipelineColorAttachmentDescriptorArray: # DONE
         methods:
@@ -209,6 +221,22 @@ classes:
         methods:
             '+vertexDescriptor':
                 exclude: true
+    MTLArgumentDescriptor: {} #since 11.0
+    MTLCaptureManager: {} #since 11.0
+    MTLPipelineBufferDescriptor: {} #since 11.0
+    MTLPipelineBufferDescriptorArray: #since 11.0
+        methods:
+            '-setObject:atIndexedSubscript:':
+                trim_after_first_colon: true
+    MTLPointerType: {} #since 11.0
+    MTLTextureReferenceType: {} #since 11.0
+    MTLTileRenderPipelineColorAttachmentDescriptor: {} #since 11.0
+    MTLTileRenderPipelineColorAttachmentDescriptorArray: #since 11.0
+        methods:
+            '-setObject:atIndexedSubscript:':
+                trim_after_first_colon: true
+    MTLTileRenderPipelineDescriptor: {} #since 11.0
+    MTLType: {} #since 11.0
 
 protocols:
     MTLHeap:
@@ -350,6 +378,16 @@ protocols:
                 trim_after_first_colon: true
             '-dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:':
                 name: dispatchThreadgroups
+            '-setImageblockWidth:height:':
+                name: dispatchThreadgroups
+            '-dispatchThreads:threadsPerThreadgroup:':
+                name: dispatchThread
+            '-useResource:usage:':
+                trim_after_first_colon: true
+            '-useResources:count:usage:':
+                trim_after_first_colon: true
+            '-useHeaps:count:':
+                trim_after_first_colon: true
     MTLComputePipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -419,6 +457,13 @@ protocols:
             '-newDefaultLibraryWithBundle:error:':
                 name: newDefaultLibrary
                 throws: NSErrorException
+            '-newTextureWithDescriptor:iosurface:plane:':
+                name: newTexture
+            '-newLibraryWithURL:error:':
+                throws: NSErrorException
+                name: newLibrary
+            '-getDefaultSamplePositions:count:':
+                trim_after_first_colon: true
     MTLDrawable: # DONE
         methods:
             '-presentAtTime:':
@@ -430,6 +475,9 @@ protocols:
         properties:
             'vertexAttributes':
                 type: NSArray<MTLVertexAttribute>
+        methods:
+            '-newArgumentEncoderWithBufferIndex:reflection:':
+                name: newArgumentEncoder
     MTLLibrary: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -455,6 +503,8 @@ protocols:
                 name: newRenderCommandEncoder
             '-setColorStoreAction:atIndex:':
                 name: setColorStoreAction
+            '-setColorStoreActionOptions:atIndex:':
+                trim_after_first_colon: true
     MTLRenderCommandEncoder: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -576,6 +626,36 @@ protocols:
                 trim_after_first_colon: true
             '-waitForFence:beforeStages:':
                 trim_after_first_colon: true
+            '-setColorStoreActionOptions:atIndex:':
+                trim_after_first_colon: true
+            '-setTileBytes:length:atIndex:':
+                trim_after_first_colon: true
+            '-setTileBuffer:offset:atIndex:':
+                trim_after_first_colon: true
+            '-setTileBufferOffset:atIndex:':
+                trim_after_first_colon: true
+            '-setTileBuffers:offsets:withRange:':
+                trim_after_first_colon: true
+            '-setTileTexture:atIndex:':
+                trim_after_first_colon: true
+            '-setTileTextures:withRange:':
+                trim_after_first_colon: true
+            '-setTileSamplerState:atIndex:':
+                trim_after_first_colon: true
+            '-setTileSamplerStates:withRange:':
+                trim_after_first_colon: true
+            '-setTileSamplerState:lodMinClamp:lodMaxClamp:atIndex:':
+                trim_after_first_colon: true
+            '-setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:':
+                trim_after_first_colon: true
+            '-setThreadgroupMemoryLength:offset:atIndex:':
+                trim_after_first_colon: true
+            '-useResource:usage:':
+                trim_after_first_colon: true
+            '-useResources:count:usage:':
+                trim_after_first_colon: true
+            '-useHeaps:count:':
+                trim_after_first_colon: true
 
     MTLRenderPipelineState: # DONE
         class: true
@@ -621,6 +701,25 @@ protocols:
             '-newTextureViewWith.*':
                 name: newTextureView
                 return_marshaler: NSObject.NoRetainMarshaler
+    MTLArgumentEncoder: #since 11.0
+        methods:
+            '-setArgumentBuffer:offset:':
+                trim_after_first_colon: true
+            '-setArgumentBuffer:startOffset:arrayElement:':
+                trim_after_first_colon: true
+            '-setBuffer:offset:atIndex:':
+                trim_after_first_colon: true
+            '-setBuffers:offsets:withRange:':
+                trim_after_first_colon: true
+            '-setTexture:atIndex:':
+                trim_after_first_colon: true
+            '-setTextures:withRange:':
+                trim_after_first_colon: true
+            '-setSamplerState:atIndex:':
+                trim_after_first_colon: true
+            '-setSamplerStates:withRange:':
+                trim_after_first_colon: true
+    MTLCaptureScope: {} #since 11.0
 
 functions:
     MTLClearColorMake:

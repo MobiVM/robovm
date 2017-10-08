@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,50 +33,48 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLArrayType/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLPointerType/*</name>*/ 
     extends /*<extends>*/MTLType/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MTLArrayTypePtr extends Ptr<MTLArrayType, MTLArrayTypePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MTLArrayType.class); }/*</bind>*/
+    /*<ptr>*/public static class MTLPointerTypePtr extends Ptr<MTLPointerType, MTLPointerTypePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MTLPointerType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTLArrayType() {}
-    protected MTLArrayType(Handle h, long handle) { super(h, handle); }
-    protected MTLArrayType(SkipInit skipInit) { super(skipInit); }
+    public MTLPointerType() {}
+    protected MTLPointerType(Handle h, long handle) { super(h, handle); }
+    protected MTLPointerType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "elementType")
     public native MTLDataType getElementType();
-    @Property(selector = "arrayLength")
-    public native @MachineSizedUInt long getArrayLength();
-    @Property(selector = "stride")
-    public native @MachineSizedUInt long getStride();
+    @Property(selector = "access")
+    public native MTLArgumentAccess getAccess();
+    @Property(selector = "alignment")
+    public native @MachineSizedUInt long getAlignment();
+    @Property(selector = "dataSize")
+    public native @MachineSizedUInt long getDataSize();
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @Property(selector = "argumentIndexStride")
-    public native @MachineSizedUInt long getArgumentIndexStride();
+    @Property(selector = "elementIsArgumentBuffer")
+    public native boolean isElementIsArgumentBuffer();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "elementStructType")
-    public native MTLStructType getElementStructType();
+    public native MTLStructType elementStructType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "elementArrayType")
-    public native MTLArrayType getElementArrayType();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "elementTextureReferenceType")
-    public native MTLTextureReferenceType elementTextureReferenceType();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "elementPointerType")
-    public native MTLPointerType elementPointerType();
+    public native MTLArrayType elementArrayType();
     /*</methods>*/
 }

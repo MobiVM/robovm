@@ -110,6 +110,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setCompareFunction:")
     public native void setCompareFunction(MTLCompareFunction v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "supportArgumentBuffers")
+    public native boolean isSupportArgumentBuffers();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSupportArgumentBuffers:")
+    public native void setSupportArgumentBuffers(boolean v);
     @Property(selector = "label")
     public native String getLabel();
     @Property(selector = "setLabel:")

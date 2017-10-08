@@ -59,6 +59,11 @@ import org.robovm.apple.dispatch.*;
     public @MachineSizedUInt long getSize() { return 0; }
     @NotImplemented("usedSize")
     public @MachineSizedUInt long getUsedSize() { return 0; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("currentAllocatedSize")
+    public @MachineSizedUInt long getCurrentAllocatedSize() { return 0; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

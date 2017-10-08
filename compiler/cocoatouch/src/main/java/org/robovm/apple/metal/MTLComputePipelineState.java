@@ -48,15 +48,29 @@ import org.robovm.apple.dispatch.*;
     
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "label")
+    public native String getLabel();
     @Property(selector = "device")
     public native MTLDevice getDevice();
     @Property(selector = "maxTotalThreadsPerThreadgroup")
     public native @MachineSizedUInt long getMaxTotalThreadsPerThreadgroup();
     @Property(selector = "threadExecutionWidth")
     public native @MachineSizedUInt long getThreadExecutionWidth();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "staticThreadgroupMemoryLength")
+    public native @MachineSizedUInt long getStaticThreadgroupMemoryLength();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "imageblockMemoryLengthForDimensions:")
+    public native @MachineSizedUInt long imageblockMemoryLengthForDimensions(@ByVal MTLSize imageblockDimensions);
     /*</methods>*/
 }

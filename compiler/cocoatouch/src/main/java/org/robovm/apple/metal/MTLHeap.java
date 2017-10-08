@@ -60,6 +60,11 @@ import org.robovm.apple.dispatch.*;
     @MachineSizedUInt long getSize();
     @Property(selector = "usedSize")
     @MachineSizedUInt long getUsedSize();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "currentAllocatedSize")
+    @MachineSizedUInt long getCurrentAllocatedSize();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "maxAvailableSizeWithAlignment:")

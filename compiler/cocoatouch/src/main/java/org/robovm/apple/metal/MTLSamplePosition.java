@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,42 +32,30 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MTLTextureType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    _1D(0L),
-    _1DArray(1L),
-    _2D(2L),
-    _2DArray(3L),
-    _2DMultisample(4L),
-    Cube(5L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    CubeArray(6L),
-    _3D(7L);
-    /*</values>*/
 
+/*</javadoc>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLSamplePosition/*</name>*/ 
+    extends /*<extends>*/Struct<MTLSamplePosition>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
+
+    /*<ptr>*/public static class MTLSamplePositionPtr extends Ptr<MTLSamplePosition, MTLSamplePositionPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MTLTextureType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MTLTextureType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MTLTextureType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MTLTextureType/*</name>*/.class.getName());
+    /*<constructors>*/
+    public MTLSamplePosition() {}
+    public MTLSamplePosition(float x, float y) {
+        this.setX(x);
+        this.setY(y);
     }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native float getX();
+    @StructMember(0) public native MTLSamplePosition setX(float x);
+    @StructMember(1) public native float getY();
+    @StructMember(1) public native MTLSamplePosition setY(float y);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }

@@ -85,6 +85,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "bufferBytesPerRow")
     public native @MachineSizedUInt long getBufferBytesPerRow();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "iosurface")
+    public native org.robovm.apple.iosurface.IOSurface getIosurface();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "iosurfacePlane")
+    public native @MachineSizedUInt long getIosurfacePlane();
     @Property(selector = "textureType")
     public native MTLTextureType getTextureType();
     @Property(selector = "pixelFormat")
@@ -123,6 +133,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "heap")
     public native MTLHeap getHeap();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "allocatedSize")
+    public native @MachineSizedUInt long getAllocatedSize();
     /*</properties>*/
     /*<members>*//*</members>*/
     public byte[] getBytes(int length, @MachineSizedUInt long bytesPerRow, @MachineSizedUInt long bytesPerImage, @ByVal MTLRegion region, @MachineSizedUInt long level, @MachineSizedUInt long slice) {

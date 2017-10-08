@@ -80,7 +80,47 @@ public enum /*<name>*/MTLVertexFormat/*</name>*/ implements ValuedEnum {
     UInt3(38L),
     UInt4(39L),
     Int1010102Normalized(40L),
-    UInt1010102Normalized(41L);
+    UInt1010102Normalized(41L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    UChar4Normalized_BGRA(42L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    UChar(45L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Char(46L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    UCharNormalized(47L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    CharNormalized(48L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    UShort(49L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Short(50L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    UShortNormalized(51L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    ShortNormalized(52L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Half(53L);
     /*</values>*/
 
     /*<bind>*/

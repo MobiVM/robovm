@@ -70,7 +70,23 @@ public enum /*<name>*/MTLFeatureSet/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 10.0 and later.
      */
-    iOS_GPUFamily3_v2(7L);
+    iOS_GPUFamily3_v2(7L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    iOS_GPUFamily1_v4(8L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    iOS_GPUFamily2_v4(9L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    iOS_GPUFamily3_v3(10L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    iOS_GPUFamily4_v1(11L);
     /*</values>*/
 
     /*<bind>*/

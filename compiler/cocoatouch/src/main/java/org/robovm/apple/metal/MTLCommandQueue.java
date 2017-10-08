@@ -61,6 +61,11 @@ import org.robovm.apple.dispatch.*;
     public native MTLCommandBuffer getCommandBuffer();
     @Method(selector = "commandBufferWithUnretainedReferences")
     public native MTLCommandBuffer getCommandBufferWithUnretainedReferences();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "insertDebugCaptureBoundary")
     public native void insertDebugCaptureBoundary();
     /*</methods>*/
