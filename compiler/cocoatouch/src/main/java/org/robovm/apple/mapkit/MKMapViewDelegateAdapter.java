@@ -142,5 +142,10 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @NotImplemented("mapView:didAddOverlayViews:")
     public void didAddOverlayViews(MKMapView mapView, NSArray<MKOverlayView> overlayViews) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("mapView:clusterAnnotationForMemberAnnotations:")
+    public MKClusterAnnotation getClusterAnnotationForMemberAnnotations(MKMapView mapView, NSArray<?> memberAnnotations) { return null; }
     /*</methods>*/
 }

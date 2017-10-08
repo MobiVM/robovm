@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,27 +36,14 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 3.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MKMapType/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MKScaleViewAlignment/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Standard(0L),
-    Satellite(1L),
-    Hybrid(2L),
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    SatelliteFlyover(3L),
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    HybridFlyover(4L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    MutedStandard(5L);
+    Leading(0L),
+    Trailing(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -66,15 +53,15 @@ public enum /*<name>*/MKMapType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/MKMapType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MKScaleViewAlignment/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MKMapType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MKMapType/*</name>*/ v : values()) {
+    public static /*<name>*/MKScaleViewAlignment/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MKScaleViewAlignment/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MKMapType/*</name>*/.class.getName());
+            + /*<name>*/MKScaleViewAlignment/*</name>*/.class.getName());
     }
 }

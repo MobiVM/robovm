@@ -42,7 +42,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMapCamera/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MKMapCameraPtr extends Ptr<MKMapCamera, MKMapCameraPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MKMapCamera.class); }/*</bind>*/
@@ -56,6 +56,8 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 9.0 and later.
      */
     public MKMapCamera(@ByVal CLLocationCoordinate2D centerCoordinate, double distance, @MachineSizedFloat double pitch, double heading) { super((Handle) null, create(centerCoordinate, distance, pitch, heading)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public MKMapCamera(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "centerCoordinate")
@@ -74,6 +76,8 @@ import org.robovm.apple.dispatch.*;
     public native double getAltitude();
     @Property(selector = "setAltitude:")
     public native void setAltitude(double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -84,5 +88,9 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "cameraLookingAtCenterCoordinate:fromDistance:pitch:heading:")
     protected static native @Pointer long create(@ByVal CLLocationCoordinate2D centerCoordinate, double distance, @MachineSizedFloat double pitch, double heading);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

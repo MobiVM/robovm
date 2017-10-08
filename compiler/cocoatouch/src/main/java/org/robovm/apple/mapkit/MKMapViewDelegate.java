@@ -140,6 +140,11 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Method(selector = "mapView:didAddOverlayViews:")
     void didAddOverlayViews(MKMapView mapView, NSArray<MKOverlayView> overlayViews);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "mapView:clusterAnnotationForMemberAnnotations:")
+    MKClusterAnnotation getClusterAnnotationForMemberAnnotations(MKMapView mapView, NSArray<?> memberAnnotations);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
