@@ -40,7 +40,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("MultipeerConnectivity") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MCPeerID/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MCPeerIDPtr extends Ptr<MCPeerID, MCPeerIDPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MCPeerID.class); }/*</bind>*/
@@ -51,14 +51,22 @@ import org.robovm.apple.security.*;
     protected MCPeerID(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDisplayName:")
     public MCPeerID(String myDisplayName) { super((SkipInit) null); initObject(init(myDisplayName)); }
+    @Method(selector = "initWithCoder:")
+    public MCPeerID(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "displayName")
     public native String getDisplayName();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDisplayName:")
     protected native @Pointer long init(String myDisplayName);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
