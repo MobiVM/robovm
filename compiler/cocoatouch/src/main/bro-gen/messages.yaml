@@ -23,6 +23,14 @@ classes:
                 name: insertText
             '-insertAttachment:withAlternateFilename:completionHandler:':
                 name: insertAttachment
+            '-sendMessage:completionHandler:':
+                trim_after_first_colon: true
+            '-sendSticker:completionHandler:':
+                trim_after_first_colon: true
+            '-sendText:completionHandler:':
+                trim_after_first_colon: true
+            '-sendAttachment:withAlternateFilename:completionHandler:':
+                trim_after_first_colon: true
     MSMessage: {}
     MSMessageLayout: {}
     MSMessagesAppViewController:
@@ -57,7 +65,7 @@ classes:
         methods:
             '-init.*':
                 name: init
-
+    MSMessageLiveLayout: {} #since 11.0
 protocols:
     MSStickerBrowserViewDataSource:
         methods:
@@ -65,6 +73,7 @@ protocols:
                 name: numberOfStickersInStickerBrowserView
             '-stickerBrowserView:stickerAtIndex:':
                 name: stickerAtIndex
+    MSMessagesAppTranscriptPresentation: {} #since 11.0
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?MS.*):

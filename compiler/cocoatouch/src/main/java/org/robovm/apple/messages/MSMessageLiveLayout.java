@@ -34,33 +34,31 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Messages") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MSSession/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MSMessageLiveLayout/*</name>*/ 
+    extends /*<extends>*/MSMessageLayout/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MSSessionPtr extends Ptr<MSSession, MSSessionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MSSession.class); }/*</bind>*/
+    /*<ptr>*/public static class MSMessageLiveLayoutPtr extends Ptr<MSMessageLiveLayout, MSMessageLiveLayoutPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MSMessageLiveLayout.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MSSession() {}
-    protected MSSession(Handle h, long handle) { super(h, handle); }
-    protected MSSession(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public MSSession(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    protected MSMessageLiveLayout() {}
+    protected MSMessageLiveLayout(Handle h, long handle) { super(h, handle); }
+    protected MSMessageLiveLayout(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAlternateLayout:")
+    public MSMessageLiveLayout(MSMessageTemplateLayout alternateLayout) { super((SkipInit) null); initObject(initWithAlternateLayout(alternateLayout)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    @Property(selector = "alternateLayout")
+    public native MSMessageTemplateLayout getAlternateLayout();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    @Method(selector = "initWithAlternateLayout:")
+    protected native @Pointer long initWithAlternateLayout(MSMessageTemplateLayout alternateLayout);
     /*</methods>*/
 }

@@ -41,7 +41,11 @@ import org.robovm.apple.uikit.*;
 public enum /*<name>*/MSMessagesAppPresentationStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Compact(0L),
-    Expanded(1L);
+    Expanded(1L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Transcript(2L);
     /*</values>*/
 
     /*<bind>*/

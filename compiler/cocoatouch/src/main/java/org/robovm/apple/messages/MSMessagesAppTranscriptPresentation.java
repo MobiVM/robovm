@@ -34,33 +34,28 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Messages") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MSSession/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MSMessagesAppTranscriptPresentation/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/public static class MSSessionPtr extends Ptr<MSSession, MSSessionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MSSession.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MSSession() {}
-    protected MSSession(Handle h, long handle) { super(h, handle); }
-    protected MSSession(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public MSSession(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
-    /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    
     /*</properties>*/
-    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "contentSizeThatFits:")
+    @ByVal CGSize contentSizeThatFits(@ByVal CGSize size);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

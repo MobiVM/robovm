@@ -40,7 +40,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("Messages") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MSMessage/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MSMessagePtr extends Ptr<MSMessage, MSMessagePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MSMessage.class); }/*</bind>*/
@@ -51,10 +51,17 @@ import org.robovm.apple.uikit.*;
     protected MSMessage(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSession:")
     public MSMessage(MSSession session) { super((SkipInit) null); initObject(initWithSession(session)); }
+    @Method(selector = "initWithCoder:")
+    public MSMessage(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "session")
     public native MSSession getSession();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isPending")
+    public native boolean isPending();
     @Property(selector = "senderParticipantIdentifier")
     public native NSUUID getSenderParticipantIdentifier();
     @Property(selector = "layout")
@@ -81,10 +88,16 @@ import org.robovm.apple.uikit.*;
     public native NSError getError();
     @Property(selector = "setError:")
     public native void setError(NSError v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSession:")
     protected native @Pointer long initWithSession(MSSession session);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

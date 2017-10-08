@@ -33,12 +33,14 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 10.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("Messages") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MSMessagesAppViewController/*</name>*/ 
     extends /*<extends>*/UIViewController/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements MSMessagesAppTranscriptPresentation/*</implements>*/ {
 
     /*<ptr>*/public static class MSMessagesAppViewControllerPtr extends Ptr<MSMessagesAppViewController, MSMessagesAppViewControllerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MSMessagesAppViewController.class); }/*</bind>*/
@@ -58,8 +60,6 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "requestPresentationStyle:")
     public native void requestPresentationStyle(MSMessagesAppPresentationStyle presentationStyle);
-    @Method(selector = "dismiss")
-    public native void dismiss();
     @Method(selector = "willBecomeActiveWithConversation:")
     public native void willBecomeActiveWithConversation(MSConversation conversation);
     @Method(selector = "didBecomeActiveWithConversation:")
@@ -68,19 +68,50 @@ import org.robovm.apple.uikit.*;
     public native void willResignActiveWithConversation(MSConversation conversation);
     @Method(selector = "didResignActiveWithConversation:")
     public native void didResignActiveWithConversation(MSConversation conversation);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "dismiss")
+    public native void dismiss();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "willSelectMessage:conversation:")
     public native void willSelectMessage(MSMessage message, MSConversation conversation);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "didSelectMessage:conversation:")
     public native void didSelectMessage(MSMessage message, MSConversation conversation);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "didReceiveMessage:conversation:")
     public native void didReceiveMessage(MSMessage message, MSConversation conversation);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "didStartSendingMessage:conversation:")
     public native void didStartSendingMessage(MSMessage message, MSConversation conversation);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "didCancelSendingMessage:conversation:")
     public native void didCancelSendingMessage(MSMessage message, MSConversation conversation);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "willTransitionToPresentationStyle:")
     public native void willTransitionToPresentationStyle(MSMessagesAppPresentationStyle presentationStyle);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "didTransitionToPresentationStyle:")
     public native void didTransitionToPresentationStyle(MSMessagesAppPresentationStyle presentationStyle);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "contentSizeThatFits:")
+    public native @ByVal CGSize contentSizeThatFits(@ByVal CGSize size);
     /*</methods>*/
 }
