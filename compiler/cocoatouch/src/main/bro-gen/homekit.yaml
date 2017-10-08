@@ -15,7 +15,7 @@ typedefs:
 private_typedefs:
     TriggerValueType: T
     TargetValueType: T
-    
+
 enums:
     HMAccessoryCategoryType: {}
     HMActionSetType: {}
@@ -382,10 +382,10 @@ classes:
                 name: initWithCharacteristic$thresholdRange$
     HMDurationEvent: {} #since 11.0
     HMMutableCalendarEvent: {} #since 11.0
-    HMMutableCharacteristicEvent: {} #since 11.0
+    HMMutableCharacteristicEvent: { skip_def_constructor: true } #since 11.0
     HMMutableCharacteristicThresholdRangeEvent: {} #since 11.0
     HMMutableDurationEvent: {} #since 11.0
-    HMMutableLocationEvent: {} #since 11.0
+    HMMutableLocationEvent: { skip_def_constructor: true } #since 11.0
     HMMutablePresenceEvent: {} #since 11.0
     HMMutableSignificantTimeEvent: {} #since 11.0
     HMNumberRange: #since 11.0

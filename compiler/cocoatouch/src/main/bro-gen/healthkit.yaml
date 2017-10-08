@@ -11,7 +11,11 @@ typedefs:
     'void (^)(HKStatisticsQuery *, HKStatistics *, NSError *)': '@Block VoidBlock3<HKStatisticsQuery, HKStatistics, NSError>'
     'void (^)(HKStatisticsCollectionQuery *, HKStatisticsCollection *, NSError *)': '@Block VoidBlock3<HKStatisticsCollectionQuery, HKStatisticsCollection, NSError>'
     'void (^)(HKStatisticsCollectionQuery *, HKStatistics *, HKStatisticsCollection *, NSError *)': '@Block VoidBlock4<HKStatisticsCollectionQuery, HKStatistics, HKStatisticsCollection, NSError>'
-    
+
+private_typedefs:
+    'CLLocation *': org.robovm.apple.corelocation.CLLocation
+    'CLLocation': org.robovm.apple.corelocation.CLLocation
+
 enums:
     HKErrorCode: {}
     HKUpdateFrequency: {}

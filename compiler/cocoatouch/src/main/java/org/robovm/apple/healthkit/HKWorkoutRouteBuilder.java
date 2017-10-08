@@ -58,7 +58,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithHealthStore:device:")
     protected native @Pointer long init(HKHealthStore healthStore, HKDevice device);
     @Method(selector = "insertRouteData:completion:")
-    public native void insertRouteData(NSArray<CLLocation> routeData, @Block VoidBlock2<Boolean, NSError> completion);
+    public native void insertRouteData(NSArray<org.robovm.apple.corelocation.CLLocation> routeData, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "finishRouteWithWorkout:metadata:completion:")
     public native void finishRoute(HKWorkout workout, NSDictionary<NSString, ?> metadata, @Block VoidBlock2<HKWorkoutRoute, NSError> completion);
     /*</methods>*/

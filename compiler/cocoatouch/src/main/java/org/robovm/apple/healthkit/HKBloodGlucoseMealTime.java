@@ -36,7 +36,7 @@ import org.robovm.apple.foundation.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/HKBloodGlucoseMealTime/*</name>*/ implements NSErrorCode {
+public enum /*<name>*/HKBloodGlucoseMealTime/*</name>*/ implements ValuedEnum {
     /*<values>*/
     reprandial(1L),
     ostprandial(2L);
@@ -45,7 +45,6 @@ public enum /*<name>*/HKBloodGlucoseMealTime/*</name>*/ implements NSErrorCode {
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<members>*//*</members>*/
     /*<methods>*//*</methods>*/
 
     private final long n;
@@ -58,25 +57,7 @@ public enum /*<name>*/HKBloodGlucoseMealTime/*</name>*/ implements NSErrorCode {
                 return v;
             }
         }
-        throw new IllegalArgumentException("No constant with value " + n + " found in "
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
             + /*<name>*/HKBloodGlucoseMealTime/*</name>*/.class.getName());
-    }
-
-    @StronglyLinked
-    public static class NSErrorWrap extends NSError {
-        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
-
-        @Override public NSErrorCode getErrorCode() {
-             try {
-                 return  /*<name>*/HKBloodGlucoseMealTime/*</name>*/.valueOf(getCode());
-             } catch (IllegalArgumentException e) {
-                 return null;
-             }
-         }
-
-        public static String getClassDomain() {
-            /** must be incerted in value section */
-            return /*<name>*/HKBloodGlucoseMealTime/*</name>*/.getClassDomain();
-        }
     }
 }

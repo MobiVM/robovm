@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.*;
     protected HKWorkoutRouteQuery(Handle h, long handle) { super(h, handle); }
     protected HKWorkoutRouteQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRoute:dataHandler:")
-    public HKWorkoutRouteQuery(HKWorkoutRoute workoutRoute, @Block VoidBlock4<HKWorkoutRouteQuery, NSArray<CLLocation>, Boolean, NSError> dataHandler) { super((SkipInit) null); initObject(init(workoutRoute, dataHandler)); }
+    public HKWorkoutRouteQuery(HKWorkoutRoute workoutRoute, @Block VoidBlock4<HKWorkoutRouteQuery, NSArray<org.robovm.apple.corelocation.CLLocation>, Boolean, NSError> dataHandler) { super((SkipInit) null); initObject(init(workoutRoute, dataHandler)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -56,6 +56,6 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithRoute:dataHandler:")
-    protected native @Pointer long init(HKWorkoutRoute workoutRoute, @Block VoidBlock4<HKWorkoutRouteQuery, NSArray<CLLocation>, Boolean, NSError> dataHandler);
+    protected native @Pointer long init(HKWorkoutRoute workoutRoute, @Block VoidBlock4<HKWorkoutRouteQuery, NSArray<org.robovm.apple.corelocation.CLLocation>, Boolean, NSError> dataHandler);
     /*</methods>*/
 }

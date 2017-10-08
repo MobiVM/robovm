@@ -45,7 +45,6 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMMutableLocationEvent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected HMMutableLocationEvent() {}
     protected HMMutableLocationEvent(Handle h, long handle) { super(h, handle); }
     protected HMMutableLocationEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
