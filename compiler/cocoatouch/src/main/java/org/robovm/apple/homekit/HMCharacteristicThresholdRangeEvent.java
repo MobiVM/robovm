@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,39 +33,33 @@ import org.robovm.apple.corelocation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMCharacteristicEvent/*</name>*/ <T extends NSObject>
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMCharacteristicThresholdRangeEvent/*</name>*/ 
     extends /*<extends>*/HMEvent/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class HMCharacteristicEventPtr extends Ptr<HMCharacteristicEvent, HMCharacteristicEventPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(HMCharacteristicEvent.class); }/*</bind>*/
+    /*<ptr>*/public static class HMCharacteristicThresholdRangeEventPtr extends Ptr<HMCharacteristicThresholdRangeEvent, HMCharacteristicThresholdRangeEventPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(HMCharacteristicThresholdRangeEvent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected HMCharacteristicEvent(Handle h, long handle) { super(h, handle); }
-    protected HMCharacteristicEvent(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCharacteristic:triggerValue:")
-    public HMCharacteristicEvent(HMCharacteristic characteristic, T triggerValue) { super((SkipInit) null); initObject(init(characteristic, triggerValue)); }
+    protected HMCharacteristicThresholdRangeEvent() {}
+    protected HMCharacteristicThresholdRangeEvent(Handle h, long handle) { super(h, handle); }
+    protected HMCharacteristicThresholdRangeEvent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCharacteristic:thresholdRange:")
+    public HMCharacteristicThresholdRangeEvent(HMCharacteristic characteristic, HMNumberRange thresholdRange) { super((SkipInit) null); initObject(initWithCharacteristic$thresholdRange$(characteristic, thresholdRange)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "characteristic")
     public native HMCharacteristic getCharacteristic();
-    @Property(selector = "triggerValue")
-    public native T getTriggerValue();
+    @Property(selector = "thresholdRange")
+    public native HMNumberRange getThresholdRange();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithCharacteristic:triggerValue:")
-    protected native @Pointer long init(HMCharacteristic characteristic, T triggerValue);
-    /**
-     * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "updateTriggerValue:completionHandler:")
-    public native void updateTriggerValue(T triggerValue, @Block VoidBlock1<NSError> completion);
+    @Method(selector = "initWithCharacteristic:thresholdRange:")
+    protected native @Pointer long initWithCharacteristic$thresholdRange$(HMCharacteristic characteristic, HMNumberRange thresholdRange);
     /*</methods>*/
 }

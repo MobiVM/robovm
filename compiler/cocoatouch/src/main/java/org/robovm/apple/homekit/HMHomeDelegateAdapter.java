@@ -51,6 +51,11 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @NotImplemented("homeDidUpdateName:")
     public void didUpdateName(HMHome home) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("homeDidUpdateAccessControlForCurrentUser:")
+    public void homeDidUpdateAccessControlForCurrentUser(HMHome home) {}
     @NotImplemented("home:didAddAccessory:")
     public void didAddAccessory(HMHome home, HMAccessory accessory) {}
     @NotImplemented("home:didRemoveAccessory:")
@@ -107,5 +112,10 @@ import org.robovm.apple.corelocation.*;
     public void didUnblockAccessory(HMHome home, HMAccessory accessory) {}
     @NotImplemented("home:didEncounterError:forAccessory:")
     public void didEncounterError(HMHome home, NSError error, HMAccessory accessory) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("home:didUpdateHomeHubState:")
+    public void didUpdateHomeHubState(HMHome home, HMHomeHubState homeHubState) {}
     /*</methods>*/
 }

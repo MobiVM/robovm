@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,33 +32,34 @@ import org.robovm.apple.corelocation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 9.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMEvent/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class HMEventPtr extends Ptr<HMEvent, HMEventPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(HMEvent.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/HMEventTriggerActivationState/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Disabled(0L),
+    DisabledNoHomeHub(1L),
+    DisabledNoCompatibleHomeHub(2L),
+    DisabledNoLocationServicesAuthorization(3L),
+    Enabled(4L);
+    /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public HMEvent() {}
-    protected HMEvent(Handle h, long handle) { super(h, handle); }
-    protected HMEvent(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "uniqueIdentifier")
-    public native NSUUID getUniqueIdentifier();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "isSupportedForHome:")
-    public static native boolean isSupportedForHome(HMHome home);
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/HMEventTriggerActivationState/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/HMEventTriggerActivationState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/HMEventTriggerActivationState/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/HMEventTriggerActivationState/*</name>*/.class.getName());
+    }
 }

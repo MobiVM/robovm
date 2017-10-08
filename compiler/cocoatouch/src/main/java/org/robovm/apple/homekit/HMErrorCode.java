@@ -153,7 +153,21 @@ public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 10.2 and later.
      */
-    IncompatibleNetwork(90L);
+    IncompatibleNetwork(90L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    NoHomeHub(91L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    NoCompatibleHomeHub(92L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    IncompatibleHomeHub(92L);
     /*</values>*/
 
     /*<bind>*/

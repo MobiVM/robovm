@@ -93,8 +93,28 @@ import org.robovm.apple.corelocation.*;
     public native HMRoom getRoom();
     @Property(selector = "services")
     public native NSArray<HMService> getServices();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "profiles")
+    public native NSArray<HMAccessoryProfile> getProfiles();
     @Property(selector = "isBlocked")
     public native boolean isBlocked();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "model")
+    public native String getModel();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "manufacturer")
+    public native String getManufacturer();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "firmwareVersion")
+    public native String getFirmwareVersion();
     /**
      * @since Available in iOS 10.0 and later.
      */
