@@ -90,7 +90,7 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "predicateForObjectsWithDeviceProperty:allowedValues:")
-    public static native NSPredicate predicateForObjectsWithDeviceProperty(String key, NSSet<?> allowedValues);
+    public static native NSPredicate predicateForObjectsWithDeviceProperty(String key, NSSet<NSString> allowedValues);
     @Method(selector = "predicateForObjectWithUUID:")
     public static native NSPredicate createPredicateForObjectsWithUUID(NSUUID uuid);
     @Method(selector = "predicateForObjectsWithUUIDs:")
@@ -115,6 +115,11 @@ import org.robovm.apple.foundation.*;
     public static native NSPredicate createPredicateForWorkoutsWithTotalDistance(NSPredicateOperatorType operatorType, HKQuantity totalDistance);
     @Method(selector = "predicateForWorkoutsWithOperatorType:totalSwimmingStrokeCount:")
     public static native NSPredicate createPredicateForWorkoutsWithTotalSwimmingStrokeCount(NSPredicateOperatorType operatorType, HKQuantity totalSwimmingStrokeCount);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutsWithOperatorType:totalFlightsClimbed:")
+    public static native NSPredicate createPredicateForWorkouts(NSPredicateOperatorType operatorType, HKQuantity totalFlightsClimbed);
     /**
      * @since Available in iOS 9.3 and later.
      */

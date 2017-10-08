@@ -64,6 +64,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "totalSwimmingStrokeCount")
     public native HKQuantity getTotalSwimmingStrokeCount();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "totalFlightsClimbed")
+    public native HKQuantity getTotalFlightsClimbed();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -88,5 +93,10 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:")
     public static native HKWorkout create(HKWorkoutActivityType workoutActivityType, NSDate startDate, NSDate endDate, NSArray<HKWorkoutEvent> workoutEvents, HKQuantity totalEnergyBurned, HKQuantity totalDistance, HKQuantity totalSwimmingStrokeCount, HKDevice device, HKMetadata metadata);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:")
+    public static native HKWorkout create(HKWorkoutActivityType workoutActivityType, NSDate startDate, NSDate endDate, NSArray<HKWorkoutEvent> workoutEvents, HKQuantity totalEnergyBurned, HKQuantity totalDistance, HKQuantity totalFlightsClimbed, HKDevice device, NSDictionary<NSString, ?> metadata);
     /*</methods>*/
 }

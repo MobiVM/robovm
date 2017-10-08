@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKObjectType/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKObjectTypePtr extends Ptr<HKObjectType, HKObjectTypePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKObjectType.class); }/*</bind>*/
@@ -47,10 +47,14 @@ import org.robovm.apple.foundation.*;
     protected HKObjectType() {}
     protected HKObjectType(Handle h, long handle) { super(h, handle); }
     protected HKObjectType(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public HKObjectType(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
     public native HKTypeIdentifier getIdentifier();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -67,6 +71,11 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "documentTypeForIdentifier:")
     public static native HKDocumentType documentTypeForIdentifier(String identifier);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "seriesTypeForIdentifier:")
+    public static native HKSeriesType seriesTypeForIdentifier(String identifier);
     @Method(selector = "workoutType")
     public static native HKWorkoutType getWorkoutType();
     /**
@@ -74,5 +83,9 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "activitySummaryType")
     public static native HKActivitySummaryType activitySummaryType();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

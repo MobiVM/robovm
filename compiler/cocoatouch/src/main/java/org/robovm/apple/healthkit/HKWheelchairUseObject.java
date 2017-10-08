@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKWheelchairUseObject/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKWheelchairUseObjectPtr extends Ptr<HKWheelchairUseObject, HKWheelchairUseObjectPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKWheelchairUseObject.class); }/*</bind>*/
@@ -47,13 +47,20 @@ import org.robovm.apple.foundation.*;
     public HKWheelchairUseObject() {}
     protected HKWheelchairUseObject(Handle h, long handle) { super(h, handle); }
     protected HKWheelchairUseObject(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public HKWheelchairUseObject(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "wheelchairUse")
     public native HKWheelchairUse getWheelchairUse();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -72,6 +72,11 @@ public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
     Lacrosse(27L),
     MartialArts(28L),
     MindAndBody(29L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     MixedMetabolicCardioTraining(30L),
     PaddleSports(31L),
     Play(32L),
@@ -156,6 +161,18 @@ public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 10.0 and later.
      */
     WheelchairRunPace(71L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    TaiChi(72L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    MixedCardio(73L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    HandCycling(74L),
     Other(3000L);
     /*</values>*/
 

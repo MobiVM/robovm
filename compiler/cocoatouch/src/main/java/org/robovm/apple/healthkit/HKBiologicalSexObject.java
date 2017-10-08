@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKBiologicalSexObject/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKBiologicalSexObjectPtr extends Ptr<HKBiologicalSexObject, HKBiologicalSexObjectPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKBiologicalSexObject.class); }/*</bind>*/
@@ -47,13 +47,20 @@ import org.robovm.apple.foundation.*;
     public HKBiologicalSexObject() {}
     protected HKBiologicalSexObject(Handle h, long handle) { super(h, handle); }
     protected HKBiologicalSexObject(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public HKBiologicalSexObject(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "biologicalSex")
     public native HKBiologicalSex getBiologicalSex();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

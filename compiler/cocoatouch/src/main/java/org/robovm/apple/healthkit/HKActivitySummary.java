@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKActivitySummary/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKActivitySummaryPtr extends Ptr<HKActivitySummary, HKActivitySummaryPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKActivitySummary.class); }/*</bind>*/
@@ -47,6 +47,8 @@ import org.robovm.apple.foundation.*;
     public HKActivitySummary() {}
     protected HKActivitySummary(Handle h, long handle) { super(h, handle); }
     protected HKActivitySummary(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public HKActivitySummary(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "activeEnergyBurned")
@@ -73,10 +75,16 @@ import org.robovm.apple.foundation.*;
     public native HKQuantity getAppleStandHoursGoal();
     @Property(selector = "setAppleStandHoursGoal:")
     public native void setAppleStandHoursGoal(HKQuantity v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "dateComponentsForCalendar:")
     public native NSDateComponents dateComponentsForCalendar(NSCalendar calendar);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

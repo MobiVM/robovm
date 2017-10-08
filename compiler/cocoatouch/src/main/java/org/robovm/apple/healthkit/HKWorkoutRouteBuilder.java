@@ -36,53 +36,30 @@ import org.robovm.apple.foundation.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HKCDADocument/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/HKWorkoutRouteBuilder/*</name>*/ 
+    extends /*<extends>*/HKSeriesBuilder/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class HKCDADocumentPtr extends Ptr<HKCDADocument, HKCDADocumentPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(HKCDADocument.class); }/*</bind>*/
+    /*<ptr>*/public static class HKWorkoutRouteBuilderPtr extends Ptr<HKWorkoutRouteBuilder, HKWorkoutRouteBuilderPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(HKWorkoutRouteBuilder.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKCDADocument() {}
-    protected HKCDADocument(Handle h, long handle) { super(h, handle); }
-    protected HKCDADocument(SkipInit skipInit) { super(skipInit); }
+    public HKWorkoutRouteBuilder() {}
+    protected HKWorkoutRouteBuilder(Handle h, long handle) { super(h, handle); }
+    protected HKWorkoutRouteBuilder(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithHealthStore:device:")
+    public HKWorkoutRouteBuilder(HKHealthStore healthStore, HKDevice device) { super((SkipInit) null); initObject(init(healthStore, device)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "documentData")
-    public native NSData getDocumentData();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "title")
-    public native String getTitle();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "patientName")
-    public native String getPatientName();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "authorName")
-    public native String getAuthorName();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "custodianName")
-    public native String getCustodianName();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="HKDetailedCDAValidationErrorKey", optional=true)
-    public static native String ValidationErrorKey();
-    
-    
+    @Method(selector = "initWithHealthStore:device:")
+    protected native @Pointer long init(HKHealthStore healthStore, HKDevice device);
+    @Method(selector = "insertRouteData:completion:")
+    public native void insertRouteData(NSArray<CLLocation> routeData, @Block VoidBlock2<Boolean, NSError> completion);
+    @Method(selector = "finishRouteWithWorkout:metadata:completion:")
+    public native void finishRoute(HKWorkout workout, NSDictionary<NSString, ?> metadata, @Block VoidBlock2<HKWorkoutRoute, NSError> completion);
     /*</methods>*/
 }
