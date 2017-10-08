@@ -68,12 +68,12 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "nowPlayingIdentifiers")
-    public native NSArray<?> getNowPlayingIdentifiers();
+    public native NSArray<NSString> getNowPlayingIdentifiers();
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "setNowPlayingIdentifiers:")
-    public native void setNowPlayingIdentifiers(NSArray<?> v);
+    public native void setNowPlayingIdentifiers(NSArray<NSString> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

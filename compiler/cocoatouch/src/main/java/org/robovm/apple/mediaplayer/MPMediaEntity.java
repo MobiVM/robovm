@@ -40,7 +40,7 @@ import org.robovm.apple.coregraphics.*;
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaEntity/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MPMediaEntityPtr extends Ptr<MPMediaEntity, MPMediaEntityPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MPMediaEntity.class); }/*</bind>*/
@@ -49,6 +49,8 @@ import org.robovm.apple.coregraphics.*;
     public MPMediaEntity() {}
     protected MPMediaEntity(Handle h, long handle) { super(h, handle); }
     protected MPMediaEntity(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MPMediaEntity(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -56,6 +58,8 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "persistentID")
     public native long getPersistentID();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -94,5 +98,9 @@ import org.robovm.apple.coregraphics.*;
     public native NSObject getValue(MPMediaEntityProperty property);
     @Method(selector = "canFilterByProperty:")
     public static native boolean canFilterByProperty(MPMediaEntityProperty property);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,36 +34,35 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 7.1 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MPRemoteCommandHandlerStatus/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MPNowPlayingPlaybackState/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Success(0L),
-    NoSuchContent(100L),
-    /**
-     * @since Available in iOS 9.1 and later.
-     */
-    NoActionableNowPlayingItem(110L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    DeviceNotFound(120L),
-    CommandFailed(200L);
+    Unknown(0L),
+    Playing(1L),
+    Paused(2L),
+    Stopped(3L),
+    Interrupted(4L);
     /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<methods>*//*</methods>*/
 
     private final long n;
 
-    private /*<name>*/MPRemoteCommandHandlerStatus/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MPNowPlayingPlaybackState/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MPRemoteCommandHandlerStatus/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MPRemoteCommandHandlerStatus/*</name>*/ v : values()) {
+    public static /*<name>*/MPNowPlayingPlaybackState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MPNowPlayingPlaybackState/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MPRemoteCommandHandlerStatus/*</name>*/.class.getName());
+            + /*<name>*/MPNowPlayingPlaybackState/*</name>*/.class.getName());
     }
 }

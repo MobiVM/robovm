@@ -40,7 +40,7 @@ import org.robovm.apple.coregraphics.*;
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaLibrary/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
     
     public static class Notifications {
         public static NSObject observeDidChange(final Runnable block) {
@@ -60,10 +60,14 @@ import org.robovm.apple.coregraphics.*;
     public MPMediaLibrary() {}
     protected MPMediaLibrary(Handle h, long handle) { super(h, handle); }
     protected MPMediaLibrary(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MPMediaLibrary(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lastModifiedDate")
     public native NSDate getLastModifiedDate();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -96,5 +100,9 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "requestAuthorization:")
     public static native void requestAuthorization(@Block VoidBlock1<MPMediaLibraryAuthorizationStatus> handler);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

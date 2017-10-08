@@ -40,7 +40,7 @@ import org.robovm.apple.coregraphics.*;
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaQuery/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MPMediaQueryPtr extends Ptr<MPMediaQuery, MPMediaQueryPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MPMediaQuery.class); }/*</bind>*/
@@ -50,6 +50,8 @@ import org.robovm.apple.coregraphics.*;
     protected MPMediaQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFilterPredicates:")
     public MPMediaQuery(NSSet<MPMediaPredicate> filterPredicates) { super((SkipInit) null); initObject(init(filterPredicates)); }
+    @Method(selector = "initWithCoder:")
+    public MPMediaQuery(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "filterPredicates")
@@ -74,6 +76,8 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "collectionSections")
     public native NSArray<MPMediaQuerySection> getCollectionSections();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -101,5 +105,9 @@ import org.robovm.apple.coregraphics.*;
     public static native MPMediaQuery createComposersQuery();
     @Method(selector = "genresQuery")
     public static native MPMediaQuery createGenresQuery();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

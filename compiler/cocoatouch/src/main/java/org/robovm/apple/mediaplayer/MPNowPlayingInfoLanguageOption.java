@@ -50,7 +50,7 @@ import org.robovm.apple.coregraphics.*;
     protected MPNowPlayingInfoLanguageOption(Handle h, long handle) { super(h, handle); }
     protected MPNowPlayingInfoLanguageOption(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithType:languageTag:characteristics:displayName:identifier:")
-    public MPNowPlayingInfoLanguageOption(MPNowPlayingInfoLanguageOptionType languageOptionType, String languageTag, NSArray<?> languageOptionCharacteristics, String displayName, String identifier) { super((SkipInit) null); initObject(init(languageOptionType, languageTag, languageOptionCharacteristics, displayName, identifier)); }
+    public MPNowPlayingInfoLanguageOption(MPNowPlayingInfoLanguageOptionType languageOptionType, String languageTag, NSArray<NSString> languageOptionCharacteristics, String displayName, String identifier) { super((SkipInit) null); initObject(init(languageOptionType, languageTag, languageOptionCharacteristics, displayName, identifier)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "languageOptionType")
@@ -58,7 +58,7 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "languageTag")
     public native String getLanguageTag();
     @Property(selector = "languageOptionCharacteristics")
-    public native NSArray<?> getLanguageOptionCharacteristics();
+    public native NSArray<NSString> getLanguageOptionCharacteristics();
     @Property(selector = "displayName")
     public native String getDisplayName();
     @Property(selector = "identifier")
@@ -67,7 +67,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithType:languageTag:characteristics:displayName:identifier:")
-    protected native @Pointer long init(MPNowPlayingInfoLanguageOptionType languageOptionType, String languageTag, NSArray<?> languageOptionCharacteristics, String displayName, String identifier);
+    protected native @Pointer long init(MPNowPlayingInfoLanguageOptionType languageOptionType, String languageTag, NSArray<NSString> languageOptionCharacteristics, String displayName, String identifier);
     @Method(selector = "isAutomaticLegibleLanguageOption")
     public native boolean isAutomaticLegibleLanguageOption();
     @Method(selector = "isAutomaticAudibleLanguageOption")

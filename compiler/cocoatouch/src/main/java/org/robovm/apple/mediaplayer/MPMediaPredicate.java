@@ -40,7 +40,7 @@ import org.robovm.apple.coregraphics.*;
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaPredicate/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MPMediaPredicatePtr extends Ptr<MPMediaPredicate, MPMediaPredicatePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MPMediaPredicate.class); }/*</bind>*/
@@ -49,12 +49,18 @@ import org.robovm.apple.coregraphics.*;
     public MPMediaPredicate() {}
     protected MPMediaPredicate(Handle h, long handle) { super(h, handle); }
     protected MPMediaPredicate(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MPMediaPredicate(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -35,8 +35,7 @@ enums:
     MPRepeatType: {}
     MPChangeLanguageOptionSetting: {}
     MPNowPlayingInfoLanguageOptionType: {}
-
-
+    MPNowPlayingPlaybackState: {} #since 11.0
 
 categories:
     UIViewController: # DONE
@@ -264,7 +263,10 @@ classes:
             'preferredIntervals':
                 type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsDoubleListMarshaler.class) List<Double>'
     MPSkipIntervalCommandEvent: {} # DONE
-    MPTimedMetadata: {} # DONE
+    MPTimedMetadata: # DONE
+        properties:
+            allMetadata:
+                type: NSDictionary
     MPVolumeView: # DONE
         properties:
             'wirelessRoutesAvailable':
@@ -318,6 +320,13 @@ classes:
                 trim_after_first_colon: true
             '-setEndTime:forItemWithStoreID:':
                 trim_after_first_colon: true
+    MPMusicPlayerPlayParameters: {} #since 11.0
+    MPMusicPlayerPlayParametersQueueDescriptor: #since 11.0
+        methods:
+            '-setStartTime:forItemWithPlayParameters:':
+                trim_after_first_colon: true
+            '-setEndTime:forItemWithPlayParameters:':
+                trim_after_first_colon: true
 protocols:
     MPMediaPickerControllerDelegate: # DONE
         methods:
@@ -350,6 +359,7 @@ protocols:
                 name: initiatePlaybackQueue
             '-playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:':
                 name: initializePlaybackQueueWithContent
+    MPSystemMusicPlayerController: {}
 
 functions:
     MPVolumeSettingsAlert(Show|Hide):

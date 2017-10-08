@@ -33,34 +33,27 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 10.1 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMusicPlayerQueueDescriptor/*</name>*/ 
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSystemMusicPlayerControllerAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements MPSystemMusicPlayerController/*</implements>*/ {
 
-    /*<ptr>*/public static class MPMusicPlayerQueueDescriptorPtr extends Ptr<MPMusicPlayerQueueDescriptor, MPMusicPlayerQueueDescriptorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MPMusicPlayerQueueDescriptor.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MPMusicPlayerQueueDescriptor() {}
-    protected MPMusicPlayerQueueDescriptor(Handle h, long handle) { super(h, handle); }
-    protected MPMusicPlayerQueueDescriptor(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public MPMusicPlayerQueueDescriptor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("openToPlayQueueDescriptor:")
+    public void openToPlayQueueDescriptor(MPMusicPlayerQueueDescriptor queueDescriptor) {}
     /*</methods>*/
 }

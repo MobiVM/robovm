@@ -445,6 +445,11 @@ import org.robovm.apple.coregraphics.*;
         @GlobalValue(symbol="MPNowPlayingInfoPropertyExternalUserProfileIdentifier", optional=true)
         public static native NSString ExternalUserProfileIdentifier();
         /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyServiceIdentifier", optional=true)
+        public static native NSString ServiceIdentifier();
+        /**
          * @since Available in iOS 10.0 and later.
          */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyPlaybackProgress", optional=true)
