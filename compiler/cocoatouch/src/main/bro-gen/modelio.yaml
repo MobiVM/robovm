@@ -22,7 +22,10 @@ enums:
     MDLProbePlacement: {}
     MDLCameraProjection: {}
     MDLMaterialFace: {}
-        
+    MDLDataPrecision: {} #since 11.0
+    MDLAnimatedValueInterpolation: {}
+    MDLTransformOpRotationOrder: {}
+
 classes:
     # Structs
     MDLAxisAlignedBoundingBox: {} # DONE
@@ -129,6 +132,8 @@ classes:
                         type: NSMutableArray<MDLSubmesh>
             '-vertexAttributeDataForAttributeNamed:':
                 name: getVertexAttributeData
+            '-vertexAttributeDataForAttributeNamed:asFormat:':
+                 name: getVertexAttributeData
             '-addAttributeWithName:format:':
                 name: addAttribute
             '-addNormalsWithAttributeNamed:creaseThreshold:':
@@ -137,6 +142,20 @@ classes:
                 name: addTangentBasis
             '-addTangentBasisForTextureCoordinateAttributeNamed:normalAttributeNamed:tangentAttributeNamed:':
                 name: addTangentBasisWithNormals
+            '-addAttributeWithName:format:type:data:stride:':
+                name: addAttribute
+            '-addAttributeWithName:format:type:data:stride:time:':
+                name: addAttribute
+            '-addOrthTanBasisForTextureCoordinateAttributeNamed:normalAttributeNamed:tangentAttributeNamed:':
+                name: addOrthTanBasis
+            '-replaceAttributeNamed:withData:':
+                name: replaceAttribute
+            '-updateAttributeNamed:withData:':
+                name: updateAttribute
+            '+newCapsuleWithHeight:radii:radialSegments:verticalSegments:hemisphereSegments:geometryType:inwardNormals:allocator:':
+                name: newCapsuleWithHeight
+            '+newIcosahedronWithRadius:inwardNormals:geometryType:allocator:':
+                name: newIcosahedronWithRadius
             '+newBoxWithDimensions:segments:geometryType:inwardNormals:allocator:':
                 name: newBox
             '+newEllipsoidWithRadii:radialSegments:verticalSegments:geometryType:inwardNormals:hemisphere:allocator:':
@@ -348,6 +367,179 @@ classes:
         methods:
             '-init.*':
                 name: init
+    MDLAnimatedMatrix4x4: #since 11.0
+        methods:
+            '-setFloat4x4:atTime:':
+                trim_after_first_colon: true
+            '-setDouble4x4:atTime:':
+                trim_after_first_colon: true
+            '-resetWithFloat4x4Array:atTimes:count:':
+                trim_after_first_colon: true
+            '-resetWithDouble4x4Array:atTimes:count:':
+                trim_after_first_colon: true
+            '-getFloat4x4Array:maxCount:':
+                trim_after_first_colon: true
+            '-getDouble4x4Array:maxCount:':
+                trim_after_first_colon: true
+    MDLAnimatedQuaternionArray: #since 11.0
+        methods:
+            '-setFloatQuaternionArray:count:atTime:':
+                trim_after_first_colon: true
+            '-setDoubleQuaternionArray:count:atTime:':
+                trim_after_first_colon: true
+            '-getFloatQuaternionArray:maxCount:atTime:':
+                trim_after_first_colon: true
+            '-getDoubleQuaternionArray:maxCount:atTime:':
+                trim_after_first_colon: true
+            '-resetWithFloatQuaternionArray:count:atTimes:count:':
+                trim_after_first_colon: true
+            '-resetWithDoubleQuaternionArray:count:atTimes:count:':
+                trim_after_first_colon: true
+            '-getFloatQuaternionArray:maxCount:':
+                trim_after_first_colon: true
+            '-getDoubleQuaternionArray:maxCount:':
+                trim_after_first_colon: true
+    MDLAnimatedScalar: #since 11.0
+        methods:
+            '-setFloat:atTime:':
+                trim_after_first_colon: true
+            '-setDouble:atTime:':
+                trim_after_first_colon: true
+            '-resetWithFloatArray:atTimes:count:':
+                trim_after_first_colon: true
+            '-resetWithDoubleArray:atTimes:count:':
+                trim_after_first_colon: true
+            '-getFloatArray:maxCount:':
+                trim_after_first_colon: true
+            '-getDoubleArray:maxCount:':
+                trim_after_first_colon: true
+    MDLAnimatedScalarArray: #since 11.0
+        methods:
+            '-setFloatArray:count:atTime:':
+                trim_after_first_colon: true
+            '-setDoubleArray:count:atTime:':
+                trim_after_first_colon: true
+            '-getFloatArray:maxCount:atTime:':
+                trim_after_first_colon: true
+            '-getDoubleArray:maxCount:atTime:':
+                trim_after_first_colon: true
+            '-resetWithFloatArray:count:atTimes:count:':
+                trim_after_first_colon: true
+            '-resetWithDoubleArray:count:atTimes:count:':
+                trim_after_first_colon: true
+            '-getFloatArray:maxCount:':
+                trim_after_first_colon: true
+            '-getDoubleArray:maxCount:':
+                trim_after_first_colon: true
+    MDLAnimatedValue: #since 11.0
+        methods:
+            '-getTimes:maxCount:':
+                trim_after_first_colon: true
+    MDLAnimatedVector2: #since 11.0
+        methods:
+            '-setFloat2:atTime:':
+                trim_after_first_colon: true
+            '-setDouble2:atTime:':
+                trim_after_first_colon: true
+            '-resetWithFloat2Array:atTimes:count:':
+                trim_after_first_colon: true
+            '-resetWithDouble2Array:atTimes:count:':
+                trim_after_first_colon: true
+            '-getFloat2Array:maxCount:':
+                trim_after_first_colon: true
+            '-getDouble2Array:maxCount:':
+                trim_after_first_colon: true
+    MDLAnimatedVector3: #since 11.0
+        methods:
+            '-setFloat3:atTime:':
+                trim_after_first_colon: true
+            '-setDouble3:atTime:':
+                trim_after_first_colon: true
+            '-resetWithFloat3Array:atTimes:count:':
+                trim_after_first_colon: true
+            '-resetWithDouble3Array:atTimes:count:':
+                trim_after_first_colon: true
+            '-getFloat3Array:maxCount:':
+                trim_after_first_colon: true
+            '-getDouble3Array:maxCount:':
+                trim_after_first_colon: true
+    MDLAnimatedVector3Array: #since 11.0
+        methods:
+            '-setFloat3Array:count:atTime:':
+                trim_after_first_colon: true
+            '-setDouble3Array:count:atTime:':
+                trim_after_first_colon: true
+            '-getFloat3Array:maxCount:atTime:':
+                trim_after_first_colon: true
+            '-getDouble3Array:maxCount:atTime:':
+                trim_after_first_colon: true
+            '-resetWithFloat3Array:count:atTimes:count:':
+                trim_after_first_colon: true
+            '-resetWithDouble3Array:count:atTimes:count:':
+                trim_after_first_colon: true
+            '-getFloat3Array:maxCount:':
+                trim_after_first_colon: true
+            '-getDouble3Array:maxCount:':
+                trim_after_first_colon: true
+    MDLAnimatedVector4: #since 11.0
+        methods:
+            '-setFloat4:atTime:':
+                trim_after_first_colon: true
+            '-setDouble4:atTime:':
+                trim_after_first_colon: true
+            '-resetWithFloat4Array:atTimes:count:':
+                trim_after_first_colon: true
+            '-resetWithDouble4Array:atTimes:count:':
+                trim_after_first_colon: true
+            '-getFloat4Array:maxCount:':
+                trim_after_first_colon: true
+            '-getDouble4Array:maxCount:':
+                trim_after_first_colon: true
+    MDLAnimationBindComponent: {} #since 11.0
+    MDLBundleAssetResolver: {} #since 11.0
+    MDLMatrix4x4Array: #since 11.0
+        methods:
+            '-setFloat4x4Array:count:':
+                trim_after_first_colon: true
+            '-setDouble4x4Array:count:':
+                trim_after_first_colon: true
+            '-getFloat4x4Array:maxCount:':
+                trim_after_first_colon: true
+            '-getDouble4x4Array:maxCount:':
+                trim_after_first_colon: true
+    MDLPackedJointAnimation: #since 11.0
+        methods:
+            '-initWithName:jointPaths:':
+                name: init
+    MDLPathAssetResolver: {} #since 11.0
+    MDLRelativeAssetResolver: {} #since 11.0
+    MDLSkeleton: #since 11.0
+        methods:
+            '-initWithName:jointPaths:':
+                name: init
+    MDLTransformMatrixOp: {} #since 11.0
+    MDLTransformRotateOp: {} #since 11.0
+    MDLTransformRotateXOp: {} #since 11.0
+    MDLTransformRotateYOp: {} #since 11.0
+    MDLTransformRotateZOp: {} #since 11.0
+    MDLTransformScaleOp: {} #since 11.0
+    MDLTransformStack: #since 11.0
+        methods:
+            '-addTranslateOp:inverse:':
+                trim_after_first_colon: true
+            '-addRotateXOp:inverse:':
+                trim_after_first_colon: true
+            '-addRotateYOp:inverse:':
+                trim_after_first_colon: true
+            '-addRotateZOp:inverse:':
+                trim_after_first_colon: true
+            '-addRotateOp:order:inverse:':
+                trim_after_first_colon: true
+            '-addScaleOp:inverse:':
+                trim_after_first_colon: true
+            '-addMatrixOp:inverse:':
+                trim_after_first_colon: true
+    MDLTransformTranslateOp: {} #since 11.0
 
 protocols:
     MDLLightProbeIrradianceDataSource:
@@ -401,6 +593,9 @@ protocols:
             '+globalTransformWithObject:atTime:':
                 name: getGlobalTransform
                 exclude: true
+    MDLAssetResolver: {} #since 11.0
+    MDLJointAnimation: {} #since 11.0
+    MDLTransformOp: {} #since 11.0
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

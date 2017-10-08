@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,41 +33,35 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ModelIO") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MDLObjectContainer/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MDLTransformRotateYOp/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements MDLObjectContainerComponent/*</implements>*/ {
+    /*<implements>*/implements MDLTransformOp/*</implements>*/ {
 
-    /*<ptr>*/public static class MDLObjectContainerPtr extends Ptr<MDLObjectContainer, MDLObjectContainerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MDLObjectContainer.class); }/*</bind>*/
+    /*<ptr>*/public static class MDLTransformRotateYOpPtr extends Ptr<MDLTransformRotateYOp, MDLTransformRotateYOpPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MDLTransformRotateYOp.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MDLObjectContainer() {}
-    protected MDLObjectContainer(Handle h, long handle) { super(h, handle); }
-    protected MDLObjectContainer(SkipInit skipInit) { super(skipInit); }
+    public MDLTransformRotateYOp() {}
+    protected MDLTransformRotateYOp(Handle h, long handle) { super(h, handle); }
+    protected MDLTransformRotateYOp(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "count")
-    public native @MachineSizedUInt long getCount();
-    @Property(selector = "objects")
-    public native NSArray<MDLObject> getObjects();
+    @Property(selector = "name")
+    public native String getName();
+    @Property(selector = "animatedValue")
+    public native MDLAnimatedScalar getAnimatedValue();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "addObject:")
-    public native void addObject(MDLObject object);
-    @Method(selector = "removeObject:")
-    public native void removeObject(MDLObject object);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "objectAtIndexedSubscript:")
-    public native MDLObject objectAtIndexedSubscript(@MachineSizedUInt long index);
+    @Method(selector = "float4x4AtTime:")
+    public native @ByVal MatrixFloat4x4 float4x4AtTime(double time);
+    @Method(selector = "double4x4AtTime:")
+    public native @ByVal MatrixDouble4x4 double4x4AtTime(double time);
+    @Method(selector = "IsInverseOp")
+    public native boolean IsInverseOp();
     /*</methods>*/
 }

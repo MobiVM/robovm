@@ -66,8 +66,14 @@ import org.robovm.apple.coregraphics.*;
     public native MDLVertexFormat getFormat();
     @Property(selector = "setFormat:")
     public native void setFormat(MDLVertexFormat v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "bufferSize")
     public native @MachineSizedUInt long getBufferSize();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setBufferSize:")
     public native void setBufferSize(@MachineSizedUInt long v);
     /*</properties>*/

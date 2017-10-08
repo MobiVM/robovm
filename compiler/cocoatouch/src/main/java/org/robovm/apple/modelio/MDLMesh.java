@@ -104,27 +104,47 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "vertexAttributeDataForAttributeNamed:")
     public native MDLVertexAttributeData getVertexAttributeData(String name);
     @Method(selector = "vertexAttributeDataForAttributeNamed:asFormat:")
-    public native MDLVertexAttributeData vertexAttributeDataForAttributeNamed$asFormat$(String name, MDLVertexFormat format);
+    public native MDLVertexAttributeData getVertexAttributeData(String name, MDLVertexFormat format);
     @Method(selector = "addAttributeWithName:format:")
     public native void addAttribute(String name, MDLVertexFormat format);
     @Method(selector = "addAttributeWithName:format:type:data:stride:")
-    public native void addAttributeWithName$format$type$data$stride$(String name, MDLVertexFormat format, String type, NSData data, @MachineSizedSInt long stride);
+    public native void addAttribute(String name, MDLVertexFormat format, String type, NSData data, @MachineSizedSInt long stride);
     @Method(selector = "addAttributeWithName:format:type:data:stride:time:")
-    public native void addAttributeWithName$format$type$data$stride$time$(String name, MDLVertexFormat format, String type, NSData data, @MachineSizedSInt long stride, double time);
+    public native void addAttribute(String name, MDLVertexFormat format, String type, NSData data, @MachineSizedSInt long stride, double time);
     @Method(selector = "addNormalsWithAttributeNamed:creaseThreshold:")
     public native void addNormals(String attributeName, float creaseThreshold);
     @Method(selector = "addTangentBasisForTextureCoordinateAttributeNamed:tangentAttributeNamed:bitangentAttributeNamed:")
-    public native void addTangentBasis(String textureCoordinateAttributeName, String tangentAttributeNamed, String bitangentAttributeName);
+    public native void addTangentBasis(String textureCoordinateAttributeName, String tangentAttributeName, String bitangentAttributeName);
     @Method(selector = "addTangentBasisForTextureCoordinateAttributeNamed:normalAttributeNamed:tangentAttributeNamed:")
-    public native void addTangentBasisWithNormals(String textureCoordinateAttributeName, String normalAttributeNamed, String tangentAttributeNamed);
+    public native void addTangentBasisWithNormals(String textureCoordinateAttributeName, String normalAttributeName, String tangentAttributeName);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "addOrthTanBasisForTextureCoordinateAttributeNamed:normalAttributeNamed:tangentAttributeNamed:")
+    public native void addOrthTanBasis(String textureCoordinateAttributeName, String normalAttributeName, String tangentAttributeName);
     @Method(selector = "addUnwrappedTextureCoordinatesForAttributeNamed:")
     public native void addUnwrappedTextureCoordinatesForAttributeNamed(String textureCoordinateAttributeName);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "flipTextureCoordinatesInAttributeNamed:")
+    public native void flipTextureCoordinatesInAttributeNamed(String textureCoordinateAttributeName);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "makeVerticesUnique")
     public native void makeVerticesUnique();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "makeVerticesUniqueAndReturnError:")
+    public native boolean makeVerticesUniqueAndReturnError(NSError.NSErrorPtr error);
     @Method(selector = "replaceAttributeNamed:withData:")
-    public native void replaceAttributeNamed$withData$(String name, MDLVertexAttributeData newData);
+    public native void replaceAttribute(String name, MDLVertexAttributeData newData);
     @Method(selector = "updateAttributeNamed:withData:")
-    public native void updateAttributeNamed$withData$(String name, MDLVertexAttributeData newData);
+    public native void updateAttribute(String name, MDLVertexAttributeData newData);
     @Method(selector = "removeAttributeNamed:")
     public native void removeAttributeNamed(String name);
     @Method(selector = "initBoxWithExtent:segments:inwardNormals:geometryType:allocator:")
@@ -151,14 +171,20 @@ import org.robovm.apple.coregraphics.*;
     public static native MDLMesh newEllipsoid(@ByVal VectorFloat3 radii, @MachineSizedUInt long radialSegments, @MachineSizedUInt long verticalSegments, MDLGeometryType geometryType, boolean inwardNormals, boolean hemisphere, MDLMeshBufferAllocator allocator);
     @Method(selector = "newCylinderWithHeight:radii:radialSegments:verticalSegments:geometryType:inwardNormals:allocator:")
     public static native MDLMesh newCylinder(float height, @ByVal VectorFloat2 radii, @MachineSizedUInt long radialSegments, @MachineSizedUInt long verticalSegments, MDLGeometryType geometryType, boolean inwardNormals, MDLMeshBufferAllocator allocator);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "newCapsuleWithHeight:radii:radialSegments:verticalSegments:hemisphereSegments:geometryType:inwardNormals:allocator:")
-    public static native MDLMesh newCapsuleWithHeight$radii$radialSegments$verticalSegments$hemisphereSegments$geometryType$inwardNormals$allocator$(float height, @ByVal VectorFloat2 radii, @MachineSizedUInt long radialSegments, @MachineSizedUInt long verticalSegments, @MachineSizedUInt long hemisphereSegments, MDLGeometryType geometryType, boolean inwardNormals, MDLMeshBufferAllocator allocator);
+    public static native MDLMesh newCapsuleWithHeight(float height, @ByVal VectorFloat2 radii, @MachineSizedUInt long radialSegments, @MachineSizedUInt long verticalSegments, @MachineSizedUInt long hemisphereSegments, MDLGeometryType geometryType, boolean inwardNormals, MDLMeshBufferAllocator allocator);
     @Method(selector = "newEllipticalConeWithHeight:radii:radialSegments:verticalSegments:geometryType:inwardNormals:allocator:")
     public static native MDLMesh newEllipticalCone(float height, @ByVal VectorFloat2 radii, @MachineSizedUInt long radialSegments, @MachineSizedUInt long verticalSegments, MDLGeometryType geometryType, boolean inwardNormals, MDLMeshBufferAllocator allocator);
     @Method(selector = "newPlaneWithDimensions:segments:geometryType:allocator:")
     public static native MDLMesh newPlane(@ByVal VectorFloat2 dimensions, @ByVal VectorInt2 segments, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "newIcosahedronWithRadius:inwardNormals:geometryType:allocator:")
-    public static native MDLMesh newIcosahedronWithRadius$inwardNormals$geometryType$allocator$(float radius, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
+    public static native MDLMesh newIcosahedronWithRadius(float radius, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
     @Method(selector = "newIcosahedronWithRadius:inwardNormals:allocator:")
     public static native MDLMesh newIcosahedron(float radius, boolean inwardNormals, MDLMeshBufferAllocator allocator);
     @Method(selector = "newSubdividedMesh:submeshIndex:subdivisionLevels:")

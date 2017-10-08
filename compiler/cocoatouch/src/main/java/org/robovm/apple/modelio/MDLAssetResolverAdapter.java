@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,40 +32,26 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MDLTextureChannelEncoding/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    UInt8(1L),
-    Uint8(1L),
-    UInt16(2L),
-    Uint16(2L),
-    UInt24(3L),
-    Uint24(3L),
-    UInt32(4L),
-    Uint32(4L),
-    Float16(258L),
-    Float16SR(770L),
-    Float32(260L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MDLAssetResolverAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements MDLAssetResolver/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MDLTextureChannelEncoding/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MDLTextureChannelEncoding/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MDLTextureChannelEncoding/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MDLTextureChannelEncoding/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @NotImplemented("canResolveAssetNamed:")
+    public boolean canResolveAssetNamed(String name) { return false; }
+    @NotImplemented("resolveAssetNamed:")
+    public NSURL resolveAssetNamed(String name) { return null; }
+    /*</methods>*/
 }

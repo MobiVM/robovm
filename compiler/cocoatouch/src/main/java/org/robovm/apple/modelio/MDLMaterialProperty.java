@@ -76,6 +76,8 @@ import org.robovm.apple.coregraphics.*;
     public native void setSemantic(MDLMaterialSemantic v);
     @Property(selector = "type")
     public native MDLMaterialPropertyType getType();
+    @Property(selector = "setType:")
+    public native void setType(MDLMaterialPropertyType v);
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "setName:")

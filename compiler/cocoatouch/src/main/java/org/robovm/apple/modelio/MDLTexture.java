@@ -83,10 +83,25 @@ import org.robovm.apple.coregraphics.*;
     protected native @Pointer long init(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube);
     @Method(selector = "writeToURL:")
     public native boolean write(NSURL URL);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "writeToURL:level:")
+    public native boolean write(NSURL URL, @MachineSizedUInt long level);
     @Method(selector = "writeToURL:type:")
     public native boolean write(NSURL nsurl, String type);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "writeToURL:type:level:")
+    public native boolean write(NSURL nsurl, String type, @MachineSizedUInt long level);
     @Method(selector = "imageFromTexture")
     public native CGImage getImage();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "imageFromTextureAtLevel:")
+    public native CGImage imageFromTextureAtLevel(@MachineSizedUInt long level);
     @Method(selector = "texelDataWithTopLeftOrigin")
     public native NSData getTexelDataWithTopLeftOrigin();
     @Method(selector = "texelDataWithBottomLeftOrigin")

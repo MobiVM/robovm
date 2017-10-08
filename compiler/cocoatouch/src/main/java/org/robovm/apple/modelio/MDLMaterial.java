@@ -81,10 +81,23 @@ import org.robovm.apple.coregraphics.*;
     public native MDLMaterialProperty getProperty(String name);
     @Method(selector = "propertyWithSemantic:")
     public native MDLMaterialProperty getProperty(MDLMaterialSemantic semantic);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "propertiesWithSemantic:")
     public native NSArray<MDLMaterialProperty> propertiesWithSemantic(MDLMaterialSemantic semantic);
     @Method(selector = "removeAllProperties")
     public native void removeAllProperties();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "resolveTexturesWithResolver:")
+    public native void resolveTexturesWithResolver(MDLAssetResolver resolver);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "loadTexturesUsingResolver:")
+    public native void loadTexturesUsingResolver(MDLAssetResolver resolver);
     @Method(selector = "objectAtIndexedSubscript:")
     public native MDLMaterialProperty getProperty(@MachineSizedUInt long idx);
     /*</methods>*/

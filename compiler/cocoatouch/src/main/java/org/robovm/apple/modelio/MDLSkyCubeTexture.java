@@ -50,6 +50,11 @@ import org.robovm.apple.coregraphics.*;
     protected MDLSkyCubeTexture(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithName:channelEncoding:textureDimensions:turbidity:sunElevation:upperAtmosphereScattering:groundAlbedo:")
     public MDLSkyCubeTexture(String name, MDLTextureChannelEncoding channelEncoding, @ByVal VectorInt2 textureDimensions, float turbidity, float sunElevation, float upperAtmosphereScattering, float groundAlbedo) { super((SkipInit) null); initObject(init(name, channelEncoding, textureDimensions, turbidity, sunElevation, upperAtmosphereScattering, groundAlbedo)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithName:channelEncoding:textureDimensions:turbidity:sunElevation:sunAzimuth:upperAtmosphereScattering:groundAlbedo:")
+    public MDLSkyCubeTexture(String name, MDLTextureChannelEncoding channelEncoding, @ByVal VectorInt2 textureDimensions, float turbidity, float sunElevation, float sunAzimuth, float upperAtmosphereScattering, float groundAlbedo) { super((SkipInit) null); initObject(init(name, channelEncoding, textureDimensions, turbidity, sunElevation, sunAzimuth, upperAtmosphereScattering, groundAlbedo)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "turbidity")
@@ -60,6 +65,16 @@ import org.robovm.apple.coregraphics.*;
     public native float getSunElevation();
     @Property(selector = "setSunElevation:")
     public native void setSunElevation(float v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "sunAzimuth")
+    public native float getSunAzimuth();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSunAzimuth:")
+    public native void setSunAzimuth(float v);
     @Property(selector = "upperAtmosphereScattering")
     public native float getUpperAtmosphereScattering();
     @Property(selector = "setUpperAtmosphereScattering:")
@@ -105,6 +120,11 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     @Method(selector = "initWithName:channelEncoding:textureDimensions:turbidity:sunElevation:upperAtmosphereScattering:groundAlbedo:")
     protected native @Pointer long init(String name, MDLTextureChannelEncoding channelEncoding, @ByVal VectorInt2 textureDimensions, float turbidity, float sunElevation, float upperAtmosphereScattering, float groundAlbedo);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithName:channelEncoding:textureDimensions:turbidity:sunElevation:sunAzimuth:upperAtmosphereScattering:groundAlbedo:")
+    protected native @Pointer long init(String name, MDLTextureChannelEncoding channelEncoding, @ByVal VectorInt2 textureDimensions, float turbidity, float sunElevation, float sunAzimuth, float upperAtmosphereScattering, float groundAlbedo);
     @Method(selector = "updateTexture")
     public native void updateTexture();
     /*</methods>*/

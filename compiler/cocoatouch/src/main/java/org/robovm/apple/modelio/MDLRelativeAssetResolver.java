@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,41 +33,37 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ModelIO") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MDLObjectContainer/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MDLRelativeAssetResolver/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements MDLObjectContainerComponent/*</implements>*/ {
+    /*<implements>*/implements MDLAssetResolver/*</implements>*/ {
 
-    /*<ptr>*/public static class MDLObjectContainerPtr extends Ptr<MDLObjectContainer, MDLObjectContainerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MDLObjectContainer.class); }/*</bind>*/
+    /*<ptr>*/public static class MDLRelativeAssetResolverPtr extends Ptr<MDLRelativeAssetResolver, MDLRelativeAssetResolverPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MDLRelativeAssetResolver.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MDLObjectContainer() {}
-    protected MDLObjectContainer(Handle h, long handle) { super(h, handle); }
-    protected MDLObjectContainer(SkipInit skipInit) { super(skipInit); }
+    public MDLRelativeAssetResolver() {}
+    protected MDLRelativeAssetResolver(Handle h, long handle) { super(h, handle); }
+    protected MDLRelativeAssetResolver(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAsset:")
+    public MDLRelativeAssetResolver(MDLAsset asset) { super((SkipInit) null); initObject(initWithAsset(asset)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "count")
-    public native @MachineSizedUInt long getCount();
-    @Property(selector = "objects")
-    public native NSArray<MDLObject> getObjects();
+    @Property(selector = "asset")
+    public native MDLAsset getAsset();
+    @Property(selector = "setAsset:", strongRef = true)
+    public native void setAsset(MDLAsset v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "addObject:")
-    public native void addObject(MDLObject object);
-    @Method(selector = "removeObject:")
-    public native void removeObject(MDLObject object);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "objectAtIndexedSubscript:")
-    public native MDLObject objectAtIndexedSubscript(@MachineSizedUInt long index);
+    @Method(selector = "initWithAsset:")
+    protected native @Pointer long initWithAsset(MDLAsset asset);
+    @Method(selector = "canResolveAssetNamed:")
+    public native boolean canResolveAssetNamed(String name);
+    @Method(selector = "resolveAssetNamed:")
+    public native NSURL resolveAssetNamed(String name);
     /*</methods>*/
 }
