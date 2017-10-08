@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,60 +33,15 @@ import org.robovm.apple.security.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-@ForceLinkClass(LAError.class)
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/LAErrorCode/*</name>*/ implements NSErrorCode {
+public enum /*<name>*/LABiometryType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    AuthenticationFailed(-1L),
-    UserCancel(-2L),
-    UserFallback(-3L),
-    SystemCancel(-4L),
-    PasscodeNotSet(-5L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    TouchIDNotAvailable(-6L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    TouchIDNotEnrolled(-7L),
-    /**
-     * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    TouchIDLockout(-8L),
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    AppCancel(-9L),
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    InvalidContext(-10L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    BiometryNotAvailable(-6L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    BiometryNotEnrolled(-7L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    BiometryLockout(-8L),
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    NotInteractive(-1004L);
+    None(0L),
+    TypeTouchID(1L),
+    TypeFaceID(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -96,15 +51,15 @@ public enum /*<name>*/LAErrorCode/*</name>*/ implements NSErrorCode {
 
     private final long n;
 
-    private /*<name>*/LAErrorCode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/LABiometryType/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/LAErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/LAErrorCode/*</name>*/ v : values()) {
+    public static /*<name>*/LABiometryType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/LABiometryType/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/LAErrorCode/*</name>*/.class.getName());
+            + /*<name>*/LABiometryType/*</name>*/.class.getName());
     }
 }

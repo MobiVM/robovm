@@ -14,7 +14,8 @@ enums:
     LAErrorCode: {first: LAErrorAuthenticationFailed}
     LAAccessControlOperation: {}
     LACredentialType: {prefix: LACredentialType}
-        
+    LABiometryType: {prefix: LABiometry} #since 11.0
+
 classes:
     LAError:
         extends: NSError
