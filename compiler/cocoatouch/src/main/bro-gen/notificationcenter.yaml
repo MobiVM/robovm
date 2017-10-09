@@ -33,7 +33,8 @@ protocols:
                 name: performUpdate
             '-widgetMarginInsetsForProposedMarginInsets:':
                 name: getMarginInsetsForProposedInsets
-
+            '-widgetActiveDisplayModeDidChange:withMaximumSize:':
+                name: activeDisplayModeDidChange
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?NC.*):
