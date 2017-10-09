@@ -404,6 +404,13 @@ functions:
         parameters:
             names:
                 type: NSArray.NSArrayPtr<NSData>
+    SSLCopy(ALPNProtocols):
+        class: SSLContext
+        name: 'get#{g[0]}0'
+        visibility: protected
+        parameters:
+            protocols:
+                type: NSArray.NSArrayPtr<NSData>
     SSL(SetPeerID|SetPeerDomainName):
         class: SSLContext
         name: '#{g[0]}0'
