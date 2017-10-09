@@ -49,6 +49,8 @@ import org.robovm.apple.foundation.*;
     protected WCSession(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "defaultSession")
+    public static native WCSession getDefaultSession();
     @Property(selector = "delegate")
     public native WCSessionDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
@@ -111,7 +113,5 @@ import org.robovm.apple.foundation.*;
     public native WCSessionFileTransfer transferFile(NSURL file, NSDictionary<NSString, ?> metadata);
     @Method(selector = "isSupported")
     public static native boolean isSupported();
-    @Method(selector = "defaultSession")
-    public static native WCSession getDefaultSession();
     /*</methods>*/
 }

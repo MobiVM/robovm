@@ -104,6 +104,8 @@ protocols:
                 name: didFinishFileTransfer
             '-session:didReceiveFile:':
                 name: didReceiveFile
+            '-session:activationDidCompleteWithState:error:':
+                name: activationDidComplete
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

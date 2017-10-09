@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("WatchConnectivity") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WCSessionUserInfoTransfer/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class WCSessionUserInfoTransferPtr extends Ptr<WCSessionUserInfoTransfer, WCSessionUserInfoTransferPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(WCSessionUserInfoTransfer.class); }/*</bind>*/
@@ -47,6 +47,8 @@ import org.robovm.apple.foundation.*;
     public WCSessionUserInfoTransfer() {}
     protected WCSessionUserInfoTransfer(Handle h, long handle) { super(h, handle); }
     protected WCSessionUserInfoTransfer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public WCSessionUserInfoTransfer(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isCurrentComplicationInfo")
@@ -55,10 +57,16 @@ import org.robovm.apple.foundation.*;
     public native NSDictionary<NSString, ?> getUserInfo();
     @Property(selector = "isTransferring")
     public native boolean isTransferring();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "cancel")
     public native void cancel();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
