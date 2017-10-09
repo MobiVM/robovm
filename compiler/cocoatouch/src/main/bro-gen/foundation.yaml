@@ -96,6 +96,9 @@ structdefs:
     vector_float2: 'VectorFloat2'
     vector_float3: 'VectorFloat3'
     vector_float4: 'VectorFloat4'
+    simd_float2: 'VectorFloat2'
+    simd_float3: 'VectorFloat3'
+    simd_float4: 'VectorFloat4'
     simd_quatf: 'VectorFloat4'
     vector_double4: 'VectorDouble4'
     simd_quatd: 'VectorFloat4'
@@ -108,6 +111,7 @@ structdefs:
     matrix_float2x4: 'MatrixFloat2x4'
     matrix_float3x4: 'MatrixFloat3x4'
     matrix_float4x4: 'MatrixFloat4x4'
+    simd_float4x4: 'MatrixFloat4x4'
     matrix_double4x4: 'MatrixDouble4x4'
 
 private_typedefs:
