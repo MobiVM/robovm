@@ -56,6 +56,11 @@ import org.robovm.apple.security.*;
     /*<properties>*/
     @Property(selector = "isPersistent")
     public native boolean isPersistent();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "httpCookieStore")
+    public native WKHTTPCookieStore getHttpCookieStore();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

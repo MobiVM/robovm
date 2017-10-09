@@ -5,6 +5,7 @@ framework: WebKit
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/WebKit.framework/Headers/WebKit.h
+    - /System/Library/Frameworks/WebKit.framework/Headers/WKSnapshotConfiguration.h # it is not referenced from WebKit and becomes opaque
 typedefs:
     'void (^)(WKNavigationActionPolicy)': '@Block VoidBlock1<WKNavigationActionPolicy>'
     'void (^)(WKNavigationResponsePolicy)': '@Block VoidBlock1<WKNavigationResponsePolicy>'
@@ -70,6 +71,9 @@ classes:
                 getter: mediaPlaybackRequiresUserAction
             'mediaPlaybackAllowsAirPlay':
                 getter: mediaPlaybackAllowsAirPlay
+        methods:
+            '-setURLSchemeHandler:forURLScheme:':
+                trim_after_first_colon: true
     WKWindowFeatures: # DONE
         properties:
             'allowsResizing':
@@ -141,7 +145,25 @@ classes:
                 parameters:
                     completionHandler:
                         type: '@Block VoidBlock2<NSObject, NSError>' # TODO change NSObject type to correct type???
+            '-takeSnapshotWithConfiguration:completionHandler:':
+                name: takeSnapshot
     WKPreviewElementInfo: {}
+    WKContentRuleList: {} #since 11.0
+    WKContentRuleListStore: #since 11.0
+        methods:
+            '-compileContentRuleListForIdentifier:encodedContentRuleList:completionHandler:':
+                name: compileContentRuleList
+            '-lookUpContentRuleListForIdentifier:completionHandler:':
+                name: lookUpContentRuleList
+            '-removeContentRuleListForIdentifier:completionHandler:':
+                name: removeContentRuleList
+    WKHTTPCookieStore: #since 11.0
+        methods:
+            '-setCookie:completionHandler:':
+                trim_after_first_colon: true
+            '-deleteCookie:completionHandler:':
+                trim_after_first_colon: true
+    WKSnapshotConfiguration: {} #since 11.0
 
 protocols:
     WKNavigationDelegate: # DONE
@@ -188,6 +210,15 @@ protocols:
                 name: getPreviewingViewControllerForElement
             '-webView:commitPreviewingViewController:':
                 name: commitPreviewingViewController
+    WKHTTPCookieStoreObserver: {} #since 11.0
+    WKPreviewActionItem: {} #since 10.0
+    WKURLSchemeHandler: #since 11.0
+        methods:
+            '-webView:startURLSchemeTask:':
+                name: startURLSchemeTask
+            '-webView:stopURLSchemeTask:':
+                name: stopURLSchemeTask
+    WKURLSchemeTask: {} #since 11.0
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

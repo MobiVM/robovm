@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,41 +34,31 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKFrameInfo/*</name>*/ 
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKURLSchemeTaskAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements WKURLSchemeTask/*</implements>*/ {
 
-    /*<ptr>*/public static class WKFrameInfoPtr extends Ptr<WKFrameInfo, WKFrameInfoPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(WKFrameInfo.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public WKFrameInfo() {}
-    protected WKFrameInfo(Handle h, long handle) { super(h, handle); }
-    protected WKFrameInfo(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "isMainFrame")
-    public native boolean isMainFrame();
-    @Property(selector = "request")
-    public native NSURLRequest getRequest();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "securityOrigin")
-    public native WKSecurityOrigin getSecurityOrigin();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "webView")
-    public native WKWebView getWebView();
+    @NotImplemented("request")
+    public NSURLRequest getRequest() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @NotImplemented("didReceiveResponse:")
+    public void didReceiveResponse(NSURLResponse response) {}
+    @NotImplemented("didReceiveData:")
+    public void didReceiveData(NSData data) {}
+    @NotImplemented("didFinish")
+    public void didFinish() {}
+    @NotImplemented("didFailWithError:")
+    public void didFailWithError(NSError error) {}
     /*</methods>*/
 }

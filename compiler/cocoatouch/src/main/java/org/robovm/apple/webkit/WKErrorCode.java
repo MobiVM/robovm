@@ -49,7 +49,23 @@ public enum /*<name>*/WKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 9.0 and later.
      */
-    JavaScriptResultTypeIsUnsupported(5L);
+    JavaScriptResultTypeIsUnsupported(5L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    ContentRuleListStoreCompileFailed(6L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    ContentRuleListStoreLookUpFailed(7L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    ContentRuleListStoreRemoveFailed(8L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    ContentRuleListStoreVersionMismatch(9L);
     /*</values>*/
 
     /*<bind>*/
