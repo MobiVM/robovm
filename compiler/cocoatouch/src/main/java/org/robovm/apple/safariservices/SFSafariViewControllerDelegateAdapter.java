@@ -54,9 +54,19 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @NotImplemented("safariViewController:activityItemsForURL:title:")
     public NSArray<UIActivity> getActivityItems(SFSafariViewController controller, NSURL URL, String title) { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("safariViewController:excludedActivityTypesForURL:title:")
+    public NSArray<NSString> excludedActivityTypesForURL(SFSafariViewController controller, NSURL URL, String title) { return null; }
     @NotImplemented("safariViewControllerDidFinish:")
     public void didFinish(SFSafariViewController controller) {}
     @NotImplemented("safariViewController:didCompleteInitialLoad:")
     public void didCompleteInitialLoad(SFSafariViewController controller, boolean didLoadSuccessfully) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("safariViewController:initialLoadDidRedirectToURL:")
+    public void initialLoadDidRedirectToURL(SFSafariViewController controller, NSURL URL) {}
     /*</methods>*/
 }

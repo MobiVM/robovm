@@ -51,10 +51,20 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "safariViewController:activityItemsForURL:title:")
     NSArray<UIActivity> getActivityItems(SFSafariViewController controller, NSURL URL, String title);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "safariViewController:excludedActivityTypesForURL:title:")
+    NSArray<NSString> excludedActivityTypesForURL(SFSafariViewController controller, NSURL URL, String title);
     @Method(selector = "safariViewControllerDidFinish:")
     void didFinish(SFSafariViewController controller);
     @Method(selector = "safariViewController:didCompleteInitialLoad:")
     void didCompleteInitialLoad(SFSafariViewController controller, boolean didLoadSuccessfully);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "safariViewController:initialLoadDidRedirectToURL:")
+    void initialLoadDidRedirectToURL(SFSafariViewController controller, NSURL URL);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
