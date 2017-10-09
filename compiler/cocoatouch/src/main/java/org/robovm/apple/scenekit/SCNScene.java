@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNScene/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNScenePtr extends Ptr<SCNScene, SCNScenePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNScene.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNScene() {}
     protected SCNScene(Handle h, long handle) { super(h, handle); }
     protected SCNScene(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNScene(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rootNode")
@@ -89,6 +91,8 @@ import org.robovm.apple.avfoundation.*;
     public native void setPaused(boolean v);
     @Property(selector = "particleSystems")
     public native NSArray<SCNParticleSystem> getParticleSystems();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public void setAttribute(SCNSceneAttribute key, NSObject attribute) {
@@ -149,7 +153,7 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "writeToURL:options:delegate:progressHandler:")
-    public native boolean writeToURL(NSURL url, NSDictionary<?, ?> options, SCNSceneExportDelegate delegate, @Block VoidBlock3<Float, NSError, BooleanPtr> progressHandler);
+    public native boolean writeToURL(NSURL url, NSDictionary<NSString, ?> options, SCNSceneExportDelegate delegate, @Block VoidBlock3<Float, NSError, BooleanPtr> progressHandler);
     @Method(selector = "scene")
     public static native SCNScene create();
     @Method(selector = "sceneNamed:")
@@ -170,5 +174,9 @@ import org.robovm.apple.avfoundation.*;
     public native void removeAllParticleSystems();
     @Method(selector = "removeParticleSystem:")
     public native void removeParticleSystem(SCNParticleSystem system);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

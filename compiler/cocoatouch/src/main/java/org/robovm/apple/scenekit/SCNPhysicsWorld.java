@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNPhysicsWorld/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNPhysicsWorldPtr extends Ptr<SCNPhysicsWorld, SCNPhysicsWorldPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNPhysicsWorld.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNPhysicsWorld() {}
     protected SCNPhysicsWorld(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsWorld(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNPhysicsWorld(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "gravity")
@@ -74,6 +76,8 @@ import org.robovm.apple.avfoundation.*;
     public native void setContactDelegate(SCNPhysicsContactDelegate v);
     @Property(selector = "allBehaviors")
     public native NSArray<SCNPhysicsBehavior> getAllBehaviors();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -93,5 +97,9 @@ import org.robovm.apple.avfoundation.*;
     public native NSArray<SCNHitTestResult> convexSweepTestWithShape(SCNPhysicsShape shape, @ByVal SCNMatrix4 from, @ByVal SCNMatrix4 to, SCNPhysicsTestOptions options);
     @Method(selector = "updateCollisionPairs")
     public native void updateCollisionPairs();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

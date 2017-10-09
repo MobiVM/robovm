@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNParticlePropertyController/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNParticlePropertyControllerPtr extends Ptr<SCNParticlePropertyController, SCNParticlePropertyControllerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNParticlePropertyController.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNParticlePropertyController() {}
     protected SCNParticlePropertyController(Handle h, long handle) { super(h, handle); }
     protected SCNParticlePropertyController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNParticlePropertyController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "animation")
@@ -80,10 +82,16 @@ import org.robovm.apple.avfoundation.*;
     public native SCNParticleProperty getInputProperty();
     @Property(selector = "setInputProperty:")
     public native void setInputProperty(SCNParticleProperty v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "controllerWithAnimation:")
     public static native SCNParticlePropertyController create(CAAnimation animation);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -61,6 +61,11 @@ import org.robovm.apple.avfoundation.*;
     void didApplyAnimations(SCNSceneRenderer renderer, double time);
     @Method(selector = "renderer:didSimulatePhysicsAtTime:")
     void didSimulatePhysics(SCNSceneRenderer renderer, double time);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "renderer:didApplyConstraintsAtTime:")
+    void didApplyConstraints(SCNSceneRenderer renderer, double time);
     @Method(selector = "renderer:willRenderScene:atTime:")
     void willRenderScene(SCNSceneRenderer renderer, SCNScene scene, double time);
     @Method(selector = "renderer:didRenderScene:atTime:")

@@ -46,7 +46,19 @@ import org.robovm.apple.avfoundation.*;
 public enum /*<name>*/SCNTransparencyMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     AOne(0L),
-    RGBZero(1L);
+    RGBZero(1L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    SingleLayer(2L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    DualLayer(3L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Default(0L);
     /*</values>*/
 
     /*<bind>*/

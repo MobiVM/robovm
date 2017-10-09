@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNPhysicsVehicleWheel/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNPhysicsVehicleWheelPtr extends Ptr<SCNPhysicsVehicleWheel, SCNPhysicsVehicleWheelPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNPhysicsVehicleWheel.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNPhysicsVehicleWheel() {}
     protected SCNPhysicsVehicleWheel(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsVehicleWheel(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNPhysicsVehicleWheel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "node")
@@ -102,10 +104,16 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getSuspensionRestLength();
     @Property(selector = "setSuspensionRestLength:")
     public native void setSuspensionRestLength(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "wheelWithNode:")
     public static native SCNPhysicsVehicleWheel create(SCNNode node);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

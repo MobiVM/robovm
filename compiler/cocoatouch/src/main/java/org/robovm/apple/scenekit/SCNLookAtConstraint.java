@@ -60,6 +60,36 @@ import org.robovm.apple.avfoundation.*;
     public native SCNNode getTarget();
     @Property(selector = "setTarget:")
     public native void setTarget(SCNNode v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "targetOffset")
+    public native @ByVal SCNVector3 getTargetOffset();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setTargetOffset:")
+    public native void setTargetOffset(@ByVal SCNVector3 v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "localFront")
+    public native @ByVal SCNVector3 getLocalFront();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setLocalFront:")
+    public native void setLocalFront(@ByVal SCNVector3 v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "worldUp")
+    public native @ByVal SCNVector3 getWorldUp();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setWorldUp:")
+    public native void setWorldUp(@ByVal SCNVector3 v);
     @Property(selector = "gimbalLockEnabled")
     public native boolean isGimbalLockEnabled();
     @Property(selector = "setGimbalLockEnabled:")

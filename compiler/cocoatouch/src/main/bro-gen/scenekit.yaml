@@ -14,7 +14,10 @@ typedefs:
     'BOOL (^)(id, NSString *, BOOL *)': '@Block Block3<NSObject, String, BooleanPtr, Boolean>'
     'SCNMatrix4 (^)(SCNNode *, SCNMatrix4)': '@Block Block2<SCNNode, SCNMatrix4, SCNMatrix4>'
     SCNQuaternion: SCNVector4
-    
+
+private_typedefs:
+    SCNPhysicsShapeOption: SCNPhysicsShapeOptions
+
 enums:
     SCNErrorCode: { first: SCNProgramCompilationError, prefix: SCN, suffix: Error }
     SCNConsistencyErrorCode: { first: SCNConsistencyInvalidURIError }
@@ -48,7 +51,14 @@ enums:
     SCNBlendMode: {}
     SCNBillboardAxis: {}
     SCNReferenceLoadingPolicy: {}
-    
+    SCNColorMask: {} #since 11.0
+    SCNHitTestSearchMode: {} #since 11.0
+    SCNNodeFocusBehavior: {} #since 11.0
+    SCNCameraProjectionDirection: {} #since 11.0
+    SCNFillMode: {} #since 11.0
+    SCNTessellationSmoothingMode: {} #since 11.0
+    SCNInteractionMode: {} #since 11.0
+
 categories:
     NSValue: # DONE
         methods:
@@ -158,7 +168,11 @@ classes:
     SCNTransformConstraint: # DONE
         methods:
             '+transformConstraintInWorldSpace:withBlock:':
-                name: create
+                name: createTransformConstraint
+            '+positionConstraintInWorldSpace:withBlock:':
+                name: createPositionConstraint
+            '+orientationConstraintInWorldSpace:withBlock:':
+                name: createOrientationConstraint
     SCNGeometry: # DONE
         properties:
             'materials':
@@ -307,6 +321,8 @@ classes:
         methods:
             '-setWeight:forTargetAtIndex:':
                 name: setWeightForTarget
+            '-setWeight:forTargetNamed:':
+                name: setWeightForTarget
             '-weightForTargetAtIndex:':
                 name: getWeightForTarget
     SCNNode: # DONE
@@ -359,6 +375,32 @@ classes:
                 trim_after_first_colon: true
             '-removeParticleSystem:':
                 trim_after_first_colon: true
+            '-convertVector:toNode:':
+                trim_after_first_colon: true
+            '-convertVector:fromNode:':
+                trim_after_first_colon: true
+                name: convertVector$fromNode$
+            '-lookAt:up:localFront:':
+                trim_after_first_colon: true
+                name: lookAt$up$localFront$
+            '-rotateBy:aroundTarget:':
+                name: rotate
+            '-simdConvertPosition:toNode:':
+                name: simdConvertPositionToNode
+            '-simdConvertPosition:fromNode:':
+                name: simdConvertPositionFromNode
+            '-simdConvertVector:toNode:':
+                name: simdConvertVectorToNode
+            '-simdConvertVector:fromNode:':
+                name: simdConvertVectorFromNode
+            '-simdConvertTransform:toNode:':
+                name: simdConvertTransformTtoNode
+            '-simdConvertTransform:fromNode:':
+                name: simdConvertTransformFromNode
+            '-simdLookAt:up:localFront:':
+                name: simdLook
+            '-simdRotateBy:aroundTarget:':
+                name: simdRotate
     SCNParticlePropertyController: # DONE
         properties:
             'inputProperty':
@@ -551,6 +593,8 @@ classes:
                 parameters:
                     context:
                         type: EAGLContext
+            '+rendererWithDevice:options:':
+                name: create
             '-snapshotAtTime:withSize:antialiasingMode:':
                 trim_after_first_colon: true
             '-updateProbes:atTime:':
@@ -558,6 +602,8 @@ classes:
             '-rendererWithDevice:options:':
                 trim_after_first_colon: true
             '-presentScene:withTransition:incomingPointOfView:completionHandler:':
+                trim_after_first_colon: true
+            '-renderWithViewport:commandBuffer:passDescriptor:':
                 trim_after_first_colon: true
     SCNScene: # DONE
         properties:
@@ -693,7 +739,37 @@ classes:
                 trim_after_first_colon: true
             '-stop:':
                 trim_after_first_colon: true
-
+    SCNAccelerationConstraint: {} #since 11.0
+    SCNAnimation: {}  #since 11.0
+    SCNAnimationPlayer: {} #since 11.0
+    SCNAvoidOccluderConstraint: {} #since 11.0
+    SCNCameraController: #since 11.0
+        methods:
+            '-translateInCameraSpaceByX:Y:Z:':
+                name: translateInCameraSpace
+            '-rotateByX:Y:':
+                name: rotateByXY
+            '-rollBy:aroundScreenPoint:viewport:':
+                name: roll
+            '-dollyBy:onScreenPoint:viewport:':
+                name: dolly
+            '-beginInteraction:withViewport:':
+                trim_after_first_colon: true
+            '-continueInteraction:withViewport:sensitivity:':
+                trim_after_first_colon: true
+            '-endInteraction:withViewport:velocity:':
+                trim_after_first_colon: true
+    SCNDistanceConstraint: {} #since 11.0
+    SCNGeometryTessellator: {} #since 11.0
+    SCNPhysicsConeTwistJoint: #since 11.0
+        methods:
+            '+jointWithBodyA:frameA:bodyB:frameB:':
+                name: joint
+            '+jointWithBody:frame:':
+                name: joint
+    SCNReplicatorConstraint: {} #since 11.0
+    SCNSliderConstraint: {} #since 11.0
+    SCNTimingFunction: {} #since 11.0
 protocols:
     SCNBufferStream:
         skip_adapter: true
@@ -720,6 +796,10 @@ protocols:
                 trim_after_first_colon: true
             '-removeAnimationForKey:':
                 name: removeAnimation
+            '-addAnimationPlayer:forKey:':
+                trim_after_first_colon: true
+            '-removeAnimationForKey:blendOutDuration:':
+                trim_after_first_colon: true
             '-animationKeys':
                 property: true
                 return_type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
@@ -816,6 +896,9 @@ protocols:
                 name: willRenderScene
             '-renderer:didRenderScene:atTime:':
                 name: didRenderScene
+            '-renderer:didApplyConstraintsAtTime:':
+                #trim_after_first_colon: true
+                name: didApplyConstraints
     SCNShadable: # DONE
         properties:
             'shaderModifiers':
@@ -832,6 +915,15 @@ protocols:
                     block:
                         type: '@Block VoidBlock4<Integer, Integer, SCNNode, SCNRenderer>'    
     SCNTechniqueSupport: {} # DONE
+    SCNAvoidOccluderConstraintDelegate: #since 11.0
+        methods:
+            '-avoidOccluderConstraint:shouldAvoidOccluder:forNode:':
+                name: shouldAvoidOccluder
+            '-avoidOccluderConstraint:didAvoidOccluder:forNode:':
+                name: didAvoidOccluder
+    SCNCameraControlConfiguration: {} #since 11.0
+    SCNCameraControllerDelegate: {} #since 11.0
+    SCNAnimation: { name: SCNAnimationProtocol}  #since 11.0
 
 functions:
     SCNExportJavaScriptModule: {exclude: true} # TODO when JavascriptCore is bound
@@ -980,6 +1072,10 @@ values:
     SCNHitTestOptionCategoryBitMask:
         dictionary: SCNHitTestOptions
         name: 'OptionCategoryBitMask'
+        type: NSString
+    SCNHitTestOptionSearchMode:
+        dictionary: SCNHitTestOptions
+        name: 'OptionSearchMode'
         type: NSString
     SCNHitTest(.*)Key:
         dictionary: SCNHitTestOptions

@@ -73,6 +73,11 @@ import org.robovm.apple.avfoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "animationWithSCNAnimation:")
+    protected static native CAAnimation animationWithSCNAnimation(ObjCClass clazz, SCNAnimation animation);
+    public static CAAnimation animationWithSCNAnimation(SCNAnimation animation) { return animationWithSCNAnimation(ObjCClass.getByType(CAAnimation.class), animation); }
     /*</methods>*/
 }

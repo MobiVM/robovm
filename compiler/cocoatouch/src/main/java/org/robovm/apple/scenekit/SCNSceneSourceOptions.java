@@ -223,6 +223,16 @@ import org.robovm.apple.avfoundation.*;
         public static native NSString OverrideAssetURLs();
         @GlobalValue(symbol="SCNSceneSourceStrictConformanceKey", optional=true)
         public static native NSString StrictConformance();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="SCNSceneSourceConvertUnitsToMetersKey", optional=true)
+        public static native NSString ConvertUnitsToMeters();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="SCNSceneSourceConvertToYUpKey", optional=true)
+        public static native NSString ConvertToYUp();
         @GlobalValue(symbol="SCNSceneSourceAnimationImportPolicyKey", optional=true)
         public static native NSString AnimationImportPolicy();
         /**

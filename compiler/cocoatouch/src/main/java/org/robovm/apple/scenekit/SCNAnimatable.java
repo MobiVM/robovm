@@ -53,30 +53,72 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<properties>*/
     @Property(selector = "animationKeys")
-    NSArray<?> getAnimationKeys();
+    NSArray<NSString> getAnimationKeys();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "addAnimation:forKey:")
-    void addAnimation(CAAnimation animation, String key);
+    void addAnimation(SCNAnimation animation, String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "addAnimationPlayer:forKey:")
+    void addAnimationPlayer(SCNAnimationPlayer player, String key);
     @Method(selector = "removeAllAnimations")
     void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     void removeAnimation(String key);
-    @Method(selector = "animationForKey:")
-    CAAnimation getAnimation(String key);
-    @Method(selector = "pauseAnimationForKey:")
-    void pauseAnimation(String key);
-    @Method(selector = "resumeAnimationForKey:")
-    void resumeAnimation(String key);
-    @Method(selector = "isAnimationForKeyPaused:")
-    boolean isAnimationPaused(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "animationPlayerForKey:")
+    SCNAnimationPlayer animationPlayerForKey(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "removeAnimationForKey:blendOutDuration:")
+    void removeAnimationForKey(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
+    @Method(selector = "animationForKey:")
+    CAAnimation getAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "pauseAnimationForKey:")
+    void pauseAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "resumeAnimationForKey:")
+    void resumeAnimation(String key);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "setSpeed:forAnimationKey:")
     void setSpeed(@MachineSizedFloat double speed, String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "isAnimationForKeyPaused:")
+    boolean isAnimationPaused(String key);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

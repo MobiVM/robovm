@@ -54,52 +54,25 @@ import org.robovm.apple.avfoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("hasActions")
     public boolean hasActions() { return false; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("actionKeys")
-    public NSArray<?> getActionKeys() { return null; }
+    public NSArray<NSString> getActionKeys() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("runAction:")
     public void runAction(SCNAction action) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("runAction:completionHandler:")
     public void runAction(SCNAction action, @Block Runnable block) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("runAction:forKey:")
     public void runAction(SCNAction action, String key) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("runAction:forKey:completionHandler:")
     public void runAction(SCNAction action, String key, @Block Runnable block) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("actionForKey:")
     public SCNAction getAction(String key) { return null; }
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("removeActionForKey:")
     public void removeAction(String key) {}
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @NotImplemented("removeAllActions")
     public void removeAllActions() {}
     /*</methods>*/

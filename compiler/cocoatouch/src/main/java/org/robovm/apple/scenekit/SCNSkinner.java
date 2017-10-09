@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNSkinner/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNSkinnerPtr extends Ptr<SCNSkinner, SCNSkinnerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNSkinner.class); }/*</bind>*/
@@ -54,11 +54,13 @@ import org.robovm.apple.avfoundation.*;
     public SCNSkinner() {}
     protected SCNSkinner(Handle h, long handle) { super(h, handle); }
     protected SCNSkinner(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNSkinner(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "skeleton")
     public native SCNNode getSkeleton();
-    @Property(selector = "setSkeleton:")
+    @Property(selector = "setSkeleton:", strongRef = true)
     public native void setSkeleton(SCNNode v);
     @Property(selector = "baseGeometry")
     public native SCNGeometry getBaseGeometry();
@@ -76,10 +78,16 @@ import org.robovm.apple.avfoundation.*;
     public native SCNGeometrySource getBoneWeights();
     @Property(selector = "boneIndices")
     public native SCNGeometrySource getBoneIndices();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "skinnerWithBaseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:")
     public static native SCNSkinner create(SCNGeometry baseGeometry, NSArray<SCNNode> bones, @org.robovm.rt.bro.annotation.Marshaler(SCNMatrix4.AsListMarshaler.class) List<SCNMatrix4> boneInverseBindTransforms, SCNGeometrySource boneWeights, SCNGeometrySource boneIndices);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

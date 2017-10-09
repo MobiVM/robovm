@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNMaterial/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements SCNAnimatable, SCNShadable/*</implements>*/ {
+    /*<implements>*/implements SCNAnimatable, SCNShadable, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNMaterialPtr extends Ptr<SCNMaterial, SCNMaterialPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNMaterial.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNMaterial() {}
     protected SCNMaterial(Handle h, long handle) { super(h, handle); }
     protected SCNMaterial(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNMaterial(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -76,6 +78,11 @@ import org.robovm.apple.avfoundation.*;
     public native SCNMaterialProperty getMultiply();
     @Property(selector = "normal")
     public native SCNMaterialProperty getNormal();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "displacement")
+    public native SCNMaterialProperty getDisplacement();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -116,6 +123,16 @@ import org.robovm.apple.avfoundation.*;
     public native boolean isDoubleSided();
     @Property(selector = "setDoubleSided:")
     public native void setDoubleSided(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "fillMode")
+    public native SCNFillMode getFillMode();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setFillMode:")
+    public native void setFillMode(SCNFillMode v);
     @Property(selector = "cullMode")
     public native SCNCullMode getCullMode();
     @Property(selector = "setCullMode:")
@@ -132,6 +149,16 @@ import org.robovm.apple.avfoundation.*;
     public native boolean writesToDepthBuffer();
     @Property(selector = "setWritesToDepthBuffer:")
     public native void setWritesToDepthBuffer(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "colorBufferWriteMask")
+    public native SCNColorMask getColorBufferWriteMask();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setColorBufferWriteMask:")
+    public native void setColorBufferWriteMask(SCNColorMask v);
     @Property(selector = "readsFromDepthBuffer")
     public native boolean readsFromDepthBuffer();
     @Property(selector = "setReadsFromDepthBuffer:")
@@ -151,7 +178,7 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "setBlendMode:")
     public native void setBlendMode(SCNBlendMode v);
     @Property(selector = "animationKeys")
-    public native NSArray<?> getAnimationKeys();
+    public native NSArray<NSString> getAnimationKeys();
     @Property(selector = "program")
     public native SCNProgram getProgram();
     @Property(selector = "setProgram:")
@@ -160,35 +187,83 @@ import org.robovm.apple.avfoundation.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> getShaderModifiers();
     @Property(selector = "setShaderModifiers:")
     public native void setShaderModifiers(@org.robovm.rt.bro.annotation.Marshaler(SCNShaderModifierEntryPoint.AsStringMapMarshaler.class) Map<SCNShaderModifierEntryPoint, String> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "material")
     public static native SCNMaterial create();
     @Method(selector = "addAnimation:forKey:")
-    public native void addAnimation(CAAnimation animation, String key);
+    public native void addAnimation(SCNAnimation animation, String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "addAnimationPlayer:forKey:")
+    public native void addAnimationPlayer(SCNAnimationPlayer player, String key);
     @Method(selector = "removeAllAnimations")
     public native void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
-    @Method(selector = "animationForKey:")
-    public native CAAnimation getAnimation(String key);
-    @Method(selector = "pauseAnimationForKey:")
-    public native void pauseAnimation(String key);
-    @Method(selector = "resumeAnimationForKey:")
-    public native void resumeAnimation(String key);
-    @Method(selector = "isAnimationForKeyPaused:")
-    public native boolean isAnimationPaused(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "animationPlayerForKey:")
+    public native SCNAnimationPlayer animationPlayerForKey(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "removeAnimationForKey:blendOutDuration:")
+    public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
+    @Method(selector = "animationForKey:")
+    public native CAAnimation getAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "pauseAnimationForKey:")
+    public native void pauseAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "resumeAnimationForKey:")
+    public native void resumeAnimation(String key);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "setSpeed:forAnimationKey:")
     public native void setSpeed(@MachineSizedFloat double speed, String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "isAnimationForKeyPaused:")
+    public native boolean isAnimationPaused(String key);
     @Method(selector = "handleBindingOfSymbol:usingBlock:")
     public native void handleBindingOfSymbol(String symbol, @Block VoidBlock4<Integer, Integer, SCNNode, SCNRenderer> block);
     @Method(selector = "handleUnbindingOfSymbol:usingBlock:")
     public native void handleUnbindingOfSymbol(String symbol, @Block VoidBlock4<Integer, Integer, SCNNode, SCNRenderer> block);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

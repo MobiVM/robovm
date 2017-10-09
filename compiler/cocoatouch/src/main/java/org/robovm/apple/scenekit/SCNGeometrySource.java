@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNGeometrySource/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNGeometrySourcePtr extends Ptr<SCNGeometrySource, SCNGeometrySourcePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNGeometrySource.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNGeometrySource() {}
     protected SCNGeometrySource(Handle h, long handle) { super(h, handle); }
     protected SCNGeometrySource(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNGeometrySource(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "data")
@@ -72,6 +74,8 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getDataOffset();
     @Property(selector = "dataStride")
     public native @MachineSizedSInt long getDataStride();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -88,5 +92,9 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "geometrySourceWithBuffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:")
     public static native SCNGeometrySource createWithBuffer(MTLBuffer mtlBuffer, MTLVertexFormat vertexFormat, String semantic, @MachineSizedSInt long vertexCount, @MachineSizedSInt long offset, @MachineSizedSInt long stride);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

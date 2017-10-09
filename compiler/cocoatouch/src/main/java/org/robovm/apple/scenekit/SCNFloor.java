@@ -78,12 +78,24 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setReflectionCategoryBitMask:")
     public native void setReflectionCategoryBitMask(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "width")
     public native @MachineSizedFloat double getWidth();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "setWidth:")
     public native void setWidth(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "length")
     public native @MachineSizedFloat double getLength();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "setLength:")
     public native void setLength(@MachineSizedFloat double v);
     @Property(selector = "reflectionResolutionScaleFactor")

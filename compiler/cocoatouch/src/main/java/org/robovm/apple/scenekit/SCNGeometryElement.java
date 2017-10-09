@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNGeometryElement/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNGeometryElementPtr extends Ptr<SCNGeometryElement, SCNGeometryElementPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNGeometryElement.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNGeometryElement() {}
     protected SCNGeometryElement(Handle h, long handle) { super(h, handle); }
     protected SCNGeometryElement(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNGeometryElement(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "data")
@@ -62,12 +64,58 @@ import org.robovm.apple.avfoundation.*;
     public native SCNGeometryPrimitiveType getPrimitiveType();
     @Property(selector = "primitiveCount")
     public native @MachineSizedSInt long getPrimitiveCount();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "primitiveRange")
+    public native @ByVal NSRange getPrimitiveRange();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setPrimitiveRange:")
+    public native void setPrimitiveRange(@ByVal NSRange v);
     @Property(selector = "bytesPerIndex")
     public native @MachineSizedSInt long getBytesPerIndex();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "pointSize")
+    public native @MachineSizedFloat double getPointSize();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setPointSize:")
+    public native void setPointSize(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "minimumPointScreenSpaceRadius")
+    public native @MachineSizedFloat double getMinimumPointScreenSpaceRadius();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setMinimumPointScreenSpaceRadius:")
+    public native void setMinimumPointScreenSpaceRadius(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "maximumPointScreenSpaceRadius")
+    public native @MachineSizedFloat double getMaximumPointScreenSpaceRadius();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setMaximumPointScreenSpaceRadius:")
+    public native void setMaximumPointScreenSpaceRadius(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "geometryElementWithData:primitiveType:primitiveCount:bytesPerIndex:")
     public static native SCNGeometryElement create(NSData data, SCNGeometryPrimitiveType primitiveType, @MachineSizedSInt long primitiveCount, @MachineSizedSInt long bytesPerIndex);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

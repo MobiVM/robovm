@@ -175,18 +175,33 @@ import org.robovm.apple.avfoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "renderAtTime:viewport:commandBuffer:passDescriptor:")
+    public native void renderAtTime(double time, @ByVal CGRect viewport, MTLCommandBuffer commandBuffer, MTLRenderPassDescriptor renderPassDescriptor);
     @Method(selector = "renderAtTime:")
     public native void renderAtTime(double time);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "updateAtTime:")
+    public native void updateAtTime(double time);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "renderWithViewport:commandBuffer:passDescriptor:")
+    public native void renderWithViewport(@ByVal CGRect viewport, MTLCommandBuffer commandBuffer, MTLRenderPassDescriptor renderPassDescriptor);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "snapshotAtTime:withSize:antialiasingMode:")
     public native UIImage snapshotAtTime(double time, @ByVal CGSize size, SCNAntialiasingMode antialiasingMode);
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    @Method(selector = "renderAtTime:viewport:commandBuffer:passDescriptor:")
-    public native void renderAtTime(double time, @ByVal CGRect viewport, MTLCommandBuffer commandBuffer, MTLRenderPassDescriptor renderPassDescriptor);
+    @Method(selector = "updateProbes:atTime:")
+    public native void updateProbes(NSArray<SCNNode> lightProbes, double time);
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0.
@@ -194,18 +209,13 @@ import org.robovm.apple.avfoundation.*;
     @Deprecated
     @Method(selector = "render")
     public native void render();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "updateProbes:atTime:")
-    public native void updateProbes(NSArray<SCNNode> lightProbes, double time);
     @Method(selector = "rendererWithContext:options:")
     public static native SCNRenderer create(EAGLContext context, NSDictionary<?, ?> options);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "rendererWithDevice:options:")
-    public static native SCNRenderer rendererWithDevice$options$(MTLDevice device, NSDictionary<?, ?> options);
+    public static native SCNRenderer create(MTLDevice device, NSDictionary<?, ?> options);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -225,7 +235,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "unprojectPoint:")
     public native @ByVal SCNVector3 unprojectPoint(@ByVal SCNVector3 point);
     @Method(selector = "prepareObject:shouldAbortBlock:")
-    public native boolean prepareObject(NSObject object, @Block Block0<Boolean> block);
+    public native boolean prepareObject(NSObject object, @Block BooleanBlock block);
     @Method(selector = "prepareObjects:withCompletionHandler:")
     public native void prepareObjects(NSArray<?> objects, @Block VoidBooleanBlock completionHandler);
     /*</methods>*/

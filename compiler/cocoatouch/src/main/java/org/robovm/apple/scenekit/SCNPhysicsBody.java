@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNPhysicsBody/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNPhysicsBodyPtr extends Ptr<SCNPhysicsBody, SCNPhysicsBodyPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNPhysicsBody.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNPhysicsBody() {}
     protected SCNPhysicsBody(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsBody(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNPhysicsBody(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
@@ -162,6 +164,8 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setAffectedByGravity:")
     public native void setAffectedByGravity(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -183,5 +187,9 @@ import org.robovm.apple.avfoundation.*;
     public static native SCNPhysicsBody createKinematicBody();
     @Method(selector = "bodyWithType:shape:")
     public static native SCNPhysicsBody create(SCNPhysicsBodyType type, SCNPhysicsShape shape);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

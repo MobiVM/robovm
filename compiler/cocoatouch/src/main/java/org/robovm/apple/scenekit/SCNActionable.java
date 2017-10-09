@@ -52,51 +52,24 @@ import org.robovm.apple.avfoundation.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "hasActions")
     boolean hasActions();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Property(selector = "actionKeys")
-    NSArray<?> getActionKeys();
+    NSArray<NSString> getActionKeys();
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "runAction:")
     void runAction(SCNAction action);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "runAction:completionHandler:")
     void runAction(SCNAction action, @Block Runnable block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "runAction:forKey:")
     void runAction(SCNAction action, String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "runAction:forKey:completionHandler:")
     void runAction(SCNAction action, String key, @Block Runnable block);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "actionForKey:")
     SCNAction getAction(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeActionForKey:")
     void removeAction(String key);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
     @Method(selector = "removeAllActions")
     void removeAllActions();
     /*</methods>*/

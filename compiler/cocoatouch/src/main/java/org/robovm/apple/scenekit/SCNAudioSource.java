@@ -47,7 +47,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNAudioSource/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNAudioSourcePtr extends Ptr<SCNAudioSource, SCNAudioSourcePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNAudioSource.class); }/*</bind>*/
@@ -60,6 +60,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNAudioSource(String name) { super((SkipInit) null); initObject(initWithFileNamed(name)); }
     @Method(selector = "initWithURL:")
     public SCNAudioSource(NSURL url) { super((SkipInit) null); initObject(initWithURL(url)); }
+    @Method(selector = "initWithCoder:")
+    public SCNAudioSource(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isPositional")
@@ -86,6 +88,8 @@ import org.robovm.apple.avfoundation.*;
     public native boolean shouldStream();
     @Property(selector = "setShouldStream:")
     public native void setShouldStream(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -97,5 +101,9 @@ import org.robovm.apple.avfoundation.*;
     public native void load();
     @Method(selector = "audioSourceNamed:")
     public static native SCNAudioSource audioSourceNamed(String fileName);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

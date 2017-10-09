@@ -40,14 +40,12 @@ import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNAction/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNActionPtr extends Ptr<SCNAction, SCNActionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNAction.class); }/*</bind>*/
@@ -56,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNAction() {}
     protected SCNAction(Handle h, long handle) { super(h, handle); }
     protected SCNAction(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNAction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "duration")
@@ -74,6 +74,8 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getSpeed();
     @Property(selector = "setSpeed:")
     public native void setSpeed(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -144,5 +146,9 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "playAudioSource:waitForCompletion:")
     public static native SCNAction playAudioSource(SCNAudioSource source, boolean wait);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

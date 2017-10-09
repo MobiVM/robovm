@@ -183,7 +183,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "unprojectPoint:")
     @ByVal SCNVector3 unprojectPoint(@ByVal SCNVector3 point);
     @Method(selector = "prepareObject:shouldAbortBlock:")
-    boolean prepareObject(NSObject object, @Block Block0<Boolean> block);
+    boolean prepareObject(NSObject object, @Block BooleanBlock block);
     @Method(selector = "prepareObjects:withCompletionHandler:")
     void prepareObjects(NSArray<?> objects, @Block VoidBooleanBlock completionHandler);
     /*</methods>*/
