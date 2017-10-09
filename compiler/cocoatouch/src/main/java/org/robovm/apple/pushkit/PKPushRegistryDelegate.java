@@ -48,9 +48,19 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "pushRegistry:didUpdatePushCredentials:forType:")
-    void didUpdatePushCredentials(PKPushRegistry registry, PKPushCredentials credentials, String type);
+    void didUpdatePushCredentials(PKPushRegistry registry, PKPushCredentials pushCredentials, String type);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "pushRegistry:didReceiveIncomingPushWithPayload:forType:")
     void didReceiveIncomingPush(PKPushRegistry registry, PKPushPayload payload, String type);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "pushRegistry:didReceiveIncomingPushWithPayload:forType:withCompletionHandler:")
+    void didReceiveIncomingPushWithPayload(PKPushRegistry registry, PKPushPayload payload, String type, @Block Runnable completion);
     @Method(selector = "pushRegistry:didInvalidatePushTokenForType:")
     void didInvalidatePushToken(PKPushRegistry registry, String type);
     /*</methods>*/
