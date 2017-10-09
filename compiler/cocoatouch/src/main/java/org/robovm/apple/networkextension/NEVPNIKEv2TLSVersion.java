@@ -32,30 +32,35 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NWTCPConnectionAuthenticationDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/NEVPNIKEv2TLSVersion/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Default(0L),
+    _1_0(1L),
+    _1_1(2L),
+    _1_2(3L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "shouldProvideIdentityForConnection:")
-    boolean shouldProvideIdentityForConnection(NWTCPConnection connection);
-    @Method(selector = "provideIdentityForConnection:completionHandler:")
-    void provideIdentityForConnection(NWTCPConnection connection, @Block VoidBlock2<SecIdentity, NSArray<?>> completion);
-    @Method(selector = "shouldEvaluateTrustForConnection:")
-    boolean shouldEvaluateTrustForConnection(NWTCPConnection connection);
-    @Method(selector = "evaluateTrustForConnection:peerCertificateChain:completionHandler:")
-    void evaluateTrustForConnection(NWTCPConnection connection, NSArray<?> peerCertificateChain, @Block VoidBlock1<SecTrust> completion);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/NEVPNIKEv2TLSVersion/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/NEVPNIKEv2TLSVersion/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NEVPNIKEv2TLSVersion/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/NEVPNIKEv2TLSVersion/*</name>*/.class.getName());
+    }
 }

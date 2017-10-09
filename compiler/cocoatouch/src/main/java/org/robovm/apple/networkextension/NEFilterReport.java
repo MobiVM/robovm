@@ -33,41 +33,37 @@ import org.robovm.apple.security.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NETunnelProviderSession/*</name>*/ 
-    extends /*<extends>*/NEVPNConnection/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEFilterReport/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class NETunnelProviderSessionPtr extends Ptr<NETunnelProviderSession, NETunnelProviderSessionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NETunnelProviderSession.class); }/*</bind>*/
+    /*<ptr>*/public static class NEFilterReportPtr extends Ptr<NEFilterReport, NEFilterReportPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NEFilterReport.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NETunnelProviderSession() {}
-    protected NETunnelProviderSession(Handle h, long handle) { super(h, handle); }
-    protected NETunnelProviderSession(SkipInit skipInit) { super(skipInit); }
+    public NEFilterReport() {}
+    protected NEFilterReport(Handle h, long handle) { super(h, handle); }
+    protected NEFilterReport(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NEFilterReport(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "flow")
+    public native NEFilterFlow getFlow();
+    @Property(selector = "action")
+    public native NEFilterAction getAction();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "startTunnelWithOptions:andReturnError:")
-    public native boolean startTunnel(NSDictionary<NSString, ?> options, NSError.NSErrorPtr error);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "stopTunnel")
-    public native void stopTunnel();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "sendProviderMessage:returnError:responseHandler:")
-    public native boolean sendProviderMessage(NSData messageData, NSError.NSErrorPtr error, @Block VoidBlock1<NSData> responseHandler);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

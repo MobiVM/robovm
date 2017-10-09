@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEFilterVerdict/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEFilterVerdictPtr extends Ptr<NEFilterVerdict, NEFilterVerdictPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEFilterVerdict.class); }/*</bind>*/
@@ -48,12 +48,28 @@ import org.robovm.apple.security.*;
     public NEFilterVerdict() {}
     protected NEFilterVerdict(Handle h, long handle) { super(h, handle); }
     protected NEFilterVerdict(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NEFilterVerdict(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "shouldReport")
+    public native boolean shouldReport();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setShouldReport:")
+    public native void setShouldReport(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

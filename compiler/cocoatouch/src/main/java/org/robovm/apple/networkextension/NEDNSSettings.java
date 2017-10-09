@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEDNSSettings/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEDNSSettingsPtr extends Ptr<NEDNSSettings, NEDNSSettingsPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEDNSSettings.class); }/*</bind>*/
@@ -52,24 +52,26 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithServers:")
-    public NEDNSSettings(NSArray<?> servers) { super((SkipInit) null); initObject(initWithServers(servers)); }
+    public NEDNSSettings(NSArray<NSString> servers) { super((SkipInit) null); initObject(initWithServers(servers)); }
+    @Method(selector = "initWithCoder:")
+    public NEDNSSettings(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "servers")
-    public native NSArray<?> getServers();
+    public native NSArray<NSString> getServers();
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "searchDomains")
-    public native NSArray<?> getSearchDomains();
+    public native NSArray<NSString> getSearchDomains();
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "setSearchDomains:")
-    public native void setSearchDomains(NSArray<?> v);
+    public native void setSearchDomains(NSArray<NSString> v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -84,12 +86,12 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "matchDomains")
-    public native NSArray<?> getMatchDomains();
+    public native NSArray<NSString> getMatchDomains();
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "setMatchDomains:")
-    public native void setMatchDomains(NSArray<?> v);
+    public native void setMatchDomains(NSArray<NSString> v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -100,6 +102,8 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setMatchDomainsNoSearch:")
     public native void setMatchDomainsNoSearch(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -107,6 +111,10 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithServers:")
-    protected native @Pointer long initWithServers(NSArray<?> servers);
+    protected native @Pointer long initWithServers(NSArray<NSString> servers);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

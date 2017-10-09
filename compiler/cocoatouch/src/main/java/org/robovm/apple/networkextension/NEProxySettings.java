@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEProxySettings/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEProxySettingsPtr extends Ptr<NEProxySettings, NEProxySettingsPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEProxySettings.class); }/*</bind>*/
@@ -48,6 +48,8 @@ import org.robovm.apple.security.*;
     public NEProxySettings() {}
     protected NEProxySettings(Handle h, long handle) { super(h, handle); }
     protected NEProxySettings(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NEProxySettings(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -134,25 +136,30 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "exceptionList")
-    public native NSArray<?> getExceptionList();
+    public native NSArray<NSString> getExceptionList();
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "setExceptionList:")
-    public native void setExceptionList(NSArray<?> v);
+    public native void setExceptionList(NSArray<NSString> v);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "matchDomains")
-    public native NSArray<?> getMatchDomains();
+    public native NSArray<NSString> getMatchDomains();
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "setMatchDomains:")
-    public native void setMatchDomains(NSArray<?> v);
+    public native void setMatchDomains(NSArray<NSString> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

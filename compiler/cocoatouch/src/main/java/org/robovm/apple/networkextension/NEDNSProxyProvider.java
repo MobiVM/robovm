@@ -33,53 +33,50 @@ import org.robovm.apple.security.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEFilterFlow/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEDNSProxyProvider/*</name>*/ 
+    extends /*<extends>*/NEProvider/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NEFilterFlowPtr extends Ptr<NEFilterFlow, NEFilterFlowPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NEFilterFlow.class); }/*</bind>*/
+    /*<ptr>*/public static class NEDNSProxyProviderPtr extends Ptr<NEDNSProxyProvider, NEDNSProxyProviderPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NEDNSProxyProvider.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NEFilterFlow() {}
-    protected NEFilterFlow(Handle h, long handle) { super(h, handle); }
-    protected NEFilterFlow(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public NEFilterFlow(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEDNSProxyProvider() {}
+    protected NEDNSProxyProvider(Handle h, long handle) { super(h, handle); }
+    protected NEDNSProxyProvider(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "URL")
-    public native NSURL getURL();
-    /**
      * @since Available in iOS 11.0 and later.
      */
-    @Property(selector = "sourceAppUniqueIdentifier")
-    public native NSData getSourceAppUniqueIdentifier();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "sourceAppIdentifier")
-    public native String getSourceAppIdentifier();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "sourceAppVersion")
-    public native String getSourceAppVersion();
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    @Property(selector = "systemDNSSettings")
+    public native NSArray<NEDNSSettings> getSystemDNSSettings();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "startProxyWithOptions:completionHandler:")
+    public native void startProxy(NSDictionary<NSString, ?> options, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "stopProxyWithReason:completionHandler:")
+    public native void stopProxy(NEProviderStopReason reason, @Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "cancelProxyWithError:")
+    public native void cancelProxyWithError(NSError error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "handleNewFlow:")
+    public native boolean handleNewFlow(NEAppProxyFlow flow);
     /*</methods>*/
 }

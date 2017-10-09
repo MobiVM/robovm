@@ -33,53 +33,47 @@ import org.robovm.apple.security.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEFilterFlow/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEHotspotConfigurationManager/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NEFilterFlowPtr extends Ptr<NEFilterFlow, NEFilterFlowPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NEFilterFlow.class); }/*</bind>*/
+    /*<ptr>*/public static class NEHotspotConfigurationManagerPtr extends Ptr<NEHotspotConfigurationManager, NEHotspotConfigurationManagerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NEHotspotConfigurationManager.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NEFilterFlow() {}
-    protected NEFilterFlow(Handle h, long handle) { super(h, handle); }
-    protected NEFilterFlow(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public NEFilterFlow(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEHotspotConfigurationManager() {}
+    protected NEHotspotConfigurationManager(Handle h, long handle) { super(h, handle); }
+    protected NEHotspotConfigurationManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "URL")
-    public native NSURL getURL();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "sourceAppUniqueIdentifier")
-    public native NSData getSourceAppUniqueIdentifier();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "sourceAppIdentifier")
-    public native String getSourceAppIdentifier();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "sourceAppVersion")
-    public native String getSourceAppVersion();
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    @Property(selector = "sharedManager")
+    public static native NEHotspotConfigurationManager getSharedManager();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "applyConfiguration:completionHandler:")
+    public native void applyConfiguration(NEHotspotConfiguration configuration, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "removeConfigurationForSSID:")
+    public native void removeConfigurationForSSID(String SSID);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "removeConfigurationForHS20DomainName:")
+    public native void removeConfigurationForHS20DomainName(String domainName);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "getConfiguredSSIDsWithCompletionHandler:")
+    public native void getConfiguredSSIDsWithCompletionHandler(@Block VoidBlock1<NSArray<NSString>> completionHandler);
     /*</methods>*/
 }

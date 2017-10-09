@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NWEndpoint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NWEndpointPtr extends Ptr<NWEndpoint, NWEndpointPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NWEndpoint.class); }/*</bind>*/
@@ -48,12 +48,18 @@ import org.robovm.apple.security.*;
     public NWEndpoint() {}
     protected NWEndpoint(Handle h, long handle) { super(h, handle); }
     protected NWEndpoint(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NWEndpoint(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

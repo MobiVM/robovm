@@ -115,7 +115,7 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public boolean startVPNTunnel(NSDictionary<?, ?> options) throws NSErrorException {
+    public boolean startVPNTunnel(NSDictionary<NSString, ?> options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = startVPNTunnel(options, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
@@ -125,7 +125,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "startVPNTunnelWithOptions:andReturnError:")
-    private native boolean startVPNTunnel(NSDictionary<?, ?> options, NSError.NSErrorPtr error);
+    private native boolean startVPNTunnel(NSDictionary<NSString, ?> options, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 8.0 and later.
      */

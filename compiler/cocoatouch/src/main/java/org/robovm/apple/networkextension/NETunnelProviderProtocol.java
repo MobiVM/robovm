@@ -54,12 +54,12 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "providerConfiguration")
-    public native NSDictionary<?, ?> getProviderConfiguration();
+    public native NSDictionary<NSString, ?> getProviderConfiguration();
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "setProviderConfiguration:")
-    public native void setProviderConfiguration(NSDictionary<?, ?> v);
+    public native void setProviderConfiguration(NSDictionary<NSString, ?> v);
     /**
      * @since Available in iOS 9.0 and later.
      */

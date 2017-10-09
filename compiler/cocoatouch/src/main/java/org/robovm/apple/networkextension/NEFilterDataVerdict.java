@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEFilterDataVerdict/*</name>*/ 
     extends /*<extends>*/NEFilterVerdict/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEFilterDataVerdictPtr extends Ptr<NEFilterDataVerdict, NEFilterDataVerdictPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEFilterDataVerdict.class); }/*</bind>*/

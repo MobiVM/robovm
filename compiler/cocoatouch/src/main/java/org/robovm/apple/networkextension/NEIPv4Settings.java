@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEIPv4Settings/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEIPv4SettingsPtr extends Ptr<NEIPv4Settings, NEIPv4SettingsPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEIPv4Settings.class); }/*</bind>*/
@@ -52,19 +52,21 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithAddresses:subnetMasks:")
-    public NEIPv4Settings(NSArray<?> addresses, NSArray<?> subnetMasks) { super((SkipInit) null); initObject(init(addresses, subnetMasks)); }
+    public NEIPv4Settings(NSArray<NSString> addresses, NSArray<NSString> subnetMasks) { super((SkipInit) null); initObject(init(addresses, subnetMasks)); }
+    @Method(selector = "initWithCoder:")
+    public NEIPv4Settings(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "addresses")
-    public native NSArray<?> getAddresses();
+    public native NSArray<NSString> getAddresses();
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "subnetMasks")
-    public native NSArray<?> getSubnetMasks();
+    public native NSArray<NSString> getSubnetMasks();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -85,6 +87,8 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setExcludedRoutes:")
     public native void setExcludedRoutes(NSArray<NEIPv4Route> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -92,6 +96,10 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithAddresses:subnetMasks:")
-    protected native @Pointer long init(NSArray<?> addresses, NSArray<?> subnetMasks);
+    protected native @Pointer long init(NSArray<NSString> addresses, NSArray<NSString> subnetMasks);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

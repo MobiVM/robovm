@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEPacket/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEPacketPtr extends Ptr<NEPacket, NEPacketPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEPacket.class); }/*</bind>*/
@@ -53,6 +53,8 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "initWithData:protocolFamily:")
     public NEPacket(NSData data, byte protocolFamily) { super((SkipInit) null); initObject(init(data, protocolFamily)); }
+    @Method(selector = "initWithCoder:")
+    public NEPacket(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -70,6 +72,8 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "metadata")
     public native NEFlowMetaData getMetadata();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -78,5 +82,9 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "initWithData:protocolFamily:")
     protected native @Pointer long init(NSData data, byte protocolFamily);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

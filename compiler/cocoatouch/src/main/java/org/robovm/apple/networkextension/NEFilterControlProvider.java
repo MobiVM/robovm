@@ -64,12 +64,12 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "URLAppendStringMap")
-    public native NSDictionary<?, ?> getURLAppendStringMap();
+    public native NSDictionary<NSString, NSString> getURLAppendStringMap();
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "setURLAppendStringMap:")
-    public native void setURLAppendStringMap(NSDictionary<?, ?> v);
+    public native void setURLAppendStringMap(NSDictionary<NSString, NSString> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -88,5 +88,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "notifyRulesChanged")
     public native void notifyRulesChanged();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "handleReport:")
+    public native void handleReport(NEFilterReport report);
     /*</methods>*/
 }

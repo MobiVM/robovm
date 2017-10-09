@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEVPNProtocol/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEVPNProtocolPtr extends Ptr<NEVPNProtocol, NEVPNProtocolPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEVPNProtocol.class); }/*</bind>*/
@@ -48,6 +48,8 @@ import org.robovm.apple.security.*;
     public NEVPNProtocol() {}
     protected NEVPNProtocol(Handle h, long handle) { super(h, handle); }
     protected NEVPNProtocol(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NEVPNProtocol(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -130,9 +132,14 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setProxySettings:")
     public native void setProxySettings(NEProxySettings v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

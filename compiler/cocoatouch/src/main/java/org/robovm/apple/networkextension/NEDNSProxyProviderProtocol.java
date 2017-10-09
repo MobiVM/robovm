@@ -33,47 +33,46 @@ import org.robovm.apple.security.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEHotspotHelper/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEDNSProxyProviderProtocol/*</name>*/ 
+    extends /*<extends>*/NEVPNProtocol/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NEHotspotHelperPtr extends Ptr<NEHotspotHelper, NEHotspotHelperPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NEHotspotHelper.class); }/*</bind>*/
+    /*<ptr>*/public static class NEDNSProxyProviderProtocolPtr extends Ptr<NEDNSProxyProviderProtocol, NEDNSProxyProviderProtocolPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NEDNSProxyProviderProtocol.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NEHotspotHelper() {}
-    protected NEHotspotHelper(Handle h, long handle) { super(h, handle); }
-    protected NEHotspotHelper(SkipInit skipInit) { super(skipInit); }
+    public NEDNSProxyProviderProtocol() {}
+    protected NEDNSProxyProviderProtocol(Handle h, long handle) { super(h, handle); }
+    protected NEDNSProxyProviderProtocol(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "providerConfiguration")
+    public native NSDictionary<NSString, ?> getProviderConfiguration();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setProviderConfiguration:")
+    public native void setProviderConfiguration(NSDictionary<NSString, ?> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "providerBundleIdentifier")
+    public native String getProviderBundleIdentifier();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setProviderBundleIdentifier:")
+    public native void setProviderBundleIdentifier(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @GlobalValue(symbol="kNEHotspotHelperOptionDisplayName", optional=true)
-    public static native String OptionDisplayName();
     
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "registerWithOptions:queue:handler:")
-    public static native boolean register(NSDictionary<NSString, ?> options, org.robovm.apple.dispatch.DispatchQueue queue, @Block VoidBlock1<NEHotspotHelperCommand> handler);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "logoff:")
-    public static native boolean logoff(NEHotspotNetwork network);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "supportedNetworkInterfaces")
-    public static native NSArray<?> supportedNetworkInterfaces();
     /*</methods>*/
 }

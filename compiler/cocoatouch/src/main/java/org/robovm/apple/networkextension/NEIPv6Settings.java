@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEIPv6Settings/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEIPv6SettingsPtr extends Ptr<NEIPv6Settings, NEIPv6SettingsPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEIPv6Settings.class); }/*</bind>*/
@@ -52,14 +52,16 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithAddresses:networkPrefixLengths:")
-    public NEIPv6Settings(NSArray<?> addresses, NSArray<NSNumber> networkPrefixLengths) { super((SkipInit) null); initObject(init(addresses, networkPrefixLengths)); }
+    public NEIPv6Settings(NSArray<NSString> addresses, NSArray<NSNumber> networkPrefixLengths) { super((SkipInit) null); initObject(init(addresses, networkPrefixLengths)); }
+    @Method(selector = "initWithCoder:")
+    public NEIPv6Settings(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "addresses")
-    public native NSArray<?> getAddresses();
+    public native NSArray<NSString> getAddresses();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -85,6 +87,8 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setExcludedRoutes:")
     public native void setExcludedRoutes(NSArray<NEIPv6Route> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -92,6 +96,10 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithAddresses:networkPrefixLengths:")
-    protected native @Pointer long init(NSArray<?> addresses, NSArray<NSNumber> networkPrefixLengths);
+    protected native @Pointer long init(NSArray<NSString> addresses, NSArray<NSNumber> networkPrefixLengths);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

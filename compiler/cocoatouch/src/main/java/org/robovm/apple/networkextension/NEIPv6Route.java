@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEIPv6Route/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEIPv6RoutePtr extends Ptr<NEIPv6Route, NEIPv6RoutePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEIPv6Route.class); }/*</bind>*/
@@ -53,6 +53,8 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "initWithDestinationAddress:networkPrefixLength:")
     public NEIPv6Route(String address, NSNumber networkPrefixLength) { super((SkipInit) null); initObject(init(address, networkPrefixLength)); }
+    @Method(selector = "initWithCoder:")
+    public NEIPv6Route(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -75,6 +77,8 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setGatewayAddress:")
     public native void setGatewayAddress(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -88,5 +92,9 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "defaultRoute")
     public static native NEIPv6Route defaultRoute();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
