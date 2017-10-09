@@ -76,8 +76,28 @@ import org.robovm.apple.contacts.*;
     public native String getCurrencyCode();
     @Property(selector = "setCurrencyCode:")
     public native void setCurrencyCode(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "requiredBillingContactFields")
+    public native NSSet<?> getRequiredBillingContactFields();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setRequiredBillingContactFields:")
+    public native void setRequiredBillingContactFields(NSSet<?> v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Property(selector = "requiredBillingAddressFields")
     public native PKAddressField getRequiredBillingAddressFields();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Property(selector = "setRequiredBillingAddressFields:")
     public native void setRequiredBillingAddressFields(PKAddressField v);
     /**
@@ -90,8 +110,28 @@ import org.robovm.apple.contacts.*;
      */
     @Property(selector = "setBillingContact:")
     public native void setBillingContact(PKContact v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "requiredShippingContactFields")
+    public native NSSet<?> getRequiredShippingContactFields();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setRequiredShippingContactFields:")
+    public native void setRequiredShippingContactFields(NSSet<?> v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Property(selector = "requiredShippingAddressFields")
     public native PKAddressField getRequiredShippingAddressFields();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Property(selector = "setRequiredShippingAddressFields:")
     public native void setRequiredShippingAddressFields(PKAddressField v);
     /**
@@ -122,6 +162,16 @@ import org.robovm.apple.contacts.*;
     public native NSData getApplicationData();
     @Property(selector = "setApplicationData:")
     public native void setApplicationData(NSData v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "supportedCountries")
+    public native NSSet<NSString> getSupportedCountries();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSupportedCountries:")
+    public native void setSupportedCountries(NSSet<NSString> v);
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 9.0.
@@ -158,5 +208,25 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "availableNetworks")
     public static native NSArray<?> availableNetworks();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "paymentContactInvalidErrorWithContactField:localizedDescription:")
+    public static native NSError createPaymentContactInvalidError(String field, String localizedDescription);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "paymentShippingAddressInvalidErrorWithKey:localizedDescription:")
+    public static native NSError createPaymentShippingAddressInvalidError(String postalAddressKey, String localizedDescription);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "paymentBillingAddressInvalidErrorWithKey:localizedDescription:")
+    public static native NSError createPaymentBillingAddressInvalidError(String postalAddressKey, String localizedDescription);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "paymentShippingAddressUnserviceableErrorWithLocalizedDescription:")
+    public static native NSError paymentShippingAddressUnserviceableErrorWithLocalizedDescription(String localizedDescription);
     /*</methods>*/
 }

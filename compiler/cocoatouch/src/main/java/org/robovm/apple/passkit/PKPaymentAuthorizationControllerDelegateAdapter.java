@@ -51,17 +51,57 @@ import org.robovm.apple.contacts.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("paymentAuthorizationController:didAuthorizePayment:completion:")
-    public void didAuthorizePayment(PKPaymentAuthorizationController controller, PKPayment payment, @Block VoidBlock1<PKPaymentAuthorizationStatus> completion) {}
     @NotImplemented("paymentAuthorizationControllerDidFinish:")
     public void didFinish(PKPaymentAuthorizationController controller) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("paymentAuthorizationController:didAuthorizePayment:handler:")
+    public void didAuthorizePayment(PKPaymentAuthorizationController controller, PKPayment payment, @Block VoidBlock1<PKPaymentAuthorizationResult> completion) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @NotImplemented("paymentAuthorizationController:didAuthorizePayment:completion:")
+    public void didAuthorizePaymentEx(PKPaymentAuthorizationController controller, PKPayment payment, @Block VoidBlock1<PKPaymentAuthorizationStatus> completion) {}
     @NotImplemented("paymentAuthorizationControllerWillAuthorizePayment:")
     public void willAuthorizePayment(PKPaymentAuthorizationController controller) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("paymentAuthorizationController:didSelectShippingMethod:handler:")
+    public void didSelectShippingMethod(PKPaymentAuthorizationController controller, PKShippingMethod shippingMethod, @Block VoidBlock1<PKPaymentRequestShippingMethodUpdate> completion) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("paymentAuthorizationController:didSelectShippingContact:handler:")
+    public void didSelectShippingContact(PKPaymentAuthorizationController controller, PKContact contact, @Block VoidBlock1<PKPaymentRequestShippingContactUpdate> completion) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("paymentAuthorizationController:didSelectPaymentMethod:handler:")
+    public void didSelectPaymentMethod(PKPaymentAuthorizationController controller, PKPaymentMethod paymentMethod, @Block VoidBlock1<PKPaymentRequestPaymentMethodUpdate> completion) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @NotImplemented("paymentAuthorizationController:didSelectShippingMethod:completion:")
     public void didSelectShippingMethod(PKPaymentAuthorizationController controller, PKShippingMethod shippingMethod, @Block VoidBlock2<PKPaymentAuthorizationStatus, NSArray<PKPaymentSummaryItem>> completion) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @NotImplemented("paymentAuthorizationController:didSelectShippingContact:completion:")
     public void didSelectShippingContact(PKPaymentAuthorizationController controller, PKContact contact, @Block VoidBlock3<PKPaymentAuthorizationStatus, NSArray<PKShippingMethod>, NSArray<PKPaymentSummaryItem>> completion) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @NotImplemented("paymentAuthorizationController:didSelectPaymentMethod:completion:")
-    public void didSelectPaymentMethod(PKPaymentAuthorizationController controller, PKPaymentMethod paymentMethod, @Block VoidBlock1<NSArray<PKPaymentSummaryItem>> completion) {}
+    public void didSelectPaymentMethodEx(PKPaymentAuthorizationController controller, PKPaymentMethod paymentMethod, @Block VoidBlock1<NSArray<PKPaymentSummaryItem>> completion) {}
     /*</methods>*/
 }

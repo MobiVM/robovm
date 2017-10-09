@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,38 +34,28 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("PassKit") @StronglyLinked/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPassKitError/*</name>*/ 
-    extends /*<extends>*/NSError/*</extends>*/ 
+/*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPaymentRequestPaymentMethodUpdate/*</name>*/ 
+    extends /*<extends>*/PKPaymentRequestUpdate/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    protected PKPassKitError(SkipInit skipInit) {
-        super(skipInit);
-    }
-    
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(PKPassKitError.class); }/*</bind>*/
+    /*<ptr>*/public static class PKPaymentRequestPaymentMethodUpdatePtr extends Ptr<PKPaymentRequestPaymentMethodUpdate, PKPaymentRequestPaymentMethodUpdatePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PKPaymentRequestPaymentMethodUpdate.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
+    /*<constructors>*/
+    public PKPaymentRequestPaymentMethodUpdate() {}
+    protected PKPaymentRequestPaymentMethodUpdate(Handle h, long handle) { super(h, handle); }
+    protected PKPaymentRequestPaymentMethodUpdate(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
     /*<members>*//*</members>*/
-    @Override
-    public PKPassKitErrorCode getErrorCode() {
-        PKPassKitErrorCode code = null;
-        try {
-            code = PKPassKitErrorCode.valueOf(getCode());
-        } catch (IllegalArgumentException e) {
-            // ignore
-        }
-        return code;
-    }
     /*<methods>*/
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @GlobalValue(symbol="PKPassKitErrorDomain", optional=true)
-    public static native String getClassDomain();
+    
     /*</methods>*/
 }

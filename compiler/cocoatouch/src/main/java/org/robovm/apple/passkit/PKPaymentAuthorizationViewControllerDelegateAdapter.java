@@ -51,15 +51,45 @@ import org.robovm.apple.contacts.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("paymentAuthorizationViewController:didAuthorizePayment:completion:")
-    public void didAuthorizePayment(PKPaymentAuthorizationViewController controller, PKPayment payment, @Block VoidBlock1<PKPaymentAuthorizationStatus> completion) {}
     @NotImplemented("paymentAuthorizationViewControllerDidFinish:")
     public void didFinish(PKPaymentAuthorizationViewController controller) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("paymentAuthorizationViewController:didAuthorizePayment:handler:")
+    public void didAuthorizePayment(PKPaymentAuthorizationViewController controller, PKPayment payment, @Block VoidBlock1<PKPaymentAuthorizationResult> completion) {}
     /**
      * @since Available in iOS 8.3 and later.
      */
     @NotImplemented("paymentAuthorizationViewControllerWillAuthorizePayment:")
     public void willAuthorizePayment(PKPaymentAuthorizationViewController controller) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("paymentAuthorizationViewController:didSelectShippingMethod:handler:")
+    public void didSelectShippingMethod(PKPaymentAuthorizationViewController controller, PKShippingMethod shippingMethod, @Block VoidBlock1<PKPaymentRequestShippingMethodUpdate> completion) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("paymentAuthorizationViewController:didSelectShippingContact:handler:")
+    public void didSelectShippingContact(PKPaymentAuthorizationViewController controller, PKContact contact, @Block VoidBlock1<PKPaymentRequestShippingContactUpdate> completion) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("paymentAuthorizationViewController:didSelectPaymentMethod:handler:")
+    public void didSelectPaymentMethod(PKPaymentAuthorizationViewController controller, PKPaymentMethod paymentMethod, @Block VoidBlock1<PKPaymentRequestPaymentMethodUpdate> completion) {}
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @NotImplemented("paymentAuthorizationViewController:didAuthorizePayment:completion:")
+    public void didAuthorizePaymentEx(PKPaymentAuthorizationViewController controller, PKPayment payment, @Block VoidBlock1<PKPaymentAuthorizationStatus> completion) {}
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @NotImplemented("paymentAuthorizationViewController:didSelectShippingMethod:completion:")
     public void didSelectShippingMethod(PKPaymentAuthorizationViewController controller, PKShippingMethod shippingMethod, @Block VoidBlock2<PKPaymentAuthorizationStatus, NSArray<PKPaymentSummaryItem>> completion) {}
     /**
@@ -70,14 +100,18 @@ import org.robovm.apple.contacts.*;
     @NotImplemented("paymentAuthorizationViewController:didSelectShippingAddress:completion:")
     public void didSelectShippingAddress(PKPaymentAuthorizationViewController controller, ABRecord address, @Block VoidBlock3<PKPaymentAuthorizationStatus, NSArray<PKShippingMethod>, NSArray<PKPaymentSummaryItem>> completion) {}
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @NotImplemented("paymentAuthorizationViewController:didSelectShippingContact:completion:")
     public void didSelectShippingContact(PKPaymentAuthorizationViewController controller, PKContact contact, @Block VoidBlock3<PKPaymentAuthorizationStatus, NSArray<PKShippingMethod>, NSArray<PKPaymentSummaryItem>> completion) {}
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @NotImplemented("paymentAuthorizationViewController:didSelectPaymentMethod:completion:")
-    public void didSelectPaymentMethod(PKPaymentAuthorizationViewController controller, PKPaymentMethod paymentMethod, @Block VoidBlock1<NSArray<PKPaymentSummaryItem>> completion) {}
+    public void didSelectPaymentMethodEx(PKPaymentAuthorizationViewController controller, PKPaymentMethod paymentMethod, @Block VoidBlock1<NSArray<PKPaymentSummaryItem>> completion) {}
     /*</methods>*/
 }

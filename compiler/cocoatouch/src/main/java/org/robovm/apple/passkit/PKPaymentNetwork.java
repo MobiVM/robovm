@@ -96,8 +96,14 @@ import org.robovm.apple.contacts.*;
     public static final PKPaymentNetwork Amex = new PKPaymentNetwork("Amex");
     /**
      * @since Available in iOS 10.3 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     public static final PKPaymentNetwork CarteBancaire = new PKPaymentNetwork("CarteBancaire");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final PKPaymentNetwork CarteBancaires = new PKPaymentNetwork("CarteBancaires");
     /**
      * @since Available in iOS 9.2 and later.
      */
@@ -107,9 +113,17 @@ import org.robovm.apple.contacts.*;
      */
     public static final PKPaymentNetwork Discover = new PKPaymentNetwork("Discover");
     /**
+     * @since Available in iOS 10.3 and later.
+     */
+    public static final PKPaymentNetwork IDCredit = new PKPaymentNetwork("IDCredit");
+    /**
      * @since Available in iOS 9.2 and later.
      */
     public static final PKPaymentNetwork Interac = new PKPaymentNetwork("Interac");
+    /**
+     * @since Available in iOS 10.1 and later.
+     */
+    public static final PKPaymentNetwork JCB = new PKPaymentNetwork("JCB");
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -119,28 +133,20 @@ import org.robovm.apple.contacts.*;
      */
     public static final PKPaymentNetwork PrivateLabel = new PKPaymentNetwork("PrivateLabel");
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 10.3 and later.
      */
-    public static final PKPaymentNetwork Visa = new PKPaymentNetwork("Visa");
-    /**
-     * @since Available in iOS 10.1 and later.
-     */
-    public static final PKPaymentNetwork JCB = new PKPaymentNetwork("JCB");
+    public static final PKPaymentNetwork QuicPay = new PKPaymentNetwork("QuicPay");
     /**
      * @since Available in iOS 10.1 and later.
      */
     public static final PKPaymentNetwork Suica = new PKPaymentNetwork("Suica");
     /**
-     * @since Available in iOS 10.3 and later.
+     * @since Available in iOS 8.0 and later.
      */
-    public static final PKPaymentNetwork QuicPay = new PKPaymentNetwork("QuicPay");
-    /**
-     * @since Available in iOS 10.3 and later.
-     */
-    public static final PKPaymentNetwork IDCredit = new PKPaymentNetwork("IDCredit");
+    public static final PKPaymentNetwork Visa = new PKPaymentNetwork("Visa");
     /*</constants>*/
     
-    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, CarteBancaire, ChinaUnionPay, Discover, Interac, MasterCard, PrivateLabel, Visa, JCB, Suica, QuicPay, IDCredit/*</value_list>*/};
+    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, CarteBancaire, CarteBancaires, ChinaUnionPay, Discover, IDCredit, Interac, JCB, MasterCard, PrivateLabel, QuicPay, Suica, Visa/*</value_list>*/};
     
     /*<name>*/PKPaymentNetwork/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -170,9 +176,16 @@ import org.robovm.apple.contacts.*;
         public static native NSString Amex();
         /**
          * @since Available in iOS 10.3 and later.
+         * @deprecated Deprecated in iOS 11.0.
          */
+        @Deprecated
         @GlobalValue(symbol="PKPaymentNetworkCarteBancaire", optional=true)
         public static native NSString CarteBancaire();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkCarteBancaires", optional=true)
+        public static native NSString CarteBancaires();
         /**
          * @since Available in iOS 9.2 and later.
          */
@@ -184,10 +197,20 @@ import org.robovm.apple.contacts.*;
         @GlobalValue(symbol="PKPaymentNetworkDiscover", optional=true)
         public static native NSString Discover();
         /**
+         * @since Available in iOS 10.3 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkIDCredit", optional=true)
+        public static native NSString IDCredit();
+        /**
          * @since Available in iOS 9.2 and later.
          */
         @GlobalValue(symbol="PKPaymentNetworkInterac", optional=true)
         public static native NSString Interac();
+        /**
+         * @since Available in iOS 10.1 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkJCB", optional=true)
+        public static native NSString JCB();
         /**
          * @since Available in iOS 8.0 and later.
          */
@@ -199,30 +222,20 @@ import org.robovm.apple.contacts.*;
         @GlobalValue(symbol="PKPaymentNetworkPrivateLabel", optional=true)
         public static native NSString PrivateLabel();
         /**
-         * @since Available in iOS 8.0 and later.
+         * @since Available in iOS 10.3 and later.
          */
-        @GlobalValue(symbol="PKPaymentNetworkVisa", optional=true)
-        public static native NSString Visa();
-        /**
-         * @since Available in iOS 10.1 and later.
-         */
-        @GlobalValue(symbol="PKPaymentNetworkJCB", optional=true)
-        public static native NSString JCB();
+        @GlobalValue(symbol="PKPaymentNetworkQuicPay", optional=true)
+        public static native NSString QuicPay();
         /**
          * @since Available in iOS 10.1 and later.
          */
         @GlobalValue(symbol="PKPaymentNetworkSuica", optional=true)
         public static native NSString Suica();
         /**
-         * @since Available in iOS 10.3 and later.
+         * @since Available in iOS 8.0 and later.
          */
-        @GlobalValue(symbol="PKPaymentNetworkQuicPay", optional=true)
-        public static native NSString QuicPay();
-        /**
-         * @since Available in iOS 10.3 and later.
-         */
-        @GlobalValue(symbol="PKPaymentNetworkIDCredit", optional=true)
-        public static native NSString IDCredit();
+        @GlobalValue(symbol="PKPaymentNetworkVisa", optional=true)
+        public static native NSString Visa();
         /*</values>*/
     }
 }
