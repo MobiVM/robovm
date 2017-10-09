@@ -36,6 +36,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -231,10 +232,16 @@ import org.robovm.apple.gameplaykit.*;
     public native SKShader getShader();
     @Property(selector = "setShader:")
     public native void setShader(SKShader v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "attributeValues")
-    public native NSDictionary<?, ?> getAttributeValues();
+    public native NSDictionary<NSString, SKAttributeValue> getAttributeValues();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "setAttributeValues:")
-    public native void setAttributeValues(NSDictionary<?, ?> v);
+    public native void setAttributeValues(NSDictionary<NSString, SKAttributeValue> v);
     @Property(selector = "particleZPosition")
     public native @MachineSizedFloat double getParticleZPosition();
     @Property(selector = "setParticleZPosition:")
@@ -284,8 +291,14 @@ import org.robovm.apple.gameplaykit.*;
     public native void advanceSimulationTime(double sec);
     @Method(selector = "resetSimulation")
     public native void resetSimulation();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "valueForAttributeNamed:")
     public native SKAttributeValue valueForAttribute(String key);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "setValue:forAttributeNamed:")
     public native void setValueForAttribute(SKAttributeValue value, String key);
     /*</methods>*/

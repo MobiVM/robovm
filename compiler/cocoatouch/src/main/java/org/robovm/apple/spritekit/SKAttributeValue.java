@@ -36,6 +36,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,9 +69,9 @@ import org.robovm.apple.gameplaykit.*;
     @Property(selector = "setVectorFloat2Value:")
     public native void setVectorFloat2Value(@ByVal VectorFloat2 v);
     @Property(selector = "vectorFloat3Value")
-    public native @ByVal SKVector3 getVectorFloat3Value();
+    public native @ByVal VectorFloat3 getVectorFloat3Value();
     @Property(selector = "setVectorFloat3Value:")
-    public native void setVectorFloat3Value(@ByVal SKVector3 v);
+    public native void setVectorFloat3Value(@ByVal VectorFloat3 v);
     @Property(selector = "vectorFloat4Value")
     public native @ByVal VectorFloat4 getVectorFloat4Value();
     @Property(selector = "setVectorFloat4Value:")
@@ -83,7 +84,7 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "valueWithVectorFloat2:")
     public static native SKAttributeValue valueWithVectorFloat2(@ByVal VectorFloat2 value);
     @Method(selector = "valueWithVectorFloat3:")
-    public static native SKAttributeValue valueWithVectorFloat3(@ByVal SKVector3 value);
+    public static native SKAttributeValue valueWithVectorFloat3(@ByVal VectorFloat3 value);
     @Method(selector = "valueWithVectorFloat4:")
     public static native SKAttributeValue valueWithVectorFloat4(@ByVal VectorFloat4 value);
     @Method(selector = "encodeWithCoder:")

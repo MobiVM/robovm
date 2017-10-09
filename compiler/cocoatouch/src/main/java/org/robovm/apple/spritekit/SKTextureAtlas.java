@@ -36,6 +36,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -101,7 +102,7 @@ import org.robovm.apple.gameplaykit.*;
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "atlasWithDictionary:")
-    protected static native @Pointer long create(NSDictionary<?, ?> properties);
+    protected static native @Pointer long create(NSDictionary<NSString, ?> properties);
     @Method(selector = "preloadTextureAtlases:withCompletionHandler:")
     public static native void preloadTextureAtlases(NSArray<SKTextureAtlas> textureAtlases, @Block Runnable completionHandler);
     /**

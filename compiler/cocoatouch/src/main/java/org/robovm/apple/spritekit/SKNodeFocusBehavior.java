@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,29 +40,34 @@ import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SKCropNode/*</name>*/ 
-    extends /*<extends>*/SKNode/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/SKNodeFocusBehavior/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    None(0L),
+    Occluding(1L),
+    Focusable(2L);
+    /*</values>*/
 
-    /*<ptr>*/public static class SKCropNodePtr extends Ptr<SKCropNode, SKCropNodePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SKCropNode.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public SKCropNode() {}
-    protected SKCropNode(Handle h, long handle) { super(h, handle); }
-    protected SKCropNode(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "maskNode")
-    public native SKNode getMaskNode();
-    @Property(selector = "setMaskNode:")
-    public native void setMaskNode(SKNode v);
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/SKNodeFocusBehavior/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/SKNodeFocusBehavior/*</name>*/ valueOf(long n) {
+        for (/*<name>*/SKNodeFocusBehavior/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/SKNodeFocusBehavior/*</name>*/.class.getName());
+    }
 }
