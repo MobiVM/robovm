@@ -18,6 +18,17 @@ classes:
         methods:
             '+canPreviewItem:':
                 trim_after_first_colon: true
+    QLFileThumbnailRequest: {} #since 11.0
+    QLThumbnailProvider: #since 11.0
+        methods:
+            '-provideThumbnailForFileRequest:completionHandler:':
+                trim_after_first_colon: true
+    QLThumbnailReply: #since 11.0
+        methods:
+            '+replyWithContextSize:drawingBlock:':
+                name: replyWithDrawing
+            '+replyWithContextSize:currentContextDrawingBlock:':
+                name: replyWithCurrentContextDrawing
 
 protocols:
     QLPreviewItem: # DONE
@@ -47,7 +58,12 @@ protocols:
                 name: getTransitionImage
             '-previewController:transitionViewForPreviewItem:':
                 name: getTransitionViewForPreviewItem
-
+    QLPreviewingController:
+        methods:
+            '-preparePreviewOfSearchableItemWithIdentifier:queryString:completionHandler:':
+                name: preparePreviewOfSearchableItem
+            '-preparePreviewOfFileAtURL:completionHandler:':
+                name: preparePreviewOfFile
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (QL.*):
