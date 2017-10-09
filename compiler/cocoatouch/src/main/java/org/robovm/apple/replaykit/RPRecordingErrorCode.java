@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,7 +48,11 @@ public enum /*<name>*/RPRecordingErrorCode/*</name>*/ implements NSErrorCode {
     Interrupted(-5806L),
     ContentResize(-5807L),
     BroadcastInvalidSession(-5808L),
-    SystemDormancy(-5809L);
+    SystemDormancy(-5809L),
+    Entitlements(-5810L),
+    ActivePhoneCall(-5811L),
+    FailedToSave(-5812L),
+    CarPlay(-5813L);
     /*</values>*/
 
     /*<bind>*/

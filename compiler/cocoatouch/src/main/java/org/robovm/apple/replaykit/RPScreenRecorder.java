@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -70,6 +71,16 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setCameraEnabled:")
     public native void setCameraEnabled(boolean v);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "cameraPosition")
+    public native RPCameraPosition getCameraPosition();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setCameraPosition:")
+    public native void setCameraPosition(RPCameraPosition v);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "cameraPreviewView")
@@ -93,6 +104,16 @@ import org.robovm.apple.uikit.*;
     public native void stopRecording(@Block VoidBlock2<RPPreviewViewController, NSError> handler);
     @Method(selector = "discardRecordingWithHandler:")
     public native void discardRecording(@Block Runnable handler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "startCaptureWithHandler:completionHandler:")
+    public native void startCapture(@Block VoidBlock3<CMSampleBuffer, RPSampleBufferType, NSError> captureHandler, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "stopCaptureWithHandler:")
+    public native void stopCaptureWithHandler(@Block VoidBlock1<NSError> handler);
     @Method(selector = "sharedRecorder")
     public static native RPScreenRecorder getSharedRecorder();
     /*</methods>*/

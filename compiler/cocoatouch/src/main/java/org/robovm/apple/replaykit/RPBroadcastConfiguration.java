@@ -29,17 +29,20 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 11.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("ReplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/RPBroadcastConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSCoding, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class RPBroadcastConfigurationPtr extends Ptr<RPBroadcastConfiguration, RPBroadcastConfigurationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(RPBroadcastConfiguration.class); }/*</bind>*/
@@ -60,6 +63,8 @@ import org.robovm.apple.uikit.*;
     public native NSDictionary<?, ?> getVideoCompressionProperties();
     @Property(selector = "setVideoCompressionProperties:")
     public native void setVideoCompressionProperties(NSDictionary<?, ?> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

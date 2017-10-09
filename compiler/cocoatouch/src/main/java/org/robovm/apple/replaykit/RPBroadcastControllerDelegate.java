@@ -29,10 +29,13 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 10.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/RPBroadcastControllerDelegate/*</name>*/ 
@@ -51,6 +54,11 @@ import org.robovm.apple.uikit.*;
     void didFinish(RPBroadcastController broadcastController, NSError error);
     @Method(selector = "broadcastController:didUpdateServiceInfo:")
     void didUpdateServiceInfo(RPBroadcastController broadcastController, NSDictionary<?, ?> serviceInfo);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "broadcastController:didUpdateBroadcastURL:")
+    void didUpdateBroadcastURL(RPBroadcastController broadcastController, NSURL broadcastURL);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

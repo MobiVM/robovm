@@ -1,5 +1,5 @@
 package: org.robovm.apple.replaykit
-include: [foundation.yaml, uikit.yaml]
+include: [foundation.yaml, uikit.yaml, coremedia]
 library: ReplayKit
 framework: ReplayKit
 clang_args: ['-x', 'objective-c']
@@ -11,12 +11,15 @@ enums:
     RPRecordingErrorCode: {}
     RPPreviewViewControllerMode: {}
     RPSampleBufferType: {}
-        
+    RPCameraPosition: {}
+
 classes:
     RPBroadcastController: {}
     RPBroadcastActivityViewController:
         methods:
             '+loadBroadcastActivityViewControllerWithHandler:':
+                name: load
+            '+loadBroadcastActivityViewControllerWithPreferredExtension:handler:':
                 name: load
     RPBroadcastConfiguration: {}
     RPBroadcastHandler: {}
@@ -55,7 +58,8 @@ classes:
                 property: true
             '+new':
                 exclude: true
-
+            '-startCaptureWithHandler:completionHandler:':
+                name: startCapture
 protocols:
     RPBroadcastActivityViewControllerDelegate:
         skip_adapter: true
@@ -69,6 +73,8 @@ protocols:
                 name: didFinish
             '-broadcastController:didUpdateServiceInfo:':
                 name: didUpdateServiceInfo
+            '-broadcastController:didUpdateBroadcastURL:':
+                name: didUpdateBroadcastURL
     RPPreviewViewControllerDelegate: # DONE
         methods:
             '-previewControllerDidFinish:':
@@ -85,6 +91,8 @@ protocols:
                 name: didStopRecording
             '-screenRecorderDidChangeAvailability:':
                 name: didChangeAvailability
+            '-screenRecorder:didStopRecordingWithPreviewViewController:error:':
+                name: didStopRecording
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

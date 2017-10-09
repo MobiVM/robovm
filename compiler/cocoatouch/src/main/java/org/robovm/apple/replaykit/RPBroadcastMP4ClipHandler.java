@@ -29,12 +29,15 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 11.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("ReplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/RPBroadcastMP4ClipHandler/*</name>*/ 
@@ -55,7 +58,7 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "processMP4ClipWithURL:setupInfo:finished:")
-    public native void processMP4Clip(NSURL mp4ClipURL, NSDictionary<?, ?> setupInfo, boolean finished);
+    public native void processMP4Clip(NSURL mp4ClipURL, NSDictionary<NSString, ?> setupInfo, boolean finished);
     @Method(selector = "finishedProcessingMP4ClipWithUpdatedBroadcastConfiguration:error:")
     public native void finishedProcessingMP4Clip(RPBroadcastConfiguration broadcastConfiguration, NSError error);
     /*</methods>*/
