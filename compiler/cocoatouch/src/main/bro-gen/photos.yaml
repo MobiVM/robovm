@@ -38,7 +38,8 @@ enums:
     PHVideoRequestOptionsVersion: {}
     PHVideoRequestOptionsDeliveryMode: {}
     PHLivePhotoFrameType: {}
-        
+    PHAssetPlaybackStyle: {} #since 11.0
+
 classes:
     PHLivePhotoRequestOptions: {}
     PHLivePhoto:
@@ -388,7 +389,7 @@ classes:
             '+changeDetailsFromFetchResult:toFetchResult:changedObjects:':
                 name: create
                 constructor: true
-                return_type: '<T extends PHObject> @Pointer long'
+                return_type: '@Pointer <T extends PHObject> long'
                 parameters:
                     fromResult:
                         type: PHFetchResult<T>

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,54 +39,18 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/PHAssetCollectionSubtype/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/PHAssetPlaybackStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    AlbumRegular(2L),
-    AlbumSyncedEvent(3L),
-    AlbumSyncedFaces(4L),
-    AlbumSyncedAlbum(5L),
-    AlbumImported(6L),
-    AlbumMyPhotoStream(100L),
-    AlbumCloudShared(101L),
-    SmartAlbumGeneric(200L),
-    SmartAlbumPanoramas(201L),
-    SmartAlbumVideos(202L),
-    SmartAlbumFavorites(203L),
-    SmartAlbumTimelapses(204L),
-    SmartAlbumAllHidden(205L),
-    SmartAlbumRecentlyAdded(206L),
-    SmartAlbumBursts(207L),
-    SmartAlbumSlomoVideos(208L),
-    SmartAlbumUserLibrary(209L),
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    SmartAlbumSelfPortraits(210L),
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    SmartAlbumScreenshots(211L),
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    SmartAlbumDepthEffect(212L),
-    /**
-     * @since Available in iOS 10.3 and later.
-     */
-    SmartAlbumLivePhotos(213L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    SmartAlbumAnimated(214L),
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    SmartAlbumLongExposures(215L),
-    Any(Bro.IS_32BIT ? 0x7fffffffL : 0x7fffffffffffffffL);
+    Unsupported(0L),
+    Image(1L),
+    ImageAnimated(2L),
+    LivePhoto(3L),
+    Video(4L),
+    VideoLooping(5L);
     /*</values>*/
 
     /*<bind>*/
@@ -96,15 +60,15 @@ public enum /*<name>*/PHAssetCollectionSubtype/*</name>*/ implements ValuedEnum 
 
     private final long n;
 
-    private /*<name>*/PHAssetCollectionSubtype/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/PHAssetPlaybackStyle/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/PHAssetCollectionSubtype/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PHAssetCollectionSubtype/*</name>*/ v : values()) {
+    public static /*<name>*/PHAssetPlaybackStyle/*</name>*/ valueOf(long n) {
+        for (/*<name>*/PHAssetPlaybackStyle/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/PHAssetCollectionSubtype/*</name>*/.class.getName());
+            + /*<name>*/PHAssetPlaybackStyle/*</name>*/.class.getName());
     }
 }

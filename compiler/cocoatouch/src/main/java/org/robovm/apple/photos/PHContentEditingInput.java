@@ -67,6 +67,11 @@ import org.robovm.apple.imageio.*;
     public native CLLocation getLocation();
     @Property(selector = "uniformTypeIdentifier")
     public native String getUniformTypeIdentifier();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "playbackStyle")
+    public native PHAssetPlaybackStyle getPlaybackStyle();
     @Property(selector = "adjustmentData")
     public native PHAdjustmentData getAdjustmentData();
     @WeaklyLinked

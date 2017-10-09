@@ -45,7 +45,7 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Library("Photos") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHLivePhoto/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class PHLivePhotoPtr extends Ptr<PHLivePhoto, PHLivePhotoPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(PHLivePhoto.class); }/*</bind>*/
@@ -56,10 +56,14 @@ import org.robovm.apple.imageio.*;
     public PHLivePhoto() {}
     protected PHLivePhoto(Handle h, long handle) { super(h, handle); }
     protected PHLivePhoto(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public PHLivePhoto(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "size")
     public native @ByVal CGSize getSize();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -79,12 +83,12 @@ import org.robovm.apple.imageio.*;
     @GlobalValue(symbol="PHLivePhotoInfoCancelledKey", optional=true)
     public static native String InfoCancelledKey();
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     @GlobalValue(symbol="PHLivePhotoShouldRenderAtPlaybackTime", optional=true)
     public static native String ShouldRenderAtPlaybackTime();
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     @GlobalValue(symbol="PHLivePhotoShouldRenderAtPlaybackTime", optional=true)
     public static native void ShouldRenderAtPlaybackTime(String v);
@@ -93,5 +97,9 @@ import org.robovm.apple.imageio.*;
     public static native int requestLivePhoto(NSArray<NSURL> fileURLs, UIImage image, @ByVal CGSize targetSize, PHImageContentMode contentMode, @Block VoidBlock2<PHLivePhoto, NSDictionary<?, ?>> resultHandler);
     @Method(selector = "cancelLivePhotoRequestWithRequestID:")
     public static native void cancelLivePhotoRequest(int requestID);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
