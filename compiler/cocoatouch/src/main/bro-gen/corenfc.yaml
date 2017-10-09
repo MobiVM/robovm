@@ -1,0 +1,92 @@
+package: org.robovm.apple.corenfc
+include: [foundation, dispatch]
+library: CoreNFC
+framework: CoreNFC
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/CoreNFC.framework/Headers/CoreNFC.h
+typedefs: {}
+
+enums:
+    NFCReaderError: { nserror: true, prefix: NFC}
+    NFCTagType: {}
+    NFCTypeNameFormat: {}
+
+
+classes:
+    NFCISO15693CustomCommandConfiguration: #since 11.0
+        methods:
+            '-initWithManufacturerCode:customCommandCode:requestParameters:':
+                name: init
+            '-initWithManufacturerCode:customCommandCode:requestParameters:maximumRetries:retryInterval:':
+                name: init
+    NFCISO15693ReadMultipleBlocksConfiguration: #since 11.0
+        methods:
+            '-initWithRange:chunkSize:':
+                name: init
+            '-initWithRange:chunkSize:maximumRetries:retryInterval:':
+                name: init
+    NFCISO15693ReaderSession: #since 11.0
+        methods:
+            '-initWithDelegate:queue:':
+                name: init
+    NFCNDEFMessage: {} #since 11.0
+    NFCNDEFPayload: {} #since 11.0
+    NFCNDEFReaderSession: #since 11.0
+        methods:
+            '-initWithDelegate:queue:invalidateAfterFirstRead:':
+                name: init
+    NFCReaderSession: {} #since 11.0
+    NFCTagCommandConfiguration: {} #since 11.0
+
+
+
+protocols:
+    NFCISO15693Tag: #since 11.0
+        methods:
+            '-sendCustomCommandWithConfiguration:completionHandler:':
+                name: sendCustomCommand
+            '-readMultipleBlocksWithConfiguration:completionHandler:':
+                name: readMultipleBlocks
+    NFCNDEFReaderSessionDelegate: #since 11.0
+        methods:
+            '-readerSession:didInvalidateWithError:':
+                name: didInvalidateWithError
+            '-readerSession:didDetectNDEFs:':
+                name: didDetectNDEFs
+    NFCReaderSession: { name: NFCReaderSessionProtocol } #since 11.0
+    NFCReaderSessionDelegate: #since 11.0
+        methods:
+            '-readerSession:didDetectTags:':
+                name: didDetectTags
+            '-readerSession:didInvalidateWithError:':
+                name: didInvalidateWithError
+    NFCTag: {} #since 11.0
+
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (NFC.*):
+        class: CoreNFC
+        name: 'Function__#{g[0]}'
+
+values:
+    NFCErrorDomain:
+        class: NFCReaderError
+        name: getClassDomain
+
+    NFCISO15693TagResponseErrorKey:
+        class: NFCReaderError
+        name: ISO15693TagResponseErrorKey
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (NFC.*):
+        class: CoreNFC
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (NFC.*):
+        class: CoreNFC
+        name: 'Constant__#{g[0]}'
