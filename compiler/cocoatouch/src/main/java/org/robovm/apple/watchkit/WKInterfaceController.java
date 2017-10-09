@@ -115,6 +115,10 @@ import org.robovm.apple.corelocation.*;
     public native void updateUserActivity(String type, NSDictionary<?, ?> userInfo, NSURL webpageURL);
     @Method(selector = "invalidateUserActivity")
     public native void invalidateUserActivity();
+    @Method(selector = "beginGlanceUpdates")
+    public native void beginGlanceUpdates();
+    @Method(selector = "endGlanceUpdates")
+    public native void endGlanceUpdates();
     /**
      * @since Available in iOS 8.2 and later.
      * @deprecated Deprecated in iOS 10.0.
