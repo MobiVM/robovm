@@ -34,42 +34,133 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit")/*</annotations>*/
+@Marshaler(/*<name>*/SKCloudServiceSetupOptions/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKCloudServiceSetupOptions/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/NSDictionaryWrapper/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(SKCloudServiceSetupOptions.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
+    /*<marshalers>*/
+    public static class Marshaler {
+        @MarshalsPointer
+        public static SKCloudServiceSetupOptions toObject(Class<SKCloudServiceSetupOptions> cls, long handle, long flags) {
+            NSDictionary o = (NSDictionary) NSObject.Marshaler.toObject(NSDictionary.class, handle, flags);
+            if (o == null) {
+                return null;
+            }
+            return new SKCloudServiceSetupOptions(o);
+        }
+        @MarshalsPointer
+        public static long toNative(SKCloudServiceSetupOptions o, long flags) {
+            if (o == null) {
+                return 0L;
+            }
+            return NSObject.Marshaler.toNative(o.data, flags);
+        }
+    }
+    public static class AsListMarshaler {
+        @MarshalsPointer
+        public static List<SKCloudServiceSetupOptions> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+            NSArray<NSDictionary> o = (NSArray<NSDictionary>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
+            if (o == null) {
+                return null;
+            }
+            List<SKCloudServiceSetupOptions> list = new ArrayList<>();
+            for (int i = 0; i < o.size(); i++) {
+                list.add(new SKCloudServiceSetupOptions(o.get(i)));
+            }
+            return list;
+        }
+        @MarshalsPointer
+        public static long toNative(List<SKCloudServiceSetupOptions> l, long flags) {
+            if (l == null) {
+                return 0L;
+            }
+            NSArray<NSDictionary> array = new NSMutableArray<>();
+            for (SKCloudServiceSetupOptions i : l) {
+                array.add(i.getDictionary());
+            }
+            return NSObject.Marshaler.toNative(array, flags);
+        }
+    }
+    /*</marshalers>*/
+
+    /*<constructors>*/
+    SKCloudServiceSetupOptions(NSDictionary data) {
+        super(data);
+    }
+    public SKCloudServiceSetupOptions() {}
+    /*</constructors>*/
+
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.1 and later.
-     */
-    @GlobalValue(symbol="SKCloudServiceSetupOptionsActionKey", optional=true)
-    public static native NSString OptionsActionKey();
-    /**
-     * @since Available in iOS 10.1 and later.
-     */
-    @GlobalValue(symbol="SKCloudServiceSetupOptionsITunesItemIdentifierKey", optional=true)
-    public static native NSString OptionsITunesItemIdentifierKey();
-    /**
-     * @since Available in iOS 10.3 and later.
-     */
-    @GlobalValue(symbol="SKCloudServiceSetupOptionsAffiliateTokenKey", optional=true)
-    public static native NSString OptionsAffiliateTokenKey();
-    /**
-     * @since Available in iOS 10.3 and later.
-     */
-    @GlobalValue(symbol="SKCloudServiceSetupOptionsCampaignTokenKey", optional=true)
-    public static native NSString OptionsCampaignTokenKey();
-    /**
-     * @since Available in iOS 10.1 and later.
-     */
-    @GlobalValue(symbol="SKCloudServiceSetupActionSubscribe", optional=true)
-    public static native NSString ActionSubscribe();
+    public boolean has(NSString key) {
+        return data.containsKey(key);
+    }
+    public NSObject get(NSString key) {
+        if (has(key)) {
+            return data.get(key);
+        }
+        return null;
+    }
+    public SKCloudServiceSetupOptions set(NSString key, NSObject value) {
+        data.put(key, value);
+        return this;
+    }
     /*</methods>*/
+    
+    /*<keys>*/
+    @Library("StoreKit")
+    public static class Keys {
+        static { Bro.bind(Keys.class); }
+        /**
+         * @since Available in iOS 10.1 and later.
+         */
+        @GlobalValue(symbol="SKCloudServiceSetupOptionsActionKey", optional=true)
+        public static native NSString OptionsActionKey();
+        /**
+         * @since Available in iOS 10.1 and later.
+         */
+        @GlobalValue(symbol="SKCloudServiceSetupOptionsITunesItemIdentifierKey", optional=true)
+        public static native NSString OptionsITunesItemIdentifierKey();
+        /**
+         * @since Available in iOS 10.3 and later.
+         */
+        @GlobalValue(symbol="SKCloudServiceSetupOptionsAffiliateTokenKey", optional=true)
+        public static native NSString OptionsAffiliateTokenKey();
+        /**
+         * @since Available in iOS 10.3 and later.
+         */
+        @GlobalValue(symbol="SKCloudServiceSetupOptionsCampaignTokenKey", optional=true)
+        public static native NSString OptionsCampaignTokenKey();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="SKCloudServiceSetupOptionsMessageIdentifierKey", optional=true)
+        public static native NSString OptionsMessageIdentifierKey();
+        /**
+         * @since Available in iOS 10.1 and later.
+         */
+        @GlobalValue(symbol="SKCloudServiceSetupActionSubscribe", optional=true)
+        public static native NSString ActionSubscribe();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="SKCloudServiceSetupMessageIdentifierJoin", optional=true)
+        public static native NSString MessageIdentifierJoin();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="SKCloudServiceSetupMessageIdentifierConnect", optional=true)
+        public static native NSString MessageIdentifierConnect();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="SKCloudServiceSetupMessageIdentifierAddMusic", optional=true)
+        public static native NSString MessageIdentifierAddMusic();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="SKCloudServiceSetupMessageIdentifierPlayMusic", optional=true)
+        public static native NSString MessageIdentifierPlayMusic();
+    }
+    /*</keys>*/
 }

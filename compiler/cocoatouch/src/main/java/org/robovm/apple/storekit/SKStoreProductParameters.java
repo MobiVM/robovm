@@ -187,6 +187,11 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="SKStoreProductParameterITunesItemIdentifier", optional=true)
         public static native NSString ITunesItemIdentifier();
         /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="SKStoreProductParameterProductIdentifier", optional=true)
+        public static native NSString ProductIdentifier();
+        /**
          * @since Available in iOS 8.0 and later.
          */
         @GlobalValue(symbol="SKStoreProductParameterAffiliateToken", optional=true)

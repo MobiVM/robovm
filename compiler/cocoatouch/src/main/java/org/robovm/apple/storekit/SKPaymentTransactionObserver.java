@@ -72,6 +72,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "paymentQueue:updatedDownloads:")
     void updatedDownloads(SKPaymentQueue queue, NSArray<SKDownload> downloads);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "paymentQueue:shouldAddStorePayment:forProduct:")
+    boolean shouldAddStorePayment(SKPaymentQueue queue, SKPayment payment, SKProduct product);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
