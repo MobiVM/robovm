@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("UserNotifications") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UNNotificationResponse/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UNNotificationResponsePtr extends Ptr<UNNotificationResponse, UNNotificationResponsePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UNNotificationResponse.class); }/*</bind>*/
@@ -47,15 +47,22 @@ import org.robovm.apple.foundation.*;
     protected UNNotificationResponse() {}
     protected UNNotificationResponse(Handle h, long handle) { super(h, handle); }
     protected UNNotificationResponse(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public UNNotificationResponse(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "notification")
     public native UNNotification getNotification();
     @Property(selector = "actionIdentifier")
     public native String getActionIdentifier();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
