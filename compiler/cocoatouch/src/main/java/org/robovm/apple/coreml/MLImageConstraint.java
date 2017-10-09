@@ -13,22 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.arkit;
+package org.robovm.apple.coreml;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
-import java.util.*;
 import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
-import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corevideo.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -37,23 +29,25 @@ import org.robovm.apple.corevideo.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLPredictionOptions/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLImageConstraint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MLPredictionOptionsPtr extends Ptr<MLPredictionOptions, MLPredictionOptionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLPredictionOptions.class); }/*</bind>*/
+    /*<ptr>*/public static class MLImageConstraintPtr extends Ptr<MLImageConstraint, MLImageConstraintPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLImageConstraint.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MLPredictionOptions() {}
-    protected MLPredictionOptions(Handle h, long handle) { super(h, handle); }
-    protected MLPredictionOptions(SkipInit skipInit) { super(skipInit); }
+    public MLImageConstraint() {}
+    protected MLImageConstraint(Handle h, long handle) { super(h, handle); }
+    protected MLImageConstraint(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "usesCPUOnly")
-    public native boolean usesCPUOnly();
-    @Property(selector = "setUsesCPUOnly:")
-    public native void setUsesCPUOnly(boolean v);
+    @Property(selector = "pixelsHigh")
+    public native @MachineSizedSInt long getPixelsHigh();
+    @Property(selector = "pixelsWide")
+    public native @MachineSizedSInt long getPixelsWide();
+    @Property(selector = "pixelFormatType")
+    public native int getPixelFormatType();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

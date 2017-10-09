@@ -1,4 +1,4 @@
-package: org.robovm.apple.arkit
+package: org.robovm.apple.coreml
 include: [foundation, corevideo]
 library: CoreML
 framework: CoreML

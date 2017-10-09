@@ -13,22 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.arkit;
+package org.robovm.apple.coreml;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
-import java.util.*;
 import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
-import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corevideo.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -37,25 +29,23 @@ import org.robovm.apple.corevideo.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLImageConstraint/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLMultiArrayConstraint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MLImageConstraintPtr extends Ptr<MLImageConstraint, MLImageConstraintPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLImageConstraint.class); }/*</bind>*/
+    /*<ptr>*/public static class MLMultiArrayConstraintPtr extends Ptr<MLMultiArrayConstraint, MLMultiArrayConstraintPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLMultiArrayConstraint.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MLImageConstraint() {}
-    protected MLImageConstraint(Handle h, long handle) { super(h, handle); }
-    protected MLImageConstraint(SkipInit skipInit) { super(skipInit); }
+    public MLMultiArrayConstraint() {}
+    protected MLMultiArrayConstraint(Handle h, long handle) { super(h, handle); }
+    protected MLMultiArrayConstraint(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "pixelsHigh")
-    public native @MachineSizedSInt long getPixelsHigh();
-    @Property(selector = "pixelsWide")
-    public native @MachineSizedSInt long getPixelsWide();
-    @Property(selector = "pixelFormatType")
-    public native int getPixelFormatType();
+    @Property(selector = "shape")
+    public native NSArray<NSNumber> getShape();
+    @Property(selector = "dataType")
+    public native MLMultiArrayDataType getDataType();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
