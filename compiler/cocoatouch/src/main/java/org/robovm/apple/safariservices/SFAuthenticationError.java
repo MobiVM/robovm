@@ -67,6 +67,8 @@ public enum /*<name>*/SFAuthenticationError/*</name>*/ implements NSErrorCode {
             + /*<name>*/SFAuthenticationError/*</name>*/.class.getName());
     }
 
+    // bind wrap to include it in compilation as long as nserror enum is used 
+    static { Bro.bind(NSErrorWrap.class); }
     @StronglyLinked
     public static class NSErrorWrap extends NSError {
         protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}

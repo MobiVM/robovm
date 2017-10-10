@@ -82,6 +82,8 @@ public enum /*<name>*/GKVoiceChatServiceError/*</name>*/ implements NSErrorCode 
             + /*<name>*/GKVoiceChatServiceError/*</name>*/.class.getName());
     }
 
+    // bind wrap to include it in compilation as long as nserror enum is used 
+    static { Bro.bind(NSErrorWrap.class); }
     @StronglyLinked
     public static class NSErrorWrap extends NSError {
         protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
