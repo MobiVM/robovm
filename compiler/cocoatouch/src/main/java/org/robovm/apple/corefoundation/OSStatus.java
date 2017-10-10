@@ -29,7 +29,7 @@ public final class OSStatus {
 
     /*<ptr>*/
     public static class OSStatusPtr extends Struct {
-        @StructMember(0) native @Pointer int getValue();
+        @StructMember(0) native int getValue();
         @StructMember(0) native void setValue(int value);
 
         public OSStatus get() {
