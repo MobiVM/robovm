@@ -1,0 +1,176 @@
+package: org.robovm.apple.vision
+include: [foundation, coreml, coregraphics, corevideo, metal, coreimage, imageio]
+library: Vision
+framework: Vision
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/Vision.framework/Headers/Vision.h
+typedefs: {}
+
+enums:
+    VNImageCropAndScaleOption: {}
+    VNErrorCode: {nserror: true, prefix: VNError}
+    VNRequestTrackingLevel: {}
+
+classes:
+    VNBarcodeObservation: {} #since 11.0
+    VNClassificationObservation: {} #since 11.0
+    VNCoreMLFeatureValueObservation: {} #since 11.0
+    VNCoreMLModel: #since 11.0
+        methods:
+            '+modelForMLModel:error:':
+                #trim_after_first_colon: true
+                throws: NSErrorException
+                name: create
+                constructor: true
+    VNCoreMLRequest: #since 11.0
+        methods:
+            '-initWithModel:completionHandler:':
+                name: init
+    VNDetectBarcodesRequest: {} #since 11.0
+    VNDetectFaceLandmarksRequest: {} #since 11.0
+    VNDetectFaceRectanglesRequest: {} #since 11.0
+    VNDetectHorizonRequest: {} #since 11.0
+    VNDetectRectanglesRequest: {} #since 11.0
+    VNDetectTextRectanglesRequest: {} #since 11.0
+    VNDetectedObjectObservation: {} #since 11.0
+    VNFaceLandmarkRegion: {} #since 11.0
+    VNFaceLandmarkRegion2D: {} #since 11.0
+    VNFaceLandmarks: {} #since 11.0
+    VNFaceLandmarks2D: {} #since 11.0
+    VNFaceObservation: {} #since 11.0
+    VNHomographicImageRegistrationRequest: {} #since 11.0
+    VNHorizonObservation: {} #since 11.0
+    VNImageAlignmentObservation: {} #since 11.0
+    VNImageBasedRequest: {} #since 11.0
+    VNImageHomographicAlignmentObservation: {} #since 11.0
+    VNImageRegistrationRequest: {} #since 11.0
+    VNImageRequestHandler: #since 11.0
+        methods:
+            '-init.*':
+                name: init
+            '-performRequests:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+    VNImageTranslationAlignmentObservation: {} #since 11.0
+    VNObservation: {} #since 11.0
+    VNPixelBufferObservation: {} #since 11.0
+    VNRectangleObservation: {} #since 11.0
+    VNRequest: {} #since 11.0
+    VNSequenceRequestHandler: #since 11.0
+        methods:
+            '-performRequests:onCVPixelBuffer:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-performRequests:onCVPixelBuffer:orientation:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-performRequests:onCGImage:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-performRequests:onCGImage:orientation:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-performRequests:onCIImage:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-performRequests:onCIImage:orientation:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-performRequests:onImageURL:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-performRequests:onImageURL:orientation:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-performRequests:onImageData:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+            '-performRequests:onImageData:orientation:error:':
+                trim_after_first_colon: true
+                throws: NSErrorException
+    VNTargetedImageRequest: #since 11.0
+        methods:
+            '-init.*':
+                name: init
+    VNTextObservation: {} #since 11.0
+    VNTrackObjectRequest: #since 11.0
+        methods:
+            '-initWithDetectedObjectObservation:completionHandler:':
+                name: init
+    VNTrackRectangleRequest: #since 11.0
+        methods:
+            '-initWithRectangleObservation:completionHandler:':
+                name: init
+    VNTrackingRequest: {} #since 11.0
+    VNTranslationalImageRegistrationRequest: {} #since 11.0
+
+
+protocols:
+    VNFaceObservationAccepting: {} #since 11.0
+
+functions:
+
+    VNNormalizedRectIsIdentityRect:
+        class: VNUtils
+        name: getNormalizedRectIsIdentityRect
+
+    VNImagePointForNormalizedPoint:
+        class: VNUtils
+        name: getImagePointForNormalizedPoint
+
+    VNImageRectForNormalizedRect:
+        class: VNUtils
+        name: getImageRectForNormalizedRect
+
+    VNNormalizedRectForImageRect:
+        class: VNUtils
+        name: getNormalizedRectForImageRect
+
+    VNNormalizedFaceBoundingBoxPointForLandmarkPoint:
+        class: VNUtils
+        name: getNormalizedFaceBoundingBoxPointForLandmarkPoint
+
+    VNImagePointForFaceLandmarkPoint:
+        class: VNUtils
+        name: getImagePointForFaceLandmarkPoint
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (VN.*):
+        class: Vision
+        name: 'Function__#{g[0]}'
+
+values:
+    VNErrorDomain:
+        class: VNErrorCode
+        name: getClassDomain
+
+    VNBarcodeSymbology(.*):
+        enum: VNBarcodeSymbology
+        name: '#{g[0]}'
+        type: NSString
+
+    VNVisionVersionNumber:
+        class: VNUtils
+        readonly: true
+        name: getVisionVerison
+
+    VNNormalizedIdentityRect:
+        class: VNUtils
+        name: getNormalizedIdentityRect
+
+    VNImageOption(.*):
+        dictionary: VNImageOption
+        name: '#{g[0]}'
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (VN.*):
+        class: Vision
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (VN.*):
+        class: Vision
+        name: 'Constant__#{g[0]}'
