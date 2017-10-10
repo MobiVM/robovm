@@ -60,12 +60,6 @@ import org.robovm.apple.foundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @GlobalValue(symbol="CSIndexErrorDomain", optional=true)
-    public static native String getClassDomain();
-    
     @Method(selector = "initWithName:")
     protected native @Pointer long initWithName(String name);
     @Method(selector = "initWithName:protectionClass:")

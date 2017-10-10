@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("CoreSpotlight") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CSSearchableItem/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CSSearchableItemPtr extends Ptr<CSSearchableItem, CSSearchableItemPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CSSearchableItem.class); }/*</bind>*/
@@ -49,6 +49,8 @@ import org.robovm.apple.foundation.*;
     protected CSSearchableItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithUniqueIdentifier:domainIdentifier:attributeSet:")
     public CSSearchableItem(String uniqueIdentifier, String domainIdentifier, CSSearchableItemAttributeSet attributeSet) { super((SkipInit) null); initObject(init(uniqueIdentifier, domainIdentifier, attributeSet)); }
+    @Method(selector = "initWithCoder:")
+    public CSSearchableItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "uniqueIdentifier")
@@ -67,6 +69,8 @@ import org.robovm.apple.foundation.*;
     public native CSSearchableItemAttributeSet getAttributeSet();
     @Property(selector = "setAttributeSet:")
     public native void setAttributeSet(CSSearchableItemAttributeSet v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -93,5 +97,9 @@ import org.robovm.apple.foundation.*;
     
     @Method(selector = "initWithUniqueIdentifier:domainIdentifier:attributeSet:")
     protected native @Pointer long init(String uniqueIdentifier, String domainIdentifier, CSSearchableItemAttributeSet attributeSet);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

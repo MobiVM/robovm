@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("CoreSpotlight") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CSPerson/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CSPersonPtr extends Ptr<CSPerson, CSPersonPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CSPerson.class); }/*</bind>*/
@@ -49,6 +49,8 @@ import org.robovm.apple.foundation.*;
     protected CSPerson(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDisplayName:handles:handleIdentifier:")
     public CSPerson(String displayName, NSArray<NSString> handles, String handleIdentifier) { super((SkipInit) null); initObject(init(displayName, handles, handleIdentifier)); }
+    @Method(selector = "initWithCoder:")
+    public CSPerson(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "displayName")
@@ -61,10 +63,16 @@ import org.robovm.apple.foundation.*;
     public native String getContactIdentifier();
     @Property(selector = "setContactIdentifier:")
     public native void setContactIdentifier(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDisplayName:handles:handleIdentifier:")
     protected native @Pointer long init(String displayName, NSArray<NSString> handles, String handleIdentifier);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

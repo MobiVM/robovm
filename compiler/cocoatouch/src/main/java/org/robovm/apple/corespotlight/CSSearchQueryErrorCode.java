@@ -35,8 +35,8 @@ import org.robovm.apple.foundation.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/CSSearchQueryErrorCode/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("CoreSpotlight")/*</annotations>*/
+public enum /*<name>*/CSSearchQueryErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Unknown(-2000L),
     IndexUnreachable(-2001L),
@@ -44,10 +44,16 @@ public enum /*<name>*/CSSearchQueryErrorCode/*</name>*/ implements ValuedEnum {
     Cancelled(-2003L);
     /*</values>*/
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(CSSearchQueryErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="CSSearchQueryErrorDomain", optional=true)
+    public static native String getClassDomain();
+    /*</methods>*/
 
     private final long n;
 
@@ -59,7 +65,25 @@ public enum /*<name>*/CSSearchQueryErrorCode/*</name>*/ implements ValuedEnum {
                 return v;
             }
         }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+        throw new IllegalArgumentException("No constant with value " + n + " found in "
             + /*<name>*/CSSearchQueryErrorCode/*</name>*/.class.getName());
+    }
+
+    @StronglyLinked
+    public static class NSErrorWrap extends NSError {
+        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
+
+        @Override public NSErrorCode getErrorCode() {
+             try {
+                 return  /*<name>*/CSSearchQueryErrorCode/*</name>*/.valueOf(getCode());
+             } catch (IllegalArgumentException e) {
+                 return null;
+             }
+         }
+
+        public static String getClassDomain() {
+            /** must be incerted in value section */
+            return /*<name>*/CSSearchQueryErrorCode/*</name>*/.getClassDomain();
+        }
     }
 }

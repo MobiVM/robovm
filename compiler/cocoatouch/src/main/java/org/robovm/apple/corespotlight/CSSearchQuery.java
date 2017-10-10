@@ -70,12 +70,6 @@ import org.robovm.apple.foundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="CSSearchQueryErrorDomain", optional=true)
-    public static native String getClassDomain();
-    
     @Method(selector = "initWithQueryString:attributes:")
     protected native @Pointer long init(String queryString, NSArray<NSString> attributes);
     @Method(selector = "start")

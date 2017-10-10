@@ -11,8 +11,8 @@ private_typedefs:
     NSFileProtectionType: NSString
 
 enums:
-    CSIndexErrorCode: {} #since 9.0
-    CSSearchQueryErrorCode: {} #since 10.0
+    CSIndexErrorCode: { nserror: true} #since 9.0
+    CSSearchQueryErrorCode: { nserror: true } #since 10.0
 
 classes:
     CSCustomAttributeKey: #since 9.0
@@ -71,11 +71,11 @@ functions:
 values:
 
     CSIndexErrorDomain:
-        class: CSSearchableIndex
+        class: CSIndexErrorCode
         name: getClassDomain
 
     CSSearchQueryErrorDomain:
-        class: CSSearchQuery
+        class: CSSearchQueryErrorCode
         name: getClassDomain
 
     CS(SearchableItemActionType|SearchableItemActivityIdentifier|QueryContinuationActionType|SearchQueryString):

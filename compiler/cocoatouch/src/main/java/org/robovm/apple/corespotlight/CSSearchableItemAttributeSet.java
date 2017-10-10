@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("CoreSpotlight") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CSSearchableItemAttributeSet/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CSSearchableItemAttributeSetPtr extends Ptr<CSSearchableItemAttributeSet, CSSearchableItemAttributeSetPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CSSearchableItemAttributeSet.class); }/*</bind>*/
@@ -49,6 +49,8 @@ import org.robovm.apple.foundation.*;
     protected CSSearchableItemAttributeSet(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithItemContentType:")
     public CSSearchableItemAttributeSet(String itemContentType) { super((SkipInit) null); initObject(initWithItemContentType(itemContentType)); }
+    @Method(selector = "initWithCoder:")
+    public CSSearchableItemAttributeSet(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "displayName")
@@ -841,6 +843,8 @@ import org.robovm.apple.foundation.*;
     public native NSNumber getGPSDifferental();
     @Property(selector = "setGPSDifferental:")
     public native void setGPSDifferental(NSNumber v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -881,5 +885,9 @@ import org.robovm.apple.foundation.*;
     public native void setValue(NSSecureCoding value, CSCustomAttributeKey key);
     @Method(selector = "valueForCustomKey:")
     public native NSSecureCoding valueForCustomKey(CSCustomAttributeKey key);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

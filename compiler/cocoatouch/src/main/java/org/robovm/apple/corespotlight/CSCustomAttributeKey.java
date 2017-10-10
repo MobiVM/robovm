@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("CoreSpotlight") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CSCustomAttributeKey/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CSCustomAttributeKeyPtr extends Ptr<CSCustomAttributeKey, CSCustomAttributeKeyPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CSCustomAttributeKey.class); }/*</bind>*/
@@ -51,6 +51,8 @@ import org.robovm.apple.foundation.*;
     public CSCustomAttributeKey(String keyName) { super((SkipInit) null); initObject(initWithKeyName(keyName)); }
     @Method(selector = "initWithKeyName:searchable:searchableByDefault:unique:multiValued:")
     public CSCustomAttributeKey(String keyName, boolean searchable, boolean searchableByDefault, boolean unique, boolean multiValued) { super((SkipInit) null); initObject(init(keyName, searchable, searchableByDefault, unique, multiValued)); }
+    @Method(selector = "initWithCoder:")
+    public CSCustomAttributeKey(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "keyName")
@@ -63,6 +65,8 @@ import org.robovm.apple.foundation.*;
     public native boolean isUnique();
     @Property(selector = "isMultiValued")
     public native boolean isMultiValued();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -70,5 +74,9 @@ import org.robovm.apple.foundation.*;
     protected native @Pointer long initWithKeyName(String keyName);
     @Method(selector = "initWithKeyName:searchable:searchableByDefault:unique:multiValued:")
     protected native @Pointer long init(String keyName, boolean searchable, boolean searchableByDefault, boolean unique, boolean multiValued);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
