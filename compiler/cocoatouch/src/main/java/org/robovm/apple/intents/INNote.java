@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INNote/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INNotePtr extends Ptr<INNote, INNotePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INNote.class); }/*</bind>*/
@@ -51,6 +51,8 @@ import org.robovm.apple.corelocation.*;
     protected INNote(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTitle:contents:groupName:createdDateComponents:modifiedDateComponents:identifier:")
     public INNote(INSpeakableString title, NSArray<INNoteContent> contents, INSpeakableString groupName, NSDateComponents createdDateComponents, NSDateComponents modifiedDateComponents, String identifier) { super((SkipInit) null); initObject(init(title, contents, groupName, createdDateComponents, modifiedDateComponents, identifier)); }
+    @Method(selector = "initWithCoder:")
+    public INNote(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "title")
@@ -65,10 +67,16 @@ import org.robovm.apple.corelocation.*;
     public native NSDateComponents getModifiedDateComponents();
     @Property(selector = "identifier")
     public native String getIdentifier();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithTitle:contents:groupName:createdDateComponents:modifiedDateComponents:identifier:")
     protected native @Pointer long init(INSpeakableString title, NSArray<INNoteContent> contents, INSpeakableString groupName, NSDateComponents createdDateComponents, NSDateComponents modifiedDateComponents, String identifier);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -37,8 +37,8 @@ import org.robovm.apple.corelocation.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/INIntentErrorCode/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("Intents")/*</annotations>*/
+public enum /*<name>*/INIntentErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     InteractionOperationNotSupported(1900L),
     DonatingInteraction(1901L),
@@ -55,10 +55,16 @@ public enum /*<name>*/INIntentErrorCode/*</name>*/ implements ValuedEnum {
     ExtensionBringUpFailed(5001L);
     /*</values>*/
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(INIntentErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @GlobalValue(symbol="INIntentErrorDomain", optional=true)
+    public static native String getClassDomain();
+    /*</methods>*/
 
     private final long n;
 
@@ -70,7 +76,25 @@ public enum /*<name>*/INIntentErrorCode/*</name>*/ implements ValuedEnum {
                 return v;
             }
         }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+        throw new IllegalArgumentException("No constant with value " + n + " found in "
             + /*<name>*/INIntentErrorCode/*</name>*/.class.getName());
+    }
+
+    @StronglyLinked
+    public static class NSErrorWrap extends NSError {
+        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
+
+        @Override public NSErrorCode getErrorCode() {
+             try {
+                 return  /*<name>*/INIntentErrorCode/*</name>*/.valueOf(getCode());
+             } catch (IllegalArgumentException e) {
+                 return null;
+             }
+         }
+
+        public static String getClassDomain() {
+            /** must be incerted in value section */
+            return /*<name>*/INIntentErrorCode/*</name>*/.getClassDomain();
+        }
     }
 }

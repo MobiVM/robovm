@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INRestaurant/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INRestaurantPtr extends Ptr<INRestaurant, INRestaurantPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INRestaurant.class); }/*</bind>*/
@@ -51,6 +51,8 @@ import org.robovm.apple.corelocation.*;
     protected INRestaurant(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLocation:name:vendorIdentifier:restaurantIdentifier:")
     public INRestaurant(CLLocation location, String name, String vendorIdentifier, String restaurantIdentifier) { super((SkipInit) null); initObject(init(location, name, vendorIdentifier, restaurantIdentifier)); }
+    @Method(selector = "initWithCoder:")
+    public INRestaurant(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "location")
@@ -69,10 +71,16 @@ import org.robovm.apple.corelocation.*;
     public native String getRestaurantIdentifier();
     @Property(selector = "setRestaurantIdentifier:")
     public native void setRestaurantIdentifier(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithLocation:name:vendorIdentifier:restaurantIdentifier:")
     protected native @Pointer long init(CLLocation location, String name, String vendorIdentifier, String restaurantIdentifier);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

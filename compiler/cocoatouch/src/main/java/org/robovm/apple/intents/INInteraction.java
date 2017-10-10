@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INInteraction/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INInteractionPtr extends Ptr<INInteraction, INInteractionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INInteraction.class); }/*</bind>*/
@@ -51,6 +51,8 @@ import org.robovm.apple.corelocation.*;
     protected INInteraction(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIntent:response:")
     public INInteraction(INIntent intent, INIntentResponse response) { super((SkipInit) null); initObject(init(intent, response)); }
+    @Method(selector = "initWithCoder:")
+    public INInteraction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "intent")
@@ -75,6 +77,8 @@ import org.robovm.apple.corelocation.*;
     public native String getGroupIdentifier();
     @Property(selector = "setGroupIdentifier:")
     public native void setGroupIdentifier(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -90,5 +94,9 @@ import org.robovm.apple.corelocation.*;
     public static native void deleteInteractionsByGroup(String groupIdentifier, @Block VoidBlock1<NSError> completion);
     @Method(selector = "parameterValueForParameter:")
     public native NSObject parameterValueForParameter(INParameter parameter);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

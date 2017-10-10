@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INCurrencyAmount/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INCurrencyAmountPtr extends Ptr<INCurrencyAmount, INCurrencyAmountPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INCurrencyAmount.class); }/*</bind>*/
@@ -51,16 +51,24 @@ import org.robovm.apple.corelocation.*;
     protected INCurrencyAmount(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithAmount:currencyCode:")
     public INCurrencyAmount(NSDecimalNumber amount, String currencyCode) { super((SkipInit) null); initObject(init(amount, currencyCode)); }
+    @Method(selector = "initWithCoder:")
+    public INCurrencyAmount(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "amount")
     public native NSDecimalNumber getAmount();
     @Property(selector = "currencyCode")
     public native String getCurrencyCode();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithAmount:currencyCode:")
     protected native @Pointer long init(NSDecimalNumber amount, String currencyCode);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

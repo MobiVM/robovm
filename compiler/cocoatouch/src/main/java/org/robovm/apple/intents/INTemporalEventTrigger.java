@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INTemporalEventTrigger/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INTemporalEventTriggerPtr extends Ptr<INTemporalEventTrigger, INTemporalEventTriggerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INTemporalEventTrigger.class); }/*</bind>*/
@@ -51,14 +51,22 @@ import org.robovm.apple.corelocation.*;
     protected INTemporalEventTrigger(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDateComponentsRange:")
     public INTemporalEventTrigger(INDateComponentsRange dateComponentsRange) { super((SkipInit) null); initObject(initWithDateComponentsRange(dateComponentsRange)); }
+    @Method(selector = "initWithCoder:")
+    public INTemporalEventTrigger(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dateComponentsRange")
     public native INDateComponentsRange getDateComponentsRange();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDateComponentsRange:")
     protected native @Pointer long initWithDateComponentsRange(INDateComponentsRange dateComponentsRange);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

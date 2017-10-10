@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INRecurrenceRule/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INRecurrenceRulePtr extends Ptr<INRecurrenceRule, INRecurrenceRulePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INRecurrenceRule.class); }/*</bind>*/
@@ -51,16 +51,24 @@ import org.robovm.apple.corelocation.*;
     protected INRecurrenceRule(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithInterval:frequency:")
     public INRecurrenceRule(@MachineSizedUInt long interval, INRecurrenceFrequency frequency) { super((SkipInit) null); initObject(init(interval, frequency)); }
+    @Method(selector = "initWithCoder:")
+    public INRecurrenceRule(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "interval")
     public native @MachineSizedUInt long getInterval();
     @Property(selector = "frequency")
     public native INRecurrenceFrequency getFrequency();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithInterval:frequency:")
     protected native @Pointer long init(@MachineSizedUInt long interval, INRecurrenceFrequency frequency);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

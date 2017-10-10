@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INBillDetails/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INBillDetailsPtr extends Ptr<INBillDetails, INBillDetailsPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INBillDetails.class); }/*</bind>*/
@@ -51,6 +51,8 @@ import org.robovm.apple.corelocation.*;
     protected INBillDetails(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithBillType:paymentStatus:billPayee:amountDue:minimumDue:lateFee:dueDate:paymentDate:")
     public INBillDetails(INBillType billType, INPaymentStatus paymentStatus, INBillPayee billPayee, INCurrencyAmount amountDue, INCurrencyAmount minimumDue, INCurrencyAmount lateFee, NSDateComponents dueDate, NSDateComponents paymentDate) { super((SkipInit) null); initObject(init(billType, paymentStatus, billPayee, amountDue, minimumDue, lateFee, dueDate, paymentDate)); }
+    @Method(selector = "initWithCoder:")
+    public INBillDetails(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "billType")
@@ -85,10 +87,16 @@ import org.robovm.apple.corelocation.*;
     public native NSDateComponents getPaymentDate();
     @Property(selector = "setPaymentDate:")
     public native void setPaymentDate(NSDateComponents v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithBillType:paymentStatus:billPayee:amountDue:minimumDue:lateFee:dueDate:paymentDate:")
     protected native @Pointer long init(INBillType billType, INPaymentStatus paymentStatus, INBillPayee billPayee, INCurrencyAmount amountDue, INCurrencyAmount minimumDue, INCurrencyAmount lateFee, NSDateComponents dueDate, NSDateComponents paymentDate);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

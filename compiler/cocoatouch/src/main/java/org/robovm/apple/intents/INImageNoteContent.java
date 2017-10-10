@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INImageNoteContent/*</name>*/ 
     extends /*<extends>*/INNoteContent/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INImageNoteContentPtr extends Ptr<INImageNoteContent, INImageNoteContentPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INImageNoteContent.class); }/*</bind>*/

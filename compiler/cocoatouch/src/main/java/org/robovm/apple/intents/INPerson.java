@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INPerson/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements INSpeakable/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, INSpeakable/*</implements>*/ {
 
     /*<ptr>*/public static class INPersonPtr extends Ptr<INPerson, INPersonPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INPerson.class); }/*</bind>*/
@@ -74,6 +74,8 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "initWithHandle:nameComponents:displayName:image:contactIdentifier:")
     public INPerson(String handle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier) { super((SkipInit) null); initObject(init(handle, nameComponents, displayName, image, contactIdentifier)); }
+    @Method(selector = "initWithCoder:")
+    public INPerson(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "personHandle")
@@ -114,6 +116,8 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Property(selector = "handle")
     public native String getHandle0();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "spokenPhrase")
     public native String getSpokenPhrase();
     @Property(selector = "pronunciationHint")
@@ -157,5 +161,9 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "initWithHandle:nameComponents:displayName:image:contactIdentifier:")
     protected native @Pointer long init(String handle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

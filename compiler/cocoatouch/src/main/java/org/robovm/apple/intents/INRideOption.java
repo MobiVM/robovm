@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INRideOption/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INRideOptionPtr extends Ptr<INRideOption, INRideOptionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INRideOption.class); }/*</bind>*/
@@ -103,6 +103,8 @@ import org.robovm.apple.corelocation.*;
     public native String getIdentifier();
     @Property(selector = "setIdentifier:")
     public native void setIdentifier(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -110,5 +112,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(String name, NSDate estimatedPickupDate);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long initWithCoder(NSCoder decoder);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

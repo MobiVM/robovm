@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INParameter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INParameterPtr extends Ptr<INParameter, INParameterPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INParameter.class); }/*</bind>*/
@@ -49,12 +49,16 @@ import org.robovm.apple.corelocation.*;
     public INParameter() {}
     protected INParameter(Handle h, long handle) { super(h, handle); }
     protected INParameter(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public INParameter(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "parameterClass")
     public native Class<?> getParameterClass();
     @Property(selector = "parameterKeyPath")
     public native String getParameterKeyPath();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -66,5 +70,9 @@ import org.robovm.apple.corelocation.*;
     public native @MachineSizedUInt long indexForSubKeyPath(String subKeyPath);
     @Method(selector = "parameterForClass:keyPath:")
     public static native INParameter parameterForClass(Class<?> aClass, String keyPath);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

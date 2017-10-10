@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INBillPayee/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INBillPayeePtr extends Ptr<INBillPayee, INBillPayeePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INBillPayee.class); }/*</bind>*/
@@ -51,6 +51,8 @@ import org.robovm.apple.corelocation.*;
     protected INBillPayee(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNickname:number:organizationName:")
     public INBillPayee(INSpeakableString nickname, String accountNumber, INSpeakableString organizationName) { super((SkipInit) null); initObject(init(nickname, accountNumber, organizationName)); }
+    @Method(selector = "initWithCoder:")
+    public INBillPayee(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "nickname")
@@ -59,10 +61,16 @@ import org.robovm.apple.corelocation.*;
     public native String getAccountNumber();
     @Property(selector = "organizationName")
     public native INSpeakableString getOrganizationName();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithNickname:number:organizationName:")
     protected native @Pointer long init(INSpeakableString nickname, String accountNumber, INSpeakableString organizationName);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

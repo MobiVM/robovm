@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INTaskList/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INTaskListPtr extends Ptr<INTaskList, INTaskListPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INTaskList.class); }/*</bind>*/
@@ -51,6 +51,8 @@ import org.robovm.apple.corelocation.*;
     protected INTaskList(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTitle:tasks:groupName:createdDateComponents:modifiedDateComponents:identifier:")
     public INTaskList(INSpeakableString title, NSArray<INTask> tasks, INSpeakableString groupName, NSDateComponents createdDateComponents, NSDateComponents modifiedDateComponents, String identifier) { super((SkipInit) null); initObject(init(title, tasks, groupName, createdDateComponents, modifiedDateComponents, identifier)); }
+    @Method(selector = "initWithCoder:")
+    public INTaskList(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "title")
@@ -65,10 +67,16 @@ import org.robovm.apple.corelocation.*;
     public native NSDateComponents getModifiedDateComponents();
     @Property(selector = "identifier")
     public native String getIdentifier();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithTitle:tasks:groupName:createdDateComponents:modifiedDateComponents:identifier:")
     protected native @Pointer long init(INSpeakableString title, NSArray<INTask> tasks, INSpeakableString groupName, NSDateComponents createdDateComponents, NSDateComponents modifiedDateComponents, String identifier);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

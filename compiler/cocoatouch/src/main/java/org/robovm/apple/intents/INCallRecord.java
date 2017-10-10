@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INCallRecord/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INCallRecordPtr extends Ptr<INCallRecord, INCallRecordPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INCallRecord.class); }/*</bind>*/
@@ -51,6 +51,8 @@ import org.robovm.apple.corelocation.*;
     protected INCallRecord(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIdentifier:dateCreated:caller:callRecordType:callCapability:callDuration:unseen:")
     public INCallRecord(String identifier, NSDate dateCreated, INPerson caller, INCallRecordType callRecordType, INCallCapability callCapability, NSNumber callDuration, NSNumber unseen) { super((SkipInit) null); initObject(init(identifier, dateCreated, caller, callRecordType, callCapability, callDuration, unseen)); }
+    @Method(selector = "initWithCoder:")
+    public INCallRecord(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -67,10 +69,16 @@ import org.robovm.apple.corelocation.*;
     public native NSNumber getCallDuration();
     @Property(selector = "unseen")
     public native NSNumber getUnseen();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithIdentifier:dateCreated:caller:callRecordType:callCapability:callDuration:unseen:")
     protected native @Pointer long init(String identifier, NSDate dateCreated, INPerson caller, INCallRecordType callRecordType, INCallCapability callCapability, NSNumber callDuration, NSNumber unseen);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

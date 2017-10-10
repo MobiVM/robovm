@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INRidePartySizeOption/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INRidePartySizeOptionPtr extends Ptr<INRidePartySizeOption, INRidePartySizeOptionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INRidePartySizeOption.class); }/*</bind>*/
@@ -51,6 +51,8 @@ import org.robovm.apple.corelocation.*;
     protected INRidePartySizeOption(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPartySizeRange:sizeDescription:priceRange:")
     public INRidePartySizeOption(@ByVal NSRange partySizeRange, String sizeDescription, INPriceRange priceRange) { super((SkipInit) null); initObject(init(partySizeRange, sizeDescription, priceRange)); }
+    @Method(selector = "initWithCoder:")
+    public INRidePartySizeOption(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "partySizeRange")
@@ -59,10 +61,16 @@ import org.robovm.apple.corelocation.*;
     public native String getSizeDescription();
     @Property(selector = "priceRange")
     public native INPriceRange getPriceRange();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPartySizeRange:sizeDescription:priceRange:")
     protected native @Pointer long init(@ByVal NSRange partySizeRange, String sizeDescription, INPriceRange priceRange);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INImage/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INImagePtr extends Ptr<INImage, INImagePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INImage.class); }/*</bind>*/
@@ -53,9 +53,12 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 11.0 and later.
      */
     public INImage(NSURL URL, double width, double height) { super((Handle) null, create(URL, width, height)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public INImage(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -70,5 +73,9 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "imageWithURL:width:height:")
     protected static native @Pointer long create(NSURL URL, double width, double height);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

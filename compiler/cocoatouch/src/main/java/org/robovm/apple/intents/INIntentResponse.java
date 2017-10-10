@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INIntentResponse/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INIntentResponsePtr extends Ptr<INIntentResponse, INIntentResponsePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INIntentResponse.class); }/*</bind>*/
@@ -49,13 +49,20 @@ import org.robovm.apple.corelocation.*;
     public INIntentResponse() {}
     protected INIntentResponse(Handle h, long handle) { super(h, handle); }
     protected INIntentResponse(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public INIntentResponse(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "userActivity")
     public native NSUserActivity getUserActivity();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

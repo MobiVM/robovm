@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INTermsAndConditions/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INTermsAndConditionsPtr extends Ptr<INTermsAndConditions, INTermsAndConditionsPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INTermsAndConditions.class); }/*</bind>*/
@@ -51,6 +51,8 @@ import org.robovm.apple.corelocation.*;
     protected INTermsAndConditions(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLocalizedTermsAndConditionsText:privacyPolicyURL:termsAndConditionsURL:")
     public INTermsAndConditions(String localizedTermsAndConditionsText, NSURL privacyPolicyURL, NSURL termsAndConditionsURL) { super((SkipInit) null); initObject(init(localizedTermsAndConditionsText, privacyPolicyURL, termsAndConditionsURL)); }
+    @Method(selector = "initWithCoder:")
+    public INTermsAndConditions(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "localizedTermsAndConditionsText")
@@ -59,10 +61,16 @@ import org.robovm.apple.corelocation.*;
     public native NSURL getPrivacyPolicyURL();
     @Property(selector = "termsAndConditionsURL")
     public native NSURL getTermsAndConditionsURL();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithLocalizedTermsAndConditionsText:privacyPolicyURL:termsAndConditionsURL:")
     protected native @Pointer long init(String localizedTermsAndConditionsText, NSURL privacyPolicyURL, NSURL termsAndConditionsURL);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

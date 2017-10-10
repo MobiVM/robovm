@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INDateComponentsRange/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INDateComponentsRangePtr extends Ptr<INDateComponentsRange, INDateComponentsRangePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INDateComponentsRange.class); }/*</bind>*/
@@ -61,6 +61,8 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "initWithEKRecurrenceRule:")
     public INDateComponentsRange(EKRecurrenceRule recurrenceRule) { super((SkipInit) null); initObject(init(recurrenceRule)); }
+    @Method(selector = "initWithCoder:")
+    public INDateComponentsRange(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "startDateComponents")
@@ -72,6 +74,8 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "recurrenceRule")
     public native INRecurrenceRule getRecurrenceRule();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -92,5 +96,9 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "EKRecurrenceRule")
     public native EKRecurrenceRule EKRecurrenceRule();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INBalanceAmount/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INBalanceAmountPtr extends Ptr<INBalanceAmount, INBalanceAmountPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INBalanceAmount.class); }/*</bind>*/
@@ -53,6 +53,8 @@ import org.robovm.apple.corelocation.*;
     public INBalanceAmount(NSDecimalNumber amount, INBalanceType balanceType) { super((SkipInit) null); initObject(init(amount, balanceType)); }
     @Method(selector = "initWithAmount:currencyCode:")
     public INBalanceAmount(NSDecimalNumber amount, String currencyCode) { super((SkipInit) null); initObject(init(amount, currencyCode)); }
+    @Method(selector = "initWithCoder:")
+    public INBalanceAmount(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "amount")
@@ -61,6 +63,8 @@ import org.robovm.apple.corelocation.*;
     public native INBalanceType getBalanceType();
     @Property(selector = "currencyCode")
     public native String getCurrencyCode();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -68,5 +72,9 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(NSDecimalNumber amount, INBalanceType balanceType);
     @Method(selector = "initWithAmount:currencyCode:")
     protected native @Pointer long init(NSDecimalNumber amount, String currencyCode);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

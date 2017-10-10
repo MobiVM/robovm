@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INPersonHandle/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INPersonHandlePtr extends Ptr<INPersonHandle, INPersonHandlePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INPersonHandle.class); }/*</bind>*/
@@ -56,6 +56,8 @@ import org.robovm.apple.corelocation.*;
     public INPersonHandle(String value, INPersonHandleType type, String label) { super((SkipInit) null); initObject(init(value, type, label)); }
     @Method(selector = "initWithValue:type:")
     public INPersonHandle(String value, INPersonHandleType type) { super((SkipInit) null); initObject(init(value, type)); }
+    @Method(selector = "initWithCoder:")
+    public INPersonHandle(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "value")
@@ -67,6 +69,8 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "label")
     public native String getLabel();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -77,5 +81,9 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(String value, INPersonHandleType type, String label);
     @Method(selector = "initWithValue:type:")
     protected native @Pointer long init(String value, INPersonHandleType type);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

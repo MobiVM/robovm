@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INRestaurantOffer/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INRestaurantOfferPtr extends Ptr<INRestaurantOffer, INRestaurantOfferPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INRestaurantOffer.class); }/*</bind>*/
@@ -49,6 +49,8 @@ import org.robovm.apple.corelocation.*;
     public INRestaurantOffer() {}
     protected INRestaurantOffer(Handle h, long handle) { super(h, handle); }
     protected INRestaurantOffer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public INRestaurantOffer(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "offerTitleText")
@@ -63,9 +65,14 @@ import org.robovm.apple.corelocation.*;
     public native String getOfferIdentifier();
     @Property(selector = "setOfferIdentifier:")
     public native void setOfferIdentifier(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

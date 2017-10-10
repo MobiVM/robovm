@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INRideVehicle/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INRideVehiclePtr extends Ptr<INRideVehicle, INRideVehiclePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INRideVehicle.class); }/*</bind>*/
@@ -49,6 +49,8 @@ import org.robovm.apple.corelocation.*;
     public INRideVehicle() {}
     protected INRideVehicle(Handle h, long handle) { super(h, handle); }
     protected INRideVehicle(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public INRideVehicle(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "location")
@@ -71,9 +73,14 @@ import org.robovm.apple.corelocation.*;
     public native INImage getMapAnnotationImage();
     @Property(selector = "setMapAnnotationImage:")
     public native void setMapAnnotationImage(INImage v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

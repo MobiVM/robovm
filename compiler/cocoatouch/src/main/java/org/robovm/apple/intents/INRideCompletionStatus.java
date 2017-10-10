@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INRideCompletionStatus/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INRideCompletionStatusPtr extends Ptr<INRideCompletionStatus, INRideCompletionStatusPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INRideCompletionStatus.class); }/*</bind>*/
@@ -49,6 +49,8 @@ import org.robovm.apple.corelocation.*;
     protected INRideCompletionStatus() {}
     protected INRideCompletionStatus(Handle h, long handle) { super(h, handle); }
     protected INRideCompletionStatus(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public INRideCompletionStatus(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "completionUserActivity")
@@ -80,6 +82,8 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setDefaultTippingOptions:")
     public native void setDefaultTippingOptions(NSSet<INCurrencyAmount> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -100,5 +104,9 @@ import org.robovm.apple.corelocation.*;
     public static native INRideCompletionStatus canceledByUser();
     @Method(selector = "canceledMissedPickup")
     public static native INRideCompletionStatus canceledMissedPickup();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

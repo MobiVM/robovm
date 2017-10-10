@@ -8,7 +8,7 @@ headers:
 typedefs: {}
 
 enums:
-    INIntentErrorCode: {prefix: INIntentError} #since 10.0
+    INIntentErrorCode: { nserror: true, prefix: INIntentError} #since 10.0
     INCallCapabilityOptions: {prefix: INCallCapabilityOption} #since 10.0
     INCallRecordType: {} #since 10.0
     INCallRecordTypeOptions: {prefix: INCallRecordTypeOption} #since 10.0
@@ -1291,7 +1291,7 @@ functions:
 
 values:
     INIntentErrorDomain:
-        class: INIntentErroCode
+        class: INIntentErrorCode
         name: getClassDomain
 
     IN(.*)IntentIdentifier:

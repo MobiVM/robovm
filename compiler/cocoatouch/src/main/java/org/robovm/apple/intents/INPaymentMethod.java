@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INPaymentMethod/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INPaymentMethodPtr extends Ptr<INPaymentMethod, INPaymentMethodPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INPaymentMethod.class); }/*</bind>*/
@@ -51,6 +51,8 @@ import org.robovm.apple.corelocation.*;
     protected INPaymentMethod(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithType:name:identificationHint:icon:")
     public INPaymentMethod(INPaymentMethodType type, String name, String identificationHint, INImage icon) { super((SkipInit) null); initObject(init(type, name, identificationHint, icon)); }
+    @Method(selector = "initWithCoder:")
+    public INPaymentMethod(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
@@ -61,6 +63,8 @@ import org.robovm.apple.corelocation.*;
     public native String getIdentificationHint();
     @Property(selector = "icon")
     public native INImage getIcon();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -68,5 +72,9 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INPaymentMethodType type, String name, String identificationHint, INImage icon);
     @Method(selector = "applePayPaymentMethod")
     public static native INPaymentMethod applePayPaymentMethod();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

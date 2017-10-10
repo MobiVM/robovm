@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INRestaurantGuestDisplayPreferences/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INRestaurantGuestDisplayPreferencesPtr extends Ptr<INRestaurantGuestDisplayPreferences, INRestaurantGuestDisplayPreferencesPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INRestaurantGuestDisplayPreferences.class); }/*</bind>*/
@@ -49,6 +49,8 @@ import org.robovm.apple.corelocation.*;
     public INRestaurantGuestDisplayPreferences() {}
     protected INRestaurantGuestDisplayPreferences(Handle h, long handle) { super(h, handle); }
     protected INRestaurantGuestDisplayPreferences(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public INRestaurantGuestDisplayPreferences(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "nameFieldFirstNameOptional")
@@ -83,9 +85,14 @@ import org.robovm.apple.corelocation.*;
     public native boolean isPhoneNumberEditable();
     @Property(selector = "setPhoneNumberEditable:")
     public native void setPhoneNumberEditable(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

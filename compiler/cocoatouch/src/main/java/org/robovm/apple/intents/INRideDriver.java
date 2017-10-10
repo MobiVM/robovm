@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INRideDriver/*</name>*/ 
     extends /*<extends>*/INPerson/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INRideDriverPtr extends Ptr<INRideDriver, INRideDriverPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INRideDriver.class); }/*</bind>*/

@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INPaymentRecord/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INPaymentRecordPtr extends Ptr<INPaymentRecord, INPaymentRecordPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INPaymentRecord.class); }/*</bind>*/
@@ -53,6 +53,8 @@ import org.robovm.apple.corelocation.*;
     public INPaymentRecord(INPerson payee, INPerson payer, INCurrencyAmount currencyAmount, INPaymentMethod paymentMethod, String note, INPaymentStatus status, INCurrencyAmount feeAmount) { super((SkipInit) null); initObject(init(payee, payer, currencyAmount, paymentMethod, note, status, feeAmount)); }
     @Method(selector = "initWithPayee:payer:currencyAmount:paymentMethod:note:status:")
     public INPaymentRecord(INPerson payee, INPerson payer, INCurrencyAmount currencyAmount, INPaymentMethod paymentMethod, String note, INPaymentStatus status) { super((SkipInit) null); initObject(init(payee, payer, currencyAmount, paymentMethod, note, status)); }
+    @Method(selector = "initWithCoder:")
+    public INPaymentRecord(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "payee")
@@ -69,6 +71,8 @@ import org.robovm.apple.corelocation.*;
     public native INPaymentStatus getStatus();
     @Property(selector = "feeAmount")
     public native INCurrencyAmount getFeeAmount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -76,5 +80,9 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INPerson payee, INPerson payer, INCurrencyAmount currencyAmount, INPaymentMethod paymentMethod, String note, INPaymentStatus status, INCurrencyAmount feeAmount);
     @Method(selector = "initWithPayee:payer:currencyAmount:paymentMethod:note:status:")
     protected native @Pointer long init(INPerson payee, INPerson payer, INCurrencyAmount currencyAmount, INPaymentMethod paymentMethod, String note, INPaymentStatus status);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
