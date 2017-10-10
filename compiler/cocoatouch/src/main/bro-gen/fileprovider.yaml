@@ -10,7 +10,7 @@ typedefs:
 
 enums:
     NSFileProviderItemCapabilities: {}
-    NSFileProviderErrorCode: {prefix: NSFileProviderError} #since 11.0
+    NSFileProviderErrorCode: {nserror: true, prefix: NSFileProviderError} #since 11.0
 
 classes:
     NSFileProviderDomain: #since 11.0
@@ -97,7 +97,11 @@ values:
         name: '#{g[0]}'
         type: NSString
 
-    NSFileProvider(ErrorDomain|ErrorCollidingItemKey|ErrorNonExistentItemIdentifierKey):
+    NSFileProviderErrorDomain:
+        name: getClassDomain
+        class: NSFileProviderErrorCode
+
+    NSFileProvider(ErrorCollidingItemKey|ErrorNonExistentItemIdentifierKey):
         class: NSFileProviderManager
         name: 'get#{g[0]}'
         type: NSString
@@ -115,9 +119,6 @@ values:
 constants:
     NSFileProviderItemCapabilities(.*):
         class: NSFileProviderItemCapabilities
-        name: '#{g[0]}'
-    NSFileProviderError(.*):
-        class: NSFileProviderError
         name: '#{g[0]}'
 
     # Make sure we don't miss any constants if new ones are introduced in a later version

@@ -87,11 +87,6 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @GlobalValue(symbol="NSFileProviderErrorDomain", optional=true)
-    public static native NSString getErrorDomain();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @GlobalValue(symbol="NSFileProviderErrorCollidingItemKey", optional=true)
     public static native NSString getErrorCollidingItemKey();
     /**

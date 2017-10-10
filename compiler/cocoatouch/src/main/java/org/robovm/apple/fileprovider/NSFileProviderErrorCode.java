@@ -36,8 +36,8 @@ import org.robovm.apple.coregraphics.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/NSFileProviderErrorCode/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("FileProvider")/*</annotations>*/
+public enum /*<name>*/NSFileProviderErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     NotAuthenticated(-1000L),
     FilenameCollision(-1001L),
@@ -48,10 +48,16 @@ public enum /*<name>*/NSFileProviderErrorCode/*</name>*/ implements ValuedEnum {
     NoSuchItem(-1005L);
     /*</values>*/
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(NSFileProviderErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="NSFileProviderErrorDomain", optional=true)
+    public static native String getClassDomain();
+    /*</methods>*/
 
     private final long n;
 
@@ -63,7 +69,25 @@ public enum /*<name>*/NSFileProviderErrorCode/*</name>*/ implements ValuedEnum {
                 return v;
             }
         }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+        throw new IllegalArgumentException("No constant with value " + n + " found in "
             + /*<name>*/NSFileProviderErrorCode/*</name>*/.class.getName());
+    }
+
+    @StronglyLinked
+    public static class NSErrorWrap extends NSError {
+        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
+
+        @Override public NSErrorCode getErrorCode() {
+             try {
+                 return  /*<name>*/NSFileProviderErrorCode/*</name>*/.valueOf(getCode());
+             } catch (IllegalArgumentException e) {
+                 return null;
+             }
+         }
+
+        public static String getClassDomain() {
+            /** must be incerted in value section */
+            return /*<name>*/NSFileProviderErrorCode/*</name>*/.getClassDomain();
+        }
     }
 }
