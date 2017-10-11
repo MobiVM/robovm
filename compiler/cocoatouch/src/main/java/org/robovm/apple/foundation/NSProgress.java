@@ -121,12 +121,74 @@ import org.robovm.apple.dispatch.*;
     public native boolean isIndeterminate();
     @Property(selector = "fractionCompleted")
     public native double getFractionCompleted();
+    @Property(selector = "isFinished")
+    public native boolean isFinished();
     @Property(selector = "userInfo")
     public native NSProgressUserInfo getUserInfo();
     @Property(selector = "kind")
     public native NSProgressKind getKind();
     @Property(selector = "setKind:")
     public native void setKind(NSProgressKind v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "estimatedTimeRemaining")
+    public native NSNumber getEstimatedTimeRemaining();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setEstimatedTimeRemaining:")
+    public native void setEstimatedTimeRemaining(NSNumber v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "throughput")
+    public native NSNumber getThroughput();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setThroughput:")
+    public native void setThroughput(NSNumber v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "fileOperationKind")
+    public native String getFileOperationKind();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setFileOperationKind:")
+    public native void setFileOperationKind(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "fileURL")
+    public native NSURL getFileURL();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setFileURL:")
+    public native void setFileURL(NSURL v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "fileTotalCount")
+    public native NSNumber getFileTotalCount();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setFileTotalCount:")
+    public native void setFileTotalCount(NSNumber v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "fileCompletedCount")
+    public native NSNumber getFileCompletedCount();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setFileCompletedCount:")
+    public native void setFileCompletedCount(NSNumber v);
     /*</properties>*/
     /*<members>*//*</members>*/
     public void putUserInfoObject(String key, NSObject value) {
@@ -140,6 +202,11 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(NSProgress parentProgressOrNil, NSProgressUserInfo userInfoOrNil);
     @Method(selector = "becomeCurrentWithPendingUnitCount:")
     public native void becomeCurrent(long unitCount);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "performAsCurrentWithPendingUnitCount:usingBlock:")
+    public native void performAsCurrent(long unitCount, @Block Runnable work);
     @Method(selector = "resignCurrent")
     public native void resignCurrent();
     /**

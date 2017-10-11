@@ -55,6 +55,10 @@ import org.robovm.apple.coregraphics.*;
     public native MPNowPlayingInfo getNowPlayingInfo();
     @Property(selector = "setNowPlayingInfo:")
     public native void setNowPlayingInfo(MPNowPlayingInfo v);
+    @Property(selector = "playbackState")
+    public native MPNowPlayingPlaybackState getPlaybackState();
+    @Property(selector = "setPlaybackState:")
+    public native void setPlaybackState(MPNowPlayingPlaybackState v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

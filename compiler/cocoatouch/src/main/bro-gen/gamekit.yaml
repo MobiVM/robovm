@@ -14,7 +14,6 @@ typedefs:
     'void (^)(UIViewController * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<UIViewController, NSError>'
     'void (^)(NSString * _Nullable)': '@Block VoidBlock1<String>'
     'void (^)(GKMatch * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<GKMatch, NSError>'
-    'void (^)(NSString * _Nonnull, GKInviteeResponse)': '@Block VoidBlock2<String, GKInviteeResponse>'
     'void (^)(NSInteger, NSError * _Nullable)': '@Block("(@MachineSizedSInt,)") VoidBlock2<Long, NSError>'
     'void (^)(NSString * _Nonnull, BOOL)': '@Block VoidBlock2<String, Boolean>'
     'void (^)(GKInvite * _Nonnull, NSArray * _Nullable)': '@Block VoidBlock2<GKInvite, NSArray<NSString>>'
@@ -33,7 +32,6 @@ typedefs:
     'void (^)(GKCloudPlayer * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<GKCloudPlayer, NSError>'
 
 enums:
-    GKErrorCode: { first: GKErrorUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
     GKChallengeState: { marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
     GKGameCenterViewControllerState: { marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
     GKLeaderboardTimeScope: { first: GKLeaderboardTimeScopeToday, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
@@ -42,10 +40,8 @@ enums:
     GKPlayerConnectionState: { first: GKPlayerStateUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
     GKPhotoSize: { first: GKPhotoSizeSmall, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
     GKSendDataMode: { first: GKSendDataReliable, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKInviteeResponse: { first: GKInviteeResponseAccepted, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKInviteRecipientResponse: {}
+    GKInviteRecipientResponse: {prefix: GKInviteRecipientResponse, ignore: 'GKInviteeResponse.*'}
     GKSessionMode: { first: GKSessionModeServer, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKSessionErrorCode: { first: GKSessionInvalidParameterError, suffix: Error, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
     GKMatchType: { first: GKMatchTypePeerToPeer, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
     GKPeerConnectionState: { first: GKPeerStateAvailable, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
     GKPeerPickerConnectionType: { first: GKPeerPickerConnectionTypeOnline, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
@@ -54,27 +50,15 @@ enums:
     GKTurnBasedParticipantStatus: { first: GKTurnBasedParticipantStatusUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
     GKTurnBasedMatchOutcome: { first: GKTurnBasedMatchOutcomeNone, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
     GKVoiceChatPlayerState: { first: GKVoiceChatPlayerConnected, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKVoiceChatServiceErrorCode: { first: GKVoiceChatServiceInternalError, suffix: Error, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
     GKConnectionState: {marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
     GKTransportType: {marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    GKGameSessionErrorCode: { first: GKGameSessionErrorUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-        
+    GKGameSessionErrorCode: { }
+    GKErrorCode: { nserror: true }
+    GKSessionError: { nserror: true, suffix: Error }
+    GKVoiceChatServiceError: { nserror: true, suffix: Error }
+
 classes:
-    # SkipInit constructor is missing in GK*Error.class
-    # public GK*ErrorCode getErrorCode() is missing in GK*Error.class
-    # GK*ErrorCode.class should implement NSErrorCode instead of ValuedEnum
-    # @ForceLinkClass(GK*Error.class) is missing on GK*ErrorCode.class 
-    # is this something we need to fix manually? the definition is exactly the same in here as in old one, so i guess?
-    GKError:
-        extends: NSError
-        annotations: ['@StronglyLinked']
-    GKSessionError:
-        extends: NSError
-        annotations: ['@StronglyLinked']
-    GKVoiceChatServiceError:
-        extends: NSError
-        annotations: ['@StronglyLinked']
-        
+
     GKAchievement: # DONE
         methods:
             '-init.*':
@@ -885,7 +869,7 @@ functions:
 
 values: 
     GKErrorDomain:
-        class: GKError
+        class: GKErrorCode
         name: getClassDomain
         readonly: true
     GKSessionErrorDomain:

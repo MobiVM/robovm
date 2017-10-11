@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,7 +58,7 @@ import org.robovm.apple.audiounit.*;
     protected AVPlayerItemMetadataCollector(Handle h, long handle) { super(h, handle); }
     protected AVPlayerItemMetadataCollector(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIdentifiers:classifyingLabels:")
-    public AVPlayerItemMetadataCollector(NSArray<?> identifiers, NSArray<?> classifyingLabels) { super((SkipInit) null); initObject(init(identifiers, classifyingLabels)); }
+    public AVPlayerItemMetadataCollector(NSArray<NSString> identifiers, NSArray<NSString> classifyingLabels) { super((SkipInit) null); initObject(init(identifiers, classifyingLabels)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -70,7 +69,7 @@ import org.robovm.apple.audiounit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithIdentifiers:classifyingLabels:")
-    protected native @Pointer long init(NSArray<?> identifiers, NSArray<?> classifyingLabels);
+    protected native @Pointer long init(NSArray<NSString> identifiers, NSArray<NSString> classifyingLabels);
     @WeaklyLinked
     @Method(selector = "setDelegate:queue:")
     public native void setDelegate(AVPlayerItemMetadataCollectorPushDelegate delegate, DispatchQueue delegateQueue);

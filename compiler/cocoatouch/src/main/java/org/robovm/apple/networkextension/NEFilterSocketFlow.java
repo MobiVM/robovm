@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEFilterSocketFlow/*</name>*/ 
     extends /*<extends>*/NEFilterFlow/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEFilterSocketFlowPtr extends Ptr<NEFilterSocketFlow, NEFilterSocketFlowPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEFilterSocketFlow.class); }/*</bind>*/

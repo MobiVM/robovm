@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKQueryAnchor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKQueryAnchorPtr extends Ptr<HKQueryAnchor, HKQueryAnchorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKQueryAnchor.class); }/*</bind>*/
@@ -48,13 +48,20 @@ import org.robovm.apple.foundation.*;
     protected HKQueryAnchor(Handle h, long handle) { super(h, handle); }
     protected HKQueryAnchor(SkipInit skipInit) { super(skipInit); }
     public HKQueryAnchor(@MachineSizedUInt long value) { super((Handle) null, create(value)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public HKQueryAnchor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "anchorFromValue:")
     protected static native @Pointer long create(@MachineSizedUInt long value);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

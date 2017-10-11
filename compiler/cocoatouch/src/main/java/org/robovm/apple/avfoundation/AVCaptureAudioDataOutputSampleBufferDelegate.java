@@ -38,11 +38,12 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 4.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVCaptureAudioDataOutputSampleBufferDelegate/*</name>*/ 
@@ -58,7 +59,7 @@ import org.robovm.apple.audiounit.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "captureOutput:didOutputSampleBuffer:fromConnection:")
-    void didOutputSampleBuffer(AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection);
+    void didOutputSampleBuffer(AVCaptureOutput output, CMSampleBuffer sampleBuffer, AVCaptureConnection connection);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

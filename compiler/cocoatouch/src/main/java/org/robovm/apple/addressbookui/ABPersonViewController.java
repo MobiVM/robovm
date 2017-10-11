@@ -42,7 +42,7 @@ import org.robovm.apple.addressbook.*;
 /*<annotations>*/@Library("AddressBookUI") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ABPersonViewController/*</name>*/ 
     extends /*<extends>*/UIViewController/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements UIViewControllerRestoration/*</implements>*/ {
 
     /*<ptr>*/public static class ABPersonViewControllerPtr extends Ptr<ABPersonViewController, ABPersonViewControllerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ABPersonViewController.class); }/*</bind>*/
@@ -98,5 +98,7 @@ import org.robovm.apple.addressbook.*;
     /*<methods>*/
     @Method(selector = "setHighlightedItemForProperty:withIdentifier:")
     public native void setHighlightedItem(ABPersonProperty property, int identifier);
+    @Method(selector = "viewControllerWithRestorationIdentifierPath:coder:")
+    public static native UIViewController viewControllerWithRestorationIdentifier(NSArray<?> identifierComponents, NSCoder coder);
     /*</methods>*/
 }

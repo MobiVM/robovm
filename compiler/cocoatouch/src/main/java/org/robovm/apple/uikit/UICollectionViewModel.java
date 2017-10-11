@@ -19,6 +19,7 @@ import org.robovm.apple.coregraphics.CGPoint;
 import org.robovm.apple.foundation.NSArray;
 import org.robovm.apple.foundation.NSIndexPath;
 import org.robovm.apple.foundation.NSObject;
+import org.robovm.apple.foundation.NSString;
 import org.robovm.objc.Selector;
 import org.robovm.objc.annotation.NotImplemented;
 import org.robovm.rt.bro.annotation.ByVal;
@@ -111,7 +112,9 @@ public class UICollectionViewModel extends UIScrollViewDelegateAdapter implement
     @NotImplemented("collectionView:moveItemAtIndexPath:toIndexPath:")
     public void moveItemAt(UICollectionView collectionView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath) {}
     @NotImplemented("indexTitlesForCollectionView:")
-    public NSArray<?> indexTitlesForCollectionView(UICollectionView collectionView) { return null; }
+    public NSArray<NSString> indexTitlesForCollectionView(UICollectionView collectionView) { return null; }
     @NotImplemented("collectionView:indexPathForIndexTitle:atIndex:")
     public NSIndexPath indexPathForIndexTitle(UICollectionView collectionView, String title, @MachineSizedSInt long index) { return null; }
+    @NotImplemented("collectionView:shouldSpringLoadItemAtIndexPath:withContext:")
+    public boolean shouldSpringLoadItem(UICollectionView collectionView, NSIndexPath indexPath, UISpringLoadedInteractionContext context) { return false; }
 }

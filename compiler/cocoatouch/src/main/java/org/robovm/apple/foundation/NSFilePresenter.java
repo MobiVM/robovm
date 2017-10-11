@@ -55,6 +55,11 @@ import org.robovm.apple.dispatch.*;
     NSURL getPresentedItemURL();
     @Property(selector = "presentedItemOperationQueue")
     NSOperationQueue getPresentedItemOperationQueue();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "observedPresentedItemUbiquityAttributes")
+    NSSet<NSString> getObservedPresentedItemUbiquityAttributes();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "relinquishPresentedItemToReader:")
@@ -69,6 +74,11 @@ import org.robovm.apple.dispatch.*;
     void presentedItemDidMoveToURL(NSURL newURL);
     @Method(selector = "presentedItemDidChange")
     void presentedItemDidChange();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "presentedItemDidChangeUbiquityAttributes:")
+    void presentedItemDidChangeUbiquityAttributes(NSSet<NSString> attributes);
     @Method(selector = "presentedItemDidGainVersion:")
     void presentedItemDidGainVersion(NSFileVersion version);
     @Method(selector = "presentedItemDidLoseVersion:")

@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,10 +55,20 @@ import org.robovm.apple.corelocation.*;
     
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "documentPicker:didPickDocumentAtURL:")
-    void didPickDocument(UIDocumentPickerViewController controller, NSURL url);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "documentPicker:didPickDocumentsAtURLs:")
+    void didPickDocuments(UIDocumentPickerViewController controller, NSArray<NSURL> urls);
     @Method(selector = "documentPickerWasCancelled:")
     void wasCancelled(UIDocumentPickerViewController controller);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "documentPicker:didPickDocumentAtURL:")
+    void didPickDocument(UIDocumentPickerViewController controller, NSURL url);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

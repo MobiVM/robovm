@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.spritekit.*;
+import org.robovm.apple.scenekit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,22 +53,22 @@ import org.robovm.apple.spritekit.*;
     @Method(selector = "initWithNoiseSource:")
     public GKNoise(GKNoiseSource noiseSource) { super((SkipInit) null); initObject(init(noiseSource)); }
     @Method(selector = "initWithNoiseSource:gradientColors:")
-    public GKNoise(GKNoiseSource noiseSource, NSDictionary<?, ?> gradientColors) { super((SkipInit) null); initObject(init(noiseSource, gradientColors)); }
+    public GKNoise(GKNoiseSource noiseSource, NSDictionary<NSNumber, UIColor> gradientColors) { super((SkipInit) null); initObject(init(noiseSource, gradientColors)); }
     public GKNoise(NSArray<GKNoise> noises, GKNoise selectionNoise) { super((Handle) null, create(noises, selectionNoise)); retain(getHandle()); }
     public GKNoise(NSArray<GKNoise> noises, GKNoise selectionNoise, NSArray<NSNumber> componentBoundaries, NSArray<NSNumber> blendDistances) { super((Handle) null, create(noises, selectionNoise, componentBoundaries, blendDistances)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "gradientColors")
-    public native NSDictionary<?, ?> getGradientColors();
+    public native NSDictionary<NSNumber, UIColor> getGradientColors();
     @Property(selector = "setGradientColors:")
-    public native void setGradientColors(NSDictionary<?, ?> v);
+    public native void setGradientColors(NSDictionary<NSNumber, UIColor> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithNoiseSource:")
     protected native @Pointer long init(GKNoiseSource noiseSource);
     @Method(selector = "initWithNoiseSource:gradientColors:")
-    protected native @Pointer long init(GKNoiseSource noiseSource, NSDictionary<?, ?> gradientColors);
+    protected native @Pointer long init(GKNoiseSource noiseSource, NSDictionary<NSNumber, UIColor> gradientColors);
     @Method(selector = "valueAtPosition:")
     public native float valueAtPosition(@ByVal VectorFloat2 position);
     @Method(selector = "applyAbsoluteValue")
@@ -80,7 +82,7 @@ import org.robovm.apple.spritekit.*;
     @Method(selector = "applyTurbulenceWithFrequency:power:roughness:seed:")
     public native void applyTurbulence(double frequency, double power, int roughness, int seed);
     @Method(selector = "remapValuesToCurveWithControlPoints:")
-    public native void remapValuesToCurveWithControlPoints(NSDictionary<?, ?> controlPoints);
+    public native void remapValuesToCurveWithControlPoints(NSDictionary<NSNumber, NSNumber> controlPoints);
     @Method(selector = "remapValuesToTerracesWithPeaks:terracesInverted:")
     public native void remapValuesToTerraces(NSArray<NSNumber> peakInputValues, boolean inverted);
     @Method(selector = "moveBy:")

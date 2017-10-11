@@ -95,7 +95,83 @@ public enum /*<name>*/MTLDataType/*</name>*/ implements ValuedEnum {
     Bool(53L),
     Bool2(54L),
     Bool3(55L),
-    Bool4(56L);
+    Bool4(56L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Texture(58L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Sampler(59L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Pointer(60L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    R8Unorm(62L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    R8Snorm(63L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    R16Unorm(64L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    R16Snorm(65L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    RG8Unorm(66L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    RG8Snorm(67L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    RG16Unorm(68L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    RG16Snorm(69L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    RGBA8Unorm(70L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    RGBA8Unorm_sRGB(71L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    RGBA8Snorm(72L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    RGBA16Unorm(73L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    RGBA16Snorm(74L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    RGB10A2Unorm(75L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    RG11B10Float(76L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    RGB9E5Float(77L);
     /*</values>*/
 
     /*<bind>*/

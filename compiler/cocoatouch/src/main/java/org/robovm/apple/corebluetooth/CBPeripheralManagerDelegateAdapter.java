@@ -68,5 +68,11 @@ import org.robovm.apple.dispatch.*;
     public void didReceiveWriteRequests(CBPeripheralManager peripheral, NSArray<CBATTRequest> requests) {}
     @NotImplemented("peripheralManagerIsReadyToUpdateSubscribers:")
     public void readyToUpdateSubscribers(CBPeripheralManager peripheral) {}
+    @NotImplemented("peripheralManager:didPublishL2CAPChannel:error:")
+    public void didPublishL2CAPChannel(CBPeripheralManager peripheral, short PSM, NSError error) {}
+    @NotImplemented("peripheralManager:didUnpublishL2CAPChannel:error:")
+    public void didUnpublishL2CAPChannel(CBPeripheralManager peripheral, short PSM, NSError error) {}
+    @NotImplemented("peripheralManager:didOpenL2CAPChannel:error:")
+    public void didOpenL2CAPChannel(CBPeripheralManager peripheral, CBL2CAPChannel channel, NSError error) {}
     /*</methods>*/
 }

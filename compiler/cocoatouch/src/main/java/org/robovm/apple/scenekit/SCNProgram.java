@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNProgram/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNProgramPtr extends Ptr<SCNProgram, SCNProgramPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNProgram.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNProgram() {}
     protected SCNProgram(Handle h, long handle) { super(h, handle); }
     protected SCNProgram(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNProgram(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "vertexShader")
@@ -102,6 +104,8 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setLibrary:")
     public native void setLibrary(MTLLibrary v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -116,5 +120,9 @@ import org.robovm.apple.avfoundation.*;
     public native SCNProgramSemantic getSemanticForSymbol(String symbol);
     @Method(selector = "program")
     public static native SCNProgram create();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

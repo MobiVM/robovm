@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,6 +67,11 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "UIEdgeInsetsValue")
     public static native @ByVal UIEdgeInsets getEdgeInsetsValue(NSValue thiz);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "directionalEdgeInsetsValue")
+    public static native @ByVal NSDirectionalEdgeInsets getDirectionalEdgeInsetsValue(NSValue thiz);
+    /**
      * @since Available in iOS 5.0 and later.
      */
     @Property(selector = "UIOffsetValue")
@@ -89,6 +97,12 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "valueWithUIEdgeInsets:")
     protected static native NSValue create(ObjCClass clazz, @ByVal UIEdgeInsets insets);
     public static NSValue create(@ByVal UIEdgeInsets insets) { return create(ObjCClass.getByType(NSValue.class), insets); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "valueWithDirectionalEdgeInsets:")
+    protected static native NSValue create(ObjCClass clazz, @ByVal NSDirectionalEdgeInsets insets);
+    public static NSValue create(@ByVal NSDirectionalEdgeInsets insets) { return create(ObjCClass.getByType(NSValue.class), insets); }
     /**
      * @since Available in iOS 5.0 and later.
      */

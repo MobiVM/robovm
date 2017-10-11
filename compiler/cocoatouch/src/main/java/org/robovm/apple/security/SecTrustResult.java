@@ -206,7 +206,9 @@ import org.robovm.apple.dispatch.*;
         public static native CFType CertificateTransparency();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Deprecated in iOS 11.0.
          */
+        @Deprecated
         @GlobalValue(symbol="kSecTrustCertificateTransparencyWhiteList", optional=true)
         public static native CFType CertificateTransparencyWhiteList();
     }

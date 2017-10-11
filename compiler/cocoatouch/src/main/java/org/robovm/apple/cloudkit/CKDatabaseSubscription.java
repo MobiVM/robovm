@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.contacts.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKDatabaseSubscription/*</name>*/ 
     extends /*<extends>*/CKSubscription/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKDatabaseSubscriptionPtr extends Ptr<CKDatabaseSubscription, CKDatabaseSubscriptionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKDatabaseSubscription.class); }/*</bind>*/

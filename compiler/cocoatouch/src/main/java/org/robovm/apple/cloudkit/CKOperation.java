@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,63 +52,31 @@ import org.robovm.apple.contacts.*;
     protected CKOperation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "container")
-    public native CKContainer getContainer();
-    @Property(selector = "setContainer:")
-    public native void setContainer(CKContainer v);
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @since Available in iOS 11.0 and later.
      */
-    @Deprecated
-    @Property(selector = "usesBackgroundSession")
-    public native boolean usesBackgroundSession();
+    @Property(selector = "configuration")
+    public native CKOperationConfiguration getConfiguration();
     /**
-     * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @since Available in iOS 11.0 and later.
      */
-    @Deprecated
-    @Property(selector = "setUsesBackgroundSession:")
-    public native void setUsesBackgroundSession(boolean v);
-    @Property(selector = "allowsCellularAccess")
-    public native boolean allowsCellularAccess();
-    @Property(selector = "setAllowsCellularAccess:")
-    public native void setAllowsCellularAccess(boolean v);
+    @Property(selector = "setConfiguration:")
+    public native void setConfiguration(CKOperationConfiguration v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "group")
+    public native CKOperationGroup getGroup();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setGroup:")
+    public native void setGroup(CKOperationGroup v);
     /**
      * @since Available in iOS 9.3 and later.
      */
     @Property(selector = "operationID")
     public native String getOperationID();
-    /**
-     * @since Available in iOS 9.3 and later.
-     */
-    @Property(selector = "isLongLived")
-    public native boolean isLongLived();
-    /**
-     * @since Available in iOS 9.3 and later.
-     */
-    @Property(selector = "setLongLived:")
-    public native void setLongLived(boolean v);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "timeoutIntervalForRequest")
-    public native double getTimeoutIntervalForRequest();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "setTimeoutIntervalForRequest:")
-    public native void setTimeoutIntervalForRequest(double v);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "timeoutIntervalForResource")
-    public native double getTimeoutIntervalForResource();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Property(selector = "setTimeoutIntervalForResource:")
-    public native void setTimeoutIntervalForResource(double v);
     /**
      * @since Available in iOS 9.3 and later.
      */
@@ -118,6 +87,76 @@ import org.robovm.apple.contacts.*;
      */
     @Property(selector = "setLongLivedOperationWasPersistedBlock:")
     public native void setLongLivedOperationWasPersistedBlock(@Block Runnable v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "container")
+    public native CKContainer getContainer();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setContainer:")
+    public native void setContainer(CKContainer v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "allowsCellularAccess")
+    public native boolean allowsCellularAccess();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setAllowsCellularAccess:")
+    public native void setAllowsCellularAccess(boolean v);
+    /**
+     * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "isLongLived")
+    public native boolean isLongLived();
+    /**
+     * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setLongLived:")
+    public native void setLongLived(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "timeoutIntervalForRequest")
+    public native double getTimeoutIntervalForRequest();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setTimeoutIntervalForRequest:")
+    public native void setTimeoutIntervalForRequest(double v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "timeoutIntervalForResource")
+    public native double getTimeoutIntervalForResource();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setTimeoutIntervalForResource:")
+    public native void setTimeoutIntervalForResource(double v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

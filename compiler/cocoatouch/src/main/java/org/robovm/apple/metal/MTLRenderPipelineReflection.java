@@ -54,6 +54,11 @@ import org.robovm.apple.dispatch.*;
     public native NSArray<MTLArgument> getVertexArguments();
     @Property(selector = "fragmentArguments")
     public native NSArray<MTLArgument> getFragmentArguments();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "tileArguments")
+    public native NSArray<MTLArgument> getTileArguments();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

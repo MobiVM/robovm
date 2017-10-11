@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,7 +48,7 @@ import org.robovm.apple.audiounit.*;
 /*<annotations>*/@Library("AVFoundation") @NativeClass @WeaklyLinked/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVSampleBufferDisplayLayer/*</name>*/ 
     extends /*<extends>*/CALayer/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements AVQueuedSampleBufferRendering/*</implements>*/ {
     
     public static class Notifications {
         /**
@@ -99,6 +98,8 @@ import org.robovm.apple.audiounit.*;
     public native NSError getError();
     @Property(selector = "isReadyForMoreMediaData")
     public native boolean isReadyForMoreMediaData();
+    @Property(selector = "timebase")
+    public native CMTimebase getTimebase();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

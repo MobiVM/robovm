@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKUnit/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKUnitPtr extends Ptr<HKUnit, HKUnitPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKUnit.class); }/*</bind>*/
@@ -49,10 +49,14 @@ import org.robovm.apple.foundation.*;
     protected HKUnit() {}
     protected HKUnit(Handle h, long handle) { super(h, handle); }
     protected HKUnit(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public HKUnit(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "unitString")
     public native String getUnitString();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -147,10 +151,25 @@ import org.robovm.apple.foundation.*;
     public static native HKUnit joule(HKMetricPrefix prefix);
     @Method(selector = "jouleUnit")
     public static native HKUnit joule();
-    @Method(selector = "calorieUnit")
-    public static native HKUnit calorie();
     @Method(selector = "kilocalorieUnit")
     public static native HKUnit kilocalorie();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "smallCalorieUnit")
+    public static native HKUnit smallCalorie();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "largeCalorieUnit")
+    public static native HKUnit largeCalorie();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "calorieUnit")
+    public static native HKUnit calorie();
     @Method(selector = "degreeCelsiusUnit")
     public static native HKUnit degreeCelsius();
     @Method(selector = "degreeFahrenheitUnit")
@@ -161,6 +180,11 @@ import org.robovm.apple.foundation.*;
     public static native HKUnit siemen(HKMetricPrefix prefix);
     @Method(selector = "siemenUnit")
     public static native HKUnit siemen();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "internationalUnit")
+    public static native HKUnit international();
     @Method(selector = "countUnit")
     public static native HKUnit count();
     @Method(selector = "percentUnit")
@@ -173,5 +197,9 @@ import org.robovm.apple.foundation.*;
     public native HKUnit raiseToPower(@MachineSizedSInt long power);
     @Method(selector = "reciprocalUnit")
     public native HKUnit reciprocalUnit();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEFlowMetaData/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEFlowMetaDataPtr extends Ptr<NEFlowMetaData, NEFlowMetaDataPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEFlowMetaData.class); }/*</bind>*/
@@ -48,6 +48,8 @@ import org.robovm.apple.security.*;
     public NEFlowMetaData() {}
     protected NEFlowMetaData(Handle h, long handle) { super(h, handle); }
     protected NEFlowMetaData(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NEFlowMetaData(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -60,9 +62,14 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "sourceAppSigningIdentifier")
     public native String getSourceAppSigningIdentifier();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

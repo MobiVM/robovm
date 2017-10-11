@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnitDispersion/*</name>*/ 
     extends /*<extends>*/NSDimension/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSUnitDispersionPtr extends Ptr<NSUnitDispersion, NSUnitDispersionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUnitDispersion.class); }/*</bind>*/

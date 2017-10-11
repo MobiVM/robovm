@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnitAngle/*</name>*/ 
     extends /*<extends>*/NSDimension/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSUnitAnglePtr extends Ptr<NSUnitAngle, NSUnitAnglePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUnitAngle.class); }/*</bind>*/

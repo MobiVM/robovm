@@ -98,6 +98,10 @@ public enum /*<name>*/MTLPixelFormat/*</name>*/ implements ValuedEnum {
     RG11B10Float(92L),
     RGB9E5Float(93L),
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    BGR10A2Unorm(94L),
+    /**
      * @since Available in iOS 10.0 and later.
      */
     BGR10_XR(554L),

@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("UserNotifications") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UNNotificationRequest/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UNNotificationRequestPtr extends Ptr<UNNotificationRequest, UNNotificationRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UNNotificationRequest.class); }/*</bind>*/
@@ -48,6 +48,8 @@ import org.robovm.apple.foundation.*;
     protected UNNotificationRequest(Handle h, long handle) { super(h, handle); }
     protected UNNotificationRequest(SkipInit skipInit) { super(skipInit); }
     public UNNotificationRequest(String identifier, UNNotificationContent content, UNNotificationTrigger trigger) { super((Handle) null, create(identifier, content, trigger)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public UNNotificationRequest(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -56,10 +58,16 @@ import org.robovm.apple.foundation.*;
     public native UNNotificationContent getContent();
     @Property(selector = "trigger")
     public native UNNotificationTrigger getTrigger();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "requestWithIdentifier:content:trigger:")
     protected static native @Pointer long create(String identifier, UNNotificationContent content, UNNotificationTrigger trigger);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

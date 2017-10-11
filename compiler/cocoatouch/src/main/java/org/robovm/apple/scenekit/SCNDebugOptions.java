@@ -54,6 +54,26 @@ public final class /*<name>*/SCNDebugOptions/*</name>*/ extends Bits</*<name>*/S
     public static final SCNDebugOptions ShowLightExtents = new SCNDebugOptions(8L);
     public static final SCNDebugOptions ShowPhysicsFields = new SCNDebugOptions(16L);
     public static final SCNDebugOptions ShowWireframe = new SCNDebugOptions(32L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final SCNDebugOptions RenderAsWireframe = new SCNDebugOptions(64L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final SCNDebugOptions ShowSkeletons = new SCNDebugOptions(128L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final SCNDebugOptions ShowCreases = new SCNDebugOptions(256L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final SCNDebugOptions ShowConstraints = new SCNDebugOptions(512L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final SCNDebugOptions ShowCameras = new SCNDebugOptions(1024L);
     /*</values>*/
 
     /*<bind>*/

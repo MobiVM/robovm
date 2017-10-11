@@ -55,30 +55,72 @@ import org.robovm.apple.avfoundation.*;
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
     @NotImplemented("animationKeys")
-    public NSArray<?> getAnimationKeys() { return null; }
+    public NSArray<NSString> getAnimationKeys() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("addAnimation:forKey:")
-    public void addAnimation(CAAnimation animation, String key) {}
+    public void addAnimation(SCNAnimation animation, String key) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("addAnimationPlayer:forKey:")
+    public void addAnimationPlayer(SCNAnimationPlayer player, String key) {}
     @NotImplemented("removeAllAnimations")
     public void removeAllAnimations() {}
     @NotImplemented("removeAnimationForKey:")
     public void removeAnimation(String key) {}
-    @NotImplemented("animationForKey:")
-    public CAAnimation getAnimation(String key) { return null; }
-    @NotImplemented("pauseAnimationForKey:")
-    public void pauseAnimation(String key) {}
-    @NotImplemented("resumeAnimationForKey:")
-    public void resumeAnimation(String key) {}
-    @NotImplemented("isAnimationForKeyPaused:")
-    public boolean isAnimationPaused(String key) { return false; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("animationPlayerForKey:")
+    public SCNAnimationPlayer animationPlayerForKey(String key) { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("removeAnimationForKey:blendOutDuration:")
+    public void removeAnimationForKey(String key, @MachineSizedFloat double duration) {}
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @NotImplemented("removeAnimationForKey:fadeOutDuration:")
     public void removeAnimation(String key, @MachineSizedFloat double duration) {}
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
+    @NotImplemented("animationForKey:")
+    public CAAnimation getAnimation(String key) { return null; }
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @NotImplemented("pauseAnimationForKey:")
+    public void pauseAnimation(String key) {}
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @NotImplemented("resumeAnimationForKey:")
+    public void resumeAnimation(String key) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @NotImplemented("setSpeed:forAnimationKey:")
     public void setSpeed(@MachineSizedFloat double speed, String key) {}
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @NotImplemented("isAnimationForKeyPaused:")
+    public boolean isAnimationPaused(String key) { return false; }
     /*</methods>*/
 }

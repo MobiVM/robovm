@@ -52,10 +52,10 @@ import org.robovm.apple.security.*;
     @NotImplemented("shouldProvideIdentityForConnection:")
     public boolean shouldProvideIdentityForConnection(NWTCPConnection connection) { return false; }
     @NotImplemented("provideIdentityForConnection:completionHandler:")
-    public void provideIdentityForConnection(NWTCPConnection connection, @Block VoidBlock2<SecIdentity, NSArray<NSObject>> completion) {}
+    public void provideIdentityForConnection(NWTCPConnection connection, @Block VoidBlock2<SecIdentity, NSArray<?>> completion) {}
     @NotImplemented("shouldEvaluateTrustForConnection:")
     public boolean shouldEvaluateTrustForConnection(NWTCPConnection connection) { return false; }
     @NotImplemented("evaluateTrustForConnection:peerCertificateChain:completionHandler:")
-    public void evaluateTrustForConnection(NWTCPConnection connection, NSArray<NSObject> peerCertificateChain, @Block VoidBlock1<SecTrust> completion) {}
+    public void evaluateTrustForConnection(NWTCPConnection connection, NSArray<?> peerCertificateChain, @Block VoidBlock1<SecTrust> completion) {}
     /*</methods>*/
 }

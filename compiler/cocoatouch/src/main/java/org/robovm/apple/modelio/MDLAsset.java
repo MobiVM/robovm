@@ -64,8 +64,6 @@ import org.robovm.apple.coregraphics.*;
     }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "components")
-    public native NSArray<?> getComponents();
     @Property(selector = "boundingBox")
     public native @ByVal MDLAxisAlignedBoundingBox getBoundingBox();
     @Property(selector = "frameInterval")
@@ -80,8 +78,28 @@ import org.robovm.apple.coregraphics.*;
     public native double getEndTime();
     @Property(selector = "setEndTime:")
     public native void setEndTime(double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "upAxis")
+    public native @ByVal VectorFloat3 getUpAxis();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setUpAxis:")
+    public native void setUpAxis(@ByVal VectorFloat3 v);
     @Property(selector = "URL")
     public native NSURL getURL();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "resolver")
+    public native MDLAssetResolver getResolver();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setResolver:")
+    public native void setResolver(MDLAssetResolver v);
     @Property(selector = "bufferAllocator")
     public native MDLMeshBufferAllocator getBufferAllocator();
     @Property(selector = "vertexDescriptor")
@@ -92,6 +110,16 @@ import org.robovm.apple.coregraphics.*;
     public native MDLObjectContainerComponent getMasters();
     @Property(selector = "setMasters:")
     public native void setMasters(MDLObjectContainerComponent v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "animations")
+    public native MDLObjectContainerComponent getAnimations();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAnimations:")
+    public native void setAnimations(MDLObjectContainerComponent v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -111,16 +139,18 @@ import org.robovm.apple.coregraphics.*;
     }
     @Method(selector = "exportAssetToURL:error:")
     private native boolean export(NSURL URL, NSError.NSErrorPtr error);
-    @Method(selector = "setComponent:forProtocol:")
-    public native void setComponentForProtocol(MDLComponent component, ObjCProtocol protocol);
-    @Method(selector = "componentConformingToProtocol:")
-    public native MDLComponent componentConformingToProtocol(ObjCProtocol protocol);
-    @Method(selector = "objectForKeyedSubscript:")
-    public native MDLComponent objectForKeyedSubscript(ObjCProtocol key);
-    @Method(selector = "setObject:forKeyedSubscript:")
-    public native void setObjectForKeyedSubscript(MDLComponent obj, ObjCProtocol key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "objectAtPath:")
+    public native MDLObject objectAtPath(String path);
     @Method(selector = "childObjectsOfClass:")
     public native NSArray<MDLObject> childObjectsOfClass(Class<?> objectClass);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "loadTextures")
+    public native void loadTextures();
     @Method(selector = "boundingBoxAtTime:")
     public native @ByVal MDLAxisAlignedBoundingBox getBoundingBox(double time);
     @Method(selector = "addObject:")

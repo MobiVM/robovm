@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +71,10 @@ import org.robovm.apple.corelocation.*;
     public static native Class<? extends UICollectionViewLayoutInvalidationContext> getInvalidationContextClass();
     @Property(selector = "collectionViewContentSize")
     public native @ByVal CGSize getCollectionViewContentSize();
+    @Property(selector = "developmentLayoutDirection")
+    public native UIUserInterfaceLayoutDirection getDevelopmentLayoutDirection();
+    @Property(selector = "flipsHorizontallyInOppositeLayoutDirection")
+    public native boolean flipsHorizontallyInOppositeLayoutDirection();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

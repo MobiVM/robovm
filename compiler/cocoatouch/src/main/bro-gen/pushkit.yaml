@@ -34,6 +34,8 @@ protocols:
                 name: didReceiveIncomingPush
             '-pushRegistry:didInvalidatePushTokenForType:':
                 name: didInvalidatePushToken
+            '-pushRegistry:didReceiveIncomingPushWithPayload:forType:withCompletionHandler:':
+                name: didReceiveIncomingPushWithPayload
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

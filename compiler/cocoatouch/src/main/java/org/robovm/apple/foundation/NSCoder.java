@@ -302,23 +302,23 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "objectZone")
     public native NSZone getObjectZone();
     @Method(selector = "encodeObject:forKey:")
-    protected native void encodeObject0(NSObject objv, String key);
+    protected native void encodeObject0(NSObject object, String key);
     @Method(selector = "encodeConditionalObject:forKey:")
-    protected native void encodeConditionalObject0(NSObject objv, String key);
+    protected native void encodeConditionalObject0(NSObject object, String key);
     @Method(selector = "encodeBool:forKey:")
-    protected native void encodeBool0(boolean boolv, String key);
+    protected native void encodeBool0(boolean value, String key);
     @Method(selector = "encodeInt:forKey:")
-    protected native void encodeInt0(int intv, String key);
+    protected native void encodeInt0(int value, String key);
     @Method(selector = "encodeInt32:forKey:")
-    protected native void encodeInt320(int intv, String key);
+    protected native void encodeInt320(int value, String key);
     @Method(selector = "encodeInt64:forKey:")
-    protected native void encodeInt640(long intv, String key);
+    protected native void encodeInt640(long value, String key);
     @Method(selector = "encodeFloat:forKey:")
-    protected native void encodeFloat0(float realv, String key);
+    protected native void encodeFloat0(float value, String key);
     @Method(selector = "encodeDouble:forKey:")
-    protected native void encodeDouble0(double realv, String key);
+    protected native void encodeDouble0(double value, String key);
     @Method(selector = "encodeBytes:length:forKey:")
-    protected native void encodeBytes0(@Pointer long bytesp, @MachineSizedUInt long lenv, String key);
+    protected native void encodeBytes0(@Pointer long bytes, @MachineSizedUInt long length, String key);
     @Method(selector = "containsValueForKey:")
     public native boolean containsValue(String key);
     @Method(selector = "decodeObjectForKey:")
@@ -355,7 +355,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 2.0 and later.
      */
     @Method(selector = "encodeInteger:forKey:")
-    protected native void encodeInteger0(@MachineSizedSInt long intv, String key);
+    protected native void encodeInteger0(@MachineSizedSInt long value, String key);
     /**
      * @since Available in iOS 2.0 and later.
      */

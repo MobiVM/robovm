@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEEvaluateConnectionRule/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEEvaluateConnectionRulePtr extends Ptr<NEEvaluateConnectionRule, NEEvaluateConnectionRulePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEEvaluateConnectionRule.class); }/*</bind>*/
@@ -53,6 +53,8 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "initWithMatchDomains:andAction:")
     public NEEvaluateConnectionRule(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> domains, NEEvaluateConnectionRuleAction action) { super((SkipInit) null); initObject(init(domains, action)); }
+    @Method(selector = "initWithCoder:")
+    public NEEvaluateConnectionRule(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -85,6 +87,8 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setProbeURL:")
     public native void setProbeURL(NSURL v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -93,5 +97,9 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "initWithMatchDomains:andAction:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> domains, NEEvaluateConnectionRuleAction action);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

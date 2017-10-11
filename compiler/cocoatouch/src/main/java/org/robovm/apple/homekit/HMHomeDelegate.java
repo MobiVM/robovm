@@ -51,6 +51,11 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "homeDidUpdateName:")
     void didUpdateName(HMHome home);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "homeDidUpdateAccessControlForCurrentUser:")
+    void homeDidUpdateAccessControlForCurrentUser(HMHome home);
     @Method(selector = "home:didAddAccessory:")
     void didAddAccessory(HMHome home, HMAccessory accessory);
     @Method(selector = "home:didRemoveAccessory:")
@@ -107,6 +112,11 @@ import org.robovm.apple.corelocation.*;
     void didUnblockAccessory(HMHome home, HMAccessory accessory);
     @Method(selector = "home:didEncounterError:forAccessory:")
     void didEncounterError(HMHome home, NSError error, HMAccessory accessory);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "home:didUpdateHomeHubState:")
+    void didUpdateHomeHubState(HMHome home, HMHomeHubState homeHubState);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

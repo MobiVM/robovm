@@ -1,0 +1,89 @@
+package: org.robovm.apple.coreml
+include: [foundation, corevideo]
+library: CoreML
+framework: CoreML
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/CoreML.framework/Headers/CoreML.h
+typedefs: {}
+
+enums:
+    MLFeatureType: {} #since 11.0
+    MLMultiArrayDataType: {} #since 11.0
+    MLModelError: { nserror: true }
+
+classes:
+    MLDictionaryConstraint: {} #since 11.0
+    MLDictionaryFeatureProvider: #since 11.0
+        methods:
+            '-initWithDictionary:error:':
+                throws: NSErrorException
+                name: init
+    MLFeatureDescription: {} #since 11.0
+    MLFeatureValue: #since 11.0
+        methods:
+            '+featureValueWithDictionary:error:':
+                name: create
+                throws: NSErrorException
+                constructor: true
+    MLImageConstraint: {} #since 11.0
+    MLModel: #since 11.0
+        methods:
+            '-predictionFromFeatures:error:':
+                throws: NSErrorException
+                trim_after_first_colon: true
+            '-predictionFromFeatures:options:error:':
+                trim_after_first_colon: true
+            '+modelWithContentsOfURL:error:':
+                name: create
+                throws: NSErrorException
+                constructor: true
+            '+compileModelAtURL:error:':
+                throws: NSErrorException
+                name: compileModel
+
+    MLModelDescription: {} #since 11.0
+    MLMultiArray:  #since 11.0
+        methods:
+            '-initWithShape:dataType:error:':
+                throws: NSErrorException
+                name: init
+            '-initWithDataPointer:shape:dataType:strides:deallocator:error:':
+                throws: NSErrorException
+                name: init
+            '-setObject:atIndexedSubscript:':
+                trim_after_first_colon: true
+            '-setObject:forKeyedSubscript:':
+                trim_after_first_colon: true
+    MLMultiArrayConstraint: {} #since 11.0
+    MLPredictionOptions: {} #since 11.0
+
+protocols:
+    MLFeatureProvider: {} #since 11.0
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (ML.*):
+        class: CoreML
+        name: 'Function__#{g[0]}'
+
+values:
+    MLModelErrorDomain:
+        class: MLModelError
+        name: getClassDomain
+
+    MLModel(.*)Key:
+        enum: MLModelMetadataKey
+        name: '#{g[0]}'
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (ML.*):
+        class: CoreML
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (ML.*):
+        class: CoreML
+        name: 'Constant__#{g[0]}'

@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -133,7 +136,9 @@ import org.robovm.apple.corelocation.*;
     public void didChangStatusBarFrame(UIApplication application, @ByVal CGRect oldStatusBarFrame) {}
     /**
      * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
      */
+    @Deprecated
     @NotImplemented("application:didRegisterUserNotificationSettings:")
     public void didRegisterUserNotificationSettings(UIApplication application, UIUserNotificationSettings notificationSettings) {}
     /**
@@ -219,6 +224,11 @@ import org.robovm.apple.corelocation.*;
     @NotImplemented("applicationShouldRequestHealthAuthorization:")
     public void shouldRequestHealthAuthorization(UIApplication application) {}
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("application:handleIntent:completionHandler:")
+    public void handleIntent(UIApplication application, INIntent intent, @Block VoidBlock1<INIntentResponse> completionHandler) {}
+    /**
      * @since Available in iOS 4.0 and later.
      */
     @NotImplemented("applicationDidEnterBackground:")
@@ -293,5 +303,10 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("application:didUpdateUserActivity:")
     public void didUpdateUserActivity(UIApplication application, NSUserActivity userActivity) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("application:userDidAcceptCloudKitShareWithMetadata:")
+    public void didAcceptCloudKitShare(UIApplication application, CKShareMetadata cloudKitShareMetadata) {}
     /*</methods>*/
 }

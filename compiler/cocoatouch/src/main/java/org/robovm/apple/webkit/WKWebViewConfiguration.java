@@ -193,6 +193,16 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "setURLSchemeHandler:forURLScheme:")
+    public native void setURLSchemeHandler(WKURLSchemeHandler urlSchemeHandler, String urlScheme);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "urlSchemeHandlerForURLScheme:")
+    public native WKURLSchemeHandler urlSchemeHandlerForURLScheme(String urlScheme);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

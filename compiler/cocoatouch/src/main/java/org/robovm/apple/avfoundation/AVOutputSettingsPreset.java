@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -118,9 +117,17 @@ import org.robovm.apple.audiounit.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final AVOutputSettingsPreset Size3840x2160 = new AVOutputSettingsPreset("Size3840x2160");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final AVOutputSettingsPreset SizeHEVC1920x1080 = new AVOutputSettingsPreset("SizeHEVC1920x1080");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final AVOutputSettingsPreset SizeHEVC3840x2160 = new AVOutputSettingsPreset("SizeHEVC3840x2160");
     /*</constants>*/
     
-    private static /*<name>*/AVOutputSettingsPreset/*</name>*/[] values = new /*<name>*/AVOutputSettingsPreset/*</name>*/[] {/*<value_list>*/Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160/*</value_list>*/};
+    private static /*<name>*/AVOutputSettingsPreset/*</name>*/[] values = new /*<name>*/AVOutputSettingsPreset/*</name>*/[] {/*<value_list>*/Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, SizeHEVC1920x1080, SizeHEVC3840x2160/*</value_list>*/};
     
     /*<name>*/AVOutputSettingsPreset/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -168,6 +175,16 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVOutputSettingsPreset3840x2160", optional=true)
         public static native NSString Size3840x2160();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="AVOutputSettingsPresetHEVC1920x1080", optional=true)
+        public static native NSString SizeHEVC1920x1080();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="AVOutputSettingsPresetHEVC3840x2160", optional=true)
+        public static native NSString SizeHEVC3840x2160();
         /*</values>*/
     }
 }

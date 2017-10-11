@@ -72,6 +72,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setStageInputDescriptor:")
     public native void setStageInputDescriptor(MTLStageInputOutputDescriptor v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "buffers")
+    public native MTLPipelineBufferDescriptorArray getBuffers();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

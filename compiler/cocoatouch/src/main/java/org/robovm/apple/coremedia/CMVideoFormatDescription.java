@@ -183,6 +183,16 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="kCMFormatDescriptionTransferFunction_SMPTE_ST_428_1", optional=true)
     public static native CFString TransferFunction_SMPTE_ST_428_1();
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kCMFormatDescriptionTransferFunction_SMPTE_ST_2084_PQ", optional=true)
+    public static native CFString TransferFunction_SMPTE_ST_2084_PQ();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kCMFormatDescriptionTransferFunction_ITU_R_2100_HLG", optional=true)
+    public static native CFString TransferFunction_ITU_R_2100_HLG();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @GlobalValue(symbol="kCMFormatDescriptionYCbCrMatrix_ITU_R_709_2", optional=true)
@@ -268,6 +278,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Bridge(symbol="CMVideoFormatDescriptionCreateForImageBuffer", optional=true)
     private static native OSStatus create0(CFAllocator allocator, CVImageBuffer imageBuffer, CMVideoFormatDescription.CMVideoFormatDescriptionPtr outDesc);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CMVideoFormatDescriptionCreateFromHEVCParameterSets", optional=true)
+    private static native OSStatus create0(CFAllocator allocator, @MachineSizedUInt long parameterSetCount, BytePtr.BytePtrPtr parameterSetPointers, MachineSizedUIntPtr parameterSetSizes, int NALUnitHeaderLength, CMVideoFormatDescriptionExtension extensions, CMFormatDescription.CMFormatDescriptionPtr formatDescriptionOut);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CMVideoFormatDescriptionGetHEVCParameterSetAtIndex", optional=true)
+    public static native OSStatus getHEVCParameterSetAtIndex(CMFormatDescription videoDesc, @MachineSizedUInt long parameterSetIndex, BytePtr.BytePtrPtr parameterSetPointerOut, MachineSizedUIntPtr parameterSetSizeOut, MachineSizedUIntPtr parameterSetCountOut, IntPtr NALUnitHeaderLengthOut);
     /**
      * @since Available in iOS 4.0 and later.
      */

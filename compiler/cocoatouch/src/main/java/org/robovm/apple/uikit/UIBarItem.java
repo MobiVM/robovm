@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
@@ -81,6 +84,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setLandscapeImagePhone:")
     public native void setLandscapeImagePhone(UIImage v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "largeContentSizeImage")
+    public native UIImage getLargeContentSizeImage();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setLargeContentSizeImage:")
+    public native void setLargeContentSizeImage(UIImage v);
     @Property(selector = "imageInsets")
     public native @ByVal UIEdgeInsets getImageInsets();
     @Property(selector = "setImageInsets:")
@@ -95,6 +108,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setLandscapeImagePhoneInsets:")
     public native void setLandscapeImagePhoneInsets(@ByVal UIEdgeInsets v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "largeContentSizeImageInsets")
+    public native @ByVal UIEdgeInsets getLargeContentSizeImageInsets();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setLargeContentSizeImageInsets:")
+    public native void setLargeContentSizeImageInsets(@ByVal UIEdgeInsets v);
     @Property(selector = "tag")
     public native @MachineSizedSInt long getTag();
     @Property(selector = "setTag:")

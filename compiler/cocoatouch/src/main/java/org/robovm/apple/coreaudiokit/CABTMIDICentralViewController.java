@@ -28,7 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.audiounit.*;
+import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.uikit.*;
 /*</imports>*/

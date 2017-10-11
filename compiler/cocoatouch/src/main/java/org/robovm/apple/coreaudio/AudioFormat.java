@@ -73,7 +73,9 @@ public enum /*<name>*/AudioFormat/*</name>*/ implements ValuedEnum {
     DVIIntelIMA(1836253201L),
     MicrosoftGSM(1836253233L),
     AES3(1634038579L),
-    EnhancedAC3(1700998451L);
+    EnhancedAC3(1700998451L),
+    FLAC(1718378851L),
+    Opus(1869641075L);
     /*</values>*/
 
     /*<bind>*/

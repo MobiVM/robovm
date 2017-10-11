@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnitSpeed/*</name>*/ 
     extends /*<extends>*/NSDimension/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSUnitSpeedPtr extends Ptr<NSUnitSpeed, NSUnitSpeedPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUnitSpeed.class); }/*</bind>*/

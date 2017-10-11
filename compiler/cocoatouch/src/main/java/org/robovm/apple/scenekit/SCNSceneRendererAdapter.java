@@ -186,7 +186,7 @@ import org.robovm.apple.avfoundation.*;
     @NotImplemented("unprojectPoint:")
     public @ByVal SCNVector3 unprojectPoint(@ByVal SCNVector3 point) { return null; }
     @NotImplemented("prepareObject:shouldAbortBlock:")
-    public boolean prepareObject(NSObject object, @Block Block0<Boolean> block) { return false; }
+    public boolean prepareObject(NSObject object, @Block BooleanBlock block) { return false; }
     @NotImplemented("prepareObjects:withCompletionHandler:")
     public void prepareObjects(NSArray<?> objects, @Block VoidBooleanBlock completionHandler) {}
     /*</methods>*/

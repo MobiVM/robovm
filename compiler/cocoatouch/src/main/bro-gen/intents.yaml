@@ -1,0 +1,1325 @@
+package: org.robovm.apple.intents
+include: [foundation, eventkit, corelocation]
+library: Intents
+framework: Intents
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/Intents.framework/Headers/Intents.h
+typedefs: {}
+
+enums:
+    INIntentErrorCode: { nserror: true, prefix: INIntentError} #since 10.0
+    INCallCapabilityOptions: {prefix: INCallCapabilityOption} #since 10.0
+    INCallRecordType: {} #since 10.0
+    INCallRecordTypeOptions: {prefix: INCallRecordTypeOption} #since 10.0
+    INCallDestinationType: {} #since 11.0
+    INCarSignalOptions: {prefix: INCarSignalOption} #since 10.3
+    INCarAudioSource: {} #since 10.0
+    INRelativeReference: {} #since 10.0
+    INCarAirCirculationMode: {} #since 10.0
+    INCarSeat: {} #since 10.0
+    INRelativeSetting: {} #since 10.0
+    INCarDefroster: {} #since 10.0
+    INWorkoutGoalUnitType: {} #since 10.0
+    INWorkoutLocationType: {} #since 10.0
+    INRadioType: {} #since 10.0
+    INConditionalOperator: {} #since 10.0
+    INMessageAttributeOptions: {prefix: INMessageAttributeOption} #since 10.0
+    INMessageAttribute: {} #since 10.0
+    INDateSearchType: {} #since 11.0
+    INLocationSearchType: {} #since 11.0
+    INNotebookItemType: {} #since 11.0
+    INTaskStatus: {} #since 11.0
+    INBillType: {} #since 10.3
+    INAccountType: {} #since 10.3
+    INBalanceType: {} #since 11.0
+    INPaymentStatus: {} #since 10.0
+    INPhotoAttributeOptions: {prefix: INPhotoAttributeOption} #since 10.0
+    INVisualCodeType: {} #since 11.0
+    INIntentHandlingStatus: {} #since 10.0
+    INInteractionDirection: {} #since 10.0
+    INSearchCallHistoryIntentResponseCode: {} #since 10.0
+    INStartAudioCallIntentResponseCode: {} #since 10.0
+    INStartVideoCallIntentResponseCode: {} #since 10.0
+    INActivateCarSignalIntentResponseCode: {} #since 10.3
+    INGetCarLockStatusIntentResponseCode: {} #since 10.3
+    INGetCarPowerLevelStatusIntentResponseCode: {} #since 10.3
+    INSaveProfileInCarIntentResponseCode: {} #since 10.0
+    INSetAudioSourceInCarIntentResponseCode: {} #since 10.0
+    INSetCarLockStatusIntentResponseCode: {} #since 10.3
+    INSetClimateSettingsInCarIntentResponseCode: {} #since 10.0
+    INSetDefrosterSettingsInCarIntentResponseCode: {} #since 10.0
+    INSetProfileInCarIntentResponseCode: {} #since 10.0
+    INSetSeatSettingsInCarIntentResponseCode: {} #since 10.0
+    INCancelWorkoutIntentResponseCode: {} #since 10.0
+    INEndWorkoutIntentResponseCode: {} #since 10.0
+    INPauseWorkoutIntentResponseCode: {} #since 10.0
+    INResumeWorkoutIntentResponseCode: {} #since 10.0
+    INStartWorkoutIntentResponseCode: {} #since 10.0
+    INSetRadioStationIntentResponseCode: {} #since 10.0
+    INSearchForMessagesIntentResponseCode: {} #since 10.0
+    INSendMessageIntentResponseCode: {} #since 10.0
+    INSetMessageAttributeIntentResponseCode: {} #since 10.0
+    INAddTasksIntentResponseCode: {} #since 11.0
+    INAppendToNoteIntentResponseCode: {} #since 11.0
+    INCreateNoteIntentResponseCode: {} #since 11.0
+    INCreateTaskListIntentResponseCode: {} #since 11.0
+    INSortType: {} #since 11.0
+    INSearchForNotebookItemsIntentResponseCode: {} #since 11.0
+    INSetTaskAttributeIntentResponseCode: {} #since 11.0
+    INPayBillIntentResponseCode: {} #since 10.3
+    INRequestPaymentIntentResponseCode: {} #since 10.0
+    INSearchForAccountsIntentResponseCode: {} #since 11.0
+    INSearchForBillsIntentResponseCode: {} #since 10.3
+    INSendPaymentIntentResponseCode: {} #since 10.0
+    INTransferMoneyIntentResponseCode: {} #since 11.0
+    INSearchForPhotosIntentResponseCode: {} #since 10.0
+    INStartPhotoPlaybackIntentResponseCode: {} #since 10.0
+    INGetRideStatusIntentResponseCode: {} #since 10.0
+    INListRideOptionsIntentResponseCode: {} #since 10.0
+    INRequestRideIntentResponseCode: {} #since 10.0
+    INCancelRideIntentResponseCode: {} #since 11.0
+    INSendRideFeedbackIntentResponseCode: {} #since 11.0
+    INGetVisualCodeIntentResponseCode: {} #since 11.0
+    INPersonHandleType: {} #since 10.0
+    INPaymentMethodType: {} #since 10.0
+    INPersonSuggestionType: {}
+    INRecurrenceFrequency: {} #since 11.0
+    INCallCapability: {} #since 10.0
+    INSendMessageRecipientUnsupportedReason: {} #since 11.0
+    INMessageType: {} #since 11.0
+    INAmountType: {} #since 10.3
+    INSendPaymentCurrencyAmountUnsupportedReason: {} #since 11.0
+    INRequestPaymentCurrencyAmountUnsupportedReason: {} #since 11.0
+    INSendPaymentPayeeUnsupportedReason: {} #since 11.0
+    INRequestPaymentPayerUnsupportedReason: {} #since 11.0
+    INRidePhase: {} #since 10.0
+    INRideFeedbackTypeOptions: {prefix: INRideFeedbackTypeOption} #since 11.0
+    INRestaurantReservationUserBookingStatus: {}
+    INBookRestaurantReservationIntentCode: {}
+    INGetAvailableRestaurantReservationBookingsIntentCode: {}
+    INGetUserCurrentRestaurantReservationBookingsIntentResponseCode: {}
+    INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCode: {}
+    INGetRestaurantGuestIntentResponseCode: {}
+    INVocabularyStringType: {}
+    INSiriAuthorizationStatus: {} #since 10.0
+    INTaskType: {} #since 11.0
+    INSpatialEvent: {} #since 11.0
+    INNoteContentType: {} #since 11.0
+
+classes:
+    INAccountTypeResolutionResult: {} #since 11.0
+    INActivateCarSignalIntent: #since 10.3
+        methods:
+            '-initWithCarName:signals:':
+                name: init
+    INActivateCarSignalIntentResponse: #since 10.3
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INAddTasksIntent: #since 11.0
+        methods:
+            '-initWithTargetTaskList:taskTitles:spatialEventTrigger:temporalEventTrigger:':
+                name: init
+    INAddTasksIntentResponse: #since 11.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INAppendToNoteIntent: #since 11.0
+        methods:
+            '-initWithTargetNote:content:':
+                name: init
+    INAppendToNoteIntentResponse: #since 11.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INBalanceAmount: #since 11.0
+        methods:
+            '-init.*':
+                name: init
+    INBalanceTypeResolutionResult: {} #since 11.0
+    INBillDetails: #since 10.3
+        methods:
+            '-initWithBillType:paymentStatus:billPayee:amountDue:minimumDue:lateFee:dueDate:paymentDate:':
+                name: init
+    INBillPayee: #since 10.3
+        methods:
+            '-initWithNickname:number:organizationName:':
+                name: init
+    INBillPayeeResolutionResult: {} #since 10.3
+    INBillTypeResolutionResult: {} #since 10.3
+    INBookRestaurantReservationIntent: #since 10.0
+        methods:
+            '-initWithRestaurant:bookingDateComponents:partySize:bookingIdentifier:guest:selectedOffer:guestProvidedSpecialRequestText:':
+                name: init
+    INBookRestaurantReservationIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INBooleanResolutionResult: {} #since 10.0
+    INCallDestinationTypeResolutionResult: {} #since 11.0
+    INCallRecord: #since 11.0
+        methods:
+            '-initWithIdentifier:dateCreated:caller:callRecordType:callCapability:callDuration:unseen:':
+                name: init
+    INCallRecordTypeOptionsResolutionResult: {} #since 11.0
+    INCallRecordTypeResolutionResult: {} #since 10.0
+    INCancelRideIntent: {} #since 11.0
+    INCancelRideIntentResponse: #since 11.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INCancelWorkoutIntent: {} #since 10.0
+    INCancelWorkoutIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INCarAirCirculationModeResolutionResult: {} #since 10.0
+    INCarAudioSourceResolutionResult: {} #since 10.0
+    INCarDefrosterResolutionResult: {} #since 10.0
+    INCarSeatResolutionResult: {} #since 10.0
+    INCarSignalOptionsResolutionResult: {} #since 10.3
+    INCreateNoteIntent: #since 11.0
+        methods:
+            '-initWithTitle:content:groupName:':
+                name: init
+    INCreateNoteIntentResponse: #since 11.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INCreateTaskListIntent: #since 11.0
+        methods:
+            '-initWithTitle:taskTitles:groupName:':
+                name: init
+    INCreateTaskListIntentResponse: #since 11.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INCurrencyAmount: #since 10.0
+        methods:
+            '-initWithAmount:currencyCode:':
+                name: init
+    INCurrencyAmountResolutionResult: {} #since 10.0
+    INDateComponentsRange: #since 10.0
+        methods:
+            '-init.*':
+                name: init
+    INDateComponentsRangeResolutionResult: {} #since 10.0
+    INDateComponentsResolutionResult: {} #since 10.0
+    INDateSearchTypeResolutionResult: {} #since 11.0
+    INDoubleResolutionResult: {} #since 10.0
+    INEndWorkoutIntent: {} #since 10.0
+    INEndWorkoutIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INExtension: {} #since 10.0
+    INGetAvailableRestaurantReservationBookingDefaultsIntent: {} #since 10.0
+    INGetAvailableRestaurantReservationBookingDefaultsIntentResponse: #since 10.0
+        methods:
+            '-initWithDefaultPartySize:defaultBookingDate:code:userActivity:':
+                name: init
+    INGetAvailableRestaurantReservationBookingsIntent: #since 10.0
+        methods:
+            '-initWithRestaurant:partySize:preferredBookingDateComponents:maximumNumberOfResults:earliestBookingDateForResults:latestBookingDateForResults:':
+                name: init
+    INGetAvailableRestaurantReservationBookingsIntentResponse: #since 10.0
+        methods:
+            '-initWithAvailableBookings:code:userActivity:':
+                name: init
+    INGetCarLockStatusIntent: {} #since 10.3
+    INGetCarLockStatusIntentResponse: #since 10.3
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INGetCarPowerLevelStatusIntent: {} #since 10.3
+    INGetCarPowerLevelStatusIntentResponse: #since 10.3
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INGetRestaurantGuestIntent: {} #since 10.0
+    INGetRestaurantGuestIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INGetRideStatusIntent: {} #since 10.0
+    INGetRideStatusIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INGetUserCurrentRestaurantReservationBookingsIntent: #since 10.0
+        methods:
+            '-initWithRestaurant:reservationIdentifier:maximumNumberOfResults:earliestBookingDateForResults:':
+                name: init
+    INGetUserCurrentRestaurantReservationBookingsIntentResponse: #since 10.0
+        methods:
+            '-initWithUserCurrentBookings:code:userActivity:':
+                name: init
+    INGetVisualCodeIntent: {} #since 11.0
+    INGetVisualCodeIntentResponse: #since 11.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INImage: #since 10.0
+        methods:
+            '+imageWithURL:width:height:':
+                name: create
+                constructor: true
+    INImageNoteContent: {} #since 11.0
+    INIntegerResolutionResult: {} #since 10.0
+    INIntent: {} #since 10.0
+    INIntentResolutionResult: {} #since 10.0
+    INIntentResponse: {} #since 10.0
+    INInteraction: #since 10.0
+        methods:
+            '-initWithIntent:response:':
+                name: init
+            '+deleteInteractionsWithIdentifiers:completion:':
+                name: deleteInteractions
+            '+deleteInteractionsWithGroupIdentifier:completion:':
+                #trim_after_first_colon: true
+                name: deleteInteractionsByGroup
+    INListRideOptionsIntent: #since 10.0
+        methods:
+            '-initWithPickupLocation:dropOffLocation:':
+                name: init
+    INListRideOptionsIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INLocationSearchTypeResolutionResult: {} #since 11.0
+    INMessage: #since 10.0
+        methods:
+            '-init.*':
+                name: init
+    INMessageAttributeOptionsResolutionResult: {} #since 10.0
+    INMessageAttributeResolutionResult: {} #since 10.0
+    INNote: #since 11.0
+        methods:
+            '-initWithTitle:contents:groupName:createdDateComponents:modifiedDateComponents:identifier:':
+                name: init
+    INNoteContent: {} #since 11.0
+    INNoteContentResolutionResult: {} #since 11.0
+    INNoteContentTypeResolutionResult: {} #since 11.0
+    INNoteResolutionResult: {} #since 11.0
+    INNotebookItemTypeResolutionResult: {} #since 11.0
+    INParameter: #since 11.0
+        methods:
+            '-setIndex:forSubKeyPath:':
+                trim_after_first_colon: true
+            '+parameterForClass:keyPath:':
+                trim_after_first_colon: true
+    INPauseWorkoutIntent: {} #since 10.0
+    INPauseWorkoutIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INPayBillIntent: #since 10.3
+        methods:
+            '-initWithBillPayee:fromAccount:transactionAmount:transactionScheduledDate:transactionNote:billType:dueDate:':
+                name: init
+    INPayBillIntentResponse: #since 10.3
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INPaymentAccount: #since 10.3
+        methods:
+            '-initWithNickname:number:accountType:organizationName:balance:secondaryBalance:':
+                name: init
+            '-initWithNickname:number:accountType:organizationName:':
+                name: init
+    INPaymentAccountResolutionResult: {} #since 10.3
+    INPaymentAmount: #since 10.3
+        methods:
+            '-initWithAmountType:amount:':
+                name: init
+    INPaymentAmountResolutionResult: {} #since 10.3
+    INPaymentMethod: #since 10.0
+        methods:
+            '-initWithType:name:identificationHint:icon:':
+                name: init
+    INPaymentRecord: #since 10.0
+        methods:
+            '-init.*':
+                name: init
+    INPaymentStatusResolutionResult: {} #since 10.0
+    INPerson: #since 10.0
+        properties:
+            'handle':
+                name: handle0
+        methods:
+            '-init.*':
+                name: init
+    INPersonHandle: #since 10.0
+        methods:
+            '-init.*':
+                name: init
+    INPersonResolutionResult: {} #since 10.0
+    INPlacemarkResolutionResult: {} #since 10.0
+    INPreferences: {} #since 10.0
+    INPriceRange: #since 10.0
+        methods:
+            '-initWithMaximumPrice:currencyCode:':
+                name: initWithMaximumPrice
+                static_constructor_name: createWithMaximumPrice
+            '-initWithMinimumPrice:currencyCode:':
+                name: initWithMinimumPrice
+                static_constructor_name: createWithMinimumPrice
+            '-init.*':
+                name: init
+    INRadioTypeResolutionResult: {} #since 10.0
+    INRecurrenceRule: #since 11.0
+        methods:
+            '-initWithInterval:frequency:':
+                name: init
+    INRelativeReferenceResolutionResult: {} #since 10.0
+    INRelativeSettingResolutionResult: {} #since 10.0
+    INRequestPaymentCurrencyAmountResolutionResult: {} #since 11.0
+    INRequestPaymentIntent: #since 10.0
+        methods:
+            '-initWithPayer:currencyAmount:note:':
+                name: init
+    INRequestPaymentIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INRequestPaymentPayerResolutionResult: {} #since 11.0
+    INRequestRideIntent: #since 10.0
+        methods:
+            '-init.*':
+                name: init
+    INRequestRideIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INRestaurant: #since 10.0
+        methods:
+            '-initWithLocation:name:vendorIdentifier:restaurantIdentifier:':
+                name: init
+    INRestaurantGuest: #since 10.0
+        methods:
+            '-initWithNameComponents:phoneNumber:emailAddress:':
+                name: init
+    INRestaurantGuestDisplayPreferences: {} #since 10.0
+    INRestaurantGuestResolutionResult: {} #since 10.0
+    INRestaurantOffer: {} #since 10.0
+    INRestaurantReservationBooking: #since 10.0
+        methods:
+            '-initWithRestaurant:bookingDate:partySize:bookingIdentifier:':
+                name: init
+    INRestaurantReservationUserBooking: #since 10.0
+        methods:
+            '-initWithRestaurant:bookingDate:partySize:bookingIdentifier:guest:status:dateStatusModified:':
+                name: init
+    INRestaurantResolutionResult: {} #since 10.0
+    INResumeWorkoutIntent: {} #since 10.0
+    INResumeWorkoutIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INRideCompletionStatus: {} #since 10.0
+    INRideDriver: #since 10.0
+        methods:
+            '-init.*':
+                name: init
+    INRideFareLineItem: #since 10.0
+        methods:
+            '-initWithTitle:price:currencyCode:':
+                name: init
+    INRideOption: #since 10.0
+        methods:
+            '-initWithName:estimatedPickupDate:':
+                name: init
+    INRidePartySizeOption: #since 10.0
+        methods:
+            '-initWithPartySizeRange:sizeDescription:priceRange:':
+                name: init
+    INRideStatus: {} #since 10.0
+    INRideVehicle: {} #since 10.0
+    INSaveProfileInCarIntent: #since 10.0
+        methods:
+            '-initWithProfileNumber:profileName:':
+                name: initWithProfileName
+                static_constructor_name: createWithProfileName
+            '-initWithProfileNumber:profileLabel:':
+                name: initWithProfileLabel
+                static_constructor_name: createWithProfileLabel
+            '-init.*':
+                name: init
+    INSaveProfileInCarIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSearchCallHistoryIntent: #since 10.0
+        methods:
+            '-init.*':
+                name: init
+    INSearchCallHistoryIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSearchForAccountsIntent: #since 11.0
+        methods:
+            '-initWithAccountNickname:accountType:organizationName:requestedBalanceType:':
+                name: init
+    INSearchForAccountsIntentResponse: #since 11.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSearchForBillsIntent: #since 10.3
+        methods:
+            '-initWithBillPayee:paymentDateRange:billType:status:dueDateRange:':
+                name: init
+    INSearchForBillsIntentResponse: #since 10.3
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSearchForMessagesIntent: #since 10.0
+        methods:
+            '-initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:':
+                name: initWithSpeakableGroupNames
+                static_constructor_name: createWithSpeakableGroupNames
+            '-initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:groupNames:':
+                name: initWithGroupNames
+                static_constructor_name: createWithGroupNames
+            '-init.*':
+                name: init
+    INSearchForMessagesIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSearchForNotebookItemsIntent: #since 11.0
+        methods:
+            '-initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:':
+                name: init
+    INSearchForNotebookItemsIntentResponse: #since 11.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSearchForPhotosIntent: #since 10.0
+        methods:
+            '-initWithDateCreated:locationCreated:albumName:searchTerms:includedAttributes:excludedAttributes:peopleInPhoto:':
+                name: init
+    INSearchForPhotosIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSendMessageIntent: #since 10.0
+        methods:
+            '-init.*':
+                name: init
+    INSendMessageIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSendMessageRecipientResolutionResult: {} #since 11.0
+    INSendPaymentCurrencyAmountResolutionResult: {} #since 11.0
+    INSendPaymentIntent: #since 10.0
+        methods:
+            '-initWithPayee:currencyAmount:note:':
+                name: init
+    INSendPaymentIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSendPaymentPayeeResolutionResult: {} #since 11.0
+    INSendRideFeedbackIntent: {} #since 11.0
+    INSendRideFeedbackIntentResponse: #since 11.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSetAudioSourceInCarIntent: #since 10.0
+        methods:
+            '-initWithAudioSource:relativeAudioSourceReference:':
+                name: init
+    INSetAudioSourceInCarIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSetCarLockStatusIntent: #since 10.3
+        methods:
+            '-initWithLocked:carName:':
+                name: init
+    INSetCarLockStatusIntentResponse: #since 10.3
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSetClimateSettingsInCarIntent: #since 10.0
+        methods:
+            '-initWithEnableFan:enableAirConditioner:enableClimateControl:enableAutoMode:airCirculationMode:fanSpeedIndex:fanSpeedPercentage:relativeFanSpeedSetting:temperature:relativeTemperatureSetting:climateZone:':
+                name: init
+    INSetClimateSettingsInCarIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSetDefrosterSettingsInCarIntent: #since 10.0
+        methods:
+            '-initWithEnable:defroster:':
+                name: init
+    INSetDefrosterSettingsInCarIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSetMessageAttributeIntent: #since 10.0
+        methods:
+            '-initWithIdentifiers:attribute:':
+                name: init
+    INSetMessageAttributeIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSetProfileInCarIntent: #since 10.0
+        methods:
+            '-initWithProfileNumber:profileName:defaultProfile:':
+                name: initWithProfileName
+                static_constructor_name: createWithProfileName
+            '-initWithProfileNumber:profileLabel:defaultProfile:':
+                name: initWithProfileLabel
+                static_constructor_name: createWithProfileLabel
+            '-init.*':
+                name: init
+    INSetProfileInCarIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSetRadioStationIntent: #since 10.0
+        methods:
+            '-initWithRadioType:frequency:stationName:channel:presetNumber:':
+                name: init
+    INSetRadioStationIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSetSeatSettingsInCarIntent: #since 10.0
+        methods:
+            '-initWithEnableHeating:enableCooling:enableMassage:seat:level:relativeLevelSetting:':
+                name: init
+    INSetSeatSettingsInCarIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSetTaskAttributeIntent: #since 11.0
+        methods:
+            '-initWithTargetTask:status:spatialEventTrigger:temporalEventTrigger:':
+                name: init
+    INSetTaskAttributeIntentResponse: #since 11.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INSpatialEventTrigger: #since 11.0
+        methods:
+            '-initWithPlacemark:event:':
+                name: init
+    INSpatialEventTriggerResolutionResult: {} #since 11.0
+    INSpeakableString: #since 10.0
+        methods:
+            '-initWithVocabularyIdentifier:spokenPhrase:pronunciationHint:':
+                name: initWithVocabulary
+                static_constructor_name: createWithVocabulary
+            '-init.*':
+                name: init
+    INSpeakableStringResolutionResult: {} #since 10.0
+    INStartAudioCallIntent: #since 10.0
+        methods:
+            '-initWithDestinationType:contacts:':
+                name: init
+    INStartAudioCallIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INStartPhotoPlaybackIntent: #since 10.0
+        methods:
+            '-initWithDateCreated:locationCreated:albumName:searchTerms:includedAttributes:excludedAttributes:peopleInPhoto:':
+                name: init
+    INStartPhotoPlaybackIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INStartVideoCallIntent: {} #since 10.0
+    INStartVideoCallIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INStartWorkoutIntent: #since 10.0
+        methods:
+            '-initWithWorkoutName:goalValue:workoutGoalUnitType:workoutLocationType:isOpenEnded:':
+                name: init
+    INStartWorkoutIntentResponse: #since 10.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INStringResolutionResult: {} #since 10.0
+    INTask: #since 11.0
+        methods:
+            '-initWithTitle:status:taskType:spatialEventTrigger:temporalEventTrigger:createdDateComponents:modifiedDateComponents:identifier:':
+                name: init
+    INTaskList: #since 11.0
+        methods:
+            '-initWithTitle:tasks:groupName:createdDateComponents:modifiedDateComponents:identifier:':
+                name: init
+    INTaskListResolutionResult: {} #since 11.0
+    INTaskResolutionResult: {} #since 11.0
+    INTaskStatusResolutionResult: {} #since 11.0
+    INTemperatureResolutionResult: {} #since 10.0
+    INTemporalEventTrigger: {} #since 11.0
+    INTemporalEventTriggerResolutionResult: {} #since 11.0
+    INTermsAndConditions: #since 10.0
+        methods:
+            '-initWithLocalizedTermsAndConditionsText:privacyPolicyURL:termsAndConditionsURL:':
+                name: init
+    INTextNoteContent: {} #since 11.0
+    INTransferMoneyIntent: #since 11.0
+        methods:
+            '-initWithFromAccount:toAccount:transactionAmount:transactionScheduledDate:transactionNote:':
+                name: init
+    INTransferMoneyIntentResponse: #since 11.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INVisualCodeTypeResolutionResult: {} #since 11.0
+    INVocabulary: #since 10.0
+        methods:
+            '-setVocabularyStrings:ofType:':
+                trim_after_first_colon: true
+            '-setVocabulary:ofType:':
+                trim_after_first_colon: true
+    INWorkoutGoalUnitTypeResolutionResult: {} #since 10.0
+    INWorkoutLocationTypeResolutionResult: {} #since 10.0
+
+protocols:
+    INActivateCarSignalIntentHandling: #since 10.3
+        methods:
+            '-handleActivateCarSignal:completion:':
+                trim_after_first_colon: true
+            '-confirmActivateCarSignal:completion:':
+                trim_after_first_colon: true
+            '-resolveCarNameForActivateCarSignal:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveSignalsForActivateCarSignal:withCompletion:':
+                trim_after_first_colon: true
+    INAddTasksIntentHandling: #since 11.0
+        methods:
+            '-handleAddTasks:completion:':
+                trim_after_first_colon: true
+            '-confirmAddTasks:completion:':
+                trim_after_first_colon: true
+            '-resolveTargetTaskListForAddTasks:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTaskTitlesForAddTasks:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveSpatialEventTriggerForAddTasks:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTemporalEventTriggerForAddTasks:withCompletion:':
+                trim_after_first_colon: true
+    INAppendToNoteIntentHandling: #since 11.0
+        methods:
+            '-handleAppendToNote:completion:':
+                trim_after_first_colon: true
+            '-confirmAppendToNote:completion:':
+                trim_after_first_colon: true
+            '-resolveTargetNoteForAppendToNote:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveContentForAppendToNote:withCompletion:':
+                trim_after_first_colon: true
+    INBookRestaurantReservationIntentHandling: #since 10.0
+        methods:
+            '-handleBookRestaurantReservation:completion:':
+                trim_after_first_colon: true
+            '-confirmBookRestaurantReservation:completion:':
+                trim_after_first_colon: true
+            '-resolveRestaurantForBookRestaurantReservation:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveBookingDateComponentsForBookRestaurantReservation:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePartySizeForBookRestaurantReservation:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveGuestForBookRestaurantReservation:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveGuestProvidedSpecialRequestTextForBookRestaurantReservation:withCompletion:':
+                trim_after_first_colon: true
+    INCallsDomainHandling: {} #since 11.0
+    INCancelRideIntentHandling: #since 11.0
+        methods:
+            '-handleCancelRide:completion:':
+                trim_after_first_colon: true
+            '-confirmCancelRide:completion:':
+                trim_after_first_colon: true
+    INCancelWorkoutIntentHandling: #since 10.0
+        methods:
+            '-handleCancelWorkout:completion:':
+                trim_after_first_colon: true
+            '-confirmCancelWorkout:completion:':
+                trim_after_first_colon: true
+            '-resolveWorkoutNameForCancelWorkout:withCompletion:':
+                trim_after_first_colon: true
+    INCarCommandsDomainHandling: {} #since 10.3
+    INCarPlayDomainHandling: {} #since 10.0
+    INCreateNoteIntentHandling: #since 11.0
+        methods:
+            '-handleCreateNote:completion:':
+                trim_after_first_colon: true
+            '-confirmCreateNote:completion:':
+                trim_after_first_colon: true
+            '-resolveTitleForCreateNote:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveContentForCreateNote:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveGroupNameForCreateNote:withCompletion:':
+                trim_after_first_colon: true
+    INCreateTaskListIntentHandling: #since 11.0
+        methods:
+            '-handleCreateTaskList:completion:':
+                trim_after_first_colon: true
+            '-confirmCreateTaskList:completion:':
+                trim_after_first_colon: true
+            '-resolveTitleForCreateTaskList:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTaskTitlesForCreateTaskList:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveGroupNameForCreateTaskList:withCompletion:':
+                trim_after_first_colon: true
+    INEndWorkoutIntentHandling: #since 10.0
+        methods:
+            '-handleEndWorkout:completion:':
+                trim_after_first_colon: true
+            '-confirmEndWorkout:completion:':
+                trim_after_first_colon: true
+            '-resolveWorkoutNameForEndWorkout:withCompletion:':
+                trim_after_first_colon: true
+    INGetAvailableRestaurantReservationBookingDefaultsIntentHandling: #since 10.0
+        methods:
+            '-handleGetAvailableRestaurantReservationBookingDefaults:completion:':
+                trim_after_first_colon: true
+            '-confirmGetAvailableRestaurantReservationBookingDefaults:completion:':
+                trim_after_first_colon: true
+            '-resolveRestaurantForGetAvailableRestaurantReservationBookingDefaults:withCompletion:':
+                trim_after_first_colon: true
+    INGetAvailableRestaurantReservationBookingsIntentHandling: #since 10.0
+        methods:
+            '-handleGetAvailableRestaurantReservationBookings:completion:':
+                trim_after_first_colon: true
+            '-confirmGetAvailableRestaurantReservationBookings:completion:':
+                trim_after_first_colon: true
+            '-resolveRestaurantForGetAvailableRestaurantReservationBookings:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePartySizeForGetAvailableRestaurantReservationBookings:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePreferredBookingDateComponentsForGetAvailableRestaurantReservationBookings:withCompletion:':
+                trim_after_first_colon: true
+    INGetCarLockStatusIntentHandling: #since 10.3
+        methods:
+            '-handleGetCarLockStatus:completion:':
+                trim_after_first_colon: true
+            '-confirmGetCarLockStatus:completion:':
+                trim_after_first_colon: true
+            '-resolveCarNameForGetCarLockStatus:withCompletion:':
+                trim_after_first_colon: true
+    INGetCarPowerLevelStatusIntentHandling: #since 10.3
+        methods:
+            '-handleGetCarPowerLevelStatus:completion:':
+                trim_after_first_colon: true
+            '-confirmGetCarPowerLevelStatus:completion:':
+                trim_after_first_colon: true
+            '-resolveCarNameForGetCarPowerLevelStatus:withCompletion:':
+                trim_after_first_colon: true
+    INGetRestaurantGuestIntentHandling: #since 10.0
+        methods:
+            '-handleGetRestaurantGuest:completion:':
+                trim_after_first_colon: true
+            '-confirmGetRestaurantGuest:completion:':
+                trim_after_first_colon: true
+    INGetRideStatusIntentHandling: #since 10.0
+        methods:
+            '-handleGetRideStatus:completion:':
+                trim_after_first_colon: true
+            '-startSendingUpdatesForGetRideStatus:toObserver:':
+                trim_after_first_colon: true
+            '-confirmGetRideStatus:completion:':
+                trim_after_first_colon: true
+    INGetRideStatusIntentResponseObserver: {} #since 10.0
+    INGetUserCurrentRestaurantReservationBookingsIntentHandling: #since 10.0
+        methods:
+            '-handleGetUserCurrentRestaurantReservationBookings:completion:':
+                trim_after_first_colon: true
+            '-confirmGetUserCurrentRestaurantReservationBookings:completion:':
+                trim_after_first_colon: true
+            '-resolveRestaurantForGetUserCurrentRestaurantReservationBookings:withCompletion:':
+                trim_after_first_colon: true
+    INGetVisualCodeIntentHandling: #since 11.0
+        methods:
+            '-handleGetVisualCode:completion:':
+                trim_after_first_colon: true
+            '-confirmGetVisualCode:completion:':
+                trim_after_first_colon: true
+            '-resolveVisualCodeTypeForGetVisualCode:withCompletion:':
+                trim_after_first_colon: true
+    INIntentHandlerProviding: {}
+    INListRideOptionsIntentHandling: #since 10.0
+        methods:
+            '-handleListRideOptions:completion:':
+                trim_after_first_colon: true
+            '-confirmListRideOptions:completion:':
+                trim_after_first_colon: true
+            '-resolvePickupLocationForListRideOptions:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveDropOffLocationForListRideOptions:withCompletion:':
+                trim_after_first_colon: true
+    INMessagesDomainHandling: {} #since 10.0
+    INNotebookDomainHandling: {} #since 11.0
+    INPauseWorkoutIntentHandling: #since 10.0
+        methods:
+            '-handlePauseWorkout:completion:':
+                trim_after_first_colon: true
+            '-confirmPauseWorkout:completion:':
+                trim_after_first_colon: true
+            '-resolveWorkoutNameForPauseWorkout:withCompletion:':
+                trim_after_first_colon: true
+    INPayBillIntentHandling: #since 10.3
+        methods:
+            '-handlePayBill:completion:':
+                trim_after_first_colon: true
+            '-confirmPayBill:completion:':
+                trim_after_first_colon: true
+            '-resolveBillPayeeForPayBill:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveFromAccountForPayBill:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTransactionAmountForPayBill:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTransactionScheduledDateForPayBill:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTransactionNoteForPayBill:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveBillTypeForPayBill:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveDueDateForPayBill:withCompletion:':
+                trim_after_first_colon: true
+    INPaymentsDomainHandling: {} #since 11.0
+    INPhotosDomainHandling: {} #since 10.0
+    INRadioDomainHandling: {} #since 10.0
+    INRequestPaymentIntentHandling: #since 10.0
+        methods:
+            '-handleRequestPayment:completion:':
+                trim_after_first_colon: true
+            '-confirmRequestPayment:completion:':
+                trim_after_first_colon: true
+            '-resolvePayerForRequestPayment:withCompletion:':
+                name: resolvePersonPayerForRequestPayment
+            '-resolvePayerForRequestPayment:completion:':
+                trim_after_first_colon: true
+            '-resolveCurrencyAmountForRequestPayment:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveCurrencyAmountForRequestPayment:completion:':
+                name: resolveRequestPaymentCurrencyAmountForRequestPayment
+            '-resolveNoteForRequestPayment:withCompletion:':
+                trim_after_first_colon: true
+    INRequestRideIntentHandling: #since 10.0
+        methods:
+            '-handleRequestRide:completion:':
+                trim_after_first_colon: true
+            '-confirmRequestRide:completion:':
+                trim_after_first_colon: true
+            '-resolvePickupLocationForRequestRide:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveDropOffLocationForRequestRide:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveRideOptionNameForRequestRide:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePartySizeForRequestRide:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveScheduledPickupTimeForRequestRide:withCompletion:':
+                trim_after_first_colon: true
+    INResumeWorkoutIntentHandling: #since 10.0
+        methods:
+            '-handleResumeWorkout:completion:':
+                trim_after_first_colon: true
+            '-confirmResumeWorkout:completion:':
+                trim_after_first_colon: true
+            '-resolveWorkoutNameForResumeWorkout:withCompletion:':
+                trim_after_first_colon: true
+    INRidesharingDomainHandling: {} #since 11.0
+    INSaveProfileInCarIntentHandling: #since 10.0
+        methods:
+            '-handleSaveProfileInCar:completion:':
+                trim_after_first_colon: true
+            '-confirmSaveProfileInCar:completion:':
+                trim_after_first_colon: true
+            '-resolveProfileNumberForSaveProfileInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveProfileNameForSaveProfileInCar:withCompletion:':
+                trim_after_first_colon: true
+    INSearchCallHistoryIntentHandling: #since 10.0
+        methods:
+            '-handleSearchCallHistory:completion:':
+                trim_after_first_colon: true
+            '-confirmSearchCallHistory:completion:':
+                trim_after_first_colon: true
+            '-resolveCallTypeForSearchCallHistory:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveDateCreatedForSearchCallHistory:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveRecipientForSearchCallHistory:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveCallTypesForSearchCallHistory:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveUnseenForSearchCallHistory:withCompletion:':
+                trim_after_first_colon: true
+    INSearchForAccountsIntentHandling: #since 11.0
+        methods:
+            '-handleSearchForAccounts:completion:':
+                trim_after_first_colon: true
+            '-confirmSearchForAccounts:completion:':
+                trim_after_first_colon: true
+            '-resolveAccountNicknameForSearchForAccounts:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveAccountTypeForSearchForAccounts:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveOrganizationNameForSearchForAccounts:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveRequestedBalanceTypeForSearchForAccounts:withCompletion:':
+                trim_after_first_colon: true
+    INSearchForBillsIntentHandling: #since 10.3
+        methods:
+            '-handleSearchForBills:completion:':
+                trim_after_first_colon: true
+            '-confirmSearchForBills:completion:':
+                trim_after_first_colon: true
+            '-resolveBillPayeeForSearchForBills:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePaymentDateRangeForSearchForBills:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveBillTypeForSearchForBills:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveStatusForSearchForBills:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveDueDateRangeForSearchForBills:withCompletion:':
+                trim_after_first_colon: true
+    INSearchForMessagesIntentHandling: #since 10.0
+        methods:
+            '-handleSearchForMessages:completion:':
+                trim_after_first_colon: true
+            '-confirmSearchForMessages:completion:':
+                trim_after_first_colon: true
+            '-resolveRecipientsForSearchForMessages:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveSendersForSearchForMessages:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveAttributesForSearchForMessages:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveDateTimeRangeForSearchForMessages:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveGroupNamesForSearchForMessages:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveSpeakableGroupNamesForSearchForMessages:withCompletion:':
+                trim_after_first_colon: true
+    INSearchForNotebookItemsIntentHandling: #since 11.0
+        methods:
+            '-handleSearchForNotebookItems:completion:':
+                trim_after_first_colon: true
+            '-confirmSearchForNotebookItems:completion:':
+                trim_after_first_colon: true
+            '-resolveTitleForSearchForNotebookItems:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveContentForSearchForNotebookItems:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveItemTypeForSearchForNotebookItems:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveStatusForSearchForNotebookItems:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveLocationForSearchForNotebookItems:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveLocationSearchTypeForSearchForNotebookItems:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveDateTimeForSearchForNotebookItems:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveDateSearchTypeForSearchForNotebookItems:withCompletion:':
+                trim_after_first_colon: true
+    INSearchForPhotosIntentHandling: #since 10.0
+        methods:
+            '-handleSearchForPhotos:completion:':
+                trim_after_first_colon: true
+            '-confirmSearchForPhotos:completion:':
+                trim_after_first_colon: true
+            '-resolveDateCreatedForSearchForPhotos:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveLocationCreatedForSearchForPhotos:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveAlbumNameForSearchForPhotos:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveSearchTermsForSearchForPhotos:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePeopleInPhotoForSearchForPhotos:withCompletion:':
+                trim_after_first_colon: true
+    INSendMessageIntentHandling: #since 10.0
+        methods:
+            '-handleSendMessage:completion:':
+                trim_after_first_colon: true
+            '-confirmSendMessage:completion:':
+                trim_after_first_colon: true
+            '-resolveRecipientsForSendMessage:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveRecipientsForSendMessage:completion:':
+                name: resolveRecipientsForSendMessageRecepient
+            '-resolveGroupNameForSendMessage:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveContentForSendMessage:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveSpeakableGroupNameForSendMessage:withCompletion:':
+                trim_after_first_colon: true
+    INSendPaymentIntentHandling: #since 10.0
+        methods:
+            '-handleSendPayment:completion:':
+                trim_after_first_colon: true
+            '-confirmSendPayment:completion:':
+                trim_after_first_colon: true
+            '-resolvePayeeForSendPayment:withCompletion:':
+                name: resolvePersonPayeeForSendPayment
+            '-resolvePayeeForSendPayment:completion:':
+                trim_after_first_colon: true
+            '-resolveCurrencyAmountForSendPayment:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveCurrencyAmountForSendPayment:completion:':
+                name: resolveSendPaymentCurrencyAmountForSendPayment
+            '-resolveNoteForSendPayment:withCompletion:':
+                trim_after_first_colon: true
+    INSendRideFeedbackIntentHandling: #since 11.0
+        methods:
+            '-handleSendRideFeedback:completion:':
+                trim_after_first_colon: true
+            '-confirmSendRideFeedback:completion:':
+                trim_after_first_colon: true
+    INSetAudioSourceInCarIntentHandling: #since 10.0
+        methods:
+            '-handleSetAudioSourceInCar:completion:':
+                trim_after_first_colon: true
+            '-confirmSetAudioSourceInCar:completion:':
+                trim_after_first_colon: true
+            '-resolveAudioSourceForSetAudioSourceInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveRelativeAudioSourceReferenceForSetAudioSourceInCar:withCompletion:':
+                trim_after_first_colon: true
+    INSetCarLockStatusIntentHandling: #since 10.3
+        methods:
+            '-handleSetCarLockStatus:completion:':
+                trim_after_first_colon: true
+            '-confirmSetCarLockStatus:completion:':
+                trim_after_first_colon: true
+            '-resolveLockedForSetCarLockStatus:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveCarNameForSetCarLockStatus:withCompletion:':
+                trim_after_first_colon: true
+    INSetClimateSettingsInCarIntentHandling: #since 10.0
+        methods:
+            '-handleSetClimateSettingsInCar:completion:':
+                trim_after_first_colon: true
+            '-confirmSetClimateSettingsInCar:completion:':
+                trim_after_first_colon: true
+            '-resolveEnableFanForSetClimateSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveEnableAirConditionerForSetClimateSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveEnableClimateControlForSetClimateSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveEnableAutoModeForSetClimateSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveAirCirculationModeForSetClimateSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveFanSpeedIndexForSetClimateSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveFanSpeedPercentageForSetClimateSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveRelativeFanSpeedSettingForSetClimateSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTemperatureForSetClimateSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveRelativeTemperatureSettingForSetClimateSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveClimateZoneForSetClimateSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+    INSetDefrosterSettingsInCarIntentHandling: #since 10.0
+        methods:
+            '-handleSetDefrosterSettingsInCar:completion:':
+                trim_after_first_colon: true
+            '-confirmSetDefrosterSettingsInCar:completion:':
+                trim_after_first_colon: true
+            '-resolveEnableForSetDefrosterSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveDefrosterForSetDefrosterSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+    INSetMessageAttributeIntentHandling: #since 10.0
+        methods:
+            '-handleSetMessageAttribute:completion:':
+                trim_after_first_colon: true
+            '-confirmSetMessageAttribute:completion:':
+                trim_after_first_colon: true
+            '-resolveAttributeForSetMessageAttribute:withCompletion:':
+                trim_after_first_colon: true
+    INSetProfileInCarIntentHandling: #since 10.0
+        methods:
+            '-handleSetProfileInCar:completion:':
+                trim_after_first_colon: true
+            '-confirmSetProfileInCar:completion:':
+                trim_after_first_colon: true
+            '-resolveProfileNumberForSetProfileInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveProfileNameForSetProfileInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveDefaultProfileForSetProfileInCar:withCompletion:':
+                trim_after_first_colon: true
+    INSetRadioStationIntentHandling: #since 10.0
+        methods:
+            '-handleSetRadioStation:completion:':
+                trim_after_first_colon: true
+            '-confirmSetRadioStation:completion:':
+                trim_after_first_colon: true
+            '-resolveRadioTypeForSetRadioStation:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveFrequencyForSetRadioStation:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveStationNameForSetRadioStation:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveChannelForSetRadioStation:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePresetNumberForSetRadioStation:withCompletion:':
+                trim_after_first_colon: true
+    INSetSeatSettingsInCarIntentHandling: #since 10.0
+        methods:
+            '-handleSetSeatSettingsInCar:completion:':
+                trim_after_first_colon: true
+            '-confirmSetSeatSettingsInCar:completion:':
+                trim_after_first_colon: true
+            '-resolveEnableHeatingForSetSeatSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveEnableCoolingForSetSeatSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveEnableMassageForSetSeatSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveSeatForSetSeatSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveLevelForSetSeatSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveRelativeLevelSettingForSetSeatSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+    INSetTaskAttributeIntentHandling: #since 11.0
+        methods:
+            '-handleSetTaskAttribute:completion:':
+                trim_after_first_colon: true
+            '-confirmSetTaskAttribute:completion:':
+                trim_after_first_colon: true
+            '-resolveTargetTaskForSetTaskAttribute:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveStatusForSetTaskAttribute:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveSpatialEventTriggerForSetTaskAttribute:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTemporalEventTriggerForSetTaskAttribute:withCompletion:':
+                trim_after_first_colon: true
+    INSpeakable: {}
+    INStartAudioCallIntentHandling: #since 10.0
+        methods:
+            '-handleStartAudioCall:completion:':
+                trim_after_first_colon: true
+            '-confirmStartAudioCall:completion:':
+                trim_after_first_colon: true
+            '-resolveDestinationTypeForStartAudioCall:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveContactsForStartAudioCall:withCompletion:':
+                trim_after_first_colon: true
+    INStartPhotoPlaybackIntentHandling: #since 10.0
+        methods:
+            '-handleStartPhotoPlayback:completion:':
+                trim_after_first_colon: true
+            '-confirmStartPhotoPlayback:completion:':
+                trim_after_first_colon: true
+            '-resolveDateCreatedForStartPhotoPlayback:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveLocationCreatedForStartPhotoPlayback:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveAlbumNameForStartPhotoPlayback:withCompletion:':
+                trim_after_first_colon: true
+            '-resolvePeopleInPhotoForStartPhotoPlayback:withCompletion:':
+                trim_after_first_colon: true
+    INStartVideoCallIntentHandling: #since 10.0
+        methods:
+            '-handleStartVideoCall:completion:':
+                trim_after_first_colon: true
+            '-confirmStartVideoCall:completion:':
+                trim_after_first_colon: true
+            '-resolveContactsForStartVideoCall:withCompletion:':
+                trim_after_first_colon: true
+    INStartWorkoutIntentHandling: #since 10.0
+        methods:
+            '-handleStartWorkout:completion:':
+                trim_after_first_colon: true
+            '-confirmStartWorkout:completion:':
+                trim_after_first_colon: true
+            '-resolveWorkoutNameForStartWorkout:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveGoalValueForStartWorkout:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveWorkoutGoalUnitTypeForStartWorkout:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveWorkoutLocationTypeForStartWorkout:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveIsOpenEndedForStartWorkout:withCompletion:':
+                trim_after_first_colon: true
+    INTransferMoneyIntentHandling: #since 11.0
+        methods:
+            '-handleTransferMoney:completion:':
+                trim_after_first_colon: true
+            '-confirmTransferMoney:completion:':
+                trim_after_first_colon: true
+            '-resolveFromAccountForTransferMoney:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveToAccountForTransferMoney:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTransactionAmountForTransferMoney:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTransactionScheduledDateForTransferMoney:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveTransactionNoteForTransferMoney:withCompletion:':
+                trim_after_first_colon: true
+    INVisualCodeDomainHandling: {} #since 11.0
+    INWorkoutsDomainHandling: {} #since 10.0
+
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (IN.*):
+        class: Intents
+        name: 'Function__#{g[0]}'
+
+values:
+    INIntentErrorDomain:
+        class: INIntentErrorCode
+        name: getClassDomain
+
+    IN(.*)IntentIdentifier:
+        class: INIntentIdentifiers
+        name: "#{g[0]}"
+
+    INPersonHandleLabel(.*):
+        class: INPersonHandleLabel
+        name: "#{g[0]}"
+        type: NSString
+
+    INPersonRelationship(.*):
+        class: INPersonRelationship
+        name: "#{g[0]}"
+        type: NSString
+
+    INWorkoutNameIdentifier(.*):
+        class: INWorkoutNameIdentifier
+        name: "#{g[0]}"
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (IN.*):
+        class: Intents
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (IN.*):
+        class: Intents
+        name: 'Constant__#{g[0]}'

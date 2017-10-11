@@ -58,7 +58,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "startProxyWithOptions:completionHandler:")
-    public native void startProxy(NSDictionary<?, ?> options, @Block VoidBlock1<NSError> completionHandler);
+    public native void startProxy(NSDictionary<NSString, ?> options, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
      */

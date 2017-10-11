@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,7 +65,7 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "setURL:")
     public native void setURL(NSURL v);
     @Property(selector = "options")
-    public native NSDictionary<?, ?> getOptions();
+    public native NSDictionary<NSString, ?> getOptions();
     @Property(selector = "isReadOnly")
     public native boolean isReadOnly();
     @Property(selector = "setReadOnly:")
@@ -74,7 +75,7 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "setTimeout:")
     public native void setTimeout(double v);
     @Property(selector = "sqlitePragmas")
-    public native NSDictionary<?, ?> getSqlitePragmas();
+    public native NSDictionary<NSString, ?> getSqlitePragmas();
     @Property(selector = "shouldAddStoreAsynchronously")
     public native boolean shouldAddStoreAsynchronously();
     @Property(selector = "setShouldAddStoreAsynchronously:")
@@ -91,9 +92,9 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "setOption:forKey:")
-    public native void setOption$forKey$(NSObject option, String key);
+    public native void setOption(NSObject option, String key);
     @Method(selector = "setValue:forPragmaNamed:")
-    public native void setValue$forPragmaNamed$(NSObject value, String name);
+    public native void setValue(NSObject value, String name);
     @Method(selector = "initWithURL:")
     protected native @Pointer long initWithURL(NSURL url);
     @Method(selector = "persistentStoreDescriptionWithURL:")

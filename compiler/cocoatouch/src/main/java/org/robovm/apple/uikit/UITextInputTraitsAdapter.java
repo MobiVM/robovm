@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +71,36 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("setSpellCheckingType:")
     public void setSpellCheckingType(UITextSpellCheckingType v) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("smartQuotesType")
+    public UITextSmartQuotesType getSmartQuotesType() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("setSmartQuotesType:")
+    public void setSmartQuotesType(UITextSmartQuotesType v) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("smartDashesType")
+    public UITextSmartDashesType getSmartDashesType() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("setSmartDashesType:")
+    public void setSmartDashesType(UITextSmartDashesType v) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("smartInsertDeleteType")
+    public UITextSmartInsertDeleteType getSmartInsertDeleteType() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("setSmartInsertDeleteType:")
+    public void setSmartInsertDeleteType(UITextSmartInsertDeleteType v) {}
     @NotImplemented("keyboardType")
     public UIKeyboardType getKeyboardType() { return null; }
     @NotImplemented("setKeyboardType:")

@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CNContactRelation/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CNContactRelationPtr extends Ptr<CNContactRelation, CNContactRelationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CNContactRelation.class); }/*</bind>*/
@@ -49,14 +49,22 @@ import org.robovm.apple.foundation.*;
     protected CNContactRelation(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithName:")
     public CNContactRelation(String name) { super((SkipInit) null); initObject(init(name)); }
+    @Method(selector = "initWithCoder:")
+    public CNContactRelation(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
     public native String getName();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithName:")
     protected native @Pointer long init(String name);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

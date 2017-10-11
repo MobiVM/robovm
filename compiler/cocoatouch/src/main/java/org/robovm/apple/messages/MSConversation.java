@@ -68,5 +68,25 @@ import org.robovm.apple.uikit.*;
     public native void insertText(String text, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "insertAttachment:withAlternateFilename:completionHandler:")
     public native void insertAttachment(NSURL URL, String filename, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "sendMessage:completionHandler:")
+    public native void sendMessage(MSMessage message, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "sendSticker:completionHandler:")
+    public native void sendSticker(MSSticker sticker, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "sendText:completionHandler:")
+    public native void sendText(String text, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "sendAttachment:withAlternateFilename:completionHandler:")
+    public native void sendAttachment(NSURL URL, String filename, @Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
 }

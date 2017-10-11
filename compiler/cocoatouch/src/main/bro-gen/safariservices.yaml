@@ -6,12 +6,17 @@ clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/SafariServices.framework/Headers/SafariServices.h
 typedefs: {}
-    
+
+private_typedefs:
+    UIActivityType: NSString
+
 enums:
     SSReadingListErrorCode: {first: SSReadingListErrorURLSchemeNotAllowed, prefix: SSReadingListError, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
     SFContentBlockerErrorCode: {}
     SFErrorCode: {}
-        
+    SFAuthenticationError: { nserror: true } #since 11.0
+    SFSafariViewControllerDismissButtonStyle: {} #since 11.0
+
 classes:
     SFContentBlockerState: {}
     SFContentBlockerError:
@@ -42,7 +47,11 @@ classes:
                 property: true
             '+supportsURL:':
                 trim_after_first_colon: true
-
+    SFAuthenticationSession: #since 11.0
+        methods:
+            '-initWithURL:callbackURLScheme:completionHandler:':
+                name: init
+    SFSafariViewControllerConfiguration: {} #since 11.0
 protocols:
     SFSafariViewControllerDelegate: # DONE
         methods:
@@ -53,7 +62,10 @@ protocols:
                 name: didFinish
             '-safariViewController:didCompleteInitialLoad:':
                 name: didCompleteInitialLoad
-
+            '-safariViewController:excludedActivityTypesForURL:title:':
+                name: excludedActivityTypesForURL
+            '-safariViewController:initialLoadDidRedirectToURL:':
+                name: initialLoadDidRedirectToURL
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?SS.*):
@@ -72,6 +84,9 @@ values:
         name: getClassDomain
     SFErrorDomain:
         class: SFErrorCode
+        name: getClassDomain
+    SFAuthenticationErrorDomain:
+        class: SFAuthenticationError
         name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later version

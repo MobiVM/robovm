@@ -122,9 +122,25 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     public static final CMSampleAttachmentKey DoNotDisplay = new CMSampleAttachmentKey("DoNotDisplay");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CMSampleAttachmentKey HEVCTemporalLevelInfo = new CMSampleAttachmentKey("HEVCTemporalLevelInfo");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CMSampleAttachmentKey HEVCTemporalSubLayerAccess = new CMSampleAttachmentKey("HEVCTemporalSubLayerAccess");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CMSampleAttachmentKey HEVCStepwiseTemporalSubLayerAccess = new CMSampleAttachmentKey("HEVCStepwiseTemporalSubLayerAccess");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CMSampleAttachmentKey HEVCSyncSampleNALUnitType = new CMSampleAttachmentKey("HEVCSyncSampleNALUnitType");
     /*</constants>*/
     
-    private static /*<name>*/CMSampleAttachmentKey/*</name>*/[] values = new /*<name>*/CMSampleAttachmentKey/*</name>*/[] {/*<value_list>*/NotSync, PartialSync, HasRedundantCoding, IsDependedOnByOthers, DependsOnOthers, EarlierDisplayTimesAllowed, DisplayImmediately, DoNotDisplay/*</value_list>*/};
+    private static /*<name>*/CMSampleAttachmentKey/*</name>*/[] values = new /*<name>*/CMSampleAttachmentKey/*</name>*/[] {/*<value_list>*/NotSync, PartialSync, HasRedundantCoding, IsDependedOnByOthers, DependsOnOthers, EarlierDisplayTimesAllowed, DisplayImmediately, DoNotDisplay, HEVCTemporalLevelInfo, HEVCTemporalSubLayerAccess, HEVCStepwiseTemporalSubLayerAccess, HEVCSyncSampleNALUnitType/*</value_list>*/};
     
     /*<name>*/CMSampleAttachmentKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -187,6 +203,26 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMSampleAttachmentKey_DoNotDisplay", optional=true)
         public static native CFString DoNotDisplay();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCMSampleAttachmentKey_HEVCTemporalLevelInfo", optional=true)
+        public static native CFString HEVCTemporalLevelInfo();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCMSampleAttachmentKey_HEVCTemporalSubLayerAccess", optional=true)
+        public static native CFString HEVCTemporalSubLayerAccess();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCMSampleAttachmentKey_HEVCStepwiseTemporalSubLayerAccess", optional=true)
+        public static native CFString HEVCStepwiseTemporalSubLayerAccess();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCMSampleAttachmentKey_HEVCSyncSampleNALUnitType", optional=true)
+        public static native CFString HEVCSyncSampleNALUnitType();
         /*</values>*/
     }
 }

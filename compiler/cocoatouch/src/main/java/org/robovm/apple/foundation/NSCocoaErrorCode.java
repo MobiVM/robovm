@@ -218,6 +218,10 @@ public enum /*<name>*/NSCocoaErrorCode/*</name>*/ implements NSErrorCode {
      */
     CoderValueNotFound(4865L),
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    CoderInvalidValue(4866L),
+    /**
      * @since Available in iOS 9.0 and later.
      */
     CoderErrorMinimum(4864L),

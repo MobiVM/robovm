@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSCalendar/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     public static class Notifications {
         /**
@@ -69,6 +69,8 @@ import org.robovm.apple.dispatch.*;
     protected NSCalendar(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCalendarIdentifier:")
     public NSCalendar(NSCalendarIdentifier ident) { super((SkipInit) null); initObject(init(ident)); }
+    @Method(selector = "initWithCoder:")
+    public NSCalendar(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "currentCalendar")
@@ -196,6 +198,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "PMSymbol")
     public native String getPMSymbol();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -248,5 +252,9 @@ import org.robovm.apple.dispatch.*;
     public native NSDate newDateByAddingComponents(NSDateComponents comps, NSDate date, NSCalendarOptions opts);
     @Method(selector = "components:fromDate:toDate:options:")
     public native NSDateComponents getComponents(NSCalendarUnit unitFlags, NSDate startingDate, NSDate resultDate, NSCalendarOptions opts);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

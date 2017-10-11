@@ -43,8 +43,23 @@ public enum /*<name>*/PKPaymentAuthorizationStatus/*</name>*/ implements ValuedE
     /*<values>*/
     Success(0L),
     Failure(1L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     InvalidBillingPostalAddress(2L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     InvalidShippingPostalAddress(3L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     InvalidShippingContact(4L),
     /**
      * @since Available in iOS 9.2 and later.

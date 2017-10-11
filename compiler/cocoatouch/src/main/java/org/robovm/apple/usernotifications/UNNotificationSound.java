@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("UserNotifications") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UNNotificationSound/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UNNotificationSoundPtr extends Ptr<UNNotificationSound, UNNotificationSoundPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UNNotificationSound.class); }/*</bind>*/
@@ -47,9 +47,12 @@ import org.robovm.apple.foundation.*;
     protected UNNotificationSound() {}
     protected UNNotificationSound(Handle h, long handle) { super(h, handle); }
     protected UNNotificationSound(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public UNNotificationSound(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -57,5 +60,9 @@ import org.robovm.apple.foundation.*;
     public static native UNNotificationSound defaultSound();
     @Method(selector = "soundNamed:")
     public static native UNNotificationSound soundNamed(String name);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

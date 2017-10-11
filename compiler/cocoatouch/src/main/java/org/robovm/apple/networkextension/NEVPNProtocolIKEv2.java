@@ -160,6 +160,26 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setStrictRevocationCheck:")
     public native void setStrictRevocationCheck(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "minimumTLSVersion")
+    public native NEVPNIKEv2TLSVersion getMinimumTLSVersion();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setMinimumTLSVersion:")
+    public native void setMinimumTLSVersion(NEVPNIKEv2TLSVersion v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "maximumTLSVersion")
+    public native NEVPNIKEv2TLSVersion getMaximumTLSVersion();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setMaximumTLSVersion:")
+    public native void setMaximumTLSVersion(NEVPNIKEv2TLSVersion v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -61,6 +61,11 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "securityOrigin")
     public native WKSecurityOrigin getSecurityOrigin();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "webView")
+    public native WKWebView getWebView();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

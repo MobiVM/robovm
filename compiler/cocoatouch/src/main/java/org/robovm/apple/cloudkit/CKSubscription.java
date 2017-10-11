@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.contacts.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKSubscription/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKSubscriptionPtr extends Ptr<CKSubscription, CKSubscriptionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKSubscription.class); }/*</bind>*/
@@ -55,35 +56,35 @@ import org.robovm.apple.contacts.*;
      */
     @Deprecated
     @Method(selector = "initWithCoder:")
-    public CKSubscription(NSCoder aDecoder) { super((SkipInit) null); initObject(initWithCoder(aDecoder)); }
+    public CKSubscription(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithRecordType:predicate:options:")
-    public CKSubscription(String recordType, NSPredicate predicate, CKSubscriptionOptions subscriptionOptions) { super((SkipInit) null); initObject(initWithRecordType$predicate$options$(recordType, predicate, subscriptionOptions)); }
+    public CKSubscription(String recordType, NSPredicate predicate, CKSubscriptionOptions subscriptionOptions) { super((SkipInit) null); initObject(init(recordType, predicate, subscriptionOptions)); }
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithRecordType:predicate:subscriptionID:options:")
-    public CKSubscription(String recordType, NSPredicate predicate, String subscriptionID, CKSubscriptionOptions subscriptionOptions) { super((SkipInit) null); initObject(initWithRecordType$predicate$subscriptionID$options$(recordType, predicate, subscriptionID, subscriptionOptions)); }
+    public CKSubscription(String recordType, NSPredicate predicate, String subscriptionID, CKSubscriptionOptions subscriptionOptions) { super((SkipInit) null); initObject(init(recordType, predicate, subscriptionID, subscriptionOptions)); }
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithZoneID:options:")
-    public CKSubscription(CKRecordZoneID zoneID, CKSubscriptionOptions subscriptionOptions) { super((SkipInit) null); initObject(initWithZoneID$options$(zoneID, subscriptionOptions)); }
+    public CKSubscription(CKRecordZoneID zoneID, CKSubscriptionOptions subscriptionOptions) { super((SkipInit) null); initObject(init(zoneID, subscriptionOptions)); }
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithZoneID:subscriptionID:options:")
-    public CKSubscription(CKRecordZoneID zoneID, String subscriptionID, CKSubscriptionOptions subscriptionOptions) { super((SkipInit) null); initObject(initWithZoneID$subscriptionID$options$(zoneID, subscriptionID, subscriptionOptions)); }
+    public CKSubscription(CKRecordZoneID zoneID, String subscriptionID, CKSubscriptionOptions subscriptionOptions) { super((SkipInit) null); initObject(init(zoneID, subscriptionID, subscriptionOptions)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "subscriptionID")
@@ -129,6 +130,8 @@ import org.robovm.apple.contacts.*;
     @Deprecated
     @Property(selector = "setZoneID:")
     public native void setZoneID(CKRecordZoneID v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -138,34 +141,36 @@ import org.robovm.apple.contacts.*;
      */
     @Deprecated
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long initWithCoder(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder aDecoder);
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithRecordType:predicate:options:")
-    protected native @Pointer long initWithRecordType$predicate$options$(String recordType, NSPredicate predicate, CKSubscriptionOptions subscriptionOptions);
+    protected native @Pointer long init(String recordType, NSPredicate predicate, CKSubscriptionOptions subscriptionOptions);
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithRecordType:predicate:subscriptionID:options:")
-    protected native @Pointer long initWithRecordType$predicate$subscriptionID$options$(String recordType, NSPredicate predicate, String subscriptionID, CKSubscriptionOptions subscriptionOptions);
+    protected native @Pointer long init(String recordType, NSPredicate predicate, String subscriptionID, CKSubscriptionOptions subscriptionOptions);
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithZoneID:options:")
-    protected native @Pointer long initWithZoneID$options$(CKRecordZoneID zoneID, CKSubscriptionOptions subscriptionOptions);
+    protected native @Pointer long init(CKRecordZoneID zoneID, CKSubscriptionOptions subscriptionOptions);
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Method(selector = "initWithZoneID:subscriptionID:options:")
-    protected native @Pointer long initWithZoneID$subscriptionID$options$(CKRecordZoneID zoneID, String subscriptionID, CKSubscriptionOptions subscriptionOptions);
+    protected native @Pointer long init(CKRecordZoneID zoneID, String subscriptionID, CKSubscriptionOptions subscriptionOptions);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

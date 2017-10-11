@@ -111,5 +111,15 @@ import org.robovm.apple.dispatch.*;
     public native MTLComputeCommandEncoder newComputeCommandEncoder();
     @Method(selector = "parallelRenderCommandEncoderWithDescriptor:")
     public native MTLParallelRenderCommandEncoder newParallelRenderCommandEncoder(MTLRenderPassDescriptor renderPassDescriptor);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "pushDebugGroup:")
+    public native void pushDebugGroup(String string);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "popDebugGroup")
+    public native void popDebugGroup();
     /*</methods>*/
 }

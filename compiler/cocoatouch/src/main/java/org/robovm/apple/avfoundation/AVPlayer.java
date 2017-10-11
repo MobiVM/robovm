@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -128,10 +127,6 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "setMuted:")
     public native void setMuted(boolean v);
-    @Property(selector = "isClosedCaptionDisplayEnabled")
-    public native boolean isClosedCaptionDisplayEnabled();
-    @Property(selector = "setClosedCaptionDisplayEnabled:")
-    public native void setClosedCaptionDisplayEnabled(boolean v);
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -182,6 +177,20 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "outputObscuredDueToInsufficientExternalProtection")
     public native boolean outputObscuredDueToInsufficientExternalProtection();
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "isClosedCaptionDisplayEnabled")
+    public native boolean isClosedCaptionDisplayEnabled();
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setClosedCaptionDisplayEnabled:")
+    public native void setClosedCaptionDisplayEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

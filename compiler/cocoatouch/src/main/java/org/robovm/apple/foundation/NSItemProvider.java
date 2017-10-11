@@ -55,6 +55,11 @@ import org.robovm.apple.dispatch.*;
     public NSItemProvider() {}
     protected NSItemProvider(Handle h, long handle) { super(h, handle); }
     protected NSItemProvider(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithObject:")
+    public NSItemProvider(NSItemProviderWriting object) { super((SkipInit) null); initObject(init(object)); }
     @Method(selector = "initWithItem:typeIdentifier:")
     public NSItemProvider(NSObject item, String typeIdentifier) { super((SkipInit) null); initObject(init(item, typeIdentifier)); }
     @Method(selector = "initWithContentsOfURL:")
@@ -63,6 +68,16 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "registeredTypeIdentifiers")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getRegisteredTypeIdentifiers();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "suggestedName")
+    public native String getSuggestedName();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSuggestedName:")
+    public native void setSuggestedName(String v);
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -87,14 +102,74 @@ import org.robovm.apple.dispatch.*;
     @GlobalValue(symbol="NSExtensionJavaScriptFinalizeArgumentKey", optional=true)
     public static native String JavaScriptFinalizeArgumentKey();
     
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "registerDataRepresentationForTypeIdentifier:visibility:loadHandler:")
+    public native void registerDataRepresentationForTypeIdentifier(String typeIdentifier, NSItemProviderRepresentationVisibility visibility, @Block("(@Block)") Block1<VoidBlock2<NSData, NSError>, NSProgress> loadHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:")
+    public native void registerFileRepresentationForTypeIdentifier(String typeIdentifier, NSItemProviderFileOptions fileOptions, NSItemProviderRepresentationVisibility visibility, @Block("(@Block)") Block1<VoidBlock3<NSURL, Boolean, NSError>, NSProgress> loadHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "registeredTypeIdentifiersWithFileOptions:")
+    public native NSArray<NSString> registeredTypeIdentifiersWithFileOptions(NSItemProviderFileOptions fileOptions);
+    @Method(selector = "hasItemConformingToTypeIdentifier:")
+    public native boolean hasItemConformingToTypeIdentifier(String typeIdentifier);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "hasRepresentationConformingToTypeIdentifier:fileOptions:")
+    public native boolean hasRepresentationConformingToTypeIdentifier(String typeIdentifier, NSItemProviderFileOptions fileOptions);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "loadDataRepresentationForTypeIdentifier:completionHandler:")
+    public native NSProgress loadDataRepresentationForTypeIdentifier(String typeIdentifier, @Block VoidBlock2<NSData, NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "loadFileRepresentationForTypeIdentifier:completionHandler:")
+    public native NSProgress loadFileRepresentationForTypeIdentifier(String typeIdentifier, @Block VoidBlock2<NSURL, NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:")
+    public native NSProgress loadInPlaceFileRepresentationForTypeIdentifier(String typeIdentifier, @Block VoidBlock3<NSURL, Boolean, NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithObject:")
+    protected native @Pointer long init(NSItemProviderWriting object);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "registerObject:visibility:")
+    public native void registerObject(NSItemProviderWriting object, NSItemProviderRepresentationVisibility visibility);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "registerObjectOfClass:visibility:loadHandler:")
+    public native void registerObjectOfClass(Class<?> aClass, NSItemProviderRepresentationVisibility visibility, @Block("(@Block)") Block1<VoidBlock2<NSItemProviderWriting, NSError>, NSProgress> loadHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "canLoadObjectOfClass:")
+    public native boolean canLoadObjectOfClass(Class<?> aClass);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "loadObjectOfClass:completionHandler:")
+    public native NSProgress loadObjectOfClass(Class<?> aClass, @Block VoidBlock2<NSItemProviderReading, NSError> completionHandler);
     @Method(selector = "initWithItem:typeIdentifier:")
     protected native @Pointer long init(NSObject item, String typeIdentifier);
     @Method(selector = "initWithContentsOfURL:")
     protected native @Pointer long init(NSURL fileURL);
     @Method(selector = "registerItemForTypeIdentifier:loadHandler:")
     public native void registerItemForTypeIdentifier(String typeIdentifier, @Block("(@Block,,)") VoidBlock3<VoidBlock2<NSObject, NSError>, ObjCClass, NSDictionary<?, ?>> loadHandler);
-    @Method(selector = "hasItemConformingToTypeIdentifier:")
-    public native boolean hasItemConformingToTypeIdentifier(String typeIdentifier);
     @Method(selector = "loadItemForTypeIdentifier:options:completionHandler:")
     public native void loadItemForTypeIdentifier(String typeIdentifier, NSItemProviderOptions options, @Block VoidBlock2<NSObject, NSError> completionHandler);
     /**

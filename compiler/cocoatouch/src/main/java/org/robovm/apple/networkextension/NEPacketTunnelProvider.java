@@ -62,7 +62,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "startTunnelWithOptions:completionHandler:")
-    public native void startTunnel(NSDictionary<?, ?> options, @Block VoidBlock1<NSError> completionHandler);
+    public native void startTunnel(NSDictionary<NSString, ?> options, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
      */

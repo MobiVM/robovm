@@ -57,23 +57,40 @@ import org.robovm.apple.uikit.*;
     /**
      * @since Available in iOS 9.3 and later.
      */
-    @GlobalValue(symbol="SKStorefrontIdentifierDidChangeNotification", optional=true)
-    public static native String StorefrontIdentifierDidChangeNotification();
+    @GlobalValue(symbol="SKCloudServiceCapabilitiesDidChangeNotification", optional=true)
+    public static native String CapabilitiesDidChangeNotification();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="SKStorefrontCountryCodeDidChangeNotification", optional=true)
+    public static native String StorefrontCountryCodeDidChangeNotification();
     /**
      * @since Available in iOS 9.3 and later.
      */
-    @GlobalValue(symbol="SKCloudServiceCapabilitiesDidChangeNotification", optional=true)
-    public static native String CapabilitiesDidChangeNotification();
+    @GlobalValue(symbol="SKStorefrontIdentifierDidChangeNotification", optional=true)
+    public static native String StorefrontIdentifierDidChangeNotification();
     
-    @Method(selector = "requestStorefrontIdentifierWithCompletionHandler:")
-    public native void requestStorefrontIdentifierWithCompletionHandler(@Block VoidBlock2<String, NSError> completionHandler);
     @Method(selector = "requestCapabilitiesWithCompletionHandler:")
     public native void requestCapabilitiesWithCompletionHandler(@Block VoidBlock2<SKCloudServiceCapability, NSError> completionHandler);
     /**
-     * @since Available in iOS 10.3 and later.
+     * @since Available in iOS 11.0 and later.
      */
+    @Method(selector = "requestStorefrontCountryCodeWithCompletionHandler:")
+    public native void requestStorefrontCountryCodeWithCompletionHandler(@Block VoidBlock2<String, NSError> completionHandler);
+    @Method(selector = "requestStorefrontIdentifierWithCompletionHandler:")
+    public native void requestStorefrontIdentifierWithCompletionHandler(@Block VoidBlock2<String, NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "requestUserTokenForDeveloperToken:completionHandler:")
+    public native void requestUserToken(String developerToken, @Block VoidBlock2<String, NSError> completionHandler);
+    /**
+     * @since Available in iOS 10.3 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "requestPersonalizationTokenForClientToken:withCompletionHandler:")
-    public native void requestPersonalizationTokenForClientToken$withCompletionHandler$(String clientToken, @Block VoidBlock2<String, NSError> completionHandler);
+    public native void requestPersonalizationToken(String clientToken, @Block VoidBlock2<String, NSError> completionHandler);
     @Method(selector = "authorizationStatus")
     public static native SKCloudServiceAuthorizationStatus authorizationStatus();
     @Method(selector = "requestAuthorization:")

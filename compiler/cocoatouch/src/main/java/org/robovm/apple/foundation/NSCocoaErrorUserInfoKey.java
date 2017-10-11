@@ -102,12 +102,20 @@ import org.robovm.apple.dispatch.*;
     public static final NSCocoaErrorUserInfoKey LocalizedRecoveryOptions = new NSCocoaErrorUserInfoKey("LocalizedRecoveryOptions");
     public static final NSCocoaErrorUserInfoKey RecoveryAttempter = new NSCocoaErrorUserInfoKey("RecoveryAttempter");
     public static final NSCocoaErrorUserInfoKey HelpAnchor = new NSCocoaErrorUserInfoKey("HelpAnchor");
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    public static final NSCocoaErrorUserInfoKey DebugDescription = new NSCocoaErrorUserInfoKey("DebugDescription");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final NSCocoaErrorUserInfoKey LocalizedFailure = new NSCocoaErrorUserInfoKey("LocalizedFailure");
     public static final NSCocoaErrorUserInfoKey StringEncoding = new NSCocoaErrorUserInfoKey("StringEncoding");
     public static final NSCocoaErrorUserInfoKey URL = new NSCocoaErrorUserInfoKey("URL");
     public static final NSCocoaErrorUserInfoKey FilePath = new NSCocoaErrorUserInfoKey("FilePath");
     /*</constants>*/
     
-    private static /*<name>*/NSCocoaErrorUserInfoKey/*</name>*/[] values = new /*<name>*/NSCocoaErrorUserInfoKey/*</name>*/[] {/*<value_list>*/UnderlyingError, LocalizedDescription, LocalizedFailureReason, LocalizedRecoverySuggestion, LocalizedRecoveryOptions, RecoveryAttempter, HelpAnchor, StringEncoding, URL, FilePath/*</value_list>*/};
+    private static /*<name>*/NSCocoaErrorUserInfoKey/*</name>*/[] values = new /*<name>*/NSCocoaErrorUserInfoKey/*</name>*/[] {/*<value_list>*/UnderlyingError, LocalizedDescription, LocalizedFailureReason, LocalizedRecoverySuggestion, LocalizedRecoveryOptions, RecoveryAttempter, HelpAnchor, DebugDescription, LocalizedFailure, StringEncoding, URL, FilePath/*</value_list>*/};
     
     /*<name>*/NSCocoaErrorUserInfoKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -144,6 +152,16 @@ import org.robovm.apple.dispatch.*;
         public static native NSString RecoveryAttempter();
         @GlobalValue(symbol="NSHelpAnchorErrorKey", optional=true)
         public static native NSString HelpAnchor();
+        /**
+         * @since Available in iOS 2.0 and later.
+         */
+        @GlobalValue(symbol="NSDebugDescriptionErrorKey", optional=true)
+        public static native NSString DebugDescription();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="NSLocalizedFailureErrorKey", optional=true)
+        public static native NSString LocalizedFailure();
         @GlobalValue(symbol="NSStringEncodingErrorKey", optional=true)
         public static native NSString StringEncoding();
         @GlobalValue(symbol="NSURLErrorKey", optional=true)

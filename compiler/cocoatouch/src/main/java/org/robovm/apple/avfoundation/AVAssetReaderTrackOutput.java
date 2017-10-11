@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -86,7 +85,7 @@ import org.robovm.apple.audiounit.*;
     @Property(selector = "track")
     public native AVAssetTrack getTrack();
     @Property(selector = "outputSettings")
-    protected native NSDictionary<?, ?> getOutputSettings();
+    protected native NSDictionary<NSString, ?> getOutputSettings();
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -101,6 +100,6 @@ import org.robovm.apple.audiounit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithTrack:outputSettings:")
-    protected native @Pointer long init(AVAssetTrack track, NSDictionary<?, ?> outputSettings);
+    protected native @Pointer long init(AVAssetTrack track, NSDictionary<NSString, ?> outputSettings);
     /*</methods>*/
 }

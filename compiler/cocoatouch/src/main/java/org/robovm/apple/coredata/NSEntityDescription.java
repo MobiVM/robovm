@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -113,15 +114,15 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "setRenamingIdentifier:")
     public native void setRenamingIdentifier(String v);
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
-    @Property(selector = "compoundIndexes")
-    public native NSArray<NSArray<?>> getCompoundIndexes();
+    @Property(selector = "indexes")
+    public native NSArray<NSFetchIndexDescription> getIndexes();
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
-    @Property(selector = "setCompoundIndexes:")
-    public native void setCompoundIndexes(NSArray<NSArray<?>> v);
+    @Property(selector = "setIndexes:")
+    public native void setIndexes(NSArray<NSFetchIndexDescription> v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -132,6 +133,30 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setUniquenessConstraints:")
     public native void setUniquenessConstraints(NSArray<NSArray<?>> v);
+    /**
+     * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "compoundIndexes")
+    public native NSArray<NSArray<?>> getCompoundIndexes();
+    /**
+     * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setCompoundIndexes:")
+    public native void setCompoundIndexes(NSArray<NSArray<?>> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "coreSpotlightDisplayNameExpression")
+    public native NSExpression getCoreSpotlightDisplayNameExpression();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setCoreSpotlightDisplayNameExpression:")
+    public native void setCoreSpotlightDisplayNameExpression(NSExpression v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -105,8 +105,17 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
+    public static NSObject unarchiveTopLevelObject(NSData data) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSObject result = unarchiveTopLevelObject(data, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "unarchiveTopLevelObjectWithData:error:")
-    public static native NSObject unarchiveTopLevelObjectWithData$error$(NSData data, NSError.NSErrorPtr error);
+    private static native NSObject unarchiveTopLevelObject(NSData data, NSError.NSErrorPtr error);
     @Method(selector = "unarchiveObjectWithFile:")
     private static native NSObject unarchiveObject(String path);
     @Method(selector = "setClass:forClassName:")

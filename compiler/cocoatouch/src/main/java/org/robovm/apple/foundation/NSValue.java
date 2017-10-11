@@ -49,7 +49,7 @@ import org.robovm.apple.scenekit.SCNVector4;
 /*<annotations>*/@Library("Foundation") @NativeClass @WeaklyLinked/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSValue/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSValuePtr extends Ptr<NSValue, NSValuePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSValue.class); }/*</bind>*/
@@ -69,6 +69,8 @@ import org.robovm.apple.scenekit.SCNVector4;
     public native @Pointer long pointerValue();
     @Property(selector = "rangeValue")
     public native @ByVal NSRange rangeValue();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
 
@@ -238,8 +240,11 @@ import org.robovm.apple.scenekit.SCNVector4;
         return org.robovm.apple.scenekit.NSValueExtensions.create(matrix4);
     }
     /*<methods>*/
-    @Method(selector = "getValue:")
-    protected native void getValue(VoidPtr value);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "getValue:size:")
+    protected native void getValue(VoidPtr value, @MachineSizedUInt long size);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "valueWithBytes:objCType:")
@@ -250,7 +255,11 @@ import org.robovm.apple.scenekit.SCNVector4;
     public static native NSValue valueOf(NSObject anObject);
     @Method(selector = "valueWithPointer:")
     public static native NSValue valueOf(VoidPtr pointer);
+    @Method(selector = "getValue:")
+    protected native void getValue(VoidPtr value);
     @Method(selector = "valueWithRange:")
     public static native NSValue valueOf(@ByVal NSRange range);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

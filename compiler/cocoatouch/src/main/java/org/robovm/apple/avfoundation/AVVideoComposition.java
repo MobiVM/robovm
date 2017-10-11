@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -76,6 +75,11 @@ import org.robovm.apple.audiounit.*;
     public native Class<? extends AVVideoCompositing> getCustomVideoCompositorClass();
     @Property(selector = "frameDuration")
     public native @ByVal CMTime getFrameDuration();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "sourceTrackIDForFrameTiming")
+    public native int getSourceTrackIDForFrameTiming();
     @Property(selector = "renderSize")
     public native @ByVal CGSize getRenderSize();
     @Property(selector = "renderScale")

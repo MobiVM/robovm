@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNLevelOfDetail/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNLevelOfDetailPtr extends Ptr<SCNLevelOfDetail, SCNLevelOfDetailPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNLevelOfDetail.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNLevelOfDetail() {}
     protected SCNLevelOfDetail(Handle h, long handle) { super(h, handle); }
     protected SCNLevelOfDetail(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNLevelOfDetail(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "geometry")
@@ -62,6 +64,8 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getScreenSpaceRadius();
     @Property(selector = "worldSpaceDistance")
     public native @MachineSizedFloat double getWorldSpaceDistance();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -69,5 +73,9 @@ import org.robovm.apple.avfoundation.*;
     public static native SCNLevelOfDetail createWithGeometryAndRadius(SCNGeometry geometry, @MachineSizedFloat double radius);
     @Method(selector = "levelOfDetailWithGeometry:worldSpaceDistance:")
     public static native SCNLevelOfDetail createWithGeometryAndDistance(SCNGeometry geometry, @MachineSizedFloat double distance);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

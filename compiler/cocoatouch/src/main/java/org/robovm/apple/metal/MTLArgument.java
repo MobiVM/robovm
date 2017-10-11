@@ -68,6 +68,11 @@ import org.robovm.apple.dispatch.*;
     public native MTLDataType getBufferDataType();
     @Property(selector = "bufferStructType")
     public native MTLStructType getBufferStructType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "bufferPointerType")
+    public native MTLPointerType getBufferPointerType();
     @Property(selector = "threadgroupMemoryAlignment")
     public native @MachineSizedUInt long getThreadgroupMemoryAlignment();
     @Property(selector = "threadgroupMemoryDataSize")

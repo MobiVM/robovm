@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,5 +65,10 @@ import org.robovm.apple.audiounit.*;
      */
     @GlobalValue(symbol="AVVideoYCbCrMatrix_ITU_R_601_4", optional=true)
     public static native String ITU_R_601_4();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVVideoYCbCrMatrix_ITU_R_2020", optional=true)
+    public static native String ITU_R_2020();
     /*</methods>*/
 }

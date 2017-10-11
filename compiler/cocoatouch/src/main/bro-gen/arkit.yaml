@@ -1,0 +1,156 @@
+package: org.robovm.apple.arkit
+include: [foundation, avfoundation, coregraphics, uikit, scenekit, corevideo, spritekit, coremedia, dispatch, metal]
+library: ARKit
+framework: ARKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/ARKit.framework/Headers/ARKit.h
+typedefs: {}
+
+enums:
+    ARErrorCode: { nserror: true }
+    ARWorldAlignment: {}
+    ARPlaneDetection: {}
+    ARSessionRunOptions: {prefix: ARSessionRunOption}
+    ARHitTestResultType: {}
+    ARTrackingState: {}
+    ARTrackingStateReason: {}
+    ARPlaneAnchorAlignment: {}
+
+classes:
+
+    ARSCNDebugOptions: {} # struct
+
+    ARAnchor: {} #since 11.0
+    ARCamera: #since 11.0
+        methods:
+            '-projectPoint:orientation:viewportSize:':
+                trim_after_first_colon: true
+            '-projectionMatrixForOrientation:viewportSize:zNear:zFar:':
+                name: getProjectionMatrix
+    ARConfiguration: {} #since 11.0
+    ARDirectionalLightEstimate: {} #since 11.0
+    ARFaceAnchor: {} #since 11.0
+    ARFaceGeometry: {} #since 11.0
+    ARFaceTrackingConfiguration:  #since 11.0
+        skip_def_constructor: true
+        methods:
+            '+new':
+                name: create
+                constructor: true
+    ARFrame: #since 11.0
+        methods:
+            '-hitTest:types:':
+                trim_after_first_colon: true
+            '-displayTransformForOrientation:viewportSize:':
+                name: displayTransform
+    ARHitTestResult: {} #since 11.0
+    ARLightEstimate: {} #since 11.0
+    AROrientationTrackingConfiguration: #since 11.0
+        skip_def_constructor: true
+        methods:
+            '+new':
+                name: create
+                constructor: true
+    ARPlaneAnchor: {} #since 11.0
+    ARPointCloud: {} #since 11.0
+    ARSCNFaceGeometry: #since 11.0
+        methods:
+            '+faceGeometryWithDevice:fillMesh:':
+                name: create
+                constructor: true
+    ARSCNView: #since 11.0
+        methods:
+            '-hitTest:types:':
+                trim_after_first_colon: true
+    ARSKView: #since 11.0
+        methods:
+            '-hitTest:types:':
+                trim_after_first_colon: true
+    ARSession: #since 11.0
+        methods:
+            '-runWithConfiguration:options:':
+                name: run
+    ARWorldTrackingConfiguration:  #since 11.0
+        skip_def_constructor: true
+        methods:
+            '+new':
+                name: create
+                constructor: true
+
+protocols:
+    ARSCNViewDelegate: #since 11.0
+        methods:
+            '-renderer:nodeForAnchor:':
+                name: getNodeForAnchor
+            '-renderer:didAddNode:forAnchor:':
+                name: didAddNode
+            '-renderer:willUpdateNode:forAnchor:':
+                name: willUpdateNode
+            '-renderer:didUpdateNode:forAnchor:':
+                name: didUpdateNode
+            '-renderer:didRemoveNode:forAnchor:':
+                name: didRemoveNode
+    ARSKViewDelegate: #since 11.0
+        methods:
+            '-view:nodeForAnchor:':
+                name: getNodeForAnchor
+            '-view:didAddNode:forAnchor:':
+                name: didAddNode
+            '-view:willUpdateNode:forAnchor:':
+                name: willUpdateNode
+            '-view:didUpdateNode:forAnchor:':
+                name: didUpdateNode
+            '-view:didRemoveNode:forAnchor:':
+                name: didRemoveNode
+    ARSessionDelegate: #since 11.0
+        methods:
+            '-session:didUpdateFrame:':
+                name: didUpdateFrame
+            '-session:didAddAnchors:':
+                name: didAddAnchors
+            '-session:didUpdateAnchors:':
+                name: didUpdateAnchors
+            '-session:didRemoveAnchors:':
+                name: didRemoveAnchors
+    ARSessionObserver: #since 11.0
+        methods:
+            '-session:didFailWithError:':
+                name: didFailWithError
+            '-session:cameraDidChangeTrackingState:':
+                name: cameraDidChangeTrackingState
+            '-session:didOutputAudioSampleBuffer:':
+                name: didOutputAudioSampleBuffer
+    ARTrackable: {} #since 11.0
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (AR.*):
+        class: ARKit
+        name: 'Function__#{g[0]}'
+
+values:
+    ARErrorDomain:
+        class: ARErrorCode
+        name: getClassDomain
+
+    ARBlendShapeLocation(.*):
+        enum: ARBlendShapeLocation
+        name: '#{g[0]}'
+        type: NSString
+
+    ARSCN(DebugOption.*):
+        class: ARSCNView
+        name: '#{g[0]}'
+
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (AR.*):
+        class: ARKit
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (AR.*):
+        class: ARKit
+        name: 'Constant__#{g[0]}'

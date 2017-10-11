@@ -14,7 +14,8 @@ enums:
     CMErrorCode: { first: CMErrorNULL }
     CMMotionActivityConfidence: {}
     CMPedometerEventType: {}
-        
+    CMAuthorizationStatus: {} #since 11.0
+
 classes:
     CMError:
         extends: NSError

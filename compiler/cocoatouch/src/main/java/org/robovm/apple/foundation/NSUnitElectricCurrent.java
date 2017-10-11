@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnitElectricCurrent/*</name>*/ 
     extends /*<extends>*/NSDimension/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSUnitElectricCurrentPtr extends Ptr<NSUnitElectricCurrent, NSUnitElectricCurrentPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUnitElectricCurrent.class); }/*</bind>*/

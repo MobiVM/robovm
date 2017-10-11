@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,7 +49,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIUserNotificationCategory/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UIUserNotificationCategoryPtr extends Ptr<UIUserNotificationCategory, UIUserNotificationCategoryPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIUserNotificationCategory.class); }/*</bind>*/
@@ -61,6 +64,8 @@ import org.robovm.apple.corelocation.*;
     /*<properties>*/
     @Property(selector = "identifier")
     public native String getIdentifier();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     public void setIdentifier(String v) {
         throw new UnsupportedOperationException("UIUserNotificationCategory is immutable");
@@ -75,5 +80,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "actionsForContext:")
     public native NSArray<UIUserNotificationAction> getActions(UIUserNotificationActionContext context);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

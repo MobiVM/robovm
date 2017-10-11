@@ -60,6 +60,11 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithCharacteristic:triggerValue:")
     protected native @Pointer long init(HMCharacteristic characteristic, T triggerValue);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "updateTriggerValue:completionHandler:")
     public native void updateTriggerValue(T triggerValue, @Block VoidBlock1<NSError> completion);
     /*</methods>*/

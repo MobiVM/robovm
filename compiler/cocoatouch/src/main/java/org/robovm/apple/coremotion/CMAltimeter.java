@@ -59,5 +59,10 @@ import org.robovm.apple.foundation.*;
     public native void stopRelativeAltitudeUpdates();
     @Method(selector = "isRelativeAltitudeAvailable")
     public static native boolean isRelativeAltitudeAvailable();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "authorizationStatus")
+    public static native CMAuthorizationStatus authorizationStatus();
     /*</methods>*/
 }

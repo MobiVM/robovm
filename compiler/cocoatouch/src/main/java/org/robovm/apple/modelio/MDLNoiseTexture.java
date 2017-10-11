@@ -62,6 +62,9 @@ import org.robovm.apple.coregraphics.*;
     protected native @Pointer long init(float smoothness, String name, @ByVal VectorInt2 textureDimensions, MDLTextureChannelEncoding channelEncoding);
     @Method(selector = "initScalarNoiseWithSmoothness:name:textureDimensions:channelCount:channelEncoding:grayscale:")
     protected native @Pointer long init(float smoothness, String name, @ByVal VectorInt2 textureDimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, boolean grayscale);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initCellularNoiseWithFrequency:name:textureDimensions:channelEncoding:")
     protected native @Pointer long initCellularNoise(float frequency, String name, @ByVal VectorInt2 textureDimensions, MDLTextureChannelEncoding channelEncoding);
     /*</methods>*/

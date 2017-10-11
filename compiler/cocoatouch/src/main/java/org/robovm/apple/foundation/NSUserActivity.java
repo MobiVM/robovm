@@ -91,6 +91,16 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setWebpageURL:")
     public native void setWebpageURL(NSURL v);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "referrerURL")
+    public native NSURL getReferrerURL();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setReferrerURL:")
+    public native void setReferrerURL(NSURL v);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "expirationDate")

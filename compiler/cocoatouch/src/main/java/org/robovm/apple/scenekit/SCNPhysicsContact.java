@@ -68,6 +68,11 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getCollisionImpulse();
     @Property(selector = "penetrationDistance")
     public native @MachineSizedFloat double getPenetrationDistance();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "sweepTestFraction")
+    public native @MachineSizedFloat double getSweepTestFraction();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

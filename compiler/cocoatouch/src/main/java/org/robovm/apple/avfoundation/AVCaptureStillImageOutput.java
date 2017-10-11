@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,9 +56,9 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureStillImageOutput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureStillImageOutput() {}
     protected AVCaptureStillImageOutput(Handle h, long handle) { super(h, handle); }
     protected AVCaptureStillImageOutput(SkipInit skipInit) { super(skipInit); }
+    public AVCaptureStillImageOutput() { super((Handle) null, create()); retain(getHandle()); }
     /*</constructors>*/
     public AVVideoSettings getVideoOutputSettings() {
         return new AVVideoSettings(getOutputSettings0());
@@ -77,9 +76,9 @@ import org.robovm.apple.audiounit.*;
     }
     /*<properties>*/
     @Property(selector = "outputSettings")
-    protected native NSDictionary<?, ?> getOutputSettings0();
+    protected native NSDictionary<NSString, ?> getOutputSettings0();
     @Property(selector = "setOutputSettings:")
-    protected native void setOutputSettings0(NSDictionary<?, ?> v);
+    protected native void setOutputSettings0(NSDictionary<NSString, ?> v);
     @Property(selector = "availableImageDataCVPixelFormatTypes")
     public native @org.robovm.rt.bro.annotation.Marshaler(CVPixelFormatType.AsListMarshaler.class) List<CVPixelFormatType> getAvailableImageDataCVPixelFormatTypes();
     @Property(selector = "availableImageDataCodecTypes")
@@ -152,6 +151,8 @@ import org.robovm.apple.audiounit.*;
     /*<methods>*/
     @Method(selector = "captureStillImageAsynchronouslyFromConnection:completionHandler:")
     public native void captureStillImageAsynchronously(AVCaptureConnection connection, @Block VoidBlock2<CMSampleBuffer, NSError> handler);
+    @Method(selector = "new")
+    protected static native @Pointer long create();
     @Method(selector = "jpegStillImageNSDataRepresentation:")
     public static native NSData createJPEGStillImageNSDataRepresentation(CMSampleBuffer jpegSampleBuffer);
     /**

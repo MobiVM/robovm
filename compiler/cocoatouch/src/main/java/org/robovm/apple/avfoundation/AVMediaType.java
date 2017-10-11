@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -134,9 +133,13 @@ import org.robovm.apple.audiounit.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final AVMediaType MetadataObject = new AVMediaType("MetadataObject");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final AVMediaType DepthData = new AVMediaType("DepthData");
     /*</constants>*/
     
-    private static /*<name>*/AVMediaType/*</name>*/[] values = new /*<name>*/AVMediaType/*</name>*/[] {/*<value_list>*/Video, Audio, Text, ClosedCaption, Subtitle, Timecode, Metadata, Muxed, MetadataObject/*</value_list>*/};
+    private static /*<name>*/AVMediaType/*</name>*/[] values = new /*<name>*/AVMediaType/*</name>*/[] {/*<value_list>*/Video, Audio, Text, ClosedCaption, Subtitle, Timecode, Metadata, Muxed, MetadataObject, DepthData/*</value_list>*/};
     
     /*<name>*/AVMediaType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -204,6 +207,11 @@ import org.robovm.apple.audiounit.*;
          */
         @GlobalValue(symbol="AVMediaTypeMetadataObject", optional=true)
         public static native NSString MetadataObject();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaTypeDepthData", optional=true)
+        public static native NSString DepthData();
         /*</values>*/
     }
 }

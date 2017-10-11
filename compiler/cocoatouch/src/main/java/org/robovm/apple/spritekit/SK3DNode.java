@@ -36,6 +36,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -104,8 +105,8 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "hitTest:options:")
     public native NSArray<SCNHitTestResult> hitTest(@ByVal CGPoint point, SCNHitTestOptions options);
     @Method(selector = "projectPoint:")
-    public native @ByVal SKVector3 projectPoint(@ByVal SKVector3 point);
+    public native @ByVal VectorFloat3 projectPoint(@ByVal VectorFloat3 point);
     @Method(selector = "unprojectPoint:")
-    public native @ByVal SKVector3 unprojectPoint(@ByVal SKVector3 point);
+    public native @ByVal VectorFloat3 unprojectPoint(@ByVal VectorFloat3 point);
     /*</methods>*/
 }

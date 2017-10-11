@@ -32,6 +32,7 @@ import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -158,9 +159,21 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final CVPixelBufferAttribute OpenGLESTextureCacheCompatibility = new CVPixelBufferAttribute("OpenGLESTextureCacheCompatibility");
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static final CVPixelBufferAttribute IOSurfaceCoreAnimationCompatibility = new CVPixelBufferAttribute("IOSurfaceCoreAnimationCompatibility");
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    public static final CVPixelBufferAttribute IOSurfaceOpenGLESTextureCompatibility = new CVPixelBufferAttribute("IOSurfaceOpenGLESTextureCompatibility");
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    public static final CVPixelBufferAttribute IOSurfaceOpenGLESFBOCompatibility = new CVPixelBufferAttribute("IOSurfaceOpenGLESFBOCompatibility");
     /*</constants>*/
     
-    private static /*<name>*/CVPixelBufferAttribute/*</name>*/[] values = new /*<name>*/CVPixelBufferAttribute/*</name>*/[] {/*<value_list>*/PixelFormatType, MemoryAllocator, Width, Height, ExtendedPixelsLeft, ExtendedPixelsTop, ExtendedPixelsRight, ExtendedPixelsBottom, BytesPerRowAlignment, CGBitmapContextCompatibility, CGImageCompatibility, OpenGLCompatibility, PlaneAlignment, IOSurfaceProperties, OpenGLESCompatibility, MetalCompatibility, OpenGLESTextureCacheCompatibility/*</value_list>*/};
+    private static /*<name>*/CVPixelBufferAttribute/*</name>*/[] values = new /*<name>*/CVPixelBufferAttribute/*</name>*/[] {/*<value_list>*/PixelFormatType, MemoryAllocator, Width, Height, ExtendedPixelsLeft, ExtendedPixelsTop, ExtendedPixelsRight, ExtendedPixelsBottom, BytesPerRowAlignment, CGBitmapContextCompatibility, CGImageCompatibility, OpenGLCompatibility, PlaneAlignment, IOSurfaceProperties, OpenGLESCompatibility, MetalCompatibility, OpenGLESTextureCacheCompatibility, IOSurfaceCoreAnimationCompatibility, IOSurfaceOpenGLESTextureCompatibility, IOSurfaceOpenGLESFBOCompatibility/*</value_list>*/};
     
     /*<name>*/CVPixelBufferAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -268,6 +281,21 @@ import org.robovm.apple.metal.*;
          */
         @GlobalValue(symbol="kCVPixelBufferOpenGLESTextureCacheCompatibilityKey", optional=true)
         public static native CFString OpenGLESTextureCacheCompatibility();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferIOSurfaceCoreAnimationCompatibilityKey", optional=true)
+        public static native CFString IOSurfaceCoreAnimationCompatibility();
+        /**
+         * @since Available in iOS 5.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferIOSurfaceOpenGLESTextureCompatibilityKey", optional=true)
+        public static native CFString IOSurfaceOpenGLESTextureCompatibility();
+        /**
+         * @since Available in iOS 5.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey", optional=true)
+        public static native CFString IOSurfaceOpenGLESFBOCompatibility();
         /*</values>*/
     }
 }

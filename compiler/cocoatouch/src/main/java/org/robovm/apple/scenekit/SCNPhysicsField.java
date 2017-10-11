@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNPhysicsField/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNPhysicsFieldPtr extends Ptr<SCNPhysicsField, SCNPhysicsFieldPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNPhysicsField.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNPhysicsField() {}
     protected SCNPhysicsField(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsField(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNPhysicsField(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "strength")
@@ -100,6 +102,8 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedUInt long getCategoryBitMask();
     @Property(selector = "setCategoryBitMask:")
     public native void setCategoryBitMask(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -123,5 +127,9 @@ import org.robovm.apple.avfoundation.*;
     public static native SCNPhysicsField createMagneticField();
     @Method(selector = "customFieldWithEvaluationBlock:")
     public static native SCNPhysicsField createCustomField(@Block Block5<SCNVector3, SCNVector3, Float, Float, Double, SCNVector3> block);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

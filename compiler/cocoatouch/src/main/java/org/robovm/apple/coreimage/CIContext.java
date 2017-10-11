@@ -35,6 +35,7 @@ import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -118,6 +119,12 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 5.0 and later.
      */
     @WeaklyLinked
+    @Method(selector = "render:toIOSurface:bounds:colorSpace:")
+    public native void render(CIImage image, IOSurface surface, @ByVal CGRect bounds, CGColorSpace colorSpace);
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @WeaklyLinked
     @Method(selector = "render:toCVPixelBuffer:")
     public native void render(CIImage image, CVPixelBuffer buffer);
     /**
@@ -193,14 +200,54 @@ import org.robovm.apple.metal.*;
     @Method(selector = "JPEGRepresentationOfImage:colorSpace:options:")
     public native NSData jpegRepresentationOfImage(CIImage image, CGColorSpace colorSpace, NSDictionary<?, ?> options);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "HEIFRepresentationOfImage:format:colorSpace:options:")
+    public native NSData HEIFRepresentationOfImage(CIImage image, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "PNGRepresentationOfImage:format:colorSpace:options:")
+    public native NSData PNGRepresentationOfImage(CIImage image, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "writeTIFFRepresentationOfImage:toURL:format:colorSpace:options:error:")
     public native boolean writeTIFFRepresentationOfImage(CIImage image, NSURL url, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options, NSError.NSErrorPtr errorPtr);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "writePNGRepresentationOfImage:toURL:format:colorSpace:options:error:")
+    public native boolean writePNGRepresentationOfImage(CIImage image, NSURL url, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options, NSError.NSErrorPtr errorPtr);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "writeJPEGRepresentationOfImage:toURL:colorSpace:options:error:")
     public native boolean writeJPEGRepresentationOfImage(CIImage image, NSURL url, CGColorSpace colorSpace, NSDictionary<?, ?> options, NSError.NSErrorPtr errorPtr);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "writeHEIFRepresentationOfImage:toURL:format:colorSpace:options:error:")
+    public native boolean writeHEIFRepresentationOfImage(CIImage image, NSURL url, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options, NSError.NSErrorPtr errorPtr);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "startTaskToRender:fromRect:toDestination:atPoint:error:")
+    public native CIRenderTask startTaskToRender(CIImage image, @ByVal CGRect fromRect, CIRenderDestination destination, @ByVal CGPoint atPoint, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "startTaskToRender:toDestination:error:")
+    public native CIRenderTask startTaskToRender(CIImage image, CIRenderDestination destination, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "prepareRender:fromRect:toDestination:atPoint:error:")
+    public native boolean prepareRender(CIImage image, @ByVal CGRect fromRect, CIRenderDestination destination, @ByVal CGPoint atPoint, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "startTaskToClear:error:")
+    public native CIRenderTask startTaskToClear(CIRenderDestination destination, NSError.NSErrorPtr error);
     /*</methods>*/
 }

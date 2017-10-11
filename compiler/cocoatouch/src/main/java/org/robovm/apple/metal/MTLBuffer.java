@@ -68,6 +68,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "heap")
     public native MTLHeap getHeap();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "allocatedSize")
+    public native @MachineSizedUInt long getAllocatedSize();
     /*</properties>*/
     /*<members>*//*</members>*/
     public ByteBuffer getContents() {

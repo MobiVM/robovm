@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.contacts.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKUserIdentityLookupInfo/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKUserIdentityLookupInfoPtr extends Ptr<CKUserIdentityLookupInfo, CKUserIdentityLookupInfoPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKUserIdentityLookupInfo.class); }/*</bind>*/
@@ -51,6 +52,8 @@ import org.robovm.apple.contacts.*;
     protected CKUserIdentityLookupInfo(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithUserRecordID:")
     public CKUserIdentityLookupInfo(CKRecordID userRecordID) { super((SkipInit) null); initObject(init(userRecordID)); }
+    @Method(selector = "initWithCoder:")
+    public CKUserIdentityLookupInfo(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "emailAddress")
@@ -59,6 +62,8 @@ import org.robovm.apple.contacts.*;
     public native String getPhoneNumber();
     @Property(selector = "userRecordID")
     public native CKRecordID getUserRecordID();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -69,10 +74,14 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithUserRecordID:")
     protected native @Pointer long init(CKRecordID userRecordID);
     @Method(selector = "lookupInfosWithEmails:")
-    public static native NSArray<CKUserIdentityLookupInfo> lookupInfosWithEmails(NSArray<?> emails);
+    public static native NSArray<CKUserIdentityLookupInfo> lookupInfosWithEmails(NSArray<NSString> emails);
     @Method(selector = "lookupInfosWithPhoneNumbers:")
-    public static native NSArray<CKUserIdentityLookupInfo> lookupInfosWithPhoneNumbers(NSArray<?> phoneNumbers);
+    public static native NSArray<CKUserIdentityLookupInfo> lookupInfosWithPhoneNumbers(NSArray<NSString> phoneNumbers);
     @Method(selector = "lookupInfosWithRecordIDs:")
     public static native NSArray<CKUserIdentityLookupInfo> lookupInfosWithRecordIDs(NSArray<CKRecordID> recordIDs);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

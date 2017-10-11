@@ -38,11 +38,12 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 6.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVCaptureMetadataOutputObjectsDelegate/*</name>*/ 
@@ -58,7 +59,7 @@ import org.robovm.apple.audiounit.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "captureOutput:didOutputMetadataObjects:fromConnection:")
-    void didOutputMetadataObjects(AVCaptureOutput captureOutput, NSArray<AVMetadataObject> metadataObjects, AVCaptureConnection connection);
+    void didOutputMetadataObjects(AVCaptureOutput output, NSArray<AVMetadataObject> metadataObjects, AVCaptureConnection connection);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

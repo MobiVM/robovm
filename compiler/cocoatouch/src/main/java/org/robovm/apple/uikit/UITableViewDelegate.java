@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -147,6 +150,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "tableView:editActionsForRowAtIndexPath:")
     NSArray<UITableViewRowAction> getEditActionsForRow(UITableView tableView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "tableView:leadingSwipeActionsConfigurationForRowAtIndexPath:")
+    UISwipeActionsConfiguration getLeadingSwipeActionsConfigurationForRow(UITableView tableView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:")
+    UISwipeActionsConfiguration getTrailingSwipeActionsConfigurationForRow(UITableView tableView, NSIndexPath indexPath);
     @Method(selector = "tableView:shouldIndentWhileEditingRowAtIndexPath:")
     boolean shouldIndentWhileEditingRow(UITableView tableView, NSIndexPath indexPath);
     @Method(selector = "tableView:willBeginEditingRowAtIndexPath:")
@@ -192,6 +205,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "indexPathForPreferredFocusedViewInTableView:")
     NSIndexPath getIndexPathForPreferredFocusedView(UITableView tableView);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "tableView:shouldSpringLoadRowAtIndexPath:withContext:")
+    boolean shouldSpringLoadRow(UITableView tableView, NSIndexPath indexPath, UISpringLoadedInteractionContext context);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

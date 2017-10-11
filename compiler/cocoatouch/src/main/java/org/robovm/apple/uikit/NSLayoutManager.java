@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -100,10 +103,6 @@ import org.robovm.apple.corelocation.*;
     public native boolean hasNonContiguousLayout();
     @Property(selector = "numberOfGlyphs")
     public native @MachineSizedUInt long getNumberOfGlyphs();
-    @Property(selector = "firstUnlaidCharacterIndex")
-    public native @MachineSizedUInt long getFirstUnlaidCharacterIndex();
-    @Property(selector = "firstUnlaidGlyphIndex")
-    public native @MachineSizedUInt long getFirstUnlaidGlyphIndex();
     @Property(selector = "extraLineFragmentRect")
     public native @ByVal CGRect getExtraLineFragmentRect();
     @Property(selector = "extraLineFragmentUsedRect")
@@ -113,7 +112,7 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     
-    public void showCGGlyphs(short[] glyphs, CGPoint[] positions, UIFont font, CGAffineTransform textMatrix, NSDictionary<?, ?> attributes, CGContext graphicsContext) {
+    public void showCGGlyphs(short[] glyphs, CGPoint[] positions, UIFont font, CGAffineTransform textMatrix, NSDictionary<NSString, ?> attributes, CGContext graphicsContext) {
         if (glyphs == null) {
             throw new NullPointerException("glyphs");
         }
@@ -217,6 +216,10 @@ import org.robovm.apple.corelocation.*;
     public native void setAttachmentSize(@ByVal CGSize attachmentSize, @ByVal NSRange glyphRange);
     @Method(selector = "getFirstUnlaidCharacterIndex:glyphIndex:")
     public native void getFirstUnlaidCharacterIndex(MachineSizedUIntPtr charIndex, MachineSizedUIntPtr glyphIndex);
+    @Method(selector = "firstUnlaidCharacterIndex")
+    public native @MachineSizedUInt long firstUnlaidCharacterIndex();
+    @Method(selector = "firstUnlaidGlyphIndex")
+    public native @MachineSizedUInt long firstUnlaidGlyphIndex();
     @Method(selector = "textContainerForGlyphAtIndex:effectiveRange:")
     public native NSTextContainer getTextContainer(@MachineSizedUInt long glyphIndex, NSRange effectiveGlyphRange);
     /**
@@ -295,7 +298,7 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "showCGGlyphs:positions:count:font:matrix:attributes:inContext:")
-    protected native void showCGGlyphs(@Pointer long glyphs, CGPoint positions, @MachineSizedUInt long glyphCount, UIFont font, @ByVal CGAffineTransform textMatrix, NSDictionary<?, ?> attributes, CGContext graphicsContext);
+    protected native void showCGGlyphs(@Pointer long glyphs, CGPoint positions, @MachineSizedUInt long glyphCount, UIFont font, @ByVal CGAffineTransform textMatrix, NSDictionary<NSString, ?> attributes, CGContext graphicsContext);
     /**
      * @since Available in iOS 7.0 and later.
      */

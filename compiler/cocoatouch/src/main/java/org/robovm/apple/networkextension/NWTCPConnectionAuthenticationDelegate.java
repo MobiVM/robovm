@@ -50,11 +50,11 @@ import org.robovm.apple.security.*;
     @Method(selector = "shouldProvideIdentityForConnection:")
     boolean shouldProvideIdentityForConnection(NWTCPConnection connection);
     @Method(selector = "provideIdentityForConnection:completionHandler:")
-    void provideIdentityForConnection(NWTCPConnection connection, @Block VoidBlock2<SecIdentity, NSArray<NSObject>> completion);
+    void provideIdentityForConnection(NWTCPConnection connection, @Block VoidBlock2<SecIdentity, NSArray<?>> completion);
     @Method(selector = "shouldEvaluateTrustForConnection:")
     boolean shouldEvaluateTrustForConnection(NWTCPConnection connection);
     @Method(selector = "evaluateTrustForConnection:peerCertificateChain:completionHandler:")
-    void evaluateTrustForConnection(NWTCPConnection connection, NSArray<NSObject> peerCertificateChain, @Block VoidBlock1<SecTrust> completion);
+    void evaluateTrustForConnection(NWTCPConnection connection, NSArray<?> peerCertificateChain, @Block VoidBlock1<SecTrust> completion);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

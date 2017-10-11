@@ -198,6 +198,17 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="MKMapViewDefaultAnnotationViewReuseIdentifier", optional=true)
+    public static native String getDefaultAnnotationViewReuseIdentifier();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="MKMapViewDefaultClusterAnnotationViewReuseIdentifier", optional=true)
+    public static native String getDefaultClusterAnnotationViewReuseIdentifier();
+    
     @Method(selector = "setRegion:animated:")
     public native void setRegion(@ByVal MKCoordinateRegion region, boolean animated);
     @Method(selector = "setCenterCoordinate:animated:")
@@ -247,6 +258,13 @@ import org.robovm.apple.dispatch.*;
     public native MKAnnotationView getView(MKAnnotation annotation);
     @Method(selector = "dequeueReusableAnnotationViewWithIdentifier:")
     public native MKAnnotationView dequeueReusableAnnotationView(String identifier);
+    @Method(selector = "dequeueReusableAnnotationViewWithIdentifier:forAnnotation:")
+    public native MKAnnotationView dequeueReusableAnnotationView(String identifier, MKAnnotation annotation);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "registerClass:forAnnotationViewWithReuseIdentifier:")
+    public native void registerClass(Class<?> viewClass, String identifier);
     @Method(selector = "selectAnnotation:animated:")
     public native void selectAnnotation(MKAnnotation annotation, boolean animated);
     @Method(selector = "deselectAnnotation:animated:")

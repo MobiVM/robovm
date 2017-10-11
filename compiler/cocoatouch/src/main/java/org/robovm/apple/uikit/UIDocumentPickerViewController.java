@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,6 +62,11 @@ import org.robovm.apple.corelocation.*;
     public UIDocumentPickerViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     @Method(selector = "initWithURL:inMode:")
     public UIDocumentPickerViewController(NSURL url, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(url, mode)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithURLs:inMode:")
+    public UIDocumentPickerViewController(NSArray<NSURL> urls, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(urls, mode)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -67,6 +75,16 @@ import org.robovm.apple.corelocation.*;
     public native void setDelegate(UIDocumentPickerDelegate v);
     @Property(selector = "documentPickerMode")
     public native UIDocumentPickerMode getDocumentPickerMode();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "allowsMultipleSelection")
+    public native boolean allowsMultipleSelection();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAllowsMultipleSelection:")
+    public native void setAllowsMultipleSelection(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -76,5 +94,10 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "initWithURL:inMode:")
     protected native @Pointer long init(NSURL url, UIDocumentPickerMode mode);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithURLs:inMode:")
+    protected native @Pointer long init(NSArray<NSURL> urls, UIDocumentPickerMode mode);
     /*</methods>*/
 }

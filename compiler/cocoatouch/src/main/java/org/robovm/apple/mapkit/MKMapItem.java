@@ -42,7 +42,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMapItem/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, NSItemProviderReading, NSItemProviderWriting/*</implements>*/ {
 
     /*<ptr>*/public static class MKMapItemPtr extends Ptr<MKMapItem, MKMapItemPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MKMapItem.class); }/*</bind>*/
@@ -53,6 +53,8 @@ import org.robovm.apple.dispatch.*;
     protected MKMapItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPlacemark:")
     public MKMapItem(MKPlacemark placemark) { super((SkipInit) null); initObject(init(placemark)); }
+    @Method(selector = "initWithCoder:")
+    public MKMapItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "placemark")
@@ -81,9 +83,23 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setTimeZone:")
     public native void setTimeZone(NSTimeZone v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
+    @Property(selector = "readableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getReadableTypeIdentifiersForItemProvider();
+    @Property(selector = "writableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getWritableTypeIdentifiersForItemProvider0();
+    @Property(selector = "writableTypeIdentifiersForItemProvider")
+    public native NSArray<NSString> getWritableTypeIdentifiersForItemProvider();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="MKMapItemTypeIdentifier", optional=true)
+    public static native String getTypeIdentifier();
+    
     @Method(selector = "initWithPlacemark:")
     protected native @Pointer long init(MKPlacemark placemark);
     @Method(selector = "openInMapsWithLaunchOptions:")
@@ -92,5 +108,23 @@ import org.robovm.apple.dispatch.*;
     public static native MKMapItem getMapItemForCurrentLocation();
     @Method(selector = "openMapsWithItems:launchOptions:")
     public static native boolean openMaps(NSArray<MKMapItem> mapItems, MKLaunchOptions launchOptions);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
+    public static MKMapItem createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MKMapItem result = createProviderDataObject(data, typeIdentifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "objectWithItemProviderData:typeIdentifier:error:")
+    private static native MKMapItem createProviderDataObject(NSData data, String typeIdentifier, NSError.NSErrorPtr outError);
+    @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
+    public native NSItemProviderRepresentationVisibility getItemProviderVisibility(String typeIdentifier);
+    @Method(selector = "loadDataWithTypeIdentifier:forItemProviderCompletionHandler:")
+    public native NSProgress loadData(String typeIdentifier, @Block VoidBlock2<NSData, NSError> completionHandler);
+    @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
+    public static native NSItemProviderRepresentationVisibility getItemProviderVisibility0(String typeIdentifier);
     /*</methods>*/
 }

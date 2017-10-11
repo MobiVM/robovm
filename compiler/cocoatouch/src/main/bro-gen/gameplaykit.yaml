@@ -1,5 +1,5 @@
 package: org.robovm.apple.gameplaykit
-include: [foundation.yaml, spritekit.yaml]
+include: [foundation.yaml, spritekit.yaml, scenekit.yaml, uikit.yaml]
 library: GameplayKit
 framework: GameplayKit
 clang_args: ['-x', 'objective-c']
@@ -433,6 +433,10 @@ classes:
                 trim_after_first_colon: true
             '+quadtreeWithBoundingQuad:minimumCellSize:':
                 exclude: true
+            '-addElement:withPoint:':
+                trim_after_first_colon: true
+            '-addElement:withQuad:':
+                trim_after_first_colon: true
     GKQuadtreeNode: {}
     GKOctree:
         methods:
@@ -442,6 +446,10 @@ classes:
                 trim_after_first_colon: true
             '+octreeWithBoundingBox:minimumCellSize:':
                 exclude: true
+            '-addElement:withPoint:':
+                trim_after_first_colon: true
+            '-addElement:withBox:':
+                trim_after_first_colon: true
     GKOctreeNode: {}
     GKRTree:
         methods:
@@ -496,6 +504,8 @@ classes:
         methods:
             '-init.*':
                 name: init
+            '-exportToURL:error:':
+                trim_after_first_colon: true
     GKGraphNode3D:
         methods:
             '+nodeWithPoint:':
@@ -555,6 +565,9 @@ classes:
         methods:
             '-addGraph:name:':
                 trim_after_first_colon: true
+            '+sceneWithFileNamed:rootNode:':
+                constructor: true
+                name: create
     GKSphereObstacle: {}
     GKSpheresNoiseSource: {}
     GKVoronoiNoiseSource:
@@ -563,6 +576,7 @@ classes:
                 name: init
             '+voronoiNoiseWithFrequency:displacement:distanceEnabled:seed:':
                 exclude: true
+    GKSCNNodeComponent: {} #since 11.0
 
 
 protocols:

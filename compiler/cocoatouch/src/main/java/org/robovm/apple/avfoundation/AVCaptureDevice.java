@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -91,7 +90,7 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureDevice.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureDevice() {}
+    protected AVCaptureDevice() {}
     protected AVCaptureDevice(Handle h, long handle) { super(h, handle); }
     protected AVCaptureDevice(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
@@ -366,6 +365,11 @@ import org.robovm.apple.audiounit.*;
     @Property(selector = "isRampingVideoZoom")
     public native boolean isRampingVideoZoom();
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "dualCameraSwitchOverVideoZoomFactor")
+    public native @MachineSizedFloat double getDualCameraSwitchOverVideoZoomFactor();
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @Property(selector = "automaticallyAdjustsVideoHDREnabled")
@@ -395,6 +399,26 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "setActiveColorSpace:")
     public native void setActiveColorSpace(AVCaptureColorSpace v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "activeDepthDataFormat")
+    public native AVCaptureDeviceFormat getActiveDepthDataFormat();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setActiveDepthDataFormat:")
+    public native void setActiveDepthDataFormat(AVCaptureDeviceFormat v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "minAvailableVideoZoomFactor")
+    public native @MachineSizedFloat double getMinAvailableVideoZoomFactor();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "maxAvailableVideoZoomFactor")
+    public native @MachineSizedFloat double getMaxAvailableVideoZoomFactor();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -413,6 +437,9 @@ import org.robovm.apple.audiounit.*;
      */
     @GlobalValue(symbol="AVCaptureDeviceSubjectAreaDidChangeNotification", optional=true)
     public static native NSString SubjectAreaDidChangeNotification();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     @GlobalValue(symbol="AVCaptureMaxAvailableTorchLevel", optional=true)
     public static native float getMaxAvailableTorchLevel();
     /**

@@ -50,7 +50,7 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 9.3 and later.
      */
     @Method(selector = "session:activationDidCompleteWithState:error:")
-    void session$activationDidCompleteWithState$error$(WCSession session, WCSessionActivationState activationState, NSError error);
+    void activationDidComplete(WCSession session, WCSessionActivationState activationState, NSError error);
     /**
      * @since Available in iOS 9.3 and later.
      */

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.contacts.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKNotificationInfo/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKNotificationInfoPtr extends Ptr<CKNotificationInfo, CKNotificationInfoPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKNotificationInfo.class); }/*</bind>*/
@@ -49,6 +50,8 @@ import org.robovm.apple.contacts.*;
     public CKNotificationInfo() {}
     protected CKNotificationInfo(Handle h, long handle) { super(h, handle); }
     protected CKNotificationInfo(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CKNotificationInfo(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alertBody")
@@ -63,6 +66,66 @@ import org.robovm.apple.contacts.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAlertLocalizationArgs();
     @Property(selector = "setAlertLocalizationArgs:")
     public native void setAlertLocalizationArgs(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "title")
+    public native String getTitle();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setTitle:")
+    public native void setTitle(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "titleLocalizationKey")
+    public native String getTitleLocalizationKey();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setTitleLocalizationKey:")
+    public native void setTitleLocalizationKey(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "titleLocalizationArgs")
+    public native NSArray<NSString> getTitleLocalizationArgs();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setTitleLocalizationArgs:")
+    public native void setTitleLocalizationArgs(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "subtitle")
+    public native String getSubtitle();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSubtitle:")
+    public native void setSubtitle(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "subtitleLocalizationKey")
+    public native String getSubtitleLocalizationKey();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSubtitleLocalizationKey:")
+    public native void setSubtitleLocalizationKey(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "subtitleLocalizationArgs")
+    public native NSArray<NSString> getSubtitleLocalizationArgs();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSubtitleLocalizationArgs:")
+    public native void setSubtitleLocalizationArgs(NSArray<NSString> v);
     @Property(selector = "alertActionLocalizationKey")
     public native String getAlertActionLocalizationKey();
     @Property(selector = "setAlertActionLocalizationKey:")
@@ -88,6 +151,16 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "setShouldSendContentAvailable:")
     public native void setShouldSendContentAvailable(boolean v);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "shouldSendMutableContent")
+    public native boolean shouldSendMutableContent();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setShouldSendMutableContent:")
+    public native void setShouldSendMutableContent(boolean v);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "category")
@@ -97,9 +170,24 @@ import org.robovm.apple.contacts.*;
      */
     @Property(selector = "setCategory:")
     public native void setCategory(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "collapseIDKey")
+    public native String getCollapseIDKey();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setCollapseIDKey:")
+    public native void setCollapseIDKey(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

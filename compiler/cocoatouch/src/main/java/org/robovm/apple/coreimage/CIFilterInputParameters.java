@@ -35,6 +35,7 @@ import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -212,6 +213,16 @@ import org.robovm.apple.metal.*;
         @GlobalValue(symbol="kCIInputImageKey", optional=true)
         public static native NSString Image();
         /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputDepthImageKey", optional=true)
+        public static native NSString DepthImage();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputDisparityImageKey", optional=true)
+        public static native NSString DisparityImage();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="kCIInputRefractionKey", optional=true)
@@ -331,6 +342,11 @@ import org.robovm.apple.metal.*;
          */
         @GlobalValue(symbol="kCIInputNoiseReductionAmountKey", optional=true)
         public static native NSString NoiseReductionAmount();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputMoireAmountKey", optional=true)
+        public static native NSString MoireAmount();
         /**
          * @since Available in iOS 10.0 and later.
          */

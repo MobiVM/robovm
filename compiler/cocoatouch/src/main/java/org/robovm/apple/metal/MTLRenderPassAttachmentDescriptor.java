@@ -90,6 +90,16 @@ import org.robovm.apple.dispatch.*;
     public native MTLStoreAction getStoreAction();
     @Property(selector = "setStoreAction:")
     public native void setStoreAction(MTLStoreAction v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "storeActionOptions")
+    public native MTLStoreActionOptions getStoreActionOptions();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setStoreActionOptions:")
+    public native void setStoreActionOptions(MTLStoreActionOptions v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("UserNotifications") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UNNotificationContent/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UNNotificationContentPtr extends Ptr<UNNotificationContent, UNNotificationContentPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UNNotificationContent.class); }/*</bind>*/
@@ -47,6 +47,8 @@ import org.robovm.apple.foundation.*;
     public UNNotificationContent() {}
     protected UNNotificationContent(Handle h, long handle) { super(h, handle); }
     protected UNNotificationContent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public UNNotificationContent(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "attachments")
@@ -69,9 +71,14 @@ import org.robovm.apple.foundation.*;
     public native String getTitle();
     @Property(selector = "userInfo")
     public native NSDictionary<?, ?> getUserInfo();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

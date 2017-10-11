@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,9 +54,9 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCapturePhotoOutput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCapturePhotoOutput() {}
     protected AVCapturePhotoOutput(Handle h, long handle) { super(h, handle); }
     protected AVCapturePhotoOutput(SkipInit skipInit) { super(skipInit); }
+    public AVCapturePhotoOutput() { super((Handle) null, create()); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "preparedPhotoSettingsArray")
@@ -65,9 +64,19 @@ import org.robovm.apple.audiounit.*;
     @Property(selector = "availablePhotoPixelFormatTypes")
     public native NSArray<NSNumber> getAvailablePhotoPixelFormatTypes();
     @Property(selector = "availablePhotoCodecTypes")
-    public native NSArray<?> getAvailablePhotoCodecTypes();
+    public native NSArray<NSString> getAvailablePhotoCodecTypes();
     @Property(selector = "availableRawPhotoPixelFormatTypes")
     public native NSArray<NSNumber> getAvailableRawPhotoPixelFormatTypes();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "availablePhotoFileTypes")
+    public native NSArray<?> getAvailablePhotoFileTypes();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "availableRawPhotoFileTypes")
+    public native NSArray<?> getAvailableRawPhotoFileTypes();
     @Property(selector = "isStillImageStabilizationSupported")
     public native boolean isStillImageStabilizationSupported();
     @Property(selector = "isStillImageStabilizationScene")
@@ -77,6 +86,26 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "isDualCameraFusionSupported")
     public native boolean isDualCameraFusionSupported();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isDualCameraDualPhotoDeliverySupported")
+    public native boolean isDualCameraDualPhotoDeliverySupported();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isDualCameraDualPhotoDeliveryEnabled")
+    public native boolean isDualCameraDualPhotoDeliveryEnabled();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setDualCameraDualPhotoDeliveryEnabled:")
+    public native void setDualCameraDualPhotoDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isCameraCalibrationDataDeliverySupported")
+    public native boolean isCameraCalibrationDataDeliverySupported();
     @Property(selector = "supportedFlashModes")
     public native NSArray<NSNumber> getSupportedFlashModes();
     @Property(selector = "isFlashScene")
@@ -107,6 +136,26 @@ import org.robovm.apple.audiounit.*;
     public native boolean isLivePhotoAutoTrimmingEnabled();
     @Property(selector = "setLivePhotoAutoTrimmingEnabled:")
     public native void setLivePhotoAutoTrimmingEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "availableLivePhotoVideoCodecTypes")
+    public native NSArray<NSString> getAvailableLivePhotoVideoCodecTypes();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isDepthDataDeliverySupported")
+    public native boolean isDepthDataDeliverySupported();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isDepthDataDeliveryEnabled")
+    public native boolean isDepthDataDeliveryEnabled();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setDepthDataDeliveryEnabled:")
+    public native void setDepthDataDeliveryEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -114,8 +163,35 @@ import org.robovm.apple.audiounit.*;
     public native void capturePhotoWithSettings(AVCapturePhotoSettings settings, AVCapturePhotoCaptureDelegate delegate);
     @Method(selector = "setPreparedPhotoSettingsArray:completionHandler:")
     public native void setPreparedPhotoSettingsArray(NSArray<AVCapturePhotoSettings> preparedPhotoSettingsArray, @Block VoidBlock2<Boolean, NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "supportedPhotoPixelFormatTypesForFileType:")
+    public native NSArray<NSNumber> supportedPhotoPixelFormatTypesForFileType(String fileType);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "supportedPhotoCodecTypesForFileType:")
+    public native NSArray<NSString> supportedPhotoCodecTypesForFileType(String fileType);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "supportedRawPhotoPixelFormatTypesForFileType:")
+    public native NSArray<NSNumber> supportedRawPhotoPixelFormatTypesForFileType(String fileType);
+    @Method(selector = "new")
+    protected static native @Pointer long create();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "JPEGPhotoDataRepresentationForJPEGSampleBuffer:previewPhotoSampleBuffer:")
     public static native NSData JPEGPhotoDataRepresentationForJPEGSampleBuffer(CMSampleBuffer JPEGSampleBuffer, CMSampleBuffer previewPhotoSampleBuffer);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "DNGPhotoDataRepresentationForRawSampleBuffer:previewPhotoSampleBuffer:")
     public static native NSData DNGPhotoDataRepresentationForRawSampleBuffer(CMSampleBuffer rawSampleBuffer, CMSampleBuffer previewPhotoSampleBuffer);
     /*</methods>*/

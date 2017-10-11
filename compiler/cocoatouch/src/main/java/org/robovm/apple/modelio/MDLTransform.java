@@ -115,6 +115,9 @@ import org.robovm.apple.coregraphics.*;
     public native @ByVal VectorFloat3 getShear(double time);
     @Method(selector = "scaleAtTime:")
     public native @ByVal VectorFloat3 getScale(double time);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "setMatrix:forTime:")
     public native void setMatrix(@ByVal MatrixFloat4x4 matrix, double time);
     @Method(selector = "setTranslation:forTime:")

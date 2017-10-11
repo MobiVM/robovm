@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSURLAuthenticationChallenge/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSURLAuthenticationChallengePtr extends Ptr<NSURLAuthenticationChallenge, NSURLAuthenticationChallengePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSURLAuthenticationChallenge.class); }/*</bind>*/
@@ -57,6 +57,8 @@ import org.robovm.apple.dispatch.*;
     public NSURLAuthenticationChallenge(NSURLProtectionSpace space, NSURLCredential credential, @MachineSizedSInt long previousFailureCount, NSURLResponse response, NSError error, NSURLAuthenticationChallengeSender sender) { super((SkipInit) null); initObject(init(space, credential, previousFailureCount, response, error, sender)); }
     @Method(selector = "initWithAuthenticationChallenge:sender:")
     public NSURLAuthenticationChallenge(NSURLAuthenticationChallenge challenge, NSURLAuthenticationChallengeSender sender) { super((SkipInit) null); initObject(init(challenge, sender)); }
+    @Method(selector = "initWithCoder:")
+    public NSURLAuthenticationChallenge(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "protectionSpace")
@@ -71,6 +73,8 @@ import org.robovm.apple.dispatch.*;
     public native NSError getError();
     @Property(selector = "sender")
     public native NSURLAuthenticationChallengeSender getSender();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -78,5 +82,9 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(NSURLProtectionSpace space, NSURLCredential credential, @MachineSizedSInt long previousFailureCount, NSURLResponse response, NSError error, NSURLAuthenticationChallengeSender sender);
     @Method(selector = "initWithAuthenticationChallenge:sender:")
     protected native @Pointer long init(NSURLAuthenticationChallenge challenge, NSURLAuthenticationChallengeSender sender);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.contacts.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKUserIdentity/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKUserIdentityPtr extends Ptr<CKUserIdentity, CKUserIdentityPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKUserIdentity.class); }/*</bind>*/
@@ -49,6 +50,8 @@ import org.robovm.apple.contacts.*;
     protected CKUserIdentity() {}
     protected CKUserIdentity(Handle h, long handle) { super(h, handle); }
     protected CKUserIdentity(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CKUserIdentity(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lookupInfo")
@@ -57,11 +60,21 @@ import org.robovm.apple.contacts.*;
     public native NSPersonNameComponents getNameComponents();
     @Property(selector = "userRecordID")
     public native CKRecordID getUserRecordID();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "contactIdentifiers")
+    public native NSArray<NSString> getContactIdentifiers();
     @Property(selector = "hasiCloudAccount")
     public native boolean isHasiCloudAccount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

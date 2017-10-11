@@ -63,6 +63,11 @@ import org.robovm.apple.dispatch.*;
      */
     @NotImplemented("heap")
     public MTLHeap getHeap() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("allocatedSize")
+    public @MachineSizedUInt long getAllocatedSize() { return 0; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

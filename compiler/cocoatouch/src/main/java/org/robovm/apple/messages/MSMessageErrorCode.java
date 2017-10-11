@@ -40,6 +40,10 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("Messages")/*</annotations>*/
 public enum /*<name>*/MSMessageErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Unknown(-1L),
     FileNotFound(1L),
     FileUnreadable(2L),
     ImproperFileType(3L),
@@ -47,7 +51,15 @@ public enum /*<name>*/MSMessageErrorCode/*</name>*/ implements ValuedEnum {
     StickerFileImproperFileAttributes(5L),
     StickerFileImproperFileSize(6L),
     StickerFileImproperFileFormat(7L),
-    URLExceedsMaxSize(8L);
+    URLExceedsMaxSize(8L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    SendWithoutRecentInteraction(9L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    SendWhileNotVisible(10L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MSMessageErrorCode.class); }/*</bind>*/

@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMeasurement/*</name>*/ <T extends NSUnit>
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSMeasurementPtr extends Ptr<NSMeasurement, NSMeasurementPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSMeasurement.class); }/*</bind>*/
@@ -57,12 +57,16 @@ import org.robovm.apple.dispatch.*;
     protected NSMeasurement(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDoubleValue:unit:")
     public NSMeasurement(double doubleValue, T unit) { super((SkipInit) null); initObject(init(doubleValue, unit)); }
+    @Method(selector = "initWithCoder:")
+    public NSMeasurement(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "unit")
     public native T getUnit();
     @Property(selector = "doubleValue")
     public native double getDoubleValue();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -76,5 +80,9 @@ import org.robovm.apple.dispatch.*;
     public native NSMeasurement<T> add(NSMeasurement<T> measurement);
     @Method(selector = "measurementBySubtractingMeasurement:")
     public native NSMeasurement<T> substract(NSMeasurement<T> measurement);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

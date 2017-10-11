@@ -20,7 +20,10 @@ enums:
     MKMapType: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
     MKErrorCode: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
     MKSearchCompletionFilterType: {}
-        
+    MKAnnotationViewCollisionMode: {} #since 11.0
+    MKFeatureVisibility: {} #since 11.0
+    MKScaleViewAlignment: {} #since 11.0
+
 categories:
     NSValueMapKitGeometryExtensions: # DONE
         methods:
@@ -236,6 +239,10 @@ classes:
                 name: getView
             '-dequeueReusableAnnotationViewWithIdentifier:':
                 name: dequeueReusableAnnotationView
+            '-dequeueReusableAnnotationViewWithIdentifier:forAnnotation:':
+                name: dequeueReusableAnnotationView
+            '-registerClass:forAnnotationViewWithReuseIdentifier:':
+                name: registerClass
             '-selectAnnotation:animated:':
                 trim_after_first_colon: true
             '-deselectAnnotation:animated:':
@@ -471,6 +478,11 @@ classes:
     MKLocalSearchCompletion: {}
     MKLocalSearchCompleter: {}
     MKDistanceFormatter: {}
+    MKClusterAnnotation: {} #since 11.0
+    MKCompassButton: {} #since 11.0
+    MKMarkerAnnotationView: {} #since 11.0
+    MKScaleView: {} #since 11.0
+    MKUserTrackingButton: {} #since 11.0
 
 protocols:
     MKAnnotation: {} # DONE
@@ -529,6 +541,8 @@ protocols:
                 parameters:
                     overlayViews:
                         type: NSArray<MKOverlayView>
+            '-mapView:clusterAnnotationForMemberAnnotations:':
+                name: getClusterAnnotationForMemberAnnotations
     MKOverlay: # DONE
         methods:
             '-intersectsMapRect:':
@@ -714,6 +728,18 @@ values:
     
     MKAnnotationCalloutInfoDidChangeNotification: # Deprecated in favor of KVO notifications
         exclude: true
+
+    MKMapItemTypeIdentifier:
+        class: MKMapItem
+        name: getTypeIdentifier
+
+    MKMapViewDefaultAnnotationViewReuseIdentifier:
+        class: MKMapView
+        name: getDefaultAnnotationViewReuseIdentifier
+
+    MKMapViewDefaultClusterAnnotationViewReuseIdentifier:
+        class: MKMapView
+        name: getDefaultClusterAnnotationViewReuseIdentifier
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?MK.*):

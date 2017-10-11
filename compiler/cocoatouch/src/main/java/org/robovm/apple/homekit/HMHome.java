@@ -58,6 +58,11 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "isPrimary")
     public native boolean isPrimary();
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "homeHubState")
+    public native HMHomeHubState getHomeHubState();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "uniqueIdentifier")

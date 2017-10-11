@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -172,7 +173,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "setPrimitiveValue:forKey:")
     private native void setPrimitiveValue(NSObject value, String key);
     @Method(selector = "committedValuesForKeys:")
-    public native NSDictionary<NSString, ?> getCommittedValues(NSArray<?> keys);
+    public native NSDictionary<NSString, ?> getCommittedValues(NSArray<NSString> keys);
     @Method(selector = "changedValues")
     public native NSDictionary<NSString, ?> getChangedValues();
     /**

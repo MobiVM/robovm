@@ -36,6 +36,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,7 +54,7 @@ import org.robovm.apple.gameplaykit.*;
     public SKAction() {}
     protected SKAction(Handle h, long handle) { super(h, handle); }
     protected SKAction(SkipInit skipInit) { super(skipInit); }
-    public SKAction(double seconds, @Block("(,@MachineSizedFloat)") VoidBlock2<SKNode, Double> block) { super((Handle) null, create(seconds, block)); retain(getHandle()); }
+    public SKAction(double duration, @Block("(,@MachineSizedFloat)") VoidBlock2<SKNode, Double> block) { super((Handle) null, create(duration, block)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -61,7 +62,7 @@ import org.robovm.apple.gameplaykit.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public SKAction(String name, double sec) { super((Handle) null, create(name, sec)); retain(getHandle()); }
+    public SKAction(String name, double duration) { super((Handle) null, create(name, duration)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -69,7 +70,7 @@ import org.robovm.apple.gameplaykit.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public SKAction(String name, NSURL url, double sec) { super((Handle) null, create(name, url, sec)); retain(getHandle()); }
+    public SKAction(String name, NSURL url, double duration) { super((Handle) null, create(name, url, duration)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public SKAction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -102,21 +103,21 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "reversedAction")
     public native SKAction reversedAction();
     @Method(selector = "moveBy:duration:")
-    public static native SKAction moveBy(@ByVal CGVector delta, double sec);
+    public static native SKAction moveBy(@ByVal CGVector delta, double duration);
     @Method(selector = "moveByX:y:duration:")
-    public static native SKAction moveBy(@MachineSizedFloat double deltaX, @MachineSizedFloat double deltaY, double sec);
+    public static native SKAction moveBy(@MachineSizedFloat double deltaX, @MachineSizedFloat double deltaY, double duration);
     @Method(selector = "moveTo:duration:")
-    public static native SKAction moveTo(@ByVal CGPoint location, double sec);
+    public static native SKAction moveTo(@ByVal CGPoint location, double duration);
     @Method(selector = "moveToX:duration:")
-    public static native SKAction moveToX(@MachineSizedFloat double x, double sec);
+    public static native SKAction moveToX(@MachineSizedFloat double x, double duration);
     @Method(selector = "moveToY:duration:")
-    public static native SKAction moveToY(@MachineSizedFloat double y, double sec);
+    public static native SKAction moveToY(@MachineSizedFloat double y, double duration);
     @Method(selector = "rotateByAngle:duration:")
-    public static native SKAction rotateBy(@MachineSizedFloat double radians, double sec);
+    public static native SKAction rotateBy(@MachineSizedFloat double radians, double duration);
     @Method(selector = "rotateToAngle:duration:")
-    public static native SKAction rotateTo(@MachineSizedFloat double radians, double sec);
+    public static native SKAction rotateTo(@MachineSizedFloat double radians, double duration);
     @Method(selector = "rotateToAngle:duration:shortestUnitArc:")
-    public static native SKAction rotateTo(@MachineSizedFloat double radians, double sec, boolean shortestUnitArc);
+    public static native SKAction rotateTo(@MachineSizedFloat double radians, double duration, boolean shortestUnitArc);
     @Method(selector = "resizeByWidth:height:duration:")
     public static native SKAction resizeBy(@MachineSizedFloat double width, @MachineSizedFloat double height, double duration);
     @Method(selector = "resizeToWidth:height:duration:")
@@ -126,22 +127,22 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "resizeToHeight:duration:")
     public static native SKAction resizeToHeight(@MachineSizedFloat double height, double duration);
     @Method(selector = "scaleBy:duration:")
-    public static native SKAction scaleBy(@MachineSizedFloat double scale, double sec);
+    public static native SKAction scaleBy(@MachineSizedFloat double scale, double duration);
     @Method(selector = "scaleXBy:y:duration:")
-    public static native SKAction scaleBy(@MachineSizedFloat double xScale, @MachineSizedFloat double yScale, double sec);
+    public static native SKAction scaleBy(@MachineSizedFloat double xScale, @MachineSizedFloat double yScale, double duration);
     @Method(selector = "scaleTo:duration:")
-    public static native SKAction scaleTo(@MachineSizedFloat double scale, double sec);
+    public static native SKAction scaleTo(@MachineSizedFloat double scale, double duration);
     @Method(selector = "scaleXTo:y:duration:")
-    public static native SKAction scaleTo(@MachineSizedFloat double xScale, @MachineSizedFloat double yScale, double sec);
+    public static native SKAction scaleTo(@MachineSizedFloat double xScale, @MachineSizedFloat double yScale, double duration);
     @Method(selector = "scaleXTo:duration:")
-    public static native SKAction scaleXTo(@MachineSizedFloat double scale, double sec);
+    public static native SKAction scaleXTo(@MachineSizedFloat double scale, double duration);
     @Method(selector = "scaleYTo:duration:")
-    public static native SKAction scaleYTo(@MachineSizedFloat double scale, double sec);
+    public static native SKAction scaleYTo(@MachineSizedFloat double scale, double duration);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "scaleToSize:duration:")
-    public static native SKAction scaleToSize(@ByVal CGSize size, double sec);
+    public static native SKAction scaleToSize(@ByVal CGSize size, double duration);
     @Method(selector = "sequence:")
     public static native SKAction sequence(NSArray<SKAction> actions);
     @Method(selector = "group:")
@@ -151,13 +152,13 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "repeatActionForever:")
     public static native SKAction repeatForever(SKAction action);
     @Method(selector = "fadeInWithDuration:")
-    public static native SKAction fadeIn(double sec);
+    public static native SKAction fadeIn(double duration);
     @Method(selector = "fadeOutWithDuration:")
-    public static native SKAction fadeOut(double sec);
+    public static native SKAction fadeOut(double duration);
     @Method(selector = "fadeAlphaBy:duration:")
-    public static native SKAction fadeAlphaBy(@MachineSizedFloat double factor, double sec);
+    public static native SKAction fadeAlphaBy(@MachineSizedFloat double factor, double duration);
     @Method(selector = "fadeAlphaTo:duration:")
-    public static native SKAction fadeAlphaTo(@MachineSizedFloat double alpha, double sec);
+    public static native SKAction fadeAlphaTo(@MachineSizedFloat double alpha, double duration);
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -205,36 +206,36 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "playSoundFileNamed:waitForCompletion:")
     public static native SKAction playSound(String soundFile, boolean wait);
     @Method(selector = "colorizeWithColor:colorBlendFactor:duration:")
-    public static native SKAction colorize(UIColor color, @MachineSizedFloat double colorBlendFactor, double sec);
+    public static native SKAction colorize(UIColor color, @MachineSizedFloat double colorBlendFactor, double duration);
     @Method(selector = "colorizeWithColorBlendFactor:duration:")
     public static native SKAction colorize(@MachineSizedFloat double colorBlendFactor, double sec);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "falloffTo:duration:")
-    public static native SKAction falloffTo(float falloff, double sec);
+    public static native SKAction falloffTo(float falloff, double duration);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "falloffBy:duration:")
-    public static native SKAction falloffBy(float falloff, double sec);
+    public static native SKAction falloffBy(float falloff, double duration);
     @Method(selector = "followPath:duration:")
-    public static native SKAction followPath(CGPath path, double sec);
+    public static native SKAction followPath(CGPath path, double duration);
     @Method(selector = "followPath:asOffset:orientToPath:duration:")
-    public static native SKAction followPath(CGPath path, boolean offset, boolean orient, double sec);
+    public static native SKAction followPath(CGPath path, boolean offset, boolean orient, double duration);
     @Method(selector = "followPath:speed:")
     public static native SKAction followPathWithSpeed(CGPath path, @MachineSizedFloat double speed);
     @Method(selector = "followPath:asOffset:orientToPath:speed:")
     public static native SKAction followPathWithSpeed(CGPath path, boolean offset, boolean orient, @MachineSizedFloat double speed);
     @Method(selector = "speedBy:duration:")
-    public static native SKAction speedBy(@MachineSizedFloat double speed, double sec);
+    public static native SKAction speedBy(@MachineSizedFloat double speed, double duration);
     @Method(selector = "speedTo:duration:")
-    public static native SKAction speedTo(@MachineSizedFloat double speed, double sec);
+    public static native SKAction speedTo(@MachineSizedFloat double speed, double duration);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "reachTo:rootNode:duration:")
-    public static native SKAction reachTo(@ByVal CGPoint position, SKNode root, double sec);
+    public static native SKAction reachTo(@ByVal CGPoint position, SKNode root, double duration);
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -254,16 +255,16 @@ import org.robovm.apple.gameplaykit.*;
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "strengthTo:duration:")
-    public static native SKAction strengthTo(float strength, double sec);
+    public static native SKAction strengthTo(float strength, double duration);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "strengthBy:duration:")
-    public static native SKAction strengthBy(float strength, double sec);
+    public static native SKAction strengthBy(float strength, double duration);
     @Method(selector = "waitForDuration:")
-    public static native SKAction wait(double sec);
+    public static native SKAction wait(double duration);
     @Method(selector = "waitForDuration:withRange:")
-    public static native SKAction wait(double sec, double durationRange);
+    public static native SKAction wait(double duration, double durationRange);
     @Method(selector = "removeFromParent")
     public static native SKAction removeFromParent();
     @Method(selector = "runBlock:")
@@ -274,7 +275,7 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "runAction:onChildWithName:")
     public static native SKAction runAction(SKAction action, String name);
     @Method(selector = "customActionWithDuration:actionBlock:")
-    protected static native @Pointer long create(double seconds, @Block("(,@MachineSizedFloat)") VoidBlock2<SKNode, Double> block);
+    protected static native @Pointer long create(double duration, @Block("(,@MachineSizedFloat)") VoidBlock2<SKNode, Double> block);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -284,7 +285,7 @@ import org.robovm.apple.gameplaykit.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "actionNamed:duration:")
-    protected static native @Pointer long create(String name, double sec);
+    protected static native @Pointer long create(String name, double duration);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -294,7 +295,7 @@ import org.robovm.apple.gameplaykit.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "actionNamed:fromURL:duration:")
-    protected static native @Pointer long create(String name, NSURL url, double sec);
+    protected static native @Pointer long create(String name, NSURL url, double duration);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -319,32 +320,32 @@ import org.robovm.apple.gameplaykit.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "applyForce:duration:")
-    public static native SKAction applyForce(@ByVal CGVector force, double sec);
+    public static native SKAction applyForce(@ByVal CGVector force, double duration);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "applyForce:atPoint:duration:")
-    public static native SKAction applyForce(@ByVal CGVector force, @ByVal CGPoint point, double sec);
+    public static native SKAction applyForce(@ByVal CGVector force, @ByVal CGPoint point, double duration);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "applyTorque:duration:")
-    public static native SKAction applyTorque(@MachineSizedFloat double torque, double sec);
+    public static native SKAction applyTorque(@MachineSizedFloat double torque, double duration);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "applyImpulse:duration:")
-    public static native SKAction applyImpulse(@ByVal CGVector impulse, double sec);
+    public static native SKAction applyImpulse(@ByVal CGVector impulse, double duration);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "applyImpulse:atPoint:duration:")
-    public static native SKAction applyImpulse(@ByVal CGVector impulse, @ByVal CGPoint point, double sec);
+    public static native SKAction applyImpulse(@ByVal CGVector impulse, @ByVal CGPoint point, double duration);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "applyAngularImpulse:duration:")
-    public static native SKAction applyAngularImpulse(@MachineSizedFloat double impulse, double sec);
+    public static native SKAction applyAngularImpulse(@MachineSizedFloat double impulse, double duration);
     /**
      * @since Available in iOS 9.0 and later.
      */

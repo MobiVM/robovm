@@ -31,7 +31,9 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKCDADocument/*</name>*/ 
@@ -47,14 +49,29 @@ import org.robovm.apple.foundation.*;
     protected HKCDADocument(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "documentData")
     public native NSData getDocumentData();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "title")
     public native String getTitle();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "patientName")
     public native String getPatientName();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "authorName")
     public native String getAuthorName();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "custodianName")
     public native String getCustodianName();
     /*</properties>*/

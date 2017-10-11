@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,14 +61,44 @@ import org.robovm.apple.corelocation.*;
     public String getAccessibilityLabel() { return null; }
     @NotImplemented("setAccessibilityLabel:")
     public void setAccessibilityLabel(String v) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("accessibilityAttributedLabel")
+    public NSAttributedString getAccessibilityAttributedLabel() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("setAccessibilityAttributedLabel:")
+    public void setAccessibilityAttributedLabel(NSAttributedString v) {}
     @NotImplemented("accessibilityHint")
     public String getAccessibilityHint() { return null; }
     @NotImplemented("setAccessibilityHint:")
     public void setAccessibilityHint(String v) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("accessibilityAttributedHint")
+    public NSAttributedString getAccessibilityAttributedHint() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("setAccessibilityAttributedHint:")
+    public void setAccessibilityAttributedHint(NSAttributedString v) {}
     @NotImplemented("accessibilityValue")
     public String getAccessibilityValue() { return null; }
     @NotImplemented("setAccessibilityValue:")
     public void setAccessibilityValue(String v) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("accessibilityAttributedValue")
+    public NSAttributedString getAccessibilityAttributedValue() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("setAccessibilityAttributedValue:")
+    public void setAccessibilityAttributedValue(NSAttributedString v) {}
     @NotImplemented("accessibilityTraits")
     public UIAccessibilityTraits getAccessibilityTraits() { return null; }
     @NotImplemented("setAccessibilityTraits:")

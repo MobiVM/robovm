@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,8 +59,8 @@ import org.robovm.apple.audiounit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("captureOutput:didStartRecordingToOutputFileAtURL:fromConnections:")
-    public void didStartRecording(AVCaptureFileOutput captureOutput, NSURL fileURL, NSArray<AVCaptureConnection> connections) {}
+    public void didStartRecording(AVCaptureFileOutput output, NSURL fileURL, NSArray<AVCaptureConnection> connections) {}
     @NotImplemented("captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:")
-    public void didFinishRecording(AVCaptureFileOutput captureOutput, NSURL outputFileURL, NSArray<AVCaptureConnection> connections, NSError error) {}
+    public void didFinishRecording(AVCaptureFileOutput output, NSURL outputFileURL, NSArray<AVCaptureConnection> connections, NSError error) {}
     /*</methods>*/
 }

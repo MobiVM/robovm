@@ -9,6 +9,7 @@ headers:
 typedefs: {}
 enums:
     CAEdgeAntialiasingMask: {bits: true}
+    CACornerMask: {prefix: kCALayer}
 
 categories:
     NSValue: # DONE

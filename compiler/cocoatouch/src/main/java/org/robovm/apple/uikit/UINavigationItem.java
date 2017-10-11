@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -117,6 +120,36 @@ import org.robovm.apple.corelocation.*;
     public native UIBarButtonItem getRightBarButtonItem();
     @Property(selector = "setRightBarButtonItem:")
     public native void setRightBarButtonItem(UIBarButtonItem v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "largeTitleDisplayMode")
+    public native UINavigationItemLargeTitleDisplayMode getLargeTitleDisplayMode();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setLargeTitleDisplayMode:")
+    public native void setLargeTitleDisplayMode(UINavigationItemLargeTitleDisplayMode v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "searchController")
+    public native UISearchController getSearchController();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSearchController:")
+    public native void setSearchController(UISearchController v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "hidesSearchBarWhenScrolling")
+    public native boolean hidesSearchBarWhenScrolling();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setHidesSearchBarWhenScrolling:")
+    public native void setHidesSearchBarWhenScrolling(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,20 +58,52 @@ import org.robovm.apple.corelocation.*;
     protected UIAccessibilityCustomRotor(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithName:itemSearchBlock:")
     public UIAccessibilityCustomRotor(String name, @Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> itemSearchBlock) { super((SkipInit) null); initObject(init(name, itemSearchBlock)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithAttributedName:itemSearchBlock:")
+    public UIAccessibilityCustomRotor(NSAttributedString attributedName, @Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> itemSearchBlock) { super((SkipInit) null); initObject(init(attributedName, itemSearchBlock)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithSystemType:itemSearchBlock:")
+    public UIAccessibilityCustomRotor(UIAccessibilityCustomSystemRotorType type, @Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> itemSearchBlock) { super((SkipInit) null); initObject(init(type, itemSearchBlock)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "setName:")
     public native void setName(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "attributedName")
+    public native NSAttributedString getAttributedName();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAttributedName:")
+    public native void setAttributedName(NSAttributedString v);
     @Property(selector = "itemSearchBlock")
     public native @Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> getItemSearchBlock();
     @Property(selector = "setItemSearchBlock:")
     public native void setItemSearchBlock(@Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> v);
+    @Property(selector = "systemRotorType")
+    public native UIAccessibilityCustomSystemRotorType getSystemRotorType();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithName:itemSearchBlock:")
     protected native @Pointer long init(String name, @Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> itemSearchBlock);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithAttributedName:itemSearchBlock:")
+    protected native @Pointer long init(NSAttributedString attributedName, @Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> itemSearchBlock);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithSystemType:itemSearchBlock:")
+    protected native @Pointer long init(UIAccessibilityCustomSystemRotorType type, @Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> itemSearchBlock);
     /*</methods>*/
 }

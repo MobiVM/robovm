@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSOrthography/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     public static class LanguageMapMarshaler {
         @SuppressWarnings("unchecked")
@@ -113,6 +113,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "allLanguages")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAllLanguages();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -133,5 +135,12 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "dominantLanguageForScript:")
     public native String getDominantLanguageForScript(String script);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "defaultOrthographyForLanguage:")
+    public static native NSOrthography defaultOrthographyForLanguage(String language);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

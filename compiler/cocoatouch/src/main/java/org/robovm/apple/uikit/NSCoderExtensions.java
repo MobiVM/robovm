@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +71,11 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeUIEdgeInsets:forKey:")
     public static native void encodeUIEdgeInsets(NSCoder thiz, @ByVal UIEdgeInsets insets, String key);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "encodeDirectionalEdgeInsets:forKey:")
+    public static native void encodeDirectionalEdgeInsets(NSCoder thiz, @ByVal NSDirectionalEdgeInsets insets, String key);
+    /**
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "encodeUIOffset:forKey:")
@@ -84,6 +92,11 @@ import org.robovm.apple.corelocation.*;
     public static native @ByVal CGAffineTransform decodeCGAffineTransform(NSCoder thiz, String key);
     @Method(selector = "decodeUIEdgeInsetsForKey:")
     public static native @ByVal UIEdgeInsets decodeUIEdgeInsets(NSCoder thiz, String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "decodeDirectionalEdgeInsetsForKey:")
+    public static native @ByVal NSDirectionalEdgeInsets decodeDirectionalEdgeInsets(NSCoder thiz, String key);
     /**
      * @since Available in iOS 5.0 and later.
      */

@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNPhysicsBehavior/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNPhysicsBehaviorPtr extends Ptr<SCNPhysicsBehavior, SCNPhysicsBehaviorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNPhysicsBehavior.class); }/*</bind>*/
@@ -54,12 +54,18 @@ import org.robovm.apple.avfoundation.*;
     public SCNPhysicsBehavior() {}
     protected SCNPhysicsBehavior(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsBehavior(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNPhysicsBehavior(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

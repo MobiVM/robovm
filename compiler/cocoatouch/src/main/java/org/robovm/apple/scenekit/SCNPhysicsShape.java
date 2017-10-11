@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNPhysicsShape/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNPhysicsShapePtr extends Ptr<SCNPhysicsShape, SCNPhysicsShapePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNPhysicsShape.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNPhysicsShape() {}
     protected SCNPhysicsShape(Handle h, long handle) { super(h, handle); }
     protected SCNPhysicsShape(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNPhysicsShape(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -71,6 +73,8 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "transforms")
     public native NSArray<NSValue> getTransforms();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -80,5 +84,9 @@ import org.robovm.apple.avfoundation.*;
     public static native SCNPhysicsShape create(SCNNode node, SCNPhysicsShapeOptions options);
     @Method(selector = "shapeWithShapes:transforms:")
     public static native SCNPhysicsShape create(NSArray<SCNPhysicsShape> shapes, @org.robovm.rt.bro.annotation.Marshaler(SCNMatrix4.AsListMarshaler.class) List<SCNMatrix4> transforms);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

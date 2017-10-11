@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSISO8601DateFormatter/*</name>*/ 
     extends /*<extends>*/NSFormatter/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSISO8601DateFormatterPtr extends Ptr<NSISO8601DateFormatter, NSISO8601DateFormatterPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSISO8601DateFormatter.class); }/*</bind>*/
@@ -65,6 +65,8 @@ import org.robovm.apple.dispatch.*;
     public native NSISO8601DateFormatOptions getFormatOptions();
     @Property(selector = "setFormatOptions:")
     public native void setFormatOptions(NSISO8601DateFormatOptions v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

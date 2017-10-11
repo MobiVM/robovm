@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSRegularExpression/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSRegularExpressionPtr extends Ptr<NSRegularExpression, NSRegularExpressionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSRegularExpression.class); }/*</bind>*/
@@ -62,6 +62,8 @@ import org.robovm.apple.dispatch.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    @Method(selector = "initWithCoder:")
+    public NSRegularExpression(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "pattern")
@@ -70,6 +72,8 @@ import org.robovm.apple.dispatch.*;
     public native NSRegularExpressionOptions getOptions();
     @Property(selector = "numberOfCaptureGroups")
     public native @MachineSizedUInt long getNumberOfCaptureGroups();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -95,5 +99,9 @@ import org.robovm.apple.dispatch.*;
     public native String getReplacementString(NSTextCheckingResult result, String string, @MachineSizedSInt long offset, String templ);
     @Method(selector = "escapedTemplateForString:")
     public static native String getEscapedTemplate(String string);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

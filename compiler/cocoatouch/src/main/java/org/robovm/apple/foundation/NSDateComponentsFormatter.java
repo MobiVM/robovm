@@ -73,6 +73,16 @@ import org.robovm.apple.dispatch.*;
     public native NSCalendar getCalendar();
     @Property(selector = "setCalendar:")
     public native void setCalendar(NSCalendar v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "referenceDate")
+    public native NSDate getReferenceDate();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setReferenceDate:")
+    public native void setReferenceDate(NSDate v);
     @Property(selector = "allowsFractionalUnits")
     public native boolean allowsFractionalUnits();
     @Property(selector = "setAllowsFractionalUnits:")

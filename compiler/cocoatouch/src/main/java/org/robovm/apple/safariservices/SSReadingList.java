@@ -54,18 +54,12 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     public boolean addReadingListItem(NSURL URL, String title, String previewText) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = addReadingListItem(URL, title, previewText, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Method(selector = "addReadingListItemWithURL:title:previewText:error:")
     private native boolean addReadingListItem(NSURL URL, String title, String previewText, NSError.NSErrorPtr error);
     @Method(selector = "defaultReadingList")

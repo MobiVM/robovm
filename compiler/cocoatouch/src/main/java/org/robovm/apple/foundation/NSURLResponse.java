@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSURLResponse/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSURLResponsePtr extends Ptr<NSURLResponse, NSURLResponsePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSURLResponse.class); }/*</bind>*/
@@ -57,6 +57,8 @@ import org.robovm.apple.dispatch.*;
     protected NSURLResponse(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithURL:MIMEType:expectedContentLength:textEncodingName:")
     public NSURLResponse(NSURL URL, String MIMEType, @MachineSizedSInt long length, String name) { super((SkipInit) null); initObject(init(URL, MIMEType, length, name)); }
+    @Method(selector = "initWithCoder:")
+    public NSURLResponse(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "URL")
@@ -69,10 +71,16 @@ import org.robovm.apple.dispatch.*;
     public native String getTextEncodingName();
     @Property(selector = "suggestedFilename")
     public native String getSuggestedFilename();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithURL:MIMEType:expectedContentLength:textEncodingName:")
     protected native @Pointer long init(NSURL URL, String MIMEType, @MachineSizedSInt long length, String name);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

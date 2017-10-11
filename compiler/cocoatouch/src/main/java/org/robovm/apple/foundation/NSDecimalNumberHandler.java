@@ -58,14 +58,13 @@ import org.robovm.apple.dispatch.*;
     public NSDecimalNumberHandler(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "defaultDecimalNumberHandler")
+    public static native NSDecimalNumberHandler getDefaultDecimalNumberHandler();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:")
     protected native @Pointer long init(NSRoundingMode roundingMode, short scale, boolean exact, boolean overflow, boolean underflow, boolean divideByZero);
-    @Method(selector = "defaultDecimalNumberHandler")
-    public static native NSDecimalNumberHandler getDefaultDecimalNumberHandler();
     @Method(selector = "roundingMode")
     public native NSRoundingMode getRoundingMode();
     @Method(selector = "scale")

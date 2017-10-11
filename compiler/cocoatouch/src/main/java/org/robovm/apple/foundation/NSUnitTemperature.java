@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnitTemperature/*</name>*/ 
     extends /*<extends>*/NSDimension/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSUnitTemperaturePtr extends Ptr<NSUnitTemperature, NSUnitTemperaturePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUnitTemperature.class); }/*</bind>*/

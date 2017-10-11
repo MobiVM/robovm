@@ -78,6 +78,14 @@ public enum /*<name>*/PHAssetCollectionSubtype/*</name>*/ implements ValuedEnum 
      * @since Available in iOS 10.3 and later.
      */
     SmartAlbumLivePhotos(213L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    SmartAlbumAnimated(214L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    SmartAlbumLongExposures(215L),
     Any(Bro.IS_32BIT ? 0x7fffffffL : 0x7fffffffffffffffL);
     /*</values>*/
 

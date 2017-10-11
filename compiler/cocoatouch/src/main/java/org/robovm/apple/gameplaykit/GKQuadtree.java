@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.spritekit.*;
+import org.robovm.apple.scenekit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,9 +61,9 @@ import org.robovm.apple.spritekit.*;
     @Method(selector = "initWithBoundingQuad:minimumCellSize:")
     protected native @Pointer long init(@ByVal GKQuad quad, float minCellSize);
     @Method(selector = "addElement:withPoint:")
-    public native GKQuadtreeNode addElement$withPoint$(NSObject element, @ByVal VectorFloat2 point);
+    public native GKQuadtreeNode addElement(NSObject element, @ByVal VectorFloat2 point);
     @Method(selector = "addElement:withQuad:")
-    public native GKQuadtreeNode addElement$withQuad$(NSObject element, @ByVal GKQuad quad);
+    public native GKQuadtreeNode addElement(NSObject element, @ByVal GKQuad quad);
     @Method(selector = "elementsAtPoint:")
     public native NSArray<?> elementsAtPoint(@ByVal VectorFloat2 point);
     @Method(selector = "elementsInQuad:")

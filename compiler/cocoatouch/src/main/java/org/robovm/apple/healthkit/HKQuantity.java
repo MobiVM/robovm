@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKQuantity/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKQuantityPtr extends Ptr<HKQuantity, HKQuantityPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKQuantity.class); }/*</bind>*/
@@ -47,9 +47,12 @@ import org.robovm.apple.foundation.*;
     protected HKQuantity() {}
     protected HKQuantity(Handle h, long handle) { super(h, handle); }
     protected HKQuantity(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public HKQuantity(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -61,5 +64,9 @@ import org.robovm.apple.foundation.*;
     public native NSComparisonResult compare(HKQuantity quantity);
     @Method(selector = "quantityWithUnit:doubleValue:")
     public static native HKQuantity create(HKUnit unit, double value);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

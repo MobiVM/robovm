@@ -96,9 +96,13 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final HMPredicateKeyPath CharacteristicValue = new HMPredicateKeyPath("CharacteristicValue");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final HMPredicateKeyPath Presence = new HMPredicateKeyPath("Presence");
     /*</constants>*/
     
-    private static /*<name>*/HMPredicateKeyPath/*</name>*/[] values = new /*<name>*/HMPredicateKeyPath/*</name>*/[] {/*<value_list>*/Characteristic, CharacteristicValue/*</value_list>*/};
+    private static /*<name>*/HMPredicateKeyPath/*</name>*/[] values = new /*<name>*/HMPredicateKeyPath/*</name>*/[] {/*<value_list>*/Characteristic, CharacteristicValue, Presence/*</value_list>*/};
     
     /*<name>*/HMPredicateKeyPath/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -131,6 +135,11 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMCharacteristicValueKeyPath", optional=true)
         public static native NSString CharacteristicValue();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="HMPresenceKeyPath", optional=true)
+        public static native NSString Presence();
         /*</values>*/
     }
 }

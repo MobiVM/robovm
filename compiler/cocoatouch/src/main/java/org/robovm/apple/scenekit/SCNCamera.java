@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNCamera/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements SCNAnimatable, SCNTechniqueSupport/*</implements>*/ {
+    /*<implements>*/implements SCNAnimatable, SCNTechniqueSupport, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNCameraPtr extends Ptr<SCNCamera, SCNCameraPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNCamera.class); }/*</bind>*/
@@ -54,20 +54,54 @@ import org.robovm.apple.avfoundation.*;
     public SCNCamera() {}
     protected SCNCamera(Handle h, long handle) { super(h, handle); }
     protected SCNCamera(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNCamera(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "setName:")
     public native void setName(String v);
-    @Property(selector = "xFov")
-    public native double getXFov();
-    @Property(selector = "setXFov:")
-    public native void setXFov(double v);
-    @Property(selector = "yFov")
-    public native double getYFov();
-    @Property(selector = "setYFov:")
-    public native void setYFov(double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "fieldOfView")
+    public native @MachineSizedFloat double getFieldOfView();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setFieldOfView:")
+    public native void setFieldOfView(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "projectionDirection")
+    public native SCNCameraProjectionDirection getProjectionDirection();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setProjectionDirection:")
+    public native void setProjectionDirection(SCNCameraProjectionDirection v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "focalLength")
+    public native @MachineSizedFloat double getFocalLength();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setFocalLength:")
+    public native void setFocalLength(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "sensorHeight")
+    public native @MachineSizedFloat double getSensorHeight();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSensorHeight:")
+    public native void setSensorHeight(@MachineSizedFloat double v);
     @Property(selector = "zNear")
     public native double getZNear();
     @Property(selector = "setZNear:")
@@ -92,22 +126,56 @@ import org.robovm.apple.avfoundation.*;
     public native @ByVal SCNMatrix4 getProjectionTransform();
     @Property(selector = "setProjectionTransform:")
     public native void setProjectionTransform(@ByVal SCNMatrix4 v);
-    @Property(selector = "focalDistance")
-    public native @MachineSizedFloat double getFocalDistance();
-    @Property(selector = "setFocalDistance:")
-    public native void setFocalDistance(@MachineSizedFloat double v);
-    @Property(selector = "focalSize")
-    public native @MachineSizedFloat double getFocalSize();
-    @Property(selector = "setFocalSize:")
-    public native void setFocalSize(@MachineSizedFloat double v);
-    @Property(selector = "focalBlurRadius")
-    public native @MachineSizedFloat double getFocalBlurRadius();
-    @Property(selector = "setFocalBlurRadius:")
-    public native void setFocalBlurRadius(@MachineSizedFloat double v);
-    @Property(selector = "aperture")
-    public native @MachineSizedFloat double getAperture();
-    @Property(selector = "setAperture:")
-    public native void setAperture(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "wantsDepthOfField")
+    public native boolean wantsDepthOfField();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setWantsDepthOfField:")
+    public native void setWantsDepthOfField(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "focusDistance")
+    public native @MachineSizedFloat double getFocusDistance();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setFocusDistance:")
+    public native void setFocusDistance(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "focalBlurSampleCount")
+    public native @MachineSizedSInt long getFocalBlurSampleCount();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setFocalBlurSampleCount:")
+    public native void setFocalBlurSampleCount(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "fStop")
+    public native @MachineSizedFloat double getFStop();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setFStop:")
+    public native void setFStop(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "apertureBladeCount")
+    public native @MachineSizedSInt long getApertureBladeCount();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setApertureBladeCount:")
+    public native void setApertureBladeCount(@MachineSizedSInt long v);
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -118,6 +186,56 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setMotionBlurIntensity:")
     public native void setMotionBlurIntensity(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "screenSpaceAmbientOcclusionIntensity")
+    public native @MachineSizedFloat double getScreenSpaceAmbientOcclusionIntensity();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setScreenSpaceAmbientOcclusionIntensity:")
+    public native void setScreenSpaceAmbientOcclusionIntensity(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "screenSpaceAmbientOcclusionRadius")
+    public native @MachineSizedFloat double getScreenSpaceAmbientOcclusionRadius();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setScreenSpaceAmbientOcclusionRadius:")
+    public native void setScreenSpaceAmbientOcclusionRadius(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "screenSpaceAmbientOcclusionBias")
+    public native @MachineSizedFloat double getScreenSpaceAmbientOcclusionBias();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setScreenSpaceAmbientOcclusionBias:")
+    public native void setScreenSpaceAmbientOcclusionBias(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "screenSpaceAmbientOcclusionDepthThreshold")
+    public native @MachineSizedFloat double getScreenSpaceAmbientOcclusionDepthThreshold();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setScreenSpaceAmbientOcclusionDepthThreshold:")
+    public native void setScreenSpaceAmbientOcclusionDepthThreshold(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "screenSpaceAmbientOcclusionNormalThreshold")
+    public native @MachineSizedFloat double getScreenSpaceAmbientOcclusionNormalThreshold();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setScreenSpaceAmbientOcclusionNormalThreshold:")
+    public native void setScreenSpaceAmbientOcclusionNormalThreshold(@MachineSizedFloat double v);
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -307,37 +425,169 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedUInt long getCategoryBitMask();
     @Property(selector = "setCategoryBitMask:")
     public native void setCategoryBitMask(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "focalBlurRadius")
+    public native @MachineSizedFloat double getFocalBlurRadius();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setFocalBlurRadius:")
+    public native void setFocalBlurRadius(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "xFov")
+    public native double getXFov();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setXFov:")
+    public native void setXFov(double v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "yFov")
+    public native double getYFov();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setYFov:")
+    public native void setYFov(double v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "aperture")
+    public native @MachineSizedFloat double getAperture();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setAperture:")
+    public native void setAperture(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "focalSize")
+    public native @MachineSizedFloat double getFocalSize();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setFocalSize:")
+    public native void setFocalSize(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "focalDistance")
+    public native @MachineSizedFloat double getFocalDistance();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Property(selector = "setFocalDistance:")
+    public native void setFocalDistance(@MachineSizedFloat double v);
     @Property(selector = "animationKeys")
-    public native NSArray<?> getAnimationKeys();
+    public native NSArray<NSString> getAnimationKeys();
     @Property(selector = "technique")
     public native SCNTechnique getTechnique();
     @Property(selector = "setTechnique:")
     public native void setTechnique(SCNTechnique v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "camera")
     public static native SCNCamera create();
     @Method(selector = "addAnimation:forKey:")
-    public native void addAnimation(CAAnimation animation, String key);
+    public native void addAnimation(SCNAnimation animation, String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "addAnimationPlayer:forKey:")
+    public native void addAnimationPlayer(SCNAnimationPlayer player, String key);
     @Method(selector = "removeAllAnimations")
     public native void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
-    @Method(selector = "animationForKey:")
-    public native CAAnimation getAnimation(String key);
-    @Method(selector = "pauseAnimationForKey:")
-    public native void pauseAnimation(String key);
-    @Method(selector = "resumeAnimationForKey:")
-    public native void resumeAnimation(String key);
-    @Method(selector = "isAnimationForKeyPaused:")
-    public native boolean isAnimationPaused(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "animationPlayerForKey:")
+    public native SCNAnimationPlayer animationPlayerForKey(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "removeAnimationForKey:blendOutDuration:")
+    public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
+    @Method(selector = "animationForKey:")
+    public native CAAnimation getAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "pauseAnimationForKey:")
+    public native void pauseAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "resumeAnimationForKey:")
+    public native void resumeAnimation(String key);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "setSpeed:forAnimationKey:")
     public native void setSpeed(@MachineSizedFloat double speed, String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "isAnimationForKeyPaused:")
+    public native boolean isAnimationPaused(String key);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

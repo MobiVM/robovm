@@ -416,28 +416,74 @@ import org.robovm.apple.dispatch.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_default", optional=true)
     public static native String kSSLSessionConfig_default();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
     @GlobalValue(symbol="kSSLSessionConfig_ATSv1", optional=true)
     public static native String kSSLSessionConfig_ATSv1();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
     @GlobalValue(symbol="kSSLSessionConfig_ATSv1_noPFS", optional=true)
     public static native String kSSLSessionConfig_ATSv1_noPFS();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
     @GlobalValue(symbol="kSSLSessionConfig_standard", optional=true)
     public static native String kSSLSessionConfig_standard();
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_RC4_fallback", optional=true)
     public static native String kSSLSessionConfig_RC4_fallback();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
     @GlobalValue(symbol="kSSLSessionConfig_TLSv1_fallback", optional=true)
     public static native String kSSLSessionConfig_TLSv1_fallback();
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_TLSv1_RC4_fallback", optional=true)
     public static native String kSSLSessionConfig_TLSv1_RC4_fallback();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
     @GlobalValue(symbol="kSSLSessionConfig_legacy", optional=true)
     public static native String kSSLSessionConfig_legacy();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
     @GlobalValue(symbol="kSSLSessionConfig_legacy_DHE", optional=true)
     public static native String kSSLSessionConfig_legacy_DHE();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
     @GlobalValue(symbol="kSSLSessionConfig_anonymous", optional=true)
     public static native String kSSLSessionConfig_anonymous();
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_3DES_fallback", optional=true)
     public static native String kSSLSessionConfig_3DES_fallback();
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="kSSLSessionConfig_TLSv1_3DES_fallback", optional=true)
     public static native String kSSLSessionConfig_TLSv1_3DES_fallback();
     
@@ -582,6 +628,11 @@ import org.robovm.apple.dispatch.*;
     @Bridge(symbol="SSLGetEnabledCiphers", optional=true)
     protected native OSStatus getEnabledCiphers0(ShortPtr ciphers, MachineSizedUIntPtr numCiphers);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="SSLSetSessionTicketsEnabled", optional=true)
+    protected native OSStatus setSessionTicketsEnabled0(boolean enabled);
+    /**
      * @since Available in iOS 5.0 and later.
      */
     @Bridge(symbol="SSLCopyPeerTrust", optional=true)
@@ -601,6 +652,21 @@ import org.robovm.apple.dispatch.*;
      */
     @Bridge(symbol="SSLGetNegotiatedCipher", optional=true)
     protected native OSStatus getNegotiatedCipher0(ShortPtr cipherSuite);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="SSLSetALPNProtocols", optional=true)
+    protected native OSStatus setALPNProtocols0(NSArray<?> protocols);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="SSLCopyALPNProtocols", optional=true)
+    protected native OSStatus getALPNProtocols0(NSArray.NSArrayPtr<NSData> protocols);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="SSLSetOCSPResponse", optional=true)
+    protected native OSStatus setOCSPResponse0(NSData response);
     /**
      * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 9.0.
@@ -663,5 +729,10 @@ import org.robovm.apple.dispatch.*;
      */
     @Bridge(symbol="SSLClose", optional=true)
     protected native OSStatus closeContext0();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="SSLSetError", optional=true)
+    protected native OSStatus setError0(OSStatus status);
     /*</methods>*/
 }

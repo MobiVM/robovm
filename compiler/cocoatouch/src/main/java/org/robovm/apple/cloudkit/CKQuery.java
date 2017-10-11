@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.contacts.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKQuery/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKQueryPtr extends Ptr<CKQuery, CKQueryPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKQuery.class); }/*</bind>*/
@@ -63,6 +64,8 @@ import org.robovm.apple.contacts.*;
     public native NSArray<NSSortDescriptor> getSortDescriptors();
     @Property(selector = "setSortDescriptors:")
     public native void setSortDescriptors(NSArray<NSSortDescriptor> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -70,5 +73,7 @@ import org.robovm.apple.contacts.*;
     protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "initWithRecordType:predicate:")
     protected native @Pointer long init(String recordType, NSPredicate predicate);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

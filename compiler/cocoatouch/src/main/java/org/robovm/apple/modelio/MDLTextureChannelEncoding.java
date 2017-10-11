@@ -46,6 +46,7 @@ public enum /*<name>*/MDLTextureChannelEncoding/*</name>*/ implements ValuedEnum
     UInt32(4L),
     Uint32(4L),
     Float16(258L),
+    Float16SR(770L),
     Float32(260L);
     /*</values>*/
 

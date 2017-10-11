@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -74,6 +73,21 @@ import org.robovm.apple.audiounit.*;
     public native @MachineSizedSInt long getMaximumPacketSize();
     @Property(selector = "data")
     public native @Pointer long getDataPointer();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "byteCapacity")
+    public native int getByteCapacity();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "byteLength")
+    public native int getByteLength();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setByteLength:")
+    public native void setByteLength(int v);
     @Property(selector = "packetDescriptions")
     public native AudioStreamPacketDescription getPacketDescriptions();
     /*</properties>*/

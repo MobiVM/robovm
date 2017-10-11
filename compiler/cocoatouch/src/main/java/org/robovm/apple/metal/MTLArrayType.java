@@ -38,7 +38,7 @@ import org.robovm.apple.dispatch.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLArrayType/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MTLType/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTLArrayTypePtr extends Ptr<MTLArrayType, MTLArrayTypePtr> {}/*</ptr>*/
@@ -50,12 +50,17 @@ import org.robovm.apple.dispatch.*;
     protected MTLArrayType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "arrayLength")
-    public native @MachineSizedUInt long getArrayLength();
     @Property(selector = "elementType")
     public native MTLDataType getElementType();
+    @Property(selector = "arrayLength")
+    public native @MachineSizedUInt long getArrayLength();
     @Property(selector = "stride")
     public native @MachineSizedUInt long getStride();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "argumentIndexStride")
+    public native @MachineSizedUInt long getArgumentIndexStride();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -63,5 +68,15 @@ import org.robovm.apple.dispatch.*;
     public native MTLStructType getElementStructType();
     @Method(selector = "elementArrayType")
     public native MTLArrayType getElementArrayType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "elementTextureReferenceType")
+    public native MTLTextureReferenceType elementTextureReferenceType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "elementPointerType")
+    public native MTLPointerType elementPointerType();
     /*</methods>*/
 }

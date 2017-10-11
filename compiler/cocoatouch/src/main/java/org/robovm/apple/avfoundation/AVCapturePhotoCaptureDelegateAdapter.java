@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,20 +59,35 @@ import org.robovm.apple.audiounit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("captureOutput:willBeginCaptureForResolvedSettings:")
-    public void willBeginCaptureForResolvedSettings(AVCapturePhotoOutput captureOutput, AVCaptureResolvedPhotoSettings resolvedSettings) {}
+    public void willBeginCaptureForResolvedSettings(AVCapturePhotoOutput output, AVCaptureResolvedPhotoSettings resolvedSettings) {}
     @NotImplemented("captureOutput:willCapturePhotoForResolvedSettings:")
-    public void willCapturePhotoForResolvedSettings(AVCapturePhotoOutput captureOutput, AVCaptureResolvedPhotoSettings resolvedSettings) {}
+    public void willCapturePhotoForResolvedSettings(AVCapturePhotoOutput output, AVCaptureResolvedPhotoSettings resolvedSettings) {}
     @NotImplemented("captureOutput:didCapturePhotoForResolvedSettings:")
-    public void didCapturePhotoForResolvedSettings(AVCapturePhotoOutput captureOutput, AVCaptureResolvedPhotoSettings resolvedSettings) {}
+    public void didCapturePhotoForResolvedSettings(AVCapturePhotoOutput output, AVCaptureResolvedPhotoSettings resolvedSettings) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("captureOutput:didFinishProcessingPhoto:error:")
+    public void didFinishProcessingPhoto(AVCapturePhotoOutput output, AVCapturePhoto photo, NSError error) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @NotImplemented("captureOutput:didFinishProcessingPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:")
-    public void didFinishProcessingPhotoSampleBuffer(AVCapturePhotoOutput captureOutput, CMSampleBuffer photoSampleBuffer, CMSampleBuffer previewPhotoSampleBuffer, AVCaptureResolvedPhotoSettings resolvedSettings, AVCaptureBracketedStillImageSettings bracketSettings, NSError error) {}
+    public void didFinishProcessingPhotoSampleBuffer(AVCapturePhotoOutput output, CMSampleBuffer photoSampleBuffer, CMSampleBuffer previewPhotoSampleBuffer, AVCaptureResolvedPhotoSettings resolvedSettings, AVCaptureBracketedStillImageSettings bracketSettings, NSError error) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @NotImplemented("captureOutput:didFinishProcessingRawPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:")
-    public void didFinishProcessingRawPhotoSampleBuffer(AVCapturePhotoOutput captureOutput, CMSampleBuffer rawSampleBuffer, CMSampleBuffer previewPhotoSampleBuffer, AVCaptureResolvedPhotoSettings resolvedSettings, AVCaptureBracketedStillImageSettings bracketSettings, NSError error) {}
+    public void didFinishProcessingRawPhotoSampleBuffer(AVCapturePhotoOutput output, CMSampleBuffer rawSampleBuffer, CMSampleBuffer previewPhotoSampleBuffer, AVCaptureResolvedPhotoSettings resolvedSettings, AVCaptureBracketedStillImageSettings bracketSettings, NSError error) {}
     @NotImplemented("captureOutput:didFinishRecordingLivePhotoMovieForEventualFileAtURL:resolvedSettings:")
-    public void didFinishRecordingLivePhotoMovieForEventualFileAtURL(AVCapturePhotoOutput captureOutput, NSURL outputFileURL, AVCaptureResolvedPhotoSettings resolvedSettings) {}
+    public void didFinishRecordingLivePhotoMovieForEventualFileAtURL(AVCapturePhotoOutput output, NSURL outputFileURL, AVCaptureResolvedPhotoSettings resolvedSettings) {}
     @NotImplemented("captureOutput:didFinishProcessingLivePhotoToMovieFileAtURL:duration:photoDisplayTime:resolvedSettings:error:")
-    public void didFinishProcessingLivePhotoToMovieFileAtURL(AVCapturePhotoOutput captureOutput, NSURL outputFileURL, @ByVal CMTime duration, @ByVal CMTime photoDisplayTime, AVCaptureResolvedPhotoSettings resolvedSettings, NSError error) {}
+    public void didFinishProcessingLivePhotoToMovieFileAtURL(AVCapturePhotoOutput output, NSURL outputFileURL, @ByVal CMTime duration, @ByVal CMTime photoDisplayTime, AVCaptureResolvedPhotoSettings resolvedSettings, NSError error) {}
     @NotImplemented("captureOutput:didFinishCaptureForResolvedSettings:error:")
-    public void didFinishCaptureForResolvedSettings(AVCapturePhotoOutput captureOutput, AVCaptureResolvedPhotoSettings resolvedSettings, NSError error) {}
+    public void didFinishCaptureForResolvedSettings(AVCapturePhotoOutput output, AVCaptureResolvedPhotoSettings resolvedSettings, NSError error) {}
     /*</methods>*/
 }

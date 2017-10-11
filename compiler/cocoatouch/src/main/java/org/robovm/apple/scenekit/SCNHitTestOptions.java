@@ -115,28 +115,6 @@ import org.robovm.apple.avfoundation.*;
     }
     
 
-    public boolean returnsFirstFoundOnly() {
-        if (has(Keys.FirstFoundOnly())) {
-            NSNumber val = (NSNumber) get(Keys.FirstFoundOnly());
-            return val.booleanValue();
-        }
-        return false;
-    }
-    public SCNHitTestOptions setReturnsFirstFoundOnly(boolean returnsFirstFoundOnly) {
-        set(Keys.FirstFoundOnly(), NSNumber.valueOf(returnsFirstFoundOnly));
-        return this;
-    }
-    public boolean sortsResults() {
-        if (has(Keys.SortResults())) {
-            NSNumber val = (NSNumber) get(Keys.SortResults());
-            return val.booleanValue();
-        }
-        return false;
-    }
-    public SCNHitTestOptions setSortsResults(boolean sortsResults) {
-        set(Keys.SortResults(), NSNumber.valueOf(sortsResults));
-        return this;
-    }
     public boolean clipsToZRange() {
         if (has(Keys.ClipToZRange())) {
             NSNumber val = (NSNumber) get(Keys.ClipToZRange());
@@ -220,16 +198,34 @@ import org.robovm.apple.avfoundation.*;
         set(Keys.OptionCategoryBitMask(), NSNumber.valueOf(optionCategoryBitMask));
         return this;
     }
+    public boolean returnsFirstFoundOnly() {
+        if (has(Keys.FirstFoundOnly())) {
+            NSNumber val = (NSNumber) get(Keys.FirstFoundOnly());
+            return val.booleanValue();
+        }
+        return false;
+    }
+    public SCNHitTestOptions setReturnsFirstFoundOnly(boolean returnsFirstFoundOnly) {
+        set(Keys.FirstFoundOnly(), NSNumber.valueOf(returnsFirstFoundOnly));
+        return this;
+    }
+    public boolean sortsResults() {
+        if (has(Keys.SortResults())) {
+            NSNumber val = (NSNumber) get(Keys.SortResults());
+            return val.booleanValue();
+        }
+        return false;
+    }
+    public SCNHitTestOptions setSortsResults(boolean sortsResults) {
+        set(Keys.SortResults(), NSNumber.valueOf(sortsResults));
+        return this;
+    }
     /*</methods>*/
     
     /*<keys>*/
     @Library("SceneKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
-        @GlobalValue(symbol="SCNHitTestFirstFoundOnlyKey", optional=true)
-        public static native NSString FirstFoundOnly();
-        @GlobalValue(symbol="SCNHitTestSortResultsKey", optional=true)
-        public static native NSString SortResults();
         @GlobalValue(symbol="SCNHitTestClipToZRangeKey", optional=true)
         public static native NSString ClipToZRange();
         @GlobalValue(symbol="SCNHitTestBackFaceCullingKey", optional=true)
@@ -247,6 +243,15 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="SCNHitTestOptionCategoryBitMask", optional=true)
         public static native NSString OptionCategoryBitMask();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="SCNHitTestOptionSearchMode", optional=true)
+        public static native NSString OptionSearchMode();
+        @GlobalValue(symbol="SCNHitTestFirstFoundOnlyKey", optional=true)
+        public static native NSString FirstFoundOnly();
+        @GlobalValue(symbol="SCNHitTestSortResultsKey", optional=true)
+        public static native NSString SortResults();
     }
     /*</keys>*/
 }

@@ -86,6 +86,10 @@ public final class /*<name>*/NSISO8601DateFormatOptions/*</name>*/ extends Bits<
      */
     public static final NSISO8601DateFormatOptions ColonSeparatorInTimeZone = new NSISO8601DateFormatOptions(1024L);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final NSISO8601DateFormatOptions FractionalSeconds = new NSISO8601DateFormatOptions(2048L);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     public static final NSISO8601DateFormatOptions FullDate = new NSISO8601DateFormatOptions(275L);

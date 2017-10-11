@@ -108,6 +108,14 @@ import org.robovm.apple.foundation.*;
      */
     public static final CNLabelContactRelation Sister = new CNLabelContactRelation("Sister");
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CNLabelContactRelation Son = new CNLabelContactRelation("Son");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CNLabelContactRelation Daughter = new CNLabelContactRelation("Daughter");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final CNLabelContactRelation Child = new CNLabelContactRelation("Child");
@@ -133,7 +141,7 @@ import org.robovm.apple.foundation.*;
     public static final CNLabelContactRelation Manager = new CNLabelContactRelation("Manager");
     /*</constants>*/
     
-    private static /*<name>*/CNLabelContactRelation/*</name>*/[] values = new /*<name>*/CNLabelContactRelation/*</name>*/[] {/*<value_list>*/Father, Mother, Parent, Brother, Sister, Child, Friend, Spouse, Partner, Assistant, Manager/*</value_list>*/};
+    private static /*<name>*/CNLabelContactRelation/*</name>*/[] values = new /*<name>*/CNLabelContactRelation/*</name>*/[] {/*<value_list>*/Father, Mother, Parent, Brother, Sister, Son, Daughter, Child, Friend, Spouse, Partner, Assistant, Manager/*</value_list>*/};
     
     private CNLabelContactRelation(String getterName) {
         super(getterName);
@@ -181,6 +189,16 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="CNLabelContactRelationSister", optional=true)
         public static native NSString Sister();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="CNLabelContactRelationSon", optional=true)
+        public static native NSString Son();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="CNLabelContactRelationDaughter", optional=true)
+        public static native NSString Daughter();
         /**
          * @since Available in iOS 9.0 and later.
          */

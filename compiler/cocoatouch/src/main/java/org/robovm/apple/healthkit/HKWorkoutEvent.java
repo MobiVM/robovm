@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKWorkoutEvent/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKWorkoutEventPtr extends Ptr<HKWorkoutEvent, HKWorkoutEventPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKWorkoutEvent.class); }/*</bind>*/
@@ -47,26 +47,56 @@ import org.robovm.apple.foundation.*;
     protected HKWorkoutEvent() {}
     protected HKWorkoutEvent(Handle h, long handle) { super(h, handle); }
     protected HKWorkoutEvent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public HKWorkoutEvent(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
     public native HKWorkoutEventType getType();
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Property(selector = "date")
     public native NSDate getDate();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "dateInterval")
+    public native NSDateInterval getDateInterval();
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "metadata")
     public native HKMetadata getMetadata();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "workoutEventWithType:date:")
     public static native HKWorkoutEvent create(HKWorkoutEventType type, NSDate date);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     @Method(selector = "workoutEventWithType:date:metadata:")
     public static native HKWorkoutEvent create(HKWorkoutEventType type, NSDate date, HKMetadata metadata);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "workoutEventWithType:dateInterval:metadata:")
+    public static native HKWorkoutEvent create(HKWorkoutEventType type, NSDateInterval dateInterval, NSDictionary<NSString, ?> metadata);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

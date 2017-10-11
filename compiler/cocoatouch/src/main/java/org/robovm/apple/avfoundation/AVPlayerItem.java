@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -246,6 +245,16 @@ import org.robovm.apple.audiounit.*;
     @Property(selector = "setTextStyleRules:")
     public native void setTextStyleRules(NSArray<AVTextStyleRule> v);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "videoApertureMode")
+    public native String getVideoApertureMode();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setVideoApertureMode:")
+    public native void setVideoApertureMode(String v);
+    /**
      * @since Available in iOS 7.0 and later.
      */
     @Property(selector = "audioTimePitchAlgorithm")
@@ -297,6 +306,16 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "setPreferredPeakBitRate:")
     public native void setPreferredPeakBitRate(double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "preferredMaximumResolution")
+    public native @ByVal CGSize getPreferredMaximumResolution();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setPreferredMaximumResolution:")
+    public native void setPreferredMaximumResolution(@ByVal CGSize v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -362,15 +381,11 @@ import org.robovm.apple.audiounit.*;
     protected native @Pointer long init(AVAsset asset, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> automaticallyLoadedAssetKeys);
     @Method(selector = "currentTime")
     public native @ByVal CMTime getCurrentTime();
-    @Method(selector = "seekToTime:")
-    public native void seekToTime(@ByVal CMTime time);
     /**
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "seekToTime:completionHandler:")
     public native void seekToTime(@ByVal CMTime time, @Block VoidBooleanBlock completionHandler);
-    @Method(selector = "seekToTime:toleranceBefore:toleranceAfter:")
-    public native void seekToTime(@ByVal CMTime time, @ByVal CMTime toleranceBefore, @ByVal CMTime toleranceAfter);
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -383,8 +398,6 @@ import org.robovm.apple.audiounit.*;
     public native void cancelPendingSeeks();
     @Method(selector = "currentDate")
     public native NSDate getCurrentDate();
-    @Method(selector = "seekToDate:")
-    public native boolean seekToDate(NSDate date);
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -402,11 +415,6 @@ import org.robovm.apple.audiounit.*;
      */
     @Method(selector = "selectMediaOptionAutomaticallyInMediaSelectionGroup:")
     public native void selectMediaOptionAutomatically(AVMediaSelectionGroup mediaSelectionGroup);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @Method(selector = "selectedMediaOptionInMediaSelectionGroup:")
-    public native AVMediaSelectionOption getSelectedMediaOption(AVMediaSelectionGroup mediaSelectionGroup);
     /**
      * @since Available in iOS 4.3 and later.
      */
@@ -437,5 +445,33 @@ import org.robovm.apple.audiounit.*;
      */
     @Method(selector = "removeMediaDataCollector:")
     public native void removeMediaDataCollector(AVPlayerItemMediaDataCollector collector);
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "seekToTime:")
+    public native void seekToTime(@ByVal CMTime time);
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "seekToTime:toleranceBefore:toleranceAfter:")
+    public native void seekToTime(@ByVal CMTime time, @ByVal CMTime toleranceBefore, @ByVal CMTime toleranceAfter);
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "seekToDate:")
+    public native boolean seekToDate(NSDate date);
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "selectedMediaOptionInMediaSelectionGroup:")
+    public native AVMediaSelectionOption getSelectedMediaOption(AVMediaSelectionGroup mediaSelectionGroup);
     /*</methods>*/
 }

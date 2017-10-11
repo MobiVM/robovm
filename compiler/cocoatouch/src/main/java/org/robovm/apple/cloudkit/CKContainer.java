@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -187,7 +188,7 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 9.3 and later.
      */
     @Method(selector = "fetchAllLongLivedOperationIDsWithCompletionHandler:")
-    public native void fetchAllLongLivedOperationIDs(@Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    public native void fetchAllLongLivedOperationIDs(@Block VoidBlock2<NSArray<NSString>, NSError> completionHandler);
     /**
      * @since Available in iOS 9.3 and later.
      */

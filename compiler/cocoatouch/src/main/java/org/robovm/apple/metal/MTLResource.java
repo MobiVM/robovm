@@ -64,6 +64,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "heap")
     MTLHeap getHeap();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "allocatedSize")
+    @MachineSizedUInt long getAllocatedSize();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "setPurgeableState:")

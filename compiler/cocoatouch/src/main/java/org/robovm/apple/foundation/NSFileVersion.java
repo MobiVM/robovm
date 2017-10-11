@@ -63,6 +63,11 @@ import org.robovm.apple.dispatch.*;
     public native String getLocalizedName();
     @Property(selector = "localizedNameOfSavingComputer")
     public native String getLocalizedNameOfSavingComputer();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "originatorNameComponents")
+    public native NSPersonNameComponents getOriginatorNameComponents();
     @Property(selector = "modificationDate")
     public native NSDate getModificationDate();
     @Property(selector = "persistentIdentifier")

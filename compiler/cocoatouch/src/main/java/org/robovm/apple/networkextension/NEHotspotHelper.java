@@ -64,7 +64,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "registerWithOptions:queue:handler:")
-    public static native boolean register(NSDictionary<?, ?> options, org.robovm.apple.dispatch.DispatchQueue queue, @Block VoidBlock1<NEHotspotHelperCommand> handler);
+    public static native boolean register(NSDictionary<NSString, ?> options, org.robovm.apple.dispatch.DispatchQueue queue, @Block VoidBlock1<NEHotspotHelperCommand> handler);
     /**
      * @since Available in iOS 9.0 and later.
      */

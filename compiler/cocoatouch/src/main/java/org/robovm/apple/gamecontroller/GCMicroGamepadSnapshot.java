@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,7 +52,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithSnapshotData:")
     public GCMicroGamepadSnapshot(NSData data) { super((SkipInit) null); initObject(initWithSnapshotData(data)); }
     @Method(selector = "initWithController:snapshotData:")
-    public GCMicroGamepadSnapshot(GCController controller, NSData data) { super((SkipInit) null); initObject(initWithController$snapshotData$(controller, data)); }
+    public GCMicroGamepadSnapshot(GCController controller, NSData data) { super((SkipInit) null); initObject(init(controller, data)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "snapshotData")
@@ -64,6 +65,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithSnapshotData:")
     protected native @Pointer long initWithSnapshotData(NSData data);
     @Method(selector = "initWithController:snapshotData:")
-    protected native @Pointer long initWithController$snapshotData$(GCController controller, NSData data);
+    protected native @Pointer long init(GCController controller, NSData data);
     /*</methods>*/
 }

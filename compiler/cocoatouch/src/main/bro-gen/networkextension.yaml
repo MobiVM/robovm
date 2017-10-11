@@ -32,6 +32,14 @@ enums:
     NWUDPSessionState: {}
     NWPathStatus: {}
 
+    NEDNSProxyManagerError: { nserror: true } #since 11.0
+    NEFilterAction: {} #since 11.0
+    NEHotspotConfigurationEAPType: {} #since 11.0
+    NEHotspotConfigurationTTLSInnerAuthenticationType: {prefix: NEHotspotConfigurationEAPTTLSInnerAuthentication} #since 11.0
+    NEHotspotConfigurationEAPTLSVersion: {} #since 11.0
+    NEHotspotConfigurationError: {} #since 11.0 # TODO: this to be connected with NSERROR but currently domain is not known
+    NEVPNIKEv2TLSVersion: {} #since 11.0
+
 classes:
     NEProvider:
         methods:
@@ -274,6 +282,28 @@ classes:
             '+endpointWithName:type:domain:':
                 name: create
                 constructor: true
+    NEDNSProxyManager: {} #since 11.0
+    NEDNSProxyProvider: #since 11.0
+        methods:
+            '-startProxyWithOptions:completionHandler:':
+                name: startProxy
+            '-stopProxyWithReason:completionHandler:':
+                name: stopProxy
+    NEDNSProxyProviderProtocol: {} #since 11.0
+    NEFilterReport: {} #since 11.0
+    NEHotspotConfiguration: #since 11.0
+        methods:
+            '-init.*':
+                name: init
+    NEHotspotConfigurationManager: #since 11.0
+        methods:
+            '-applyConfiguration:completionHandler:':
+                trim_after_first_colon: true
+    NEHotspotEAPSettings: {} #since 11.0
+    NEHotspotHS20Settings: #since 11.0
+        methods:
+            '-initWithDomainName:roamingEnabled:':
+                name: init
 
 protocols:
     NWTCPConnectionAuthenticationDelegate:
@@ -300,6 +330,10 @@ values:
 
     NETunnelProviderErrorDomain:
         class: NETunnelProviderError
+        name: getClassDomain
+
+    NEDNSProxyErrorDomain:
+        class: NEDNSProxyManagerError
         name: getClassDomain
 
     NEAppProxyErrorDomain:
@@ -333,6 +367,10 @@ values:
     kNEHotspotHelper(OptionDisplayName):
         class: NEHotspotHelper
         name: '#{g[0]}'
+
+    NEDNSProxyConfigurationDidChangeNotification:
+        class: NEDNSProxyManager
+        name: ConfigurationDidChange
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?NE.*):

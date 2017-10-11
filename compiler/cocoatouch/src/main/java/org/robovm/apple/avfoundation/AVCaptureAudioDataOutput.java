@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,9 +54,9 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureAudioDataOutput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureAudioDataOutput() {}
     protected AVCaptureAudioDataOutput(Handle h, long handle) { super(h, handle); }
     protected AVCaptureAudioDataOutput(SkipInit skipInit) { super(skipInit); }
+    public AVCaptureAudioDataOutput() { super((Handle) null, create()); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sampleBufferDelegate")
@@ -76,5 +75,7 @@ import org.robovm.apple.audiounit.*;
      */
     @Method(selector = "recommendedAudioSettingsForAssetWriterWithOutputFileType:")
     public native AVAudioSettings getRecommendedAudioSettings(String outputFileType);
+    @Method(selector = "new")
+    protected static native @Pointer long create();
     /*</methods>*/
 }

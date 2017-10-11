@@ -55,7 +55,15 @@ public enum /*<name>*/HKWorkoutEventType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 10.0 and later.
      */
-    MotionResumed(6L);
+    MotionResumed(6L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Segment(7L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    PauseOrResumeRequest(8L);
     /*</values>*/
 
     /*<bind>*/

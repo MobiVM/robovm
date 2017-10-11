@@ -51,10 +51,45 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "name")
     public native String getName();
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "registryID")
+    public native long getRegistryID();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "maxThreadsPerThreadgroup")
     public native @ByVal MTLSize getMaxThreadsPerThreadgroup();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "readWriteTextureSupport")
+    public native MTLReadWriteTextureTier getReadWriteTextureSupport();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "argumentBuffersSupport")
+    public native MTLArgumentBuffersTier getArgumentBuffersSupport();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "areRasterOrderGroupsSupported")
+    public native boolean isRasterOrderGroupsSupported();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "currentAllocatedSize")
+    public native @MachineSizedUInt long getCurrentAllocatedSize();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "maxThreadgroupMemoryLength")
+    public native @MachineSizedUInt long getMaxThreadgroupMemoryLength();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "areProgrammableSamplePositionsSupported")
+    public native boolean isProgrammableSamplePositionsSupported();
     /*</properties>*/
     /*<members>*//*</members>*/
     public MTLBuffer newBuffer(byte[] bytes, MTLResourceOptions options) {
@@ -111,6 +146,11 @@ import org.robovm.apple.dispatch.*;
     public native MTLDepthStencilState newDepthStencilState(MTLDepthStencilDescriptor descriptor);
     @Method(selector = "newTextureWithDescriptor:")
     public native MTLTexture newTexture(MTLTextureDescriptor descriptor);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "newTextureWithDescriptor:iosurface:plane:")
+    public native MTLTexture newTexture(MTLTextureDescriptor descriptor, org.robovm.apple.iosurface.IOSurface iosurface, @MachineSizedUInt long plane);
     @Method(selector = "newSamplerStateWithDescriptor:")
     public native MTLSamplerState newSamplerState(MTLSamplerDescriptor descriptor);
     @Method(selector = "newDefaultLibrary")
@@ -137,6 +177,20 @@ import org.robovm.apple.dispatch.*;
     }
     @Method(selector = "newLibraryWithFile:error:")
     private native MTLLibrary newLibraryWithFile(String filepath, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public MTLLibrary newLibrary(NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MTLLibrary result = newLibrary(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "newLibraryWithURL:error:")
+    private native MTLLibrary newLibrary(NSURL url, NSError.NSErrorPtr error);
     @WeaklyLinked
     public MTLLibrary newLibraryWithData(DispatchData data) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -228,5 +282,39 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "supportsTextureSampleCount:")
     public native boolean supportsTextureSampleCount(@MachineSizedUInt long sampleCount);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "minimumLinearTextureAlignmentForPixelFormat:")
+    public native @MachineSizedUInt long minimumLinearTextureAlignmentForPixelFormat(MTLPixelFormat format);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public MTLRenderPipelineState newRenderPipelineState(MTLTileRenderPipelineDescriptor descriptor, MTLPipelineOption options, MTLRenderPipelineReflection.MTLRenderPipelineReflectionPtr reflection) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MTLRenderPipelineState result = newRenderPipelineState(descriptor, options, reflection, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "newRenderPipelineStateWithTileDescriptor:options:reflection:error:")
+    private native MTLRenderPipelineState newRenderPipelineState(MTLTileRenderPipelineDescriptor descriptor, MTLPipelineOption options, MTLRenderPipelineReflection.MTLRenderPipelineReflectionPtr reflection, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "newRenderPipelineStateWithTileDescriptor:options:completionHandler:")
+    public native void newRenderPipelineState(MTLTileRenderPipelineDescriptor descriptor, MTLPipelineOption options, @Block VoidBlock3<MTLRenderPipelineState, MTLRenderPipelineReflection, NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "getDefaultSamplePositions:count:")
+    public native void getDefaultSamplePositions(MTLSamplePosition positions, @MachineSizedUInt long count);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "newArgumentEncoderWithArguments:")
+    public native MTLArgumentEncoder newArgumentEncoderWithArguments(NSArray<MTLArgumentDescriptor> arguments);
     /*</methods>*/
 }

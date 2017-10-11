@@ -29,6 +29,8 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.spritekit.*;
+import org.robovm.apple.scenekit.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,7 +41,7 @@ import org.robovm.apple.spritekit.*;
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKRandomSource/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements GKRandom/*</implements>*/ {
+    /*<implements>*/implements GKRandom, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKRandomSourcePtr extends Ptr<GKRandomSource, GKRandomSourcePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKRandomSource.class); }/*</bind>*/
@@ -52,7 +54,8 @@ import org.robovm.apple.spritekit.*;
     public GKRandomSource(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -70,5 +73,7 @@ import org.robovm.apple.spritekit.*;
     public native float nextUniform();
     @Method(selector = "nextBool")
     public native boolean nextBool();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

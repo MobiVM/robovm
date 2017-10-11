@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFileHandle/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     public static class Notifications {
         public static NSObject observeReadCompletion(NSFileHandle object, final VoidBlock2<NSFileHandle, NSData> block) {
@@ -145,6 +145,8 @@ import org.robovm.apple.dispatch.*;
     public native void setWriteabilityHandler(@Block VoidBlock1<NSFileHandle> v);
     @Property(selector = "fileDescriptor")
     public native int getFileDescriptor();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -276,5 +278,7 @@ import org.robovm.apple.dispatch.*;
     public native void waitForDataInBackgroundAndNotify();
     @Method(selector = "initWithFileDescriptor:")
     protected native @Pointer long init(int fd);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

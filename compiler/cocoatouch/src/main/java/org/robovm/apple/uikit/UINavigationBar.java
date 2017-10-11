@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
@@ -147,6 +150,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native NSArray<UINavigationItem> getItems();
     @Property(selector = "setItems:")
     public native void setItems(NSArray<UINavigationItem> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "prefersLargeTitles")
+    public native boolean prefersLargeTitles();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setPrefersLargeTitles:")
+    public native void setPrefersLargeTitles(boolean v);
     @Property(selector = "tintColor")
     public native UIColor getTintColor();
     @Property(selector = "setTintColor:")
@@ -181,6 +194,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setTitleTextAttributes:")
     public native void setTitleTextAttributesDictionary(NSDictionary<NSString, ?> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "largeTitleTextAttributes")
+    public native NSDictionary<NSString, ?> getLargeTitleTextAttributes();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setLargeTitleTextAttributes:")
+    public native void setLargeTitleTextAttributes(NSDictionary<NSString, ?> v);
     /**
      * @since Available in iOS 7.0 and later.
      */

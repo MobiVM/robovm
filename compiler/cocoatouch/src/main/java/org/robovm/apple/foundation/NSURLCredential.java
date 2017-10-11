@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSURLCredential/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSURLCredentialPtr extends Ptr<NSURLCredential, NSURLCredentialPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSURLCredential.class); }/*</bind>*/
@@ -68,6 +68,8 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     @Method(selector = "initWithTrust:")
     public NSURLCredential(SecTrust trust) { super((SkipInit) null); initObject(init(trust)); }
+    @Method(selector = "initWithCoder:")
+    public NSURLCredential(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "persistence")
@@ -86,6 +88,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "certificates")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<SecCertificate> getCertificates();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -104,5 +108,9 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     @Method(selector = "initWithTrust:")
     protected native @Pointer long init(SecTrust trust);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

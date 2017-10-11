@@ -1,0 +1,127 @@
+package: org.robovm.apple.fileprovider
+include: [foundation, coregraphics]
+library: FileProvider
+framework: FileProvider
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h
+typedefs:
+  NSFileProviderItemIdentifier: NSString
+
+enums:
+    NSFileProviderItemCapabilities: {}
+    NSFileProviderErrorCode: {nserror: true, prefix: NSFileProviderError} #since 11.0
+
+classes:
+    NSFileProviderDomain: #since 11.0
+        methods:
+            '-initWithIdentifier:displayName:pathRelativeToDocumentStorage:':
+                name: init
+    NSFileProviderExtension: #since 8.0
+        methods:
+            '-itemForIdentifier:error:':
+                throws: NSErrorException
+                name: itemForIdentifier
+            '-providePlaceholderAtURL:completionHandler:':
+                trim_after_first_colon: true
+            '-startProvidingItemAtURL:completionHandler:':
+                trim_after_first_colon: true
+            '+writePlaceholderAtURL:withMetadata:error:':
+                name: writePlaceholder
+            '-enumeratorForContainerItemIdentifier:error:':
+                name: enumeratorForContainer
+            '-importDocumentAtURL:toParentItemIdentifier:completionHandler:':
+                name: importDocumentAtURL
+            '-createDirectoryWithName:inParentItemIdentifier:completionHandler:':
+                name: createDirectory
+            '-renameItemWithIdentifier:toName:completionHandler:':
+                name: renameItem
+            '-reparentItemWithIdentifier:toParentItemWithIdentifier:newName:completionHandler:':
+                name: reparentItem
+            '-trashItemWithIdentifier:completionHandler:':
+                name: trashItem
+            '-untrashItemWithIdentifier:toParentItemIdentifier:completionHandler:':
+                name: untrashItem
+            '-deleteItemWithIdentifier:completionHandler:':
+                name: deleteItem
+            '-setLastUsedDate:forItemIdentifier:completionHandler:':
+                name: setLastUsedDate
+            '-setTagData:forItemIdentifier:completionHandler:':
+                name: setTagData
+            '-setFavoriteRank:forItemIdentifier:completionHandler:':
+                name: setFavoriteRank
+            '-supportedServiceSourcesForItemIdentifier:error:':
+                name: supportedServiceSources
+            '-fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:':
+                name: fetchThumbnails
+    NSFileProviderManager: #since 11.0
+        methods:
+            '-signalEnumeratorForContainerItemIdentifier:completionHandler:':
+                name: signalEnumerator
+            '-registerURLSessionTask:forItemWithIdentifier:completionHandler:':
+                trim_after_first_colon: true
+            '+writePlaceholderAtURL:withMetadata:error:':
+                trim_after_first_colon: true
+            '+addDomain:completionHandler:':
+                trim_after_first_colon: true
+            '+removeDomain:completionHandler:':
+                trim_after_first_colon: true
+
+protocols:
+    NSFileProviderChangeObserver:
+        methods:
+            '-finishEnumeratingChangesUpToSyncAnchor:moreComing:':
+                name: finishEnumeratingChangesUpToSyncAnchor
+    NSFileProviderEnumerationObserver: {}
+    NSFileProviderEnumerator:
+        methods:
+            '-enumerateItemsForObserver:startingAtPage:':
+                #trim_after_first_colon: true
+                name: startingAtPage
+            '-enumerateChangesForObserver:fromSyncAnchor:':
+                #trim_after_first_colon: true
+                name: fromSyncAnchor
+    NSFileProviderItem: {}
+    NSFileProviderServiceSource: {} #since 11.0
+
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?NSFile.*):
+        class: FileProvider
+        name: 'Function__#{g[0]}'
+
+values:
+    NSFileProvider(RootContainerItemIdentifier|WorkingSetContainerItemIdentifier|FavoriteRankUnranked):
+        class: NSFileProviderManager
+        name: '#{g[0]}'
+        type: NSString
+
+    NSFileProviderErrorDomain:
+        name: getClassDomain
+        class: NSFileProviderErrorCode
+
+    NSFileProvider(ErrorCollidingItemKey|ErrorNonExistentItemIdentifierKey):
+        class: NSFileProviderManager
+        name: 'get#{g[0]}'
+        type: NSString
+
+    NSFileProvider(InitialPageSortedByDate|InitialPageSortedByName):
+        class: NSFileProviderManager
+        name: 'getEnumeration#{g[0]}'
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?NSFile.*):
+        class: FileProvider
+        name: 'Value__#{g[0]}'
+
+constants:
+    NSFileProviderItemCapabilities(.*):
+        class: NSFileProviderItemCapabilities
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?NSFile.*):
+        class: FileProvider
+        name: 'Constant__#{g[0]}'

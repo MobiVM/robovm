@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -99,12 +98,32 @@ import org.robovm.apple.audiounit.*;
     /*<methods>*/
     @Method(selector = "scheduleBuffer:completionHandler:")
     public native void scheduleBuffer(AVAudioPCMBuffer buffer, @Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "scheduleBuffer:completionCallbackType:completionHandler:")
+    public native void scheduleBuffer(AVAudioPCMBuffer buffer, AVAudioPlayerNodeCompletionCallbackType callbackType, @Block VoidBlock1<AVAudioPlayerNodeCompletionCallbackType> completionHandler);
     @Method(selector = "scheduleBuffer:atTime:options:completionHandler:")
     public native void scheduleBuffer(AVAudioPCMBuffer buffer, AVAudioTime when, AVAudioPlayerNodeBufferOptions options, @Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "scheduleBuffer:atTime:options:completionCallbackType:completionHandler:")
+    public native void scheduleBuffer(AVAudioPCMBuffer buffer, AVAudioTime when, AVAudioPlayerNodeBufferOptions options, AVAudioPlayerNodeCompletionCallbackType callbackType, @Block VoidBlock1<AVAudioPlayerNodeCompletionCallbackType> completionHandler);
     @Method(selector = "scheduleFile:atTime:completionHandler:")
     public native void scheduleFile(AVAudioFile file, AVAudioTime when, @Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "scheduleFile:atTime:completionCallbackType:completionHandler:")
+    public native void scheduleFile(AVAudioFile file, AVAudioTime when, AVAudioPlayerNodeCompletionCallbackType callbackType, @Block VoidBlock1<AVAudioPlayerNodeCompletionCallbackType> completionHandler);
     @Method(selector = "scheduleSegment:startingFrame:frameCount:atTime:completionHandler:")
     public native void scheduleSegment(AVAudioFile file, long startFrame, int numberFrames, AVAudioTime when, @Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "scheduleSegment:startingFrame:frameCount:atTime:completionCallbackType:completionHandler:")
+    public native void scheduleSegment(AVAudioFile file, long startFrame, int numberFrames, AVAudioTime when, AVAudioPlayerNodeCompletionCallbackType callbackType, @Block VoidBlock1<AVAudioPlayerNodeCompletionCallbackType> completionHandler);
     @Method(selector = "stop")
     public native void stop();
     @Method(selector = "prepareWithFrameCount:")

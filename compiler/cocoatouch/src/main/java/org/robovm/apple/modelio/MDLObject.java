@@ -91,6 +91,9 @@ import org.robovm.apple.coregraphics.*;
     public native void setObjectForKeyedSubscript(MDLComponent obj, ObjCProtocol key);
     @Method(selector = "objectAtPath:")
     public native MDLObject objectAtPath(String path);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "enumerateChildObjectsOfClass:root:usingBlock:stopPointer:")
     public native void enumerateChildObjects(Class<?> objectClass, MDLObject root, @Block VoidBlock2<MDLObject, BooleanPtr> block, BooleanPtr stopPointer);
     @Method(selector = "addChild:")

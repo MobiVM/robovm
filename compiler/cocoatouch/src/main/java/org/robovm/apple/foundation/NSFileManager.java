@@ -456,6 +456,20 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "removeItemAtURL:error:")
     private native boolean removeItemAtURL(NSURL URL, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public boolean trashItemAtURL(NSURL url, NSURL.NSURLPtr outResultingURL) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = trashItemAtURL(url, outResultingURL, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "trashItemAtURL:resultingItemURL:error:")
+    private native boolean trashItemAtURL(NSURL url, NSURL.NSURLPtr outResultingURL, NSError.NSErrorPtr error);
     @Method(selector = "changeCurrentDirectoryPath:")
     public native boolean changeCurrentDirectoryPath(String path);
     @Method(selector = "fileExistsAtPath:")
@@ -477,7 +491,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "componentsToDisplayForPath:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getComponentsToDisplayForPath(String path);
     @Method(selector = "enumeratorAtPath:")
-    public native NSDirectoryEnumerator getEnumeratorAtPath(String path);
+    public native NSDirectoryEnumerator<NSString> getEnumeratorAtPath(String path);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -573,6 +587,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "URLForPublishingUbiquitousItemAtURL:expirationDate:error:")
     private native NSURL getURLForPublishingUbiquitousItemAtURL(NSURL url, NSDate.NSDatePtr outDate, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "getFileProviderServicesForItemAtURL:completionHandler:")
+    public native void getFileProviderServicesForItemAtURL(NSURL url, @Block VoidBlock2<NSDictionary<NSString, NSFileProviderService>, NSError> completionHandler);
     /**
      * @since Available in iOS 7.0 and later.
      */

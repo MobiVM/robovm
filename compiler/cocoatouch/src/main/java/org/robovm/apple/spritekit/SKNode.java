@@ -36,6 +36,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -104,6 +105,16 @@ import org.robovm.apple.gameplaykit.*;
     public native boolean isUserInteractionEnabled();
     @Property(selector = "setUserInteractionEnabled:")
     public native void setUserInteractionEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "focusBehavior")
+    public native SKNodeFocusBehavior getFocusBehavior();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setFocusBehavior:")
+    public native void setFocusBehavior(SKNodeFocusBehavior v);
     @Property(selector = "parent")
     public native SKNode getParent();
     @Property(selector = "children")
@@ -130,6 +141,20 @@ import org.robovm.apple.gameplaykit.*;
     public native NSArray<SKConstraint> getConstraints();
     @Property(selector = "setConstraints:")
     public native void setConstraints(NSArray<SKConstraint> v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "attributeValues")
+    public native NSDictionary<NSString, SKAttributeValue> getAttributeValues();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Property(selector = "setAttributeValues:")
+    public native void setAttributeValues(NSDictionary<NSString, SKAttributeValue> v);
     @Property(selector = "canBecomeFocused")
     public native boolean canBecomeFocused();
     @Property(selector = "preferredFocusEnvironments")
@@ -148,6 +173,20 @@ import org.robovm.apple.gameplaykit.*;
     protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "calculateAccumulatedFrame")
     public native @ByVal CGRect calculateAccumulatedFrame();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Method(selector = "valueForAttributeNamed:")
+    public native SKAttributeValue valueForAttributeNamed(String key);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
+    @Method(selector = "setValue:forAttributeNamed:")
+    public native void setValue(SKAttributeValue value, String key);
     @Method(selector = "setScale:")
     public native void setScale(@MachineSizedFloat double scale);
     @Method(selector = "addChild:")

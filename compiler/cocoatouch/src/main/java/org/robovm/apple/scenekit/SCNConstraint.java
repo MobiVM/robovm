@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNConstraint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements SCNAnimatable/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, SCNAnimatable/*</implements>*/ {
 
     /*<ptr>*/public static class SCNConstraintPtr extends Ptr<SCNConstraint, SCNConstraintPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNConstraint.class); }/*</bind>*/
@@ -54,37 +54,101 @@ import org.robovm.apple.avfoundation.*;
     public SCNConstraint() {}
     protected SCNConstraint(Handle h, long handle) { super(h, handle); }
     protected SCNConstraint(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNConstraint(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "isEnabled")
+    public native boolean isEnabled();
+    @Property(selector = "setEnabled:")
+    public native void setEnabled(boolean v);
     @Property(selector = "influenceFactor")
     public native @MachineSizedFloat double getInfluenceFactor();
     @Property(selector = "setInfluenceFactor:")
     public native void setInfluenceFactor(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "isIncremental")
+    public native boolean isIncremental();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setIncremental:")
+    public native void setIncremental(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "animationKeys")
-    public native NSArray<?> getAnimationKeys();
+    public native NSArray<NSString> getAnimationKeys();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "addAnimation:forKey:")
-    public native void addAnimation(CAAnimation animation, String key);
+    public native void addAnimation(SCNAnimation animation, String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "addAnimationPlayer:forKey:")
+    public native void addAnimationPlayer(SCNAnimationPlayer player, String key);
     @Method(selector = "removeAllAnimations")
     public native void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
-    @Method(selector = "animationForKey:")
-    public native CAAnimation getAnimation(String key);
-    @Method(selector = "pauseAnimationForKey:")
-    public native void pauseAnimation(String key);
-    @Method(selector = "resumeAnimationForKey:")
-    public native void resumeAnimation(String key);
-    @Method(selector = "isAnimationForKeyPaused:")
-    public native boolean isAnimationPaused(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "animationPlayerForKey:")
+    public native SCNAnimationPlayer animationPlayerForKey(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "removeAnimationForKey:blendOutDuration:")
+    public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
+    @Method(selector = "animationForKey:")
+    public native CAAnimation getAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "pauseAnimationForKey:")
+    public native void pauseAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "resumeAnimationForKey:")
+    public native void resumeAnimation(String key);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "setSpeed:forAnimationKey:")
     public native void setSpeed(@MachineSizedFloat double speed, String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "isAnimationForKeyPaused:")
+    public native boolean isAnimationPaused(String key);
     /*</methods>*/
 }

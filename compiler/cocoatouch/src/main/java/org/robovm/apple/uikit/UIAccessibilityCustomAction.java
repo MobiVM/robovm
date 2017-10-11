@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,12 +58,27 @@ import org.robovm.apple.corelocation.*;
     protected UIAccessibilityCustomAction(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithName:target:selector:")
     public UIAccessibilityCustomAction(String name, NSObject target, Selector selector) { super((SkipInit) null); initObject(init(name, target, selector)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithAttributedName:target:selector:")
+    public UIAccessibilityCustomAction(NSAttributedString attributedName, NSObject target, Selector selector) { super((SkipInit) null); initObject(init(attributedName, target, selector)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "setName:")
     public native void setName(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "attributedName")
+    public native NSAttributedString getAttributedName();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAttributedName:")
+    public native void setAttributedName(NSAttributedString v);
     @Property(selector = "target")
     public native NSObject getTarget();
     @Property(selector = "setTarget:", strongRef = true)
@@ -74,5 +92,10 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithName:target:selector:")
     protected native @Pointer long init(String name, NSObject target, Selector selector);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithAttributedName:target:selector:")
+    protected native @Pointer long init(NSAttributedString attributedName, NSObject target, Selector selector);
     /*</methods>*/
 }

@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -149,6 +152,16 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("tableView:editActionsForRowAtIndexPath:")
     public NSArray<UITableViewRowAction> getEditActionsForRow(UITableView tableView, NSIndexPath indexPath) { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("tableView:leadingSwipeActionsConfigurationForRowAtIndexPath:")
+    public UISwipeActionsConfiguration getLeadingSwipeActionsConfigurationForRow(UITableView tableView, NSIndexPath indexPath) { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:")
+    public UISwipeActionsConfiguration getTrailingSwipeActionsConfigurationForRow(UITableView tableView, NSIndexPath indexPath) { return null; }
     @NotImplemented("tableView:shouldIndentWhileEditingRowAtIndexPath:")
     public boolean shouldIndentWhileEditingRow(UITableView tableView, NSIndexPath indexPath) { return false; }
     @NotImplemented("tableView:willBeginEditingRowAtIndexPath:")
@@ -194,5 +207,10 @@ import org.robovm.apple.corelocation.*;
      */
     @NotImplemented("indexPathForPreferredFocusedViewInTableView:")
     public NSIndexPath getIndexPathForPreferredFocusedView(UITableView tableView) { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("tableView:shouldSpringLoadRowAtIndexPath:withContext:")
+    public boolean shouldSpringLoadRow(UITableView tableView, NSIndexPath indexPath, UISpringLoadedInteractionContext context) { return false; }
     /*</methods>*/
 }

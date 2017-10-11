@@ -36,6 +36,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -82,7 +83,7 @@ import org.robovm.apple.gameplaykit.*;
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "sampleFieldsAt:")
-    public native @ByVal SKVector3 sampleFieldsAt(@ByVal SKVector3 position);
+    public native @ByVal VectorFloat3 sampleFieldsAt(@ByVal VectorFloat3 position);
     @Method(selector = "bodyAtPoint:")
     public native SKPhysicsBody getBodyAtPoint(@ByVal CGPoint point);
     @Method(selector = "bodyInRect:")

@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -44,7 +47,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIFontDescriptor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UIFontDescriptorPtr extends Ptr<UIFontDescriptor, UIFontDescriptorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIFontDescriptor.class); }/*</bind>*/
@@ -71,6 +74,8 @@ import org.robovm.apple.corelocation.*;
     public native UIFontDescriptorSymbolicTraits getSymbolicTraits();
     @Property(selector = "fontAttributes")
     public native UIFontDescriptorAttributes getFontAttributes();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public NSObject getValue(String attribute) {
@@ -121,5 +126,7 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "preferredFontDescriptorWithTextStyle:compatibleWithTraitCollection:")
     public static native UIFontDescriptor getPreferredFontDescriptor(UIFontTextStyle style, UITraitCollection traitCollection);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

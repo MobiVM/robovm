@@ -32,6 +32,7 @@ import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -243,5 +244,15 @@ import org.robovm.apple.metal.*;
      */
     @Bridge(symbol="CVPixelBufferFillExtendedPixels", optional=true)
     public native CVReturn fillExtendedPixels();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    @Bridge(symbol="CVPixelBufferGetIOSurface", optional=true)
+    public native IOSurface getIOSurface();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    @Bridge(symbol="CVPixelBufferCreateWithIOSurface", optional=true)
+    protected static native CVReturn create(CFAllocator allocator, IOSurface surface, CVPixelBufferAttributes pixelBufferAttributes, CVPixelBuffer.CVPixelBufferPtr pixelBufferOut);
     /*</methods>*/
 }

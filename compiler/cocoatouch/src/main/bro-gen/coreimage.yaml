@@ -1,18 +1,27 @@
 package: org.robovm.apple.coreimage
-include: [foundation.yaml, corefoundation.yaml, coregraphics.yaml, opengles.yaml, corevideo.yaml, imageio.yaml, uikit.yaml, metal.yaml]
+include: [foundation.yaml, corefoundation.yaml, coregraphics.yaml, opengles.yaml, corevideo.yaml, imageio.yaml, uikit.yaml, metal.yaml, iosurface]
 library: CoreImage
 framework: CoreImage
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/CoreImage.framework/Headers/CoreImage.h
 typedefs: {}
+
+private_typedefs:
+    'AVDepthData *': org.robovm.apple.avfoundation.AVDepthData
+
 enums:
+    CIRenderDestinationAlphaMode: {prefix: CIRenderDestinationAlpha}
+    CIQRCodeErrorCorrectionLevel: {}
+    CIDataMatrixCodeECCVersion: {}
 
 classes:
     CIColor: # DONE
         properties:
             'components':
                 visibility: protected
+            '(.*)Color':
+                omit_prefix: true
         methods:
             '-initWithCGColor:':
                 exclude: true
@@ -26,8 +35,6 @@ classes:
                 name: create # as conflicts with constructors in ios9+
                 visibility: protected
                 return_type: '@Pointer long'
-            '-(alpha|blue|colorSpace|green|numberOfComponents|red|stringRepresentation)':
-                property: true
     CIColorKernel: # DONE
         methods:
             '-applyWithExtent:arguments:':
@@ -83,6 +90,23 @@ classes:
                 trim_after_first_colon: true
             '-writeJPEGRepresentationOfImage:toURL:colorSpace:options:error:':
                 trim_after_first_colon: true
+            '-HEIFRepresentationOfImage:format:colorSpace:options:':
+                trim_after_first_colon: true
+            '-PNGRepresentationOfImage:format:colorSpace:options:':
+                trim_after_first_colon: true
+            '-writePNGRepresentationOfImage:toURL:format:colorSpace:options:error:':
+                trim_after_first_colon: true
+            '-writeHEIFRepresentationOfImage:toURL:format:colorSpace:options:error:':
+                trim_after_first_colon: true
+            '-startTaskToRender:fromRect:toDestination:atPoint:error:':
+                trim_after_first_colon: true
+            '-startTaskToRender:toDestination:error:':
+                trim_after_first_colon: true
+            '-prepareRender:fromRect:toDestination:atPoint:error:':
+                trim_after_first_colon: true
+            '-startTaskToClear:error:':
+                trim_after_first_colon: true
+
     CIDetector: # DONE
         methods:
             '+detectorOfType:context:options:':
@@ -215,6 +239,12 @@ classes:
                 return_type: NSArray<CIKernel>
             '+kernelWithString:':
                 name: create
+            '+kernelWithFunctionName:fromMetalLibraryData:error:':
+                throws: NSErrorException
+                name: create
+            '+kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:':
+                throws: NSErrorException
+                name: create
     CIQRCodeFeature: {} # DONE
     CIRectangleFeature: {} # DONE
     CIVector: # DONE
@@ -241,12 +271,92 @@ classes:
                         type: NSArray<?>
             '+kernelWithString:':
                 exclude: true # present in parent protocol
+    # ios11 activities
+    CIAztecCodeDescriptor: #since 11.0
+        methods:
+            '-initWithPayload:isCompact:layerCount:dataCodewordCount:':
+                name: init
+            '+descriptorWithPayload:isCompact:layerCount:dataCodewordCount:':
+                name: descriptor
+    CIBarcodeDescriptor: {} #since 11.0
+    CIBlendKernel: #since 11.0
+        methods:
+            '-applyWithForeground:background:':
+                name: apply
+    CIDataMatrixCodeDescriptor: #since 11.0
+        methods:
+            '-initWithPayload:rowCount:columnCount:eccVersion:':
+                name: init
+            '+descriptorWithPayload:rowCount:columnCount:eccVersion:':
+                name: descriptor
+    CIFilterShape: #since 9.0
+        methods:
+            '-transformBy:interior:':
+                name: transform
+            '-insetByX:Y:':
+                name: insetByXY
+    CIImageAccumulator: #since 9.0
+        methods:
+            '-initWithExtent:format:':
+                name: init
+            '-initWithExtent:format:colorSpace:':
+                name: init
+            '-setImage:dirtyRect:':
+                trim_after_first_colon: true
+            '+imageAccumulatorWithExtent:format:':
+                exclude: true
+            '+imageAccumulatorWithExtent:format:colorSpace:':
+                exclude: true
+    CIImageProcessorKernel: #since 10.0
+        methods:
+            '+processWithInputs:arguments:output:error:':
+                name: process
+            '+roiForInput:arguments:outputRect:':
+                trim_after_first_colon: true
+            '+applyWithExtent:inputs:arguments:error:':
+                name: apply
+    CIPDF417CodeDescriptor: #since 11.0
+        methods:
+            '-initWithPayload:isCompact:rowCount:columnCount:':
+                name: init
+            '+descriptorWithPayload:isCompact:rowCount:columnCount:':
+                name: descriptor
+    CIQRCodeDescriptor: #since 11.0
+        methods:
+            '-initWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:':
+                name: init
+            '+descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:':
+                name: descriptor
+    CIRenderDestination: #since 11.0
+        methods:
+            '-initWithMTLTexture:commandBuffer:':
+                name: init
+            '-initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:':
+                name: init
+            '-initWithGLTexture:target:width:height:':
+                name: init
+            '-initWithBitmapData:width:height:bytesPerRow:format:':
+                name: init
+    CIRenderInfo: {} #since 11.0
+    CIRenderTask: {} #since 11.0
+    CISampler: #since 9.0
+        methods:
+            '-initWithImage:keysAndValues:':
+                name: init
+            '-initWithImage:options:':
+                name: init
+            '+samplerWithImage:keysAndValues:':
+                exclude: true
+            '+samplerWithImage:options:':
+                exclude: true
+    CITextFeature: {} #since 9.0
 
 protocols:
     CIFilterConstructor:
         protocols: [NSObjectProtocol]
         skip_adapter: true
-
+    CIImageProcessorInput: {} #since 10.0
+    CIImageProcessorOutput: {} #since 10.0
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

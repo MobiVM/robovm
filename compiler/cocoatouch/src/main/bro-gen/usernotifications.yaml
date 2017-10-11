@@ -15,7 +15,8 @@ enums:
     UNNotificationCategoryOptions: {}
     UNNotificationPresentationOptions: {}
     UNNotificationSetting: {}
-        
+    UNShowPreviewsSetting: {} #since 11.0
+
 classes:
     UNCalendarNotificationTrigger:
         methods:
@@ -49,6 +50,9 @@ classes:
     UNNotificationCategory:
         methods:
             '+categoryWithIdentifier:actions:intentIdentifiers:options:':
+                name: create
+                constructor: true
+            '+categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:':
                 name: create
                 constructor: true
     UNNotificationContent: {}

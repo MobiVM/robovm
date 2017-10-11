@@ -58,7 +58,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "startTunnelWithOptions:andReturnError:")
-    public native boolean startTunnel(NSDictionary<?, ?> options, NSError.NSErrorPtr error);
+    public native boolean startTunnel(NSDictionary<NSString, ?> options, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 9.0 and later.
      */

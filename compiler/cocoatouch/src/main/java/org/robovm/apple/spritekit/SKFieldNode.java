@@ -36,6 +36,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -86,9 +87,9 @@ import org.robovm.apple.gameplaykit.*;
     @Property(selector = "setCategoryBitMask:")
     public native void setCategoryBitMask(int v);
     @Property(selector = "direction")
-    public native @ByVal SKVector3 getDirection();
+    public native @ByVal VectorFloat3 getDirection();
     @Property(selector = "setDirection:")
-    public native void setDirection(@ByVal SKVector3 v);
+    public native void setDirection(@ByVal VectorFloat3 v);
     @Property(selector = "smoothness")
     public native float getSmoothness();
     @Property(selector = "setSmoothness:")
@@ -111,9 +112,9 @@ import org.robovm.apple.gameplaykit.*;
     @Method(selector = "radialGravityField")
     public static native SKFieldNode createRadialGravityField();
     @Method(selector = "linearGravityFieldWithVector:")
-    public static native SKFieldNode createLinearGravityField(@ByVal SKVector3 direction);
+    public static native SKFieldNode createLinearGravityField(@ByVal VectorFloat3 direction);
     @Method(selector = "velocityFieldWithVector:")
-    public static native SKFieldNode createVelocityField(@ByVal SKVector3 direction);
+    public static native SKFieldNode createVelocityField(@ByVal VectorFloat3 direction);
     @Method(selector = "velocityFieldWithTexture:")
     public static native SKFieldNode createVelocityField(SKTexture velocityTexture);
     @Method(selector = "noiseFieldWithSmoothness:animationSpeed:")

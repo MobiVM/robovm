@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -75,6 +76,11 @@ import org.robovm.apple.foundation.*;
     public native NSPersistentStoreMetadata getMetadata();
     @Property(selector = "setMetadata:")
     public native void setMetadata(NSPersistentStoreMetadata v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "coreSpotlightExporter")
+    public native NSCoreDataCoreSpotlightDelegate getCoreSpotlightExporter();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

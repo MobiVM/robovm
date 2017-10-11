@@ -56,6 +56,11 @@ import org.robovm.apple.dispatch.*;
     public NSURL getPresentedItemURL() { return null; }
     @NotImplemented("presentedItemOperationQueue")
     public NSOperationQueue getPresentedItemOperationQueue() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("observedPresentedItemUbiquityAttributes")
+    public NSSet<NSString> getObservedPresentedItemUbiquityAttributes() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -71,6 +76,11 @@ import org.robovm.apple.dispatch.*;
     public void presentedItemDidMoveToURL(NSURL newURL) {}
     @NotImplemented("presentedItemDidChange")
     public void presentedItemDidChange() {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("presentedItemDidChangeUbiquityAttributes:")
+    public void presentedItemDidChangeUbiquityAttributes(NSSet<NSString> attributes) {}
     @NotImplemented("presentedItemDidGainVersion:")
     public void presentedItemDidGainVersion(NSFileVersion version) {}
     @NotImplemented("presentedItemDidLoseVersion:")

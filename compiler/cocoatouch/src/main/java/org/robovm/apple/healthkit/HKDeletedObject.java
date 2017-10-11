@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKDeletedObject/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKDeletedObjectPtr extends Ptr<HKDeletedObject, HKDeletedObjectPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKDeletedObject.class); }/*</bind>*/
@@ -47,13 +47,25 @@ import org.robovm.apple.foundation.*;
     protected HKDeletedObject() {}
     protected HKDeletedObject(Handle h, long handle) { super(h, handle); }
     protected HKDeletedObject(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public HKDeletedObject(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "UUID")
     public native NSUUID getUUID();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "metadata")
+    public native NSDictionary<NSString, ?> getMetadata();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

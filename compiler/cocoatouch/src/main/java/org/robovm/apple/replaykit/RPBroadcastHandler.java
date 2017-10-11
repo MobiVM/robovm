@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,6 +57,11 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "updateServiceInfo:")
     public native void updateServiceInfo(NSDictionary<?, ?> serviceInfo);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "updateBroadcastURL:")
+    public native void updateBroadcastURL(NSURL broadcastURL);
     @Method(selector = "beginRequestWithExtensionContext:")
     public native void beginRequest(NSExtensionContext context);
     /*</methods>*/

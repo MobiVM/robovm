@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,6 +53,7 @@ public enum /*<name>*/NSCoreDataErrorCode/*</name>*/ implements NSErrorCode {
     ValidationStringTooLong(1660L),
     ValidationStringTooShort(1670L),
     ValidationStringPatternMatching(1680L),
+    ValidationInvalidURI(1690L),
     ManagedObjectContextLocking(132000L),
     PersistentStoreCoordinatorLocking(132010L),
     ManagedObjectReferentialIntegrity(133000L),
@@ -80,7 +82,8 @@ public enum /*<name>*/NSCoreDataErrorCode/*</name>*/ implements NSErrorCode {
     EntityMigrationPolicy(134170L),
     SQLite(134180L),
     InferredMappingModel(134190L),
-    ExternalRecordImport(134200L);
+    ExternalRecordImport(134200L),
+    PersistentHistoryTokenExpired(134301L);
     /*</values>*/
 
     /*<bind>*/

@@ -90,5 +90,10 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "isPedometerEventTrackingAvailable")
     public static native boolean isPedometerEventTrackingAvailable();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "authorizationStatus")
+    public static native CMAuthorizationStatus authorizationStatus();
     /*</methods>*/
 }

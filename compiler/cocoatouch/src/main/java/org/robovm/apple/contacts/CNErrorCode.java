@@ -51,7 +51,13 @@ public enum /*<name>*/CNErrorCode/*</name>*/ implements NSErrorCode {
     ValidationTypeMismatch(301L),
     ValidationConfigurationError(302L),
     PredicateInvalid(400L),
-    PolicyViolation(500L);
+    PolicyViolation(500L),
+    ClientIdentifierInvalid(600L),
+    ClientIdentifierDoesNotExist(601L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    VCardMalformed(700L);
     /*</values>*/
 
     /*<bind>*/

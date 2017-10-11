@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,7 +54,7 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAudioMixingDestination.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAudioMixingDestination() {}
+    protected AVAudioMixingDestination() {}
     protected AVAudioMixingDestination(Handle h, long handle) { super(h, handle); }
     protected AVAudioMixingDestination(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

@@ -171,12 +171,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final CMSampleBufferAttachmentKey StillImageLensStabilizationInfo = new CMSampleBufferAttachmentKey("StillImageLensStabilizationInfo");
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CMSampleBufferAttachmentKey CameraIntrinsicMatrix = new CMSampleBufferAttachmentKey("CameraIntrinsicMatrix");
+    /**
      * @since Available in iOS 8.0 and later.
      */
     public static final CMSampleBufferAttachmentKey ForceKeyFrame = new CMSampleBufferAttachmentKey("ForceKeyFrame");
     /*</constants>*/
     
-    private static /*<name>*/CMSampleBufferAttachmentKey/*</name>*/[] values = new /*<name>*/CMSampleBufferAttachmentKey/*</name>*/[] {/*<value_list>*/ResetDecoderBeforeDecoding, DrainAfterDecoding, PostNotificationWhenConsumed, ResumeOutput, TransitionID, TrimDurationAtStart, TrimDurationAtEnd, SpeedMultiplier, Reverse, FillDiscontinuitiesWithSilence, EmptyMedia, PermanentEmptyMedia, DisplayEmptyMediaImmediately, EndsPreviousSampleDuration, SampleReferenceURL, SampleReferenceByteOffset, GradualDecoderRefresh, DroppedFrameReason, DroppedFrameReasonInfo, StillImageLensStabilizationInfo, ForceKeyFrame/*</value_list>*/};
+    private static /*<name>*/CMSampleBufferAttachmentKey/*</name>*/[] values = new /*<name>*/CMSampleBufferAttachmentKey/*</name>*/[] {/*<value_list>*/ResetDecoderBeforeDecoding, DrainAfterDecoding, PostNotificationWhenConsumed, ResumeOutput, TransitionID, TrimDurationAtStart, TrimDurationAtEnd, SpeedMultiplier, Reverse, FillDiscontinuitiesWithSilence, EmptyMedia, PermanentEmptyMedia, DisplayEmptyMediaImmediately, EndsPreviousSampleDuration, SampleReferenceURL, SampleReferenceByteOffset, GradualDecoderRefresh, DroppedFrameReason, DroppedFrameReasonInfo, StillImageLensStabilizationInfo, CameraIntrinsicMatrix, ForceKeyFrame/*</value_list>*/};
     
     /*<name>*/CMSampleBufferAttachmentKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -299,6 +303,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo", optional=true)
         public static native CFString StillImageLensStabilizationInfo();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix", optional=true)
+        public static native CFString CameraIntrinsicMatrix();
         /**
          * @since Available in iOS 8.0 and later.
          */

@@ -36,7 +36,9 @@ import org.robovm.apple.contacts.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.0 and later.
+ * @deprecated Deprecated in iOS 11.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/PKAddressField/*</name>*/ extends Bits</*<name>*/PKAddressField/*</name>*/> {

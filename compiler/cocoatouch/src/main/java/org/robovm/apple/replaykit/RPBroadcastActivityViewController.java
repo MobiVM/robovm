@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,5 +60,10 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "loadBroadcastActivityViewControllerWithHandler:")
     public static native void load(@Block VoidBlock2<RPBroadcastActivityViewController, NSError> handler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "loadBroadcastActivityViewControllerWithPreferredExtension:handler:")
+    public static native void load(String preferredExtension, @Block VoidBlock2<RPBroadcastActivityViewController, NSError> handler);
     /*</methods>*/
 }

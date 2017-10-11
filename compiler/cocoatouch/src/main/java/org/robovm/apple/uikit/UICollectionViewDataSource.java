@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -71,7 +74,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "collectionView:moveItemAtIndexPath:toIndexPath:")
     void moveItemAt(UICollectionView collectionView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath);
     @Method(selector = "indexTitlesForCollectionView:")
-    NSArray<?> indexTitlesForCollectionView(UICollectionView collectionView);
+    NSArray<NSString> indexTitlesForCollectionView(UICollectionView collectionView);
     @Method(selector = "collectionView:indexPathForIndexTitle:atIndex:")
     NSIndexPath indexPathForIndexTitle(UICollectionView collectionView, String title, @MachineSizedSInt long index);
     /*</methods>*/

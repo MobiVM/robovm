@@ -80,9 +80,9 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "initWithLivePhotoEditingInput:")
     protected native @Pointer long initWithLivePhotoEditingInput(PHContentEditingInput livePhotoInput);
     @Method(selector = "prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:")
-    public native void prepareLivePhotoForPlayback(@ByVal CGSize targetSize, NSDictionary<?, ?> options, @Block VoidBlock2<PHLivePhoto, NSError> handler);
+    public native void prepareLivePhotoForPlayback(@ByVal CGSize targetSize, NSDictionary<NSString, ?> options, @Block VoidBlock2<PHLivePhoto, NSError> handler);
     @Method(selector = "saveLivePhotoToOutput:options:completionHandler:")
-    public native void saveLivePhoto(PHContentEditingOutput output, NSDictionary<?, ?> options, @Block VoidBlock2<Boolean, NSError> handler);
+    public native void saveLivePhoto(PHContentEditingOutput output, NSDictionary<NSString, ?> options, @Block VoidBlock2<Boolean, NSError> handler);
     @Method(selector = "cancel")
     public native void cancel();
     /*</methods>*/

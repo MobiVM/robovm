@@ -8,17 +8,22 @@ headers:
     - /System/Library/Frameworks/StoreKit.framework/Headers/StoreKitDefines.h
 typedefs:
     'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
-    
+
 enums:
     SKDownloadState: {first: SKDownloadStateWaiting, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
     SKPaymentTransactionState: {first: SKPaymentTransactionStatePurchasing, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
     SKErrorCode: {first: SKErrorUnknown}
     SKCloudServiceAuthorizationStatus: {}
     SKCloudServiceCapability: {}
+    SKProductStorePromotionVisibility: {} #since 11.0
 
 classes:
-    SKCloudServiceController: {}
-
+    SKCloudServiceController: #since 9.3
+        methods:
+            '-requestUserTokenForDeveloperToken:completionHandler:':
+                name: requestUserToken
+            '-requestPersonalizationTokenForClientToken:withCompletionHandler:':
+                name: requestPersonalizationToken
     SKError:
         extends: NSError
         annotations: ['@StronglyLinked']
@@ -113,8 +118,18 @@ classes:
         methods:
             '-loadWithOptions:completionHandler:':
                 name: load
+                parameters:
+                    options:
+                        type: SKCloudServiceSetupOptions
     SKStoreReviewController: {}
-
+    SKProductStorePromotionController: #since 11.0
+        methods:
+            '-fetchStorePromotionVisibilityForProduct:completionHandler:':
+                name: fetchStorePromotionVisibility
+            '-updateStorePromotionVisibility:forProduct:completionHandler:':
+                trim_after_first_colon: true
+            '-updateStorePromotionOrder:completionHandler:':
+                trim_after_first_colon: true
 protocols:
     SKCloudServiceSetupViewControllerDelegate:
         methods:
@@ -145,6 +160,8 @@ protocols:
                     queue: {}
                     downloads:
                         type: NSArray<SKDownload>
+            '-paymentQueue:shouldAddStorePayment:forProduct:':
+                name: shouldAddStorePayment
     SKProductsRequestDelegate: # DONE
         methods:
             '-productsRequest:didReceiveResponse:':
@@ -215,10 +232,13 @@ values:
     SKCloudServiceCapabilitiesDidChangeNotification:
         class: SKCloudServiceController
         name: CapabilitiesDidChangeNotification
+    SKStorefrontCountryCodeDidChangeNotification:
+        class: SKCloudServiceController
+        name: StorefrontCountryCodeDidChangeNotification
 
     # SKCloudServiceSetup
     SKCloudServiceSetup(.*):
-        class: SKCloudServiceSetupOptions
+        dictionary: SKCloudServiceSetupOptions
         name: '#{g[0]}'
         type: NSString
 

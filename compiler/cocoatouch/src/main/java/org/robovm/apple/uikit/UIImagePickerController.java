@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -78,6 +81,16 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "setAllowsEditing:")
     public native void setAllowsEditing(boolean v);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "imageExportPreset")
+    public native UIImagePickerControllerImageURLExportPreset getImageExportPreset();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setImageExportPreset:")
+    public native void setImageExportPreset(UIImagePickerControllerImageURLExportPreset v);
+    /**
      * @since Available in iOS 3.1 and later.
      */
     @Property(selector = "videoMaximumDuration")
@@ -97,6 +110,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setVideoQuality:")
     public native void setVideoQuality(UIImagePickerControllerQualityType v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "videoExportPreset")
+    public native String getVideoExportPreset();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setVideoExportPreset:")
+    public native void setVideoExportPreset(String v);
     /**
      * @since Available in iOS 3.1 and later.
      */

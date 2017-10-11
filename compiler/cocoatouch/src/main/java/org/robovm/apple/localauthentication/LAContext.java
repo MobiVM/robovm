@@ -93,6 +93,25 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setTouchIDAuthenticationAllowableReuseDuration:")
     public native void setTouchIDAuthenticationAllowableReuseDuration(double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "localizedReason")
+    public native String getLocalizedReason();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setLocalizedReason:")
+    public native void setLocalizedReason(String v);
+    @Property(selector = "interactionNotAllowed")
+    public native boolean isInteractionNotAllowed();
+    @Property(selector = "setInteractionNotAllowed:")
+    public native void setInteractionNotAllowed(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "biometryType")
+    public native LABiometryType getBiometryType();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

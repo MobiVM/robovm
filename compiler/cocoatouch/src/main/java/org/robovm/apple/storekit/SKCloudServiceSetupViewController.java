@@ -58,6 +58,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "loadWithOptions:completionHandler:")
-    public native void load(NSDictionary<?, ?> options, @Block VoidBlock2<Boolean, NSError> completionHandler);
+    public native void load(SKCloudServiceSetupOptions options, @Block VoidBlock2<Boolean, NSError> completionHandler);
     /*</methods>*/
 }

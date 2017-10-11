@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -147,6 +146,11 @@ import org.robovm.apple.audiounit.*;
      */
     @Property(selector = "categoryOptions")
     public native AVAudioSessionCategoryOptions getCategoryOptions();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "routeSharingPolicy")
+    public native AVAudioSessionRouteSharingPolicy getRouteSharingPolicy();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -372,15 +376,19 @@ import org.robovm.apple.audiounit.*;
     @Method(selector = "setCategory:mode:options:error:")
     private native boolean setCategory(AVAudioSessionCategory category, String mode, AVAudioSessionCategoryOptions options, NSError.NSErrorPtr outError);
     /**
-     * @since Available in iOS 8.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
-    @Method(selector = "recordPermission")
-    public native AVAudioSessionRecordPermission getRecordPermission();
+    public boolean setCategory(AVAudioSessionCategory category, String mode, AVAudioSessionRouteSharingPolicy policy, AVAudioSessionCategoryOptions options) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setCategory(category, mode, policy, options, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
-    @Method(selector = "requestRecordPermission:")
-    public native void requestRecordPermission(@Block VoidBooleanBlock response);
+    @Method(selector = "setCategory:mode:routeSharingPolicy:options:error:")
+    private native boolean setCategory(AVAudioSessionCategory category, String mode, AVAudioSessionRouteSharingPolicy policy, AVAudioSessionCategoryOptions options, NSError.NSErrorPtr outError);
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -395,6 +403,16 @@ import org.robovm.apple.audiounit.*;
      */
     @Method(selector = "setMode:error:")
     private native boolean setMode(AVAudioSessionMode mode, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Method(selector = "recordPermission")
+    public native AVAudioSessionRecordPermission getRecordPermission();
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Method(selector = "requestRecordPermission:")
+    public native void requestRecordPermission(@Block VoidBooleanBlock response);
     /**
      * @since Available in iOS 6.0 and later.
      */

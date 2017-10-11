@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -84,7 +85,7 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 3.0 and later.
      */
     @Property(selector = "entityVersionHashesByName")
-    public native NSDictionary<?, ?> getEntityVersionHashesByName();
+    public native NSDictionary<NSString, NSData> getEntityVersionHashesByName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -81,6 +81,11 @@ typedefs:
     'void (^)(NSURLCredential * _Nullable)': '@Block VoidBlock1<NSURLCredential>'
     'void (^)(NSTimer * _Nonnull)': '@Block VoidBlock1<NSTimer>'
     NSPropertyListReadOptions: NSPropertyListMutabilityOptions
+    # bellow defines to fight current typedef expand issue
+    NSURLResourceKey: NSString
+    NSAttributedStringKey: NSString
+    NSFileProviderServiceName : NSString
+
 structdefs:
     vector_uint2: 'VectorInt2'
     vector_int2: 'VectorInt2'
@@ -91,6 +96,12 @@ structdefs:
     vector_float2: 'VectorFloat2'
     vector_float3: 'VectorFloat3'
     vector_float4: 'VectorFloat4'
+    simd_float2: 'VectorFloat2'
+    simd_float3: 'VectorFloat3'
+    simd_float4: 'VectorFloat4'
+    simd_quatf: 'VectorFloat4'
+    vector_double4: 'VectorDouble4'
+    simd_quatd: 'VectorFloat4'
     matrix_float2x2: 'MatrixFloat2x4'
     matrix_float3x2: 'MatrixFloat3x4'
     matrix_float4x2: 'MatrixFloat4x4'
@@ -100,6 +111,8 @@ structdefs:
     matrix_float2x4: 'MatrixFloat2x4'
     matrix_float3x4: 'MatrixFloat3x4'
     matrix_float4x4: 'MatrixFloat4x4'
+    simd_float4x4: 'MatrixFloat4x4'
+    matrix_double4x4: 'MatrixDouble4x4'
 
 private_typedefs:
     ObjectType: NSObject
@@ -216,6 +229,12 @@ enums:
     NSVolumeEnumerationOptions: {}
     NSXMLParserErrorCode: { first: NSXMLParserInternalError, suffix: Error }
     NSXMLParserExternalEntityResolvingPolicy: {}
+    NSItemProviderRepresentationVisibility: {} #since 11.0
+    NSItemProviderFileOptions: {prefix: NSItemProviderFileOption} #since 11.0
+    NSXPCConnectionOptions: {prefix: NSXPCConnection} #since 6.0
+    NSLinguisticTaggerUnit: {}
+    NSURLSessionMultipathServiceType: {} #since 11.0
+    NSURLSessionDelayedRequestDisposition: {prefix: NSURLSessionDelayedRequest} #since 11.0
 
 categories:
     NSErrorRecoveryAttempting@NSObject: {protocol: true}
@@ -593,6 +612,7 @@ classes:
         methods:
             '-decodeArrayOfObjCType:count:at:': {exclude: true}
             '-decodeValueOfObjCType:at:': {exclude: true}
+            '-decodeValueOfObjCType:at:size:': {exclude: true}
             '-encodeArrayOfObjCType:count:at:': {exclude: true}
             '-encodeValueOfObjCType:at:': {exclude: true}
             '-encodeValuesOfObjCTypes:': {exclude: true}
@@ -643,7 +663,7 @@ classes:
                 name: '#{g[0]}0'
                 visibility: protected # reordering parameters
                 parameters:
-                    bytesp:
+                    bytes:
                         type: '@Pointer long'
             '-encodeObject:':
                 trim_after_first_colon: true
@@ -806,8 +826,8 @@ classes:
         properties:
             'description':
                 exclude: true
-        methods:
             '+timeIntervalSinceReferenceDate': {exclude: true}
+        methods:
             '+distant.*':
                 property: true
                 return_type: NSDate
@@ -1164,6 +1184,8 @@ classes:
                 name: itemAtURLWillMoveToURL
             '-itemAtURL:didMoveToURL:':
                 name: itemAtURLDidMoveToURL
+            '-itemAtURL:didChangeUbiquityAttributes:':
+                name: itemAtURLDidChangeUbiquityAttributes
             '+addFilePresenter:':
                 trim_after_first_colon: true
             '+removeFilePresenter:':
@@ -1420,6 +1442,11 @@ classes:
                 name: getRelationshipOfDirectoryToItem
                 throws: NSErrorException
                 visibility: protected
+            '-trashItemAtURL:resultingItemURL:error:':
+                throws: NSErrorException
+                name: trashItemAtURL
+            '-getFileProviderServicesForItemAtURL:completionHandler:':
+                trim_after_first_colon: true
     NSFileVersion: # DONE
         methods:
             '-replaceItemAtURL:options:error:':
@@ -1815,7 +1842,13 @@ classes:
                 parameters:
                     loadHandler:
                         type: '@Block("(@Block,,)") VoidBlock3<VoidBlock2<NSObject, NSError>, ObjCClass, NSDictionary<?, ?>>' # todo dictionary marshaling
+            '-registerDataRepresentationForTypeIdentifier:visibility:loadHandler:':
+                trim_after_first_colon: true
+            '-registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:':
+                trim_after_first_colon: true
             '-hasItemConformingToTypeIdentifier:':
+                trim_after_first_colon: true
+            '-hasRepresentationConformingToTypeIdentifier:fileOptions:':
                 trim_after_first_colon: true
             '-loadItemForTypeIdentifier:options:completionHandler:':
                 trim_after_first_colon: true
@@ -1831,6 +1864,18 @@ classes:
                         type: NSItemProviderOptions
                     completionHandler:
                         type: '@Block VoidBlock2<NSObject, NSError>'
+            '-loadDataRepresentationForTypeIdentifier:completionHandler:':
+                trim_after_first_colon: true
+            '-loadFileRepresentationForTypeIdentifier:completionHandler:':
+                trim_after_first_colon: true
+            '-loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:':
+                trim_after_first_colon: true
+            '-registerObject:visibility:':
+                trim_after_first_colon: true
+            '-registerObjectOfClass:visibility:loadHandler:':
+                trim_after_first_colon: true
+            '-loadObjectOfClass:completionHandler:':
+                trim_after_first_colon: true
     NSJSONSerialization: # DONE
         methods:
             '+isValidJSONObject:':
@@ -1888,6 +1933,9 @@ classes:
             '+unarchiveObjectWithFile:':
                 name: unarchiveObject
                 visibility: private
+            '+unarchiveTopLevelObjectWithData:error:':
+                throws: NSErrorException
+                name: unarchiveTopLevelObject
             '+classForClassName:':
                 name: getDefaultClassForClassName
                 return_type: 'Class<? extends NSObject>'
@@ -1972,6 +2020,22 @@ classes:
                 name: getAvailableTagSchemes
                 return_type: List<NSLinguisticTagScheme>
                 return_marshaler: NSArray.AsListMarshaler
+            '-tokenRangeAtIndex:unit:':
+                trim_after_first_colon: true
+            '-enumerateTagsInRange:unit:scheme:options:usingBlock:':
+                name: enumerateTagsInRange
+            '-tagAtIndex:unit:scheme:tokenRange:':
+                trim_after_first_colon: true
+            '-tagsInRange:unit:scheme:options:tokenRanges:':
+                trim_after_first_colon: true
+            '+availableTagSchemesForUnit:language:':
+                trim_after_first_colon: true
+            '+tagForString:atIndex:unit:scheme:orthography:tokenRange:':
+                trim_after_first_colon: true
+            '+tagsForString:range:unit:scheme:options:orthography:tokenRanges:':
+                trim_after_first_colon: true
+            '+enumerateTagsForString:range:unit:scheme:options:orthography:usingBlock:':
+                trim_after_first_colon: true
     NSLocale: # DONE
         skip_def_constructor: true
         properties:
@@ -2947,6 +3011,8 @@ classes:
             '+progressWithTotalUnitCount:parent:pendingUnitCount:':
                 name: create
                 constructor: true
+            '-performAsCurrentWithPendingUnitCount:usingBlock:':
+                name: performAsCurrent
     NSPropertyListSerialization: # DONE
         methods:
             '+propertyList:isValidForFormat:':
@@ -3303,6 +3369,8 @@ classes:
                 type: NSArray<NSNumber>
             'callStackSymbols':
                 type: NSArray<NSString>
+            '+isMainThread':
+                name: isCurrentThreadMainThread
         methods:
             '-init': {exclude: true}
             '-init.*':
@@ -3315,8 +3383,6 @@ classes:
                 name: detachNewThread
             '+detachNewThreadWithBlock:':
                 name: detachNewThread
-            '+isMainThread':
-                name: isCurrentThreadMainThread
             '+threadPriority':
                 property: true
             '+setThreadPriority:':
@@ -4106,6 +4172,9 @@ classes:
             '-getValue:':
                 name: getValue
                 visibility: protected
+            '-getValue:size:':
+                trim_after_first_colon: true
+                visibility: protected
     NSValueTransformer: # DONE
         methods:
             '-transformedValue:':
@@ -4131,6 +4200,25 @@ classes:
         methods:
             '-init.*':
                 name: init
+    NSFileProviderService: {} #since 11.0
+    NSXPCConnection: #since 6.0
+        properties:
+            'remoteObjectProxy': # FIXME: that is stupid workaround to match NSXPCProxyCreating
+                omit_prefix: true
+    NSXPCInterface: {} #since 6.0
+    NSXPCListener: {} #since 6.0
+    NSXPCListenerEndpoint: {} #since 6.0
+    NSXPCInterface: #since 6.0
+        methods:
+            '-setClasses:forSelector:argumentIndex:ofReply:':
+                trim_after_first_colon: true
+            '-classesForSelector:argumentIndex:ofReply:':
+                name: getClassesForSelector
+            '-setInterface:forSelector:argumentIndex:ofReply:':
+                trim_after_first_colon: true
+            '-interfaceForSelector:argumentIndex:ofReply:':
+                name: getInterfaceForSelector
+
 protocols:
     NSCacheDelegate: # DONE
         methods:
@@ -4345,7 +4433,7 @@ protocols:
             '-handlePortMessage:':
                 trim_after_first_colon: true
     NSProgressReporting: {} # DONE
-#    NSSecureCoding: {}
+    NSSecureCoding: {skip_adapter: true}
     NSStreamDelegate: # DONE
         methods:
             '-stream:handleEvent:':
@@ -4470,6 +4558,11 @@ protocols:
                 name: didComplete
             '-URLSession:task:didFinishCollectingMetrics:':
                 name: didFinishCollectingMetrics
+            '-URLSession:task:willBeginDelayedRequest:completionHandler:':
+                #trim_after_first_colon: true
+                name: willBeginDelayedRequest
+            '-URLSession:taskIsWaitingForConnectivity:':
+                name: taskIsWaitingForConnectivity
     NSUserActivityDelegate: # DONE
         methods:
             '-userActivityWillSave:':
@@ -4524,6 +4617,32 @@ protocols:
                 name: parseErrorOccurred
             '-parser:validationErrorOccurred:':
                 name: validationErrorOccurred
+
+    NSItemProviderReading: #since 11.0
+        methods:
+            '+objectWithItemProviderData:typeIdentifier:error:':
+                throws: NSErrorException
+                name: createProviderDataObject
+    NSItemProviderWriting: #since 11.0
+        properties:
+            '+writableTypeIdentifiersForItemProvider':
+                name: writableTypeIdentifiersForItemProvider0
+        methods:
+            '-itemProviderVisibilityForRepresentationWithTypeIdentifier:':
+                name: getItemProviderVisibility
+            '+itemProviderVisibilityForRepresentationWithTypeIdentifier:':
+                name: getItemProviderVisibility0
+            '-loadDataWithTypeIdentifier:forItemProviderCompletionHandler:':
+                name: loadData
+    NSXPCListenerDelegate:
+        methods:
+            '-listener:shouldAcceptNewConnection:':
+                name: shouldAcceptNewConnection
+    NSXPCProxyCreating:
+        properties:
+            '+writableTypeIdentifiersForItemProvider':
+                name: writableTypeIdentifiersForItemProvider0
+
 
 functions:
     NSAllocateObject:
@@ -4664,7 +4783,7 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: NSErrorUserInfoKey
-    NS(FilePath|StringEncoding|URL|LocalizedFailureReason|LocalizedRecoverySuggestion)ErrorKey:
+    NS(FilePath|StringEncoding|URL|LocalizedFailureReason|LocalizedRecoverySuggestion|LocalizedFailure|DebugDescription)ErrorKey:
         enum: NSCocoaErrorUserInfoKey
         name: '#{g[0]}'
         type: NSString
@@ -5292,6 +5411,14 @@ values:
         extends: NSURLProperty
     NSURLUbiquitousItemDownloadingStatus(.*):
         enum: NSURLUbiquitousItemDownloadingStatus
+        name: '#{g[0]}'
+        type: NSString
+    NSURLUbiquitousSharedItem(.*):
+        enum: NSURLUbiquitousSharedItem
+        name: '#{g[0]}'
+        type: NSString
+    NSMetadataUbiquitousSharedItem(.*):
+        enum: NSMetadataUbiquitousSharedItem
         name: '#{g[0]}'
         type: NSString
     NSURL(.*)Key:

@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 @Marshaler(NSError.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSError/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     public static class Marshaler {
         @MarshalsPointer
@@ -104,6 +104,8 @@ import org.robovm.apple.dispatch.*;
     protected NSError(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDomain:code:userInfo:")
     public NSError(String domain, @MachineSizedSInt long code, NSErrorUserInfo dict) { super((SkipInit) null); initObject(init(domain, code, dict)); }
+    @Method(selector = "initWithCoder:")
+    public NSError(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     
     private static final Selector domain = Selector.register("domain");
@@ -132,6 +134,8 @@ import org.robovm.apple.dispatch.*;
     public native NSErrorRecoveryAttempting getRecoveryAttempter();
     @Property(selector = "helpAnchor")
     public native String getHelpAnchor();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public NSURL getURL() {
@@ -162,5 +166,9 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "userInfoValueProviderForDomain:")
     public static native @Block Block2<NSError, String, NSObject> getUserInfoValueProvider(NSError err, String userInfoKey, String errorDomain);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

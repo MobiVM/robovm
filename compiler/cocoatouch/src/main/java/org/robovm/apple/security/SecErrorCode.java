@@ -50,6 +50,7 @@ public enum /*<name>*/SecErrorCode/*</name>*/ implements ValuedEnum {
     BadReq(-909L),
     InternalComponent(-2070L),
     CoreFoundationUnknown(-4960L),
+    MissingEntitlement(-34018L),
     NotAvailable(-25291L),
     ReadOnly(-25292L),
     AuthFailed(-25293L),

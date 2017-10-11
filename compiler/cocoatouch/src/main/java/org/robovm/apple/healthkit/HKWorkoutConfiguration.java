@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKWorkoutConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKWorkoutConfigurationPtr extends Ptr<HKWorkoutConfiguration, HKWorkoutConfigurationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKWorkoutConfiguration.class); }/*</bind>*/
@@ -47,6 +47,8 @@ import org.robovm.apple.foundation.*;
     public HKWorkoutConfiguration() {}
     protected HKWorkoutConfiguration(Handle h, long handle) { super(h, handle); }
     protected HKWorkoutConfiguration(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public HKWorkoutConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "activityType")
@@ -65,9 +67,14 @@ import org.robovm.apple.foundation.*;
     public native HKQuantity getLapLength();
     @Property(selector = "setLapLength:")
     public native void setLapLength(HKQuantity v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

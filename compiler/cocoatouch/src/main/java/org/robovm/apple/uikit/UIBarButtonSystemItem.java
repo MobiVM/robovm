@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -73,7 +76,9 @@ public enum /*<name>*/UIBarButtonSystemItem/*</name>*/ implements ValuedEnum {
     Redo(22L),
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     PageCurl(23L);
     /*</values>*/
 

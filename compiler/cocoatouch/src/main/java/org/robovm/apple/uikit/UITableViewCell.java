@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -175,6 +178,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setFocusStyle:")
     public native void setFocusStyle(UITableViewCellFocusStyle v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "userInteractionEnabledWhileDragging")
+    public native boolean isUserInteractionEnabledWhileDragging();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setUserInteractionEnabledWhileDragging:")
+    public native void setUserInteractionEnabledWhileDragging(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -203,6 +216,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "didTransitionToState:")
     public native void didTransitionToState(UITableViewCellStateMask state);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "dragStateDidChange:")
+    public native void dragStateDidChange(UITableViewCellDragState dragState);
     @Method(selector = "gestureRecognizerShouldBegin:")
     public native boolean shouldBegin(UIGestureRecognizer gestureRecognizer);
     @Method(selector = "gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:")

@@ -54,7 +54,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "widgetActiveDisplayModeDidChange:withMaximumSize:")
-    void widgetActiveDisplayModeDidChange$withMaximumSize$(NCWidgetDisplayMode activeDisplayMode, @ByVal CGSize maxSize);
+    void activeDisplayModeDidChange(NCWidgetDisplayMode activeDisplayMode, @ByVal CGSize maxSize);
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 10.0.

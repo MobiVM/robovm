@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNLight/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements SCNAnimatable, SCNTechniqueSupport/*</implements>*/ {
+    /*<implements>*/implements SCNAnimatable, SCNTechniqueSupport, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNLightPtr extends Ptr<SCNLight, SCNLightPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNLight.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNLight() {}
     protected SCNLight(Handle h, long handle) { super(h, handle); }
     protected SCNLight(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNLight(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
@@ -116,6 +118,66 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getShadowBias();
     @Property(selector = "setShadowBias:")
     public native void setShadowBias(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "automaticallyAdjustsShadowProjection")
+    public native boolean automaticallyAdjustsShadowProjection();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAutomaticallyAdjustsShadowProjection:")
+    public native void setAutomaticallyAdjustsShadowProjection(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "maximumShadowDistance")
+    public native @MachineSizedFloat double getMaximumShadowDistance();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setMaximumShadowDistance:")
+    public native void setMaximumShadowDistance(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "forcesBackFaceCasters")
+    public native boolean isForcesBackFaceCasters();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setForcesBackFaceCasters:")
+    public native void setForcesBackFaceCasters(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "sampleDistributedShadowMaps")
+    public native boolean isSampleDistributedShadowMaps();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setSampleDistributedShadowMaps:")
+    public native void setSampleDistributedShadowMaps(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "shadowCascadeCount")
+    public native @MachineSizedUInt long getShadowCascadeCount();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setShadowCascadeCount:")
+    public native void setShadowCascadeCount(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "shadowCascadeSplittingFactor")
+    public native @MachineSizedFloat double getShadowCascadeSplittingFactor();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setShadowCascadeSplittingFactor:")
+    public native void setShadowCascadeSplittingFactor(@MachineSizedFloat double v);
     @Property(selector = "orthographicScale")
     public native @MachineSizedFloat double getOrthographicScale();
     @Property(selector = "setOrthographicScale:")
@@ -164,37 +226,90 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedUInt long getCategoryBitMask();
     @Property(selector = "setCategoryBitMask:")
     public native void setCategoryBitMask(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "sphericalHarmonicsCoefficients")
+    public native NSData getSphericalHarmonicsCoefficients();
     @Property(selector = "animationKeys")
-    public native NSArray<?> getAnimationKeys();
+    public native NSArray<NSString> getAnimationKeys();
     @Property(selector = "technique")
     public native SCNTechnique getTechnique();
     @Property(selector = "setTechnique:")
     public native void setTechnique(SCNTechnique v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "light")
     public static native SCNLight create();
     @Method(selector = "addAnimation:forKey:")
-    public native void addAnimation(CAAnimation animation, String key);
+    public native void addAnimation(SCNAnimation animation, String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "addAnimationPlayer:forKey:")
+    public native void addAnimationPlayer(SCNAnimationPlayer player, String key);
     @Method(selector = "removeAllAnimations")
     public native void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
-    @Method(selector = "animationForKey:")
-    public native CAAnimation getAnimation(String key);
-    @Method(selector = "pauseAnimationForKey:")
-    public native void pauseAnimation(String key);
-    @Method(selector = "resumeAnimationForKey:")
-    public native void resumeAnimation(String key);
-    @Method(selector = "isAnimationForKeyPaused:")
-    public native boolean isAnimationPaused(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "animationPlayerForKey:")
+    public native SCNAnimationPlayer animationPlayerForKey(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "removeAnimationForKey:blendOutDuration:")
+    public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
+    @Method(selector = "animationForKey:")
+    public native CAAnimation getAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "pauseAnimationForKey:")
+    public native void pauseAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "resumeAnimationForKey:")
+    public native void resumeAnimation(String key);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "setSpeed:forAnimationKey:")
     public native void setSpeed(@MachineSizedFloat double speed, String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "isAnimationForKeyPaused:")
+    public native boolean isAnimationPaused(String key);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

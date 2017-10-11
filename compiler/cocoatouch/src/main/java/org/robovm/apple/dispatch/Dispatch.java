@@ -40,10 +40,12 @@ import org.robovm.rt.bro.ptr.*;
     /*</ptr>*/
     /*<bind>*/static { Bro.bind(Dispatch.class); }/*</bind>*/
     /*<constants>*/
-    public static final int API_VERSION = 20160712;
+    public static final int API_VERSION = 20170124;
     public static final int SWIFT3_OVERLAY = 0;
     protected static final long TIME_NOW = 0L;
     protected static final long TIME_FOREVER = ~0L;
+    public static final int APPLY_AUTO_AVAILABLE = 1;
+    public static final int ONCE_INLINE_FASTPATH = 1;
     public static final int AUTORELEASE_FREQUENCY_INHERIT = 0;
     public static final int AUTORELEASE_FREQUENCY_WORK_ITEM = 1;
     public static final int AUTORELEASE_FREQUENCY_NEVER = 2;

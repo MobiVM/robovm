@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEProxyServer/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NEProxyServerPtr extends Ptr<NEProxyServer, NEProxyServerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEProxyServer.class); }/*</bind>*/
@@ -53,6 +53,8 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "initWithAddress:port:")
     public NEProxyServer(String address, @MachineSizedSInt long port) { super((SkipInit) null); initObject(init(address, port)); }
+    @Method(selector = "initWithCoder:")
+    public NEProxyServer(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -95,6 +97,8 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setPassword:")
     public native void setPassword(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -103,5 +107,9 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "initWithAddress:port:")
     protected native @Pointer long init(String address, @MachineSizedSInt long port);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

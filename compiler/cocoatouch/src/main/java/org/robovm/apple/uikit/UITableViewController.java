@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -189,6 +192,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "tableView:editActionsForRowAtIndexPath:")
     public native NSArray<UITableViewRowAction> getEditActionsForRow(UITableView tableView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "tableView:leadingSwipeActionsConfigurationForRowAtIndexPath:")
+    public native UISwipeActionsConfiguration getLeadingSwipeActionsConfigurationForRow(UITableView tableView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:")
+    public native UISwipeActionsConfiguration getTrailingSwipeActionsConfigurationForRow(UITableView tableView, NSIndexPath indexPath);
     @Method(selector = "tableView:shouldIndentWhileEditingRowAtIndexPath:")
     public native boolean shouldIndentWhileEditingRow(UITableView tableView, NSIndexPath indexPath);
     @Method(selector = "tableView:willBeginEditingRowAtIndexPath:")
@@ -234,6 +247,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "indexPathForPreferredFocusedViewInTableView:")
     public native NSIndexPath getIndexPathForPreferredFocusedView(UITableView tableView);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "tableView:shouldSpringLoadRowAtIndexPath:withContext:")
+    public native boolean shouldSpringLoadRow(UITableView tableView, NSIndexPath indexPath, UISpringLoadedInteractionContext context);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     /**
@@ -269,6 +287,11 @@ import org.robovm.apple.corelocation.*;
     public native boolean shouldScrollToTop(UIScrollView scrollView);
     @Method(selector = "scrollViewDidScrollToTop:")
     public native void didScrollToTop(UIScrollView scrollView);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "scrollViewDidChangeAdjustedContentInset:")
+    public native void scrollViewDidChangeAdjustedContentInset(UIScrollView scrollView);
     @Method(selector = "tableView:numberOfRowsInSection:")
     public native @MachineSizedSInt long getNumberOfRowsInSection(UITableView tableView, @MachineSizedSInt long section);
     @Method(selector = "tableView:cellForRowAtIndexPath:")

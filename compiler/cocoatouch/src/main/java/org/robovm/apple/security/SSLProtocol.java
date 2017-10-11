@@ -44,6 +44,8 @@ public enum /*<name>*/SSLProtocol/*</name>*/ implements ValuedEnum {
     TLSProtocol11(7L),
     TLSProtocol12(8L),
     DTLSProtocol1(9L),
+    TLSProtocol13(10L),
+    TLSProtocolMaxSupported(999L),
     SSLProtocol2(1L),
     SSLProtocol3Only(3L),
     TLSProtocol1Only(5L),

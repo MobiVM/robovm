@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,7 @@ import org.robovm.apple.contacts.*;
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKRecord/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CKRecordPtr extends Ptr<CKRecord, CKRecordPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CKRecord.class); }/*</bind>*/
@@ -55,6 +56,8 @@ import org.robovm.apple.contacts.*;
     public CKRecord(String recordType, CKRecordID recordID) { super((SkipInit) null); initObject(init(recordType, recordID)); }
     @Method(selector = "initWithRecordType:zoneID:")
     public CKRecord(String recordType, CKRecordZoneID zoneID) { super((SkipInit) null); initObject(init(recordType, zoneID)); }
+    @Method(selector = "initWithCoder:")
+    public CKRecord(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "recordType")
@@ -86,6 +89,8 @@ import org.robovm.apple.contacts.*;
      */
     @Property(selector = "setParent:")
     public native void setParent(CKReference v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public void put(String key, String object) {
@@ -162,5 +167,9 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "setParentReferenceFromRecordID:")
     public native void setParentReferenceFromRecordID(CKRecordID parentRecordID);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

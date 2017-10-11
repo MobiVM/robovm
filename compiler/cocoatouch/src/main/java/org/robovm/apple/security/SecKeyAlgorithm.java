@@ -108,6 +108,56 @@ import org.robovm.apple.dispatch.*;
     @GlobalValue(symbol="kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA512", optional=true)
     public static native String RSASignatureMessagePKCS1v15SHA512();
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmRSASignatureDigestPSSSHA1", optional=true)
+    public static native String RSASignatureDigestPSSSHA1();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmRSASignatureDigestPSSSHA224", optional=true)
+    public static native String RSASignatureDigestPSSSHA224();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmRSASignatureDigestPSSSHA256", optional=true)
+    public static native String RSASignatureDigestPSSSHA256();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmRSASignatureDigestPSSSHA384", optional=true)
+    public static native String RSASignatureDigestPSSSHA384();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmRSASignatureDigestPSSSHA512", optional=true)
+    public static native String RSASignatureDigestPSSSHA512();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmRSASignatureMessagePSSSHA1", optional=true)
+    public static native String RSASignatureMessagePSSSHA1();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmRSASignatureMessagePSSSHA224", optional=true)
+    public static native String RSASignatureMessagePSSSHA224();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmRSASignatureMessagePSSSHA256", optional=true)
+    public static native String RSASignatureMessagePSSSHA256();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmRSASignatureMessagePSSSHA384", optional=true)
+    public static native String RSASignatureMessagePSSSHA384();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmRSASignatureMessagePSSSHA512", optional=true)
+    public static native String RSASignatureMessagePSSSHA512();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureRFC4754", optional=true)
@@ -277,6 +327,46 @@ import org.robovm.apple.dispatch.*;
      */
     @GlobalValue(symbol="kSecKeyAlgorithmECIESEncryptionCofactorX963SHA512AESGCM", optional=true)
     public static native String ECIESEncryptionCofactorX963SHA512AESGCM();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA224AESGCM", optional=true)
+    public static native String ECIESEncryptionStandardVariableIVX963SHA224AESGCM();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA256AESGCM", optional=true)
+    public static native String ECIESEncryptionStandardVariableIVX963SHA256AESGCM();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA384AESGCM", optional=true)
+    public static native String ECIESEncryptionStandardVariableIVX963SHA384AESGCM();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA512AESGCM", optional=true)
+    public static native String ECIESEncryptionStandardVariableIVX963SHA512AESGCM();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECIESEncryptionCofactorVariableIVX963SHA224AESGCM", optional=true)
+    public static native String ECIESEncryptionCofactorVariableIVX963SHA224AESGCM();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECIESEncryptionCofactorVariableIVX963SHA256AESGCM", optional=true)
+    public static native String ECIESEncryptionCofactorVariableIVX963SHA256AESGCM();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECIESEncryptionCofactorVariableIVX963SHA384AESGCM", optional=true)
+    public static native String ECIESEncryptionCofactorVariableIVX963SHA384AESGCM();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECIESEncryptionCofactorVariableIVX963SHA512AESGCM", optional=true)
+    public static native String ECIESEncryptionCofactorVariableIVX963SHA512AESGCM();
     /**
      * @since Available in iOS 10.0 and later.
      */

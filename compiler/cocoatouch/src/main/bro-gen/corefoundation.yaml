@@ -64,6 +64,7 @@ enums:
     CFURLEnumeratorResult: {}
     CFURLError: {}
     CFURLPathStyle: {}
+    CFISO8601DateFormatOptions: {prefix: kCFISO8601DateFormatWith}
 
 classes:
     CFAllocatorContext: {}
@@ -1974,9 +1975,7 @@ constants:
     kCFCoreFoundation(Version.*):
         class: CoreFoundationVersionNumber
         name: '#{g[0]}'
-    kCFISO8601DateFormatWith(.*):
-        class: CFISO8601DateFormatOptions
-        name: '#{g[0]}'
+
 
     kCFStringEncodingInvalidId:
         exclude: true

@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -74,7 +75,7 @@ import org.robovm.apple.dispatch.*;
     public native void setControllerPausedHandler(@Block VoidBlock1<GCController> v);
     @Property(selector = "handlerQueue")
     public native DispatchQueue getHandlerQueue();
-    @Property(selector = "setHandlerQueue:", strongRef = true)
+    @Property(selector = "setHandlerQueue:")
     public native void setHandlerQueue(DispatchQueue v);
     @Property(selector = "vendorName")
     public native String getVendorName();

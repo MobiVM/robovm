@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKFitzpatrickSkinTypeObject/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKFitzpatrickSkinTypeObjectPtr extends Ptr<HKFitzpatrickSkinTypeObject, HKFitzpatrickSkinTypeObjectPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKFitzpatrickSkinTypeObject.class); }/*</bind>*/
@@ -47,13 +47,20 @@ import org.robovm.apple.foundation.*;
     public HKFitzpatrickSkinTypeObject() {}
     protected HKFitzpatrickSkinTypeObject(Handle h, long handle) { super(h, handle); }
     protected HKFitzpatrickSkinTypeObject(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public HKFitzpatrickSkinTypeObject(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "skinType")
     public native HKFitzpatrickSkinType getSkinType();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

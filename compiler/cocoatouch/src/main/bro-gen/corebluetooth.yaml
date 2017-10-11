@@ -208,6 +208,7 @@ classes:
             '+UUIDWithNSUUID:':
                 name: create
                 constructor: true
+    CBL2CAPChannel: {} #since 11.0
 
 protocols:
     CBCentralManagerDelegate: # DONE
@@ -275,6 +276,8 @@ protocols:
                 name: didWriteValue
             '-peripheral:didReadRSSI:error:':
                 name: didReadRSSI
+            '-peripheral:didOpenL2CAPChannel:error:':
+                name: didOpenL2CAPChannel
     CBPeripheralManagerDelegate: # DONE
         methods:
             '-peripheralManagerDidUpdateState:':
@@ -301,7 +304,12 @@ protocols:
                         type: NSArray<CBATTRequest>
             '-peripheralManagerIsReadyToUpdateSubscribers:':
                 name: readyToUpdateSubscribers
-
+            '-peripheralManager:didPublishL2CAPChannel:error:':
+                name: didPublishL2CAPChannel
+            '-peripheralManager:didUnpublishL2CAPChannel:error:':
+                name: didUnpublishL2CAPChannel
+            '-peripheralManager:didOpenL2CAPChannel:error:':
+                name: didOpenL2CAPChannel
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (CB.*):

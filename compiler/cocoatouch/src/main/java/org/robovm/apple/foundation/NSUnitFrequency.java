@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnitFrequency/*</name>*/ 
     extends /*<extends>*/NSDimension/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSUnitFrequencyPtr extends Ptr<NSUnitFrequency, NSUnitFrequencyPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUnitFrequency.class); }/*</bind>*/

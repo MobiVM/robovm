@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKDevice/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKDevicePtr extends Ptr<HKDevice, HKDevicePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKDevice.class); }/*</bind>*/
@@ -49,6 +49,8 @@ import org.robovm.apple.foundation.*;
     protected HKDevice(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithName:manufacturer:model:hardwareVersion:firmwareVersion:softwareVersion:localIdentifier:UDIDeviceIdentifier:")
     public HKDevice(String name, String manufacturer, String model, String hardwareVersion, String firmwareVersion, String softwareVersion, String localIdentifier, String UDIDeviceIdentifier) { super((SkipInit) null); initObject(init(name, manufacturer, model, hardwareVersion, firmwareVersion, softwareVersion, localIdentifier, UDIDeviceIdentifier)); }
+    @Method(selector = "initWithCoder:")
+    public HKDevice(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -67,6 +69,8 @@ import org.robovm.apple.foundation.*;
     public native String getLocalIdentifier();
     @Property(selector = "UDIDeviceIdentifier")
     public native String getUDIDeviceIdentifier();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -115,5 +119,9 @@ import org.robovm.apple.foundation.*;
     protected native @Pointer long init(String name, String manufacturer, String model, String hardwareVersion, String firmwareVersion, String softwareVersion, String localIdentifier, String UDIDeviceIdentifier);
     @Method(selector = "localDevice")
     public static native HKDevice localDevice();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

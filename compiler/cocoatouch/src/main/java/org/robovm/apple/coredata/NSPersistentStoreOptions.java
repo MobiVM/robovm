@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -463,6 +464,21 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="NSPersistentStoreFileProtectionKey", optional=true)
         public static native NSString FileProtection();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="NSPersistentHistoryTrackingKey", optional=true)
+        public static native NSString HistoryTrackingKey();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="NSBinaryStoreSecureDecodingClasses", optional=true)
+        public static native NSString SecureDecodingClasses();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="NSBinaryStoreInsecureDecodingCompatibilityOption", optional=true)
+        public static native String InsecureDecodingCompatibilityOption();
         /**
          * @since Available in iOS 5.0 and later.
          * @deprecated Deprecated in iOS 10.0.

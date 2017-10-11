@@ -56,6 +56,11 @@ import org.robovm.rt.bro.ptr.*;
     @GlobalValue(symbol="_dispatch_source_type_data_or", optional=true, dereference=false)
     public static native DispatchSourceType DataOr();
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="_dispatch_source_type_data_replace", optional=true, dereference=false)
+    public static native DispatchSourceType DataReplace();
+    /**
      * @since Available in iOS 4.0 and later.
      */
     @GlobalValue(symbol="_dispatch_source_type_mach_send", optional=true, dereference=false)

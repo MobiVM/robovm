@@ -16,13 +16,33 @@
 
 package org.robovm.apple.corefoundation;
 
+import org.robovm.rt.bro.Struct;
 import org.robovm.rt.bro.ValuedEnum;
-import org.robovm.rt.bro.annotation.MarshalsValue;
 import org.robovm.rt.bro.annotation.Marshaler;
+import org.robovm.rt.bro.annotation.MarshalsValue;
+import org.robovm.rt.bro.annotation.Pointer;
+import org.robovm.rt.bro.annotation.StructMember;
 
 @Marshaler(OSStatus.Marshaler.class)
 public final class OSStatus {
     public static final OSStatus NO_ERR = new OSStatus(0);
+
+    /*<ptr>*/
+    public static class OSStatusPtr extends Struct {
+        @StructMember(0) native int getValue();
+        @StructMember(0) native void setValue(int value);
+
+        public OSStatus get() {
+            int v = getValue();
+            return v == 0 ? null :  new OSStatus(v);
+        }
+
+        public void set(OSStatus o) {
+            setValue(o == null ? 0 : o.getStatusCode());
+        }
+    }
+    /*</ptr>*/
+
 
     public static class Marshaler {
         @MarshalsValue

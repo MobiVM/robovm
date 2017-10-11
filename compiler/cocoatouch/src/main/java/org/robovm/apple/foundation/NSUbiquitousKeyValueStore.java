@@ -83,6 +83,8 @@ import org.robovm.apple.dispatch.*;
     protected NSUbiquitousKeyValueStore(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "defaultStore")
+    public static native NSUbiquitousKeyValueStore getDefaultStore();
     @Property(selector = "dictionaryRepresentation")
     public native NSDictionary<NSString, ?> asDictionary();
     /*</properties>*/
@@ -168,7 +170,5 @@ import org.robovm.apple.dispatch.*;
     protected native void setBool(boolean value, String aKey);
     @Method(selector = "synchronize")
     public native boolean synchronize();
-    @Method(selector = "defaultStore")
-    public static native NSUbiquitousKeyValueStore getDefaultStore();
     /*</methods>*/
 }

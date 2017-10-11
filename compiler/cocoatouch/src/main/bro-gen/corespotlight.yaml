@@ -1,0 +1,98 @@
+package: org.robovm.apple.corespotlight
+include: [foundation]
+library: CoreSpotlight
+framework: CoreSpotlight
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/CoreSpotlight.framework/Headers/CoreSpotlight.h
+typedefs: {}
+
+private_typedefs:
+    NSFileProtectionType: NSString
+
+enums:
+    CSIndexErrorCode: { nserror: true} #since 9.0
+    CSSearchQueryErrorCode: { nserror: true } #since 10.0
+
+classes:
+    CSCustomAttributeKey: #since 9.0
+        methods:
+            '-initWithKeyName:searchable:searchableByDefault:unique:multiValued:':
+                name: init
+    CSIndexExtensionRequestHandler: {} #since 9.0
+    CSLocalizedString: {}
+    CSPerson: #since 9.0
+        methods:
+            '-initWithDisplayName:handles:handleIdentifier:':
+                name: init
+    CSSearchQuery: #since 10.0
+        methods:
+            '-initWithQueryString:attributes:':
+                name: init
+    CSSearchableIndex: #since 9.0
+        methods:
+            '-initWithName:protectionClass:':
+                name: init
+            '-indexSearchableItems:completionHandler:':
+                trim_after_first_colon: true
+            '-deleteSearchableItemsWithIdentifiers:completionHandler:':
+                name: deleteSearchableItems
+            '-deleteSearchableItemsWithDomainIdentifiers:completionHandler:':
+                name: deleteSearchableItemsWithDomainIdentifiers
+            '-endIndexBatchWithClientState:completionHandler:':
+                name: endIndexBatch
+    CSSearchableItem: #since 9.0
+        methods:
+            '-initWithUniqueIdentifier:domainIdentifier:attributeSet:':
+                name: init
+    CSSearchableItemAttributeSet: #since 9.0
+        methods:
+            '-setValue:forCustomKey:':
+                name: setValue
+protocols:
+    CSSearchableIndexDelegate: #since 9.0
+        methods:
+            '-searchableIndex:reindexAllSearchableItemsWithAcknowledgementHandler:':
+                name: reindexAllSearchableItems
+            '-searchableIndex:reindexSearchableItemsWithIdentifiers:acknowledgementHandler:':
+                name: reindexSearchableItems
+            '-dataForSearchableIndex:itemIdentifier:typeIdentifier:error:':
+                name: getDataForSearchableIndex
+            '-fileURLForSearchableIndex:itemIdentifier:typeIdentifier:inPlace:error:':
+                name: getFileURLForSearchableIndex
+
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (CS.*):
+        class: CoreSpotlight
+        name: 'Function__#{g[0]}'
+
+values:
+
+    CSIndexErrorDomain:
+        class: CSIndexErrorCode
+        name: getClassDomain
+
+    CSSearchQueryErrorDomain:
+        class: CSSearchQueryErrorCode
+        name: getClassDomain
+
+    CS(SearchableItemActionType|SearchableItemActivityIdentifier|QueryContinuationActionType|SearchQueryString):
+        class: CSSearchableItem
+
+    CS(Mailbox.*):
+        class: CSSearchableItemAttributeSet
+        name: '#{g[0]}'
+
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?CS.*):
+        class: CoreSpotlight
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?CS.*):
+        class: CoreSpotlight
+        name: 'Constant__#{g[0]}'

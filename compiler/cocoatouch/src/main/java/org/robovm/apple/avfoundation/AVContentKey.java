@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,6 +60,11 @@ import org.robovm.apple.audiounit.*;
      */
     @GlobalValue(symbol="AVContentKeySystemFairPlayStreaming", optional=true)
     public static native String SystemFairPlayStreaming();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVContentKeySystemClearKey", optional=true)
+    public static native String SystemClearKey();
     /**
      * @since Available in iOS 10.3 and later.
      */

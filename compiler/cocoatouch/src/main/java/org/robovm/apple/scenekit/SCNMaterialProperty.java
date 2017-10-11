@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNMaterialProperty/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements SCNAnimatable/*</implements>*/ {
+    /*<implements>*/implements SCNAnimatable, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SCNMaterialPropertyPtr extends Ptr<SCNMaterialProperty, SCNMaterialPropertyPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNMaterialProperty.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNMaterialProperty() {}
     protected SCNMaterialProperty(Handle h, long handle) { super(h, handle); }
     protected SCNMaterialProperty(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNMaterialProperty(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contents")
@@ -106,37 +108,95 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getMappingChannel();
     @Property(selector = "setMappingChannel:")
     public native void setMappingChannel(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "textureComponents")
+    public native SCNColorMask getTextureComponents();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setTextureComponents:")
+    public native void setTextureComponents(SCNColorMask v);
     @Property(selector = "maxAnisotropy")
     public native @MachineSizedFloat double getMaxAnisotropy();
     @Property(selector = "setMaxAnisotropy:")
     public native void setMaxAnisotropy(@MachineSizedFloat double v);
     @Property(selector = "animationKeys")
-    public native NSArray<?> getAnimationKeys();
+    public native NSArray<NSString> getAnimationKeys();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "materialPropertyWithContents:")
     public static native SCNMaterialProperty create(NSObject contents);
     @Method(selector = "addAnimation:forKey:")
-    public native void addAnimation(CAAnimation animation, String key);
+    public native void addAnimation(SCNAnimation animation, String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "addAnimationPlayer:forKey:")
+    public native void addAnimationPlayer(SCNAnimationPlayer player, String key);
     @Method(selector = "removeAllAnimations")
     public native void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
-    @Method(selector = "animationForKey:")
-    public native CAAnimation getAnimation(String key);
-    @Method(selector = "pauseAnimationForKey:")
-    public native void pauseAnimation(String key);
-    @Method(selector = "resumeAnimationForKey:")
-    public native void resumeAnimation(String key);
-    @Method(selector = "isAnimationForKeyPaused:")
-    public native boolean isAnimationPaused(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "animationPlayerForKey:")
+    public native SCNAnimationPlayer animationPlayerForKey(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "removeAnimationForKey:blendOutDuration:")
+    public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
+    @Method(selector = "animationForKey:")
+    public native CAAnimation getAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "pauseAnimationForKey:")
+    public native void pauseAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "resumeAnimationForKey:")
+    public native void resumeAnimation(String key);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "setSpeed:forAnimationKey:")
     public native void setSpeed(@MachineSizedFloat double speed, String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "isAnimationForKeyPaused:")
+    public native boolean isAnimationPaused(String key);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

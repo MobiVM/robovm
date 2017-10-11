@@ -70,6 +70,10 @@ import org.robovm.apple.dispatch.*;
     public native @MachineSizedUInt long getSampleCount();
     @Property(selector = "setSampleCount:")
     public native void setSampleCount(@MachineSizedUInt long v);
+    @Property(selector = "rasterSampleCount")
+    public native @MachineSizedUInt long getRasterSampleCount();
+    @Property(selector = "setRasterSampleCount:")
+    public native void setRasterSampleCount(@MachineSizedUInt long v);
     @Property(selector = "isAlphaToCoverageEnabled")
     public native boolean isAlphaToCoverageEnabled();
     @Property(selector = "setAlphaToCoverageEnabled:")
@@ -162,6 +166,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setTessellationOutputWindingOrder:")
     public native void setTessellationOutputWindingOrder(MTLWinding v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "vertexBuffers")
+    public native MTLPipelineBufferDescriptorArray getVertexBuffers();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "fragmentBuffers")
+    public native MTLPipelineBufferDescriptorArray getFragmentBuffers();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

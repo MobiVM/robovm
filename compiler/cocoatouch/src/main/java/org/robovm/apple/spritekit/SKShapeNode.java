@@ -36,6 +36,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -137,17 +138,29 @@ import org.robovm.apple.gameplaykit.*;
      */
     @Property(selector = "setStrokeShader:")
     public native void setStrokeShader(SKShader v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "attributeValues")
-    public native NSDictionary<?, ?> getAttributeValues();
+    public native NSDictionary<NSString, SKAttributeValue> getAttributeValues();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "setAttributeValues:")
-    public native void setAttributeValues(NSDictionary<?, ?> v);
+    public native void setAttributeValues(NSDictionary<NSString, SKAttributeValue> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "valueForAttributeNamed:")
     public native SKAttributeValue valueForAttributeNamed(String key);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "setValue:forAttributeNamed:")
-    public native void setValue$forAttributeNamed$(SKAttributeValue value, String key);
+    public native void setValue(SKAttributeValue value, String key);
     /**
      * @since Available in iOS 8.0 and later.
      */

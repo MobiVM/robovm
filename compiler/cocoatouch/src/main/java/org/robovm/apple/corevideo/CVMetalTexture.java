@@ -32,6 +32,7 @@ import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.iosurface.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,6 +61,17 @@ import org.robovm.apple.metal.*;
         return coords;
     }
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kCVMetalTextureUsage", optional=true)
+    public static native CFString textureUsage();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kCVMetalTextureUsage", optional=true)
+    public static native void textureUsage(CFString v);
+    
     /**
      * @since Available in iOS 8.0 and later.
      */

@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("UserNotifications") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UNNotificationCategory/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UNNotificationCategoryPtr extends Ptr<UNNotificationCategory, UNNotificationCategoryPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UNNotificationCategory.class); }/*</bind>*/
@@ -47,7 +47,13 @@ import org.robovm.apple.foundation.*;
     protected UNNotificationCategory() {}
     protected UNNotificationCategory(Handle h, long handle) { super(h, handle); }
     protected UNNotificationCategory(SkipInit skipInit) { super(skipInit); }
-    public UNNotificationCategory(String identifier, NSArray<UNNotificationAction> actions, NSArray<?> intentIdentifiers, UNNotificationCategoryOptions options) { super((Handle) null, create(identifier, actions, intentIdentifiers, options)); retain(getHandle()); }
+    public UNNotificationCategory(String identifier, NSArray<UNNotificationAction> actions, NSArray<NSString> intentIdentifiers, UNNotificationCategoryOptions options) { super((Handle) null, create(identifier, actions, intentIdentifiers, options)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public UNNotificationCategory(String identifier, NSArray<UNNotificationAction> actions, NSArray<NSString> intentIdentifiers, String hiddenPreviewsBodyPlaceholder, UNNotificationCategoryOptions options) { super((Handle) null, create(identifier, actions, intentIdentifiers, hiddenPreviewsBodyPlaceholder, options)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public UNNotificationCategory(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -55,13 +61,29 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "actions")
     public native NSArray<UNNotificationAction> getActions();
     @Property(selector = "intentIdentifiers")
-    public native NSArray<?> getIntentIdentifiers();
+    public native NSArray<NSString> getIntentIdentifiers();
     @Property(selector = "options")
     public native UNNotificationCategoryOptions getOptions();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "hiddenPreviewsBodyPlaceholder")
+    public native String getHiddenPreviewsBodyPlaceholder();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "categoryWithIdentifier:actions:intentIdentifiers:options:")
-    protected static native @Pointer long create(String identifier, NSArray<UNNotificationAction> actions, NSArray<?> intentIdentifiers, UNNotificationCategoryOptions options);
+    protected static native @Pointer long create(String identifier, NSArray<UNNotificationAction> actions, NSArray<NSString> intentIdentifiers, UNNotificationCategoryOptions options);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:")
+    protected static native @Pointer long create(String identifier, NSArray<UNNotificationAction> actions, NSArray<NSString> intentIdentifiers, String hiddenPreviewsBodyPlaceholder, UNNotificationCategoryOptions options);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

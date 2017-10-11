@@ -43,7 +43,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CALayer/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding, CAMediaTiming/*</implements>*/ {
+    /*<implements>*/implements CAMediaTiming/*</implements>*/ {
 
     /*<ptr>*/public static class CALayerPtr extends Ptr<CALayer, CALayerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CALayer.class); }/*</bind>*/
@@ -55,8 +55,6 @@ import org.robovm.apple.metal.*;
     protected CALayer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLayer:")
     public CALayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
-    @Method(selector = "initWithCoder:")
-    public CALayer(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "bounds")
@@ -199,6 +197,16 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedFloat double getCornerRadius();
     @Property(selector = "setCornerRadius:")
     public native void setCornerRadius(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "maskedCorners")
+    public native CACornerMask getMaskedCorners();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setMaskedCorners:")
+    public native void setMaskedCorners(CACornerMask v);
     @Property(selector = "borderWidth")
     public native @MachineSizedFloat double getBorderWidth();
     @Property(selector = "setBorderWidth:")
@@ -402,9 +410,5 @@ import org.robovm.apple.metal.*;
     public native void scrollTo(@ByVal CGPoint p);
     @Method(selector = "scrollRectToVisible:")
     public native void scrollTo(@ByVal CGRect r);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

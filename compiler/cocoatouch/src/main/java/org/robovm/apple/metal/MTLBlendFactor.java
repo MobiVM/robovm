@@ -53,7 +53,23 @@ public enum /*<name>*/MTLBlendFactor/*</name>*/ implements ValuedEnum {
     BlendColor(11L),
     OneMinusBlendColor(12L),
     BlendAlpha(13L),
-    OneMinusBlendAlpha(14L);
+    OneMinusBlendAlpha(14L),
+    /**
+     * @since Available in iOS 10.11 and later.
+     */
+    Source1Color(15L),
+    /**
+     * @since Available in iOS 10.11 and later.
+     */
+    OneMinusSource1Color(16L),
+    /**
+     * @since Available in iOS 10.11 and later.
+     */
+    Source1Alpha(17L),
+    /**
+     * @since Available in iOS 10.11 and later.
+     */
+    OneMinusSource1Alpha(18L);
     /*</values>*/
 
     /*<bind>*/

@@ -243,9 +243,25 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final NSURLVolumeProperty SupportsExclusiveRenaming = new NSURLVolumeProperty("SupportsExclusiveRenaming");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final NSURLVolumeProperty SupportsImmutableFiles = new NSURLVolumeProperty("SupportsImmutableFiles");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final NSURLVolumeProperty SupportsAccessPermissions = new NSURLVolumeProperty("SupportsAccessPermissions");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final NSURLVolumeProperty AvailableCapacityForImportantUsage = new NSURLVolumeProperty("AvailableCapacityForImportantUsage");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final NSURLVolumeProperty AvailableCapacityForOpportunisticUsage = new NSURLVolumeProperty("AvailableCapacityForOpportunisticUsage");
     /*</constants>*/
     
-    private static /*<name>*/NSURLVolumeProperty/*</name>*/[] values = new /*<name>*/NSURLVolumeProperty/*</name>*/[] {/*<value_list>*/LocalizedFormatDescription, TotalCapacity, AvailableCapacity, ResourceCount, SupportsPersistentIDs, SupportsSymbolicLinks, SupportsHardLinks, SupportsJournaling, IsJournaling, SupportsSparseFiles, SupportsZeroRuns, SupportsCaseSensitiveNames, SupportsCasePreservedNames, SupportsRootDirectoryDates, SupportsVolumeSizes, SupportsRenaming, SupportsAdvisoryFileLocking, SupportsExtendedSecurity, IsBrowsable, MaximumFileSize, IsEjectable, IsRemovable, IsInternal, IsAutomounted, IsLocal, IsReadOnly, CreationDate, URLForRemounting, UUIDString, Name, LocalizedName, IsEncrypted, IsRootFileSystem, SupportsCompression, SupportsFileCloning, SupportsSwapRenaming, SupportsExclusiveRenaming/*</value_list>*/};
+    private static /*<name>*/NSURLVolumeProperty/*</name>*/[] values = new /*<name>*/NSURLVolumeProperty/*</name>*/[] {/*<value_list>*/LocalizedFormatDescription, TotalCapacity, AvailableCapacity, ResourceCount, SupportsPersistentIDs, SupportsSymbolicLinks, SupportsHardLinks, SupportsJournaling, IsJournaling, SupportsSparseFiles, SupportsZeroRuns, SupportsCaseSensitiveNames, SupportsCasePreservedNames, SupportsRootDirectoryDates, SupportsVolumeSizes, SupportsRenaming, SupportsAdvisoryFileLocking, SupportsExtendedSecurity, IsBrowsable, MaximumFileSize, IsEjectable, IsRemovable, IsInternal, IsAutomounted, IsLocal, IsReadOnly, CreationDate, URLForRemounting, UUIDString, Name, LocalizedName, IsEncrypted, IsRootFileSystem, SupportsCompression, SupportsFileCloning, SupportsSwapRenaming, SupportsExclusiveRenaming, SupportsImmutableFiles, SupportsAccessPermissions, AvailableCapacityForImportantUsage, AvailableCapacityForOpportunisticUsage/*</value_list>*/};
     
     /*<name>*/NSURLVolumeProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -453,6 +469,26 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="NSURLVolumeSupportsExclusiveRenamingKey", optional=true)
         public static native NSString SupportsExclusiveRenaming();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeSupportsImmutableFilesKey", optional=true)
+        public static native NSString SupportsImmutableFiles();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeSupportsAccessPermissionsKey", optional=true)
+        public static native NSString SupportsAccessPermissions();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeAvailableCapacityForImportantUsageKey", optional=true)
+        public static native NSString AvailableCapacityForImportantUsage();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeAvailableCapacityForOpportunisticUsageKey", optional=true)
+        public static native NSString AvailableCapacityForOpportunisticUsage();
         /*</values>*/
     }
 }

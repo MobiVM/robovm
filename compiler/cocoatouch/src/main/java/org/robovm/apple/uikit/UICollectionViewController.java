@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -169,6 +172,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "collectionView:targetContentOffsetForProposedContentOffset:")
     public native @ByVal CGPoint getTargetContentOffsetForProposedContentOffset(UICollectionView collectionView, @ByVal CGPoint proposedContentOffset);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "collectionView:shouldSpringLoadItemAtIndexPath:withContext:")
+    public native boolean shouldSpringLoadItem(UICollectionView collectionView, NSIndexPath indexPath, UISpringLoadedInteractionContext context);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     /**
@@ -204,6 +212,11 @@ import org.robovm.apple.corelocation.*;
     public native boolean shouldScrollToTop(UIScrollView scrollView);
     @Method(selector = "scrollViewDidScrollToTop:")
     public native void didScrollToTop(UIScrollView scrollView);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "scrollViewDidChangeAdjustedContentInset:")
+    public native void scrollViewDidChangeAdjustedContentInset(UIScrollView scrollView);
     @Method(selector = "collectionView:numberOfItemsInSection:")
     public native @MachineSizedSInt long getNumberOfItemsInSection(UICollectionView collectionView, @MachineSizedSInt long section);
     @Method(selector = "collectionView:cellForItemAtIndexPath:")
@@ -223,7 +236,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "collectionView:moveItemAtIndexPath:toIndexPath:")
     public native void moveItemAt(UICollectionView collectionView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath);
     @Method(selector = "indexTitlesForCollectionView:")
-    public native NSArray<?> indexTitlesForCollectionView(UICollectionView collectionView);
+    public native NSArray<NSString> indexTitlesForCollectionView(UICollectionView collectionView);
     @Method(selector = "collectionView:indexPathForIndexTitle:atIndex:")
     public native NSIndexPath indexPathForIndexTitle(UICollectionView collectionView, String title, @MachineSizedSInt long index);
     /*</methods>*/

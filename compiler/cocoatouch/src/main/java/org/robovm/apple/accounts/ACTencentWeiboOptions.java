@@ -108,7 +108,9 @@ import org.robovm.apple.foundation.*;
 
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     public String getAppId() {
         if (has(Keys.AppId())) {
             NSString val = (NSString) get(Keys.AppId());
@@ -118,7 +120,9 @@ import org.robovm.apple.foundation.*;
     }
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     public ACTencentWeiboOptions setAppId(String appId) {
         set(Keys.AppId(), new NSString(appId));
         return this;
@@ -131,7 +135,9 @@ import org.robovm.apple.foundation.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 7.0 and later.
+         * @deprecated Deprecated in iOS 11.0.
          */
+        @Deprecated
         @GlobalValue(symbol="ACTencentWeiboAppIdKey", optional=true)
         public static native NSString AppId();
     }

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,7 +94,11 @@ public enum /*<name>*/CKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 10.0 and later.
      */
-    ParticipantMayNeedVerification(33L);
+    ParticipantMayNeedVerification(33L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    ServerResponseLost(34L);
     /*</values>*/
 
     /*<bind>*/

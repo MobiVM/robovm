@@ -27,6 +27,7 @@ classes:
         properties:
             'videoGravity':
                 type: AVLayerVideoGravity
+    AVRoutePickerView: {} #since 11.0
 
 protocols:
     AVPictureInPictureControllerDelegate: # DONE
@@ -59,6 +60,12 @@ protocols:
                 name: shouldAutomaticallyDismissAtPictureInPictureStart
             '-playerViewController:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:':
                 name: restoreUserInterfaceForPictureInPictureStop
+    AVRoutePickerViewDelegate:
+        methods:
+            '-routePickerViewWillBeginPresentingRoutes:':
+                name: willBeginPresentingRoutes
+            '-routePickerViewDidEndPresentingRoutes:':
+                name: didEndPresentingRoutes
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

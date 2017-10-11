@@ -45,7 +45,7 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNParticleSystem/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements SCNAnimatable/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, SCNAnimatable/*</implements>*/ {
 
     /*<ptr>*/public static class SCNParticleSystemPtr extends Ptr<SCNParticleSystem, SCNParticleSystemPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SCNParticleSystem.class); }/*</bind>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNParticleSystem() {}
     protected SCNParticleSystem(Handle h, long handle) { super(h, handle); }
     protected SCNParticleSystem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SCNParticleSystem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "emissionDuration")
@@ -108,6 +110,16 @@ import org.robovm.apple.avfoundation.*;
     public native @ByVal SCNVector3 getEmittingDirection();
     @Property(selector = "setEmittingDirection:")
     public native void setEmittingDirection(@ByVal SCNVector3 v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "orientationDirection")
+    public native @ByVal SCNVector3 getOrientationDirection();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setOrientationDirection:")
+    public native void setOrientationDirection(@ByVal SCNVector3 v);
     @Property(selector = "acceleration")
     public native @ByVal SCNVector3 getAcceleration();
     @Property(selector = "setAcceleration:")
@@ -208,6 +220,26 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getParticleSizeVariation();
     @Property(selector = "setParticleSizeVariation:")
     public native void setParticleSizeVariation(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "particleIntensity")
+    public native @MachineSizedFloat double getParticleIntensity();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setParticleIntensity:")
+    public native void setParticleIntensity(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "particleIntensityVariation")
+    public native @MachineSizedFloat double getParticleIntensityVariation();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setParticleIntensityVariation:")
+    public native void setParticleIntensityVariation(@MachineSizedFloat double v);
     @Property(selector = "blendMode")
     public native SCNParticleBlendMode getBlendMode();
     @Property(selector = "setBlendMode:")
@@ -296,8 +328,10 @@ import org.robovm.apple.avfoundation.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(SCNParticleProperty.AsPropertyControllerMapMarshaler.class) Map<SCNParticleProperty, SCNParticlePropertyController> getPropertyControllers();
     @Property(selector = "setPropertyControllers:")
     public native void setPropertyControllers(@org.robovm.rt.bro.annotation.Marshaler(SCNParticleProperty.AsPropertyControllerMapMarshaler.class) Map<SCNParticleProperty, SCNParticlePropertyController> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "animationKeys")
-    public native NSArray<?> getAnimationKeys();
+    public native NSArray<NSString> getAnimationKeys();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -315,26 +349,72 @@ import org.robovm.apple.avfoundation.*;
     public static native SCNParticleSystem create();
     @Method(selector = "particleSystemNamed:inDirectory:")
     public static native SCNParticleSystem create(String name, String directory);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "addAnimation:forKey:")
-    public native void addAnimation(CAAnimation animation, String key);
+    public native void addAnimation(SCNAnimation animation, String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "addAnimationPlayer:forKey:")
+    public native void addAnimationPlayer(SCNAnimationPlayer player, String key);
     @Method(selector = "removeAllAnimations")
     public native void removeAllAnimations();
     @Method(selector = "removeAnimationForKey:")
     public native void removeAnimation(String key);
-    @Method(selector = "animationForKey:")
-    public native CAAnimation getAnimation(String key);
-    @Method(selector = "pauseAnimationForKey:")
-    public native void pauseAnimation(String key);
-    @Method(selector = "resumeAnimationForKey:")
-    public native void resumeAnimation(String key);
-    @Method(selector = "isAnimationForKeyPaused:")
-    public native boolean isAnimationPaused(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "animationPlayerForKey:")
+    public native SCNAnimationPlayer animationPlayerForKey(String key);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "removeAnimationForKey:blendOutDuration:")
+    public native void removeAnimationForKey(String key, @MachineSizedFloat double duration);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "removeAnimationForKey:fadeOutDuration:")
     public native void removeAnimation(String key, @MachineSizedFloat double duration);
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
+    @Method(selector = "animationForKey:")
+    public native CAAnimation getAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "pauseAnimationForKey:")
+    public native void pauseAnimation(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "resumeAnimationForKey:")
+    public native void resumeAnimation(String key);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "setSpeed:forAnimationKey:")
     public native void setSpeed(@MachineSizedFloat double speed, String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "isAnimationForKeyPaused:")
+    public native boolean isAnimationPaused(String key);
     /*</methods>*/
 }

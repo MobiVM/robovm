@@ -52,7 +52,11 @@ public enum /*<name>*/SCNBlendMode/*</name>*/ implements ValuedEnum {
     Subtract(2L),
     Multiply(3L),
     Screen(4L),
-    Replace(5L);
+    Replace(5L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    Max(6L);
     /*</values>*/
 
     /*<bind>*/

@@ -103,9 +103,13 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final HKWorkoutSortIdentifier TotalSwimmingStrokeCount = new HKWorkoutSortIdentifier("TotalSwimmingStrokeCount");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final HKWorkoutSortIdentifier TotalFlightsClimbed = new HKWorkoutSortIdentifier("TotalFlightsClimbed");
     /*</constants>*/
     
-    private static /*<name>*/HKWorkoutSortIdentifier/*</name>*/[] values = new /*<name>*/HKWorkoutSortIdentifier/*</name>*/[] {/*<value_list>*/Duration, TotalDistance, TotalEnergyBurned, TotalSwimmingStrokeCount/*</value_list>*/};
+    private static /*<name>*/HKWorkoutSortIdentifier/*</name>*/[] values = new /*<name>*/HKWorkoutSortIdentifier/*</name>*/[] {/*<value_list>*/Duration, TotalDistance, TotalEnergyBurned, TotalSwimmingStrokeCount, TotalFlightsClimbed/*</value_list>*/};
     
     /*<name>*/HKWorkoutSortIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -148,6 +152,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKWorkoutSortIdentifierTotalSwimmingStrokeCount", optional=true)
         public static native NSString TotalSwimmingStrokeCount();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="HKWorkoutSortIdentifierTotalFlightsClimbed", optional=true)
+        public static native NSString TotalFlightsClimbed();
         /*</values>*/
     }
 }

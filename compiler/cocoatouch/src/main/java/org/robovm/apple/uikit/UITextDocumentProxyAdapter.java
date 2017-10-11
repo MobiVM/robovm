@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,10 +58,20 @@ import org.robovm.apple.corelocation.*;
     @NotImplemented("documentContextAfterInput")
     public String getDocumentContextAfterInput() { return null; }
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("selectedText")
+    public String getSelectedText() { return null; }
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @NotImplemented("documentInputMode")
     public UITextInputMode getDocumentInputMode() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("documentIdentifier")
+    public NSUUID getDocumentIdentifier() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

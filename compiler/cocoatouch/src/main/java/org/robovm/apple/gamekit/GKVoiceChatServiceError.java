@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,24 +32,73 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 3.0 and later.
+ * @deprecated Deprecated in iOS 7.0.
+ */
+@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("GameKit") @StronglyLinked/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKVoiceChatServiceError/*</name>*/ 
-    extends /*<extends>*/NSError/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Library("GameKit")/*</annotations>*/
+public enum /*<name>*/GKVoiceChatServiceError/*</name>*/ implements NSErrorCode {
+    /*<values>*/
+    Internal(32000L),
+    NoRemotePackets(32001L),
+    UnableToConnect(32002L),
+    RemoteParticipantHangup(32003L),
+    InvalidCallID(32004L),
+    AudioUnavailable(32005L),
+    UninitializedClient(32006L),
+    ClientMissingRequiredMethods(32007L),
+    RemoteParticipantBusy(32008L),
+    RemoteParticipantCancelled(32009L),
+    RemoteParticipantResponseInvalid(32010L),
+    RemoteParticipantDeclinedInvite(32011L),
+    MethodCurrentlyInvalid(32012L),
+    NetworkConfiguration(32013L),
+    UnsupportedRemoteVersion(32014L),
+    OutOfMemory(32015L),
+    InvalidParameter(32016L);
+    /*</values>*/
 
-    /*<ptr>*/public static class GKVoiceChatServiceErrorPtr extends Ptr<GKVoiceChatServiceError, GKVoiceChatServiceErrorPtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(GKVoiceChatServiceError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected GKVoiceChatServiceError(SkipInit skipInit) { //Manually edited!
-    	super(skipInit);
-    }
-    /*</constructors>*/
-    /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @GlobalValue(symbol="GKVoiceChatServiceErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/GKVoiceChatServiceError/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/GKVoiceChatServiceError/*</name>*/ valueOf(long n) {
+        for (/*<name>*/GKVoiceChatServiceError/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in "
+            + /*<name>*/GKVoiceChatServiceError/*</name>*/.class.getName());
+    }
+
+    // bind wrap to include it in compilation as long as nserror enum is used 
+    static { Bro.bind(NSErrorWrap.class); }
+    @StronglyLinked
+    public static class NSErrorWrap extends NSError {
+        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
+
+        @Override public NSErrorCode getErrorCode() {
+             try {
+                 return  /*<name>*/GKVoiceChatServiceError/*</name>*/.valueOf(getCode());
+             } catch (IllegalArgumentException e) {
+                 return null;
+             }
+         }
+
+        public static String getClassDomain() {
+            /** must be incerted in value section */
+            return /*<name>*/GKVoiceChatServiceError/*</name>*/.getClassDomain();
+        }
+    }
 }

@@ -26,7 +26,8 @@ enums:
     AudioChannelCoordinate: {first: kAudioChannelCoordinates_LeftRight}
     AudioChannelFlags: {first: kAudioChannelFlags_AllOff, prefix: kAudioChannelFlags_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
     AudioChannelLayoutTag: {first: kAudioChannelLayoutTag_UseChannelDescriptions, skip_none: true, prefix: kAudioChannelLayoutTag_, bits: true}
-    
+    SMPTETimeFlags: {prefix: kSMPTETime}
+    MPEG4ObjectID: {prefix: kMPEG4Object_}
 classes:
     # Structs:
     AudioValueRange: # DONE

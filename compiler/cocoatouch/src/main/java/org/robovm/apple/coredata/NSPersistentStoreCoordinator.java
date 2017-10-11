@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corespotlight.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -202,6 +203,11 @@ import org.robovm.apple.foundation.*;
     @GlobalValue(symbol="NSPersistentStoreCoordinatorWillRemoveStoreNotification", optional=true)
     public static native NSString WillRemoveStoreNotification();
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="NSCoreDataCoreSpotlightExporter", optional=true)
+    public static native String CoreSpotlightExporter();
+    /**
      * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
@@ -244,7 +250,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "setMetadata:forPersistentStore:")
     public native void setMetadataForPersistentStore(NSPersistentStoreMetadata metadata, NSPersistentStore store);
     @Method(selector = "metadataForPersistentStore:")
-    public native NSDictionary<?, ?> getMetadataForPersistentStore(NSPersistentStore store);
+    public native NSDictionary<NSString, ?> getMetadataForPersistentStore(NSPersistentStore store);
     @Method(selector = "managedObjectIDForURIRepresentation:")
     public native NSManagedObjectID getManagedObjectIDForURIRepresentation(NSURL url);
     /**

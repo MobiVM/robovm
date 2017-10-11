@@ -74,5 +74,10 @@ import org.robovm.apple.uikit.*;
      */
     @NotImplemented("paymentQueue:updatedDownloads:")
     public void updatedDownloads(SKPaymentQueue queue, NSArray<SKDownload> downloads) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("paymentQueue:shouldAddStorePayment:forProduct:")
+    public boolean shouldAddStorePayment(SKPaymentQueue queue, SKPayment payment, SKProduct product) { return false; }
     /*</methods>*/
 }

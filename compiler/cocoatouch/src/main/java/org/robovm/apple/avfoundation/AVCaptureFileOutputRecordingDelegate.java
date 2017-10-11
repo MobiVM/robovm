@@ -38,11 +38,12 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 4.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVCaptureFileOutputRecordingDelegate/*</name>*/ 
@@ -58,9 +59,9 @@ import org.robovm.apple.audiounit.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "captureOutput:didStartRecordingToOutputFileAtURL:fromConnections:")
-    void didStartRecording(AVCaptureFileOutput captureOutput, NSURL fileURL, NSArray<AVCaptureConnection> connections);
+    void didStartRecording(AVCaptureFileOutput output, NSURL fileURL, NSArray<AVCaptureConnection> connections);
     @Method(selector = "captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:")
-    void didFinishRecording(AVCaptureFileOutput captureOutput, NSURL outputFileURL, NSArray<AVCaptureConnection> connections, NSError error);
+    void didFinishRecording(AVCaptureFileOutput output, NSURL outputFileURL, NSArray<AVCaptureConnection> connections, NSError error);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

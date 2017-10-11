@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.corebluetooth.*;
+import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,6 +94,16 @@ import org.robovm.apple.corebluetooth.*;
      */
     @Property(selector = "setAllowsBackgroundLocationUpdates:")
     public native void setAllowsBackgroundLocationUpdates(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "showsBackgroundLocationIndicator")
+    public native boolean showsBackgroundLocationIndicator();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setShowsBackgroundLocationIndicator:")
+    public native void setShowsBackgroundLocationIndicator(boolean v);
     @Property(selector = "location")
     public native CLLocation getLocation();
     /**

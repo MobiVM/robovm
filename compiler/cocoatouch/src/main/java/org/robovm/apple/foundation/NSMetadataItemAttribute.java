@@ -194,12 +194,16 @@ import org.robovm.apple.dispatch.*;
      */
     public static final NSMetadataItemAttribute URLInLocalContainer = new NSMetadataItemAttribute("URLInLocalContainer");
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final NSMetadataItemAttribute IsShared = new NSMetadataItemAttribute("IsShared");
+    /**
      * @since Available in iOS 5.0 and later.
      */
     public static final NSMetadataItemAttribute ContentRelevance = new NSMetadataItemAttribute("ContentRelevance");
     /*</constants>*/
     
-    private static /*<name>*/NSMetadataItemAttribute/*</name>*/[] values = new /*<name>*/NSMetadataItemAttribute/*</name>*/[] {/*<value_list>*/FSName, DisplayName, URL, Path, FSSize, FSCreationDate, FSContentChangeDate, ContentType, ContentTypeTree, IsUbiquitous, HasUnresolvedConflicts, IsDownloaded, DownloadingStatus, IsDownloading, IsUploaded, IsUploading, PercentDownloaded, PercentUploaded, DownloadingError, UploadingError, DownloadRequested, IsExternalDocument, ContainerDisplayName, URLInLocalContainer, ContentRelevance/*</value_list>*/};
+    private static /*<name>*/NSMetadataItemAttribute/*</name>*/[] values = new /*<name>*/NSMetadataItemAttribute/*</name>*/[] {/*<value_list>*/FSName, DisplayName, URL, Path, FSSize, FSCreationDate, FSContentChangeDate, ContentType, ContentTypeTree, IsUbiquitous, HasUnresolvedConflicts, IsDownloaded, DownloadingStatus, IsDownloading, IsUploaded, IsUploading, PercentDownloaded, PercentUploaded, DownloadingError, UploadingError, DownloadRequested, IsExternalDocument, ContainerDisplayName, URLInLocalContainer, IsShared, ContentRelevance/*</value_list>*/};
     
     /*<name>*/NSMetadataItemAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -344,6 +348,11 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="NSMetadataUbiquitousItemURLInLocalContainerKey", optional=true)
         public static native NSString URLInLocalContainer();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="NSMetadataUbiquitousItemIsSharedKey", optional=true)
+        public static native NSString IsShared();
         /**
          * @since Available in iOS 5.0 and later.
          */

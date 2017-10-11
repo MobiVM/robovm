@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,8 +50,18 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Method(selector = "screenRecorder:didStopRecordingWithError:previewViewController:")
     void didStopRecording(RPScreenRecorder screenRecorder, NSError error, RPPreviewViewController previewViewController);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "screenRecorder:didStopRecordingWithPreviewViewController:error:")
+    void didStopRecording(RPScreenRecorder screenRecorder, RPPreviewViewController previewViewController, NSError error);
     @Method(selector = "screenRecorderDidChangeAvailability:")
     void didChangeAvailability(RPScreenRecorder screenRecorder);
     /*</methods>*/

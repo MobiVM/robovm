@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,7 +49,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIUserNotificationAction/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UIUserNotificationActionPtr extends Ptr<UIUserNotificationAction, UIUserNotificationActionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIUserNotificationAction.class); }/*</bind>*/
@@ -79,6 +82,8 @@ import org.robovm.apple.corelocation.*;
     public native boolean isAuthenticationRequired();
     @Property(selector = "isDestructive")
     public native boolean isDestructive();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     public void setIdentifier(String v) {
         throw new UnsupportedOperationException("UIUserNotificationAction is immutable");
@@ -111,5 +116,7 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

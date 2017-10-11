@@ -56,6 +56,11 @@ import org.robovm.apple.dispatch.*;
     public native @MachineSizedUInt long getOffset();
     @Property(selector = "dataType")
     public native MTLDataType getDataType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "argumentIndex")
+    public native @MachineSizedUInt long getArgumentIndex();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -63,5 +68,15 @@ import org.robovm.apple.dispatch.*;
     public native MTLStructType getStructType();
     @Method(selector = "arrayType")
     public native MTLArrayType getArrayType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "textureReferenceType")
+    public native MTLTextureReferenceType textureReferenceType();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "pointerType")
+    public native MTLPointerType pointerType();
     /*</methods>*/
 }

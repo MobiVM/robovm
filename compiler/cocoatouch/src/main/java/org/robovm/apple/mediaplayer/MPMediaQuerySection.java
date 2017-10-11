@@ -40,7 +40,7 @@ import org.robovm.apple.coregraphics.*;
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaQuerySection/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MPMediaQuerySectionPtr extends Ptr<MPMediaQuerySection, MPMediaQuerySectionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MPMediaQuerySection.class); }/*</bind>*/
@@ -49,15 +49,22 @@ import org.robovm.apple.coregraphics.*;
     public MPMediaQuerySection() {}
     protected MPMediaQuerySection(Handle h, long handle) { super(h, handle); }
     protected MPMediaQuerySection(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MPMediaQuerySection(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "title")
     public native String getTitle();
     @Property(selector = "range")
     public native @ByVal NSRange getRange();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

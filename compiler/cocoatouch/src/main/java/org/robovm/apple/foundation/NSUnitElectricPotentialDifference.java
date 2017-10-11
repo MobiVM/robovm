@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnitElectricPotentialDifference/*</name>*/ 
     extends /*<extends>*/NSDimension/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSUnitElectricPotentialDifferencePtr extends Ptr<NSUnitElectricPotentialDifference, NSUnitElectricPotentialDifferencePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSUnitElectricPotentialDifference.class); }/*</bind>*/

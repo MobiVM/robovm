@@ -37,18 +37,12 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/GKInviteRecipientResponse/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    RecipientResponseAccepted(0L),
-    RecipientResponseDeclined(1L),
-    RecipientResponseFailed(2L),
-    RecipientResponseIncompatible(3L),
-    RecipientResponseUnableToConnect(4L),
-    RecipientResponseNoAnswer(5L),
-    eResponseAccepted(0L),
-    eResponseDeclined(1L),
-    eResponseFailed(2L),
-    eResponseIncompatible(3L),
-    eResponseUnableToConnect(4L),
-    eResponseNoAnswer(5L);
+    Accepted(0L),
+    Declined(1L),
+    Failed(2L),
+    Incompatible(3L),
+    UnableToConnect(4L),
+    NoAnswer(5L);
     /*</values>*/
 
     /*<bind>*/

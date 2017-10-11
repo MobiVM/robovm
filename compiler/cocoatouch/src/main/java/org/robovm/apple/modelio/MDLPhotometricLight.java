@@ -67,5 +67,10 @@ import org.robovm.apple.coregraphics.*;
     public native void generateSphericalHarmonics(@MachineSizedUInt long sphericalHarmonicsLevel);
     @Method(selector = "generateCubemapFromLight:")
     public native void generateCubemap(@MachineSizedUInt long textureSize);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "generateTexture:")
+    public native MDLTexture generateTexture(@MachineSizedUInt long textureSize);
     /*</methods>*/
 }

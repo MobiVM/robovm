@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,6 +62,25 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "anchorWithOffsetToAnchor:")
+    public native NSLayoutDimension anchorWithOffsetToAnchor(NSLayoutYAxisAnchor otherAnchor);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "constraintEqualToSystemSpacingBelowAnchor:multiplier:")
+    public native NSLayoutConstraint constraintEqualToSystemSpacingBelowAnchor(NSLayoutYAxisAnchor anchor, @MachineSizedFloat double multiplier);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:multiplier:")
+    public native NSLayoutConstraint constraintGreaterThanOrEqualToSystemSpacingBelowAnchor(NSLayoutYAxisAnchor anchor, @MachineSizedFloat double multiplier);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:")
+    public native NSLayoutConstraint constraintLessThanOrEqualToSystemSpacingBelowAnchor(NSLayoutYAxisAnchor anchor, @MachineSizedFloat double multiplier);
     /*</methods>*/
 }

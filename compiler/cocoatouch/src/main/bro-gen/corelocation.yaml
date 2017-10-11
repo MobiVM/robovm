@@ -1,5 +1,5 @@
 package: org.robovm.apple.corelocation
-include: [foundation.yaml, addressbook.yaml, corebluetooth.yaml]
+include: [foundation.yaml, addressbook.yaml, corebluetooth.yaml, contacts]
 library: CoreLocation
 framework: CoreLocation
 clang_args: ['-x', 'objective-c']
@@ -57,6 +57,14 @@ classes:
                 name: geocodeAddress
             '-geocodeAddressString:inRegion:completionHandler:':
                 name: geocodeAddress
+            '-reverseGeocodeLocation:preferredLocale:completionHandler:':
+                name: reverseGeocodeLocation
+            '-geocodeAddressString:inRegion:preferredLocale:completionHandler:':
+                name: geocodeAddress
+            '-geocodePostalAddress:completionHandler:':
+                name: geocodePostalAddress
+            '-geocodePostalAddress:preferredLocale:completionHandler:':
+                name: geocodePostalAddress
     CLHeading: # DONE
         properties:
             'description':

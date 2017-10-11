@@ -45,11 +45,23 @@ public enum /*<name>*/LAErrorCode/*</name>*/ implements NSErrorCode {
     UserFallback(-3L),
     SystemCancel(-4L),
     PasscodeNotSet(-5L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     TouchIDNotAvailable(-6L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     TouchIDNotEnrolled(-7L),
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
      */
+    @Deprecated
     TouchIDLockout(-8L),
     /**
      * @since Available in iOS 9.0 and later.
@@ -58,7 +70,23 @@ public enum /*<name>*/LAErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 9.0 and later.
      */
-    InvalidContext(-10L);
+    InvalidContext(-10L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    BiometryNotAvailable(-6L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    BiometryNotEnrolled(-7L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    BiometryLockout(-8L),
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    NotInteractive(-1004L);
     /*</values>*/
 
     /*<bind>*/

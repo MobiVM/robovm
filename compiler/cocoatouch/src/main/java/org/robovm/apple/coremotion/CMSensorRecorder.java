@@ -59,6 +59,16 @@ import org.robovm.apple.foundation.*;
     public native void recordAccelerometerForDuration(double duration);
     @Method(selector = "isAccelerometerRecordingAvailable")
     public static native boolean isAccelerometerRecordingAvailable();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "authorizationStatus")
+    public static native CMAuthorizationStatus authorizationStatus();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "isAuthorizedForRecording")
     public static native boolean isAuthorizedForRecording();
     /*</methods>*/

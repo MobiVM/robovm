@@ -98,7 +98,11 @@ public enum /*<name>*/NSSearchPathDirectory/*</name>*/ implements ValuedEnum {
      */
     ItemReplacementDirectory(99L),
     AllApplicationsDirectory(100L),
-    AllLibrariesDirectory(101L);
+    AllLibrariesDirectory(101L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    TrashDirectory(102L);
     /*</values>*/
 
     private final long n;

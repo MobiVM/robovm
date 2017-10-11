@@ -71,13 +71,13 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "getPendingNotificationRequestsWithCompletionHandler:")
     public native void getPendingNotificationRequestsWithCompletionHandler(@Block VoidBlock1<NSArray<UNNotificationRequest>> completionHandler);
     @Method(selector = "removePendingNotificationRequestsWithIdentifiers:")
-    public native void removePendingNotificationRequestsWithIdentifiers(NSArray<?> identifiers);
+    public native void removePendingNotificationRequestsWithIdentifiers(NSArray<NSString> identifiers);
     @Method(selector = "removeAllPendingNotificationRequests")
     public native void removeAllPendingNotificationRequests();
     @Method(selector = "getDeliveredNotificationsWithCompletionHandler:")
     public native void getDeliveredNotificationsWithCompletionHandler(@Block VoidBlock1<NSArray<UNNotification>> completionHandler);
     @Method(selector = "removeDeliveredNotificationsWithIdentifiers:")
-    public native void removeDeliveredNotificationsWithIdentifiers(NSArray<?> identifiers);
+    public native void removeDeliveredNotificationsWithIdentifiers(NSArray<NSString> identifiers);
     @Method(selector = "removeAllDeliveredNotifications")
     public native void removeAllDeliveredNotifications();
     @Method(selector = "currentNotificationCenter")

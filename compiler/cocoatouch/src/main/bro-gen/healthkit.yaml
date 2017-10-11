@@ -11,7 +11,11 @@ typedefs:
     'void (^)(HKStatisticsQuery *, HKStatistics *, NSError *)': '@Block VoidBlock3<HKStatisticsQuery, HKStatistics, NSError>'
     'void (^)(HKStatisticsCollectionQuery *, HKStatisticsCollection *, NSError *)': '@Block VoidBlock3<HKStatisticsCollectionQuery, HKStatisticsCollection, NSError>'
     'void (^)(HKStatisticsCollectionQuery *, HKStatistics *, HKStatisticsCollection *, NSError *)': '@Block VoidBlock4<HKStatisticsCollectionQuery, HKStatistics, HKStatisticsCollection, NSError>'
-    
+
+private_typedefs:
+    'CLLocation *': org.robovm.apple.corelocation.CLLocation
+    'CLLocation': org.robovm.apple.corelocation.CLLocation
+
 enums:
     HKErrorCode: {}
     HKUpdateFrequency: {}
@@ -38,7 +42,11 @@ enums:
     HKWorkoutSwimmingLocationType: {}
     HKSwimmingStrokeStyle: {}
     HKWorkoutSessionLocationType: {}
-        
+    HKHeartRateMotionContext: {} #since 11.0
+    HKInsulinDeliveryReason: {} #since 11.0
+    HKBloodGlucoseMealTime: {} #since 11.0
+    HKVO2MaxTestType: {} #since 11.0
+
 classes:
     HKError:
         extends: NSError
@@ -224,7 +232,8 @@ classes:
                 parameters:
                     metadata:
                         type: HKMetadata
-
+            '+workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:':
+                name: create
     HKObjectType: # DONE
         properties:
             'identifier':
@@ -324,6 +333,8 @@ classes:
                 name: createPredicateForWorkoutsWithTotalSwimmingStrokeCount
             '+predicateForActivitySummariesBetweenStartDateComponents:endDateComponents:':
                 name: createPredicateForActivitySummariesBetweenDates
+            '+predicateForWorkoutsWithOperatorType:totalFlightsClimbed:':
+                name: createPredicateForWorkouts
     HKAnchoredObjectQuery: # DONE
         methods:
             '-initWithType:predicate:anchor:limit:completionHandler:':
@@ -468,6 +479,8 @@ classes:
                 parameters:
                     'metadata':
                         type: HKMetadata
+            '+workoutEventWithType:dateInterval:metadata:':
+                name: create
         properties:
             'metadata':
                 type: HKMetadata
@@ -491,7 +504,22 @@ classes:
         methods:
             '-init.*':
                 name: init
-
+    HKSeriesBuilder: {}
+    HKSeriesSample: {}
+    HKSeriesType: {} #since 11.0
+    HKWorkoutRoute: {} #since 11.0
+    HKWorkoutRouteBuilder: #since 11.0
+        methods:
+            '-init.*':
+                name: init
+            '-insertRouteData:completion:':
+                trim_after_first_colon: true
+            '-finishRouteWithWorkout:metadata:completion:':
+                name: finishRoute
+    HKWorkoutRouteQuery: #since 11.0
+        methods:
+            '-initWithRoute:dataHandler:':
+                name: init
 protocols:
     HKWorkoutSessionDelegate: {}
 
@@ -605,6 +633,15 @@ values:
     HKDeviceProperty(.*):
         class: HKDevice
         name: 'Property#{g[0]}'
+    HKQuantityTypeIdentifier(.*): # since ios 11
+        class: HKQuantityTypeIdentifier
+        name: '#{g[0]}'
+    HKSourceRevision(.*): # since ios 11
+        class: HKSourceRevision
+        name: '#{g[0]}'
+    HKWorkoutRouteTypeIdentifier:
+        class: HKWorkoutRoute
+        name: getTypeIdentifier
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (HK.*):

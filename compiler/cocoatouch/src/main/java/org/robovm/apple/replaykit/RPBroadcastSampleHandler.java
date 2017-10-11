@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,7 +56,7 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "broadcastStartedWithSetupInfo:")
-    public native void broadcastStartedWithSetupInfo(NSDictionary<?, ?> setupInfo);
+    public native void broadcastStartedWithSetupInfo(NSDictionary<NSString, ?> setupInfo);
     @Method(selector = "broadcastPaused")
     public native void broadcastPaused();
     @Method(selector = "broadcastResumed")

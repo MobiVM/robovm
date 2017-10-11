@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSPersonNameComponents/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSPersonNameComponentsPtr extends Ptr<NSPersonNameComponents, NSPersonNameComponentsPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSPersonNameComponents.class); }/*</bind>*/
@@ -55,6 +55,8 @@ import org.robovm.apple.dispatch.*;
     public NSPersonNameComponents() {}
     protected NSPersonNameComponents(Handle h, long handle) { super(h, handle); }
     protected NSPersonNameComponents(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSPersonNameComponents(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "namePrefix")
@@ -85,9 +87,14 @@ import org.robovm.apple.dispatch.*;
     public native NSPersonNameComponents getPhoneticRepresentation();
     @Property(selector = "setPhoneticRepresentation:")
     public native void setPhoneticRepresentation(NSPersonNameComponents v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

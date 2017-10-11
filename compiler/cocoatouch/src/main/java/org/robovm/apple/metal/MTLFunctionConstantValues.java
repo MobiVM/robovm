@@ -57,7 +57,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "setConstantValue:type:atIndex:")
     public native void setConstantValue(VoidPtr value, MTLDataType type, @MachineSizedUInt long index);
     @Method(selector = "setConstantValues:type:withRange:")
-    public native void setConstantValues$type$withRange$(VoidPtr values, MTLDataType type, @ByVal NSRange range);
+    public native void setConstantValues(VoidPtr values, MTLDataType type, @ByVal NSRange range);
     @Method(selector = "setConstantValue:type:withName:")
     public native void setConstantValue(VoidPtr value, MTLDataType type, String name);
     @Method(selector = "reset")

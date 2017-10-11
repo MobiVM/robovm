@@ -177,6 +177,11 @@ import org.robovm.apple.dispatch.*;
     public native void itemAtURLWillMoveToURL(NSURL oldURL, NSURL newURL);
     @Method(selector = "itemAtURL:didMoveToURL:")
     public native void itemAtURLDidMoveToURL(NSURL oldURL, NSURL newURL);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "itemAtURL:didChangeUbiquityAttributes:")
+    public native void itemAtURLDidChangeUbiquityAttributes(NSURL url, NSSet<NSString> attributes);
     @Method(selector = "cancel")
     public native void cancel();
     @Method(selector = "addFilePresenter:")

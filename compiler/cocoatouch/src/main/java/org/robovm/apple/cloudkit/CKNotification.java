@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,6 +67,36 @@ import org.robovm.apple.contacts.*;
     public native String getAlertLocalizationKey();
     @Property(selector = "alertLocalizationArgs")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAlertLocalizationArgs();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "title")
+    public native String getTitle();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "titleLocalizationKey")
+    public native String getTitleLocalizationKey();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "titleLocalizationArgs")
+    public native NSArray<NSString> getTitleLocalizationArgs();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "subtitle")
+    public native String getSubtitle();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "subtitleLocalizationKey")
+    public native String getSubtitleLocalizationKey();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "subtitleLocalizationArgs")
+    public native NSArray<NSString> getSubtitleLocalizationArgs();
     @Property(selector = "alertActionLocalizationKey")
     public native String getAlertActionLocalizationKey();
     @Property(selector = "alertLaunchImage")

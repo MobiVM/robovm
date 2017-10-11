@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -44,7 +47,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIColor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, NSItemProviderReading, NSItemProviderWriting/*</implements>*/ {
 
     /*<ptr>*/public static class UIColorPtr extends Ptr<UIColor, UIColorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIColor.class); }/*</bind>*/
@@ -62,6 +65,8 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "initWithCIColor:")
     public UIColor(CIColor ciColor) { super((SkipInit) null); initObject(init(ciColor)); }
+    @Method(selector = "initWithCoder:")
+    public UIColor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "blackColor")
@@ -128,6 +133,14 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Property(selector = "underPageBackgroundColor")
     public static native UIColor underPageBackground();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
+    @Property(selector = "readableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getReadableTypeIdentifiersForItemProvider();
+    @Property(selector = "writableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getWritableTypeIdentifiersForItemProvider0();
+    @Property(selector = "writableTypeIdentifiersForItemProvider")
+    public native NSArray<NSString> getWritableTypeIdentifiersForItemProvider();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -231,5 +244,33 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "colorWithCIColor:")
     public static native UIColor fromCIColor(CIColor ciColor);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "colorNamed:")
+    public static native UIColor colorNamed(String name);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "colorNamed:inBundle:compatibleWithTraitCollection:")
+    public static native UIColor fromResourceBundle(String name, NSBundle bundle, UITraitCollection traitCollection);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
+    public static UIColor createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       UIColor result = createProviderDataObject(data, typeIdentifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "objectWithItemProviderData:typeIdentifier:error:")
+    private static native UIColor createProviderDataObject(NSData data, String typeIdentifier, NSError.NSErrorPtr outError);
+    @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
+    public native NSItemProviderRepresentationVisibility getItemProviderVisibility(String typeIdentifier);
+    @Method(selector = "loadDataWithTypeIdentifier:forItemProviderCompletionHandler:")
+    public native NSProgress loadData(String typeIdentifier, @Block VoidBlock2<NSData, NSError> completionHandler);
+    @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
+    public static native NSItemProviderRepresentationVisibility getItemProviderVisibility0(String typeIdentifier);
     /*</methods>*/
 }

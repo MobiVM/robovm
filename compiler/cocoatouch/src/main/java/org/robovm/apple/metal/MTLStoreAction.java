@@ -49,7 +49,11 @@ public enum /*<name>*/MTLStoreAction/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 10.0 and later.
      */
-    Unknown(4L);
+    Unknown(4L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    CustomSampleDepthStore(5L);
     /*</values>*/
 
     /*<bind>*/

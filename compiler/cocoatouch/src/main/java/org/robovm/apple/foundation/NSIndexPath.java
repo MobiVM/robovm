@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSIndexPath/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSIndexPathPtr extends Ptr<NSIndexPath, NSIndexPathPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSIndexPath.class); }/*</bind>*/
@@ -55,6 +55,8 @@ import org.robovm.apple.dispatch.*;
     protected NSIndexPath(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIndex:")
     public NSIndexPath(@MachineSizedUInt long index) { super((SkipInit) null); initObject(init(index)); }
+    @Method(selector = "initWithCoder:")
+    public NSIndexPath(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     
     public NSIndexPath(long[] indexes) {
@@ -70,6 +72,8 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "length")
     public native @MachineSizedUInt long getLength();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -138,5 +142,9 @@ import org.robovm.apple.dispatch.*;
     public native NSComparisonResult compare(NSIndexPath otherObject);
     @Method(selector = "getIndexes:")
     private native void getIndexes(MachineSizedUIntPtr indexes);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

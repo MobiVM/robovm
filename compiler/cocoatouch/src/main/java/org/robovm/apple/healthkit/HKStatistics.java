@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKStatistics/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKStatisticsPtr extends Ptr<HKStatistics, HKStatisticsPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKStatistics.class); }/*</bind>*/
@@ -47,6 +47,8 @@ import org.robovm.apple.foundation.*;
     protected HKStatistics() {}
     protected HKStatistics(Handle h, long handle) { super(h, handle); }
     protected HKStatistics(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public HKStatistics(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "quantityType")
@@ -57,6 +59,8 @@ import org.robovm.apple.foundation.*;
     public native NSDate getEndDate();
     @Property(selector = "sources")
     public native NSArray<HKSource> getSources();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -76,5 +80,9 @@ import org.robovm.apple.foundation.*;
     public native HKQuantity getSumQuantityForSource(HKSource source);
     @Method(selector = "sumQuantity")
     public native HKQuantity getSumQuantity();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

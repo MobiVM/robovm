@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,5 +61,15 @@ import org.robovm.apple.corelocation.*;
     public String getAccessibilityLabel(UIPickerView pickerView, @MachineSizedSInt long component) { return null; }
     @NotImplemented("pickerView:accessibilityHintForComponent:")
     public String getAccessibilityHint(UIPickerView pickerView, @MachineSizedSInt long component) { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("pickerView:accessibilityAttributedLabelForComponent:")
+    public NSAttributedString getAccessibilityAttributedLabel(UIPickerView pickerView, @MachineSizedSInt long component) { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("pickerView:accessibilityAttributedHintForComponent:")
+    public NSAttributedString getAccessibilityAttributedHint(UIPickerView pickerView, @MachineSizedSInt long component) { return null; }
     /*</methods>*/
 }

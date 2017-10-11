@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,9 +54,9 @@ import org.robovm.apple.audiounit.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureVideoDataOutput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureVideoDataOutput() {}
     protected AVCaptureVideoDataOutput(Handle h, long handle) { super(h, handle); }
     protected AVCaptureVideoDataOutput(SkipInit skipInit) { super(skipInit); }
+    public AVCaptureVideoDataOutput() { super((Handle) null, create()); retain(getHandle()); }
     /*</constructors>*/
     public AVVideoSettings getVideoSettings() {
         return new AVVideoSettings(getVideoSettings0());
@@ -80,9 +79,9 @@ import org.robovm.apple.audiounit.*;
     @Property(selector = "sampleBufferCallbackQueue")
     public native DispatchQueue getSampleBufferCallbackQueue();
     @Property(selector = "videoSettings")
-    protected native NSDictionary<?, ?> getVideoSettings0();
+    protected native NSDictionary<NSString, ?> getVideoSettings0();
     @Property(selector = "setVideoSettings:")
-    protected native void setVideoSettings0(NSDictionary<?, ?> v);
+    protected native void setVideoSettings0(NSDictionary<NSString, ?> v);
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -121,6 +120,18 @@ import org.robovm.apple.audiounit.*;
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "recommendedVideoSettingsForAssetWriterWithOutputFileType:")
-    protected native NSDictionary<?, ?> getRecommendedVideoSettings0(String outputFileType);
+    protected native NSDictionary<NSString, ?> getRecommendedVideoSettings0(String outputFileType);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "availableVideoCodecTypesForAssetWriterWithOutputFileType:")
+    public native NSArray<NSString> availableVideoCodecTypesForAssetWriterWithOutputFileType(String outputFileType);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:")
+    public native NSDictionary<?, ?> getRecommendedVideoSettings(NSString videoCodecType, String outputFileType);
+    @Method(selector = "new")
+    protected static native @Pointer long create();
     /*</methods>*/
 }

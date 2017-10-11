@@ -38,7 +38,6 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -65,6 +64,11 @@ import org.robovm.apple.audiounit.*;
     public void didProvideRenewingContentKeyRequest(AVContentKeySession session, AVContentKeyRequest keyRequest) {}
     @NotImplemented("contentKeySession:didProvidePersistableContentKeyRequest:")
     public void didProvidePersistableContentKeyRequest(AVContentKeySession session, AVPersistableContentKeyRequest keyRequest) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("contentKeySession:didUpdatePersistableContentKey:forContentKeyIdentifier:")
+    public void didUpdatePersistableContentKey(AVContentKeySession session, NSData persistableContentKey, NSObject keyIdentifier) {}
     @NotImplemented("contentKeySession:contentKeyRequest:didFailWithError:")
     public void didFailWithError(AVContentKeySession session, AVContentKeyRequest keyRequest, NSError err) {}
     @NotImplemented("contentKeySession:shouldRetryContentKeyRequest:reason:")

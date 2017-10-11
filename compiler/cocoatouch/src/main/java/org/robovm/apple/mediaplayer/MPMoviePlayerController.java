@@ -297,95 +297,30 @@ import org.robovm.rt.annotation.WeaklyLinked;
      */
     @Property(selector = "readyForDisplay")
     public native boolean isReadyForDisplay();
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "movieMediaTypes")
     public native MPMovieMediaTypeMask getMovieMediaTypes();
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "movieSourceType")
     public native MPMovieSourceType getMovieSourceType();
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "setMovieSourceType:")
     public native void setMovieSourceType(MPMovieSourceType v);
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "duration")
     public native double getDuration();
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "playableDuration")
     public native double getPlayableDuration();
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "naturalSize")
     public native @ByVal CGSize getNaturalSize();
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "initialPlaybackTime")
     public native double getInitialPlaybackTime();
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "setInitialPlaybackTime:")
     public native void setInitialPlaybackTime(double v);
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "endPlaybackTime")
     public native double getEndPlaybackTime();
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "setEndPlaybackTime:")
     public native void setEndPlaybackTime(double v);
-    /**
-     * @since Available in iOS 4.3 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "allowsAirPlay")
     public native boolean allowsAirPlay();
-    /**
-     * @since Available in iOS 4.3 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "setAllowsAirPlay:")
     public native void setAllowsAirPlay(boolean v);
-    /**
-     * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
-     */
-    @Deprecated
     @Property(selector = "isAirPlayVideoActive")
     public native boolean isAirPlayVideoActive();
     /**
@@ -409,6 +344,20 @@ import org.robovm.rt.annotation.WeaklyLinked;
     @Deprecated
     @Property(selector = "errorLog")
     public native MPMovieErrorLog getErrorLog();
+    /**
+     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
+    @Property(selector = "useApplicationAudioSession")
+    public native boolean usesApplicationAudioSession();
+    /**
+     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 9.0.
+     */
+    @Deprecated
+    @Property(selector = "setUseApplicationAudioSession:")
+    public native void setUsesApplicationAudioSession(boolean v);
     @Property(selector = "isPreparedToPlay")
     public native boolean isPreparedToPlay();
     @Property(selector = "currentPlaybackTime")
@@ -591,7 +540,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
     public native void setFullscreen(boolean fullscreen, boolean animated);
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
     @Method(selector = "thumbnailImageAtTime:timeOption:")

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,7 +51,7 @@ import org.robovm.apple.contacts.*;
     protected CKFetchRecordZoneChangesOperation(Handle h, long handle) { super(h, handle); }
     protected CKFetchRecordZoneChangesOperation(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRecordZoneIDs:optionsByRecordZoneID:")
-    public CKFetchRecordZoneChangesOperation(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<?, ?> optionsByRecordZoneID) { super((SkipInit) null); initObject(init(recordZoneIDs, optionsByRecordZoneID)); }
+    public CKFetchRecordZoneChangesOperation(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions> optionsByRecordZoneID) { super((SkipInit) null); initObject(init(recordZoneIDs, optionsByRecordZoneID)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "recordZoneIDs")
@@ -58,9 +59,9 @@ import org.robovm.apple.contacts.*;
     @Property(selector = "setRecordZoneIDs:")
     public native void setRecordZoneIDs(NSArray<CKRecordZoneID> v);
     @Property(selector = "optionsByRecordZoneID")
-    public native NSDictionary<?, ?> getOptionsByRecordZoneID();
+    public native NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions> getOptionsByRecordZoneID();
     @Property(selector = "setOptionsByRecordZoneID:")
-    public native void setOptionsByRecordZoneID(NSDictionary<?, ?> v);
+    public native void setOptionsByRecordZoneID(NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions> v);
     @Property(selector = "fetchAllChanges")
     public native boolean isFetchAllChanges();
     @Property(selector = "setFetchAllChanges:")
@@ -89,6 +90,6 @@ import org.robovm.apple.contacts.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithRecordZoneIDs:optionsByRecordZoneID:")
-    protected native @Pointer long init(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<?, ?> optionsByRecordZoneID);
+    protected native @Pointer long init(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions> optionsByRecordZoneID);
     /*</methods>*/
 }

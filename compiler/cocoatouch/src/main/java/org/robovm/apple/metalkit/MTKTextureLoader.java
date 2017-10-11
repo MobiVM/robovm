@@ -79,7 +79,7 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "newTexturesWithNames:scaleFactor:bundle:options:completionHandler:")
-    public native void newTexture(NSArray<?> names, @MachineSizedFloat double scaleFactor, NSBundle bundle, MTKTextureLoaderOptions options, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    public native void newTexture(NSArray<NSString> names, @MachineSizedFloat double scaleFactor, NSBundle bundle, MTKTextureLoaderOptions options, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "newTextureWithData:options:completionHandler:")
     public native void newTexture(NSData data, MTKTextureLoaderOptions options, @Block VoidBlock2<MTLTexture, NSError> completionHandler);
     @Method(selector = "newTextureWithCGImage:options:completionHandler:")

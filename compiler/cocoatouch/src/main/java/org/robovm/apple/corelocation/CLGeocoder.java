@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.corebluetooth.*;
+import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +59,16 @@ import org.robovm.apple.corebluetooth.*;
     /*<methods>*/
     @Method(selector = "reverseGeocodeLocation:completionHandler:")
     public native void reverseGeocodeLocation(CLLocation location, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "reverseGeocodeLocation:preferredLocale:completionHandler:")
+    public native void reverseGeocodeLocation(CLLocation location, NSLocale locale, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @WeaklyLinked
     @Method(selector = "geocodeAddressDictionary:completionHandler:")
     public native void geocodeAddress(ABPersonAddress addressDictionary, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
@@ -65,7 +76,22 @@ import org.robovm.apple.corebluetooth.*;
     public native void geocodeAddress(String addressString, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     @Method(selector = "geocodeAddressString:inRegion:completionHandler:")
     public native void geocodeAddress(String addressString, CLRegion region, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "geocodeAddressString:inRegion:preferredLocale:completionHandler:")
+    public native void geocodeAddress(String addressString, CLRegion region, NSLocale locale, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     @Method(selector = "cancelGeocode")
     public native void cancelGeocode();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "geocodePostalAddress:completionHandler:")
+    public native void geocodePostalAddress(CNPostalAddress postalAddress, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "geocodePostalAddress:preferredLocale:completionHandler:")
+    public native void geocodePostalAddress(CNPostalAddress postalAddress, NSLocale locale, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     /*</methods>*/
 }

@@ -41,6 +41,14 @@ public final class /*<name>*/UNNotificationCategoryOptions/*</name>*/ extends Bi
     public static final UNNotificationCategoryOptions None = new UNNotificationCategoryOptions(0L);
     public static final UNNotificationCategoryOptions CustomDismissAction = new UNNotificationCategoryOptions(1L);
     public static final UNNotificationCategoryOptions AllowInCarPlay = new UNNotificationCategoryOptions(2L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final UNNotificationCategoryOptions HiddenPreviewsShowTitle = new UNNotificationCategoryOptions(4L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final UNNotificationCategoryOptions HiddenPreviewsShowSubtitle = new UNNotificationCategoryOptions(8L);
     /*</values>*/
 
     /*<bind>*/

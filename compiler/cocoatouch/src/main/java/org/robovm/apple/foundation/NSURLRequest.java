@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSURLRequest/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class NSURLRequestPtr extends Ptr<NSURLRequest, NSURLRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSURLRequest.class); }/*</bind>*/
@@ -57,6 +57,8 @@ import org.robovm.apple.dispatch.*;
     public NSURLRequest(NSURL URL) { super((SkipInit) null); initObject(init(URL)); }
     @Method(selector = "initWithURL:cachePolicy:timeoutInterval:")
     public NSURLRequest(NSURL URL, NSURLRequestCachePolicy cachePolicy, double timeoutInterval) { super((SkipInit) null); initObject(init(URL, cachePolicy, timeoutInterval)); }
+    @Method(selector = "initWithCoder:")
+    public NSURLRequest(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -159,5 +161,9 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(NSURL URL, NSURLRequestCachePolicy cachePolicy, double timeoutInterval);
     @Method(selector = "valueForHTTPHeaderField:")
     public native String getHTTPHeaderFieldValue(String field);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -34,6 +34,9 @@ import org.robovm.apple.coredata.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.cloudkit.*;
+import org.robovm.apple.fileprovider.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,6 +58,12 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Method(selector = "attributedStringWithAttachment:")
+    protected static native @Pointer long create(ObjCClass clazz, NSTextAttachment attachment);
+    public static @Pointer long create(NSTextAttachment attachment) { return create(ObjCClass.getByType(NSAttributedString.class), attachment); }
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -159,11 +168,5 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "boundingRectWithSize:options:context:")
     public static native @ByVal CGRect getBoundingRect(NSAttributedString thiz, @ByVal CGSize size, NSStringDrawingOptions options, NSStringDrawingContext context);
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @Method(selector = "attributedStringWithAttachment:")
-    protected static native @Pointer long create(ObjCClass clazz, NSTextAttachment attachment);
-    public static @Pointer long create(NSTextAttachment attachment) { return create(ObjCClass.getByType(NSAttributedString.class), attachment); }
     /*</methods>*/
 }

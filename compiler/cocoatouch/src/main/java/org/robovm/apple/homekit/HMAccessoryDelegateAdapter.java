@@ -57,9 +57,24 @@ import org.robovm.apple.corelocation.*;
     public void didUpdateAssociatedServiceType(HMAccessory accessory, HMService service) {}
     @NotImplemented("accessoryDidUpdateServices:")
     public void didUpdateServices(HMAccessory accessory) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("accessory:didAddProfile:")
+    public void didAddProfile(HMAccessory accessory, HMAccessoryProfile profile) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("accessory:didRemoveProfile:")
+    public void didRemoveProfile(HMAccessory accessory, HMAccessoryProfile profile) {}
     @NotImplemented("accessoryDidUpdateReachability:")
     public void didUpdateReachability(HMAccessory accessory) {}
     @NotImplemented("accessory:service:didUpdateValueForCharacteristic:")
     public void didUpdateCharacteristicValue(HMAccessory accessory, HMService service, HMCharacteristic characteristic) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("accessory:didUpdateFirmwareVersion:")
+    public void didUpdateFirmwareVersion(HMAccessory accessory, String firmwareVersion) {}
     /*</methods>*/
 }

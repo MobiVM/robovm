@@ -56,5 +56,10 @@ import org.robovm.apple.dispatch.*;
      */
     @GlobalValue(symbol="PKPushTypeComplication", optional=true)
     public static native String Complication();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="PKPushTypeFileProvider", optional=true)
+    public static native String FileProvider();
     /*</methods>*/
 }
