@@ -406,9 +406,11 @@ public abstract class ObjCObject extends NativeObject {
         private static final long originalRetain = Selector.register("original_retain").getHandle();
         private static final long release = Selector.register("release").getHandle();
         private static final long originalRelease = Selector.register("original_release").getHandle();
+        private static final long dealloc = Selector.register("dealloc").getHandle();
 
         private static final Method retainMethod;
         private static final Method releaseMethod;
+        private static final Method deallocMethod;
 
         private static final LongMap<Long> customClassToNativeSuper = new LongMap<>();
         private static final Long ZERO_LONG = Long.valueOf(0);
@@ -417,6 +419,7 @@ public abstract class ObjCObject extends NativeObject {
             try {
                 retainMethod = ObjectOwnershipHelper.class.getDeclaredMethod("retain", Long.TYPE, Long.TYPE);
                 releaseMethod = ObjectOwnershipHelper.class.getDeclaredMethod("release", Long.TYPE, Long.TYPE);
+                deallocMethod = ObjectOwnershipHelper.class.getDeclaredMethod("dealloc", Long.TYPE, Long.TYPE);
             } catch (Throwable t) {
                 throw new Error(t);
             }
@@ -425,6 +428,7 @@ public abstract class ObjCObject extends NativeObject {
         public static void registerClass(long cls) {
             registerCallbackMethod(cls, retain, originalRetain, retainMethod);
             registerCallbackMethod(cls, release, originalRelease, releaseMethod);
+            registerCallbackMethod(cls, dealloc, 0, deallocMethod);
         }
 
         private static void registerCallbackMethod(long cls, long selector, long newSelector, Method method) {
@@ -471,9 +475,9 @@ public abstract class ObjCObject extends NativeObject {
 
         @Callback
         private static @Pointer long retain(@Pointer long self, @Pointer long sel) {
-            // TODO: this method is being kept here only for logRetainRelease
-            // but these functionality is not useful anymore due creation of custom
-            // objects in cb<init>
+            // retain objectm even if retain was called inside of dealloc
+            retainObject(self);
+
             int count = ObjCRuntime.int_objc_msgSend(self, retainCount);
             long cls = ObjCRuntime.object_getClass(self);
             if (logRetainRelease) {
@@ -504,6 +508,21 @@ public abstract class ObjCObject extends NativeObject {
             }
             Super sup = new Super(self, getNativeSuper(cls));
             ObjCRuntime.void_objc_msgSendSuper(sup.getHandle(), sel);
+        }
+
+        @Callback
+        private static void dealloc(@Pointer long self, @Pointer long sel) {
+            // during dealloc UIView calls removeFromSuperView or other api which will cause
+            // retain to be called due ARC or other logic, which will break  java CUSTOM_OBJECTS
+            // mechanism. So let it to deallow with extra retains
+            long cls = ObjCRuntime.object_getClass(self);
+            Super sup = new Super(self, getNativeSuper(cls));
+            ObjCRuntime.void_objc_msgSendSuper(sup.getHandle(), sel);
+
+            // and after this remove this peer (as it could be added again due unexpected retain calls)
+            synchronized (CUSTOM_OBJECTS) {
+                CUSTOM_OBJECTS.remove(self);
+            }
         }
 
         public static boolean isObjectRetained(ObjCObject object) {
