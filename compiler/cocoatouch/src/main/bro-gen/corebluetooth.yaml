@@ -9,7 +9,7 @@ headers:
 typedefs: {}
     
 enums:
-    CBCentralManagerState: {}
+    CBCentralManagerState: { exclude: true }
     CBCharacteristicProperties: { bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
     CBErrorCode: { first: CBErrorUnknown }
     CBATTErrorCode: { first: CBATTErrorSuccess }
@@ -17,7 +17,7 @@ enums:
     CBCharacteristicWriteType: { prefix: CBCharacteristicWrite }
     CBAttributePermissions: { bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
     CBPeripheralManagerAuthorizationStatus: {}
-    CBPeripheralManagerState: {}
+    CBPeripheralManagerState: { exclude: true }
     CBPeripheralManagerConnectionLatency: {}
     CBManagerState: {}
 

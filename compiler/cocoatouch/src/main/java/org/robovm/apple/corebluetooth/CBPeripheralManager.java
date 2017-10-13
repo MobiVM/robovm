@@ -68,6 +68,8 @@ import org.robovm.apple.dispatch.*;
     public native boolean isAdvertising();
     /*</properties>*/
     /*<members>*//*</members>*/
+    @Property(selector = "state")
+    public native CBManagerState getState(); //TODO CBManager state method, but can't inherit for compatibility so manually declare.
     /*<methods>*/
     @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:")
