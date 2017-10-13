@@ -121,8 +121,9 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSObject.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     private NSKeyValueCoder keyValueCoder;
-    
-    
+
+
+    @Method(selector = "init")
     public NSObject() {
         if (!forceSkipInit)
             initObject(init());
