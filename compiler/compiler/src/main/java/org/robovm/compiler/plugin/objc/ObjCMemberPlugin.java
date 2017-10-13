@@ -111,6 +111,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
     public static final String NS_STRING$AS_STRING_MARSHALER = "org.robovm.apple.foundation.NSString$AsStringMarshaler";
     public static final String $M = "org.robovm.objc.$M";
     public static final String UI_EVENT = "org.robovm.apple.uikit.UIEvent";
+    public static final String UI_APPLICATION_DELEGATE = "org.robovm.apple.uikit.UIApplicationDelegate";
     public static final String NS_ARRAY = "org.robovm.apple.foundation.NSArray";
 
     private boolean initialized = false;
@@ -127,6 +128,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
     private SootClass org_robovm_apple_foundation_NSObject = null;
     private SootClass org_robovm_objc_$M = null;
     private SootClass org_robovm_apple_uikit_UIEvent = null;
+    private SootClass org_robovm_apple_uikit_UIApplicationDelegate = null;
     private SootClass org_robovm_apple_foundation_NSArray = null;
     private SootClass org_robovm_apple_foundation_NSObject$Marshaler = null;
     private SootClass org_robovm_apple_foundation_NSString$AsStringMarshaler = null;
@@ -398,6 +400,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         org_robovm_apple_foundation_NSString$AsStringMarshaler = r.makeClassRef(NS_STRING$AS_STRING_MARSHALER);
         org_robovm_objc_$M = r.makeClassRef($M);
         org_robovm_apple_uikit_UIEvent = r.makeClassRef(UI_EVENT);
+        org_robovm_apple_uikit_UIApplicationDelegate = r.makeClassRef(UI_APPLICATION_DELEGATE);
         org_robovm_apple_foundation_NSArray = r.makeClassRef(NS_ARRAY);
         SootClass java_lang_Object = r.makeClassRef("java.lang.Object");
         java_lang_String = r.makeClassRef("java.lang.String");
@@ -493,10 +496,23 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         if (type == null || type.isPhantom()) {
             return false;
         }
-        while (cls != type && cls.hasSuperclass()) {
-            cls = cls.getSuperclass();
+
+        if (type.isInterface()) {
+            // check if cls implement interfaces
+            while (cls != null) {
+                for (SootClass inf : cls.getInterfaces()) {
+                    if (inf == type)
+                        return true;
+                }
+                cls = cls.hasSuperclass() ? cls.getSuperclass() : null;
+            }
+            return false;
+        } else {
+            while (cls != type && cls.hasSuperclass()) {
+                cls = cls.getSuperclass();
+            }
+            return cls == type;
         }
-        return cls == type;
     }
 
     private boolean isObjCObject(SootClass cls) {
@@ -515,6 +531,11 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
     private boolean isUIEvent(Type type) {
         return (type instanceof RefType)
                 && isAssignable(((RefType) type).getSootClass(), org_robovm_apple_uikit_UIEvent);
+    }
+
+    private boolean isUIApplicationDelegate(Type type) {
+        return (type instanceof RefType)
+                && isAssignable(((RefType) type).getSootClass(), org_robovm_apple_uikit_UIApplicationDelegate);
     }
 
     private boolean isSelector(Type type) {
@@ -571,6 +592,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
         SootClass sootClass = clazz.getSootClass();
         boolean extensions = false;
         boolean customClass = hasAnnotation(sootClass, CUSTOM_CLASS);
+        boolean uiAppDelegate = !customClass && isUIApplicationDelegate(sootClass.getType());
         if (!sootClass.isInterface()
                 && (isObjCObject(sootClass) || (extensions = isObjCExtensions(sootClass)))) {
 
@@ -586,12 +608,12 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
             for (SootMethod method : sootClass.getMethods()) {
                 if (!"<clinit>".equals(method.getName()) && !"<init>".equals(method.getName())) {
                     transformMethod(config, clazz, sootClass, method, selectors, overridables, extensions);
-                } else if (customClass && "<init>".equals(method.getName())) {
+                } else if ((customClass || uiAppDelegate) && "<init>".equals(method.getName())) {
                     transformConstructor(sootClass, method, initializers);
                 }
             }
 
-            if (customClass) {
+            if (customClass || uiAppDelegate) {
                 transformParentConstructors(sootClass, initializers);
             }
 
