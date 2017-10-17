@@ -14,11 +14,11 @@ This is a fork of the [last open-source release of RoboVM](https://github.com/ro
 
 ## Key Features
 
-**iOS 10.3 and XCode 8.3** are fully supported, for details please read [this wiki article](https://github.com/MobiVM/robovm/wiki/iOS-10-and-XCode-8-compatibility).
+**iOS 11 and XCode 9** are fully supported, for details please read [this wiki article](https://github.com/MobiVM/robovm/wiki/iOS-11-and-XCode-9-compatibility).
 
 **Interface Builder Integration** is also available, details in [this wiki article](https://github.com/MobiVM/robovm/wiki/Is-XCode-interface-builder-supported%3F).
 
-**Debugging support** is currently under heavy development, get a pre-release IDEA plugin from [here](https://github.com/MobiVM/robovm/wiki/Implementing-a-Debugger).
+**Debugging support** is finished, and stable thanks to @dkimitsa!
 
 ## Using RoboVM
 
