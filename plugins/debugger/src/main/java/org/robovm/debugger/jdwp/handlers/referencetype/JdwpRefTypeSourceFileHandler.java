@@ -49,7 +49,11 @@ public class JdwpRefTypeSourceFileHandler implements IJdwpRequestHandler{
             // as there is no way to find out the proper file location for inner classes
             // TODO: currently making it from class name
             String sourceFile = ((ClassInfoImpl)classInfo).className();
-            int sepIdx = sourceFile.indexOf('$');
+            // there should be no path element just a file name, eclipse doesn't work due this 
+            int sepIdx = sourceFile.lastIndexOf('/');
+            if (sepIdx > 0)
+                sourceFile = sourceFile.substring(sepIdx + 1);
+            sepIdx = sourceFile.indexOf('$');
             if (sepIdx > 0)
                 sourceFile = sourceFile.substring(0, sepIdx);
             sourceFile += ".java";
