@@ -166,6 +166,15 @@ public class ToolchainUtil {
         }
     }
 
+    public static boolean isXcodeInstalled() {
+        try {
+            findXcodePath();
+            return true;
+        } catch(Exception e) {
+            return false;
+        }
+    }
+
     public static String findXcodeCommand(String cmd, String sdk) throws IOException {
         try {
             return new Executor(Logger.NULL_LOGGER, "xcrun").args("-sdk", sdk, "-f", cmd).execCapture();

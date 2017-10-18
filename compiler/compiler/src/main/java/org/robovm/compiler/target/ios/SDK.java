@@ -16,21 +16,31 @@
  */
 package org.robovm.compiler.target.ios;
 
+import static java.util.Collections.emptyList;
+import static org.apache.commons.lang3.Validate.notNull;
+
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-
-import org.apache.commons.exec.util.StringUtils;
-import org.robovm.compiler.util.ToolchainUtil;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.dd.plist.NSDictionary;
 import com.dd.plist.NSObject;
 import com.dd.plist.PropertyListParser;
+import org.apache.commons.exec.util.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.robovm.compiler.util.ToolchainUtil;
 
 /**
  * Contains info on an SDK installed on the system.
  */
 public class SDK implements Comparable<SDK> {
+    private static final String ADDITIONAL_SDK_LOCATION = "/Library/Developer/CoreSimulator/Profiles/Runtimes";
+    private static final String IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX = "iOS ([0-9]{1,2}).([0-9]{1,2}).simruntime";
+    private static final Pattern IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX_PATTERN = Pattern.compile(IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX);
+
     private String displayName;
     private String minimalDisplayName;
     private String canonicalName;
@@ -44,7 +54,10 @@ public class SDK implements Comparable<SDK> {
     private String platformBuild;
     private String platformVersion;
     private String platformName;
-    
+
+    /**
+     * Create an SDK instance for an SDK root bundled with Xcode.
+     */
     public static SDK create(File root) throws Exception {
         File sdkSettingsFile = new File(root, "SDKSettings.plist");
         File sdkSysVersionFile = new File(root, "System/Library/CoreServices/SystemVersion.plist");
@@ -54,17 +67,17 @@ public class SDK implements Comparable<SDK> {
             NSDictionary sdkSettingsDict = (NSDictionary) PropertyListParser.parse(sdkSettingsFile);
             NSDictionary sdkSysVersionDict = (NSDictionary) PropertyListParser.parse(sdkSysVersionFile);
             NSDictionary platformInfoDict = (NSDictionary) PropertyListParser.parse(platformInfoFile);
-            
+
             SDK sdk = new SDK();
-            
+
             sdk.root = root;
-            
+
             sdk.displayName = toString(sdkSettingsDict.objectForKey("DisplayName"));
             sdk.minimalDisplayName = toString(sdkSettingsDict.objectForKey("MinimalDisplayName"));
             sdk.canonicalName = toString(sdkSettingsDict.objectForKey("CanonicalName"));
             sdk.version = toString(sdkSettingsDict.objectForKey("Version"));
             sdk.defaultProperties = (NSDictionary) sdkSettingsDict.objectForKey("DefaultProperties");
-            
+
             sdk.build = toString(sdkSysVersionDict.objectForKey("ProductBuildVersion"));
 
             if (platformVersionFile.exists()) {
@@ -77,7 +90,7 @@ public class SDK implements Comparable<SDK> {
                 // in the now missing version.plist file
                 sdk.platformBuild = sdk.build;
             }
-            
+
             NSDictionary additionalInfo = (NSDictionary) platformInfoDict.objectForKey("AdditionalInfo");
             sdk.platformVersion = toString(additionalInfo.objectForKey("DTPlatformVersion"));
             sdk.platformName = toString(additionalInfo.objectForKey("DTPlatformName"));
@@ -86,21 +99,77 @@ public class SDK implements Comparable<SDK> {
             sdk.major = Integer.parseInt(parts[0]);
             sdk.minor = parts.length >= 2 ? Integer.parseInt(parts[1]) : 0;
             sdk.revision = parts.length >= 3 ? Integer.parseInt(parts[2]) : 0;
-            
+
             return sdk;
         }
         throw new IllegalArgumentException(root.getAbsolutePath() + " is not an SDK root path");
     }
-    
+
     private static String toString(NSObject o) {
         return o != null ? o.toString() : null;
     }
-    
+
     private static List<SDK> listSDKs(String platform) {
+        List<SDK> allSdks = new ArrayList<>();
+
+        allSdks.addAll(listBundledFileFormatSdks(platform));
+
+        allSdks.addAll(listAdditionalFileFormatSdks());
+
+        return allSdks;
+    }
+
+    private static Collection<? extends SDK> listAdditionalFileFormatSdks() {
+        File sdksDir = new File(ADDITIONAL_SDK_LOCATION);
+        if (!sdksDir.isDirectory()) {
+            return emptyList();
+        }
+
+        List<SDK> sdks = new ArrayList<>();
+
+        for (File sdkRoot : notNull(sdksDir.listFiles())) {
+            if (sdkRoot.getName().matches(IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX)) {
+                sdks.add(createAdditionalFileFormatSdk(sdkRoot));
+            }
+        }
+
+        return sdks;
+    }
+
+    /**
+     * New directory format SDKs, as downloaded by Xcode version >= 8.3.
+     * <p>Fills only some of the data of the SDK, but enough to use it as Simulator.</p>
+     */
+    static SDK createAdditionalFileFormatSdk(File sdkRootDir) {
+
+        Matcher matcher = IOS_SIMULATOR_MAJOR_MINOR_VERSION_REGEX_PATTERN.matcher(sdkRootDir.getName());
+        Validate.isTrue(matcher.find());
+
+        String majorVersion = matcher.group(1);
+        String minorVersion = matcher.group(2);
+
+        String name = sdkRootDir.getName();
+
+        SDK sdk = new SDK();
+        sdk.major = Integer.valueOf(majorVersion);
+        sdk.minor = Integer.valueOf(minorVersion);
+        sdk.minimalDisplayName = name;
+        sdk.displayName = name;
+        sdk.canonicalName = name;
+        sdk.version = majorVersion + "." + minorVersion;
+        sdk.root = sdkRootDir;
+
+        return sdk;
+    }
+
+    /**
+     * List SDKs bundled with Xcode.
+     */
+    private static Collection<? extends SDK> listBundledFileFormatSdks(String platform) {
         try {
             List<SDK> sdks = new ArrayList<SDK>();
-            File sdksDir = new File(ToolchainUtil.findXcodePath() + "/Platforms/" 
-                                    + platform + ".platform/Developer/SDKs");
+            File sdksDir = new File(ToolchainUtil.findXcodePath() + "/Platforms/"
+                    + platform + ".platform/Developer/SDKs");
             if (sdksDir.exists() && sdksDir.isDirectory()) {
                 for (File root : sdksDir.listFiles()) {
                     try {
@@ -109,7 +178,7 @@ public class SDK implements Comparable<SDK> {
                     }
                 }
             }
-            
+
             return sdks;
         } catch (RuntimeException e) {
             throw e;
@@ -117,15 +186,15 @@ public class SDK implements Comparable<SDK> {
             throw new RuntimeException(t);
         }
     }
-    
+
     public static List<SDK> listDeviceSDKs() {
         return listSDKs("iPhoneOS");
     }
-    
+
     public static List<SDK> listSimulatorSDKs() {
         return listSDKs("iPhoneSimulator");
     }
-    
+
     public String getDisplayName() {
         return displayName;
     }
@@ -133,11 +202,11 @@ public class SDK implements Comparable<SDK> {
     public String getMinimalDisplayName() {
         return minimalDisplayName;
     }
-    
+
     public String getCanonicalName() {
         return canonicalName;
     }
-    
+
     public String getVersion() {
         return version;
     }
@@ -149,11 +218,11 @@ public class SDK implements Comparable<SDK> {
     public NSDictionary getDefaultProperties() {
         return defaultProperties;
     }
-    
+
     public NSObject getDefaultProperty(String key) {
         return defaultProperties.objectForKey(key);
     }
-    
+
     public String getBuild() {
         return build;
     }
@@ -173,27 +242,27 @@ public class SDK implements Comparable<SDK> {
     public int getMajor() {
         return major;
     }
-    
+
     public int getMinor() {
         return minor;
     }
-    
+
     public int getRevision() {
         return revision;
     }
-    
+
     @Override
     public int compareTo(SDK o) {
         int c = major < o.major ? -1 : (major > o.major ? 1 : 0);
         if (c == 0) {
             c = minor < o.minor ? -1 : (minor > o.minor ? 1 : 0);
             if (c == 0) {
-                c = revision < o.revision ? -1 : (revision > o.revision ? 1 : 0);                    
+                c = revision < o.revision ? -1 : (revision > o.revision ? 1 : 0);
             }
         }
         return c;
     }
-    
+
     @Override
     public String toString() {
         return "SDK [displayName=" + displayName + ", minimalDisplayName="
