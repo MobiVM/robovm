@@ -89,6 +89,7 @@ import org.robovm.apple.dispatch.*;
     CBAdvertisementData(NSDictionary data) {
         super(data);
     }
+    public CBAdvertisementData() {}
     /*</constructors>*/
 
     /*<methods>*/
@@ -101,6 +102,10 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
+    public CBAdvertisementData set(NSString key, NSObject value) {
+        data.put(key, value);
+        return this;
+    }
     
 
     public String getLocalName() {
@@ -110,12 +115,20 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
+    public CBAdvertisementData setLocalName(String localName) {
+        set(Keys.LocalName(), new NSString(localName));
+        return this;
+    }
     public double getTxPowerLevel() {
         if (has(Keys.TxPowerLevel())) {
             NSNumber val = (NSNumber) get(Keys.TxPowerLevel());
             return val.doubleValue();
         }
         return 0;
+    }
+    public CBAdvertisementData setTxPowerLevel(double txPowerLevel) {
+        set(Keys.TxPowerLevel(), NSNumber.valueOf(txPowerLevel));
+        return this;
     }
     public NSArray getServiceUUIDs() {
         if (has(Keys.ServiceUUIDs())) {
@@ -124,12 +137,20 @@ import org.robovm.apple.dispatch.*;
         }
         return null;
     }
+    public CBAdvertisementData setServiceUUIDs(NSArray serviceUUIDs) {
+        set(Keys.ServiceUUIDs(), serviceUUIDs);
+        return this;
+    }
     public NSData getManufacturerData() {
         if (has(Keys.ManufacturerData())) {
             NSData val = (NSData) get(Keys.ManufacturerData());
             return val;
         }
         return null;
+    }
+    public CBAdvertisementData setManufacturerData(NSData manufacturerData) {
+        set(Keys.ManufacturerData(), manufacturerData);
+        return this;
     }
     /**
      * @since Available in iOS 6.0 and later.
@@ -140,6 +161,13 @@ import org.robovm.apple.dispatch.*;
             return val;
         }
         return null;
+    }
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    public CBAdvertisementData setOverflowServiceUUIDs(NSArray<CBUUID> overflowServiceUUIDs) {
+        set(Keys.OverflowServiceUUIDs(), overflowServiceUUIDs);
+        return this;
     }
     /**
      * @since Available in iOS 7.0 and later.
@@ -154,12 +182,26 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    public CBAdvertisementData setIsConnectable(boolean isConnectable) {
+        set(Keys.IsConnectable(), NSNumber.valueOf(isConnectable));
+        return this;
+    }
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     public NSArray<CBUUID> getSolicitedServiceUUIDs() {
         if (has(Keys.SolicitedServiceUUIDs())) {
             NSArray<CBUUID> val = (NSArray<CBUUID>) get(Keys.SolicitedServiceUUIDs());
             return val;
         }
         return null;
+    }
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    public CBAdvertisementData setSolicitedServiceUUIDs(NSArray<CBUUID> solicitedServiceUUIDs) {
+        set(Keys.SolicitedServiceUUIDs(), solicitedServiceUUIDs);
+        return this;
     }
     /*</methods>*/
     
