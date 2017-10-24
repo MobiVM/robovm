@@ -365,12 +365,10 @@ values:
         dictionary: CBAdvertisementData
         name: '#{g[0]}'
         type: NSString
-        mutable: false
     CBAdvertisementData(.*)Key:
         dictionary: CBAdvertisementData
         name: '#{g[0]}'
         type: NSString
-        mutable: false
         methods:
             LocalName:
                 type: String
