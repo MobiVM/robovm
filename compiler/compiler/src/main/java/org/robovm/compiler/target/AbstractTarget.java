@@ -355,17 +355,20 @@ public abstract class AbstractTarget implements Target {
                                     // remove simulator archs for device builds
                                     if (config.getOs() == OS.ios && config.getArch().isArm()) {
                                         String archs = ToolchainUtil.lipoInfo(config, file);
-                                        File inFile = new File(destDir, file.getName());
-                                        File tmpFile = new File(destDir, file.getName() + ".tmp");
-                                        FileUtils.copyFile(inFile, tmpFile);
-                                        if(archs.contains(Arch.x86.getClangName())) { 
-                                            ToolchainUtil.lipoRemoveArchs(config, inFile, tmpFile, Arch.x86);
+                                        List<Arch> archesToRemove = new ArrayList<>();
+                                        if(archs.contains(Arch.x86.getClangName())) {
+                                            archesToRemove.add(Arch.x86);
                                         }
-                                        if(archs.contains(Arch.x86_64.getClangName())) { 
-                                            ToolchainUtil.lipoRemoveArchs(config, inFile, tmpFile, Arch.x86_64);
+                                        if(archs.contains(Arch.x86_64.getClangName())) {
+                                            archesToRemove.add(Arch.x86_64);
                                         }
-                                        FileUtils.copyFile(tmpFile, inFile);
-                                        tmpFile.delete();
+                                        if (!archesToRemove.isEmpty()) {
+                                            File inFile = new File(destDir, file.getName());
+                                            File tmpFile = new File(destDir, file.getName() + ".tmp");
+                                            ToolchainUtil.lipoRemoveArchs(config, inFile, tmpFile, archesToRemove.toArray(new Arch[archesToRemove.size()]));
+                                            FileUtils.copyFile(tmpFile, inFile);
+                                            tmpFile.delete();
+                                        }
                                     }
     
                                     // check if this dylib depends on Swift
