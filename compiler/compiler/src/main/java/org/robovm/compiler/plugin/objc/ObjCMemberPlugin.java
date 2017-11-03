@@ -943,6 +943,9 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
             Jimple jimple = Jimple.v();
             SootMethod method = new SootMethod("$field$set_" + field.getName(), Collections.singletonList(field.getType()),
                     VoidType.v(), PRIVATE | FINAL);
+            // if field is struct -- add @ByVal annotation to it
+            if (Types.isStruct(field.getType()))
+                Annotations.addRuntimeVisibleParameterAnnotation(method, 0, Annotations.BY_VAL);
             sootClass.addMethod(method);
 
             method.setActiveBody(jimple.newBody(method));

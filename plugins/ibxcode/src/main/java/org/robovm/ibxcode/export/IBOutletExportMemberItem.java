@@ -38,7 +38,7 @@ public class IBOutletExportMemberItem implements  IClassExportMemberItem {
         ps.println("/**");
         ps.println("* " + propertyType + " " + this.name);
         ps.println("*/");
-        if (fieldType.isPrimitive())
+        if (fieldType.isPrimitive() || fieldType.isUIKitStruct())
             ps.println("@property (assign, nonatomic) " + propertyType + " " + fieldType.getExportClassName() + " " + this.name + ";");
         else
             ps.println("@property (weak, nonatomic) " + propertyType + " " + fieldType.getExportClassName() + " *" + this.name + ";");

@@ -68,10 +68,15 @@ public class Utils {
                 className.equals(ClassNames.UIStoryboardSegue);
     }
 
+    public static boolean isUIKitIBExposedStruct(String className) {
+        return className.equals(ClassNames.CGPoint) || className.equals(ClassNames.CGSize) ||
+                className.equals(ClassNames.CGRect) || className.equals(ClassNames.NSRange);
+    }
+
     public static String getCustomClassName(JavaClass jc) {
         AnnotationEntry entry = getAnnotationEntry(jc, AnnotationsTypes.CUSTOM_CLASS);
         if (entry != null && entry.getElementValuePairs() != null) {
-            return getAnnotationValue(entry, "value", getSimpleClassName(jc));
+            return getAnnotationValue(entry, "value", getFullQualifiedClassName(jc));
         }
         return null;
     }
@@ -115,6 +120,10 @@ public class Utils {
 
     public static String getSimpleClassName(JavaClass jc) {
         return jc.getClassName().substring(jc.getClassName().lastIndexOf('.') + 1); // strip the package name
+    }
+
+    public static String getFullQualifiedClassName(JavaClass jc) {
+        return "j_" + jc.getClassName().replace('.', '_');
     }
 
     public static String getFieldName(String setter) {

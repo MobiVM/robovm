@@ -29,6 +29,12 @@ public class ClassNames {
     public static final String NSString = "org.robovm.apple.foundation.NSString";
     public static final String NSNumber = "org.robovm.apple.foundation.NSNumber";
 
+    // structures
+    public static final String CGPoint = "org.robovm.apple.coregraphics.CGPoint";
+    public static final String CGSize = "org.robovm.apple.coregraphics.CGSize";
+    public static final String CGRect = "org.robovm.apple.coregraphics.CGRect";
+    public static final String NSRange = "org.robovm.apple.foundation.NSRange";
+
     // signatures
     public static final String NSArraySig = "Lorg/robovm/apple/foundation/NSArray";
 }
