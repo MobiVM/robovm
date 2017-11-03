@@ -28,6 +28,7 @@ public class IBClassHierarchyData {
     public static final int FLAG_INHERITS_UIKIT = 1 << 6;
     public static final int FLAG_INHERITS_ROOT_UNRESOLVED = 1 << 7;
     public static final int FLAG_PRIMITIVE_TYPE = 1 << 8;
+    public static final int FLAG_UIKIT_STRUCT = 1 << 9;
 
 
     public final JavaClass jc;
@@ -50,7 +51,7 @@ public class IBClassHierarchyData {
             if (superClass.hasFlags(FLAG_INHERITS_SYSTEM_CLASS))
                 superFlags |= FLAG_INHERITS_SYSTEM_CLASS;
         } else {
-            if ((f & (FLAG_INHERITS_SYSTEM_CLASS | FLAG_UIKIT_CLASS)) == 0)
+            if ((f & (FLAG_INHERITS_SYSTEM_CLASS | FLAG_UIKIT_CLASS | FLAG_UIKIT_STRUCT)) == 0)
                 superFlags = FLAG_ROOT_UNRESOLVED;
         }
 
@@ -90,8 +91,12 @@ public class IBClassHierarchyData {
             return customClassName;
         if (nativeClassName != null)
             return nativeClassName;
-        if (exportNameFromClassName == null)
-            exportNameFromClassName = "j_" + jc.getClassName().replace('.', '_');
+        if (exportNameFromClassName == null) {
+            if (isUIKitStruct())
+                exportNameFromClassName = Utils.getSimpleClassName(jc);
+            else
+                exportNameFromClassName =  Utils.getFullQualifiedClassName(jc);
+        }
         return exportNameFromClassName;
     }
 
@@ -121,6 +126,10 @@ public class IBClassHierarchyData {
 
     public boolean isPrimitive() {
         return hasFlags(FLAG_PRIMITIVE_TYPE);
+    }
+
+    public boolean isUIKitStruct() {
+        return hasFlags(FLAG_UIKIT_STRUCT);
     }
 
     @Override

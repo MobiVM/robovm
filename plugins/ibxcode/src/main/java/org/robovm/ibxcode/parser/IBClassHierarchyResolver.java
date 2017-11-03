@@ -68,6 +68,9 @@ public class IBClassHierarchyResolver {
         if (Utils.isUIKitIBExposedClass(jc.getClassName())) {
             // it is UIView/UIViewController/UIStoryboardSegue so no need to go dipper
             flags |= IBClassHierarchyData.FLAG_UIKIT_CLASS;
+        } else if (Utils.isUIKitIBExposedStruct(jc.getClassName())) {
+            // it is CGSIze/CGPoint/CGRect/NSRange
+            flags |= IBClassHierarchyData.FLAG_UIKIT_STRUCT;
         } else {
             String superClassName = jc.getSuperclassName();
             superClass = resolvedClasses.get(superClassName);

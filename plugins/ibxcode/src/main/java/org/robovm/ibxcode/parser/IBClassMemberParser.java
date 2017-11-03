@@ -139,7 +139,7 @@ public class IBClassMemberParser {
             if (fieldType == null || fieldType.isUnresolved()) {
                 exceptionMessage = propertyType + ": unresolved type " + fieldTypeStr + ": while handling " + method.getName() + "@" +
                         classData.jc.getClassName();
-            } else if (!fieldType.isNative() && !fieldType.isUIKit() && !fieldType.isPrimitive()) {
+            } else if (!fieldType.isNative() && !fieldType.isUIKit() && !fieldType.isPrimitive() && !fieldType.isUIKitStruct()) {
                 exceptionMessage = propertyType + ": wrong type " + fieldTypeStr + " (NativeClass or UIKit subclasses expected): while handling " +
                         method.getName() + "@" + classData.jc.getClassName();
             }
@@ -170,7 +170,7 @@ public class IBClassMemberParser {
             if (fieldType == null || fieldType.isUnresolved()) {
                 exceptionMessage = propertyType + ": unresolved type " + fieldTypeStr + ": while handling " + field.getName() + "@" +
                         classData.jc.getClassName();
-            } else if (!fieldType.isNative() && !fieldType.isUIKit() && !fieldType.isPrimitive()) {
+            } else if (!fieldType.isNative() && !fieldType.isUIKit() && !fieldType.isPrimitive() && !fieldType.isUIKitStruct()) {
                 exceptionMessage = propertyType + ": wrong type " + fieldTypeStr + " (NativeClass or UIKit subclasses expected): while handling " +
                         field.getName() + "@" + classData.jc.getClassName();
             }
