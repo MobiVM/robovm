@@ -112,7 +112,7 @@ public class Utils {
 
     public static String getAnnotationValue(AnnotationEntry entry, String valueKey, String defaultValue) {
         for (ElementValuePair pair : entry.getElementValuePairs()) {
-            if (pair.getNameString() == valueKey)
+            if (valueKey.equals(pair.getNameString()))
                 return pair.getValue().stringifyValue();
         }
         return defaultValue;
