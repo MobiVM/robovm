@@ -73,7 +73,7 @@ if(MACOSX)
 endif()
 
 ExternalProject_Add(extclang 
-  GIT_REPOSITORY git://github.com/robovm/clang.git
+  GIT_REPOSITORY git://github.com/mobivm/clang.git
   GIT_TAG 7b389564897bc6c0431c42f8f1825f04624ff4e3
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND "" 
@@ -87,7 +87,7 @@ set(LLVM_C_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-
 set(LLVM_CXX_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-sections")
 ExternalProject_Add(extllvm
   DEPENDS extclang
-  GIT_REPOSITORY git://github.com/robovm/llvm.git
+  GIT_REPOSITORY git://github.com/mobivm/llvm.git
   GIT_TAG aceb47b80838681fe65a1d01aac7aae7b863ac5a
   PATCH_COMMAND bash -c "rm -rf tools/clang && ln -s ../../../../extclang-prefix/src/extclang tools/clang && ${CMAKE_SOURCE_DIR}/patches/apply-patches"
   LIST_SEPARATOR ^^
