@@ -8,6 +8,7 @@ public class DebugVariableInfo {
     // register names from DwarfConsts
     public final static int OP_breg13 = 0x7d;
     public final static int OP_fbreg = 0x91;
+    public final static int OP_breg31 = 0x8f;
 
     private final String name;
     private final boolean isArgument;
@@ -77,6 +78,8 @@ public class DebugVariableInfo {
     public static String registerName(int register) {
         if (register == OP_breg13)
             return "OP_breg13";
+        if (register == OP_breg31)
+            return "OP_breg31";
         else if (register == OP_fbreg)
             return "OP_fbreg";
         else
