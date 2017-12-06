@@ -224,8 +224,9 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
         if (variableInfo.register() == DebugVariableInfo.OP_fbreg) {
             // FP register on x86 and ARM64
             addr = frame.fp() + variableInfo.offset();
-        } else  if (variableInfo.register() == DebugVariableInfo.OP_breg13) {
-            // SP register on ARM 32bit
+        } else  if (variableInfo.register() == DebugVariableInfo.OP_breg31 || variableInfo.register() == DebugVariableInfo.OP_breg13){
+            // SP on thumb7(R13)
+            // RSP register on ARM64
             // align using SpFpOffset data
             addr = (frame.fp() - frame.methodInfo().spFpOffset()) & ~(frame.methodInfo().spFpAlign() - 1);
             addr += variableInfo.offset();
