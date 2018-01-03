@@ -70,6 +70,7 @@ public class InterfaceBuilderClassesPlugin extends AbstractCompilerPlugin {
     private static final String[] JAR_ZIP_EXTENSIONS = new String[] { "jar", "zip" };
     private static final String CLASS_EXTENSION = "class";
     private static final String CUSTOM_CLASS = "Lorg/robovm/objc/annotation/CustomClass;";
+    private static final String NATIVE_CLASS = "Lorg/robovm/objc/annotation/NativeClass;";
     private static final Pattern IB_CLASS_PATTERN = Pattern.compile(".*(ViewController|View)");
     /**
      * Ignore package names like this when searching classpath folders for
@@ -141,8 +142,14 @@ public class InterfaceBuilderClassesPlugin extends AbstractCompilerPlugin {
 
             for (String javaName : classToUrlMap.keySet()) {
                 if (matchSimpleName(objCName, javaName)) {
-                    if (objCName.equals(getCustomClass(classToUrlMap.get(javaName), customClassValuesCache))) {
+                    URL url = classToUrlMap.get(javaName);
+                    if (objCName.equals(getCustomClass(url, customClassValuesCache))) {
                         result.put(objCName, javaName);
+                        it.remove();
+                        continue outer;
+                    }
+                    if (isNativeClass(url)) {
+                        // its native class no need to add it to pre-load classes just remove it from unresolved
                         it.remove();
                         continue outer;
                     }
@@ -250,6 +257,28 @@ public class InterfaceBuilderClassesPlugin extends AbstractCompilerPlugin {
         new ClassReader(IOUtils.toByteArray(url)).accept(visitor, 0);
         customClassValuesCache.put(url, visitor.customClass);
         return visitor.customClass;
+    }
+
+    private boolean isNativeClass(URL url) throws IOException {
+        class Visitor extends ClassVisitor {
+            private boolean nativeClass;
+
+            private Visitor() {
+                super(Opcodes.ASM4);
+            }
+
+            @Override
+            public AnnotationVisitor visitAnnotation(final String desc, boolean visible) {
+                if (NATIVE_CLASS.equals(desc)) {
+                    nativeClass = true;
+                }
+                return super.visitAnnotation(desc, visible);
+            }
+        }
+
+        Visitor visitor = new Visitor();
+        new ClassReader(IOUtils.toByteArray(url)).accept(visitor, 0);
+        return visitor.nativeClass;
     }
 
     private String getAutoName(String javaName) {
