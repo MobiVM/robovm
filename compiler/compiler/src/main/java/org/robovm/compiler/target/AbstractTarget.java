@@ -409,7 +409,31 @@ public abstract class AbstractTarget implements Target {
 		}
 		File swiftDir = new File(ToolchainUtil.findXcodePath(),
 				"Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/" + system);
-		for (String library : swiftLibraries) {
+
+		// dkimitsa: there is hidden dependencies possible between swift libraries.
+		// e.g. one swiftLib has dependency that is not listed in included framework
+		// solve this by moving through all swiftLibs and resolve their not listed dependencies
+		Set<String> libsToResolve = new HashSet<>(swiftLibraries);
+		Set<String> extendedSwiftLibraries = new HashSet<>(swiftLibraries);
+		while (!libsToResolve.isEmpty()) {
+			for (String library : new HashSet<>(libsToResolve)) {
+				libsToResolve.remove(library);
+
+				File swiftLibrary = new File(swiftDir, library);
+				String dependencies = ToolchainUtil.otool(swiftLibrary);
+				Pattern swiftLibraryPattern = Pattern.compile("libswift.+\\.dylib");
+				Matcher matcher = swiftLibraryPattern.matcher(dependencies);
+				while (matcher.find()) {
+					String lib = dependencies.substring(matcher.start(), matcher.end());
+					if (extendedSwiftLibraries.add(lib)) {
+						// new dependency, add it heere
+						libsToResolve.add(lib);
+					}
+				}
+			}
+		}
+
+		for (String library : extendedSwiftLibraries) {
 			config.getLogger().info("Copying swift lib %s from %s to %s", library, swiftDir, targetDir);
 			File swiftLibrary = new File(swiftDir, library);
 			FileUtils.copyFileToDirectory(swiftLibrary, targetDir);
