@@ -38,7 +38,7 @@ set(LDFLAGS "-L${EXTPREFIX}/lib")
 
 if(MACOSX)
   exec_program(xcode-select ARGS --print-path OUTPUT_VARIABLE XCODE_PATH)
-  set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk")
+  set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk")
   if(NOT IS_DIRECTORY ${SYSROOT})
     set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk")
   endif()
@@ -54,17 +54,17 @@ if(MACOSX)
 endif()
 
 ExternalProject_Add(extlibxml
-  URL http://xmlsoft.org/sources/libxml2-2.9.1.tar.gz
+  URL http://xmlsoft.org/sources/libxml2-2.9.5.tar.gz
   CONFIGURE_COMMAND bash -c "CC=${CMAKE_C_COMPILER} CFLAGS='${EXTCFLAGS}' ./configure --enable-shared=no --prefix=${EXTPREFIX} --with-minimum=on --without-python --without-ftp --without-http --without-html --without-docbook --without-xpath --without-xinclude --without-xptr --without-c14n --without-catalog --without-valid --without-schemas --without-schematron --without-modules --without-lzma --without-zlib"
   BUILD_IN_SOURCE 1
 )
 ExternalProject_Add(extlibusbx
-  URL http://www.mirrorservice.org/sites/downloads.sourceforge.net/l/li/libusb/libusb-1.0/libusb-1.0.19/libusb-1.0.19.tar.bz2
+  URL http://www.mirrorservice.org/sites/downloads.sourceforge.net/l/li/libusb/libusb-1.0/libusb-1.0.21/libusb-1.0.21.tar.bz2
   CONFIGURE_COMMAND bash -c "CC=${CMAKE_C_COMPILER} CFLAGS='${EXTCFLAGS}' ./configure --enable-shared=no --enable-udev=no --prefix=${EXTPREFIX}"
   BUILD_IN_SOURCE 1
 )
 ExternalProject_Add(extlibplist
-  URL http://www.libimobiledevice.org/downloads/libplist-1.12.tar.bz2
+  URL http://www.libimobiledevice.org/downloads/libplist-2.0.0.tar.bz2
   CONFIGURE_COMMAND bash -c "CC=${CMAKE_C_COMPILER} CFLAGS='${EXTCFLAGS}' PKG_CONFIG_PATH='${EXTPREFIX}/lib/pkgconfig' ./configure --enable-shared=no --prefix=${EXTPREFIX} --without-cython"
   BUILD_IN_SOURCE 1
   DEPENDS extlibxml
