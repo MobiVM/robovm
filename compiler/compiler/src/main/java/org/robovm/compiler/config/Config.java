@@ -1105,6 +1105,18 @@ public class Config {
         }
     }
 
+    /**
+     * reads configuration from disk without any analysis
+     */
+    public static Config loadRawConfig(File contentRoot) throws IOException {
+        // dkimitsa: config retrieved this way shall not be used for any compilation needs
+        // just for IB and other UI related things
+        Builder builder = new Builder();
+        builder.readProjectProperties(contentRoot, false);
+        builder.readProjectConfig(contentRoot, false);
+        return builder.config;
+    }
+
     public static class Builder {
         protected final Config config;
 

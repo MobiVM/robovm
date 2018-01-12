@@ -16,26 +16,6 @@
  */
 package org.robovm.idea;
 
-import java.io.*;
-import java.lang.reflect.Field;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.zip.GZIPInputStream;
-
-import org.apache.commons.compress.archivers.ArchiveEntry;
-import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
-import org.apache.commons.io.IOUtils;
-import org.jetbrains.annotations.NotNull;
-import org.robovm.compiler.Version;
-import org.robovm.compiler.config.Arch;
-import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.Resource;
-import org.robovm.compiler.log.Logger;
-import org.robovm.compiler.util.InfoPList;
-import org.robovm.idea.compilation.RoboVmCompileTask;
-import org.robovm.idea.config.RoboVmGlobalConfig;
-import org.robovm.idea.sdk.RoboVmSdkType;
-
 import com.intellij.execution.filters.TextConsoleBuilderFactory;
 import com.intellij.execution.ui.ConsoleView;
 import com.intellij.execution.ui.ConsoleViewContentType;
@@ -43,7 +23,6 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.compiler.CompileScope;
 import com.intellij.openapi.compiler.CompileTask;
 import com.intellij.openapi.compiler.CompilerManager;
-import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
@@ -54,12 +33,44 @@ import com.intellij.openapi.roots.OrderEntry;
 import com.intellij.openapi.roots.OrderEnumerator;
 import com.intellij.openapi.roots.OrderRootType;
 import com.intellij.openapi.ui.MessageType;
-import com.intellij.openapi.vfs.*;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.VirtualFileAdapter;
+import com.intellij.openapi.vfs.VirtualFileEvent;
+import com.intellij.openapi.vfs.VirtualFileListener;
+import com.intellij.openapi.vfs.VirtualFileManager;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.ui.content.Content;
 import com.intellij.util.ui.UIUtil;
+import org.apache.commons.compress.archivers.ArchiveEntry;
+import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
+import org.apache.commons.io.IOUtils;
+import org.jetbrains.annotations.NotNull;
+import org.robovm.compiler.Version;
+import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.Resource;
+import org.robovm.compiler.log.Logger;
+import org.robovm.idea.compilation.RoboVmCompileTask;
+import org.robovm.idea.config.RoboVmGlobalConfig;
+import org.robovm.idea.sdk.RoboVmSdkType;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.zip.GZIPInputStream;
 
 /**
  * Provides util for the other components of the plugin such
@@ -518,11 +529,25 @@ public class RoboVmPlugin {
     }
 
     public static List<Module> getRoboVmModules(Project project) {
+        return getRoboVmModules(project, null);
+    }
+
+    public static List<Module> getRoboVmModules(Project project, String targetType) {
         List<Module> validModules = new ArrayList<Module>();
         for (Module module : ModuleManager.getInstance(project).getModules()) {
-            if (isRoboVmModule(module)) {
-                validModules.add(module);
+            if (!isRoboVmModule(module))
+                continue;
+
+            // dkimitsa: if target type is specified return only matching modules. E.g. don't allow to run Framework
+            // target in Console runner
+            if (targetType != null) {
+                Config config = loadRawModuleConfig(module);
+                if (config == null)
+                    continue;
+                if (!targetType.equals(config.getTargetType()))
+                    continue;;
             }
+            validModules.add(module);
         }
         return validModules;
     }
@@ -552,6 +577,21 @@ public class RoboVmPlugin {
 
         return false;
     }
+
+    public static Config loadRawModuleConfig(Module module) {
+        for(VirtualFile file: ModuleRootManager.getInstance(module).getContentRoots()) {
+            if(file.findChild("robovm.xml") != null) {
+                try {
+                    File contentRoot = new File(file.getPath());
+                    return Config.loadRawConfig(contentRoot);
+                } catch (IOException ignored) {
+                }
+            }
+        }
+
+        return null;
+    }
+
 
     public static void focusToolWindow(final Project project) {
         UIUtil.invokeLaterIfNeeded(new Runnable() {

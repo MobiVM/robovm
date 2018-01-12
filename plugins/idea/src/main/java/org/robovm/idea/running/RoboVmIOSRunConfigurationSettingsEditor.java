@@ -28,6 +28,7 @@ import javax.swing.*;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.target.ios.DeviceType;
+import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.idea.RoboVmPlugin;
@@ -93,7 +94,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     private void updateModuleConfig(RoboVmRunConfiguration config) {
         // populate with RoboVM Sdk modules
         this.module.removeAllItems();
-        List<Module> roboVmModules = RoboVmPlugin.getRoboVmModules(config.getProject());
+        List<Module> roboVmModules = RoboVmPlugin.getRoboVmModules(config.getProject(), IOSTarget.TYPE);
         Collections.sort(roboVmModules, new Comparator<Module>() {
             @Override
             public int compare(Module o1, Module o2) {

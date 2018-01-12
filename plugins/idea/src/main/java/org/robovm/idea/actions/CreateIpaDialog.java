@@ -30,6 +30,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.Nullable;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.target.ios.DeviceType;
+import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.idea.RoboVmPlugin;
@@ -77,7 +78,7 @@ public class CreateIpaDialog extends DialogWrapper {
         String configDestDir = properties.getValue(DESTINATION_DIR, "");
         String configArchs = properties.getValue(ARCHS, "");
 
-        for(Module module: RoboVmPlugin.getRoboVmModules(project)) {
+        for(Module module: RoboVmPlugin.getRoboVmModules(project, IOSTarget.TYPE)) {
             this.module.addItem(module.getName());
             if(module.getName().equals(configModule)) {
                 this.module.setSelectedIndex(this.module.getItemCount()-1);
