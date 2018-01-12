@@ -54,6 +54,8 @@
 
             <action id="org.robovm.idea.create-ipa" class="org.robovm.idea.actions.CreateIpaAction" text="Create IPA"
                     description="Create an IPA for App Store or ad-hoc distribution"/>
+            <action id="org.robovm.idea.create-framework" class="org.robovm.idea.actions.CreateFrameworkAction" text="Create Framework"
+                    description="Create a Framework"/>
             <action id="org.robovm.idea.open-ibxcode" class="org.robovm.idea.actions.GenerateXCodeProjectAction" text="Open XCode"
                     description="Generate and open XCode project to edit xib/storyboard in Interface Builder"/>
             <action id="org.robovm.idea.clean-cache" class="org.robovm.idea.actions.CleanRoboVmCacheAction" text="Clean cache"
