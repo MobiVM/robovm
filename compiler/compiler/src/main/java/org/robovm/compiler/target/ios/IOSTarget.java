@@ -391,7 +391,7 @@ public class IOSTarget extends AbstractTarget {
                 copyProvisioningProfile(provisioningProfile, appDir);
                 signFrameworks(appDir, true);
                 // sign the app
-                codesignApp(signIdentity, getOrCreateEntitlementsPList(true, getBundleId()), appDir);
+                codesignApp(signIdentity, getOrCreateEntitlementsPList(provisioningProfile.getType() == Type.Development, getBundleId()), appDir);
             }
         }
     }
