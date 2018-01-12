@@ -164,7 +164,7 @@ public class FrameworkTarget extends AbstractTarget {
 	protected List<String> getTargetLibs() {
     	// adding framework support library
 		String libSuffix = config.isUseDebugLibs() ? "-dbg" : "";
-		return Collections.singletonList("-lrobovm-frameworks" + libSuffix);
+		return Collections.singletonList("-lrobovm-frameworksupport" + libSuffix);
 	}
 
 
