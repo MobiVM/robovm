@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" name="robovm-templates-default"
+    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <requiredProperties>
+    <requiredProperty key="groupId">
+      <defaultValue>org.robovm</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="package">
+      <defaultValue>org.robovm.app</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="artifactId">
+      <defaultValue>default-template</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="version">
+      <defaultValue>1.0</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="mainClass">
+      <defaultValue>Main</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="appName">
+      <defaultValue>App</defaultValue>
+    </requiredProperty>
+  </requiredProperties>
+  <fileSets>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>src/main/java/__packageInPathFormat__</directory>
+      <includes>
+        <include>**/*.java</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>headers</directory>
+      <includes>
+        <include>*.h</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>Info.plist.xml</include>
+        <include>robovm.xml</include>
+        <include>robovm.properties</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</archetype-descriptor>
