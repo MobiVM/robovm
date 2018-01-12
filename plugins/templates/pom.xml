@@ -98,6 +98,7 @@
 
   <modules>
     <module>ios-single-view-no-ib</module>    
+    <module>ios-framework</module>
     <module>console</module>
     <module>templater</module>
   </modules>
