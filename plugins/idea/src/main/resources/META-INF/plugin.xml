@@ -62,8 +62,6 @@
                     description="Deletes as files in ~/.robovm/cache folder"/>
 
             <group id="org.robovm.idea.as-fixes-new" text="AS New" description="new Project/Module workaround for Android Studio" popup="true">
-                <add-to-group group-id="org.robovm.idea.Menu" anchor="last"  />
-
                 <action id="org.robovm.idea.as-fixes-new-project" class="org.robovm.idea.actions.ASNewProjectAction" text="Project..."/>
                 <action id="org.robovm.idea.as-fixes-new-module" class="org.robovm.idea.actions.ASNewModuleAction" text="Module..."/>
             </group>
