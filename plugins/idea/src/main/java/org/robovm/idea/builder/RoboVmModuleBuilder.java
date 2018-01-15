@@ -22,9 +22,7 @@ import com.intellij.ide.util.projectWizard.JavaModuleBuilder;
 import com.intellij.ide.util.projectWizard.ModuleWizardStep;
 import com.intellij.ide.util.projectWizard.WizardContext;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.externalSystem.model.ExternalSystemDataKeys;
-import com.intellij.openapi.externalSystem.service.project.ProjectDataManager;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.module.ModifiableModuleModel;
 import com.intellij.openapi.module.Module;
@@ -238,10 +236,24 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                 project.putUserData(ExternalSystemDataKeys.NEWLY_CREATED_PROJECT, Boolean.TRUE);
                 // to workaround "AWT events are not allowed inside write action"
                 ApplicationManager.getApplication().invokeLater(() -> {
-                    ProjectDataManager projectDataManager = (ProjectDataManager) ServiceManager
-                            .getService(ProjectDataManager.class);
-                    GradleProjectImportBuilder gradleProjectImportBuilder = new GradleProjectImportBuilder(
-                            projectDataManager);
+
+                    // dkimitsa: there is a mess between ProjectDataManagers.
+                    // IDEA uses new com.intellij.openapi.externalSystem.service.project.ProjectDataManager;
+                    // but Android studio outdated: com.intellij.openapi.externalSystem.service.project.manage.ProjectDataManager;
+                    // so try first using recent one if failed -- try outdated
+                    GradleProjectImportBuilder gradleProjectImportBuilder;
+                    try {
+                        // recent from Idea2017
+                        com.intellij.openapi.externalSystem.service.project.ProjectDataManager projectDataManager;
+                        projectDataManager = com.intellij.openapi.externalSystem.service.project.ProjectDataManager.getInstance();
+                        gradleProjectImportBuilder = new GradleProjectImportBuilder(projectDataManager);
+                    } catch (Throwable ignored) {
+                        // old idea and AndroidStudios (even v3)
+                        com.intellij.openapi.externalSystem.service.project.manage.ProjectDataManager projectDataManager;
+                        projectDataManager = com.intellij.openapi.externalSystem.service.project.manage.ProjectDataManager.getInstance();
+                        gradleProjectImportBuilder = new GradleProjectImportBuilder(projectDataManager);
+                    }
+
                     gradleProjectImportBuilder.getControl(project).getProjectSettings()
                             .setDistributionType(DistributionType.WRAPPED);
                     gradleProjectImportBuilder.getControl(project).getProjectSettings().
