@@ -10,6 +10,7 @@
 //
 // Calculator API -- everything is exposed as protocols
 //
+NS_SWIFT_NAME(Calculator)
 @protocol Calculator
 -(int)reset;
 -(int)add:(int) i;
@@ -24,6 +25,7 @@ typedef NSObject<Calculator> Calculator;
 //
 // ${mainClass} of framework. it is entry point to framework.
 //
+NS_SWIFT_NAME(${mainClass})
 @protocol ${mainClass}
 -(Calculator *) newCalculator;
 -(void) sayHello;
@@ -32,7 +34,9 @@ typedef NSObject<Calculator> Calculator;
 typedef NSObject<${mainClass}> ${mainClass};
 
 //
-// macro that return instance of Framework's main class. On first access it also instantiate RoboVM
+// static function that returns instance of Framework's main class. On first access it also instantiate RoboVM
 //
-extern ${mainClass}* rvmInstantiateFramework(const char *className);
-#define ${appName}_instance() rvmInstantiateFramework("${package}.${mainClass}Impl");
+static ${mainClass}* ${appName}Instance() {
+    extern ${mainClass}* rvmInstantiateFramework(const char *className);
+    return rvmInstantiateFramework("${package}.${mainClass}Impl");
+}

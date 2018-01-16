@@ -44,7 +44,7 @@ public class Templater {
     private static final String MAIN_CLASS_FILE_PLACEHOLDER = "__mainClass__";
     private static final String APP_NAME_FILE_PLACEHOLDER = "__appName__";
     private static final Set<String> SUBSTITUTED_PLACEHOLDER_FILES_EXTENSIONS = new HashSet<>(Arrays.asList("xml",
-            "java", "kt", "h"));
+            "java", "kt", "h", "modulemap"));
     private static final String DOLLAR_SYMBOL_PLACEHOLDER = Pattern.quote("${symbol_dollar}");
     private static final String PACKAGE_PLACEHOLDER = Pattern.quote("${package}");
     private static final String MAIN_CLASS_PLACEHOLDER = Pattern.quote("${mainClass}");

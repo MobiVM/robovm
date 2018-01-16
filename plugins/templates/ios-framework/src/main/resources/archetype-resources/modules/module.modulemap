@@ -1,0 +1,7 @@
+framework module ${appName} {
+  umbrella header "${appName}.h"
+
+  export *
+  module * { export * }
+}
+

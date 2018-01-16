@@ -21,12 +21,18 @@
     <!-- The Info.plist.xml file will be copied into the framework. -->
     <infoPList>Info.plist.xml</infoPList>
 
-    <!-- Copies the header files in headers/ to a directory named Headers in
-    the root of the .framework folder structure. -->
     <resources>
+        <!-- Copies the header files in headers/ to a directory named Headers in
+        the root of the .framework folder structure. -->
         <resource>
             <directory>headers</directory>
             <targetPath>../../Headers</targetPath>
+        </resource>
+        <!-- Copies the modules files in modules/ to a directory named Moduless in
+        the root of the .framework folder structure. Required to enable swift support -->
+        <resource>
+            <directory>modules</directory>
+            <targetPath>../../Modules</targetPath>
         </resource>
     </resources>
     <treeShaker>aggressive</treeShaker>
