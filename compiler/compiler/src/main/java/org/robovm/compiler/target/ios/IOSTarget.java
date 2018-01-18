@@ -358,6 +358,7 @@ public class IOSTarget extends AbstractTarget {
                 copyProvisioningProfile(provisioningProfile, installDir);
                 boolean getTaskAllow = provisioningProfile.getType() == Type.Development;
                 signFrameworks(installDir, getTaskAllow);
+                signAppExtensions(installDir, getTaskAllow);
                 codesignApp(signIdentity, getOrCreateEntitlementsPList(getTaskAllow, getBundleId()), installDir);
             }
         }
@@ -389,9 +390,11 @@ public class IOSTarget extends AbstractTarget {
                 ldid(getOrCreateEntitlementsPList(true, getBundleId()), appDir);
             } else {
                 copyProvisioningProfile(provisioningProfile, appDir);
-                signFrameworks(appDir, true);
+                boolean getTaskAllow = provisioningProfile.getType() == Type.Development;
+                signFrameworks(appDir, getTaskAllow);
+                signAppExtensions(appDir, getTaskAllow);
                 // sign the app
-                codesignApp(signIdentity, getOrCreateEntitlementsPList(true, getBundleId()), appDir);
+                codesignApp(signIdentity, getOrCreateEntitlementsPList(getTaskAllow, getBundleId()), appDir);
             }
         }
     }
@@ -416,6 +419,20 @@ public class IOSTarget extends AbstractTarget {
         }
     }
 
+    private void signAppExtensions(File appDir, boolean getTaskAllow) throws IOException {
+        // sign dynamic frameworks first
+        File extensionsDir = new File(appDir, "PlugIns");
+        if (extensionsDir.exists() && extensionsDir.isDirectory()) {
+            // sign embedded app-extensions
+            for (File extension : extensionsDir.listFiles()) {
+                if (extension.isDirectory() && extension.getName().endsWith(".appex")) {
+                    // now sign
+                    codesignAppExtension(signIdentity, extension);
+                }
+            }
+        }
+    }
+
     private void codesignApp(SigningIdentity identity, File entitlementsPList, File appDir) throws IOException {
         config.getLogger().info("Code signing app using identity '%s' with fingerprint %s", identity.getName(),
                 identity.getFingerprint());
@@ -432,6 +449,12 @@ public class IOSTarget extends AbstractTarget {
         config.getLogger().info("Code signing framework '%s' using identity '%s' with fingerprint %s", frameworkDir.getName(), identity.getName(),
                 identity.getFingerprint());
         codesign(identity, null, true, false, true, frameworkDir);
+    }
+
+    private void codesignAppExtension(SigningIdentity identity, File extensionDir) throws IOException {
+        config.getLogger().info("Code signing app-extension '%s' using identity '%s' with fingerprint %s", extensionDir.getName(), identity.getName(),
+                identity.getFingerprint());
+        codesign(identity, null, false, false, true, extensionDir);
     }
 
     private void codesign(SigningIdentity identity, File entitlementsPList, boolean preserveMetadata, boolean verbose, boolean allocate, File target) throws IOException {
@@ -547,7 +570,7 @@ public class IOSTarget extends AbstractTarget {
     @Override
     protected Process doLaunch(LaunchParameters launchParameters) throws IOException {
         // in IDEA prepare for launch is happening during build phase to not block calling thread
-        // all other pluggins will prepare here
+        // all other plugins will prepare here
         if (!config.isManuallyPreparedForLaunch())
             prepareLaunch();
         Process process = super.doLaunch(launchParameters);
@@ -680,6 +703,7 @@ public class IOSTarget extends AbstractTarget {
         return config.getExecutableName();
     }
 
+    @Override
     protected String getBundleId() {
         if (config.getIosInfoPList() != null) {
             String bundleIdentifier = config.getIosInfoPList().getBundleIdentifier();
