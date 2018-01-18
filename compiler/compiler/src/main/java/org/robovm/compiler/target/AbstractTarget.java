@@ -418,21 +418,7 @@ public abstract class AbstractTarget implements Target {
             if (extensionDir == null)
                 continue;
 
-            // app extension shell extend app id, e.g. if app id = com.sample.app
-            // all app extensions shall have "com.sample.app." as prefix.
-            // just override all app extension ids by adding extension name to app id
-            // read app ext info.plist
-            try {
-                File infoPlistFile = new File(extensionDir, "Info.plist");
-                NSDictionary infoPlist = (NSDictionary) PropertyListParser.parse(infoPlistFile);
-                String appExBundleId = getBundleId() + "." + extension;
-                infoPlist.put("CFBundleIdentifier", appExBundleId);
-                PropertyListParser.saveAsXML(infoPlist, infoPlistFile);
-            } catch (Exception e) {
-                throw new RuntimeException("Failed to read/update bundle id of extension " + extension);
-            }
-
-            config.getLogger().info("Copying app-extension %s from %s to %s", extension, extensionDir, destDir);
+            config.getLogger().info("Copying app-extension %s from %s to %s", extension, extensionDir, pluginsDir);
             new Resource(extensionDir).walk(new Walker() {
                 @Override
                 public boolean processDir(Resource resource, File dir, File destDir) throws IOException {
@@ -465,6 +451,20 @@ public abstract class AbstractTarget implements Target {
                     }
                 }
             }, pluginsDir);
+
+            // app extension shell extend app id, e.g. if app id = com.sample.app
+            // all app extensions shall have "com.sample.app." as prefix.
+            // just override all app extension ids by adding extension name to app id
+            // read app ext info.plist
+            try {
+                File infoPlistFile = new File(pluginsDir, extension + ".appex/Info.plist");
+                NSDictionary infoPlist = (NSDictionary) PropertyListParser.parse(infoPlistFile);
+                String appExBundleId = getBundleId() + "." + extension;
+                infoPlist.put("CFBundleIdentifier", appExBundleId);
+                PropertyListParser.saveAsXML(infoPlist, infoPlistFile);
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to read/update bundle id of extension " + extension);
+            }
         }
     }
 
