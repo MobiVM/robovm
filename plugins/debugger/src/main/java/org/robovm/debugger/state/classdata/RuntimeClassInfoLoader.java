@@ -66,9 +66,7 @@ public class RuntimeClassInfoLoader {
      * @return data type info for giver clazz pointer
      */
     public ClassInfo resolveRuntimeDataTypeInfo(String signature, long clazzPtr) {
-        ClassInfo info = delegates.state().classInfoLoader().classInfoBySignature(signature);
-        if (info != null)
-            return info;
+        ClassInfo info;
 
         // try to build array data type
         char firstChar = signature.charAt(0);
@@ -87,6 +85,11 @@ public class RuntimeClassInfoLoader {
 
             info = new ClassInfoArrayImpl(signature, componentType);
         } else {
+            // it could be class, signature from device it is Clazz and not bounded by L and ;
+            info = delegates.state().classInfoLoader().classInfoBySignature("L" + signature + ";");
+            if (info != null)
+                return info;
+
             // check for dynamically created proxy classes
             if (Pattern.matches(".*/\\$Proxy\\d+$", signature)) {
                 // it is proxy, return simple java object
