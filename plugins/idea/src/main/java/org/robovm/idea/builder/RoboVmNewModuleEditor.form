@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="152a4" class="javax.swing.JLabel">
+      <component id="152a4" class="javax.swing.JLabel" binding="packageNameLabel">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -29,7 +29,7 @@
           <text value="Main Class Name"/>
         </properties>
       </component>
-      <component id="57783" class="javax.swing.JLabel">
+      <component id="57783" class="javax.swing.JLabel" binding="appNameLabel">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -37,7 +37,7 @@
           <text value="Application Name"/>
         </properties>
       </component>
-      <component id="30d3c" class="javax.swing.JLabel">
+      <component id="30d3c" class="javax.swing.JLabel" binding="appIdLabel">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

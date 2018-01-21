@@ -49,15 +49,26 @@
     </module-components>
 
     <actions>
-        <action id="org.robovm.idea.create-ipa" class="org.robovm.idea.actions.CreateIpaAction" text="Create IPA"
-                description="Create an IPA for App Store or ad-hoc distribution">
-            <add-to-group group-id="BuildMenu" anchor="last"/>
-        </action>
-        <action id="org.robovm.idea.open-ibxcode" class="org.robovm.idea.actions.GenerateXCodeProjectAction" text="Open XCode"
-                description="Generate and open XCode project to edit xib/storyboard in Interface Builder">
-            <add-to-group group-id="BuildMenu" anchor="last"/>
-        </action>
+        <group id="org.robovm.idea.Menu" text="RoboVM" description="RoboVM Menu">
+            <add-to-group group-id="MainMenu" anchor="before" relative-to-action="HelpMenu" />
+
+            <action id="org.robovm.idea.create-ipa" class="org.robovm.idea.actions.CreateIpaAction" text="Create IPA"
+                    description="Create an IPA for App Store or ad-hoc distribution"/>
+            <action id="org.robovm.idea.create-framework" class="org.robovm.idea.actions.CreateFrameworkAction" text="Create Framework"
+                    description="Create a Framework"/>
+            <action id="org.robovm.idea.open-ibxcode" class="org.robovm.idea.actions.GenerateXCodeProjectAction" text="Open XCode"
+                    description="Generate and open XCode project to edit xib/storyboard in Interface Builder"/>
+            <action id="org.robovm.idea.clean-cache" class="org.robovm.idea.actions.CleanRoboVmCacheAction" text="Clean cache"
+                    description="Deletes as files in ~/.robovm/cache folder"/>
+
+            <group id="org.robovm.idea.as-fixes-new" text="AS New" description="new Project/Module workaround for Android Studio" popup="true">
+                <action id="org.robovm.idea.as-fixes-new-project" class="org.robovm.idea.actions.ASNewProjectAction" text="Project..."/>
+                <action id="org.robovm.idea.as-fixes-new-module" class="org.robovm.idea.actions.ASNewModuleAction" text="Module..."/>
+            </group>
+        </group>
 
     </actions>
+
+
 
 </idea-plugin>

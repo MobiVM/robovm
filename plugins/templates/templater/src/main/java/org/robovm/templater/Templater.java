@@ -42,11 +42,13 @@ import org.apache.commons.io.IOUtils;
 public class Templater {
     private static final String PACKAGE_FOLDER_PLACEHOLDER = "__packageInPathFormat__";
     private static final String MAIN_CLASS_FILE_PLACEHOLDER = "__mainClass__";
+    private static final String APP_NAME_FILE_PLACEHOLDER = "__appName__";
     private static final Set<String> SUBSTITUTED_PLACEHOLDER_FILES_EXTENSIONS = new HashSet<>(Arrays.asList("xml",
-            "java", "kt"));
+            "java", "kt", "h", "modulemap"));
     private static final String DOLLAR_SYMBOL_PLACEHOLDER = Pattern.quote("${symbol_dollar}");
     private static final String PACKAGE_PLACEHOLDER = Pattern.quote("${package}");
     private static final String MAIN_CLASS_PLACEHOLDER = Pattern.quote("${mainClass}");
+    private static final String APP_NAME_PLACEHOLDER = Pattern.quote("${appName}");
     private static final String MAVEN_ARCHETYPE_SET_PLACEHOLDER = "#set\\(.*\\)\n";
 
     private static final String ROBOVM_PROPERTIES_FILE = "robovm.properties";
@@ -278,6 +280,7 @@ public class Templater {
     private String substitutePlaceholdersInFileName(String fileName) {
         fileName = fileName.replaceAll(PACKAGE_FOLDER_PLACEHOLDER, packageDirName);
         fileName = fileName.replaceAll(MAIN_CLASS_FILE_PLACEHOLDER, mainClassName);
+        fileName = fileName.replaceAll(APP_NAME_FILE_PLACEHOLDER, appName);
         return fileName;
     }
 
@@ -323,6 +326,7 @@ public class Templater {
             content = content.replaceAll(DOLLAR_SYMBOL_PLACEHOLDER, Matcher.quoteReplacement("$"));
             content = content.replaceAll(PACKAGE_PLACEHOLDER, getPackageNameReplacement(extension, packageName));
             content = content.replaceAll(MAIN_CLASS_PLACEHOLDER, mainClassName);
+            content = content.replaceAll(APP_NAME_PLACEHOLDER, appName);
             FileUtils.writeStringToFile(file, content, "UTF-8");
         }
     }
@@ -333,8 +337,10 @@ public class Templater {
         }
         if(extension.equals("kt")) {
             return String.format("package %s", packageName);
-        } else {
+        } if(extension.equals("java"))  {
             return String.format("package %s;", packageName);
+        } else {
+            return packageName;
         }
     }
 

@@ -19,6 +19,10 @@ package org.robovm.idea.builder;
 import javax.swing.*;
 
 public class RoboVmNewModuleEditor {
+    public JLabel packageNameLabel;
+    public JLabel appNameLabel;
+    public JLabel appIdLabel;
+    public JLabel mainClassNameLabel;
     public JTextField packageName;
     public JTextField appName;
     public JTextField appId;

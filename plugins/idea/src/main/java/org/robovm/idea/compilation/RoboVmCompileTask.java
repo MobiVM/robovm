@@ -44,6 +44,7 @@ import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.idea.RoboVmPlugin;
+import org.robovm.idea.actions.CreateFrameworkAction;
 import org.robovm.idea.actions.CreateIpaAction;
 import org.robovm.idea.running.RoboVmRunConfiguration;
 import org.robovm.idea.running.RoboVmIOSRunConfigurationSettingsEditor;
@@ -71,9 +72,14 @@ public class RoboVmCompileTask implements CompileTask {
             CreateIpaAction.IpaConfig ipaConfig = context.getCompileScope().getUserData(CreateIpaAction.IPA_CONFIG_KEY);
             if(ipaConfig != null) {
                 return compileForIpa(context, ipaConfig);
-            } else {
-                return true;
             }
+
+            CreateFrameworkAction.FrameworkConfig frameworkConfig = context.getCompileScope().getUserData(CreateFrameworkAction.FRAMEWORK_CONFIG_KEY);
+            if (frameworkConfig != null) {
+                return compileForFramework(context, frameworkConfig);
+            }
+
+            return true;
         } else {
             return compileForRunConfiguration(context, (RoboVmRunConfiguration)c);
         }
@@ -125,6 +131,63 @@ public class RoboVmCompileTask implements CompileTask {
             RoboVmPlugin.logInfo(context.getProject(), "Package successfully created in " + ipaConfig.getDestinationDir().getAbsolutePath());
         } catch(Throwable t) {
             RoboVmPlugin.logErrorThrowable(context.getProject(), "Couldn't create IPA", t, false);
+            return false;
+        } finally {
+            context.getProgressIndicator().popState();
+        }
+        return true;
+    }
+
+    private boolean compileForFramework(CompileContext context, final CreateFrameworkAction.FrameworkConfig frameworkConfig) {
+        try {
+            ProgressIndicator progress = context.getProgressIndicator();
+            context.getProgressIndicator().pushState();
+            RoboVmPlugin.focusToolWindow(context.getProject());
+            progress.setText("Creating Framework");
+
+            RoboVmPlugin.logInfo(context.getProject(), "Creating package in " + frameworkConfig.getDestinationDir().getAbsolutePath() + " ...");
+
+            Config.Builder builder = new Config.Builder();
+            builder.logger(RoboVmPlugin.getLogger(context.getProject()));
+            File moduleBaseDir = RoboVmPlugin.getModuleBaseDir(frameworkConfig.getModule());
+
+            // load the robovm.xml file
+            loadConfig(context.getProject(), builder, moduleBaseDir, false);
+            builder.os(OS.ios);
+            builder.installDir(frameworkConfig.getDestinationDir());
+            configureClassAndSourcepaths(context, builder, frameworkConfig.getModule());
+
+            // Set the Home to be used, create the Config and AppCompiler
+            Config.Home home = RoboVmPlugin.getRoboVmHome();
+            if(home.isDev()) {
+                builder.useDebugLibs(true);
+                builder.dumpIntermediates(true);
+                builder.addPluginArgument("debug:logconsole=true");
+            }
+            builder.home(home);
+
+            Config config = builder.build();
+
+            progress.setFraction(0.5);
+
+            AppCompiler compiler = new AppCompiler(config);
+            RoboVmCompilerThread thread = new RoboVmCompilerThread(compiler, progress) {
+                protected void doCompile() throws Exception {
+                    compiler.build();
+                    compiler.install();
+                }
+            };
+            thread.compile();
+
+            if(progress.isCanceled()) {
+                RoboVmPlugin.logInfo(context.getProject(), "Build canceled");
+                return false;
+            }
+
+            progress.setFraction(1);
+            RoboVmPlugin.logInfo(context.getProject(), "Framework successfully created in " + frameworkConfig.getDestinationDir().getAbsolutePath());
+        } catch(Throwable t) {
+            RoboVmPlugin.logErrorThrowable(context.getProject(), "Couldn't create Framework", t, false);
             return false;
         } finally {
             context.getProgressIndicator().popState();

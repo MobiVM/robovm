@@ -1,0 +1,44 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<config>
+    <!-- The framework targets iOS. -->
+    <os>ios</os>
+
+    <!-- Build a fat binary containing 32-bit and 64-bit machine code for both
+    devices and the simulator. -->
+    <arch>arm64</arch>
+    <arch>thumbv7</arch>
+    <arch>x86</arch>
+    <arch>x86_64</arch>
+
+    <!-- We're building a framework. -->
+    <target>framework</target>
+
+    <!-- The framework name is defined in robovm.properties. -->
+    <imageName>${symbol_dollar}{framework.name}</imageName>
+
+    <!-- The Info.plist.xml file will be copied into the framework. -->
+    <infoPList>Info.plist.xml</infoPList>
+
+    <resources>
+        <!-- Copies the header files in headers/ to a directory named Headers in
+        the root of the .framework folder structure. -->
+        <resource>
+            <directory>headers</directory>
+            <targetPath>../../Headers</targetPath>
+        </resource>
+        <!-- Copies the modules files in modules/ to a directory named Moduless in
+        the root of the .framework folder structure. Required to enable swift support -->
+        <resource>
+            <directory>modules</directory>
+            <targetPath>../../Modules</targetPath>
+        </resource>
+    </resources>
+    <treeShaker>aggressive</treeShaker>
+
+    <!-- Force link all classes in the SDK packages. -->
+    <forceLinkClasses>
+        <pattern>${package}.**</pattern>
+    </forceLinkClasses>
+</config>
