@@ -21,6 +21,7 @@ import com.intellij.ide.util.projectWizard.WizardContext;
 import com.intellij.openapi.roots.ui.configuration.ModulesProvider;
 
 import javax.swing.*;
+import java.util.Map;
 
 /**
  * Custom project wizard step that lets the user specify
@@ -30,9 +31,12 @@ public class RoboVmModuleWizardStep extends ModuleWizardStep {
     private final RoboVmNewModuleEditor editor;
     private final RoboVmModuleBuilder builder;
 
-    public RoboVmModuleWizardStep(RoboVmModuleBuilder builder, WizardContext wizardContext, ModulesProvider modulesProvider) {
+    public RoboVmModuleWizardStep(RoboVmModuleBuilder builder, WizardContext wizardContext, ModulesProvider modulesProvider,
+                                  Map<String, String> customValues) {
         super();
         this.editor = new RoboVmNewModuleEditor();
+        if (customValues != null)
+            applyCustomValues(customValues);
         this.builder = builder;
     }
 
@@ -61,5 +65,30 @@ public class RoboVmModuleWizardStep extends ModuleWizardStep {
         } else {
             builder.setBuildSystem(RoboVmModuleBuilder.BuildSystem.None);
         }
+    }
+
+    /**
+     * dkimitsa: applies custom titles for project templates that requires this. Ex. ios framework
+     */
+    private void applyCustomValues(Map<String, String> customTitles) {
+        applyCustomTitle(customTitles.get("appIdLabel"), editor.appIdLabel);
+        applyCustomTitle(customTitles.get("appNameLabel"), editor.appNameLabel);
+        applyCustomTitle(customTitles.get("packageNameLabel"), editor.packageNameLabel);
+        applyCustomTitle(customTitles.get("mainClassNameLabel"), editor.mainClassNameLabel);
+
+        applyCustomValue(customTitles.get("appId"), editor.appId);
+        applyCustomValue(customTitles.get("appName"), editor.appName);
+        applyCustomValue(customTitles.get("packageName"), editor.packageName);
+        applyCustomValue(customTitles.get("mainClassName"), editor.mainClassName);
+    }
+
+    private void applyCustomTitle(String title, JLabel label) {
+        if (title != null)
+            label.setText(title);
+    }
+
+    private void applyCustomValue(String value, JTextField field) {
+        if (value != null)
+            field.setText(value);
     }
 }

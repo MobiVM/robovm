@@ -27,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 import org.robovm.idea.RoboVmIcons;
 
 import javax.swing.*;
+import java.util.HashMap;
 
 /**
  * Returns a project template for every template known
@@ -61,6 +62,15 @@ public class RoboVmTemplatesFactory extends ProjectTemplatesFactory {
     public ProjectTemplate[] createTemplates(String group, WizardContext context) {
         return new ProjectTemplate[] {
                 new RoboVmProjectTemplate("RoboVM iOS App without storyboards", "A basic single view app without storyboards", new RoboVmModuleBuilder("ios-single-view-no-ib")),
+                new RoboVmProjectTemplate("RoboVM iOS Framework", "A basic iOS framework template ", new RoboVmModuleBuilder("ios-framework",
+                        new HashMap<String, String>(){{
+                            put("appNameLabel", "Framework Name");
+                            put("appIdLabel", "Framework Id");
+                            put("mainClassName", "MyFramework");
+                            put("packageName", "com.mycompany.myframework");
+                            put("appName", "MyFramework");
+                            put("appId", "com.mycompany.myframework");
+                        }})),
                 new RoboVmProjectTemplate("RoboVM Console App", "A console app for Mac OS X or Linux", new RoboVmModuleBuilder("console")),
         };
     }

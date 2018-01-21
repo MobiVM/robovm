@@ -34,7 +34,13 @@
             <artifactId>robovm-templates-ios-single-view-no-ib</artifactId>
             <version>${project.version}</version>
             <type>tar.gz</type>
-        </dependency>    
+        </dependency>
+        <dependency>
+            <groupId>com.mobidevelop.robovm</groupId>
+            <artifactId>robovm-templates-ios-framework</artifactId>
+            <version>${project.version}</version>
+            <type>tar.gz</type>
+        </dependency>
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-templates-console</artifactId>
@@ -72,6 +78,13 @@
                         <artifactItem>
                             <groupId>com.mobidevelop.robovm</groupId>
                             <artifactId>robovm-templates-ios-single-view-no-ib</artifactId>
+                            <overWrite>true</overWrite>
+                            <type>tar.gz</type>
+                            <outputDirectory>src/main/resources/templates</outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>com.mobidevelop.robovm</groupId>
+                            <artifactId>robovm-templates-ios-framework</artifactId>
                             <overWrite>true</overWrite>
                             <type>tar.gz</type>
                             <outputDirectory>src/main/resources/templates</outputDirectory>

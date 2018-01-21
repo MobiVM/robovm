@@ -25,6 +25,7 @@ import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.ios.DeviceType;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
@@ -51,7 +52,7 @@ public class RoboVmConsoleRunConfigurationSettingsEditor extends SettingsEditor<
 
     @Override
     protected void applyEditorTo(RoboVmRunConfiguration config) throws ConfigurationException {
-        config.setModuleName(module.getSelectedItem().toString());
+        config.setModuleName(module.getSelectedItem() != null ? module.getSelectedItem().toString() : "");
         config.setTargetType(RoboVmRunConfiguration.TargetType.Console);
         config.setArguments(args.getText());
         config.setWorkingDir(workingDir.getText());
@@ -66,7 +67,7 @@ public class RoboVmConsoleRunConfigurationSettingsEditor extends SettingsEditor<
     private void populateControls(final RoboVmRunConfiguration config) {
         // populate with RoboVM Sdk modules
         this.module.removeAllItems();
-        List<Module> roboVmModules = RoboVmPlugin.getRoboVmModules(config.getProject());
+        List<Module> roboVmModules = RoboVmPlugin.getRoboVmModules(config.getProject(), ConsoleTarget.TYPE);
         Collections.sort(roboVmModules, new Comparator<Module>() {
             @Override
             public int compare(Module o1, Module o2) {
