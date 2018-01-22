@@ -94,7 +94,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     private boolean vmStartedNotified;
 
     /** active step-in event request to be able to resume suspended thread and keep step in */
-    private RuntimeUtils.RuntimeStepReference activeStepInRequest;
+    private RuntimeUtils.RuntimeStepReference activeStepRequest;
 
 
     public JdwpEventCenterDelegate(AllDelegates delegates) {
@@ -330,9 +330,9 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 // size modifier is ignored as stepping in hooks implemented as line only
                 RuntimeUtils.RuntimeStepReference ref = delegates.runtime().step(thread, stepMod.depth());
 
-                // if it is step in -- remember the request to be able to resume it in case some of
-                // criteria doesn't pass (e.g. class is filtered out)
-                activeStepInRequest = (ref != null && stepMod.depth() == JdwpConsts.StepDepth.INTO) ? ref.setPayload(request) : null;
+                // remember the request to be able to resume it in case some of criteria doesn't pass (e.g. class is filtered out)
+                // or execution is interrupted and stepping is canceled by exception event
+                activeStepRequest = ref != null ? ref.setPayload(request) : null;
                 break;
 
             case JdwpConsts.EventKind.CLASS_PREPARE:
@@ -412,8 +412,8 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
                 break;
 
             case JdwpConsts.EventKind.SINGLE_STEP:
-                if (activeStepInRequest != null && request == activeStepInRequest.payload())
-                    activeStepInRequest = null;
+                if (activeStepRequest != null && request == activeStepRequest.payload())
+                    activeStepRequest = null;
                 break;
 
             case JdwpConsts.EventKind.CLASS_PREPARE:
@@ -533,16 +533,18 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
         int suspendPolicy = deliverEventToJdpwFiltered(eventData);
         if (suspendPolicy <= 0) {
             if (suspendPolicy < 0) {
-                // event was filtered out
-                // if the event is thread stepped, and there is step in event request is active resume everything
-                if (eventPayload.eventId() == HookConsts.events.THREAD_STEPPED && stoppedThread != null && activeStepInRequest != null &&
-                        !((JdwpEventRequest)activeStepInRequest.payload()).isCanceled()) {
-                    JdwpEventRequest request = activeStepInRequest.payload();
-                    EventStepModPredicate stepMod = request.predicateByKind(JdwpConsts.EventModifier.STEP);
+                // event was filtered out, e.g. JDWP client is not interested in it
 
-                    if (stepMod.threadId() == stoppedThread.refId() && stoppedThread.suspendCount() == 0) {
+                // there are two cases when stepping has to be resumed
+                // 1. VM performed stepped event but thread is stopped in class that is filtered out, so we have to
+                //    continue stepping till stop that was requested
+                // 2. there was exception generated in VM (probably it will be handled) and JDWP client is not interested
+                //    in it, in this case stepping/stepping over/stepping out shall be resumed
+                if ((eventPayload.eventId() == HookConsts.events.THREAD_STEPPED || eventPayload.eventId() == HookConsts.events.EXCEPTION) &&
+                        stoppedThread != null && activeStepRequest != null && !((JdwpEventRequest) activeStepRequest.payload()).isCanceled()) {
+                    if (activeStepRequest.thread().refId() == stoppedThread.refId() && stoppedThread.suspendCount() == 0) {
                         // step again
-                        delegates.runtime().restep(stoppedThread, activeStepInRequest);
+                        delegates.runtime().restep(activeStepRequest);
                         delegates.threads().onThreadSuspended(stoppedThread, stoppedThreadCallStack, false);
                         return;
                     }

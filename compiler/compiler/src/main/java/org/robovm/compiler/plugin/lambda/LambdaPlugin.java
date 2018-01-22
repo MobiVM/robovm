@@ -58,6 +58,7 @@ import soot.jimple.DynamicInvokeExpr;
 import soot.jimple.IntConstant;
 import soot.jimple.Jimple;
 import soot.jimple.NullConstant;
+import soot.tagkit.LineNumberTag;
 import soot.util.Switch;
 
 public class LambdaPlugin extends AbstractCompilerPlugin {
@@ -232,6 +233,19 @@ public class LambdaPlugin extends AbstractCompilerPlugin {
                                                         samType, true),
                                                 expr.getArgs())));
                             }
+
+                            // dkimitsa: attach LineNumberTag to all new units that are inserted instead of DynamicInvokeExpr
+                            // as it would break variable resolution in debuger information plugin
+                            for (Object o : unit.getTags()) {
+                                if (o instanceof LineNumberTag) {
+                                    // attach same line number to all units in new units
+                                    LineNumberTag ln = (LineNumberTag) o;
+                                    for (Unit u : newUnits)
+                                        u.addTag(new LineNumberTag(ln.getLineNumber()));
+                                    break;
+                                }
+                            }
+
                             units.insertAfter(newUnits, unit);
                             units.remove(unit);
                             unit = newUnits.getLast();
