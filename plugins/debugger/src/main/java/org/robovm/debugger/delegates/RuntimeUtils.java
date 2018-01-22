@@ -175,13 +175,13 @@ public class RuntimeUtils {
         delegates.hooksApi().threadStep(thread.threadPtr(), pclow, pchigh, pclow2, pchigh2);
 
         // return reference
-        return new RuntimeStepReference(pclow, pchigh, pclow2, pchigh2);
+        return new RuntimeStepReference(thread, pclow, pchigh, pclow2, pchigh2);
     }
 
 
-    public void restep(VmThread thread, RuntimeStepReference ref) {
+    public void restep(RuntimeStepReference ref) {
         // apply to target
-        delegates.hooksApi().threadStep(thread.threadPtr(), ref.pclow, ref.pchigh, ref.pclow2, ref.pchigh2);
+        delegates.hooksApi().threadStep(ref.thread.threadPtr(), ref.pclow, ref.pchigh, ref.pclow2, ref.pchigh2);
     }
 
 
@@ -228,17 +228,23 @@ public class RuntimeUtils {
      * container to keep configuration of step performed as step often required to reproduce
      */
     public static class RuntimeStepReference {
+        private final VmThread thread;
         private final long pclow;
         private final long pchigh;
         private final long pclow2;
         private final long pchigh2;
         private Object payload;
 
-        private RuntimeStepReference(long pclow, long pchigh, long pclow2, long pchigh2) {
+        private RuntimeStepReference(VmThread thread, long pclow, long pchigh, long pclow2, long pchigh2) {
+            this.thread = thread;
             this.pclow = pclow;
             this.pchigh = pchigh;
             this.pclow2 = pclow2;
             this.pchigh2 = pchigh2;
+        }
+
+        public VmThread thread() {
+            return thread;
         }
 
         public <T> T payload() {
