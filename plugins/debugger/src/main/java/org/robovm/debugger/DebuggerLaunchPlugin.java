@@ -82,7 +82,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
 
         String logDir = argumentValue(arguments, ARG_KEY_LOG_DIR, config.getTmpDir().getAbsolutePath());
         int jdwpPort = argumentIntValue(arguments, ARG_KEY_JDWP_PORT);
-        boolean jdwpClientMode = argumentBoolValue(arguments, ARG_KEY_CLIENT_MODE);
+        boolean jdwpClientMode = argumentValue(arguments, ARG_KEY_CLIENT_MODE, false);
         boolean logConsole = config.isDumpIntermediates() || argumentValue(arguments, ARG_KEY_LOG_CONSOLE, false);
 
         // common parameters to target
