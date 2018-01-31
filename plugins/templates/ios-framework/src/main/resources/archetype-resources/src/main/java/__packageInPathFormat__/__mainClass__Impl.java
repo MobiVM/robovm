@@ -23,7 +23,7 @@ public class ${mainClass}Impl extends NSObject implements Api.${mainClass} {
     }
 
     @Override
-    public Api.Calculator newCalculator() {
+    public Api.Calculator createCalculator() {
         return new CalculatorImpl();
     }
 

@@ -25,7 +25,7 @@ public final class Api {
          * create Calculator class as it is not possible now to create instances from obj, e.g. [[Calculator alloc] init]
          * will not work
          */
-        @Method Calculator newCalculator();
+        @Method Calculator createCalculator();
 
         /**
          * sample method implementation that take no params and returns nothing but prints hello to log
