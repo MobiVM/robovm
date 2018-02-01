@@ -73,13 +73,6 @@
     <dependency>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-debugger</artifactId>
-        <version>${project.version}</version>
-        <exclusions>
-            <exclusion>
-                <groupId>com.mobidevelop.robovm</groupId>
-                <artifactId>robovm-compiler</artifactId>
-            </exclusion>
-        </exclusions>
     </dependency>
   </dependencies>
 
