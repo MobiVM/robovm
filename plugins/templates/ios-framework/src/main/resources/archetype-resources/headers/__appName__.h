@@ -27,7 +27,7 @@ typedef NSObject<Calculator> Calculator;
 //
 NS_SWIFT_NAME(${mainClass})
 @protocol ${mainClass}
--(Calculator *) newCalculator;
+-(Calculator *) createCalculator;
 -(void) sayHello;
 -(NSString*) roboVmVersion;
 @end

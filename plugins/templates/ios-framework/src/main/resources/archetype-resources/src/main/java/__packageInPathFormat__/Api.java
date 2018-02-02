@@ -24,8 +24,16 @@ public final class Api {
         /**
          * create Calculator class as it is not possible now to create instances from obj, e.g. [[Calculator alloc] init]
          * will not work
+         * IMPORTANT NOTE: avoid givinig method a name that begins with “alloc”, “new”, “copy”, or “mutableCopy”
+         * (for example newCalculator) as ARC at native side will consider this object to be owned by native code
+         * and will not retain it. If object is not retained anywhere at Java side this will cause EXC_BAD_ACCESS as
+         * not retained Java objects are subject for Garbage Collection. if such prefixes are higly required these objects
+         * MUST be extra retained before returning it from such method. E.g.
+         * calc = new CalculatorImpl();
+         * calc.reatain();
+         * return calc;
          */
-        @Method Calculator newCalculator();
+        @Method Calculator createCalculator();
 
         /**
          * sample method implementation that take no params and returns nothing but prints hello to log

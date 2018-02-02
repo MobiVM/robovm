@@ -22,8 +22,18 @@ public class ${mainClass}Impl extends NSObject implements Api.${mainClass} {
         return frameworkInstance;
     }
 
+    /**
+     * IMPORTANT NOTE: avoid givinig method a name that begins with “alloc”, “new”, “copy”, or “mutableCopy”
+     * (for example newCalculator) as ARC at native side will consider this object to be owned by native code
+     * and will not retain it. If object is not retained anywhere at Java side this will cause EXC_BAD_ACCESS as
+     * not retained Java objects are subject for Garbage Collection. if such prefixes are higly required these objects
+     * MUST be extra retained before returning it from such method. E.g.
+     * calc = new CalculatorImpl();
+     * calc.reatain();
+     * return calc;
+     */
     @Override
-    public Api.Calculator newCalculator() {
+    public Api.Calculator createCalculator() {
         return new CalculatorImpl();
     }
 
