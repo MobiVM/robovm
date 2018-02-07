@@ -251,6 +251,14 @@ public class SDK implements Comparable<SDK> {
         return revision;
     }
 
+    /**
+     * @return version code packed in int as it is used widely in Apple Mach-o
+     */
+    public int getVersionCode() {
+        // there is overflow possible but this should not happen if SDK is not corrupted
+        return (major << 16) | (minor << 8) | revision;
+    }
+
     @Override
     public int compareTo(SDK o) {
         int c = major < o.major ? -1 : (major > o.major ? 1 : 0);
