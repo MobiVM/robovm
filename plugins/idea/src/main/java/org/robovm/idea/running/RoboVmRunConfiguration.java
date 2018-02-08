@@ -54,6 +54,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
     private String provisioningProfile;
     private Arch simArch;
     private String simulatorName;
+    private int simulatorSdk;
     private String moduleName;
     private String arguments;
     private String workingDir;
@@ -115,6 +116,13 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         String simArchStr = JDOMExternalizerUtil.readField(element, "simArch");
         simArch = simArchStr.length() == 0? null: Arch.valueOf(simArchStr);
         simulatorName = JDOMExternalizerUtil.readField(element, "simulatorName");
+        String simSdkString = JDOMExternalizerUtil.readField(element, "simulatorSdk");
+        simulatorSdk = -1;
+        try {
+            if (simSdkString != null)
+                simulatorSdk = Integer.parseInt(simSdkString);
+        } catch (Throwable ignored) {
+        }
         arguments = JDOMExternalizerUtil.readField(element, "arguments");
         if(arguments == null) arguments = "";
         workingDir = JDOMExternalizerUtil.readField(element, "workingDir");
@@ -134,6 +142,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         JDOMExternalizerUtil.writeField(element, "provisioningProfile", provisioningProfile);
         JDOMExternalizerUtil.writeField(element, "simArch", simArch == null? null: simArch.toString());
         JDOMExternalizerUtil.writeField(element, "simulatorName", simulatorName);
+        JDOMExternalizerUtil.writeField(element, "simulatorSdk", Integer.toString(simulatorSdk));
         JDOMExternalizerUtil.writeField(element, "arguments", arguments == null? "": arguments);
         JDOMExternalizerUtil.writeField(element, "workingDir", workingDir == null? "": workingDir);
     }
@@ -176,6 +185,14 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
 
     public String getSimulatorName() {
         return simulatorName;
+    }
+
+    public int getSimulatorSdk() {
+        return simulatorSdk;
+    }
+
+    public void setSimulatorSdk(int simulatorSdk) {
+        this.simulatorSdk = simulatorSdk;
     }
 
     public void setModuleName(String moduleName) {

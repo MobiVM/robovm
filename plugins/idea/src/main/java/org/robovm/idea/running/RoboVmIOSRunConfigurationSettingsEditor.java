@@ -72,6 +72,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         config.setProvisioningProfile(provisioningProfile.getSelectedItem().toString());
         config.setSimArch((Arch) simArch.getSelectedItem());
         config.setSimulatorName(((SimTypeWrapper) simType.getSelectedItem()).getType().getDeviceName());
+        config.setSimulatorSdk(((SimTypeWrapper) simType.getSelectedItem()).getType().getSdk().getVersionCode());
         config.setArguments(args.getText());
     }
 
@@ -114,15 +115,33 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         simType.removeAllItems();
         simArch.removeAllItems();
 
-        // set simulator types
+        // set simulator types and find one that matches version and name
+        int exactSimVersonMatchIdx = -1;
+        int bestSimNameMatchIdx = -1, bestSimNameMatchVersion = -1;
+        int bestDefaultSimMatchIdx = -1, bestDefaultSimMatchVersion = -1;
         for (DeviceType type : DeviceType.listDeviceTypes()) {
             simType.addItem(new SimTypeWrapper(type));
-            if (type.getDeviceName().equals(config.getSimulatorName())) {
-                simType.setSelectedIndex(simType.getItemCount() - 1);
-            } else if (config.getSimulatorName().isEmpty() && type.getDeviceName().contains("iPhone-6") && !type.getDeviceName().contains("Plus")) {
-                simType.setSelectedIndex(simType.getItemCount() - 1);
+            if (type.getDeviceName().equals(config.getSimulatorName()) && type.getSdk().getVersionCode() == config.getSimulatorSdk()) {
+                exactSimVersonMatchIdx = simType.getItemCount() - 1;
+            } else if (type.getDeviceName().equals(config.getSimulatorName()) && type.getSdk().getVersionCode() > bestSimNameMatchVersion) {
+                bestSimNameMatchIdx = simType.getItemCount() - 1;
+                bestSimNameMatchVersion = type.getSdk().getVersionCode();
+            } else if (config.getSimulatorName().isEmpty() && type.getDeviceName().contains("iPhone-6") &&
+                    !type.getDeviceName().contains("Plus") && type.getSdk().getVersionCode() > bestDefaultSimMatchVersion) {
+                bestDefaultSimMatchIdx = simType.getItemCount() - 1;
+                bestDefaultSimMatchVersion = type.getSdk().getVersionCode();
             }
         }
+        if (exactSimVersonMatchIdx < 0) {
+            // if exact match is not found use name match or default simulator
+            if (bestSimNameMatchIdx >= 0)
+                exactSimVersonMatchIdx = bestSimNameMatchIdx;
+            else if (bestDefaultSimMatchIdx >= 0)
+                exactSimVersonMatchIdx = bestDefaultSimMatchIdx;
+            else exactSimVersonMatchIdx = simType.getItemCount() - 1;
+        }
+        if (exactSimVersonMatchIdx >= 0)
+            simType.setSelectedIndex(exactSimVersonMatchIdx);
 
         // set default arch for selected simulator
         SimTypeWrapper wrapper = (SimTypeWrapper) simType.getSelectedItem();
