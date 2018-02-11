@@ -60,6 +60,10 @@ import java.util.*;
  * or if we perform an ad-hoc/IPA build from the RoboVM menu.
  */
 public class RoboVmCompileTask implements CompileTask {
+    // A list of languages (other than java) for which we might expect to find .class files. Idea compiles these into separate directories,
+    // but only provides the /classes/java/main in the list of classpaths.
+    private static final String[] jvmLangs = {"groovy", "scala", "kotlin"};
+
     @Override
     public boolean execute(CompileContext context) {
         if(context.getMessageCount(CompilerMessageCategory.ERROR) > 0) {
@@ -330,6 +334,15 @@ public class RoboVmCompileTask implements CompileTask {
         for(String path: classes.getPathsList().getPathList()) {
             if(!RoboVmPlugin.isSdkLibrary(path)) {
                 classPaths.add(new File(path));
+                // if this refers to a java class path, add paths for other JVM languages as well
+                if(path.contains("/classes/java/")) {
+                    for(String jvmLang: jvmLangs) {
+                        File filePath = new File(path.replace("/java/", "/" + jvmLang + "/"));
+                        if(filePath.exists()) {
+                            classPaths.add(filePath);
+                        }
+                    }
+                }
             }
         }
 
