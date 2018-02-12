@@ -50,7 +50,7 @@
 
     <actions>
         <group id="org.robovm.idea.Menu" text="RoboVM" description="RoboVM Menu">
-            <add-to-group group-id="MainMenu" anchor="before" relative-to-action="HelpMenu" />
+            <add-to-group group-id="MainMenu" anchor="after" relative-to-action="ToolsMenu" />
 
             <action id="org.robovm.idea.create-ipa" class="org.robovm.idea.actions.CreateIpaAction" text="Create IPA"
                     description="Create an IPA for App Store or ad-hoc distribution"/>
