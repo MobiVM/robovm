@@ -12,6 +12,7 @@
 %Method = type opaque
 %Field = type opaque
 %Object = type {%Class*, i8*}
+%Objectptr = type { %Object* }
 ; NOTE: The compiler assumes that %DataObject is a multiple of 8 in size (we don't need to pad it since it's already 8 bytes in size)
 %DataObject = type {%Object}
 %Array = type {%DataObject, i32}
@@ -357,6 +358,12 @@ define private void @intrinsics.java_lang_System_arraycopy_C(%Env* %env, %Object
     
     call void @_bcMoveMemory16(i8* %s1, i8* %s2, i64 %n)
     ret void
+}
+
+define private i32 @intrinsics.org_robovm_rt_VM_ptrsize(%Env* %env) alwaysinline {
+    %Ptr = getelementptr %Objectptr* null, i32 1
+    %Size = ptrtoint %Objectptr* %Ptr to i32
+    ret i32 %Size
 }
 
 define private void @intrinsics.org_robovm_rt_VM_memmove8(%Env* %env, i64 %s1, i64 %s2, i64 %n) alwaysinline {

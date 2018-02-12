@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 set -e
 mvn clean install
 mvn -f plugins/idea/pom.xml clean install
