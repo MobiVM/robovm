@@ -695,6 +695,9 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
         } else if (!(e instanceof ThreadDeath)) {
             // No parent group, has to be 'system' Thread Group
             e.printStackTrace(System.err);
+            // RoboVM: flushing output as when running release it is buffered and 
+            // will not get to NSLog() due app terminated
+            System.err.flush();
         }
     }
 
