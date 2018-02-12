@@ -174,6 +174,8 @@ public final class VM {
 
     public native static final void memset(long s, byte c, long n);
 
+    public native static final int ptrsize();
+
     public native static final long getCallbackMethodImpl(Method method);
 
     public native static final void bindBridgeMethod(Method method, long impl);

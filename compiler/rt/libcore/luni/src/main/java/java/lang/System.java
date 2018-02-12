@@ -231,90 +231,58 @@ public final class System {
         }
     }
     
-    private static void arraycopyFast(Object src, int srcPos, Object dst, int dstPos, int length, int logElemSize) {
+    private static void arraycopyFast(Object src, int srcPos, Object dst, int dstPos, int length, int elemSize) {
         if (length > 0) {
-            long srcAddr = VM.getArrayValuesAddress(src) + (srcPos << logElemSize);
-            long dstAddr = VM.getArrayValuesAddress(dst) + (dstPos << logElemSize);
-            if (logElemSize == 0) {
-                VM.memmove8(dstAddr, srcAddr, length);
-            } else if (logElemSize == 1) {
-                VM.memmove16(dstAddr, srcAddr, length);
-            } else if (logElemSize == 2) {
-                VM.memmove32(dstAddr, srcAddr, length);
-            } else if (logElemSize == 3) {
-                VM.memmove64(dstAddr, srcAddr, length);
-            } else {
-                throw new AssertionError();
-            }
+            long srcAddr = VM.getArrayValuesAddress(src) + (srcPos * elemSize);
+            long dstAddr = VM.getArrayValuesAddress(dst) + (dstPos * elemSize);
+            length *= elemSize;
+            VM.memmove8(dstAddr, srcAddr, length);
         }
     }
     
     private static void arraycopy(Object[] src, int srcPos, Object[] dst, int dstPos, int length) {
         arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        if (length > 0) {
-            // TODO: Use arraycopyFast() if src.class and dst.class have same dimensionality and (src instanceof dst)
-            int i = 0;
-            try {
-                // Check if this is a forward or backwards arraycopy
-                if (src != dst || srcPos > dstPos || srcPos + length <= dstPos) {
-                    for (i = 0; i < length; ++i) {
-                        dst[dstPos + i] = src[srcPos + i];
-                    }
-                } else {
-                    for (i = length - 1; i >= 0; --i) {
-                        dst[dstPos + i] = src[srcPos + i];
-                    }
-                }
-            } catch (ArrayStoreException e) {
-                // Throw a new one with a more descriptive message.
-                Class<?> srcElemClass = src[i + srcPos].getClass();
-                String srcElemTypeName = srcElemClass.isArray() 
-                                        ? srcElemClass.getCanonicalName() : srcElemClass.getName();
-                throw new ArrayStoreException(String.format(
-                        "source[%d] of type %s cannot be stored in destination array of type %s",
-                        i + srcPos, srcElemTypeName, dst.getClass().getCanonicalName()));
-            }
-        }
+        arraycopyFast(src, srcPos, dst, dstPos, length, VM.ptrsize());
     }
 
     private static void arraycopy(int[] src, int srcPos, int[] dst, int dstPos, int length) {
         arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 2);
+        arraycopyFast(src, srcPos, dst, dstPos, length, 4);
     }
 
     private static void arraycopy(byte[] src, int srcPos, byte[] dst, int dstPos, int length) {
         arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 0);
+        arraycopyFast(src, srcPos, dst, dstPos, length, 1);
     }
 
     private static void arraycopy(short[] src, int srcPos, short[] dst, int dstPos, int length) {
         arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 1);
+        arraycopyFast(src, srcPos, dst, dstPos, length, 2);
     }
 
     private static void arraycopy(long[] src, int srcPos, long[] dst, int dstPos, int length) {
         arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 3);
+        arraycopyFast(src, srcPos, dst, dstPos, length, 8);
     }
 
     private static void arraycopy(char[] src, int srcPos, char[] dst, int dstPos, int length) {
         arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 1);
+        arraycopyFast(src, srcPos, dst, dstPos, length, 2);
     }
 
     private static void arraycopy(boolean[] src, int srcPos, boolean[] dst, int dstPos, int length) {
         arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 0);
+        arraycopyFast(src, srcPos, dst, dstPos, length, 1);
     }
 
     private static void arraycopy(double[] src, int srcPos, double[] dst, int dstPos, int length) {
         arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 3);
+        arraycopyFast(src, srcPos, dst, dstPos, length, 8);
     }
 
     private static void arraycopy(float[] src, int srcPos, float[] dst, int dstPos, int length) {
         arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 2);
+        arraycopyFast(src, srcPos, dst, dstPos, length, 4);
     }
     
     /**
