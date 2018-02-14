@@ -187,6 +187,18 @@ Object* Java_org_robovm_rt_VM_newDirectByteBuffer(Env* env, Class* c, jlong addr
     return rvmNewDirectByteBuffer(env, LONG_TO_PTR(address), capacity);
 }
 
+jint Java_org_robovm_rt_VM_getArrayElementSize(Env* env, Class* c, Class* cls) {
+    if(cls == NULL) {
+        rvmThrowNullPointerException(env);
+        return 0;
+    }
+    if(!CLASS_IS_ARRAY(cls)) {
+        rvmThrowIllegalArgumentException(env, "Not an array");
+        return 0;
+    }
+    return rvmGetArrayElementSize(env, cls);
+}
+
 void Java_org_robovm_rt_VM_memcpy(Env* env, Class* c, jlong s1, jlong s2, jlong n) {
     memcpy(LONG_TO_PTR(s1), LONG_TO_PTR(s2), (size_t) n);
 }
@@ -205,6 +217,11 @@ void Java_org_robovm_rt_VM_memmove32(Env* env, Class* c, jlong s1, jlong s2, jlo
 
 void Java_org_robovm_rt_VM_memmove64(Env* env, Class* c, jlong s1, jlong s2, jlong n) {
     rvmMoveMemory32(LONG_TO_PTR(s1), LONG_TO_PTR(s2), (size_t) (n << 1));
+}
+
+// placeholder - will be replaced by instrinsic call. This entry is required however to satisfy link requirements
+void Java_org_robovm_rt_VM_memmoveAtomic(Env* env, Class* c, jlong s1, jlong s2, jlong n, jint sz) {
+    rvmThrowNewf(env, java_lang_UnsupportedOperationException, "compiler error - memmoveAtomic not replaced by intrinsic");
 }
 
 void Java_org_robovm_rt_VM_memset(Env* env, Class* cls, jlong s, jbyte c, jlong n) {

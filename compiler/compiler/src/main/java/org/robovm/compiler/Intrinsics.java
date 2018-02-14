@@ -73,6 +73,9 @@ public class Intrinsics {
         SIMPLE_INTRINSICS.put("java/lang/Math/sin(D)D", 
                 new FunctionRef("intrinsics.java_lang_Math_sin", 
                         new FunctionType(DOUBLE, ENV_PTR, DOUBLE)));
+        SIMPLE_INTRINSICS.put("org/robovm/rt/VM/memmoveAtomic(JJJI)V", 
+                new FunctionRef("intrinsics.org_robovm_rt_VM_memmoveAtomic", 
+                        new FunctionType(VOID, ENV_PTR, I64, I64, I64, I32)));
     }
     
     private static final FunctionRef LDC_PRIM_Z = new FunctionRef("intrinsics.ldc_prim_Z", new FunctionType(OBJECT_PTR, ENV_PTR));

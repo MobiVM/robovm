@@ -48,6 +48,7 @@
 
 package java.lang;
 
+import java.lang.reflect.Array;
 import java.io.BufferedInputStream;
 import java.io.Console;
 import java.io.FileDescriptor;
@@ -72,6 +73,7 @@ import libcore.io.StructPasswd;
 import libcore.io.StructUtsname;
 
 import org.robovm.rt.VM;
+import org.robovm.rt.bro.ptr.VoidPtr;
 
 import dalvik.system.VMRuntime;
 import dalvik.system.VMStack;
@@ -181,45 +183,38 @@ public final class System {
         if (dst == null) {
             throw new NullPointerException("dst == null");
         }
-        Class<?> type1 = src.getClass();
-        Class<?> type2 = dst.getClass();
-        if (!type1.isArray()) {
-            throw new ArrayStoreException("source of type " + type1.getName() + " is not an array");
+        Class<?> srcType = src.getClass();
+        Class<?> dstType = dst.getClass();
+        if (!srcType.isArray()) {
+            throw new ArrayStoreException("source of type " + srcType.getName() + " is not an array");
         }
-        if (!type2.isArray()) {
-            throw new ArrayStoreException("destination of type " + type2.getName() + " is not an array");
+        if (!dstType.isArray()) {
+            throw new ArrayStoreException("destination of type " + dstType.getName() + " is not an array");
         }
-        Class<?> componentType1 = type1.getComponentType();
-        Class<?> componentType2 = type2.getComponentType();
-        if (!componentType1.isPrimitive()) {
-            if (componentType2.isPrimitive()) {
-                throw new ArrayStoreException(type1.getCanonicalName() + " and " + type2.getCanonicalName() 
+        Class<?> srcComponent = srcType.getComponentType();
+        Class<?> dstComponent = dstType.getComponentType();
+        if (!srcComponent.isPrimitive()) {
+            if (dstComponent.isPrimitive()) {
+                throw new ArrayStoreException(srcType.getCanonicalName() + " and " + dstType.getCanonicalName()
                         + " are incompatible array types");
             }
-            arraycopy((Object[]) src, srcPos, (Object[]) dst, dstPos, length);
+            // if the array base type can't be directly assigned, must copy the hard way, element by element
+            if(!dstComponent.isAssignableFrom(srcComponent)) {
+                arraycopy((Object[]) src, srcPos, (Object[]) dst, dstPos, length);
+                return;
+            }
         } else {
-            if (componentType2 != componentType1) {
-                throw new ArrayStoreException(type1.getCanonicalName() + " and " + type2.getCanonicalName() 
+            if (dstComponent != srcComponent) {
+                throw new ArrayStoreException(srcType.getCanonicalName() + " and " + dstType.getCanonicalName()
                         + " are incompatible array types");
             }
-            if (componentType1 == int.class) {
-                arraycopy((int[]) src, srcPos, (int[]) dst, dstPos, length);
-            } else if (componentType1 == byte.class) {
-                arraycopy((byte[]) src, srcPos, (byte[]) dst, dstPos, length);
-            } else if (componentType1 == long.class) {
-                arraycopy((long[]) src, srcPos, (long[]) dst, dstPos, length);
-            } else if (componentType1 == short.class) {
-                arraycopy((short[]) src, srcPos, (short[]) dst, dstPos, length);
-            } else if (componentType1 == char.class) {
-                arraycopy((char[]) src, srcPos, (char[]) dst, dstPos, length);
-            } else if (componentType1 == boolean.class) {
-                arraycopy((boolean[]) src, srcPos, (boolean[]) dst, dstPos, length);
-            } else if (componentType1 == double.class) {
-                arraycopy((double[]) src, srcPos, (double[]) dst, dstPos, length);
-            } else if (componentType1 == float.class) {
-                arraycopy((float[]) src, srcPos, (float[]) dst, dstPos, length);
-            }
         }
+        arraycopyCheckBounds(Array.getLength(src), srcPos, Array.getLength(dst), dstPos, length);
+        // length is now guaranteed >= 0 and memmoveAtomic() is safe to call with 0 length.
+        int elementSize = VM.getArrayElementSize(dstType);
+        long srcAddr = VM.getArrayValuesAddress(src) + (long)srcPos * elementSize;
+        long dstAddr = VM.getArrayValuesAddress(dst) + (long)dstPos * elementSize;
+        VM.memmoveAtomic(dstAddr, srcAddr, (long)length * elementSize, elementSize);
     }
 
     private static void arraycopyCheckBounds(int srcLength, int srcPos, int dstLength, int dstPos, int length) {
@@ -230,29 +225,10 @@ public final class System {
                     + " dst.length=" + dstLength + " dstPos=" + dstPos + " length=" + length);
         }
     }
-    
-    private static void arraycopyFast(Object src, int srcPos, Object dst, int dstPos, int length, int logElemSize) {
-        if (length > 0) {
-            long srcAddr = VM.getArrayValuesAddress(src) + (srcPos << logElemSize);
-            long dstAddr = VM.getArrayValuesAddress(dst) + (dstPos << logElemSize);
-            if (logElemSize == 0) {
-                VM.memmove8(dstAddr, srcAddr, length);
-            } else if (logElemSize == 1) {
-                VM.memmove16(dstAddr, srcAddr, length);
-            } else if (logElemSize == 2) {
-                VM.memmove32(dstAddr, srcAddr, length);
-            } else if (logElemSize == 3) {
-                VM.memmove64(dstAddr, srcAddr, length);
-            } else {
-                throw new AssertionError();
-            }
-        }
-    }
-    
+
     private static void arraycopy(Object[] src, int srcPos, Object[] dst, int dstPos, int length) {
         arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
         if (length > 0) {
-            // TODO: Use arraycopyFast() if src.class and dst.class have same dimensionality and (src instanceof dst)
             int i = 0;
             try {
                 // Check if this is a forward or backwards arraycopy
@@ -277,46 +253,7 @@ public final class System {
         }
     }
 
-    private static void arraycopy(int[] src, int srcPos, int[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 2);
-    }
 
-    private static void arraycopy(byte[] src, int srcPos, byte[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 0);
-    }
-
-    private static void arraycopy(short[] src, int srcPos, short[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 1);
-    }
-
-    private static void arraycopy(long[] src, int srcPos, long[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 3);
-    }
-
-    private static void arraycopy(char[] src, int srcPos, char[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 1);
-    }
-
-    private static void arraycopy(boolean[] src, int srcPos, boolean[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 0);
-    }
-
-    private static void arraycopy(double[] src, int srcPos, double[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 3);
-    }
-
-    private static void arraycopy(float[] src, int srcPos, float[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 2);
-    }
-    
     /**
      * Returns the current time in milliseconds since January 1, 1970 00:00:00.0 UTC.
      *
@@ -495,7 +432,7 @@ public final class System {
         parsePropertyAssignments(p, specialProperties());
 
         parsePropertyAssignments(p, robovmSpecialProperties());
-        
+
         // RoboVM note: Added in RoboVM. Make sure we get sane and consistent
         // user.home, user.dir and user.name values on iOS.
         if (p.getProperty("os.name").contains("iOS")) {
@@ -524,7 +461,7 @@ public final class System {
     private static native String[] specialProperties();
 
     private static native String[] robovmSpecialProperties();
-    
+
     /**
      * Adds each element of 'assignments' to 'p', treating each element as an
      * assignment in the form "key=value".
