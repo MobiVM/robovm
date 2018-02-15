@@ -39,8 +39,8 @@ import org.robovm.compiler.util.Executor;
  */
 public class DeviceType implements Comparable<DeviceType> {
     public static final String PREFIX = "com.apple.CoreSimulator.SimDeviceType.";
-    public static final String PREFERRED_IPHONE_SIM_NAME = PREFIX + "iPhone 6";
-    public static final String PREFERRED_IPAD_SIM_NAME = PREFIX + "iPad Air";
+    public static final String PREFERRED_IPHONE_SIM_NAME = "iPhone 6";
+    public static final String PREFERRED_IPAD_SIM_NAME = "iPad Air";
     
     public static final String[] ONLY_32BIT_DEVICES = {"iPhone 4", "iPhone 4s", "iPhone 5", "iPhone 5c", "iPad 2"};
 
