@@ -39,8 +39,8 @@ import org.robovm.compiler.util.Executor;
  */
 public class DeviceType implements Comparable<DeviceType> {
     public static final String PREFIX = "com.apple.CoreSimulator.SimDeviceType.";
-    public static final String PREFERRED_IPHONE_SIM_NAME = PREFIX + "iPhone 6";
-    public static final String PREFERRED_IPAD_SIM_NAME = PREFIX + "iPad Air";
+    public static final String PREFERRED_IPHONE_SIM_NAME = "iPhone 6";
+    public static final String PREFERRED_IPAD_SIM_NAME = "iPad Air";
     
     public static final String[] ONLY_32BIT_DEVICES = {"iPhone 4", "iPhone 4s", "iPhone 5", "iPhone 5c", "iPad 2"};
 
@@ -164,13 +164,13 @@ public class DeviceType implements Comparable<DeviceType> {
     private static List<DeviceType> filter(List<DeviceType> deviceTypes, Arch arch,
             DeviceFamily family, String deviceName, String sdkVersion) {
 
-        deviceName = deviceName == null ? null : deviceName.toLowerCase().replaceAll("-", " ");
+        deviceName = deviceName == null ? null : deviceName.toLowerCase();
 
         List<DeviceType> result = new ArrayList<>();
         for (DeviceType type : deviceTypes) {
             if (arch == null || type.getArchs().contains(arch)) {
                 if (family == null || family == type.getFamily()) {
-                    if (deviceName == null || type.getSimpleDeviceName().toLowerCase().contains(deviceName)) {
+                    if (deviceName == null || type.getDeviceName().toLowerCase().contains(deviceName)) {
                         if (sdkVersion == null || type.getSdk().getVersion().equals(sdkVersion)) {
                             result.add(type);
                         }
@@ -227,14 +227,31 @@ public class DeviceType implements Comparable<DeviceType> {
             preferredDeciveName = PREFERRED_IPAD_SIM_NAME;
         }
 
-        DeviceType best = null;
-        for (DeviceType type : filter(listDeviceTypes(), arch, family, deviceName, sdkVersion)) {
-            if (best == null) {
-                best = type;
-            } else if (type.getSdk().compareTo(best.getSdk()) > 0 ||
-                    type.getSdk().compareTo(best.getSdk()) == 0 && type.getDeviceName().equals(preferredDeciveName)) {
-                best = type;
+
+        // set simulator types and find one that matches version and name
+        DeviceType exact = null;
+        DeviceType bestDefault = null;
+        DeviceType bestAny = null;
+        List<DeviceType> devices = filter(listDeviceTypes(), arch, family, deviceName, sdkVersion);
+        for (DeviceType type : devices) {
+            if (deviceName != null && type.getDeviceName().equals(deviceName)) {
+                // match for specified device
+                if (exact == null || (sdkVersion == null && type.getSdk().getVersionCode() >  exact.getSdk().getVersionCode()))
+                    exact = type;
+            } else if (deviceName == null && type.getDeviceName().equals(preferredDeciveName)) {
+                // match for preferable device
+                if (bestDefault == null || (sdkVersion == null && type.getSdk().getVersionCode() >  bestDefault.getSdk().getVersionCode()))
+                    bestDefault = type;
+            } else {
+                // just pick one with best SDK version
+                if (bestAny == null || (sdkVersion == null && type.getSdk().getVersionCode() >  bestAny.getSdk().getVersionCode()))
+                    bestAny = type;
             }
+        }
+
+        DeviceType best = exact;
+        if (best == null) {
+            best = bestDefault != null ? bestDefault : bestAny;
         }
         if (best == null) {
             throw new IllegalArgumentException("Unable to find a matching device "
