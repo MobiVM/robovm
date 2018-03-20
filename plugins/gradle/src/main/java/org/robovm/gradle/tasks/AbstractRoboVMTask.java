@@ -237,8 +237,9 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
             if (getLogger().isDebugEnabled()) {
                 getLogger().debug("Including classpath element for RoboVM app: " + classpathEntry.getAbsolutePath());
             }
-
-            builder.addClasspathEntry(classpathEntry);
+            if(classpathEntry.exists()) {
+                builder.addClasspathEntry(classpathEntry);
+            }
         }
 
         return builder;
