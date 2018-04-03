@@ -492,6 +492,8 @@ classes:
         methods:
             '-initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:':
                 name: init
+            '-initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:notebookItemIdentifier:':
+                name: init
     INSearchForNotebookItemsIntentResponse: #since 11.0
         methods:
             '-initWithCode:userActivity:':

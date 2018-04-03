@@ -42,7 +42,11 @@ public enum /*<name>*/INSendPaymentPayeeUnsupportedReason/*</name>*/ implements 
     /*<values>*/
     CredentialsUnverified(1L),
     InsufficientFunds(2L),
-    NoAccount(3L);
+    NoAccount(3L),
+    /**
+     * @since Available in iOS 11.1 and later.
+     */
+    NoValidHandle(4L);
     /*</values>*/
 
     /*<bind>*/
