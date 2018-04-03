@@ -42,33 +42,25 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARHitTestResult/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARImageAnchor/*</name>*/ 
+    extends /*<extends>*/ARAnchor/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ARHitTestResultPtr extends Ptr<ARHitTestResult, ARHitTestResultPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ARHitTestResult.class); }/*</bind>*/
+    /*<ptr>*/public static class ARImageAnchorPtr extends Ptr<ARImageAnchor, ARImageAnchorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARImageAnchor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ARHitTestResult() {}
-    protected ARHitTestResult(Handle h, long handle) { super(h, handle); }
-    protected ARHitTestResult(SkipInit skipInit) { super(skipInit); }
+    protected ARImageAnchor() {}
+    protected ARImageAnchor(Handle h, long handle) { super(h, handle); }
+    protected ARImageAnchor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "type")
-    public native ARHitTestResultType getType();
-    @Property(selector = "distance")
-    public native @MachineSizedFloat double getDistance();
-    @Property(selector = "localTransform")
-    public native @ByVal MatrixFloat4x4 getLocalTransform();
-    @Property(selector = "worldTransform")
-    public native @ByVal MatrixFloat4x4 getWorldTransform();
-    @Property(selector = "anchor")
-    public native ARAnchor getAnchor();
+    @Property(selector = "referenceImage")
+    public native ARReferenceImage getReferenceImage();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

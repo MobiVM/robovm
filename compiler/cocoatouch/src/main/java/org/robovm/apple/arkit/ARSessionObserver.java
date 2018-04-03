@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -65,6 +66,11 @@ import org.robovm.apple.metal.*;
     void sessionWasInterrupted(ARSession session);
     @Method(selector = "sessionInterruptionEnded:")
     void sessionInterruptionEnded(ARSession session);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "sessionShouldAttemptRelocalization:")
+    boolean sessionShouldAttemptRelocalization(ARSession session);
     @Method(selector = "session:didOutputAudioSampleBuffer:")
     void didOutputAudioSampleBuffer(ARSession session, CMSampleBuffer audioSampleBuffer);
     /*</methods>*/

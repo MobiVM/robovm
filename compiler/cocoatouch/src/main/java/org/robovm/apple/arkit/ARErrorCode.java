@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,7 +50,11 @@ public enum /*<name>*/ARErrorCode/*</name>*/ implements NSErrorCode {
     SensorUnavailable(101L),
     SensorFailed(102L),
     CameraUnauthorized(103L),
-    WorldTrackingFailed(200L);
+    WorldTrackingFailed(200L),
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    InvalidReferenceImage(300L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(ARErrorCode.class); }/*</bind>*/

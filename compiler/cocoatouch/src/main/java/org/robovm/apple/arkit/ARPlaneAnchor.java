@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,6 +65,11 @@ import org.robovm.apple.metal.*;
     public native @ByVal VectorFloat3 getCenter();
     @Property(selector = "extent")
     public native @ByVal VectorFloat3 getExtent();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "geometry")
+    public native ARPlaneGeometry getGeometry();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
