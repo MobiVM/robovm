@@ -101,7 +101,7 @@ Or be set in the provider coniguration in the `pom.xml`, e.g.:
   <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-surefire-plugin</artifactId>
-    <version>2.17</version>
+    <version>2.21.0</version>
     <dependencies>
       <dependency>
         <groupId>org.robovm</groupId>

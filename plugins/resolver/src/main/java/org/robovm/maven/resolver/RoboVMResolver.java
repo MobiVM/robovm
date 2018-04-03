@@ -26,7 +26,7 @@ import org.jboss.shrinkwrap.resolver.api.maven.MavenResolvedArtifact;
 
 public class RoboVMResolver {
 
-    private static String ROBOVM_DIST = "org.robovm:robovm-dist:tar.gz:nocompiler";
+    private static String ROBOVM_DIST = "com.mobidevelop.robovm:robovm-dist:tar.gz:nocompiler";
 
     private Logger logger = new GenericLogger();
     

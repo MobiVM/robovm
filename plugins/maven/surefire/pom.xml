@@ -13,7 +13,7 @@
   <packaging>jar</packaging>
 
   <properties>
-    <surefire.version>2.17</surefire.version>
+    <surefire.version>2.21.0</surefire.version>
     <robovm.version>${project.version}</robovm.version>
   </properties>
 
@@ -38,6 +38,11 @@
       <artifactId>surefire-providers</artifactId>
       <version>${surefire.version}</version>
       <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-shared-utils</artifactId>
+      <version>0.9</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -87,6 +92,8 @@
                   <include>org.apache.maven:maven-plugin-api</include>
                   <include>org.apache.maven.surefire:common-junit4</include>
                   <include>org.apache.maven.surefire:surefire-junit4</include>
+                  <include>org.apache.maven.shared:maven-shared-utils</include>
+                  <include>org.apache.maven.surefire:surefire-logger-api</include>
                 </includes>
               </artifactSet>
               <filters>
