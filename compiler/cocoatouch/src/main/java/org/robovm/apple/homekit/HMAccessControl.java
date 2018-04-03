@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,24 +33,24 @@ import org.robovm.apple.corelocation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 11.2 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMHomeAccessControl/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMAccessControl/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class HMHomeAccessControlPtr extends Ptr<HMHomeAccessControl, HMHomeAccessControlPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(HMHomeAccessControl.class); }/*</bind>*/
+    /*<ptr>*/public static class HMAccessControlPtr extends Ptr<HMAccessControl, HMAccessControlPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(HMAccessControl.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected HMHomeAccessControl(Handle h, long handle) { super(h, handle); }
-    protected HMHomeAccessControl(SkipInit skipInit) { super(skipInit); }
+    protected HMAccessControl() {}
+    protected HMAccessControl(Handle h, long handle) { super(h, handle); }
+    protected HMAccessControl(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "isAdministrator")
-    public native boolean isAdministrator();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

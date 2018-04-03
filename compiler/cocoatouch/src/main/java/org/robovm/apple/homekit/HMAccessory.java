@@ -116,6 +116,11 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "firmwareVersion")
     public native String getFirmwareVersion();
     /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "supportsIdentify")
+    public native boolean supportsIdentify();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "cameraProfiles")

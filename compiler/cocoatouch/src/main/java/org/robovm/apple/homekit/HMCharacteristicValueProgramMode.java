@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,27 +33,33 @@ import org.robovm.apple.corelocation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 11.2 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMHomeAccessControl/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/HMCharacteristicValueProgramMode/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    NotScheduled(0L),
+    Scheduled(1L),
+    ScheduleOverriddenToManual(2L);
+    /*</values>*/
 
-    /*<ptr>*/public static class HMHomeAccessControlPtr extends Ptr<HMHomeAccessControl, HMHomeAccessControlPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(HMHomeAccessControl.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected HMHomeAccessControl(Handle h, long handle) { super(h, handle); }
-    protected HMHomeAccessControl(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "isAdministrator")
-    public native boolean isAdministrator();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/HMCharacteristicValueProgramMode/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/HMCharacteristicValueProgramMode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/HMCharacteristicValueProgramMode/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/HMCharacteristicValueProgramMode/*</name>*/.class.getName());
+    }
 }
