@@ -109,6 +109,10 @@ import org.robovm.apple.coregraphics.*;
      */
     public static final CGImageMetadataPrefix IPTCCore = new CGImageMetadataPrefix("IPTCCore");
     /**
+     * @since Available in iOS 11.3 and later.
+     */
+    public static final CGImageMetadataPrefix IPTCExtension = new CGImageMetadataPrefix("IPTCExtension");
+    /**
      * @since Available in iOS 7.0 and later.
      */
     public static final CGImageMetadataPrefix Photoshop = new CGImageMetadataPrefix("Photoshop");
@@ -126,7 +130,7 @@ import org.robovm.apple.coregraphics.*;
     public static final CGImageMetadataPrefix XMPRights = new CGImageMetadataPrefix("XMPRights");
     /*</constants>*/
     
-    private static /*<name>*/CGImageMetadataPrefix/*</name>*/[] values = new /*<name>*/CGImageMetadataPrefix/*</name>*/[] {/*<value_list>*/Exif, ExifAux, ExifEX, DublinCore, IPTCCore, Photoshop, TIFF, XMPBasic, XMPRights/*</value_list>*/};
+    private static /*<name>*/CGImageMetadataPrefix/*</name>*/[] values = new /*<name>*/CGImageMetadataPrefix/*</name>*/[] {/*<value_list>*/Exif, ExifAux, ExifEX, DublinCore, IPTCCore, IPTCExtension, Photoshop, TIFF, XMPBasic, XMPRights/*</value_list>*/};
     
     /*<name>*/CGImageMetadataPrefix/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -174,6 +178,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImageMetadataPrefixIPTCCore", optional=true)
         public static native CFString IPTCCore();
+        /**
+         * @since Available in iOS 11.3 and later.
+         */
+        @GlobalValue(symbol="kCGImageMetadataPrefixIPTCExtension", optional=true)
+        public static native CFString IPTCExtension();
         /**
          * @since Available in iOS 7.0 and later.
          */

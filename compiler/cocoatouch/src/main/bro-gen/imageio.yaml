@@ -478,7 +478,19 @@ values:
         dictionary: CGImageProperties
         name: '#{g[0]}'
         type: CFString
-   
+
+    # GImageAuxiliaryDataType
+    kCGImageAuxiliaryDataType(.*):
+        dictionary: GImageAuxiliaryDataType
+        name: '#{g[0]}'
+        type: CFString
+
+    # CGImageAuxiliaryDataInfoData
+    kCGImageAuxiliaryDataInfo(.*):
+        dictionary: CGImageAuxiliaryDataInfoData
+        name: '#{g[0]}'
+        type: CFString
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CG.*):
         class: ImageIO
