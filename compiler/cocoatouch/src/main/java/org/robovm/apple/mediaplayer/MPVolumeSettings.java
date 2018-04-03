@@ -47,10 +47,25 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 11.3.
+     */
+    @Deprecated
     @Bridge(symbol="MPVolumeSettingsAlertShow", optional=true)
     public static native void showAlert();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 11.3.
+     */
+    @Deprecated
     @Bridge(symbol="MPVolumeSettingsAlertHide", optional=true)
     public static native void hideAlert();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 11.3.
+     */
+    @Deprecated
     @Bridge(symbol="MPVolumeSettingsAlertIsVisible", optional=true)
     public static native boolean isAlertVisible();
     /*</methods>*/
