@@ -346,6 +346,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="kCGPDFContextAllowsCopying", optional=true)
         public static native CFString AllowsCopying();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGPDFContextAccessPermissions", optional=true)
+        public static native CFString AccessPermissions();
     }
     /*</keys>*/
 }

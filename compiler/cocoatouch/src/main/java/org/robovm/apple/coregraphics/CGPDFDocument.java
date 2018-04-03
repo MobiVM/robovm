@@ -116,5 +116,15 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGPDFDocumentGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CGPDFDocumentGetOutline", optional=true)
+    public native CGPDFOutlineOptions getOutline();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CGPDFDocumentGetAccessPermissions", optional=true)
+    public native CGPDFAccessPermissions getAccessPermissions();
     /*</methods>*/
 }

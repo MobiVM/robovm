@@ -43,6 +43,7 @@ import org.robovm.apple.uikit.*;
     /*<bind>*/static { Bro.bind(CGImage.class); }/*</bind>*/
     /*<constants>*/
     public static final int ByteOrderMask = 28672;
+    public static final int ByteOrderDefault = 0;
     public static final int ByteOrder16Little = 4096;
     public static final int ByteOrder32Little = 8192;
     public static final int ByteOrder16Big = 12288;
