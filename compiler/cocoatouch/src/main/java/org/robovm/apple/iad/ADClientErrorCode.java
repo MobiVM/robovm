@@ -42,7 +42,9 @@ import org.robovm.apple.avkit.*;
 public enum /*<name>*/ADClientErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Unknown(0L),
-    LimitAdTracking(1L);
+    LimitAdTracking(1L),
+    MissingData(2L),
+    CorruptResponse(3L);
     /*</values>*/
 
     /*<bind>*/
