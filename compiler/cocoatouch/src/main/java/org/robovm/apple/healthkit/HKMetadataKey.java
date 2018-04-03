@@ -219,9 +219,29 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final HKMetadataKey VO2MaxTestType = new HKMetadataKey("VO2MaxTestType");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final HKMetadataKey AverageSpeed = new HKMetadataKey("AverageSpeed");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final HKMetadataKey MaximumSpeed = new HKMetadataKey("MaximumSpeed");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final HKMetadataKey AlpineSlopeGrade = new HKMetadataKey("AlpineSlopeGrade");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final HKMetadataKey ElevationAscended = new HKMetadataKey("ElevationAscended");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final HKMetadataKey ElevationDescended = new HKMetadataKey("ElevationDescended");
     /*</constants>*/
     
-    private static /*<name>*/HKMetadataKey/*</name>*/[] values = new /*<name>*/HKMetadataKey/*</name>*/[] {/*<value_list>*/DeviceSerialNumber, BodyTemperatureSensorLocation, HeartRateSensorLocation, HeartRateMotionContext, FoodType, UDIDeviceIdentifier, UDIProductionIdentifier, DigitalSignature, ExternalUUID, SyncIdentifier, SyncVersion, TimeZone, DeviceName, DeviceManufacturerName, WasTakenInLab, ReferenceRangeLowerLimit, ReferenceRangeUpperLimit, WasUserEntered, WorkoutBrandName, GroupFitness, IndoorWorkout, CoachedWorkout, WeatherCondition, WeatherTemperature, WeatherHumidity, SexualActivityProtectionUsed, MenstrualCycleStart, LapLength, SwimmingLocationType, SwimmingStrokeStyle, InsulinDeliveryReason, BloodGlucoseMealTime, VO2MaxTestType/*</value_list>*/};
+    private static /*<name>*/HKMetadataKey/*</name>*/[] values = new /*<name>*/HKMetadataKey/*</name>*/[] {/*<value_list>*/DeviceSerialNumber, BodyTemperatureSensorLocation, HeartRateSensorLocation, HeartRateMotionContext, FoodType, UDIDeviceIdentifier, UDIProductionIdentifier, DigitalSignature, ExternalUUID, SyncIdentifier, SyncVersion, TimeZone, DeviceName, DeviceManufacturerName, WasTakenInLab, ReferenceRangeLowerLimit, ReferenceRangeUpperLimit, WasUserEntered, WorkoutBrandName, GroupFitness, IndoorWorkout, CoachedWorkout, WeatherCondition, WeatherTemperature, WeatherHumidity, SexualActivityProtectionUsed, MenstrualCycleStart, LapLength, SwimmingLocationType, SwimmingStrokeStyle, InsulinDeliveryReason, BloodGlucoseMealTime, VO2MaxTestType, AverageSpeed, MaximumSpeed, AlpineSlopeGrade, ElevationAscended, ElevationDescended/*</value_list>*/};
     
     /*<name>*/HKMetadataKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -409,6 +429,31 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKMetadataKeyVO2MaxTestType", optional=true)
         public static native NSString VO2MaxTestType();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyAverageSpeed", optional=true)
+        public static native NSString AverageSpeed();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyMaximumSpeed", optional=true)
+        public static native NSString MaximumSpeed();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyAlpineSlopeGrade", optional=true)
+        public static native NSString AlpineSlopeGrade();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyElevationAscended", optional=true)
+        public static native NSString ElevationAscended();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyElevationDescended", optional=true)
+        public static native NSString ElevationDescended();
         /*</values>*/
     }
 }

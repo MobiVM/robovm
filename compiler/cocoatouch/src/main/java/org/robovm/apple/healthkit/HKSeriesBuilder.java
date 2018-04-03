@@ -36,7 +36,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKSeriesBuilder/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class HKSeriesBuilderPtr extends Ptr<HKSeriesBuilder, HKSeriesBuilderPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKSeriesBuilder.class); }/*</bind>*/
@@ -45,20 +45,13 @@ import org.robovm.apple.foundation.*;
     protected HKSeriesBuilder() {}
     protected HKSeriesBuilder(Handle h, long handle) { super(h, handle); }
     protected HKSeriesBuilder(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public HKSeriesBuilder(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "discard")
     public native void discard();
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
