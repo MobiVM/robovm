@@ -89,7 +89,21 @@ public enum /*<name>*/SSLErrorCode/*</name>*/ implements ValuedEnum {
     BadConfiguration(-9848L),
     UnexpectedRecord(-9849L),
     WeakPeerEphemeralDHKey(-9850L),
-    ClientHelloReceived(-9851L);
+    ClientHelloReceived(-9851L),
+    TransportReset(-9852L),
+    NetworkTimeout(-9853L),
+    ConfigurationFailed(-9854L),
+    UnsupportedExtension(-9855L),
+    UnexpectedMessage(-9856L),
+    DecompressFail(-9857L),
+    HandshakeFail(-9858L),
+    DecodeError(-9859L),
+    InappropriateFallback(-9860L),
+    MissingExtension(-9861L),
+    BadCertificateStatusResponse(-9862L),
+    CertificateRequired(-9863L),
+    UnknownPSKIdentity(-9864L),
+    UnrecognizedName(-9865L);
     /*</values>*/
 
     /*<bind>*/

@@ -439,6 +439,10 @@ functions:
         name: '#{g[0]}0'
         visibility: protected
 
+    SecCopyErrorMessageString:
+        class: SecErrorCode
+        name: copyErrorMessageString
+
     Sec(.*):
         class: Security
         name: 'Function__#{g[0]}'

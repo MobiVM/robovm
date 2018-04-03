@@ -43,12 +43,24 @@ public final class /*<name>*/SecAccessControlCreateFlags/*</name>*/ extends Bits
     public static final SecAccessControlCreateFlags None = new SecAccessControlCreateFlags(0L);
     public static final SecAccessControlCreateFlags UserPresence = new SecAccessControlCreateFlags(1L);
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 11.3 and later.
      */
-    public static final SecAccessControlCreateFlags TouchIDAny = new SecAccessControlCreateFlags(2L);
+    public static final SecAccessControlCreateFlags BiometryAny = new SecAccessControlCreateFlags(2L);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 11.3.
      */
+    @Deprecated
+    public static final SecAccessControlCreateFlags TouchIDAny = new SecAccessControlCreateFlags(2L);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    public static final SecAccessControlCreateFlags BiometryCurrentSet = new SecAccessControlCreateFlags(8L);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 11.3.
+     */
+    @Deprecated
     public static final SecAccessControlCreateFlags TouchIDCurrentSet = new SecAccessControlCreateFlags(8L);
     /**
      * @since Available in iOS 9.0 and later.
