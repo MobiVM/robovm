@@ -102,8 +102,14 @@ import org.robovm.apple.contacts.*;
     public static final PKPaymentNetwork CarteBancaire = new PKPaymentNetwork("CarteBancaire");
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 11.2.
      */
+    @Deprecated
     public static final PKPaymentNetwork CarteBancaires = new PKPaymentNetwork("CarteBancaires");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final PKPaymentNetwork CartesBancaires = new PKPaymentNetwork("CartesBancaires");
     /**
      * @since Available in iOS 9.2 and later.
      */
@@ -146,7 +152,7 @@ import org.robovm.apple.contacts.*;
     public static final PKPaymentNetwork Visa = new PKPaymentNetwork("Visa");
     /*</constants>*/
     
-    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, CarteBancaire, CarteBancaires, ChinaUnionPay, Discover, IDCredit, Interac, JCB, MasterCard, PrivateLabel, QuicPay, Suica, Visa/*</value_list>*/};
+    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Discover, IDCredit, Interac, JCB, MasterCard, PrivateLabel, QuicPay, Suica, Visa/*</value_list>*/};
     
     /*<name>*/PKPaymentNetwork/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -183,9 +189,16 @@ import org.robovm.apple.contacts.*;
         public static native NSString CarteBancaire();
         /**
          * @since Available in iOS 11.0 and later.
+         * @deprecated Deprecated in iOS 11.2.
          */
+        @Deprecated
         @GlobalValue(symbol="PKPaymentNetworkCarteBancaires", optional=true)
         public static native NSString CarteBancaires();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkCartesBancaires", optional=true)
+        public static native NSString CartesBancaires();
         /**
          * @since Available in iOS 9.2 and later.
          */

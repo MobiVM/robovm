@@ -182,6 +182,7 @@ classes:
                 name: init
     PKPaymentRequestShippingMethodUpdate: {} #since 11.0
     PKPaymentRequestUpdate: {} #since 11.0
+    PKTransitPassProperties: {} #since 11.3
 
 protocols:
     PKPaymentAuthorizationControllerDelegate:

@@ -35,21 +35,21 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.1 and later.
+ * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKSuicaPassProperties/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKTransitPassProperties/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class PKSuicaPassPropertiesPtr extends Ptr<PKSuicaPassProperties, PKSuicaPassPropertiesPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PKSuicaPassProperties.class); }/*</bind>*/
+    /*<ptr>*/public static class PKTransitPassPropertiesPtr extends Ptr<PKTransitPassProperties, PKTransitPassPropertiesPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PKTransitPassProperties.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public PKSuicaPassProperties() {}
-    protected PKSuicaPassProperties(Handle h, long handle) { super(h, handle); }
-    protected PKSuicaPassProperties(SkipInit skipInit) { super(skipInit); }
+    public PKTransitPassProperties() {}
+    protected PKTransitPassProperties(Handle h, long handle) { super(h, handle); }
+    protected PKTransitPassProperties(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "transitBalance")
@@ -58,27 +58,14 @@ import org.robovm.apple.contacts.*;
     public native String getTransitBalanceCurrencyCode();
     @Property(selector = "isInStation")
     public native boolean isInStation();
-    @Property(selector = "isInShinkansenStation")
-    public native boolean isInShinkansenStation();
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Property(selector = "isBalanceAllowedForCommute")
-    public native boolean isBalanceAllowedForCommute();
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Property(selector = "isLowBalanceGateNotificationEnabled")
-    public native boolean isLowBalanceGateNotificationEnabled();
-    @Property(selector = "isGreenCarTicketUsed")
-    public native boolean isGreenCarTicketUsed();
     @Property(selector = "isBlacklisted")
     public native boolean isBlacklisted();
+    @Property(selector = "expirationDate")
     public native NSDate getExpirationDate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "passPropertiesForPass:")
-    public static native PKSuicaPassProperties passPropertiesForPass(PKPass pass);
+    public static native PKTransitPassProperties passPropertiesForPass(PKPass pass);
     /*</methods>*/
 }
