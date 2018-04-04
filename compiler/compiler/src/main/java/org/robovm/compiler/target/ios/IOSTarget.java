@@ -529,16 +529,7 @@ public class IOSTarget extends AbstractTarget {
         final File dsymDir = new File(dir.getParentFile(), dir.getName() + ".dSYM");
         final File exePath = new File(dir, executable);
         FileUtils.deleteDirectory(dsymDir);
-        Logger logger = new LoggerProxy(config.getLogger()) {
-            @Override
-            public void warn(String format, Object... args) {
-                if (!(format.startsWith("warning:") && format.contains("could not find object file symbol for symbol"))) {
-                    // Suppress this kind of warnings for now. See robovm/robovm#1126.
-                    super.warn(format, args);
-                }
-            }
-        };
-        final Process process = new Executor(logger, "xcrun")
+        final Process process = new Executor(config.getLogger(), "xcrun")
                 .args("dsymutil", "-o", dsymDir, exePath)
                 .execAsync();
         if (copyToIndexedDir) {
