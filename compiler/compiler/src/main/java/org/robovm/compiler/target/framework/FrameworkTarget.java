@@ -193,7 +193,7 @@ public class FrameworkTarget extends AbstractTarget {
 		if (dsymDir.exists())
 			FileUtils.deleteDirectory(dsymDir);
 		dsymDir.mkdirs();
-		new Executor(new FilterDSYMWarningsLogger(config.getLogger()), "xcrun").args("dsymutil", "-o", dsymDir, frameworkBinaryFile).exec();
+		new Executor(config.getLogger(), "xcrun").args("dsymutil", "-o", dsymDir, frameworkBinaryFile).exec();
 		
 		if (!config.isDebug()) {
 			config.getLogger().info("Striping framework binary: %s", frameworkBinaryFile);
@@ -207,18 +207,5 @@ public class FrameworkTarget extends AbstractTarget {
 		File infoPlistBin = new File(frameworkDir, "Info.plist");
 		config.getLogger().info("Installing Info.plist to: %s", infoPlistBin);
 		PropertyListParser.saveAsBinary(infoPlist, infoPlistBin);
-	}
-	
-	private static class FilterDSYMWarningsLogger extends LoggerProxy {
-
-		public FilterDSYMWarningsLogger(Logger target) {
-			super(target);
-		}
-
-		@Override
-		public void warn(String format, Object... args) {
-			if (!(format.startsWith("warning:") && format.contains("could not find object file symbol for symbol"))) 
-				super.warn(format, args);
-		}
 	}
 }
