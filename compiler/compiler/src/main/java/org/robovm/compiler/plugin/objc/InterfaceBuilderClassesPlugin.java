@@ -254,7 +254,7 @@ public class InterfaceBuilderClassesPlugin extends AbstractCompilerPlugin {
         }
 
         Visitor visitor = new Visitor();
-        new ClassReader(IOUtils.toByteArray(url)).accept(visitor, 0);
+        new ClassReader(IOUtils.toByteArray(url.openStream())).accept(visitor, 0);
         customClassValuesCache.put(url, visitor.customClass);
         return visitor.customClass;
     }
@@ -277,7 +277,7 @@ public class InterfaceBuilderClassesPlugin extends AbstractCompilerPlugin {
         }
 
         Visitor visitor = new Visitor();
-        new ClassReader(IOUtils.toByteArray(url)).accept(visitor, 0);
+        new ClassReader(IOUtils.toByteArray(url.openStream())).accept(visitor, 0);
         return visitor.nativeClass;
     }
 

@@ -120,7 +120,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	super.beforeClass(config, clazz, mb);
 
         ClassDataBundle classBundle = clazz.getAttachment(ClassDataBundle.class);
-        classBundle.diFile = new DIItemList(mb, v("/"), v(getSourceFile(clazz)));
+        classBundle.diFile = new DIItemList(mb, v(getSourceFile(clazz)), v(getSourceFilePath(clazz)));
         classBundle.diFileDescriptor = new DIFileDescriptor(mb, classBundle.diFile);
         classBundle.diMethods = new DIMutableItemList<>(mb);
         classBundle.diCompileUnit = new DICompileUnit(mb, "llvm.dbg.cu", classBundle.diFile, classBundle.diMethods);
@@ -498,17 +498,30 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     /** Simple file name resolved, for LineNumbers there is no need in absolute file location, just in name */
     private String getSourceFile(Clazz clazz) {
     	String sourceFile;
-    	SourceFileTag sourceFileTag = (SourceFileTag) clazz.getSootClass().getTag("SourceFileTag");
-    	if (sourceFileTag != null) {
-    	    sourceFile = sourceFileTag.getSourceFile();
-    	} else {
-            String className = clazz.getInternalName();
+        String className = clazz.getInternalName();
+        if (className.contains("/"))
             sourceFile = className.substring(clazz.getInternalName().lastIndexOf("/") + 1) + ".java";
-    	}
+        else
+            sourceFile = className + ".java";
 
     	return sourceFile;
 	}
 
+    /** Simple file name resolved, for LineNumbers there is no need in absolute file location, just in name */
+    private String getSourceFilePath(Clazz clazz) {
+        String sourcePath = clazz.getPath().toString();
+        if (!sourcePath.endsWith("/"))
+            sourcePath += "/";
+        if (!sourcePath.startsWith("/"))
+            sourcePath = "/" + sourcePath;
+
+        String className = clazz.getInternalName();
+        if (className.contains("/")) {
+            sourcePath += className.substring(0, clazz.getInternalName().lastIndexOf("/") + 1);
+        }
+
+        return sourcePath;
+    }
 
     /**
      * data bundle that contains debug information for class
