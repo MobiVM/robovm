@@ -41,7 +41,11 @@ import org.robovm.apple.corelocation.*;
 public enum /*<name>*/INRequestPaymentPayerUnsupportedReason/*</name>*/ implements ValuedEnum {
     /*<values>*/
     CredentialsUnverified(1L),
-    NoAccount(2L);
+    NoAccount(2L),
+    /**
+     * @since Available in iOS 11.1 and later.
+     */
+    NoValidHandle(3L);
     /*</values>*/
 
     /*<bind>*/

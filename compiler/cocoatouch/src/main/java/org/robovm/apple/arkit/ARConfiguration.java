@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,6 +61,21 @@ import org.robovm.apple.metal.*;
     /*<properties>*/
     @Property(selector = "isSupported")
     public static native boolean isSupported();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "supportedVideoFormats")
+    public static native NSArray<ARVideoFormat> getSupportedVideoFormats();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "videoFormat")
+    public native ARVideoFormat getVideoFormat();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "setVideoFormat:")
+    public native void setVideoFormat(ARVideoFormat v);
     @Property(selector = "worldAlignment")
     public native ARWorldAlignment getWorldAlignment();
     @Property(selector = "setWorldAlignment:")

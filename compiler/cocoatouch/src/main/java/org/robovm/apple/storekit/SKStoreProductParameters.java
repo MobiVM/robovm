@@ -182,6 +182,31 @@ import org.robovm.apple.uikit.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
+         * @since Available in iOS 11.3 and later.
+         */
+        @GlobalValue(symbol="SKStoreProductParameterAdNetworkAttributionSignature", optional=true)
+        public static native NSString AdNetworkAttributionSignature();
+        /**
+         * @since Available in iOS 11.3 and later.
+         */
+        @GlobalValue(symbol="SKStoreProductParameterAdNetworkCampaignIdentifier", optional=true)
+        public static native NSString AdNetworkCampaignIdentifier();
+        /**
+         * @since Available in iOS 11.3 and later.
+         */
+        @GlobalValue(symbol="SKStoreProductParameterAdNetworkIdentifier", optional=true)
+        public static native NSString AdNetworkIdentifier();
+        /**
+         * @since Available in iOS 11.3 and later.
+         */
+        @GlobalValue(symbol="SKStoreProductParameterAdNetworkNonce", optional=true)
+        public static native NSString AdNetworkNonce();
+        /**
+         * @since Available in iOS 11.3 and later.
+         */
+        @GlobalValue(symbol="SKStoreProductParameterAdNetworkTimestamp", optional=true)
+        public static native NSString AdNetworkTimestamp();
+        /**
          * @since Available in iOS 6.0 and later.
          */
         @GlobalValue(symbol="SKStoreProductParameterITunesItemIdentifier", optional=true)

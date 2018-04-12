@@ -88,10 +88,13 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    public static final CGImagePropertyOpenEXR AspectRatio = new CGImagePropertyOpenEXR("AspectRatio");
     /*</constants>*/
     
-    private static /*<name>*/CGImagePropertyOpenEXR/*</name>*/[] values = new /*<name>*/CGImagePropertyOpenEXR/*</name>*/[] {/*<value_list>*//*</value_list>*/};
+    private static /*<name>*/CGImagePropertyOpenEXR/*</name>*/[] values = new /*<name>*/CGImagePropertyOpenEXR/*</name>*/[] {/*<value_list>*/AspectRatio/*</value_list>*/};
     
     /*<name>*/CGImagePropertyOpenEXR/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -114,7 +117,11 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-    
+        /**
+         * @since Available in iOS 11.3 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyOpenEXRAspectRatio", optional=true)
+        public static native CFString AspectRatio();
         /*</values>*/
     }
 }

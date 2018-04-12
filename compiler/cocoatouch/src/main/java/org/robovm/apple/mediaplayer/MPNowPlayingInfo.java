@@ -464,6 +464,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyAssetURL", optional=true)
         public static native NSString AssetURL();
+        /**
+         * @since Available in iOS 11.1 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyCurrentPlaybackDate", optional=true)
+        public static native NSString CurrentPlaybackDate();
     }
     /*</keys>*/
 }

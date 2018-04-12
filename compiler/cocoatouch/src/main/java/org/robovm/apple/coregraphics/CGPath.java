@@ -186,5 +186,10 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGPathApply", optional=true)
     private native void apply(@Pointer long info, @Pointer long function);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CGPathApplyWithBlock", optional=true)
+    public native void applyWithBlock(@Block VoidBlock1<CGPathElement> block);
     /*</methods>*/
 }

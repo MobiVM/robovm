@@ -296,6 +296,11 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="kCGColorSpaceGenericXYZ", optional=true)
     public static native String GenericXYZ();
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceGenericLab", optional=true)
+    public static native String GenericLab();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @GlobalValue(symbol="kCGColorSpaceACESCGLinear", optional=true)
@@ -382,10 +387,10 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CGColorSpaceCreateLab", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createLab(@Pointer long whitePoint, @Pointer long blackPoint, @Pointer long range);
     /**
-     * @since Available in iOS 2.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    @Bridge(symbol="CGColorSpaceCreateWithICCProfile", optional=true)
-    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createWithICCProfile(NSData data);
+    @Bridge(symbol="CGColorSpaceCreateWithICCData", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createWithICCData(CFType data);
     /**
      * @since Available in iOS 2.0 and later.
      */
@@ -407,10 +412,15 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CGColorSpaceCreateWithName", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace create(String name);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceGetName", optional=true)
+    public native String getName();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Bridge(symbol="CGColorSpaceCopyName", optional=true)
-    public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getName();
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String copyName();
     /**
      * @since Available in iOS 2.0 and later.
      */
@@ -441,8 +451,6 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGColorSpaceGetColorTable", optional=true)
     private native void getColorTable(@Pointer long table);
-    @Bridge(symbol="CGColorSpaceCopyICCProfile", optional=true)
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData getICCProfile();
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -458,5 +466,19 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGColorSpaceSupportsOutput", optional=true)
     public native boolean supportsOutput();
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Bridge(symbol="CGColorSpaceCreateWithICCProfile", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createWithICCProfile(NSData data);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Bridge(symbol="CGColorSpaceCopyICCProfile", optional=true)
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData getICCProfile();
     /*</methods>*/
 }

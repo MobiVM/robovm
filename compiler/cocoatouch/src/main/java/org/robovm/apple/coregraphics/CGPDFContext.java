@@ -92,5 +92,10 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGPDFContextSetDestinationForRect", optional=true)
     public native void setDestinationForRect(String name, @ByVal CGRect rect);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CGPDFContextSetOutline", optional=true)
+    public native void setOutline(NSDictionary outline);
     /*</methods>*/
 }

@@ -49,6 +49,16 @@ import org.robovm.apple.corelocation.*;
     public INSearchForNotebookItemsIntent() {}
     protected INSearchForNotebookItemsIntent(Handle h, long handle) { super(h, handle); }
     protected INSearchForNotebookItemsIntent(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:notebookItemIdentifier:")
+    public INSearchForNotebookItemsIntent(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType, String notebookItemIdentifier) { super((SkipInit) null); initObject(init(title, content, itemType, status, location, locationSearchType, dateTime, dateSearchType, notebookItemIdentifier)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 11.2.
+     */
+    @Deprecated
     @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:")
     public INSearchForNotebookItemsIntent(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType) { super((SkipInit) null); initObject(init(title, content, itemType, status, location, locationSearchType, dateTime, dateSearchType)); }
     /*</constructors>*/
@@ -69,9 +79,24 @@ import org.robovm.apple.corelocation.*;
     public native INDateComponentsRange getDateTime();
     @Property(selector = "dateSearchType")
     public native INDateSearchType getDateSearchType();
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @Property(selector = "notebookItemIdentifier")
+    public native String getNotebookItemIdentifier();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:notebookItemIdentifier:")
+    protected native @Pointer long init(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType, String notebookItemIdentifier);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 11.2.
+     */
+    @Deprecated
     @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:")
     protected native @Pointer long init(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType);
     /*</methods>*/

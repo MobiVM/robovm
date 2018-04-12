@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,10 +59,30 @@ import org.robovm.apple.metal.*;
     public ARWorldTrackingConfiguration() { super((Handle) null, create()); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "isAutoFocusEnabled")
+    public native boolean isAutoFocusEnabled();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "setAutoFocusEnabled:")
+    public native void setAutoFocusEnabled(boolean v);
     @Property(selector = "planeDetection")
     public native ARPlaneDetection getPlaneDetection();
     @Property(selector = "setPlaneDetection:")
     public native void setPlaneDetection(ARPlaneDetection v);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "detectionImages")
+    public native NSSet<ARReferenceImage> getDetectionImages();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "setDetectionImages:")
+    public native void setDetectionImages(NSSet<ARReferenceImage> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -98,7 +98,11 @@ public enum /*<name>*/CKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 11.0 and later.
      */
-    ServerResponseLost(34L);
+    ServerResponseLost(34L),
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    AssetNotAvailable(35L);
     /*</values>*/
 
     /*<bind>*/

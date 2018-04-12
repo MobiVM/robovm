@@ -180,9 +180,21 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 10.2 and later.
      */
     public static final HMAccessoryCategoryType AirDehumidifier = new HMAccessoryCategoryType("AirDehumidifier");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final HMAccessoryCategoryType Sprinkler = new HMAccessoryCategoryType("Sprinkler");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final HMAccessoryCategoryType Faucet = new HMAccessoryCategoryType("Faucet");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final HMAccessoryCategoryType ShowerHead = new HMAccessoryCategoryType("ShowerHead");
     /*</constants>*/
     
-    private static /*<name>*/HMAccessoryCategoryType/*</name>*/[] values = new /*<name>*/HMAccessoryCategoryType/*</name>*/[] {/*<value_list>*/Other, SecuritySystem, Bridge, Door, DoorLock, Fan, GarageDoorOpener, IPCamera, Lightbulb, Outlet, ProgrammableSwitch, RangeExtender, Sensor, Switch, Thermostat, VideoDoorbell, Window, WindowCovering, AirPurifier, AirHeater, AirConditioner, AirHumidifier, AirDehumidifier/*</value_list>*/};
+    private static /*<name>*/HMAccessoryCategoryType/*</name>*/[] values = new /*<name>*/HMAccessoryCategoryType/*</name>*/[] {/*<value_list>*/Other, SecuritySystem, Bridge, Door, DoorLock, Fan, GarageDoorOpener, IPCamera, Lightbulb, Outlet, ProgrammableSwitch, RangeExtender, Sensor, Switch, Thermostat, VideoDoorbell, Window, WindowCovering, AirPurifier, AirHeater, AirConditioner, AirHumidifier, AirDehumidifier, Sprinkler, Faucet, ShowerHead/*</value_list>*/};
     
     /*<name>*/HMAccessoryCategoryType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -320,6 +332,21 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMAccessoryCategoryTypeAirDehumidifier", optional=true)
         public static native NSString AirDehumidifier();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeSprinkler", optional=true)
+        public static native NSString Sprinkler();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeFaucet", optional=true)
+        public static native NSString Faucet();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeShowerHead", optional=true)
+        public static native NSString ShowerHead();
         /*</values>*/
     }
 }

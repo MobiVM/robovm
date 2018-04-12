@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -83,5 +84,10 @@ import org.robovm.apple.metal.*;
     public native void addAnchor(ARAnchor anchor);
     @Method(selector = "removeAnchor:")
     public native void removeAnchor(ARAnchor anchor);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "setWorldOrigin:")
+    public native void setWorldOrigin(@ByVal MatrixFloat4x4 relativeTransform);
     /*</methods>*/
 }

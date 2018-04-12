@@ -63,7 +63,8 @@ public enum /*<name>*/AUErrorCode/*</name>*/ implements NSErrorCode {
     MIDIOutputBufferFull(-66753L),
     kAudioComponentErr_InstanceInvalidated(-66749L),
     RenderTimeout(-66745L),
-    ExtensionNotFound(-66744L);
+    ExtensionNotFound(-66744L),
+    InvalidParameterValue(-66743L);
     /*</values>*/
 
     /*<bind>*/

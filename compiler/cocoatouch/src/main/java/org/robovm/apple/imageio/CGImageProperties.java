@@ -715,10 +715,20 @@ import org.robovm.apple.coregraphics.*;
         @GlobalValue(symbol="kCGImagePropertyExifAuxDictionary", optional=true)
         public static native CFString ExifAuxDictionary();
         /**
+         * @since Available in iOS 11.3 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyOpenEXRDictionary", optional=true)
+        public static native CFString OpenEXRDictionary();
+        /**
          * @since Available in iOS 7.0 and later.
          */
         @GlobalValue(symbol="kCGImagePropertyMakerAppleDictionary", optional=true)
         public static native CFString MakerAppleDictionary();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyFileContentsDictionary", optional=true)
+        public static native CFString FileContentsDictionary();
         /**
          * @since Available in iOS 4.0 and later.
          */
@@ -779,6 +789,56 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImagePropertyProfileName", optional=true)
         public static native CFString ProfileName();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyImageCount", optional=true)
+        public static native CFString ImageCount();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyWidth", optional=true)
+        public static native CFString Width();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyHeight", optional=true)
+        public static native CFString Height();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyBytesPerRow", optional=true)
+        public static native CFString BytesPerRow();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyNamedColorSpace", optional=true)
+        public static native CFString NamedColorSpace();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyPixelFormat", optional=true)
+        public static native CFString PixelFormat();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyImages", optional=true)
+        public static native CFString Images();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyThumbnailImages", optional=true)
+        public static native CFString ThumbnailImages();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyAuxiliaryData", optional=true)
+        public static native CFString AuxiliaryData();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyAuxiliaryDataType", optional=true)
+        public static native CFString AuxiliaryDataType();
     }
     /*</keys>*/
 }

@@ -117,6 +117,10 @@ import org.robovm.apple.security.*;
 
     /*<constants>*/
     /**
+     * @since Available in iOS 11.3 and later.
+     */
+    public static final WKWebsiteDataType FetchCache = new WKWebsiteDataType("FetchCache");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final WKWebsiteDataType DiskCache = new WKWebsiteDataType("DiskCache");
@@ -148,9 +152,13 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final WKWebsiteDataType IndexedDBDatabases = new WKWebsiteDataType("IndexedDBDatabases");
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    public static final WKWebsiteDataType ServiceWorkerRegistrations = new WKWebsiteDataType("ServiceWorkerRegistrations");
     /*</constants>*/
     
-    private static /*<name>*/WKWebsiteDataType/*</name>*/[] values = new /*<name>*/WKWebsiteDataType/*</name>*/[] {/*<value_list>*/DiskCache, MemoryCache, OfflineWebApplicationCache, Cookies, SessionStorage, LocalStorage, WebSQLDatabases, IndexedDBDatabases/*</value_list>*/};
+    private static /*<name>*/WKWebsiteDataType/*</name>*/[] values = new /*<name>*/WKWebsiteDataType/*</name>*/[] {/*<value_list>*/FetchCache, DiskCache, MemoryCache, OfflineWebApplicationCache, Cookies, SessionStorage, LocalStorage, WebSQLDatabases, IndexedDBDatabases, ServiceWorkerRegistrations/*</value_list>*/};
     
     /*<name>*/WKWebsiteDataType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -173,6 +181,11 @@ import org.robovm.apple.security.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @since Available in iOS 11.3 and later.
+         */
+        @GlobalValue(symbol="WKWebsiteDataTypeFetchCache", optional=true)
+        public static native NSString FetchCache();
         /**
          * @since Available in iOS 9.0 and later.
          */
@@ -213,6 +226,11 @@ import org.robovm.apple.security.*;
          */
         @GlobalValue(symbol="WKWebsiteDataTypeIndexedDBDatabases", optional=true)
         public static native NSString IndexedDBDatabases();
+        /**
+         * @since Available in iOS 11.3 and later.
+         */
+        @GlobalValue(symbol="WKWebsiteDataTypeServiceWorkerRegistrations", optional=true)
+        public static native NSString ServiceWorkerRegistrations();
         /*</values>*/
     }
 }

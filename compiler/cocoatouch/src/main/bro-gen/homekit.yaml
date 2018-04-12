@@ -65,6 +65,10 @@ enums:
     HMEventTriggerActivationState: {}
     HMPresenceEventType: {}
     HMPresenceEventUserType: {}
+    HMCharacteristicValueProgramMode: {} #since 11.2
+    HMCharacteristicValueUsageState: {} #since 11.2
+    HMCharacteristicValueValveType: {} #since 11.2
+    HMCharacteristicValueConfigurationState: {} #since 11.2
 
 classes:
     HMError:
@@ -264,6 +268,8 @@ classes:
                 trim_after_first_colon: true
             '-removeTrigger:completionHandler:':
                 trim_after_first_colon: true
+            '-addAndSetupAccessoriesWithPayload:completionHandler:':
+                name: addAndSetupAccessories
     HMHomeAccessControl: # DONE
         skip_def_constructor: true
     HMHomeManager: # DONE
@@ -401,6 +407,8 @@ classes:
             '-initWithSignificantEvent:offset:':
                 name: init
     HMTimeEvent: {} #since 11.0
+    HMAccessControl: {} #since 11.2
+    HMAccessorySetupPayload: {} #since 11.3
 
 protocols:
     HMAccessoryBrowserDelegate: # DONE

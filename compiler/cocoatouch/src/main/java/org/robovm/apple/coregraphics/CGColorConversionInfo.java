@@ -52,6 +52,11 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="kCGColorConversionBlackPointCompensation", optional=true)
     public static native String BlackPointCompensation();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorConversionTRCSize", optional=true)
+    public static native String TRCSize();
     
     @Bridge(symbol="CGColorConversionInfoGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();

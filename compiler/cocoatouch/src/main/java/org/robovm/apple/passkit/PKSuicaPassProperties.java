@@ -40,7 +40,7 @@ import org.robovm.apple.contacts.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PKSuicaPassProperties/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class PKSuicaPassPropertiesPtr extends Ptr<PKSuicaPassProperties, PKSuicaPassPropertiesPtr> {}/*</ptr>*/
@@ -60,10 +60,21 @@ import org.robovm.apple.contacts.*;
     public native boolean isInStation();
     @Property(selector = "isInShinkansenStation")
     public native boolean isInShinkansenStation();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "isBalanceAllowedForCommute")
+    public native boolean isBalanceAllowedForCommute();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "isLowBalanceGateNotificationEnabled")
+    public native boolean isLowBalanceGateNotificationEnabled();
     @Property(selector = "isGreenCarTicketUsed")
     public native boolean isGreenCarTicketUsed();
     @Property(selector = "isBlacklisted")
     public native boolean isBlacklisted();
+    public native NSDate getExpirationDate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

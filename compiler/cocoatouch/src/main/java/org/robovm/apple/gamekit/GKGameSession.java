@@ -103,5 +103,17 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "removeEventListener:")
     public static native void removeEventListener(GKGameSessionEventListener listener);
+    @Method(selector = "postSession:didAddPlayer:")
+    public static native void didAddPlayer(GKGameSession session, GKCloudPlayer player);
+    @Method(selector = "postSession:didRemovePlayer:")
+    public static native void didRemovePlayer(GKGameSession session, GKCloudPlayer player);
+    @Method(selector = "postSession:player:didChangeConnectionState:")
+    public static native void didChangeConnectionState(GKGameSession session, GKCloudPlayer player, GKConnectionState newState);
+    @Method(selector = "postSession:player:didSaveData:")
+    public static native void didSaveData(GKGameSession session, GKCloudPlayer player, NSData data);
+    @Method(selector = "postSession:didReceiveData:fromPlayer:")
+    public static native void didReceiveData(GKGameSession session, NSData data, GKCloudPlayer player);
+    @Method(selector = "postSession:didReceiveMessage:withData:fromPlayer:")
+    public static native void didReceiveMessage(GKGameSession session, String message, NSData data, GKCloudPlayer player);
     /*</methods>*/
 }

@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,8 +49,16 @@ public final class /*<name>*/ARHitTestResultType/*</name>*/ extends Bits</*<name
     public static final ARHitTestResultType None = new ARHitTestResultType(0L);
     public static final ARHitTestResultType FeaturePoint = new ARHitTestResultType(1L);
     public static final ARHitTestResultType EstimatedHorizontalPlane = new ARHitTestResultType(2L);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    public static final ARHitTestResultType EstimatedVerticalPlane = new ARHitTestResultType(4L);
     public static final ARHitTestResultType ExistingPlane = new ARHitTestResultType(8L);
     public static final ARHitTestResultType ExistingPlaneUsingExtent = new ARHitTestResultType(16L);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    public static final ARHitTestResultType ExistingPlaneUsingGeometry = new ARHitTestResultType(32L);
     /*</values>*/
 
     /*<bind>*/
