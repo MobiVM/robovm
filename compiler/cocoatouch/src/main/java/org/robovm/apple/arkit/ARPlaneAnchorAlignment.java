@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -45,7 +46,11 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/ARPlaneAnchorAlignment/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    ARPlaneAnchorAlignmentHorizontal(0L);
+    Horizontal(0L),
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    Vertical(1L);
     /*</values>*/
 
     /*<bind>*/

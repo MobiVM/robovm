@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,6 +48,10 @@ public final class /*<name>*/ARPlaneDetection/*</name>*/ extends Bits</*<name>*/
     /*<values>*/
     public static final ARPlaneDetection None = new ARPlaneDetection(0L);
     public static final ARPlaneDetection Horizontal = new ARPlaneDetection(1L);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    public static final ARPlaneDetection Vertical = new ARPlaneDetection(2L);
     /*</values>*/
 
     /*<bind>*/

@@ -39,6 +39,7 @@ enums:
     CGTextDrawingMode: {}
     CGTextEncoding: {}
     CGColorConversionInfoTransformType: {}
+    CGPDFAccessPermissions: {}
 
 classes:
     CoreGraphics:
@@ -251,7 +252,7 @@ functions:
         return_marshaler: CFType.NoRetainMarshaler
     CGColorSpaceCopy(Name):
         class: CGColorSpace
-        name: 'get#{g[0]}'
+        name: 'copy#{g[0]}'
         return_marshaler: CFString.AsStringNoRetainMarshaler
     CGColorSpaceCopy(ICCProfile):
         class: CGColorSpace
@@ -751,6 +752,10 @@ functions:
             password:
                 type: String
                 marshaler: StringMarshalers.AsDefaultCharsetZMarshaler
+    CGPDFDocument(GetOutline):
+        class: CGPDFDocument
+        name: '#{g[0]}'
+        return_type: CGPDFOutlineOptions
     CGPDFDocument(.*):
         class: CGPDFDocument
         name: '#{g[0]}'
@@ -1025,6 +1030,20 @@ values:
     kCGColorConversion(.*):
         class: CGColorConversionInfo
         name: '#{g[0]}'
+
+    kCGPDFOutline(.*):
+        dictionary: CGPDFOutlineOptions
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            Title:
+                type: String
+            Children:
+                type: NSArray
+            Destination:
+                type: NSObject
+            DestinationRect:
+                type: NSDictionary
 
     # Make sure we don't miss any values if new ones are introduced in a later CoreGraphics
     (k?CG.*):

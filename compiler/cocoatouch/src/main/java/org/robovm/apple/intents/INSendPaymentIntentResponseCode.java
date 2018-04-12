@@ -52,7 +52,14 @@ public enum /*<name>*/INSendPaymentIntentResponseCode/*</name>*/ implements Valu
     FailurePaymentsCurrencyUnsupported(9L),
     FailureInsufficientFunds(10L),
     FailureNoBankAccount(11L),
-    FailureNotEligible(12L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    FailureNotEligible(12L),
+    /**
+     * @since Available in iOS 11.1 and later.
+     */
+    FailureTermsAndConditionsAcceptanceRequired(13L);
     /*</values>*/
 
     /*<bind>*/

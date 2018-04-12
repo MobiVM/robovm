@@ -51,7 +51,14 @@ public enum /*<name>*/INRequestPaymentIntentResponseCode/*</name>*/ implements V
     FailurePaymentsAmountAboveMaximum(8L),
     FailurePaymentsCurrencyUnsupported(9L),
     FailureNoBankAccount(10L),
-    FailureNotEligible(11L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    FailureNotEligible(11L),
+    /**
+     * @since Available in iOS 11.1 and later.
+     */
+    FailureTermsAndConditionsAcceptanceRequired(12L);
     /*</values>*/
 
     /*<bind>*/

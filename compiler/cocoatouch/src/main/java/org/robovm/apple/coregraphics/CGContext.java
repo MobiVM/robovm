@@ -435,6 +435,8 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGContextEOClip", optional=true)
     public native void evenOddClip();
+    @Bridge(symbol="CGContextResetClip", optional=true)
+    public native void resetClip();
     /**
      * @since Available in iOS 2.0 and later.
      */

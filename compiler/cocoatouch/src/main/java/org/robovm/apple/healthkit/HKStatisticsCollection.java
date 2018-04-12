@@ -56,7 +56,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "statisticsForDate:")
     public native HKStatistics getStatisticsForDate(NSDate date);
     @Method(selector = "enumerateStatisticsFromDate:toDate:withBlock:")
-    public native void enumerateStatistics(NSDate startDate, NSDate endDate, @Block VoidBlock2<HKStatistics, Boolean> block);
+    public native void enumerateStatistics(NSDate startDate, NSDate endDate, @Block VoidBlock2<HKStatistics, BooleanPtr> block);
     @Method(selector = "statistics")
     public native NSArray<HKStatistics> getStatistics();
     @Method(selector = "sources")

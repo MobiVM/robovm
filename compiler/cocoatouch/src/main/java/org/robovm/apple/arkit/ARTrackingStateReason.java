@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,7 +49,11 @@ public enum /*<name>*/ARTrackingStateReason/*</name>*/ implements ValuedEnum {
     None(0L),
     Initializing(1L),
     ExcessiveMotion(2L),
-    InsufficientFeatures(3L);
+    InsufficientFeatures(3L),
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    Relocalizing(4L);
     /*</values>*/
 
     /*<bind>*/

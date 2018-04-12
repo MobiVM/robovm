@@ -42,6 +42,10 @@ public enum /*<name>*/CNErrorCode/*</name>*/ implements NSErrorCode {
     CommunicationError(1L),
     DataAccessError(2L),
     AuthorizationDenied(100L),
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    NoAccessableWritableContainers(101L),
     RecordDoesNotExist(200L),
     InsertedRecordAlreadyExists(201L),
     ContainmentCycle(202L),

@@ -40,6 +40,10 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    UnexpectedError(-1L),
     AlreadyExists(1L),
     NotFound(2L),
     InvalidParameter(3L),
@@ -162,6 +166,10 @@ public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
      * @since Available in iOS 11.0 and later.
      */
     NoCompatibleHomeHub(92L),
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    IncompatibleAccessory(93L),
     /**
      * @since Available in iOS 11.0 and later.
      * @deprecated Deprecated in iOS 11.0.

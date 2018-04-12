@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,7 +59,16 @@ import org.robovm.apple.metal.*;
     public AROrientationTrackingConfiguration() { super((Handle) null, create()); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "isAutoFocusEnabled")
+    public native boolean isAutoFocusEnabled();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "setAutoFocusEnabled:")
+    public native void setAutoFocusEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

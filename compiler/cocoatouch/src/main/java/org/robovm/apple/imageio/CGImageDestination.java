@@ -112,5 +112,10 @@ import org.robovm.apple.coregraphics.*;
      */
     @Bridge(symbol="CGImageDestinationCopyImageSource", optional=true)
     private native boolean copyImageSource(CGImageSource isrc, CGImageDestinationCopySourceOptions options, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="CGImageDestinationAddAuxiliaryDataInfo", optional=true)
+    public native void addAuxiliaryDataInfo(String auxiliaryImageDataType, NSDictionary auxiliaryDataInfoDictionary);
     /*</methods>*/
 }

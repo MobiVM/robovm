@@ -244,9 +244,21 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 10.3 and later.
      */
     public static final HMServiceType Label = new HMServiceType("Label");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final HMServiceType IrrigationSystem = new HMServiceType("IrrigationSystem");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final HMServiceType Valve = new HMServiceType("Valve");
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    public static final HMServiceType Faucet = new HMServiceType("Faucet");
     /*</constants>*/
     
-    private static /*<name>*/HMServiceType/*</name>*/[] values = new /*<name>*/HMServiceType/*</name>*/[] {/*<value_list>*/Lightbulb, Switch, Thermostat, GarageDoorOpener, AccessoryInformation, Fan, Outlet, LockMechanism, LockManagement, AirQualitySensor, Battery, CarbonDioxideSensor, CarbonMonoxideSensor, ContactSensor, Door, Doorbell, HumiditySensor, LeakSensor, LightSensor, MotionSensor, OccupancySensor, SecuritySystem, StatefulProgrammableSwitch, StatelessProgrammableSwitch, SmokeSensor, TemperatureSensor, Window, WindowCovering, CameraRTPStreamManagement, CameraControl, Microphone, Speaker, AirPurifier, VentilationFan, FilterMaintenance, HeaterCooler, HumidifierDehumidifier, Slats, Label/*</value_list>*/};
+    private static /*<name>*/HMServiceType/*</name>*/[] values = new /*<name>*/HMServiceType/*</name>*/[] {/*<value_list>*/Lightbulb, Switch, Thermostat, GarageDoorOpener, AccessoryInformation, Fan, Outlet, LockMechanism, LockManagement, AirQualitySensor, Battery, CarbonDioxideSensor, CarbonMonoxideSensor, ContactSensor, Door, Doorbell, HumiditySensor, LeakSensor, LightSensor, MotionSensor, OccupancySensor, SecuritySystem, StatefulProgrammableSwitch, StatelessProgrammableSwitch, SmokeSensor, TemperatureSensor, Window, WindowCovering, CameraRTPStreamManagement, CameraControl, Microphone, Speaker, AirPurifier, VentilationFan, FilterMaintenance, HeaterCooler, HumidifierDehumidifier, Slats, Label, IrrigationSystem, Valve, Faucet/*</value_list>*/};
     
     /*<name>*/HMServiceType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -464,6 +476,21 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMServiceTypeLabel", optional=true)
         public static native NSString Label();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="HMServiceTypeIrrigationSystem", optional=true)
+        public static native NSString IrrigationSystem();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="HMServiceTypeValve", optional=true)
+        public static native NSString Valve();
+        /**
+         * @since Available in iOS 11.2 and later.
+         */
+        @GlobalValue(symbol="HMServiceTypeFaucet", optional=true)
+        public static native NSString Faucet();
         /*</values>*/
     }
 }

@@ -90,6 +90,16 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "downloadContentVersion")
     public native String getDownloadContentVersion();
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @Property(selector = "subscriptionPeriod")
+    public native SKProductSubscriptionPeriod getSubscriptionPeriod();
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @Property(selector = "introductoryPrice")
+    public native SKProductDiscount getIntroductoryPrice();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
