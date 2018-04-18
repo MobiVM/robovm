@@ -38,6 +38,8 @@
     <module>compiler</module>
     <module>dist</module>
     <module>plugins/templates</module>
+    <module>plugins/resolver</module>
+    <module>plugins/junit</module>
     <module>plugins/maven</module>
     <module>plugins/ibxcode</module>
     <module>plugins/debugger</module>
