@@ -123,6 +123,7 @@
 
   <modules>
     <module>plugin</module>
+    <module>surefire</module>
   </modules>
 
 </project>
