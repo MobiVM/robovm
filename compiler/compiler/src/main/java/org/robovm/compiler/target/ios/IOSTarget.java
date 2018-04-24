@@ -343,22 +343,22 @@ public class IOSTarget extends AbstractTarget {
         createInfoPList(installDir);
         generateDsym(installDir, getExecutable(), false);
 
-        if (isDeviceArch(arch)) {
-            // only strip if this is not a debug build, otherwise
-            // LLDB can't resolve the DWARF info
-            if (!config.isDebug()) {
-                strip(installDir, getExecutable());
-            }            
-            if (config.isIosSkipSigning()) {
-                config.getLogger().warn("Skipping code signing. The resulting app will "
-                        + "be unsigned and will not run on unjailbroken devices");
-                ldid(entitlementsPList, installDir);
-            } else {
+        // only strip if this is not a debug build, otherwise
+        // LLDB can't resolve the DWARF info
+        if (!config.isDebug()) {
+            strip(installDir, getExecutable());
+        }
+        if (config.isIosSkipSigning()) {
+            config.getLogger().warn("Skipping code signing. The resulting app will "
+                    + "be unsigned and will not run on unjailbroken devices");
+            ldid(entitlementsPList, installDir);
+        } else {
+            signFrameworks(installDir);
+            signAppExtensions(installDir);
+            if (isDeviceArch(arch)) {
                 // Copy the provisioning profile
                 copyProvisioningProfile(provisioningProfile, installDir);
                 boolean getTaskAllow = provisioningProfile.getType() == Type.Development;
-                signFrameworks(installDir, getTaskAllow);
-                signAppExtensions(installDir, getTaskAllow);
                 codesignApp(signIdentity, getOrCreateEntitlementsPList(getTaskAllow, getBundleId()), installDir);
             }
         }
@@ -383,23 +383,23 @@ public class IOSTarget extends AbstractTarget {
         createInfoPList(appDir);
         generateDsym(appDir, getExecutable(), true);
 
-        if (isDeviceArch(arch)) {            
-            if (config.isIosSkipSigning()) {
-                config.getLogger().warn("Skiping code signing. The resulting app will "
-                        + "be unsigned and will not run on unjailbroken devices");
-                ldid(getOrCreateEntitlementsPList(true, getBundleId()), appDir);
-            } else {
+        if (config.isIosSkipSigning()) {
+            config.getLogger().warn("Skipping code signing. The resulting app will "
+                    + "be unsigned and will not run on unjailbroken devices");
+            ldid(getOrCreateEntitlementsPList(true, getBundleId()), appDir);
+        } else {
+            signFrameworks(appDir);
+            signAppExtensions(appDir);
+            // sign the app
+            if (isDeviceArch(arch)) {
                 copyProvisioningProfile(provisioningProfile, appDir);
                 boolean getTaskAllow = provisioningProfile.getType() == Type.Development;
-                signFrameworks(appDir, getTaskAllow);
-                signAppExtensions(appDir, getTaskAllow);
-                // sign the app
                 codesignApp(signIdentity, getOrCreateEntitlementsPList(getTaskAllow, getBundleId()), appDir);
             }
         }
     }
 
-    private void signFrameworks(File appDir, boolean getTaskAllow) throws IOException {
+    private void signFrameworks(File appDir) throws IOException {
         // sign dynamic frameworks first
         File frameworksDir = new File(appDir, "Frameworks");
         if (frameworksDir.exists() && frameworksDir.isDirectory()) {
@@ -419,7 +419,7 @@ public class IOSTarget extends AbstractTarget {
         }
     }
 
-    private void signAppExtensions(File appDir, boolean getTaskAllow) throws IOException {
+    private void signAppExtensions(File appDir) throws IOException {
         // sign dynamic frameworks first
         File extensionsDir = new File(appDir, "PlugIns");
         if (extensionsDir.exists() && extensionsDir.isDirectory()) {
@@ -440,18 +440,30 @@ public class IOSTarget extends AbstractTarget {
     }
 
     private void codesignSwiftLib(SigningIdentity identity, File swiftLib) throws IOException {
+        if(signIdentity == null) {
+            config.getLogger().warn("Signing identity is null - unable to sign swiftlib");
+            return;
+        }
         config.getLogger().info("Code signing swift dylib '%s' using identity '%s' with fingerprint %s", swiftLib.getName(), identity.getName(),
                 identity.getFingerprint());
         codesign(identity, null, false, true, false, swiftLib);
     }
 
     private void codesignCustomFramework(SigningIdentity identity, File frameworkDir) throws IOException {
+        if(signIdentity == null) {
+            config.getLogger().warn("Signing identity is null - unable to sign framework '%s'", frameworkDir.getName());
+            return;
+        }
         config.getLogger().info("Code signing framework '%s' using identity '%s' with fingerprint %s", frameworkDir.getName(), identity.getName(),
                 identity.getFingerprint());
         codesign(identity, null, true, false, true, frameworkDir);
     }
 
     private void codesignAppExtension(SigningIdentity identity, File extensionDir) throws IOException {
+        if(signIdentity == null) {
+            config.getLogger().warn("Signing identity is null - unable to sign app-extension '%s'", extensionDir.getName());
+            return;
+        }
         config.getLogger().info("Code signing app-extension '%s' using identity '%s' with fingerprint %s", extensionDir.getName(), identity.getName(),
                 identity.getFingerprint());
         codesign(identity, null, false, false, true, extensionDir);
@@ -871,13 +883,11 @@ public class IOSTarget extends AbstractTarget {
             arch = config.getArch();
         }
 
-        if (isDeviceArch(arch)) {
-            if (!config.isSkipLinking() && !config.isIosSkipSigning()) {
-                signIdentity = config.getIosSignIdentity();
-                if (signIdentity == null) {
-                    signIdentity = SigningIdentity.find(SigningIdentity.list(),
-                            "/(?i)iPhone Developer|iOS Development/");
-                }
+        if (!config.isSkipLinking() && !config.isIosSkipSigning()) {
+            signIdentity = config.getIosSignIdentity();
+            if (signIdentity == null) {
+                signIdentity = SigningIdentity.find(SigningIdentity.list(),
+                        "/(?i)iPhone Developer|iOS Development/");
             }
         }
 
