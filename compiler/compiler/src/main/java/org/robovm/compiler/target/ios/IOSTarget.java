@@ -357,8 +357,8 @@ public class IOSTarget extends AbstractTarget {
                 // Copy the provisioning profile
                 copyProvisioningProfile(provisioningProfile, installDir);
                 boolean getTaskAllow = provisioningProfile.getType() == Type.Development;
-                signFrameworks(installDir, getTaskAllow);
-                signAppExtensions(installDir, getTaskAllow);
+                signFrameworks(signIdentity, installDir);
+                signAppExtensions(signIdentity, installDir);
                 codesignApp(signIdentity, getOrCreateEntitlementsPList(getTaskAllow, getBundleId()), installDir);
             }
         }
@@ -391,35 +391,41 @@ public class IOSTarget extends AbstractTarget {
             } else {
                 copyProvisioningProfile(provisioningProfile, appDir);
                 boolean getTaskAllow = provisioningProfile.getType() == Type.Development;
-                signFrameworks(appDir, getTaskAllow);
-                signAppExtensions(appDir, getTaskAllow);
+                signFrameworks(signIdentity, appDir);
+                signAppExtensions(signIdentity, appDir);
                 // sign the app
                 codesignApp(signIdentity, getOrCreateEntitlementsPList(getTaskAllow, getBundleId()), appDir);
+            }
+        } else { // simulator
+            if (sdk.getVersionCode() >= 0x0B0300) {
+                // code signing of frameworks and app extensions are required since iOS 11.3
+                signFrameworks(SigningIdentity.ADHOC, appDir);
+                signAppExtensions(SigningIdentity.ADHOC, appDir);
             }
         }
     }
 
-    private void signFrameworks(File appDir, boolean getTaskAllow) throws IOException {
+    private void signFrameworks(SigningIdentity identity, File appDir) throws IOException {
         // sign dynamic frameworks first
         File frameworksDir = new File(appDir, "Frameworks");
         if (frameworksDir.exists() && frameworksDir.isDirectory()) {
             // Sign swift rt libs
             for (File swiftLib : frameworksDir.listFiles()) {
                 if (swiftLib.getName().endsWith(".dylib")) {
-                    codesignSwiftLib(signIdentity, swiftLib);
+                    codesignSwiftLib(identity, swiftLib);
                 }
             }
 
             // sign embedded frameworks
             for (File framework : frameworksDir.listFiles()) {
                 if (framework.isDirectory() && framework.getName().endsWith(".framework")) {
-                    codesignCustomFramework(signIdentity, framework);
+                    codesignCustomFramework(identity, framework);
                 }
             }
         }
     }
 
-    private void signAppExtensions(File appDir, boolean getTaskAllow) throws IOException {
+    private void signAppExtensions(SigningIdentity identity, File appDir) throws IOException {
         // sign dynamic frameworks first
         File extensionsDir = new File(appDir, "PlugIns");
         if (extensionsDir.exists() && extensionsDir.isDirectory()) {
@@ -427,7 +433,7 @@ public class IOSTarget extends AbstractTarget {
             for (File extension : extensionsDir.listFiles()) {
                 if (extension.isDirectory() && extension.getName().endsWith(".appex")) {
                     // now sign
-                    codesignAppExtension(signIdentity, extension);
+                    codesignAppExtension(identity, extension);
                 }
             }
         }
