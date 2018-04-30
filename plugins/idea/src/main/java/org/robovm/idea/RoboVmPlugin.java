@@ -45,6 +45,7 @@ import com.intellij.ui.content.Content;
 import com.intellij.util.ui.UIUtil;
 import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.Version;
@@ -416,8 +417,9 @@ public class RoboVmPlugin {
     private static void extractArchive(String archive, File dest) {
         archive = "/" + archive;
         TarArchiveInputStream in = null;
-        boolean isSnapshot = Version.getVersion().toLowerCase().contains("snapshot");
+//        boolean isSnapshot = Version.getVersion().toLowerCase().contains("snapshot");
         try {
+            boolean filesWereUpdated = false;
             in = new TarArchiveInputStream(new GZIPInputStream(RoboVmPlugin.class.getResourceAsStream(archive)));
             ArchiveEntry entry = null;
             while ((entry = in.getNextEntry()) != null) {
@@ -425,7 +427,8 @@ public class RoboVmPlugin {
                 if (entry.isDirectory()) {
                     f.mkdirs();
                 } else {
-                    if(!isSnapshot && f.exists()) {
+                    // skip extracting if file looks to be same as it archive (ts and size matches)
+                    if (f.exists() && f.lastModified() == entry.getLastModifiedDate().getTime() && f.length() == entry.getSize()) {
                         continue;
                     }
                     f.getParentFile().mkdirs();
@@ -442,11 +445,22 @@ public class RoboVmPlugin {
                         if (out != null)
                             IOUtils.closeQuietly(out);
                     }
+
+                    // mark that there was a change to SDK files
+                    filesWereUpdated = true;
                 }
             }
             logInfo(null, "Installed RoboVM SDK %s to %s", Version.getVersion(), dest.getAbsolutePath());
 
-            // make all files in bin executable
+            if (filesWereUpdated) {
+                File cacheLog = new File(System.getProperty("user.home"), ".robovm/cache");
+                logInfo(null, "Clearing cache log folder due SDK files changed.");
+                try {
+                    FileUtils.deleteDirectory(cacheLog);
+                } catch (IOException ignored) {
+                }
+            }
+
             for (File file : new File(getSdkHome(), "bin").listFiles()) {
                 file.setExecutable(true);
             }
