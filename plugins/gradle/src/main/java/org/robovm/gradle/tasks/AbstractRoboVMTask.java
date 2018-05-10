@@ -15,17 +15,6 @@
  */
 package org.robovm.gradle.tasks;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
-import java.util.zip.GZIPInputStream;
-
 import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
@@ -60,6 +49,17 @@ import org.sonatype.aether.resolution.ArtifactResolutionException;
 import org.sonatype.aether.resolution.ArtifactResult;
 import org.sonatype.aether.spi.connector.RepositoryConnectorFactory;
 import org.sonatype.aether.util.artifact.DefaultArtifact;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.zip.GZIPInputStream;
 
 /**
  *
@@ -254,20 +254,14 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         final File unpackedDirectory = new File(distTarFile.getParent(), "unpacked");
         final File unpackedDistDirectory = new File(unpackedDirectory, "robovm-" + RoboVMPlugin.getRoboVMVersion());
 
-        if (unpackedDirectory.exists() && artifact.isSnapshot()) {
-            getAnt().invokeMethod("delete", new HashMap<String, Object>() {
-                {
-                    put("dir", unpackedDirectory.getAbsolutePath());
-                }
-            });
-        }
 
-        if (unpackedDirectory.exists()) {
+        // for snapshot -- don't remove entire directory just override over existing files
+        if (unpackedDirectory.exists() && !artifact.isSnapshot()) {
             getLogger().debug("Archive '" + distTarFile + "' was already unpacked in: " + unpackedDirectory);
         } else {
             getLogger().info("Extracting '" + distTarFile + "' to: " + unpackedDirectory);
 
-            if (!unpackedDirectory.mkdirs()) {
+            if (!unpackedDirectory.exists() && !unpackedDirectory.mkdirs()) {
                 throw new GradleException("Unable to create base directory to unpack into: " + unpackedDirectory);
             }
 
@@ -280,8 +274,6 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
             if (!unpackedDistDirectory.exists()) {
                 throw new GradleException("Unable to unpack archive");
             }
-
-            getLogger().debug("Archive '" + distTarFile + "' unpacked to: " + unpackedDirectory);
         }
 
         getAnt().invokeMethod("chmod", new HashMap<String, Object>() {
@@ -371,9 +363,10 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         return repositories;
     }
 
-    private static void extractTarGz(File archive, File destDir) throws IOException {
+    private void extractTarGz(File archive, File destDir) throws IOException {
         TarArchiveInputStream in = null;
         try {
+            boolean filesWereUpdated = false;
             in = new TarArchiveInputStream(new GZIPInputStream(new FileInputStream(archive)));
             ArchiveEntry entry = null;
             while ((entry = in.getNextEntry()) != null) {
@@ -381,22 +374,46 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
                 if (entry.isDirectory()) {
                     f.mkdirs();
                 } else {
+                    // skip extracting if file looks to be same as in archive (ts and size matches)
+                    if (f.exists() && f.lastModified() == entry.getLastModifiedDate().getTime() && f.length() == entry.getSize()) {
+                        continue;
+                    }
                     f.getParentFile().mkdirs();
                     OutputStream out = null;
                     try {
                         out = new FileOutputStream(f);
                         IOUtils.copy(in, out);
-                    } finally {
                         IOUtils.closeQuietly(out);
+                        out = null;
+                        // set last modification time stamp as it was inside tar otherwise
+                        // robovm will see new time stamp and will rebuild all classes that were inside jar
+                        f.setLastModified(entry.getLastModifiedDate().getTime());
+                    } finally {
+                        if (out != null)
+                            IOUtils.closeQuietly(out);
                     }
+
+                    if (entry instanceof TarArchiveEntry) {
+                        int mode = ((TarArchiveEntry) entry).getMode();
+                        if ((mode & 00100) > 0) {
+                            // Preserve execute permissions
+                            f.setExecutable(true, (mode & 00001) == 0);
+                        }
+                    }
+
+                    // mark that there was a change to SDK files
+                    filesWereUpdated = true;
                 }
-                f.setLastModified(entry.getLastModifiedDate().getTime());
-                if (entry instanceof TarArchiveEntry) {
-                    int mode = ((TarArchiveEntry) entry).getMode();
-                    if ((mode & 00100) > 0) {
-                        // Preserve execute permissions
-                        f.setExecutable(true, (mode & 00001) == 0);
-                    }
+            }
+
+            if (filesWereUpdated) {
+                getLogger().debug("Archive '" + archive + "' unpacked to: " + destDir);
+                getLogger().info("Clearing ~/.robovm/cache folder due SDK files changed.");
+
+                File cacheDir = new File(System.getProperty("user.home"), ".robovm/cache");
+                try {
+                    FileUtils.deleteDirectory(cacheDir);
+                } catch (IOException ignored) {
                 }
             }
         } finally {
