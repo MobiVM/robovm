@@ -16,6 +16,18 @@
  */
 package org.robovm.compiler.target.ios;
 
+import com.dd.plist.NSArray;
+import com.dd.plist.NSData;
+import com.dd.plist.NSDate;
+import com.dd.plist.NSDictionary;
+import com.dd.plist.NSNumber;
+import com.dd.plist.NSObject;
+import com.dd.plist.PropertyListParser;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+import org.bouncycastle.cms.CMSSignedData;
+
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -29,18 +41,10 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
-
-import org.apache.commons.io.IOUtils;
-import org.bouncycastle.cms.CMSSignedData;
-
-import com.dd.plist.NSArray;
-import com.dd.plist.NSData;
-import com.dd.plist.NSDate;
-import com.dd.plist.NSDictionary;
-import com.dd.plist.NSNumber;
-import com.dd.plist.NSObject;
-import com.dd.plist.PropertyListParser;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Represents a provisioning profile.
@@ -64,7 +68,7 @@ public class ProvisioningProfile implements Comparable<ProvisioningProfile> {
     private final Date creationDate;
     private final Date expirationDate;
     private final NSDictionary entitlements;
-    private final List<String> certFingerprints = new ArrayList<String>();
+    private final Set<String> certFingerprints = new TreeSet<>();
     
     ProvisioningProfile(File file, NSDictionary dict) {
         this.file = file;
@@ -163,6 +167,10 @@ public class ProvisioningProfile implements Comparable<ProvisioningProfile> {
         return entitlements;
     }
 
+    public Set<String> getCertFingerprints() {
+        return certFingerprints;
+    }
+
     private static ProvisioningProfile create(File file) {
         InputStream in = null;
         try {
@@ -207,38 +215,67 @@ public class ProvisioningProfile implements Comparable<ProvisioningProfile> {
     }
     
     public static ProvisioningProfile find(List<ProvisioningProfile> profiles, SigningIdentity signingIdentity, String bundleId) {
-        return find(profiles, signingIdentity, bundleId, bundleId);
+        Pair<SigningIdentity, ProvisioningProfile> pair = find(profiles, Collections.singletonList(signingIdentity), bundleId, true);
+        return pair.getRight();
     }
-    
-    private static ProvisioningProfile find(List<ProvisioningProfile> profiles, SigningIdentity signingIdentity, String bundleId, String origBundleId) {
+
+
+    public static Pair<SigningIdentity, ProvisioningProfile> find(List<ProvisioningProfile> profiles, List<SigningIdentity> identities,
+                                                                   String bundleId) {
+        return find(profiles, identities, bundleId, false);
+    }
+
+    private static Pair<SigningIdentity, ProvisioningProfile> find(List<ProvisioningProfile> profiles, List<SigningIdentity> identities,
+                                                                   String bundleId, boolean exactIdentityMatch) {
+        // get list of all available fingerprints into set for simple intersection match
+        Set<String> knownFingerprints = new HashSet<>();
+        for (SigningIdentity i : identities)
+            knownFingerprints.add(i.getFingerprint());
+
+        // looking for both direct and wildcard matches
+        ProvisioningProfile longestWildCard = null;
+        ProvisioningProfile exactProfile = null;
+
         // Try a direct match first
         for (ProvisioningProfile p : profiles) {
-            if (p.appId.equals(p.appIdPrefix + "." + bundleId)) {
-                for (String fp : p.certFingerprints) {
-                    if (fp.equals(signingIdentity.getFingerprint())) {
-                        return p;
-                    }
+            String bundleIdWithPrefix = p.appIdPrefix + "." + bundleId;
+            if (p.appId.equals(bundleIdWithPrefix)) {
+                if(!Collections.disjoint(knownFingerprints, p.certFingerprints)) {
+                    exactProfile = p;
+                    break;
+                }
+            } else if (p.appId.endsWith(".*") && (longestWildCard == null || p.appId.length() > longestWildCard.appId.length()) &&
+                    bundleIdWithPrefix.startsWith(p.appId.substring(0, p.appId.length() - 1))) {
+                // its wildcard, and it longer than last found one (if any), and it (without * but with .) matches bundleId
+                // check for certificate
+                if(!Collections.disjoint(knownFingerprints, p.certFingerprints)) {
+                    longestWildCard = p;
                 }
             }
         }
-        if (!bundleId.equals("*")) {
-            // Try with the last component replaced with a wildcard
-            if (bundleId.endsWith(".*")) {
-                bundleId = bundleId.substring(0, bundleId.length() - 2);
-            }
-            int lastDot = bundleId.lastIndexOf('.');
-            if (lastDot != -1) {
-                bundleId = bundleId.substring(0, lastDot) + ".*";
+
+        if (exactProfile == null)
+            exactProfile = longestWildCard;
+        if (exactProfile == null) {
+            if (exactIdentityMatch) {
+                // it was called for very specific identity and not for list with one item
+                throw new IllegalArgumentException("No provisioning profile found "
+                        + "matching signing identity '" + identities.get(0).getName()
+                        + "' and app bundle ID '" + bundleId + "'");
             } else {
-                bundleId = "*";
+                throw new IllegalArgumentException("No provisioning profile and signing identity found that matches bundle ID '" + bundleId + "'");
             }
-            return find(profiles, signingIdentity, bundleId, origBundleId);
         }
-        throw new IllegalArgumentException("No provisioning profile found " 
-                + "matching signing identity '" + signingIdentity.getName() 
-                + "' and app bundle ID '" + origBundleId + "'");
+
+        // now find identity that matches the profile
+        for (SigningIdentity identity : identities) {
+            if (exactProfile.certFingerprints.contains(identity.getFingerprint()))
+                return new ImmutablePair<>(identity, exactProfile);
+        }
+
+        throw new Error("Shell never happen");
     }
-    
+
     @Override
     public String toString() {
         return "ProvisioningProfile [type=" + type + ", file=" + file
