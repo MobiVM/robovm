@@ -18,8 +18,11 @@ package org.robovm.compiler.target.ios;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -683,10 +686,59 @@ public class IOSTarget extends AbstractTarget {
                     new PrefixFileFilter("libswift"),
                     new SuffixFileFilter(".dylib")));
 
-            if (swiftLibs.length > 0){
+            if (swiftLibs != null && swiftLibs.length > 0){
                 File swiftSupportDir = new File(tmpDir, "SwiftSupport");
                 swiftSupportDir.mkdir();
                 copySwiftLibs(Arrays.asList(swiftLibs), swiftSupportDir);
+            }
+        }
+
+        // check app extension and add suport files if needed
+        File pluginsDir = new File(appDir, "PlugIns");
+        if (pluginsDir.exists()){
+            String[] plugins = pluginsDir.list();
+            if (plugins != null && plugins.length > 0) {
+                final String iStickersExtId = "com.apple.message-payload-provider";
+                boolean hasStickers = false;
+                for (String p : plugins) {
+                    File infoPlistFile = new File(new File(pluginsDir, p), "Info.plist");
+                    if (!infoPlistFile.exists())
+                        continue;
+                    try {
+                        NSDictionary infoPlist = (NSDictionary)PropertyListParser.parse(infoPlistFile);
+                        NSDictionary extensionDict = (NSDictionary) infoPlist.get("NSExtension");
+                        if (extensionDict != null) {
+                            hasStickers |= iStickersExtId.equals(extensionDict.get("NSExtensionPointIdentifier").toJavaObject());
+                            // other ext types should go here if requried
+                        }
+                    } catch (Exception ignored) {
+                    }
+                }
+
+                // provide support
+                if (hasStickers) {
+                    // for stickers extension
+                    config.getLogger().info("Copying support files for Stickers app extension");
+                    File xcodePath = new File(ToolchainUtil.findXcodePath());
+                    File stickersSupportStub = new File(xcodePath, "Platforms/iPhoneOS.platform/Library/" +
+                            "Application Support/MessagesApplicationStub/MessagesApplicationStub");
+                    File stickersExtSupportStub = new File(xcodePath, "Platforms/iPhoneOS.platform/Library/" +
+                            "Application Support/MessagesApplicationExtensionStub/MessagesApplicationExtensionStub");
+                    if (!stickersSupportStub.exists() || !stickersExtSupportStub.exists()) {
+                        throw new FileNotFoundException("Stickers support: bi MessagesApplicationStub or MessagesApplicationExtensionStub found in "
+                                + new File(xcodePath, "Platforms/iPhoneOS.platform/Library/Application Support/").getAbsolutePath());
+                    }
+
+                    File stickersSupportDestDir = new File(tmpDir, "MessagesApplicationSupport");
+                    File stickersExtSupportDestDir = new File(tmpDir, "MessagesApplicationExtensionSupport");
+
+                    stickersSupportDestDir.mkdirs();
+                    stickersExtSupportDestDir.mkdir();
+                    Files.copy(stickersSupportStub.toPath(), new File(stickersSupportDestDir, stickersSupportStub.getName()).toPath(),
+                            StandardCopyOption.COPY_ATTRIBUTES);
+                    Files.copy(stickersExtSupportStub.toPath(), new File(stickersExtSupportDestDir, stickersExtSupportStub.getName()).toPath(),
+                            StandardCopyOption.COPY_ATTRIBUTES);
+                }
             }
         }
 
