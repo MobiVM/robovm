@@ -722,7 +722,7 @@ public class IOSTarget extends AbstractTarget {
                     File xcodePath = new File(ToolchainUtil.findXcodePath());
                     File stickersExtSupportStub = new File(xcodePath, "Platforms/iPhoneOS.platform/Library/" +
                             "Application Support/MessagesApplicationExtensionStub/MessagesApplicationExtensionStub");
-                    if (stickersExtSupportStub.exists()) {
+                    if (!stickersExtSupportStub.exists()) {
                         throw new FileNotFoundException("Stickers support: bi MessagesApplicationStub or MessagesApplicationExtensionStub found in "
                                 + new File(xcodePath, "Platforms/iPhoneOS.platform/Library/Application Support/").getAbsolutePath());
                     }
