@@ -720,22 +720,16 @@ public class IOSTarget extends AbstractTarget {
                     // for stickers extension
                     config.getLogger().info("Copying support files for Stickers app extension");
                     File xcodePath = new File(ToolchainUtil.findXcodePath());
-                    File stickersSupportStub = new File(xcodePath, "Platforms/iPhoneOS.platform/Library/" +
-                            "Application Support/MessagesApplicationStub/MessagesApplicationStub");
                     File stickersExtSupportStub = new File(xcodePath, "Platforms/iPhoneOS.platform/Library/" +
                             "Application Support/MessagesApplicationExtensionStub/MessagesApplicationExtensionStub");
-                    if (!stickersSupportStub.exists() || !stickersExtSupportStub.exists()) {
+                    if (stickersExtSupportStub.exists()) {
                         throw new FileNotFoundException("Stickers support: bi MessagesApplicationStub or MessagesApplicationExtensionStub found in "
                                 + new File(xcodePath, "Platforms/iPhoneOS.platform/Library/Application Support/").getAbsolutePath());
                     }
 
-                    File stickersSupportDestDir = new File(tmpDir, "MessagesApplicationSupport");
                     File stickersExtSupportDestDir = new File(tmpDir, "MessagesApplicationExtensionSupport");
 
-                    stickersSupportDestDir.mkdirs();
                     stickersExtSupportDestDir.mkdir();
-                    Files.copy(stickersSupportStub.toPath(), new File(stickersSupportDestDir, stickersSupportStub.getName()).toPath(),
-                            StandardCopyOption.COPY_ATTRIBUTES);
                     Files.copy(stickersExtSupportStub.toPath(), new File(stickersExtSupportDestDir, stickersExtSupportStub.getName()).toPath(),
                             StandardCopyOption.COPY_ATTRIBUTES);
                 }
