@@ -33,7 +33,8 @@ public class SigningIdentity implements Comparable<SigningIdentity> {
 
     private final String name;
     private final String fingerprint;
-    
+    public static final SigningIdentity ADHOC = new SigningIdentity("ad-hoc (simulator only)", "-");
+
     SigningIdentity(String name, String fingerprint) {
         this.name = name;
         this.fingerprint = fingerprint;

@@ -127,11 +127,11 @@ public class RoboVmRunProfileState extends CommandLineState {
             } else if (getEnvironment().getExecutor().getId().equals(RoboVmRunner.DEBUG_EXECUTOR)) {
                 return executeRun();
             } else {
-                return null;
+                throw new ExecutionException("Unsupported executor " + getEnvironment().getExecutor().getId());
             }
         } catch(Throwable t) {
             RoboVmPlugin.logErrorThrowable(getEnvironment().getProject(), "Couldn't start application", t, true);
-            return null;
+            throw new ExecutionException(t);
         }
     }
 
