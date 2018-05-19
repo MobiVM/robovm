@@ -29,3 +29,15 @@ Object* Java_java_lang_reflect_Array_createMultiArray(Env* env, Class* cls, Clas
     Class* clazz = rvmFindClassByDescriptor(env, desc, componentType->classLoader);
     return (Object*) rvmNewMultiArray(env, dimensions->length, dimensions->values, clazz);
 }
+
+jint Java_java_lang_reflect_Array_getLength(Env* env, Class* cls, Object* object) {
+    if(object == NULL) {
+        rvmThrowNullPointerException(env);
+        return 0;
+    }
+    if(!CLASS_IS_ARRAY(object->clazz)) {
+        rvmThrowIllegalArgumentException(env, "Not an array");
+        return 0;
+    }
+    return ((Array*) object)->length;
+}
