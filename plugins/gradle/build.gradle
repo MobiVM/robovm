@@ -38,6 +38,7 @@ dependencies {
     compileOnly localGroovy()
     compile "org.apache.commons:commons-compress:1.5"
     compile "com.mobidevelop.robovm:robovm-dist-compiler:${roboVMVersion}"
+    compile "com.mobidevelop.robovm:robovm-debugger:${roboVMVersion}"
     compile 'org.sonatype.aether:aether:1.13.1'
     compile 'org.sonatype.aether:aether-connector-wagon:1.13.1'
     compile 'org.apache.maven:maven-aether-provider:3.0.4'
