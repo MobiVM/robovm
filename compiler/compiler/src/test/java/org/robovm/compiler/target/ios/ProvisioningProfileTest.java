@@ -22,7 +22,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.junit.Test;
@@ -117,7 +117,7 @@ public class ProvisioningProfileTest {
         ProvisioningProfile profile = new ProvisioningProfile(new File(""), dict);
         Field f = ProvisioningProfile.class.getDeclaredField("certFingerprints");
         f.setAccessible(true);
-        List<String> certFingerprints = (List<String>) f.get(profile);
+        Set<String> certFingerprints = (Set<String>) f.get(profile);
         certFingerprints.add(fingerprint);
         return profile;
     }

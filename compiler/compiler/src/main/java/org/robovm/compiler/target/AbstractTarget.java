@@ -45,6 +45,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.robovm.compiler.clazz.Path;
+import org.robovm.compiler.config.AppExtension;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
@@ -405,7 +406,8 @@ public abstract class AbstractTarget implements Target {
     protected void copyAppExtensions(File destDir) throws IOException {
         File pluginsDir = new File(destDir, "PlugIns");
 
-        for (String extension : config.getAppExtensions()) {
+        for (AppExtension extensionVo : config.getAppExtensions()) {
+            String extension = extensionVo.getName();
             File extensionDir = null;
             for (File path : config.getAppExtensionPaths()) {
                 File extPath = new File(path, extension + ".appex");
