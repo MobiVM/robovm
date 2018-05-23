@@ -265,9 +265,15 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             }
         }
 
+        classBundle.diMethods.add(diSubprogram);
+        if (methodLineNumber == Integer.MAX_VALUE) {
+            // there was no debug information for this method
+            // it will be not possible to resolve variables, just return
+            return;
+        }
+
         diSubprogram.setScopeLineNo(methodLineNumber);
         diSubprogram.setDefLineNo(methodLineNumber);
-        classBundle.diMethods.add(diSubprogram);
 
         if (!includeDebuggerInfo) {
             return;
