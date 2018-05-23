@@ -118,7 +118,6 @@ declare void @_bcHookInstrumented(%Env*, i32, i32, i8*, i8*)
 declare i8* @llvm.frameaddress(i32) nounwind readnone
 declare void @llvm.memcpy.p0i8.p0i8.i32(i8*, i8*, i32, i32, i1)
 declare void @llvm.memmove.p0i8.p0i8.i64(i8*, i8*, i64, i32, i1)
-declare void @llvm.memmove.element.unordered.atomic.p0i8.p0i8.i64(i8*, i8*, i64, i32) 
 declare double @llvm.sqrt.f64(double)
 declare double @llvm.cos.f64(double)
 declare double @llvm.sin.f64(double)
@@ -357,13 +356,6 @@ define private void @intrinsics.java_lang_System_arraycopy_C(%Env* %env, %Object
     %n = sext i32 %length to i64
     
     call void @_bcMoveMemory16(i8* %s1, i8* %s2, i64 %n)
-    ret void
-}
-
-define private void @intrinsics.org_robovm_rt_VM_memmoveAtomic(%Env* %env, i64 %s1, i64 %s2, i64 %n, i32 %el) alwaysinline {
-    %dest = inttoptr i64 %s1 to i8*
-    %src = inttoptr i64 %s2 to i8*
-    call void @llvm.memmove.element.unordered.atomic.p0i8.p0i8.i64(i8* %dest, i8* %src, i64 %n, i32 %el)
     ret void
 }
 

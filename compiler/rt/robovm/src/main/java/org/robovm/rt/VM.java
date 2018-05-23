@@ -162,10 +162,6 @@ public final class VM {
 
     public native static final ByteBuffer newDirectByteBuffer(long address, long capacity);
 
-    public native static final void memmoveAtomic(long s1, long s2, long n, int elementSize);
-
-    public native static final int getArrayElementSize(Class<?> cls);
-
     public native static final void memcpy(long s1, long s2, long n);
 
     public native static final void memmove8(long s1, long s2, long n);
