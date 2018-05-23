@@ -417,7 +417,6 @@ public class RoboVmPlugin {
     private static void extractArchive(String archive, File dest) {
         archive = "/" + archive;
         TarArchiveInputStream in = null;
-//        boolean isSnapshot = Version.getVersion().toLowerCase().contains("snapshot");
         try {
             boolean filesWereUpdated = false;
             in = new TarArchiveInputStream(new GZIPInputStream(RoboVmPlugin.class.getResourceAsStream(archive)));
@@ -427,7 +426,7 @@ public class RoboVmPlugin {
                 if (entry.isDirectory()) {
                     f.mkdirs();
                 } else {
-                    // skip extracting if file looks to be same as it archive (ts and size matches)
+                    // skip extracting if file looks to be same as in archive (ts and size matches)
                     if (f.exists() && f.lastModified() == entry.getLastModifiedDate().getTime() && f.length() == entry.getSize()) {
                         continue;
                     }
@@ -454,7 +453,7 @@ public class RoboVmPlugin {
 
             if (filesWereUpdated) {
                 File cacheLog = new File(System.getProperty("user.home"), ".robovm/cache");
-                logInfo(null, "Clearing cache log folder due SDK files changed.");
+                logInfo(null, "Clearing ~/.robovm/cache folder due SDK files changed.");
                 try {
                     FileUtils.deleteDirectory(cacheLog);
                 } catch (IOException ignored) {
