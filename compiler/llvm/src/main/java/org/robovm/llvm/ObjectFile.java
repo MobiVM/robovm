@@ -154,10 +154,10 @@ public class ObjectFile implements AutoCloseable {
                 variables.add(new DebugVariableInfo(variableName, (flags & 1) == 1, reg, offset));
             }
 
-            methods.add(new DebugMethodInfo(methodName, variables.toArray(new DebugVariableInfo[variables.size()])));
+            methods.add(new DebugMethodInfo(methodName, variables.toArray(new DebugVariableInfo[0])));
         }
 
-        return new DebugObjectFileInfo(methods.toArray(new DebugMethodInfo[methods.size()]));
+        return new DebugObjectFileInfo(null, methods.toArray(new DebugMethodInfo[0]));
     }
 
     public synchronized void dispose() {

@@ -8,11 +8,17 @@ import java.util.Map;
  * Object file information as extracted from ObjectFile/DWARF
  */
 public class DebugObjectFileInfo {
+    private final String sourceFile;
     private final DebugMethodInfo[] methods;
     private Map<String, DebugMethodInfo> methodBySignature;
 
-    public DebugObjectFileInfo(DebugMethodInfo[] methods) {
+    public DebugObjectFileInfo(String sourceFile, DebugMethodInfo[] methods) {
+        this.sourceFile = sourceFile;
         this.methods = methods;
+    }
+
+    public String sourceFile() {
+        return sourceFile;
     }
 
     public DebugMethodInfo[] methods() {
