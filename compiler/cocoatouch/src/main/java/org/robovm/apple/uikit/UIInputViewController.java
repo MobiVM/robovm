@@ -68,6 +68,10 @@ import org.robovm.apple.intents.*;
     public native String getPrimaryLanguage();
     @Property(selector = "setPrimaryLanguage:")
     public native void setPrimaryLanguage(String v);
+    @Property(selector = "hasDictationKey")
+    public native boolean hasDictationKey();
+    @Property(selector = "setHasDictationKey:")
+    public native void setHasDictationKey(boolean v);
     /**
      * @since Available in iOS 11.0 and later.
      */
