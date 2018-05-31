@@ -30,6 +30,7 @@ NS_SWIFT_NAME(${mainClass})
 -(Calculator *) createCalculator;
 -(void) sayHello;
 -(NSString*) roboVmVersion;
+-(void)installSignals:(void(^)(void))installer;
 @end
 typedef NSObject<${mainClass}> ${mainClass};
 
