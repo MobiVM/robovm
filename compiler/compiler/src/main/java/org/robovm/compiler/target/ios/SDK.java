@@ -110,12 +110,7 @@ public class SDK implements Comparable<SDK> {
     }
 
     private static List<SDK> listSDKs(String platform) {
-        List<SDK> allSdks = new ArrayList<>();
-
-        allSdks.addAll(listBundledFileFormatSdks(platform));
-
-        allSdks.addAll(listAdditionalFileFormatSdks());
-
+        List<SDK> allSdks = new ArrayList<>(listBundledFileFormatSdks(platform));
         return allSdks;
     }
 
@@ -192,7 +187,9 @@ public class SDK implements Comparable<SDK> {
     }
 
     public static List<SDK> listSimulatorSDKs() {
-        return listSDKs("iPhoneSimulator");
+        List<SDK> sdks = listSDKs("iPhoneSimulator");
+        sdks.addAll(listAdditionalFileFormatSdks());
+        return sdks;
     }
 
     public String getDisplayName() {
@@ -266,6 +263,12 @@ public class SDK implements Comparable<SDK> {
             c = minor < o.minor ? -1 : (minor > o.minor ? 1 : 0);
             if (c == 0) {
                 c = revision < o.revision ? -1 : (revision > o.revision ? 1 : 0);
+                if (c == 0) {
+                    // exactly same
+                    // special sorting case: but if the path contains iPhoneOS.sdk without version make version lower
+                    c = getRoot().getAbsolutePath().contains("iPhoneOS.sdk") ? 0 : 1;
+                    c -= o.getRoot().getAbsolutePath().contains("iPhoneOS.sdk") ? 0 : 1;
+                }
             }
         }
         return c;
