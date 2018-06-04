@@ -1,6 +1,7 @@
 ${package}
 
 import org.robovm.objc.ObjCProtocol;
+import org.robovm.objc.annotation.Block;
 import org.robovm.objc.annotation.Method;
 
 /**
@@ -44,6 +45,14 @@ public final class Api {
          * sample api that returns robovm version
          */
         @Method String roboVmVersion();
+
+        /**
+         * installs Signal handlers of main application
+         * Host project shall install all signal handlers inside in installer callback implementation
+         * This will allow RoboVM keeps own signal handlers and handle NPE
+         * @param installer block were all crash analytics initialization shall happen
+         */
+        @Method void installSignals(@Block Runnable installer);
     }
 
     /**

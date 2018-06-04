@@ -1,6 +1,8 @@
 ${package}
 
 import org.robovm.apple.foundation.NSObject;
+import org.robovm.objc.annotation.Block;
+import org.robovm.rt.Signals;
 import org.robovm.rt.VM;
 
 /**
@@ -45,5 +47,10 @@ public class ${mainClass}Impl extends NSObject implements Api.${mainClass} {
     @Override
     public String roboVmVersion() {
         return VM.vmVersion();
+    }
+
+    @Override
+    public void installSignals(@Block Runnable installer) {
+        Signals.installSignals(installer::run);
     }
 }
