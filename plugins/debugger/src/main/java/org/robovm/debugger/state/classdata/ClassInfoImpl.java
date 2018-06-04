@@ -95,6 +95,18 @@ public class ClassInfoImpl extends ClassInfo {
         className = reader.readStringZAtPtr(ptr);
         signature = "L" + className + ";";
 
+        if (hasError()) {
+// Uncomment to get information what is broken
+//            int errorType = reader.readInt32();
+//            ptr = reader.readPointer(true);
+//            String errorMessage = null;
+//            if (ptr != 0) {
+//                errorMessage = reader.readStringZAtPtr(ptr);
+//            }
+//            System.out.println("!Class " + className + " has error " + errorType + " due " + errorMessage);
+            return;
+        }
+
         // read other fields
         reader.skip(pointerSize + //    void* initializer;
                 pointerSize + //    TypeInfo* typeInfo;
@@ -123,6 +135,10 @@ public class ClassInfoImpl extends ClassInfo {
     }
 
     void loadData(ClassInfoLoader loader) {
+        // skip if class is broken
+        if (hasError())
+            return;
+
         // set to zero if already read
         if (endOfHeaderPos == 0)
             return;
