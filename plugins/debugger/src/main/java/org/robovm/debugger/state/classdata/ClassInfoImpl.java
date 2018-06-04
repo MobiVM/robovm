@@ -323,4 +323,24 @@ public class ClassInfoImpl extends ClassInfo {
     protected int convertModifiers() {
         return Converter.classModifiers(flags);
     }
+
+    public String sourceFile() {
+        String sourceFile;
+        if (debugInfo != null) {
+            sourceFile = debugInfo.sourceFile();
+        } else {
+            sourceFile = className();
+            // there should be no path element just a file name, eclipse doesn't work due this
+            int sepIdx = sourceFile.lastIndexOf('/');
+            if (sepIdx > 0)
+                sourceFile = sourceFile.substring(sepIdx + 1);
+            sepIdx = sourceFile.indexOf('$');
+            if (sepIdx > 0)
+                sourceFile = sourceFile.substring(0, sepIdx);
+            sourceFile += ".java";
+
+        }
+
+        return sourceFile;
+    }
 }
