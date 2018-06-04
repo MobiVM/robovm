@@ -88,6 +88,9 @@ import org.robovm.apple.intents.*;
     public native @Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> getItemSearchBlock();
     @Property(selector = "setItemSearchBlock:")
     public native void setItemSearchBlock(@Block Block1<UIAccessibilityCustomRotorSearchPredicate, UIAccessibilityCustomRotorItemResult> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "systemRotorType")
     public native UIAccessibilityCustomSystemRotorType getSystemRotorType();
     /*</properties>*/
