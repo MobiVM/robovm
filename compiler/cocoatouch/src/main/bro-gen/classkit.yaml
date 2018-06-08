@@ -1,0 +1,93 @@
+package: org.robovm.apple.classkit
+include: [foundation.yaml]
+library: ClassKit
+framework: ClassKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/ClassKit.framework/Headers/ClassKit.h
+
+private_typedefs:
+
+enums:
+    CLSErrorCode: {nserror: true} #since 11.3
+    CLSContextType: {} #since 11.3
+    CLSBinaryValueType: {} #since 11.3
+
+classes:
+    CLSActivity: #since 11.3
+        methods:
+            '-addProgressRangeFromStart:toEnd:':
+                name: addProgressRange
+    CLSActivityItem: {} #since 11.3
+    CLSBinaryItem: #since 11.3
+        methods:
+            '-initWithIdentifier:title:type:':
+                name: init
+    CLSContext: #since 11.3
+        methods:
+            '-initWithType:identifier:title:':
+                name: init
+            '-descendantMatchingIdentifierPath:completion:':
+                #trim_after_first_colon: true
+                name: getDescendantMatchingIdentifierPath
+    CLSDataStore:  #since 11.3
+        methods:
+            '-contextsMatchingPredicate:completion:':
+                #trim_after_first_colon: true
+                name: getContextsMatchingPredicate
+            '-contextsMatchingIdentifierPath:completion:':
+                #trim_after_first_colon: true
+                name: getContextsMatchingIdentifier
+    CLSObject: {} #since 11.3
+    CLSQuantityItem: #since 11.3
+        methods:
+            '-initWithIdentifier:title:':
+                name: init
+    CLSScoreItem: #since 11.3
+        methods:
+            '-initWithIdentifier:title:score:maxScore:':
+                name: init
+
+protocols:
+    CLSDataStoreDelegate: #since 11.3
+        methods:
+            '-createContextForIdentifier:parentContext:parentIdentifierPath:':
+                name: createContext
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?CLS.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    CLSErrorCodeDomain:
+        class: CLSErrorCode
+        name: getClassDomain
+
+    CLSErrorObjectKey:
+        class: CLSErrorCode
+        name: getObjecKey
+
+    CLSErrorUnderlyingErrorsKey:
+        class: CLSErrorCode
+        name: getUnderlyingErrorsKey
+
+    CLSContextTopic(.*):
+        class: CLSContextTopic
+        name: '#{g[0]}'
+
+    CLSPredicateKeyPath(.*):
+        class: CLSPredicateKeyPath
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?CLS.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?CLS.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

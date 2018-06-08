@@ -7,17 +7,6 @@ headers:
     - /System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
 typedefs:
     NSCopying: NSObject
-    'void (^)(UIBackgroundFetchResult)': '@Block VoidBlock1<UIBackgroundFetchResult>'
-    'void (^)(id<UIViewControllerTransitionCoordinatorContext> _Nonnull)': '@Block VoidBlock1<UIViewControllerTransitionCoordinatorContext>'
-    'void (^)(CGRect, CGRect, NSTextContainer * _Nonnull, NSRange, BOOL * _Nonnull)': '@Block("(@ByVal, @ByVal, , @ByVal, )") VoidBlock5<CGRect, CGRect, NSTextContainer, NSRange, BooleanPtr>'
-    'void (^)(CGRect, BOOL * _Nonnull)': '@Block("(@ByVal, )") VoidBlock2<CGRect, BooleanPtr>'
-    'void (^)(void (^)(void))': '@Block("(@Block)") VoidBlock1<Runnable>'
-    'void (^)(NSError *)': '@Block VoidBlock1<NSError>'
-    'void (^)(UILexicon * _Nonnull)': '@Block VoidBlock1<UILexicon>'
-    'void (^)(UIAlertAction * _Nonnull)': '@Block VoidBlock1<UIAlertAction>'
-    'void (^)(UITextField * _Nonnull)': '@Block VoidBlock1<UITextField>'
-    'void (^)(UITableViewRowAction * _Nonnull, NSIndexPath * _Nonnull)': '@Block VoidBlock2<UITableViewRowAction, NSIndexPath>'
-    'void (^)(UIViewAnimatingPosition)': '@Block VoidBlock1<UIViewAnimatingPosition>'
     UIGraphicsImageDrawingActions: '@Block VoidBlock1<UIGraphicsImageRendererContext>'
     UIGraphicsPDFDrawingActions: '@Block VoidBlock1<UIGraphicsPDFRendererContext>'
     UITextContentType: UITextContentType

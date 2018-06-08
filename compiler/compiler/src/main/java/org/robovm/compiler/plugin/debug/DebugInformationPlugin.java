@@ -120,7 +120,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     	super.beforeClass(config, clazz, mb);
 
         ClassDataBundle classBundle = clazz.getAttachment(ClassDataBundle.class);
-        classBundle.diFile = new DIItemList(mb, v(getSourceFile(clazz)), v(getSourceFilePath(clazz)));
+        classBundle.diFile = new DIItemList(mb, v(getDwarfSourceFile(clazz)), v(getDwarfSourceFilePath(clazz)));
         classBundle.diFileDescriptor = new DIFileDescriptor(mb, classBundle.diFile);
         classBundle.diMethods = new DIMutableItemList<>(mb);
         classBundle.diCompileUnit = new DICompileUnit(mb, "llvm.dbg.cu", classBundle.diFile, classBundle.diMethods);
@@ -265,9 +265,15 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             }
         }
 
+        classBundle.diMethods.add(diSubprogram);
+        if (methodLineNumber == Integer.MAX_VALUE) {
+            // there was no debug information for this method
+            // it will be not possible to resolve variables, just return
+            return;
+        }
+
         diSubprogram.setScopeLineNo(methodLineNumber);
         diSubprogram.setDefLineNo(methodLineNumber);
-        classBundle.diMethods.add(diSubprogram);
 
         if (!includeDebuggerInfo) {
             return;
@@ -455,7 +461,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                     if (methodName.startsWith("[J]" + clazz.getClassName() + "."))
                         methodName = methodName.substring(clazz.getClassName().length() + 4);
                     // save method
-                    methods.add(new DebugMethodInfo(methodName,  variables.toArray(new DebugVariableInfo[variables.size()]),
+                    methods.add(new DebugMethodInfo(methodName,  variables.toArray(new DebugVariableInfo[0]),
                             methodBundle.startLine, methodBundle.finalLine));
                 }
 
@@ -463,7 +469,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                 DebugObjectFileInfo finalDebugInfo = clazz.getAttachment(DebugObjectFileInfo.class);
                 if (finalDebugInfo != null)
                     clazz.removeAttachement(finalDebugInfo);
-                finalDebugInfo = new DebugObjectFileInfo(methods.toArray(new DebugMethodInfo[methods.size()]));
+                finalDebugInfo = new DebugObjectFileInfo(getJdwpSourceFile(clazz), methods.toArray(new DebugMethodInfo[0]));
 
                 // save as attachment to class file
                 clazz.attach(finalDebugInfo);
@@ -495,20 +501,32 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         bcHookInstrumented.addMetadata((new DILineNumber(lineNo, 0, diSubprogram)).get());
     }
 
-    /** Simple file name resolved, for LineNumbers there is no need in absolute file location, just in name */
-    private String getSourceFile(Clazz clazz) {
+    /** Simple file name resolution to be included as Dwarf debug entry, for LineNumbers there is no need in absolute file location, just in name */
+    private String getDwarfSourceFile(Clazz clazz) {
     	String sourceFile;
+    	String ext = ".java";
         String className = clazz.getInternalName();
+        // create source file name from class internal name to preserve full path to inner classes and
+        // lambdas as it is required for dsymutils fix
+        // but also look for "SourceFileTag" to pick up proper extension in case of kotlin and others
+        SourceFileTag sourceFileTag = (SourceFileTag) clazz.getSootClass().getTag("SourceFileTag");
+        if (sourceFileTag != null) {
+            String tagSourceFile = sourceFileTag.getSourceFile();
+            int extIdx = tagSourceFile.lastIndexOf('.');
+            if (extIdx > 0)
+                ext = tagSourceFile.substring(extIdx);
+        }
+
         if (className.contains("/"))
-            sourceFile = className.substring(clazz.getInternalName().lastIndexOf("/") + 1) + ".java";
+            sourceFile = className.substring(clazz.getInternalName().lastIndexOf("/") + 1) + ext;
         else
-            sourceFile = className + ".java";
+            sourceFile = className + ext;
 
     	return sourceFile;
 	}
 
-    /** Simple file name resolved, for LineNumbers there is no need in absolute file location, just in name */
-    private String getSourceFilePath(Clazz clazz) {
+    /** Simple source file path resolution */
+    private String getDwarfSourceFilePath(Clazz clazz) {
         String sourcePath = clazz.getPath().toString();
         if (!sourcePath.endsWith("/"))
             sourcePath += "/";
@@ -521,6 +539,31 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         }
 
         return sourcePath;
+    }
+
+    /** picks real source file name, will be used with JDWP ReferenceType(2).SourceFile(7) command */
+    private String getJdwpSourceFile(Clazz clazz) {
+        String sourceFile;
+        // create source file name from class internal name to preserve full path to inner classes and
+        // lambdas as it is required for dsymutils fix
+        // but also look for "SourceFileTag" to pick up proper extension in case of kotlin and others
+        SourceFileTag sourceFileTag = (SourceFileTag) clazz.getSootClass().getTag("SourceFileTag");
+        if (sourceFileTag != null) {
+            sourceFile = sourceFileTag.getSourceFile();
+        } else {
+            sourceFile = clazz.getInternalName();
+            int sepIdx = sourceFile.lastIndexOf('/');
+            if (sepIdx > 0)
+                sourceFile = sourceFile.substring(sepIdx + 1);
+            sepIdx = sourceFile.indexOf('$');
+            if (sepIdx > 0)
+                sourceFile = sourceFile.substring(0, sepIdx);
+
+            // there is no name attached so guess it was compiled from java
+            sourceFile += ".java";
+        }
+
+        return sourceFile;
     }
 
     /**

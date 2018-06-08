@@ -37,6 +37,8 @@ public class DebugInformationTools {
     public static byte[] dumpDebugInfo(DebugObjectFileInfo debugInfo) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try (DataOutputStream stream = new DataOutputStream(baos)) {
+            // put source file
+            putStringWithLen(stream, debugInfo.sourceFile());
 
             // write methods
             stream.writeInt(debugInfo.methods().length);
@@ -79,6 +81,9 @@ public class DebugInformationTools {
         // big endian, as data was written with DataOutputStream which is big endian only
         buffer.order(ByteOrder.BIG_ENDIAN);
 
+        // read source file name
+        String sourceFile = getStringWithLen(buffer);
+
         // read methods
         int methodCount = buffer.getInt();
         DebugMethodInfo[] methods = new DebugMethodInfo[methodCount];
@@ -118,10 +123,10 @@ public class DebugInformationTools {
             methods[methodIdx] = new DebugMethodInfo(methodSignature, variables, methodStartLine, methodEndLine);
         }
 
-        return new DebugObjectFileInfo(methods);
+        return new DebugObjectFileInfo(sourceFile, methods);
     }
 
-    static String getStringWithLen(ByteBuffer buffer) {
+    private static String getStringWithLen(ByteBuffer buffer) {
         int strLen = buffer.getInt();
         if (strLen == 0)
             return "";
@@ -141,7 +146,7 @@ public class DebugInformationTools {
         return str;
     }
 
-    static void putStringWithLen(DataOutputStream stream, String str) throws IOException {
+   private  static void putStringWithLen(DataOutputStream stream, String str) throws IOException {
         stream.writeInt(str.length());
         if (!str.isEmpty())
             stream.write(str.getBytes());

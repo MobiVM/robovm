@@ -95,6 +95,18 @@ public class ClassInfoImpl extends ClassInfo {
         className = reader.readStringZAtPtr(ptr);
         signature = "L" + className + ";";
 
+        if (hasError()) {
+// Uncomment to get information what is broken
+//            int errorType = reader.readInt32();
+//            ptr = reader.readPointer(true);
+//            String errorMessage = null;
+//            if (ptr != 0) {
+//                errorMessage = reader.readStringZAtPtr(ptr);
+//            }
+//            System.out.println("!Class " + className + " has error " + errorType + " due " + errorMessage);
+            return;
+        }
+
         // read other fields
         reader.skip(pointerSize + //    void* initializer;
                 pointerSize + //    TypeInfo* typeInfo;
@@ -123,6 +135,10 @@ public class ClassInfoImpl extends ClassInfo {
     }
 
     void loadData(ClassInfoLoader loader) {
+        // skip if class is broken
+        if (hasError())
+            return;
+
         // set to zero if already read
         if (endOfHeaderPos == 0)
             return;
@@ -306,5 +322,25 @@ public class ClassInfoImpl extends ClassInfo {
     @Override
     protected int convertModifiers() {
         return Converter.classModifiers(flags);
+    }
+
+    public String sourceFile() {
+        String sourceFile;
+        if (debugInfo != null) {
+            sourceFile = debugInfo.sourceFile();
+        } else {
+            sourceFile = className();
+            // there should be no path element just a file name, eclipse doesn't work due this
+            int sepIdx = sourceFile.lastIndexOf('/');
+            if (sepIdx > 0)
+                sourceFile = sourceFile.substring(sepIdx + 1);
+            sepIdx = sourceFile.indexOf('$');
+            if (sepIdx > 0)
+                sourceFile = sourceFile.substring(0, sepIdx);
+            sourceFile += ".java";
+
+        }
+
+        return sourceFile;
     }
 }
