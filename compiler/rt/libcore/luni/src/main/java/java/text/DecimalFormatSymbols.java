@@ -97,6 +97,11 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
         this.locale = locale;
         try {
             currency = Currency.getInstance(locale);
+            if (currency == null) {
+                // dkimitsa: for some countries there is no currecy like Antarctida AQ so pick currency
+                // directcly by no currency code
+                currency = Currency.getInstance("XXX");
+            }
             currencySymbol = currency.getSymbol(locale);
             intlCurrencySymbol = currency.getCurrencyCode();
         } catch (IllegalArgumentException e) {
