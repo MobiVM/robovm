@@ -84,7 +84,7 @@ import org.robovm.llvm.binding.Attribute;
 import org.robovm.llvm.binding.CodeGenFileType;
 import org.robovm.llvm.binding.CodeGenOptLevel;
 import org.robovm.llvm.binding.RelocMode;
-import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugObjectFileInfo;
 import soot.BooleanType;
 import soot.ByteType;
 import soot.CharType;
@@ -602,7 +602,7 @@ public class ClassCompiler {
     private static ModuleBuilder buildDebugInfoData(Config config, Clazz clazz, ObjectFile objectFile) throws IOException {
         ModuleBuilder debugInfoMb = null;
 
-        DebugObjectFileInfo debugInfo = clazz.getAttachment(DebugObjectFileInfo.class);
+        DwarfDebugObjectFileInfo debugInfo = clazz.getAttachment(DwarfDebugObjectFileInfo.class);
         if (debugInfo != null) {
             // read all binary data to file
             byte[] debugDataBytes = DebugInformationTools.dumpDebugInfo(debugInfo);

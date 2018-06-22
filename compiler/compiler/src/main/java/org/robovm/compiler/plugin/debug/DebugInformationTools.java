@@ -14,9 +14,9 @@
  * limitations under the License.
  */package org.robovm.compiler.plugin.debug;
 
-import org.robovm.llvm.debuginfo.DebugMethodInfo;
-import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
-import org.robovm.llvm.debuginfo.DebugVariableInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugObjectFileInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -34,7 +34,7 @@ import java.nio.ByteOrder;
  */
 public class DebugInformationTools {
 
-    public static byte[] dumpDebugInfo(DebugObjectFileInfo debugInfo) throws IOException {
+    public static byte[] dumpDebugInfo(DwarfDebugObjectFileInfo debugInfo) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try (DataOutputStream stream = new DataOutputStream(baos)) {
             // put source file
@@ -42,7 +42,7 @@ public class DebugInformationTools {
 
             // write methods
             stream.writeInt(debugInfo.methods().length);
-            for (DebugMethodInfo methodInfo : debugInfo.methods()) {
+            for (DwarfDebugMethodInfo methodInfo : debugInfo.methods()) {
                 // write method start and end lines
                 stream.writeInt(methodInfo.startLine());
                 stream.writeInt(methodInfo.finalLine());
@@ -52,7 +52,7 @@ public class DebugInformationTools {
 
                 // write variables
                 stream.writeInt(methodInfo.localvariables().length);
-                for (DebugVariableInfo varInfo : methodInfo.localvariables()) {
+                for (DwarfDebugVariableInfo varInfo : methodInfo.localvariables()) {
                     // put var name
                     putStringWithLen(stream, varInfo.name());
                     // type signature
@@ -77,7 +77,7 @@ public class DebugInformationTools {
     }
 
 
-    public static DebugObjectFileInfo readDebugInfo(ByteBuffer buffer) {
+    public static DwarfDebugObjectFileInfo readDebugInfo(ByteBuffer buffer) {
         // big endian, as data was written with DataOutputStream which is big endian only
         buffer.order(ByteOrder.BIG_ENDIAN);
 
@@ -86,7 +86,7 @@ public class DebugInformationTools {
 
         // read methods
         int methodCount = buffer.getInt();
-        DebugMethodInfo[] methods = new DebugMethodInfo[methodCount];
+        DwarfDebugMethodInfo[] methods = new DwarfDebugMethodInfo[methodCount];
         for (int methodIdx = 0; methodIdx < methodCount; methodIdx++){
             // read method start and end lines
             int methodStartLine = buffer.getInt();
@@ -97,7 +97,7 @@ public class DebugInformationTools {
 
             // read variables
             int varCount = buffer.getInt();
-            DebugVariableInfo[] variables = new DebugVariableInfo[varCount];
+            DwarfDebugVariableInfo[] variables = new DwarfDebugVariableInfo[varCount];
             for (int varIdx = 0; varIdx < varCount; varIdx++) {
                 // read name
                 String varName = getStringWithLen(buffer);
@@ -116,14 +116,14 @@ public class DebugInformationTools {
                 int varStartLine = buffer.getInt();
                 int varEndLine = buffer.getInt();
 
-                variables[varIdx] = new DebugVariableInfo(varName, varSignature, (flags & 1) == 1,
+                variables[varIdx] = new DwarfDebugVariableInfo(varName, varSignature, (flags & 1) == 1,
                         varStartLine, varEndLine, varReg, varOffset);
             }
 
-            methods[methodIdx] = new DebugMethodInfo(methodSignature, variables, methodStartLine, methodEndLine);
+            methods[methodIdx] = new DwarfDebugMethodInfo(methodSignature, variables, methodStartLine, methodEndLine);
         }
 
-        return new DebugObjectFileInfo(sourceFile, methods);
+        return new DwarfDebugObjectFileInfo(sourceFile, methods);
     }
 
     private static String getStringWithLen(ByteBuffer buffer) {
@@ -152,14 +152,14 @@ public class DebugInformationTools {
             stream.write(str.getBytes());
     }
 
-    public static void dumpDebugInfoAsText(DebugObjectFileInfo finalDebugInfo, File file) {
+    public static void dumpDebugInfoAsText(DwarfDebugObjectFileInfo finalDebugInfo, File file) {
         try (PrintWriter pw = new PrintWriter(file)) {
-            for (DebugMethodInfo methodInfo : finalDebugInfo.methods()) {
+            for (DwarfDebugMethodInfo methodInfo : finalDebugInfo.methods()) {
                 pw.println(methodInfo.signature() + " @(" + methodInfo.startLine() + ":" + methodInfo.finalLine() + ")");
-                for (DebugVariableInfo variableInfo : methodInfo.localvariables()) {
+                for (DwarfDebugVariableInfo variableInfo : methodInfo.localvariables()) {
                     pw.println(variableInfo.name() + "/" + variableInfo.typeSignature() +
                             " @(" + variableInfo.startLine() + ":" + variableInfo.finalLine() + ")" +
-                            " @@(" + DebugVariableInfo.registerName(variableInfo.register()) + " " + variableInfo.offset() + ")"
+                            " @@(" + DwarfDebugVariableInfo.registerName(variableInfo.register()) + " " + variableInfo.offset() + ")"
                     );
                 }
                 pw.println();

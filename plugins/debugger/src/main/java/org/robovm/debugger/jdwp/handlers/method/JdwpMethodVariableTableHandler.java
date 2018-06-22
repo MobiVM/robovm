@@ -20,8 +20,8 @@ import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.classdata.MethodInfo;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.llvm.debuginfo.DebugMethodInfo;
-import org.robovm.llvm.debuginfo.DebugVariableInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
 
 /**
  * @author Demyan Kimitsa
@@ -43,7 +43,7 @@ public class JdwpMethodVariableTableHandler implements IJdwpRequestHandler {
             MethodInfo methodInfo = state.methodsRefIdHolder().objectById(methodId);
             if (methodInfo == null)
                 return JdwpConsts.Error.INVALID_METHODID;
-            DebugMethodInfo debugInfo = methodInfo.debugInfo();
+            DwarfDebugMethodInfo debugInfo = methodInfo.debugInfo();
             if (debugInfo == null) {
                 // should not happen
                 return JdwpConsts.Error.ABSENT_INFORMATION;
@@ -55,9 +55,9 @@ public class JdwpMethodVariableTableHandler implements IJdwpRequestHandler {
             //slots The number of variables.
             output.writeInt32(debugInfo.localvariables().length);
 
-            DebugVariableInfo[] variables = debugInfo.localvariables();
+            DwarfDebugVariableInfo[] variables = debugInfo.localvariables();
             for (int idx = 0; idx < variables.length; idx++) {
-                DebugVariableInfo variable = variables[idx];
+                DwarfDebugVariableInfo variable = variables[idx];
 
                 if (variable.isArgument())
                     argCount += 1;

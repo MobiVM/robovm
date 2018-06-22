@@ -4,7 +4,7 @@ package org.robovm.llvm.debuginfo;
  * @author Demyan Kimitsa
  * Debug information about local variable extracted from ObjectFile/DWARF
  */
-public class DebugVariableInfo {
+public class DwarfDebugVariableInfo {
     // register names from DwarfConsts
     public final static int OP_breg13 = 0x7d;
     public final static int OP_fbreg = 0x91;
@@ -23,7 +23,7 @@ public class DebugVariableInfo {
     private final int register;
     private final int offset;
 
-    public DebugVariableInfo(String name, boolean isArgument, int register, int offset) {
+    public DwarfDebugVariableInfo(String name, boolean isArgument, int register, int offset) {
         this.name = name;
         this.isArgument = isArgument;
         this.register = register;
@@ -37,7 +37,7 @@ public class DebugVariableInfo {
      * constructor used to produce debug information that will be saved to dbg file
      * covers information that is not available in dwarf
      */
-    public DebugVariableInfo(String name, String typeSignature, boolean isArgument, int startLine, int finalLine,  int register, int offset) {
+    public DwarfDebugVariableInfo(String name, String typeSignature, boolean isArgument, int startLine, int finalLine, int register, int offset) {
         this.name = name;
         this.typeSignature = typeSignature;
         this.isArgument = isArgument;
@@ -88,7 +88,7 @@ public class DebugVariableInfo {
 
     @Override
     public String toString() {
-        return "DebugVariableInfo{" +
+        return "DwarfDebugVariableInfo{" +
                 "name='" + name + '\'' +
                 ", isArgument=" + isArgument +
                 ", register=" + registerName(register) +

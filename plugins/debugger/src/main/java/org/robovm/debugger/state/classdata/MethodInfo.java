@@ -17,7 +17,7 @@ package org.robovm.debugger.state.classdata;
 
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
-import org.robovm.llvm.debuginfo.DebugMethodInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
 
 /**
  * @author Demyan Kimitsa
@@ -47,7 +47,7 @@ public class MethodInfo extends BaseModifiersInfo {
     private int methodCodeSize;
 
     // debug information if available
-    private DebugMethodInfo debugInfo;
+    private DwarfDebugMethodInfo debugInfo;
     // mach-o address of breakpoint table for method. <=0 if missing
     private long bpTableAddr;
     // call specification for method build from desc fiend
@@ -136,11 +136,11 @@ public class MethodInfo extends BaseModifiersInfo {
         return methodCodeSize;
     }
 
-    public DebugMethodInfo debugInfo() {
+    public DwarfDebugMethodInfo debugInfo() {
         return debugInfo;
     }
 
-    public void setDebugInfo(DebugMethodInfo debugInfo, int spFpOffset, int spFpAlign) {
+    public void setDebugInfo(DwarfDebugMethodInfo debugInfo, int spFpOffset, int spFpAlign) {
         this.debugInfo = debugInfo;
         this.spFpAlign = spFpAlign;
         this.spFpOffset = spFpOffset;

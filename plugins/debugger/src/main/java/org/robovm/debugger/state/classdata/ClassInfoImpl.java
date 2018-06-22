@@ -21,8 +21,8 @@ import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
 import org.robovm.debugger.utils.macho.MachOConsts;
-import org.robovm.llvm.debuginfo.DebugMethodInfo;
-import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugObjectFileInfo;
 
 import java.nio.ByteBuffer;
 
@@ -74,7 +74,7 @@ public class ClassInfoImpl extends ClassInfo {
     private MethodInfo[] methods;
 
     // debug information for class
-    private DebugObjectFileInfo debugInfo;
+    private DwarfDebugObjectFileInfo debugInfo;
 
     // out of header position
     private long endOfHeaderPos;
@@ -180,7 +180,7 @@ public class ClassInfoImpl extends ClassInfo {
         endOfHeaderPos = 0;
     }
 
-    private DebugObjectFileInfo readDebugInfo(ClassInfoLoader loader) {
+    private DwarfDebugObjectFileInfo readDebugInfo(ClassInfoLoader loader) {
         String debugInfoSymbol = "[j]" + className.replace('/', '.') + "[debuginfo]";
         // get pointer to pointer symbol
         long addr = loader.appFileLoader.resolveSymbol(debugInfoSymbol);
@@ -222,7 +222,7 @@ public class ClassInfoImpl extends ClassInfo {
             }
 
             if (!methodInfo.isNative()) {
-                DebugMethodInfo methodDebugInfo = null;
+                DwarfDebugMethodInfo methodDebugInfo = null;
                 long bpTableAddr = -1;
                 int spFpOffset = -1;
                 int spFpAlign = -1;

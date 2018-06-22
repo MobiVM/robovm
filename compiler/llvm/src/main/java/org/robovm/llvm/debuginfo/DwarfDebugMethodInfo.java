@@ -8,23 +8,23 @@ import java.util.Map;
  * @author Demyan Kimitsa
  * Method debug info that is extracted from ObjectFile/DWARF
  */
-public class DebugMethodInfo {
+public class DwarfDebugMethodInfo {
     private final String name;
-    private final DebugVariableInfo[] localvariables;
-    private Map<String, DebugVariableInfo> variableByName;
+    private final DwarfDebugVariableInfo[] localvariables;
+    private Map<String, DwarfDebugVariableInfo> variableByName;
 
     // scope visibility range -- line numbers (not available from DWARF)
     private final int startLine;
     private final int finalLine;
 
-    public DebugMethodInfo(String name, DebugVariableInfo[] localvariables) {
+    public DwarfDebugMethodInfo(String name, DwarfDebugVariableInfo[] localvariables) {
         this.name = name;
         this.localvariables = localvariables;
         this.startLine = -1;
         this.finalLine = -1;
     }
 
-    public DebugMethodInfo(String name, DebugVariableInfo[] localvariables, int startLine, int finalLine) {
+    public DwarfDebugMethodInfo(String name, DwarfDebugVariableInfo[] localvariables, int startLine, int finalLine) {
         this.name = name;
         this.localvariables = localvariables;
         this.startLine = startLine;
@@ -35,7 +35,7 @@ public class DebugMethodInfo {
         return name;
     }
 
-    public DebugVariableInfo[] localvariables() {
+    public DwarfDebugVariableInfo[] localvariables() {
         return localvariables;
     }
 
@@ -49,16 +49,16 @@ public class DebugMethodInfo {
 
     @Override
     public String toString() {
-        return "DebugMethodInfo{" +
+        return "DwarfDebugMethodInfo{" +
                 "name='" + name + '\'' +
                 ", localvariables=" + Arrays.toString(localvariables) +
                 '}';
     }
 
-    public DebugVariableInfo variableByName(String name) {
+    public DwarfDebugVariableInfo variableByName(String name) {
         if (variableByName == null) {
             variableByName = new HashMap<>();
-            for (DebugVariableInfo variableInfo : localvariables)
+            for (DwarfDebugVariableInfo variableInfo : localvariables)
                 variableByName.put(variableInfo.name(), variableInfo);
         }
         return variableByName.get(name);

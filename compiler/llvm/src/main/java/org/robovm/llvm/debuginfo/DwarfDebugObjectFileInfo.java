@@ -7,12 +7,12 @@ import java.util.Map;
  * @author Demyan Kimitsa
  * Object file information as extracted from ObjectFile/DWARF
  */
-public class DebugObjectFileInfo {
+public class DwarfDebugObjectFileInfo {
     private final String sourceFile;
-    private final DebugMethodInfo[] methods;
-    private Map<String, DebugMethodInfo> methodBySignature;
+    private final DwarfDebugMethodInfo[] methods;
+    private Map<String, DwarfDebugMethodInfo> methodBySignature;
 
-    public DebugObjectFileInfo(String sourceFile, DebugMethodInfo[] methods) {
+    public DwarfDebugObjectFileInfo(String sourceFile, DwarfDebugMethodInfo[] methods) {
         this.sourceFile = sourceFile;
         this.methods = methods;
     }
@@ -21,14 +21,14 @@ public class DebugObjectFileInfo {
         return sourceFile;
     }
 
-    public DebugMethodInfo[] methods() {
+    public DwarfDebugMethodInfo[] methods() {
         return methods;
     }
 
-    public DebugMethodInfo methodBySignature(String signature) {
+    public DwarfDebugMethodInfo methodBySignature(String signature) {
         if (methodBySignature == null) {
             methodBySignature = new HashMap<>();
-            for (DebugMethodInfo methodInfo : methods())
+            for (DwarfDebugMethodInfo methodInfo : methods())
                 methodBySignature.put(methodInfo.signature(), methodInfo);
         }
 

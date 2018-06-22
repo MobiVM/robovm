@@ -56,9 +56,9 @@ import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.PluginArguments;
 import org.robovm.llvm.ObjectFile;
-import org.robovm.llvm.debuginfo.DebugMethodInfo;
-import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
-import org.robovm.llvm.debuginfo.DebugVariableInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugObjectFileInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
 import soot.Local;
 import soot.LocalVariable;
 import soot.SootMethod;
@@ -429,12 +429,12 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         if (config.isDebug()) {
 
             // get debug information from objective file and write it to file cache
-            DebugObjectFileInfo debugInfo = objectFileData.getDebugInfo();
+            DwarfDebugObjectFileInfo debugInfo = objectFileData.getDebugInfo();
             if (debugInfo != null) {
                 // now it is a task to combine it with data received during compilation
-                List<DebugMethodInfo> methods = new ArrayList<>();
+                List<DwarfDebugMethodInfo> methods = new ArrayList<>();
                 for (MethodDataBundle methodBundle :  classBundle.methods) {
-                    DebugMethodInfo dbgMethodInfo = debugInfo.methodBySignature(methodBundle.signature);
+                    DwarfDebugMethodInfo dbgMethodInfo = debugInfo.methodBySignature(methodBundle.signature);
                     if (dbgMethodInfo == null) {
                         config.getLogger().warn("Failed to get debug information for method %s in class %s",
                                 methodBundle.signature, clazz.getClassName());
@@ -442,9 +442,9 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                     }
 
                     // get variables
-                    List<DebugVariableInfo> variables = new ArrayList<>();
+                    List<DwarfDebugVariableInfo> variables = new ArrayList<>();
                     for (VariableDataBundle variableBudnle : methodBundle.variables) {
-                        DebugVariableInfo dbgVariableInfo =  dbgMethodInfo.variableByName(variableBudnle.dwarfName);
+                        DwarfDebugVariableInfo dbgVariableInfo =  dbgMethodInfo.variableByName(variableBudnle.dwarfName);
                         if (dbgVariableInfo == null) {
                             config.getLogger().warn("Failed to get debug information for variable %s in method %s in class %s",
                                     variableBudnle.name, methodBundle.signature, clazz.getClassName());
@@ -452,7 +452,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                         }
 
                         // save variable
-                        variables.add(new DebugVariableInfo(variableBudnle.name, variableBudnle.typeSignature, dbgVariableInfo.isArgument(),
+                        variables.add(new DwarfDebugVariableInfo(variableBudnle.name, variableBudnle.typeSignature, dbgVariableInfo.isArgument(),
                                 variableBudnle.startLine, variableBudnle.finalLine, dbgVariableInfo.register(), dbgVariableInfo.offset()));
                     }
 
@@ -461,15 +461,15 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                     if (methodName.startsWith("[J]" + clazz.getClassName() + "."))
                         methodName = methodName.substring(clazz.getClassName().length() + 4);
                     // save method
-                    methods.add(new DebugMethodInfo(methodName,  variables.toArray(new DebugVariableInfo[0]),
+                    methods.add(new DwarfDebugMethodInfo(methodName,  variables.toArray(new DwarfDebugVariableInfo[0]),
                             methodBundle.startLine, methodBundle.finalLine));
                 }
 
                 // dump final info to file
-                DebugObjectFileInfo finalDebugInfo = clazz.getAttachment(DebugObjectFileInfo.class);
+                DwarfDebugObjectFileInfo finalDebugInfo = clazz.getAttachment(DwarfDebugObjectFileInfo.class);
                 if (finalDebugInfo != null)
                     clazz.removeAttachement(finalDebugInfo);
-                finalDebugInfo = new DebugObjectFileInfo(getJdwpSourceFile(clazz), methods.toArray(new DebugMethodInfo[0]));
+                finalDebugInfo = new DwarfDebugObjectFileInfo(getJdwpSourceFile(clazz), methods.toArray(new DwarfDebugMethodInfo[0]));
 
                 // save as attachment to class file
                 clazz.attach(finalDebugInfo);

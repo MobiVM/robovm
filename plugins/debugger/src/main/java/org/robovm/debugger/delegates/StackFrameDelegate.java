@@ -25,8 +25,8 @@ import org.robovm.debugger.state.classdata.RuntimeClassInfoLoader;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferPacket;
-import org.robovm.llvm.debuginfo.DebugMethodInfo;
-import org.robovm.llvm.debuginfo.DebugVariableInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
 
 /**
  * @author Demyan Kimitsa
@@ -57,12 +57,12 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
             throw new DebuggerException(JdwpConsts.Error.INVALID_FRAMEID);
 
         // check if method has debug information
-        DebugMethodInfo debugInfo = frame.methodInfo().debugInfo();
+        DwarfDebugMethodInfo debugInfo = frame.methodInfo().debugInfo();
         if (debugInfo == null)
             throw new DebuggerException(JdwpConsts.Error.INTERNAL);
 
         // move through variables and validate them
-        DebugVariableInfo[] variables = debugInfo.localvariables();
+        DwarfDebugVariableInfo[] variables = debugInfo.localvariables();
         // will pick class info for variables during validation check
         ClassInfo[] classinfos = new ClassInfo[variables.length];
         int stackLineNumber = frame.lineNumber();
@@ -114,15 +114,15 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
             throw new DebuggerException(JdwpConsts.Error.INVALID_FRAMEID);
 
         // check if method has debug information
-        DebugMethodInfo debugInfo = frame.methodInfo().debugInfo();
+        DwarfDebugMethodInfo debugInfo = frame.methodInfo().debugInfo();
         if (debugInfo == null)
             throw new DebuggerException(JdwpConsts.Error.INTERNAL);
 
         // move through variables and validate them
-        DebugVariableInfo[] variables = debugInfo.localvariables();
-        DebugVariableInfo variable = null;
+        DwarfDebugVariableInfo[] variables = debugInfo.localvariables();
+        DwarfDebugVariableInfo variable = null;
         int stackLineNumber = frame.lineNumber();
-        for (DebugVariableInfo v : variables) {
+        for (DwarfDebugVariableInfo v : variables) {
             if (stackLineNumber >= v.startLine() && stackLineNumber <= v.finalLine() && v.name().equals(variableName)) {
                 variable = v;
                 break;
@@ -167,12 +167,12 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
             throw new DebuggerException(JdwpConsts.Error.INVALID_FRAMEID);
 
         // check if method has debug information
-        DebugMethodInfo debugInfo = frame.methodInfo().debugInfo();
+        DwarfDebugMethodInfo debugInfo = frame.methodInfo().debugInfo();
         if (debugInfo == null)
             throw new DebuggerException(JdwpConsts.Error.INTERNAL);
 
         // move through variables and validate them
-        DebugVariableInfo[] variables = debugInfo.localvariables();
+        DwarfDebugVariableInfo[] variables = debugInfo.localvariables();
 
 
         // it is hard to do this operation atomic without making duplicate runs of finding classes etc, so
@@ -218,13 +218,13 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
      * @param variableInfo information of variable location within stack
      * @return variable address
      */
-    private long getVariableAddress(VmStackTrace frame, DebugVariableInfo variableInfo) {
+    private long getVariableAddress(VmStackTrace frame, DwarfDebugVariableInfo variableInfo) {
         // get the memory address to read from based on debug information
         long addr;
-        if (variableInfo.register() == DebugVariableInfo.OP_fbreg) {
+        if (variableInfo.register() == DwarfDebugVariableInfo.OP_fbreg) {
             // FP register on x86 and ARM64
             addr = frame.fp() + variableInfo.offset();
-        } else  if (variableInfo.register() == DebugVariableInfo.OP_breg31 || variableInfo.register() == DebugVariableInfo.OP_breg13){
+        } else  if (variableInfo.register() == DwarfDebugVariableInfo.OP_breg31 || variableInfo.register() == DwarfDebugVariableInfo.OP_breg13){
             // SP on thumb7(R13)
             // RSP register on ARM64
             // align using SpFpOffset data
@@ -232,7 +232,7 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
             addr += variableInfo.offset();
         } else {
             // TODO:
-            throw new DebuggerException("Unexpected register for stack trace variable " + DebugVariableInfo.registerName(variableInfo.register()));
+            throw new DebuggerException("Unexpected register for stack trace variable " + DwarfDebugVariableInfo.registerName(variableInfo.register()));
         }
 
         return addr;
