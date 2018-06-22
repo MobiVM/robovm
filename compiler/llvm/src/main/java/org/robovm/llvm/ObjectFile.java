@@ -86,9 +86,10 @@ public class ObjectFile implements AutoCloseable {
         if (size > 0) {
             LongArray values = out.getValue();
             for (int i = 0; i < size; i++) {
-                long address = values.get(i * 2);
-                long lineNumber = values.get(i * 2 + 1);
-                result.add(new LineInfo(address, (int) lineNumber));
+                long address = values.get(i * 3);
+                long lineNumber = values.get(i * 3 + 1);
+                long columnNumber = values.get(i * 3 + 2);
+                result.add(new LineInfo(address, (int) lineNumber, (int) columnNumber));
             }
             values.delete();
         }
