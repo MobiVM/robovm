@@ -119,7 +119,31 @@ public class SigningIdentity implements Comparable<SigningIdentity> {
             throw new RuntimeException(e);
         }
     }
-    
+
+    /**
+     * @return list of identities with filter applied
+     */
+    public static List<SigningIdentity> list(String search) {
+        List<SigningIdentity> unfiltered = list();
+        List<SigningIdentity> filtered = new ArrayList<>();
+        if (search.startsWith("/") && search.endsWith("/")) {
+            Pattern pattern = Pattern.compile(search.substring(1, search.length() - 1));
+            for (SigningIdentity id : unfiltered) {
+                if (pattern.matcher(id.name).find()) {
+                    filtered.add(id);
+                }
+            }
+        } else {
+            for (SigningIdentity id : unfiltered) {
+                if ((id.name.startsWith(search) || id.fingerprint.equals(search.toUpperCase()))) {
+                    filtered.add(id);
+                }
+            }
+        }
+
+        return filtered;
+    }
+
     public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println(list());
