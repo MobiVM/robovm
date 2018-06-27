@@ -63,7 +63,7 @@ import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
 import org.robovm.compiler.plugin.CompilerPlugin;
-import org.robovm.compiler.plugin.debug.DebugInformationTools;
+import org.robovm.compiler.plugin.debug.DebuggerDebugObjectFileInfo;
 import org.robovm.compiler.trampoline.Checkcast;
 import org.robovm.compiler.trampoline.Instanceof;
 import org.robovm.compiler.trampoline.Invoke;
@@ -84,7 +84,6 @@ import org.robovm.llvm.binding.Attribute;
 import org.robovm.llvm.binding.CodeGenFileType;
 import org.robovm.llvm.binding.CodeGenOptLevel;
 import org.robovm.llvm.binding.RelocMode;
-import org.robovm.llvm.debuginfo.DwarfDebugObjectFileInfo;
 import soot.BooleanType;
 import soot.ByteType;
 import soot.CharType;
@@ -602,10 +601,10 @@ public class ClassCompiler {
     private static ModuleBuilder buildDebugInfoData(Config config, Clazz clazz, ObjectFile objectFile) throws IOException {
         ModuleBuilder debugInfoMb = null;
 
-        DwarfDebugObjectFileInfo debugInfo = clazz.getAttachment(DwarfDebugObjectFileInfo.class);
+        DebuggerDebugObjectFileInfo.RawData debugInfo = clazz.getAttachment(DebuggerDebugObjectFileInfo.RawData.class);
         if (debugInfo != null) {
             // read all binary data to file
-            byte[] debugDataBytes = DebugInformationTools.dumpDebugInfo(debugInfo);
+            byte[] debugDataBytes = DebuggerDebugObjectFileInfo.dumpDebugInfo(debugInfo);
             String debugInfoSymbol = Symbols.debugInfoSymbol(clazz.getInternalName());
             debugInfoMb = new ModuleBuilder();
             Global debugInfoSymbolGlobal = new Global(debugInfoSymbol, new ByteArrayConstant(debugDataBytes), true);
@@ -662,7 +661,7 @@ public class ClassCompiler {
 
             if (config.isDumpIntermediates()) {
                 File f = new File(config.getDebugInfoOFile(clazz).getAbsolutePath() + ".dump");
-                DebugInformationTools.dumpDebugInfoAsText(debugInfo, f);
+                DebuggerDebugObjectFileInfo.dumpDebugInfoAsText(debugInfo, f);
             }
         }
 

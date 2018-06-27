@@ -13,12 +13,6 @@ public class DwarfDebugVariableInfo {
     private final String name;
     private final boolean isArgument;
 
-    // scope visibility range -- line numbers (not available from DWARF)
-    private final int startLine;
-    private final int finalLine;
-    // type signature (not available from DWARF)
-    private final String typeSignature;
-
     /** refer to DwarfConst.LocationAtom for list of registers */
     private final int register;
     private final int offset;
@@ -28,21 +22,11 @@ public class DwarfDebugVariableInfo {
         this.isArgument = isArgument;
         this.register = register;
         this.offset = offset;
-        this.startLine = -1;
-        this.finalLine = -1;
-        this.typeSignature = null;
     }
 
-    /**
-     * constructor used to produce debug information that will be saved to dbg file
-     * covers information that is not available in dwarf
-     */
-    public DwarfDebugVariableInfo(String name, String typeSignature, boolean isArgument, int startLine, int finalLine, int register, int offset) {
-        this.name = name;
-        this.typeSignature = typeSignature;
-        this.isArgument = isArgument;
-        this.startLine = startLine;
-        this.finalLine = finalLine;
+    public DwarfDebugVariableInfo(int register, int offset) {
+        this.name = null;
+        this.isArgument = false;
         this.register = register;
         this.offset = offset;
     }
@@ -61,18 +45,6 @@ public class DwarfDebugVariableInfo {
 
     public int offset() {
         return offset;
-    }
-
-    public int startLine() {
-        return startLine;
-    }
-
-    public int finalLine() {
-        return finalLine;
-    }
-
-    public String typeSignature() {
-        return typeSignature;
     }
 
     public static String registerName(int register) {

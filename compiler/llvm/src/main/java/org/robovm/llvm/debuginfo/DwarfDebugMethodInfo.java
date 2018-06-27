@@ -13,22 +13,10 @@ public class DwarfDebugMethodInfo {
     private final DwarfDebugVariableInfo[] localvariables;
     private Map<String, DwarfDebugVariableInfo> variableByName;
 
-    // scope visibility range -- line numbers (not available from DWARF)
-    private final int startLine;
-    private final int finalLine;
 
     public DwarfDebugMethodInfo(String name, DwarfDebugVariableInfo[] localvariables) {
         this.name = name;
         this.localvariables = localvariables;
-        this.startLine = -1;
-        this.finalLine = -1;
-    }
-
-    public DwarfDebugMethodInfo(String name, DwarfDebugVariableInfo[] localvariables, int startLine, int finalLine) {
-        this.name = name;
-        this.localvariables = localvariables;
-        this.startLine = startLine;
-        this.finalLine = finalLine;
     }
 
     public String signature() {
@@ -37,14 +25,6 @@ public class DwarfDebugMethodInfo {
 
     public DwarfDebugVariableInfo[] localvariables() {
         return localvariables;
-    }
-
-    public int startLine() {
-        return startLine;
-    }
-
-    public int finalLine() {
-        return finalLine;
     }
 
     @Override

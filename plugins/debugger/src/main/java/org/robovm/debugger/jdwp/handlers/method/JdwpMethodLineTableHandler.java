@@ -15,6 +15,7 @@
  */
 package org.robovm.debugger.jdwp.handlers.method;
 
+import org.robovm.compiler.plugin.debug.DebuggerDebugMethodInfo;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
@@ -44,7 +45,7 @@ public class JdwpMethodLineTableHandler implements IJdwpRequestHandler {
             if (methodInfo == null)
                 return JdwpConsts.Error.INVALID_METHODID;
 
-            DwarfDebugMethodInfo debugInfo = methodInfo.debugInfo();
+            DebuggerDebugMethodInfo debugInfo = methodInfo.debugInfo();
             if (debugInfo == null) {
                 // should not happen
                 return JdwpConsts.Error.ABSENT_INFORMATION;
