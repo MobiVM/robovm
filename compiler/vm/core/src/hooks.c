@@ -1271,7 +1271,7 @@ static jboolean prepareCallStack(Env* env, char event, CallStack** callStack, ji
         (*length)++;
         classNamesSize += strlen(frame->method->clazz->name);
     }
-    *payloadSize = sizeof(jint) + (*length) * (sizeof(jlong) * 2 + sizeof(jint) * 2) + classNamesSize;
+    *payloadSize = sizeof(jint) + (*length) * (sizeof(jlong) * 3 + sizeof(jint) * 2) + classNamesSize;
 
     // reset old exception handling/instrumented flag
     debugEnv->ignoreExceptions = oldIgnoreException;
@@ -1295,6 +1295,7 @@ static void writeCallstack(Env* env, jint length, CallStack* callStack ) {
         writeChannelLong(clientSocket, (jlong)(frame->method->impl), &error);
         writeChannelInt(clientSocket, frame->lineNumber, &error);
         writeChannelLong(clientSocket, (jlong)(frame->fp), &error);
+        writeChannelLong(clientSocket, (jlong)(frame->pc), &error);
         jint strLen = strlen(frame->method->clazz->name);
         writeChannelInt(clientSocket, strLen, &error);
         writeChannel(clientSocket, (void*)frame->method->clazz->name, strLen, &error);

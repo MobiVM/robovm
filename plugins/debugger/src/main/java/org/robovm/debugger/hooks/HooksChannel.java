@@ -478,9 +478,10 @@ public class HooksChannel implements IHooksApi {
             long impl = reader.readLong();
             int lineNumber = reader.readInt32();
             long fp = reader.readLong();
+            long pc = reader.readLong();
             int clazzNameLen = reader.readInt32();
             String clazzName = reader.readString(clazzNameLen);
-            res[idx] = new HooksCallStackEntry(clazzName, impl, lineNumber, fp);
+            res[idx] = new HooksCallStackEntry(clazzName, impl, lineNumber, fp, pc);
         }
 
         return res;
