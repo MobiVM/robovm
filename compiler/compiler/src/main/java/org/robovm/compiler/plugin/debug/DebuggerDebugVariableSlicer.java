@@ -1,6 +1,7 @@
 package org.robovm.compiler.plugin.debug;
 
 
+import org.robovm.compiler.config.Config;
 import soot.ArrayType;
 import soot.Body;
 import soot.Local;
@@ -32,8 +33,10 @@ public class DebuggerDebugVariableSlicer {
     final Map<Unit, Integer> unitToSlice = new HashMap<>();
     final List<UnitVariableSlice> slices = new ArrayList<>();
     final SootMethod method;
+    final Config config;
 
-    public DebuggerDebugVariableSlicer(SootMethod method) {
+    public DebuggerDebugVariableSlicer(Config config, SootMethod method) {
+        this.config = config;
         this.method = method;
         build(method);
     }
@@ -51,7 +54,7 @@ public class DebuggerDebugVariableSlicer {
         mapUnitsToVariables(method, argumentVariables, variablesOfUnit);
 
         // now compile all duplicates into slices
-        buildSlices(body, argumentVariables, variablesOfUnit, unitToSlice, slices);
+        buildSlices(config, body, argumentVariables, variablesOfUnit, unitToSlice, slices);
     }
 
     /**
@@ -102,7 +105,7 @@ public class DebuggerDebugVariableSlicer {
         }
     }
 
-    static void buildSlices(Body body, Map<Integer, LocalVariable> argumentVariables,
+    static void buildSlices(Config config, Body body, Map<Integer, LocalVariable> argumentVariables,
                             Map<Unit, Map<Integer, LocalVariable>> variablesOfUnit,
                             Map<Unit, Integer> unitToVariableSlices, List<UnitVariableSlice> slices) {
         // move though units and attach to them visible variables
@@ -120,7 +123,7 @@ public class DebuggerDebugVariableSlicer {
             Map<Integer, LocalVariable> visibleVariables = variablesOfUnit.get(u);
 
             // get a snapshot index
-            int idx = getSliceForUnit(visibleLocals, visibleVariables, argumentVariables, slicesHash, slices);
+            int idx = getSliceForUnit(config, visibleLocals, visibleVariables, argumentVariables, slicesHash, slices);
             if (idx >= 0) {
                 // there is variables visible at this index
                 unitToVariableSlices.put(u, idx);
@@ -129,7 +132,7 @@ public class DebuggerDebugVariableSlicer {
     }
 
 
-    static int getSliceForUnit(Map<Integer, Local> visibleLocals, Map<Integer, LocalVariable> visibleVariables,
+    static int getSliceForUnit(Config config, Map<Integer, Local> visibleLocals, Map<Integer, LocalVariable> visibleVariables,
                                Map<Integer, LocalVariable> argumentVariables,
                                Map<UnitVariableSlice, Integer> slicesHash, List<UnitVariableSlice> slices) {
         TreeMap<Integer, LocalVariable> confirmedVariables = new TreeMap<>();
@@ -157,9 +160,10 @@ public class DebuggerDebugVariableSlicer {
                 confirmedVariables.put(index, variable);
                 confirmedLocals.put(index, local);
             } else {
-                // bad
-                // TODO: FIXME: exception is here only for debug purpose, in production just ignore the case
-                throw new InternalError("Variable and local type missmatch " + variable.getDescriptor() + " != " + local.getType());
+                // bad: variable should be visible at this point but value in slot has wrong type
+                if (config != null && config.getHome().isDev()) {
+                    config.getLogger().error("Variable and local type missmatch " + variable.getDescriptor() + " != " + local.getType());
+                }
             }
         }
 

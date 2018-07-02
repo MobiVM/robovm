@@ -235,7 +235,7 @@ public class LambdaPlugin extends AbstractCompilerPlugin {
                             }
 
                             // dkimitsa: attach LineNumberTag to all new units that are inserted instead of DynamicInvokeExpr
-                            // as it would break variable resolution in debuger information plugin
+                            // as it would break variable resolution in debugger information plugin
                             for (Object o : unit.getTags()) {
                                 if (o instanceof LineNumberTag) {
                                     // attach same line number to all units in new units

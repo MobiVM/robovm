@@ -199,7 +199,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         DebuggerDebugVariableSlicer localsDebugInfo = null;
         if (includeDebuggerInfo) {
             // build local variables map
-            localsDebugInfo = new DebuggerDebugVariableSlicer(method);
+            localsDebugInfo = new DebuggerDebugVariableSlicer(config, method);
         }
 
         // maps instruction to line number -- for debugger hooks injection
