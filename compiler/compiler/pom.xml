@@ -200,7 +200,7 @@
               <workingDirectory>${project.basedir}/../vm</workingDirectory>
               <executable>${project.basedir}/../vm/build.sh</executable>
               <arguments>
-                <argument>--build=debug</argument>
+                <argument>--build=release</argument>
               </arguments>
               <skip>${skipBuildBinaries}</skip>
             </configuration>
