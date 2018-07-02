@@ -122,8 +122,9 @@ public class StackFrameDelegate implements IJdwpStackFrameDelegate {
                 long addr = getVariableAddress(frame, alloca);
                 delegates.instances().getMemoryValue(addr, classinfos[idx], output);
             } else {
-                // TODO: FIXME: provide default values here
-                throw new Error("FIXME: unable to locate alloca for variable " + variables[idx]);
+                // dkimitsa: variable information is missing, in this case just return zero/nulls otherwise debug
+                // session will be broken
+                delegates.instances().getDefaultValue(classinfos[idx], output);
             }
         }
     }

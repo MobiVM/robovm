@@ -227,6 +227,22 @@ public class InstanceUtils {
         return result;
     }
 
+    /**
+     * Writes default Zero/null value for class info
+     * @param ci class info of data (null if it is object)
+     * @param jdwpOutput if not null -- also outputs data to buffer packet
+     */
+    public void getDefaultValue(ClassInfo ci, ByteBufferPacket jdwpOutput) {
+        ValueManipulator valueManipulator;
+        if (ci != null && ci.isPrimitive()) {
+            ClassInfoPrimitiveImpl primitiveInfo = (ClassInfoPrimitiveImpl) ci;
+            valueManipulator = primitiveInfo.manipulator();
+        } else {
+            valueManipulator = manipulator;
+        }
+
+        valueManipulator.writeDefaultToJdwp(jdwpOutput);
+    }
 
     /**
      * Reads a list of instance field values
@@ -795,6 +811,10 @@ public class InstanceUtils {
                             jdwpWriter.writeByte(JdwpConsts.Tag.OBJECT);
                             jdwpWriter.writeLong(0);
                         }
+                    },
+                    (jdwpWriter) -> {
+                        jdwpWriter.writeByte(JdwpConsts.Tag.OBJECT);
+                        jdwpWriter.writeLong(0);
                     },
                     (reader, length) -> {
                         VmInstance[] arr = new VmInstance[length];

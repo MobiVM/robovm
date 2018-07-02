@@ -116,24 +116,6 @@ public class DebuggerDebugMethodInfo {
         return leftIdx;
     }
 
-//
-//    @Override
-//    public String toString() {
-//        return "DebuggerDebugMethodInfo{" +
-//                "name='" + name + '\'' +
-//                ", localvariables=" + Arrays.toString(localvariables) +
-//                '}';
-//    }
-//
-//    public DebuggerDebugVariableInfo variableByName(String name) {
-//        if (variableByName == null) {
-//            variableByName = new HashMap<>();
-//            for (DebuggerDebugVariableInfo variableInfo : localvariables)
-//                variableByName.put(variableInfo.name(), variableInfo);
-//        }
-//        return variableByName.get(name);
-//    }
-
     // data for serialization of object
     static class RawData {
         final String signature;

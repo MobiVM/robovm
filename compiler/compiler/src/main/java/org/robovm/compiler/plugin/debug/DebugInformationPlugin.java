@@ -55,6 +55,7 @@ import org.robovm.compiler.llvm.debug.dwarf.DISubprogram;
 import org.robovm.compiler.llvm.debug.dwarf.DwarfConst;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import org.robovm.compiler.plugin.PluginArguments;
+import org.robovm.compiler.plugin.debug.kotlin.KotlinTools;
 import org.robovm.llvm.LineInfo;
 import org.robovm.llvm.ObjectFile;
 import org.robovm.llvm.Symbol;
@@ -66,6 +67,7 @@ import soot.LocalVariable;
 import soot.SootMethod;
 import soot.Unit;
 import soot.jimple.IdentityStmt;
+import soot.tagkit.GenericAttribute;
 import soot.tagkit.LineNumberTag;
 import soot.tagkit.SourceFileTag;
 import soot.util.Chain;
@@ -152,7 +154,21 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                 // refer to 04-emit-sp-fp-offset-on-arm for details
                 mb.addGlobal(new Global("robovm.emitSpFpOffsets", Type.I8));
             }
+
         }
+
+        // kotlin uses source line remapping as it injects collections code and so on
+        LineNumberMapper lineNumberMapper = LineNumberMapper.DIRECT;
+        SourceFileTag sourceFileTag = (SourceFileTag) clazz.getSootClass().getTag("SourceFileTag");
+        if (sourceFileTag != null && sourceFileTag.getSourceFile() != null && sourceFileTag.getSourceFile().endsWith(".kt")) {
+            // kotlin, get line number mapping table from SMAP section
+            GenericAttribute smap = (GenericAttribute) clazz.getSootClass().getTag("SourceDebugExtension");
+            if (smap != null) {
+                lineNumberMapper = KotlinTools.parseSMAP(smap.getValue(), clazz.getInternalName());
+            }
+        }
+        // save mapper
+        clazz.attach(lineNumberMapper);
     }
 
     @Override
@@ -207,6 +223,9 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         Map<Instruction, Integer> instructionToDebugInfoIdx = new HashMap<>();
         Map<Unit, Instruction> unitToInstruction = new HashMap<>();
 
+        // pick up created line number mapper to remap line numbers for kotlin. for pure java it provides
+        // x->x mapping
+        LineNumberMapper lineNumberMapper = clazz.getAttachment(LineNumberMapper.class);
 
         // insert line number and additional debug information
         // column is used as index for additional debug information, once it is compiled for each code position
@@ -225,7 +244,8 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                     Unit unit = (Unit) object;
                     LineNumberTag tag = (LineNumberTag) unit.getTag("LineNumberTag");
                     if (tag != null) {
-                        lineNumber = tag.getLineNumber();
+                        // map line number to another one (required for kotlin)
+                        lineNumber = lineNumberMapper.map(tag.getLineNumber());
                         methodLineNumber = Math.min(methodLineNumber, lineNumber);
                         methodEndLineNumber = Math.max(methodEndLineNumber, lineNumber);
                     }
@@ -403,7 +423,6 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
         diSubprogram.setVariables(diVariableList);
 
-
         // remember method debug information
         classBundle.methods.add(new MethodDataBundle(function.getName(), methodLineNumber, methodEndLineNumber,
                 localsDebugInfo));
@@ -455,7 +474,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                 continue;
 
 
-            DebuggerDebugMethodInfo.RawData debuggerMethodInfo = buildDebuggerMethodInfo(clazz, symbol, dbgMethodInfo, methodBundle, lineInfos);
+            DebuggerDebugMethodInfo.RawData debuggerMethodInfo = buildDebuggerMethodInfo(config, clazz, symbol, dbgMethodInfo, methodBundle, lineInfos);
             methods.add(debuggerMethodInfo);
         }
 
@@ -469,7 +488,9 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         clazz.attach(finalDebugInfo);
     }
 
-    private DebuggerDebugMethodInfo.RawData buildDebuggerMethodInfo(Clazz clazz, Symbol symbol, DwarfDebugMethodInfo dbgMethodInfo, MethodDataBundle methodBundle, List<LineInfo> lineInfos) {
+    private DebuggerDebugMethodInfo.RawData buildDebuggerMethodInfo(Config config, Clazz clazz, Symbol symbol,
+                                                                    DwarfDebugMethodInfo dbgMethodInfo, MethodDataBundle methodBundle,
+                                                                    List<LineInfo> lineInfos) {
         // sort line info by address an build
         lineInfos.sort(Comparator.comparingLong(LineInfo::getAddress));
 
@@ -483,6 +504,10 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             else
                 last = l.getColumnNumber();
         }
+
+        // pick up created line number mapper to remap line numbers for kotlin. for pure java it provides
+        // x->x mapping
+        LineNumberMapper lineNumberMapper = clazz.getAttachment(LineNumberMapper.class);
 
         // process variable slices -- assign debug information to each Local
         DebuggerDebugVariableSlicer localsDebugInfo = methodBundle.variablesInfo;
@@ -528,7 +553,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                     } else {
                         LineNumberTag tag = (LineNumberTag) v.getStartUnit().getTag("LineNumberTag");
                         if (tag != null)
-                            startLine = tag.getLineNumber();
+                            startLine = lineNumberMapper.map(tag.getLineNumber());
                         else
                             startLine = methodBundle.startLine;
                     }
@@ -542,7 +567,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                         if (endUnit != null)
                             tag = (LineNumberTag) endUnit.getTag("LineNumberTag");
                         if (tag != null)
-                            finalLine = tag.getLineNumber();
+                            finalLine = lineNumberMapper.map(tag.getLineNumber());
                         else
                             finalLine = methodBundle.startLine;
                     }
@@ -556,9 +581,11 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                 Local local = slice.locals.get(idx);
                 DwarfDebugVariableInfo alloca = dbgMethodInfo.variableByName(local.getName());
                 if (alloca == null) {
-                    // TODO: FIXME: exception is for debug only
-                    throw new Error();
-//                    continue;
+                    // bad: variable should be visible at this point but value in slot has wrong type
+                    if (config != null && config.getHome().isDev()) {
+                        config.getLogger().error("Alloca not found for variable " + local.getName());
+                    }
+                    continue;
                 }
 
                 // get indexes
@@ -724,6 +751,14 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
         // method signatures before compilation starts
         Set<String> methodsBeforeCompile;
+    }
+
+    /**
+     * interface declares line number mapping if it is required (e.g. kotlin case)
+     */
+    public interface LineNumberMapper {
+        LineNumberMapper DIRECT = l -> l;
+        int map(int l);
     }
 
     /**
