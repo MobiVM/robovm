@@ -60,6 +60,10 @@ import java.util.*;
  * or if we perform an ad-hoc/IPA build from the RoboVM menu.
  */
 public class RoboVmCompileTask implements CompileTask {
+    // A list of languages (other than java) for which we might expect to find .class files. Idea compiles these into separate directories,
+    // but only provides the /classes/java/main in the list of classpaths.
+    private static final String[] jvmLangs = {"groovy", "scala", "kotlin"};
+
     @Override
     public boolean execute(CompileContext context) {
         if(context.getMessageCount(CompilerMessageCategory.ERROR) > 0) {
@@ -319,6 +323,21 @@ public class RoboVmCompileTask implements CompileTask {
         return true;
     }
 
+    private void addClassPath(String path, Set<File> classPaths) {
+        File f = new File(path);
+        if(f.exists())
+            classPaths.add(f);
+        // if this refers to a java class path, add paths for other JVM languages as well
+        if(path.contains("/classes/java/")) {
+            for(String jvmLang: jvmLangs) {
+                File filePath = new File(path.replace("/java/", "/" + jvmLang + "/"));
+                if(filePath.exists()) {
+                    classPaths.add(filePath);
+                }
+            }
+        }
+    }
+
     private void configureClassAndSourcepaths(CompileContext context, Config.Builder builder, Module module) {
         // gather the boot and user classpaths. RoboVM RT libs may be
         // specified in a Maven/Gradle build file, in which case they'll
@@ -329,7 +348,7 @@ public class RoboVmCompileTask implements CompileTask {
         Set<File> bootClassPaths = new HashSet<File>();
         for(String path: classes.getPathsList().getPathList()) {
             if(!RoboVmPlugin.isSdkLibrary(path)) {
-                classPaths.add(new File(path));
+                addClassPath(path, classPaths);
             }
         }
 
@@ -341,7 +360,7 @@ public class RoboVmCompileTask implements CompileTask {
         for(Module mod: context.getCompileScope().getAffectedModules()) {
             String path = CompilerPaths.getModuleOutputPath(mod, false);
             if(path != null && !path.isEmpty()) {
-                classPaths.add(new File(path));
+                addClassPath(path, classPaths);
             } else {
                 RoboVmPlugin.logWarn(context.getProject(), "Output path of module %s not defined", mod.getName());
             }
