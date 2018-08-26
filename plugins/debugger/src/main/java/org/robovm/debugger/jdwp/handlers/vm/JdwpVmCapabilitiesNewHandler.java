@@ -75,22 +75,22 @@ public class JdwpVmCapabilitiesNewHandler implements IJdwpRequestHandler {
         //canSetDefaultStratum: Can the VM set a default stratum?
         output.writeBoolean(false);
 
-        //canGetInstanceInfo: Can the VM return instances, counts of instances of classes and referring objects?
+        //reserved16: Reserved for future capability
         output.writeBoolean(false);
 
-        //canRequestMonitorEvents: Can the VM request monitor events?
+        //reserved17: Reserved for future capability
         output.writeBoolean(false);
 
-        //canGetMonitorFrameInfo: Can the VM get monitors with frame depth info?
+        //reserved18: Reserved for future capability
         output.writeBoolean(false);
 
-        //canUseSourceNameFilters: Can the VM filter class prepare events by source name?
+        //reserved19: Reserved for future capability
         output.writeBoolean(false);
 
-        //canGetConstantPool: Can the VM return the constant pool information?
+        //reserved20: Reserved for future capability
         output.writeBoolean(false);
 
-        //canForceEarlyReturn: Can the VM force early return from a method?
+        //reserved21: Reserved for future capability
         output.writeBoolean(false);
 
         //reserved22: Reserved for future capability

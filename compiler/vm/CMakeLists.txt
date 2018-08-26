@@ -278,7 +278,7 @@ ExternalProject_Add(libatomic_ops
 ExternalProject_Add(extgc
   DEPENDS libatomic_ops
   GIT_REPOSITORY https://github.com/mobivm/bdwgc.git
-  GIT_TAG feafbd724bef0641e0435f195f8d8ddd595515f6
+  GIT_TAG c1e985028101ec710937b6c721d9f79941a15bce
   UPDATE_COMMAND ""
   PATCH_COMMAND bash -c "rm -rf libatomic_ops && ln -s ../../../libatomic_ops-prefix/src/libatomic_ops libatomic_ops"
   CONFIGURE_COMMAND bash -c "CC=${CMAKE_C_COMPILER} CFLAGS='${EXTGC_C_FLAGS}' LDFLAGS='${EXTGC_LD_FLAGS}' ./configure ${EXT_HOST} ${EXTGC_PARAMS} --prefix=${CMAKE_BINARY_DIR}/gc"

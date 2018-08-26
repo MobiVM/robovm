@@ -179,7 +179,7 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
 
                 case JdwpConsts.EventModifier.EXCEPTION_ONLY:
                     itemId = ((EventExceptionPredicate) predicate).refTypeId();
-                    if (delegates.state().classRefIdHolder().objectById(itemId) == null)
+                    if (itemId != 0 && delegates.state().classRefIdHolder().objectById(itemId) == null)
                         throw new DebuggerException(JdwpConsts.Error.INVALID_CLASS);
                     break;
 
