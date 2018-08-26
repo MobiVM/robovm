@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 RoboVM AB
+ * Copyright (C) 2018 Achrouf Abdenour <achroufabdenour@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,6 +25,7 @@ import static org.robovm.compiler.llvm.Type.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.llvm.Bitcast;
@@ -52,6 +54,8 @@ import soot.SootMethod;
  */
 public class NativeMethodCompiler extends AbstractMethodCompiler {
 
+    public static Set<String> JNI_LIBS_SYMBOLS = null;
+    
     public NativeMethodCompiler(Config config) {
         super(config);
     }
@@ -78,16 +82,6 @@ public class NativeMethodCompiler extends AbstractMethodCompiler {
         fn.add(new Ret(result));
 
         return fn;
-    }
-
-    private boolean isLongNativeFunctionNameRequired(SootMethod method) {
-        int nativeCount = 0;
-        for (SootMethod m : this.sootClass.getMethods()) {
-            if (m.isNative() && m.getName().equals(method.getName())) {
-                nativeCount++;
-            }
-        }
-        return nativeCount > 1;
     }
 
     private FunctionRef createNative(ModuleBuilder mb, SootMethod method) {
@@ -128,7 +122,16 @@ public class NativeMethodCompiler extends AbstractMethodCompiler {
          * The function with the long JNI name. This is the one that calls
          * _bcResolveNative() and then calls the implementation.
          */
-        Function fn = new FunctionBuilder(longName, nativeFunctionType).linkage(weak).build();
+        for (String symbol : JNI_LIBS_SYMBOLS) {
+            if (symbol == shortName) {
+                return new FunctionRef(shortName, nativeFunctionType);
+            }
+            if (symbol == longName) {
+                return new FunctionRef(longName, nativeFunctionType);
+            }
+        }
+        
+        Function fn = new FunctionBuilder(shortName, nativeFunctionType).linkage(weak).build();
 
         Global g = new Global(Symbols.nativeMethodPtrSymbol(targetInternalName, methodName, methodDesc),
                 new NullConstant(I8_PTR));
@@ -164,20 +167,6 @@ public class NativeMethodCompiler extends AbstractMethodCompiler {
         fn.add(new Ret(result));
         mb.addFunction(fn);
 
-        FunctionRef targetFn = fn.ref();
-
-        if (!isLongNativeFunctionNameRequired(method)) {
-            /*
-             * Generate a function with the short JNI name. This just calls the
-             * function with the long name.
-             */
-            Function fnShort = new FunctionBuilder(shortName, nativeFunctionType).linkage(weak).build();
-            Value resultInner = call(fnShort, fn.ref(), fnShort.getParameterRefs());
-            fnShort.add(new Ret(resultInner));
-            mb.addFunction(fnShort);
-            targetFn = fnShort.ref();
-        }
-
-        return targetFn;
+        return fn.ref();
     }
 }

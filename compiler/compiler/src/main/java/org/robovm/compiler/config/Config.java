@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2012 RoboVM AB
- *
+ * Copyright (C) 2018 Achrouf Abdenour <achroufabdenour@gmail.com>
+ * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -59,6 +60,7 @@ import org.robovm.compiler.clazz.Path;
 import org.robovm.compiler.config.OS.Family;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.config.tools.Tools;
+import org.robovm.compiler.globalopt.Optimizer;
 import org.robovm.compiler.llvm.DataLayout;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.plugin.CompilerPlugin;
@@ -206,6 +208,15 @@ public class Config {
     private boolean manuallyPreparedForLaunch = false;
     private int threads = Runtime.getRuntime().availableProcessors();
     private Logger logger = Logger.NULL_LOGGER;
+    
+    // fields used for global program optimisation
+    private boolean useGlobalOpt = false;
+    private boolean skipInlining = false;
+    private boolean skipDevirtualization = false;
+
+    private float inlineExpansionFactor = 3.0f;
+    private int inlineMaxContainerSize = 5000;
+    private int inlineMaxInlineeSize = 20;
 
     /*
      * The fields below are all initialized in build() and must not be included
@@ -227,7 +238,17 @@ public class Config {
     private transient DependencyGraph dependencyGraph;
     private transient Arch sliceArch;
     private transient StripArchivesBuilder stripArchivesBuilder;
+    
+    private Optimizer optimizer;
 
+    public void setOptimizer(Optimizer optimizer) {
+        this.optimizer = optimizer;
+    }
+
+    public Optimizer getOptimizer() {
+        return optimizer;
+    }
+	
     protected Config() throws IOException {
         // Add standard plugins
         this.plugins.addAll(0, Arrays.asList(
@@ -432,6 +453,30 @@ public class Config {
     public List<Resource> getResources() {
         return resources == null ? Collections.<Resource> emptyList()
                 : Collections.unmodifiableList(resources);
+    }
+    
+    public boolean useGlobalOptimisation() {
+        return useGlobalOpt;
+    }
+
+    public boolean skipInlining() {
+        return skipInlining;
+    }
+
+    public boolean skipDevirtualization() {
+        return skipDevirtualization;
+    }
+
+    public float getInlineExpansionFactor() {
+        return inlineExpansionFactor;
+    }
+
+    public int getInlineMaxContainerSize() {
+        return inlineMaxContainerSize;
+    }
+
+    public int getInlineMaxInlineeSize() {
+        return inlineMaxInlineeSize;
     }
 
     public File getOsArchDepLibDir() {
@@ -1492,6 +1537,36 @@ public class Config {
 
         public Builder tools(Tools tools) {
             config.tools = tools;
+            return this;
+        }
+        
+        public Builder useGlobalOpt(Boolean b) {
+            config.useGlobalOpt = b;
+            return this;
+        }
+
+        public Builder skipInlining(Boolean b) {
+            config.skipInlining = b;
+            return this;
+        }
+
+        public Builder skipDevirtualization(Boolean b) {
+            config.skipDevirtualization = b;
+            return this;
+        }
+
+        public Builder inlineExpansionFactor(Float value) {
+            config.inlineExpansionFactor = value;
+            return this;
+        }
+
+        public Builder inlineMaxContainerSize(Integer value) {
+            config.inlineMaxContainerSize = value;
+            return this;
+        }
+
+        public Builder inlineMaxInlineeSize(Integer value) {
+            config.inlineMaxInlineeSize = value;
             return this;
         }
 

@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2012 RoboVM AB
- *
+ * Copyright (C) 2018 Achrouf Abdenour <achroufabdenour@gmail.com>
+ * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -59,11 +60,22 @@ public class RamDiskTools {
         return newTmpDir;
     }
 
+    public File getCacheDirPrefix(File cacheDir, boolean useGlobalOpt) {
+        File cacheDirPrefix = null;
+
+        if (useGlobalOpt)
+            cacheDirPrefix = new File(cacheDir, "global");
+        else
+            cacheDirPrefix = new File(cacheDir, "modular");
+
+        return cacheDirPrefix;
+    }
+    
     /**
      * Checks if a RAM disk is available and prunes it if necessary.
      */
     public void setupRamDisk(Config config, File cacheDir, File tmpDir) {
-        this.newCacheDir = cacheDir;
+        this.newCacheDir = getCacheDirPrefix(cacheDir, config.useGlobalOptimisation());
         this.newTmpDir = tmpDir;
 
         if (OS.getDefaultOS() != OS.macosx) {
@@ -105,7 +117,7 @@ public class RamDiskTools {
                 }
             }
 
-            File newCacheDir = new File(volume, "cache");
+            File newCacheDir = getCacheDirPrefix(new File(volume, "cache"), config.useGlobalOptimisation());
             if (!newCacheDir.exists() && !newCacheDir.mkdirs()) {
                 config.getLogger().info("Couldn't create cache directory on RAM disk, using hard drive");
                 return;
@@ -121,7 +133,7 @@ public class RamDiskTools {
             this.newTmpDir = newTmpDir;
         } catch (Throwable t) {
             config.getLogger().error("Couldn't setup RAM disk, using hard drive, %s", t.getMessage());
-            this.newCacheDir = cacheDir;
+            this.newCacheDir = getCacheDirPrefix(cacheDir, config.useGlobalOptimisation());
             this.newTmpDir = tmpDir;
         }
     }

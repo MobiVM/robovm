@@ -770,6 +770,8 @@ public class MethodCompiler extends AbstractMethodCompiler {
             } else if (expr instanceof InterfaceInvokeExpr) {
                 trampoline = new Invokeinterface(this.className, targetClassName, methodName, methodDesc);
             }
+            if (config.useGlobalOptimisation())
+                trampoline.setResolvedMethod(config.getOptimizer().resolveMethod(expr));
             trampolines.add(trampoline);
 
             if (canCallDirectly(expr)) {

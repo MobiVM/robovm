@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 RoboVM AB
+ * Copyright (C) 2018 Achrouf Abdenour <achroufabdenour@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -57,6 +58,8 @@ import org.robovm.compiler.config.Config.TreeShakerMode;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
+import org.robovm.compiler.globalopt.ClassPreprocessor;
+import org.robovm.compiler.globalopt.Optimizer;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.plugin.LaunchPlugin;
 import org.robovm.compiler.plugin.Plugin;
@@ -70,6 +73,7 @@ import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.compiler.util.AntPathMatcher;
+import org.robovm.compiler.util.ArchiveSymbolReader;
 
 /**
  *
@@ -211,10 +215,14 @@ public class AppCompiler {
     private final ClassCompiler classCompiler;
     private final Linker linker;
 
-    public AppCompiler(Config config) {
+    public AppCompiler(Config config) throws ExecuteException, IOException {
         this.config = config;
         this.classCompiler = new ClassCompiler(config);
         this.linker = new Linker(config);
+        
+        ArchiveSymbolReader archiveSymbolReader;
+        archiveSymbolReader = new ArchiveSymbolReader(config);
+        NativeMethodCompiler.JNI_LIBS_SYMBOLS = archiveSymbolReader.readSymbolsFromArchives();
     }
 
     public Config getConfig() {
@@ -385,32 +393,83 @@ public class AppCompiler {
         long start = System.currentTimeMillis();
         Set<Clazz> linkClasses = new HashSet<Clazz>();
         int compiledCount = 0;
-        outer: while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
+        if (config.useGlobalOptimisation()) {
+            ClassPreprocessor classPreprocessor = new ClassPreprocessor(config);
+            config.getLogger().info("searching for classes dependecies ...");
+
+            long classes_search_start = System.currentTimeMillis();
+
+            /*
+             * In Global Mode All classes must be present before doing any compilation
+             * we have to optimize the program globally before doing that. 
+             * The ClassPreprocessor will find all the needed dependencies from the given root classes.
+             */
             while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
-                Clazz clazz = compileQueue.pollFirst();
-                if (!linkClasses.contains(clazz)) {
-                    if (compile(executor, listenerWrapper, clazz, compileQueue, linkClasses)) {
-                        compiledCount++;
-                        if (listenerWrapper.t != null) {
-                            // We have a failed compilation. Stop compiling.
-                            break outer;
-                        }
-                    }
-
-                    dependencyGraph.add(clazz, rootClasses.contains(clazz));
-                    linkClasses.add(clazz);
-
-                    if (compileDependencies) {
+                while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
+                    Clazz clazz = compileQueue.pollFirst();
+                    if (!linkClasses.contains(clazz)) {
+                        classPreprocessor.preprocessClass(clazz);
+                        dependencyGraph.add(clazz, rootClasses.contains(clazz));
+                        linkClasses.add(clazz);
                         addMetaInfImplementations(config.getClazzes(), clazz, linkClasses, compileQueue);
                     }
                 }
-            }
 
-            if (compileDependencies) {
                 for (String className : dependencyGraph.findReachableClasses()) {
                     Clazz depClazz = config.getClazzes().load(className);
                     if (depClazz != null && !linkClasses.contains(depClazz)) {
                         compileQueue.add(depClazz);
+                    }
+                }
+            }
+
+            long classes_search_end = System.currentTimeMillis() - classes_search_start;
+
+            config.getLogger().info("Searching for classes done in %.2f seconds", classes_search_end / 1000.0);
+
+            Optimizer optimizer = new Optimizer(config, linkClasses);
+
+            optimizer.doOptimisation();
+
+            config.setOptimizer(optimizer);
+            config.getLogger().info("Compiling classes using %d threads", config.getThreads());
+
+            for (Clazz clazz : linkClasses) {
+                classCompiler.compile(clazz, executor, listenerWrapper);
+                compiledCount++;
+                if (listenerWrapper.t != null) {
+                    // We have a failed compilation. Stop compiling.
+                    break;
+                }
+            }
+        } else {
+            outer: while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
+                while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
+                    Clazz clazz = compileQueue.pollFirst();
+                    if (!linkClasses.contains(clazz)) {
+                        if (compile(executor, listenerWrapper, clazz, compileQueue, linkClasses)) {
+                            compiledCount++;
+                            if (listenerWrapper.t != null) {
+                                // We have a failed compilation. Stop compiling.
+                                break outer;
+                            }
+                        }
+
+                        dependencyGraph.add(clazz, rootClasses.contains(clazz));
+                        linkClasses.add(clazz);
+
+                        if (compileDependencies) {
+                            addMetaInfImplementations(config.getClazzes(), clazz, linkClasses, compileQueue);
+                        }
+                    }
+                }
+
+                if (compileDependencies) {
+                    for (String className : dependencyGraph.findReachableClasses()) {
+                        Clazz depClazz = config.getClazzes().load(className);
+                        if (depClazz != null && !linkClasses.contains(depClazz)) {
+                            compileQueue.add(depClazz);
+                        }
                     }
                 }
             }
@@ -613,6 +672,21 @@ public class AppCompiler {
                             builder.addResource(new Resource(new File(p)));
                         }
                     }
+                } else if ("-gopt".equals(args[i]) || "-globalopt".equals(args[i])) {
+                    builder.useGlobalOpt(true);
+                } else if ("-noInlining".equals(args[i])) {
+                    builder.skipInlining(true);
+                } else if ("-noDevirtualization".equals(args[i])) {
+                    builder.skipDevirtualization(true);
+                } else if ("-expansionFactor".equals(args[i])) {
+                    String s = args[++i];
+                    builder.inlineExpansionFactor(Float.parseFloat(s));
+                } else if ("-maxContainerSize".equals(args[i])) {
+                    String s = args[++i];
+                    builder.inlineMaxContainerSize(Integer.parseInt(s));
+                } else if ("-maxInlineeSize".equals(args[i])) {
+                    String s = args[++i];
+                    builder.inlineMaxInlineeSize(Integer.parseInt(s));
                 } else if ("-strip-archives-include".equals(args[i])) {
                    stripArchivesBuilder.addInclude(args[++i].split(":"));
                 } else if ("-strip-archives-exclude".equals(args[i])) {
@@ -977,6 +1051,13 @@ public class AppCompiler {
                          + "                        If a pattern is specified the longest non-pattern path before\n" 
                          + "                        the first wildcard will be used as base directory and will\n" 
                          + "                        not be recreated in the install dir.");
+        System.err.println("  -globalopt                                                     ");
+        System.err.println("  -gopt                         enable whole program optimisation");
+        System.err.println("  -noInlining                   Disable method inlining");
+        System.err.println("  -noDevirtualization           Disable method devirtualisation");
+        System.err.println("  -inlineExpansionFactor <num>  Set method inlining Expansion Factor");
+        System.err.println("  -maxContainerSize <num>       Set the maximum container size for method inlining");
+        System.err.println("  -maxInlineeSize <num>         Set the maximum size of a method to be inlined");
         System.err.println("  -strip-archives-include <list>\n" 
                          + "                        : separated list of file patterns. Matching files will always\n"
                          + "                        be included when stripping archives. The default is to include\n"

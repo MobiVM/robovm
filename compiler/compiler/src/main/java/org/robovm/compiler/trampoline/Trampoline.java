@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2012 RoboVM AB
- *
+ * Copyright (C) 2018 Achrouf Abdenour <achroufabdenour@gmail.com>
+ * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -22,6 +23,8 @@ import org.robovm.compiler.Symbols;
 import org.robovm.compiler.llvm.FunctionRef;
 import org.robovm.compiler.llvm.FunctionType;
 
+import soot.SootMethod;
+
 
 /**
  *
@@ -32,10 +35,20 @@ public abstract class Trampoline implements Comparable<Trampoline>, Serializable
     
     protected final String callingClass;
     protected final String target;
+    
+    private SootMethod resolvedMethod = null;
 
     protected Trampoline(String callingClass, String target) {
         this.callingClass = callingClass;
         this.target = target;
+    }
+    
+    public void setResolvedMethod(SootMethod method) {
+        this.resolvedMethod = method;
+    }
+
+    public SootMethod getResolvedMethod() {
+        return resolvedMethod;
     }
 
     public String getCallingClass() {
