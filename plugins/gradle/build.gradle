@@ -18,13 +18,13 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 group = 'com.mobidevelop.robovm'
 archivesBaseName = 'robovm-gradle-plugin'
-version = '2.3.5'
+version = '2.3.6-SNAPSHOT'
 
 sourceCompatibility = '1.7'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 ext {
-                                                roboVMVersion = '2.3.5'
+                                                    roboVMVersion = '2.3.6-SNAPSHOT'
 }
 
 repositories {
