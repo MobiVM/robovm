@@ -8,7 +8,7 @@
 
   <groupId>com.mobidevelop.robovm</groupId>
   <artifactId>org.robovm.eclipse.parent</artifactId>
-  <version>2.3.5.201809041836</version>
+  <version>2.3.6-SNAPSHOT</version>
   <name>RoboVM for Eclipse</name>
   <packaging>pom</packaging>
 

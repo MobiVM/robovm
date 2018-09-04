@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jdt.junit,
  org.eclipse.jdt.junit.runtime,
  org.eclipse.jdt.junit4.runtime
-Bundle-Version: 2.3.5.201809041836
+Bundle-Version: 2.3.6.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.robovm.eclipse.RoboVMPlugin
 Bundle-SymbolicName: org.robovm.eclipse.ui;singleton:=true
