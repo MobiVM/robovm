@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.mobidevelop.robovm</groupId>
     <artifactId>robovm-templates-parent</artifactId>
-    <version>2.3.5-SNAPSHOT</version>
+    <version>2.3.5</version>
   </parent>
 
   <artifactId>robovm-templates-console</artifactId>
