@@ -197,6 +197,7 @@ public class Config {
     private File cacheDir = new File(System.getProperty("user.home"), ".robovm/cache");
     private File ccBinPath = null;
 
+    private boolean useGlobalOpt = false;
     private boolean clean = false;
     private boolean debug = false;
     private boolean useDebugLibs = false;
@@ -371,6 +372,11 @@ public class Config {
         return dependencyGraph;
     }
     
+    public DependencyGraph resetDependencyGraph() {
+        dependencyGraph = new DependencyGraph(getTreeShakerMode());
+        return dependencyGraph;
+    }
+    
     public File getTmpDir() {
         if (tmpDir == null) {
             try {
@@ -432,6 +438,10 @@ public class Config {
     public List<Resource> getResources() {
         return resources == null ? Collections.<Resource> emptyList()
                 : Collections.unmodifiableList(resources);
+    }
+    
+    public boolean useGlobalOptimisation() {
+        return useGlobalOpt;
     }
 
     public File getOsArchDepLibDir() {
@@ -1492,6 +1502,11 @@ public class Config {
 
         public Builder tools(Tools tools) {
             config.tools = tools;
+            return this;
+        }
+        
+        public Builder useGlobalOpt(Boolean b) {
+            config.useGlobalOpt = b;
             return this;
         }
 

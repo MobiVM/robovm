@@ -812,7 +812,7 @@ public class ClassCompiler {
         // This has to be done before createInfoStruct() is called otherwise the
         // ClassInfoHeader->initializer value will become NULL and constant static fields
         // will never be initialized.
-        if (!sootClass.declaresMethodByName("<clinit>") && hasConstantValueTags(classFields)) {
+        if (!config.useGlobalOptimisation() && !sootClass.declaresMethodByName("<clinit>") && hasConstantValueTags(classFields)) {
             SootMethod clinit = new SootMethod("<clinit>", Collections.EMPTY_LIST, VoidType.v(), Modifier.STATIC);
             JimpleBody body = Jimple.v().newBody(clinit);
             clinit.setActiveBody(body);
@@ -820,7 +820,7 @@ public class ClassCompiler {
             this.sootClass.addMethod(clinit);
         }
 
-        if (isStruct(sootClass)) {
+        if (!config.useGlobalOptimisation() && isStruct(sootClass)) {
             SootMethod _sizeOf = new SootMethod("_sizeOf", Collections.EMPTY_LIST, IntType.v(), Modifier.PROTECTED | Modifier.NATIVE);
             sootClass.addMethod(_sizeOf);
             SootMethod sizeOf = new SootMethod("sizeOf", Collections.EMPTY_LIST, IntType.v(), Modifier.PUBLIC | Modifier.STATIC | Modifier.NATIVE);
@@ -1030,7 +1030,8 @@ public class ClassCompiler {
                 ci.addInvoke(t.getTarget() + "." + ((Invoke) t).getMethodName() + ((Invoke) t).getMethodDesc());
             }
         }
-        clazz.saveClazzInfo();
+        if (!config.useGlobalOptimisation())
+            clazz.saveClazzInfo();
     }
 
     private static void addClassDependencyIfNeeded(Clazz clazz, soot.Type type, boolean weak) {

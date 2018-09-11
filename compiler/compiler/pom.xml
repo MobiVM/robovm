@@ -90,13 +90,12 @@
     <dependency>
       <groupId>com.mobidevelop.robovm</groupId>
       <artifactId>robovm-soot</artifactId>
-      <version>2.5.0-5</version>
+      <version>2.5.0-6-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.mobidevelop.robovm</groupId>
       <artifactId>robovm-rt</artifactId>
       <version>${project.version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

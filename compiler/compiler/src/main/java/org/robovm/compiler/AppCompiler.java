@@ -57,6 +57,8 @@ import org.robovm.compiler.config.Config.TreeShakerMode;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
+import org.robovm.compiler.globalopt.ClassPreprocessor;
+import org.robovm.compiler.globalopt.Inliner;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.plugin.LaunchPlugin;
 import org.robovm.compiler.plugin.Plugin;
@@ -70,6 +72,7 @@ import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.compiler.util.AntPathMatcher;
+import org.robovm.compiler.util.ArchiveSymbolReader;
 
 /**
  *
@@ -211,10 +214,14 @@ public class AppCompiler {
     private final ClassCompiler classCompiler;
     private final Linker linker;
 
-    public AppCompiler(Config config) {
+    public AppCompiler(Config config) throws ExecuteException, IOException {
         this.config = config;
         this.classCompiler = new ClassCompiler(config);
         this.linker = new Linker(config);
+        
+        ArchiveSymbolReader archiveSymbolReader;
+        archiveSymbolReader = new ArchiveSymbolReader(config);
+        NativeMethodCompiler.JNI_LIBS_SYMBOLS = archiveSymbolReader.readSymbolsFromArchives();
     }
 
     public Config getConfig() {
@@ -385,32 +392,85 @@ public class AppCompiler {
         long start = System.currentTimeMillis();
         Set<Clazz> linkClasses = new HashSet<Clazz>();
         int compiledCount = 0;
-        outer: while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
+        if (config.useGlobalOptimisation()) {
+            ClassPreprocessor classPreprocessor = new ClassPreprocessor(config);
+            config.getLogger().info("searching for classes dependecies ...");
+
+            long classes_search_start = System.currentTimeMillis();
+
+            /*
+             * In Global Mode All classes must be present before doing any compilation
+             * we have to optimize the program globally before doing that. 
+             * The ClassPreprocessor will find all the needed dependencies from the given root classes.
+             */
             while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
-                Clazz clazz = compileQueue.pollFirst();
-                if (!linkClasses.contains(clazz)) {
-                    if (compile(executor, listenerWrapper, clazz, compileQueue, linkClasses)) {
-                        compiledCount++;
-                        if (listenerWrapper.t != null) {
-                            // We have a failed compilation. Stop compiling.
-                            break outer;
-                        }
-                    }
-
-                    dependencyGraph.add(clazz, rootClasses.contains(clazz));
-                    linkClasses.add(clazz);
-
-                    if (compileDependencies) {
+                while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
+                    Clazz clazz = compileQueue.pollFirst();
+                    if (!linkClasses.contains(clazz)) {
+                        classPreprocessor.preprocessClass(clazz);
+                        dependencyGraph.add(clazz, rootClasses.contains(clazz));
+                        linkClasses.add(clazz);
                         addMetaInfImplementations(config.getClazzes(), clazz, linkClasses, compileQueue);
                     }
                 }
-            }
 
-            if (compileDependencies) {
                 for (String className : dependencyGraph.findReachableClasses()) {
                     Clazz depClazz = config.getClazzes().load(className);
                     if (depClazz != null && !linkClasses.contains(depClazz)) {
                         compileQueue.add(depClazz);
+                    }
+                }
+            }
+
+            long classes_search_end = System.currentTimeMillis() - classes_search_start;
+
+            config.getLogger().info("Searching for classes done in %.2f seconds", classes_search_end / 1000.0);
+
+            Inliner inliner = new Inliner(config, linkClasses);
+
+            inliner.doOptimisation();
+
+            config.getLogger().info("Compiling classes using %d threads", config.getThreads());
+
+            dependencyGraph = config.resetDependencyGraph();
+            
+            for (Clazz clazz : linkClasses) {
+                classCompiler.compile(clazz, executor, listenerWrapper);
+                dependencyGraph.add(clazz, rootClasses.contains(clazz));
+                compiledCount++;
+                if (listenerWrapper.t != null) {
+                    // We have a failed compilation. Stop compiling.
+                    break;
+                }
+            }
+        } else {
+            outer: while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
+                while (!compileQueue.isEmpty() && !Thread.currentThread().isInterrupted()) {
+                    Clazz clazz = compileQueue.pollFirst();
+                    if (!linkClasses.contains(clazz)) {
+                        if (compile(executor, listenerWrapper, clazz, compileQueue, linkClasses)) {
+                            compiledCount++;
+                            if (listenerWrapper.t != null) {
+                                // We have a failed compilation. Stop compiling.
+                                break outer;
+                            }
+                        }
+
+                        dependencyGraph.add(clazz, rootClasses.contains(clazz));
+                        linkClasses.add(clazz);
+
+                        if (compileDependencies) {
+                            addMetaInfImplementations(config.getClazzes(), clazz, linkClasses, compileQueue);
+                        }
+                    }
+                }
+
+                if (compileDependencies) {
+                    for (String className : dependencyGraph.findReachableClasses()) {
+                        Clazz depClazz = config.getClazzes().load(className);
+                        if (depClazz != null && !linkClasses.contains(depClazz)) {
+                            compileQueue.add(depClazz);
+                        }
                     }
                 }
             }
@@ -613,6 +673,8 @@ public class AppCompiler {
                             builder.addResource(new Resource(new File(p)));
                         }
                     }
+                } else if ("-gopt".equals(args[i])) {
+                    builder.useGlobalOpt(true);
                 } else if ("-strip-archives-include".equals(args[i])) {
                    stripArchivesBuilder.addInclude(args[++i].split(":"));
                 } else if ("-strip-archives-exclude".equals(args[i])) {
@@ -937,6 +999,7 @@ public class AppCompiler {
                          + "                        removes unreachable methods marked as @WeaklyLinked. Methods\n" 
                          + "                        in the main class and in force linked classes will never be\n" 
                          + "                        stripped. Default is 'none'.");
+        System.err.println("  -gopt                 Enable whole program optimisation (Inliner).");
         System.err.println("  -threads <n>          The number of threads to use during class compilation. By\n" 
                          + "                        default the number returned by Runtime.availableProcessors()\n" 
                          + "                        will be used (" + Runtime.getRuntime().availableProcessors() + " on this host).");

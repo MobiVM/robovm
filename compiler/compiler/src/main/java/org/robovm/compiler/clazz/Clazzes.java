@@ -196,6 +196,7 @@ public class Clazzes {
         Options.v().set_print_tags_in_output(true);
         Options.v().set_allow_phantom_refs(true);
         Options.v().set_keep_line_number(true);
+        Options.v().set_whole_program(true);
         Options.v().set_soot_classpath(getSootClasspath(clazzes));
 
         /*

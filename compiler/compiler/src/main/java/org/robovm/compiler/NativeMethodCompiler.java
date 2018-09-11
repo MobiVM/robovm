@@ -24,6 +24,7 @@ import static org.robovm.compiler.llvm.Type.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.llvm.Bitcast;
@@ -52,6 +53,8 @@ import soot.SootMethod;
  */
 public class NativeMethodCompiler extends AbstractMethodCompiler {
 
+    public static Set<String> JNI_LIBS_SYMBOLS = null;
+    
     public NativeMethodCompiler(Config config) {
         super(config);
     }
@@ -128,6 +131,15 @@ public class NativeMethodCompiler extends AbstractMethodCompiler {
          * The function with the long JNI name. This is the one that calls
          * _bcResolveNative() and then calls the implementation.
          */
+        for (String symbol : JNI_LIBS_SYMBOLS) {
+            if (symbol == shortName) {
+                return new FunctionRef(shortName, nativeFunctionType);
+            }
+            if (symbol == longName) {
+                return new FunctionRef(longName, nativeFunctionType);
+            }
+        }
+
         Function fn = new FunctionBuilder(longName, nativeFunctionType).linkage(weak).build();
 
         Global g = new Global(Symbols.nativeMethodPtrSymbol(targetInternalName, methodName, methodDesc),

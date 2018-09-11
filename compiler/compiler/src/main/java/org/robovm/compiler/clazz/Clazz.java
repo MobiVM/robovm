@@ -122,6 +122,9 @@ public abstract class Clazz implements Comparable<Clazz> {
     public SootClass getSootClass() {
         if (sootClass == null) {
             sootClass = clazzes.getSootClass(this);
+            
+           
+            sootClass.setApplicationClass();
         }
         return sootClass;
     }

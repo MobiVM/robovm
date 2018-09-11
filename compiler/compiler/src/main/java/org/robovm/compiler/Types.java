@@ -24,6 +24,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.llvm.AggregateType;
@@ -629,5 +631,10 @@ public class Types {
     
     public static List<SootField> getInstanceFields(OS os, Arch arch, SootClass clazz) {
         return getFields(os, arch, clazz, false);
+    }
+    
+    public static ImmutableTriple<String, String, String> getMethodTriple(Clazz methodClazz, SootMethod method) {
+        return new ImmutableTriple<String, String, String>(methodClazz.getInternalName(), method.getName(),
+                Types.getDescriptor(method));
     }
 }
