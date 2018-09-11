@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2012 RoboVM AB
- * Copyright (C) 2018 Achrouf Abdenour <achroufabdenour@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -84,6 +83,16 @@ public class NativeMethodCompiler extends AbstractMethodCompiler {
         return fn;
     }
 
+    private boolean isLongNativeFunctionNameRequired(SootMethod method) {
+        int nativeCount = 0;
+        for (SootMethod m : this.sootClass.getMethods()) {
+            if (m.isNative() && m.getName().equals(method.getName())) {
+                nativeCount++;
+            }
+        }
+        return nativeCount > 1;
+    }
+
     private FunctionRef createNative(ModuleBuilder mb, SootMethod method) {
         String targetInternalName = getInternalName(method.getDeclaringClass());
         String methodName = method.getName();
@@ -130,8 +139,8 @@ public class NativeMethodCompiler extends AbstractMethodCompiler {
                 return new FunctionRef(longName, nativeFunctionType);
             }
         }
-        
-        Function fn = new FunctionBuilder(shortName, nativeFunctionType).linkage(weak).build();
+
+        Function fn = new FunctionBuilder(longName, nativeFunctionType).linkage(weak).build();
 
         Global g = new Global(Symbols.nativeMethodPtrSymbol(targetInternalName, methodName, methodDesc),
                 new NullConstant(I8_PTR));
@@ -167,6 +176,20 @@ public class NativeMethodCompiler extends AbstractMethodCompiler {
         fn.add(new Ret(result));
         mb.addFunction(fn);
 
-        return fn.ref();
+        FunctionRef targetFn = fn.ref();
+
+        if (!isLongNativeFunctionNameRequired(method)) {
+            /*
+             * Generate a function with the short JNI name. This just calls the
+             * function with the long name.
+             */
+            Function fnShort = new FunctionBuilder(shortName, nativeFunctionType).linkage(weak).build();
+            Value resultInner = call(fnShort, fn.ref(), fnShort.getParameterRefs());
+            fnShort.add(new Ret(resultInner));
+            mb.addFunction(fnShort);
+            targetFn = fnShort.ref();
+        }
+
+        return targetFn;
     }
 }

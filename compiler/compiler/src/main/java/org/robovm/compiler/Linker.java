@@ -316,7 +316,7 @@ public class Linker {
         }
 
         Set<String> reachableMethods = new HashSet<>();
-        for (Triple<String, String, String> node : config.getDependencyGraph().getReachableMethods()) {
+        for (Triple<String, String, String> node : config.getDependencyGraph().findReachableMethods()) {
             reachableMethods.add(node.getLeft() + "." + node.getMiddle() + node.getRight());
         }
         

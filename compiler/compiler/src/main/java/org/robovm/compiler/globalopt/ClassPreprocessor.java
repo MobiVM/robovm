@@ -41,22 +41,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Executor;
 
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
+import org.robovm.compiler.Access;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.clazz.ClazzInfo;
 import org.robovm.compiler.clazz.MethodInfo;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.llvm.Constant;
-import org.robovm.compiler.llvm.Global;
-import org.robovm.compiler.llvm.IntegerConstant;
-import org.robovm.compiler.llvm.Linkage;
-import org.robovm.compiler.llvm.PackedStructureConstant;
 import org.robovm.compiler.llvm.PointerType;
 import org.robovm.compiler.llvm.Type;
-import org.robovm.compiler.plugin.CompilerPlugin;
 import org.robovm.compiler.trampoline.Anewarray;
 import org.robovm.compiler.trampoline.Checkcast;
 import org.robovm.compiler.trampoline.FieldAccessor;
@@ -82,7 +76,6 @@ import soot.CharType;
 import soot.FloatType;
 import soot.Immediate;
 import soot.IntType;
-import soot.Local;
 import soot.LongType;
 import soot.Modifier;
 import soot.NullType;
@@ -98,7 +91,6 @@ import soot.SootMethod;
 import soot.SootMethodRef;
 import soot.Trap;
 import soot.Unit;
-import soot.Value;
 import soot.VoidType;
 import soot.jimple.ArrayRef;
 import soot.jimple.CastExpr;
@@ -122,7 +114,6 @@ import soot.jimple.ReturnStmt;
 import soot.jimple.SpecialInvokeExpr;
 import soot.jimple.StaticFieldRef;
 import soot.jimple.StaticInvokeExpr;
-import soot.jimple.Stmt;
 import soot.jimple.TableSwitchStmt;
 import soot.jimple.VirtualInvokeExpr;
 import soot.jimple.internal.JReturnVoidStmt;
@@ -143,8 +134,7 @@ import soot.util.Chain;
 
 /**
  * @author Achrouf Abdenour The ClassPreprocessor act like the ClassCompiler but
- *         don't compile anything it just find all class dependecies for a given
- *         class
+ * don't compile anything it just find all class dependecies for a given class.
  */
 
 public class ClassPreprocessor {
@@ -178,6 +168,8 @@ public class ClassPreprocessor {
     }
 
     public void preprocessClass(Clazz clazz) throws IOException {
+        config.getLogger().info("Preprocessing class %s", clazz.getClassName());
+        
         reset();
         ClazzInfo ci = clazz.resetClazzInfo();
         className = clazz.getInternalName();
@@ -193,7 +185,7 @@ public class ClassPreprocessor {
             JimpleBody body = Jimple.v().newBody(clinit);
             clinit.setActiveBody(body);
             body.getUnits().add(new JReturnVoidStmt());
-            clazz.sootClass.addMethod(clinit);
+            clazz.getSootClass().addMethod(clinit);
         }
 
         if (isStruct(sootClass)) {
@@ -218,6 +210,10 @@ public class ClassPreprocessor {
             Set<Triple<String, String, String>> mDeps = new HashSet<>();
 
             addDependencyIfNeeded(deps, clazz, trampoline);
+            
+            if (!checkClassExists(trampoline) || !checkClassAccessible(trampoline)) {
+                continue;
+            }
 
             if (trampoline instanceof FieldAccessor) {
                 SootField field = resolveField((FieldAccessor) trampoline);
@@ -317,7 +313,46 @@ public class ClassPreprocessor {
         ci.addClassDependencies(attributesDeps, false);
         ci.addClassDependencies(catches, false);
 
-        clazz.setClazzInfo(ci);
+        clazz.saveClazzInfo();
+    }
+    
+    private boolean checkClassExists(Trampoline t) {
+        String targetClassName = t.getTarget();
+        if (isArray(targetClassName)) {
+            if (isPrimitiveBaseType(targetClassName)) {
+                return true;
+            }
+            targetClassName = getBaseType(targetClassName);
+        }
+
+        Clazz target = config.getClazzes().load(targetClassName);
+        if (target != null) {
+            Clazz caller = config.getClazzes().load(t.getCallingClass());
+            // If caller is in the bootclasspath it only sees classes in the
+            // bootclasspath
+            if (!caller.isInBootClasspath() || target.isInBootClasspath()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean checkClassAccessible(Trampoline t) {
+        Clazz caller = config.getClazzes().load(t.getCallingClass());
+
+        String targetClassName = t.getTarget();
+        if (isArray(targetClassName)) {
+            if (isPrimitiveBaseType(targetClassName)) {
+                return true;
+            }
+            targetClassName = getBaseType(targetClassName);
+        }
+        Clazz target = config.getClazzes().load(targetClassName);
+        if (Access.checkClassAccessible(target, caller)) {
+            return true;
+        }
+        return false;
     }
 
     public void encode(Set<String> dependencies) {
@@ -793,21 +828,6 @@ public class ClassPreprocessor {
         }
     }
 
-    private void throwNoSuchMethodError(Invoke invoke) {
-        throw new RuntimeException("No such Method " + invoke.getTarget().replace('/', '.') +
-                invoke.getMethodName() + invoke.getMethodDesc());
-    }
-
-    private void throwNoSuchFieldError(FieldAccessor accessor) {
-        throw new RuntimeException("No such Field " +
-                accessor.getTarget().replace('/', '.') +
-                accessor.getFieldName());
-    }
-
-    private void throwIncompatibleChangeError(String message, Object... args) {
-        throw new RuntimeException(String.format(message, args));
-    }
-
     private SootMethod resolveMethod(Invoke t) {
         SootClass target = config.getClazzes().load(t.getTarget()).getSootClass();
         String name = t.getMethodName();
@@ -821,21 +841,15 @@ public class ClassPreprocessor {
         if ("<clinit>".equals(name) || "<init>".equals(name)) {
             // This is not part of method resolution but we
             // need to handle it somehow.
-            throwNoSuchMethodError(t);
             return null;
         }
         SootMethod method = resolveMethod(target, name, desc);
         if (method == null) {
-            throwNoSuchMethodError(t);
             return null;
         }
         if (t.isStatic() && !method.isStatic()) {
-            throwIncompatibleChangeError(EXPECTED_STATIC_METHOD,
-                    target, name, desc);
             return null;
         } else if (!t.isStatic() && method.isStatic()) {
-            throwIncompatibleChangeError(EXPECTED_NON_STATIC_METHOD,
-                    target, name, desc);
             return null;
         }
         return method;
@@ -876,13 +890,11 @@ public class ClassPreprocessor {
         String name = t.getMethodName();
         String desc = t.getMethodDesc();
         if (!target.isInterface()) {
-            throwIncompatibleChangeError(EXPECTED_INTERFACE_BUT_FOUND_CLASS, target);
             return null;
         }
         if ("<clinit>".equals(name) || "<init>".equals(name)) {
             // This is not part of interface method resolution but we
             // need to handle it somehow.
-            throwNoSuchMethodError(t);
             return null;
         }
         SootMethod method = resolveInterfaceMethod(target, name, desc);
@@ -891,12 +903,9 @@ public class ClassPreprocessor {
             method = getMethod(javaLangObject, name, desc);
         }
         if (method == null) {
-            throwNoSuchMethodError(t);
             return null;
         }
         if (method.isStatic()) {
-            throwIncompatibleChangeError(EXPECTED_NON_STATIC_METHOD,
-                    target, name, desc);
             return null;
         }
         return method;
@@ -934,18 +943,12 @@ public class ClassPreprocessor {
         String desc = t.getFieldDesc();
         SootField field = resolveField(target, name, desc);
         if (field == null) {
-            throwNoSuchFieldError(t);
             return null;
         }
-
         if (!field.isStatic() && t.isStatic()) {
-            throwIncompatibleChangeError(EXPECTED_STATIC_FIELD,
-                    field.getDeclaringClass(), t.getFieldName());
             return null;
         }
         if (field.isStatic() && !t.isStatic()) {
-            throwIncompatibleChangeError(EXPECTED_NON_STATIC_FIELD,
-                    field.getDeclaringClass(), t.getFieldName());
             return null;
         }
         return field;

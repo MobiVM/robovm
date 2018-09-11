@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2012 RoboVM AB
- * Copyright (C) 2018 Achrouf Abdenour <achroufabdenour@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -59,7 +58,7 @@ import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.globalopt.ClassPreprocessor;
-import org.robovm.compiler.globalopt.Optimizer;
+import org.robovm.compiler.globalopt.Inliner;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.plugin.LaunchPlugin;
 import org.robovm.compiler.plugin.Plugin;
@@ -427,15 +426,17 @@ public class AppCompiler {
 
             config.getLogger().info("Searching for classes done in %.2f seconds", classes_search_end / 1000.0);
 
-            Optimizer optimizer = new Optimizer(config, linkClasses);
+            Inliner inliner = new Inliner(config, linkClasses);
 
-            optimizer.doOptimisation();
+            inliner.doOptimisation();
 
-            config.setOptimizer(optimizer);
             config.getLogger().info("Compiling classes using %d threads", config.getThreads());
 
+            dependencyGraph = config.resetDependencyGraph();
+            
             for (Clazz clazz : linkClasses) {
                 classCompiler.compile(clazz, executor, listenerWrapper);
+                dependencyGraph.add(clazz, rootClasses.contains(clazz));
                 compiledCount++;
                 if (listenerWrapper.t != null) {
                     // We have a failed compilation. Stop compiling.
@@ -672,21 +673,8 @@ public class AppCompiler {
                             builder.addResource(new Resource(new File(p)));
                         }
                     }
-                } else if ("-gopt".equals(args[i]) || "-globalopt".equals(args[i])) {
+                } else if ("-gopt".equals(args[i])) {
                     builder.useGlobalOpt(true);
-                } else if ("-noInlining".equals(args[i])) {
-                    builder.skipInlining(true);
-                } else if ("-noDevirtualization".equals(args[i])) {
-                    builder.skipDevirtualization(true);
-                } else if ("-expansionFactor".equals(args[i])) {
-                    String s = args[++i];
-                    builder.inlineExpansionFactor(Float.parseFloat(s));
-                } else if ("-maxContainerSize".equals(args[i])) {
-                    String s = args[++i];
-                    builder.inlineMaxContainerSize(Integer.parseInt(s));
-                } else if ("-maxInlineeSize".equals(args[i])) {
-                    String s = args[++i];
-                    builder.inlineMaxInlineeSize(Integer.parseInt(s));
                 } else if ("-strip-archives-include".equals(args[i])) {
                    stripArchivesBuilder.addInclude(args[++i].split(":"));
                 } else if ("-strip-archives-exclude".equals(args[i])) {
@@ -1011,6 +999,7 @@ public class AppCompiler {
                          + "                        removes unreachable methods marked as @WeaklyLinked. Methods\n" 
                          + "                        in the main class and in force linked classes will never be\n" 
                          + "                        stripped. Default is 'none'.");
+        System.err.println("  -gopt                 Enable whole program optimisation (Inliner).");
         System.err.println("  -threads <n>          The number of threads to use during class compilation. By\n" 
                          + "                        default the number returned by Runtime.availableProcessors()\n" 
                          + "                        will be used (" + Runtime.getRuntime().availableProcessors() + " on this host).");
@@ -1051,13 +1040,6 @@ public class AppCompiler {
                          + "                        If a pattern is specified the longest non-pattern path before\n" 
                          + "                        the first wildcard will be used as base directory and will\n" 
                          + "                        not be recreated in the install dir.");
-        System.err.println("  -globalopt                                                     ");
-        System.err.println("  -gopt                         enable whole program optimisation");
-        System.err.println("  -noInlining                   Disable method inlining");
-        System.err.println("  -noDevirtualization           Disable method devirtualisation");
-        System.err.println("  -inlineExpansionFactor <num>  Set method inlining Expansion Factor");
-        System.err.println("  -maxContainerSize <num>       Set the maximum container size for method inlining");
-        System.err.println("  -maxInlineeSize <num>         Set the maximum size of a method to be inlined");
         System.err.println("  -strip-archives-include <list>\n" 
                          + "                        : separated list of file patterns. Matching files will always\n"
                          + "                        be included when stripping archives. The default is to include\n"

@@ -96,7 +96,6 @@
       <groupId>com.mobidevelop.robovm</groupId>
       <artifactId>robovm-rt</artifactId>
       <version>${project.version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

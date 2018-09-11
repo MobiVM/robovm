@@ -43,7 +43,7 @@ public abstract class Clazz implements Comparable<Clazz> {
     private final AbstractPath path;
 
     private ClazzInfo clazzInfo = null; 
-    public SootClass sootClass = null;
+    private SootClass sootClass = null;
 
     // added attachments fields as it is required to keep information in build cycle between calls
     // as it is not possible to keep it in plugin (due to statement that different operations of plugin
@@ -97,10 +97,6 @@ public abstract class Clazz implements Comparable<Clazz> {
         }
         return clazzInfo;
     }
-    
-    public void setClazzInfo(ClazzInfo clazzInfo) {
-        this.clazzInfo = clazzInfo;
-    }
 
     public ClazzInfo resetClazzInfo() {
         clazzInfo = new ClazzInfo(this, getSootClass());
@@ -126,6 +122,9 @@ public abstract class Clazz implements Comparable<Clazz> {
     public SootClass getSootClass() {
         if (sootClass == null) {
             sootClass = clazzes.getSootClass(this);
+            
+           
+            sootClass.setApplicationClass();
         }
         return sootClass;
     }

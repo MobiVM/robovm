@@ -1,7 +1,6 @@
 /*
  * Copyright (C) 2015 RoboVM AB
- * Copyright (C) 2018 Achrouf Abdenour <achroufabdenour@gmail.com>
- * 
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -58,29 +57,11 @@ public class DependencyGraph {
      * {@link #add(Clazz, boolean)} has been done in between.
      */
     private final Set<Node> reachableNodes = new HashSet<>();
-    private Set<Triple<String, String, String>> reachableMethods;
-    private Set<String> reachableClasses;
 
     private final TreeShakerMode treeShakerMode;
 
     public DependencyGraph(TreeShakerMode treeShakerMode) {
         this.treeShakerMode = treeShakerMode;
-    }
-    
-    public Set<Triple<String, String, String>> getReachableMethods() {
-        if (reachableMethods == null) {
-            reachableMethods = findReachableMethods();
-        }
-
-        return reachableMethods;
-    }
-
-    public Set<String> getReachableClasses() {
-        if (reachableClasses == null) {
-            reachableClasses = findReachableClasses();
-        }
-
-        return reachableClasses;
     }
 
     /**
