@@ -85,6 +85,7 @@ typedefs:
     NSURLResourceKey: NSString
     NSAttributedStringKey: NSString
     NSFileProviderServiceName : NSString
+    NSUserActivityPersistentIdentifier: NSString # since ios12
 
 structdefs:
     vector_uint2: 'VectorInt2'
@@ -1902,6 +1903,8 @@ classes:
             '+archiveRootObject:toFile:':
                 trim_after_first_colon: true
                 visibility: private
+            '+archivedDataWithRootObject:requiringSecureCoding:error:':
+                trim_after_first_colon: true
             '+classNameForClass:':
                 name: getDefaultClassNameForClass
                 parameters:
@@ -1932,6 +1935,12 @@ classes:
                 name: unarchive
             '+unarchiveObjectWithFile:':
                 name: unarchiveObject
+                visibility: private
+            '+unarchivedObjectOfClass:fromData:error:':
+                name: unarchivedObject
+                visibility: private
+            '+unarchivedObjectOfClasses:fromData:error:':
+                name: unarchivedObject
                 visibility: private
             '+unarchiveTopLevelObjectWithData:error:':
                 throws: NSErrorException
@@ -4031,6 +4040,11 @@ classes:
                 name: addUserInfoEntries
             '-getContinuationStreamsWithCompletionHandler:':
                 name: getContinuationStreams
+            '+deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:':
+                name: deleteSavedUserActivities
+            '+deleteAllSavedUserActivitiesWithCompletionHandler:':
+                name: deleteAllSavedUserActivities
+
     NSUserDefaults: # DONE
         properties:
             'volatileDomainNames':
@@ -4736,6 +4750,80 @@ functions:
     NS(RealMemoryAvailable):
         class: NSZone
         name: 'get#{g[0]}'
+
+    # exclude exposed low level NSTable api as it has little meaning for RoboVM
+    NSFreeHashTable:
+        exclude: true
+    NSResetHashTable:
+        exclude: true
+    NSCompareHashTables:
+        exclude: true
+    NSCopyHashTableWithZone:
+        exclude: true
+    NSHashGet:
+        exclude: true
+    NSHashInsert:
+        exclude: true
+    NSHashInsertKnownAbsent:
+        exclude: true
+    NSHashInsertIfAbsent:
+        exclude: true
+    NSHashRemove:
+        exclude: true
+    NSEnumerateHashTable:
+        exclude: true
+    NSNextHashEnumeratorItem:
+        exclude: true
+    NSEndHashTableEnumeration:
+        exclude: true
+    NSCountHashTable:
+        exclude: true
+    NSStringFromHashTable:
+        exclude: true
+    NSAllHashTableObjects:
+        exclude: true
+    NSCreateHashTableWithZone:
+        exclude: true
+    NSCreateHashTable:
+        exclude: true
+    NSFreeMapTable:
+        exclude: true
+    NSResetMapTable:
+        exclude: true
+    NSCompareMapTables:
+        exclude: true
+    NSCopyMapTableWithZone:
+        exclude: true
+    NSMapMember:
+        exclude: true
+    NSMapGet:
+        exclude: true
+    NSMapInsert:
+        exclude: true
+    NSMapInsertKnownAbsent:
+        exclude: true
+    NSMapInsertIfAbsent:
+        exclude: true
+    NSMapRemove:
+        exclude: true
+    NSEnumerateMapTable:
+        exclude: true
+    NSNextMapEnumeratorPair:
+        exclude: true
+    NSEndMapTableEnumeration:
+        exclude: true
+    NSCountMapTable:
+        exclude: true
+    NSStringFromMapTable:
+        exclude: true
+    NSAllMapTableKeys:
+        exclude: true
+    NSAllMapTableValues:
+        exclude: true
+    NSCreateMapTableWithZone:
+        exclude: true
+    NSCreateMapTable:
+        exclude: true
 
     # Make sure we don't miss any functions if new ones are introduced in a later Foundation
     (NS.*):
@@ -5510,6 +5598,14 @@ values:
         readonly: true
 
     NSNotFound:
+        exclude: true
+
+    # exclude exposed low level NSTable globals as it has little meaning for RoboVM
+    NS(.*)HashCallBacks:
+        exclude: true
+    NS(.*)MapKeyCallBacks:
+        exclude: true
+    NS(.*)MapValueCallBacks:
         exclude: true
 
     # Make sure we don't miss any values if new ones are introduced in a later version

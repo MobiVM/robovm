@@ -68,9 +68,9 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setAttributedContentText:")
     public native void setAttributedContentText(NSAttributedString v);
     @Property(selector = "attachments")
-    public native NSArray<?> getAttachments();
+    public native NSArray<NSItemProvider> getAttachments();
     @Property(selector = "setAttachments:")
-    public native void setAttachments(NSArray<?> v);
+    public native void setAttachments(NSArray<NSItemProvider> v);
     @Property(selector = "userInfo")
     public native NSDictionary<?, ?> getUserInfo();
     @Property(selector = "setUserInfo:")
