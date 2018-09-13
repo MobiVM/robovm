@@ -1906,6 +1906,16 @@ values:
         name: '#{g[0]}'
         type: CFString
 
+    kCFStreamSocketSOCKS(.*):
+        class: CFStreamPropertyValues
+        name: 'SOCKS#{g[0]}'
+    kCFStreamSocketSecurityLevel(.*):
+        class: CFStreamPropertyValues
+        name: 'SecurityLevel#{g[0]}'
+    kCFStreamErrorDomain(.*):
+        class: CFStreamPropertyValues
+        name: 'ErrorDomain#{g[0]}'
+
     # CFString
     kCFStringTransform(.*):
         enum: CFStringTransform
