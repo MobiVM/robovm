@@ -40,6 +40,8 @@ enums:
     CGTextEncoding: {}
     CGColorConversionInfoTransformType: {}
     CGPDFAccessPermissions: {}
+    CGImagePixelFormatInfo: {prefix: kCGImagePixelFormat} #since 12.0
+    CGImageByteOrderInfo: {prefix: kCGImage} #since 2.0
 
 classes:
     CoreGraphics:
