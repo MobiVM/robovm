@@ -11,6 +11,7 @@ enums:
     MSMessagesAppPresentationStyle: {}
     MSMessageErrorCode: {}
     MSStickerSize: {}
+    MSMessagesAppPresentationContext: { prefix: MSMessagesAppPresentationContext}
 
 classes:
     MSConversation:

@@ -59,7 +59,11 @@ public enum /*<name>*/MSMessageErrorCode/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 11.0 and later.
      */
-    SendWhileNotVisible(10L);
+    SendWhileNotVisible(10L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    APIUnavailableInPresentationContext(11L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MSMessageErrorCode.class); }/*</bind>*/

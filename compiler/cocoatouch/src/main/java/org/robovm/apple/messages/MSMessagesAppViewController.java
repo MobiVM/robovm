@@ -55,6 +55,11 @@ import org.robovm.apple.uikit.*;
     public native MSConversation getActiveConversation();
     @Property(selector = "presentationStyle")
     public native MSMessagesAppPresentationStyle getPresentationStyle();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "presentationContext")
+    public native MSMessagesAppPresentationContext getPresentationContext();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
