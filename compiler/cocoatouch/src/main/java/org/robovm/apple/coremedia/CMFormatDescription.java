@@ -85,7 +85,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMFormatDescriptionCreate", optional=true)
-    protected static native OSStatus create0(CFAllocator allocator, CMMediaType mediaType, int mediaSubtype, CFDictionary extensions, CMFormatDescription.CMFormatDescriptionPtr descOut);
+    protected static native OSStatus create0(CFAllocator allocator, CMMediaType mediaType, int mediaSubType, CFDictionary extensions, CMFormatDescription.CMFormatDescriptionPtr formatDescriptionOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -95,12 +95,12 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMFormatDescriptionEqual", optional=true)
-    public native boolean equalsTo(CMFormatDescription desc2);
+    public native boolean equalsTo(CMFormatDescription otherFormatDescription);
     /**
      * @since Available in iOS 4.3 and later.
      */
     @Bridge(symbol="CMFormatDescriptionEqualIgnoringExtensionKeys", optional=true)
-    private native boolean equalsTo0(CMFormatDescription desc2, CFType formatDescriptionExtensionKeysToIgnore, CFType sampleDescriptionExtensionAtomKeysToIgnore);
+    private native boolean equalsTo0(CMFormatDescription otherFormatDescription, CFType formatDescriptionExtensionKeysToIgnore, CFType sampleDescriptionExtensionAtomKeysToIgnore);
     /**
      * @since Available in iOS 4.0 and later.
      */
