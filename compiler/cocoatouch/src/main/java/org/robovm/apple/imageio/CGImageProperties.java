@@ -792,6 +792,11 @@ import org.robovm.apple.coregraphics.*;
         /**
          * @since Available in iOS 11.0 and later.
          */
+        @GlobalValue(symbol="kCGImagePropertyPrimaryImage", optional=true)
+        public static native CFString PrimaryImage();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
         @GlobalValue(symbol="kCGImagePropertyImageCount", optional=true)
         public static native CFString ImageCount();
         /**
