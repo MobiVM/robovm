@@ -99,6 +99,6 @@ import org.robovm.apple.addressbook.*;
     @Method(selector = "setHighlightedItemForProperty:withIdentifier:")
     public native void setHighlightedItem(ABPersonProperty property, int identifier);
     @Method(selector = "viewControllerWithRestorationIdentifierPath:coder:")
-    public static native UIViewController viewControllerWithRestorationIdentifier(NSArray<?> identifierComponents, NSCoder coder);
+    public static native UIViewController viewControllerWithRestorationIdentifier(NSArray<NSString> identifierComponents, NSCoder coder);
     /*</methods>*/
 }
