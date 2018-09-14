@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIView/*</name>*/ 
     extends /*<extends>*/UIResponder/*</extends>*/ 
-    /*<implements>*/implements NSCoding, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, CALayerDelegate, UIAccessibilityIdentification/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, UIFocusItemContainer, CALayerDelegate, UIAccessibilityIdentification/*</implements>*/ {
 
     /*<ptr>*/public static class UIViewPtr extends Ptr<UIView, UIViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIView.class); }/*</bind>*/
@@ -453,12 +453,24 @@ import org.robovm.apple.intents.*;
     @Property(selector = "preferredFocusEnvironments")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> getPreferredFocusEnvironments();
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "parentFocusEnvironment")
+    public native UIFocusEnvironment getParentFocusEnvironment();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "focusItemContainer")
+    public native UIFocusItemContainer getFocusItemContainer();
+    /**
      * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
     @Property(selector = "preferredFocusedView")
     public native UIView getPreferredFocusedView();
+    @Property(selector = "coordinateSpace")
+    public native UICoordinateSpace getCoordinateSpace();
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -850,6 +862,8 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "convertRect:fromCoordinateSpace:")
     public native @ByVal CGRect convertRectFromCoordinateSpace(@ByVal CGRect rect, UICoordinateSpace coordinateSpace);
+    @Method(selector = "didHintFocusMovement:")
+    public native void didHintFocusMovement(UIFocusMovementHint hint);
     @Method(selector = "setNeedsFocusUpdate")
     public native void setNeedsFocusUpdate();
     @Method(selector = "updateFocusIfNeeded")
@@ -858,6 +872,8 @@ import org.robovm.apple.intents.*;
     public native boolean shouldUpdateFocus(UIFocusUpdateContext context);
     @Method(selector = "didUpdateFocusInContext:withAnimationCoordinator:")
     public native void didUpdateFocus(UIFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
+    @Method(selector = "focusItemsInRect:")
+    public native NSArray<?> focusItemsInRect(@ByVal CGRect rect);
     @Method(selector = "displayLayer:")
     public native void displayLayer(CALayer layer);
     @Method(selector = "drawLayer:inContext:")

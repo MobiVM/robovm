@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,16 +40,16 @@ import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
-@ForceLinkClass(UIPrintError.class)
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/UIPrintErrorCode/*</name>*/ implements NSErrorCode {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/UIDocumentBrowserUserInterfaceStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    PrintingNotAvailable(1L),
-    NoContent(2L),
-    UnknownImageFormat(3L),
-    JobFailed(4L);
+    White(0L),
+    Light(1L),
+    Dark(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -59,15 +59,15 @@ public enum /*<name>*/UIPrintErrorCode/*</name>*/ implements NSErrorCode {
 
     private final long n;
 
-    private /*<name>*/UIPrintErrorCode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/UIDocumentBrowserUserInterfaceStyle/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/UIPrintErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/UIPrintErrorCode/*</name>*/ v : values()) {
+    public static /*<name>*/UIDocumentBrowserUserInterfaceStyle/*</name>*/ valueOf(long n) {
+        for (/*<name>*/UIDocumentBrowserUserInterfaceStyle/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/UIPrintErrorCode/*</name>*/.class.getName());
+            + /*<name>*/UIDocumentBrowserUserInterfaceStyle/*</name>*/.class.getName());
     }
 }

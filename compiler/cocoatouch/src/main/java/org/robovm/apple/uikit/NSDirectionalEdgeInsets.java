@@ -42,14 +42,13 @@ import org.robovm.apple.intents.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Library("UIKit")/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSDirectionalEdgeInsets/*</name>*/ 
     extends /*<extends>*/Struct<NSDirectionalEdgeInsets>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class NSDirectionalEdgeInsetsPtr extends Ptr<NSDirectionalEdgeInsets, NSDirectionalEdgeInsetsPtr> {}/*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(NSDirectionalEdgeInsets.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSDirectionalEdgeInsets() {}
@@ -71,5 +70,11 @@ import org.robovm.apple.intents.*;
     @StructMember(3) public native @MachineSizedFloat double getTrailing();
     @StructMember(3) public native NSDirectionalEdgeInsets setTrailing(@MachineSizedFloat double trailing);
     /*</members>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="NSDirectionalEdgeInsetsZero", optional=true)
+    public static native @ByVal NSDirectionalEdgeInsets Zero();
+    /*</methods>*/
 }

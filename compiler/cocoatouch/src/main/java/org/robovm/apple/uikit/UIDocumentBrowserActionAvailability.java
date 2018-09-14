@@ -41,15 +41,15 @@ import org.robovm.apple.intents.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/UIUserInterfaceStyle/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/UIDocumentBrowserActionAvailability/*</name>*/ extends Bits</*<name>*/UIDocumentBrowserActionAvailability/*</name>*/> {
     /*<values>*/
-    Unspecified(0L),
-    Light(1L),
-    Dark(2L);
+    public static final UIDocumentBrowserActionAvailability None = new UIDocumentBrowserActionAvailability(0L);
+    public static final UIDocumentBrowserActionAvailability Menu = new UIDocumentBrowserActionAvailability(1L);
+    public static final UIDocumentBrowserActionAvailability NavigationBar = new UIDocumentBrowserActionAvailability(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -57,17 +57,17 @@ public enum /*<name>*/UIUserInterfaceStyle/*</name>*/ implements ValuedEnum {
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/UIDocumentBrowserActionAvailability/*</name>*/[] values = _values(/*<name>*/UIDocumentBrowserActionAvailability/*</name>*/.class);
 
-    private /*<name>*/UIUserInterfaceStyle/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/UIUserInterfaceStyle/*</name>*/ valueOf(long n) {
-        for (/*<name>*/UIUserInterfaceStyle/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/UIUserInterfaceStyle/*</name>*/.class.getName());
+    public /*<name>*/UIDocumentBrowserActionAvailability/*</name>*/(long value) { super(value); }
+    private /*<name>*/UIDocumentBrowserActionAvailability/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/UIDocumentBrowserActionAvailability/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/UIDocumentBrowserActionAvailability/*</name>*/(value, mask);
+    }
+    protected /*<name>*/UIDocumentBrowserActionAvailability/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/UIDocumentBrowserActionAvailability/*</name>*/[] values() {
+        return values.clone();
     }
 }

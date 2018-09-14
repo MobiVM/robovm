@@ -56,9 +56,15 @@ import org.robovm.apple.intents.*;
     /*<properties>*/
     @Property(selector = "canBecomeFocused")
     boolean canBecomeFocused();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "frame")
+    @ByVal CGRect getFrame();
     /*</properties>*/
     /*<methods>*/
-    
+    @Method(selector = "didHintFocusMovement:")
+    void didHintFocusMovement(UIFocusMovementHint hint);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,9 +42,9 @@ import org.robovm.apple.intents.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIWebViewDelegateAdapter/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIDocumentBrowserViewControllerDelegateAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements UIWebViewDelegate/*</implements>*/ {
+    /*<implements>*/implements UIDocumentBrowserViewControllerDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -58,32 +58,26 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 2.0 and later.
+     * @since Available in iOS 11.0 and later.
      * @deprecated Deprecated in iOS 12.0.
      */
     @Deprecated
-    @NotImplemented("webView:shouldStartLoadWithRequest:navigationType:")
-    public boolean shouldStartLoad(UIWebView webView, NSURLRequest request, UIWebViewNavigationType navigationType) { return true; }
+    @NotImplemented("documentBrowser:didPickDocumentURLs:")
+    public void didPickDocumentURLs(UIDocumentBrowserViewController controller, NSArray<NSURL> documentURLs) {}
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @since Available in iOS 12.0 and later.
      */
-    @Deprecated
-    @NotImplemented("webViewDidStartLoad:")
-    public void didStartLoad(UIWebView webView) {}
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
-     */
-    @Deprecated
-    @NotImplemented("webViewDidFinishLoad:")
-    public void didFinishLoad(UIWebView webView) {}
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
-     */
-    @Deprecated
-    @NotImplemented("webView:didFailLoadWithError:")
-    public void didFailLoad(UIWebView webView, NSError error) {}
+    @NotImplemented("documentBrowser:didPickDocumentsAtURLs:")
+    public void didPickDocumentsAtURLs(UIDocumentBrowserViewController controller, NSArray<NSURL> documentURLs) {}
+    @NotImplemented("documentBrowser:didRequestDocumentCreationWithHandler:")
+    public void didRequestDocumentCreationWithHandler(UIDocumentBrowserViewController controller, @Block VoidBlock2<NSURL, UIDocumentBrowserImportMode> importHandler) {}
+    @NotImplemented("documentBrowser:didImportDocumentAtURL:toDestinationURL:")
+    public void didImportDocument(UIDocumentBrowserViewController controller, NSURL sourceURL, NSURL destinationURL) {}
+    @NotImplemented("documentBrowser:failedToImportDocumentAtURL:error:")
+    public void failedToImportDocument(UIDocumentBrowserViewController controller, NSURL documentURL, NSError error) {}
+    @NotImplemented("documentBrowser:applicationActivitiesForDocumentURLs:")
+    public NSArray<UIActivity> applicationActivities(UIDocumentBrowserViewController controller, NSArray<NSURL> documentURLs) { return null; }
+    @NotImplemented("documentBrowser:willPresentActivityViewController:")
+    public void willPresentActivityViewController(UIDocumentBrowserViewController controller, UIActivityViewController activityViewController) {}
     /*</methods>*/
 }

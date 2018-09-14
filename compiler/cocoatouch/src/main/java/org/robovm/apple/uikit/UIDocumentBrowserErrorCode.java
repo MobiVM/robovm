@@ -40,37 +40,43 @@ import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("UIKit")/*</annotations>*/
-public enum /*<name>*/UIPrintError/*</name>*/ implements NSErrorCode {
+public enum /*<name>*/UIDocumentBrowserErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
-    PrintingNotAvailable(1L),
-    NoContent(2L),
-    UnknownImageFormat(3L),
-    JobFailed(4L);
+    Generic(1L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    NoLocationAvailable(2L);
     /*</values>*/
 
-    /*<bind>*/static { Bro.bind(UIPrintError.class); }/*</bind>*/
+    /*<bind>*/static { Bro.bind(UIDocumentBrowserErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @GlobalValue(symbol="UIPrintErrorDomain", optional=true)
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="UIDocumentBrowserErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/
 
     private final long n;
 
-    private /*<name>*/UIPrintError/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/UIDocumentBrowserErrorCode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/UIPrintError/*</name>*/ valueOf(long n) {
-        for (/*<name>*/UIPrintError/*</name>*/ v : values()) {
+    public static /*<name>*/UIDocumentBrowserErrorCode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/UIDocumentBrowserErrorCode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in "
-            + /*<name>*/UIPrintError/*</name>*/.class.getName());
+            + /*<name>*/UIDocumentBrowserErrorCode/*</name>*/.class.getName());
     }
 
     // bind wrap to include it in compilation as long as nserror enum is used 
@@ -81,7 +87,7 @@ public enum /*<name>*/UIPrintError/*</name>*/ implements NSErrorCode {
 
         @Override public NSErrorCode getErrorCode() {
              try {
-                 return  /*<name>*/UIPrintError/*</name>*/.valueOf(getCode());
+                 return  /*<name>*/UIDocumentBrowserErrorCode/*</name>*/.valueOf(getCode());
              } catch (IllegalArgumentException e) {
                  return null;
              }
@@ -89,7 +95,7 @@ public enum /*<name>*/UIPrintError/*</name>*/ implements NSErrorCode {
 
         public static String getClassDomain() {
             /** must be incerted in value section */
-            return /*<name>*/UIPrintError/*</name>*/.getClassDomain();
+            return /*<name>*/UIDocumentBrowserErrorCode/*</name>*/.getClassDomain();
         }
     }
 }

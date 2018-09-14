@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,50 +40,35 @@ import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 12.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIWebViewDelegateAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements UIWebViewDelegate/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/UIGraphicsImageRendererFormatRange/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Unspecified(-1L),
+    Automatic(0L),
+    Extended(1L),
+    Standard(2L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
-     */
-    @Deprecated
-    @NotImplemented("webView:shouldStartLoadWithRequest:navigationType:")
-    public boolean shouldStartLoad(UIWebView webView, NSURLRequest request, UIWebViewNavigationType navigationType) { return true; }
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
-     */
-    @Deprecated
-    @NotImplemented("webViewDidStartLoad:")
-    public void didStartLoad(UIWebView webView) {}
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
-     */
-    @Deprecated
-    @NotImplemented("webViewDidFinishLoad:")
-    public void didFinishLoad(UIWebView webView) {}
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
-     */
-    @Deprecated
-    @NotImplemented("webView:didFailLoadWithError:")
-    public void didFailLoad(UIWebView webView, NSError error) {}
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/UIGraphicsImageRendererFormatRange/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/UIGraphicsImageRendererFormatRange/*</name>*/ valueOf(long n) {
+        for (/*<name>*/UIGraphicsImageRendererFormatRange/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/UIGraphicsImageRendererFormatRange/*</name>*/.class.getName());
+    }
 }

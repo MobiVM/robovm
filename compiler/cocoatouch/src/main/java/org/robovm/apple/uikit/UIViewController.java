@@ -416,6 +416,26 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "popoverPresentationController")
     public native UIPopoverPresentationController getPopoverPresentationController();
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "childViewControllerForScreenEdgesDeferringSystemGestures")
+    public native UIViewController getChildViewControllerForScreenEdgesDeferringSystemGestures();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "preferredScreenEdgesDeferringSystemGestures")
+    public native UIRectEdge getPreferredScreenEdgesDeferringSystemGestures();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "childViewControllerForHomeIndicatorAutoHidden")
+    public native UIViewController getChildViewControllerForHomeIndicatorAutoHidden();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "prefersHomeIndicatorAutoHidden")
+    public native boolean prefersHomeIndicatorAutoHidden();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "previewActionItems")
@@ -482,6 +502,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native UITraitCollection getTraitCollection();
     @Property(selector = "preferredFocusEnvironments")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> getPreferredFocusEnvironments();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "parentFocusEnvironment")
+    public native UIFocusEnvironment getParentFocusEnvironment();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "focusItemContainer")
+    public native UIFocusItemContainer getFocusItemContainer();
     /**
      * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 10.0.
@@ -844,28 +874,8 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @Method(selector = "childViewControllerForScreenEdgesDeferringSystemGestures")
-    public native UIViewController childViewControllerForScreenEdgesDeferringSystemGestures();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "preferredScreenEdgesDeferringSystemGestures")
-    public native UIRectEdge preferredScreenEdgesDeferringSystemGestures();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "setNeedsUpdateOfScreenEdgesDeferringSystemGestures")
     public native void setNeedsUpdateOfScreenEdgesDeferringSystemGestures();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "childViewControllerForHomeIndicatorAutoHidden")
-    public native UIViewController childViewControllerForHomeIndicatorAutoHidden();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "prefersHomeIndicatorAutoHidden")
-    public native boolean prefersHomeIndicatorAutoHidden();
     /**
      * @since Available in iOS 11.0 and later.
      */

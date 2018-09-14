@@ -41,11 +41,11 @@ import org.robovm.apple.intents.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/UIFocusEnvironment/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/UIDocumentBrowserViewControllerDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -54,35 +54,31 @@ import org.robovm.apple.intents.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    @Property(selector = "preferredFocusEnvironments")
-    @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> getPreferredFocusEnvironments();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "parentFocusEnvironment")
-    UIFocusEnvironment getParentFocusEnvironment();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "focusItemContainer")
-    UIFocusItemContainer getFocusItemContainer();
-    /**
-     * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
-     */
-    @Deprecated
-    @Property(selector = "preferredFocusedView")
-    UIView getPreferredFocusedView();
+    
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "setNeedsFocusUpdate")
-    void setNeedsFocusUpdate();
-    @Method(selector = "updateFocusIfNeeded")
-    void updateFocusIfNeeded();
-    @Method(selector = "shouldUpdateFocusInContext:")
-    boolean shouldUpdateFocus(UIFocusUpdateContext context);
-    @Method(selector = "didUpdateFocusInContext:withAnimationCoordinator:")
-    void didUpdateFocus(UIFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
+    @Method(selector = "documentBrowser:didPickDocumentURLs:")
+    void didPickDocumentURLs(UIDocumentBrowserViewController controller, NSArray<NSURL> documentURLs);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "documentBrowser:didPickDocumentsAtURLs:")
+    void didPickDocumentsAtURLs(UIDocumentBrowserViewController controller, NSArray<NSURL> documentURLs);
+    @Method(selector = "documentBrowser:didRequestDocumentCreationWithHandler:")
+    void didRequestDocumentCreationWithHandler(UIDocumentBrowserViewController controller, @Block VoidBlock2<NSURL, UIDocumentBrowserImportMode> importHandler);
+    @Method(selector = "documentBrowser:didImportDocumentAtURL:toDestinationURL:")
+    void didImportDocument(UIDocumentBrowserViewController controller, NSURL sourceURL, NSURL destinationURL);
+    @Method(selector = "documentBrowser:failedToImportDocumentAtURL:error:")
+    void failedToImportDocument(UIDocumentBrowserViewController controller, NSURL documentURL, NSError error);
+    @Method(selector = "documentBrowser:applicationActivitiesForDocumentURLs:")
+    NSArray<UIActivity> applicationActivities(UIDocumentBrowserViewController controller, NSArray<NSURL> documentURLs);
+    @Method(selector = "documentBrowser:willPresentActivityViewController:")
+    void willPresentActivityViewController(UIDocumentBrowserViewController controller, UIActivityViewController activityViewController);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

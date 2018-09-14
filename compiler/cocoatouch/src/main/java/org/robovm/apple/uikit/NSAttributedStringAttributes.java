@@ -270,7 +270,7 @@ import org.robovm.apple.intents.*;
     public NSUnderlineStyle getStrikethroughStyle() {
         if (has(NSAttributedStringAttribute.StrikethroughStyle)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.StrikethroughStyle);
-            return NSUnderlineStyle.valueOf(val.longValue());
+            return new NSUnderlineStyle(val.longValue());
         }
         return null;
     }
@@ -287,7 +287,7 @@ import org.robovm.apple.intents.*;
     public NSUnderlineStyle getUnderlineStyle() {
         if (has(NSAttributedStringAttribute.UnderlineStyle)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.UnderlineStyle);
-            return NSUnderlineStyle.valueOf(val.longValue());
+            return new NSUnderlineStyle(val.longValue());
         }
         return null;
     }

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,49 +41,28 @@ import org.robovm.apple.intents.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIWebViewDelegateAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements UIWebViewDelegate/*</implements>*/ {
+/*<annotations>*/@Library("UIKit")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIAccessibilityConstants/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(UIAccessibilityConstants.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
-    /*<properties>*/
-    
-    /*</properties>*/
+    /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @since Available in iOS 11.0 and later.
      */
-    @Deprecated
-    @NotImplemented("webView:shouldStartLoadWithRequest:navigationType:")
-    public boolean shouldStartLoad(UIWebView webView, NSURLRequest request, UIWebViewNavigationType navigationType) { return true; }
+    @GlobalValue(symbol="UIAccessibilityTextAttributeHeadingLevel", optional=true)
+    public static native NSString TextAttributeHeadingLevel();
     /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @since Available in iOS 11.0 and later.
      */
-    @Deprecated
-    @NotImplemented("webViewDidStartLoad:")
-    public void didStartLoad(UIWebView webView) {}
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
-     */
-    @Deprecated
-    @NotImplemented("webViewDidFinishLoad:")
-    public void didFinishLoad(UIWebView webView) {}
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
-     */
-    @Deprecated
-    @NotImplemented("webView:didFailLoadWithError:")
-    public void didFailLoad(UIWebView webView, NSError error) {}
+    @GlobalValue(symbol="UIAccessibilityTextAttributeCustom", optional=true)
+    public static native NSString TextAttributeCustom();
     /*</methods>*/
 }

@@ -110,7 +110,7 @@ enums:
     UIPressPhase: {}
     UIPressType: {}
     UIPreviewActionStyle: {}
-    UIPrintErrorCode: {first: UIPrintingNotAvailableError, suffix: Error, UIPrintingNotAvailableError: PrintingNotAvailableError}
+    UIPrintError: {nserror: true, first: UIPrintingNotAvailableError, suffix: Error, UIPrintingNotAvailableError: PrintingNotAvailableError}
     UIPrinterCutterBehavior: {}
     UIPrinterJobTypes: {skip_none: true}
     UIPrintInfoDuplex: {}
@@ -217,6 +217,13 @@ enums:
     UISplitViewControllerPrimaryEdge: {} #since 11.0
     UIDropSessionProgressIndicatorStyle: {} #since 11.0
     UISpringLoadedInteractionEffectState: {} #since 11.0
+
+    UIGraphicsImageRendererFormatRange: {} #since 12.0
+    UIDocumentBrowserImportMode: {} #since 11.0
+    UIDocumentBrowserUserInterfaceStyle: {} #since 11.0
+    UIDocumentBrowserActionAvailability: {} #since 11.0
+
+    UIDocumentBrowserErrorCode: {nserror: true, prefix: UIDocumentBrowserError}
 
 
 categories:
@@ -378,11 +385,7 @@ classes:
 
     UIRemoteNotification:
         extends: NSDictionaryWrapper
-    
-    UIPrintError:
-        extends: NSError
-        annotations: ['@StronglyLinked']
-        
+
     UIRunLoopMode:
         extends: NSRunLoopMode
 
@@ -1752,6 +1755,37 @@ classes:
                 trim_after_first_colon: true
             '-requireGestureRecognizerToFail:':
                 trim_after_first_colon: true
+            '-ignoreTouch:forEvent:':
+                trim_after_first_colon: true
+                visibility: protected
+            '-ignorePress:forEvent:':
+                trim_after_first_colon: true
+                visibility: protected
+            '-touchesBegan:withEvent:':
+                trim_after_first_colon: true
+                visibility: protected
+            '-touchesMoved:withEvent:':
+                trim_after_first_colon: true
+                visibility: protected
+            '-touchesEnded:withEvent:':
+                trim_after_first_colon: true
+                visibility: protected
+            '-touchesCancelled:withEvent:':
+                trim_after_first_colon: true
+                visibility: protected
+            '-pressesBegan:withEvent:':
+                trim_after_first_colon: true
+                visibility: protected
+            '-pressesChanged:withEvent:':
+                trim_after_first_colon: true
+                visibility: protected
+            '-pressesEnded:withEvent:':
+                trim_after_first_colon: true
+                visibility: protected
+            '-pressesCancelled:withEvent:':
+                trim_after_first_colon: true
+                visibility: protected
+
     UIGraphicsImageRenderer: # DONE
         methods:
             '-init.*':
@@ -1788,6 +1822,10 @@ classes:
         methods:
             '-init.*':
                 name: init
+            '-runDrawingActions:completionActions:error:':
+                trim_after_first_colon: true
+            '+prepareCGContext:withRendererContext:':
+                trim_after_first_colon: true
     UIGraphicsRendererContext: # DONE
         methods:
             '-fillRect.*':
@@ -3609,6 +3647,20 @@ classes:
                 trim_after_first_colon: true
     UITextDropProposal: {} #since 11.0
 
+    UIDocumentBrowserAction: #since 11.0
+        methods:
+            '-initWithIdentifier:localizedTitle:availability:handler:':
+                name: init
+    UIDocumentBrowserTransitionController: {} #since 11.0
+    UIDocumentBrowserViewController: #since 11.0
+        methods:
+            '-revealDocumentAtURL:importIfNeeded:completion:':
+                name: revealDocument
+            '-importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:':
+                name: importDocument
+    UIFocusMovementHint: {} #since 12.0
+    UITextInputPasswordRules: {} #since 12.0
+
 protocols:
     NSLayoutManagerDelegate: # DONE
         methods:
@@ -5103,6 +5155,26 @@ protocols:
             '+viewControllerWithRestorationIdentifierPath:coder:':
                 name: viewControllerWithRestorationIdentifier
 
+    UIDocumentBrowserViewControllerDelegate: #since 11.0
+        methods:
+            '-documentBrowser:didPickDocumentURLs:':
+                name: didPickDocumentURLs
+            '-documentBrowser:didPickDocumentsAtURLs:':
+                name: didPickDocumentsAtURLs
+            '-documentBrowser:didRequestDocumentCreationWithHandler:':
+                name: didRequestDocumentCreationWithHandler
+            '-documentBrowser:didImportDocumentAtURL:toDestinationURL:':
+                name: didImportDocument
+            '-documentBrowser:failedToImportDocumentAtURL:error:':
+                name: failedToImportDocument
+            '-documentBrowser:applicationActivitiesForDocumentURLs:':
+                name: applicationActivities
+            '-documentBrowser:willPresentActivityViewController:':
+                name: willPresentActivityViewController
+    UIFocusItemContainer: {} #since 12.0
+    UIFocusItemScrollableContainer: {} #since 12.0
+    UIInputViewAudioFeedback: {}
+    UIUserActivityRestoring: {} #since 8.0
 
 functions:
     # NSTextAlignment
@@ -5209,6 +5281,10 @@ functions:
     (.*)FromString:
         class: UIGeometry
         name: 'stringTo#{g[0]}'
+
+    UIContentSizeCategory(IsAccessibilityCategory|CompareToCategory):
+        name: '#{g[0]}'
+        class: UIContentSizeCategory
 
     # Make sure we don't miss any functions if new ones are introduced in a later UIKit
     (CG.*):
@@ -5870,6 +5946,20 @@ values:
     UIViewControllerHierarchyInconsistencyException:
         exclude: true
 
+    UIDocumentBrowserErrorDomain:
+        class: UIDocumentBrowserErrorCode
+        name: getClassDomain
+
+    NSDirectionalEdgeInsetsZero:
+        class: NSDirectionalEdgeInsets
+        name: Zero
+    UIFocus(.*):
+        class: UIFocusEnvironmentConstants
+        name: '#{g[0]}'
+    UIAccessibility(.*):
+        class: UIAccessibilityConstants
+        name: '#{g[0]}'
+
     # Make sure we don't miss any values if new ones are introduced in a later UIKit
     (NS.*):
         class: UIKit
@@ -5877,6 +5967,11 @@ values:
     (UI.*):
         class: UIKit
         name: 'Value__#{g[0]}'
+
+typed_enums:
+    NSAttributedStringDocumentReadingOptionKey:
+        dictionary: NSAttributedStringDocumentReadingOptionKeys
+        type: NSString
 
 constants:
     NS(AttachmentCharacter):
@@ -5891,6 +5986,13 @@ constants:
     UILayoutPriority(.*):
         class: UILayoutPriority
         name: '#{g[0]}'
+
+    UIKIT_DEFINE_AS_PROPERTIES:
+        exclude: true
+    UIKIT_REMOVE_ZERO_FROM_SWIFT:
+        exclude: true
+    UIKIT_STRING_ENUMS:
+        exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later UIKit
     (UI.*):

@@ -45,43 +45,40 @@ import org.robovm.apple.intents.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIFocusSystem/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIDocumentBrowserTransitionController/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements UIViewControllerAnimatedTransitioning/*</implements>*/ {
 
-    /*<ptr>*/public static class UIFocusSystemPtr extends Ptr<UIFocusSystem, UIFocusSystemPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(UIFocusSystem.class); }/*</bind>*/
+    /*<ptr>*/public static class UIDocumentBrowserTransitionControllerPtr extends Ptr<UIDocumentBrowserTransitionController, UIDocumentBrowserTransitionControllerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(UIDocumentBrowserTransitionController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected UIFocusSystem() {}
-    protected UIFocusSystem(Handle h, long handle) { super(h, handle); }
-    protected UIFocusSystem(SkipInit skipInit) { super(skipInit); }
+    protected UIDocumentBrowserTransitionController() {}
+    protected UIDocumentBrowserTransitionController(Handle h, long handle) { super(h, handle); }
+    protected UIDocumentBrowserTransitionController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "focusedItem")
-    public native UIFocusItem getFocusedItem();
+    @Property(selector = "loadingProgress")
+    public native NSProgress getLoadingProgress();
+    @Property(selector = "setLoadingProgress:")
+    public native void setLoadingProgress(NSProgress v);
+    @Property(selector = "targetView")
+    public native UIView getTargetView();
+    @Property(selector = "setTargetView:", strongRef = true)
+    public native void setTargetView(UIView v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "transitionDuration:")
+    public native double getTransitionDuration(UIViewControllerContextTransitioning transitionContext);
+    @Method(selector = "animateTransition:")
+    public native void animateTransition(UIViewControllerContextTransitioning transitionContext);
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    @Method(selector = "requestFocusUpdateToEnvironment:")
-    public native void requestFocusUpdateToEnvironment(UIFocusEnvironment environment);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Method(selector = "updateFocusIfNeeded")
-    public native void updateFocusIfNeeded();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Method(selector = "focusSystemForEnvironment:")
-    public static native UIFocusSystem focusSystemForEnvironment(UIFocusEnvironment environment);
-    @Method(selector = "environment:containsEnvironment:")
-    public static native boolean isEnvironmentContainsEnvironment(UIFocusEnvironment environment, UIFocusEnvironment otherEnvironment);
+    @Method(selector = "interruptibleAnimatorForTransition:")
+    public native UIViewImplicitlyAnimating getInterruptibleAnimator(UIViewControllerContextTransitioning transitionContext);
+    @Method(selector = "animationEnded:")
+    public native void animationEnded(boolean transitionCompleted);
     /*</methods>*/
 }
