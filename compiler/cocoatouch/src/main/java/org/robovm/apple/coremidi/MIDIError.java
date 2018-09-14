@@ -52,7 +52,8 @@ public enum /*<name>*/MIDIError/*</name>*/ implements ValuedEnum {
     WrongThread(-10841L),
     ObjectNotFound(-10842L),
     IDNotUnique(-10843L),
-    NotPermitted(-10844L);
+    NotPermitted(-10844L),
+    UnknownError(-10845L);
     /*</values>*/
 
     /*<bind>*/
