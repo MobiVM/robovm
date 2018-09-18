@@ -83,7 +83,7 @@ modifyPom {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.13'
+    gradleVersion = '4.10.1'
 }
 
 // apply from: 'local.gradle'

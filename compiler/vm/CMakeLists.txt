@@ -1,5 +1,5 @@
 # The Mac OS X SDK version required when building the VM libs
-set(MACOSX_SDK_VERSION 10.12)
+set(MACOSX_SDK_VERSION 10.14)
 # The minimum Mac OS X version needed by apps built by RoboVM
 set(MACOSX_MIN_VERSION 10.9)
 # The iOS SDK version required when building the VM libs
