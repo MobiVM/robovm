@@ -16,32 +16,6 @@
  */
 package org.robovm.compiler;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
-import java.util.UUID;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -49,11 +23,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.robovm.compiler.clazz.Clazz;
+import org.robovm.compiler.clazz.ClazzInfo;
 import org.robovm.compiler.clazz.Clazzes;
+import org.robovm.compiler.clazz.MethodInfo;
 import org.robovm.compiler.clazz.Path;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.TreeShakerMode;
+import org.robovm.compiler.config.ForceLinkMethodsConfig;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
@@ -70,6 +47,33 @@ import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.compiler.util.AntPathMatcher;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.UUID;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -240,6 +244,39 @@ public class AppCompiler {
         return matches.values();
     }
 
+
+    /**
+     * returns list of methods that has to be forced linked in case of aggressive tree shaker
+     */
+    private Collection<MethodInfo> getMatchingForceLinkMethods(Clazz clazz) {
+        List<ForceLinkMethodsConfig> forceLinkMethods = config.getForceLinkMethods();
+        ClazzInfo ci = clazz.getClazzInfo();
+        if (config.getTreeShakerMode() == TreeShakerMode.aggressive && !ci.getMethods().isEmpty() && !forceLinkMethods.isEmpty()) {
+
+            // prepare list of signatures for all matched entrues
+            Set<String> signatures = new HashSet<>();
+            for (ForceLinkMethodsConfig entry : forceLinkMethods) {
+                if (entry.matchesClass(ci))
+                    signatures.addAll(entry.getMethods());
+            }
+
+            // class matches one or more patterns check for method signatures
+            if (!signatures.isEmpty()) {
+                Set<MethodInfo> matches = new HashSet<>();
+                for (MethodInfo mi : ci.getMethods()) {
+                    if (signatures.contains(mi.getName() + mi.getDesc()))
+                        matches.add(mi);
+                }
+
+                if (!matches.isEmpty())
+                    return matches;
+            }
+        }
+
+        // no methods has to be forced linked
+        return Collections.emptyList();
+    }
+
     /**
      * Returns all root classes. These are the minimum set of classes that needs
      * to be compiled and linked. The compiler will use this set to determine
@@ -397,7 +434,8 @@ public class AppCompiler {
                         }
                     }
 
-                    dependencyGraph.add(clazz, rootClasses.contains(clazz));
+                    Collection<MethodInfo> forceLinkMethods = getMatchingForceLinkMethods(clazz);
+                    dependencyGraph.add(clazz, rootClasses.contains(clazz), forceLinkMethods);
                     linkClasses.add(clazz);
 
                     if (compileDependencies) {
