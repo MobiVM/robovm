@@ -72,16 +72,34 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setRoamingEnabled:")
     public native void setRoamingEnabled(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "roamingConsortiumOIs")
     public native NSArray<NSString> getRoamingConsortiumOIs();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setRoamingConsortiumOIs:")
     public native void setRoamingConsortiumOIs(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "naiRealmNames")
     public native NSArray<NSString> getNaiRealmNames();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setNaiRealmNames:")
     public native void setNaiRealmNames(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "MCCAndMNCs")
     public native NSArray<NSString> getMCCAndMNCs();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setMCCAndMNCs:")
     public native void setMCCAndMNCs(NSArray<NSString> v);
     @Property(selector = "supportsSecureCoding")
