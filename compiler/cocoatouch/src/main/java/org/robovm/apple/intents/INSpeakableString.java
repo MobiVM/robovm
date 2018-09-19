@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INSpeakableString/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements INSpeakable/*</implements>*/ {
+    /*<implements>*/implements INSpeakable, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INSpeakableStringPtr extends Ptr<INSpeakableString, INSpeakableStringPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INSpeakableString.class); }/*</bind>*/
@@ -67,6 +67,8 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "initWithSpokenPhrase:")
     public INSpeakableString(String spokenPhrase) { super((SkipInit) null); initObject(init(spokenPhrase)); }
+    @Method(selector = "initWithCoder:")
+    public INSpeakableString(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "spokenPhrase")
@@ -84,6 +86,8 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Property(selector = "identifier")
     public native String getIdentifier();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -101,5 +105,9 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "initWithSpokenPhrase:")
     protected native @Pointer long init(String spokenPhrase);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

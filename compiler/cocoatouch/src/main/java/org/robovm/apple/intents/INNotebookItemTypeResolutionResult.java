@@ -57,30 +57,9 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "successWithResolvedNotebookItemType:")
     public static native INNotebookItemTypeResolutionResult successWithResolvedNotebookItemType(INNotebookItemType resolvedNotebookItemType);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "successWithResolvedValue:")
-    public static native INNotebookItemTypeResolutionResult successWithResolvedValue(INNotebookItemType resolvedValue);
     @Method(selector = "disambiguationWithNotebookItemTypesToDisambiguate:")
     public static native INNotebookItemTypeResolutionResult disambiguationWithNotebookItemTypesToDisambiguate(NSArray<NSNumber> notebookItemTypesToDisambiguate);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "disambiguationWithValuesToDisambiguate:")
-    public static native INNotebookItemTypeResolutionResult disambiguationWithValuesToDisambiguate(NSArray<NSNumber> valuesToDisambiguate);
     @Method(selector = "confirmationRequiredWithNotebookItemTypeToConfirm:")
     public static native INNotebookItemTypeResolutionResult confirmationRequiredWithNotebookItemTypeToConfirm(INNotebookItemType notebookItemTypeToConfirm);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INNotebookItemTypeResolutionResult confirmationRequiredWithValueToConfirm(INNotebookItemType valueToConfirm);
     /*</methods>*/
 }

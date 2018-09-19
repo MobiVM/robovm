@@ -59,8 +59,6 @@ import org.robovm.apple.corelocation.*;
     public native INSpeakableString getTitle();
     @Property(selector = "status")
     public native INTaskStatus getStatus();
-    @Property(selector = "taskType")
-    public native INTaskType getTaskType();
     @Property(selector = "spatialEventTrigger")
     public native INSpatialEventTrigger getSpatialEventTrigger();
     @Property(selector = "temporalEventTrigger")
@@ -71,6 +69,8 @@ import org.robovm.apple.corelocation.*;
     public native NSDateComponents getModifiedDateComponents();
     @Property(selector = "identifier")
     public native String getIdentifier();
+    @Property(selector = "taskType")
+    public native INTaskType getTaskType();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

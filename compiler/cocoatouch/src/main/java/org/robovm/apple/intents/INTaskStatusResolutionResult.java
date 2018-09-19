@@ -57,21 +57,7 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "successWithResolvedTaskStatus:")
     public static native INTaskStatusResolutionResult successWithResolvedTaskStatus(INTaskStatus resolvedTaskStatus);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "successWithResolvedValue:")
-    public static native INTaskStatusResolutionResult successWithResolvedValue(INTaskStatus resolvedValue);
     @Method(selector = "confirmationRequiredWithTaskStatusToConfirm:")
     public static native INTaskStatusResolutionResult confirmationRequiredWithTaskStatusToConfirm(INTaskStatus taskStatusToConfirm);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INTaskStatusResolutionResult confirmationRequiredWithValueToConfirm(INTaskStatus valueToConfirm);
     /*</methods>*/
 }

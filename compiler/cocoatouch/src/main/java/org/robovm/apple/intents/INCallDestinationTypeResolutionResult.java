@@ -57,21 +57,7 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "successWithResolvedCallDestinationType:")
     public static native INCallDestinationTypeResolutionResult successWithResolvedCallDestinationType(INCallDestinationType resolvedCallDestinationType);
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "successWithResolvedValue:")
-    public static native INCallDestinationTypeResolutionResult successWithResolvedValue(INCallDestinationType resolvedValue);
     @Method(selector = "confirmationRequiredWithCallDestinationTypeToConfirm:")
     public static native INCallDestinationTypeResolutionResult confirmationRequiredWithCallDestinationTypeToConfirm(INCallDestinationType callDestinationTypeToConfirm);
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INCallDestinationTypeResolutionResult confirmationRequiredWithValueToConfirm(INCallDestinationType valueToConfirm);
     /*</methods>*/
 }

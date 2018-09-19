@@ -54,11 +54,11 @@ public enum /*<name>*/INCancelWorkoutIntentResponseCode/*</name>*/ implements Va
     /**
      * @since Available in iOS 11.0 and later.
      */
-    Success(6L),
+    HandleInApp(6L),
     /**
      * @since Available in iOS 11.0 and later.
      */
-    HandleInApp(7L);
+    Success(7L);
     /*</values>*/
 
     /*<bind>*/

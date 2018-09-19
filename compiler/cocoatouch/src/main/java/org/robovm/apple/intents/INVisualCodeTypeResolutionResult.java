@@ -57,21 +57,7 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "successWithResolvedVisualCodeType:")
     public static native INVisualCodeTypeResolutionResult successWithResolvedVisualCodeType(INVisualCodeType resolvedVisualCodeType);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "successWithResolvedValue:")
-    public static native INVisualCodeTypeResolutionResult successWithResolvedValue(INVisualCodeType resolvedValue);
     @Method(selector = "confirmationRequiredWithVisualCodeTypeToConfirm:")
     public static native INVisualCodeTypeResolutionResult confirmationRequiredWithVisualCodeTypeToConfirm(INVisualCodeType visualCodeTypeToConfirm);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INVisualCodeTypeResolutionResult confirmationRequiredWithValueToConfirm(INVisualCodeType valueToConfirm);
     /*</methods>*/
 }

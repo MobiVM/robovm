@@ -67,6 +67,26 @@ import org.robovm.apple.corelocation.*;
     public native NSMeasurement<NSUnitLength> getDistanceRemaining();
     @Property(selector = "setDistanceRemaining:")
     public native void setDistanceRemaining(NSMeasurement<NSUnitLength> v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "charging")
+    public native NSNumber getCharging();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setCharging:")
+    public native void setCharging(NSNumber v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "minutesToFull")
+    public native NSNumber getMinutesToFull();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setMinutesToFull:")
+    public native void setMinutesToFull(NSNumber v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

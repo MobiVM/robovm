@@ -76,6 +76,11 @@ import org.robovm.apple.corelocation.*;
     void resolveRelativeTemperatureSettingForSetClimateSettingsInCar(INSetClimateSettingsInCarIntent intent, @Block VoidBlock1<INRelativeSettingResolutionResult> completion);
     @Method(selector = "resolveClimateZoneForSetClimateSettingsInCar:withCompletion:")
     void resolveClimateZoneForSetClimateSettingsInCar(INSetClimateSettingsInCarIntent intent, @Block VoidBlock1<INCarSeatResolutionResult> completion);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "resolveCarNameForSetClimateSettingsInCar:withCompletion:")
+    void resolveCarNameForSetClimateSettingsInCar(INSetClimateSettingsInCarIntent intent, @Block VoidBlock1<INSpeakableStringResolutionResult> completion);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

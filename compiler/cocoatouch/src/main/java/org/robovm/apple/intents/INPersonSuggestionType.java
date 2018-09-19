@@ -38,6 +38,10 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/INPersonSuggestionType/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    None(0L),
     SocialProfile(1L),
     InstantMessageAddress(2L);
     /*</values>*/

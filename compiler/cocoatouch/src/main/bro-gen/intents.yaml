@@ -106,6 +106,12 @@ enums:
     INTaskType: {} #since 11.0
     INSpatialEvent: {} #since 11.0
     INNoteContentType: {} #since 11.0
+    INPlaybackRepeatMode: {} #since 12.0
+    INPlayMediaIntentResponseCode: {} #since 12.0
+    INMediaItemType: {} #since 12.0
+    INUpcomingMediaPredictionMode: {} #since 12.0
+    INDailyRoutineSituation: {} #since 12.0
+    INRelevantShortcutRole: {} #since 12.0
 
 classes:
     INAccountTypeResolutionResult: {} #since 11.0
@@ -267,8 +273,10 @@ classes:
                 constructor: true
     INImageNoteContent: {} #since 11.0
     INIntegerResolutionResult: {} #since 10.0
-    INIntent: {} #since 10.0
-    INIntentResolutionResult: {} #since 10.0
+    INIntent:  #since 10.0
+        methods:
+            '-setImage:forParameterNamed:':
+                trim_after_first_colon: true
     INIntentResponse: {} #since 10.0
     INInteraction: #since 10.0
         methods:
@@ -550,6 +558,8 @@ classes:
         methods:
             '-initWithEnableFan:enableAirConditioner:enableClimateControl:enableAutoMode:airCirculationMode:fanSpeedIndex:fanSpeedPercentage:relativeFanSpeedSetting:temperature:relativeTemperatureSetting:climateZone:':
                 name: init
+            '-initWithEnableFan:enableAirConditioner:enableClimateControl:enableAutoMode:airCirculationMode:fanSpeedIndex:fanSpeedPercentage:relativeFanSpeedSetting:temperature:relativeTemperatureSetting:climateZone:carName:':
+                name: init
     INSetClimateSettingsInCarIntentResponse: #since 10.0
         methods:
             '-initWithCode:userActivity:':
@@ -557,6 +567,8 @@ classes:
     INSetDefrosterSettingsInCarIntent: #since 10.0
         methods:
             '-initWithEnable:defroster:':
+                name: init
+            '-initWithEnable:defroster:carName:':
                 name: init
     INSetDefrosterSettingsInCarIntentResponse: #since 10.0
         methods:
@@ -595,6 +607,8 @@ classes:
     INSetSeatSettingsInCarIntent: #since 10.0
         methods:
             '-initWithEnableHeating:enableCooling:enableMassage:seat:level:relativeLevelSetting:':
+                name: init
+            '-initWithEnableHeating:enableCooling:enableMassage:seat:level:relativeLevelSetting:carName:':
                 name: init
     INSetSeatSettingsInCarIntentResponse: #since 10.0
         methods:
@@ -687,6 +701,48 @@ classes:
                 trim_after_first_colon: true
     INWorkoutGoalUnitTypeResolutionResult: {} #since 10.0
     INWorkoutLocationTypeResolutionResult: {} #since 10.0
+    INDailyRoutineRelevanceProvider: {} #since 12.0
+    INDateRelevanceProvider: #since 12.0
+        methods:
+            '-initWithStartDate:endDate:':
+                name: init
+    INDefaultCardTemplate: {} #since 12.0
+    INLocationRelevanceProvider: {} #since 12.0
+    INMediaItem: #since 12.0
+        methods:
+            '-initWithIdentifier:title:type:artwork:':
+                name: init
+    INObject: #since 12.0
+        methods:
+            '-initWithIdentifier:displayString:pronunciationHint:':
+                name: init
+            '-initWithIdentifier:displayString:':
+                name: init
+    INPlayMediaIntent: #since 12.0
+        methods:
+            '-initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:':
+                name: init
+    INPlayMediaIntentResponse: #since 12.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INRelevanceProvider: {} #since 12.0
+    INRelevantShortcut: {} #since 12.0
+    INRelevantShortcutStore: #since 12.0
+        methods:
+            '-setRelevantShortcuts:completionHandler:':
+                trim_after_first_colon: true
+    INShortcut: {} #since 12.0
+    INUpcomingMediaManager: #since 12.0
+        methods:
+            '-setPredictionMode:forType:':
+                trim_after_first_colon: true
+    INVoiceShortcut: {} #since 12.0
+    INVoiceShortcutCenter: #since 12.0
+        methods:
+            '-getVoiceShortcutWithIdentifier:completion:':
+                name: getVoiceShortcut
+    INIntentResolutionResult: {} #since 10.0
 
 protocols:
     INActivateCarSignalIntentHandling: #since 10.3
@@ -1138,6 +1194,8 @@ protocols:
                 trim_after_first_colon: true
             '-resolveClimateZoneForSetClimateSettingsInCar:withCompletion:':
                 trim_after_first_colon: true
+            '-resolveCarNameForSetClimateSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
     INSetDefrosterSettingsInCarIntentHandling: #since 10.0
         methods:
             '-handleSetDefrosterSettingsInCar:completion:':
@@ -1147,6 +1205,8 @@ protocols:
             '-resolveEnableForSetDefrosterSettingsInCar:withCompletion:':
                 trim_after_first_colon: true
             '-resolveDefrosterForSetDefrosterSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveCarNameForSetDefrosterSettingsInCar:withCompletion:':
                 trim_after_first_colon: true
     INSetMessageAttributeIntentHandling: #since 10.0
         methods:
@@ -1167,6 +1227,8 @@ protocols:
             '-resolveProfileNameForSetProfileInCar:withCompletion:':
                 trim_after_first_colon: true
             '-resolveDefaultProfileForSetProfileInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveCarNameForSetProfileInCar:withCompletion:':
                 trim_after_first_colon: true
     INSetRadioStationIntentHandling: #since 10.0
         methods:
@@ -1201,6 +1263,8 @@ protocols:
             '-resolveLevelForSetSeatSettingsInCar:withCompletion:':
                 trim_after_first_colon: true
             '-resolveRelativeLevelSettingForSetSeatSettingsInCar:withCompletion:':
+                trim_after_first_colon: true
+            '-resolveCarNameForSetSeatSettingsInCar:withCompletion:':
                 trim_after_first_colon: true
     INSetTaskAttributeIntentHandling: #since 11.0
         methods:
@@ -1283,7 +1347,12 @@ protocols:
                 trim_after_first_colon: true
     INVisualCodeDomainHandling: {} #since 11.0
     INWorkoutsDomainHandling: {} #since 10.0
-
+    INPlayMediaIntentHandling: #since 12.0
+        methods:
+            '-handlePlayMedia:completion:':
+                trim_after_first_colon: true
+            '-confirmPlayMedia:completion:':
+                trim_after_first_colon: true
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
