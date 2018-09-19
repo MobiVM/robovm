@@ -43,7 +43,12 @@ import org.robovm.apple.security.*;
 
     /*<ptr>*/public static class NEFilterProviderPtr extends Ptr<NEFilterProvider, NEFilterProviderPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NEFilterProvider.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final String RemediationURLFlowURLHostname = "NE_FLOW_HOSTNAME";
+    public static final String RemediationURLFlowURL = "NE_FLOW_URL";
+    public static final String RemediationURLOrganization = "NE_ORGANIZATION";
+    public static final String RemediationURLUsername = "NE_USERNAME";
+    /*</constants>*/
     /*<constructors>*/
     public NEFilterProvider() {}
     protected NEFilterProvider(Handle h, long handle) { super(h, handle); }

@@ -378,6 +378,10 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    NEFilterProviderRemediationURL(.*):
+        class: NEFilterProvider
+        name: 'RemediationURL#{g[0]}'
+
     NEFilterFlowBytesMax:
         exclude: true
 
