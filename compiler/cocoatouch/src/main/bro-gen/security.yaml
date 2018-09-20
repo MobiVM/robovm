@@ -33,6 +33,7 @@ enums:
     SecRevocationPolicyFlags: { first: kSecRevocationOCSPMethod, bits: true }
     SecErrorCode: { first: errSecSuccess }
     SecKeyOperationType: {}
+    SSLCiphersuiteGroup: {prefix: kSSLCiphersuiteGroup}
 
 classes:
     __SecAccessControl:

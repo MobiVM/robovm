@@ -283,6 +283,11 @@ import org.robovm.apple.dispatch.*;
     @Bridge(symbol="SecTrustEvaluateAsync", optional=true)
     protected native OSStatus evaluateAsync0(DispatchQueue queue, @Block VoidBlock2<SecTrust, SecTrustResultType> result);
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="SecTrustEvaluateWithError", optional=true)
+    public native boolean evaluateWithError(NSError error);
+    /**
      * @since Available in iOS 7.0 and later.
      */
     @Bridge(symbol="SecTrustGetTrustResult", optional=true)
