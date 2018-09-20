@@ -44,9 +44,15 @@ public final class /*<name>*/SCNetworkReachabilityFlags/*</name>*/ extends Bits<
     public static final SCNetworkReachabilityFlags ConnectionRequired = new SCNetworkReachabilityFlags(4L);
     public static final SCNetworkReachabilityFlags ConnectionOnTraffic = new SCNetworkReachabilityFlags(8L);
     public static final SCNetworkReachabilityFlags InterventionRequired = new SCNetworkReachabilityFlags(16L);
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public static final SCNetworkReachabilityFlags ConnectionOnDemand = new SCNetworkReachabilityFlags(32L);
     public static final SCNetworkReachabilityFlags IsLocalAddress = new SCNetworkReachabilityFlags(65536L);
     public static final SCNetworkReachabilityFlags IsDirect = new SCNetworkReachabilityFlags(131072L);
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
     public static final SCNetworkReachabilityFlags IsWWAN = new SCNetworkReachabilityFlags(262144L);
     public static final SCNetworkReachabilityFlags ConnectionAutomatic = new SCNetworkReachabilityFlags(8L);
     /*</values>*/
