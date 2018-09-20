@@ -210,8 +210,6 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getSpotOuterAngle();
     @Property(selector = "setSpotOuterAngle:")
     public native void setSpotOuterAngle(@MachineSizedFloat double v);
-    @Property(selector = "gobo")
-    public native SCNMaterialProperty getGobo();
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -222,15 +220,17 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setIESProfileURL:")
     public native void setIESProfileURL(NSURL v);
-    @Property(selector = "categoryBitMask")
-    public native @MachineSizedUInt long getCategoryBitMask();
-    @Property(selector = "setCategoryBitMask:")
-    public native void setCategoryBitMask(@MachineSizedUInt long v);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "sphericalHarmonicsCoefficients")
     public native NSData getSphericalHarmonicsCoefficients();
+    @Property(selector = "gobo")
+    public native SCNMaterialProperty getGobo();
+    @Property(selector = "categoryBitMask")
+    public native @MachineSizedUInt long getCategoryBitMask();
+    @Property(selector = "setCategoryBitMask:")
+    public native void setCategoryBitMask(@MachineSizedUInt long v);
     @Property(selector = "animationKeys")
     public native NSArray<NSString> getAnimationKeys();
     @Property(selector = "technique")

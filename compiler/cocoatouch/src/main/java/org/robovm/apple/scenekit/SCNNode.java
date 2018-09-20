@@ -381,8 +381,23 @@ import org.robovm.apple.avfoundation.*;
     public native NSArray<NSString> getActionKeys();
     @Property(selector = "canBecomeFocused")
     public native boolean canBecomeFocused();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "frame")
+    public native @ByVal CGRect getFrame();
     @Property(selector = "preferredFocusEnvironments")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> getPreferredFocusEnvironments();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "parentFocusEnvironment")
+    public native UIFocusEnvironment getParentFocusEnvironment();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "focusItemContainer")
+    public native UIFocusItemContainer getFocusItemContainer();
     /**
      * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 10.0.
@@ -663,6 +678,8 @@ import org.robovm.apple.avfoundation.*;
     public native void setBoundingBox(SCNVector3.SCNVector3Ptr min, SCNVector3.SCNVector3Ptr max);
     @Method(selector = "getBoundingSphereCenter:radius:")
     public native boolean getBoundingSphere(SCNVector3.SCNVector3Ptr center, MachineSizedFloatPtr radius);
+    @Method(selector = "didHintFocusMovement:")
+    public native void didHintFocusMovement(UIFocusMovementHint hint);
     @Method(selector = "setNeedsFocusUpdate")
     public native void setNeedsFocusUpdate();
     @Method(selector = "updateFocusIfNeeded")

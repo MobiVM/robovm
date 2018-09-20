@@ -164,6 +164,46 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setAffectedByGravity:")
     public native void setAffectedByGravity(boolean v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "continuousCollisionDetectionThreshold")
+    public native @MachineSizedFloat double getContinuousCollisionDetectionThreshold();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setContinuousCollisionDetectionThreshold:")
+    public native void setContinuousCollisionDetectionThreshold(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "centerOfMassOffset")
+    public native @ByVal SCNVector3 getCenterOfMassOffset();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setCenterOfMassOffset:")
+    public native void setCenterOfMassOffset(@ByVal SCNVector3 v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "linearRestingThreshold")
+    public native @MachineSizedFloat double getLinearRestingThreshold();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setLinearRestingThreshold:")
+    public native void setLinearRestingThreshold(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "angularRestingThreshold")
+    public native @MachineSizedFloat double getAngularRestingThreshold();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setAngularRestingThreshold:")
+    public native void setAngularRestingThreshold(@MachineSizedFloat double v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -179,6 +219,11 @@ import org.robovm.apple.avfoundation.*;
     public native void clearAllForces();
     @Method(selector = "resetTransform")
     public native void resetTransform();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "setResting:")
+    public native void setResting(boolean resting);
     @Method(selector = "staticBody")
     public static native SCNPhysicsBody createStaticBody();
     @Method(selector = "dynamicBody")

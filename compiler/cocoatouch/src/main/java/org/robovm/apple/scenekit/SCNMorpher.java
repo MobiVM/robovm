@@ -62,10 +62,6 @@ import org.robovm.apple.avfoundation.*;
     public native NSArray<SCNGeometry> getTargets();
     @Property(selector = "setTargets:")
     public native void setTargets(NSArray<SCNGeometry> v);
-    @Property(selector = "calculationMode")
-    public native SCNMorpherCalculationMode getCalculationMode();
-    @Property(selector = "setCalculationMode:")
-    public native void setCalculationMode(SCNMorpherCalculationMode v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -76,6 +72,10 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setWeights:")
     public native void setWeights(NSArray<NSNumber> v);
+    @Property(selector = "calculationMode")
+    public native SCNMorpherCalculationMode getCalculationMode();
+    @Property(selector = "setCalculationMode:")
+    public native void setCalculationMode(SCNMorpherCalculationMode v);
     /**
      * @since Available in iOS 11.0 and later.
      */
