@@ -42,7 +42,7 @@ import org.robovm.apple.mapkit.*;
 /*<annotations>*/@Library("EventKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EKRecurrenceDayOfWeek/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class EKRecurrenceDayOfWeekPtr extends Ptr<EKRecurrenceDayOfWeek, EKRecurrenceDayOfWeekPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(EKRecurrenceDayOfWeek.class); }/*</bind>*/
@@ -54,12 +54,16 @@ import org.robovm.apple.mapkit.*;
     @Method(selector = "initWithDayOfTheWeek:weekNumber:")
     public EKRecurrenceDayOfWeek(EKWeekday dayOfTheWeek, @MachineSizedSInt long weekNumber) { super((SkipInit) null); initObject(init(dayOfTheWeek, weekNumber)); }
     public EKRecurrenceDayOfWeek(EKWeekday dayOfTheWeek) { super((Handle) null, create(dayOfTheWeek)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public EKRecurrenceDayOfWeek(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dayOfTheWeek")
     public native EKWeekday getDayOfTheWeek();
     @Property(selector = "weekNumber")
     public native @MachineSizedSInt long getWeekNumber();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -67,5 +71,9 @@ import org.robovm.apple.mapkit.*;
     protected native @Pointer long init(EKWeekday dayOfTheWeek, @MachineSizedSInt long weekNumber);
     @Method(selector = "dayOfWeek:")
     protected static native @Pointer long create(EKWeekday dayOfTheWeek);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }
