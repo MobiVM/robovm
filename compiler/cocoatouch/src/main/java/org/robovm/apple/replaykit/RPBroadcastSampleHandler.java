@@ -63,6 +63,11 @@ import org.robovm.apple.coremedia.*;
     public native void broadcastResumed();
     @Method(selector = "broadcastFinished")
     public native void broadcastFinished();
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @Method(selector = "broadcastAnnotatedWithApplicationInfo:")
+    public native void broadcastAnnotatedWithApplicationInfo(NSDictionary<?, ?> applicationInfo);
     @Method(selector = "processSampleBuffer:withType:")
     public native void processSampleBuffer(org.robovm.apple.coremedia.CMSampleBuffer sampleBuffer, RPSampleBufferType sampleBufferType);
     @Method(selector = "finishBroadcastWithError:")
