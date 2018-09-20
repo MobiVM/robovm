@@ -87,6 +87,9 @@ typedefs:
     NSFileProviderServiceName : NSString
     NSUserActivityPersistentIdentifier: NSString # since ios12
 
+generic_typedefs:
+    'NSString *': NSString
+
 structdefs:
     vector_uint2: 'VectorInt2'
     vector_int2: 'VectorInt2'
