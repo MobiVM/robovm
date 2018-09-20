@@ -79,6 +79,8 @@ public enum /*<name>*/AudioChannelLabel/*</name>*/ implements ValuedEnum {
     MS_Side(205L),
     XY_X(206L),
     XY_Y(207L),
+    BinauralLeft(208L),
+    BinauralRight(209L),
     HeadphonesLeft(301L),
     HeadphonesRight(302L),
     ClickTrack(304L),
@@ -118,7 +120,9 @@ public enum /*<name>*/AudioChannelLabel/*</name>*/ implements ValuedEnum {
     HOA_ACN_13(131085L),
     HOA_ACN_14(131086L),
     HOA_ACN_15(131087L),
-    HOA_ACN_65024(196096L);
+    HOA_ACN_65024(196096L),
+    BeginReserved(-268435456L),
+    EndReserved(-2L);
     /*</values>*/
 
     /*<bind>*/
