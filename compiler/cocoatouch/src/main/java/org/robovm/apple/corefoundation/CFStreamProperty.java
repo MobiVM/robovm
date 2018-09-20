@@ -104,26 +104,6 @@ import org.robovm.apple.coretext.*;
     /**
      * @since Available in iOS 2.0 and later.
      */
-    public static final CFStreamProperty SOCKSProxyHost = new CFStreamProperty("SOCKSProxyHost");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    public static final CFStreamProperty SOCKSProxyPort = new CFStreamProperty("SOCKSProxyPort");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    public static final CFStreamProperty SOCKSVersion = new CFStreamProperty("SOCKSVersion");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    public static final CFStreamProperty SOCKSUser = new CFStreamProperty("SOCKSUser");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    public static final CFStreamProperty SOCKSPassword = new CFStreamProperty("SOCKSPassword");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamProperty SocketSecurityLevel = new CFStreamProperty("SocketSecurityLevel");
     /**
      * @since Available in iOS 2.0 and later.
@@ -131,7 +111,7 @@ import org.robovm.apple.coretext.*;
     public static final CFStreamProperty ShouldCloseNativeSocket = new CFStreamProperty("ShouldCloseNativeSocket");
     /*</constants>*/
     
-    private static /*<name>*/CFStreamProperty/*</name>*/[] values = new /*<name>*/CFStreamProperty/*</name>*/[] {/*<value_list>*/DataWritten, AppendToFile, FileCurrentOffset, SocketNativeHandle, SocketRemoteHostName, SocketRemotePortNumber, SOCKSProxy, SOCKSProxyHost, SOCKSProxyPort, SOCKSVersion, SOCKSUser, SOCKSPassword, SocketSecurityLevel, ShouldCloseNativeSocket/*</value_list>*/};
+    private static /*<name>*/CFStreamProperty/*</name>*/[] values = new /*<name>*/CFStreamProperty/*</name>*/[] {/*<value_list>*/DataWritten, AppendToFile, FileCurrentOffset, SocketNativeHandle, SocketRemoteHostName, SocketRemotePortNumber, SOCKSProxy, SocketSecurityLevel, ShouldCloseNativeSocket/*</value_list>*/};
     
     /*<name>*/CFStreamProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -171,31 +151,6 @@ import org.robovm.apple.coretext.*;
          */
         @GlobalValue(symbol="kCFStreamPropertySOCKSProxy", optional=true)
         public static native CFString SOCKSProxy();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
-        @GlobalValue(symbol="kCFStreamPropertySOCKSProxyHost", optional=true)
-        public static native CFString SOCKSProxyHost();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
-        @GlobalValue(symbol="kCFStreamPropertySOCKSProxyPort", optional=true)
-        public static native CFString SOCKSProxyPort();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
-        @GlobalValue(symbol="kCFStreamPropertySOCKSVersion", optional=true)
-        public static native CFString SOCKSVersion();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
-        @GlobalValue(symbol="kCFStreamPropertySOCKSUser", optional=true)
-        public static native CFString SOCKSUser();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
-        @GlobalValue(symbol="kCFStreamPropertySOCKSPassword", optional=true)
-        public static native CFString SOCKSPassword();
         /**
          * @since Available in iOS 2.0 and later.
          */

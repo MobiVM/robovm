@@ -65,14 +65,6 @@ import org.robovm.apple.corefoundation.*;
     /**
      * @since Available in iOS 2.0 and later.
      */
-    public static final CFStreamErrorDomain SOCKS = new CFStreamErrorDomain("SOCKS");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    public static final CFStreamErrorDomain SSL = new CFStreamErrorDomain("SSL");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFStreamErrorDomain FTP = new CFStreamErrorDomain("FTP");
     /**
      * @since Available in iOS 2.0 and later.
@@ -80,7 +72,7 @@ import org.robovm.apple.corefoundation.*;
     public static final CFStreamErrorDomain HTTP = new CFStreamErrorDomain("HTTP");
     /*</constants>*/
     
-    private static /*<name>*/CFStreamErrorDomain/*</name>*/[] values = new /*<name>*/CFStreamErrorDomain/*</name>*/[] {/*<value_list>*/NetDB, SystemConfiguration, Mach, NetServices, WinSock, SOCKS, SSL, FTP, HTTP/*</value_list>*/};
+    private static /*<name>*/CFStreamErrorDomain/*</name>*/[] values = new /*<name>*/CFStreamErrorDomain/*</name>*/[] {/*<value_list>*/NetDB, SystemConfiguration, Mach, NetServices, WinSock, FTP, HTTP/*</value_list>*/};
     
     /*<name>*/CFStreamErrorDomain/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -128,16 +120,6 @@ import org.robovm.apple.corefoundation.*;
          */
         @GlobalValue(symbol="kCFStreamErrorDomainWinSock", optional=true)
         public static native int WinSock();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
-        @GlobalValue(symbol="kCFStreamErrorDomainSOCKS", optional=true)
-        public static native int SOCKS();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
-        @GlobalValue(symbol="kCFStreamErrorDomainSSL", optional=true)
-        public static native int SSL();
         /**
          * @since Available in iOS 2.0 and later.
          */

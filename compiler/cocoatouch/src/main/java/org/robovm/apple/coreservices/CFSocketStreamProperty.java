@@ -114,19 +114,7 @@ import org.robovm.apple.corefoundation.*;
     /**
      * @since Available in iOS 2.0 and later.
      */
-    public static final CFSocketStreamProperty SOCKSProxy = new CFSocketStreamProperty("SOCKSProxy");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
     public static final CFSocketStreamProperty ProxyLocalBypass = new CFSocketStreamProperty("ProxyLocalBypass");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    public static final CFSocketStreamProperty SocketSecurityLevel = new CFSocketStreamProperty("SocketSecurityLevel");
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    public static final CFSocketStreamProperty ShouldCloseNativeSocket = new CFSocketStreamProperty("ShouldCloseNativeSocket");
     /**
      * @since Available in iOS 2.0 and later.
      */
@@ -207,7 +195,7 @@ import org.robovm.apple.corefoundation.*;
     public static final CFSocketStreamProperty HTTPRequestBytesWrittenCount = new CFSocketStreamProperty("HTTPRequestBytesWrittenCount");
     /*</constants>*/
     
-    private static /*<name>*/CFSocketStreamProperty/*</name>*/[] values = new /*<name>*/CFSocketStreamProperty/*</name>*/[] {/*<value_list>*/SSLContext, SSLPeerTrust, SSLSettings, NetworkServiceType, NoCellular, ConnectionIsCellular, SOCKSProxy, ProxyLocalBypass, SocketSecurityLevel, ShouldCloseNativeSocket, SocketRemoteHost, SocketRemoteNetService, SocketExtendedBackgroundIdleMode, HTTPResponseHeader, HTTPFinalURL, HTTPFinalRequest, HTTPProxy, HTTPProxyHost, HTTPProxyPort, HTTPSProxyHost, HTTPSProxyPort, HTTPShouldAutoredirect, HTTPAttemptPersistentConnection, HTTPRequestBytesWrittenCount/*</value_list>*/};
+    private static /*<name>*/CFSocketStreamProperty/*</name>*/[] values = new /*<name>*/CFSocketStreamProperty/*</name>*/[] {/*<value_list>*/SSLContext, SSLPeerTrust, SSLSettings, NetworkServiceType, NoCellular, ConnectionIsCellular, ProxyLocalBypass, SocketRemoteHost, SocketRemoteNetService, SocketExtendedBackgroundIdleMode, HTTPResponseHeader, HTTPFinalURL, HTTPFinalRequest, HTTPProxy, HTTPProxyHost, HTTPProxyPort, HTTPSProxyHost, HTTPSProxyPort, HTTPShouldAutoredirect, HTTPAttemptPersistentConnection, HTTPRequestBytesWrittenCount/*</value_list>*/};
     
     /*<name>*/CFSocketStreamProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -263,23 +251,8 @@ import org.robovm.apple.corefoundation.*;
         /**
          * @since Available in iOS 2.0 and later.
          */
-        @GlobalValue(symbol="kCFStreamPropertySOCKSProxy", optional=true)
-        public static native CFString SOCKSProxy();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
         @GlobalValue(symbol="kCFStreamPropertyProxyLocalBypass", optional=true)
         public static native CFString ProxyLocalBypass();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
-        @GlobalValue(symbol="kCFStreamPropertySocketSecurityLevel", optional=true)
-        public static native CFString SocketSecurityLevel();
-        /**
-         * @since Available in iOS 2.0 and later.
-         */
-        @GlobalValue(symbol="kCFStreamPropertyShouldCloseNativeSocket", optional=true)
-        public static native CFString ShouldCloseNativeSocket();
         /**
          * @since Available in iOS 2.0 and later.
          */

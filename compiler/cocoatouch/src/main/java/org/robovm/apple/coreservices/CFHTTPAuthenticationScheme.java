@@ -115,13 +115,9 @@ import org.robovm.apple.corefoundation.*;
      * @since Available in iOS 4.3 and later.
      */
     public static final CFHTTPAuthenticationScheme XMobileMeAuthToken = new CFHTTPAuthenticationScheme("XMobileMeAuthToken");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public static final CFHTTPAuthenticationScheme OAuth1 = new CFHTTPAuthenticationScheme("OAuth1");
     /*</constants>*/
     
-    private static /*<name>*/CFHTTPAuthenticationScheme/*</name>*/[] values = new /*<name>*/CFHTTPAuthenticationScheme/*</name>*/[] {/*<value_list>*/Basic, Digest, NTLM, Kerberos, Negotiate, Negotiate2, XMobileMeAuthToken, OAuth1/*</value_list>*/};
+    private static /*<name>*/CFHTTPAuthenticationScheme/*</name>*/[] values = new /*<name>*/CFHTTPAuthenticationScheme/*</name>*/[] {/*<value_list>*/Basic, Digest, NTLM, Kerberos, Negotiate, Negotiate2, XMobileMeAuthToken/*</value_list>*/};
     
     /*<name>*/CFHTTPAuthenticationScheme/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -179,11 +175,6 @@ import org.robovm.apple.corefoundation.*;
          */
         @GlobalValue(symbol="kCFHTTPAuthenticationSchemeXMobileMeAuthToken", optional=true)
         public static native CFString XMobileMeAuthToken();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
-        @GlobalValue(symbol="kCFHTTPAuthenticationSchemeOAuth1", optional=true)
-        public static native CFString OAuth1();
         /*</values>*/
     }
 }

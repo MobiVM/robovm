@@ -49,15 +49,15 @@ import org.robovm.apple.coretext.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CFStreamError() {}
-    public CFStreamError(CFStreamErrorDomain domain, int error) {
+    public CFStreamError(@MachineSizedSInt long domain, int error) {
         this.setDomain(domain);
         this.setError(error);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native CFStreamErrorDomain getDomain();
-    @StructMember(0) public native CFStreamError setDomain(CFStreamErrorDomain domain);
+    @StructMember(0) public native @MachineSizedSInt long getDomain();
+    @StructMember(0) public native CFStreamError setDomain(@MachineSizedSInt long domain);
     @StructMember(1) public native int getError();
     @StructMember(1) public native CFStreamError setError(int error);
     /*</members>*/
