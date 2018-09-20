@@ -171,5 +171,9 @@ import org.robovm.apple.fileprovider.*;
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder decoder);
+    @Method(selector = "objectForKeyedSubscript:")
+    public native CKRecordValue objectForKeyedSubscript(String key);
+    @Method(selector = "setObject:forKeyedSubscript:")
+    protected native void setObjectForKeyedSubscript(CKRecordValue object, String key);
     /*</methods>*/
 }

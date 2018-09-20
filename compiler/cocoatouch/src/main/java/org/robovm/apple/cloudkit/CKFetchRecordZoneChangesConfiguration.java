@@ -35,57 +35,37 @@ import org.robovm.apple.fileprovider.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CKShareParticipant/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CKFetchRecordZoneChangesConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CKShareParticipantPtr extends Ptr<CKShareParticipant, CKShareParticipantPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CKShareParticipant.class); }/*</bind>*/
+    /*<ptr>*/public static class CKFetchRecordZoneChangesConfigurationPtr extends Ptr<CKFetchRecordZoneChangesConfiguration, CKFetchRecordZoneChangesConfigurationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CKFetchRecordZoneChangesConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CKShareParticipant() {}
-    protected CKShareParticipant(Handle h, long handle) { super(h, handle); }
-    protected CKShareParticipant(SkipInit skipInit) { super(skipInit); }
+    public CKFetchRecordZoneChangesConfiguration() {}
+    protected CKFetchRecordZoneChangesConfiguration(Handle h, long handle) { super(h, handle); }
+    protected CKFetchRecordZoneChangesConfiguration(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CKShareParticipant(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CKFetchRecordZoneChangesConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "userIdentity")
-    public native CKUserIdentity getUserIdentity();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "role")
-    public native CKShareParticipantRole getRole();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "setRole:")
-    public native void setRole(CKShareParticipantRole v);
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
-     */
-    @Deprecated
-    @Property(selector = "type")
-    public native CKShareParticipantType getType();
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
-     */
-    @Deprecated
-    @Property(selector = "setType:")
-    public native void setType(CKShareParticipantType v);
-    @Property(selector = "acceptanceStatus")
-    public native CKShareParticipantAcceptanceStatus getAcceptanceStatus();
-    @Property(selector = "permission")
-    public native CKShareParticipantPermission getPermission();
-    @Property(selector = "setPermission:")
-    public native void setPermission(CKShareParticipantPermission v);
+    @Property(selector = "previousServerChangeToken")
+    public native CKServerChangeToken getPreviousServerChangeToken();
+    @Property(selector = "setPreviousServerChangeToken:")
+    public native void setPreviousServerChangeToken(CKServerChangeToken v);
+    @Property(selector = "resultsLimit")
+    public native @MachineSizedUInt long getResultsLimit();
+    @Property(selector = "setResultsLimit:")
+    public native void setResultsLimit(@MachineSizedUInt long v);
+    @Property(selector = "desiredKeys")
+    public native NSArray<NSString> getDesiredKeys();
+    @Property(selector = "setDesiredKeys:")
+    public native void setDesiredKeys(NSArray<NSString> v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

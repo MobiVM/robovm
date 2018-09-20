@@ -35,13 +35,11 @@ import org.robovm.apple.fileprovider.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
- * @deprecated Deprecated in iOS 12.0.
+ * @since Available in iOS 12.0 and later.
  */
-@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/CKShareParticipantType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/CKShareParticipantRole/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unknown(0L),
     Owner(1L),
@@ -56,15 +54,15 @@ public enum /*<name>*/CKShareParticipantType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/CKShareParticipantType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CKShareParticipantRole/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/CKShareParticipantType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CKShareParticipantType/*</name>*/ v : values()) {
+    public static /*<name>*/CKShareParticipantRole/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CKShareParticipantRole/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CKShareParticipantType/*</name>*/.class.getName());
+            + /*<name>*/CKShareParticipantRole/*</name>*/.class.getName());
     }
 }
