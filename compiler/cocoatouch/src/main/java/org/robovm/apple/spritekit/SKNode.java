@@ -45,7 +45,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKNode/*</name>*/ 
     extends /*<extends>*/UIResponder/*</extends>*/ 
-    /*<implements>*/implements NSCoding, UIFocusItem/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, UIFocusItem/*</implements>*/ {
 
     /*<ptr>*/public static class SKNodePtr extends Ptr<SKNode, SKNodePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKNode.class); }/*</bind>*/
@@ -58,6 +58,17 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:")
     public SKNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     public SKNode(String filename) { super((Handle) null, create(filename)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public SKNode(String filename, NSSet<?> classes) throws NSErrorException {
+       this(filename, classes, new NSError.NSErrorPtr());
+    }
+    private SKNode(String filename, NSSet<?> classes, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(filename, classes, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     public SKNode(File file) {
         this(file.getAbsolutePath());
@@ -155,10 +166,22 @@ import org.robovm.apple.metal.*;
     @Deprecated
     @Property(selector = "setAttributeValues:")
     public native void setAttributeValues(NSDictionary<NSString, SKAttributeValue> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "canBecomeFocused")
     public native boolean canBecomeFocused();
     @Property(selector = "preferredFocusEnvironments")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> getPreferredFocusEnvironments();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "parentFocusEnvironment")
+    public native UIFocusEnvironment getParentFocusEnvironment();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "focusItemContainer")
+    public native UIFocusItemContainer getFocusItemContainer();
     /**
      * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 10.0.
@@ -245,8 +268,15 @@ import org.robovm.apple.metal.*;
     public native boolean equalsTo(SKNode node);
     @Method(selector = "nodeWithFileNamed:")
     protected static native @Pointer long create(String filename);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "nodeWithFileNamed:securelyWithClasses:andError:")
+    protected static native @Pointer long create(String filename, NSSet<?> classes, NSError.NSErrorPtr error);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
+    @Method(selector = "didHintFocusMovement:")
+    public native void didHintFocusMovement(UIFocusMovementHint hint);
     @Method(selector = "setNeedsFocusUpdate")
     public native void setNeedsFocusUpdate();
     @Method(selector = "updateFocusIfNeeded")

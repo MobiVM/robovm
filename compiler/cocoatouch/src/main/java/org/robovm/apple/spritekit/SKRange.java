@@ -47,7 +47,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKRange/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKRangePtr extends Ptr<SKRange, SKRangePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKRange.class); }/*</bind>*/
@@ -70,6 +70,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedFloat double getUpperLimit();
     @Property(selector = "setUpperLimit:")
     public native void setUpperLimit(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -47,7 +47,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKAttributeValue/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKAttributeValuePtr extends Ptr<SKAttributeValue, SKAttributeValuePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKAttributeValue.class); }/*</bind>*/
@@ -76,6 +76,8 @@ import org.robovm.apple.metal.*;
     public native @ByVal VectorFloat4 getVectorFloat4Value();
     @Property(selector = "setVectorFloat4Value:")
     public native void setVectorFloat4Value(@ByVal VectorFloat4 v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

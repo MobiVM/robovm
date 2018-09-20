@@ -45,7 +45,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKAction/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKActionPtr extends Ptr<SKAction, SKActionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKAction.class); }/*</bind>*/
@@ -97,6 +97,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedFloat double getSpeed();
     @Property(selector = "setSpeed:")
     public native void setSpeed(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
