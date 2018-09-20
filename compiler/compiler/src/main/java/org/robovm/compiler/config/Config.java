@@ -392,7 +392,7 @@ public class Config {
     }
 
     public List<ForceLinkMethodsConfig> getForceLinkMethods() {
-        return forceLinkMethods == null ? Collections.emptyList()
+        return forceLinkMethods == null ? Collections.<ForceLinkMethodsConfig> emptyList()
                 : Collections.unmodifiableList(forceLinkMethods);
     }
 
