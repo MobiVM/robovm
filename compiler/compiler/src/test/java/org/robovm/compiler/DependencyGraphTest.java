@@ -20,12 +20,14 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.robovm.compiler.clazz.Clazz;
+import org.robovm.compiler.clazz.MethodInfo;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.FakeHome;
 import org.robovm.compiler.config.Config.TreeShakerMode;
@@ -196,10 +198,10 @@ public class DependencyGraphTest {
     @Test
     public void testFindReachableClassesNoTreeShaking() throws Exception {
         DependencyGraph graph = new DependencyGraph(TreeShakerMode.none);
-        graph.add(Root, true);
-        graph.add(A, false);
-        graph.add(B, false);
-        graph.add(C, false);
+        graph.add(Root, true, Collections.<MethodInfo> emptyList());
+        graph.add(A, false, Collections.<MethodInfo> emptyList());
+        graph.add(B, false, Collections.<MethodInfo> emptyList());
+        graph.add(C, false, Collections.<MethodInfo> emptyList());
 
         assertTrue(graph.findReachableClasses().contains(Root.getInternalName()));
         assertTrue(graph.findReachableClasses().contains(A.getInternalName()));
@@ -210,10 +212,10 @@ public class DependencyGraphTest {
     @Test
     public void testFindReachableMethodsNoTreeShaking() throws Exception {
         DependencyGraph graph = new DependencyGraph(TreeShakerMode.none);
-        graph.add(Root, true);
-        graph.add(A, false);
-        graph.add(B, false);
-        graph.add(C, false);
+        graph.add(Root, true, Collections.<MethodInfo> emptyList());
+        graph.add(A, false, Collections.<MethodInfo> emptyList());
+        graph.add(B, false, Collections.<MethodInfo> emptyList());
+        graph.add(C, false, Collections.<MethodInfo> emptyList());
 
         assertEquals(19, graph.findReachableMethods().size());
 
@@ -245,10 +247,10 @@ public class DependencyGraphTest {
     @Test
     public void testFindReachableMethodsConservativeTreeShaking() throws Exception {
         DependencyGraph graph = new DependencyGraph(TreeShakerMode.conservative);
-        graph.add(Root, true);
-        graph.add(A, false);
-        graph.add(B, false);
-        graph.add(C, false);
+        graph.add(Root, true, Collections.<MethodInfo> emptyList());
+        graph.add(A, false, Collections.<MethodInfo> emptyList());
+        graph.add(B, false, Collections.<MethodInfo> emptyList());
+        graph.add(C, false, Collections.<MethodInfo> emptyList());
 
         assertEquals(11, graph.findReachableMethods().size());
 
@@ -272,10 +274,10 @@ public class DependencyGraphTest {
     @Test
     public void testFindReachableMethodsAggressiveTreeShaking() throws Exception {
         DependencyGraph graph = new DependencyGraph(TreeShakerMode.aggressive);
-        graph.add(Root, true);
-        graph.add(A, false);
-        graph.add(B, false);
-        graph.add(C, false);
+        graph.add(Root, true, Collections.<MethodInfo> emptyList());
+        graph.add(A, false, Collections.<MethodInfo> emptyList());
+        graph.add(B, false, Collections.<MethodInfo> emptyList());
+        graph.add(C, false, Collections.<MethodInfo> emptyList());
 
         assertEquals(10, graph.findReachableMethods().size());
 
