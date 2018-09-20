@@ -82,6 +82,12 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="VNDetectRectanglesRequestRevision1", optional=true)
+    public static native @MachineSizedUInt long getRevision1();
+    
     
     /*</methods>*/
 }

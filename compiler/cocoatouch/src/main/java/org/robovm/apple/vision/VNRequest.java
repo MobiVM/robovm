@@ -69,9 +69,40 @@ import org.robovm.apple.imageio.*;
     public native NSArray<?> getResults();
     @Property(selector = "completionHandler")
     public native @Block VoidBlock2<VNRequest, NSError> getCompletionHandler();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "revision")
+    public native @MachineSizedUInt long getRevision();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setRevision:")
+    public native void setRevision(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "supportedRevisions")
+    public static native NSIndexSet getSupportedRevisions();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "defaultRevision")
+    public static native @MachineSizedUInt long getDefaultRevision();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "currentRevision")
+    public static native @MachineSizedUInt long getCurrentRevision();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="VNRequestRevisionUnspecified", optional=true)
+    public static native @MachineSizedUInt long RevisionUnspecified();
+    
     @Method(selector = "initWithCompletionHandler:")
     protected native @Pointer long initWithCompletionHandler(@Block VoidBlock2<VNRequest, NSError> completionHandler);
     /*</methods>*/

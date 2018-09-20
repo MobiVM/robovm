@@ -53,6 +53,10 @@ import org.robovm.apple.imageio.*;
     public VNDetectedObjectObservation() {}
     protected VNDetectedObjectObservation(Handle h, long handle) { super(h, handle); }
     protected VNDetectedObjectObservation(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public VNDetectedObjectObservation(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox) { super((Handle) null, create(requestRevision, boundingBox)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "boundingBox")
@@ -62,5 +66,10 @@ import org.robovm.apple.imageio.*;
     /*<methods>*/
     @Method(selector = "observationWithBoundingBox:")
     public static native VNDetectedObjectObservation observationWithBoundingBox(@ByVal CGRect boundingBox);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "observationWithRequestRevision:boundingBox:")
+    protected static native @Pointer long create(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox);
     /*</methods>*/
 }

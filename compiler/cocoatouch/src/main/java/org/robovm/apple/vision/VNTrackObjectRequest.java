@@ -63,6 +63,12 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="VNTrackObjectRequestRevision1", optional=true)
+    public static native @MachineSizedUInt long getRevision1();
+    
     @Method(selector = "initWithDetectedObjectObservation:")
     protected native @Pointer long initWithDetectedObjectObservation(VNDetectedObjectObservation observation);
     @Method(selector = "initWithDetectedObjectObservation:completionHandler:")

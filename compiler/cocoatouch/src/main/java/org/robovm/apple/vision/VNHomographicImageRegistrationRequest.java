@@ -48,7 +48,9 @@ import org.robovm.apple.imageio.*;
 
     /*<ptr>*/public static class VNHomographicImageRegistrationRequestPtr extends Ptr<VNHomographicImageRegistrationRequest, VNHomographicImageRegistrationRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(VNHomographicImageRegistrationRequest.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    /*</constants>*/
     /*<constructors>*/
     public VNHomographicImageRegistrationRequest() {}
     protected VNHomographicImageRegistrationRequest(Handle h, long handle) { super(h, handle); }

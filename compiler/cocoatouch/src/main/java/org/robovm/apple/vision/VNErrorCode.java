@@ -57,7 +57,11 @@ public enum /*<name>*/VNErrorCode/*</name>*/ implements NSErrorCode {
     InvalidOperation(12L),
     InvalidImage(13L),
     InvalidArgument(14L),
-    InvalidModel(15L);
+    InvalidModel(15L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    UnsupportedRevision(16L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(VNErrorCode.class); }/*</bind>*/

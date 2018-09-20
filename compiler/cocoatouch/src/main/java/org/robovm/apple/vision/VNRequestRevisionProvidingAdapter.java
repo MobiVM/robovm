@@ -37,37 +37,24 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNDetectTextRectanglesRequest/*</name>*/ 
-    extends /*<extends>*/VNImageBasedRequest/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNRequestRevisionProvidingAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements VNRequestRevisionProviding/*</implements>*/ {
 
-    /*<ptr>*/public static class VNDetectTextRectanglesRequestPtr extends Ptr<VNDetectTextRectanglesRequest, VNDetectTextRectanglesRequestPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNDetectTextRectanglesRequest.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public VNDetectTextRectanglesRequest() {}
-    protected VNDetectTextRectanglesRequest(Handle h, long handle) { super(h, handle); }
-    protected VNDetectTextRectanglesRequest(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "reportCharacterBoxes")
-    public native boolean isReportCharacterBoxes();
-    @Property(selector = "setReportCharacterBoxes:")
-    public native void setReportCharacterBoxes(boolean v);
+    @NotImplemented("requestRevision")
+    public @MachineSizedUInt long getRequestRevision() { return 0; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @GlobalValue(symbol="VNDetectTextRectanglesRequestRevision1", optional=true)
-    public static native @MachineSizedUInt long getRevision1();
-    
     
     /*</methods>*/
 }
