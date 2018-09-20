@@ -34,7 +34,9 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
+ * @deprecated Deprecated in iOS 12.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("SafariServices")/*</annotations>*/
 public enum /*<name>*/SFAuthenticationError/*</name>*/ implements NSErrorCode {
@@ -48,7 +50,9 @@ public enum /*<name>*/SFAuthenticationError/*</name>*/ implements NSErrorCode {
     /*<methods>*/
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
      */
+    @Deprecated
     @GlobalValue(symbol="SFAuthenticationErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/
