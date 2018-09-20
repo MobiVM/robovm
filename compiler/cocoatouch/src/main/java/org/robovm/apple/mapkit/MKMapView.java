@@ -258,6 +258,9 @@ import org.robovm.apple.dispatch.*;
     public native MKAnnotationView getView(MKAnnotation annotation);
     @Method(selector = "dequeueReusableAnnotationViewWithIdentifier:")
     public native MKAnnotationView dequeueReusableAnnotationView(String identifier);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "dequeueReusableAnnotationViewWithIdentifier:forAnnotation:")
     public native MKAnnotationView dequeueReusableAnnotationView(String identifier, MKAnnotation annotation);
     /**

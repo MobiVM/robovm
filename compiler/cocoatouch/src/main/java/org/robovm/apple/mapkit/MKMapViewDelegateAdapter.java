@@ -56,6 +56,11 @@ import org.robovm.apple.dispatch.*;
     public void willChangeRegion(MKMapView mapView, boolean animated) {}
     @NotImplemented("mapView:regionDidChangeAnimated:")
     public void didChangeRegion(MKMapView mapView, boolean animated) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @NotImplemented("mapViewDidChangeVisibleRegion:")
+    public void mapViewDidChangeVisibleRegion(MKMapView mapView) {}
     @NotImplemented("mapViewWillStartLoadingMap:")
     public void willStartLoadingMap(MKMapView mapView) {}
     @NotImplemented("mapViewDidFinishLoadingMap:")
