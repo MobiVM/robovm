@@ -115,5 +115,10 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback", optional=true)
     protected native @org.robovm.rt.bro.annotation.Marshaler(CTFontDescriptor.AsListMarshaler.class) List<CTFontDescriptor> getMatchingFontDescriptorsSorted(FunctionPtr sortCallback, @Pointer long refCon);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="CTFontCollectionCreateMatchingFontDescriptorsWithOptions", optional=true)
+    public native CFArray createMatchingFontDescriptorsWithOptions(NSDictionary options);
     /*</methods>*/
 }
