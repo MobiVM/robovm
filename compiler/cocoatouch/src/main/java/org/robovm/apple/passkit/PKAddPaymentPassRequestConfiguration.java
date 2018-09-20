@@ -56,6 +56,16 @@ import org.robovm.apple.contacts.*;
     /*<properties>*/
     @Property(selector = "encryptionScheme")
     public native String getEncryptionScheme();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "style")
+    public native PKAddPaymentPassStyle getStyle();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setStyle:")
+    public native void setStyle(PKAddPaymentPassStyle v);
     @Property(selector = "cardholderName")
     public native String getCardholderName();
     @Property(selector = "setCardholderName:")

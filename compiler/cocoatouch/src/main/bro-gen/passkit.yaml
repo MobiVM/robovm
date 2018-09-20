@@ -27,6 +27,7 @@ enums:
     PKAddPaymentPassError: {}
     PKAutomaticPassPresentationSuppressionResult: {}
     PKPaymentErrorCode: {nserror: true, prefix: PKPayment} #since 11.0
+    PKAddPaymentPassStyle: {} #since 12.0
 
 classes:
     PKPassKitError:

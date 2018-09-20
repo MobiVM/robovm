@@ -57,7 +57,16 @@ import org.robovm.apple.contacts.*;
     public PKPaymentButton(PKPaymentButtonType type, PKPaymentButtonStyle style) { super((SkipInit) null); initObject(init(type, style)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "cornerRadius")
+    public native double getCornerRadius();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setCornerRadius:")
+    public native void setCornerRadius(double v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

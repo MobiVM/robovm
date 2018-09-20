@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,38 +35,14 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.3 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/PKPaymentButtonType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/PKAddPaymentPassStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Plain(0L),
-    Buy(1L),
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    SetUp(2L),
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    InStore(3L),
-    /**
-     * @since Available in iOS 10.2 and later.
-     */
-    Donate(4L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    Checkout(5L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    Book(6L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    Subscribe(7L);
+    Payment(0L),
+    Access(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -76,15 +52,15 @@ public enum /*<name>*/PKPaymentButtonType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/PKPaymentButtonType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/PKAddPaymentPassStyle/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/PKPaymentButtonType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PKPaymentButtonType/*</name>*/ v : values()) {
+    public static /*<name>*/PKAddPaymentPassStyle/*</name>*/ valueOf(long n) {
+        for (/*<name>*/PKAddPaymentPassStyle/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/PKPaymentButtonType/*</name>*/.class.getName());
+            + /*<name>*/PKAddPaymentPassStyle/*</name>*/.class.getName());
     }
 }
