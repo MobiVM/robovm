@@ -73,10 +73,20 @@ import org.robovm.apple.foundation.*;
     @GlobalValue(symbol="HKUserPreferencesDidChangeNotification", optional=true)
     public static native NSString UserPreferencesDidChangeNotification();
     
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "supportsHealthRecords")
+    public native boolean supportsHealthRecords();
     @Method(selector = "authorizationStatusForType:")
     public native HKAuthorizationStatus getAuthorizationStatusForType(HKObjectType type);
     @Method(selector = "requestAuthorizationToShareTypes:readTypes:completion:")
     public native void requestAuthorizationToTypes(NSSet<HKSampleType> typesToShare, NSSet<HKObjectType> typesToRead, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "getRequestStatusForAuthorizationToShareTypes:readTypes:completion:")
+    public native void getRequestStatus(NSSet<HKSampleType> typesToShare, NSSet<?> typesToRead, @Block VoidBlock2<HKAuthorizationRequestStatus, NSError> completion);
     /**
      * @since Available in iOS 9.0 and later.
      */

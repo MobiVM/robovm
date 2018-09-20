@@ -32,38 +32,28 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/HKCategoryValueMenstrualFlow/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unspecified(1L),
-    Light(2L),
-    Medium(3L),
-    Heavy(4L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    None(5L);
-    /*</values>*/
+/*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/HKCumulativeQuantitySeriesSample/*</name>*/ 
+    extends /*<extends>*/HKQuantitySample/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class HKCumulativeQuantitySeriesSamplePtr extends Ptr<HKCumulativeQuantitySeriesSample, HKCumulativeQuantitySeriesSamplePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(HKCumulativeQuantitySeriesSample.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/HKCategoryValueMenstrualFlow/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/HKCategoryValueMenstrualFlow/*</name>*/ valueOf(long n) {
-        for (/*<name>*/HKCategoryValueMenstrualFlow/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/HKCategoryValueMenstrualFlow/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    public HKCumulativeQuantitySeriesSample() {}
+    protected HKCumulativeQuantitySeriesSample(Handle h, long handle) { super(h, handle); }
+    protected HKCumulativeQuantitySeriesSample(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "sum")
+    public native HKQuantity getSum();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

@@ -130,5 +130,15 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "predicateForActivitySummariesBetweenStartDateComponents:endDateComponents:")
     public static native NSPredicate createPredicateForActivitySummariesBetweenDates(NSDateComponents startDateComponents, NSDateComponents endDateComponents);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "predicateForClinicalRecordsWithFHIRResourceType:")
+    public static native NSPredicate predicateForClinicalRecordsWithFHIRResourceType(HKFHIRResourceType resourceType);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:")
+    public static native NSPredicate createPredicateForClinicalRecords(HKSource source, HKFHIRResourceType resourceType, String identifier);
     /*</methods>*/
 }

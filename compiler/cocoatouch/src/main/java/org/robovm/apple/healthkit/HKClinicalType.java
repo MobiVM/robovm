@@ -32,38 +32,27 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/HKCategoryValueMenstrualFlow/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unspecified(1L),
-    Light(2L),
-    Medium(3L),
-    Heavy(4L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    None(5L);
-    /*</values>*/
+/*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/HKClinicalType/*</name>*/ 
+    extends /*<extends>*/HKSampleType/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class HKClinicalTypePtr extends Ptr<HKClinicalType, HKClinicalTypePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(HKClinicalType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/HKCategoryValueMenstrualFlow/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/HKCategoryValueMenstrualFlow/*</name>*/ valueOf(long n) {
-        for (/*<name>*/HKCategoryValueMenstrualFlow/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/HKCategoryValueMenstrualFlow/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    public HKClinicalType() {}
+    protected HKClinicalType(Handle h, long handle) { super(h, handle); }
+    protected HKClinicalType(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }
