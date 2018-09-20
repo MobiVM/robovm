@@ -61,31 +61,66 @@ import org.robovm.apple.corefoundation.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 4.0 and later.
+     * @since Available in iOS 12.0 and later.
      */
+    @Property(selector = "serviceSubscriberCellularProviders")
+    public native NSDictionary<NSString, CTCarrier> getServiceSubscriberCellularProviders();
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "subscriberCellularProvider")
     public native CTCarrier getSubscriberCellularProvider();
     /**
-     * @since Available in iOS 4.0 and later.
+     * @since Available in iOS 12.0 and later.
      */
+    @Property(selector = "serviceSubscriberCellularProvidersDidUpdateNotifier")
+    public native @Block VoidBlock1<String> getServiceSubscriberCellularProvidersDidUpdateNotifier();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setServiceSubscriberCellularProvidersDidUpdateNotifier:")
+    public native void setServiceSubscriberCellularProvidersDidUpdateNotifier(@Block VoidBlock1<String> v);
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "subscriberCellularProviderDidUpdateNotifier")
     public native @Block VoidBlock1<CTCarrier> getSubscriberCellularProviderDidUpdateNotifier();
     /**
      * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
      */
+    @Deprecated
     @Property(selector = "setSubscriberCellularProviderDidUpdateNotifier:")
     public native void setSubscriberCellularProviderDidUpdateNotifier(@Block VoidBlock1<CTCarrier> v);
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 12.0 and later.
      */
+    @Property(selector = "serviceCurrentRadioAccessTechnology")
+    public native NSDictionary<NSString, NSString> getServiceCurrentRadioAccessTechnology();
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "currentRadioAccessTechnology")
     public native CTRadioAccessTechnology getCurrentRadioAccessTechnology();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 7.0 and later.
+     * @since Available in iOS 12.0 and later.
      */
+    @GlobalValue(symbol="CTServiceRadioAccessTechnologyDidChangeNotification", optional=true)
+    public static native NSString ServiceRadioAccessTechnologyDidChangeNotification();
+    /**
+     * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="CTRadioAccessTechnologyDidChangeNotification", optional=true)
     public static native NSString RadioAccessTechnologyDidChangeNotification();
     
