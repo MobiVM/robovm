@@ -51,7 +51,7 @@ public final class /*<name>*/CFCalendarUnit/*</name>*/ extends Bits</*<name>*/CF
     public static final CFCalendarUnit Second = new CFCalendarUnit(128L);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use kCFCalendarUnitWeekOfYear or kCFCalendarUnitWeekOfMonth instead
      */
     @Deprecated
     public static final CFCalendarUnit Week = new CFCalendarUnit(256L);

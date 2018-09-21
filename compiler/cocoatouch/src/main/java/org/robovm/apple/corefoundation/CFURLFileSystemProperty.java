@@ -177,7 +177,7 @@ import org.robovm.apple.coretext.*;
     public static final CFURLFileSystemProperty LabelNumber = new CFURLFileSystemProperty("LabelNumber");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use NSURLLabelColorKey
      */
     @Deprecated
     public static final CFURLFileSystemProperty LabelColor = new CFURLFileSystemProperty("LabelColor");
@@ -187,13 +187,13 @@ import org.robovm.apple.coretext.*;
     public static final CFURLFileSystemProperty LocalizedLabel = new CFURLFileSystemProperty("LocalizedLabel");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use NSURLEffectiveIconKey
      */
     @Deprecated
     public static final CFURLFileSystemProperty EffectiveIcon = new CFURLFileSystemProperty("EffectiveIcon");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use NSURLCustomIconKey
      */
     @Deprecated
     public static final CFURLFileSystemProperty CustomIcon = new CFURLFileSystemProperty("CustomIcon");
@@ -381,7 +381,7 @@ import org.robovm.apple.coretext.*;
         public static native CFString LabelNumber();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 10.0.
+         * @deprecated Deprecated in iOS 10.0. Use NSURLLabelColorKey
          */
         @Deprecated
         @GlobalValue(symbol="kCFURLLabelColorKey", optional=true)
@@ -393,14 +393,14 @@ import org.robovm.apple.coretext.*;
         public static native CFString LocalizedLabel();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 10.0.
+         * @deprecated Deprecated in iOS 10.0. Use NSURLEffectiveIconKey
          */
         @Deprecated
         @GlobalValue(symbol="kCFURLEffectiveIconKey", optional=true)
         public static native CFString EffectiveIcon();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 10.0.
+         * @deprecated Deprecated in iOS 10.0. Use NSURLCustomIconKey
          */
         @Deprecated
         @GlobalValue(symbol="kCFURLCustomIconKey", optional=true)
