@@ -478,14 +478,14 @@ import org.robovm.apple.uikit.*;
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createWithPropertyList(CFType plist);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated
     @Bridge(symbol="CGColorSpaceCreateWithICCProfile", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createWithICCProfile(NSData data);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated
     @Bridge(symbol="CGColorSpaceCopyICCProfile", optional=true)
