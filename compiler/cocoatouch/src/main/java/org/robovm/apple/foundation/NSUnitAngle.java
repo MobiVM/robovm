@@ -52,9 +52,13 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSUnitAngle.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSUnitAngle() {}
+    protected NSUnitAngle() {}
     protected NSUnitAngle(Handle h, long handle) { super(h, handle); }
     protected NSUnitAngle(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSymbol:converter:")
+    public NSUnitAngle(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
+    @Method(selector = "initWithSymbol:")
+    public NSUnitAngle(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "degrees")
@@ -72,6 +76,9 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithSymbol:converter:")
+    protected native @Pointer long init(String symbol, NSUnitConverter converter);
+    @Method(selector = "initWithSymbol:")
+    protected native @Pointer long init(String symbol);
     /*</methods>*/
 }

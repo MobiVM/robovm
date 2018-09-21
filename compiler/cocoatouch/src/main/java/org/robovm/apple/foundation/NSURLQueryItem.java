@@ -40,35 +40,41 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 8.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSUnitDispersion/*</name>*/ 
-    extends /*<extends>*/NSDimension/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSURLQueryItem/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class NSUnitDispersionPtr extends Ptr<NSUnitDispersion, NSUnitDispersionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSUnitDispersion.class); }/*</bind>*/
+    /*<ptr>*/public static class NSURLQueryItemPtr extends Ptr<NSURLQueryItem, NSURLQueryItemPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NSURLQueryItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NSUnitDispersion() {}
-    protected NSUnitDispersion(Handle h, long handle) { super(h, handle); }
-    protected NSUnitDispersion(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithSymbol:converter:")
-    public NSUnitDispersion(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
-    @Method(selector = "initWithSymbol:")
-    public NSUnitDispersion(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
+    public NSURLQueryItem() {}
+    protected NSURLQueryItem(Handle h, long handle) { super(h, handle); }
+    protected NSURLQueryItem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:value:")
+    public NSURLQueryItem(String name, String value) { super((SkipInit) null); initObject(init(name, value)); }
+    @Method(selector = "initWithCoder:")
+    public NSURLQueryItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "partsPerMillion")
-    public static native NSUnitDispersion getPartsPerMillion();
+    @Property(selector = "name")
+    public native String getName();
+    @Property(selector = "value")
+    public native String getValue();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSymbol:converter:")
-    protected native @Pointer long init(String symbol, NSUnitConverter converter);
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
+    @Method(selector = "initWithName:value:")
+    protected native @Pointer long init(String name, String value);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

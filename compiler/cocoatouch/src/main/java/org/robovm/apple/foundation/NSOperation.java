@@ -91,14 +91,14 @@ import org.robovm.apple.dispatch.*;
     public native void setCompletionBlock(@Block Runnable v);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Not supported
      */
     @Deprecated
     @Property(selector = "threadPriority")
     public native double getThreadPriority();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Not supported
      */
     @Deprecated
     @Property(selector = "setThreadPriority:")

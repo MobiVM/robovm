@@ -105,7 +105,7 @@ import org.robovm.apple.dispatch.*;
     public static final NSURLUbiquitousItemProperty HasUnresolvedConflicts = new NSURLUbiquitousItemProperty("HasUnresolvedConflicts");
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use NSURLUbiquitousItemDownloadingStatusKey instead
      */
     @Deprecated
     public static final NSURLUbiquitousItemProperty IsDownloaded = new NSURLUbiquitousItemProperty("IsDownloaded");
@@ -182,7 +182,7 @@ import org.robovm.apple.dispatch.*;
         public static native NSString HasUnresolvedConflicts();
         /**
          * @since Available in iOS 5.0 and later.
-         * @deprecated Deprecated in iOS 7.0.
+         * @deprecated Deprecated in iOS 7.0. Use NSURLUbiquitousItemDownloadingStatusKey instead
          */
         @Deprecated
         @GlobalValue(symbol="NSURLUbiquitousItemIsDownloadedKey", optional=true)

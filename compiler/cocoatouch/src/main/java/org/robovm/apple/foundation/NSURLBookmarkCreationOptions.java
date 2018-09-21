@@ -49,7 +49,7 @@ public final class /*<name>*/NSURLBookmarkCreationOptions/*</name>*/ extends Bit
     public static final NSURLBookmarkCreationOptions None = new NSURLBookmarkCreationOptions(0L);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Not supported
      */
     @Deprecated
     public static final NSURLBookmarkCreationOptions PreferFileIDResolution = new NSURLBookmarkCreationOptions(256L);

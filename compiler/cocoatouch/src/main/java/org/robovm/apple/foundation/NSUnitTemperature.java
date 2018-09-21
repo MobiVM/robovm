@@ -52,9 +52,13 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSUnitTemperature.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSUnitTemperature() {}
+    protected NSUnitTemperature() {}
     protected NSUnitTemperature(Handle h, long handle) { super(h, handle); }
     protected NSUnitTemperature(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSymbol:converter:")
+    public NSUnitTemperature(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
+    @Method(selector = "initWithSymbol:")
+    public NSUnitTemperature(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "kelvin")
@@ -66,6 +70,9 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithSymbol:converter:")
+    protected native @Pointer long init(String symbol, NSUnitConverter converter);
+    @Method(selector = "initWithSymbol:")
+    protected native @Pointer long init(String symbol);
     /*</methods>*/
 }

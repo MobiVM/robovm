@@ -256,7 +256,7 @@ classes:
     NSKeyValueOperator: { visibility: 'public final' }
 
     NS.*Internal: { exclude: true }
-        
+
     NSCocoaError:
         extends: NSError
         annotations: ['@StronglyLinked']
@@ -363,7 +363,7 @@ classes:
                 name: getAttribute
                 parameters:
                     attrName:
-                        type: NSString    
+                        type: NSString
             '-attributesAtIndex:effectiveRange:':
                 name: getAttributesDictionary
                 return_type: 'NSDictionary<NSString, ?>'
@@ -730,9 +730,6 @@ classes:
             '-countForObject:':
                 trim_after_first_colon: true
                 visibility: protected
-
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
     NSData: # DONE
         protocols: [NSPropertyList]
         properties:
@@ -813,7 +810,6 @@ classes:
             '+.*': {exclude: true}
             '-.*': {exclude: true}
     NSDataDetector: # DONE
-        skip_def_constructor: true
         properties:
             'checkingTypes':
                 type: NSTextCheckingType
@@ -822,9 +818,9 @@ classes:
             '-initWithTypes:error:':
                 name: init
                 throws: NSErrorException
-                parameters:
-                    checkingTypes:
-                        type: NSTextCheckingType
+            '-initWithPattern:options:error:':
+                name: init
+                throws: NSErrorException
     NSDate: # DONE
         protocols: [NSPropertyList]
         properties:
@@ -889,7 +885,7 @@ classes:
             '-stringFromTimeInterval:':
                 name: format
             '-.*':
-                exclude: true 
+                exclude: true
             '+.*':
                 exclude: true
     NSDateFormatter: # DONE
@@ -1734,11 +1730,11 @@ classes:
             '-containsIndex:':
                 trim_after_first_colon: true
             '-containsIndexesInRange:':
-                trim_after_first_colon: true  
+                trim_after_first_colon: true
             '-containsIndexes:':
-                trim_after_first_colon: true 
+                trim_after_first_colon: true
             '-intersectsIndexesInRange:':
-                trim_after_first_colon: true 
+                trim_after_first_colon: true
             '-enumerateIndexesUsingBlock:':
                 name: enumerateIndexes
             '-enumerateIndexesWithOptions:usingBlock:':
@@ -2241,7 +2237,7 @@ classes:
                 trim_after_first_colon: true
                 parameters:
                     result:
-                        type: NSMetadataItem 
+                        type: NSMetadataItem
             '-valueOfAttribute:forResultAtIndex:':
                 name: getValueForResult
                 parameters:
@@ -3282,7 +3278,7 @@ classes:
             '-(hasPrefix|hasSuffix):':
                 trim_after_first_colon: true
             '-dataUsingEncoding:.*':
-                name: toData 
+                name: toData
             '-writeToURL:atomically:encoding:error:':
                 name: writeURL
                 throws: NSErrorException
@@ -3705,7 +3701,6 @@ classes:
             '+URL.*': {exclude: true}
             '+absoluteURLWithDataRepresentation:relativeToURL:':
                 exclude: true
-            '-getFileSystemRepresentation:maxLength:': {exclude: true}
             '-(URLBy.*?)(:.*)?':
                 name: 'new#{g[0]}'
             '-getPromisedItemResourceValue:forKey:error:':
@@ -4170,8 +4165,6 @@ classes:
                 name: init
             '+value:withObjCType:':
                 exclude: true
-            '+valueWithBytes:objCType:':
-                visibility: protected
             '+valueWithNonretainedObject:':
                 name: valueOf
             '+valueWithPointer:':
@@ -4208,7 +4201,7 @@ classes:
             '+allowsReverseTransformation':
                 property: true
             '+transformedValueClass':
-                property: true 
+                property: true
                 return_type: 'Class<? extends NSObject>'
     NSXMLParser: # DONE
         properties:
@@ -4222,7 +4215,6 @@ classes:
         properties:
             'remoteObjectProxy': # FIXME: that is stupid workaround to match NSXPCProxyCreating
                 omit_prefix: true
-    NSXPCInterface: {} #since 6.0
     NSXPCListener: {} #since 6.0
     NSXPCListenerEndpoint: {} #since 6.0
     NSXPCInterface: #since 6.0
@@ -4235,6 +4227,18 @@ classes:
                 trim_after_first_colon: true
             '-interfaceForSelector:argumentIndex:ofReply:':
                 name: getInterfaceForSelector
+    NSURLComponents: #since 7.0
+        methods:
+            '-initWithURL:resolvingAgainstBaseURL:':
+                name: init
+            '+componentsWithURL:resolvingAgainstBaseURL:':
+                exclude: true
+    NSURLQueryItem:  #since 8.0
+        methods:
+            '-initWithName:value:':
+                name: init
+            '+queryItemWithName:value:':
+                exclude: true
 
 protocols:
     NSCacheDelegate: # DONE
@@ -4832,7 +4836,7 @@ functions:
     (NS.*):
         name: 'Function__#{g[0]}'
 
-values: 
+values:
     NS.*Exception:
         exclude: true
     NSAssertionHandlerKey:
@@ -4868,7 +4872,7 @@ values:
     NSXMLParserErrorDomain:
         class: NSXMLParserError
         name: getClassDomain
-    
+
     NS(LocalizedDescription|UnderlyingError)Key:
         enum: NSCocoaErrorUserInfoKey
         name: '#{g[0]}'
@@ -4931,7 +4935,7 @@ values:
         name: '#{g[0]}'
         type: NSString
     NS.*Calendar: # NSCalendarIdentifier values should be used instead
-        exclude: true 
+        exclude: true
     NSCalendar(DayChangedNotification):
         class: NSCalendar
         name: '#{g[0]}'
@@ -5559,7 +5563,7 @@ values:
         class: NSURLCredentialStorage
         name: '#{g[0]}'
         type: NSString
-    
+
     # NSURLSession
     NSURLSession(TransferSizeUnknown):
         class: NSURLSession
@@ -5627,7 +5631,7 @@ constants:
     # ByteOrder constants depend on the host
     NS_UnknownByteOrder|NS_LittleEndian|NS_BigEndian:
         exclude: true
-    
+
     NS_ENFORCE_NSOBJECT_DESIGNATED_INITIALIZER:
         exclude: true
 
@@ -5638,16 +5642,16 @@ constants:
     NSWrapCalendarComponents: { exclude: true }
 
     # Unused
-    NSNotFound: { exclude: true } 
+    NSNotFound: { exclude: true }
     NSDecimal.*: { exclude: true }
-    
+
     NSFoundationVersionNumber(.*):
         class: FoundationVersionNumber
         name: 'Version#{g[0]}'
     NSFoundationVersion(WithFileManagerResourceForkSupport):
         class: FoundationVersionNumber
         name: 'Version#{g[0]}'
-        
+
     NS(OpenStepUnicodeReservedBase):
         class: NSCharacterSet
         name: '#{g[0]}'
@@ -5655,19 +5659,19 @@ constants:
     NS(TimeIntervalSince1970):
         class: NSDate
         name: '#{g[0]}'
-        
+
     NSDateComponentUndefined:
         class: NSDateComponents
         name: 'UndefinedComponent'
-        
+
     NSOperationQueue(DefaultMaxConcurrentOperationCount):
         class: NSOperationQueue
         name: '#{g[0]}'
-        
+
     NSUndo(CloseGroupingRunLoopOrdering):
         class: NSUndoManager
         name: '#{g[0]}'
-        
+
     NSURLResponse(UnknownLength):
         class: NSURLResponse
         name: '#{g[0]}'

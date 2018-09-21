@@ -52,9 +52,13 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSUnitElectricCurrent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSUnitElectricCurrent() {}
+    protected NSUnitElectricCurrent() {}
     protected NSUnitElectricCurrent(Handle h, long handle) { super(h, handle); }
     protected NSUnitElectricCurrent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSymbol:converter:")
+    public NSUnitElectricCurrent(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
+    @Method(selector = "initWithSymbol:")
+    public NSUnitElectricCurrent(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "megaamperes")
@@ -70,6 +74,9 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithSymbol:converter:")
+    protected native @Pointer long init(String symbol, NSUnitConverter converter);
+    @Method(selector = "initWithSymbol:")
+    protected native @Pointer long init(String symbol);
     /*</methods>*/
 }

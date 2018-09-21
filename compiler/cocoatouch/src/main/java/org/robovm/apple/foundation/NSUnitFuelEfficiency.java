@@ -52,9 +52,13 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSUnitFuelEfficiency.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSUnitFuelEfficiency() {}
+    protected NSUnitFuelEfficiency() {}
     protected NSUnitFuelEfficiency(Handle h, long handle) { super(h, handle); }
     protected NSUnitFuelEfficiency(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSymbol:converter:")
+    public NSUnitFuelEfficiency(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
+    @Method(selector = "initWithSymbol:")
+    public NSUnitFuelEfficiency(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "litersPer100Kilometers")
@@ -66,6 +70,9 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithSymbol:converter:")
+    protected native @Pointer long init(String symbol, NSUnitConverter converter);
+    @Method(selector = "initWithSymbol:")
+    protected native @Pointer long init(String symbol);
     /*</methods>*/
 }

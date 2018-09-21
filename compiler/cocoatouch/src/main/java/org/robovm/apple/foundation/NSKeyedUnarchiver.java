@@ -60,7 +60,7 @@ import org.robovm.apple.dispatch.*;
     public NSKeyedUnarchiver(NSData data, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(init(data, error)); }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use -initForReadingFromData:error: instead
      */
     @Deprecated
     @Method(selector = "initForReadingWithData:")
@@ -109,7 +109,7 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(NSData data, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use -initForReadingFromData:error: instead
      */
     @Deprecated
     @Method(selector = "initForReadingWithData:")
@@ -132,14 +132,14 @@ import org.robovm.apple.dispatch.*;
     private static native NSObject unarchivedObject(NSSet<?> classes, NSData data, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use +unarchivedObjectOfClass:fromData:error: instead
      */
     @Deprecated
     @Method(selector = "unarchiveObjectWithData:")
     public static native NSObject unarchive(NSData data);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use +unarchivedObjectOfClass:fromData:error: instead
      */
     @Deprecated
     public static NSObject unarchiveTopLevelObject(NSData data) throws NSErrorException {
@@ -150,14 +150,14 @@ import org.robovm.apple.dispatch.*;
     }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use +unarchivedObjectOfClass:fromData:error: instead
      */
     @Deprecated
     @Method(selector = "unarchiveTopLevelObjectWithData:error:")
     private static native NSObject unarchiveTopLevelObject(NSData data, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use +unarchivedObjectOfClass:fromData:error: instead
      */
     @Deprecated
     @Method(selector = "unarchiveObjectWithFile:")

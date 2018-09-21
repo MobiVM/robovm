@@ -53,6 +53,10 @@ import org.robovm.apple.dispatch.*;
     public NSMutableURLRequest() {}
     protected NSMutableURLRequest(Handle h, long handle) { super(h, handle); }
     protected NSMutableURLRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:")
+    public NSMutableURLRequest(NSURL URL) { super((SkipInit) null); initObject(init(URL)); }
+    @Method(selector = "initWithURL:cachePolicy:timeoutInterval:")
+    public NSMutableURLRequest(NSURL URL, NSURLRequestCachePolicy cachePolicy, double timeoutInterval) { super((SkipInit) null); initObject(init(URL, cachePolicy, timeoutInterval)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "URL")
@@ -130,6 +134,10 @@ import org.robovm.apple.dispatch.*;
         addHTTPHeaderField0(value, field);
     }
     /*<methods>*/
+    @Method(selector = "initWithURL:")
+    protected native @Pointer long init(NSURL URL);
+    @Method(selector = "initWithURL:cachePolicy:timeoutInterval:")
+    protected native @Pointer long init(NSURL URL, NSURLRequestCachePolicy cachePolicy, double timeoutInterval);
     @Method(selector = "setValue:forHTTPHeaderField:")
     protected native void setHTTPHeaderField0(String value, String field);
     @Method(selector = "addValue:forHTTPHeaderField:")

@@ -53,6 +53,12 @@ import org.robovm.apple.dispatch.*;
     public NSMutableIndexSet() {}
     protected NSMutableIndexSet(Handle h, long handle) { super(h, handle); }
     protected NSMutableIndexSet(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithIndexesInRange:")
+    public NSMutableIndexSet(@ByVal NSRange range) { super((SkipInit) null); initObject(init(range)); }
+    @Method(selector = "initWithIndexSet:")
+    public NSMutableIndexSet(NSIndexSet indexSet) { super((SkipInit) null); initObject(init(indexSet)); }
+    @Method(selector = "initWithIndex:")
+    public NSMutableIndexSet(@MachineSizedUInt long value) { super((SkipInit) null); initObject(init(value)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -75,5 +81,11 @@ import org.robovm.apple.dispatch.*;
     public native void removeIndexes(@ByVal NSRange range);
     @Method(selector = "shiftIndexesStartingAtIndex:by:")
     public native void shiftIndexes(@MachineSizedUInt long index, @MachineSizedSInt long delta);
+    @Method(selector = "initWithIndexesInRange:")
+    protected native @Pointer long init(@ByVal NSRange range);
+    @Method(selector = "initWithIndexSet:")
+    protected native @Pointer long init(NSIndexSet indexSet);
+    @Method(selector = "initWithIndex:")
+    protected native @Pointer long init(@MachineSizedUInt long value);
     /*</methods>*/
 }

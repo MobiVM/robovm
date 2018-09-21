@@ -60,7 +60,7 @@ import org.robovm.apple.dispatch.*;
     public NSKeyedArchiver(boolean requiresSecureCoding) { super((SkipInit) null); initObject(init(requiresSecureCoding)); }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use -initRequiringSecureCoding: instead
      */
     @Deprecated
     @Method(selector = "initForWritingWithMutableData:")
@@ -117,7 +117,7 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(boolean requiresSecureCoding);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use -initRequiringSecureCoding: instead
      */
     @Deprecated
     @Method(selector = "initForWritingWithMutableData:")
@@ -135,14 +135,14 @@ import org.robovm.apple.dispatch.*;
     public static native NSData archivedDataWithRootObject(NSObject object, boolean requiresSecureCoding, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use +archivedDataWithRootObject:requiringSecureCoding:error: instead
      */
     @Deprecated
     @Method(selector = "archivedDataWithRootObject:")
     public static native NSData archive(NSObject rootObject);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use +archivedDataWithRootObject:requiringSecureCoding:error: instead
      */
     @Deprecated
     @Method(selector = "archiveRootObject:toFile:")

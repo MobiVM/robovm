@@ -52,7 +52,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSXPCConnection.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NSXPCConnection() {}
+    public NSXPCConnection() {}
     protected NSXPCConnection(Handle h, long handle) { super(h, handle); }
     protected NSXPCConnection(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithListenerEndpoint:")

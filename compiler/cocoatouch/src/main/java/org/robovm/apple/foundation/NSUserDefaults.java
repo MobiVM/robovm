@@ -217,7 +217,7 @@ import org.robovm.apple.dispatch.*;
     public native void removeVolatileDomain(String domainName);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Not recommended
      */
     @Deprecated
     @Method(selector = "persistentDomainNames")
