@@ -43,7 +43,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("AudioToolbox") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AUAudioUnitPreset/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class AUAudioUnitPresetPtr extends Ptr<AUAudioUnitPreset, AUAudioUnitPresetPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AUAudioUnitPreset.class); }/*</bind>*/
@@ -52,6 +52,8 @@ import org.robovm.apple.uikit.*;
     public AUAudioUnitPreset() {}
     protected AUAudioUnitPreset(Handle h, long handle) { super(h, handle); }
     protected AUAudioUnitPreset(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public AUAudioUnitPreset(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "number")
@@ -62,9 +64,14 @@ import org.robovm.apple.uikit.*;
     public native String getName();
     @Property(selector = "setName:")
     public native void setName(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

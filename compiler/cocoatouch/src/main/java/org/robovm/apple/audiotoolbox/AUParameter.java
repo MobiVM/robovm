@@ -43,7 +43,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("AudioToolbox") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AUParameter/*</name>*/ 
     extends /*<extends>*/AUParameterNode/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class AUParameterPtr extends Ptr<AUParameter, AUParameterPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AUParameter.class); }/*</bind>*/
@@ -52,6 +52,8 @@ import org.robovm.apple.uikit.*;
     public AUParameter() {}
     protected AUParameter(Handle h, long handle) { super(h, handle); }
     protected AUParameter(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public AUParameter(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "minValue")
@@ -74,6 +76,8 @@ import org.robovm.apple.uikit.*;
     public native float getValue();
     @Property(selector = "setValue:")
     public native void setValue(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -90,5 +94,9 @@ import org.robovm.apple.uikit.*;
     public native String stringFromValue(FloatPtr value);
     @Method(selector = "valueFromString:")
     public native float valueFromString(String string);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

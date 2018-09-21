@@ -43,7 +43,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("AudioToolbox") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AUParameterTree/*</name>*/ 
     extends /*<extends>*/AUParameterGroup/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class AUParameterTreePtr extends Ptr<AUParameterTree, AUParameterTreePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AUParameterTree.class); }/*</bind>*/

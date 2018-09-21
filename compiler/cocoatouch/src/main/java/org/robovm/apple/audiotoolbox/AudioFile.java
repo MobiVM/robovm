@@ -399,7 +399,7 @@ import org.robovm.apple.uikit.*;
     protected native OSStatus readPacketData0(boolean inUseCache, IntPtr ioNumBytes, AudioStreamPacketDescription outPacketDescriptions, long inStartingPacket, IntPtr ioNumPackets, VoidPtr outBuffer);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. no longer supported
      */
     @Deprecated
     @Bridge(symbol="AudioFileReadPackets", optional=true)

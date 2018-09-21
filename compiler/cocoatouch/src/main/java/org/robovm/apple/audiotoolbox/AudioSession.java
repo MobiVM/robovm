@@ -243,56 +243,56 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. no longer supported
      */
     @Deprecated
     @Bridge(symbol="AudioSessionInitialize", optional=true)
     protected static native OSStatus initialize0(NSRunLoop inRunLoop, String inRunLoopMode, FunctionPtr inInterruptionListener, @Pointer long inClientData);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. no longer supported
      */
     @Deprecated
     @Bridge(symbol="AudioSessionSetActive", optional=true)
     protected static native OSStatus setActive0(boolean active);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. no longer supported
      */
     @Deprecated
     @Bridge(symbol="AudioSessionSetActiveWithFlags", optional=true)
     protected static native OSStatus setActive0(boolean active, AudioSessionActivationFlags flags);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. no longer supported
      */
     @Deprecated
     @Bridge(symbol="AudioSessionGetProperty", optional=true)
     protected static native OSStatus getProperty0(AudioSessionProperty id, IntPtr ioDataSize, VoidPtr outData);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. no longer supported
      */
     @Deprecated
     @Bridge(symbol="AudioSessionSetProperty", optional=true)
     protected static native OSStatus setProperty0(AudioSessionProperty id, int inDataSize, VoidPtr inData);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. no longer supported
      */
     @Deprecated
     @Bridge(symbol="AudioSessionGetPropertySize", optional=true)
     protected static native OSStatus getPropertySize0(AudioSessionProperty id, IntPtr outDataSize);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. no longer supported
      */
     @Deprecated
     @Bridge(symbol="AudioSessionAddPropertyListener", optional=true)
     protected static native OSStatus addPropertyListener0(AudioSessionProperty id, FunctionPtr inProc, @Pointer long inClientData);
     /**
      * @since Available in iOS 2.1 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. no longer supported
      */
     @Deprecated
     @Bridge(symbol="AudioSessionRemovePropertyListenerWithUserData", optional=true)

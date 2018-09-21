@@ -371,137 +371,191 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="NewAUGraph", optional=true)
     private static native OSStatus create0(AUGraph.AUGraphPtr outGraph);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphAddNode", optional=true)
     protected native OSStatus addNode0(AudioComponentDescription inDescription, IntPtr outNode);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphRemoveNode", optional=true)
     protected native OSStatus removeNode0(int inNode);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphGetNodeCount", optional=true)
     protected native OSStatus getNodeCount0(IntPtr outNumberOfNodes);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphGetIndNode", optional=true)
     protected native OSStatus getIndNode0(int inIndex, IntPtr outNode);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphNodeInfo", optional=true)
     protected native OSStatus getNodeInfo0(int inNode, AudioComponentDescription.AudioComponentDescriptionPtr outDescription, AudioUnit.AudioUnitPtr outAudioUnit);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphConnectNodeInput", optional=true)
     protected native OSStatus connectNodeInput0(int inSourceNode, int inSourceOutputNumber, int inDestNode, int inDestInputNumber);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphSetNodeInputCallback", optional=true)
     protected native OSStatus setNodeInputCallback0(int inDestNode, int inDestInputNumber, AURenderCallbackStruct inInputCallback);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphDisconnectNodeInput", optional=true)
     protected native OSStatus disconnectNodeInput0(int inDestNode, int inDestInputNumber);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphClearConnections", optional=true)
     protected native OSStatus clearConnections0();
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphGetNumberOfInteractions", optional=true)
     protected native OSStatus getNumberOfInteractions0(IntPtr outNumInteractions);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphGetInteractionInfo", optional=true)
     protected native OSStatus getInteractionInfo0(int interactionIndex, AUNodeInteraction.AUNodeInteractionPtr outInteraction);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphCountNodeInteractions", optional=true)
     protected native OSStatus countNodeInteractions0(int inNode, IntPtr outNumInteractions);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphGetNodeInteractions", optional=true)
     protected native OSStatus getNodeInteractions0(int node, IntPtr ioNumInteractions, AUNodeInteraction.AUNodeInteractionPtr outInteractions);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphUpdate", optional=true)
     protected native OSStatus update0(BooleanPtr outIsUpdated);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphOpen", optional=true)
     protected native OSStatus open0();
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphInitialize", optional=true)
     protected native OSStatus initialize0();
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphUninitialize", optional=true)
     protected native OSStatus uninitialize0();
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphStart", optional=true)
     protected native OSStatus start0();
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphStop", optional=true)
     protected native OSStatus stop0();
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphIsOpen", optional=true)
     protected native OSStatus isOpen0(BooleanPtr outIsOpen);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphIsInitialized", optional=true)
     protected native OSStatus isInitialized0(BooleanPtr outIsInitialized);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphIsRunning", optional=true)
     protected native OSStatus isRunning0(BooleanPtr outIsRunning);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphGetCPULoad", optional=true)
     protected native OSStatus getCPULoad0(FloatPtr outAverageCPULoad);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphGetMaxCPULoad", optional=true)
     protected native OSStatus getMaxCPULoad0(FloatPtr outMaxLoad);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphAddRenderNotify", optional=true)
     protected native OSStatus addRenderNotify0(FunctionPtr callback, @Pointer long refCon);
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0. AUGraph is deprecated in favor of AVAudioEngine
      */
+    @Deprecated
     @Bridge(symbol="AUGraphRemoveRenderNotify", optional=true)
     protected native OSStatus removeRenderNotify0(FunctionPtr callback, @Pointer long refCon);
     /*</methods>*/
