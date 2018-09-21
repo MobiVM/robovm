@@ -84,7 +84,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPMusicPlayerController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPMusicPlayerController() {}
+    protected MPMusicPlayerController() {}
     protected MPMusicPlayerController(Handle h, long handle) { super(h, handle); }
     protected MPMusicPlayerController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
@@ -98,13 +98,6 @@ import org.robovm.apple.coregraphics.*;
     public static native MPMusicPlayerApplicationController getApplicationQueuePlayer();
     @Property(selector = "systemMusicPlayer")
     public static native MPMusicPlayerController getSystemMusicPlayer();
-    /**
-     * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
-     */
-    @Deprecated
-    @Property(selector = "iPodMusicPlayer")
-    public static native MPMusicPlayerController getIPodMusicPlayer();
     @Property(selector = "playbackState")
     public native MPMusicPlaybackState getPlaybackState();
     @Property(selector = "repeatMode")
@@ -117,14 +110,14 @@ import org.robovm.apple.coregraphics.*;
     public native void setShuffleMode(MPMusicShuffleMode v);
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use MPVolumeView for volume control.
      */
     @Deprecated
     @Property(selector = "volume")
     public native float getVolume();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use MPVolumeView for volume control.
      */
     @Deprecated
     @Property(selector = "setVolume:")
@@ -138,6 +131,13 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "indexOfNowPlayingItem")
     public native @MachineSizedUInt long getIndexOfNowPlayingItem();
+    /**
+     * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 8.0.
+     */
+    @Deprecated
+    @Property(selector = "iPodMusicPlayer")
+    public static native MPMusicPlayerController getIPodMusicPlayer();
     @Property(selector = "isPreparedToPlay")
     public native boolean isPreparedToPlay();
     @Property(selector = "currentPlaybackTime")
@@ -153,7 +153,7 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
      */
     @Deprecated
     @GlobalValue(symbol="MPMediaPlaybackIsPreparedToPlayDidChangeNotification", optional=true)

@@ -35,7 +35,7 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 3.2 and later.
- * @deprecated Deprecated in iOS 9.0.
+ * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
  */
 @Deprecated
 /*</javadoc>*/
@@ -53,6 +53,10 @@ import org.robovm.apple.coregraphics.*;
     protected MPMoviePlayerViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithContentURL:")
     public MPMoviePlayerViewController(NSURL contentURL) { super((SkipInit) null); initObject(init(contentURL)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public MPMoviePlayerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public MPMoviePlayerViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "moviePlayer")
@@ -62,5 +66,9 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     @Method(selector = "initWithContentURL:")
     protected native @Pointer long init(NSURL contentURL);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

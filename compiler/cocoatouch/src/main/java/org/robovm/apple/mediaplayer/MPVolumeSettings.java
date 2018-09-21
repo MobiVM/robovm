@@ -49,21 +49,21 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 11.3.
+     * @deprecated Deprecated in iOS 11.3. Use MPVolumeView to present volume controls.
      */
     @Deprecated
     @Bridge(symbol="MPVolumeSettingsAlertShow", optional=true)
     public static native void showAlert();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 11.3.
+     * @deprecated Deprecated in iOS 11.3. Use MPVolumeView to present volume controls.
      */
     @Deprecated
     @Bridge(symbol="MPVolumeSettingsAlertHide", optional=true)
     public static native void hideAlert();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 11.3.
+     * @deprecated Deprecated in iOS 11.3. Use MPVolumeView to present volume controls.
      */
     @Deprecated
     @Bridge(symbol="MPVolumeSettingsAlertIsVisible", optional=true)

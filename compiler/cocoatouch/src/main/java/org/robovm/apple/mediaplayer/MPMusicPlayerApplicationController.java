@@ -46,7 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPMusicPlayerApplicationController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPMusicPlayerApplicationController() {}
+    protected MPMusicPlayerApplicationController() {}
     protected MPMusicPlayerApplicationController(Handle h, long handle) { super(h, handle); }
     protected MPMusicPlayerApplicationController(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

@@ -74,10 +74,11 @@ import org.robovm.apple.coregraphics.*;
     public MPVolumeView() {}
     protected MPVolumeView(Handle h, long handle) { super(h, handle); }
     protected MPVolumeView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public MPVolumeView(@ByVal CGRect frame) { super((SkipInit) null); initObject(initWithFrame(frame)); }
+    @Method(selector = "initWithCoder:")
+    public MPVolumeView(NSCoder aDecoder) { super((SkipInit) null); initObject(initWithCoder(aDecoder)); }
     /*</constructors>*/
-    public MPVolumeView(CGRect frame) {
-    	super(frame);
-    }
     /*<properties>*/
     /**
      * @since Available in iOS 4.2 and later.
@@ -188,5 +189,9 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "routeButtonRectForBounds:")
     public native @ByVal CGRect getRouteButtonRect(@ByVal CGRect bounds);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long initWithFrame(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long initWithCoder(NSCoder aDecoder);
     /*</methods>*/
 }

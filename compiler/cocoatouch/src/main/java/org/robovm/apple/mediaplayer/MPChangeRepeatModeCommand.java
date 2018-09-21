@@ -46,7 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPChangeRepeatModeCommand.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPChangeRepeatModeCommand() {}
+    protected MPChangeRepeatModeCommand() {}
     protected MPChangeRepeatModeCommand(Handle h, long handle) { super(h, handle); }
     protected MPChangeRepeatModeCommand(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

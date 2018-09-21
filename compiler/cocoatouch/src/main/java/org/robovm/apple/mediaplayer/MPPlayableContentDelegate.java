@@ -57,14 +57,16 @@ import org.robovm.apple.coregraphics.*;
     void initiatePlayback(MPPlayableContentManager contentManager, NSIndexPath indexPath, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 9.3.
+     * @deprecated Deprecated in iOS 9.3. Use Intents framework for initiating playback queues.
      */
     @Deprecated
     @Method(selector = "playableContentManager:initializePlaybackQueueWithCompletionHandler:")
     void initiatePlaybackQueue(MPPlayableContentManager contentManager, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 12.0. Use Intents framework for initiating playback queues.
      */
+    @Deprecated
     @Method(selector = "playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:")
     void initializePlaybackQueueWithContent(MPPlayableContentManager contentManager, NSArray<?> contentItems, @Block VoidBlock1<NSError> completionHandler);
     /**
