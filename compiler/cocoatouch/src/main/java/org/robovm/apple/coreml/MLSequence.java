@@ -33,36 +33,37 @@ import org.robovm.apple.corevideo.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelDescription/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLSequence/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MLModelDescriptionPtr extends Ptr<MLModelDescription, MLModelDescriptionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLModelDescription.class); }/*</bind>*/
+    /*<ptr>*/public static class MLSequencePtr extends Ptr<MLSequence, MLSequencePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLSequence.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MLModelDescription() {}
-    protected MLModelDescription(Handle h, long handle) { super(h, handle); }
-    protected MLModelDescription(SkipInit skipInit) { super(skipInit); }
+    public MLSequence() {}
+    protected MLSequence(Handle h, long handle) { super(h, handle); }
+    protected MLSequence(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "inputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getInputDescriptionsByName();
-    @Property(selector = "outputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getOutputDescriptionsByName();
-    @Property(selector = "predictedFeatureName")
-    public native String getPredictedFeatureName();
-    @Property(selector = "predictedProbabilitiesName")
-    public native String getPredictedProbabilitiesName();
-    @Property(selector = "metadata")
-    public native NSDictionary<?, ?> getMetadata();
+    @Property(selector = "type")
+    public native MLFeatureType getType();
+    @Property(selector = "stringValues")
+    public native NSArray<NSString> getStringValues();
+    @Property(selector = "int64Values")
+    public native NSArray<NSNumber> getInt64Values();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "emptySequenceWithType:")
+    public static native MLSequence emptySequenceWithType(MLFeatureType type);
+    @Method(selector = "sequenceWithStringArray:")
+    public static native MLSequence sequenceWithStringArray(NSArray<NSString> stringValues);
+    @Method(selector = "sequenceWithInt64Array:")
+    public static native MLSequence sequenceWithInt64Array(NSArray<NSNumber> int64Values);
     /*</methods>*/
 }

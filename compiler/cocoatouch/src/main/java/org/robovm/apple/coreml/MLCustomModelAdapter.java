@@ -32,37 +32,26 @@ import org.robovm.apple.corevideo.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelDescription/*</name>*/ 
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCustomModelAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements MLCustomModel/*</implements>*/ {
 
-    /*<ptr>*/public static class MLModelDescriptionPtr extends Ptr<MLModelDescription, MLModelDescriptionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLModelDescription.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MLModelDescription() {}
-    protected MLModelDescription(Handle h, long handle) { super(h, handle); }
-    protected MLModelDescription(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "inputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getInputDescriptionsByName();
-    @Property(selector = "outputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getOutputDescriptionsByName();
-    @Property(selector = "predictedFeatureName")
-    public native String getPredictedFeatureName();
-    @Property(selector = "predictedProbabilitiesName")
-    public native String getPredictedProbabilitiesName();
-    @Property(selector = "metadata")
-    public native NSDictionary<?, ?> getMetadata();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @NotImplemented("predictionFromFeatures:options:error:")
+    public MLFeatureProvider getPredictionFromFeatures(MLFeatureProvider input, MLPredictionOptions options, NSError.NSErrorPtr error) { return null; }
+    @NotImplemented("predictionsFromBatch:options:error:")
+    public MLBatchProvider getPredictionsFromBatch(MLBatchProvider inputBatch, MLPredictionOptions options, NSError.NSErrorPtr error) { return null; }
     /*</methods>*/
 }

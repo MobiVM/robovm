@@ -16,8 +16,15 @@
 package org.robovm.apple.coreml;
 
 /*<imports>*/
+import java.io.*;
+import java.nio.*;
+import java.util.*;
 import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
+import org.robovm.objc.block.*;
+import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
+import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
@@ -67,6 +74,11 @@ import org.robovm.apple.corevideo.*;
     public native NSDictionary<?, NSNumber> getDictionaryValue();
     @Property(selector = "imageBufferValue")
     public native CVPixelBuffer getImageBufferValue();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "sequenceValue")
+    public native MLSequence getSequenceValue();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -82,6 +94,11 @@ import org.robovm.apple.corevideo.*;
     public static native MLFeatureValue featureValueWithMultiArray(MLMultiArray value);
     @Method(selector = "featureValueWithPixelBuffer:")
     public static native MLFeatureValue featureValueWithPixelBuffer(CVPixelBuffer value);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "featureValueWithSequence:")
+    public static native MLFeatureValue featureValueWithSequence(MLSequence sequence);
     @Method(selector = "undefinedFeatureValueWithType:")
     public static native MLFeatureValue undefinedFeatureValueWithType(MLFeatureType type);
     @Method(selector = "featureValueWithDictionary:error:")

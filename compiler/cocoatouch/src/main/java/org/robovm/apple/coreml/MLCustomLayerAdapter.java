@@ -32,37 +32,30 @@ import org.robovm.apple.corevideo.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelDescription/*</name>*/ 
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCustomLayerAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements MLCustomLayer/*</implements>*/ {
 
-    /*<ptr>*/public static class MLModelDescriptionPtr extends Ptr<MLModelDescription, MLModelDescriptionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLModelDescription.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MLModelDescription() {}
-    protected MLModelDescription(Handle h, long handle) { super(h, handle); }
-    protected MLModelDescription(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "inputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getInputDescriptionsByName();
-    @Property(selector = "outputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getOutputDescriptionsByName();
-    @Property(selector = "predictedFeatureName")
-    public native String getPredictedFeatureName();
-    @Property(selector = "predictedProbabilitiesName")
-    public native String getPredictedProbabilitiesName();
-    @Property(selector = "metadata")
-    public native NSDictionary<?, ?> getMetadata();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @NotImplemented("setWeightData:error:")
+    public boolean setWeightData(NSArray<NSData> weights, NSError.NSErrorPtr error) { return false; }
+    @NotImplemented("outputShapesForInputShapes:error:")
+    public NSArray<?> getOutputShapes(NSArray<?> inputShapes, NSError.NSErrorPtr error) { return null; }
+    @NotImplemented("evaluateOnCPUWithInputs:outputs:error:")
+    public boolean evaluateOnCPU(NSArray<MLMultiArray> inputs, NSArray<MLMultiArray> outputs, NSError.NSErrorPtr error) { return false; }
+    @NotImplemented("encodeToCommandBuffer:inputs:outputs:error:")
+    public boolean encodeToCommandBuffer(org.robovm.apple.metal.MTLCommandBuffer commandBuffer, NSArray<?> inputs, NSArray<?> outputs, NSError.NSErrorPtr error) { return false; }
     /*</methods>*/
 }

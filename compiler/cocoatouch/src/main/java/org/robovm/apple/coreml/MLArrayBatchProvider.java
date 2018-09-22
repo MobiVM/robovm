@@ -33,23 +33,25 @@ import org.robovm.apple.corevideo.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLDictionaryFeatureProvider/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLArrayBatchProvider/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements MLFeatureProvider, NSFastEnumeration/*</implements>*/ {
+    /*<implements>*/implements MLBatchProvider/*</implements>*/ {
 
-    /*<ptr>*/public static class MLDictionaryFeatureProviderPtr extends Ptr<MLDictionaryFeatureProvider, MLDictionaryFeatureProviderPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLDictionaryFeatureProvider.class); }/*</bind>*/
+    /*<ptr>*/public static class MLArrayBatchProviderPtr extends Ptr<MLArrayBatchProvider, MLArrayBatchProviderPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLArrayBatchProvider.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MLDictionaryFeatureProvider() {}
-    protected MLDictionaryFeatureProvider(Handle h, long handle) { super(h, handle); }
-    protected MLDictionaryFeatureProvider(SkipInit skipInit) { super(skipInit); }
+    public MLArrayBatchProvider() {}
+    protected MLArrayBatchProvider(Handle h, long handle) { super(h, handle); }
+    protected MLArrayBatchProvider(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFeatureProviderArray:")
+    public MLArrayBatchProvider(NSArray<?> array) { super((SkipInit) null); initObject(initWithFeatureProviderArray(array)); }
     @Method(selector = "initWithDictionary:error:")
-    public MLDictionaryFeatureProvider(NSDictionary<NSString, ?> dictionary) throws NSErrorException {
+    public MLArrayBatchProvider(NSDictionary<NSString, NSArray> dictionary) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        long handle = init(dictionary, ptr);
@@ -58,18 +60,18 @@ import org.robovm.apple.corevideo.*;
     }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "dictionary")
-    public native NSDictionary<NSString, MLFeatureValue> getDictionary();
-    @Property(selector = "featureNames")
-    public native NSSet<NSString> getFeatureNames();
+    @Property(selector = "array")
+    public native NSArray<?> getArray();
+    @Property(selector = "count")
+    public native @MachineSizedSInt long getCount();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithFeatureProviderArray:")
+    protected native @Pointer long initWithFeatureProviderArray(NSArray<?> array);
     @Method(selector = "initWithDictionary:error:")
-    private native @Pointer long init(NSDictionary<NSString, ?> dictionary, NSError.NSErrorPtr error);
-    @Method(selector = "objectForKeyedSubscript:")
-    public native MLFeatureValue objectForKeyedSubscript(String featureName);
-    @Method(selector = "featureValueForName:")
-    public native MLFeatureValue featureValueForName(String featureName);
+    private native @Pointer long init(NSDictionary<NSString, NSArray> dictionary, NSError.NSErrorPtr error);
+    @Method(selector = "featuresAtIndex:")
+    public native MLFeatureProvider featuresAtIndex(@MachineSizedSInt long index);
     /*</methods>*/
 }

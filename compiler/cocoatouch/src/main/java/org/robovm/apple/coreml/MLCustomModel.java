@@ -33,28 +33,27 @@ import org.robovm.apple.corevideo.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLDictionaryConstraint/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MLCustomModel/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/public static class MLDictionaryConstraintPtr extends Ptr<MLDictionaryConstraint, MLDictionaryConstraintPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLDictionaryConstraint.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MLDictionaryConstraint() {}
-    protected MLDictionaryConstraint(Handle h, long handle) { super(h, handle); }
-    protected MLDictionaryConstraint(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "keyType")
-    public native MLFeatureType getKeyType();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
     
+    /*</properties>*/
+    /*<methods>*/
+    @Method(selector = "predictionFromFeatures:options:error:")
+    MLFeatureProvider getPredictionFromFeatures(MLFeatureProvider input, MLPredictionOptions options, NSError.NSErrorPtr error);
+    @Method(selector = "predictionsFromBatch:options:error:")
+    MLBatchProvider getPredictionsFromBatch(MLBatchProvider inputBatch, MLPredictionOptions options, NSError.NSErrorPtr error);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

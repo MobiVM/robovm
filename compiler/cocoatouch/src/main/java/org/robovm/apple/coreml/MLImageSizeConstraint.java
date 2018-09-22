@@ -33,33 +33,31 @@ import org.robovm.apple.corevideo.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelDescription/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLImageSizeConstraint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MLModelDescriptionPtr extends Ptr<MLModelDescription, MLModelDescriptionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLModelDescription.class); }/*</bind>*/
+    /*<ptr>*/public static class MLImageSizeConstraintPtr extends Ptr<MLImageSizeConstraint, MLImageSizeConstraintPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLImageSizeConstraint.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MLModelDescription() {}
-    protected MLModelDescription(Handle h, long handle) { super(h, handle); }
-    protected MLModelDescription(SkipInit skipInit) { super(skipInit); }
+    public MLImageSizeConstraint() {}
+    protected MLImageSizeConstraint(Handle h, long handle) { super(h, handle); }
+    protected MLImageSizeConstraint(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "inputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getInputDescriptionsByName();
-    @Property(selector = "outputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getOutputDescriptionsByName();
-    @Property(selector = "predictedFeatureName")
-    public native String getPredictedFeatureName();
-    @Property(selector = "predictedProbabilitiesName")
-    public native String getPredictedProbabilitiesName();
-    @Property(selector = "metadata")
-    public native NSDictionary<?, ?> getMetadata();
+    @Property(selector = "type")
+    public native MLImageSizeConstraintType getType();
+    @Property(selector = "pixelsWideRange")
+    public native @ByVal NSRange getPixelsWideRange();
+    @Property(selector = "pixelsHighRange")
+    public native @ByVal NSRange getPixelsHighRange();
+    @Property(selector = "enumeratedImageSizes")
+    public native NSArray<MLImageSize> getEnumeratedImageSizes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

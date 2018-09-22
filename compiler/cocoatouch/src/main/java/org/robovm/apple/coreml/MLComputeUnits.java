@@ -33,28 +33,33 @@ import org.robovm.apple.corevideo.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLDictionaryConstraint/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MLComputeUnits/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    CPUOnly(0L),
+    CPUAndGPU(1L),
+    All(2L);
+    /*</values>*/
 
-    /*<ptr>*/public static class MLDictionaryConstraintPtr extends Ptr<MLDictionaryConstraint, MLDictionaryConstraintPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLDictionaryConstraint.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MLDictionaryConstraint() {}
-    protected MLDictionaryConstraint(Handle h, long handle) { super(h, handle); }
-    protected MLDictionaryConstraint(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "keyType")
-    public native MLFeatureType getKeyType();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/MLComputeUnits/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/MLComputeUnits/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MLComputeUnits/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/MLComputeUnits/*</name>*/.class.getName());
+    }
 }

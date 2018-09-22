@@ -33,28 +33,31 @@ import org.robovm.apple.corevideo.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 11.2 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLDictionaryConstraint/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MLCustomLayer/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/public static class MLDictionaryConstraintPtr extends Ptr<MLDictionaryConstraint, MLDictionaryConstraintPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLDictionaryConstraint.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MLDictionaryConstraint() {}
-    protected MLDictionaryConstraint(Handle h, long handle) { super(h, handle); }
-    protected MLDictionaryConstraint(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "keyType")
-    public native MLFeatureType getKeyType();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
     
+    /*</properties>*/
+    /*<methods>*/
+    @Method(selector = "setWeightData:error:")
+    boolean setWeightData(NSArray<NSData> weights, NSError.NSErrorPtr error);
+    @Method(selector = "outputShapesForInputShapes:error:")
+    NSArray<?> getOutputShapes(NSArray<?> inputShapes, NSError.NSErrorPtr error);
+    @Method(selector = "evaluateOnCPUWithInputs:outputs:error:")
+    boolean evaluateOnCPU(NSArray<MLMultiArray> inputs, NSArray<MLMultiArray> outputs, NSError.NSErrorPtr error);
+    @Method(selector = "encodeToCommandBuffer:inputs:outputs:error:")
+    boolean encodeToCommandBuffer(org.robovm.apple.metal.MTLCommandBuffer commandBuffer, NSArray<?> inputs, NSArray<?> outputs, NSError.NSErrorPtr error);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

@@ -33,33 +33,29 @@ import org.robovm.apple.corevideo.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelDescription/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLMultiArrayShapeConstraint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MLModelDescriptionPtr extends Ptr<MLModelDescription, MLModelDescriptionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLModelDescription.class); }/*</bind>*/
+    /*<ptr>*/public static class MLMultiArrayShapeConstraintPtr extends Ptr<MLMultiArrayShapeConstraint, MLMultiArrayShapeConstraintPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLMultiArrayShapeConstraint.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MLModelDescription() {}
-    protected MLModelDescription(Handle h, long handle) { super(h, handle); }
-    protected MLModelDescription(SkipInit skipInit) { super(skipInit); }
+    public MLMultiArrayShapeConstraint() {}
+    protected MLMultiArrayShapeConstraint(Handle h, long handle) { super(h, handle); }
+    protected MLMultiArrayShapeConstraint(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "inputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getInputDescriptionsByName();
-    @Property(selector = "outputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getOutputDescriptionsByName();
-    @Property(selector = "predictedFeatureName")
-    public native String getPredictedFeatureName();
-    @Property(selector = "predictedProbabilitiesName")
-    public native String getPredictedProbabilitiesName();
-    @Property(selector = "metadata")
-    public native NSDictionary<?, ?> getMetadata();
+    @Property(selector = "type")
+    public native MLMultiArrayShapeConstraintType getType();
+    @Property(selector = "sizeRangeForDimension")
+    public native NSArray<NSValue> getSizeRangeForDimension();
+    @Property(selector = "enumeratedShapes")
+    public native NSArray<?> getEnumeratedShapes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

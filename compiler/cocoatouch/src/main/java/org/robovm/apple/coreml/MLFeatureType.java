@@ -16,8 +16,19 @@
 package org.robovm.apple.coreml;
 
 /*<imports>*/
+import java.io.*;
+import java.nio.*;
+import java.util.*;
+import org.robovm.objc.*;
+import org.robovm.objc.annotation.*;
+import org.robovm.objc.block.*;
+import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
+import org.robovm.rt.bro.ptr.*;
+import org.robovm.apple.foundation.*;
+import org.robovm.apple.corevideo.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -34,7 +45,11 @@ public enum /*<name>*/MLFeatureType/*</name>*/ implements ValuedEnum {
     String(3L),
     Image(4L),
     MultiArray(5L),
-    Dictionary(6L);
+    Dictionary(6L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    Sequence(7L);
     /*</values>*/
 
     /*<bind>*/
