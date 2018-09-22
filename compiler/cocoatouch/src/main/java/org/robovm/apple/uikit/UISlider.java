@@ -61,12 +61,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UISlider(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UISlider(CGRect frame) {
-        super(frame);
-    }
-    public UISlider(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "value")
     public native float getValue();

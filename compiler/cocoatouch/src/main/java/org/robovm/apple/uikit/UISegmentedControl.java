@@ -67,12 +67,6 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithCoder:")
     public UISegmentedControl(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UISegmentedControl(CGRect frame) {
-        super(frame);
-    }
-    public UISegmentedControl(NSCoder decoder) {
-        super(decoder);
-    }
     public UISegmentedControl(String... items) {
         super((SkipInit) null);
         initObject(init(NSArray.fromStrings(items)));

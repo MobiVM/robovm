@@ -149,12 +149,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UIWindow(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UIWindow(CGRect frame) {
-        super(frame);
-    }
-    public UIWindow(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     /**
      * @since Available in iOS 3.2 and later.

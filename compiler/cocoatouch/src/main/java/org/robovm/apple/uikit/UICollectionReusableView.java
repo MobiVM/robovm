@@ -61,12 +61,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UICollectionReusableView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UICollectionReusableView(CGRect frame) {
-        super(frame);
-    }
-    public UICollectionReusableView(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "reuseIdentifier")
     public native String getReuseIdentifier();

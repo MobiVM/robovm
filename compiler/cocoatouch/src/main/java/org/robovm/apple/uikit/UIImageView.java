@@ -68,12 +68,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UIImageView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UIImageView(CGRect frame) {
-        super(frame);
-    }
-    public UIImageView(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "image")
     public native UIImage getImage();

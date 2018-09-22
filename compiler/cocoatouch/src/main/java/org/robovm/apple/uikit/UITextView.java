@@ -94,11 +94,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     public UITextView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     /*</constructors>*/
-    
-    public UITextView(CGRect frame) {
-        super(frame);
-    }
-    
+
     /**
      * @since Available in iOS 7.0 and later.
      */

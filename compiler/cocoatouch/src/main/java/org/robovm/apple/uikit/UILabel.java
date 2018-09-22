@@ -61,12 +61,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UILabel(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UILabel(CGRect frame) {
-        super(frame);
-    }
-    public UILabel(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "text")
     public native String getText();

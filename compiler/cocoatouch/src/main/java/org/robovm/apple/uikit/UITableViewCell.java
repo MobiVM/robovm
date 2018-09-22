@@ -66,10 +66,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UITableViewCell(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     /*</constructors>*/
-    
-    public UITableViewCell(CGRect frame) {
-        super(frame);
-    }
     /*<properties>*/
     /**
      * @since Available in iOS 3.0 and later.

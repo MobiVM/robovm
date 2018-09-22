@@ -61,12 +61,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UIPickerView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UIPickerView(CGRect frame) {
-        super(frame);
-    }
-    public UIPickerView(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "dataSource")
     public native UIPickerViewDataSource getDataSource();

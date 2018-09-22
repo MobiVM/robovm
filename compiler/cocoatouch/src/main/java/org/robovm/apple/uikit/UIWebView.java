@@ -63,12 +63,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UIWebView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UIWebView(CGRect frame) {
-        super(frame);
-    }
-    public UIWebView(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "delegate")
     public native UIWebViewDelegate getDelegate();

@@ -61,12 +61,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UICollectionViewCell(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UICollectionViewCell(CGRect frame) {
-        super(frame);
-    }
-    public UICollectionViewCell(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "contentView")
     public native UIView getContentView();

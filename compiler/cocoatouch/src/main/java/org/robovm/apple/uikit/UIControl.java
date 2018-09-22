@@ -62,12 +62,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UIControl(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UIControl(CGRect frame) {
-        super(frame);
-    }    
-    public UIControl(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "isEnabled")
     public native boolean isEnabled();

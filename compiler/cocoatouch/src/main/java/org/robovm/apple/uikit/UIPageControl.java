@@ -61,12 +61,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UIPageControl(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UIPageControl(CGRect frame) {
-        super(frame);
-    }
-    public UIPageControl(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "numberOfPages")
     public native @MachineSizedSInt long getNumberOfPages();

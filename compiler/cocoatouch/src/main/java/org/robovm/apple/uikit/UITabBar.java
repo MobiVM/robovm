@@ -61,12 +61,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UITabBar(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UITabBar(CGRect frame) {
-        super(frame);
-    }
-    public UITabBar(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "delegate")
     public native UITabBarDelegate getDelegate();

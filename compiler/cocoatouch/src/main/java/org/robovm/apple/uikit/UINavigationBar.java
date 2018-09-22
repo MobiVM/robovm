@@ -63,12 +63,6 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithCoder:")
     public UINavigationBar(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UINavigationBar(CGRect frame) {
-        super(frame);
-    }
-    public UINavigationBar(NSCoder decoder) {
-        super(decoder);
-    }
     /**
      * @since Available in iOS 5.0 and later.
      */

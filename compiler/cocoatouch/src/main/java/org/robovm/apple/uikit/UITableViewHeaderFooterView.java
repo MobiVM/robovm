@@ -60,12 +60,9 @@ import org.robovm.apple.intents.*;
     public UITableViewHeaderFooterView(String reuseIdentifier) { super((SkipInit) null); initObject(init(reuseIdentifier)); }
     @Method(selector = "initWithCoder:")
     public UITableViewHeaderFooterView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithFrame:")
+    public UITableViewHeaderFooterView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     /*</constructors>*/
-    
-    public UITableViewHeaderFooterView(CGRect frame) {
-        super(frame);
-    }
-    
     /*<properties>*/
     @Property(selector = "textLabel")
     public native UILabel getTextLabel();

@@ -61,12 +61,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UIPopoverBackgroundView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UIPopoverBackgroundView(CGRect frame) {
-        super(frame);
-    }
-    public UIPopoverBackgroundView(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "arrowOffset")
     public native @MachineSizedFloat double getArrowOffset();

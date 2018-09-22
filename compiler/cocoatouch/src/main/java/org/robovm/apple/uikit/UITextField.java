@@ -89,12 +89,6 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithCoder:")
     public UITextField(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UITextField(CGRect frame) {
-        super(frame);
-    }
-    public UITextField(NSCoder decoder) {
-        super(decoder);
-    }
     /**
      * @since Available in iOS 7.0 and later.
      */

@@ -62,12 +62,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UIButton(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UIButton(CGRect frame) {
-        super(frame);
-    }
-    public UIButton(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "contentEdgeInsets")
     public native @ByVal UIEdgeInsets getContentEdgeInsets();

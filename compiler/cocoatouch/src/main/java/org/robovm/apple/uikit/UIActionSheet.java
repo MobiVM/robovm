@@ -63,13 +63,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCoder:")
     public UIActionSheet(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public UIActionSheet(CGRect frame) {
-        super(frame);
-    }
-    public UIActionSheet(NSCoder decoder) {
-        super(decoder);
-    }
-    public UIActionSheet(String title, UIActionSheetDelegate delegate, String cancelButtonTitle, 
+    public UIActionSheet(String title, UIActionSheetDelegate delegate, String cancelButtonTitle,
             String destructiveButtonTitle, String ... otherButtonTitles) {
         super((SkipInit) null);
         initObject(init(title, delegate, cancelButtonTitle, destructiveButtonTitle, 0));

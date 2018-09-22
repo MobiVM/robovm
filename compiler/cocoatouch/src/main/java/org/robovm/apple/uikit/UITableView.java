@@ -73,9 +73,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UITableView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     /*</constructors>*/
-    public UITableView(CGRect frame) {
-        super(frame);
-    }
     /*<properties>*/
     @Property(selector = "style")
     public native UITableViewStyle getStyle();
