@@ -109,7 +109,7 @@ import org.robovm.apple.corefoundation.*;
     public static final CFStreamNetworkServiceType CallSignaling = new CFStreamNetworkServiceType("CallSignaling");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use PushKit for VoIP control purposes
      */
     @Deprecated
     public static final CFStreamNetworkServiceType VoIP = new CFStreamNetworkServiceType("VoIP");
@@ -165,7 +165,7 @@ import org.robovm.apple.corefoundation.*;
         public static native CFString CallSignaling();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use PushKit for VoIP control purposes
          */
         @Deprecated
         @GlobalValue(symbol="kCFStreamNetworkServiceTypeVoIP", optional=true)
