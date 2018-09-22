@@ -73,9 +73,9 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setImplementorStringFromValueCallback:")
     public native void setImplementorStringFromValueCallback(@Block Block2<AUParameter, FloatPtr, String> v);
     @Property(selector = "implementorValueFromStringCallback")
-    public native @Block Block2<AUParameter, String, Float> getImplementorValueFromStringCallback();
+    public native @Block Block2<AUParameter, NSString, Float> getImplementorValueFromStringCallback();
     @Property(selector = "setImplementorValueFromStringCallback:")
-    public native void setImplementorValueFromStringCallback(@Block Block2<AUParameter, String, Float> v);
+    public native void setImplementorValueFromStringCallback(@Block Block2<AUParameter, NSString, Float> v);
     @Property(selector = "implementorDisplayNameWithLengthCallback")
     public native @Block("(,@MachineSizedSInt)") Block2<AUParameterNode, Long, String> getImplementorDisplayNameWithLengthCallback();
     @Property(selector = "setImplementorDisplayNameWithLengthCallback:")
