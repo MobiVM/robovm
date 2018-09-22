@@ -49,6 +49,10 @@ import org.robovm.apple.coremedia.*;
     public RPSystemBroadcastPickerView() {}
     protected RPSystemBroadcastPickerView(Handle h, long handle) { super(h, handle); }
     protected RPSystemBroadcastPickerView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public RPSystemBroadcastPickerView(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public RPSystemBroadcastPickerView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "preferredExtension")
@@ -62,6 +66,9 @@ import org.robovm.apple.coremedia.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal org.robovm.apple.coregraphics.CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

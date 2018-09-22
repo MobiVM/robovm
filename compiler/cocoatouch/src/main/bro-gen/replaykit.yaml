@@ -5,6 +5,8 @@ framework: ReplayKit
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/ReplayKit.framework/Headers/ReplayKit.h
+private_typedefs:
+    CGRect: '@ByVal org.robovm.apple.coregraphics.CGRect'
 typedefs: {}
     
 enums:

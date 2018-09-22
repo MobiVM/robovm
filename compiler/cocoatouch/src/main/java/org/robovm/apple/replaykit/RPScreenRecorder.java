@@ -90,7 +90,7 @@ import org.robovm.apple.coremedia.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use microphoneEnabaled property
      */
     @Deprecated
     @Method(selector = "startRecordingWithMicrophoneEnabled:handler:")

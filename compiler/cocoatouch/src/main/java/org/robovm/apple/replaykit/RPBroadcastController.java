@@ -65,7 +65,7 @@ import org.robovm.apple.coremedia.*;
     public native void setDelegate(RPBroadcastControllerDelegate v);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated
     @Property(selector = "broadcastExtensionBundleID")
