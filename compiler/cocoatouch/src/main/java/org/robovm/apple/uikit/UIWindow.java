@@ -144,6 +144,10 @@ import org.robovm.apple.intents.*;
     public UIWindow() {}
     protected UIWindow(Handle h, long handle) { super(h, handle); }
     protected UIWindow(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIWindow(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UIWindow(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UIWindow(CGRect frame) {
         super(frame);
@@ -226,5 +230,9 @@ import org.robovm.apple.intents.*;
     public native @ByVal CGRect convertRectToWindow(@ByVal CGRect rect, UIWindow window);
     @Method(selector = "convertRect:fromWindow:")
     public native @ByVal CGRect convertRectFromWindow(@ByVal CGRect rect, UIWindow window);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

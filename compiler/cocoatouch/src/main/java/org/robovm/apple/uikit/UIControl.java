@@ -57,6 +57,10 @@ import org.robovm.apple.intents.*;
     @Deprecated protected UIControl(long handle) { super(handle); }
     protected UIControl(Handle h, long handle) { super(h, handle); }
     protected UIControl(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIControl(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UIControl(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UIControl(CGRect frame) {
         super(frame);
@@ -309,5 +313,9 @@ import org.robovm.apple.intents.*;
     public native void sendAction(Selector action, NSObject target, UIEvent event);
     @Method(selector = "sendActionsForControlEvents:")
     public native void sendControlEventsActions(UIControlEvents controlEvents);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

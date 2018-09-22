@@ -66,7 +66,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithCIColor:")
     public UIColor(CIColor ciColor) { super((SkipInit) null); initObject(init(ciColor)); }
     @Method(selector = "initWithCoder:")
-    public UIColor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public UIColor(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "blackColor")
@@ -257,7 +257,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder aDecoder);
     public static UIColor createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        UIColor result = createProviderDataObject(data, typeIdentifier, ptr);

@@ -56,6 +56,8 @@ import org.robovm.apple.intents.*;
     public UIManagedDocument() {}
     protected UIManagedDocument(Handle h, long handle) { super(h, handle); }
     protected UIManagedDocument(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFileURL:")
+    public UIManagedDocument(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "persistentStoreName")
@@ -115,5 +117,7 @@ import org.robovm.apple.intents.*;
     }
     @Method(selector = "writeAdditionalContent:toURL:originalContentsURL:error:")
     private native boolean writeAdditionalContent(NSObject content, NSURL absoluteURL, NSURL absoluteOriginalContentsURL, NSError.NSErrorPtr error);
+    @Method(selector = "initWithFileURL:")
+    protected native @Pointer long init(NSURL url);
     /*</methods>*/
 }

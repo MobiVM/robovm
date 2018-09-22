@@ -56,6 +56,10 @@ import org.robovm.apple.intents.*;
     public UIPopoverBackgroundView() {}
     protected UIPopoverBackgroundView(Handle h, long handle) { super(h, handle); }
     protected UIPopoverBackgroundView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIPopoverBackgroundView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UIPopoverBackgroundView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UIPopoverBackgroundView(CGRect frame) {
         super(frame);
@@ -80,11 +84,15 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "arrowBase")
-    public static native @MachineSizedFloat double arrowBase();
+    public static native @MachineSizedFloat double getArrowBase();
     @Method(selector = "contentViewInsets")
-    public static native @ByVal UIEdgeInsets contentViewInsets();
+    public static native @ByVal UIEdgeInsets getContentViewInsets();
     @Method(selector = "arrowHeight")
-    public static native @MachineSizedFloat double arrowHeight();
+    public static native @MachineSizedFloat double getArrowHeight();
     /*</methods>*/
 }

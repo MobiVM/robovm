@@ -68,14 +68,14 @@ import org.robovm.apple.intents.*;
     public native void setOpaque(boolean v);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use the preferredRange property instead
      */
     @Deprecated
     @Property(selector = "prefersExtendedRange")
     public native boolean prefersExtendedRange();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use the preferredRange property instead
      */
     @Deprecated
     @Property(selector = "setPrefersExtendedRange:")

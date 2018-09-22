@@ -56,6 +56,10 @@ import org.robovm.apple.intents.*;
     public UIScrollView() {}
     protected UIScrollView(Handle h, long handle) { super(h, handle); }
     protected UIScrollView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIScrollView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UIScrollView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UIScrollView(CGRect frame) {
         super(frame);
@@ -276,5 +280,9 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "zoomToRect:animated:")
     public native void zoomToRect(@ByVal CGRect rect, boolean animated);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

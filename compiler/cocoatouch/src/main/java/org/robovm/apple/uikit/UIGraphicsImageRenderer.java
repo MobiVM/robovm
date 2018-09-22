@@ -62,6 +62,8 @@ import org.robovm.apple.intents.*;
     public UIGraphicsImageRenderer(@ByVal CGSize size, UIGraphicsImageRendererFormat format) { super((SkipInit) null); initObject(init(size, format)); }
     @Method(selector = "initWithBounds:format:")
     public UIGraphicsImageRenderer(@ByVal CGRect bounds, UIGraphicsImageRendererFormat format) { super((SkipInit) null); initObject(init(bounds, format)); }
+    @Method(selector = "initWithBounds:")
+    public UIGraphicsImageRenderer(@ByVal CGRect bounds) { super((SkipInit) null); initObject(init(bounds)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -80,5 +82,7 @@ import org.robovm.apple.intents.*;
     public native NSData toPNG(@Block VoidBlock1<UIGraphicsImageRendererContext> actions);
     @Method(selector = "JPEGDataWithCompressionQuality:actions:")
     public native NSData toJPEG(@MachineSizedFloat double compressionQuality, @Block VoidBlock1<UIGraphicsImageRendererContext> actions);
+    @Method(selector = "initWithBounds:")
+    protected native @Pointer long init(@ByVal CGRect bounds);
     /*</methods>*/
 }

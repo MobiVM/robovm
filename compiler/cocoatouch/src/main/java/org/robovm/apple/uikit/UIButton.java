@@ -57,6 +57,10 @@ import org.robovm.apple.intents.*;
     protected UIButton(Handle h, long handle) { super(h, handle); }
     protected UIButton(SkipInit skipInit) { super(skipInit); }
     public UIButton(UIButtonType buttonType) { super((Handle) null, create0(buttonType)); retain(getHandle()); }
+    @Method(selector = "initWithFrame:")
+    public UIButton(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UIButton(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UIButton(CGRect frame) {
         super(frame);
@@ -187,5 +191,9 @@ import org.robovm.apple.intents.*;
     public native @ByVal CGRect getImageRect(@ByVal CGRect contentRect);
     @Method(selector = "buttonWithType:")
     protected static native @Pointer long create0(UIButtonType buttonType);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

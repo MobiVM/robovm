@@ -91,6 +91,8 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public UITextView(@ByVal CGRect frame, NSTextContainer textContainer) { super((SkipInit) null); initObject(init(frame, textContainer)); }
     @Method(selector = "initWithCoder:")
     public UITextView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithFrame:")
+    public UITextView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     /*</constructors>*/
     
     public UITextView(CGRect frame) {
@@ -516,6 +518,8 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     protected native @Pointer long init(@ByVal CGRect frame, NSTextContainer textContainer);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "textInRange:")
     public native String getText(UITextRange range);
     @Method(selector = "replaceRange:withText:")

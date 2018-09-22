@@ -53,7 +53,7 @@ import org.robovm.apple.intents.*;
     /*<bind>*/static { ObjCRuntime.bind(UICloudSharingController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected UICloudSharingController() {}
+    public UICloudSharingController() {}
     protected UICloudSharingController(Handle h, long handle) { super(h, handle); }
     protected UICloudSharingController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPreparationHandler:")

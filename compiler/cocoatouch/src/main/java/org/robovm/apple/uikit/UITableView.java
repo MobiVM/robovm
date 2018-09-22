@@ -70,6 +70,8 @@ import org.robovm.apple.intents.*;
     public UITableView(@ByVal CGRect frame, UITableViewStyle style) { super((SkipInit) null); initObject(init(frame, style)); }
     @Method(selector = "initWithCoder:")
     public UITableView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithFrame:")
+    public UITableView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     /*</constructors>*/
     public UITableView(CGRect frame) {
         super(frame);
@@ -516,6 +518,8 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "registerClass:forHeaderFooterViewReuseIdentifier:")
     public native void registerReusableHeaderFooterViewClass(Class<? extends UITableViewHeaderFooterView> aClass, String identifier);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "presentationSectionIndexForDataSourceSectionIndex:")
     public native @MachineSizedSInt long presentationSectionIndexForDataSourceSectionIndex(@MachineSizedSInt long dataSourceSectionIndex);
     @Method(selector = "dataSourceSectionIndexForPresentationSectionIndex:")

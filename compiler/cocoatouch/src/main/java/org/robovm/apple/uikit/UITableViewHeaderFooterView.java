@@ -88,5 +88,7 @@ import org.robovm.apple.intents.*;
     protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "prepareForReuse")
     public native void prepareForReuse();
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
     /*</methods>*/
 }

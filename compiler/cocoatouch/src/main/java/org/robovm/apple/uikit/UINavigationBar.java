@@ -58,6 +58,10 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public UINavigationBar() {}
     protected UINavigationBar(Handle h, long handle) { super(h, handle); }
     protected UINavigationBar(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UINavigationBar(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UINavigationBar(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UINavigationBar(CGRect frame) {
         super(frame);
@@ -265,5 +269,9 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Method(selector = "titleVerticalPositionAdjustmentForBarMetrics:")
     public native @MachineSizedFloat double getTitleVerticalPositionAdjustment(UIBarMetrics barMetrics);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -74,14 +74,14 @@ import org.robovm.apple.intents.*;
     public native void setPreferredFocusEnvironments(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> v);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use -preferredFocusEnvironments instead.
      */
     @Deprecated
     @Property(selector = "preferredFocusedView")
     public native UIView getPreferredFocusedView();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use -preferredFocusEnvironments instead.
      */
     @Deprecated
     @Property(selector = "setPreferredFocusedView:", strongRef = true)

@@ -42,7 +42,7 @@ import org.robovm.apple.intents.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 2.0 and later.
- * @deprecated Deprecated in iOS 8.3.
+ * @deprecated Deprecated in iOS 8.3. UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead
  */
 @Deprecated
 /*</javadoc>*/
@@ -58,6 +58,10 @@ import org.robovm.apple.intents.*;
     public UIActionSheet() {}
     protected UIActionSheet(Handle h, long handle) { super(h, handle); }
     protected UIActionSheet(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIActionSheet(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UIActionSheet(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UIActionSheet(CGRect frame) {
         super(frame);
@@ -130,5 +134,9 @@ import org.robovm.apple.intents.*;
     public native void showIn(UIView view);
     @Method(selector = "dismissWithClickedButtonIndex:animated:")
     public native void dismiss(@MachineSizedSInt long buttonIndex, boolean animated);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

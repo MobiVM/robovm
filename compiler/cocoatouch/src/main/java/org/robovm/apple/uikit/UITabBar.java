@@ -56,6 +56,10 @@ import org.robovm.apple.intents.*;
     public UITabBar() {}
     protected UITabBar(Handle h, long handle) { super(h, handle); }
     protected UITabBar(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UITabBar(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UITabBar(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UITabBar(CGRect frame) {
         super(frame);
@@ -110,14 +114,14 @@ import org.robovm.apple.intents.*;
     public native void setUnselectedItemTintColor(UIColor v);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use tintColor
      */
     @Deprecated
     @Property(selector = "selectedImageTintColor")
     public native UIColor getSelectedImageTintColor();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use tintColor
      */
     @Deprecated
     @Property(selector = "setSelectedImageTintColor:")
@@ -221,5 +225,9 @@ import org.robovm.apple.intents.*;
     public native void beginCustomizing(NSArray<UITabBarItem> items);
     @Method(selector = "endCustomizingAnimated:")
     public native boolean endCustomizing(boolean animated);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

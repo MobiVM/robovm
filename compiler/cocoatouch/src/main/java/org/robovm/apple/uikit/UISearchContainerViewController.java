@@ -58,6 +58,10 @@ import org.robovm.apple.intents.*;
     protected UISearchContainerViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSearchController:")
     public UISearchContainerViewController(UISearchController searchController) { super((SkipInit) null); initObject(init(searchController)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UISearchContainerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public UISearchContainerViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "searchController")
@@ -67,5 +71,9 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @Method(selector = "initWithSearchController:")
     protected native @Pointer long init(UISearchController searchController);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

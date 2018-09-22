@@ -64,7 +64,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithData:ofType:")
     public NSTextAttachment(NSData contentData, String uti) { super((SkipInit) null); initObject(init(contentData, uti)); }
     @Method(selector = "initWithCoder:")
-    public NSTextAttachment(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NSTextAttachment(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -136,6 +136,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -56,6 +56,10 @@ import org.robovm.apple.intents.*;
     public UIDatePicker() {}
     protected UIDatePicker(Handle h, long handle) { super(h, handle); }
     protected UIDatePicker(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIDatePicker(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UIDatePicker(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UIDatePicker(CGRect frame) {
         super(frame);
@@ -105,5 +109,9 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @Method(selector = "setDate:animated:")
     public native void setDate(NSDate date, boolean animated);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

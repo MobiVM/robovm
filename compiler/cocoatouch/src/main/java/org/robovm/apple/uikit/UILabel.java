@@ -56,6 +56,10 @@ import org.robovm.apple.intents.*;
     public UILabel() {}
     protected UILabel(Handle h, long handle) { super(h, handle); }
     protected UILabel(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UILabel(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UILabel(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UILabel(CGRect frame) {
         super(frame);
@@ -185,5 +189,9 @@ import org.robovm.apple.intents.*;
     public native @ByVal CGRect getTextRect(@ByVal CGRect bounds, @MachineSizedSInt long numberOfLines);
     @Method(selector = "drawTextInRect:")
     public native void drawText(@ByVal CGRect rect);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

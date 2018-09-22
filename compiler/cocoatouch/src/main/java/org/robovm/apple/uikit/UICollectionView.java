@@ -60,6 +60,8 @@ import org.robovm.apple.intents.*;
     public UICollectionView(@ByVal CGRect frame, UICollectionViewLayout layout) { super((SkipInit) null); initObject(init(frame, layout)); }
     @Method(selector = "initWithCoder:")
     public UICollectionView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithFrame:")
+    public UICollectionView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "collectionViewLayout")
@@ -312,6 +314,8 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "cancelInteractiveMovement")
     public native void cancelInteractiveMovement();
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "presentationSectionIndexForDataSourceSectionIndex:")
     public native @MachineSizedSInt long presentationSectionIndexForDataSourceSectionIndex(@MachineSizedSInt long dataSourceSectionIndex);
     @Method(selector = "dataSourceSectionIndexForPresentationSectionIndex:")

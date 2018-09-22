@@ -56,6 +56,8 @@ import org.robovm.apple.intents.*;
     public UIPanGestureRecognizer() {}
     protected UIPanGestureRecognizer(Handle h, long handle) { super(h, handle); }
     protected UIPanGestureRecognizer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTarget:action:")
+    public UIPanGestureRecognizer(NSObject target, Selector action) { super((SkipInit) null); initObject(init(target, action)); }
     /*</constructors>*/
     
     public UIPanGestureRecognizer(OnGestureListener listener) {
@@ -80,5 +82,7 @@ import org.robovm.apple.intents.*;
     public native void setTranslation(@ByVal CGPoint translation, UIView view);
     @Method(selector = "velocityInView:")
     public native @ByVal CGPoint getVelocity(UIView view);
+    @Method(selector = "initWithTarget:action:")
+    protected native @Pointer long init(NSObject target, Selector action);
     /*</methods>*/
 }

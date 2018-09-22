@@ -67,6 +67,8 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "initWithURLs:inMode:")
     public UIDocumentPickerViewController(NSArray<NSURL> urls, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(urls, mode)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UIDocumentPickerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -99,5 +101,7 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "initWithURLs:inMode:")
     protected native @Pointer long init(NSArray<NSURL> urls, UIDocumentPickerMode mode);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
     /*</methods>*/
 }

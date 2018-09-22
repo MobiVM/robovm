@@ -61,7 +61,7 @@ import org.robovm.apple.intents.*;
     boolean animateAlongsideTransition(UIView view, @Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> animation, @Block VoidBlock1<UIViewControllerTransitionCoordinatorContext> completion);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use notifyWhenInteractionChangesUsingBlock
      */
     @Deprecated
     @Method(selector = "notifyWhenInteractionEndsUsingBlock:")

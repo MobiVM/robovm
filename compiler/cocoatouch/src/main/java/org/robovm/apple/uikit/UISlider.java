@@ -56,6 +56,10 @@ import org.robovm.apple.intents.*;
     public UISlider() {}
     protected UISlider(Handle h, long handle) { super(h, handle); }
     protected UISlider(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UISlider(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UISlider(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UISlider(CGRect frame) {
         super(frame);
@@ -149,5 +153,9 @@ import org.robovm.apple.intents.*;
     public native @ByVal CGRect getTrackRect(@ByVal CGRect bounds);
     @Method(selector = "thumbRectForBounds:trackRect:value:")
     public native @ByVal CGRect getThumbRect(@ByVal CGRect bounds, @ByVal CGRect rect, float value);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

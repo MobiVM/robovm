@@ -42,7 +42,7 @@ import org.robovm.apple.intents.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.0 and later.
- * @deprecated Deprecated in iOS 11.0.
+ * @deprecated Deprecated in iOS 11.0. UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly.
  */
 @Deprecated
 /*</javadoc>*/
@@ -64,6 +64,8 @@ import org.robovm.apple.intents.*;
     public UIDocumentMenuViewController(NSURL url, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(url, mode)); }
     @Method(selector = "initWithCoder:")
     public UIDocumentMenuViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UIDocumentMenuViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -81,5 +83,7 @@ import org.robovm.apple.intents.*;
     protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "addOptionWithTitle:image:order:handler:")
     public native void addOption(String title, UIImage image, UIDocumentMenuOrder order, @Block Runnable handler);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
     /*</methods>*/
 }

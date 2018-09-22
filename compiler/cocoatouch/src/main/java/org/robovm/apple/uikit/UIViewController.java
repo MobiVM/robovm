@@ -239,14 +239,14 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void setExtendedLayoutIncludesOpaqueBars(boolean v);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use UIScrollView's contentInsetAdjustmentBehavior instead
      */
     @Deprecated
     @Property(selector = "automaticallyAdjustsScrollViewInsets")
     public native boolean automaticallyAdjustsScrollViewInsets();
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use UIScrollView's contentInsetAdjustmentBehavior instead
      */
     @Deprecated
     @Property(selector = "setAutomaticallyAdjustsScrollViewInsets:")
@@ -363,14 +363,14 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void setTransitioningDelegate(UIViewControllerTransitioningDelegate v);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use view.safeAreaLayoutGuide.topAnchor instead of topLayoutGuide.bottomAnchor
      */
     @Deprecated
     @Property(selector = "topLayoutGuide")
     public native UILayoutSupport getTopLayoutGuide();
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use view.safeAreaLayoutGuide.bottomAnchor instead of bottomLayoutGuide.topAnchor
      */
     @Deprecated
     @Property(selector = "bottomLayoutGuide")
@@ -470,14 +470,14 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void setModalInPopover(boolean v);
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use UIViewController.preferredContentSize instead.
      */
     @Deprecated
     @Property(selector = "contentSizeForViewInPopover")
     public native @ByVal CGSize getContentSizeForViewInPopover();
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use UIViewController.preferredContentSize instead.
      */
     @Deprecated
     @Property(selector = "setContentSizeForViewInPopover:")
@@ -514,7 +514,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native UIFocusItemContainer getFocusItemContainer();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use -preferredFocusEnvironments instead.
      */
     @Deprecated
     @Property(selector = "preferredFocusedView")
@@ -729,21 +729,21 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void showDetailViewController(UIViewController vc, NSObject sender);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Header views are animated along with the rest of the view hierarchy
      */
     @Deprecated
     @Method(selector = "rotatingHeaderView")
     public native UIView getRotatingHeaderView();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Footer views are animated along with the rest of the view hierarchy
      */
     @Deprecated
     @Method(selector = "rotatingFooterView")
     public native UIView getRotatingFooterView();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Implement viewWillTransitionToSize:withTransitionCoordinator: instead
      */
     @Deprecated
     @Method(selector = "willRotateToInterfaceOrientation:duration:")
@@ -757,7 +757,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void didRotate(UIInterfaceOrientation fromInterfaceOrientation);
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Implement viewWillTransitionToSize:withTransitionCoordinator: instead
      */
     @Deprecated
     @Method(selector = "willAnimateRotationToInterfaceOrientation:duration:")
@@ -806,7 +806,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native UITraitCollection getOverrideTraitCollection(UIViewController childViewController);
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Manually forward viewWillTransitionToSize:withTransitionCoordinator: if necessary
      */
     @Deprecated
     @Method(selector = "shouldAutomaticallyForwardRotationMethods")

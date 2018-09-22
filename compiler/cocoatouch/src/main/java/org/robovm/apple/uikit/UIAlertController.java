@@ -57,6 +57,10 @@ import org.robovm.apple.intents.*;
     protected UIAlertController(Handle h, long handle) { super(h, handle); }
     protected UIAlertController(SkipInit skipInit) { super(skipInit); }
     public UIAlertController(String title, String message, UIAlertControllerStyle preferredStyle) { super((Handle) null, create(title, message, preferredStyle)); retain(getHandle()); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UIAlertController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public UIAlertController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "actions")
@@ -102,5 +106,9 @@ import org.robovm.apple.intents.*;
     public native void addTextField(@Block VoidBlock1<UITextField> configurationHandler);
     @Method(selector = "alertControllerWithTitle:message:preferredStyle:")
     protected static native @Pointer long create(String title, String message, UIAlertControllerStyle preferredStyle);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

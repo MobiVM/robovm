@@ -60,6 +60,8 @@ import org.robovm.apple.intents.*;
     public UIPageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerOptions options) { super((SkipInit) null); initObject(init(style, navigationOrientation, options)); }
     @Method(selector = "initWithCoder:")
     public UIPageViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UIPageViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -102,5 +104,7 @@ import org.robovm.apple.intents.*;
     protected native @Pointer long init(NSCoder coder);
     @Method(selector = "setViewControllers:direction:animated:completion:")
     public native void setViewControllers(NSArray<UIViewController> viewControllers, UIPageViewControllerNavigationDirection direction, boolean animated, @Block VoidBooleanBlock completion);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
     /*</methods>*/
 }

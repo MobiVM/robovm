@@ -42,7 +42,7 @@ import org.robovm.apple.intents.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
- * @deprecated Deprecated in iOS 10.0.
+ * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's UNNotificationRequest
  */
 @Deprecated
 /*</javadoc>*/
@@ -153,7 +153,7 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's +[UNNotificationSound defaultSound]
      */
     @Deprecated
     @GlobalValue(symbol="UILocalNotificationDefaultSoundName", optional=true)

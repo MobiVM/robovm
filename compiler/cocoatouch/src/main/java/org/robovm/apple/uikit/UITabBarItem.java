@@ -129,7 +129,7 @@ import org.robovm.apple.intents.*;
     protected native @Pointer long init(UITabBarSystemItem systemItem, @MachineSizedSInt long tag);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use initWithTitle:image:selectedImage: or the image and selectedImage properties along with UIImageRenderingModeAlwaysOriginal
      */
     @Deprecated
     @Method(selector = "setFinishedSelectedImage:withFinishedUnselectedImage:")

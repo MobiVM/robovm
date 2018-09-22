@@ -56,6 +56,10 @@ import org.robovm.apple.intents.*;
     public UITabBarController() {}
     protected UITabBarController(Handle h, long handle) { super(h, handle); }
     protected UITabBarController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UITabBarController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public UITabBarController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "viewControllers")
@@ -90,6 +94,10 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     @Method(selector = "setViewControllers:animated:")
     public native void setViewControllers(NSArray<UIViewController> viewControllers, boolean animated);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "tabBar:didSelectItem:")
     public native void didSelectItem(UITabBar tabBar, UITabBarItem item);
     @Method(selector = "tabBar:willBeginCustomizingItems:")

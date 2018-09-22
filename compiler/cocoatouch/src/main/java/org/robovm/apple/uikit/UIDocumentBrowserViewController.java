@@ -53,11 +53,13 @@ import org.robovm.apple.intents.*;
     /*<bind>*/static { ObjCRuntime.bind(UIDocumentBrowserViewController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected UIDocumentBrowserViewController() {}
+    public UIDocumentBrowserViewController() {}
     protected UIDocumentBrowserViewController(Handle h, long handle) { super(h, handle); }
     protected UIDocumentBrowserViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initForOpeningFilesWithContentTypes:")
     public UIDocumentBrowserViewController(NSArray<NSString> allowedContentTypes) { super((SkipInit) null); initObject(initForOpeningFilesWithContentTypes(allowedContentTypes)); }
+    @Method(selector = "initWithCoder:")
+    public UIDocumentBrowserViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -111,5 +113,7 @@ import org.robovm.apple.intents.*;
     @Deprecated
     @Method(selector = "transitionControllerForDocumentURL:")
     public native UIDocumentBrowserTransitionController transitionControllerForDocumentURL(NSURL documentURL);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

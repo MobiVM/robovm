@@ -56,6 +56,10 @@ import org.robovm.apple.intents.*;
     public UIPickerView() {}
     protected UIPickerView(Handle h, long handle) { super(h, handle); }
     protected UIPickerView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIPickerView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public UIPickerView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     public UIPickerView(CGRect frame) {
         super(frame);
@@ -104,5 +108,9 @@ import org.robovm.apple.intents.*;
     public native void selectRow(@MachineSizedSInt long row, @MachineSizedSInt long component, boolean animated);
     @Method(selector = "selectedRowInComponent:")
     public native @MachineSizedSInt long getSelectedRow(@MachineSizedSInt long component);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
