@@ -47,7 +47,7 @@ import org.robovm.apple.fileprovider.*;
     /*<bind>*/static { ObjCRuntime.bind(CKRecordZoneNotification.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKRecordZoneNotification() {}
+    protected CKRecordZoneNotification() {}
     protected CKRecordZoneNotification(Handle h, long handle) { super(h, handle); }
     protected CKRecordZoneNotification(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

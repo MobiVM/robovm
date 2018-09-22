@@ -57,7 +57,7 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "initWithRecordType:zoneID:")
     public CKRecord(String recordType, CKRecordZoneID zoneID) { super((SkipInit) null); initObject(init(recordType, zoneID)); }
     @Method(selector = "initWithCoder:")
-    public CKRecord(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CKRecord(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "recordType")
@@ -170,10 +170,6 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
-    @Method(selector = "objectForKeyedSubscript:")
-    public native CKRecordValue objectForKeyedSubscript(String key);
-    @Method(selector = "setObject:forKeyedSubscript:")
-    protected native void setObjectForKeyedSubscript(CKRecordValue object, String key);
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

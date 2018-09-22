@@ -89,70 +89,70 @@ import org.robovm.apple.fileprovider.*;
     public native void setLongLivedOperationWasPersistedBlock(@Block Runnable v);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "container")
     public native CKContainer getContainer();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "setContainer:")
     public native void setContainer(CKContainer v);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "allowsCellularAccess")
     public native boolean allowsCellularAccess();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "setAllowsCellularAccess:")
     public native void setAllowsCellularAccess(boolean v);
     /**
      * @since Available in iOS 9.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "isLongLived")
     public native boolean isLongLived();
     /**
      * @since Available in iOS 9.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "setLongLived:")
     public native void setLongLived(boolean v);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "timeoutIntervalForRequest")
     public native double getTimeoutIntervalForRequest();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "setTimeoutIntervalForRequest:")
     public native void setTimeoutIntervalForRequest(double v);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "timeoutIntervalForResource")
     public native double getTimeoutIntervalForResource();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use CKOperationConfiguration
      */
     @Deprecated
     @Property(selector = "setTimeoutIntervalForResource:")

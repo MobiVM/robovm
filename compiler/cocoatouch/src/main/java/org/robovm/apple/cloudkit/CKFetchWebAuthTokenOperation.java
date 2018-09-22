@@ -59,9 +59,9 @@ import org.robovm.apple.fileprovider.*;
     @Property(selector = "setAPIToken:")
     public native void setAPIToken(String v);
     @Property(selector = "fetchWebAuthTokenCompletionBlock")
-    public native @Block VoidBlock2<String, NSError> getFetchWebAuthTokenCompletionBlock();
+    public native @Block VoidBlock2<NSString, NSError> getFetchWebAuthTokenCompletionBlock();
     @Property(selector = "setFetchWebAuthTokenCompletionBlock:")
-    public native void setFetchWebAuthTokenCompletionBlock(@Block VoidBlock2<String, NSError> v);
+    public native void setFetchWebAuthTokenCompletionBlock(@Block VoidBlock2<NSString, NSError> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

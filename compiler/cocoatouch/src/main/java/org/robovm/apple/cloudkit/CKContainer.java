@@ -140,21 +140,21 @@ import org.robovm.apple.fileprovider.*;
     public native void discoverUserIdentityWithUserRecordID(CKRecordID userRecordID, @Block VoidBlock2<CKUserIdentity, NSError> completionHandler);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use -[CKContainer discoverAllIdentitiesWithCompletionHandler:]
      */
     @Deprecated
     @Method(selector = "discoverAllContactUserInfosWithCompletionHandler:")
     public native void discoverAllContactUserInfos(@Block VoidBlock2<NSArray<CKDiscoveredUserInfo>, NSError> completionHandler);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use -[CKContainer discoverUserIdentityWithEmailAddress:completionHandler:]
      */
     @Deprecated
     @Method(selector = "discoverUserInfoWithEmailAddress:completionHandler:")
     public native void discoverUserInfo(String email, @Block VoidBlock2<CKDiscoveredUserInfo, NSError> completionHandler);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use -[CKContainer discoverUserIdentityWithUserRecordID:completionHandler:]
      */
     @Deprecated
     @Method(selector = "discoverUserInfoWithUserRecordID:completionHandler:")
