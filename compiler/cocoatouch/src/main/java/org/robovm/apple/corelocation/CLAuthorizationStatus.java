@@ -52,7 +52,7 @@ public enum /*<name>*/CLAuthorizationStatus/*</name>*/ implements ValuedEnum {
     AuthorizedWhenInUse(4L),
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use kCLAuthorizationStatusAuthorizedAlways
      */
     @Deprecated
     Authorized(3L);

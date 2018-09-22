@@ -52,25 +52,25 @@ import org.robovm.apple.contacts.*;
     protected CLRegion(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
     public CLRegion(@ByVal CLLocationCoordinate2D center, double radius, String identifier) { super((SkipInit) null); initObject(init(center, radius, identifier)); }
     @Method(selector = "initWithCoder:")
-    public CLRegion(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CLRegion(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Property(selector = "center")
     public native @ByVal CLLocationCoordinate2D getCenter();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Property(selector = "radius")
@@ -107,14 +107,14 @@ import org.robovm.apple.contacts.*;
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
     protected native @Pointer long init(@ByVal CLLocationCoordinate2D center, double radius, String identifier);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Method(selector = "containsCoordinate:")
@@ -122,6 +122,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

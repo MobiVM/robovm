@@ -38,6 +38,8 @@ classes:
                 annotations: ['@WeaklyLinked']
     CLCircularRegion: # DONE
         methods:
+            '-initCircularRegionWithCenter:radius:identifier:':
+                exclude: true # as this method is deprecated and conflicts with initWithCenter:radius:identifier:
             '-init.*':
                 name: init
             '-containsCoordinate:': # Overrides a method in CLRegion
