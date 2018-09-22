@@ -150,7 +150,7 @@ import org.robovm.apple.avfoundation.*;
     }
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated
     public boolean usesSafeMode() {
@@ -162,7 +162,7 @@ import org.robovm.apple.avfoundation.*;
     }
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated
     public SCNSceneSourceOptions setUsesSafeMode(boolean usesSafeMode) {
@@ -227,7 +227,7 @@ import org.robovm.apple.avfoundation.*;
         public static native NSString FlattenScene();
         /**
          * @since Available in iOS 8.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. No longer supported
          */
         @Deprecated
         @GlobalValue(symbol="SCNSceneSourceUseSafeModeKey", optional=true)
