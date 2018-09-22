@@ -858,7 +858,7 @@ import org.robovm.apple.dispatch.*;
     }
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use kSecUseAuthenticationUI instead.
      */
     @Deprecated
     public boolean usesNoAuthenticationUI() {
@@ -870,7 +870,7 @@ import org.robovm.apple.dispatch.*;
     }
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use kSecUseAuthenticationUI instead.
      */
     @Deprecated
     public SecAttributes setUsesNoAuthenticationUI(boolean usesNoAuthenticationUI) {
@@ -1169,7 +1169,7 @@ import org.robovm.apple.dispatch.*;
         public static native CFType UseOperationPrompt();
         /**
          * @since Available in iOS 8.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use kSecUseAuthenticationUI instead.
          */
         @Deprecated
         @GlobalValue(symbol="kSecUseNoAuthenticationUI", optional=true)
