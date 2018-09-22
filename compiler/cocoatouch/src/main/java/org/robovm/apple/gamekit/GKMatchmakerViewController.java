@@ -49,9 +49,20 @@ import org.robovm.apple.uikit.*;
     protected GKMatchmakerViewController(Handle h, long handle) { super(h, handle); }
     protected GKMatchmakerViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithMatchRequest:")
-    public GKMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(init(request)); }
+    public GKMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(initWithMatchRequest(request)); }
     @Method(selector = "initWithInvite:")
-    public GKMatchmakerViewController(GKInvite invite) { super((SkipInit) null); initObject(init(invite)); }
+    public GKMatchmakerViewController(GKInvite invite) { super((SkipInit) null); initObject(initWithInvite(invite)); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    public GKMatchmakerViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super((SkipInit) null); initObject(init(navigationBarClass, toolbarClass)); }
+    @Method(selector = "initWithRootViewController:")
+    public GKMatchmakerViewController(UIViewController rootViewController) { super((SkipInit) null); initObject(init(rootViewController)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public GKMatchmakerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public GKMatchmakerViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "matchmakerDelegate")
@@ -82,9 +93,9 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithMatchRequest:")
-    protected native @Pointer long init(GKMatchRequest request);
+    protected native @Pointer long initWithMatchRequest(GKMatchRequest request);
     @Method(selector = "initWithInvite:")
-    protected native @Pointer long init(GKInvite invite);
+    protected native @Pointer long initWithInvite(GKInvite invite);
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -92,7 +103,7 @@ import org.robovm.apple.uikit.*;
     public native void addPlayersToMatch(GKMatch match);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use setHostedPlayer:didConnect:
      */
     @Deprecated
     @Method(selector = "setHostedPlayer:connected:")
@@ -102,5 +113,16 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "setHostedPlayer:didConnect:")
     public native void setHostedPlayer(GKPlayer player, boolean connected);
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    protected native @Pointer long init(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass);
+    @Method(selector = "initWithRootViewController:")
+    protected native @Pointer long init(UIViewController rootViewController);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

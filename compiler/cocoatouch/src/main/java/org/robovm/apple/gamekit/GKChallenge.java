@@ -54,14 +54,14 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use issuingPlayer instead
      */
     @Deprecated
     @Property(selector = "issuingPlayerID")
     public native String getIssuingPlayerID();
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use receivingPlayer instead
      */
     @Deprecated
     @Property(selector = "receivingPlayerID")

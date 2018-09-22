@@ -71,7 +71,7 @@ import org.robovm.apple.uikit.*;
     public void didFindHostedPlayers(GKMatchmakerViewController viewController, NSArray<GKPlayer> players) {}
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use matchmakerViewController:didFindHostedPlayers:
      */
     @Deprecated
     @NotImplemented("matchmakerViewController:didFindPlayers:")
@@ -83,7 +83,7 @@ import org.robovm.apple.uikit.*;
     public void hostedPlayerDidAccept(GKMatchmakerViewController viewController, GKPlayer player) {}
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use matchmakerViewController:hostedPlayerDidAccept:
      */
     @Deprecated
     @NotImplemented("matchmakerViewController:didReceiveAcceptFromHostedPlayer:")

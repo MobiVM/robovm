@@ -48,8 +48,19 @@ import org.robovm.apple.uikit.*;
     public GKTurnBasedMatchmakerViewController() {}
     protected GKTurnBasedMatchmakerViewController(Handle h, long handle) { super(h, handle); }
     protected GKTurnBasedMatchmakerViewController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    public GKTurnBasedMatchmakerViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super((SkipInit) null); initObject(init(navigationBarClass, toolbarClass)); }
+    @Method(selector = "initWithRootViewController:")
+    public GKTurnBasedMatchmakerViewController(UIViewController rootViewController) { super((SkipInit) null); initObject(init(rootViewController)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public GKTurnBasedMatchmakerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public GKTurnBasedMatchmakerViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     @Method(selector = "initWithMatchRequest:")
-    public GKTurnBasedMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(init(request)); }
+    public GKTurnBasedMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(initWithMatchRequest(request)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "turnBasedMatchmakerDelegate")
@@ -63,7 +74,18 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    protected native @Pointer long init(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass);
+    @Method(selector = "initWithRootViewController:")
+    protected native @Pointer long init(UIViewController rootViewController);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "initWithMatchRequest:")
-    protected native @Pointer long init(GKMatchRequest request);
+    protected native @Pointer long initWithMatchRequest(GKMatchRequest request);
     /*</methods>*/
 }

@@ -61,7 +61,7 @@ import org.robovm.apple.uikit.*;
     public void didReceiveData(GKMatch match, NSData data, GKPlayer recipient, GKPlayer player) {}
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use match:didReceiveData:fromRemotePlayer:
      */
     @Deprecated
     @NotImplemented("match:didReceiveData:fromPlayer:")
@@ -73,7 +73,7 @@ import org.robovm.apple.uikit.*;
     public void didChangeConnectionState(GKMatch match, GKPlayer player, GKPlayerConnectionState state) {}
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use match:player:didChangeConnectionState:
      */
     @Deprecated
     @NotImplemented("match:player:didChangeState:")
@@ -90,7 +90,7 @@ import org.robovm.apple.uikit.*;
     public boolean shouldReinviteDisconnectedPlayer(GKMatch match, GKPlayer player) { return false; }
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use shouldReinviteDisconnectedPlayer:
      */
     @Deprecated
     @NotImplemented("match:shouldReinvitePlayer:")
