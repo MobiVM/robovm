@@ -52,7 +52,7 @@ import org.robovm.apple.iosurface.*;
     /*<bind>*/static { ObjCRuntime.bind(CIImage.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CIImage() {}
+    public CIImage() {}
     protected CIImage(Handle h, long handle) { super(h, handle); }
     protected CIImage(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCGImage:")
@@ -67,7 +67,7 @@ import org.robovm.apple.iosurface.*;
     public CIImage(NSData data, @MachineSizedUInt long bytesPerRow, @ByVal CGSize size, int format, CGColorSpace colorSpace) { super((SkipInit) null); initObject(init(data, bytesPerRow, size, format, colorSpace)); }
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Method(selector = "initWithTexture:size:flipped:colorSpace:")
@@ -128,13 +128,13 @@ import org.robovm.apple.iosurface.*;
     /**
      * @since Available in iOS 12.0 and later.
      */
-//    @Method(selector = "initWithPortaitEffectsMatte:options:")
-//    public CIImage(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte, CIImageOptions options) { super((SkipInit) null); initObject(init(matte, options)); }
+    @Method(selector = "initWithPortaitEffectsMatte:options:")
+    public CIImage(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte, CIImageOptions options) { super((SkipInit) null); initObject(init(matte, options)); }
     /**
      * @since Available in iOS 11.0 and later.
      */
-//    @Method(selector = "initWithPortaitEffectsMatte:")
-//    public CIImage(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte) { super((SkipInit) null); initObject(init(matte)); }
+    @Method(selector = "initWithPortaitEffectsMatte:")
+    public CIImage(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte) { super((SkipInit) null); initObject(init(matte)); }
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -179,8 +179,8 @@ import org.robovm.apple.iosurface.*;
     /**
      * @since Available in iOS 12.0 and later.
      */
-//    @Property(selector = "portraitEffectsMatte")
-//    public native org.robovm.apple.avfoundation.AVPortraitEffectsMatte getPortraitEffectsMatte();
+    @Property(selector = "portraitEffectsMatte")
+    public native org.robovm.apple.avfoundation.AVPortraitEffectsMatte getPortraitEffectsMatte();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -225,7 +225,7 @@ import org.robovm.apple.iosurface.*;
     protected native @Pointer long init(NSData data, @MachineSizedUInt long bytesPerRow, @ByVal CGSize size, int format, CGColorSpace colorSpace);
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Method(selector = "initWithTexture:size:flipped:colorSpace:")
@@ -409,13 +409,13 @@ import org.robovm.apple.iosurface.*;
     /**
      * @since Available in iOS 12.0 and later.
      */
-//    @Method(selector = "initWithPortaitEffectsMatte:options:")
-//    protected native @Pointer long init(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte, CIImageOptions options);
+    @Method(selector = "initWithPortaitEffectsMatte:options:")
+    protected native @Pointer long init(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte, CIImageOptions options);
     /**
      * @since Available in iOS 11.0 and later.
      */
-//    @Method(selector = "initWithPortaitEffectsMatte:")
-//    protected native @Pointer long init(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte);
+    @Method(selector = "initWithPortaitEffectsMatte:")
+    protected native @Pointer long init(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte);
     /**
      * @since Available in iOS 9.0 and later.
      */

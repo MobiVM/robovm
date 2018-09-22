@@ -146,7 +146,7 @@ import org.robovm.apple.iosurface.*;
     public native CIImage apply(CIImage foreground, CIImage background);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Method(selector = "kernelWithString:")

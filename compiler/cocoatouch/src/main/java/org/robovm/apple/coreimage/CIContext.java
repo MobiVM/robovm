@@ -68,13 +68,13 @@ import org.robovm.apple.iosurface.*;
     public CIContext() { super((Handle) null, create()); retain(getHandle()); }
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Core Image OpenGLES API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     public CIContext(EAGLContext eaglContext) { super((Handle) null, create(eaglContext)); retain(getHandle()); }
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Core Image OpenGLES API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     public CIContext(EAGLContext eaglContext, CIContextOptions options) { super((Handle) null, create(eaglContext, options)); retain(getHandle()); }
@@ -175,14 +175,14 @@ import org.robovm.apple.iosurface.*;
     protected static native @Pointer long create();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Core Image OpenGLES API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Method(selector = "contextWithEAGLContext:")
     protected static native @Pointer long create(EAGLContext eaglContext);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Core Image OpenGLES API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
     @Deprecated
     @Method(selector = "contextWithEAGLContext:options:")
