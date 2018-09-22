@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(CBDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CBDescriptor() {}
+    protected CBDescriptor() {}
     protected CBDescriptor(Handle h, long handle) { super(h, handle); }
     protected CBDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
