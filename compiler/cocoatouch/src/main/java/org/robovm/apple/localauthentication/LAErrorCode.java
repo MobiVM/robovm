@@ -47,19 +47,19 @@ public enum /*<name>*/LAErrorCode/*</name>*/ implements NSErrorCode {
     PasscodeNotSet(-5L),
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. use LAErrorBiometryNotAvailable
      */
     @Deprecated
     TouchIDNotAvailable(-6L),
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. use LAErrorBiometryNotEnrolled
      */
     @Deprecated
     TouchIDNotEnrolled(-7L),
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. use LAErrorBiometryLockout
      */
     @Deprecated
     TouchIDLockout(-8L),
