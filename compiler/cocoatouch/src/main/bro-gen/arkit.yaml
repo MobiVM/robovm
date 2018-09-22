@@ -194,6 +194,10 @@ values:
         class: ARSCNView
         name: '#{g[0]}'
 
+    ARReferenceObjectArchiveExtension:
+        class: ARReferenceObject
+        name: getArchiveExtension
+
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (AR.*):
