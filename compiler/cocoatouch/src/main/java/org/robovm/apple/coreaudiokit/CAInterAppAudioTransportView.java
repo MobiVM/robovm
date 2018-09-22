@@ -50,6 +50,10 @@ import org.robovm.apple.uikit.*;
     public CAInterAppAudioTransportView() {}
     protected CAInterAppAudioTransportView(Handle h, long handle) { super(h, handle); }
     protected CAInterAppAudioTransportView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public CAInterAppAudioTransportView(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public CAInterAppAudioTransportView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isEnabled")
@@ -91,5 +95,9 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "setOutputAudioUnit:")
     public native void setOutputAudioUnit(AudioUnit au);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal org.robovm.apple.coregraphics.CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

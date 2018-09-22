@@ -50,12 +50,23 @@ import org.robovm.apple.uikit.*;
     public CABTMIDICentralViewController() {}
     protected CABTMIDICentralViewController(Handle h, long handle) { super(h, handle); }
     protected CABTMIDICentralViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithStyle:")
+    public CABTMIDICentralViewController(UITableViewStyle style) { super((SkipInit) null); initObject(init(style)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public CABTMIDICentralViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public CABTMIDICentralViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithStyle:")
+    protected native @Pointer long init(UITableViewStyle style);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

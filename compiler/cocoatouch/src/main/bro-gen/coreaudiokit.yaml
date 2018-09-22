@@ -5,6 +5,10 @@ framework: CoreAudioKit
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/CoreAudioKit.framework/Headers/CoreAudioKit.h
+
+private_typedefs:
+    CGRect: '@ByVal org.robovm.apple.coregraphics.CGRect'
+
 typedefs: {}
     
 enums:
