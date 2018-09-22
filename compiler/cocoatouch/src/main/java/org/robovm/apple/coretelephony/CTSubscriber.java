@@ -65,7 +65,7 @@ import org.robovm.apple.corefoundation.*;
     /*<properties>*/
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Deprecated; returns nil starting in iOS 11.3.
      */
     @Deprecated
     @Property(selector = "carrierToken")
