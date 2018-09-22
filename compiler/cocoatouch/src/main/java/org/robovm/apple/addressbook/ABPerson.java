@@ -658,35 +658,35 @@ import org.robovm.apple.corefoundation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [[CNMutableContact alloc] init]
      */
     @Deprecated
     @Bridge(symbol="ABPersonCreate", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(ABRecord.NoRetainMarshaler.class) ABPerson create();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [[CNMutableContact alloc] init] and [CNSaveRequest addContact:toContainerWithIdentifier:]
      */
     @Deprecated
     @Bridge(symbol="ABPersonCreateInSource", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(ABRecord.NoRetainMarshaler.class) ABPerson create(ABSource source);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore containersMatchingPredicate:[CNContainer predicateForContainerOfContactWithIdentifier:] error:]
      */
     @Deprecated
     @Bridge(symbol="ABPersonCopySource", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(ABRecord.NoRetainMarshaler.class) ABSource getSource();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContactFetchRequest with predicate = [CNContact predicateForContactsLinkedToContact:] and unifyResults = NO
      */
     @Deprecated
     @Bridge(symbol="ABPersonCopyArrayOfAllLinkedPeople", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(ABPerson.AsListMarshaler.class) List<ABPerson> getAllLinkedPeople();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [[CNContactsUserDefaults sharedDefaults] sortOrder]
      */
     @Deprecated
     @Bridge(symbol="ABPersonGetSortOrdering", optional=true)
@@ -714,7 +714,7 @@ import org.robovm.apple.corefoundation.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getCompositeNameDelimiter();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNMutableContact.imageData
      */
     @Deprecated
     public boolean setImageData(NSData imageData) throws NSErrorException {
@@ -725,21 +725,21 @@ import org.robovm.apple.corefoundation.*;
     }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNMutableContact.imageData
      */
     @Deprecated
     @Bridge(symbol="ABPersonSetImageData", optional=true)
     private native boolean setImageData(NSData imageData, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.imageData
      */
     @Deprecated
     @Bridge(symbol="ABPersonCopyImageData", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData getImageData();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.imageData or CNContact.thumbnailImageData
      */
     @Deprecated
     @Bridge(symbol="ABPersonCopyImageDataWithFormat", optional=true)
@@ -753,7 +753,7 @@ import org.robovm.apple.corefoundation.*;
     public native boolean hasImageData();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNMutableContact.imageData = nil
      */
     @Deprecated
     public boolean removeImageData() throws NSErrorException {
@@ -764,28 +764,28 @@ import org.robovm.apple.corefoundation.*;
     }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNMutableContact.imageData = nil
      */
     @Deprecated
     @Bridge(symbol="ABPersonRemoveImageData", optional=true)
     private native boolean removeImageData(NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContact comparatorForNameSortOrder:]
      */
     @Deprecated
     @Bridge(symbol="ABPersonComparePeopleByName", optional=true)
     public native CFComparisonResult compareTo(ABRecord person2, ABPersonSortOrdering ordering);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactVCardSerialization contactsWithData:error:]
      */
     @Deprecated
     @Bridge(symbol="ABPersonCreatePeopleInSourceWithVCardRepresentation", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(ABPerson.AsListMarshaler.class) List<ABPerson> createPeopleWithVCardRepresentation(ABSource source, NSData vCardData);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactVCardSerialization dataWithContacts:error:]
      */
     @Deprecated
     @Bridge(symbol="ABPersonCreateVCardRepresentationWithPeople", optional=true)

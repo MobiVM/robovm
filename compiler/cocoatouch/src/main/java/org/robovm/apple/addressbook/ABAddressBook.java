@@ -99,14 +99,14 @@ import org.robovm.apple.corefoundation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore authorizationStatusForEntityType:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookGetAuthorizationStatus", optional=true)
     public static native ABAuthorizationStatus getAuthorizationStatus();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [[CNContactStore alloc] init]
      */
     @Deprecated
     public static ABAddressBook create(NSDictionary options) throws NSErrorException {
@@ -117,28 +117,28 @@ import org.robovm.apple.corefoundation.*;
     }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [[CNContactStore alloc] init]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookCreateWithOptions", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) ABAddressBook create(NSDictionary options, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [[CNContactStore alloc] init]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookCreate", optional=true)
     public static native ABAddressBook create();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore requestAccessForEntityType:completionHandler:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookRequestAccessWithCompletion", optional=true)
     public native void requestAccess(@Block RequestAccessCompletionHandler completion);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore executeSaveRequest:error:]
      */
     @Deprecated
     public boolean save() throws NSErrorException {
@@ -149,7 +149,7 @@ import org.robovm.apple.corefoundation.*;
     }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore executeSaveRequest:error:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookSave", optional=true)
@@ -163,7 +163,7 @@ import org.robovm.apple.corefoundation.*;
     public native boolean hasUnsavedChanges();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNSaveRequest
      */
     @Deprecated
     public boolean addRecord(ABRecord record) throws NSErrorException {
@@ -174,14 +174,14 @@ import org.robovm.apple.corefoundation.*;
     }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNSaveRequest
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookAddRecord", optional=true)
     private native boolean addRecord(ABRecord record, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNSaveRequest
      */
     @Deprecated
     public boolean removeRecord(ABRecord record) throws NSErrorException {
@@ -192,21 +192,21 @@ import org.robovm.apple.corefoundation.*;
     }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNSaveRequest
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookRemoveRecord", optional=true)
     private native boolean removeRecord(ABRecord record, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNLabeledValue localizedStringForLabel:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookCopyLocalizedLabel", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getLocalizedLabel(String label);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContactStoreDidChangeNotification
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookRegisterExternalChangeCallback", optional=true)
@@ -220,98 +220,98 @@ import org.robovm.apple.corefoundation.*;
     protected native void unregisterExternalChangeCallback(FunctionPtr callback, @Pointer long context);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. refetch CN objects
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookRevert", optional=true)
     public native void revert();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore containersMatchingPredicate:[CNContainer predicateForContainersWithIdentifiers: @[CNContactStore.defaultContainerIdentifier]] error:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookCopyDefaultSource", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(ABRecord.NoRetainMarshaler.class) ABSource getDefaultSource();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore containersMatchingPredicate:[CNContainer predicateForContainersWithIdentifiers:] error:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookGetSourceWithRecordID", optional=true)
     public native ABSource getSource(int sourceID);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore containersMatchingPredicate:nil error:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookCopyArrayOfAllSources", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(ABSource.AsListMarshaler.class) List<ABSource> getAllSources();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use count of fetch results for CNContactFetchRequest with predicate = nil
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookGetPersonCount", optional=true)
     public native @MachineSizedSInt long getPersonCount();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore unifiedContactWithIdentifier:keysToFetch:error:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookGetPersonWithRecordID", optional=true)
     public native ABPerson getPerson(int recordID);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContactFetchRequest with predicate = nil
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookCopyArrayOfAllPeople", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(ABPerson.AsListMarshaler.class) List<ABPerson> getAllPeople();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContactFetchRequest with predicate = [CNContact predicateForContactsInContainerWithIdentifier:] and unifyResults = NO
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookCopyArrayOfAllPeopleInSource", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(ABPerson.AsListMarshaler.class) List<ABPerson> getAllPeopleInSource(ABSource source);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContactFetchRequest with predicate = [CNContact predicateForContactsInContainerWithIdentifier:] and unifyResults = NO and sortOrder
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(ABPerson.AsListMarshaler.class) List<ABPerson> getAllPeopleInSource(ABSource source, ABPersonSortOrdering sortOrdering);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore unifiedContactsMatchingPredicate:[CNContact predicateForContactsMatchingName:] keysToFetch: error:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookCopyPeopleWithName", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(ABPerson.AsListMarshaler.class) List<ABPerson> getPeople(String name);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore groupsMatchingPredicate:[CNGroup predicateForGroupsWithIdentifiers:] error:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookGetGroupWithRecordID", optional=true)
     public native ABGroup getGroup(int recordID);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use count of fetch results for [CNContactStore groupsMatchingPredicate:nil error:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookGetGroupCount", optional=true)
     public native @MachineSizedSInt long getGroupCount();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore groupsMatchingPredicate:nil error:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookCopyArrayOfAllGroups", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(ABGroup.AsListMarshaler.class) List<ABGroup> getAllGroups();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore groupsMatchingPredicate:[CNGroup predicateForGroupsInContainerWithIdentifier:] error:]
      */
     @Deprecated
     @Bridge(symbol="ABAddressBookCopyArrayOfAllGroupsInSource", optional=true)

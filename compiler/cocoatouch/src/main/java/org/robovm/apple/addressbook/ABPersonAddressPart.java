@@ -89,37 +89,37 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNPostalAddress.street
      */
     @Deprecated
     public static final ABPersonAddressPart Street = new ABPersonAddressPart("Street");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNPostalAddress.city
      */
     @Deprecated
     public static final ABPersonAddressPart City = new ABPersonAddressPart("City");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNPostalAddress.state
      */
     @Deprecated
     public static final ABPersonAddressPart State = new ABPersonAddressPart("State");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNPostalAddress.postalCode
      */
     @Deprecated
     public static final ABPersonAddressPart ZIP = new ABPersonAddressPart("ZIP");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNPostalAddress.country
      */
     @Deprecated
     public static final ABPersonAddressPart Country = new ABPersonAddressPart("Country");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNPostalAddress.ISOCountryCode
      */
     @Deprecated
     public static final ABPersonAddressPart CountryCode = new ABPersonAddressPart("CountryCode");
@@ -150,42 +150,42 @@ import org.robovm.apple.corefoundation.*;
         /*<values>*/
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNPostalAddress.street
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonAddressStreetKey", optional=true)
         public static native CFString Street();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNPostalAddress.city
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonAddressCityKey", optional=true)
         public static native CFString City();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNPostalAddress.state
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonAddressStateKey", optional=true)
         public static native CFString State();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNPostalAddress.postalCode
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonAddressZIPKey", optional=true)
         public static native CFString ZIP();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNPostalAddress.country
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonAddressCountryKey", optional=true)
         public static native CFString Country();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNPostalAddress.ISOCountryCode
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonAddressCountryCodeKey", optional=true)
