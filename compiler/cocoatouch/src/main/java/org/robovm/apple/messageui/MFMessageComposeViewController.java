@@ -68,6 +68,17 @@ import org.robovm.apple.messages.*;
     public MFMessageComposeViewController() {}
     protected MFMessageComposeViewController(Handle h, long handle) { super(h, handle); }
     protected MFMessageComposeViewController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    public MFMessageComposeViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super((SkipInit) null); initObject(init(navigationBarClass, toolbarClass)); }
+    @Method(selector = "initWithRootViewController:")
+    public MFMessageComposeViewController(UIViewController rootViewController) { super((SkipInit) null); initObject(init(rootViewController)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public MFMessageComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public MFMessageComposeViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "messageComposeDelegate")
@@ -153,5 +164,16 @@ import org.robovm.apple.messages.*;
      */
     @Method(selector = "isSupportedAttachmentUTI:")
     public static native boolean isSupportedAttachmentUTI(String uti);
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    protected native @Pointer long init(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass);
+    @Method(selector = "initWithRootViewController:")
+    protected native @Pointer long init(UIViewController rootViewController);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
