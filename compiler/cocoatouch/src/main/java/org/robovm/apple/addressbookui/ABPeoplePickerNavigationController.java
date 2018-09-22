@@ -35,7 +35,7 @@ import org.robovm.apple.addressbook.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 2.0 and later.
- * @deprecated Deprecated in iOS 9.0.
+ * @deprecated Deprecated in iOS 9.0. Use CNContactPickerViewController from ContactsUI.framework instead
  */
 @Deprecated
 /*</javadoc>*/
@@ -51,6 +51,17 @@ import org.robovm.apple.addressbook.*;
     public ABPeoplePickerNavigationController() {}
     protected ABPeoplePickerNavigationController(Handle h, long handle) { super(h, handle); }
     protected ABPeoplePickerNavigationController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    public ABPeoplePickerNavigationController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super((SkipInit) null); initObject(init(navigationBarClass, toolbarClass)); }
+    @Method(selector = "initWithRootViewController:")
+    public ABPeoplePickerNavigationController(UIViewController rootViewController) { super((SkipInit) null); initObject(init(rootViewController)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public ABPeoplePickerNavigationController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public ABPeoplePickerNavigationController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "peoplePickerDelegate")
@@ -98,6 +109,16 @@ import org.robovm.apple.addressbook.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    protected native @Pointer long init(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass);
+    @Method(selector = "initWithRootViewController:")
+    protected native @Pointer long init(UIViewController rootViewController);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
