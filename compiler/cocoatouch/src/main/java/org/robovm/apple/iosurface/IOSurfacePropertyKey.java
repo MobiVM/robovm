@@ -88,9 +88,9 @@ import org.robovm.apple.corefoundation.*;
 
     /*<constants>*/
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 12.0 and later.
      */
-    public static final IOSurfacePropertyKey AllocSizeKey = new IOSurfacePropertyKey("AllocSizeKey");
+    public static final IOSurfacePropertyKey AllocSize = new IOSurfacePropertyKey("AllocSize");
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -171,9 +171,15 @@ import org.robovm.apple.corefoundation.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final IOSurfacePropertyKey PixelSizeCastingAllowed = new IOSurfacePropertyKey("PixelSizeCastingAllowed");
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
+    public static final IOSurfacePropertyKey AllocSizeKey = new IOSurfacePropertyKey("AllocSizeKey");
     /*</constants>*/
     
-    private static /*<name>*/IOSurfacePropertyKey/*</name>*/[] values = new /*<name>*/IOSurfacePropertyKey/*</name>*/[] {/*<value_list>*/AllocSizeKey, Width, Height, BytesPerRow, BytesPerElement, ElementWidth, ElementHeight, Offset, PlaneInfo, PlaneWidth, PlaneHeight, PlaneBytesPerRow, PlaneOffset, PlaneSize, PlaneBase, PlaneBytesPerElement, PlaneElementWidth, PlaneElementHeight, CacheMode, PixelFormat, PixelSizeCastingAllowed/*</value_list>*/};
+    private static /*<name>*/IOSurfacePropertyKey/*</name>*/[] values = new /*<name>*/IOSurfacePropertyKey/*</name>*/[] {/*<value_list>*/AllocSize, Width, Height, BytesPerRow, BytesPerElement, ElementWidth, ElementHeight, Offset, PlaneInfo, PlaneWidth, PlaneHeight, PlaneBytesPerRow, PlaneOffset, PlaneSize, PlaneBase, PlaneBytesPerElement, PlaneElementWidth, PlaneElementHeight, CacheMode, PixelFormat, PixelSizeCastingAllowed, AllocSizeKey/*</value_list>*/};
     
     /*<name>*/IOSurfacePropertyKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -197,10 +203,10 @@ import org.robovm.apple.corefoundation.*;
 
         /*<values>*/
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 12.0 and later.
          */
-        @GlobalValue(symbol="IOSurfacePropertyAllocSizeKey", optional=true)
-        public static native CFString AllocSizeKey();
+        @GlobalValue(symbol="IOSurfacePropertyKeyAllocSize", optional=true)
+        public static native CFString AllocSize();
         /**
          * @since Available in iOS 10.0 and later.
          */
@@ -301,6 +307,13 @@ import org.robovm.apple.corefoundation.*;
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPixelSizeCastingAllowed", optional=true)
         public static native CFString PixelSizeCastingAllowed();
+        /**
+         * @since Available in iOS 10.0 and later.
+         * @deprecated Deprecated in iOS 12.0.
+         */
+        @Deprecated
+        @GlobalValue(symbol="IOSurfacePropertyAllocSizeKey", optional=true)
+        public static native CFString AllocSizeKey();
         /*</values>*/
     }
 }
