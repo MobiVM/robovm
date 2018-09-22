@@ -51,6 +51,10 @@ import org.robovm.apple.dispatch.*;
     public MKUserTrackingButton() {}
     protected MKUserTrackingButton(Handle h, long handle) { super(h, handle); }
     protected MKUserTrackingButton(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public MKUserTrackingButton(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public MKUserTrackingButton(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mapView")
@@ -62,5 +66,9 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "userTrackingButtonWithMapView:")
     public static native MKUserTrackingButton userTrackingButtonWithMapView(MKMapView mapView);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -51,6 +51,17 @@ import org.robovm.apple.dispatch.*;
     public MKOverlayPathView() {}
     protected MKOverlayPathView(Handle h, long handle) { super(h, handle); }
     protected MKOverlayPathView(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
+    @Method(selector = "initWithOverlay:")
+    public MKOverlayPathView(MKOverlay overlay) { super((SkipInit) null); initObject(init(overlay)); }
+    @Method(selector = "initWithFrame:")
+    public MKOverlayPathView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public MKOverlayPathView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -224,5 +235,16 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Method(selector = "fillPath:inContext:")
     public native void fillPath(CGPath path, CGContext context);
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
+    @Method(selector = "initWithOverlay:")
+    protected native @Pointer long init(MKOverlay overlay);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

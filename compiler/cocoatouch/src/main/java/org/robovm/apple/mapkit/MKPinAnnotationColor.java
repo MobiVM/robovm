@@ -37,7 +37,7 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 3.0 and later.
- * @deprecated Deprecated in iOS 9.0.
+ * @deprecated Deprecated in iOS 9.0. Use MKPinAnnotationView's pinTintColor instead
  */
 @Deprecated
 /*</javadoc>*/
