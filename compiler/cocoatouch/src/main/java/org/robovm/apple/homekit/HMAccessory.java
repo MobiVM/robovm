@@ -54,7 +54,7 @@ import org.robovm.apple.corelocation.*;
     public native String getName();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. No longer supported.
      */
     @Deprecated
     @Property(selector = "identifier")
@@ -74,7 +74,7 @@ import org.robovm.apple.corelocation.*;
     public native boolean isBridged();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. No longer supported.
      */
     @Deprecated
     @Property(selector = "identifiersForBridgedAccessories")

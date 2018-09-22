@@ -76,7 +76,7 @@ import org.robovm.apple.corelocation.*;
     public native HMUser getCurrentUser();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. No longer supported.
      */
     @Deprecated
     @Property(selector = "users")
