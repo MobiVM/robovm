@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,14 +33,15 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MTLIndexType/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/MTLBarrierScope/*</name>*/ extends Bits</*<name>*/MTLBarrierScope/*</name>*/> {
     /*<values>*/
-    UInt16(0L),
-    UInt32(1L);
+    public static final MTLBarrierScope None = new MTLBarrierScope(0L);
+    public static final MTLBarrierScope Buffers = new MTLBarrierScope(1L);
+    public static final MTLBarrierScope Textures = new MTLBarrierScope(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -48,17 +49,17 @@ public enum /*<name>*/MTLIndexType/*</name>*/ implements ValuedEnum {
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/MTLBarrierScope/*</name>*/[] values = _values(/*<name>*/MTLBarrierScope/*</name>*/.class);
 
-    private /*<name>*/MTLIndexType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MTLIndexType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MTLIndexType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MTLIndexType/*</name>*/.class.getName());
+    public /*<name>*/MTLBarrierScope/*</name>*/(long value) { super(value); }
+    private /*<name>*/MTLBarrierScope/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/MTLBarrierScope/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/MTLBarrierScope/*</name>*/(value, mask);
+    }
+    protected /*<name>*/MTLBarrierScope/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/MTLBarrierScope/*</name>*/[] values() {
+        return values.clone();
     }
 }

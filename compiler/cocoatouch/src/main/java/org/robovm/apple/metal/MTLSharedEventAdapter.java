@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,33 +32,29 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 8.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MTLIndexType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    UInt16(0L),
-    UInt32(1L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLSharedEventAdapter/*</name>*/ 
+    extends /*<extends>*/MTLEventAdapter/*</extends>*/ 
+    /*<implements>*/implements MTLSharedEvent/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MTLIndexType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MTLIndexType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MTLIndexType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MTLIndexType/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*/
+    @NotImplemented("signaledValue")
+    public long getSignaledValue() { return 0; }
+    @NotImplemented("setSignaledValue:")
+    public void setSignaledValue(long v) {}
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @NotImplemented("notifyListener:atValue:block:")
+    public void notifyListener(MTLSharedEventListener listener, long value, @Block VoidBlock2<MTLSharedEvent, Long> block) {}
+    @NotImplemented("newSharedEventHandle")
+    public MTLSharedEventHandle newSharedEventHandle() { return null; }
+    /*</methods>*/
 }

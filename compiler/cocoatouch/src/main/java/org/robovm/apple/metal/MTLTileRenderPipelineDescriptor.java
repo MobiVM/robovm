@@ -73,6 +73,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "tileBuffers")
     public native MTLPipelineBufferDescriptorArray getTileBuffers();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "maxTotalThreadsPerThreadgroup")
+    public native @MachineSizedUInt long getMaxTotalThreadsPerThreadgroup();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setMaxTotalThreadsPerThreadgroup:")
+    public native void setMaxTotalThreadsPerThreadgroup(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

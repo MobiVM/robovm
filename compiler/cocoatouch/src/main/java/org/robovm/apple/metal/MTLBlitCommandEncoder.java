@@ -89,6 +89,41 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "waitForFence:")
     public native void waitForFence(MTLFence fence);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "optimizeContentsForGPUAccess:")
+    public native void optimizeContentsForGPUAccess(MTLTexture texture);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "optimizeContentsForGPUAccess:slice:level:")
+    public native void optimizeContentsForGPUAccess(MTLTexture texture, @MachineSizedUInt long slice, @MachineSizedUInt long level);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "optimizeContentsForCPUAccess:")
+    public native void optimizeContentsForCPUAccess(MTLTexture texture);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "optimizeContentsForCPUAccess:slice:level:")
+    public native void optimizeContentsForCPUAccess(MTLTexture texture, @MachineSizedUInt long slice, @MachineSizedUInt long level);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "resetCommandsInBuffer:withRange:")
+    public native void resetCommandsInBuffer(MTLIndirectCommandBuffer buffer, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:")
+    public native void copyIndirectCommandBuffer(MTLIndirectCommandBuffer source, @ByVal NSRange sourceRange, MTLIndirectCommandBuffer destination, @MachineSizedUInt long destinationIndex);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "optimizeIndirectCommandBuffer:withRange:")
+    public native void optimizeIndirectCommandBuffer(MTLIndirectCommandBuffer indirectCommandBuffer, @ByVal NSRange range);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")

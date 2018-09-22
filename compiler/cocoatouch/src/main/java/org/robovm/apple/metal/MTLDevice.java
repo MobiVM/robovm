@@ -86,10 +86,17 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "maxThreadgroupMemoryLength")
     public native @MachineSizedUInt long getMaxThreadgroupMemoryLength();
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "maxArgumentBufferSamplerCount")
+    public native @MachineSizedUInt long getMaxArgumentBufferSamplerCount();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "areProgrammableSamplePositionsSupported")
     public native boolean isProgrammableSamplePositionsSupported();
+    @Property(selector = "maxBufferLength")
+    public native @MachineSizedUInt long getMaxBufferLength();
     /*</properties>*/
     /*<members>*//*</members>*/
     public MTLBuffer newBuffer(byte[] bytes, MTLResourceOptions options) {
@@ -283,10 +290,15 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "supportsTextureSampleCount:")
     public native boolean supportsTextureSampleCount(@MachineSizedUInt long sampleCount);
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "minimumLinearTextureAlignmentForPixelFormat:")
     public native @MachineSizedUInt long minimumLinearTextureAlignmentForPixelFormat(MTLPixelFormat format);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "minimumTextureBufferAlignmentForPixelFormat:")
+    public native @MachineSizedUInt long minimumTextureBufferAlignmentForPixelFormat(MTLPixelFormat format);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -316,5 +328,25 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newArgumentEncoderWithArguments:")
     public native MTLArgumentEncoder newArgumentEncoderWithArguments(NSArray<MTLArgumentDescriptor> arguments);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "newIndirectCommandBufferWithDescriptor:maxCommandCount:options:")
+    public native MTLIndirectCommandBuffer newIndirectCommand(MTLIndirectCommandBufferDescriptor descriptor, @MachineSizedUInt long maxCount, MTLResourceOptions options);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "newEvent")
+    public native MTLEvent newEvent();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "newSharedEvent")
+    public native MTLSharedEvent newSharedEvent();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "newSharedEventWithHandle:")
+    public native MTLSharedEvent newSharedEventWithHandle(MTLSharedEventHandle sharedEventHandle);
     /*</methods>*/
 }

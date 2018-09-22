@@ -65,6 +65,16 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setVisibilityResultBuffer:")
     public native void setVisibilityResultBuffer(MTLBuffer v);
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "renderTargetArrayLength")
+    public native @MachineSizedUInt long getRenderTargetArrayLength();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setRenderTargetArrayLength:")
+    public native void setRenderTargetArrayLength(@MachineSizedUInt long v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "imageblockSampleLength")
@@ -104,20 +114,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setTileHeight:")
     public native void setTileHeight(@MachineSizedUInt long v);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Property(selector = "defaultSampleCount")
-    public native @MachineSizedUInt long getDefaultSampleCount();
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Property(selector = "setDefaultSampleCount:")
-    public native void setDefaultSampleCount(@MachineSizedUInt long v);
     /**
      * @since Available in iOS 11.0 and later.
      */

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,40 +33,31 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 8.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLRenderPassStencilAttachmentDescriptor/*</name>*/ 
-    extends /*<extends>*/MTLRenderPassAttachmentDescriptor/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLSharedEventListener/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MTLRenderPassStencilAttachmentDescriptorPtr extends Ptr<MTLRenderPassStencilAttachmentDescriptor, MTLRenderPassStencilAttachmentDescriptorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MTLRenderPassStencilAttachmentDescriptor.class); }/*</bind>*/
+    /*<ptr>*/public static class MTLSharedEventListenerPtr extends Ptr<MTLSharedEventListener, MTLSharedEventListenerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MTLSharedEventListener.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTLRenderPassStencilAttachmentDescriptor() {}
-    protected MTLRenderPassStencilAttachmentDescriptor(Handle h, long handle) { super(h, handle); }
-    protected MTLRenderPassStencilAttachmentDescriptor(SkipInit skipInit) { super(skipInit); }
+    public MTLSharedEventListener() {}
+    protected MTLSharedEventListener(Handle h, long handle) { super(h, handle); }
+    protected MTLSharedEventListener(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDispatchQueue:")
+    public MTLSharedEventListener(DispatchQueue dispatchQueue) { super((SkipInit) null); initObject(initWithDispatchQueue(dispatchQueue)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "clearStencil")
-    public native int getClearStencil();
-    @Property(selector = "setClearStencil:")
-    public native void setClearStencil(int v);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "stencilResolveFilter")
-    public native MTLMultisampleStencilResolveFilter getStencilResolveFilter();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "setStencilResolveFilter:")
-    public native void setStencilResolveFilter(MTLMultisampleStencilResolveFilter v);
+    @Property(selector = "dispatchQueue")
+    public native DispatchQueue getDispatchQueue();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithDispatchQueue:")
+    protected native @Pointer long initWithDispatchQueue(DispatchQueue dispatchQueue);
     /*</methods>*/
 }
