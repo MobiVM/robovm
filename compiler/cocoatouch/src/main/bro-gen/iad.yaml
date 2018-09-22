@@ -80,7 +80,7 @@ classes:
         methods:
             '-presentInView:':
                 name: present
-
+    ADInterstitialAdPresentationViewController: {}
 protocols:
     ADBannerViewDelegate: # DONE
         methods:
@@ -110,6 +110,10 @@ protocols:
                 name: actionDidFinish
 
 functions:
+    ADClampedBannerSize:
+        class: ADBannerView
+        name: getClampedBannerSize
+
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (AD.*):
         class: IAd

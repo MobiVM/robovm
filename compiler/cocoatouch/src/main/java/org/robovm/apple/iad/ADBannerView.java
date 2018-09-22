@@ -58,10 +58,11 @@ import org.robovm.apple.avkit.*;
      */
     @Method(selector = "initWithAdType:")
     public ADBannerView(ADAdType type) { super((SkipInit) null); initObject(init(type)); }
+    @Method(selector = "initWithFrame:")
+    public ADBannerView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public ADBannerView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
-    public ADBannerView(CGRect frame) {
-    	super(frame);
-    }
     /*<properties>*/
     /**
      * @since Available in iOS 6.0 and later.
@@ -83,6 +84,9 @@ import org.robovm.apple.avkit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Bridge(symbol="ADClampedBannerSize", optional=true)
+    public static native @ByVal CGSize getClampedBannerSize(@ByVal CGSize size);
+    
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -90,5 +94,9 @@ import org.robovm.apple.avkit.*;
     protected native @Pointer long init(ADAdType type);
     @Method(selector = "cancelBannerViewAction")
     public native void cancelBannerViewAction();
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
