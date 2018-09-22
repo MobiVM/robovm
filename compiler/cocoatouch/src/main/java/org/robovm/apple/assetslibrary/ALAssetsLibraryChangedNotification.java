@@ -105,7 +105,7 @@ import org.robovm.apple.imageio.*;
 
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use changeDetailsForFetchResult: and changeDetailsForObject: to get change details via the PHChange object included on photoLibraryDidChange: from the Photos framework instead
      */
     @Deprecated
     public NSSet<NSURL> getUpdatedAssets() {
@@ -117,7 +117,7 @@ import org.robovm.apple.imageio.*;
     }
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use changeDetailsForFetchResult: and changeDetailsForObject: to get change details via the PHChange object included on photoLibraryDidChange: from the Photos framework instead
      */
     @Deprecated
     public NSSet<NSURL> getInsertedAssetGroups() {
@@ -129,7 +129,7 @@ import org.robovm.apple.imageio.*;
     }
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use changeDetailsForFetchResult: and changeDetailsForObject: to get change details via the PHChange object included on photoLibraryDidChange: from the Photos framework instead
      */
     @Deprecated
     public NSSet<NSURL> getUpdatedAssetGroups() {
@@ -141,7 +141,7 @@ import org.robovm.apple.imageio.*;
     }
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use changeDetailsForFetchResult: and changeDetailsForObject: to get change details via the PHChange object included on photoLibraryDidChange: from the Photos framework instead
      */
     @Deprecated
     public NSSet<NSURL> getDeletedAssetGroups() {
@@ -159,28 +159,28 @@ import org.robovm.apple.imageio.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 6.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use changeDetailsForFetchResult: and changeDetailsForObject: to get change details via the PHChange object included on photoLibraryDidChange: from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetLibraryUpdatedAssetsKey", optional=true)
         public static native NSString UpdatedAssets();
         /**
          * @since Available in iOS 6.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use changeDetailsForFetchResult: and changeDetailsForObject: to get change details via the PHChange object included on photoLibraryDidChange: from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetLibraryInsertedAssetGroupsKey", optional=true)
         public static native NSString InsertedAssetGroups();
         /**
          * @since Available in iOS 6.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use changeDetailsForFetchResult: and changeDetailsForObject: to get change details via the PHChange object included on photoLibraryDidChange: from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetLibraryUpdatedAssetGroupsKey", optional=true)
         public static native NSString UpdatedAssetGroups();
         /**
          * @since Available in iOS 6.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use changeDetailsForFetchResult: and changeDetailsForObject: to get change details via the PHChange object included on photoLibraryDidChange: from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetLibraryDeletedAssetGroupsKey", optional=true)

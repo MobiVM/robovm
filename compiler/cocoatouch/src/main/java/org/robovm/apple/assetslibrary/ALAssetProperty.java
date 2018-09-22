@@ -91,49 +91,49 @@ import org.robovm.apple.imageio.*;
     /*<constants>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the mediaType property on a PHAsset from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetProperty Type = new ALAssetProperty("Type");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the location property on a PHAsset from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetProperty Location = new ALAssetProperty("Location");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the duration property on a PHAsset from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetProperty Duration = new ALAssetProperty("Duration");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the orientation of the UIImage returned for a PHAsset via the PHImageManager from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetProperty Orientation = new ALAssetProperty("Orientation");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the creationDate property on a PHAsset from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetProperty Date = new ALAssetProperty("Date");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHImageRequestOptions with the PHImageManager from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetProperty Representations = new ALAssetProperty("Representations");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHImageRequestOptions with the PHImageManager from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetProperty URLs = new ALAssetProperty("URLs");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the localIdentifier property on a PHAsset (or to lookup PHAssets by a previously known ALAssetPropertyAssetURL use fetchAssetsWithALAssetURLs:options:) from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetProperty AssetURL = new ALAssetProperty("AssetURL");
@@ -164,56 +164,56 @@ import org.robovm.apple.imageio.*;
         /*<values>*/
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use the mediaType property on a PHAsset from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetPropertyType", optional=true)
         public static native NSString Type();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use the location property on a PHAsset from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetPropertyLocation", optional=true)
         public static native NSString Location();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use the duration property on a PHAsset from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetPropertyDuration", optional=true)
         public static native NSString Duration();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use the orientation of the UIImage returned for a PHAsset via the PHImageManager from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetPropertyOrientation", optional=true)
         public static native NSString Orientation();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use the creationDate property on a PHAsset from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetPropertyDate", optional=true)
         public static native NSString Date();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use PHImageRequestOptions with the PHImageManager from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetPropertyRepresentations", optional=true)
         public static native NSString Representations();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use PHImageRequestOptions with the PHImageManager from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetPropertyURLs", optional=true)
         public static native NSString URLs();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use the localIdentifier property on a PHAsset (or to lookup PHAssets by a previously known ALAssetPropertyAssetURL use fetchAssetsWithALAssetURLs:options:) from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetPropertyAssetURL", optional=true)

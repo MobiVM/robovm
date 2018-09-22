@@ -35,7 +35,7 @@ import org.robovm.apple.imageio.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
- * @deprecated Deprecated in iOS 9.0.
+ * @deprecated Deprecated in iOS 9.0. Use PHAssetCollection from the Photos framework instead
  */
 @Deprecated
 /*</javadoc>*/
@@ -55,7 +55,7 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use canPerformEditOperation: on a PHAssetCollection from the Photos framework instead
      */
     @Deprecated
     @Property(selector = "isEditable")
@@ -95,7 +95,7 @@ import org.robovm.apple.imageio.*;
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the class properties on a PHAssetCollection in the Photos framework instead
      */
     @Deprecated
     @Method(selector = "valueForProperty:")
@@ -110,42 +110,42 @@ import org.robovm.apple.imageio.*;
     public native CGImage getPosterImage();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use fetchAssetsInAssetCollection:options: on PHAsset with a predicate in the PHFetchOptions from the Photos framework to filter the assets in an asset collection instead
      */
     @Deprecated
     @Method(selector = "setAssetsFilter:")
     public native void setAssetsFilter(ALAssetsFilter filter);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the estimatedAssetCount on PHAssetCollection for a quick estimate of the total assets in a collection (or fetch the assets to get an exact value) from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "numberOfAssets")
     public native @MachineSizedSInt long getNumberOfAssets();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the PHFetchResult returned by fetchAssetsInAssetCollection:options: on PHAsset to enumerate the assets in an asset collection from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "enumerateAssetsUsingBlock:")
     public native void enumerateAssets(@Block("(,@MachineSizedUInt,)") VoidBlock3<ALAsset, Long, BooleanPtr> enumerationBlock);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the PHFetchResult returned by fetchAssetsInAssetCollection:options: on PHAsset to enumerate the assets in an asset collection from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "enumerateAssetsWithOptions:usingBlock:")
     public native void enumerateAssets(NSEnumerationOptions options, @Block("(,@MachineSizedUInt,)") VoidBlock3<ALAsset, Long, BooleanPtr> enumerationBlock);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the PHFetchResult returned by fetchAssetsInAssetCollection:options: on PHAsset to enumerate the assets in an asset collection from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "enumerateAssetsAtIndexes:options:usingBlock:")
     public native void enumerateAssets(NSIndexSet indexSet, NSEnumerationOptions options, @Block("(,@MachineSizedUInt,)") VoidBlock3<ALAsset, Long, BooleanPtr> enumerationBlock);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use addAssets: on a PHAssetCollectionChangeRequest: created from a PHAssetCollection in the Photos framework instead
      */
     @Deprecated
     @Method(selector = "addAsset:")
