@@ -53,6 +53,8 @@ import org.robovm.apple.imageio.*;
     public VNImageBasedRequest() {}
     protected VNImageBasedRequest(Handle h, long handle) { super(h, handle); }
     protected VNImageBasedRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCompletionHandler:")
+    public VNImageBasedRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(initWithCompletionHandler(completionHandler)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "regionOfInterest")
@@ -62,6 +64,7 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithCompletionHandler:")
+    protected native @Pointer long initWithCompletionHandler(@Block VoidBlock2<VNRequest, NSError> completionHandler);
     /*</methods>*/
 }

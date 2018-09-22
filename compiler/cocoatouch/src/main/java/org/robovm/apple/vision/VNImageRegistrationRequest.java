@@ -50,15 +50,94 @@ import org.robovm.apple.imageio.*;
     /*<bind>*/static { ObjCRuntime.bind(VNImageRegistrationRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public VNImageRegistrationRequest() {}
+    protected VNImageRegistrationRequest() {}
     protected VNImageRegistrationRequest(Handle h, long handle) { super(h, handle); }
     protected VNImageRegistrationRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTargetedCVPixelBuffer:options:")
+    public VNImageRegistrationRequest(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(pixelBuffer, options)); }
+    @Method(selector = "initWithTargetedCVPixelBuffer:options:completionHandler:")
+    public VNImageRegistrationRequest(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(pixelBuffer, options, completionHandler)); }
+    @Method(selector = "initWithTargetedCVPixelBuffer:orientation:options:")
+    public VNImageRegistrationRequest(CVPixelBuffer pixelBuffer, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(pixelBuffer, orientation, options)); }
+    @Method(selector = "initWithTargetedCVPixelBuffer:orientation:options:completionHandler:")
+    public VNImageRegistrationRequest(CVPixelBuffer pixelBuffer, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(pixelBuffer, orientation, options, completionHandler)); }
+    @Method(selector = "initWithTargetedCGImage:options:")
+    public VNImageRegistrationRequest(CGImage cgImage, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(cgImage, options)); }
+    @Method(selector = "initWithTargetedCGImage:options:completionHandler:")
+    public VNImageRegistrationRequest(CGImage cgImage, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(cgImage, options, completionHandler)); }
+    @Method(selector = "initWithTargetedCGImage:orientation:options:")
+    public VNImageRegistrationRequest(CGImage cgImage, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(cgImage, orientation, options)); }
+    @Method(selector = "initWithTargetedCGImage:orientation:options:completionHandler:")
+    public VNImageRegistrationRequest(CGImage cgImage, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(cgImage, orientation, options, completionHandler)); }
+    @Method(selector = "initWithTargetedCIImage:options:")
+    public VNImageRegistrationRequest(CIImage ciImage, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(ciImage, options)); }
+    @Method(selector = "initWithTargetedCIImage:options:completionHandler:")
+    public VNImageRegistrationRequest(CIImage ciImage, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(ciImage, options, completionHandler)); }
+    @Method(selector = "initWithTargetedCIImage:orientation:options:")
+    public VNImageRegistrationRequest(CIImage ciImage, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(ciImage, orientation, options)); }
+    @Method(selector = "initWithTargetedCIImage:orientation:options:completionHandler:")
+    public VNImageRegistrationRequest(CIImage ciImage, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(ciImage, orientation, options, completionHandler)); }
+    @Method(selector = "initWithTargetedImageURL:options:")
+    public VNImageRegistrationRequest(NSURL imageURL, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(imageURL, options)); }
+    @Method(selector = "initWithTargetedImageURL:options:completionHandler:")
+    public VNImageRegistrationRequest(NSURL imageURL, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(imageURL, options, completionHandler)); }
+    @Method(selector = "initWithTargetedImageURL:orientation:options:")
+    public VNImageRegistrationRequest(NSURL imageURL, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(imageURL, orientation, options)); }
+    @Method(selector = "initWithTargetedImageURL:orientation:options:completionHandler:")
+    public VNImageRegistrationRequest(NSURL imageURL, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(imageURL, orientation, options, completionHandler)); }
+    @Method(selector = "initWithTargetedImageData:options:")
+    public VNImageRegistrationRequest(NSData imageData, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(imageData, options)); }
+    @Method(selector = "initWithTargetedImageData:options:completionHandler:")
+    public VNImageRegistrationRequest(NSData imageData, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(imageData, options, completionHandler)); }
+    @Method(selector = "initWithTargetedImageData:orientation:options:")
+    public VNImageRegistrationRequest(NSData imageData, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options) { super((SkipInit) null); initObject(init(imageData, orientation, options)); }
+    @Method(selector = "initWithTargetedImageData:orientation:options:completionHandler:")
+    public VNImageRegistrationRequest(NSData imageData, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(imageData, orientation, options, completionHandler)); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithTargetedCVPixelBuffer:options:")
+    protected native @Pointer long init(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> options);
+    @Method(selector = "initWithTargetedCVPixelBuffer:options:completionHandler:")
+    protected native @Pointer long init(CVPixelBuffer pixelBuffer, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
+    @Method(selector = "initWithTargetedCVPixelBuffer:orientation:options:")
+    protected native @Pointer long init(CVPixelBuffer pixelBuffer, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    @Method(selector = "initWithTargetedCVPixelBuffer:orientation:options:completionHandler:")
+    protected native @Pointer long init(CVPixelBuffer pixelBuffer, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
+    @Method(selector = "initWithTargetedCGImage:options:")
+    protected native @Pointer long init(CGImage cgImage, NSDictionary<?, ?> options);
+    @Method(selector = "initWithTargetedCGImage:options:completionHandler:")
+    protected native @Pointer long init(CGImage cgImage, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
+    @Method(selector = "initWithTargetedCGImage:orientation:options:")
+    protected native @Pointer long init(CGImage cgImage, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    @Method(selector = "initWithTargetedCGImage:orientation:options:completionHandler:")
+    protected native @Pointer long init(CGImage cgImage, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
+    @Method(selector = "initWithTargetedCIImage:options:")
+    protected native @Pointer long init(CIImage ciImage, NSDictionary<?, ?> options);
+    @Method(selector = "initWithTargetedCIImage:options:completionHandler:")
+    protected native @Pointer long init(CIImage ciImage, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
+    @Method(selector = "initWithTargetedCIImage:orientation:options:")
+    protected native @Pointer long init(CIImage ciImage, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    @Method(selector = "initWithTargetedCIImage:orientation:options:completionHandler:")
+    protected native @Pointer long init(CIImage ciImage, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
+    @Method(selector = "initWithTargetedImageURL:options:")
+    protected native @Pointer long init(NSURL imageURL, NSDictionary<?, ?> options);
+    @Method(selector = "initWithTargetedImageURL:options:completionHandler:")
+    protected native @Pointer long init(NSURL imageURL, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
+    @Method(selector = "initWithTargetedImageURL:orientation:options:")
+    protected native @Pointer long init(NSURL imageURL, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    @Method(selector = "initWithTargetedImageURL:orientation:options:completionHandler:")
+    protected native @Pointer long init(NSURL imageURL, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
+    @Method(selector = "initWithTargetedImageData:options:")
+    protected native @Pointer long init(NSData imageData, NSDictionary<?, ?> options);
+    @Method(selector = "initWithTargetedImageData:options:completionHandler:")
+    protected native @Pointer long init(NSData imageData, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
+    @Method(selector = "initWithTargetedImageData:orientation:options:")
+    protected native @Pointer long init(NSData imageData, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    @Method(selector = "initWithTargetedImageData:orientation:options:completionHandler:")
+    protected native @Pointer long init(NSData imageData, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
     /*</methods>*/
 }

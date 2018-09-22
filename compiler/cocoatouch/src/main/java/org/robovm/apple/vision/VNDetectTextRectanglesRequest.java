@@ -53,6 +53,8 @@ import org.robovm.apple.imageio.*;
     public VNDetectTextRectanglesRequest() {}
     protected VNDetectTextRectanglesRequest(Handle h, long handle) { super(h, handle); }
     protected VNDetectTextRectanglesRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCompletionHandler:")
+    public VNDetectTextRectanglesRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(initWithCompletionHandler(completionHandler)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "reportCharacterBoxes")
@@ -68,6 +70,7 @@ import org.robovm.apple.imageio.*;
     @GlobalValue(symbol="VNDetectTextRectanglesRequestRevision1", optional=true)
     public static native @MachineSizedUInt long getRevision1();
     
-    
+    @Method(selector = "initWithCompletionHandler:")
+    protected native @Pointer long initWithCompletionHandler(@Block VoidBlock2<VNRequest, NSError> completionHandler);
     /*</methods>*/
 }
