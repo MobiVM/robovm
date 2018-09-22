@@ -43,6 +43,9 @@ public enum /*<name>*/SKErrorCode/*</name>*/ implements NSErrorCode {
     PaymentCancelled(2L),
     PaymentInvalid(3L),
     PaymentNotAllowed(4L),
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     StoreProductNotAvailable(5L),
     /**
      * @since Available in iOS 9.3 and later.

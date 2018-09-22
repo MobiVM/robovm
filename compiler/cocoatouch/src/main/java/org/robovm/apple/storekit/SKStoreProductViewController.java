@@ -48,6 +48,10 @@ import org.robovm.apple.uikit.*;
     public SKStoreProductViewController() {}
     protected SKStoreProductViewController(Handle h, long handle) { super(h, handle); }
     protected SKStoreProductViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public SKStoreProductViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public SKStoreProductViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -68,5 +72,9 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "loadProductWithParameters:completionBlock:")
     public native void loadProduct(SKStoreProductParameters parameters, @Block VoidBlock2<Boolean, NSError> block);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
