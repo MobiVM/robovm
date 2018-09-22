@@ -116,6 +116,7 @@ structdefs:
     matrix_float3x4: 'MatrixFloat3x4'
     matrix_float4x4: 'MatrixFloat4x4'
     simd_float4x4: 'MatrixFloat4x4'
+    simd_float3x3: 'MatrixFloat3x3'
     matrix_double4x4: 'MatrixDouble4x4'
 
 private_typedefs:

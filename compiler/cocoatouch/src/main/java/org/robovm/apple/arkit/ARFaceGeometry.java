@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,7 +48,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ARFaceGeometry/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class ARFaceGeometryPtr extends Ptr<ARFaceGeometry, ARFaceGeometryPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ARFaceGeometry.class); }/*</bind>*/
@@ -58,6 +59,8 @@ import org.robovm.apple.metal.*;
     protected ARFaceGeometry(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithBlendShapes:")
     public ARFaceGeometry(NSDictionary<?, ?> blendShapes) { super((SkipInit) null); initObject(initWithBlendShapes(blendShapes)); }
+    @Method(selector = "initWithCoder:")
+    public ARFaceGeometry(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "vertexCount")
@@ -72,10 +75,16 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getTriangleCount();
     @Property(selector = "triangleIndices")
     public native ShortPtr getTriangleIndices();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithBlendShapes:")
     protected native @Pointer long initWithBlendShapes(NSDictionary<?, ?> blendShapes);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

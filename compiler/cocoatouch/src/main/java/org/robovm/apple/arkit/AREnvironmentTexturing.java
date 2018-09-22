@@ -41,33 +41,32 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARDirectionalLightEstimate/*</name>*/ 
-    extends /*<extends>*/ARLightEstimate/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ARDirectionalLightEstimatePtr extends Ptr<ARDirectionalLightEstimate, ARDirectionalLightEstimatePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ARDirectionalLightEstimate.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/AREnvironmentTexturing/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    None(0L),
+    Manual(1L),
+    Automatic(2L);
+    /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected ARDirectionalLightEstimate() {}
-    protected ARDirectionalLightEstimate(Handle h, long handle) { super(h, handle); }
-    protected ARDirectionalLightEstimate(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "sphericalHarmonicsCoefficients")
-    public native NSData getSphericalHarmonicsCoefficients();
-    @Property(selector = "primaryLightDirection")
-    public native @ByVal VectorFloat3 getPrimaryLightDirection();
-    @Property(selector = "primaryLightIntensity")
-    public native @MachineSizedFloat double getPrimaryLightIntensity();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/AREnvironmentTexturing/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/AREnvironmentTexturing/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AREnvironmentTexturing/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/AREnvironmentTexturing/*</name>*/.class.getName());
+    }
 }

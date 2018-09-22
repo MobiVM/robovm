@@ -57,6 +57,12 @@ import org.robovm.apple.imageio.*;
     public ARSCNView() {}
     protected ARSCNView(Handle h, long handle) { super(h, handle); }
     protected ARSCNView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:options:")
+    public ARSCNView(@ByVal CGRect frame, NSDictionary<NSString, ?> options) { super((SkipInit) null); initObject(init(frame, options)); }
+    @Method(selector = "initWithFrame:")
+    public ARSCNView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public ARSCNView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -95,5 +101,16 @@ import org.robovm.apple.imageio.*;
     public native SCNNode nodeForAnchor(ARAnchor anchor);
     @Method(selector = "hitTest:types:")
     public native NSArray<ARHitTestResult> hitTest(@ByVal CGPoint point, ARHitTestResultType types);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "unprojectPoint:ontoPlaneWithTransform:")
+    public native @ByVal VectorFloat3 unprojectPoint(@ByVal CGPoint point, @ByVal MatrixFloat4x4 planeTransform);
+    @Method(selector = "initWithFrame:options:")
+    protected native @Pointer long init(@ByVal CGRect frame, NSDictionary<NSString, ?> options);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

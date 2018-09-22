@@ -42,57 +42,40 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARAnchor/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARWorldMap/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements ARAnchorCopying, NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class ARAnchorPtr extends Ptr<ARAnchor, ARAnchorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ARAnchor.class); }/*</bind>*/
+    /*<ptr>*/public static class ARWorldMapPtr extends Ptr<ARWorldMap, ARWorldMapPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARWorldMap.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ARAnchor() {}
-    protected ARAnchor(Handle h, long handle) { super(h, handle); }
-    protected ARAnchor(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithTransform:")
-    public ARAnchor(@ByVal MatrixFloat4x4 transform) { super((SkipInit) null); initObject(initWithTransform(transform)); }
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Method(selector = "initWithName:transform:")
-    public ARAnchor(String name, @ByVal MatrixFloat4x4 transform) { super((SkipInit) null); initObject(init(name, transform)); }
-    @Method(selector = "initWithAnchor:")
-    public ARAnchor(ARAnchor anchor) { super((SkipInit) null); initObject(initWithAnchor(anchor)); }
+    protected ARWorldMap() {}
+    protected ARWorldMap(Handle h, long handle) { super(h, handle); }
+    protected ARWorldMap(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public ARAnchor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public ARWorldMap(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "identifier")
-    public native NSUUID getIdentifier();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "name")
-    public native String getName();
-    @Property(selector = "transform")
-    public native @ByVal MatrixFloat4x4 getTransform();
+    @Property(selector = "center")
+    public native @ByVal VectorFloat3 getCenter();
+    @Property(selector = "extent")
+    public native @ByVal VectorFloat3 getExtent();
+    @Property(selector = "anchors")
+    public native NSArray<ARAnchor> getAnchors();
+    @Property(selector = "setAnchors:")
+    public native void setAnchors(NSArray<ARAnchor> v);
+    @Property(selector = "rawFeaturePoints")
+    public native ARPointCloud getRawFeaturePoints();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithTransform:")
-    protected native @Pointer long initWithTransform(@ByVal MatrixFloat4x4 transform);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Method(selector = "initWithName:transform:")
-    protected native @Pointer long init(String name, @ByVal MatrixFloat4x4 transform);
-    @Method(selector = "initWithAnchor:")
-    protected native @Pointer long initWithAnchor(ARAnchor anchor);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

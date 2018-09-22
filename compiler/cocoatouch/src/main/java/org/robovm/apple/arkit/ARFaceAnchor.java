@@ -61,6 +61,21 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "geometry")
     public native ARFaceGeometry getGeometry();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "leftEyeTransform")
+    public native @ByVal MatrixFloat4x4 getLeftEyeTransform();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "rightEyeTransform")
+    public native @ByVal MatrixFloat4x4 getRightEyeTransform();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "lookAtPoint")
+    public native @ByVal VectorFloat3 getLookAtPoint();
     @Property(selector = "blendShapes")
     public native NSDictionary<?, ?> getBlendShapes();
     @Property(selector = "isTracked")

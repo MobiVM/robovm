@@ -42,32 +42,24 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARDirectionalLightEstimate/*</name>*/ 
-    extends /*<extends>*/ARLightEstimate/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ARAnchorCopying/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/public static class ARDirectionalLightEstimatePtr extends Ptr<ARDirectionalLightEstimate, ARDirectionalLightEstimatePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ARDirectionalLightEstimate.class); }/*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected ARDirectionalLightEstimate() {}
-    protected ARDirectionalLightEstimate(Handle h, long handle) { super(h, handle); }
-    protected ARDirectionalLightEstimate(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "sphericalHarmonicsCoefficients")
-    public native NSData getSphericalHarmonicsCoefficients();
-    @Property(selector = "primaryLightDirection")
-    public native @ByVal VectorFloat3 getPrimaryLightDirection();
-    @Property(selector = "primaryLightIntensity")
-    public native @MachineSizedFloat double getPrimaryLightIntensity();
+    
     /*</properties>*/
-    /*<members>*//*</members>*/
     /*<methods>*/
     
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

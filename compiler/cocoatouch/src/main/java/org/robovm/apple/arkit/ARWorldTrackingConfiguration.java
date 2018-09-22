@@ -69,10 +69,30 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "setAutoFocusEnabled:")
     public native void setAutoFocusEnabled(boolean v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "environmentTexturing")
+    public native AREnvironmentTexturing getEnvironmentTexturing();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setEnvironmentTexturing:")
+    public native void setEnvironmentTexturing(AREnvironmentTexturing v);
     @Property(selector = "planeDetection")
     public native ARPlaneDetection getPlaneDetection();
     @Property(selector = "setPlaneDetection:")
     public native void setPlaneDetection(ARPlaneDetection v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "initialWorldMap")
+    public native ARWorldMap getInitialWorldMap();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setInitialWorldMap:")
+    public native void setInitialWorldMap(ARWorldMap v);
     /**
      * @since Available in iOS 11.3 and later.
      */
@@ -83,6 +103,26 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "setDetectionImages:")
     public native void setDetectionImages(NSSet<ARReferenceImage> v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "maximumNumberOfTrackedImages")
+    public native @MachineSizedSInt long getMaximumNumberOfTrackedImages();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setMaximumNumberOfTrackedImages:")
+    public native void setMaximumNumberOfTrackedImages(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "detectionObjects")
+    public native NSSet<ARReferenceObject> getDetectionObjects();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setDetectionObjects:")
+    public native void setDetectionObjects(NSSet<ARReferenceObject> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

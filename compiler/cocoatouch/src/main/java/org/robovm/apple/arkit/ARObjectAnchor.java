@@ -42,49 +42,25 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARPlaneAnchor/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARObjectAnchor/*</name>*/ 
     extends /*<extends>*/ARAnchor/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ARPlaneAnchorPtr extends Ptr<ARPlaneAnchor, ARPlaneAnchorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ARPlaneAnchor.class); }/*</bind>*/
+    /*<ptr>*/public static class ARObjectAnchorPtr extends Ptr<ARObjectAnchor, ARObjectAnchorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARObjectAnchor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ARPlaneAnchor() {}
-    protected ARPlaneAnchor(Handle h, long handle) { super(h, handle); }
-    protected ARPlaneAnchor(SkipInit skipInit) { super(skipInit); }
+    protected ARObjectAnchor() {}
+    protected ARObjectAnchor(Handle h, long handle) { super(h, handle); }
+    protected ARObjectAnchor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "isClassificationSupported")
-    public static native boolean isClassificationSupported();
-    @Property(selector = "alignment")
-    public native ARPlaneAnchorAlignment getAlignment();
-    @Property(selector = "center")
-    public native @ByVal VectorFloat3 getCenter();
-    @Property(selector = "extent")
-    public native @ByVal VectorFloat3 getExtent();
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Property(selector = "geometry")
-    public native ARPlaneGeometry getGeometry();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "classificationStatus")
-    public native ARPlaneClassificationStatus getClassificationStatus();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "classification")
-    public native ARPlaneClassification getClassification();
+    @Property(selector = "referenceObject")
+    public native ARReferenceObject getReferenceObject();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

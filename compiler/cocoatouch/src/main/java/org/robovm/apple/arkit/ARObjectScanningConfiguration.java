@@ -42,52 +42,35 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARPlaneAnchor/*</name>*/ 
-    extends /*<extends>*/ARAnchor/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARObjectScanningConfiguration/*</name>*/ 
+    extends /*<extends>*/ARConfiguration/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ARPlaneAnchorPtr extends Ptr<ARPlaneAnchor, ARPlaneAnchorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ARPlaneAnchor.class); }/*</bind>*/
+    /*<ptr>*/public static class ARObjectScanningConfigurationPtr extends Ptr<ARObjectScanningConfiguration, ARObjectScanningConfigurationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARObjectScanningConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ARPlaneAnchor() {}
-    protected ARPlaneAnchor(Handle h, long handle) { super(h, handle); }
-    protected ARPlaneAnchor(SkipInit skipInit) { super(skipInit); }
+    public ARObjectScanningConfiguration() {}
+    protected ARObjectScanningConfiguration(Handle h, long handle) { super(h, handle); }
+    protected ARObjectScanningConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "isClassificationSupported")
-    public static native boolean isClassificationSupported();
-    @Property(selector = "alignment")
-    public native ARPlaneAnchorAlignment getAlignment();
-    @Property(selector = "center")
-    public native @ByVal VectorFloat3 getCenter();
-    @Property(selector = "extent")
-    public native @ByVal VectorFloat3 getExtent();
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Property(selector = "geometry")
-    public native ARPlaneGeometry getGeometry();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "classificationStatus")
-    public native ARPlaneClassificationStatus getClassificationStatus();
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Property(selector = "classification")
-    public native ARPlaneClassification getClassification();
+    @Property(selector = "isAutoFocusEnabled")
+    public native boolean isAutoFocusEnabled();
+    @Property(selector = "setAutoFocusEnabled:")
+    public native void setAutoFocusEnabled(boolean v);
+    @Property(selector = "planeDetection")
+    public native ARPlaneDetection getPlaneDetection();
+    @Property(selector = "setPlaneDetection:")
+    public native void setPlaneDetection(ARPlaneDetection v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "new")
+    public static native ARObjectScanningConfiguration newConfiguration();
     /*</methods>*/
 }

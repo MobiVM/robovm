@@ -89,5 +89,15 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "setWorldOrigin:")
     public native void setWorldOrigin(@ByVal MatrixFloat4x4 relativeTransform);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "getCurrentWorldMapWithCompletionHandler:")
+    public native void getCurrentWorldMapWithCompletionHandler(@Block VoidBlock2<ARWorldMap, NSError> completionHandler);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "createReferenceObjectWithTransform:center:extent:completionHandler:")
+    public native void createReferenceObject(@ByVal MatrixFloat4x4 transform, @ByVal VectorFloat3 center, @ByVal VectorFloat3 extent, @Block VoidBlock2<ARReferenceObject, NSError> completionHandler);
     /*</methods>*/
 }
