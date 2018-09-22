@@ -160,7 +160,7 @@ import org.robovm.apple.uikit.*;
     public static final CTAttributedStringAttribute GlyphInfo = new CTAttributedStringAttribute("GlyphInfo");
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use feature type kCharacterShapeType with the appropriate selector
      */
     @Deprecated
     public static final CTAttributedStringAttribute CharacterShape = new CTAttributedStringAttribute("CharacterShape");
@@ -308,7 +308,7 @@ import org.robovm.apple.uikit.*;
         public static native CFString GlyphInfo();
         /**
          * @since Available in iOS 3.2 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use feature type kCharacterShapeType with the appropriate selector
          */
         @Deprecated
         @GlobalValue(symbol="kCTCharacterShapeAttributeName", optional=true)
