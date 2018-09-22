@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCompositionTrack.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCompositionTrack() {}
+    protected AVCompositionTrack() {}
     protected AVCompositionTrack(Handle h, long handle) { super(h, handle); }
     protected AVCompositionTrack(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVMetadataFaceObject.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVMetadataFaceObject() {}
+    protected AVMetadataFaceObject() {}
     protected AVMetadataFaceObject(Handle h, long handle) { super(h, handle); }
     protected AVMetadataFaceObject(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

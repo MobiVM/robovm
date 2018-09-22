@@ -248,12 +248,12 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "videoApertureMode")
-    public native String getVideoApertureMode();
+    public native AVVideoApertureMode getVideoApertureMode();
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "setVideoApertureMode:")
-    public native void setVideoApertureMode(String v);
+    public native void setVideoApertureMode(AVVideoApertureMode v);
     /**
      * @since Available in iOS 7.0 and later.
      */

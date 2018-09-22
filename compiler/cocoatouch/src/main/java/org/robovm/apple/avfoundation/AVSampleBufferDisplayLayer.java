@@ -76,6 +76,8 @@ import org.robovm.apple.audiotoolbox.*;
     public AVSampleBufferDisplayLayer() {}
     protected AVSampleBufferDisplayLayer(Handle h, long handle) { super(h, handle); }
     protected AVSampleBufferDisplayLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public AVSampleBufferDisplayLayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "controlTimebase")
@@ -114,6 +116,8 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey", optional=true)
     protected static native NSString FailedToDecodeNotificationErrorKey();
     
+    @Method(selector = "initWithLayer:")
+    protected native @Pointer long init(CALayer layer);
     @Method(selector = "enqueueSampleBuffer:")
     public native void enqueueSampleBuffer(CMSampleBuffer sampleBuffer);
     @Method(selector = "flush")

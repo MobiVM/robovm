@@ -48,7 +48,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVSpeechUtterance/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class AVSpeechUtterancePtr extends Ptr<AVSpeechUtterance, AVSpeechUtterancePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AVSpeechUtterance.class); }/*</bind>*/
@@ -64,6 +64,8 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "initWithAttributedString:")
     public AVSpeechUtterance(NSAttributedString string) { super((SkipInit) null); initObject(initWithAttributedString(string)); }
+    @Method(selector = "initWithCoder:")
+    public AVSpeechUtterance(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "voice")
@@ -97,6 +99,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native double getPostUtteranceDelay();
     @Property(selector = "setPostUtteranceDelay:")
     public native void setPostUtteranceDelay(double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -128,5 +132,9 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "speechUtteranceWithAttributedString:")
     public static native AVSpeechUtterance speechUtteranceWithAttributedString(NSAttributedString string);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

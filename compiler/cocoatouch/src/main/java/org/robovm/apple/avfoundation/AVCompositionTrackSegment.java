@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCompositionTrackSegment.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCompositionTrackSegment() {}
+    protected AVCompositionTrackSegment() {}
     protected AVCompositionTrackSegment(Handle h, long handle) { super(h, handle); }
     protected AVCompositionTrackSegment(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithURL:trackID:sourceTimeRange:targetTimeRange:")

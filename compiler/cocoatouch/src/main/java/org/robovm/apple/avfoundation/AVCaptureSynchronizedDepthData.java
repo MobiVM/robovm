@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureSynchronizedDepthData.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureSynchronizedDepthData() {}
+    protected AVCaptureSynchronizedDepthData() {}
     protected AVCaptureSynchronizedDepthData(Handle h, long handle) { super(h, handle); }
     protected AVCaptureSynchronizedDepthData(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

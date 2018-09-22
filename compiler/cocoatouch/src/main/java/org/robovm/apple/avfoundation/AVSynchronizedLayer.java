@@ -58,6 +58,8 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVSynchronizedLayer(Handle h, long handle) { super(h, handle); }
     protected AVSynchronizedLayer(SkipInit skipInit) { super(skipInit); }
     public AVSynchronizedLayer(AVPlayerItem playerItem) { super((Handle) null, create(playerItem)); retain(getHandle()); }
+    @Method(selector = "initWithLayer:")
+    public AVSynchronizedLayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "playerItem")
@@ -69,5 +71,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "synchronizedLayerWithPlayerItem:")
     protected static native @Pointer long create(AVPlayerItem playerItem);
+    @Method(selector = "initWithLayer:")
+    protected native @Pointer long init(CALayer layer);
     /*</methods>*/
 }

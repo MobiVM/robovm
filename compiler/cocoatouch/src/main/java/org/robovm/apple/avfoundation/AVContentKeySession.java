@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVContentKeySession.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVContentKeySession() {}
+    protected AVContentKeySession() {}
     protected AVContentKeySession(Handle h, long handle) { super(h, handle); }
     protected AVContentKeySession(SkipInit skipInit) { super(skipInit); }
     public AVContentKeySession(String keySystem, NSURL storageURL) { super((Handle) null, create(keySystem, storageURL)); retain(getHandle()); }

@@ -57,6 +57,9 @@ import org.robovm.apple.audiotoolbox.*;
     public AVAudioUnitReverb() {}
     protected AVAudioUnitReverb(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitReverb(SkipInit skipInit) { super(skipInit); }
+    @WeaklyLinked
+    @Method(selector = "initWithAudioComponentDescription:")
+    public AVAudioUnitReverb(@ByVal AudioComponentDescription audioComponentDescription) { super((SkipInit) null); initObject(init(audioComponentDescription)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "wetDryMix")
@@ -68,5 +71,8 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "loadFactoryPreset:")
     public native void loadFactoryPreset(AVAudioUnitReverbPreset preset);
+    @WeaklyLinked
+    @Method(selector = "initWithAudioComponentDescription:")
+    protected native @Pointer long init(@ByVal AudioComponentDescription audioComponentDescription);
     /*</methods>*/
 }

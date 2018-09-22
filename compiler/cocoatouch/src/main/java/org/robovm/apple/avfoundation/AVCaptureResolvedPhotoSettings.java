@@ -72,10 +72,25 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "embeddedThumbnailDimensions")
     public native @ByVal CMVideoDimensions getEmbeddedThumbnailDimensions();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "rawEmbeddedThumbnailDimensions")
+    public native @ByVal CMVideoDimensions getRawEmbeddedThumbnailDimensions();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "portraitEffectsMatteDimensions")
+    public native @ByVal CMVideoDimensions getPortraitEffectsMatteDimensions();
     @Property(selector = "livePhotoMovieDimensions")
     public native @ByVal CMVideoDimensions getLivePhotoMovieDimensions();
     @Property(selector = "isFlashEnabled")
     public native boolean isFlashEnabled();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "isRedEyeReductionEnabled")
+    public native boolean isRedEyeReductionEnabled();
     @Property(selector = "isStillImageStabilizationEnabled")
     public native boolean isStillImageStabilizationEnabled();
     /**

@@ -48,7 +48,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioFormat/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class AVAudioFormatPtr extends Ptr<AVAudioFormat, AVAudioFormatPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AVAudioFormat.class); }/*</bind>*/
@@ -77,6 +77,8 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "initWithCMAudioFormatDescription:")
     public AVAudioFormat(CMAudioFormatDescription formatDescription) { super((SkipInit) null); initObject(init(formatDescription)); }
+    @Method(selector = "initWithCoder:")
+    public AVAudioFormat(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isStandard")
@@ -111,6 +113,8 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "formatDescription")
     public native CMAudioFormatDescription getFormatDescription();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -136,5 +140,9 @@ import org.robovm.apple.audiotoolbox.*;
     protected native @Pointer long init(CMAudioFormatDescription formatDescription);
     @Method(selector = "isEqual:")
     public native boolean equalsTo(AVAudioFormat object);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

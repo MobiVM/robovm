@@ -63,6 +63,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native String getContentType();
     @Property(selector = "setContentType:")
     public native void setContentType(String v);
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @Property(selector = "allowedContentTypes")
+    public native NSArray<NSString> getAllowedContentTypes();
     @Property(selector = "contentLength")
     public native long getContentLength();
     @Property(selector = "setContentLength:")

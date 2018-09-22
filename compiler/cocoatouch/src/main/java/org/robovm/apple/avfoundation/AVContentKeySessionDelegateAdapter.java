@@ -73,7 +73,17 @@ import org.robovm.apple.audiotoolbox.*;
     public void didFailWithError(AVContentKeySession session, AVContentKeyRequest keyRequest, NSError err) {}
     @NotImplemented("contentKeySession:shouldRetryContentKeyRequest:reason:")
     public boolean shouldRetryContentKeyRequest(AVContentKeySession session, AVContentKeyRequest keyRequest, String retryReason) { return false; }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @NotImplemented("contentKeySession:contentKeyRequestDidSucceed:")
+    public void contentKeyRequestDidSucceed(AVContentKeySession session, AVContentKeyRequest keyRequest) {}
     @NotImplemented("contentKeySessionContentProtectionSessionIdentifierDidChange:")
     public void contentKeySessionContentProtectionSessionIdentifierDidChange(AVContentKeySession session) {}
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @NotImplemented("contentKeySessionDidGenerateExpiredSessionReport:")
+    public void contentKeySessionDidGenerateExpiredSessionReport(AVContentKeySession session) {}
     /*</methods>*/
 }

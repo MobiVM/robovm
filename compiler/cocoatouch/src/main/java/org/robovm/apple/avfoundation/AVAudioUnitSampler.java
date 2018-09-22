@@ -57,6 +57,9 @@ import org.robovm.apple.audiotoolbox.*;
     public AVAudioUnitSampler() {}
     protected AVAudioUnitSampler(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitSampler(SkipInit skipInit) { super(skipInit); }
+    @WeaklyLinked
+    @Method(selector = "initWithAudioComponentDescription:")
+    public AVAudioUnitSampler(@ByVal AudioComponentDescription description) { super((SkipInit) null); initObject(init(description)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "stereoPan")
@@ -98,5 +101,8 @@ import org.robovm.apple.audiotoolbox.*;
     }
     @Method(selector = "loadAudioFilesAtURLs:error:")
     private native boolean loadAudioFiles(NSArray<NSURL> audioFiles, NSError.NSErrorPtr outError);
+    @WeaklyLinked
+    @Method(selector = "initWithAudioComponentDescription:")
+    protected native @Pointer long init(@ByVal AudioComponentDescription description);
     /*</methods>*/
 }

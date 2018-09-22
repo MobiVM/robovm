@@ -98,6 +98,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setRedirect:")
     public native void setRedirect(NSURLRequest v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "requestor")
+    public native AVAssetResourceLoadingRequestor getRequestor();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

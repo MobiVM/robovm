@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVAssetResourceRenewalRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVAssetResourceRenewalRequest() {}
+    protected AVAssetResourceRenewalRequest() {}
     protected AVAssetResourceRenewalRequest(Handle h, long handle) { super(h, handle); }
     protected AVAssetResourceRenewalRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
