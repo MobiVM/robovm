@@ -49,6 +49,10 @@ import org.robovm.apple.corespotlight.*;
     protected NSFetchRequestExpression(Handle h, long handle) { super(h, handle); }
     protected NSFetchRequestExpression(SkipInit skipInit) { super(skipInit); }
     public NSFetchRequestExpression(NSExpression fetch, NSExpression context, boolean countFlag) { super((Handle) null, create(fetch, context, countFlag)); retain(getHandle()); }
+    @Method(selector = "initWithExpressionType:")
+    public NSFetchRequestExpression(NSExpressionType type) { super((SkipInit) null); initObject(init(type)); }
+    @Method(selector = "initWithCoder:")
+    public NSFetchRequestExpression(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "requestExpression")
@@ -62,5 +66,9 @@ import org.robovm.apple.corespotlight.*;
     /*<methods>*/
     @Method(selector = "expressionForFetch:context:countOnly:")
     protected static native @Pointer long create(NSExpression fetch, NSExpression context, boolean countFlag);
+    @Method(selector = "initWithExpressionType:")
+    protected native @Pointer long init(NSExpressionType type);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

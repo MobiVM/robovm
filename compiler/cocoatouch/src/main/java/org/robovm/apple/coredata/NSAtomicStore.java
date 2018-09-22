@@ -46,7 +46,7 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     /*<bind>*/static { ObjCRuntime.bind(NSAtomicStore.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSAtomicStore() {}
+    protected NSAtomicStore() {}
     protected NSAtomicStore(Handle h, long handle) { super(h, handle); }
     protected NSAtomicStore(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPersistentStoreCoordinator:configurationName:URL:options:")

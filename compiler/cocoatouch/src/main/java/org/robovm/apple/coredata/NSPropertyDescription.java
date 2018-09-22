@@ -76,14 +76,14 @@ import org.robovm.apple.corespotlight.*;
     public native void setUserInfo(NSDictionary<?, ?> v);
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSEntityDescription.indexes instead
      */
     @Deprecated
     @Property(selector = "isIndexed")
     public native boolean isIndexed();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSEntityDescription.indexes instead
      */
     @Deprecated
     @Property(selector = "setIndexed:")
@@ -115,14 +115,14 @@ import org.robovm.apple.corespotlight.*;
     public native void setIndexedBySpotlight(boolean v);
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Spotlight integration is deprecated. Use CoreSpotlight integration instead.
      */
     @Deprecated
     @Property(selector = "isStoredInExternalRecord")
     public native boolean isStoredInExternalRecord();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Spotlight integration is deprecated. Use CoreSpotlight integration instead.
      */
     @Deprecated
     @Property(selector = "setStoredInExternalRecord:")

@@ -34,7 +34,7 @@ import org.robovm.apple.corespotlight.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 7.0 and later.
- * @deprecated Deprecated in iOS 10.0.
+ * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
  */
 @Deprecated
 /*</javadoc>*/
