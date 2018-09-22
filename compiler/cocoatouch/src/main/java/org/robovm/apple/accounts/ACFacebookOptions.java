@@ -108,7 +108,7 @@ import org.robovm.apple.foundation.*;
 
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
     public String getAppId() {
@@ -120,7 +120,7 @@ import org.robovm.apple.foundation.*;
     }
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
     public ACFacebookOptions setAppId(String appId) {
@@ -129,7 +129,7 @@ import org.robovm.apple.foundation.*;
     }
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
     public List<String> getPermissions() {
@@ -141,7 +141,7 @@ import org.robovm.apple.foundation.*;
     }
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
     public ACFacebookOptions setPermissions(List<String> permissions) {
@@ -150,7 +150,7 @@ import org.robovm.apple.foundation.*;
     }
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
     public ACFacebookAudience getAudience() {
@@ -162,7 +162,7 @@ import org.robovm.apple.foundation.*;
     }
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
     public ACFacebookOptions setAudience(ACFacebookAudience audience) {
@@ -185,21 +185,21 @@ import org.robovm.apple.foundation.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 6.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACFacebookAppIdKey", optional=true)
         public static native NSString AppId();
         /**
          * @since Available in iOS 6.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACFacebookPermissionsKey", optional=true)
         public static native NSString Permissions();
         /**
          * @since Available in iOS 6.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACFacebookAudienceKey", optional=true)
