@@ -5,6 +5,8 @@ framework: PassKit
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/PassKit.framework/Headers/PassKit.h
+private_typedefs:
+    CGRect: '@ByVal org.robovm.apple.coregraphics.CGRect'
 typedefs:
     'void (^)(PKPassLibraryAddPassesStatus)': '@Block VoidBlock1<PKPassLibraryAddPassesStatus>'
     'void (^)(PKPaymentAuthorizationStatus)': '@Block VoidBlock1<PKPaymentAuthorizationStatus>'

@@ -52,6 +52,10 @@ import org.robovm.apple.contacts.*;
     protected PKAddPassButton(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithAddPassButtonStyle:")
     public PKAddPassButton(PKAddPassButtonStyle style) { super((SkipInit) null); initObject(init(style)); }
+    @Method(selector = "initWithFrame:")
+    public PKAddPassButton(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public PKAddPassButton(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "addPassButtonStyle")
@@ -65,5 +69,9 @@ import org.robovm.apple.contacts.*;
     protected native @Pointer long init(PKAddPassButtonStyle style);
     @Method(selector = "addPassButtonWithStyle:")
     public static native PKAddPassButton addPassButton(PKAddPassButtonStyle addPassButtonStyle);
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal org.robovm.apple.coregraphics.CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -96,13 +96,13 @@ import org.robovm.apple.contacts.*;
     public static final PKPaymentNetwork Amex = new PKPaymentNetwork("Amex");
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use PKPaymentNetworkCartesBancaires instead.
      */
     @Deprecated
     public static final PKPaymentNetwork CarteBancaire = new PKPaymentNetwork("CarteBancaire");
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.2.
+     * @deprecated Deprecated in iOS 11.2. Use PKPaymentNetworkCartesBancaires instead.
      */
     @Deprecated
     public static final PKPaymentNetwork CarteBancaires = new PKPaymentNetwork("CarteBancaires");
@@ -198,14 +198,14 @@ import org.robovm.apple.contacts.*;
         public static native NSString Amex();
         /**
          * @since Available in iOS 10.3 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use PKPaymentNetworkCartesBancaires instead.
          */
         @Deprecated
         @GlobalValue(symbol="PKPaymentNetworkCarteBancaire", optional=true)
         public static native NSString CarteBancaire();
         /**
          * @since Available in iOS 11.0 and later.
-         * @deprecated Deprecated in iOS 11.2.
+         * @deprecated Deprecated in iOS 11.2. Use PKPaymentNetworkCartesBancaires instead.
          */
         @Deprecated
         @GlobalValue(symbol="PKPaymentNetworkCarteBancaires", optional=true)
