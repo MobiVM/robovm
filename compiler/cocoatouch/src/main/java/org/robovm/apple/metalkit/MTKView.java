@@ -56,6 +56,8 @@ import org.robovm.apple.coreanimation.*;
     public MTKView(@ByVal CGRect frameRect, MTLDevice device) { super((SkipInit) null); initObject(init(frameRect, device)); }
     @Method(selector = "initWithCoder:")
     public MTKView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    @Method(selector = "initWithFrame:")
+    public MTKView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -137,5 +139,7 @@ import org.robovm.apple.coreanimation.*;
     public native void releaseDrawables();
     @Method(selector = "draw")
     public native void draw();
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
     /*</methods>*/
 }
