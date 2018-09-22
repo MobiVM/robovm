@@ -59,8 +59,6 @@ classes:
         methods:
             '-init.*':
                 name: init
-            '-stickerBrowserView:stickerAtIndex:':
-                name: getStickerBrowserViewStickerAtIndex
 
     MSStickerView:
         methods:

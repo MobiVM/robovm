@@ -49,6 +49,10 @@ import org.robovm.apple.uikit.*;
     public MSMessagesAppViewController() {}
     protected MSMessagesAppViewController(Handle h, long handle) { super(h, handle); }
     protected MSMessagesAppViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public MSMessagesAppViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public MSMessagesAppViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "activeConversation")
@@ -73,6 +77,10 @@ import org.robovm.apple.uikit.*;
     public native void willResignActiveWithConversation(MSConversation conversation);
     @Method(selector = "didResignActiveWithConversation:")
     public native void didResignActiveWithConversation(MSConversation conversation);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /**
      * @since Available in iOS 10.0 and later.
      */

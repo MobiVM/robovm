@@ -51,6 +51,10 @@ import org.robovm.apple.uikit.*;
     protected MSStickerView(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:sticker:")
     public MSStickerView(@ByVal CGRect frame, MSSticker sticker) { super((SkipInit) null); initObject(init(frame, sticker)); }
+    @Method(selector = "initWithFrame:")
+    public MSStickerView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public MSStickerView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sticker")
@@ -70,5 +74,9 @@ import org.robovm.apple.uikit.*;
     public native void stopAnimating();
     @Method(selector = "isAnimating")
     public native boolean isAnimating();
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
