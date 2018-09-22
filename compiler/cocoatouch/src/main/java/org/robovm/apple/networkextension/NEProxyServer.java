@@ -54,7 +54,7 @@ import org.robovm.apple.security.*;
     @Method(selector = "initWithAddress:port:")
     public NEProxyServer(String address, @MachineSizedSInt long port) { super((SkipInit) null); initObject(init(address, port)); }
     @Method(selector = "initWithCoder:")
-    public NEProxyServer(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEProxyServer(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -110,6 +110,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -69,7 +69,7 @@ import org.robovm.apple.security.*;
     @Method(selector = "initWithHS20Settings:eapSettings:")
     public NEHotspotConfiguration(NEHotspotHS20Settings hs20Settings, NEHotspotEAPSettings eapSettings) { super((SkipInit) null); initObject(init(hs20Settings, eapSettings)); }
     @Method(selector = "initWithCoder:")
-    public NEHotspotConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public NEHotspotConfiguration(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -125,6 +125,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -45,7 +45,7 @@ import org.robovm.apple.security.*;
     /*<bind>*/static { ObjCRuntime.bind(NEAppRule.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NEAppRule() {}
+    public NEAppRule() {}
     protected NEAppRule(Handle h, long handle) { super(h, handle); }
     protected NEAppRule(SkipInit skipInit) { super(skipInit); }
     /**
