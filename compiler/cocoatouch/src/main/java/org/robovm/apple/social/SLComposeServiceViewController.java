@@ -50,6 +50,10 @@ import org.robovm.apple.accounts.*;
     public SLComposeServiceViewController() {}
     protected SLComposeServiceViewController(Handle h, long handle) { super(h, handle); }
     protected SLComposeServiceViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public SLComposeServiceViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public SLComposeServiceViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "textView")
@@ -93,6 +97,10 @@ import org.robovm.apple.accounts.*;
     public native void popConfigurationViewController();
     @Method(selector = "loadPreviewView")
     public native UIView loadPreviewView();
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "textViewShouldBeginEditing:")
     public native boolean shouldBeginEditing(UITextView textView);
     @Method(selector = "textViewShouldEndEditing:")
@@ -119,14 +127,14 @@ import org.robovm.apple.accounts.*;
     public native boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithURL:inRange:forInteractionType: instead
      */
     @Deprecated
     @Method(selector = "textView:shouldInteractWithURL:inRange:")
     public native boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithTextAttachment:inRange:forInteractionType: instead
      */
     @Deprecated
     @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:")

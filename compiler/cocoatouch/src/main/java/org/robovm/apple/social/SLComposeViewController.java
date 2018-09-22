@@ -51,6 +51,10 @@ import org.robovm.apple.accounts.*;
     protected SLComposeViewController(Handle h, long handle) { super(h, handle); }
     protected SLComposeViewController(SkipInit skipInit) { super(skipInit); }
     public SLComposeViewController(SLServiceType serviceType) { super((Handle) null, create(serviceType)); retain(getHandle()); }
+    @Method(selector = "initWithNibName:bundle:")
+    public SLComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public SLComposeViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "serviceType")
@@ -76,5 +80,9 @@ import org.robovm.apple.accounts.*;
     public static native boolean isAvailable(SLServiceType serviceType);
     @Method(selector = "composeViewControllerForServiceType:")
     protected static native @Pointer long create(SLServiceType serviceType);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
