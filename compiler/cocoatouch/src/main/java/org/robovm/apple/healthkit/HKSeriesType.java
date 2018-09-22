@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKSeriesType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKSeriesType() {}
+    protected HKSeriesType() {}
     protected HKSeriesType(Handle h, long handle) { super(h, handle); }
     protected HKSeriesType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

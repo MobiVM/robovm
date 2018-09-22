@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKActivitySummaryType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKActivitySummaryType() {}
+    protected HKActivitySummaryType() {}
     protected HKActivitySummaryType(Handle h, long handle) { super(h, handle); }
     protected HKActivitySummaryType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

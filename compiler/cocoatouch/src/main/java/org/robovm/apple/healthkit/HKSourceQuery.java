@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKSourceQuery.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKSourceQuery() {}
+    protected HKSourceQuery() {}
     protected HKSourceQuery(Handle h, long handle) { super(h, handle); }
     protected HKSourceQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSampleType:samplePredicate:completionHandler:")

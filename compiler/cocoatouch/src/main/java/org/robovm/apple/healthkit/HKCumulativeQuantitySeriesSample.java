@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKCumulativeQuantitySeriesSample.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKCumulativeQuantitySeriesSample() {}
+    protected HKCumulativeQuantitySeriesSample() {}
     protected HKCumulativeQuantitySeriesSample(Handle h, long handle) { super(h, handle); }
     protected HKCumulativeQuantitySeriesSample(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

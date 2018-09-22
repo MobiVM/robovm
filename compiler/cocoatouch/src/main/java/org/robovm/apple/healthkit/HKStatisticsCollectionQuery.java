@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKStatisticsCollectionQuery.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKStatisticsCollectionQuery() {}
+    protected HKStatisticsCollectionQuery() {}
     protected HKStatisticsCollectionQuery(Handle h, long handle) { super(h, handle); }
     protected HKStatisticsCollectionQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithQuantityType:quantitySamplePredicate:options:anchorDate:intervalComponents:")

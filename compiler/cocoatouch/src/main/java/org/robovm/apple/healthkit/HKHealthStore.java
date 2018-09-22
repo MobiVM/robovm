@@ -119,7 +119,7 @@ import org.robovm.apple.foundation.*;
     public native void stopQuery(HKQuery query);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated
     @Method(selector = "splitTotalEnergy:startDate:endDate:resultsHandler:")

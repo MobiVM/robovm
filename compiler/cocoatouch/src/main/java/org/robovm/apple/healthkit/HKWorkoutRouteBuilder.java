@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKWorkoutRouteBuilder.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKWorkoutRouteBuilder() {}
+    protected HKWorkoutRouteBuilder() {}
     protected HKWorkoutRouteBuilder(Handle h, long handle) { super(h, handle); }
     protected HKWorkoutRouteBuilder(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithHealthStore:device:")

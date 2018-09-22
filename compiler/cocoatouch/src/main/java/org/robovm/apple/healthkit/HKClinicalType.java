@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKClinicalType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKClinicalType() {}
+    protected HKClinicalType() {}
     protected HKClinicalType(Handle h, long handle) { super(h, handle); }
     protected HKClinicalType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

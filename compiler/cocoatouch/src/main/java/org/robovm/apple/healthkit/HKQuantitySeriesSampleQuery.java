@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKQuantitySeriesSampleQuery.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKQuantitySeriesSampleQuery() {}
+    protected HKQuantitySeriesSampleQuery() {}
     protected HKQuantitySeriesSampleQuery(Handle h, long handle) { super(h, handle); }
     protected HKQuantitySeriesSampleQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSample:quantityHandler:")

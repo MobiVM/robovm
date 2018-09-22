@@ -46,7 +46,7 @@ import org.robovm.apple.foundation.*;
     public static final int NoAnchor = 0;
     /*</constants>*/
     /*<constructors>*/
-    public HKAnchoredObjectQuery() {}
+    protected HKAnchoredObjectQuery() {}
     protected HKAnchoredObjectQuery(Handle h, long handle) { super(h, handle); }
     protected HKAnchoredObjectQuery(SkipInit skipInit) { super(skipInit); }
     /**
