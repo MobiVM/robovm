@@ -95,11 +95,15 @@ import org.robovm.apple.modelio.*;
     /*<constants>*/
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public static final GLKErrorUserInfoKey Error = new GLKErrorUserInfoKey("Error");
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public static final GLKErrorUserInfoKey GLError = new GLKErrorUserInfoKey("GLError");
     /*</constants>*/
     
@@ -128,12 +132,16 @@ import org.robovm.apple.modelio.*;
         /*<values>*/
         /**
          * @since Available in iOS 5.0 and later.
+         * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
          */
+        @Deprecated
         @GlobalValue(symbol="GLKTextureLoaderErrorKey", optional=true)
         public static native NSString Error();
         /**
          * @since Available in iOS 5.0 and later.
+         * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
          */
+        @Deprecated
         @GlobalValue(symbol="GLKTextureLoaderGLErrorKey", optional=true)
         public static native NSString GLError();
         /*</values>*/
