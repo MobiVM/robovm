@@ -41,7 +41,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKAgent/*</name>*/ 
     extends /*<extends>*/GKComponent/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKAgentPtr extends Ptr<GKAgent, GKAgentPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKAgent.class); }/*</bind>*/

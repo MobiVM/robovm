@@ -166,44 +166,27 @@ classes:
             '+goalToStayOnPath:maxPredictionTime:':
                 name: stayOnPath
     GKGraph: # DONE
-        properties:
-            'nodes':
-                type: NSArray<GKGraph>
         methods:
             '-initWithNodes:':
                 name: init
-                parameters:
-                    nodes:
-                        type: NSArray<GKGraph>
             '-connectNodeToLowestCostNode:bidirectional:':
                 trim_after_first_colon: true
             '-(remove|add)Nodes:':
                 trim_after_first_colon: true
-                parameters:
-                    nodes:
-                        type: NSArray<GKGraph>
             '-findPathFromNode:toNode:':
                 name: findPathBetweenNodes
-                return_type: NSArray<GKGraphNode>
             '+graphWithNodes:':
                 exclude: true
     GKGraphNode: # DONE
-        properties:
-            'connectedNodes':
-                type: NSArray<GKGraphNode>
         methods:
             '-(add|remove)ConnectionsToNodes:bidirectional:':
                 trim_after_first_colon: true
-                parameters:
-                    nodes:
-                        type: NSArray<GKGraphNode>
             '-estimatedCostToNode:':
                 name: getEstimatedCostToNode
             '-costToNode:':
                 name: getCostToNode
             '-findPath(To|From)Node:':
                 trim_after_first_colon: true
-                return_type: NSArray<GKGraphNode>
     GKGraphNode2D: # DONE
         methods:
             '-initWithPoint:':

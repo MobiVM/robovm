@@ -52,6 +52,8 @@ import org.robovm.apple.uikit.*;
     protected GKLinearCongruentialRandomSource(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSeed:")
     public GKLinearCongruentialRandomSource(long seed) { super((SkipInit) null); initObject(init(seed)); }
+    @Method(selector = "initWithCoder:")
+    public GKLinearCongruentialRandomSource(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "seed")
@@ -63,5 +65,7 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "initWithSeed:")
     protected native @Pointer long init(long seed);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -52,6 +52,8 @@ import org.robovm.apple.uikit.*;
     protected GKARC4RandomSource(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSeed:")
     public GKARC4RandomSource(NSData seed) { super((SkipInit) null); initObject(init(seed)); }
+    @Method(selector = "initWithCoder:")
+    public GKARC4RandomSource(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "seed")
@@ -65,5 +67,7 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(NSData seed);
     @Method(selector = "dropValuesWithCount:")
     public native void dropValues(@MachineSizedUInt long count);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -54,6 +54,8 @@ import org.robovm.apple.uikit.*;
     public GKGridGraph(@ByVal VectorInt2 position, int width, int height, boolean diagonalsAllowed) { super((SkipInit) null); initObject(init(position, width, height, diagonalsAllowed)); }
     @Method(selector = "initFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:")
     public GKGridGraph(@ByVal VectorInt2 position, int width, int height, boolean diagonalsAllowed, Class<?> nodeClass) { super((SkipInit) null); initObject(init(position, width, height, diagonalsAllowed, nodeClass)); }
+    @Method(selector = "initWithNodes:")
+    public GKGridGraph(NSArray<GKGraphNode> nodes) { super((SkipInit) null); initObject(init(nodes)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "gridOrigin")
@@ -77,5 +79,7 @@ import org.robovm.apple.uikit.*;
     public native void connectNodeToAdjacentNodes(GKGridGraphNode node);
     @Method(selector = "classForGenericArgumentAtIndex:")
     public native Class<?> classForGenericArgumentAtIndex(@MachineSizedUInt long index);
+    @Method(selector = "initWithNodes:")
+    protected native @Pointer long init(NSArray<GKGraphNode> nodes);
     /*</methods>*/
 }

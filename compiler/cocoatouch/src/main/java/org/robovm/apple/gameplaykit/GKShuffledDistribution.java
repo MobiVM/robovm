@@ -50,12 +50,15 @@ import org.robovm.apple.uikit.*;
     public GKShuffledDistribution() {}
     protected GKShuffledDistribution(Handle h, long handle) { super(h, handle); }
     protected GKShuffledDistribution(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRandomSource:lowestValue:highestValue:")
+    public GKShuffledDistribution(GKRandom source, @MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive) { super((SkipInit) null); initObject(init(source, lowestInclusive, highestInclusive)); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithRandomSource:lowestValue:highestValue:")
+    protected native @Pointer long init(GKRandom source, @MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive);
     /*</methods>*/
 }

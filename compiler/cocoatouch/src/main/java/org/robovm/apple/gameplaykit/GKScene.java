@@ -41,7 +41,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKScene/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKScenePtr extends Ptr<GKScene, GKScenePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKScene.class); }/*</bind>*/
@@ -63,6 +63,8 @@ import org.robovm.apple.uikit.*;
     public native void setRootNode(GKSceneRootNodeType v);
     @Property(selector = "graphs")
     public native NSDictionary<NSString, GKGraph> getGraphs();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
