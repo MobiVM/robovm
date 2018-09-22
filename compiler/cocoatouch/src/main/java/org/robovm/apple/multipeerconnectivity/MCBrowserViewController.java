@@ -53,6 +53,10 @@ import org.robovm.apple.security.*;
     public MCBrowserViewController(String serviceType, MCSession session) { super((SkipInit) null); initObject(init(serviceType, session)); }
     @Method(selector = "initWithBrowser:session:")
     public MCBrowserViewController(MCNearbyServiceBrowser browser, MCSession session) { super((SkipInit) null); initObject(init(browser, session)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public MCBrowserViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    @Method(selector = "initWithCoder:")
+    public MCBrowserViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -78,6 +82,10 @@ import org.robovm.apple.security.*;
     protected native @Pointer long init(String serviceType, MCSession session);
     @Method(selector = "initWithBrowser:session:")
     protected native @Pointer long init(MCNearbyServiceBrowser browser, MCSession session);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "browser:foundPeer:withDiscoveryInfo:")
     public native void foundPeer(MCNearbyServiceBrowser browser, MCPeerID peerID, @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> info);
     @Method(selector = "browser:lostPeer:")

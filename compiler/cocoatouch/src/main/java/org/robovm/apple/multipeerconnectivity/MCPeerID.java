@@ -52,7 +52,7 @@ import org.robovm.apple.security.*;
     @Method(selector = "initWithDisplayName:")
     public MCPeerID(String myDisplayName) { super((SkipInit) null); initObject(init(myDisplayName)); }
     @Method(selector = "initWithCoder:")
-    public MCPeerID(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MCPeerID(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "displayName")
@@ -67,6 +67,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
