@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     public void resolveCarNameForSetProfileInCar(INSetProfileInCarIntent intent, @Block VoidBlock1<INSpeakableStringResolutionResult> completion) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. The property doesn't need to be resolved
      */
     @Deprecated
     @NotImplemented("resolveDefaultProfileForSetProfileInCar:withCompletion:")

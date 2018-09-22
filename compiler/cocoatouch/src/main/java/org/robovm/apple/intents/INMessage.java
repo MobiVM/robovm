@@ -62,7 +62,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithIdentifier:content:dateSent:sender:recipients:")
     public INMessage(String identifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients) { super((SkipInit) null); initObject(init(identifier, content, dateSent, sender, recipients)); }
     @Method(selector = "initWithCoder:")
-    public INMessage(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INMessage(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -110,6 +110,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

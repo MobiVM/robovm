@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public INPaymentAccount(INSpeakableString nickname, String number, INAccountType accountType, INSpeakableString organizationName, INBalanceAmount balance, INBalanceAmount secondaryBalance) { super((SkipInit) null); initObject(init(nickname, number, accountType, organizationName, balance, secondaryBalance)); }
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Please use 'initWithNickname:number:accountType:organizationName:balance:secondaryBalance:' instead
      */
     @Deprecated
     @Method(selector = "initWithNickname:number:accountType:organizationName:")
@@ -95,7 +95,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INSpeakableString nickname, String number, INAccountType accountType, INSpeakableString organizationName, INBalanceAmount balance, INBalanceAmount secondaryBalance);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Please use 'initWithNickname:number:accountType:organizationName:balance:secondaryBalance:' instead
      */
     @Deprecated
     @Method(selector = "initWithNickname:number:accountType:organizationName:")

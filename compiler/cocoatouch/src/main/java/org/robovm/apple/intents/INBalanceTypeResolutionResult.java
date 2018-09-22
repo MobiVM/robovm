@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INBalanceTypeResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INBalanceTypeResolutionResult() {}
+    protected INBalanceTypeResolutionResult() {}
     protected INBalanceTypeResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INBalanceTypeResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

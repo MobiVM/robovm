@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INDateRelevanceProvider.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INDateRelevanceProvider() {}
+    protected INDateRelevanceProvider() {}
     protected INDateRelevanceProvider(Handle h, long handle) { super(h, handle); }
     protected INDateRelevanceProvider(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithStartDate:endDate:")

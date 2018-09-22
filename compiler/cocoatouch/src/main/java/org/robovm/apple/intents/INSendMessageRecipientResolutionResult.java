@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INSendMessageRecipientResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INSendMessageRecipientResolutionResult() {}
+    protected INSendMessageRecipientResolutionResult() {}
     protected INSendMessageRecipientResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INSendMessageRecipientResolutionResult(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPersonResolutionResult:")

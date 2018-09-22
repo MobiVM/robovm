@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INTaskStatusResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INTaskStatusResolutionResult() {}
+    protected INTaskStatusResolutionResult() {}
     protected INTaskStatusResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INTaskStatusResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

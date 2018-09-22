@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INRequestPaymentPayerResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INRequestPaymentPayerResolutionResult() {}
+    protected INRequestPaymentPayerResolutionResult() {}
     protected INRequestPaymentPayerResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INRequestPaymentPayerResolutionResult(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPersonResolutionResult:")

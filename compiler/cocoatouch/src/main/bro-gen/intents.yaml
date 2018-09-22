@@ -428,6 +428,9 @@ classes:
     INRideCompletionStatus: {} #since 10.0
     INRideDriver: #since 10.0
         methods:
+            '-initWithPersonHandle:nameComponents:displayName:image:rating:phoneNumber:':
+                static_constructor_name: create # conflicts with another init by signature
+                name: initWithPersonHandleNameComponentsDisplayNameImageRatingPhoneNumber
             '-init.*':
                 name: init
     INRideFareLineItem: #since 10.0

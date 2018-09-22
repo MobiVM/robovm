@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INLocationRelevanceProvider.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INLocationRelevanceProvider() {}
+    protected INLocationRelevanceProvider() {}
     protected INLocationRelevanceProvider(Handle h, long handle) { super(h, handle); }
     protected INLocationRelevanceProvider(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRegion:")

@@ -60,27 +60,27 @@ import org.robovm.apple.corelocation.*;
     public INPerson(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, NSArray<INPersonHandle> aliases, INPersonSuggestionType suggestionType) { super((SkipInit) null); initObject(init(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, aliases, suggestionType)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:nameComponents:contactIdentifier:")
     public INPerson(String handle, NSPersonNameComponents nameComponents, String contactIdentifier) { super((SkipInit) null); initObject(init(handle, nameComponents, contactIdentifier)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:displayName:contactIdentifier:")
     public INPerson(String handle, String displayName, String contactIdentifier) { super((SkipInit) null); initObject(init(handle, displayName, contactIdentifier)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:nameComponents:displayName:image:contactIdentifier:")
     public INPerson(String handle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier) { super((SkipInit) null); initObject(init(handle, nameComponents, displayName, image, contactIdentifier)); }
     @Method(selector = "initWithCoder:")
-    public INPerson(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INPerson(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "personHandle")
@@ -116,7 +116,7 @@ import org.robovm.apple.corelocation.*;
     public native boolean isMe();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use personHandle instead
      */
     @Deprecated
     @Property(selector = "handle")
@@ -133,7 +133,7 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<?> getAlternativeSpeakableMatches();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Please use vocabularyIdentifier
      */
     @Deprecated
     @Property(selector = "identifier")
@@ -152,21 +152,21 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, NSArray<INPersonHandle> aliases, INPersonSuggestionType suggestionType);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:nameComponents:contactIdentifier:")
     protected native @Pointer long init(String handle, NSPersonNameComponents nameComponents, String contactIdentifier);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:displayName:contactIdentifier:")
     protected native @Pointer long init(String handle, String displayName, String contactIdentifier);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:nameComponents:displayName:image:contactIdentifier:")
@@ -174,6 +174,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

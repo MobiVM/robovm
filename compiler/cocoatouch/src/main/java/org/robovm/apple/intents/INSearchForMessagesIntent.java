@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public INSearchForMessagesIntent(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<INSpeakableString> speakableGroupNames, NSArray<NSString> conversationIdentifiers) { super((SkipInit) null); initObject(init(recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, speakableGroupNames, conversationIdentifiers)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:groupNames:")
@@ -67,7 +67,7 @@ import org.robovm.apple.corelocation.*;
     }
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:")
@@ -124,14 +124,14 @@ import org.robovm.apple.corelocation.*;
     public native INConditionalOperator getConversationIdentifiersOperator();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use speakableGroupNames instead
      */
     @Deprecated
     @Property(selector = "groupNames")
     public native NSArray<NSString> getGroupNames();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use speakableGroupNamesOperator instead
      */
     @Deprecated
     @Property(selector = "groupNamesOperator")
@@ -146,14 +146,14 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<INSpeakableString> speakableGroupNames, NSArray<NSString> conversationIdentifiers);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:groupNames:")
     protected native @Pointer long initWithGroupNames(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<NSString> groupNames);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 12.0.
+     * @deprecated Deprecated in iOS 12.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:")

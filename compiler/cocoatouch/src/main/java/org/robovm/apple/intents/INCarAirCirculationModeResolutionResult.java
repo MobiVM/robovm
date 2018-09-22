@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INCarAirCirculationModeResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INCarAirCirculationModeResolutionResult() {}
+    protected INCarAirCirculationModeResolutionResult() {}
     protected INCarAirCirculationModeResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INCarAirCirculationModeResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

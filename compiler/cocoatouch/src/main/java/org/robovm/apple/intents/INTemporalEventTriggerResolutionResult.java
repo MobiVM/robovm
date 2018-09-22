@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INTemporalEventTriggerResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INTemporalEventTriggerResolutionResult() {}
+    protected INTemporalEventTriggerResolutionResult() {}
     protected INTemporalEventTriggerResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INTemporalEventTriggerResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

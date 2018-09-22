@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INLocationSearchTypeResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INLocationSearchTypeResolutionResult() {}
+    protected INLocationSearchTypeResolutionResult() {}
     protected INLocationSearchTypeResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INLocationSearchTypeResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

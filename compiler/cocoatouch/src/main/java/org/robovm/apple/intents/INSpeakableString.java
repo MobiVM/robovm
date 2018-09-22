@@ -57,7 +57,7 @@ import org.robovm.apple.corelocation.*;
     }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Please use -initWithVocabularyIdentifier:spokenPhrase:pronunciationHint:
      */
     @Deprecated
     @Method(selector = "initWithIdentifier:spokenPhrase:pronunciationHint:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithSpokenPhrase:")
     public INSpeakableString(String spokenPhrase) { super((SkipInit) null); initObject(init(spokenPhrase)); }
     @Method(selector = "initWithCoder:")
-    public INSpeakableString(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INSpeakableString(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "spokenPhrase")
@@ -81,7 +81,7 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<?> getAlternativeSpeakableMatches();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Please use vocabularyIdentifier
      */
     @Deprecated
     @Property(selector = "identifier")
@@ -95,7 +95,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long initWithVocabulary(String vocabularyIdentifier, String spokenPhrase, String pronunciationHint);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Please use -initWithVocabularyIdentifier:spokenPhrase:pronunciationHint:
      */
     @Deprecated
     @Method(selector = "initWithIdentifier:spokenPhrase:pronunciationHint:")
@@ -108,6 +108,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

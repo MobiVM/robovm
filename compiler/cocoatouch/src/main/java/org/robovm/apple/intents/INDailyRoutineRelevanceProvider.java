@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INDailyRoutineRelevanceProvider.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INDailyRoutineRelevanceProvider() {}
+    protected INDailyRoutineRelevanceProvider() {}
     protected INDailyRoutineRelevanceProvider(Handle h, long handle) { super(h, handle); }
     protected INDailyRoutineRelevanceProvider(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSituation:")

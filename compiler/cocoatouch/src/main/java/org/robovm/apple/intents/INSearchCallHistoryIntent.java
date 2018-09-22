@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public INSearchCallHistoryIntent(INDateComponentsRange dateCreated, INPerson recipient, INCallCapabilityOptions callCapabilities, INCallRecordTypeOptions callTypes, NSNumber unseen) { super((SkipInit) null); initObject(init(dateCreated, recipient, callCapabilities, callTypes, unseen)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithCallType:dateCreated:recipient:callCapabilities:")
@@ -81,7 +81,7 @@ import org.robovm.apple.corelocation.*;
     public native NSNumber getUnseen();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use callTypes instead
      */
     @Deprecated
     @Property(selector = "callType")
@@ -96,7 +96,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INDateComponentsRange dateCreated, INPerson recipient, INCallCapabilityOptions callCapabilities, INCallRecordTypeOptions callTypes, NSNumber unseen);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithCallType:dateCreated:recipient:callCapabilities:")

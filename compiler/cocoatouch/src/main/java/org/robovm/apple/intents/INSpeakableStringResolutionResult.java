@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INSpeakableStringResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INSpeakableStringResolutionResult() {}
+    protected INSpeakableStringResolutionResult() {}
     protected INSpeakableStringResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INSpeakableStringResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

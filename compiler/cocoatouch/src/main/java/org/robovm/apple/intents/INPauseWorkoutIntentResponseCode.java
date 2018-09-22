@@ -44,7 +44,7 @@ public enum /*<name>*/INPauseWorkoutIntentResponseCode/*</name>*/ implements Val
     Ready(1L),
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. INPauseWorkoutIntentResponseCodeContinueInApp is deprecated on iOS. Please use INPauseWorkoutIntentResponseCodeHandleInApp instead
      */
     @Deprecated
     ContinueInApp(2L),

@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public void confirmSendMessage(INSendMessageIntent intent, @Block VoidBlock1<INSendMessageIntentResponse> completion) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. resolveRecipientsForSendMessage:withCompletion: is deprecated. Use resolveRecipientsForSendMessage:completion: instead
      */
     @Deprecated
     @NotImplemented("resolveRecipientsForSendMessage:withCompletion:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     public void resolveRecipientsForSendMessageRecepient(INSendMessageIntent intent, @Block VoidBlock1<NSArray<INSendMessageRecipientResolutionResult>> completion) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. resolveGroupNameForSendMessage:withCompletion: is deprecated. Use resolveSpeakableGroupNameForSendMessage:withCompletion: instead
      */
     @Deprecated
     @NotImplemented("resolveGroupNameForSendMessage:withCompletion:")

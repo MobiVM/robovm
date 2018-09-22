@@ -64,7 +64,7 @@ import org.robovm.apple.corelocation.*;
     void resolveDateTimeRangeForSearchForMessages(INSearchForMessagesIntent intent, @Block VoidBlock1<INDateComponentsRangeResolutionResult> completion);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. resolveGroupNamesForSearchForMessages:withCompletion: is deprecated. Use resolveSpeakableGroupNamesForSearchForMessages:withCompletion: instead
      */
     @Deprecated
     @Method(selector = "resolveGroupNamesForSearchForMessages:withCompletion:")
