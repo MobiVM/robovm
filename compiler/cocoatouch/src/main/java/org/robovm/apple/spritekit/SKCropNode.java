@@ -54,6 +54,8 @@ import org.robovm.apple.metal.*;
     public SKCropNode() {}
     protected SKCropNode(Handle h, long handle) { super(h, handle); }
     protected SKCropNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SKCropNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "maskNode")
@@ -63,6 +65,7 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

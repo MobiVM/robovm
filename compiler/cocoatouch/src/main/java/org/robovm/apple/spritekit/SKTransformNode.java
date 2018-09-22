@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
     public SKTransformNode() {}
     protected SKTransformNode(Handle h, long handle) { super(h, handle); }
     protected SKTransformNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SKTransformNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "xRotation")
@@ -81,5 +83,7 @@ import org.robovm.apple.metal.*;
     public native void setQuaternion(@ByVal VectorFloat4 quaternion);
     @Method(selector = "quaternion")
     public native @ByVal VectorFloat4 quaternion();
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

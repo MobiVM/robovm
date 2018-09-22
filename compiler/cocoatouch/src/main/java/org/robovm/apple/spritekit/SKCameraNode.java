@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
     public SKCameraNode() {}
     protected SKCameraNode(Handle h, long handle) { super(h, handle); }
     protected SKCameraNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SKCameraNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -66,5 +68,7 @@ import org.robovm.apple.metal.*;
     public native boolean containsNode(SKNode node);
     @Method(selector = "containedNodeSet")
     public native NSSet<SKNode> getContainedNodeSet();
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

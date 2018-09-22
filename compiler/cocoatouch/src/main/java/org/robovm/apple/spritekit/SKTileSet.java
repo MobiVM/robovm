@@ -61,7 +61,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithTileGroups:tileSetType:")
     public SKTileSet(NSArray<SKTileGroup> tileGroups, SKTileSetType tileSetType) { super((SkipInit) null); initObject(init(tileGroups, tileSetType)); }
     @Method(selector = "initWithCoder:")
-    public SKTileSet(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKTileSet(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tileGroups")
@@ -102,6 +102,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

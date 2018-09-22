@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithLowerAngleLimit:upperAngleLimit:")
     public SKReachConstraints(@MachineSizedFloat double lowerAngleLimit, @MachineSizedFloat double upperAngleLimit) { super((SkipInit) null); initObject(init(lowerAngleLimit, upperAngleLimit)); }
     @Method(selector = "initWithCoder:")
-    public SKReachConstraints(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public SKReachConstraints(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lowerAngleLimit")
@@ -80,6 +80,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

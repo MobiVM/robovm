@@ -54,6 +54,8 @@ import org.robovm.apple.metal.*;
     public SKEffectNode() {}
     protected SKEffectNode(Handle h, long handle) { super(h, handle); }
     protected SKEffectNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SKEffectNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @WeaklyLinked
@@ -113,5 +115,7 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "setValue:forAttributeNamed:")
     public native void setValueForAttribute(SKAttributeValue value, String key);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
