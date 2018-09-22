@@ -52,6 +52,8 @@ import org.robovm.apple.metal.*;
     public CAMetalLayer() {}
     protected CAMetalLayer(Handle h, long handle) { super(h, handle); }
     protected CAMetalLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public CAMetalLayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
     /*</constructors>*/
     /*<properties>*/
     @WeaklyLinked
@@ -103,5 +105,7 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "nextDrawable")
     public native CAMetalDrawable nextDrawable();
+    @Method(selector = "initWithLayer:")
+    protected native @Pointer long init(CALayer layer);
     /*</methods>*/
 }

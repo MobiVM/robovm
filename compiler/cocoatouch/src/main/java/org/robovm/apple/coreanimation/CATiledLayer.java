@@ -52,6 +52,8 @@ import org.robovm.apple.metal.*;
     public CATiledLayer() {}
     protected CATiledLayer(Handle h, long handle) { super(h, handle); }
     protected CATiledLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public CATiledLayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "levelsOfDetail")
@@ -71,5 +73,7 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "fadeDuration")
     public static native double getFadeDuration();
+    @Method(selector = "initWithLayer:")
+    protected native @Pointer long init(CALayer layer);
     /*</methods>*/
 }

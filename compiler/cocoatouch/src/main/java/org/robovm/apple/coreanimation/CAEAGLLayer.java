@@ -38,7 +38,7 @@ import org.robovm.apple.metal.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 2.0 and later.
- * @deprecated Deprecated in iOS 12.0.
+ * @deprecated Deprecated in iOS 12.0. OpenGLES is deprecated
  */
 @Deprecated
 /*</javadoc>*/
@@ -54,6 +54,8 @@ import org.robovm.apple.metal.*;
     public CAEAGLLayer() {}
     protected CAEAGLLayer(Handle h, long handle) { super(h, handle); }
     protected CAEAGLLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public CAEAGLLayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -73,6 +75,7 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithLayer:")
+    protected native @Pointer long init(CALayer layer);
     /*</methods>*/
 }

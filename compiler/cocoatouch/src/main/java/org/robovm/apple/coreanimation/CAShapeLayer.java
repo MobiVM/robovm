@@ -52,6 +52,8 @@ import org.robovm.apple.metal.*;
     public CAShapeLayer() {}
     protected CAShapeLayer(Handle h, long handle) { super(h, handle); }
     protected CAShapeLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public CAShapeLayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "path")
@@ -105,6 +107,7 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithLayer:")
+    protected native @Pointer long init(CALayer layer);
     /*</methods>*/
 }

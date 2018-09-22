@@ -52,6 +52,8 @@ import org.robovm.apple.metal.*;
     public CATextLayer() {}
     protected CATextLayer(Handle h, long handle) { super(h, handle); }
     protected CATextLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public CATextLayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "string")
@@ -137,6 +139,7 @@ import org.robovm.apple.metal.*;
     }
 
     /*<methods>*/
-    
+    @Method(selector = "initWithLayer:")
+    protected native @Pointer long init(CALayer layer);
     /*</methods>*/
 }
