@@ -747,6 +747,9 @@ classes:
         methods:
             '-translateInCameraSpaceByX:Y:Z:':
                 name: translateInCameraSpace
+                parameters:
+                    2:
+                        name: deltaZ # fixes wrong name (was deltaX)
             '-rotateByX:Y:':
                 name: rotateByXY
             '-rollBy:aroundScreenPoint:viewport:':
