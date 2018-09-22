@@ -51,6 +51,10 @@ import org.robovm.apple.iad.*;
     public AVRoutePickerView() {}
     protected AVRoutePickerView(Handle h, long handle) { super(h, handle); }
     protected AVRoutePickerView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public AVRoutePickerView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    @Method(selector = "initWithCoder:")
+    public AVRoutePickerView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -64,6 +68,9 @@ import org.robovm.apple.iad.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
