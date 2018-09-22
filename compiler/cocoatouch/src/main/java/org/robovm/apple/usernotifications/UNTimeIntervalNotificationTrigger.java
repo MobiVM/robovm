@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(UNTimeIntervalNotificationTrigger.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UNTimeIntervalNotificationTrigger() {}
+    protected UNTimeIntervalNotificationTrigger() {}
     protected UNTimeIntervalNotificationTrigger(Handle h, long handle) { super(h, handle); }
     protected UNTimeIntervalNotificationTrigger(SkipInit skipInit) { super(skipInit); }
     public UNTimeIntervalNotificationTrigger(double timeInterval, boolean repeats) { super((Handle) null, create(timeInterval, repeats)); retain(getHandle()); }
