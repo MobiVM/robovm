@@ -53,7 +53,7 @@ public enum /*<name>*/UIScreenOverscanCompensation/*</name>*/ implements ValuedE
     None(2L),
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIScreenOverscanCompensationNone
      */
     @Deprecated
     InsetApplicationFrame(2L);
