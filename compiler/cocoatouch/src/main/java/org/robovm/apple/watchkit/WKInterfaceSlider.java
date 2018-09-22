@@ -48,7 +48,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(WKInterfaceSlider.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public WKInterfaceSlider() {}
+    protected WKInterfaceSlider() {}
     protected WKInterfaceSlider(Handle h, long handle) { super(h, handle); }
     protected WKInterfaceSlider(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
