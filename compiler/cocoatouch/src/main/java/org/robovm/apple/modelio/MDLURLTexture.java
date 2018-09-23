@@ -50,6 +50,8 @@ import org.robovm.apple.coregraphics.*;
     protected MDLURLTexture(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithURL:name:")
     public MDLURLTexture(NSURL URL, String name) { super((SkipInit) null); initObject(init(URL, name)); }
+    @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
+    public MDLURLTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super((SkipInit) null); initObject(init(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "URL")
@@ -61,5 +63,7 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     @Method(selector = "initWithURL:name:")
     protected native @Pointer long init(NSURL URL, String name);
+    @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
+    protected native @Pointer long init(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube);
     /*</methods>*/
 }
