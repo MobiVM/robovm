@@ -99,11 +99,6 @@ import org.robovm.apple.iosurface.*;
      */
     @GlobalValue(symbol="kCVPixelBufferPoolFreeBufferNotification", optional=true)
     public static native NSString FreeBufferNotification();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="kCVPixelBufferPoolFreeBufferNotification", optional=true)
-    public static native void FreeBufferNotification(NSString v);
     
     /**
      * @since Available in iOS 4.0 and later.

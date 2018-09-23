@@ -81,23 +81,31 @@ import org.robovm.apple.iosurface.*;
     /*<methods>*/
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     @Bridge(symbol="CVOpenGLESTextureCacheGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     @WeaklyLinked
     @Bridge(symbol="CVOpenGLESTextureCacheCreate", optional=true)
     private static native CVReturn create(CFAllocator allocator, CVOpenGLESTextureCacheAttributes cacheAttributes, EAGLContext eaglContext, NSDictionary textureAttributes, CVOpenGLESTextureCache.CVOpenGLESTextureCachePtr cacheOut);
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     @Bridge(symbol="CVOpenGLESTextureCacheCreateTextureFromImage", optional=true)
     private static native CVReturn createTexture(CFAllocator allocator, CVOpenGLESTextureCache textureCache, CVImageBuffer sourceImage, NSDictionary textureAttributes, int target, int internalFormat, int width, int height, int format, int type, @MachineSizedUInt long planeIndex, CVOpenGLESTexture.CVOpenGLESTexturePtr textureOut);
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     @Bridge(symbol="CVOpenGLESTextureCacheFlush", optional=true)
     public native void flush(long options);
     /*</methods>*/
