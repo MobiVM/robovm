@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNImageNode/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -79,6 +79,16 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setSynchronizeResource:")
     public native void setSynchronizeResource(boolean v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "stopGradient")
+    public native boolean isStopGradient();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setStopGradient:")
+    public native void setStopGradient(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

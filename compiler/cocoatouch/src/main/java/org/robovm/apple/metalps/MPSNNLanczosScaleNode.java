@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNLanczosScaleNode/*</name>*/ 
     extends /*<extends>*/MPSNNScaleNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,15 +46,22 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSNNLanczosScaleNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSNNLanczosScaleNode() {}
+    protected MPSNNLanczosScaleNode() {}
     protected MPSNNLanczosScaleNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNLanczosScaleNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSource:outputSize:")
+    public MPSNNLanczosScaleNode(MPSNNImageNode sourceNode, @ByVal MTLSize size) { super((SkipInit) null); initObject(init(sourceNode, size)); }
+    @Method(selector = "initWithSource:transformProvider:outputSize:")
+    public MPSNNLanczosScaleNode(MPSNNImageNode sourceNode, MPSImageTransformProvider transformProvider, @ByVal MTLSize size) { super((SkipInit) null); initObject(init(sourceNode, transformProvider, size)); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithSource:outputSize:")
+    protected native @Pointer long init(MPSNNImageNode sourceNode, @ByVal MTLSize size);
+    @Method(selector = "initWithSource:transformProvider:outputSize:")
+    protected native @Pointer long init(MPSNNImageNode sourceNode, MPSImageTransformProvider transformProvider, @ByVal MTLSize size);
     /*</methods>*/
 }

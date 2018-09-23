@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageStatisticsMinAndMax/*</name>*/ 
     extends /*<extends>*/MPSUnaryImageKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,6 +53,8 @@ import org.robovm.apple.metal.*;
     public MPSImageStatisticsMinAndMax(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
     @Method(selector = "initWithCoder:device:")
     public MPSImageStatisticsMinAndMax(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageStatisticsMinAndMax(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "clipRectSource")
@@ -66,5 +68,7 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long initWithDevice(MTLDevice device);
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

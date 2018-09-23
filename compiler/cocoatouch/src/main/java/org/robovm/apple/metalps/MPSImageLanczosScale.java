@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageLanczosScale/*</name>*/ 
     extends /*<extends>*/MPSImageScale/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     public MPSImageLanczosScale(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageLanczosScale(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -69,5 +71,7 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

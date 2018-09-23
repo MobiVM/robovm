@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNGradientKernel/*</name>*/ 
     extends /*<extends>*/MPSCNNBinaryKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,6 +53,8 @@ import org.robovm.apple.metal.*;
     public MPSCNNGradientKernel(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNGradientKernel(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNGradientKernel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "kernelOffsetX")
@@ -78,5 +80,7 @@ import org.robovm.apple.metal.*;
     public native NSArray<MPSImage> encodeBatchGradients(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceGradients, NSArray<MPSImage> sourceImages, NSArray<? extends MPSState> gradientStates);
     @Method(selector = "encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:destinationGradients:")
     public native void encodeBatchGradients(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceGradients, NSArray<MPSImage> sourceImages, NSArray<? extends MPSState> gradientStates, NSArray<MPSImage> destinationGradients);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixDecompositionCholesky/*</name>*/ 
     extends /*<extends>*/MPSMatrixUnaryKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,6 +51,15 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixDecompositionCholesky(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:lower:order:")
     public MPSMatrixDecompositionCholesky(MTLDevice device, boolean lower, @MachineSizedUInt long order) { super((SkipInit) null); initObject(init(device, lower, order)); }
+    @Method(selector = "initWithDevice:")
+    public MPSMatrixDecompositionCholesky(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixDecompositionCholesky(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSMatrixDecompositionCholesky(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -61,5 +70,14 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, boolean lower, @MachineSizedUInt long order);
     @Method(selector = "encodeToCommandBuffer:sourceMatrix:resultMatrix:status:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix sourceMatrix, MPSMatrix resultMatrix, MTLBuffer status);
+    @Method(selector = "initWithDevice:")
+    protected native @Pointer long initWithDevice(MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     /*</methods>*/
 }

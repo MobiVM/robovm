@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNBinaryKernel/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,6 +53,8 @@ import org.robovm.apple.metal.*;
     public MPSCNNBinaryKernel(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNBinaryKernel(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNBinaryKernel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryOffset")
@@ -265,5 +267,7 @@ import org.robovm.apple.metal.*;
     public native boolean appendBatchBarrier();
     @Method(selector = "destinationImageDescriptorForSourceImages:sourceStates:")
     public native MPSImageDescriptor getDestinationImageDescriptor(NSArray<MPSImage> sourceImages, NSArray<MPSState> sourceStates);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

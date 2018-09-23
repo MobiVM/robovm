@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSKernel/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSKernel(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
     @Method(selector = "initWithCoder:")
-    public MPSKernel(NSCoder aDecoder) { super((SkipInit) null); initObject(initWithCoder(aDecoder)); }
+    public MPSKernel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -80,7 +80,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "copyWithZone:device:")
     public native MPSKernel copy(NSZone zone, MTLDevice device);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long initWithCoder(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /**
      * @since Available in iOS 11.0 and later.
      */

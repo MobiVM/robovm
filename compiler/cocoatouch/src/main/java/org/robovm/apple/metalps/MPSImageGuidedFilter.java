@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageGuidedFilter/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,15 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSImageGuidedFilter.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSImageGuidedFilter() {}
+    public MPSImageGuidedFilter() {}
     protected MPSImageGuidedFilter(Handle h, long handle) { super(h, handle); }
     protected MPSImageGuidedFilter(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:kernelDiameter:")
     public MPSImageGuidedFilter(MTLDevice device, @MachineSizedUInt long kernelDiameter) { super((SkipInit) null); initObject(init(device, kernelDiameter)); }
     @Method(selector = "initWithCoder:device:")
     public MPSImageGuidedFilter(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageGuidedFilter(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "kernelDiameter")
@@ -80,5 +82,7 @@ import org.robovm.apple.metal.*;
     public native void encodeRegression(MTLCommandBuffer commandBuffer, MTLTexture sourceTexture, MTLTexture guidanceTexture, MTLTexture weightsTexture, MTLTexture destinationCoefficientsTexture);
     @Method(selector = "encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTexture:destinationTexture:")
     public native void encodeReconstruction(MTLCommandBuffer commandBuffer, MTLTexture guidanceTexture, MTLTexture coefficientsTexture, MTLTexture destinationTexture);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNSoftMax/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,12 +49,29 @@ import org.robovm.apple.metal.*;
     public MPSCNNSoftMax() {}
     protected MPSCNNSoftMax(Handle h, long handle) { super(h, handle); }
     protected MPSCNNSoftMax(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:")
+    public MPSCNNSoftMax(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNSoftMax(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNSoftMax(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithDevice:")
+    protected native @Pointer long initWithDevice(MTLDevice device);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

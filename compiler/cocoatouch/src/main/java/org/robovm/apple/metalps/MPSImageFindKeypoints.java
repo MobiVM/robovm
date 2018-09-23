@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageFindKeypoints/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,15 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSImageFindKeypoints.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSImageFindKeypoints() {}
+    public MPSImageFindKeypoints() {}
     protected MPSImageFindKeypoints(Handle h, long handle) { super(h, handle); }
     protected MPSImageFindKeypoints(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:info:")
     public MPSImageFindKeypoints(MTLDevice device, MPSImageKeypointRangeInfo info) { super((SkipInit) null); initObject(init(device, info)); }
     @Method(selector = "initWithCoder:device:")
     public MPSImageFindKeypoints(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageFindKeypoints(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "keypointRangeInfo")
@@ -66,5 +68,7 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:sourceTexture:regions:numberOfRegions:keypointCountBuffer:keypointCountBufferOffset:keypointDataBuffer:keypointDataBufferOffset:")
     public native void encode(MTLCommandBuffer commandBuffer, MTLTexture source, MTLRegion regions, @MachineSizedUInt long numberOfRegions, MTLBuffer keypointCountBuffer, @MachineSizedUInt long keypointCountBufferOffset, MTLBuffer keypointDataBuffer, @MachineSizedUInt long keypointDataBufferOffset);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNNeuronReLUNode/*</name>*/ 
     extends /*<extends>*/MPSCNNNeuronNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNNeuronReLUNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNNeuronReLUNode() {}
+    protected MPSCNNNeuronReLUNode() {}
     protected MPSCNNNeuronReLUNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNeuronReLUNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:")

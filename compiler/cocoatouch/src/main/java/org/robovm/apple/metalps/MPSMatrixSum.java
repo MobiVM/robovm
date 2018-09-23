@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixSum/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,15 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSMatrixSum.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSMatrixSum() {}
+    public MPSMatrixSum() {}
     protected MPSMatrixSum(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixSum(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:count:rows:columns:transpose:")
     public MPSMatrixSum(MTLDevice device, @MachineSizedUInt long count, @MachineSizedUInt long rows, @MachineSizedUInt long columns, boolean transpose) { super((SkipInit) null); initObject(init(device, count, rows, columns, transpose)); }
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixSum(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixSum(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rows")
@@ -82,5 +84,7 @@ import org.robovm.apple.metal.*;
     public native void encode(MTLCommandBuffer buffer, NSArray<MPSMatrix> sourceMatrices, MPSMatrix resultMatrix, MPSVector scaleVector, MPSVector offsetVector, MPSVector biasVector, @MachineSizedUInt long startIndex);
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

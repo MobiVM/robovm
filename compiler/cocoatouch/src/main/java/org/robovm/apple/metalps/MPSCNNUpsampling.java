@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNUpsampling/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,18 +46,33 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNUpsampling.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNUpsampling() {}
+    public MPSCNNUpsampling() {}
     protected MPSCNNUpsampling(Handle h, long handle) { super(h, handle); }
     protected MPSCNNUpsampling(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNUpsampling(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNUpsampling(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "scaleFactorX")
     public native double getScaleFactorX();
     @Property(selector = "scaleFactorY")
     public native double getScaleFactorY();
+    @Property(selector = "alignCorners")
+    public native boolean isAlignCorners();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

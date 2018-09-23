@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageDilate/*</name>*/ 
     extends /*<extends>*/MPSUnaryImageKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSImageDilate.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSImageDilate() {}
+    public MPSImageDilate() {}
     protected MPSImageDilate(Handle h, long handle) { super(h, handle); }
     protected MPSImageDilate(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:values:")
@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     public MPSImageDilate(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageDilate(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "kernelHeight")
@@ -72,5 +74,7 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

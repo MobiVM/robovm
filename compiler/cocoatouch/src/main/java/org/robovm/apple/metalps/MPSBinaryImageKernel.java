@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSBinaryImageKernel/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     public MPSBinaryImageKernel(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSBinaryImageKernel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryOffset")
@@ -100,5 +102,7 @@ import org.robovm.apple.metal.*;
     public native @ByVal MPSRegion primarySourceRegionForDestinationSize(@ByVal MTLSize destinationSize);
     @Method(selector = "secondarySourceRegionForDestinationSize:")
     public native @ByVal MPSRegion secondarySourceRegionForDestinationSize(@ByVal MTLSize destinationSize);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

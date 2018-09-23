@@ -46,7 +46,7 @@ public final class /*<name>*/MPSNNConvolutionAccumulatorPrecisionOption/*</name>
     /**
      * @since Available in iOS 11.3 and later.
      */
-    public static final MPSNNConvolutionAccumulatorPrecisionOption Float = new MPSNNConvolutionAccumulatorPrecisionOption(2L);
+    public static final MPSNNConvolutionAccumulatorPrecisionOption Float = new MPSNNConvolutionAccumulatorPrecisionOption(1L);
     /*</values>*/
 
     /*<bind>*/

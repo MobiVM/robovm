@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNFilterNode/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -76,5 +76,10 @@ import org.robovm.apple.metal.*;
     public native NSArray<MPSNNGradientFilterNode> gradientFiltersWithSources(NSArray<MPSNNImageNode> gradientImages);
     @Method(selector = "gradientFiltersWithSource:")
     public native NSArray<MPSNNGradientFilterNode> gradientFiltersWithSource(MPSNNImageNode gradientImage);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "trainingGraphWithSourceGradient:nodeHandler:")
+    public native NSArray<MPSNNFilterNode> trainingGraph(MPSNNImageNode gradientImage, @Block VoidBlock4<MPSNNFilterNode, MPSNNFilterNode, MPSNNImageNode, MPSNNImageNode> nodeHandler);
     /*</methods>*/
 }

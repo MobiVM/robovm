@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNReduceFeatureChannelsMax/*</name>*/ 
     extends /*<extends>*/MPSNNReduceUnary/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,6 +51,13 @@ import org.robovm.apple.metal.*;
     protected MPSNNReduceFeatureChannelsMax(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
     public MPSNNReduceFeatureChannelsMax(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSNNReduceFeatureChannelsMax(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSNNReduceFeatureChannelsMax(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -59,5 +66,12 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "initWithDevice:")
     protected native @Pointer long initWithDevice(MTLDevice device);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

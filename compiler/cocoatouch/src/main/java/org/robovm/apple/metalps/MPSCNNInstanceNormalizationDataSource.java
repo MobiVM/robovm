@@ -65,6 +65,11 @@ import org.robovm.apple.metal.*;
     float epsilon();
     @Method(selector = "encodeWithCoder:")
     void encodeWithCoder(NSCoder aCoder);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "copyWithZone:device:")
+    MPSCNNInstanceNormalizationDataSource copy(NSZone zone, MTLDevice device);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

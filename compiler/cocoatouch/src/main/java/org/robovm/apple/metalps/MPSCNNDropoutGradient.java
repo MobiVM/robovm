@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNDropoutGradient/*</name>*/ 
     extends /*<extends>*/MPSCNNGradientKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,15 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNDropoutGradient.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNDropoutGradient() {}
+    public MPSCNNDropoutGradient() {}
     protected MPSCNNDropoutGradient(Handle h, long handle) { super(h, handle); }
     protected MPSCNNDropoutGradient(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNDropoutGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithDevice:keepProbability:seed:maskStrideInPixels:")
     public MPSCNNDropoutGradient(MTLDevice device, float keepProbability, @MachineSizedUInt long seed, @ByVal MTLSize maskStrideInPixels) { super((SkipInit) null); initObject(init(device, keepProbability, seed, maskStrideInPixels)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNDropoutGradient(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "keepProbability")
@@ -68,5 +70,7 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     @Method(selector = "initWithDevice:keepProbability:seed:maskStrideInPixels:")
     protected native @Pointer long init(MTLDevice device, float keepProbability, @MachineSizedUInt long seed, @ByVal MTLSize maskStrideInPixels);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

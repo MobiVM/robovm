@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNPoolingNode/*</name>*/ 
     extends /*<extends>*/MPSNNFilterNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNPoolingNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNPoolingNode() {}
+    protected MPSCNNPoolingNode() {}
     protected MPSCNNPoolingNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNPoolingNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:")
@@ -57,7 +57,26 @@ import org.robovm.apple.metal.*;
     public MPSCNNPoolingNode(MPSNNImageNode sourceNode, @MachineSizedUInt long size) { super((SkipInit) null); initObject(init(sourceNode, size)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "kernelWidth")
+    public native @MachineSizedUInt long getKernelWidth();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "kernelHeight")
+    public native @MachineSizedUInt long getKernelHeight();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "strideInPixelsX")
+    public native @MachineSizedUInt long getStrideInPixelsX();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "strideInPixelsY")
+    public native @MachineSizedUInt long getStrideInPixelsY();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNSpatialNormalizationGradientNode/*</name>*/ 
     extends /*<extends>*/MPSNNGradientFilterNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNSpatialNormalizationGradientNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNSpatialNormalizationGradientNode() {}
+    protected MPSCNNSpatialNormalizationGradientNode() {}
     protected MPSCNNSpatialNormalizationGradientNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNSpatialNormalizationGradientNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSourceGradient:sourceImage:gradientState:kernelSize:")

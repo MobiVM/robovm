@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNPooling/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNPooling.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNPooling() {}
+    public MPSCNNPooling() {}
     protected MPSCNNPooling(Handle h, long handle) { super(h, handle); }
     protected MPSCNNPooling(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
@@ -58,6 +58,8 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     public MPSCNNPooling(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNPooling(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -73,5 +75,7 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNUpsamplingGradient/*</name>*/ 
     extends /*<extends>*/MPSCNNGradientKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,9 +46,13 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNUpsamplingGradient.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNUpsamplingGradient() {}
+    public MPSCNNUpsamplingGradient() {}
     protected MPSCNNUpsamplingGradient(Handle h, long handle) { super(h, handle); }
     protected MPSCNNUpsamplingGradient(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNUpsamplingGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNUpsamplingGradient(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "scaleFactorX")
@@ -58,6 +62,9 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithCoder:device:")
+    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

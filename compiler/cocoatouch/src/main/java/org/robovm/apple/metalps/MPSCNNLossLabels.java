@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNLossLabels/*</name>*/ 
     extends /*<extends>*/MPSState/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,6 +53,19 @@ import org.robovm.apple.metal.*;
     public MPSCNNLossLabels(MTLDevice device, MPSCNNLossDataDescriptor labelsDescriptor) { super((SkipInit) null); initObject(init(device, labelsDescriptor)); }
     @Method(selector = "initWithDevice:lossImageSize:labelsDescriptor:weightsDescriptor:")
     public MPSCNNLossLabels(MTLDevice device, @ByVal MTLSize lossImageSize, MPSCNNLossDataDescriptor labelsDescriptor, MPSCNNLossDataDescriptor weightsDescriptor) { super((SkipInit) null); initObject(init(device, lossImageSize, labelsDescriptor, weightsDescriptor)); }
+    @Method(selector = "initWithDevice:bufferSize:")
+    public MPSCNNLossLabels(MTLDevice device, @MachineSizedUInt long bufferSize) { super((SkipInit) null); initObject(init(device, bufferSize)); }
+    @Method(selector = "initWithDevice:textureDescriptor:")
+    public MPSCNNLossLabels(MTLDevice device, MTLTextureDescriptor descriptor) { super((SkipInit) null); initObject(init(device, descriptor)); }
+    @Method(selector = "initWithResource:")
+    public MPSCNNLossLabels(MTLResource resource) { super((SkipInit) null); initObject(init(resource)); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:resourceList:")
+    public MPSCNNLossLabels(MTLDevice device, MPSStateResourceList resourceList) { super((SkipInit) null); initObject(init(device, resourceList)); }
+    @Method(selector = "initWithResources:")
+    public MPSCNNLossLabels(NSArray<?> resources) { super((SkipInit) null); initObject(init(resources)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -65,5 +78,22 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, @ByVal MTLSize lossImageSize, MPSCNNLossDataDescriptor labelsDescriptor, MPSCNNLossDataDescriptor weightsDescriptor);
     @Method(selector = "lossImage")
     public native MPSImage lossImage();
+    @Method(selector = "labelsImage")
+    public native MPSImage labelsImage();
+    @Method(selector = "weightsImage")
+    public native MPSImage weightsImage();
+    @Method(selector = "initWithDevice:bufferSize:")
+    protected native @Pointer long init(MTLDevice device, @MachineSizedUInt long bufferSize);
+    @Method(selector = "initWithDevice:textureDescriptor:")
+    protected native @Pointer long init(MTLDevice device, MTLTextureDescriptor descriptor);
+    @Method(selector = "initWithResource:")
+    protected native @Pointer long init(MTLResource resource);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:resourceList:")
+    protected native @Pointer long init(MTLDevice device, MPSStateResourceList resourceList);
+    @Method(selector = "initWithResources:")
+    protected native @Pointer long init(NSArray<?> resources);
     /*</methods>*/
 }

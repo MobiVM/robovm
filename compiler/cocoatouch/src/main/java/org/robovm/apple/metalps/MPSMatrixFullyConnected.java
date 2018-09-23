@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixFullyConnected/*</name>*/ 
     extends /*<extends>*/MPSMatrixBinaryKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,6 +53,8 @@ import org.robovm.apple.metal.*;
     public MPSMatrixFullyConnected(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixFullyConnected(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixFullyConnected(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceNumberOfFeatureVectors")
@@ -92,5 +94,7 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     @Method(selector = "copyWithZone:device:")
     public native MPSMatrixFullyConnected copy(NSZone zone, MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

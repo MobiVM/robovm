@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNDilatedPoolingMaxNode/*</name>*/ 
     extends /*<extends>*/MPSNNFilterNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNDilatedPoolingMaxNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNDilatedPoolingMaxNode() {}
+    protected MPSCNNDilatedPoolingMaxNode() {}
     protected MPSCNNDilatedPoolingMaxNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNDilatedPoolingMaxNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:")

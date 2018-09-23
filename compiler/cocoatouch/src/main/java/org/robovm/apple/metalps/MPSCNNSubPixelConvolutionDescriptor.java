@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNSubPixelConvolutionDescriptor/*</name>*/ 
     extends /*<extends>*/MPSCNNConvolutionDescriptor/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,11 @@ import org.robovm.apple.metal.*;
     public MPSCNNSubPixelConvolutionDescriptor() {}
     protected MPSCNNSubPixelConvolutionDescriptor(Handle h, long handle) { super(h, handle); }
     protected MPSCNNSubPixelConvolutionDescriptor(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:")
+    public MPSCNNSubPixelConvolutionDescriptor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "subPixelScaleFactor")
@@ -58,6 +63,10 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

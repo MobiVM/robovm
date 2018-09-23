@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixSoftMax/*</name>*/ 
     extends /*<extends>*/MPSMatrixUnaryKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -59,6 +59,8 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixSoftMax(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixSoftMax(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceRows")
@@ -86,5 +88,7 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     @Method(selector = "copyWithZone:device:")
     public native MPSMatrixSoftMax copy(NSZone zone, MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

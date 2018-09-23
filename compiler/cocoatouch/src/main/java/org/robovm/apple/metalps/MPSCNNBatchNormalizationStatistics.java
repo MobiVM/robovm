@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNBatchNormalizationStatistics/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,6 +53,8 @@ import org.robovm.apple.metal.*;
     public MPSCNNBatchNormalizationStatistics(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNBatchNormalizationStatistics(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNBatchNormalizationStatistics(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -65,5 +67,7 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:batchNormalizationState:")
     public native void encodeBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImages, MPSCNNBatchNormalizationState batchNormalizationState);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

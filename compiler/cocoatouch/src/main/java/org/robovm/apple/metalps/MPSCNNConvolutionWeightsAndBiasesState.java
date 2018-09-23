@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNConvolutionWeightsAndBiasesState/*</name>*/ 
     extends /*<extends>*/MPSState/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNConvolutionWeightsAndBiasesState.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNConvolutionWeightsAndBiasesState() {}
+    protected MPSCNNConvolutionWeightsAndBiasesState() {}
     protected MPSCNNConvolutionWeightsAndBiasesState(Handle h, long handle) { super(h, handle); }
     protected MPSCNNConvolutionWeightsAndBiasesState(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithWeights:biases:")
@@ -54,6 +54,19 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:cnnConvolutionDescriptor:")
     public MPSCNNConvolutionWeightsAndBiasesState(MTLDevice device, MPSCNNConvolutionDescriptor descriptor) { super((SkipInit) null); initObject(init(device, descriptor)); }
     public MPSCNNConvolutionWeightsAndBiasesState(MTLCommandBuffer commandBuffer, MPSCNNConvolutionDescriptor descriptor) { super((Handle) null, create(commandBuffer, descriptor)); retain(getHandle()); }
+    @Method(selector = "initWithDevice:bufferSize:")
+    public MPSCNNConvolutionWeightsAndBiasesState(MTLDevice device, @MachineSizedUInt long bufferSize) { super((SkipInit) null); initObject(init(device, bufferSize)); }
+    @Method(selector = "initWithDevice:textureDescriptor:")
+    public MPSCNNConvolutionWeightsAndBiasesState(MTLDevice device, MTLTextureDescriptor descriptor) { super((SkipInit) null); initObject(init(device, descriptor)); }
+    @Method(selector = "initWithResource:")
+    public MPSCNNConvolutionWeightsAndBiasesState(MTLResource resource) { super((SkipInit) null); initObject(init(resource)); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:resourceList:")
+    public MPSCNNConvolutionWeightsAndBiasesState(MTLDevice device, MPSStateResourceList resourceList) { super((SkipInit) null); initObject(init(device, resourceList)); }
+    @Method(selector = "initWithResources:")
+    public MPSCNNConvolutionWeightsAndBiasesState(NSArray<?> resources) { super((SkipInit) null); initObject(init(resources)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "weights")
@@ -69,5 +82,18 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, MPSCNNConvolutionDescriptor descriptor);
     @Method(selector = "temporaryCNNConvolutionWeightsAndBiasesStateWithCommandBuffer:cnnConvolutionDescriptor:")
     protected static native @Pointer long create(MTLCommandBuffer commandBuffer, MPSCNNConvolutionDescriptor descriptor);
+    @Method(selector = "initWithDevice:bufferSize:")
+    protected native @Pointer long init(MTLDevice device, @MachineSizedUInt long bufferSize);
+    @Method(selector = "initWithDevice:textureDescriptor:")
+    protected native @Pointer long init(MTLDevice device, MTLTextureDescriptor descriptor);
+    @Method(selector = "initWithResource:")
+    protected native @Pointer long init(MTLResource resource);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:resourceList:")
+    protected native @Pointer long init(MTLDevice device, MPSStateResourceList resourceList);
+    @Method(selector = "initWithResources:")
+    protected native @Pointer long init(NSArray<?> resources);
     /*</methods>*/
 }

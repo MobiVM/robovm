@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNReduceUnary/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,9 +46,16 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSNNReduceUnary.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSNNReduceUnary() {}
+    public MPSNNReduceUnary() {}
     protected MPSNNReduceUnary(Handle h, long handle) { super(h, handle); }
     protected MPSNNReduceUnary(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSNNReduceUnary(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSNNReduceUnary(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "clipRectSource")
@@ -58,6 +65,12 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

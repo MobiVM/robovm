@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixBinaryKernel/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,15 @@ import org.robovm.apple.metal.*;
     public MPSMatrixBinaryKernel() {}
     protected MPSMatrixBinaryKernel(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixBinaryKernel(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:")
+    public MPSMatrixBinaryKernel(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixBinaryKernel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSMatrixBinaryKernel(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primarySourceMatrixOrigin")
@@ -74,6 +83,14 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithDevice:")
+    protected native @Pointer long initWithDevice(MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     /*</methods>*/
 }

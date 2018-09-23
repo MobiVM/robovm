@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNBinaryArithmeticNode/*</name>*/ 
     extends /*<extends>*/MPSNNFilterNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSNNBinaryArithmeticNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSNNBinaryArithmeticNode() {}
+    protected MPSNNBinaryArithmeticNode() {}
     protected MPSNNBinaryArithmeticNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNBinaryArithmeticNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSources:")

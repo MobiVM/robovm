@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixSolveTriangular/*</name>*/ 
     extends /*<extends>*/MPSMatrixBinaryKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,6 +51,15 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixSolveTriangular(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:right:upper:transpose:unit:order:numberOfRightHandSides:alpha:")
     public MPSMatrixSolveTriangular(MTLDevice device, boolean right, boolean upper, boolean transpose, boolean unit, @MachineSizedUInt long order, @MachineSizedUInt long numberOfRightHandSides, double alpha) { super((SkipInit) null); initObject(init(device, right, upper, transpose, unit, order, numberOfRightHandSides, alpha)); }
+    @Method(selector = "initWithDevice:")
+    public MPSMatrixSolveTriangular(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixSolveTriangular(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSMatrixSolveTriangular(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -61,5 +70,14 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, boolean right, boolean upper, boolean transpose, boolean unit, @MachineSizedUInt long order, @MachineSizedUInt long numberOfRightHandSides, double alpha);
     @Method(selector = "encodeToCommandBuffer:sourceMatrix:rightHandSideMatrix:solutionMatrix:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix sourceMatrix, MPSMatrix rightHandSideMatrix, MPSMatrix solutionMatrix);
+    @Method(selector = "initWithDevice:")
+    protected native @Pointer long initWithDevice(MTLDevice device);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     /*</methods>*/
 }

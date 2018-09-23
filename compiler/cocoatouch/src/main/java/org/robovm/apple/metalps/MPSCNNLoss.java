@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNLoss/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,15 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNLoss.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNLoss() {}
+    public MPSCNNLoss() {}
     protected MPSCNNLoss(Handle h, long handle) { super(h, handle); }
     protected MPSCNNLoss(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:lossDescriptor:")
     public MPSCNNLoss(MTLDevice device, MPSCNNLossDescriptor lossDescriptor) { super((SkipInit) null); initObject(init(device, lossDescriptor)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNLoss(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNLoss(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lossType")
@@ -84,5 +86,7 @@ import org.robovm.apple.metal.*;
     public native void encodeBatchLabels(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray <MPSCNNLossLabels> labels, NSArray<MPSImage> destinationImage);
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:labels:")
     public native NSArray<MPSImage> encodeBatchLabels(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray <MPSCNNLossLabels> labels);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

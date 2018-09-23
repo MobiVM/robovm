@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSTemporaryVector/*</name>*/ 
     extends /*<extends>*/MPSVector/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -50,6 +50,11 @@ import org.robovm.apple.metal.*;
     protected MPSTemporaryVector(Handle h, long handle) { super(h, handle); }
     protected MPSTemporaryVector(SkipInit skipInit) { super(skipInit); }
     public MPSTemporaryVector(MTLCommandBuffer commandBuffer, MPSVectorDescriptor descriptor) { super((Handle) null, create(commandBuffer, descriptor)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:descriptor:")
+    public MPSTemporaryVector(MTLDevice device, MPSVectorDescriptor descriptor) { super((SkipInit) null); initObject(init(device, descriptor)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "readCount")
@@ -63,5 +68,10 @@ import org.robovm.apple.metal.*;
     protected static native @Pointer long create(MTLCommandBuffer commandBuffer, MPSVectorDescriptor descriptor);
     @Method(selector = "prefetchStorageWithCommandBuffer:descriptorList:")
     public static native void createPrefetchStorage(MTLCommandBuffer commandBuffer, NSArray<MPSVectorDescriptor> descriptorList);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:descriptor:")
+    protected native @Pointer long init(MTLDevice device, MPSVectorDescriptor descriptor);
     /*</methods>*/
 }
