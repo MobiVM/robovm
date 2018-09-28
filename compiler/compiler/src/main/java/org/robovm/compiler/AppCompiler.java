@@ -16,27 +16,6 @@
  */
 package org.robovm.compiler;
 
-import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
-import java.util.UUID;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -57,13 +36,17 @@ import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.TargetPlugin;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.LaunchParameters;
-import org.robovm.compiler.target.ios.DeviceType;
-import org.robovm.compiler.target.ios.IOSSimulatorLaunchParameters;
-import org.robovm.compiler.target.ios.IOSTarget;
-import org.robovm.compiler.target.ios.ProvisioningProfile;
-import org.robovm.compiler.target.ios.SigningIdentity;
+import org.robovm.compiler.target.ios.*;
 import org.robovm.compiler.util.AntPathMatcher;
 import org.simpleframework.xml.Serializer;
+
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.concurrent.*;
 
 /**
  *
@@ -503,6 +486,18 @@ public class AppCompiler {
                 writer.write("\n");
             }
         }
+
+        // Persisting the config for later comparison
+        File configFile = new File(config.getTmpDir(), "config.xml");
+        try (FileOutputStream output = new FileOutputStream(configFile)) {
+            try {
+                IOUtils.write(configToXml(config), output, StandardCharsets.UTF_8.toString());
+            } catch (Exception e) {
+                config.getLogger().error("Error when computing config's equality. " +
+                        "Forcing recompilation: %s:%s", e.getClass().getSimpleName(), e.getMessage());
+            }
+        }
+
     }
 
     /**
@@ -515,6 +510,7 @@ public class AppCompiler {
     private boolean needsRecompilation(Config config) throws IOException {
         //User can force clean via command line
         if (config.isClean()) {
+            config.getLogger().info("Config requires clean, rebuilding.");
             return true;
         }
 
@@ -522,8 +518,12 @@ public class AppCompiler {
         File classPathsFile = new File(config.getTmpDir(), CLASSPATHS_FILENAME);
         File binaryFile = new File(config.getTmpDir(), "Main");
 
-        if (!classPathsFile.exists() || !binaryFile.exists()) {
-            //There is no persisted information or Main binary - let's compile
+        if (!classPathsFile.exists()) {
+            config.getLogger().info("Dependency info was not found, compilation is required.");
+            return true;
+        }
+        if(!binaryFile.exists()){
+            config.getLogger().info("Main binary was not found, compilation is required.");
             return true;
         }
 
@@ -535,6 +535,7 @@ public class AppCompiler {
                 File classPathFile = new File(readLine);
                 // class was removed or is newer?
                 if (!classPathFile.exists() || classPathFile.lastModified() > binaryFileModified) {
+                    config.getLogger().info("Found modified file, compilation is required: %s", classPathFile);
                     return true;
                 }
             }
@@ -543,28 +544,15 @@ public class AppCompiler {
         //Has the configuration changed between runs (e.g. forcelink)?
         boolean configsEqual;
         try {
-            //Writing the configuration as XML with SimpleXML
-
-            Serializer serializer = Config.Builder.createSerializer(config, config.getTmpDir());
-            StringWriter writer = new StringWriter();
-            serializer.write(this.config, writer);
-            String xml = writer.toString();
-            //In debug mode, there is a random port number used - strip this for comparability
-            xml = xml.replaceAll("<argument>debug:jdwpport=\\d*?</argument>", "<argument>debug:jdwpport=REMOVED</argument>");
-
             //If there has been a previous run, we have a corresponding file with the previous MD5
             File configFile = new File(config.getTmpDir(), "config.xml");
             if (configFile.exists()) {
                 String previousConfig = FileUtils.readFileToString(configFile, StandardCharsets.UTF_8.toString());
-                configsEqual = xml.equals(previousConfig);
+                //Writing the configuration as XML with SimpleXML
+                configsEqual = configToXml(config).equals(previousConfig);
             } else {
+                config.getLogger().info("Could not find a config.xml file, compilation is required.");
                 configsEqual = false;
-            }
-            // Needs only to be written, if there is a new value.
-            if (!configsEqual) {
-                try (FileOutputStream output = new FileOutputStream(configFile)) {
-                    IOUtils.write(xml, output, StandardCharsets.UTF_8.toString());
-                }
             }
         } catch (Exception e) {
             config.getLogger().error("Error when computing config's equality. " +
@@ -572,8 +560,21 @@ public class AppCompiler {
             configsEqual = false;
         }
 
+        if (!configsEqual) {
+            config.getLogger().info("Configurations differ, compilation is required.");
+        }
         //recompile, if configs are not equal
         return !configsEqual;
+    }
+
+    private String configToXml(Config config) throws Exception {
+        Serializer serializer = Config.Builder.createSerializer(config, config.getTmpDir());
+        StringWriter writer = new StringWriter();
+        serializer.write(this.config, writer);
+        String xml = writer.toString();
+        //In debug mode, there is a random port number used - strip this for comparability
+        xml = xml.replaceAll("<argument>debug:jdwpport=\\d*?</argument>", "<argument>debug:jdwpport=REMOVED</argument>");
+        return xml;
     }
 
     public static void main(String[] args) throws IOException {
