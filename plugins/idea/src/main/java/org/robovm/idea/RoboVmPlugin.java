@@ -64,6 +64,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -100,6 +102,11 @@ public class RoboVmPlugin {
     static volatile Map<Project, ToolWindow> toolWindows = new ConcurrentHashMap<>();
     static volatile Map<Project, VirtualFileListener> fileListeners = new ConcurrentHashMap<>();
     static final List<UnprintedMessage> unprintedMessages = new ArrayList<UnprintedMessage>();
+
+    /**
+     * Formatter for the time stamp printed by the logger
+     */
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss.SSS ");
 
     public static OS getOs() {
         return os;
@@ -223,12 +230,16 @@ public class RoboVmPlugin {
         });
     }
 
+    private static String getNowString() {
+        return LocalDateTime.now().format(formatter);
+    }
+
     public static void logInfo(Project project, String format, Object... args) {
-        log(project, ConsoleViewContentType.SYSTEM_OUTPUT, "[INFO] " + format, args);
+        log(project, ConsoleViewContentType.SYSTEM_OUTPUT, "[INFO] " + getNowString() + format, args);
     }
 
     public static void logError(Project project, String format, Object... args) {
-        log(project, ConsoleViewContentType.ERROR_OUTPUT, "[ERROR] " + format, args);
+        log(project, ConsoleViewContentType.ERROR_OUTPUT, "[ERROR] " + getNowString() + format, args);
     }
 
     public static void logErrorThrowable(Project project, String s, Throwable t, boolean showBalloon) {
@@ -240,11 +251,11 @@ public class RoboVmPlugin {
     }
 
     public static void logWarn(Project project, String format, Object... args) {
-        log(project, ConsoleViewContentType.ERROR_OUTPUT, "[WARNING] " + format, args);
+        log(project, ConsoleViewContentType.ERROR_OUTPUT, "[WARNING] " + getNowString() + format, args);
     }
 
     public static void logDebug(Project project, String format, Object... args) {
-        log(project, ConsoleViewContentType.NORMAL_OUTPUT, "[DEBUG] " + format, args);
+        log(project, ConsoleViewContentType.NORMAL_OUTPUT, "[DEBUG] " + getNowString() + format, args);
     }
 
     private static void log(final Project project, final ConsoleViewContentType type, String format, Object... args) {

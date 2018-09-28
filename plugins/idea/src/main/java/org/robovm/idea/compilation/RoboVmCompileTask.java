@@ -33,7 +33,6 @@ import com.intellij.openapi.roots.OrderRootsEnumerator;
 import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.util.Computable;
 import org.apache.commons.exec.CommandLine;
-import org.apache.commons.io.FileUtils;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
@@ -262,9 +261,9 @@ public class RoboVmCompileTask implements CompileTask {
             configureTarget(builder, runConfig);
 
             // clean build dir
-            RoboVmPlugin.logInfo(context.getProject(), "Cleaning output dir " + buildDir.getAbsolutePath());
-            FileUtils.deleteDirectory(buildDir);
-            buildDir.mkdirs();
+            //RoboVmPlugin.logInfo(context.getProject(), "Cleaning output dir " + buildDir.getAbsolutePath());
+            //FileUtils.deleteDirectory(buildDir);
+            //buildDir.mkdirs();
 
             // Set the Home to be used, create the Config and AppCompiler
             Config.Home home = RoboVmPlugin.getRoboVmHome();
