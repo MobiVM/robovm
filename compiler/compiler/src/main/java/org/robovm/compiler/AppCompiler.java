@@ -16,16 +16,11 @@
  */
 package org.robovm.compiler;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -48,9 +43,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.robovm.compiler.clazz.Clazz;
-import org.robovm.compiler.clazz.Clazzes;
-import org.robovm.compiler.clazz.Path;
+import org.robovm.compiler.clazz.*;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.TreeShakerMode;
@@ -70,12 +63,18 @@ import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.compiler.util.AntPathMatcher;
+import org.simpleframework.xml.Serializer;
 
 /**
  *
  * @version $Id$
  */
 public class AppCompiler {
+
+    /**
+     * Name of the file that contains the dependencies between classpath and Main binary
+     */
+    public static final String CLASSPATHS_FILENAME = "classpath_dependencies.txt";
 
     /**
      * Names of root classes. These classes will always be linked in. These are
@@ -449,23 +448,132 @@ public class AppCompiler {
     private void compile() throws IOException {
         updateCheck();
 
-        Set<Clazz> linkClasses = compile(getRootClasses(), true, null);
+        //Let's look, if we really need to recompile
+        if (needsRecompilation(config)) {
 
-        if (Thread.currentThread().isInterrupted()) {
-            return;
+            Set<Clazz> linkClasses = compile(getRootClasses(), true, null);
+
+            if (Thread.currentThread().isInterrupted()) {
+                return;
+            }
+
+            if (linkClasses.contains(config.getClazzes().load(TRUSTED_CERTIFICATE_STORE_CLASS))) {
+                if (config.getCacerts() != null) {
+                    config.addResourcesPath(config.getClazzes().createResourcesBootclasspathPath(
+                            config.getHome().getCacertsPath(config.getCacerts())));
+                }
+            }
+
+            long start = System.currentTimeMillis();
+            linker.link(linkClasses);
+            long duration = System.currentTimeMillis() - start;
+            config.getLogger().info("Linked %d classes in %.2f seconds", linkClasses.size(), duration / 1000.0);
+
+            storeRecompileInfo(config, linkClasses);
+
+        } else {
+            config.getLogger().info("No classes were modified. Skipping AOT compilation and linking.");
         }
+    }
 
-        if (linkClasses.contains(config.getClazzes().load(TRUSTED_CERTIFICATE_STORE_CLASS))) {
-            if (config.getCacerts() != null) {
-                config.addResourcesPath(config.getClazzes().createResourcesBootclasspathPath(
-                        config.getHome().getCacertsPath(config.getCacerts())));
+    /**
+     * Write the classpaths file that contains a list of class and jar files that were input for the Main binary
+     *
+     * @param classPathsFile
+     * @param linkClasses
+     * @throws IOException
+     */
+    private void storeRecompileInfo(Config config, Set<Clazz> linkClasses) throws IOException {
+        File classPathsFile = new File(config.getTmpDir(), CLASSPATHS_FILENAME);
+        Set<String> paths = new HashSet<>();
+        for (Clazz clazz : linkClasses) {
+            Path path = clazz.getPath();
+            if (path instanceof ZipFilePath) {
+                // comes from a jar - let's consider the jar only.
+                paths.add(path.toString());
+            } else {
+                //is a single class file either in the output dir or in robovm's cache, need to access the real file
+                paths.add(((DirectoryPath.DirectoryPathClazz) clazz).getClassFile().getAbsolutePath());
             }
         }
 
-        long start = System.currentTimeMillis();
-        linker.link(linkClasses);
-        long duration = System.currentTimeMillis() - start;
-        config.getLogger().info("Linked %d classes in %.2f seconds", linkClasses.size(), duration / 1000.0);
+        try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(classPathsFile), StandardCharsets.UTF_8)) {
+            for (String path : paths) {
+                writer.write(path);
+                writer.write("\n");
+            }
+        }
+    }
+
+    /**
+     * Checks, whether recompilation of the Main binary is necessary by looking at the classPathsFile
+     *
+     * @param classPathsFile
+     * @return
+     * @throws IOException
+     */
+    private boolean needsRecompilation(Config config) throws IOException {
+        //User can force clean via command line
+        if (config.isClean()) {
+            return true;
+        }
+
+        //Check for newer input files compared to Main binary
+        File classPathsFile = new File(config.getTmpDir(), CLASSPATHS_FILENAME);
+        File binaryFile = new File(config.getTmpDir(), "Main");
+
+        if (!classPathsFile.exists() || !binaryFile.exists()) {
+            //There is no persisted information or Main binary - let's compile
+            return true;
+        }
+
+        //Compare the modification dates of all classes / jars that were linked during the last run with the binary
+        long binaryFileModified = binaryFile.lastModified();
+        try (BufferedReader b = new BufferedReader(new FileReader(classPathsFile))) {
+            String readLine = "";
+            while ((readLine = b.readLine()) != null) {
+                File classPathFile = new File(readLine);
+                // class was removed or is newer?
+                if (!classPathFile.exists() || classPathFile.lastModified() > binaryFileModified) {
+                    return true;
+                }
+            }
+        }
+
+        //Has the configuration changed between runs (e.g. forcelink)?
+        boolean configsEqual;
+        try {
+            //Writing the configuration as XML with SimpleXML
+
+            Serializer serializer = Config.Builder.createSerializer(config, config.getTmpDir());
+            StringWriter writer = new StringWriter();
+            serializer.write(this.config, writer);
+            String xml = writer.toString();
+            //In debug mode, there is a random port number used - strip this for comparability
+            xml = xml.replaceAll("<argument>debug:jdwpport=\\d*?</argument>", "<argument>debug:jdwpport=REMOVED</argument>");
+
+            //If there has been a previous run, we have a corresponding file with the previous MD5
+            File configFile = new File(config.getTmpDir(), "config.xml");
+            if (configFile.exists()) {
+                String previousConfig = FileUtils.readFileToString(configFile, StandardCharsets.UTF_8.toString());
+                configsEqual = xml.equals(previousConfig);
+            } else {
+                configsEqual = false;
+            }
+            // Needs only to be written, if there is a new value.
+            if (!configsEqual) {
+                try (FileOutputStream output = new FileOutputStream(configFile)) {
+                    IOUtils.write(xml, output, StandardCharsets.UTF_8.toString());
+                }
+            }
+        } catch (Exception e) {
+            config.getLogger().error("Error when computing config's equality. " +
+                    "Forcing recompilation: %s:%s", e.getClass().getSimpleName(), e.getMessage());
+            configsEqual = false;
+        }
+
+        //recompile, if configs are not equal
+        return !configsEqual;
     }
 
     public static void main(String[] args) throws IOException {

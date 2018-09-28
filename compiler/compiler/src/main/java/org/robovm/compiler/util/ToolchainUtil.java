@@ -253,6 +253,10 @@ public class ToolchainUtil {
             }
         }
 
+        //Prepares for incremental build - not applied at this time.
+        opts.add("--export-dependency-info");
+        opts.add(config.getTmpDir().getAbsolutePath() + "/assetcatalog_dependencies");
+
         new Executor(config.getLogger(), getACTool()).args("--output-format", "human-readable-text", opts,
                 "--minimum-deployment-target", minOSVersion, "--target-device", "iphone", "--target-device", "ipad",
                 "--compress-pngs", "--compile", outDir, inDir).exec();

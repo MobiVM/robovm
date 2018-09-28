@@ -1661,7 +1661,7 @@ public class Config {
 
         public void read(Reader reader, File wd) throws IOException {
             try {
-                Serializer serializer = createSerializer(wd);
+                Serializer serializer = createSerializer(config, wd);
                 serializer.read(config, reader);
             } catch (IOException e) {
                 throw e;
@@ -1694,7 +1694,7 @@ public class Config {
 
         public void write(Writer writer, File wd) throws IOException {
             try {
-                Serializer serializer = createSerializer(wd);
+                Serializer serializer = createSerializer(config, wd);
                 serializer.write(config, writer);
             } catch (IOException e) {
                 throw e;
@@ -1705,7 +1705,7 @@ public class Config {
             }
         }
 
-        private Serializer createSerializer(final File wd) throws Exception {
+        public static Serializer createSerializer(Config config, final File wd) throws Exception {
             RelativeFileConverter fileConverter = new RelativeFileConverter(wd);
 
             Serializer resourceSerializer = new Persister(

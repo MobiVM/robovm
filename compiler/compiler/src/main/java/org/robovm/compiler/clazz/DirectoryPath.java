@@ -87,7 +87,7 @@ public class DirectoryPath extends AbstractPath {
         return hasChangedSince(file, timestamp);
     }
     
-    static class DirectoryPathClazz extends Clazz {
+    public static class DirectoryPathClazz extends Clazz {
         private final File f;
         private byte[] bytes = null;
         
@@ -103,6 +103,10 @@ public class DirectoryPath extends AbstractPath {
                 bytes = FileUtils.readFileToByteArray(f);
             }
             return bytes;
+        }
+
+        public File getClassFile(){
+            return f;
         }
         
         public long lastModified() {
