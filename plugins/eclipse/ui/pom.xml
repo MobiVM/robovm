@@ -13,7 +13,7 @@
   <packaging>eclipse-plugin</packaging>
 
   <properties>
-    <robovm.version>2.3.5-SNAPSHOT</robovm.version>
+    <robovm.version>2.3.6-SNAPSHOT</robovm.version>
   </properties>
 
   <dependencyManagement>
