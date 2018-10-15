@@ -128,6 +128,20 @@
                 </dependency>
                 <dependency>
                     <groupId>org.jetbrains.plugin</groupId>
+                    <artifactId>gradle-common</artifactId>
+                    <version>1.0.0</version>
+                    <scope>system</scope>
+                    <systemPath>${idea.home}/plugins/gradle/lib/gradle-common.jar</systemPath>
+                </dependency>
+                <dependency>
+                    <groupId>org.jetbrains.plugin</groupId>
+                    <artifactId>gradle-java</artifactId>
+                    <version>1.0.0</version>
+                    <scope>system</scope>
+                    <systemPath>${idea.home}/plugins/gradle/lib/gradle-java.jar</systemPath>
+                </dependency>
+                <dependency>
+                    <groupId>org.jetbrains.plugin</groupId>
                     <artifactId>maven</artifactId>
                     <version>1.0.0</version>
                     <scope>system</scope>
@@ -173,14 +187,14 @@
                     <artifactId>slf4j-idea-api</artifactId>
                     <version>1.0.0</version>
                     <scope>system</scope>
-                    <systemPath>${idea.home}/lib/slf4j-api-1.7.10.jar</systemPath>
+                    <systemPath>${idea.home}/lib/slf4j-api-1.7.25.jar</systemPath>
                 </dependency>
                 <dependency>
                     <groupId>org.jetbrains.plugin</groupId>
                     <artifactId>slf4j-idea-log4j12</artifactId>
                     <version>1.0.0</version>
                     <scope>system</scope>
-                    <systemPath>${idea.home}/lib/slf4j-log4j12-1.7.10.jar</systemPath>
+                    <systemPath>${idea.home}/lib/slf4j-log4j12-1.7.25.jar</systemPath>
                 </dependency>
             </dependencies>
         </profile>

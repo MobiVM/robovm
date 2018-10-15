@@ -27,6 +27,7 @@ import org.apache.maven.wagon.providers.http.HttpWagon;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.GradleException;
 import org.gradle.api.Project;
+import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.api.tasks.TaskAction;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
@@ -221,7 +222,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         builder.clearClasspathEntries();
 
         // configure the runtime classpath
-        Set<File> classpathEntries = project.getConfigurations().getByName("runtime").getFiles();
+        Set<File> classpathEntries = project.getConfigurations().getByName(JavaPlugin.RUNTIME_CLASSPATH_CONFIGURATION_NAME).getFiles();
         classpathEntries.add(new File(project.getBuildDir(), "classes/main"));
         classpathEntries.add(new File(project.getBuildDir(), "classes/java/main"));
         classpathEntries.add(new File(project.getBuildDir(), "classes/groovy/main"));

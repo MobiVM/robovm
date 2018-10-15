@@ -140,6 +140,8 @@ public class Config {
     private ArrayList<String> roots;
     @ElementList(required = false, entry = "pattern")
     private ArrayList<String> forceLinkClasses;
+    @ElementList(required = false, entry = "entry")
+    private ArrayList<ForceLinkMethodsConfig> forceLinkMethods;
     @ElementList(required = false, entry = "lib")
     private ArrayList<Lib> libs;
     @ElementList(required = false, entry = "symbol")
@@ -387,6 +389,11 @@ public class Config {
     public List<String> getForceLinkClasses() {
         return forceLinkClasses == null ? Collections.<String> emptyList()
                 : Collections.unmodifiableList(forceLinkClasses);
+    }
+
+    public List<ForceLinkMethodsConfig> getForceLinkMethods() {
+        return forceLinkMethods == null ? Collections.<ForceLinkMethodsConfig> emptyList()
+                : Collections.unmodifiableList(forceLinkMethods);
     }
 
     public List<String> getExportedSymbols() {
@@ -727,6 +734,7 @@ public class Config {
         to.exportedSymbols = mergeLists(from.exportedSymbols, to.exportedSymbols);
         to.unhideSymbols = mergeLists(from.unhideSymbols, to.unhideSymbols);
         to.forceLinkClasses = mergeLists(from.forceLinkClasses, to.forceLinkClasses);
+        to.forceLinkMethods = mergeLists(from.forceLinkMethods, to.forceLinkMethods);
         to.frameworkPaths = mergeLists(from.frameworkPaths, to.frameworkPaths);
         to.frameworks = mergeLists(from.frameworks, to.frameworks);
         to.libs = mergeLists(from.libs, to.libs);
@@ -763,6 +771,7 @@ public class Config {
         this.exportedSymbols = config.exportedSymbols;
         this.unhideSymbols = config.unhideSymbols;
         this.forceLinkClasses = config.forceLinkClasses;
+        this.forceLinkMethods = config.forceLinkMethods;
         this.frameworkPaths = config.frameworkPaths;
         this.frameworks = config.frameworks;
         this.libs = config.libs;
