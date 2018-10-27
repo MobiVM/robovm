@@ -242,7 +242,23 @@ public final class Unsafe {
      */
     public native int getInt(Object obj, long offset);
 
+    /**
+     * Gets a <code>boolean</code> field from the given object.
+     *
+     * @param obj non-null; object containing the field
+     * @param offset offset to the field within <code>obj</code>
+     * @return the retrieved value
+     */
     public native boolean getBoolean(Object obj, long offset);
+
+    /**
+     * Gets a <code>byte</code> field from the given object.
+     *
+     * @param obj non-null; object containing the field
+     * @param offset offset to the field within <code>obj</code>
+     * @return the retrieved value
+     */
+    public native byte getByte(Object obj, long offset);
 
     /**
      * Stores an <code>int</code> field into the given object.
@@ -253,7 +269,23 @@ public final class Unsafe {
      */
     public native void putInt(Object obj, long offset, int newValue);
 
+    /**
+     * Stores a <code>boolean</code> field into the given object.
+     *
+     * @param obj non-null; object containing the field
+     * @param offset offset to the field within <code>obj</code>
+     * @param newValue the value to store
+     */
     public native void putBoolean(Object obj, long offset, boolean newValue);
+
+    /**
+     * Stores a <code>byte</code> field into the given object.
+     *
+     * @param obj non-null; object containing the field
+     * @param offset offset to the field within <code>obj</code>
+     * @param newValue the value to store
+     */
+    public native void putByte(Object obj, long offset, byte newValue);
 
     /**
      * Gets an <code>float</code> field from the given object.
