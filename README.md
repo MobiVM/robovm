@@ -1,7 +1,7 @@
 # RoboVM 
 
 
-[![Build Status](http://144.76.220.132:8080/buildStatus/icon?job=robovm-oss&.png)](http://144.76.220.132:8080/job/robovm-oss/)
+[![Build Status](https://libgdx.badlogicgames.com/jenkins/buildStatus/icon?job=robovm-oss&.png)](https://libgdx.badlogicgames.com/jenkins/job/robovm-oss/)
 
 [**Website**](http://robovm.mobidevelop.com) -
 [**Developer Guide**](https://github.com/MobiVM/robovm/wiki/Developer-Guide) -
