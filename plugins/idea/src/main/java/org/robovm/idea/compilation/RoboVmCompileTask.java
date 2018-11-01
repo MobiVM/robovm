@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2015 RoboVM AB
+ * Copyright (C) 2018 Daniel Thommes, NeverNull GmbH, <daniel.thommes@nevernull.io>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
