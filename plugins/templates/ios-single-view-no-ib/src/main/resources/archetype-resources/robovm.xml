@@ -12,4 +12,6 @@
             <directory>resources</directory>
         </resource>
     </resources>
+    <!-- Set to 'true' to trigger compilation and linking depending on changes in IDEA -->
+    <smartCompile>false</smartCompile>
 </config>

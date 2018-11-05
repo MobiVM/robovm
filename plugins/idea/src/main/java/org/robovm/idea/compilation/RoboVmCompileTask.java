@@ -34,6 +34,7 @@ import com.intellij.openapi.roots.OrderRootsEnumerator;
 import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.util.Computable;
 import org.apache.commons.exec.CommandLine;
+import org.apache.commons.io.FileUtils;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
@@ -261,11 +262,6 @@ public class RoboVmCompileTask implements CompileTask {
             configureDebugging(builder, runConfig, module);
             configureTarget(builder, runConfig);
 
-            // clean build dir
-            //RoboVmPlugin.logInfo(context.getProject(), "Cleaning output dir " + buildDir.getAbsolutePath());
-            //FileUtils.deleteDirectory(buildDir);
-            //buildDir.mkdirs();
-
             // Set the Home to be used, create the Config and AppCompiler
             Config.Home home = RoboVmPlugin.getRoboVmHome();
             if(home.isDev()) {
@@ -281,6 +277,14 @@ public class RoboVmCompileTask implements CompileTask {
             builder.manuallyPreparedForLaunch(true);
 
             Config config = builder.build();
+
+            // clean build dir if smartCompile is disabled
+            if(!config.isSmartCompile()){
+                RoboVmPlugin.logInfo(context.getProject(), "Cleaning output dir " + buildDir.getAbsolutePath());
+                FileUtils.deleteDirectory(buildDir);
+                buildDir.mkdirs();
+            }
+
             AppCompiler compiler = new AppCompiler(config);
             if(progress.isCanceled()) {
                 RoboVmPlugin.logInfo(context.getProject(), "Build canceled");

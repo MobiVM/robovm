@@ -518,7 +518,7 @@ public class AppCompiler {
             storeRecompileInfo(config, linkClasses);
 
         } else {
-            config.getLogger().info("No classes were modified. Skipping AOT compilation and linking.");
+            config.getLogger().info("No classes were modified. Skipping compilation and linking.");
         }
     }
 
@@ -571,6 +571,12 @@ public class AppCompiler {
      * @throws IOException
      */
     private boolean needsRecompilation(Config config) throws IOException {
+        if (!config.isSmartCompile()) {
+            config.getLogger().info("Rebuilding because smart compilation is disabled. Enable it by adding " +
+                    "<smartCompile>true</smartCompile> to your robovm.xml file.");
+            return true;
+        }
+
         //User can force clean via command line
         if (config.isClean()) {
             config.getLogger().info("Config requires clean, rebuilding.");
@@ -607,7 +613,7 @@ public class AppCompiler {
         //Has the configuration changed between runs (e.g. forcelink)?
         boolean configsEqual;
         try {
-            //If there has been a previous run, we have a corresponding file with the previous MD5
+            //If there has been a previous run, we have a corresponding file
             File configFile = new File(config.getTmpDir(), "config.xml");
             if (configFile.exists()) {
                 String previousConfig = FileUtils.readFileToString(configFile, StandardCharsets.UTF_8.toString());
@@ -637,6 +643,8 @@ public class AppCompiler {
         String xml = writer.toString();
         //In debug mode, there is a random port number used - strip this for comparability
         xml = xml.replaceAll("<argument>debug:jdwpport=\\d*?</argument>", "<argument>debug:jdwpport=REMOVED</argument>");
+        //Remove smartCompile info, as switching smartCompile on will result in differing configs otherwise
+        xml = xml.replaceAll("<smartCompile>.*?</smartCompile>", "");
         return xml;
     }
 
