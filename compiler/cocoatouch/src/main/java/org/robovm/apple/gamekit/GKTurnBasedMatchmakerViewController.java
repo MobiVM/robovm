@@ -60,7 +60,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithCoder:")
     public GKTurnBasedMatchmakerViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     @Method(selector = "initWithMatchRequest:")
-    public GKTurnBasedMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(initWithMatchRequest(request)); }
+    public GKTurnBasedMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(init(request)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "turnBasedMatchmakerDelegate")
@@ -86,6 +86,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "initWithMatchRequest:")
-    protected native @Pointer long initWithMatchRequest(GKMatchRequest request);
+    protected native @Pointer long init(GKMatchRequest request);
     /*</methods>*/
 }

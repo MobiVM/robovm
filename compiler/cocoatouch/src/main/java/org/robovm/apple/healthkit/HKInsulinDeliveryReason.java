@@ -38,8 +38,8 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/HKInsulinDeliveryReason/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    asal(1L),
-    olus(2L);
+    Basal(1L),
+    Bolus(2L);
     /*</values>*/
 
     /*<bind>*/

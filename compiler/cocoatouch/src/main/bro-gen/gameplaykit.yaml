@@ -463,6 +463,8 @@ classes:
         methods:
             '-setWeight:forBehavior:':
                 name: setWeightforBehavior
+            '-objectAtIndexedSubscript:':
+                name: getBehaviour
             '-setObject:forKeyedSubscript:':
                 name: setObjectforKeyedSubscript
             '+behaviorWithBehaviors:':

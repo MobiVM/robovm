@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixFullyConnectedGradient(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixFullyConnectedGradient(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixFullyConnectedGradient(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSMatrixFullyConnectedGradient(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixFullyConnectedGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
@@ -77,7 +77,7 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "encodeGradientForDataToCommandBuffer:gradientMatrix:weightMatrix:resultGradientForDataMatrix:")
     public native void encodeGradient(MTLCommandBuffer commandBuffer, MPSMatrix gradientMatrix, MPSMatrix weightMatrix, MPSMatrix resultGradientForDataMatrix);
     @Method(selector = "encodeGradientForWeightsAndBiasToCommandBuffer:gradientMatrix:inputMatrix:resultGradientForWeightMatrix:resultGradientForBiasVector:")

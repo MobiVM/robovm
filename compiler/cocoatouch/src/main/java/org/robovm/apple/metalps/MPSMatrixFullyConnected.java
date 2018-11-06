@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixFullyConnected(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixFullyConnected(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixFullyConnected(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSMatrixFullyConnected(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixFullyConnected(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
@@ -87,7 +87,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "neuronParameterC")
     public native float neuronParameterC();
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:inputMatrix:weightMatrix:biasVector:resultMatrix:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix inputMatrix, MPSMatrix weightMatrix, MPSVector biasVector, MPSMatrix resultMatrix);
     @Method(selector = "initWithCoder:device:")

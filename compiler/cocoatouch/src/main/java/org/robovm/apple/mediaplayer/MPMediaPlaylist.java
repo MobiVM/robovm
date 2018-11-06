@@ -50,7 +50,7 @@ import org.robovm.apple.coregraphics.*;
     protected MPMediaPlaylist(Handle h, long handle) { super(h, handle); }
     protected MPMediaPlaylist(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithItems:")
-    public MPMediaPlaylist(NSArray<MPMediaItem> items) { super((SkipInit) null); initObject(initWithItems(items)); }
+    public MPMediaPlaylist(NSArray<MPMediaItem> items) { super((SkipInit) null); initObject(init(items)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -126,6 +126,6 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "addMediaItems:completionHandler:")
     public native void addMediaItems(NSArray<MPMediaItem> mediaItems, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "initWithItems:")
-    protected native @Pointer long initWithItems(NSArray<MPMediaItem> items);
+    protected native @Pointer long init(NSArray<MPMediaItem> items);
     /*</methods>*/
 }

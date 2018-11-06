@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixBatchNormalization(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixBatchNormalization(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixBatchNormalization(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSMatrixBatchNormalization(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixBatchNormalization(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
@@ -87,7 +87,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "neuronParameterC")
     public native float neuronParameterC();
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:inputMatrix:meanVector:varianceVector:gammaVector:betaVector:resultMatrix:")
     public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSMatrix inputMatrix, MPSVector meanVector, MPSVector varianceVector, MPSVector gammaVector, MPSVector betaVector, MPSMatrix resultMatrix);
     @Method(selector = "initWithCoder:device:")

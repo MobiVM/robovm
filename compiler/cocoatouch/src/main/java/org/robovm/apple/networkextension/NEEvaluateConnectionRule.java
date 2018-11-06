@@ -54,7 +54,7 @@ import org.robovm.apple.security.*;
     @Method(selector = "initWithMatchDomains:andAction:")
     public NEEvaluateConnectionRule(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> domains, NEEvaluateConnectionRuleAction action) { super((SkipInit) null); initObject(init(domains, action)); }
     @Method(selector = "initWithCoder:")
-    public NEEvaluateConnectionRule(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NEEvaluateConnectionRule(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -100,6 +100,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

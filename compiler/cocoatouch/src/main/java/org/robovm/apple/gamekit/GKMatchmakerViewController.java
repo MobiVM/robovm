@@ -49,9 +49,9 @@ import org.robovm.apple.uikit.*;
     protected GKMatchmakerViewController(Handle h, long handle) { super(h, handle); }
     protected GKMatchmakerViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithMatchRequest:")
-    public GKMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(initWithMatchRequest(request)); }
+    public GKMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(init(request)); }
     @Method(selector = "initWithInvite:")
-    public GKMatchmakerViewController(GKInvite invite) { super((SkipInit) null); initObject(initWithInvite(invite)); }
+    public GKMatchmakerViewController(GKInvite invite) { super((SkipInit) null); initObject(init(invite)); }
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -93,9 +93,9 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithMatchRequest:")
-    protected native @Pointer long initWithMatchRequest(GKMatchRequest request);
+    protected native @Pointer long init(GKMatchRequest request);
     @Method(selector = "initWithInvite:")
-    protected native @Pointer long initWithInvite(GKInvite invite);
+    protected native @Pointer long init(GKInvite invite);
     /**
      * @since Available in iOS 5.0 and later.
      */

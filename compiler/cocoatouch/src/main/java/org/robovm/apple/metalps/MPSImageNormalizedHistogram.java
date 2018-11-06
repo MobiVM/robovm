@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageNormalizedHistogram(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithDevice:")
-    public MPSImageNormalizedHistogram(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSImageNormalizedHistogram(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:")
     public MPSImageNormalizedHistogram(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -87,7 +87,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "histogramSizeForSourceFormat:")
     public native @MachineSizedUInt long histogramSizeForSourceFormat(MTLPixelFormat sourceFormat);
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/

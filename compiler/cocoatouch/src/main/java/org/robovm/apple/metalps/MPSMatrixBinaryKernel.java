@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixBinaryKernel(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixBinaryKernel(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixBinaryKernel(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSMatrixBinaryKernel(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:")
     public MPSMatrixBinaryKernel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /**
@@ -84,7 +84,7 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder decoder);
     /**

@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:rows:columns:")
     public MPSMatrixDecompositionLU(MTLDevice device, @MachineSizedUInt long rows, @MachineSizedUInt long columns) { super((SkipInit) null); initObject(init(device, rows, columns)); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixDecompositionLU(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSMatrixDecompositionLU(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:")
     public MPSMatrixDecompositionLU(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /**
@@ -71,7 +71,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeToCommandBuffer:sourceMatrix:resultMatrix:pivotIndices:status:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix sourceMatrix, MPSMatrix resultMatrix, MPSMatrix pivotIndices, MTLBuffer status);
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder decoder);
     /**

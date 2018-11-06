@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNBatchNormalizationStatisticsGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithDevice:")
-    public MPSCNNBatchNormalizationStatisticsGradient(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSCNNBatchNormalizationStatisticsGradient(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:")
     public MPSCNNBatchNormalizationStatisticsGradient(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -76,7 +76,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:")
     public native void encodeBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceGradients, NSArray<MPSImage> sourceImages, MPSCNNBatchNormalizationState batchNormalizationState);
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/

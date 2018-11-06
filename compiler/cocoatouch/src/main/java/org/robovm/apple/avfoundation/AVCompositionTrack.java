@@ -65,6 +65,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "segmentForTrackTime:")
-    public native AVCompositionTrackSegment segmentForTrackTime(@ByVal CMTime trackTime);
+    public native AVCompositionTrackSegment getSegment(@ByVal CMTime trackTime);
     /*</methods>*/
 }

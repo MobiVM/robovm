@@ -489,7 +489,7 @@ classes:
                 name: init
     MPSCNNNeuron: #since 10.0
         methods:
-            '-init.*':
+            '-initWithDevice:neuronDescriptor:':
                 name: init
     MPSCNNNeuronAbsolute: {} #since 10.0
     MPSCNNNeuronAbsoluteNode: {} #since 11.0
@@ -794,7 +794,7 @@ classes:
     MPSImageAdd: {} #since 11.0
     MPSImageAreaMax: #since 9.0
         methods:
-            '-init.*':
+            '-initWithDevice:kernelWidth:kernelHeight:':
                 name: init
     MPSImageAreaMin: {} #since 9.0
     MPSImageArithmetic: {} #since 11.0
@@ -804,7 +804,7 @@ classes:
                 name: init
     MPSImageBox: #since 9.0
         methods:
-            '-init.*':
+            '-initWithDevice:kernelWidth:kernelHeight:':
                 name: init
     MPSImageConversion: #since 10.0
         methods:
@@ -832,7 +832,7 @@ classes:
                 name: create
     MPSImageDilate: #since 9.0
         methods:
-            '-init.*':
+            '-initWithDevice:kernelWidth:kernelHeight:values:':
                 name: init
     MPSImageDivide: {} #since 11.0
     MPSImageErode: {} #since 9.0
@@ -891,7 +891,9 @@ classes:
     MPSImageMultiply: {} #since 11.0
     MPSImagePyramid: #since 10.0
         methods:
-            '-init.*':
+            '-initWithDevice:centerWeight:':
+                name: init
+            '-initWithDevice:kernelWidth:kernelHeight:weights:':
                 name: init
     MPSImageReduceColumnMax: {} #since 11.3
     MPSImageReduceColumnMean: {} #since 11.3
@@ -950,6 +952,8 @@ classes:
             '-copyWithZone:device:':
                 name: copy
             '-initWithCoder:device:':
+                name: init
+            '-initWithDevice:':
                 name: init
     MPSKeyedUnarchiver: #since 11.3
         methods:

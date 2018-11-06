@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixNeuronGradient(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixNeuronGradient(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixNeuronGradient(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSMatrixNeuronGradient(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixNeuronGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
@@ -85,7 +85,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "setNeuronToPReLUWithParametersA:")
     public native void setNeuronToPReLUWithParametersA(NSData A);
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:gradientMatrix:inputMatrix:biasVector:resultGradientForDataMatrix:resultGradientForBiasVector:")
     public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSMatrix gradientMatrix, MPSMatrix inputMatrix, MPSVector biasVector, MPSMatrix resultGradientForDataMatrix, MPSVector resultGradientForBiasVector);
     @Method(selector = "initWithCoder:device:")

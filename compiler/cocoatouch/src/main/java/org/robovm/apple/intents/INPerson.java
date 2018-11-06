@@ -80,7 +80,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithHandle:nameComponents:displayName:image:contactIdentifier:")
     public INPerson(String handle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier) { super((SkipInit) null); initObject(init(handle, nameComponents, displayName, image, contactIdentifier)); }
     @Method(selector = "initWithCoder:")
-    public INPerson(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public INPerson(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "personHandle")
@@ -174,6 +174,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

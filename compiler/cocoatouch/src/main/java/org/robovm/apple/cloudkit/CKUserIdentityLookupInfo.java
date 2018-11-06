@@ -53,7 +53,7 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "initWithUserRecordID:")
     public CKUserIdentityLookupInfo(CKRecordID userRecordID) { super((SkipInit) null); initObject(init(userRecordID)); }
     @Method(selector = "initWithCoder:")
-    public CKUserIdentityLookupInfo(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public CKUserIdentityLookupInfo(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "emailAddress")
@@ -82,6 +82,6 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

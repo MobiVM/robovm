@@ -53,7 +53,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithDevice:")
-    public MPSMatrixLogSoftMax(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSMatrixLogSoftMax(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -71,7 +71,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     /**
      * @since Available in iOS 11.0 and later.
      */

@@ -47,8 +47,8 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/UIImagePickerControllerImageURLExportPreset/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    ompatible(0L),
-    urrent(1L);
+    Compatible(0L),
+    Current(1L);
     /*</values>*/
 
     /*<bind>*/

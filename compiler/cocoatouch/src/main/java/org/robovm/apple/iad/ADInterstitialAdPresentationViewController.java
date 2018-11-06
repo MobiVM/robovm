@@ -50,7 +50,7 @@ import org.robovm.apple.avkit.*;
     protected ADInterstitialAdPresentationViewController(Handle h, long handle) { super(h, handle); }
     protected ADInterstitialAdPresentationViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initForInterstitialAd:")
-    public ADInterstitialAdPresentationViewController(ADInterstitialAd interstitialAd) { super((SkipInit) null); initObject(initForInterstitialAd(interstitialAd)); }
+    public ADInterstitialAdPresentationViewController(ADInterstitialAd interstitialAd) { super((SkipInit) null); initObject(init(interstitialAd)); }
     @Method(selector = "initWithNibName:bundle:")
     public ADInterstitialAdPresentationViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     @Method(selector = "initWithCoder:")
@@ -62,7 +62,7 @@ import org.robovm.apple.avkit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initForInterstitialAd:")
-    protected native @Pointer long initForInterstitialAd(ADInterstitialAd interstitialAd);
+    protected native @Pointer long init(ADInterstitialAd interstitialAd);
     @Method(selector = "shouldTestVisibilityAtPoint:")
     public native boolean shouldTestVisibilityAtPoint(@ByVal CGPoint point);
     @Method(selector = "initWithNibName:bundle:")

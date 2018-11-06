@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSImageStatisticsMinAndMax(Handle h, long handle) { super(h, handle); }
     protected MPSImageStatisticsMinAndMax(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSImageStatisticsMinAndMax(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSImageStatisticsMinAndMax(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:device:")
     public MPSImageStatisticsMinAndMax(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
@@ -65,7 +65,7 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     @Method(selector = "initWithCoder:")

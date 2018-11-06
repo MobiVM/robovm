@@ -120,8 +120,6 @@ import org.robovm.apple.dispatch.*;
     protected native void removeObject(NSObject object);
     @Method(selector = "initWithCapacity:")
     protected native @Pointer long init(@MachineSizedUInt long numItems);
-    @Method(selector = "initWithObjects:count:")
-    protected native @Pointer long init(@Pointer long objects, @MachineSizedUInt long cnt);
     @Method(selector = "removeAllObjects")
     protected native void removeAllObjects();
     /*</methods>*/

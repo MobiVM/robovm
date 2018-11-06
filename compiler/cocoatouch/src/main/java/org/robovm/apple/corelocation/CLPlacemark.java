@@ -52,7 +52,7 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithPlacemark:")
     public CLPlacemark(CLPlacemark placemark) { super((SkipInit) null); initObject(init(placemark)); }
     @Method(selector = "initWithCoder:")
-    public CLPlacemark(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public CLPlacemark(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "location")
@@ -113,6 +113,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

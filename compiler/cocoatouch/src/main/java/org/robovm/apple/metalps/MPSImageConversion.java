@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:srcAlpha:destAlpha:backgroundColor:conversionInfo:")
     public MPSImageConversion(MTLDevice device, MPSAlphaType srcAlpha, MPSAlphaType destAlpha, MachineSizedFloatPtr backgroundColor, CGColorConversionInfo conversionInfo) { super((SkipInit) null); initObject(init(device, srcAlpha, destAlpha, backgroundColor, conversionInfo)); }
     @Method(selector = "initWithDevice:")
-    public MPSImageConversion(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSImageConversion(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -72,7 +72,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:srcAlpha:destAlpha:backgroundColor:conversionInfo:")
     protected native @Pointer long init(MTLDevice device, MPSAlphaType srcAlpha, MPSAlphaType destAlpha, MachineSizedFloatPtr backgroundColor, CGColorConversionInfo conversionInfo);
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     /**
      * @since Available in iOS 11.0 and later.
      */

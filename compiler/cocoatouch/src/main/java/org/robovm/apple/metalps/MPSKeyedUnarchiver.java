@@ -66,7 +66,7 @@ import org.robovm.apple.metal.*;
      */
     @Deprecated
     @Method(selector = "initWithDevice:")
-    public MPSKeyedUnarchiver(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSKeyedUnarchiver(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     /**
      * @since Available in iOS 11.3 and later.
      * @deprecated Deprecated in iOS 12.0.
@@ -93,7 +93,7 @@ import org.robovm.apple.metal.*;
      */
     @Deprecated
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     /**
      * @since Available in iOS 11.3 and later.
      * @deprecated Deprecated in iOS 12.0.

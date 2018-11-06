@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSNNReduceFeatureChannelsArgumentMin(Handle h, long handle) { super(h, handle); }
     protected MPSNNReduceFeatureChannelsArgumentMin(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSNNReduceFeatureChannelsArgumentMin(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSNNReduceFeatureChannelsArgumentMin(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -65,7 +65,7 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     /**
      * @since Available in iOS 11.0 and later.
      */

@@ -50,7 +50,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "initWithName:manufacturer:model:hardwareVersion:firmwareVersion:softwareVersion:localIdentifier:UDIDeviceIdentifier:")
     public HKDevice(String name, String manufacturer, String model, String hardwareVersion, String firmwareVersion, String softwareVersion, String localIdentifier, String UDIDeviceIdentifier) { super((SkipInit) null); initObject(init(name, manufacturer, model, hardwareVersion, firmwareVersion, softwareVersion, localIdentifier, UDIDeviceIdentifier)); }
     @Method(selector = "initWithCoder:")
-    public HKDevice(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public HKDevice(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -122,6 +122,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

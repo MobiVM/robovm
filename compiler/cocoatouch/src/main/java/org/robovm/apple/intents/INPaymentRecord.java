@@ -54,7 +54,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithPayee:payer:currencyAmount:paymentMethod:note:status:")
     public INPaymentRecord(INPerson payee, INPerson payer, INCurrencyAmount currencyAmount, INPaymentMethod paymentMethod, String note, INPaymentStatus status) { super((SkipInit) null); initObject(init(payee, payer, currencyAmount, paymentMethod, note, status)); }
     @Method(selector = "initWithCoder:")
-    public INPaymentRecord(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public INPaymentRecord(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "payee")
@@ -83,6 +83,6 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

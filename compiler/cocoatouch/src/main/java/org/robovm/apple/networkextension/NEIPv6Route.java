@@ -54,7 +54,7 @@ import org.robovm.apple.security.*;
     @Method(selector = "initWithDestinationAddress:networkPrefixLength:")
     public NEIPv6Route(String address, NSNumber networkPrefixLength) { super((SkipInit) null); initObject(init(address, networkPrefixLength)); }
     @Method(selector = "initWithCoder:")
-    public NEIPv6Route(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public NEIPv6Route(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -95,6 +95,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

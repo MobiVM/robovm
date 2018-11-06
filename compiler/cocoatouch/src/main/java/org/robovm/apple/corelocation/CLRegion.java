@@ -58,7 +58,7 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
     public CLRegion(@ByVal CLLocationCoordinate2D center, double radius, String identifier) { super((SkipInit) null); initObject(init(center, radius, identifier)); }
     @Method(selector = "initWithCoder:")
-    public CLRegion(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public CLRegion(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -122,6 +122,6 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

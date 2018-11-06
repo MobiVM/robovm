@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixNeuron(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixNeuron(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixNeuron(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSMatrixNeuron(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixNeuron(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
@@ -85,7 +85,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "setNeuronToPReLUWithParametersA:")
     public native void setNeuronToPReLUWithParametersA(NSData A);
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:inputMatrix:biasVector:resultMatrix:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix inputMatrix, MPSVector biasVector, MPSMatrix resultMatrix);
     @Method(selector = "initWithCoder:device:")

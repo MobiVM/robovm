@@ -52,7 +52,6 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSRegularExpression.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSRegularExpression() {}
     protected NSRegularExpression(Handle h, long handle) { super(h, handle); }
     protected NSRegularExpression(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPattern:options:error:")

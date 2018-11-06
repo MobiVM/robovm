@@ -54,11 +54,7 @@ import org.robovm.apple.dispatch.*;
     protected NSCountedSet(Handle h, long handle) { super(h, handle); }
     protected NSCountedSet(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCapacity:")
-    public NSCountedSet(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(initWithCapacity(numItems)); }
-    @Method(selector = "initWithArray:")
-    public NSCountedSet(NSArray<?> array) { super((SkipInit) null); initObject(initWithArray(array)); }
-    @Method(selector = "initWithSet:")
-    public NSCountedSet(NSSet<?> set) { super((SkipInit) null); initObject(initWithSet(set)); }
+    public NSCountedSet(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -71,20 +67,18 @@ import org.robovm.apple.dispatch.*;
     
     /*<methods>*/
     @Method(selector = "initWithCapacity:")
-    protected native @Pointer long initWithCapacity(@MachineSizedUInt long numItems);
+    protected native @Pointer long init(@MachineSizedUInt long numItems);
     @Method(selector = "initWithArray:")
-    protected native @Pointer long initWithArray(NSArray<?> array);
+    protected native @Pointer long init(NSArray<?> array);
     @Method(selector = "initWithSet:")
-    protected native @Pointer long initWithSet(NSSet<?> set);
+    protected native @Pointer long init(NSSet<?> set);
     @Method(selector = "countForObject:")
     protected native @MachineSizedUInt long countForObject(NSObject object);
     @Method(selector = "objectEnumerator")
     protected native NSEnumerator<T> objectEnumerator();
     @Method(selector = "addObject:")
-    public native void addObject(NSObject object);
+    protected native void addObject(NSObject object);
     @Method(selector = "removeObject:")
-    public native void removeObject(NSObject object);
-    @Method(selector = "initWithObjects:count:")
-    protected native @Pointer long init(@Pointer long objects, @MachineSizedUInt long cnt);
+    protected native void removeObject(NSObject object);
     /*</methods>*/
 }

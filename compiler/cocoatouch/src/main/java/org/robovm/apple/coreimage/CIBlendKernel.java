@@ -150,6 +150,6 @@ import org.robovm.apple.iosurface.*;
      */
     @Deprecated
     @Method(selector = "kernelWithString:")
-    public static native CIBlendKernel kernelWithString(String string);
+    public static native CIBlendKernel create(String string);
     /*</methods>*/
 }

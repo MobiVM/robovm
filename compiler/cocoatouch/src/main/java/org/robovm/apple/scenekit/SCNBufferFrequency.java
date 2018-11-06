@@ -47,9 +47,9 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/SCNBufferFrequency/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Frame(0L),
-    Node(1L),
-    Shadable(2L);
+    PerFrame(0L),
+    PerNode(1L),
+    PerShadable(2L);
     /*</values>*/
 
     /*<bind>*/

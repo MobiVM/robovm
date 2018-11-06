@@ -36,7 +36,7 @@ enums:
     NEFilterAction: {} #since 11.0
     NEHotspotConfigurationEAPType: {} #since 11.0
     NEHotspotConfigurationTTLSInnerAuthenticationType: {prefix: NEHotspotConfigurationEAPTTLSInnerAuthentication} #since 11.0
-    NEHotspotConfigurationEAPTLSVersion: {} #since 11.0
+    NEHotspotConfigurationEAPTLSVersion: {prefix: NEHotspotConfigurationEAPTLS} #since 11.0
     NEHotspotConfigurationError: {} #since 11.0 # TODO: this to be connected with NSERROR but currently domain is not known
     NEVPNIKEv2TLSVersion: {} #since 11.0
 

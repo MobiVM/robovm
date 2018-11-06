@@ -67,7 +67,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithTextures:normalTextures:size:timePerFrame:")
     public SKTileDefinition(NSArray<SKTexture> textures, NSArray<SKTexture> normalTextures, @ByVal CGSize size, @MachineSizedFloat double timePerFrame) { super((SkipInit) null); initObject(init(textures, normalTextures, size, timePerFrame)); }
     @Method(selector = "initWithCoder:")
-    public SKTileDefinition(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKTileDefinition(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "textures")
@@ -128,6 +128,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

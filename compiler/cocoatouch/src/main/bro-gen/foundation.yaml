@@ -970,8 +970,6 @@ classes:
                 parameters:
                     locale:
                         type: NSLocale
-            '-init.*':
-                name: init
     NSDecimalNumberHandler: # DONE
         skip_def_constructor: true
         methods:
@@ -2458,7 +2456,7 @@ classes:
             '-.*': {exclude: true}
     NSMutableString: # DONE
         methods:
-            '-init.*':
+            '-initWithCapacity:':
                 name: init
             '-replaceCharactersInRange:withString:':
                 name: replaceCharacters
@@ -2710,12 +2708,13 @@ classes:
                 type: 'Class<? extends NSObject>'
             'accessInstanceVariablesDirectly':
                 exclude: true
-        methods:
+        methods_private:
             '-init':
                 visibility: private
                 constructor: false
-            '-copy':
-            '-mutableCopy':
+        methods:
+            '-copy': {}
+            '-mutableCopy': {}
             '-performSelectorInBackground:withObject:':
                 name: performSelectorInBackground
                 visibility: 'public final'
@@ -4177,6 +4176,7 @@ classes:
             '+valueWithBytes:objCType:':
                 name: valueOf
             '-initWithBytes:objCType:':
+                scope: global
                 exclude: true
             '-isEqualToValue:':
                 name: equalsTo

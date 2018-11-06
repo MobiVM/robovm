@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:upper:order:numberOfRightHandSides:")
     public MPSMatrixSolveCholesky(MTLDevice device, boolean upper, @MachineSizedUInt long order, @MachineSizedUInt long numberOfRightHandSides) { super((SkipInit) null); initObject(init(device, upper, order, numberOfRightHandSides)); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixSolveCholesky(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSMatrixSolveCholesky(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:")
     public MPSMatrixSolveCholesky(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /**
@@ -71,7 +71,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeToCommandBuffer:sourceMatrix:rightHandSideMatrix:solutionMatrix:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix sourceMatrix, MPSMatrix rightHandSideMatrix, MPSMatrix solutionMatrix);
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder decoder);
     /**

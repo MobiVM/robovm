@@ -55,7 +55,7 @@ import org.robovm.apple.metal.*;
      */
     @Deprecated
     @Method(selector = "initWithDevice:")
-    public MPSCNNNeuronAbsolute(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSCNNNeuronAbsolute(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     /**
      * @since Available in iOS 11.3 and later.
      */
@@ -77,7 +77,7 @@ import org.robovm.apple.metal.*;
      */
     @Deprecated
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     /**
      * @since Available in iOS 11.3 and later.
      */
