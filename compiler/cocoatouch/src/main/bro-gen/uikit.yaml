@@ -1820,12 +1820,16 @@ classes:
     UIGraphicsPDFRendererFormat: {} # DONE
     UIGraphicsRenderer: # DONE
         methods:
-            '-init.*':
-                name: init
             '-runDrawingActions:completionActions:error:':
                 trim_after_first_colon: true
             '+prepareCGContext:withRendererContext:':
                 trim_after_first_colon: true
+            '+contextWithFormat:':
+                name: createContext
+            '-initWithBounds:':
+                name: init
+            '-initWithBounds:format:':
+                name: init
     UIGraphicsRendererContext: # DONE
         methods:
             '-fillRect.*':
@@ -3583,22 +3587,39 @@ classes:
             '+contextualActionWithStyle:title:handler:':
                 constructor: true
                 name: create
-    UIDragInteraction: {} #since 11.0
-    UIDragItem: {} #since 11.0
+    UIDragInteraction: #since 11.0
+        methods:
+            '-initWithDelegate:':
+                name: init
+    UIDragItem: #since 11.0
+        methods:
+            '-initWithItemProvider:':
+                name: init
     UIDragPreview: #since 11.0
         methods:
+            '-initWithView:':
+                name: init
             '-initWithView:parameters:':
                 name: init
             '+previewForURL:title:':
                 constructor: true
                 name: create
-    UIDragPreviewParameters: {} #since 11.0
+    UIDragPreviewParameters: #since 11.0
+        methods:
+            '-initWithTextLineRects:':
+                name: init
     UIDragPreviewTarget: #since 11.0
         methods:
             '-init.*':
                 name: init
-    UIDropInteraction: {} #since 11.0
-    UIDropProposal: {} #since 11.0
+    UIDropInteraction: #since 11.0
+        methods:
+            '-initWithDelegate:':
+                name: init
+    UIDropProposal: #since 11.0
+        methods:
+            '-initWithDropOperation:':
+                name: init
     UIFocusDebugger: {} #since 11.0
     UIFocusSystem: #since 11.0
         methods:
@@ -3614,12 +3635,23 @@ classes:
                 name: scaledFont
             '-scaledValueForValue:compatibleWithTraitCollection:':
                 name: scaledValue
-    UIPasteConfiguration: {} #since 11.0
+    UIPasteConfiguration: #since 11.0
+        methods:
+            '-initWithAcceptableTypeIdentifiers:':
+                name: init
+            '-initWithTypeIdentifiersForAcceptingClass:':
+                name: init
     UISpringLoadedInteraction: #since 11.0
         methods:
             '-initWithInteractionBehavior:interactionEffect:activationHandler:':
                 name: init
-    UISwipeActionsConfiguration: {} #since 11.0
+            '-initWithActivationHandler:':
+                name: init
+    UISwipeActionsConfiguration: #since 11.0
+        methods:
+            '+configurationWithActions:':
+                name: create
+                constructor: true
     UITableViewDropPlaceholder: {} #since 11.0
     UITableViewDropProposal: #since 11.0
         methods:
@@ -3639,6 +3671,8 @@ classes:
             '+previewForURL:title:target:':
                 constructor: true
                 name: create
+            '-retargetedPreviewWithTarget:':
+                name: retargetedPreview
     UITextDragPreviewRenderer: #since 11.0
         methods:
             '-init.*':
@@ -3659,7 +3693,11 @@ classes:
             '-importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:':
                 name: importDocument
     UIFocusMovementHint: {} #since 12.0
-    UITextInputPasswordRules: {} #since 12.0
+    UITextInputPasswordRules: #since 12.0
+        methods:
+            '+passwordRulesWithDescriptor:':
+                name: create
+                constructor: true
 
 protocols:
     NSLayoutManagerDelegate: # DONE
@@ -4966,7 +5004,10 @@ protocols:
             '-collectionView:dropPreviewParametersForItemAtIndexPath:':
                 name: dropPreviewParameters
     UICollectionViewDropItem: {} #since 11.0
-    UICollectionViewDropPlaceholderContext: {} #since 11.0
+    UICollectionViewDropPlaceholderContext: #since 11.0
+        methods:
+            '-commitInsertionWithDataSourceUpdates:':
+                name: commitInsertion
     UIContentContainer:
         methods:
             '-sizeForChildContentContainer:withParentContainerSize:':
@@ -5102,7 +5143,10 @@ protocols:
             '-tableView:dropPreviewParametersForRowAtIndexPath:':
                 name: dropPreviewParameters
     UITableViewDropItem: {} #since 11.0
-    UITableViewDropPlaceholderContext: {} #since 11.0
+    UITableViewDropPlaceholderContext: #since 11.0
+        methods:
+            '-commitInsertionWithDataSourceUpdates:':
+                name: commitInsertion
     UITextDragDelegate: #since 11.0
         methods:
             '-textDraggableView:itemsForDrag:':

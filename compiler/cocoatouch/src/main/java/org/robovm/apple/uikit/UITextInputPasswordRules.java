@@ -56,6 +56,7 @@ import org.robovm.apple.intents.*;
     protected UITextInputPasswordRules() {}
     protected UITextInputPasswordRules(Handle h, long handle) { super(h, handle); }
     protected UITextInputPasswordRules(SkipInit skipInit) { super(skipInit); }
+    public UITextInputPasswordRules(String passwordRulesDescriptor) { super((Handle) null, create(passwordRulesDescriptor)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public UITextInputPasswordRules(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -68,7 +69,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "passwordRulesWithDescriptor:")
-    public static native UITextInputPasswordRules passwordRulesWithDescriptor(String passwordRulesDescriptor);
+    protected static native @Pointer long create(String passwordRulesDescriptor);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

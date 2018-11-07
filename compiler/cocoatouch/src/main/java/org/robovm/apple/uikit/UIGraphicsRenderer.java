@@ -87,7 +87,7 @@ import org.robovm.apple.intents.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "contextWithFormat:")
-    public static native CGContext contextWithFormat(UIGraphicsRendererFormat format);
+    public static native CGContext createContext(UIGraphicsRendererFormat format);
     /**
      * @since Available in iOS 10.0 and later.
      */

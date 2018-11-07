@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UITextDropProposal(Handle h, long handle) { super(h, handle); }
     protected UITextDropProposal(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDropOperation:")
-    public UITextDropProposal(UIDropOperation operation) { super((SkipInit) null); initObject(initWithDropOperation(operation)); }
+    public UITextDropProposal(UIDropOperation operation) { super((SkipInit) null); initObject(init(operation)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dropAction")
@@ -80,6 +80,6 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDropOperation:")
-    protected native @Pointer long initWithDropOperation(UIDropOperation operation);
+    protected native @Pointer long init(UIDropOperation operation);
     /*</methods>*/
 }

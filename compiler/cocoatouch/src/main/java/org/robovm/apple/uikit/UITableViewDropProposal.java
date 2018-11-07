@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithDropOperation:intent:")
     public UITableViewDropProposal(UIDropOperation operation, UITableViewDropIntent intent) { super((SkipInit) null); initObject(init(operation, intent)); }
     @Method(selector = "initWithDropOperation:")
-    public UITableViewDropProposal(UIDropOperation operation) { super((SkipInit) null); initObject(initWithDropOperation(operation)); }
+    public UITableViewDropProposal(UIDropOperation operation) { super((SkipInit) null); initObject(init(operation)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "intent")
@@ -70,6 +70,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithDropOperation:intent:")
     protected native @Pointer long init(UIDropOperation operation, UITableViewDropIntent intent);
     @Method(selector = "initWithDropOperation:")
-    protected native @Pointer long initWithDropOperation(UIDropOperation operation);
+    protected native @Pointer long init(UIDropOperation operation);
     /*</methods>*/
 }
