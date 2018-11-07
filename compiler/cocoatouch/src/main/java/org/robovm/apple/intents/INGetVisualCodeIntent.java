@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INGetVisualCodeIntent(Handle h, long handle) { super(h, handle); }
     protected INGetVisualCodeIntent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithVisualCodeType:")
-    public INGetVisualCodeIntent(INVisualCodeType visualCodeType) { super((SkipInit) null); initObject(initWithVisualCodeType(visualCodeType)); }
+    public INGetVisualCodeIntent(INVisualCodeType visualCodeType) { super((SkipInit) null); initObject(init(visualCodeType)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "visualCodeType")
@@ -59,6 +59,6 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithVisualCodeType:")
-    protected native @Pointer long initWithVisualCodeType(INVisualCodeType visualCodeType);
+    protected native @Pointer long init(INVisualCodeType visualCodeType);
     /*</methods>*/
 }

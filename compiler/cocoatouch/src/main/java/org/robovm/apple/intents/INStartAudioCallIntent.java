@@ -60,7 +60,7 @@ import org.robovm.apple.corelocation.*;
      */
     @Deprecated
     @Method(selector = "initWithContacts:")
-    public INStartAudioCallIntent(NSArray<INPerson> contacts) { super((SkipInit) null); initObject(initWithContacts(contacts)); }
+    public INStartAudioCallIntent(NSArray<INPerson> contacts) { super((SkipInit) null); initObject(init(contacts)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -84,6 +84,6 @@ import org.robovm.apple.corelocation.*;
      */
     @Deprecated
     @Method(selector = "initWithContacts:")
-    protected native @Pointer long initWithContacts(NSArray<INPerson> contacts);
+    protected native @Pointer long init(NSArray<INPerson> contacts);
     /*</methods>*/
 }

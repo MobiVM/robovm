@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INDailyRoutineRelevanceProvider(Handle h, long handle) { super(h, handle); }
     protected INDailyRoutineRelevanceProvider(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSituation:")
-    public INDailyRoutineRelevanceProvider(INDailyRoutineSituation situation) { super((SkipInit) null); initObject(initWithSituation(situation)); }
+    public INDailyRoutineRelevanceProvider(INDailyRoutineSituation situation) { super((SkipInit) null); initObject(init(situation)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "situation")
@@ -59,6 +59,6 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSituation:")
-    protected native @Pointer long initWithSituation(INDailyRoutineSituation situation);
+    protected native @Pointer long init(INDailyRoutineSituation situation);
     /*</methods>*/
 }

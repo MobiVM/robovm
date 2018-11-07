@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INSendPaymentCurrencyAmountResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INSendPaymentCurrencyAmountResolutionResult(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCurrencyAmountResolutionResult:")
-    public INSendPaymentCurrencyAmountResolutionResult(INCurrencyAmountResolutionResult currencyAmountResolutionResult) { super((SkipInit) null); initObject(initWithCurrencyAmountResolutionResult(currencyAmountResolutionResult)); }
+    public INSendPaymentCurrencyAmountResolutionResult(INCurrencyAmountResolutionResult currencyAmountResolutionResult) { super((SkipInit) null); initObject(init(currencyAmountResolutionResult)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -58,7 +58,7 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCurrencyAmountResolutionResult:")
-    protected native @Pointer long initWithCurrencyAmountResolutionResult(INCurrencyAmountResolutionResult currencyAmountResolutionResult);
+    protected native @Pointer long init(INCurrencyAmountResolutionResult currencyAmountResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INSendPaymentCurrencyAmountResolutionResult unsupportedForReason(INSendPaymentCurrencyAmountUnsupportedReason reason);
     /*</methods>*/

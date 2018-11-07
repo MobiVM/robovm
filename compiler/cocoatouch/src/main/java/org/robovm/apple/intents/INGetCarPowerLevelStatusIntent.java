@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INGetCarPowerLevelStatusIntent(Handle h, long handle) { super(h, handle); }
     protected INGetCarPowerLevelStatusIntent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCarName:")
-    public INGetCarPowerLevelStatusIntent(INSpeakableString carName) { super((SkipInit) null); initObject(initWithCarName(carName)); }
+    public INGetCarPowerLevelStatusIntent(INSpeakableString carName) { super((SkipInit) null); initObject(init(carName)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "carName")
@@ -59,6 +59,6 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCarName:")
-    protected native @Pointer long initWithCarName(INSpeakableString carName);
+    protected native @Pointer long init(INSpeakableString carName);
     /*</methods>*/
 }

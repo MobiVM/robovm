@@ -50,9 +50,9 @@ import org.robovm.apple.corelocation.*;
     protected INShortcut(Handle h, long handle) { super(h, handle); }
     protected INShortcut(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIntent:")
-    public INShortcut(INIntent intent) { super((SkipInit) null); initObject(initWithIntent(intent)); }
+    public INShortcut(INIntent intent) { super((SkipInit) null); initObject(init(intent)); }
     @Method(selector = "initWithUserActivity:")
-    public INShortcut(NSUserActivity userActivity) { super((SkipInit) null); initObject(initWithUserActivity(userActivity)); }
+    public INShortcut(NSUserActivity userActivity) { super((SkipInit) null); initObject(init(userActivity)); }
     @Method(selector = "initWithCoder:")
     public INShortcut(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -67,9 +67,9 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithIntent:")
-    protected native @Pointer long initWithIntent(INIntent intent);
+    protected native @Pointer long init(INIntent intent);
     @Method(selector = "initWithUserActivity:")
-    protected native @Pointer long initWithUserActivity(NSUserActivity userActivity);
+    protected native @Pointer long init(NSUserActivity userActivity);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

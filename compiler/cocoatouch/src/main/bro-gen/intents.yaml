@@ -170,12 +170,18 @@ classes:
                 name: init
     INCallRecordTypeOptionsResolutionResult: {} #since 11.0
     INCallRecordTypeResolutionResult: {} #since 10.0
-    INCancelRideIntent: {} #since 11.0
+    INCancelRideIntent: #since 11.0
+        methods:
+            '-initWithRideIdentifier:':
+                name: init
     INCancelRideIntentResponse: #since 11.0
         methods:
             '-initWithCode:userActivity:':
                 name: init
-    INCancelWorkoutIntent: {} #since 10.0
+    INCancelWorkoutIntent: #since 10.0
+        methods:
+            '-initWithWorkoutName:':
+                name: init
     INCancelWorkoutIntentResponse: #since 10.0
         methods:
             '-initWithCode:userActivity:':
@@ -214,13 +220,19 @@ classes:
     INDateComponentsResolutionResult: {} #since 10.0
     INDateSearchTypeResolutionResult: {} #since 11.0
     INDoubleResolutionResult: {} #since 10.0
-    INEndWorkoutIntent: {} #since 10.0
+    INEndWorkoutIntent: #since 10.0
+        methods:
+            '-initWithWorkoutName:':
+                name: init
     INEndWorkoutIntentResponse: #since 10.0
         methods:
             '-initWithCode:userActivity:':
                 name: init
     INExtension: {} #since 10.0
-    INGetAvailableRestaurantReservationBookingDefaultsIntent: {} #since 10.0
+    INGetAvailableRestaurantReservationBookingDefaultsIntent: #since 10.0
+        methods:
+            '-initWithRestaurant:':
+                name: init
     INGetAvailableRestaurantReservationBookingDefaultsIntentResponse: #since 10.0
         methods:
             '-initWithDefaultPartySize:defaultBookingDate:code:userActivity:':
@@ -233,12 +245,18 @@ classes:
         methods:
             '-initWithAvailableBookings:code:userActivity:':
                 name: init
-    INGetCarLockStatusIntent: {} #since 10.3
+    INGetCarLockStatusIntent: #since 10.3
+        methods:
+            '-initWithCarName:':
+                name: init
     INGetCarLockStatusIntentResponse: #since 10.3
         methods:
             '-initWithCode:userActivity:':
                 name: init
-    INGetCarPowerLevelStatusIntent: {} #since 10.3
+    INGetCarPowerLevelStatusIntent: #since 10.3
+        methods:
+            '-initWithCarName:':
+                name: init
     INGetCarPowerLevelStatusIntentResponse: #since 10.3
         methods:
             '-initWithCode:userActivity:':
@@ -261,7 +279,10 @@ classes:
         methods:
             '-initWithUserCurrentBookings:code:userActivity:':
                 name: init
-    INGetVisualCodeIntent: {} #since 11.0
+    INGetVisualCodeIntent: #since 11.0
+        methods:
+            '-initWithVisualCodeType:':
+                name: init
     INGetVisualCodeIntentResponse: #since 11.0
         methods:
             '-initWithCode:userActivity:':
@@ -271,7 +292,16 @@ classes:
             '+imageWithURL:width:height:':
                 name: create
                 constructor: true
-    INImageNoteContent: {} #since 11.0
+            '+imageWithImageData:':
+                name: create
+                constructor: true
+            '+imageWithURL:':
+                name: create
+                constructor: true
+    INImageNoteContent: #since 11.0
+        methods:
+            '-initWithImage:':
+                name: init
     INIntegerResolutionResult: {} #since 10.0
     INIntent:  #since 10.0
         methods:
@@ -317,7 +347,10 @@ classes:
                 trim_after_first_colon: true
             '+parameterForClass:keyPath:':
                 trim_after_first_colon: true
-    INPauseWorkoutIntent: {} #since 10.0
+    INPauseWorkoutIntent: #since 10.0
+        methods:
+            '-initWithWorkoutName:':
+                name: init
     INPauseWorkoutIntentResponse: #since 10.0
         methods:
             '-initWithCode:userActivity:':
@@ -382,7 +415,10 @@ classes:
                 name: init
     INRelativeReferenceResolutionResult: {} #since 10.0
     INRelativeSettingResolutionResult: {} #since 10.0
-    INRequestPaymentCurrencyAmountResolutionResult: {} #since 11.0
+    INRequestPaymentCurrencyAmountResolutionResult: #since 11.0
+        methods:
+            '-initWithCurrencyAmountResolutionResult:':
+                name: init
     INRequestPaymentIntent: #since 10.0
         methods:
             '-initWithPayer:currencyAmount:note:':
@@ -391,7 +427,10 @@ classes:
         methods:
             '-initWithCode:userActivity:':
                 name: init
-    INRequestPaymentPayerResolutionResult: {} #since 11.0
+    INRequestPaymentPayerResolutionResult: #since 11.0
+        methods:
+            '-initWithPersonResolutionResult:':
+                name: init
     INRequestRideIntent: #since 10.0
         methods:
             '-init.*':
@@ -420,7 +459,10 @@ classes:
             '-initWithRestaurant:bookingDate:partySize:bookingIdentifier:guest:status:dateStatusModified:':
                 name: init
     INRestaurantResolutionResult: {} #since 10.0
-    INResumeWorkoutIntent: {} #since 10.0
+    INResumeWorkoutIntent: #since 10.0
+        methods:
+            '-initWithWorkoutName:':
+                name: init
     INResumeWorkoutIntentResponse: #since 10.0
         methods:
             '-initWithCode:userActivity:':
@@ -525,8 +567,14 @@ classes:
         methods:
             '-initWithCode:userActivity:':
                 name: init
-    INSendMessageRecipientResolutionResult: {} #since 11.0
-    INSendPaymentCurrencyAmountResolutionResult: {} #since 11.0
+    INSendMessageRecipientResolutionResult: #since 11.0
+        methods:
+            '-initWithPersonResolutionResult:':
+                name: init
+    INSendPaymentCurrencyAmountResolutionResult: #since 11.0
+        methods:
+            '-initWithCurrencyAmountResolutionResult:':
+                name: init
     INSendPaymentIntent: #since 10.0
         methods:
             '-initWithPayee:currencyAmount:note:':
@@ -535,8 +583,14 @@ classes:
         methods:
             '-initWithCode:userActivity:':
                 name: init
-    INSendPaymentPayeeResolutionResult: {} #since 11.0
-    INSendRideFeedbackIntent: {} #since 11.0
+    INSendPaymentPayeeResolutionResult: #since 11.0
+        methods:
+            '-initWithPersonResolutionResult:':
+                name: init
+    INSendRideFeedbackIntent: #since 11.0
+        methods:
+            '-initWithRideIdentifier:':
+                name: init
     INSendRideFeedbackIntentResponse: #since 11.0
         methods:
             '-initWithCode:userActivity:':
@@ -642,6 +696,8 @@ classes:
         methods:
             '-initWithDestinationType:contacts:':
                 name: init
+            '-initWithContacts:':
+                name: init
     INStartAudioCallIntentResponse: #since 10.0
         methods:
             '-initWithCode:userActivity:':
@@ -654,7 +710,10 @@ classes:
         methods:
             '-initWithCode:userActivity:':
                 name: init
-    INStartVideoCallIntent: {} #since 10.0
+    INStartVideoCallIntent: #since 10.0
+        methods:
+            '-initWithContacts:':
+                name: init
     INStartVideoCallIntentResponse: #since 10.0
         methods:
             '-initWithCode:userActivity:':
@@ -680,13 +739,19 @@ classes:
     INTaskResolutionResult: {} #since 11.0
     INTaskStatusResolutionResult: {} #since 11.0
     INTemperatureResolutionResult: {} #since 10.0
-    INTemporalEventTrigger: {} #since 11.0
+    INTemporalEventTrigger: #since 11.0
+        methods:
+            '-initWithDateComponentsRange:':
+                name: init
     INTemporalEventTriggerResolutionResult: {} #since 11.0
     INTermsAndConditions: #since 10.0
         methods:
             '-initWithLocalizedTermsAndConditionsText:privacyPolicyURL:termsAndConditionsURL:':
                 name: init
-    INTextNoteContent: {} #since 11.0
+    INTextNoteContent: #since 11.0
+        methods:
+            '-initWithText:':
+                name: init
     INTransferMoneyIntent: #since 11.0
         methods:
             '-initWithFromAccount:toAccount:transactionAmount:transactionScheduledDate:transactionNote:':
@@ -704,13 +769,22 @@ classes:
                 trim_after_first_colon: true
     INWorkoutGoalUnitTypeResolutionResult: {} #since 10.0
     INWorkoutLocationTypeResolutionResult: {} #since 10.0
-    INDailyRoutineRelevanceProvider: {} #since 12.0
+    INDailyRoutineRelevanceProvider: #since 12.0
+        methods:
+            '-initWithSituation:':
+                name: init
     INDateRelevanceProvider: #since 12.0
         methods:
             '-initWithStartDate:endDate:':
                 name: init
-    INDefaultCardTemplate: {} #since 12.0
-    INLocationRelevanceProvider: {} #since 12.0
+    INDefaultCardTemplate: #since 12.0
+        methods:
+            '-initWithTitle:':
+                name: init
+    INLocationRelevanceProvider: #since 12.0
+        methods:
+            '-initWithRegion:':
+                name: init
     INMediaItem: #since 12.0
         methods:
             '-initWithIdentifier:title:type:artwork:':
@@ -730,12 +804,20 @@ classes:
             '-initWithCode:userActivity:':
                 name: init
     INRelevanceProvider: {} #since 12.0
-    INRelevantShortcut: {} #since 12.0
+    INRelevantShortcut: #since 12.0
+        methods:
+            '-initWithShortcut:':
+                name: init
     INRelevantShortcutStore: #since 12.0
         methods:
             '-setRelevantShortcuts:completionHandler:':
                 trim_after_first_colon: true
-    INShortcut: {} #since 12.0
+    INShortcut: #since 12.0
+        methods:
+            '-initWithIntent:':
+                name: init
+            '-initWithUserActivity:':
+                name: init
     INUpcomingMediaManager: #since 12.0
         methods:
             '-setPredictionMode:forType:':
@@ -745,6 +827,8 @@ classes:
         methods:
             '-getVoiceShortcutWithIdentifier:completion:':
                 name: getVoiceShortcut
+            '-getAllVoiceShortcutsWithCompletion:':
+                name: getAllVoiceShortcuts
     INIntentResolutionResult: {} #since 10.0
 
 protocols:

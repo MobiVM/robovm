@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INLocationRelevanceProvider(Handle h, long handle) { super(h, handle); }
     protected INLocationRelevanceProvider(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRegion:")
-    public INLocationRelevanceProvider(CLRegion region) { super((SkipInit) null); initObject(initWithRegion(region)); }
+    public INLocationRelevanceProvider(CLRegion region) { super((SkipInit) null); initObject(init(region)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "region")
@@ -59,6 +59,6 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithRegion:")
-    protected native @Pointer long initWithRegion(CLRegion region);
+    protected native @Pointer long init(CLRegion region);
     /*</methods>*/
 }

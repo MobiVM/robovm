@@ -57,7 +57,7 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "getAllVoiceShortcutsWithCompletion:")
-    public native void getAllVoiceShortcutsWithCompletion(@Block VoidBlock2<NSArray<INVoiceShortcut>, NSError> completionHandler);
+    public native void getAllVoiceShortcuts(@Block VoidBlock2<NSArray<INVoiceShortcut>, NSError> completionHandler);
     @Method(selector = "getVoiceShortcutWithIdentifier:completion:")
     public native void getVoiceShortcut(NSUUID identifier, @Block VoidBlock2<INVoiceShortcut, NSError> completionHandler);
     @Method(selector = "setShortcutSuggestions:")

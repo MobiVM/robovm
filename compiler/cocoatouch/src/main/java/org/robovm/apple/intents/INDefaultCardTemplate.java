@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INDefaultCardTemplate(Handle h, long handle) { super(h, handle); }
     protected INDefaultCardTemplate(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTitle:")
-    public INDefaultCardTemplate(String title) { super((SkipInit) null); initObject(initWithTitle(title)); }
+    public INDefaultCardTemplate(String title) { super((SkipInit) null); initObject(init(title)); }
     @Method(selector = "initWithCoder:")
     public INDefaultCardTemplate(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -73,7 +73,7 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithTitle:")
-    protected native @Pointer long initWithTitle(String title);
+    protected native @Pointer long init(String title);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
