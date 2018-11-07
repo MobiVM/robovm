@@ -49,7 +49,7 @@ import org.robovm.apple.coregraphics.*;
     protected MDLAnimatedVector3Array(Handle h, long handle) { super(h, handle); }
     protected MDLAnimatedVector3Array(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithElementCount:")
-    public MDLAnimatedVector3Array(@MachineSizedUInt long arrayElementCount) { super((SkipInit) null); initObject(initWithElementCount(arrayElementCount)); }
+    public MDLAnimatedVector3Array(@MachineSizedUInt long arrayElementCount) { super((SkipInit) null); initObject(init(arrayElementCount)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "elementCount")
@@ -58,7 +58,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithElementCount:")
-    protected native @Pointer long initWithElementCount(@MachineSizedUInt long arrayElementCount);
+    protected native @Pointer long init(@MachineSizedUInt long arrayElementCount);
     @Method(selector = "setFloat3Array:count:atTime:")
     public native void setFloat3Array(VectorFloat3.VectorFloat3Ptr array, @MachineSizedUInt long count, double time);
     @Method(selector = "setDouble3Array:count:atTime:")

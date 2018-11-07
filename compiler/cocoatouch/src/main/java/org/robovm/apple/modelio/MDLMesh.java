@@ -49,27 +49,27 @@ import org.robovm.apple.coregraphics.*;
     protected MDLMesh(Handle h, long handle) { super(h, handle); }
     protected MDLMesh(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithBufferAllocator:")
-    public MDLMesh(MDLMeshBufferAllocator bufferAllocator) { super((SkipInit) null); initObject(initWithBufferAllocator(bufferAllocator)); }
+    public MDLMesh(MDLMeshBufferAllocator bufferAllocator) { super((SkipInit) null); initObject(init(bufferAllocator)); }
     @Method(selector = "initWithVertexBuffer:vertexCount:descriptor:submeshes:")
-    public MDLMesh(MDLMeshBuffer vertexBuffer, @MachineSizedUInt long vertexCount, MDLVertexDescriptor descriptor, NSMutableArray<MDLSubmesh> submeshes) { super((SkipInit) null); initObject(initWithVertexBuffer(vertexBuffer, vertexCount, descriptor, submeshes)); }
+    public MDLMesh(MDLMeshBuffer vertexBuffer, @MachineSizedUInt long vertexCount, MDLVertexDescriptor descriptor, NSMutableArray<MDLSubmesh> submeshes) { super((SkipInit) null); initObject(init(vertexBuffer, vertexCount, descriptor, submeshes)); }
     @Method(selector = "initWithVertexBuffers:vertexCount:descriptor:submeshes:")
-    public MDLMesh(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<MDLMeshBuffer> vertexBuffers, @MachineSizedUInt long vertexCount, MDLVertexDescriptor descriptor, NSMutableArray<MDLSubmesh> submeshes) { super((SkipInit) null); initObject(initWithVertexBuffers(vertexBuffers, vertexCount, descriptor, submeshes)); }
+    public MDLMesh(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<MDLMeshBuffer> vertexBuffers, @MachineSizedUInt long vertexCount, MDLVertexDescriptor descriptor, NSMutableArray<MDLSubmesh> submeshes) { super((SkipInit) null); initObject(init(vertexBuffers, vertexCount, descriptor, submeshes)); }
     @Method(selector = "initBoxWithExtent:segments:inwardNormals:geometryType:allocator:")
-    public MDLMesh(@ByVal VectorFloat3 extent, @ByVal VectorInt3 segments, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(initBoxWithExtent(extent, segments, inwardNormals, geometryType, allocator)); }
+    public MDLMesh(@ByVal VectorFloat3 extent, @ByVal VectorInt3 segments, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(init(extent, segments, inwardNormals, geometryType, allocator)); }
     @Method(selector = "initSphereWithExtent:segments:inwardNormals:geometryType:allocator:")
-    public MDLMesh(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(initSphereWithExtent(extent, segments, inwardNormals, geometryType, allocator)); }
+    public MDLMesh(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(init(extent, segments, inwardNormals, geometryType, allocator)); }
     @Method(selector = "initCylinderWithExtent:segments:inwardNormals:topCap:bottomCap:geometryType:allocator:")
-    public MDLMesh(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, boolean topCap, boolean bottomCap, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(initCylinderWithExtent(extent, segments, inwardNormals, topCap, bottomCap, geometryType, allocator)); }
+    public MDLMesh(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, boolean topCap, boolean bottomCap, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(init(extent, segments, inwardNormals, topCap, bottomCap, geometryType, allocator)); }
     @Method(selector = "initCapsuleWithExtent:cylinderSegments:hemisphereSegments:inwardNormals:geometryType:allocator:")
-    public MDLMesh(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, int hemisphereSegments, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(initCapsuleWithExtent(extent, segments, hemisphereSegments, inwardNormals, geometryType, allocator)); }
+    public MDLMesh(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, int hemisphereSegments, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(init(extent, segments, hemisphereSegments, inwardNormals, geometryType, allocator)); }
     @Method(selector = "initConeWithExtent:segments:inwardNormals:cap:geometryType:allocator:")
-    public MDLMesh(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, boolean cap, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(initConeWithExtent(extent, segments, inwardNormals, cap, geometryType, allocator)); }
+    public MDLMesh(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, boolean cap, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(init(extent, segments, inwardNormals, cap, geometryType, allocator)); }
     @Method(selector = "initPlaneWithExtent:segments:geometryType:allocator:")
-    public MDLMesh(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(initPlaneWithExtent(extent, segments, geometryType, allocator)); }
+    public MDLMesh(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(init(extent, segments, geometryType, allocator)); }
     @Method(selector = "initIcosahedronWithExtent:inwardNormals:geometryType:allocator:")
-    public MDLMesh(@ByVal VectorFloat3 extent, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(initIcosahedronWithExtent(extent, inwardNormals, geometryType, allocator)); }
+    public MDLMesh(@ByVal VectorFloat3 extent, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(init(extent, inwardNormals, geometryType, allocator)); }
     @Method(selector = "initMeshBySubdividingMesh:submeshIndex:subdivisionLevels:allocator:")
-    public MDLMesh(MDLMesh mesh, int submeshIndex, int subdivisionLevels, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(initMeshBySubdividingMesh(mesh, submeshIndex, subdivisionLevels, allocator)); }
+    public MDLMesh(MDLMesh mesh, int submeshIndex, int subdivisionLevels, MDLMeshBufferAllocator allocator) { super((SkipInit) null); initObject(init(mesh, submeshIndex, subdivisionLevels, allocator)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "boundingBox")
@@ -96,11 +96,11 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithBufferAllocator:")
-    protected native @Pointer long initWithBufferAllocator(MDLMeshBufferAllocator bufferAllocator);
+    protected native @Pointer long init(MDLMeshBufferAllocator bufferAllocator);
     @Method(selector = "initWithVertexBuffer:vertexCount:descriptor:submeshes:")
-    protected native @Pointer long initWithVertexBuffer(MDLMeshBuffer vertexBuffer, @MachineSizedUInt long vertexCount, MDLVertexDescriptor descriptor, NSMutableArray<MDLSubmesh> submeshes);
+    protected native @Pointer long init(MDLMeshBuffer vertexBuffer, @MachineSizedUInt long vertexCount, MDLVertexDescriptor descriptor, NSMutableArray<MDLSubmesh> submeshes);
     @Method(selector = "initWithVertexBuffers:vertexCount:descriptor:submeshes:")
-    protected native @Pointer long initWithVertexBuffers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<MDLMeshBuffer> vertexBuffers, @MachineSizedUInt long vertexCount, MDLVertexDescriptor descriptor, NSMutableArray<MDLSubmesh> submeshes);
+    protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<MDLMeshBuffer> vertexBuffers, @MachineSizedUInt long vertexCount, MDLVertexDescriptor descriptor, NSMutableArray<MDLSubmesh> submeshes);
     @Method(selector = "vertexAttributeDataForAttributeNamed:")
     public native MDLVertexAttributeData getVertexAttributeData(String name);
     @Method(selector = "vertexAttributeDataForAttributeNamed:asFormat:")
@@ -148,23 +148,23 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "removeAttributeNamed:")
     public native void removeAttributeNamed(String name);
     @Method(selector = "initBoxWithExtent:segments:inwardNormals:geometryType:allocator:")
-    protected native @Pointer long initBoxWithExtent(@ByVal VectorFloat3 extent, @ByVal VectorInt3 segments, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
+    protected native @Pointer long init(@ByVal VectorFloat3 extent, @ByVal VectorInt3 segments, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
     @Method(selector = "initSphereWithExtent:segments:inwardNormals:geometryType:allocator:")
-    protected native @Pointer long initSphereWithExtent(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
+    protected native @Pointer long init(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
     @Method(selector = "initHemisphereWithExtent:segments:inwardNormals:cap:geometryType:allocator:")
     protected native @Pointer long initHemisphereWithExtent(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, boolean cap, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
     @Method(selector = "initCylinderWithExtent:segments:inwardNormals:topCap:bottomCap:geometryType:allocator:")
-    protected native @Pointer long initCylinderWithExtent(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, boolean topCap, boolean bottomCap, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
+    protected native @Pointer long init(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, boolean topCap, boolean bottomCap, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
     @Method(selector = "initCapsuleWithExtent:cylinderSegments:hemisphereSegments:inwardNormals:geometryType:allocator:")
-    protected native @Pointer long initCapsuleWithExtent(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, int hemisphereSegments, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
+    protected native @Pointer long init(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, int hemisphereSegments, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
     @Method(selector = "initConeWithExtent:segments:inwardNormals:cap:geometryType:allocator:")
-    protected native @Pointer long initConeWithExtent(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, boolean cap, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
+    protected native @Pointer long init(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, boolean inwardNormals, boolean cap, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
     @Method(selector = "initPlaneWithExtent:segments:geometryType:allocator:")
-    protected native @Pointer long initPlaneWithExtent(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
+    protected native @Pointer long init(@ByVal VectorFloat3 extent, @ByVal VectorInt2 segments, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
     @Method(selector = "initIcosahedronWithExtent:inwardNormals:geometryType:allocator:")
-    protected native @Pointer long initIcosahedronWithExtent(@ByVal VectorFloat3 extent, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
+    protected native @Pointer long init(@ByVal VectorFloat3 extent, boolean inwardNormals, MDLGeometryType geometryType, MDLMeshBufferAllocator allocator);
     @Method(selector = "initMeshBySubdividingMesh:submeshIndex:subdivisionLevels:allocator:")
-    protected native @Pointer long initMeshBySubdividingMesh(MDLMesh mesh, int submeshIndex, int subdivisionLevels, MDLMeshBufferAllocator allocator);
+    protected native @Pointer long init(MDLMesh mesh, int submeshIndex, int subdivisionLevels, MDLMeshBufferAllocator allocator);
     @Method(selector = "newBoxWithDimensions:segments:geometryType:inwardNormals:allocator:")
     public static native MDLMesh newBox(@ByVal VectorFloat3 dimensions, @ByVal VectorInt3 segments, MDLGeometryType geometryType, boolean inwardNormals, MDLMeshBufferAllocator allocator);
     @Method(selector = "newEllipsoidWithRadii:radialSegments:verticalSegments:geometryType:inwardNormals:hemisphere:allocator:")
