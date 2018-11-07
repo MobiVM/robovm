@@ -883,6 +883,8 @@ classes:
                 trim_after_first_colon: true
             '-disableProfile:cable:onChannel:error:':
                 trim_after_first_colon: true
+            '-parametersForOverviewWithCount:':
+                name: getParameters
     AUAudioUnitBus: #since 9.0
         methods:
             '-initWithFormat:error:':
@@ -923,18 +925,25 @@ classes:
             '-setValue:originator:atHostTime:eventType:':
                 trim_after_first_colon: true
     AUParameterGroup: {} #since 9.0
-    AUParameterNode: {} #since 9.0
+    AUParameterNode: #since 9.0
+        methods:
+            '-displayNameWithLength:':
+                name: displayName
     AUParameterTree: #since 9.0
         methods:
             '-parameterWithID:scope:element:':
-                trim_after_first_colon: true
+                name: getParameter
             '+createParameterWithIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:':
                 name: createParameter
             '+createGroupWithIdentifier:name:children:':
                 name: createGroup
             '+createGroupFromTemplate:identifier:name:addressOffset:':
                 name: createGroup
-
+            '-parameterWithAddress:':
+                name: getParameter
+            '+createTreeWithChildren:':
+                name: create
+                constructor: true
 protocols:
    AUAudioUnitFactory:
         methods:

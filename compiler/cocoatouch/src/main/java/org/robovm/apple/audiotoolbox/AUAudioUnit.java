@@ -257,7 +257,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "removeRenderObserver:")
     public native void removeRenderObserver(@MachineSizedSInt long token);
     @Method(selector = "parametersForOverviewWithCount:")
-    public native NSArray<NSNumber> parametersForOverviewWithCount(@MachineSizedSInt long count);
+    public native NSArray<NSNumber> getParameters(@MachineSizedSInt long count);
     /**
      * @since Available in iOS 12.0 and later.
      */

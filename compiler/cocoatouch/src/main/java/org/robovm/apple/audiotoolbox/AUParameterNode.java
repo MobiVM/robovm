@@ -84,7 +84,7 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "displayNameWithLength:")
-    public native String displayNameWithLength(@MachineSizedSInt long maximumLength);
+    public native String displayName(@MachineSizedSInt long maximumLength);
     @Method(selector = "tokenByAddingParameterObserver:")
     public native VoidPtr tokenByAddingParameterObserver(@Block VoidBlock2<Long, Float> observer);
     @Method(selector = "tokenByAddingParameterRecordingObserver:")
