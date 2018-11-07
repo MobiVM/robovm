@@ -1845,6 +1845,8 @@ classes:
                 trim_after_first_colon: true
             '-registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:':
                 trim_after_first_colon: true
+            '-registeredTypeIdentifiersWithFileOptions:':
+                name: getRegisteredTypeIdentifiers
             '-hasItemConformingToTypeIdentifier:':
                 trim_after_first_colon: true
             '-hasRepresentationConformingToTypeIdentifier:fileOptions:':
@@ -3320,6 +3322,8 @@ classes:
         methods:
             '-rangeAtIndex:':
                 name: getRangeAt
+            '-rangeWithName:':
+                name: getRange
             '-resultByAdjustingRangesWithOffset:':
                 name: newResultByAdjustingRanges
             '+orthographyCheckingResultWithRange:orthography:':
@@ -4211,11 +4215,21 @@ classes:
         methods:
             '-init.*':
                 name: init
-    NSFileProviderService: {} #since 11.0
+    NSFileProviderService: #since 11.0
+        methods:
+            '-getFileProviderConnectionWithCompletionHandler:':
+                name: getFileProviderConnection
     NSXPCConnection: #since 6.0
         properties:
             'remoteObjectProxy': # FIXME: that is stupid workaround to match NSXPCProxyCreating
                 omit_prefix: true
+        methods:
+            '-initWithListenerEndpoint:':
+                name: init
+            '-remoteObjectProxyWithErrorHandler:':
+                name: remoteObjectProxy
+            '-synchronousRemoteObjectProxyWithErrorHandler:':
+                name: synchronousRemoteObjectProxy
     NSXPCListener: {} #since 6.0
     NSXPCListenerEndpoint: {} #since 6.0
     NSXPCInterface: #since 6.0
@@ -4228,11 +4242,18 @@ classes:
                 trim_after_first_colon: true
             '-interfaceForSelector:argumentIndex:ofReply:':
                 name: getInterfaceForSelector
+            '+interfaceWithProtocol:':
+                constructor: true
+                name: create
     NSURLComponents: #since 7.0
         methods:
             '-initWithURL:resolvingAgainstBaseURL:':
                 name: init
+            '-initWithString:':
+                name: init
             '+componentsWithURL:resolvingAgainstBaseURL:':
+                exclude: true
+            '+componentsWithString:':
                 exclude: true
     NSURLQueryItem:  #since 8.0
         methods:
@@ -4664,7 +4685,11 @@ protocols:
         properties:
             '+writableTypeIdentifiersForItemProvider':
                 name: writableTypeIdentifiersForItemProvider0
-
+        methods:
+            '-remoteObjectProxyWithErrorHandler:':
+                name: remoteObjectProxy
+            '-synchronousRemoteObjectProxyWithErrorHandler:':
+                name: synchronousRemoteObjectProxy
 
 functions:
     NSAllocateObject:

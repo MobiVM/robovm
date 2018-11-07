@@ -128,7 +128,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "rangeWithName:")
-    public native @ByVal NSRange rangeWithName(String name);
+    public native @ByVal NSRange getRange(String name);
     /**
      * @since Available in iOS 5.0 and later.
      */

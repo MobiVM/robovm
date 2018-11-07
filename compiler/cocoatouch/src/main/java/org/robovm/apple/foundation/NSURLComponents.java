@@ -58,7 +58,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithURL:resolvingAgainstBaseURL:")
     public NSURLComponents(NSURL url, boolean resolve) { super((SkipInit) null); initObject(init(url, resolve)); }
     @Method(selector = "initWithString:")
-    public NSURLComponents(String URLString) { super((SkipInit) null); initObject(initWithString(URLString)); }
+    public NSURLComponents(String URLString) { super((SkipInit) null); initObject(init(URLString)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "URL")
@@ -190,10 +190,8 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithURL:resolvingAgainstBaseURL:")
     protected native @Pointer long init(NSURL url, boolean resolve);
     @Method(selector = "initWithString:")
-    protected native @Pointer long initWithString(String URLString);
+    protected native @Pointer long init(String URLString);
     @Method(selector = "URLRelativeToURL:")
     public native NSURL URLRelativeToURL(NSURL baseURL);
-    @Method(selector = "componentsWithString:")
-    public static native NSURLComponents componentsWithString(String URLString);
     /*</methods>*/
 }
