@@ -79,7 +79,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "endCollectionWithEndDate:completion:")
     public native void endCollection(NSDate endDate, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "finishWorkoutWithCompletion:")
-    public native void finishWorkoutWithCompletion(@Block VoidBlock2<HKWorkout, NSError> completion);
+    public native void finishWorkout(@Block VoidBlock2<HKWorkout, NSError> completion);
     @Method(selector = "discardWorkout")
     public native void discardWorkout();
     @Method(selector = "elapsedTimeAtDate:")

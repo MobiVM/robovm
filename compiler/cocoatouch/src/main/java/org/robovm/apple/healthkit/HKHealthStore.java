@@ -91,7 +91,7 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "handleAuthorizationForExtensionWithCompletion:")
-    public native void handleAuthorizationForExtensionWithCompletion(@Block VoidBlock2<Boolean, NSError> completion);
+    public native void handleAuthorizationForExtension(@Block VoidBlock2<Boolean, NSError> completion);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -145,8 +145,17 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 10.0 and later.
      */
+    public NSDateComponents getDateOfBirthComponents() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSDateComponents result = getDateOfBirthComponents(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "dateOfBirthComponentsWithError:")
-    public native NSDateComponents dateOfBirthComponentsWithError(NSError.NSErrorPtr error);
+    private native NSDateComponents getDateOfBirthComponents(NSError.NSErrorPtr error);
     public HKBiologicalSexObject getBiologicalSex() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        HKBiologicalSexObject result = getBiologicalSex(ptr);
@@ -166,13 +175,31 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
+    public HKFitzpatrickSkinTypeObject getFitzpatrickSkinType() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       HKFitzpatrickSkinTypeObject result = getFitzpatrickSkinType(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "fitzpatrickSkinTypeWithError:")
-    public native HKFitzpatrickSkinTypeObject fitzpatrickSkinTypeWithError(NSError.NSErrorPtr error);
+    private native HKFitzpatrickSkinTypeObject getFitzpatrickSkinType(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public HKWheelchairUseObject getWheelchairUse() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       HKWheelchairUseObject result = getWheelchairUse(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "wheelchairUseWithError:")
-    public native HKWheelchairUseObject wheelchairUseWithError(NSError.NSErrorPtr error);
+    private native HKWheelchairUseObject getWheelchairUse(NSError.NSErrorPtr error);
     @Method(selector = "isHealthDataAvailable")
     public static native boolean isHealthDataAvailable();
     @Method(selector = "addSamples:toWorkout:completion:")

@@ -124,7 +124,7 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 9.3 and later.
      */
     @Method(selector = "predicateForActivitySummaryWithDateComponents:")
-    public static native NSPredicate predicateForActivitySummaryWithDateComponents(NSDateComponents dateComponents);
+    public static native NSPredicate createPredicateForActivitySummary(NSDateComponents dateComponents);
     /**
      * @since Available in iOS 9.3 and later.
      */
@@ -134,7 +134,7 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "predicateForClinicalRecordsWithFHIRResourceType:")
-    public static native NSPredicate predicateForClinicalRecordsWithFHIRResourceType(HKFHIRResourceType resourceType);
+    public static native NSPredicate createPredicateForClinicalRecords(HKFHIRResourceType resourceType);
     /**
      * @since Available in iOS 12.0 and later.
      */

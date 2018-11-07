@@ -134,6 +134,17 @@ classes:
                 name: startWatchApp
             '-getRequestStatusForAuthorizationToShareTypes:readTypes:completion:':
                 name: getRequestStatus
+            '-handleAuthorizationForExtensionWithCompletion:':
+                name: handleAuthorizationForExtension
+            '-dateOfBirthComponentsWithError:':
+                name: getDateOfBirthComponents
+                throws: NSErrorException
+            '-fitzpatrickSkinTypeWithError:':
+                name: getFitzpatrickSkinType
+                throws: NSErrorException
+            '-wheelchairUseWithError:':
+                name: getWheelchairUse
+                throws: NSErrorException
     HKObject: # DONE
         properties:
             'metadata':
@@ -281,14 +292,14 @@ classes:
     HKQuantityType: # DONE
         methods:
             '-isCompatibleWithUnit:':
-                trim_after_first_colon: true
+                name: isCompatibleWithUnit
     HKWorkoutType: {} # DONE
     HKQuantity: # DONE
         methods:
             '-init':    
                 exclude: true
             '-isCompatibleWithUnit:':
-                trim_after_first_colon: true
+                name: isCompatibleWithUnit
             '-doubleValueForUnit:':
                 name: getDoubleValueForUnit
             '-compare:':
@@ -346,6 +357,10 @@ classes:
             '+predicateForWorkoutsWithOperatorType:totalFlightsClimbed:':
                 name: createPredicateForWorkouts
             '+predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:':
+                name: createPredicateForClinicalRecords
+            '+predicateForActivitySummaryWithDateComponents:':
+                name: createPredicateForActivitySummary
+            '+predicateForClinicalRecordsWithFHIRResourceType:':
                 name: createPredicateForClinicalRecords
     HKAnchoredObjectQuery: # DONE
         methods:
@@ -564,7 +579,8 @@ classes:
                 trim_after_first_colon: true
             '-endCollectionWithEndDate:completion:':
                 name: endCollection
-
+            '-finishWorkoutWithCompletion:':
+                name: finishWorkout
 protocols:
     HKWorkoutSessionDelegate: {}
 
