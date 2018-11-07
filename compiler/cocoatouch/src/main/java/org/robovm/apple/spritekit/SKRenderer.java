@@ -56,6 +56,7 @@ import org.robovm.apple.metal.*;
     public SKRenderer() {}
     protected SKRenderer(Handle h, long handle) { super(h, handle); }
     protected SKRenderer(SkipInit skipInit) { super(skipInit); }
+    public SKRenderer(MTLDevice device) { super((Handle) null, create(device)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "scene")
@@ -100,6 +101,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "updateAtTime:")
     public native void updateAtTime(double currentTime);
     @Method(selector = "rendererWithDevice:")
-    public static native SKRenderer rendererWithDevice(MTLDevice device);
+    protected static native @Pointer long create(MTLDevice device);
     /*</methods>*/
 }

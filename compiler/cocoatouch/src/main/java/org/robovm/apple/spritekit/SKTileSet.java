@@ -93,8 +93,6 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(NSArray<SKTileGroup> tileGroups);
     @Method(selector = "initWithTileGroups:tileSetType:")
     protected native @Pointer long init(NSArray<SKTileGroup> tileGroups, SKTileSetType tileSetType);
-    @Method(selector = "tileSetWithTileGroups:")
-    public static native SKTileSet tileSetWithTileGroups(NSArray<SKTileGroup> tileGroups);
     @Method(selector = "tileSetNamed:")
     public static native SKTileSet tileSetNamed(String name);
     @Method(selector = "tileSetFromURL:")

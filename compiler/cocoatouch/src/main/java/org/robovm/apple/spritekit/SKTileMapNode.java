@@ -142,7 +142,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "setValue:forAttributeNamed:")
     public native void setValue(SKAttributeValue value, String key);
     @Method(selector = "fillWithTileGroup:")
-    public native void fillWithTileGroup(SKTileGroup tileGroup);
+    public native void fill(SKTileGroup tileGroup);
     @Method(selector = "tileDefinitionAtColumn:row:")
     public native SKTileDefinition getTileDefinition(@MachineSizedUInt long column, @MachineSizedUInt long row);
     @Method(selector = "tileGroupAtColumn:row:")
