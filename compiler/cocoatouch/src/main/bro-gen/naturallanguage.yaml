@@ -1,0 +1,93 @@
+package: org.robovm.apple.naturallanguage
+include: [foundation, coreml]
+library: NaturalLanguage
+framework: NaturalLanguage
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/NaturalLanguage.framework/Headers/NaturalLanguage.h
+typedefs: {}
+    
+enums:
+    NLModelType: {}
+    NLTokenUnit: {}
+    NLTokenizerAttributes: {prefix: NLTokenizerAttribute}
+    NLTaggerOptions: {prefix: NLTagger}
+
+typed_enums:
+    NLLanguage:
+        enum: NLLanguage
+        prefix: NLLanguage
+        type: NSString
+    NLTagScheme:
+        enum: NLTagScheme
+        prefix: NLTagScheme
+        type: NSString
+    NLTag:
+        enum: NLTag
+        prefix: NLTag
+        type: NSString
+
+classes:
+    NLLanguageRecognizer: #since 12.0
+        methods:
+            '-languageHypothesesWithMaximum:':
+                name: create
+                constructor: true
+    NLModel: #since 12.0
+        methods:
+            '+modelWithContentsOfURL:error:':
+                name: create
+                constructor: true
+                throws: NSErrorException
+            '+modelWithMLModel:error:':
+                name: create
+                constructor: true
+                throws: NSErrorException
+    NLModelConfiguration: {} #since 12.0
+    NLTagger: #since 12.0
+        methods:
+            '-initWithTagSchemes:':
+                name: init
+            '-tokenRangeAtIndex:unit:':
+                name: getTokenRange
+            '-enumerateTagsInRange:unit:scheme:options:usingBlock:':
+                name: enumerateTags
+            '-tagAtIndex:unit:scheme:tokenRange:':
+                name: getTag
+            '-tagsInRange:unit:scheme:options:tokenRanges:':
+                name: getTags
+            '-setLanguage:range:':
+                trim_after_first_colon: true
+            '-setOrthography:range:':
+                trim_after_first_colon: true
+            '-setModels:forTagScheme:':
+                trim_after_first_colon: true
+            '+availableTagSchemesForUnit:language:':
+                name: getAvailableTagSchemes
+    NLTokenizer: #since 12.0
+        methods:
+            '-initWithUnit:':
+                name: init
+            '-enumerateTokensInRange:usingBlock:':
+                name: enumerateTokens
+
+protocols: {}
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?NL.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?NL.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?NL.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'
