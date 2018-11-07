@@ -80,7 +80,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "setConnectionState:completionHandler:")
     public native void setConnectionState(GKConnectionState state, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "playersWithConnectionState:")
-    public native NSArray<GKCloudPlayer> playersWithConnectionState(GKConnectionState state);
+    public native NSArray<GKCloudPlayer> getPlayers(GKConnectionState state);
     @Method(selector = "sendData:withTransportType:completionHandler:")
     public native void sendData(NSData data, GKTransportType transport, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:")

@@ -166,8 +166,6 @@ classes:
                 name: setConnectionState
             '-sendData:withTransportType:completionHandler:':
                 name: sendData
-            '-sendData:withTransportType:completionHandler:':
-                name: sendData
             '-sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:':
                 name: sendMessage
             '-clearBadgeForPlayers:completionHandler:':
@@ -192,6 +190,8 @@ classes:
                 name: didReceiveData
             '+postSession:didReceiveMessage:withData:fromPlayer:':
                 name: didReceiveMessage
+            '-playersWithConnectionState:':
+                name: getPlayers
     GKInvite: {} # DONE
     GKLeaderboard: # DONE
         properties:
@@ -248,6 +248,8 @@ classes:
                 type: 'List<String>'
                 marshaler: NSArray.AsStringListMarshaler
         methods:
+            '-loadRecentPlayersWithCompletionHandler:':
+                name: loadRecentPlayers
             '-loadFriendPlayersWithCompletionHandler:':
                 name: loadFriendPlayers
                 parameters:
