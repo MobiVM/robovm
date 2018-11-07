@@ -172,6 +172,6 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "predicateForEvaluatingTriggerWithPresence:")
-    public static native NSPredicate predicateForEvaluatingTriggerWithPresence(HMPresenceEvent presenceEvent);
+    public static native NSPredicate getPredicateForEvaluatingTrigger(HMPresenceEvent presenceEvent);
     /*</methods>*/
 }
