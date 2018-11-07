@@ -28,16 +28,15 @@ classes:
             '-initWithType:identifier:title:':
                 name: init
             '-descendantMatchingIdentifierPath:completion:':
-                #trim_after_first_colon: true
                 name: getDescendantMatchingIdentifierPath
     CLSDataStore:  #since 11.3
         methods:
             '-contextsMatchingPredicate:completion:':
-                #trim_after_first_colon: true
                 name: getContextsMatchingPredicate
             '-contextsMatchingIdentifierPath:completion:':
-                #trim_after_first_colon: true
                 name: getContextsMatchingIdentifier
+            '-saveWithCompletion:':
+                name: save
     CLSObject: {} #since 11.3
     CLSQuantityItem: #since 11.3
         methods:

@@ -65,7 +65,7 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "saveWithCompletion:")
-    public native void saveWithCompletion(@Block VoidBlock1<NSError> completion);
+    public native void save(@Block VoidBlock1<NSError> completion);
     @Method(selector = "contextsMatchingPredicate:completion:")
     public native void getContextsMatchingPredicate(NSPredicate predicate, @Block VoidBlock2<NSArray<CLSContext>, NSError> completion);
     @Method(selector = "contextsMatchingIdentifierPath:completion:")
