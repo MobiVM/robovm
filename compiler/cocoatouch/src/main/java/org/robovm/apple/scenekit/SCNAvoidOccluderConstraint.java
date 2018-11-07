@@ -56,6 +56,7 @@ import org.robovm.apple.avfoundation.*;
     public SCNAvoidOccluderConstraint() {}
     protected SCNAvoidOccluderConstraint(Handle h, long handle) { super(h, handle); }
     protected SCNAvoidOccluderConstraint(SkipInit skipInit) { super(skipInit); }
+    public SCNAvoidOccluderConstraint(SCNNode target) { super((Handle) null, create(target)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -78,6 +79,6 @@ import org.robovm.apple.avfoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "avoidOccluderConstraintWithTarget:")
-    public static native SCNAvoidOccluderConstraint avoidOccluderConstraintWithTarget(SCNNode target);
+    protected static native @Pointer long create(SCNNode target);
     /*</methods>*/
 }

@@ -56,6 +56,7 @@ import org.robovm.apple.avfoundation.*;
     public SCNAnimationPlayer() {}
     protected SCNAnimationPlayer(Handle h, long handle) { super(h, handle); }
     protected SCNAnimationPlayer(SkipInit skipInit) { super(skipInit); }
+    public SCNAnimationPlayer(SCNAnimation animation) { super((Handle) null, create(animation)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public SCNAnimationPlayer(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -86,9 +87,9 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "stop")
     public native void stop();
     @Method(selector = "stopWithBlendOutDuration:")
-    public native void stopWithBlendOutDuration(double duration);
+    public native void stop(double duration);
     @Method(selector = "animationPlayerWithAnimation:")
-    public static native SCNAnimationPlayer animationPlayerWithAnimation(SCNAnimation animation);
+    protected static native @Pointer long create(SCNAnimation animation);
     @Method(selector = "addAnimation:forKey:")
     public native void addAnimation(SCNAnimation animation, String key);
     /**
