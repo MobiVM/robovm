@@ -70,13 +70,13 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "requestPresentationStyle:")
     public native void requestPresentationStyle(MSMessagesAppPresentationStyle presentationStyle);
     @Method(selector = "willBecomeActiveWithConversation:")
-    public native void willBecomeActiveWithConversation(MSConversation conversation);
+    public native void willBecomeActive(MSConversation conversation);
     @Method(selector = "didBecomeActiveWithConversation:")
-    public native void didBecomeActiveWithConversation(MSConversation conversation);
+    public native void didBecomeActive(MSConversation conversation);
     @Method(selector = "willResignActiveWithConversation:")
-    public native void willResignActiveWithConversation(MSConversation conversation);
+    public native void willResignActive(MSConversation conversation);
     @Method(selector = "didResignActiveWithConversation:")
-    public native void didResignActiveWithConversation(MSConversation conversation);
+    public native void didResignActive(MSConversation conversation);
     @Method(selector = "initWithNibName:bundle:")
     protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
     @Method(selector = "initWithCoder:")
