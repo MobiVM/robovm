@@ -56,7 +56,7 @@ import org.robovm.apple.coremedia.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "broadcastStartedWithSetupInfo:")
-    public native void broadcastStartedWithSetupInfo(NSDictionary<NSString, ?> setupInfo);
+    public native void broadcastStarted(NSDictionary<NSString, ?> setupInfo);
     @Method(selector = "broadcastPaused")
     public native void broadcastPaused();
     @Method(selector = "broadcastResumed")
@@ -67,10 +67,10 @@ import org.robovm.apple.coremedia.*;
      * @since Available in iOS 11.2 and later.
      */
     @Method(selector = "broadcastAnnotatedWithApplicationInfo:")
-    public native void broadcastAnnotatedWithApplicationInfo(NSDictionary<?, ?> applicationInfo);
+    public native void broadcastAnnotated(NSDictionary<?, ?> applicationInfo);
     @Method(selector = "processSampleBuffer:withType:")
     public native void processSampleBuffer(org.robovm.apple.coremedia.CMSampleBuffer sampleBuffer, RPSampleBufferType sampleBufferType);
     @Method(selector = "finishBroadcastWithError:")
-    public native void finishBroadcastWithError(NSError error);
+    public native void finish(NSError error);
     /*</methods>*/
 }

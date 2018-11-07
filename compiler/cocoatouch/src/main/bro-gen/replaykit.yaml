@@ -16,7 +16,12 @@ enums:
     RPCameraPosition: {}
 
 classes:
-    RPBroadcastController: {}
+    RPBroadcastController: #since 10.0
+        methods:
+            '-startBroadcastWithHandler:':
+                name: startBroadcast
+            '-finishBroadcastWithHandler:':
+                name: finishBroadcast
     RPBroadcastActivityViewController:
         methods:
             '+loadBroadcastActivityViewControllerWithHandler:':
@@ -38,6 +43,12 @@ classes:
                 parameters:
                     'sampleBuffer':
                           type: 'org.robovm.apple.coremedia.CMSampleBuffer'
+            '-broadcastStartedWithSetupInfo:':
+                name: broadcastStarted
+            '-broadcastAnnotatedWithApplicationInfo:':
+                name: broadcastAnnotated
+            '-finishBroadcastWithError:':
+                name: finish
 
     RPRecordingError: # DONE
         extends: NSError
@@ -62,6 +73,10 @@ classes:
                 exclude: true
             '-startCaptureWithHandler:completionHandler:':
                 name: startCapture
+            '-startRecordingWithHandler:':
+                name: startRecording
+            '-stopCaptureWithHandler:':
+                name: stopCapture
     RPSystemBroadcastPickerView: {} #since 12.0
 
 protocols:

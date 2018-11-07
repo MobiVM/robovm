@@ -74,12 +74,12 @@ import org.robovm.apple.coremedia.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "startBroadcastWithHandler:")
-    public native void startBroadcastWithHandler(@Block VoidBlock1<NSError> handler);
+    public native void startBroadcast(@Block VoidBlock1<NSError> handler);
     @Method(selector = "pauseBroadcast")
     public native void pauseBroadcast();
     @Method(selector = "resumeBroadcast")
     public native void resumeBroadcast();
     @Method(selector = "finishBroadcastWithHandler:")
-    public native void finishBroadcastWithHandler(@Block VoidBlock1<NSError> handler);
+    public native void finishBroadcast(@Block VoidBlock1<NSError> handler);
     /*</methods>*/
 }
