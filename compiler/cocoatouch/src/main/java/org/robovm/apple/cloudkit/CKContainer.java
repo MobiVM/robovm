@@ -109,7 +109,7 @@ import org.robovm.apple.fileprovider.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "databaseWithDatabaseScope:")
-    public native CKDatabase databaseWithDatabaseScope(CKDatabaseScope databaseScope);
+    public native CKDatabase getDatanase(CKDatabaseScope databaseScope);
     @Method(selector = "accountStatusWithCompletionHandler:")
     public native void getAccountStatus(@Block VoidBlock2<CKAccountStatus, NSError> completionHandler);
     @Method(selector = "statusForApplicationPermission:completionHandler:")
@@ -122,7 +122,7 @@ import org.robovm.apple.fileprovider.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "discoverAllIdentitiesWithCompletionHandler:")
-    public native void discoverAllIdentitiesWithCompletionHandler(@Block VoidBlock2<NSArray<CKUserIdentity>, NSError> completionHandler);
+    public native void discoverAllIdentities(@Block VoidBlock2<NSArray<CKUserIdentity>, NSError> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
      */

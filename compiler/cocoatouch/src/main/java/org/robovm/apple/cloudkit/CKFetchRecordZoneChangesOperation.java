@@ -53,7 +53,7 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "initWithRecordZoneIDs:configurationsByRecordZoneID:")
     public static  CKFetchRecordZoneChangesOperation create(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> configurationsByRecordZoneID) {
        CKFetchRecordZoneChangesOperation res = new CKFetchRecordZoneChangesOperation((SkipInit) null);
-       res.initObject(res.initWithConfigurations(recordZoneIDs, configurationsByRecordZoneID));
+       res.initObject(res.init0(recordZoneIDs, configurationsByRecordZoneID));
        return res;
     }
     /**
@@ -115,7 +115,7 @@ import org.robovm.apple.fileprovider.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithRecordZoneIDs:configurationsByRecordZoneID:")
-    protected native @Pointer long initWithConfigurations(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> configurationsByRecordZoneID);
+    protected native @Pointer long init0(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> configurationsByRecordZoneID);
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 12.0.

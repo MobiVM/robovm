@@ -95,7 +95,10 @@ classes:
                 name: fetchAllLongLivedOperationIDs
             '-fetchLongLivedOperationWithID:completionHandler:':
                 name: fetchLongLivedOperation
-
+            '-databaseWithDatabaseScope:':
+                name: getDatanase
+            '-discoverAllIdentitiesWithCompletionHandler:':
+                name: discoverAllIdentities
     CKDatabase: # DONE
         methods:
             '-addOperation:':
@@ -442,30 +445,53 @@ classes:
     CKUserIdentityLookupInfo:
         methods:
             '-initWithEmailAddress:':
-                trim_after_first_colon: true
-                constructor: false
+                name: initWithEmailAddress
+                static_constructor_name: createWithEmailAddress
             '-initWithPhoneNumber:':
-                trim_after_first_colon: true
-                constructor: false
-            '-init.*':
+                name: initWithPhoneNumber
+                static_constructor_name: createWithPhoneNumber
+            '-initWithUserRecordID:':
                 name: init
-
-    CKAcceptSharesOperation: {}
+            '+lookupInfosWithEmails:':
+                name: lookupInfosWithEmails
+            '+lookupInfosWithPhoneNumbers:':
+                name: lookupInfosWithPhoneNumbers
+            '+lookupInfosWithRecordIDs:':
+                name: lookupInfosWithRecordIDs
+    CKAcceptSharesOperation:
+        methods:
+            '-initWithShareMetadatas:':
+                name: init
     CKDatabaseNotification: {}
     CKDiscoverAllUserIdentitiesOperation: {}
-    CKDiscoverUserIdentitiesOperation: {}
-    CKFetchDatabaseChangesOperation: {}
+    CKDiscoverUserIdentitiesOperation:
+        methods:
+            '-initWithUserIdentityLookupInfos:':
+                name: init
+    CKFetchDatabaseChangesOperation: #since 10.0
+        methods:
+            '-initWithPreviousServerChangeToken:':
+                name: init
     CKFetchRecordZoneChangesOperation:
         methods:
             '-initWithRecordZoneIDs:configurationsByRecordZoneID:':
-                name: initWithConfigurations
+                name: init0
                 static_constructor_name: create
-            '-init.*':
+            '-initWithRecordZoneIDs:optionsByRecordZoneID:':
                 name: init
     CKFetchRecordZoneChangesOptions: {}
-    CKFetchShareMetadataOperation: {}
-    CKFetchShareParticipantsOperation: {}
-    CKFetchWebAuthTokenOperation: {}
+    CKFetchShareMetadataOperation:
+        methods:
+            '-initWithShareURLs:':
+                name: init
+    CKFetchShareParticipantsOperation:
+        methods:
+            '-initWithUserIdentityLookupInfos:':
+                name: init
+    CKFetchWebAuthTokenOperation:
+        methods:
+            '-initWithAPIToken:':
+                name: init
     CKOperationConfiguration: {} #since 11.0
     CKOperationGroup: {} #since 11.0
     CKQuerySubscription: #since 10.0
