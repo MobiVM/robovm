@@ -52,7 +52,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithTunnelRemoteAddress:")
-    public NEPacketTunnelNetworkSettings(String address) { super((SkipInit) null); initObject(initWithTunnelRemoteAddress(address)); }
+    public NEPacketTunnelNetworkSettings(String address) { super((SkipInit) null); initObject(init(address)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -102,6 +102,6 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithTunnelRemoteAddress:")
-    protected native @Pointer long initWithTunnelRemoteAddress(String address);
+    protected native @Pointer long init(String address);
     /*</methods>*/
 }

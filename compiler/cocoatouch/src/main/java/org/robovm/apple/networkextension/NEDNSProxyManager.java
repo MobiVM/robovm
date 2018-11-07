@@ -93,17 +93,17 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "loadFromPreferencesWithCompletionHandler:")
-    public native void loadFromPreferencesWithCompletionHandler(@Block VoidBlock1<NSError> completionHandler);
+    public native void loadFromPreferences(@Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "removeFromPreferencesWithCompletionHandler:")
-    public native void removeFromPreferencesWithCompletionHandler(@Block VoidBlock1<NSError> completionHandler);
+    public native void removeFromPreferences(@Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "saveToPreferencesWithCompletionHandler:")
-    public native void saveToPreferencesWithCompletionHandler(@Block VoidBlock1<NSError> completionHandler);
+    public native void saveToPreferences(@Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
      */

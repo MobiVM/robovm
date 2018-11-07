@@ -62,7 +62,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "sleepWithCompletionHandler:")
-    public native void sleepWithCompletionHandler(@Block Runnable completionHandler);
+    public native void sleep(@Block Runnable completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
      */

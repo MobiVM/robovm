@@ -52,7 +52,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithSigningIdentifier:")
-    public NEAppRule(String signingIdentifier) { super((SkipInit) null); initObject(initWithSigningIdentifier(signingIdentifier)); }
+    public NEAppRule(String signingIdentifier) { super((SkipInit) null); initObject(init(signingIdentifier)); }
     @Method(selector = "initWithCoder:")
     public NEAppRule(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -91,7 +91,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithSigningIdentifier:")
-    protected native @Pointer long initWithSigningIdentifier(String signingIdentifier);
+    protected native @Pointer long init(String signingIdentifier);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
