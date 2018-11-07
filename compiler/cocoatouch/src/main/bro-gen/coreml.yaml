@@ -31,6 +31,27 @@ classes:
                 name: create
                 throws: NSErrorException
                 constructor: true
+            '+featureValueWithInt64:':
+                name: create
+                constructor: true
+            '+featureValueWithDouble:':
+                name: create
+                constructor: true
+            '+featureValueWithString:':
+                name: create
+                constructor: true
+            '+featureValueWithMultiArray:':
+                name: create
+                constructor: true
+            '+featureValueWithPixelBuffer:':
+                name: create
+                constructor: true
+            '+featureValueWithSequence:':
+                name: create
+                constructor: true
+            '+undefinedFeatureValueWithType:':
+                name: create
+                constructor: true
     MLImageConstraint: {} #since 11.0
     MLModel: #since 11.0
         methods:
@@ -73,11 +94,22 @@ classes:
             '-initWithDictionary:error:':
                 throws: NSErrorException
                 name: init
+            '-initWithFeatureProviderArray:':
+                name: init
     MLImageSize: {} #since 12.0
     MLImageSizeConstraint: {} #since 12.0
     MLModelConfiguration: {} #since 12.0
     MLMultiArrayShapeConstraint: {} #since 12.0
-    MLSequence: {} #since 12.0
+    MLSequence: #since 12.0
+        methods:
+            '+emptySequenceWithType:':
+                name: create
+                constructor: true
+            '+sequenceWithStringArray:':
+                name: create0
+                constructor: true
+            '+sequenceWithInt64Array:':
+                name: create
     MLSequenceConstraint: {} #since 12.0
 
 protocols:

@@ -48,6 +48,8 @@ import org.robovm.apple.corevideo.*;
     public MLSequence() {}
     protected MLSequence(Handle h, long handle) { super(h, handle); }
     protected MLSequence(SkipInit skipInit) { super(skipInit); }
+    public MLSequence(MLFeatureType type) { super((Handle) null, create(type)); retain(getHandle()); }
+    public MLSequence(NSArray<NSString> stringValues) { super((Handle) null, create0(stringValues)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
@@ -60,10 +62,10 @@ import org.robovm.apple.corevideo.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "emptySequenceWithType:")
-    public static native MLSequence emptySequenceWithType(MLFeatureType type);
+    protected static native @Pointer long create(MLFeatureType type);
     @Method(selector = "sequenceWithStringArray:")
-    public static native MLSequence sequenceWithStringArray(NSArray<NSString> stringValues);
+    protected static native @Pointer long create0(NSArray<NSString> stringValues);
     @Method(selector = "sequenceWithInt64Array:")
-    public static native MLSequence sequenceWithInt64Array(NSArray<NSNumber> int64Values);
+    public static native MLSequence create(NSArray<NSNumber> int64Values);
     /*</methods>*/
 }

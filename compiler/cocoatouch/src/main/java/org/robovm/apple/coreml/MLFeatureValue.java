@@ -48,6 +48,16 @@ import org.robovm.apple.corevideo.*;
     public MLFeatureValue() {}
     protected MLFeatureValue(Handle h, long handle) { super(h, handle); }
     protected MLFeatureValue(SkipInit skipInit) { super(skipInit); }
+    public MLFeatureValue(long value) { super((Handle) null, create(value)); retain(getHandle()); }
+    public MLFeatureValue(double value) { super((Handle) null, create(value)); retain(getHandle()); }
+    public MLFeatureValue(String value) { super((Handle) null, create(value)); retain(getHandle()); }
+    public MLFeatureValue(MLMultiArray value) { super((Handle) null, create(value)); retain(getHandle()); }
+    public MLFeatureValue(CVPixelBuffer value) { super((Handle) null, create(value)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public MLFeatureValue(MLSequence sequence) { super((Handle) null, create(sequence)); retain(getHandle()); }
+    public MLFeatureValue(MLFeatureType type) { super((Handle) null, create(type)); retain(getHandle()); }
     public MLFeatureValue(NSDictionary<?, NSNumber> value) throws NSErrorException {
        this(value, new NSError.NSErrorPtr());
     }
@@ -85,22 +95,22 @@ import org.robovm.apple.corevideo.*;
     @Method(selector = "isEqualToFeatureValue:")
     public native boolean isEqualToFeatureValue(MLFeatureValue value);
     @Method(selector = "featureValueWithInt64:")
-    public static native MLFeatureValue featureValueWithInt64(long value);
+    protected static native @Pointer long create(long value);
     @Method(selector = "featureValueWithDouble:")
-    public static native MLFeatureValue featureValueWithDouble(double value);
+    protected static native @Pointer long create(double value);
     @Method(selector = "featureValueWithString:")
-    public static native MLFeatureValue featureValueWithString(String value);
+    protected static native @Pointer long create(String value);
     @Method(selector = "featureValueWithMultiArray:")
-    public static native MLFeatureValue featureValueWithMultiArray(MLMultiArray value);
+    protected static native @Pointer long create(MLMultiArray value);
     @Method(selector = "featureValueWithPixelBuffer:")
-    public static native MLFeatureValue featureValueWithPixelBuffer(CVPixelBuffer value);
+    protected static native @Pointer long create(CVPixelBuffer value);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "featureValueWithSequence:")
-    public static native MLFeatureValue featureValueWithSequence(MLSequence sequence);
+    protected static native @Pointer long create(MLSequence sequence);
     @Method(selector = "undefinedFeatureValueWithType:")
-    public static native MLFeatureValue undefinedFeatureValueWithType(MLFeatureType type);
+    protected static native @Pointer long create(MLFeatureType type);
     @Method(selector = "featureValueWithDictionary:error:")
     protected static native @Pointer long create(NSDictionary<?, NSNumber> value, NSError.NSErrorPtr error);
     /*</methods>*/

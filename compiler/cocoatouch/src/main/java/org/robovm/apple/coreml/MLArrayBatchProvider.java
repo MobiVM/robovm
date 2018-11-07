@@ -49,7 +49,7 @@ import org.robovm.apple.corevideo.*;
     protected MLArrayBatchProvider(Handle h, long handle) { super(h, handle); }
     protected MLArrayBatchProvider(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFeatureProviderArray:")
-    public MLArrayBatchProvider(NSArray<?> array) { super((SkipInit) null); initObject(initWithFeatureProviderArray(array)); }
+    public MLArrayBatchProvider(NSArray<?> array) { super((SkipInit) null); initObject(init(array)); }
     @Method(selector = "initWithDictionary:error:")
     public MLArrayBatchProvider(NSDictionary<NSString, NSArray> dictionary) throws NSErrorException {
        super((SkipInit) null);
@@ -68,7 +68,7 @@ import org.robovm.apple.corevideo.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithFeatureProviderArray:")
-    protected native @Pointer long initWithFeatureProviderArray(NSArray<?> array);
+    protected native @Pointer long init(NSArray<?> array);
     @Method(selector = "initWithDictionary:error:")
     private native @Pointer long init(NSDictionary<NSString, NSArray> dictionary, NSError.NSErrorPtr error);
     @Method(selector = "featuresAtIndex:")
