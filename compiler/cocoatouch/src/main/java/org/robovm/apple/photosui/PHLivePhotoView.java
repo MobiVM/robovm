@@ -73,11 +73,11 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "startPlaybackWithStyle:")
-    public native void startPlaybackWithStyle(PHLivePhotoViewPlaybackStyle playbackStyle);
+    public native void startPlayback(PHLivePhotoViewPlaybackStyle playbackStyle);
     @Method(selector = "stopPlayback")
     public native void stopPlayback();
     @Method(selector = "livePhotoBadgeImageWithOptions:")
-    public static native UIImage livePhotoBadgeImageWithOptions(PHLivePhotoBadgeOptions badgeOptions);
+    public static native UIImage createLivePhotoBadgeImage(PHLivePhotoBadgeOptions badgeOptions);
     @Method(selector = "initWithFrame:")
     protected native @Pointer long init(@ByVal org.robovm.apple.coregraphics.CGRect frame);
     @Method(selector = "initWithCoder:")

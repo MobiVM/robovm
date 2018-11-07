@@ -16,7 +16,12 @@ enums:
     PHLivePhotoViewPlaybackStyle: {}
 
 classes:
-    PHLivePhotoView: {}
+    PHLivePhotoView: #since 9.1
+        methods:
+            '-startPlaybackWithStyle:':
+                name: startPlayback
+            '+livePhotoBadgeImageWithOptions:':
+                name: createLivePhotoBadgeImage
     PHEditingExtensionContext: {} #since 8.0
 
 protocols:
