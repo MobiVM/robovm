@@ -55,7 +55,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 9.3 and later.
      */
     @Method(selector = "initWithCompletion:")
-    public MKLocalSearchRequest(MKLocalSearchCompletion completion) { super((SkipInit) null); initObject(initWithCompletion(completion)); }
+    public MKLocalSearchRequest(MKLocalSearchCompletion completion) { super((SkipInit) null); initObject(init(completion)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "naturalLanguageQuery")
@@ -73,6 +73,6 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 9.3 and later.
      */
     @Method(selector = "initWithCompletion:")
-    protected native @Pointer long initWithCompletion(MKLocalSearchCompletion completion);
+    protected native @Pointer long init(MKLocalSearchCompletion completion);
     /*</methods>*/
 }
