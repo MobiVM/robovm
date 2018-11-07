@@ -289,6 +289,18 @@ classes:
                 name: transform
             '-insetByX:Y:':
                 name: insetByXY
+            '-initWithRect:':
+                name: init
+            '-unionWith:':
+                name: union
+            '-unionWithRect:':
+                name: union
+            '-intersectWith:':
+                name: intersect
+            '-intersectWithRect:':
+                name: intersect
+            '+shapeWithRect:':
+                exclude: true
     CIImageAccumulator: #since 9.0
         methods:
             '-initWithExtent:format:':
@@ -331,6 +343,10 @@ classes:
                 name: init
             '-initWithBitmapData:width:height:bytesPerRow:format:':
                 name: init
+            '-initWithPixelBuffer:':
+                name: init
+            '-initWithIOSurface:':
+                name: init
     CIRenderInfo: {} #since 11.0
     CIRenderTask: {} #since 11.0
     CISampler: #since 9.0
@@ -339,9 +355,13 @@ classes:
                 name: init
             '-initWithImage:options:':
                 name: init
+            '-initWithImage:':
+                name: init
             '+samplerWithImage:keysAndValues:':
                 exclude: true
             '+samplerWithImage:options:':
+                exclude: true
+            '+samplerWithImage:':
                 exclude: true
     CITextFeature: {} #since 9.0
 
@@ -349,6 +369,9 @@ protocols:
     CIFilterConstructor:
         protocols: [NSObjectProtocol]
         skip_adapter: true
+        methods:
+            '-filterWithName:':
+                name: createFilter
     CIImageProcessorInput: {} #since 10.0
     CIImageProcessorOutput: {} #since 10.0
 

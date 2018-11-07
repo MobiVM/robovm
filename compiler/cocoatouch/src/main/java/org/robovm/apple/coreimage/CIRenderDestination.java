@@ -56,9 +56,9 @@ import org.robovm.apple.iosurface.*;
     protected CIRenderDestination(Handle h, long handle) { super(h, handle); }
     protected CIRenderDestination(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPixelBuffer:")
-    public CIRenderDestination(CVPixelBuffer pixelBuffer) { super((SkipInit) null); initObject(initWithPixelBuffer(pixelBuffer)); }
+    public CIRenderDestination(CVPixelBuffer pixelBuffer) { super((SkipInit) null); initObject(init(pixelBuffer)); }
     @Method(selector = "initWithIOSurface:")
-    public CIRenderDestination(IOSurface surface) { super((SkipInit) null); initObject(initWithIOSurface(surface)); }
+    public CIRenderDestination(IOSurface surface) { super((SkipInit) null); initObject(init(surface)); }
     @Method(selector = "initWithMTLTexture:commandBuffer:")
     public CIRenderDestination(MTLTexture texture, MTLCommandBuffer commandBuffer) { super((SkipInit) null); initObject(init(texture, commandBuffer)); }
     @Method(selector = "initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:")
@@ -105,9 +105,9 @@ import org.robovm.apple.iosurface.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPixelBuffer:")
-    protected native @Pointer long initWithPixelBuffer(CVPixelBuffer pixelBuffer);
+    protected native @Pointer long init(CVPixelBuffer pixelBuffer);
     @Method(selector = "initWithIOSurface:")
-    protected native @Pointer long initWithIOSurface(IOSurface surface);
+    protected native @Pointer long init(IOSurface surface);
     @Method(selector = "initWithMTLTexture:commandBuffer:")
     protected native @Pointer long init(MTLTexture texture, MTLCommandBuffer commandBuffer);
     @Method(selector = "initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:")
