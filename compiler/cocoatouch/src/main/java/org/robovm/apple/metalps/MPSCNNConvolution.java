@@ -67,7 +67,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNConvolution(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNConvolution(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSCNNConvolution(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inputFeatureChannels")
@@ -183,7 +183,7 @@ import org.robovm.apple.metal.*;
      */
     @Deprecated
     @Method(selector = "reloadWeightsAndBiasesWithDataSource:")
-    public native void reloadWeightsAndBiasesWithDataSource(MPSCNNConvolutionDataSource dataSource);
+    public native void reloadWeightsAndBiases(MPSCNNConvolutionDataSource dataSource);
     /**
      * @since Available in iOS 11.3 and later.
      */
@@ -195,6 +195,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "exportWeightsAndBiasesWithCommandBuffer:resultStateCanBeTemporary:")
     public native MPSCNNConvolutionWeightsAndBiasesState exportWeightsAndBiases(MTLCommandBuffer commandBuffer, boolean resultStateCanBeTemporary);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -74,16 +74,16 @@ import org.robovm.apple.metal.*;
     @NotImplemented("updateMeanAndVarianceWithCommandBuffer:batchNormalizationState:")
     public MPSCNNNormalizationMeanAndVarianceState updateMeanAndVariance(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationState) { return null; }
     @NotImplemented("updateGammaAndBetaWithBatchNormalizationState:")
-    public boolean updateGammaAndBetaWithBatchNormalizationState(MPSCNNBatchNormalizationState batchNormalizationState) { return false; }
+    public boolean updateGammaAndBeta(MPSCNNBatchNormalizationState batchNormalizationState) { return false; }
     /**
      * @since Available in iOS 12.0 and later.
      */
     @NotImplemented("updateMeanAndVarianceWithBatchNormalizationState:")
-    public boolean updateMeanAndVarianceWithBatchNormalizationState(MPSCNNBatchNormalizationState batchNormalizationState) { return false; }
+    public boolean updateMeanAndVariance(MPSCNNBatchNormalizationState batchNormalizationState) { return false; }
     @NotImplemented("epsilon")
     public float epsilon() { return 0; }
     @NotImplemented("encodeWithCoder:")
-    public void encodeWithCoder(NSCoder aCoder) {}
+    public void encode(NSCoder aCoder) {}
     /**
      * @since Available in iOS 12.0 and later.
      */

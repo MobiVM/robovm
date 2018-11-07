@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSCNNNeuronAbsoluteNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNeuronAbsoluteNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:")
-    public MPSCNNNeuronAbsoluteNode(MPSNNImageNode sourceNode) { super((SkipInit) null); initObject(initWithSource(sourceNode)); }
+    public MPSCNNNeuronAbsoluteNode(MPSNNImageNode sourceNode) { super((SkipInit) null); initObject(init(sourceNode)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -58,8 +58,6 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSource:")
-    protected native @Pointer long initWithSource(MPSNNImageNode sourceNode);
-    @Method(selector = "nodeWithSource:")
-    public static native MPSCNNNeuronAbsoluteNode nodeWithSource(MPSNNImageNode sourceNode);
+    protected native @Pointer long init(MPSNNImageNode sourceNode);
     /*</methods>*/
 }

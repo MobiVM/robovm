@@ -60,11 +60,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "updateGammaAndBetaWithCommandBuffer:instanceNormalizationStateBatch:")
     MPSCNNNormalizationGammaAndBetaState updateGammaAndBeta(MTLCommandBuffer commandBuffer, NSArray<MPSCNNInstanceNormalizationGradientState> instanceNormalizationStateBatch);
     @Method(selector = "updateGammaAndBetaWithInstanceNormalizationStateBatch:")
-    boolean updateGammaAndBetaWithInstanceNormalizationStateBatch(NSArray<MPSCNNInstanceNormalizationGradientState> instanceNormalizationStateBatch);
+    boolean updateGammaAndBeta(NSArray<MPSCNNInstanceNormalizationGradientState> instanceNormalizationStateBatch);
     @Method(selector = "epsilon")
     float epsilon();
     @Method(selector = "encodeWithCoder:")
-    void encodeWithCoder(NSCoder aCoder);
+    void encode(NSCoder aCoder);
     /**
      * @since Available in iOS 12.0 and later.
      */

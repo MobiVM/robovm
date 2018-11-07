@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSNNImageNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNImageNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithHandle:")
-    public MPSNNImageNode(MPSHandle handle) { super((SkipInit) null); initObject(initWithHandle(handle)); }
+    public MPSNNImageNode(MPSHandle handle) { super((SkipInit) null); initObject(init(handle)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "handle")
@@ -93,10 +93,8 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithHandle:")
-    protected native @Pointer long initWithHandle(MPSHandle handle);
-    @Method(selector = "nodeWithHandle:")
-    public static native MPSNNImageNode nodeWithHandle(MPSHandle handle);
+    protected native @Pointer long init(MPSHandle handle);
     @Method(selector = "exportedNodeWithHandle:")
-    public static native MPSNNImageNode exportedNodeWithHandle(MPSHandle handle);
+    public static native MPSNNImageNode createExportedNode(MPSHandle handle);
     /*</methods>*/
 }

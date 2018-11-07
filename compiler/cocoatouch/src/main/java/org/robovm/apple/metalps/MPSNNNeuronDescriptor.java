@@ -49,6 +49,7 @@ import org.robovm.apple.metal.*;
     protected MPSNNNeuronDescriptor() {}
     protected MPSNNNeuronDescriptor(Handle h, long handle) { super(h, handle); }
     protected MPSNNNeuronDescriptor(SkipInit skipInit) { super(skipInit); }
+    public MPSNNNeuronDescriptor(MPSCNNNeuronType neuronType) { super((Handle) null, create(neuronType)); retain(getHandle()); }
     public MPSNNNeuronDescriptor(MPSCNNNeuronType neuronType, float a) { super((Handle) null, create(neuronType, a)); retain(getHandle()); }
     public MPSNNNeuronDescriptor(MPSCNNNeuronType neuronType, float a, float b) { super((Handle) null, create(neuronType, a, b)); retain(getHandle()); }
     public MPSNNNeuronDescriptor(MPSCNNNeuronType neuronType, float a, float b, float c) { super((Handle) null, create(neuronType, a, b, c)); retain(getHandle()); }
@@ -79,7 +80,7 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "cnnNeuronDescriptorWithType:")
-    public static native MPSNNNeuronDescriptor cnnNeuronDescriptorWithType(MPSCNNNeuronType neuronType);
+    protected static native @Pointer long create(MPSCNNNeuronType neuronType);
     @Method(selector = "cnnNeuronDescriptorWithType:a:")
     protected static native @Pointer long create(MPSCNNNeuronType neuronType, float a);
     @Method(selector = "cnnNeuronDescriptorWithType:a:b:")

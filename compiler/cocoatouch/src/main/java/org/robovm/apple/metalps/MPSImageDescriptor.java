@@ -94,7 +94,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "copyWithZone:")
-    public native MPSImageDescriptor copyWithZone(NSZone zone);
+    public native MPSImageDescriptor copy(NSZone zone);
     @Method(selector = "imageDescriptorWithChannelFormat:width:height:featureChannels:")
     protected static native @Pointer long create(MPSImageFeatureChannelFormat channelFormat, @MachineSizedUInt long width, @MachineSizedUInt long height, @MachineSizedUInt long featureChannels);
     @Method(selector = "imageDescriptorWithChannelFormat:width:height:featureChannels:numberOfImages:usage:")

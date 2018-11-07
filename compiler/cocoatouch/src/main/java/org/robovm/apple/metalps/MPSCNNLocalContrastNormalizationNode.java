@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithSource:kernelSize:")
     public MPSCNNLocalContrastNormalizationNode(MPSNNImageNode sourceNode, @MachineSizedUInt long kernelSize) { super((SkipInit) null); initObject(init(sourceNode, kernelSize)); }
     @Method(selector = "initWithSource:")
-    public MPSCNNLocalContrastNormalizationNode(MPSNNImageNode sourceNode) { super((SkipInit) null); initObject(initWithSource(sourceNode)); }
+    public MPSCNNLocalContrastNormalizationNode(MPSNNImageNode sourceNode) { super((SkipInit) null); initObject(init(sourceNode)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "pm")
@@ -81,6 +81,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithSource:kernelSize:")
     protected native @Pointer long init(MPSNNImageNode sourceNode, @MachineSizedUInt long kernelSize);
     @Method(selector = "initWithSource:")
-    protected native @Pointer long initWithSource(MPSNNImageNode sourceNode);
+    protected native @Pointer long init(MPSNNImageNode sourceNode);
     /*</methods>*/
 }

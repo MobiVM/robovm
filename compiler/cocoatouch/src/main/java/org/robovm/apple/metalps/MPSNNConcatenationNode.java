@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSNNConcatenationNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNConcatenationNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSources:")
-    public MPSNNConcatenationNode(NSArray<MPSNNImageNode> sourceNodes) { super((SkipInit) null); initObject(initWithSources(sourceNodes)); }
+    public MPSNNConcatenationNode(NSArray<MPSNNImageNode> sourceNodes) { super((SkipInit) null); initObject(init(sourceNodes)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -58,8 +58,6 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSources:")
-    protected native @Pointer long initWithSources(NSArray<MPSNNImageNode> sourceNodes);
-    @Method(selector = "nodeWithSources:")
-    public static native MPSNNConcatenationNode nodeWithSources(NSArray<MPSNNImageNode> sourceNodes);
+    protected native @Pointer long init(NSArray<MPSNNImageNode> sourceNodes);
     /*</methods>*/
 }

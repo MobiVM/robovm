@@ -199,7 +199,9 @@ classes:
                 name: getDestinationImageDescriptor
     MPSCNNConvolution: #since 10.0
         methods:
-            '-init.*':
+            '-initWithDevice:weights:':
+                name: init
+            '-initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:':
                 name: init
             '-resultStateForSourceImage:sourceStates:destinationImage:':
                 name: getResultState
@@ -213,12 +215,16 @@ classes:
                 name: reloadWeightsAndBiases
             '-exportWeightsAndBiasesWithCommandBuffer:resultStateCanBeTemporary:':
                 name: exportWeightsAndBiases
+            '-reloadWeightsAndBiasesWithDataSource:':
+                name: reloadWeightsAndBiases
     MPSCNNConvolutionDescriptor: #since 10.0
         methods:
             '-setBatchNormalizationParametersForInferenceWithMean:variance:gamma:beta:epsilon:':
                 name: setBatchNormalizationParameters
             '-setNeuronType:parameterA:parameterB:':
                 trim_after_first_colon: true
+            '-setNeuronToPReLUWithParametersA:':
+                name: setNeuronToPReLU
             '+cnnConvolutionDescriptorWithKernelWidth:kernelHeight:inputFeatureChannels:outputFeatureChannels:neuronFilter:':
                 constructor: true
                 name: create
@@ -332,11 +338,17 @@ classes:
     MPSCNNDropoutGradientState: {} #since 11.3
     MPSCNNDropoutNode: #since 11.3
         methods:
-            '-init.*':
+            '-initWithSource:':
+                name: init
+            '-initWithSource:keepProbability:':
+                name: init
+            '-initWithSource:keepProbability:seed:maskStrideInPixels:':
                 name: init
             '+nodeWithSource:keepProbability:':
                 exclude: true
             '+nodeWithSource:keepProbability:seed:maskStrideInPixels:':
+                exclude: true
+            '+nodeWithSource:':
                 exclude: true
     MPSCNNFullyConnected: #since 10.0
         methods:
@@ -449,10 +461,15 @@ classes:
                 name: init
             '+nodeWithSourceGradient:sourceImage:gradientState:':
                 exclude: true
-    MPSCNNLogSoftMaxNode: {} #since 11.0
+    MPSCNNLogSoftMaxNode: #since 11.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNLoss: #since 11.3
         methods:
-            '-init.*':
+            '-initWithDevice:lossDescriptor:':
                 name: init
             '-encodeToCommandBuffer:sourceImage:labels:destinationImage:':
                 name: encode
@@ -492,7 +509,12 @@ classes:
             '-initWithDevice:neuronDescriptor:':
                 name: init
     MPSCNNNeuronAbsolute: {} #since 10.0
-    MPSCNNNeuronAbsoluteNode: {} #since 11.0
+    MPSCNNNeuronAbsoluteNode: #since 11.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronELU: #since 11.0
         methods:
             '-initWithDevice:a:':
@@ -503,6 +525,10 @@ classes:
                 name: init
             '+nodeWithSource:a:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronExponential: #since 11.3
         methods:
             '-initWithDevice:a:b:c:':
@@ -512,6 +538,10 @@ classes:
             '-initWithSource:a:b:c:':
                 name: init
             '+nodeWithSource:a:b:c:':
+                exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
                 exclude: true
     MPSCNNNeuronGradient: #since 11.3
         methods:
@@ -533,6 +563,10 @@ classes:
                 name: init
             '+nodeWithSource:a:b:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronLinear: #since 10.0
         methods:
             '-initWithDevice:a:b:':
@@ -543,6 +577,10 @@ classes:
                 name: init
             '+nodeWithSource:a:b:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronLogarithm: #since 11.3
         methods:
             '-initWithDevice:a:b:c:':
@@ -552,6 +590,10 @@ classes:
             '-initWithSource:a:b:c:':
                 name: init
             '+nodeWithSource:a:b:c:':
+                exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
                 exclude: true
     MPSCNNNeuronNode:  #since 11.0
         methods:
@@ -578,6 +620,10 @@ classes:
                 name: init
             '+nodeWithSource:a:b:c:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronReLU: #since 10.0
         methods:
             '-initWithDevice:a:':
@@ -592,16 +638,27 @@ classes:
                 name: init
             '+nodeWithSource:a:b:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronReLUNode: #since 11.0
         methods:
             '-initWithSource:a:':
-                #trim_after_first_colon: true
-                name: initWithSource$a$
+                name: init
             '+nodeWithSource:a:':
-                #trim_after_first_colon: true
-                name: nodeWithSource$a$
+                exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronSigmoid: {} #since 10.0
-    MPSCNNNeuronSigmoidNode: {} #since 11.0
+    MPSCNNNeuronSigmoidNode: #since 11.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronSoftPlus: #since 11.0
         methods:
             '-initWithDevice:a:b:':
@@ -612,8 +669,17 @@ classes:
                 name: init
             '+nodeWithSource:a:b:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronSoftSign: {} #since 11.0
-    MPSCNNNeuronSoftSignNode: {} #since 11.0
+    MPSCNNNeuronSoftSignNode: #since 11.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronTanH: #since 10.0
         methods:
             '-initWithDevice:a:b:':
@@ -624,6 +690,10 @@ classes:
                 name: init
             '+nodeWithSource:a:b:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNormalizationGammaAndBetaState: #since 11.3
         methods:
             '-initWithGamma:beta:':
@@ -631,24 +701,31 @@ classes:
             '+temporaryStateWithCommandBuffer:numberOfFeatureChannels:':
                 constructor: true
                 name: createTemporaryState
-    MPSCNNNormalizationNode: {} #since 11.0
+    MPSCNNNormalizationNode: #since 11.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNPooling: #since 10.0
         methods:
-            '-init.*':
+            '-initWithDevice:kernelWidth:kernelHeight:':
                 name: init
-    MPSCNNPoolingAverage: #since 10.0
-        methods:
-            '-init.*':
+            '-initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:':
                 name: init
-    MPSCNNPoolingAverageGradient: #since 11.3
-        methods:
-            '-init.*':
+            '-initWithSource:':
                 name: init
+            '+nodeWithSource:':
+                exclude: true
+    MPSCNNPoolingAverage: {} #since 10.0
+    MPSCNNPoolingAverageGradient: {} #since 11.3
     MPSCNNPoolingAverageGradientNode: {} #since 11.3
     MPSCNNPoolingAverageNode: {} #since 11.0
     MPSCNNPoolingGradient: #since 11.3
         methods:
-            '-init.*':
+            '-initWithDevice:kernelWidth:kernelHeight:':
+                name: init
+            '-initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:':
                 name: init
     MPSCNNPoolingGradientNode: #since 11.3
         methods:
@@ -656,14 +733,8 @@ classes:
                 name: init
             '+nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:':
                 exclude: true
-    MPSCNNPoolingL2Norm: #since 11.0
-        methods:
-            '-init.*':
-                name: init
-    MPSCNNPoolingL2NormGradient: #since 11.3
-        methods:
-            '-init.*':
-                name: init
+    MPSCNNPoolingL2Norm: {} #since 11.0
+    MPSCNNPoolingL2NormGradient: {} #since 11.3
     MPSCNNPoolingL2NormGradientNode: {} #since 11.3
     MPSCNNPoolingL2NormNode: {} #since 11.0
     MPSCNNPoolingMax: #since 10.0
@@ -695,7 +766,12 @@ classes:
                 name: init
             '+nodeWithSourceGradient:sourceImage:gradientState:':
                 exclude: true
-    MPSCNNSoftMaxNode: {} #since 11.0
+    MPSCNNSoftMaxNode: #since 11.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNSpatialNormalization: #since 10.0
         methods:
             '-init.*':
@@ -791,6 +867,10 @@ classes:
                 trim_after_first_colon: true
             '-writeBytes:dataLayout:imageIndex:':
                 trim_after_first_colon: true
+            '-batchRepresentationWithSubRange:':
+                name: batchRepresentation
+            '-subImageWithFeatureChannelRange:':
+                name: subImage
     MPSImageAdd: {} #since 11.0
     MPSImageAreaMax: #since 9.0
         methods:
@@ -830,6 +910,8 @@ classes:
             '+imageDescriptorWithChannelFormat:width:height:featureChannels:numberOfImages:usage:':
                 constructor: true
                 name: create
+            '-copyWithZone:':
+                name: copy
     MPSImageDilate: #since 9.0
         methods:
             '-initWithDevice:kernelWidth:kernelHeight:values:':
@@ -1065,6 +1147,8 @@ classes:
         methods:
             '-setNeuronType:parameterA:parameterB:parameterC:':
                 trim_after_first_colon: true
+            '-setNeuronToPReLUWithParametersA:':
+                name: setNeuronToPReLU
             '-encodeToCommandBuffer:inputMatrix:biasVector:resultMatrix:':
                 name: encode
             '-initWithCoder:device:':
@@ -1130,6 +1214,10 @@ classes:
                 name: init
             '+nodeWithLeftSource:rightSource:':
                 exclude: true
+            '-initWithSources:':
+                name: init
+            '+nodeWithSources:':
+                exclude: true
     MPSNNBinaryGradientState: {} #since 11.3
     MPSNNBinaryGradientStateNode: {} #since 11.3
     MPSNNConcatenationGradientNode: #since 11.3
@@ -1138,13 +1226,30 @@ classes:
                 name: init
             '+nodeWithSourceGradient:sourceImage:gradientState:':
                 exclude: true
-    MPSNNConcatenationNode: {} #since 11.0
-    MPSNNDefaultPadding: {} #since 11.0
+    MPSNNConcatenationNode: #since 11.0
+        methods:
+            '-initWithSources:':
+                name: init
+            '+nodeWithSources:':
+                exclude: true
+    MPSNNDefaultPadding: #since 11.0
+        methods:
+            '+paddingWithMethod:':
+                name: create
+                constructor: true
     MPSNNDivisionNode: {} #since 11.0
     MPSNNFilterNode:  #since 11.0
         methods:
             '-trainingGraphWithSourceGradient:nodeHandler:':
                 name: trainingGraph
+            '-gradientFilterWithSource:':
+                name: gradientFilter
+            '-gradientFilterWithSources:':
+                name: gradientFilter
+            '-gradientFiltersWithSources:':
+                name: gradientFilters
+            '-gradientFiltersWithSource:':
+                name: gradientFilters
     MPSNNGradientFilterNode: {} #since 11.3
     MPSNNGradientState: {} #since 11.3
     MPSNNGradientStateNode: {} #since 11.3
@@ -1171,6 +1276,13 @@ classes:
         properties:
             handle:
                 name: getMpsHandle
+        methods:
+            '-initWithHandle:':
+                name: init
+            '+nodeWithHandle:':
+                exclude: true
+            '+exportedNodeWithHandle:':
+                name: createExportedNode
     MPSNNLabelsNode: {} #since 11.3
     MPSNNLanczosScaleNode: {} #since 11.0
     MPSNNMultiplicationGradientNode: {} #since 11.3
@@ -1187,6 +1299,9 @@ classes:
                 constructor: true
                 name: create
             '+cnnNeuronPReLUDescriptorWithData:noCopy:':
+                constructor: true
+                name: create
+            '+cnnNeuronDescriptorWithType:':
                 constructor: true
                 name: create
     MPSNNReduceBinary: {} #since 11.3
@@ -1275,6 +1390,9 @@ classes:
                 constructor: true
                 name: create
             '+temporaryStateWithCommandBuffer:resourceList:':
+                constructor: true
+                name: create
+            '+temporaryStateWithCommandBuffer:':
                 constructor: true
                 name: create
     MPSStateResourceList: {} #since 11.3
@@ -1426,6 +1544,8 @@ classes:
         methods:
             '-setNeuronType:parameterA:parameterB:parameterC:':
                 trim_after_first_colon: true
+            '-setNeuronToPReLUWithParametersA:':
+                name: setNeuronToPReLU
             '-encodeToCommandBuffer:gradientMatrix:inputMatrix:biasVector:resultGradientForDataMatrix:resultGradientForBiasVector:':
                 trim_after_first_colon: true
             '-initWithCoder:device:':
@@ -1548,6 +1668,12 @@ protocols:
                 name: updateMeanAndVariance
             '-copyWithZone:device:':
                 name: copy
+            '-updateGammaAndBetaWithBatchNormalizationState:':
+                name: updateGammaAndBeta
+            '-updateMeanAndVarianceWithBatchNormalizationState:':
+                name: updateMeanAndVariance
+            '-encodeWithCoder:':
+                name: encode
     MPSCNNConvolutionDataSource:
         methods:
             '-updateWithCommandBuffer:gradientState:sourceState:':
@@ -1562,6 +1688,10 @@ protocols:
                 name: updateGammaAndBeta
             '-copyWithZone:device:':
                 name: copy
+            '-updateGammaAndBetaWithInstanceNormalizationStateBatch:':
+                name: updateGammaAndBeta
+            '-encodeWithCoder:':
+                name: encode
     MPSDeviceProvider: {}
     MPSHandle: {}
     MPSImageAllocator:

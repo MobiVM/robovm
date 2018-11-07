@@ -60,11 +60,11 @@ import org.robovm.apple.metal.*;
     @NotImplemented("updateGammaAndBetaWithCommandBuffer:instanceNormalizationStateBatch:")
     public MPSCNNNormalizationGammaAndBetaState updateGammaAndBeta(MTLCommandBuffer commandBuffer, NSArray<MPSCNNInstanceNormalizationGradientState> instanceNormalizationStateBatch) { return null; }
     @NotImplemented("updateGammaAndBetaWithInstanceNormalizationStateBatch:")
-    public boolean updateGammaAndBetaWithInstanceNormalizationStateBatch(NSArray<MPSCNNInstanceNormalizationGradientState> instanceNormalizationStateBatch) { return false; }
+    public boolean updateGammaAndBeta(NSArray<MPSCNNInstanceNormalizationGradientState> instanceNormalizationStateBatch) { return false; }
     @NotImplemented("epsilon")
     public float epsilon() { return 0; }
     @NotImplemented("encodeWithCoder:")
-    public void encodeWithCoder(NSCoder aCoder) {}
+    public void encode(NSCoder aCoder) {}
     /**
      * @since Available in iOS 12.0 and later.
      */

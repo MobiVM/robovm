@@ -183,7 +183,7 @@ import org.robovm.apple.metal.*;
      */
     @Deprecated
     @Method(selector = "setNeuronToPReLUWithParametersA:")
-    public native void setNeuronToPReLUWithParametersA(NSData A);
+    public native void setNeuronToPReLU(NSData A);
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 11.0.

@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
     public MPSCNNPoolingAverage(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight) { super((SkipInit) null); initObject(init(device, kernelWidth, kernelHeight)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNPoolingAverage(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSCNNPoolingAverage(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "zeroPadSizeX")
@@ -83,6 +83,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
     protected native @Pointer long init(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

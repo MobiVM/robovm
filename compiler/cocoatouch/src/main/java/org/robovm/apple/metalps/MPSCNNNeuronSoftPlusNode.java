@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithSource:a:b:")
     public MPSCNNNeuronSoftPlusNode(MPSNNImageNode sourceNode, float a, float b) { super((SkipInit) null); initObject(init(sourceNode, a, b)); }
     @Method(selector = "initWithSource:")
-    public MPSCNNNeuronSoftPlusNode(MPSNNImageNode sourceNode) { super((SkipInit) null); initObject(initWithSource(sourceNode)); }
+    public MPSCNNNeuronSoftPlusNode(MPSNNImageNode sourceNode) { super((SkipInit) null); initObject(init(sourceNode)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -62,8 +62,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithSource:a:b:")
     protected native @Pointer long init(MPSNNImageNode sourceNode, float a, float b);
     @Method(selector = "initWithSource:")
-    protected native @Pointer long initWithSource(MPSNNImageNode sourceNode);
-    @Method(selector = "nodeWithSource:")
-    public static native MPSCNNNeuronSoftPlusNode nodeWithSource(MPSNNImageNode sourceNode);
+    protected native @Pointer long init(MPSNNImageNode sourceNode);
     /*</methods>*/
 }

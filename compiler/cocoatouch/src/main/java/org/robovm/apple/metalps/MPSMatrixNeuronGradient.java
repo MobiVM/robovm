@@ -83,7 +83,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "neuronParameterC")
     public native float neuronParameterC();
     @Method(selector = "setNeuronToPReLUWithParametersA:")
-    public native void setNeuronToPReLUWithParametersA(NSData A);
+    public native void setNeuronToPReLU(NSData A);
     @Method(selector = "initWithDevice:")
     protected native @Pointer long init(MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:gradientMatrix:inputMatrix:biasVector:resultGradientForDataMatrix:resultGradientForBiasVector:")

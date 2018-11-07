@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNLoss(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNLoss(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSCNNLoss(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lossType")
@@ -87,6 +87,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:labels:")
     public native NSArray<MPSImage> encodeBatchLabels(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray <MPSCNNLossLabels> labels);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

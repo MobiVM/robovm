@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSNNSubtractionNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNSubtractionNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSources:")
-    public MPSNNSubtractionNode(NSArray<MPSNNImageNode> sourceNodes) { super((SkipInit) null); initObject(initWithSources(sourceNodes)); }
+    public MPSNNSubtractionNode(NSArray<MPSNNImageNode> sourceNodes) { super((SkipInit) null); initObject(init(sourceNodes)); }
     @Method(selector = "initWithLeftSource:rightSource:")
     public MPSNNSubtractionNode(MPSNNImageNode left, MPSNNImageNode right) { super((SkipInit) null); initObject(init(left, right)); }
     /*</constructors>*/
@@ -60,7 +60,7 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSources:")
-    protected native @Pointer long initWithSources(NSArray<MPSNNImageNode> sourceNodes);
+    protected native @Pointer long init(NSArray<MPSNNImageNode> sourceNodes);
     @Method(selector = "initWithLeftSource:rightSource:")
     protected native @Pointer long init(MPSNNImageNode left, MPSNNImageNode right);
     /*</methods>*/

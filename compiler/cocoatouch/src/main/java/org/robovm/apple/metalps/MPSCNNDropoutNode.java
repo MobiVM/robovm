@@ -72,7 +72,5 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MPSNNImageNode source, float keepProbability);
     @Method(selector = "initWithSource:keepProbability:seed:maskStrideInPixels:")
     protected native @Pointer long init(MPSNNImageNode source, float keepProbability, @MachineSizedUInt long seed, @ByVal MTLSize maskStrideInPixels);
-    @Method(selector = "nodeWithSource:")
-    public static native MPSCNNDropoutNode nodeWithSource(MPSNNImageNode source);
     /*</methods>*/
 }
