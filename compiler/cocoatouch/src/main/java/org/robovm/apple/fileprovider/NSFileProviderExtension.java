@@ -70,7 +70,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "URLForItemWithPersistentIdentifier:")
-    public native NSURL URLForItemWithPersistentIdentifier(NSString identifier);
+    public native NSURL getURLForItem(NSString identifier);
     @Method(selector = "persistentIdentifierForItemAtURL:")
     public native NSString persistentIdentifierForItemAtURL(NSURL url);
     /**

@@ -56,6 +56,6 @@ import org.robovm.apple.coregraphics.*;
     @NotImplemented("enumerateChangesForObserver:fromSyncAnchor:")
     public void fromSyncAnchor(NSFileProviderChangeObserver observer, NSData syncAnchor) {}
     @NotImplemented("currentSyncAnchorWithCompletionHandler:")
-    public void currentSyncAnchorWithCompletionHandler(@Block VoidBlock1<NSData> completionHandler) {}
+    public void currentSyncAnchor(@Block VoidBlock1<NSData> completionHandler) {}
     /*</methods>*/
 }

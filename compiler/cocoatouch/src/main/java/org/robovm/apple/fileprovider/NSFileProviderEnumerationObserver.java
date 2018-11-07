@@ -52,7 +52,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "finishEnumeratingUpToPage:")
     void finishEnumeratingUpToPage(NSData nextPage);
     @Method(selector = "finishEnumeratingWithError:")
-    void finishEnumeratingWithError(NSError error);
+    void finishEnumerating(NSError error);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
