@@ -51,7 +51,7 @@ import org.robovm.apple.corefoundation.*;
     protected IOSurface(Handle h, long handle) { super(h, handle); }
     protected IOSurface(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithProperties:")
-    public IOSurface(NSDictionary<?, ?> properties) { super((SkipInit) null); initObject(initWithProperties(properties)); }
+    public IOSurface(NSDictionary<?, ?> properties) { super((SkipInit) null); initObject(init(properties)); }
     @Method(selector = "initWithCoder:")
     public IOSurface(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -333,7 +333,7 @@ import org.robovm.apple.corefoundation.*;
     public native int iOSurfaceSetPurgeable(int newState, IntPtr oldState);
     
     @Method(selector = "initWithProperties:")
-    protected native @Pointer long initWithProperties(NSDictionary<?, ?> properties);
+    protected native @Pointer long init(NSDictionary<?, ?> properties);
     @Method(selector = "lockWithOptions:seed:")
     public native int lock(IOSurfaceLockOptions options, IntPtr seed);
     @Method(selector = "unlockWithOptions:seed:")
