@@ -175,12 +175,12 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 9.3 and later.
      */
     @Method(selector = "setQueueWithStoreIDs:")
-    public native void setQueueWithStoreIDs(NSArray<NSString> storeIDs);
+    public native void setQueue(NSArray<NSString> storeIDs);
     /**
      * @since Available in iOS 10.1 and later.
      */
     @Method(selector = "setQueueWithDescriptor:")
-    public native void setQueueWithDescriptor(MPMusicPlayerQueueDescriptor descriptor);
+    public native void setQueue(MPMusicPlayerQueueDescriptor descriptor);
     /**
      * @since Available in iOS 10.3 and later.
      */
@@ -195,7 +195,7 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 10.1 and later.
      */
     @Method(selector = "prepareToPlayWithCompletionHandler:")
-    public native void prepareToPlayWithCompletionHandler(@Block VoidBlock1<NSError> completionHandler);
+    public native void prepareToPlay(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "skipToNextItem")
     public native void skipToNextItem();
     @Method(selector = "skipToBeginning")

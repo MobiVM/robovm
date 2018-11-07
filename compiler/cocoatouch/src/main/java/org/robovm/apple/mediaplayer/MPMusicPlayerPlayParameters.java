@@ -50,7 +50,7 @@ import org.robovm.apple.coregraphics.*;
     protected MPMusicPlayerPlayParameters(Handle h, long handle) { super(h, handle); }
     protected MPMusicPlayerPlayParameters(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDictionary:")
-    public MPMusicPlayerPlayParameters(NSDictionary<NSString, ?> dictionary) { super((SkipInit) null); initObject(initWithDictionary(dictionary)); }
+    public MPMusicPlayerPlayParameters(NSDictionary<NSString, ?> dictionary) { super((SkipInit) null); initObject(init(dictionary)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dictionary")
@@ -59,6 +59,6 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDictionary:")
-    protected native @Pointer long initWithDictionary(NSDictionary<NSString, ?> dictionary);
+    protected native @Pointer long init(NSDictionary<NSString, ?> dictionary);
     /*</methods>*/
 }

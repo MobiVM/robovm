@@ -50,7 +50,7 @@ import org.robovm.apple.coregraphics.*;
     protected MPMusicPlayerPlayParametersQueueDescriptor(Handle h, long handle) { super(h, handle); }
     protected MPMusicPlayerPlayParametersQueueDescriptor(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPlayParametersQueue:")
-    public MPMusicPlayerPlayParametersQueueDescriptor(NSArray<MPMusicPlayerPlayParameters> playParametersQueue) { super((SkipInit) null); initObject(initWithPlayParametersQueue(playParametersQueue)); }
+    public MPMusicPlayerPlayParametersQueueDescriptor(NSArray<MPMusicPlayerPlayParameters> playParametersQueue) { super((SkipInit) null); initObject(init(playParametersQueue)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "playParametersQueue")
@@ -65,7 +65,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPlayParametersQueue:")
-    protected native @Pointer long initWithPlayParametersQueue(NSArray<MPMusicPlayerPlayParameters> playParametersQueue);
+    protected native @Pointer long init(NSArray<MPMusicPlayerPlayParameters> playParametersQueue);
     @Method(selector = "setStartTime:forItemWithPlayParameters:")
     public native void setStartTime(double startTime, MPMusicPlayerPlayParameters playParameters);
     @Method(selector = "setEndTime:forItemWithPlayParameters:")
