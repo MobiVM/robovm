@@ -57,6 +57,7 @@ import org.robovm.apple.imageio.*;
     protected ARSCNFaceGeometry() {}
     protected ARSCNFaceGeometry(Handle h, long handle) { super(h, handle); }
     protected ARSCNFaceGeometry(SkipInit skipInit) { super(skipInit); }
+    public ARSCNFaceGeometry(MTLDevice device) { super((Handle) null, create(device)); retain(getHandle()); }
     public ARSCNFaceGeometry(MTLDevice device, boolean fillMesh) { super((Handle) null, create(device, fillMesh)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -67,7 +68,7 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "updateFromFaceGeometry:")
     public native void updateFromFaceGeometry(ARFaceGeometry faceGeometry);
     @Method(selector = "faceGeometryWithDevice:")
-    public static native ARSCNFaceGeometry faceGeometryWithDevice(MTLDevice device);
+    protected static native @Pointer long create(MTLDevice device);
     @Method(selector = "faceGeometryWithDevice:fillMesh:")
     protected static native @Pointer long create(MTLDevice device, boolean fillMesh);
     /*</methods>*/

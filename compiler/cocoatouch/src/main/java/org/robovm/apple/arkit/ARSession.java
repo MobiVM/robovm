@@ -75,7 +75,7 @@ import org.robovm.apple.imageio.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "runWithConfiguration:")
-    public native void runWithConfiguration(ARConfiguration configuration);
+    public native void run(ARConfiguration configuration);
     @Method(selector = "runWithConfiguration:options:")
     public native void run(ARConfiguration configuration, ARSessionRunOptions options);
     @Method(selector = "pause")
@@ -93,7 +93,7 @@ import org.robovm.apple.imageio.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "getCurrentWorldMapWithCompletionHandler:")
-    public native void getCurrentWorldMapWithCompletionHandler(@Block VoidBlock2<ARWorldMap, NSError> completionHandler);
+    public native void getCurrentWorldMap(@Block VoidBlock2<ARWorldMap, NSError> completionHandler);
     /**
      * @since Available in iOS 12.0 and later.
      */

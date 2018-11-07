@@ -58,7 +58,7 @@ import org.robovm.apple.imageio.*;
     protected ARAnchor(Handle h, long handle) { super(h, handle); }
     protected ARAnchor(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTransform:")
-    public ARAnchor(@ByVal MatrixFloat4x4 transform) { super((SkipInit) null); initObject(initWithTransform(transform)); }
+    public ARAnchor(@ByVal MatrixFloat4x4 transform) { super((SkipInit) null); initObject(init(transform)); }
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -85,7 +85,7 @@ import org.robovm.apple.imageio.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithTransform:")
-    protected native @Pointer long initWithTransform(@ByVal MatrixFloat4x4 transform);
+    protected native @Pointer long init(@ByVal MatrixFloat4x4 transform);
     /**
      * @since Available in iOS 12.0 and later.
      */
