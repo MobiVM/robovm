@@ -27,6 +27,8 @@ classes:
         methods:
             '-initWithModel:completionHandler:':
                 name: init
+            '-initWithModel:':
+                name: init
     VNDetectBarcodesRequest: {} #since 11.0
     VNDetectFaceLandmarksRequest: {} #since 11.0
     VNDetectFaceRectanglesRequest: {} #since 11.0
@@ -36,6 +38,9 @@ classes:
     VNDetectedObjectObservation:  #since 11.0
         methods:
             '+observationWithRequestRevision:boundingBox:':
+                name: create
+                constructor: true
+            '+observationWithBoundingBox:':
                 name: create
                 constructor: true
     VNFaceLandmarkRegion: {} #since 11.0
@@ -64,7 +69,10 @@ classes:
     VNObservation: {} #since 11.0
     VNPixelBufferObservation: {} #since 11.0
     VNRectangleObservation: {} #since 11.0
-    VNRequest: {} #since 11.0
+    VNRequest: #since 11.0
+        methods:
+            '-initWithCompletionHandler:':
+                name: init
     VNSequenceRequestHandler: #since 11.0
         methods:
             '-performRequests:onCVPixelBuffer:error:':
@@ -106,9 +114,13 @@ classes:
         methods:
             '-initWithDetectedObjectObservation:completionHandler:':
                 name: init
+            '-initWithDetectedObjectObservation:':
+                name: init
     VNTrackRectangleRequest: #since 11.0
         methods:
             '-initWithRectangleObservation:completionHandler:':
+                name: init
+            '-initWithRectangleObservation:':
                 name: init
     VNTrackingRequest: {} #since 11.0
     VNTranslationalImageRegistrationRequest: {} #since 11.0

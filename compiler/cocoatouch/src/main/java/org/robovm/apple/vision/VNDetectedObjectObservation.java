@@ -53,6 +53,7 @@ import org.robovm.apple.imageio.*;
     public VNDetectedObjectObservation() {}
     protected VNDetectedObjectObservation(Handle h, long handle) { super(h, handle); }
     protected VNDetectedObjectObservation(SkipInit skipInit) { super(skipInit); }
+    public VNDetectedObjectObservation(@ByVal CGRect boundingBox) { super((Handle) null, create(boundingBox)); retain(getHandle()); }
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -65,7 +66,7 @@ import org.robovm.apple.imageio.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "observationWithBoundingBox:")
-    public static native VNDetectedObjectObservation observationWithBoundingBox(@ByVal CGRect boundingBox);
+    protected static native @Pointer long create(@ByVal CGRect boundingBox);
     /**
      * @since Available in iOS 12.0 and later.
      */

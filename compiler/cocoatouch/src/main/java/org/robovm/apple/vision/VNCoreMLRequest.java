@@ -54,7 +54,7 @@ import org.robovm.apple.imageio.*;
     protected VNCoreMLRequest(Handle h, long handle) { super(h, handle); }
     protected VNCoreMLRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithModel:")
-    public VNCoreMLRequest(VNCoreMLModel model) { super((SkipInit) null); initObject(initWithModel(model)); }
+    public VNCoreMLRequest(VNCoreMLModel model) { super((SkipInit) null); initObject(init(model)); }
     @Method(selector = "initWithModel:completionHandler:")
     public VNCoreMLRequest(VNCoreMLModel model, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(model, completionHandler)); }
     /*</constructors>*/
@@ -75,7 +75,7 @@ import org.robovm.apple.imageio.*;
     public static native @MachineSizedUInt long getRevision1();
     
     @Method(selector = "initWithModel:")
-    protected native @Pointer long initWithModel(VNCoreMLModel model);
+    protected native @Pointer long init(VNCoreMLModel model);
     @Method(selector = "initWithModel:completionHandler:")
     protected native @Pointer long init(VNCoreMLModel model, @Block VoidBlock2<VNRequest, NSError> completionHandler);
     /*</methods>*/

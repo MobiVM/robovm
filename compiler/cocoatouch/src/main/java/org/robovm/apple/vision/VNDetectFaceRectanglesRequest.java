@@ -54,7 +54,7 @@ import org.robovm.apple.imageio.*;
     protected VNDetectFaceRectanglesRequest(Handle h, long handle) { super(h, handle); }
     protected VNDetectFaceRectanglesRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCompletionHandler:")
-    public VNDetectFaceRectanglesRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(initWithCompletionHandler(completionHandler)); }
+    public VNDetectFaceRectanglesRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(completionHandler)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -73,6 +73,6 @@ import org.robovm.apple.imageio.*;
     public static native @MachineSizedUInt long getRevision2();
     
     @Method(selector = "initWithCompletionHandler:")
-    protected native @Pointer long initWithCompletionHandler(@Block VoidBlock2<VNRequest, NSError> completionHandler);
+    protected native @Pointer long init(@Block VoidBlock2<VNRequest, NSError> completionHandler);
     /*</methods>*/
 }
