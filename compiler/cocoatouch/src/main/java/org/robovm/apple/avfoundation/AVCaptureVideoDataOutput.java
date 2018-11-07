@@ -125,7 +125,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "availableVideoCodecTypesForAssetWriterWithOutputFileType:")
-    public native NSArray<NSString> availableVideoCodecTypesForAssetWriterWithOutputFileType(String outputFileType);
+    public native NSArray<NSString> getAvailableVideoCodecTypes(String outputFileType);
     /**
      * @since Available in iOS 11.0 and later.
      */

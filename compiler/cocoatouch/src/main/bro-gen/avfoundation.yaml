@@ -396,7 +396,7 @@ classes:
     AVAssetResourceLoadingDataRequest: # DONE
         methods:
             '-respondWithData:':
-                trim_after_first_colon: true
+                name: respond
     AVAssetResourceLoadingRequest: # DONE
         properties:
             'cancelled':
@@ -1418,9 +1418,9 @@ classes:
             '-removeOutput:':
                 trim_after_first_colon: true
             '-addInputWithNoConnections:':
-                trim_after_first_colon: true
+                name: addInputWithNoConnections
             '-addOutputWithNoConnections:':
-                trim_after_first_colon: true
+                name: addOutputWithNoConnections
             '-canAddConnection:':
                 trim_after_first_colon: true
             '-addConnection:':
@@ -1484,6 +1484,8 @@ classes:
                         type: String
             '-recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:':
                 name: getRecommendedVideoSettings
+            '-availableVideoCodecTypesForAssetWriterWithOutputFileType:':
+                name: getAvailableVideoCodecTypes
     AVCaptureVideoPreviewLayer: # DONE
         properties:
             'videoGravity':
@@ -1506,6 +1508,8 @@ classes:
                 name: getTransformedMetadataObject
             '+layerWithSession.*':
                 exclude: true
+            '-setSessionWithNoConnection:':
+                name: setSessionWithNoConnection
     AVComposition: # DONE
         skip_handle_constructor: false
         properties:
@@ -2245,6 +2249,10 @@ classes:
                 name: init
             '+speechUtteranceWithString:':
                 exclude: true
+            '-initWithAttributedString:':
+                name: init
+            '+speechUtteranceWithAttributedString:':
+                exclude: true
     AVSynchronizedLayer: # DONE
         annotations: ['@WeaklyLinked']
         methods:
@@ -2460,7 +2468,9 @@ classes:
             '+contentKeyResponseWithClearKeyData:initializationVector:':
                 constructor: true
                 name: create
-
+            '+contentKeyResponseWithFairPlayStreamingKeyResponseData:':
+                constructor: true
+                name: create
     AVContentKeySession:
         methods:
             '-setDelegate:queue:':
@@ -2468,6 +2478,9 @@ classes:
             '-processContentKeyRequestWithIdentifier:initializationData:options:':
                 trim_after_first_colon: true
             '+contentKeySessionWithKeySystem:storageDirectoryAtURL:':
+                name: create
+                constructor: true
+            '+contentKeySessionWithKeySystem:':
                 name: create
                 constructor: true
             '+pendingExpiredSessionReportsWithAppIdentifier:storageDirectoryAtURL:':
@@ -2491,6 +2504,8 @@ classes:
         methods:
             '-setDelegate:queue:':
                 trim_after_first_colon: true
+            '-initWithDataOutputs:':
+                name: init
     AVCaptureDepthDataOutput: #since 11.0
         skip_def_constructor: true
         methods:
@@ -2502,6 +2517,8 @@ classes:
     AVCapturePhoto: #since 11.0
         methods:
             '-fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:':
+                name: fileDataRepresentation
+            '-fileDataRepresentationWithCustomizer:':
                 name: fileDataRepresentation
     AVCaptureSynchronizedData: {} #since 11.0
     AVCaptureSynchronizedDataCollection: {} #since 11.0

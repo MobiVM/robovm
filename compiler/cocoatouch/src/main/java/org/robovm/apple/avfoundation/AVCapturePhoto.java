@@ -113,7 +113,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "fileDataRepresentationWithCustomizer:")
-    public native NSData fileDataRepresentationWithCustomizer(AVCapturePhotoFileDataRepresentationCustomizer customizer);
+    public native NSData fileDataRepresentation(AVCapturePhotoFileDataRepresentationCustomizer customizer);
     /**
      * @since Available in iOS 11.0 and later.
      * @deprecated Deprecated in iOS 12.0. Use fileDataRepresentationWithCustomizer: instead
