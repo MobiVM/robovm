@@ -113,7 +113,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "computeCommandEncoderWithDispatchType:")
-    public native MTLComputeCommandEncoder computeCommandEncoderWithDispatchType(MTLDispatchType dispatchType);
+    public native MTLComputeCommandEncoder newComputeCommandEncoder(MTLDispatchType dispatchType);
     /**
      * @since Available in iOS 12.0 and later.
      */

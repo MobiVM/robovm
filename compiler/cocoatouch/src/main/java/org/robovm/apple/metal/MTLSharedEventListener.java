@@ -49,7 +49,7 @@ import org.robovm.apple.dispatch.*;
     protected MTLSharedEventListener(Handle h, long handle) { super(h, handle); }
     protected MTLSharedEventListener(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDispatchQueue:")
-    public MTLSharedEventListener(DispatchQueue dispatchQueue) { super((SkipInit) null); initObject(initWithDispatchQueue(dispatchQueue)); }
+    public MTLSharedEventListener(DispatchQueue dispatchQueue) { super((SkipInit) null); initObject(init(dispatchQueue)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dispatchQueue")
@@ -58,6 +58,6 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDispatchQueue:")
-    protected native @Pointer long initWithDispatchQueue(DispatchQueue dispatchQueue);
+    protected native @Pointer long init(DispatchQueue dispatchQueue);
     /*</methods>*/
 }

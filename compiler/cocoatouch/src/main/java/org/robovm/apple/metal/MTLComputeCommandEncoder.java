@@ -186,12 +186,12 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "memoryBarrierWithScope:")
-    public native void memoryBarrierWithScope(MTLBarrierScope scope);
+    public native void memoryBarrier(MTLBarrierScope scope);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "memoryBarrierWithResources:count:")
-    public native void getMemoryBarrier(MTLResource resources, @MachineSizedUInt long count);
+    public native void memoryBarrier(MTLResource resources, @MachineSizedUInt long count);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")

@@ -230,7 +230,18 @@ classes:
             '+vertexDescriptor':
                 exclude: true
     MTLArgumentDescriptor: {} #since 11.0
-    MTLCaptureManager: {} #since 11.0
+    MTLCaptureManager: #since 11.0
+        methods:
+            '-newCaptureScopeWithDevice:':
+                name: newCaptureScope
+            '-newCaptureScopeWithCommandQueue:':
+                name: newCaptureScope
+            '-startCaptureWithDevice:':
+                name: startCapture
+            '-startCaptureWithCommandQueue:':
+                name: startCapture
+            '-startCaptureWithScope:':
+                name: startCapture
     MTLPipelineBufferDescriptor: {} #since 11.0
     MTLPipelineBufferDescriptorArray: #since 11.0
         methods:
@@ -247,8 +258,10 @@ classes:
     MTLType: {} #since 11.0
     MTLIndirectCommandBufferDescriptor: {} #since 12.0
     MTLSharedEventHandle: {} #since 12.0
-    MTLSharedEventListener: {} #since 12.0
-
+    MTLSharedEventListener: #since 12.0
+        methods:
+            '-initWithDispatchQueue:':
+                name: init
 protocols:
     MTLHeap:
         methods:
@@ -256,6 +269,8 @@ protocols:
                   name: newBuffer
             '-newTextureWithDescriptor:':
                   name: newTexture
+            '-maxAvailableSizeWithAlignment:':
+                name: getMaxAvailableSize
     MTLFence: {}
 
 
@@ -330,6 +345,8 @@ protocols:
             '-renderCommandEncoderWithDescriptor:':    
                 name: newRenderCommandEncoder
             '-computeCommandEncoder':
+                name: newComputeCommandEncoder
+            '-computeCommandEncoderWithDispatchType:':
                 name: newComputeCommandEncoder
             '-parallelRenderCommandEncoderWithDescriptor:':
                 name: newParallelRenderCommandEncoder
@@ -416,7 +433,9 @@ protocols:
             '-setStageInRegionWithIndirectBuffer:indirectBufferOffset:':
                 name: setStageInRegion
             '-memoryBarrierWithResources:count:':
-                name: getMemoryBarrier
+                name: memoryBarrier
+            '-memoryBarrierWithScope:':
+                name: memoryBarrier
     MTLComputePipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -497,6 +516,14 @@ protocols:
                 trim_after_first_colon: true
             '-newIndirectCommandBufferWithDescriptor:maxCommandCount:options:':
                 name: newIndirectCommand
+            '-heapTextureSizeAndAlignWithDescriptor:':
+                name: heapTextureSizeAndAlign
+            '-newHeapWithDescriptor:':
+                name: newHeap
+            '-newArgumentEncoderWithArguments:':
+                name: newArgumentEncoder
+            '-newSharedEventWithHandle:':
+                name: newSharedEvent
     MTLDrawable: # DONE
         methods:
             '-presentAtTime:':
@@ -510,6 +537,8 @@ protocols:
                 type: NSArray<MTLVertexAttribute>
         methods:
             '-newArgumentEncoderWithBufferIndex:reflection:':
+                name: newArgumentEncoder
+            '-newArgumentEncoderWithBufferIndex:':
                 name: newArgumentEncoder
     MTLLibrary: # DONE
         class: true
@@ -768,7 +797,10 @@ protocols:
     MTLCaptureScope: {} #since 11.0
 
     MTLEvent: {} #since 12.0
-    MTLIndirectCommandBuffer: {} #since 12.0
+    MTLIndirectCommandBuffer: #since 12.0
+        methods:
+            '-resetWithRange:':
+                name: reset
     MTLIndirectRenderCommand: #since 12.0
         methods:
             '-setVertexBuffer:offset:atIndex:':

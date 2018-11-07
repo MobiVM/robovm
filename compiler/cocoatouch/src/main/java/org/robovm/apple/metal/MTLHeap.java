@@ -68,7 +68,7 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "maxAvailableSizeWithAlignment:")
-    @MachineSizedUInt long maxAvailableSizeWithAlignment(@MachineSizedUInt long alignment);
+    @MachineSizedUInt long getMaxAvailableSize(@MachineSizedUInt long alignment);
     @Method(selector = "newBufferWithLength:options:")
     MTLBuffer newBuffer(@MachineSizedUInt long length, MTLResourceOptions options);
     @Method(selector = "newTextureWithDescriptor:")

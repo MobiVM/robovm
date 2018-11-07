@@ -132,7 +132,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "heapTextureSizeAndAlignWithDescriptor:")
-    public native @ByVal MTLSizeAndAlign heapTextureSizeAndAlignWithDescriptor(MTLTextureDescriptor desc);
+    public native @ByVal MTLSizeAndAlign heapTextureSizeAndAlign(MTLTextureDescriptor desc);
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -142,7 +142,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "newHeapWithDescriptor:")
-    public native MTLHeap newHeapWithDescriptor(MTLHeapDescriptor descriptor);
+    public native MTLHeap newHeap(MTLHeapDescriptor descriptor);
     @Method(selector = "newBufferWithLength:options:")
     public native MTLBuffer newBuffer(@MachineSizedUInt long length, MTLResourceOptions options);
     @Method(selector = "newBufferWithBytes:length:options:")
@@ -327,7 +327,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "newArgumentEncoderWithArguments:")
-    public native MTLArgumentEncoder newArgumentEncoderWithArguments(NSArray<MTLArgumentDescriptor> arguments);
+    public native MTLArgumentEncoder newArgumentEncoder(NSArray<MTLArgumentDescriptor> arguments);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -347,6 +347,6 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "newSharedEventWithHandle:")
-    public native MTLSharedEvent newSharedEventWithHandle(MTLSharedEventHandle sharedEventHandle);
+    public native MTLSharedEvent newSharedEvent(MTLSharedEventHandle sharedEventHandle);
     /*</methods>*/
 }

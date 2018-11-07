@@ -51,7 +51,7 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "resetWithRange:")
-    void resetWithRange(@ByVal NSRange range);
+    void reset(@ByVal NSRange range);
     @Method(selector = "indirectRenderCommandAtIndex:")
     MTLIndirectRenderCommand indirectRenderCommandAtIndex(@MachineSizedUInt long commandIndex);
     /*</methods>*/

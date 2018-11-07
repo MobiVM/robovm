@@ -60,15 +60,15 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "newCaptureScopeWithDevice:")
-    public native MTLCaptureScope newCaptureScopeWithDevice(MTLDevice device);
+    public native MTLCaptureScope newCaptureScope(MTLDevice device);
     @Method(selector = "newCaptureScopeWithCommandQueue:")
-    public native MTLCaptureScope newCaptureScopeWithCommandQueue(MTLCommandQueue commandQueue);
+    public native MTLCaptureScope newCaptureScope(MTLCommandQueue commandQueue);
     @Method(selector = "startCaptureWithDevice:")
-    public native void startCaptureWithDevice(MTLDevice device);
+    public native void startCapture(MTLDevice device);
     @Method(selector = "startCaptureWithCommandQueue:")
-    public native void startCaptureWithCommandQueue(MTLCommandQueue commandQueue);
+    public native void startCapture(MTLCommandQueue commandQueue);
     @Method(selector = "startCaptureWithScope:")
-    public native void startCaptureWithScope(MTLCaptureScope captureScope);
+    public native void startCapture(MTLCaptureScope captureScope);
     @Method(selector = "stopCapture")
     public native void stopCapture();
     @Method(selector = "sharedCaptureManager")
