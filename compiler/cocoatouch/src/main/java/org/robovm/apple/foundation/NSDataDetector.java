@@ -52,7 +52,6 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSDataDetector.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSDataDetector() {}
     protected NSDataDetector(Handle h, long handle) { super(h, handle); }
     protected NSDataDetector(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTypes:error:")

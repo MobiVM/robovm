@@ -811,6 +811,7 @@ classes:
             '+.*': {exclude: true}
             '-.*': {exclude: true}
     NSDataDetector: # DONE
+        skip_def_constructor: true
         properties:
             'checkingTypes':
                 type: NSTextCheckingType
