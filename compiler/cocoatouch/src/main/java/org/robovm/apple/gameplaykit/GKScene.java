@@ -50,6 +50,7 @@ import org.robovm.apple.uikit.*;
     public GKScene() {}
     protected GKScene(Handle h, long handle) { super(h, handle); }
     protected GKScene(SkipInit skipInit) { super(skipInit); }
+    public GKScene(String filename) { super((Handle) null, create(filename)); retain(getHandle()); }
     public GKScene(String filename, GKSceneRootNodeType rootNode) { super((Handle) null, create(filename, rootNode)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public GKScene(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
@@ -77,7 +78,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "removeGraph:")
     public native void removeGraph(String name);
     @Method(selector = "sceneWithFileNamed:")
-    public static native GKScene sceneWithFileNamed(String filename);
+    protected static native @Pointer long create(String filename);
     @Method(selector = "sceneWithFileNamed:rootNode:")
     protected static native @Pointer long create(String filename, GKSceneRootNodeType rootNode);
     @Method(selector = "encodeWithCoder:")
