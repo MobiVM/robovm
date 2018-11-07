@@ -74,6 +74,8 @@ classes:
         methods:
             '+criticalSoundNamed.*':
                 name: getCriticalSound
+            '+defaultCriticalSoundWithAudioVolume:':
+                name: getDefaultCriticalSound
     UNNotificationTrigger: {}
     UNPushNotificationTrigger: {}
     UNTextInputNotificationAction:
@@ -93,7 +95,18 @@ classes:
                 name: requestAuthorization
             '-addNotificationRequest:withCompletionHandler:':
                 name: addNotificationRequest
-
+            '-getNotificationCategoriesWithCompletionHandler:':
+                name: getNotificationCategories
+            '-getNotificationSettingsWithCompletionHandler:':
+                name: getNotificationSettings
+            '-getPendingNotificationRequestsWithCompletionHandler:':
+                name: getPendingNotificationRequests
+            '-removePendingNotificationRequestsWithIdentifiers:':
+                name: removePendingNotificationRequests
+            '-getDeliveredNotificationsWithCompletionHandler:':
+                name: getDeliveredNotifications
+            '-removeDeliveredNotificationsWithIdentifiers:':
+                name: removeDeliveredNotifications
 protocols:
     UNUserNotificationCenterDelegate:
         skip_adapter: true

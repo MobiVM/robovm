@@ -67,7 +67,7 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "defaultCriticalSoundWithAudioVolume:")
-    public static native UNNotificationSound defaultCriticalSoundWithAudioVolume(float volume);
+    public static native UNNotificationSound getDefaultCriticalSound(float volume);
     @Method(selector = "soundNamed:")
     public static native UNNotificationSound soundNamed(String name);
     /**
