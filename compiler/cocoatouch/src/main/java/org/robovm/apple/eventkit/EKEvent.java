@@ -109,7 +109,7 @@ import org.robovm.apple.mapkit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "compareStartDateWithEvent:")
-    public native NSComparisonResult compareStartDateWithEvent(EKEvent other);
+    public native NSComparisonResult compareStartDate(EKEvent other);
     @Method(selector = "refresh")
     public native boolean refresh();
     @Method(selector = "eventWithEventStore:")
