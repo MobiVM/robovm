@@ -74,7 +74,7 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "initWithName:managedObjectModel:")
     protected native @Pointer long init(String name, NSManagedObjectModel model);
     @Method(selector = "loadPersistentStoresWithCompletionHandler:")
-    public native void loadPersistentStoresWithCompletionHandler(@Block VoidBlock2<NSPersistentStoreDescription, NSError> block);
+    public native void loadPersistentStores(@Block VoidBlock2<NSPersistentStoreDescription, NSError> block);
     @Method(selector = "newBackgroundContext")
     public native NSManagedObjectContext newBackgroundContext();
     @Method(selector = "performBackgroundTask:")
