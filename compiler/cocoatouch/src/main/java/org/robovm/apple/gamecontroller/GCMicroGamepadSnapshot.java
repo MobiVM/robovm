@@ -50,7 +50,7 @@ import org.robovm.apple.uikit.*;
     protected GCMicroGamepadSnapshot(Handle h, long handle) { super(h, handle); }
     protected GCMicroGamepadSnapshot(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSnapshotData:")
-    public GCMicroGamepadSnapshot(NSData data) { super((SkipInit) null); initObject(initWithSnapshotData(data)); }
+    public GCMicroGamepadSnapshot(NSData data) { super((SkipInit) null); initObject(init(data)); }
     @Method(selector = "initWithController:snapshotData:")
     public GCMicroGamepadSnapshot(GCController controller, NSData data) { super((SkipInit) null); initObject(init(controller, data)); }
     /*</constructors>*/
@@ -63,7 +63,7 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSnapshotData:")
-    protected native @Pointer long initWithSnapshotData(NSData data);
+    protected native @Pointer long init(NSData data);
     @Method(selector = "initWithController:snapshotData:")
     protected native @Pointer long init(GCController controller, NSData data);
     /*</methods>*/
