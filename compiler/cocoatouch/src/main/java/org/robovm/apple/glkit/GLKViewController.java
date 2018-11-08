@@ -56,9 +56,9 @@ import org.robovm.apple.modelio.*;
     protected GLKViewController(Handle h, long handle) { super(h, handle); }
     protected GLKViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNibName:bundle:")
-    public GLKViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public GLKViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public GLKViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public GLKViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -96,10 +96,6 @@ import org.robovm.apple.modelio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "glkView:drawInRect:")
     public native void draw(GLKView view, @ByVal CGRect rect);
     /*</methods>*/

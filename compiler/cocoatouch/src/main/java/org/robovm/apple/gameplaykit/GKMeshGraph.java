@@ -55,7 +55,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithBufferRadius:minCoordinate:maxCoordinate:")
     public GKMeshGraph(float bufferRadius, @ByVal VectorFloat2 min, @ByVal VectorFloat2 max) { super((SkipInit) null); initObject(init(bufferRadius, min, max)); }
     @Method(selector = "initWithNodes:")
-    public GKMeshGraph(NSArray<GKGraphNode> nodes) { super((SkipInit) null); initObject(init(nodes)); }
+    public GKMeshGraph(NSArray<GKGraphNode> nodes) { super(nodes); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "obstacles")
@@ -87,7 +87,5 @@ import org.robovm.apple.uikit.*;
     public native @ByVal GKTriangle triangleAtIndex(@MachineSizedUInt long index);
     @Method(selector = "classForGenericArgumentAtIndex:")
     public native Class<?> classForGenericArgumentAtIndex(@MachineSizedUInt long index);
-    @Method(selector = "initWithNodes:")
-    protected native @Pointer long init(NSArray<GKGraphNode> nodes);
     /*</methods>*/
 }

@@ -368,6 +368,10 @@ classes:
                 trim_after_first_colon: true
             '-setHostedPlayer:didConnect:':
                 trim_after_first_colon: true
+            '-initWithMatchRequest:':
+                name: init
+            '-initWithInvite:':
+                name: init
     GKMatchRequest: # DONE
         properties:
             'recipients':
@@ -591,6 +595,9 @@ classes:
         properties:
             'showExistingMatches':
                 name: showsExistingMatches
+        methods:
+            '-initWithMatchRequest:':
+                name: init
     GKTurnBasedParticipant: {} # DONE
     GKVoiceChat: # DONE
         properties:

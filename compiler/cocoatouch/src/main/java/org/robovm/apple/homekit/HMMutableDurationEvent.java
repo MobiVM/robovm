@@ -49,7 +49,7 @@ import org.robovm.apple.corelocation.*;
     protected HMMutableDurationEvent(Handle h, long handle) { super(h, handle); }
     protected HMMutableDurationEvent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDuration:")
-    public HMMutableDurationEvent(double duration) { super((SkipInit) null); initObject(init(duration)); }
+    public HMMutableDurationEvent(double duration) { super(duration); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "duration")
@@ -59,7 +59,6 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithDuration:")
-    protected native @Pointer long init(double duration);
+    
     /*</methods>*/
 }

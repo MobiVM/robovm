@@ -320,8 +320,6 @@ classes:
                 name: die
     GKRandomSource: # DONE
         methods:
-            '-initWithCoder:':
-                name: init
             '-arrayByShufflingObjectsInArray:':
                 name: shuffleArray
             '+sharedRandom':

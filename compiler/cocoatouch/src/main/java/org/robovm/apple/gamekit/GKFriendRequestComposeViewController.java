@@ -54,13 +54,13 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
-    public GKFriendRequestComposeViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super((SkipInit) null); initObject(init(navigationBarClass, toolbarClass)); }
+    public GKFriendRequestComposeViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
     @Method(selector = "initWithRootViewController:")
-    public GKFriendRequestComposeViewController(UIViewController rootViewController) { super((SkipInit) null); initObject(init(rootViewController)); }
+    public GKFriendRequestComposeViewController(UIViewController rootViewController) { super(rootViewController); }
     @Method(selector = "initWithNibName:bundle:")
-    public GKFriendRequestComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public GKFriendRequestComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public GKFriendRequestComposeViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public GKFriendRequestComposeViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -80,17 +80,6 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
-    protected native @Pointer long init(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass);
-    @Method(selector = "initWithRootViewController:")
-    protected native @Pointer long init(UIViewController rootViewController);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "setMessage:")
     public native void setMessage(String message);
     /**

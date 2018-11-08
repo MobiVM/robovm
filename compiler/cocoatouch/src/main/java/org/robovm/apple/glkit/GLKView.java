@@ -58,9 +58,9 @@ import org.robovm.apple.modelio.*;
     @Method(selector = "initWithFrame:context:")
     public GLKView(@ByVal CGRect frame, EAGLContext context) { super((SkipInit) null); initObject(init(frame, context)); }
     @Method(selector = "initWithFrame:")
-    public GLKView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public GLKView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public GLKView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public GLKView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
 
     /*<properties>*/
@@ -109,9 +109,5 @@ import org.robovm.apple.modelio.*;
     public native void deleteDrawable();
     @Method(selector = "display")
     public native void display();
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

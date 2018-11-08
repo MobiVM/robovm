@@ -55,7 +55,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithObstacles:bufferRadius:nodeClass:")
     public GKObstacleGraph(NSArray<GKPolygonObstacle> obstacles, float bufferRadius, Class<?> nodeClass) { super((SkipInit) null); initObject(init(obstacles, bufferRadius, nodeClass)); }
     @Method(selector = "initWithNodes:")
-    public GKObstacleGraph(NSArray<GKGraphNode> nodes) { super((SkipInit) null); initObject(init(nodes)); }
+    public GKObstacleGraph(NSArray<GKGraphNode> nodes) { super(nodes); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "obstacles")
@@ -91,7 +91,5 @@ import org.robovm.apple.uikit.*;
     public native boolean isConnectionLockedBetweenNodes(GKGraphNode2D startNode, GKGraphNode2D endNode);
     @Method(selector = "classForGenericArgumentAtIndex:")
     public native Class<?> classForGenericArgumentAtIndex(@MachineSizedUInt long index);
-    @Method(selector = "initWithNodes:")
-    protected native @Pointer long init(NSArray<GKGraphNode> nodes);
     /*</methods>*/
 }

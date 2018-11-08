@@ -49,7 +49,7 @@ import org.robovm.apple.corelocation.*;
     protected HMMutableCalendarEvent(Handle h, long handle) { super(h, handle); }
     protected HMMutableCalendarEvent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFireDateComponents:")
-    public HMMutableCalendarEvent(NSDateComponents fireDateComponents) { super((SkipInit) null); initObject(init(fireDateComponents)); }
+    public HMMutableCalendarEvent(NSDateComponents fireDateComponents) { super(fireDateComponents); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "fireDateComponents")
@@ -59,7 +59,6 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithFireDateComponents:")
-    protected native @Pointer long init(NSDateComponents fireDateComponents);
+    
     /*</methods>*/
 }

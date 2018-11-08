@@ -49,7 +49,7 @@ import org.robovm.apple.corelocation.*;
     protected HMMutableSignificantTimeEvent(Handle h, long handle) { super(h, handle); }
     protected HMMutableSignificantTimeEvent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSignificantEvent:offset:")
-    public HMMutableSignificantTimeEvent(String significantEvent, NSDateComponents offset) { super((SkipInit) null); initObject(init(significantEvent, offset)); }
+    public HMMutableSignificantTimeEvent(String significantEvent, NSDateComponents offset) { super(significantEvent, offset); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "significantEvent")
@@ -63,7 +63,6 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSignificantEvent:offset:")
-    protected native @Pointer long init(String significantEvent, NSDateComponents offset);
+    
     /*</methods>*/
 }

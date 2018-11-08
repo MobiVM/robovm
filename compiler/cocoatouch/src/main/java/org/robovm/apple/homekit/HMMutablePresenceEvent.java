@@ -49,7 +49,7 @@ import org.robovm.apple.corelocation.*;
     protected HMMutablePresenceEvent(Handle h, long handle) { super(h, handle); }
     protected HMMutablePresenceEvent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPresenceEventType:presenceUserType:")
-    public HMMutablePresenceEvent(HMPresenceEventType presenceEventType, HMPresenceEventUserType presenceUserType) { super((SkipInit) null); initObject(init(presenceEventType, presenceUserType)); }
+    public HMMutablePresenceEvent(HMPresenceEventType presenceEventType, HMPresenceEventUserType presenceUserType) { super(presenceEventType, presenceUserType); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "presenceEventType")
@@ -63,7 +63,6 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithPresenceEventType:presenceUserType:")
-    protected native @Pointer long init(HMPresenceEventType presenceEventType, HMPresenceEventUserType presenceUserType);
+    
     /*</methods>*/
 }
