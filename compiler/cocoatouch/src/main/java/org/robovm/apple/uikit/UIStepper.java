@@ -57,9 +57,9 @@ import org.robovm.apple.intents.*;
     protected UIStepper(Handle h, long handle) { super(h, handle); }
     protected UIStepper(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public UIStepper(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UIStepper(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIStepper(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIStepper(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isContinuous")
@@ -143,9 +143,5 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "decrementImageForState:")
     public native UIImage getDecrementImage(UIControlState state);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

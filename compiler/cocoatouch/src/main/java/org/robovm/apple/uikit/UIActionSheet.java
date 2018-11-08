@@ -59,9 +59,9 @@ import org.robovm.apple.intents.*;
     protected UIActionSheet(Handle h, long handle) { super(h, handle); }
     protected UIActionSheet(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public UIActionSheet(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UIActionSheet(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIActionSheet(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIActionSheet(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     public UIActionSheet(String title, UIActionSheetDelegate delegate, String cancelButtonTitle,
             String destructiveButtonTitle, String ... otherButtonTitles) {
@@ -128,9 +128,5 @@ import org.robovm.apple.intents.*;
     public native void showIn(UIView view);
     @Method(selector = "dismissWithClickedButtonIndex:animated:")
     public native void dismiss(@MachineSizedSInt long buttonIndex, boolean animated);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

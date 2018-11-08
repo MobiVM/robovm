@@ -60,13 +60,13 @@ import org.robovm.apple.intents.*;
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "initWithNavigationBarClass:toolbarClass:")
-    public UIVideoEditorController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super((SkipInit) null); initObject(init(navigationBarClass, toolbarClass)); }
+    public UIVideoEditorController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
     @Method(selector = "initWithRootViewController:")
-    public UIVideoEditorController(UIViewController rootViewController) { super((SkipInit) null); initObject(init(rootViewController)); }
+    public UIVideoEditorController(UIViewController rootViewController) { super(rootViewController); }
     @Method(selector = "initWithNibName:bundle:")
-    public UIVideoEditorController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public UIVideoEditorController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public UIVideoEditorController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIVideoEditorController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -99,16 +99,5 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "canEditVideoAtPath:")
     protected static native boolean canEditVideo(String videoPath);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
-    protected native @Pointer long init(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass);
-    @Method(selector = "initWithRootViewController:")
-    protected native @Pointer long init(UIViewController rootViewController);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -57,9 +57,9 @@ import org.robovm.apple.intents.*;
     protected UICollectionViewCell(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewCell(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public UICollectionViewCell(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UICollectionViewCell(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UICollectionViewCell(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UICollectionViewCell(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contentView")
@@ -88,9 +88,5 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "dragStateDidChange:")
     public native void dragStateDidChange(UICollectionViewCellDragState dragState);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

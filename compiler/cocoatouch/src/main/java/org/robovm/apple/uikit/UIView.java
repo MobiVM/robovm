@@ -60,7 +60,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     public UIView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
-    public UIView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @WeaklyLinked
@@ -493,7 +493,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:")
     protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /**
      * @since Available in iOS 9.0 and later.
      */

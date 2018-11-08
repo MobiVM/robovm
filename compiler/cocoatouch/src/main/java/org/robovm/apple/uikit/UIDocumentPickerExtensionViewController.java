@@ -57,9 +57,9 @@ import org.robovm.apple.intents.*;
     protected UIDocumentPickerExtensionViewController(Handle h, long handle) { super(h, handle); }
     protected UIDocumentPickerExtensionViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNibName:bundle:")
-    public UIDocumentPickerExtensionViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public UIDocumentPickerExtensionViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public UIDocumentPickerExtensionViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIDocumentPickerExtensionViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "documentPickerMode")
@@ -79,9 +79,5 @@ import org.robovm.apple.intents.*;
     public native void dismissGrantingAccessToURL(NSURL url);
     @Method(selector = "prepareForPresentationInMode:")
     public native void prepareForPresentation(UIDocumentPickerMode mode);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

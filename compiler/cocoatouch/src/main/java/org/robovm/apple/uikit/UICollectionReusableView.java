@@ -57,9 +57,9 @@ import org.robovm.apple.intents.*;
     protected UICollectionReusableView(Handle h, long handle) { super(h, handle); }
     protected UICollectionReusableView(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public UICollectionReusableView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UICollectionReusableView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UICollectionReusableView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UICollectionReusableView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "reuseIdentifier")
@@ -80,9 +80,5 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "preferredLayoutAttributesFittingAttributes:")
     public native UICollectionViewLayoutAttributes getPreferredLayoutAttributesFittingAttributes(UICollectionViewLayoutAttributes layoutAttributes);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

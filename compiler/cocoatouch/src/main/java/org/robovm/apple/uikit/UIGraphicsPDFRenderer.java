@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithBounds:format:")
     public UIGraphicsPDFRenderer(@ByVal CGRect bounds, UIGraphicsPDFRendererFormat format) { super((SkipInit) null); initObject(init(bounds, format)); }
     @Method(selector = "initWithBounds:")
-    public UIGraphicsPDFRenderer(@ByVal CGRect bounds) { super((SkipInit) null); initObject(init(bounds)); }
+    public UIGraphicsPDFRenderer(@ByVal CGRect bounds) { super(bounds); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -78,7 +78,5 @@ import org.robovm.apple.intents.*;
     private native boolean writePDFToURL(NSURL url, @Block VoidBlock1<UIGraphicsPDFRendererContext> actions, NSError.NSErrorPtr error);
     @Method(selector = "PDFDataWithActions:")
     public native NSData toPDFData(@Block VoidBlock1<UIGraphicsPDFRendererContext> actions);
-    @Method(selector = "initWithBounds:")
-    protected native @Pointer long init(@ByVal CGRect bounds);
     /*</methods>*/
 }

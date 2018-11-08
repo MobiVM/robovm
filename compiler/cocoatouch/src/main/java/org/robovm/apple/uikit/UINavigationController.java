@@ -64,9 +64,9 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithRootViewController:")
     public UINavigationController(UIViewController rootViewController) { super((SkipInit) null); initObject(init(rootViewController)); }
     @Method(selector = "initWithNibName:bundle:")
-    public UINavigationController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public UINavigationController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public UINavigationController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UINavigationController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "topViewController")
@@ -195,9 +195,5 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "showViewController:sender:")
     public native void showViewController(UIViewController vc, NSObject sender);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

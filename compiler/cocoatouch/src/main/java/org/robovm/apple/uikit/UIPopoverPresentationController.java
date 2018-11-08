@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UIPopoverPresentationController(Handle h, long handle) { super(h, handle); }
     protected UIPopoverPresentationController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPresentedViewController:presentingViewController:")
-    public UIPopoverPresentationController(UIViewController presentedViewController, UIViewController presentingViewController) { super((SkipInit) null); initObject(init(presentedViewController, presentingViewController)); }
+    public UIPopoverPresentationController(UIViewController presentedViewController, UIViewController presentingViewController) { super(presentedViewController, presentingViewController); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -111,7 +111,6 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithPresentedViewController:presentingViewController:")
-    protected native @Pointer long init(UIViewController presentedViewController, UIViewController presentingViewController);
+    
     /*</methods>*/
 }

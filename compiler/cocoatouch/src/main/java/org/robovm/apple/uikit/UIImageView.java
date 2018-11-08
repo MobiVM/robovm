@@ -64,9 +64,9 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithImage:highlightedImage:")
     public UIImageView(UIImage image, UIImage highlightedImage) { super((SkipInit) null); initObject(init(image, highlightedImage)); }
     @Method(selector = "initWithFrame:")
-    public UIImageView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UIImageView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIImageView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIImageView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "image")
@@ -149,9 +149,5 @@ import org.robovm.apple.intents.*;
     public native void startAnimating();
     @Method(selector = "stopAnimating")
     public native void stopAnimating();
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -56,9 +56,9 @@ import org.robovm.apple.intents.*;
     protected UIMutableApplicationShortcutItem(Handle h, long handle) { super(h, handle); }
     protected UIMutableApplicationShortcutItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithType:localizedTitle:localizedSubtitle:icon:userInfo:")
-    public UIMutableApplicationShortcutItem(String type, String localizedTitle, String localizedSubtitle, UIApplicationShortcutIcon icon, NSDictionary<?, ?> userInfo) { super((SkipInit) null); initObject(init(type, localizedTitle, localizedSubtitle, icon, userInfo)); }
+    public UIMutableApplicationShortcutItem(String type, String localizedTitle, String localizedSubtitle, UIApplicationShortcutIcon icon, NSDictionary<?, ?> userInfo) { super(type, localizedTitle, localizedSubtitle, icon, userInfo); }
     @Method(selector = "initWithType:localizedTitle:")
-    public UIMutableApplicationShortcutItem(String type, String localizedTitle) { super((SkipInit) null); initObject(init(type, localizedTitle)); }
+    public UIMutableApplicationShortcutItem(String type, String localizedTitle) { super(type, localizedTitle); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
@@ -84,9 +84,6 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithType:localizedTitle:localizedSubtitle:icon:userInfo:")
-    protected native @Pointer long init(String type, String localizedTitle, String localizedSubtitle, UIApplicationShortcutIcon icon, NSDictionary<?, ?> userInfo);
-    @Method(selector = "initWithType:localizedTitle:")
-    protected native @Pointer long init(String type, String localizedTitle);
+    
     /*</methods>*/
 }

@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     protected UILocalNotification(Handle h, long handle) { super(h, handle); }
     protected UILocalNotification(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UILocalNotification(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UILocalNotification(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "fireDate")
@@ -160,7 +160,7 @@ import org.robovm.apple.intents.*;
     public static native String getDefaultSoundName();
     
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

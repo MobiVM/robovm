@@ -57,9 +57,9 @@ import org.robovm.apple.intents.*;
     protected UIToolbar(Handle h, long handle) { super(h, handle); }
     protected UIToolbar(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public UIToolbar(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UIToolbar(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIToolbar(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIToolbar(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "barStyle")
@@ -131,9 +131,5 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "shadowImageForToolbarPosition:")
     public native UIImage getShadowImage(UIBarPosition topOrBottom);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

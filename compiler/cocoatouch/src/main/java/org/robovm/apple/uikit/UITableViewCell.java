@@ -62,9 +62,9 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithStyle:reuseIdentifier:")
     public UITableViewCell(UITableViewCellStyle style, String reuseIdentifier) { super((SkipInit) null); initObject(init(style, reuseIdentifier)); }
     @Method(selector = "initWithCoder:")
-    public UITableViewCell(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UITableViewCell(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     @Method(selector = "initWithFrame:")
-    public UITableViewCell(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UITableViewCell(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -195,7 +195,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithStyle:reuseIdentifier:")
     protected native @Pointer long init(UITableViewCellStyle style, String reuseIdentifier);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "prepareForReuse")
     public native void prepareForReuse();
     @Method(selector = "setSelected:animated:")
@@ -219,8 +219,6 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "dragStateDidChange:")
     public native void dragStateDidChange(UITableViewCellDragState dragState);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "gestureRecognizerShouldBegin:")
     public native boolean shouldBegin(UIGestureRecognizer gestureRecognizer);
     @Method(selector = "gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:")

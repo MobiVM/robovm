@@ -63,9 +63,9 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithItems:")
     public UISegmentedControl(NSArray<?> items) { super((SkipInit) null); initObject(init(items)); }
     @Method(selector = "initWithFrame:")
-    public UISegmentedControl(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UISegmentedControl(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UISegmentedControl(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UISegmentedControl(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     public UISegmentedControl(String... items) {
         super((SkipInit) null);
@@ -255,9 +255,5 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Method(selector = "contentPositionAdjustmentForSegmentType:barMetrics:")
     public native @ByVal UIOffset getContentPositionAdjustment(UISegmentedControlSegment leftCenterRightOrAlone, UIBarMetrics barMetrics);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

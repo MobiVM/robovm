@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UITableViewDropPlaceholder(Handle h, long handle) { super(h, handle); }
     protected UITableViewDropPlaceholder(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithInsertionIndexPath:reuseIdentifier:rowHeight:")
-    public UITableViewDropPlaceholder(NSIndexPath insertionIndexPath, String reuseIdentifier, @MachineSizedFloat double rowHeight) { super((SkipInit) null); initObject(init(insertionIndexPath, reuseIdentifier, rowHeight)); }
+    public UITableViewDropPlaceholder(NSIndexPath insertionIndexPath, String reuseIdentifier, @MachineSizedFloat double rowHeight) { super(insertionIndexPath, reuseIdentifier, rowHeight); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "previewParametersProvider")
@@ -67,7 +67,6 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithInsertionIndexPath:reuseIdentifier:rowHeight:")
-    protected native @Pointer long init(NSIndexPath insertionIndexPath, String reuseIdentifier, @MachineSizedFloat double rowHeight);
+    
     /*</methods>*/
 }

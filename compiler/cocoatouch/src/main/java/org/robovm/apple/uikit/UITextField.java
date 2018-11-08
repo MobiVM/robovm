@@ -85,9 +85,9 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     protected UITextField(Handle h, long handle) { super(h, handle); }
     protected UITextField(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public UITextField(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UITextField(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UITextField(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UITextField(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /**
      * @since Available in iOS 7.0 and later.
@@ -527,10 +527,6 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native void drawText(@ByVal CGRect rect);
     @Method(selector = "drawPlaceholderInRect:")
     public native void drawPlaceholder(@ByVal CGRect rect);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "textInRange:")
     public native String getText(UITextRange range);
     @Method(selector = "replaceRange:withText:")

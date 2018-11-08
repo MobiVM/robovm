@@ -59,9 +59,9 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:inputViewStyle:")
     public UIInputView(@ByVal CGRect frame, UIInputViewStyle inputViewStyle) { super((SkipInit) null); initObject(init(frame, inputViewStyle)); }
     @Method(selector = "initWithCoder:")
-    public UIInputView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIInputView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     @Method(selector = "initWithFrame:")
-    public UIInputView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UIInputView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inputViewStyle")
@@ -82,8 +82,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:inputViewStyle:")
     protected native @Pointer long init(@ByVal CGRect frame, UIInputViewStyle inputViewStyle);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

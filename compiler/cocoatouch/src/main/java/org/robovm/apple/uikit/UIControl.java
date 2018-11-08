@@ -58,9 +58,9 @@ import org.robovm.apple.intents.*;
     protected UIControl(Handle h, long handle) { super(h, handle); }
     protected UIControl(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public UIControl(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UIControl(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIControl(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIControl(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isEnabled")
@@ -307,9 +307,5 @@ import org.robovm.apple.intents.*;
     public native void sendAction(Selector action, NSObject target, UIEvent event);
     @Method(selector = "sendActionsForControlEvents:")
     public native void sendControlEventsActions(UIControlEvents controlEvents);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

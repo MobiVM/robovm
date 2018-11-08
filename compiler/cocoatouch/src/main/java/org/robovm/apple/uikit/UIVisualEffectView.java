@@ -59,9 +59,9 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithEffect:")
     public UIVisualEffectView(UIVisualEffect effect) { super((SkipInit) null); initObject(init(effect)); }
     @Method(selector = "initWithCoder:")
-    public UIVisualEffectView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIVisualEffectView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     @Method(selector = "initWithFrame:")
-    public UIVisualEffectView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UIVisualEffectView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contentView")
@@ -78,8 +78,6 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithEffect:")
     protected native @Pointer long init(UIVisualEffect effect);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

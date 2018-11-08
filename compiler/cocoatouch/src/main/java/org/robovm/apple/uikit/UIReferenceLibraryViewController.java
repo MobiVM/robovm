@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithTerm:")
     public UIReferenceLibraryViewController(String term) { super((SkipInit) null); initObject(init(term)); }
     @Method(selector = "initWithCoder:")
-    public UIReferenceLibraryViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIReferenceLibraryViewController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -69,7 +69,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithTerm:")
     protected native @Pointer long init(String term);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "dictionaryHasDefinitionForTerm:")
     public static native boolean dictionaryHasDefinitionForTerm(String term);
     /*</methods>*/

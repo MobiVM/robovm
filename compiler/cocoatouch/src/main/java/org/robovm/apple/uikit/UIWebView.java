@@ -59,9 +59,9 @@ import org.robovm.apple.intents.*;
     protected UIWebView(Handle h, long handle) { super(h, handle); }
     protected UIWebView(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public UIWebView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UIWebView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIWebView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIWebView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -229,10 +229,6 @@ import org.robovm.apple.intents.*;
     public native void goForward();
     @Method(selector = "stringByEvaluatingJavaScriptFromString:")
     public native String evaluateJavaScript(String script);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     /**

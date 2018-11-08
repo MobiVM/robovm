@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UITraitCollection(Handle h, long handle) { super(h, handle); }
     protected UITraitCollection(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UITraitCollection(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UITraitCollection(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -119,7 +119,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "containsTraitsInCollection:")
     public native boolean containsTraits(UITraitCollection trait);
     @Method(selector = "traitCollectionWithTraitsFromCollections:")

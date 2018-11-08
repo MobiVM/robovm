@@ -57,9 +57,9 @@ import org.robovm.apple.intents.*;
     protected UIRefreshControl(Handle h, long handle) { super(h, handle); }
     protected UIRefreshControl(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public UIRefreshControl(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UIRefreshControl(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public UIRefreshControl(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIRefreshControl(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isRefreshing")
@@ -85,9 +85,5 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "endRefreshing")
     public native void endRefreshing();
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

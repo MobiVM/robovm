@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UILongPressGestureRecognizer(Handle h, long handle) { super(h, handle); }
     protected UILongPressGestureRecognizer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTarget:action:")
-    public UILongPressGestureRecognizer(NSObject target, Selector action) { super((SkipInit) null); initObject(init(target, action)); }
+    public UILongPressGestureRecognizer(NSObject target, Selector action) { super(target, action); }
     /*</constructors>*/
     
     public UILongPressGestureRecognizer(OnGestureListener listener) {
@@ -84,7 +84,6 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithTarget:action:")
-    protected native @Pointer long init(NSObject target, Selector action);
+    
     /*</methods>*/
 }

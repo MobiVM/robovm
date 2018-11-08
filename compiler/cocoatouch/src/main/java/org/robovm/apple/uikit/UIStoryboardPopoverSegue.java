@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     protected UIStoryboardPopoverSegue(Handle h, long handle) { super(h, handle); }
     protected UIStoryboardPopoverSegue(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIdentifier:source:destination:")
-    public UIStoryboardPopoverSegue(String identifier, UIViewController source, UIViewController destination) { super((SkipInit) null); initObject(init(identifier, source, destination)); }
+    public UIStoryboardPopoverSegue(String identifier, UIViewController source, UIViewController destination) { super(identifier, source, destination); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "popoverController")
@@ -67,7 +67,6 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithIdentifier:source:destination:")
-    protected native @Pointer long init(String identifier, UIViewController source, UIViewController destination);
+    
     /*</methods>*/
 }
