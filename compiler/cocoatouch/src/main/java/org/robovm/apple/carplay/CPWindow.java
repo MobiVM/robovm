@@ -51,9 +51,9 @@ import org.robovm.apple.mapkit.*;
     protected CPWindow(Handle h, long handle) { super(h, handle); }
     protected CPWindow(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public CPWindow(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public CPWindow(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public CPWindow(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public CPWindow(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mapButtonSafeAreaLayoutGuide")
@@ -61,9 +61,6 @@ import org.robovm.apple.mapkit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    
     /*</methods>*/
 }

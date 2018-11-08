@@ -63,13 +63,7 @@ import org.robovm.apple.dispatch.*;
        initObject(handle);
     }
     @Method(selector = "initWithPattern:options:error:")
-    public NSDataDetector(String pattern, NSRegularExpressionOptions options) throws NSErrorException {
-       super((SkipInit) null);
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       long handle = init(pattern, options, ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       initObject(handle);
-    }
+    public NSDataDetector(String pattern, NSRegularExpressionOptions options) throws NSErrorException { super(pattern, options); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "checkingTypes")
@@ -79,7 +73,5 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "initWithTypes:error:")
     private native @Pointer long init(long checkingTypes, NSError.NSErrorPtr error);
-    @Method(selector = "initWithPattern:options:error:")
-    private native @Pointer long init(String pattern, NSRegularExpressionOptions options, NSError.NSErrorPtr error);
     /*</methods>*/
 }

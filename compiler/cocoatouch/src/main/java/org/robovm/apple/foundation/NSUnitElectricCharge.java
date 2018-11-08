@@ -56,9 +56,9 @@ import org.robovm.apple.dispatch.*;
     protected NSUnitElectricCharge(Handle h, long handle) { super(h, handle); }
     protected NSUnitElectricCharge(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSymbol:converter:")
-    public NSUnitElectricCharge(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
+    public NSUnitElectricCharge(String symbol, NSUnitConverter converter) { super(symbol, converter); }
     @Method(selector = "initWithSymbol:")
-    public NSUnitElectricCharge(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
+    public NSUnitElectricCharge(String symbol) { super(symbol); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "coulombs")
@@ -76,9 +76,6 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSymbol:converter:")
-    protected native @Pointer long init(String symbol, NSUnitConverter converter);
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
+    
     /*</methods>*/
 }

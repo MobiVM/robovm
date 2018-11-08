@@ -53,7 +53,7 @@ import org.robovm.apple.metal.*;
     protected CAScrollLayer(Handle h, long handle) { super(h, handle); }
     protected CAScrollLayer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLayer:")
-    public CAScrollLayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
+    public CAScrollLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "scrollMode")
@@ -67,7 +67,5 @@ import org.robovm.apple.metal.*;
     public native void scrollTo(@ByVal CGPoint p);
     @Method(selector = "scrollToRect:")
     public native void scrollTo(@ByVal CGRect r);
-    @Method(selector = "initWithLayer:")
-    protected native @Pointer long init(CALayer layer);
     /*</methods>*/
 }

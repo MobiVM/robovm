@@ -56,9 +56,9 @@ import org.robovm.apple.dispatch.*;
     protected NSUnitLength(Handle h, long handle) { super(h, handle); }
     protected NSUnitLength(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSymbol:converter:")
-    public NSUnitLength(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
+    public NSUnitLength(String symbol, NSUnitConverter converter) { super(symbol, converter); }
     @Method(selector = "initWithSymbol:")
-    public NSUnitLength(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
+    public NSUnitLength(String symbol) { super(symbol); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "megameters")
@@ -108,9 +108,6 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSymbol:converter:")
-    protected native @Pointer long init(String symbol, NSUnitConverter converter);
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
+    
     /*</methods>*/
 }

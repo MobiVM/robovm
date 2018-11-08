@@ -61,7 +61,7 @@ import org.robovm.apple.audiotoolbox.*;
     public AVAudioUnitEQ(@MachineSizedUInt long numberOfBands) { super((SkipInit) null); initObject(init(numberOfBands)); }
     @WeaklyLinked
     @Method(selector = "initWithAudioComponentDescription:")
-    public AVAudioUnitEQ(@ByVal AudioComponentDescription audioComponentDescription) { super((SkipInit) null); initObject(init(audioComponentDescription)); }
+    public AVAudioUnitEQ(@ByVal AudioComponentDescription audioComponentDescription) { super(audioComponentDescription); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "bands")
@@ -75,8 +75,5 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "initWithNumberOfBands:")
     protected native @Pointer long init(@MachineSizedUInt long numberOfBands);
-    @WeaklyLinked
-    @Method(selector = "initWithAudioComponentDescription:")
-    protected native @Pointer long init(@ByVal AudioComponentDescription audioComponentDescription);
     /*</methods>*/
 }

@@ -53,30 +53,15 @@ import org.robovm.apple.uikit.*;
     protected AUAudioUnitV2Bridge(Handle h, long handle) { super(h, handle); }
     protected AUAudioUnitV2Bridge(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithComponentDescription:options:error:")
-    public AUAudioUnitV2Bridge(@ByVal AudioComponentDescription componentDescription, AudioComponentInstantiationOptions options) throws NSErrorException {
-       super((SkipInit) null);
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       long handle = init(componentDescription, options, ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       initObject(handle);
-    }
+    public AUAudioUnitV2Bridge(@ByVal AudioComponentDescription componentDescription, AudioComponentInstantiationOptions options) throws NSErrorException { super(componentDescription, options); }
     @Method(selector = "initWithComponentDescription:error:")
-    public AUAudioUnitV2Bridge(@ByVal AudioComponentDescription componentDescription) throws NSErrorException {
-       super((SkipInit) null);
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       long handle = init(componentDescription, ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       initObject(handle);
-    }
+    public AUAudioUnitV2Bridge(@ByVal AudioComponentDescription componentDescription) throws NSErrorException { super(componentDescription); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithComponentDescription:options:error:")
-    private native @Pointer long init(@ByVal AudioComponentDescription componentDescription, AudioComponentInstantiationOptions options, NSError.NSErrorPtr outError);
-    @Method(selector = "initWithComponentDescription:error:")
-    private native @Pointer long init(@ByVal AudioComponentDescription componentDescription, NSError.NSErrorPtr outError);
+    
     /*</methods>*/
 }

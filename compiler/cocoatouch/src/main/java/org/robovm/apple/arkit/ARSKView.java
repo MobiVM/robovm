@@ -58,9 +58,9 @@ import org.robovm.apple.imageio.*;
     protected ARSKView(Handle h, long handle) { super(h, handle); }
     protected ARSKView(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public ARSKView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public ARSKView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public ARSKView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public ARSKView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -80,9 +80,5 @@ import org.robovm.apple.imageio.*;
     public native SKNode nodeForAnchor(ARAnchor anchor);
     @Method(selector = "hitTest:types:")
     public native NSArray<ARHitTestResult> hitTest(@ByVal CGPoint point, ARHitTestResultType types);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

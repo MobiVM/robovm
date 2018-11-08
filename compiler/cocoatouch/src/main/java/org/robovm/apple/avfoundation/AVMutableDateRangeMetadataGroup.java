@@ -58,7 +58,7 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVMutableDateRangeMetadataGroup(Handle h, long handle) { super(h, handle); }
     protected AVMutableDateRangeMetadataGroup(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithItems:startDate:endDate:")
-    public AVMutableDateRangeMetadataGroup(NSArray<AVMetadataItem> items, NSDate startDate, NSDate endDate) { super((SkipInit) null); initObject(init(items, startDate, endDate)); }
+    public AVMutableDateRangeMetadataGroup(NSArray<AVMetadataItem> items, NSDate startDate, NSDate endDate) { super(items, startDate, endDate); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "startDate")
@@ -76,7 +76,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithItems:startDate:endDate:")
-    protected native @Pointer long init(NSArray<AVMetadataItem> items, NSDate startDate, NSDate endDate);
+    
     /*</methods>*/
 }

@@ -56,9 +56,9 @@ import org.robovm.apple.dispatch.*;
     protected NSUnitDispersion(Handle h, long handle) { super(h, handle); }
     protected NSUnitDispersion(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSymbol:converter:")
-    public NSUnitDispersion(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
+    public NSUnitDispersion(String symbol, NSUnitConverter converter) { super(symbol, converter); }
     @Method(selector = "initWithSymbol:")
-    public NSUnitDispersion(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
+    public NSUnitDispersion(String symbol) { super(symbol); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "partsPerMillion")
@@ -66,9 +66,6 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSymbol:converter:")
-    protected native @Pointer long init(String symbol, NSUnitConverter converter);
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
+    
     /*</methods>*/
 }

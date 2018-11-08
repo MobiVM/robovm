@@ -55,7 +55,7 @@ import org.robovm.apple.metal.*;
     protected CAEAGLLayer(Handle h, long handle) { super(h, handle); }
     protected CAEAGLLayer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLayer:")
-    public CAEAGLLayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
+    public CAEAGLLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -75,7 +75,6 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithLayer:")
-    protected native @Pointer long init(CALayer layer);
+    
     /*</methods>*/
 }

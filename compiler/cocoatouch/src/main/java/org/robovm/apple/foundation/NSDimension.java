@@ -58,7 +58,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithSymbol:converter:")
     public NSDimension(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
     @Method(selector = "initWithSymbol:")
-    public NSDimension(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
+    public NSDimension(String symbol) { super(symbol); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "converter")
@@ -70,7 +70,5 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(String symbol, NSUnitConverter converter);
     @Method(selector = "baseUnit")
     public static native NSDimension getBaseUnit();
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
     /*</methods>*/
 }

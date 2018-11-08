@@ -54,9 +54,9 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithSelectionStyle:displayStyle:entityType:eventStore:")
     public EKCalendarChooser(EKCalendarChooserSelectionStyle style, EKCalendarChooserDisplayStyle displayStyle, EKEntityType entityType, EKEventStore eventStore) { super((SkipInit) null); initObject(init(style, displayStyle, entityType, eventStore)); }
     @Method(selector = "initWithNibName:bundle:")
-    public EKCalendarChooser(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public EKCalendarChooser(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public EKCalendarChooser(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public EKCalendarChooser(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "selectionStyle")
@@ -84,9 +84,5 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(EKCalendarChooserSelectionStyle selectionStyle, EKCalendarChooserDisplayStyle displayStyle, EKEventStore eventStore);
     @Method(selector = "initWithSelectionStyle:displayStyle:entityType:eventStore:")
     protected native @Pointer long init(EKCalendarChooserSelectionStyle style, EKCalendarChooserDisplayStyle displayStyle, EKEntityType entityType, EKEventStore eventStore);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

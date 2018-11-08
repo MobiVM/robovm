@@ -37,7 +37,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NFCTagType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    NFCTagTypeISO15693(1L);
+    ISO15693(1L);
     /*</values>*/
 
     /*<bind>*/

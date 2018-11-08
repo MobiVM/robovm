@@ -59,7 +59,7 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVPlayerLayer(SkipInit skipInit) { super(skipInit); }
     public AVPlayerLayer(AVPlayer player) { super((Handle) null, create(player)); retain(getHandle()); }
     @Method(selector = "initWithLayer:")
-    public AVPlayerLayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
+    public AVPlayerLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "player")
@@ -92,7 +92,5 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "playerLayerWithPlayer:")
     protected static native @Pointer long create(AVPlayer player);
-    @Method(selector = "initWithLayer:")
-    protected native @Pointer long init(CALayer layer);
     /*</methods>*/
 }

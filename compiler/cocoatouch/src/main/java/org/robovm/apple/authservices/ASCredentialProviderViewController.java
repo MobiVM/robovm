@@ -49,9 +49,9 @@ import org.robovm.apple.uikit.*;
     protected ASCredentialProviderViewController(Handle h, long handle) { super(h, handle); }
     protected ASCredentialProviderViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNibName:bundle:")
-    public ASCredentialProviderViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public ASCredentialProviderViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public ASCredentialProviderViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public ASCredentialProviderViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "extensionContext")
@@ -67,9 +67,5 @@ import org.robovm.apple.uikit.*;
     public native void prepareInterfaceToProvideCredentialForIdentity(ASPasswordCredentialIdentity credentialIdentity);
     @Method(selector = "prepareInterfaceForExtensionConfiguration")
     public native void prepareInterfaceForExtensionConfiguration();
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

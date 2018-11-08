@@ -52,9 +52,9 @@ import org.robovm.apple.addressbook.*;
     protected ABPersonViewController(Handle h, long handle) { super(h, handle); }
     protected ABPersonViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNibName:bundle:")
-    public ABPersonViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public ABPersonViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public ABPersonViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public ABPersonViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "personViewDelegate")
@@ -102,10 +102,6 @@ import org.robovm.apple.addressbook.*;
     /*<methods>*/
     @Method(selector = "setHighlightedItemForProperty:withIdentifier:")
     public native void setHighlightedItem(ABPersonProperty property, int identifier);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "viewControllerWithRestorationIdentifierPath:coder:")
     public static native UIViewController viewControllerWithRestorationIdentifier(NSArray<NSString> identifierComponents, NSCoder coder);
     /*</methods>*/

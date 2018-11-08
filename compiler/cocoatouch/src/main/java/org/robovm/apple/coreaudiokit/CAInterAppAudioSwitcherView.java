@@ -51,9 +51,9 @@ import org.robovm.apple.uikit.*;
     protected CAInterAppAudioSwitcherView(Handle h, long handle) { super(h, handle); }
     protected CAInterAppAudioSwitcherView(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public CAInterAppAudioSwitcherView(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public CAInterAppAudioSwitcherView(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public CAInterAppAudioSwitcherView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public CAInterAppAudioSwitcherView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isShowingAppNames")
@@ -67,9 +67,5 @@ import org.robovm.apple.uikit.*;
     public native void setOutputAudioUnit(AudioUnit au);
     @Method(selector = "contentWidth")
     public native double getContentWidth();
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal org.robovm.apple.coregraphics.CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

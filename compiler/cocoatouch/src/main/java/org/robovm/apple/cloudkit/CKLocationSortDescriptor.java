@@ -56,14 +56,14 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "initWithCoder:")
     public CKLocationSortDescriptor(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     @Method(selector = "initWithKey:ascending:")
-    public CKLocationSortDescriptor(String key, boolean ascending) { super((SkipInit) null); initObject(init(key, ascending)); }
+    public CKLocationSortDescriptor(String key, boolean ascending) { super(key, ascending); }
     @Method(selector = "initWithKey:ascending:selector:")
-    public CKLocationSortDescriptor(String key, boolean ascending, Selector selector) { super((SkipInit) null); initObject(init(key, ascending, selector)); }
+    public CKLocationSortDescriptor(String key, boolean ascending, Selector selector) { super(key, ascending, selector); }
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Method(selector = "initWithKey:ascending:comparator:")
-    public CKLocationSortDescriptor(String key, boolean ascending, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr) { super((SkipInit) null); initObject(init(key, ascending, cmptr)); }
+    public CKLocationSortDescriptor(String key, boolean ascending, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr) { super(key, ascending, cmptr); }
     /*</constructors>*/
     public CKLocationSortDescriptor(NSSortIdentifier key, boolean ascending) {
         this(key.value().toString(), ascending);
@@ -87,14 +87,5 @@ import org.robovm.apple.fileprovider.*;
     protected native @Pointer long init(String key, CLLocation relativeLocation);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
-    @Method(selector = "initWithKey:ascending:")
-    protected native @Pointer long init(String key, boolean ascending);
-    @Method(selector = "initWithKey:ascending:selector:")
-    protected native @Pointer long init(String key, boolean ascending, Selector selector);
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @Method(selector = "initWithKey:ascending:comparator:")
-    protected native @Pointer long init(String key, boolean ascending, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
     /*</methods>*/
 }

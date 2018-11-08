@@ -59,7 +59,7 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVAudioUnitDistortion(SkipInit skipInit) { super(skipInit); }
     @WeaklyLinked
     @Method(selector = "initWithAudioComponentDescription:")
-    public AVAudioUnitDistortion(@ByVal AudioComponentDescription audioComponentDescription) { super((SkipInit) null); initObject(init(audioComponentDescription)); }
+    public AVAudioUnitDistortion(@ByVal AudioComponentDescription audioComponentDescription) { super(audioComponentDescription); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "preGain")
@@ -75,8 +75,5 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "loadFactoryPreset:")
     public native void loadFactoryPreset(AVAudioUnitDistortionPreset preset);
-    @WeaklyLinked
-    @Method(selector = "initWithAudioComponentDescription:")
-    protected native @Pointer long init(@ByVal AudioComponentDescription audioComponentDescription);
     /*</methods>*/
 }

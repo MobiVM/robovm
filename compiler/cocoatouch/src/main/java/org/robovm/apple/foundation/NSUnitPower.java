@@ -56,9 +56,9 @@ import org.robovm.apple.dispatch.*;
     protected NSUnitPower(Handle h, long handle) { super(h, handle); }
     protected NSUnitPower(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSymbol:converter:")
-    public NSUnitPower(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
+    public NSUnitPower(String symbol, NSUnitConverter converter) { super(symbol, converter); }
     @Method(selector = "initWithSymbol:")
-    public NSUnitPower(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
+    public NSUnitPower(String symbol) { super(symbol); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "terawatts")
@@ -86,9 +86,6 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSymbol:converter:")
-    protected native @Pointer long init(String symbol, NSUnitConverter converter);
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
+    
     /*</methods>*/
 }

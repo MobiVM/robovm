@@ -62,12 +62,12 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "initWithName:transform:extent:")
     public AREnvironmentProbeAnchor(String name, @ByVal MatrixFloat4x4 transform, @ByVal VectorFloat3 extent) { super((SkipInit) null); initObject(init(name, transform, extent)); }
     @Method(selector = "initWithTransform:")
-    public AREnvironmentProbeAnchor(@ByVal MatrixFloat4x4 transform) { super((SkipInit) null); initObject(init(transform)); }
+    public AREnvironmentProbeAnchor(@ByVal MatrixFloat4x4 transform) { super(transform); }
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "initWithName:transform:")
-    public AREnvironmentProbeAnchor(String name, @ByVal MatrixFloat4x4 transform) { super((SkipInit) null); initObject(init(name, transform)); }
+    public AREnvironmentProbeAnchor(String name, @ByVal MatrixFloat4x4 transform) { super(name, transform); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "environmentTexture")
@@ -81,12 +81,5 @@ import org.robovm.apple.imageio.*;
     protected native @Pointer long init(@ByVal MatrixFloat4x4 transform, @ByVal VectorFloat3 extent);
     @Method(selector = "initWithName:transform:extent:")
     protected native @Pointer long init(String name, @ByVal MatrixFloat4x4 transform, @ByVal VectorFloat3 extent);
-    @Method(selector = "initWithTransform:")
-    protected native @Pointer long init(@ByVal MatrixFloat4x4 transform);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Method(selector = "initWithName:transform:")
-    protected native @Pointer long init(String name, @ByVal MatrixFloat4x4 transform);
     /*</methods>*/
 }

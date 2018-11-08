@@ -56,9 +56,9 @@ import org.robovm.apple.dispatch.*;
     protected NSUnitAcceleration(Handle h, long handle) { super(h, handle); }
     protected NSUnitAcceleration(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSymbol:converter:")
-    public NSUnitAcceleration(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
+    public NSUnitAcceleration(String symbol, NSUnitConverter converter) { super(symbol, converter); }
     @Method(selector = "initWithSymbol:")
-    public NSUnitAcceleration(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
+    public NSUnitAcceleration(String symbol) { super(symbol); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "metersPerSecondSquared")
@@ -68,9 +68,6 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSymbol:converter:")
-    protected native @Pointer long init(String symbol, NSUnitConverter converter);
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
+    
     /*</methods>*/
 }

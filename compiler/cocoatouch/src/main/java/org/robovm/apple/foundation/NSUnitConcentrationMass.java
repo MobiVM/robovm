@@ -56,9 +56,9 @@ import org.robovm.apple.dispatch.*;
     protected NSUnitConcentrationMass(Handle h, long handle) { super(h, handle); }
     protected NSUnitConcentrationMass(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSymbol:converter:")
-    public NSUnitConcentrationMass(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
+    public NSUnitConcentrationMass(String symbol, NSUnitConverter converter) { super(symbol, converter); }
     @Method(selector = "initWithSymbol:")
-    public NSUnitConcentrationMass(String symbol) { super((SkipInit) null); initObject(init(symbol)); }
+    public NSUnitConcentrationMass(String symbol) { super(symbol); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "gramsPerLiter")
@@ -70,9 +70,5 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "millimolesPerLiterWithGramsPerMole:")
     public static native NSUnitConcentrationMass convertGramsPerMoleToMillimolesPerLiter(double gramsPerMole);
-    @Method(selector = "initWithSymbol:converter:")
-    protected native @Pointer long init(String symbol, NSUnitConverter converter);
-    @Method(selector = "initWithSymbol:")
-    protected native @Pointer long init(String symbol);
     /*</methods>*/
 }

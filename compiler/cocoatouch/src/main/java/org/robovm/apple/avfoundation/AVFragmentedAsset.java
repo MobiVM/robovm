@@ -58,7 +58,7 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVFragmentedAsset(Handle h, long handle) { super(h, handle); }
     protected AVFragmentedAsset(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithURL:options:")
-    public AVFragmentedAsset(NSURL URL, AVURLAssetOptions options) { super((SkipInit) null); initObject(init(URL, options)); }
+    public AVFragmentedAsset(NSURL URL, AVURLAssetOptions options) { super(URL, options); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tracks")
@@ -71,8 +71,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithURL:options:")
-    protected native @Pointer long init(NSURL URL, AVURLAssetOptions options);
     @Method(selector = "trackWithTrackID:")
     public native AVFragmentedAssetTrack getTrack(int trackID);
     @Method(selector = "tracksWithMediaType:")

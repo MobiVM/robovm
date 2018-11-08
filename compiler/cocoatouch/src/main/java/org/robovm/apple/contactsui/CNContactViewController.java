@@ -50,9 +50,9 @@ import org.robovm.apple.uikit.*;
     protected CNContactViewController(Handle h, long handle) { super(h, handle); }
     protected CNContactViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNibName:bundle:")
-    public CNContactViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public CNContactViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public CNContactViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public CNContactViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contact")
@@ -110,9 +110,5 @@ import org.robovm.apple.uikit.*;
     public static native CNContactViewController createForUnknownContact(CNContact contact);
     @Method(selector = "viewControllerForNewContact:")
     public static native CNContactViewController createForNewContact(CNContact contact);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

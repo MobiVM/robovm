@@ -48,7 +48,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/AVMusicTrackLoopCount/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    AVMusicTrackLoopCountForever(-1L);
+    Forever(-1L);
     /*</values>*/
 
     /*<bind>*/

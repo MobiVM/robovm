@@ -62,7 +62,7 @@ import org.robovm.apple.contacts.*;
      */
     @Deprecated
     @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
-    public CLBeaconRegion(@ByVal CLLocationCoordinate2D center, double radius, String identifier) { super((SkipInit) null); initObject(init(center, radius, identifier)); }
+    public CLBeaconRegion(@ByVal CLLocationCoordinate2D center, double radius, String identifier) { super(center, radius, identifier); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "proximityUUID")
@@ -87,12 +87,5 @@ import org.robovm.apple.contacts.*;
     @WeaklyLinked
     @Method(selector = "peripheralDataWithMeasuredPower:")
     public native CBAdvertisementData getPeripheralData(NSNumber measuredPower);
-    /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
-     */
-    @Deprecated
-    @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
-    protected native @Pointer long init(@ByVal CLLocationCoordinate2D center, double radius, String identifier);
     /*</methods>*/
 }

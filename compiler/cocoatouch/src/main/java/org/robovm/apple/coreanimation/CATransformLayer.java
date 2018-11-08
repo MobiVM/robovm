@@ -53,14 +53,13 @@ import org.robovm.apple.metal.*;
     protected CATransformLayer(Handle h, long handle) { super(h, handle); }
     protected CATransformLayer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLayer:")
-    public CATransformLayer(CALayer layer) { super((SkipInit) null); initObject(init(layer)); }
+    public CATransformLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithLayer:")
-    protected native @Pointer long init(CALayer layer);
+    
     /*</methods>*/
 }

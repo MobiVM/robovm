@@ -60,9 +60,9 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "initWithItems:")
     public AVQueuePlayer(NSArray<AVPlayerItem> items) { super((SkipInit) null); initObject(init(items)); }
     @Method(selector = "initWithURL:")
-    public AVQueuePlayer(NSURL URL) { super((SkipInit) null); initObject(init(URL)); }
+    public AVQueuePlayer(NSURL URL) { super(URL); }
     @Method(selector = "initWithPlayerItem:")
-    public AVQueuePlayer(AVPlayerItem item) { super((SkipInit) null); initObject(init(item)); }
+    public AVQueuePlayer(AVPlayerItem item) { super(item); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -83,9 +83,5 @@ import org.robovm.apple.audiotoolbox.*;
     public native void removeItem(AVPlayerItem item);
     @Method(selector = "removeAllItems")
     public native void removeAllItems();
-    @Method(selector = "initWithURL:")
-    protected native @Pointer long init(NSURL URL);
-    @Method(selector = "initWithPlayerItem:")
-    protected native @Pointer long init(AVPlayerItem item);
     /*</methods>*/
 }

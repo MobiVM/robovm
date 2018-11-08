@@ -58,12 +58,12 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVMutableTimedMetadataGroup(Handle h, long handle) { super(h, handle); }
     protected AVMutableTimedMetadataGroup(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithItems:timeRange:")
-    public AVMutableTimedMetadataGroup(NSArray<AVMetadataItem> items, @ByVal CMTimeRange timeRange) { super((SkipInit) null); initObject(init(items, timeRange)); }
+    public AVMutableTimedMetadataGroup(NSArray<AVMetadataItem> items, @ByVal CMTimeRange timeRange) { super(items, timeRange); }
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Method(selector = "initWithSampleBuffer:")
-    public AVMutableTimedMetadataGroup(CMSampleBuffer sampleBuffer) { super((SkipInit) null); initObject(init(sampleBuffer)); }
+    public AVMutableTimedMetadataGroup(CMSampleBuffer sampleBuffer) { super(sampleBuffer); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "timeRange")
@@ -77,12 +77,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithItems:timeRange:")
-    protected native @Pointer long init(NSArray<AVMetadataItem> items, @ByVal CMTimeRange timeRange);
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Method(selector = "initWithSampleBuffer:")
-    protected native @Pointer long init(CMSampleBuffer sampleBuffer);
+    
     /*</methods>*/
 }
