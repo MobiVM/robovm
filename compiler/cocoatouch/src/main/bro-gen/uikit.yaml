@@ -525,8 +525,6 @@ classes:
             'textContainers':
                 type: NSArray<NSTextContainer>
         methods:
-            '-init.*':
-                name: init
             '-addTextContainer:':
                 trim_after_first_colon: true
             '-insertTextContainer:atIndex:':
@@ -804,11 +802,11 @@ classes:
                 name: prepare
     UIActivityIndicatorView: # DONE
         methods:
-            '-init.*':
+            '-initWithActivityIndicatorStyle:':
                 name: init
     UIActivityItemProvider: # DONE
         methods:
-            '-init.*':
+            '-initWithPlaceholderItem:':
                 name: init
     UIActivityViewController: # DONE
         properties:
@@ -825,8 +823,6 @@ classes:
                 parameters:
                     applicationActivities:
                         type: NSArray<UIActivity>
-            '-init.*':
-                name: init
     UIAlertAction: # DONE
         methods:
             '+actionWithTitle:style:handler:':
@@ -851,8 +847,6 @@ classes:
             'delegate':
                 type: UIAlertViewDelegate
         methods:
-            '-init.*':
-                name: init
             '-addButtonWithTitle:':
                 name: addButton
             '-buttonTitleAtIndex:':
@@ -907,14 +901,22 @@ classes:
     UIApplicationShortcutItem: # DONE
         skip_def_constructor: true
         methods:
-            '-init.*':
+            '-initWithType:localizedTitle:localizedSubtitle:icon:userInfo:':
+                name: init
+            '-initWithType:localizedTitle:':
                 name: init
     UIAttachmentBehavior: # DONE
         properties:
             'items':
                 type: List<UIDynamicItem>
         methods:
-            '-init.*':
+            '-initWithItem:attachedToAnchor:':
+                name: init
+            '-initWithItem:offsetFromCenter:attachedToAnchor:':
+                name: init
+            '-initWithItem:attachedToItem:':
+                name: init
+            '-initWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:':
                 name: init
             '+slidingAttachment.*':
                 name: getSlidingAttachment
@@ -938,7 +940,15 @@ classes:
                 name: init
             '-initWithBarButtonSystemItem:target:action:':
                 name: init
-            '-init.*':
+            '-initWithItem:attachedToAnchor:':
+                name: init
+            '-initWithItem:offsetFromCenter:attachedToAnchor:':
+                name: init
+            '-initWithItem:attachedToItem:':
+                name: init
+            '-initWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:':
+                name: init
+            '-initWithCustomView:':
                 name: init
             '-backButtonBackgroundImageForState:barMetrics:':
                 name: getBackButtonBackgroundImage
@@ -978,13 +988,9 @@ classes:
                 parameters:
                     barButtonItems:
                         type: NSArray<UIBarButtonItem>
-            '-init.*':
-                name: init
     UIBarItem: # DONE
-        protocols: [UIAppearanceContainer]
+        protocols: [NSCoding, UIAppearanceContainer]
         methods:
-            '-init.*':
-                name: init
             '-setTitleTextAttributes:forState:':
                 name: setTitleTextAttributesDictionary
                 parameters:
@@ -1086,7 +1092,7 @@ classes:
             'transform3D':
                 annotations: ['@WeaklyLinked']
         methods:
-            '-init.*':
+            '-initWithFrame:collectionViewLayout:':
                 name: init
             '-cellForItemAtIndexPath:':
                 name: getCellForItem
@@ -1172,17 +1178,14 @@ classes:
                 name: updateInteractiveMovement
     UICollectionViewCell: # DONE
         methods:
-            '-init.*':
-                name: init
     UICollectionViewController: # DONE
         properties:
             'useLayoutToLayoutNavigationTransitions':
                 name: usesLayoutToLayoutNavigationTransitions
         methods:
-            '-init.*':
+            '-initWithCollectionViewLayout:':
                 name: init
             '-collectionView:shouldSpringLoadItemAtIndexPath:withContext:':
-                #trim_after_first_colon: true
                 name: shouldSpringLoadItem
     UICollectionViewFlowLayout: {} # DONE
     UICollectionViewFlowLayoutInvalidationContext: # DONE
@@ -1211,8 +1214,6 @@ classes:
                 name: getInitialLayoutAttributesForAppearingItem
             '-initialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath:':
                 name: getInitialLayoutAttributesForAppearingSupplementaryElement
-            '-init.*':
-                name: init
             '-layoutAttributesForDecorationViewOfKind:atIndexPath:':
                 name: getLayoutAttributesForDecorationView
             '-layoutAttributesForElementsInRect:':
@@ -1303,7 +1304,7 @@ classes:
                         type: NSArray<NSIndexPath>
     UICollectionViewTransitionLayout: # DONE
         methods:
-            '-init.*':
+            '-initWithCurrentLayout:nextLayout:':
                 name: init
             '-updateValue:forAnimatedKey:':
                 trim_after_first_colon: true
@@ -1419,7 +1420,7 @@ classes:
                 marshaler: NSArray.AsStringListMarshaler
     UIDocument: # DONE
         methods:
-            '-init.*':
+            '-initWithFileURL:':
                 name: init
             '-autosaveWithCompletionHandler:':
                 name: autoSave
@@ -1481,7 +1482,7 @@ classes:
                     allowedUTIs:
                         type: List<String>
                         marshaler: NSArray.AsStringListMarshaler
-            '-init.*':
+            '-initWithURL:inMode:':
                 name: init
             '-addOptionWithTitle:image:order:handler:':
                 name: addOption
@@ -1527,14 +1528,18 @@ classes:
                     allowedUTIs:
                         type: List<String>
                         marshaler: NSArray.AsStringListMarshaler
-            '-init.*':
+            '-initWithURL:inMode:':
+                name: init
+            '-initWithURLs:inMode:':
                 name: init
     UIDynamicAnimator: # DONE
         properties:
             'behaviors':
                 type: NSArray<UIDynamicBehavior>
         methods:
-            '-init.*':
+            '-initWithReferenceView:':
+                name: init
+            '-initWithCollectionViewLayout:':
                 name: init
             '-addBehavior:':
                 trim_after_first_colon: true
@@ -1969,7 +1974,9 @@ classes:
             'highlightedAnimationImages':
                 type: NSArray<UIImage>
         methods:
-            '-init.*':
+            '-initWithImage:':
+                name: init
+            '-initWithImage:highlightedImage:':
                 name: init
     UIImpactFeedbackGenerator: # DONE
         methods:
@@ -1977,7 +1984,7 @@ classes:
                 name: init
     UIInputView: # DONE
         methods:
-            '-init.*':
+            '-initWithFrame:inputViewStyle:':
                 name: init
     UIInputViewController: # DONE
         methods:
@@ -2037,9 +2044,6 @@ classes:
                 getter: regionTriggersOnce
             'region':
                 annotations: ['@WeaklyLinked']
-        methods:
-            '-init.*':
-                name: init
     UILongPressGestureRecognizer: {} # DONE
     UIManagedDocument: # DONE
         properties: 
@@ -2134,7 +2138,7 @@ classes:
                         type: 'Class<? extends UINavigationBar>'
                     toolbarClass:
                         type: 'Class<? extends UIToolbar>'
-            '-init.*':
+            '-initWithRootViewController:':
                 name: init
             '-pushViewController:animated:':
                 trim_after_first_colon: true
@@ -2166,7 +2170,7 @@ classes:
             'leftItemsSupplementBackButton':
                 getter: leftItemsSupplementBackButton
         methods:
-            '-init.*':
+            '-initWithTitle:':
                 name: init
             '-setHidesBackButton:animated:':
                 trim_after_first_colon: true
@@ -2218,8 +2222,6 @@ classes:
                 parameters:
                     options:
                         type: UIPageViewControllerOptions
-            '-init.*':
-                name: init
             '-setViewControllers:direction:animated:completion:':
                 trim_after_first_colon: true
                 parameters:
@@ -2338,7 +2340,7 @@ classes:
             'popoverBackgroundViewClass':
                 type: 'Class<? extends UIPopoverBackgroundView>'
         methods:
-            '-init.*':
+            '-initWithContentViewController:':
                 name: init
             '-dismissPopoverAnimated:':
                 name: dismiss
@@ -2360,7 +2362,7 @@ classes:
                 type: 'Class<? extends UIPopoverBackgroundView>'
     UIPresentationController: # DONE
         methods:
-            '-init.*':
+            '-initWithPresentedViewController:presentingViewController:':
                 name: init
             '-adaptivePresentationStyleForTraitCollection:':
                 name: getAdaptivePresentationStyleForTraitCollection
@@ -2509,10 +2511,10 @@ classes:
                 constructor: true
     UIProgressView: # DONE
         methods:
-            '-init.*':
-                name: init
             '-setProgress:animated:':
                 trim_after_first_colon: true
+            '-initWithProgressViewStyle:':
+                name: init
     UIPushBehavior: # DONE
         properties:
             'items':
@@ -2535,7 +2537,7 @@ classes:
                 name: setAngleAndMagnitude
     UIReferenceLibraryViewController: # DONE
         methods:
-            '-init.*':
+            '-initWithTerm:':
                 name: init
             '+dictionaryHasDefinitionForTerm:':
                 trim_after_first_colon: true
@@ -2626,8 +2628,6 @@ classes:
                 type: List<String>
                 marshaler: NSArray.AsStringListMarshaler
         methods:
-            '-init.*':
-                name: init
             '-imageForSearchBarIcon:state:':
                 name: getImageForSearchBarIcon
             '-positionAdjustmentForSearchBarIcon:':
@@ -2664,15 +2664,15 @@ classes:
                         type: 'NSDictionary<NSString, ?>'
     UISearchContainerViewController: # DONE
         methods:
-            '-init.*':
+            '-initWithSearchController:':
                 name: init
     UISearchController: # DONE
         methods:
-            '-init.*':
+            '-initWithSearchResultsController:':
                 name: init
     UISearchDisplayController: # DONE
         methods:
-            '-init.*':
+            '-initWithSearchBar:contentsController:':
                 name: init
             '-setActive:animated:':
                 name: setActive
@@ -2683,7 +2683,7 @@ classes:
             'selectedSegmentIndex':
                 name: selectedSegment
         methods:
-            '-init.*':
+            '-initWithItems:':
                 name: init
             '-backgroundImageForState:barMetrics:':
                 name: getBackgroundImage
@@ -2734,7 +2734,9 @@ classes:
     UISelectionFeedbackGenerator: {} # DONE
     UISimpleTextPrintFormatter: # DONE
         methods:
-            '-init.*':
+            '-initWithText:':
+                name: init
+            '-initWithAttributedText:':
                 name: init
     UISlider: # DONE
         methods:
@@ -2762,7 +2764,7 @@ classes:
                 trim_after_first_colon: true
     UISnapBehavior: # DONE
         methods:
-            '-init.*':
+            '-initWithItem:snapToPoint:':
                 name: init
     UISplitViewController: # DONE
         methods:
@@ -2772,14 +2774,18 @@ classes:
                 trim_after_first_colon: true
     UISpringTimingParameters: # DONE
         methods:
-            '-init.*':
+            '-initWithDampingRatio:initialVelocity:':
+                name: init
+            '-initWithMass:stiffness:damping:initialVelocity:':
+                name: init
+            '-initWithDampingRatio:':
                 name: init
     UIStackView: # DONE
         properties:
             'arrangedSubviews':
                 type: NSArray<UIView>
         methods:
-            '-init.*':
+            '-initWithArrangedSubviews:':
                 name: init
             '-addArrangedSubview:':
                 trim_after_first_colon: true
@@ -2828,7 +2834,7 @@ classes:
             'destinationViewController':
                 type: UIViewController
         methods:
-            '-init.*':
+            '-initWithIdentifier:source:destination:':
                 name: init
             '+segueWithIdentifier:source:destination:performHandler:':
                 name: create
@@ -2837,8 +2843,6 @@ classes:
     UISwipeGestureRecognizer: {} # DONE
     UISwitch: # DONE
         methods:
-            '-init.*':
-                name: init
             '-setOn:animated:':
                 trim_after_first_colon: true
     UITabBar: # DONE
@@ -2872,7 +2876,11 @@ classes:
                         type: NSArray<UIViewController>
     UITabBarItem: # DONE
         methods:
-            '-init.*':
+            '-initWithTitle:image:tag:':
+                name: init
+            '-initWithTitle:image:selectedImage:':
+                name: init
+            '-initWithTabBarSystemItem:tag:':
                 name: init
             '-finishedSelectedImage':
                 name: getFinishedSelectedImage
@@ -2901,7 +2909,7 @@ classes:
             'cellLayoutMarginsFollowReadableWidth':
                 getter: cellLayoutMarginsFollowReadableWidth
         methods:
-            '-init.*':
+            '-initWithFrame:style:':
                 name: init
             '-cellForRowAtIndexPath:':
                 name: getCellForRow
@@ -2990,7 +2998,7 @@ classes:
                 trim_after_first_colon: true
     UITableViewCell: # DONE
         methods:
-            '-init.*':
+            '-initWithStyle:reuseIdentifier:':
                 name: init
             '-setSelected:animated:':
                 trim_after_first_colon: true
@@ -3004,12 +3012,12 @@ classes:
                 trim_after_first_colon: true
     UITableViewController: # DONE
         methods:
-            '-init.*':
+            '-initWithStyle:':
                 name: init
     UITableViewFocusUpdateContext: {} # DONE
     UITableViewHeaderFooterView: # DONE
         methods:
-            '-init.*':
+            '-initWithReuseIdentifier:':
                 name: init
     UITableViewRowAction: # DONE
         methods:
@@ -3104,7 +3112,7 @@ classes:
                 name: typingAttributesDictionary
                 type: 'NSDictionary<NSString, ?>'
         methods:
-            '-init.*':
+            '-initWithFrame:textContainer:':
                 name: init
             '-scrollRangeToVisible:':
                 trim_after_first_colon: true
@@ -3145,8 +3153,6 @@ classes:
                 name: getAzimuthUnitVectorInView
     UITraitCollection: # DONE
         methods:
-            '-init.*':
-                name: init
             '-containsTraitsInCollection:':
                 name: containsTraits
             '+traitCollectionWithTraitsFromCollections:':
@@ -3190,14 +3196,9 @@ classes:
                 parameters:
                     actions:
                         type: NSArray<UIUserNotificationAction>
-    UIUserNotificationAction: # DONE
-        methods:
-            '-init.*':
-                name: init
+    UIUserNotificationAction: {} # DONE
     UIUserNotificationCategory: # DONE
         methods:
-            '-init.*':
-                name: init
             '-actionsForContext:':
                 name: getActions
                 return_type: NSArray<UIUserNotificationAction>
@@ -3244,7 +3245,7 @@ classes:
                 type: 'Class<? extends CALayer>'
                 annotations: ['@WeaklyLinked']
         methods:
-            '-init.*':
+            '-initWithFrame:':
                 name: init
             '+animateWithDuration:animations:':
                 name: animate
@@ -3415,7 +3416,7 @@ classes:
                 type: List<UIPreviewActionItem>
                 marshaler: NSArray.AsListMarshaler
         methods:
-            '-init.*':
+            '-initWithNibName:bundle:':
                 name: init
             '-rotatingFooterView':
                 name: getRotatingFooterView
@@ -3527,7 +3528,13 @@ classes:
     UIViewPrintFormatter: {} # DONE
     UIViewPropertyAnimator: # DONE
         methods:
-            '-init.*':
+            '-initWithDuration:timingParameters:':
+                name: init
+            '-initWithDuration:curve:animations:':
+                name: init
+            '-initWithDuration:controlPoint1:controlPoint2:animations:':
+                name: init
+            '-initWithDuration:dampingRatio:animations:':
                 name: init
             '+runningPropertyAnimatorWithDuration:delay:options:animations:completion:':
                 name: getRunningPropertyAnimator
@@ -3541,7 +3548,7 @@ classes:
         skip_handle_constructor: false
     UIVisualEffectView: # DONE
         methods:
-            '-init.*':
+            '-initWithEffect:':
                 name: init
     UIWebView: # DONE
         methods:
@@ -3567,11 +3574,17 @@ classes:
                 trim_after_first_colon: true
     UIAccessibilityLocationDescriptor: #since 11.0
         methods:
-            '-init.*':
+            '-initWithName:view:':
+                name: init
+            '-initWithName:point:inView:':
+                name: init
+            '-initWithAttributedName:point:inView:':
                 name: init
     UICloudSharingController: #since 10.0
         methods:
             '-initWithShare:container:':
+                name: init
+            '-initWithPreparationHandler:':
                 name: init
     UICollectionViewDropPlaceholder: {} #since 11.0
     UICollectionViewDropProposal: #since 11.0
@@ -3610,7 +3623,9 @@ classes:
                 name: init
     UIDragPreviewTarget: #since 11.0
         methods:
-            '-init.*':
+            '-initWithContainer:center:transform:':
+                name: init
+            '-initWithContainer:center:':
                 name: init
     UIDropInteraction: #since 11.0
         methods:
@@ -3663,7 +3678,11 @@ classes:
                 name: init
     UITargetedDragPreview: #since 11.0
         methods:
-            '-init.*':
+            '-initWithView:parameters:target:':
+                name: init
+            '-initWithView:parameters:':
+                name: init
+            '-initWithView:':
                 name: init
             '+previewForURL:target:':
                 constructor: true
@@ -3675,7 +3694,9 @@ classes:
                 name: retargetedPreview
     UITextDragPreviewRenderer: #since 11.0
         methods:
-            '-init.*':
+            '-initWithLayoutManager:range:':
+                name: init
+            '-initWithLayoutManager:range:unifyRects:':
                 name: init
             '-adjustFirstLineRect:bodyRect:lastLineRect:textOrigin:':
                 trim_after_first_colon: true
@@ -3692,6 +3713,8 @@ classes:
                 name: revealDocument
             '-importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:':
                 name: importDocument
+            '-initForOpeningFilesWithContentTypes:':
+                name: initForOpeningFilesWithContentTypes
     UIFocusMovementHint: {} #since 12.0
     UITextInputPasswordRules: #since 12.0
         methods:
