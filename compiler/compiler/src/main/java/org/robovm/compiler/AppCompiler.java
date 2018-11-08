@@ -571,9 +571,9 @@ public class AppCompiler {
      * @throws IOException
      */
     private boolean needsRecompilation(Config config) throws IOException {
-        if (!config.isSmartCompile()) {
-            config.getLogger().info("Rebuilding because smart compilation is disabled. Enable it by adding " +
-                    "<smartCompile>true</smartCompile> to your robovm.xml file.");
+        if (!config.isSmartSkipRebuild()) {
+            config.getLogger().info("Rebuilding because smartSkipRebuild is disabled. Enable it by adding " +
+                    "<smartSkipRebuild>true</smartSkipRebuild> to your robovm.xml file.");
             return true;
         }
 
@@ -643,8 +643,8 @@ public class AppCompiler {
         String xml = writer.toString();
         //In debug mode, there is a random port number used - strip this for comparability
         xml = xml.replaceAll("<argument>debug:jdwpport=\\d*?</argument>", "<argument>debug:jdwpport=REMOVED</argument>");
-        //Remove smartCompile info, as switching smartCompile on will result in differing configs otherwise
-        xml = xml.replaceAll("<smartCompile>.*?</smartCompile>", "");
+        //Remove smartSkipRebuild info, as switching smartSkipRebuild on will result in differing configs otherwise
+        xml = xml.replaceAll("<smartSkipRebuild>.*?</smartSkipRebuild>", "");
         return xml;
     }
 

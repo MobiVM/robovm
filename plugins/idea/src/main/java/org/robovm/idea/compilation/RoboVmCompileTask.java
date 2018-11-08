@@ -278,8 +278,8 @@ public class RoboVmCompileTask implements CompileTask {
 
             Config config = builder.build();
 
-            // clean build dir if smartCompile is disabled
-            if(!config.isSmartCompile()){
+            // clean build dir if smartSkipRebuild is disabled
+            if(!config.isSmartSkipRebuild()){
                 RoboVmPlugin.logInfo(context.getProject(), "Cleaning output dir " + buildDir.getAbsolutePath());
                 FileUtils.deleteDirectory(buildDir);
                 buildDir.mkdirs();

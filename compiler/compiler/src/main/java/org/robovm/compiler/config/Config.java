@@ -173,8 +173,8 @@ public class Config {
     private StripArchivesConfig stripArchivesConfig;
     @Element(required = false, name = "treeShaker")
     private TreeShakerMode treeShakerMode;
-    @Element(required = false, name = "smartCompile")
-    private Boolean smartCompile;
+    @Element(required = false, name = "smartSkipRebuild")
+    private Boolean smartSkipRebuild;
 
     @Element(required = false)
     private String iosSdkVersion;
@@ -533,8 +533,8 @@ public class Config {
         return treeShakerMode == null ? TreeShakerMode.none : treeShakerMode;
     }
 
-    public boolean isSmartCompile(){
-        return smartCompile != null && smartCompile;
+    public boolean isSmartSkipRebuild(){
+        return smartSkipRebuild != null && smartSkipRebuild;
     }
 
     public String getIosSdkVersion() {
@@ -1310,8 +1310,8 @@ public class Config {
             return this;
         }
 
-        public Builder smartCompile(boolean smartCompile){
-            config.smartCompile = smartCompile;
+        public Builder smartSkipRebuild(boolean smartSkipRebuild){
+            config.smartSkipRebuild = smartSkipRebuild;
             return this;
         }
 
