@@ -51,9 +51,9 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithMediaTypes:")
     public MPMediaPickerController(MPMediaType mediaTypes) { super((SkipInit) null); initObject(init(mediaTypes)); }
     @Method(selector = "initWithNibName:bundle:")
-    public MPMediaPickerController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public MPMediaPickerController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public MPMediaPickerController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPMediaPickerController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mediaTypes")
@@ -95,9 +95,5 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     @Method(selector = "initWithMediaTypes:")
     protected native @Pointer long init(MPMediaType mediaTypes);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -54,7 +54,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithTileOverlay:")
     public MKTileOverlayRenderer(MKTileOverlay overlay) { super((SkipInit) null); initObject(init(overlay)); }
     @Method(selector = "initWithOverlay:")
-    public MKTileOverlayRenderer(MKOverlay overlay) { super((SkipInit) null); initObject(init(overlay)); }
+    public MKTileOverlayRenderer(MKOverlay overlay) { super(overlay); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -65,7 +65,5 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(MKTileOverlay overlay);
     @Method(selector = "reloadData")
     public native void reloadData();
-    @Method(selector = "initWithOverlay:")
-    protected native @Pointer long init(MKOverlay overlay);
     /*</methods>*/
 }

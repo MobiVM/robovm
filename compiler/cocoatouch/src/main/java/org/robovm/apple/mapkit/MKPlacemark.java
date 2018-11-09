@@ -63,7 +63,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithCoordinate:postalAddress:")
     public MKPlacemark(@ByVal CLLocationCoordinate2D coordinate, org.robovm.apple.contacts.CNPostalAddress postalAddress) { super((SkipInit) null); initObject(init(coordinate, postalAddress)); }
     @Method(selector = "initWithPlacemark:")
-    public MKPlacemark(CLPlacemark placemark) { super((SkipInit) null); initObject(init(placemark)); }
+    public MKPlacemark(CLPlacemark placemark) { super(placemark); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "countryCode")
@@ -91,7 +91,5 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "initWithCoordinate:postalAddress:")
     protected native @Pointer long init(@ByVal CLLocationCoordinate2D coordinate, org.robovm.apple.contacts.CNPostalAddress postalAddress);
-    @Method(selector = "initWithPlacemark:")
-    protected native @Pointer long init(CLPlacemark placemark);
     /*</methods>*/
 }

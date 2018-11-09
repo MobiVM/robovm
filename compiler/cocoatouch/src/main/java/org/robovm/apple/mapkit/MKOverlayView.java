@@ -59,9 +59,9 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithOverlay:")
     public MKOverlayView(MKOverlay overlay) { super((SkipInit) null); initObject(init(overlay)); }
     @Method(selector = "initWithFrame:")
-    public MKOverlayView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public MKOverlayView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MKOverlayView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MKOverlayView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -137,9 +137,5 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Method(selector = "setNeedsDisplayInMapRect:zoomScale:")
     public native void setNeedsDisplay(@ByVal MKMapRect mapRect, @MachineSizedFloat double zoomScale);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

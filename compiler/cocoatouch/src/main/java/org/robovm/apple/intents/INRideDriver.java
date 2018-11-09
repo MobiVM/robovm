@@ -55,12 +55,12 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithPhoneNumber:nameComponents:displayName:image:rating:")
     public INRideDriver(String phoneNumber, NSPersonNameComponents nameComponents, String displayName, INImage image, String rating) { super((SkipInit) null); initObject(init(phoneNumber, nameComponents, displayName, image, rating)); }
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:")
-    public INRideDriver(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier) { super((SkipInit) null); initObject(init(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier)); }
+    public INRideDriver(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier); }
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:")
-    public INRideDriver(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe) { super((SkipInit) null); initObject(init(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe)); }
+    public INRideDriver(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe); }
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 10.2. Use the designated initializer instead
@@ -100,13 +100,6 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "initWithPhoneNumber:nameComponents:displayName:image:rating:")
     protected native @Pointer long init(String phoneNumber, NSPersonNameComponents nameComponents, String displayName, INImage image, String rating);
-    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:")
-    protected native @Pointer long init(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:")
-    protected native @Pointer long init(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe);
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 10.2. Use the designated initializer instead

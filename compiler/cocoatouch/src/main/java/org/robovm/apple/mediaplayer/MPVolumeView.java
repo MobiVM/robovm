@@ -75,9 +75,9 @@ import org.robovm.apple.coregraphics.*;
     protected MPVolumeView(Handle h, long handle) { super(h, handle); }
     protected MPVolumeView(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public MPVolumeView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public MPVolumeView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MPVolumeView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPVolumeView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -189,9 +189,5 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "routeButtonRectForBounds:")
     public native @ByVal CGRect getRouteButtonRect(@ByVal CGRect bounds);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

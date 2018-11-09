@@ -54,9 +54,9 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithContentURL:")
     public MPMoviePlayerViewController(NSURL contentURL) { super((SkipInit) null); initObject(init(contentURL)); }
     @Method(selector = "initWithNibName:bundle:")
-    public MPMoviePlayerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public MPMoviePlayerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public MPMoviePlayerViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPMoviePlayerViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "moviePlayer")
@@ -66,9 +66,5 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     @Method(selector = "initWithContentURL:")
     protected native @Pointer long init(NSURL contentURL);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -64,11 +64,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Deprecated
     @Method(selector = "initWithOverlay:")
-    public MKPolygonView(MKOverlay overlay) { super((SkipInit) null); initObject(init(overlay)); }
+    public MKPolygonView(MKOverlay overlay) { super(overlay); }
     @Method(selector = "initWithFrame:")
-    public MKPolygonView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public MKPolygonView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MKPolygonView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MKPolygonView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -88,16 +88,5 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Method(selector = "initWithPolygon:")
     protected native @Pointer long init(MKPolygon polygon);
-    /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithOverlay:")
-    protected native @Pointer long init(MKOverlay overlay);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

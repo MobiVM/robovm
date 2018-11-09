@@ -64,11 +64,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Deprecated
     @Method(selector = "initWithOverlay:")
-    public MKCircleView(MKOverlay overlay) { super((SkipInit) null); initObject(init(overlay)); }
+    public MKCircleView(MKOverlay overlay) { super(overlay); }
     @Method(selector = "initWithFrame:")
-    public MKCircleView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public MKCircleView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MKCircleView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MKCircleView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -88,16 +88,5 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Method(selector = "initWithCircle:")
     protected native @Pointer long init(MKCircle circle);
-    /**
-     * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithOverlay:")
-    protected native @Pointer long init(MKOverlay overlay);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

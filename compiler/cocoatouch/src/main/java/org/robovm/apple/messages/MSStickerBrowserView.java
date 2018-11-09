@@ -54,7 +54,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithFrame:stickerSize:")
     public MSStickerBrowserView(@ByVal CGRect frame, MSStickerSize stickerSize) { super((SkipInit) null); initObject(init(frame, stickerSize)); }
     @Method(selector = "initWithCoder:")
-    public MSStickerBrowserView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MSStickerBrowserView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "stickerSize")
@@ -82,7 +82,5 @@ import org.robovm.apple.uikit.*;
     public native void setContentOffset(@ByVal CGPoint contentOffset, boolean animated);
     @Method(selector = "reloadData")
     public native void reloadData();
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

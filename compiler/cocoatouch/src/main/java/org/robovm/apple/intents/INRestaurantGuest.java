@@ -52,12 +52,12 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithNameComponents:phoneNumber:emailAddress:")
     public INRestaurantGuest(NSPersonNameComponents nameComponents, String phoneNumber, String emailAddress) { super((SkipInit) null); initObject(init(nameComponents, phoneNumber, emailAddress)); }
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:")
-    public INRestaurantGuest(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier) { super((SkipInit) null); initObject(init(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier)); }
+    public INRestaurantGuest(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier); }
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:")
-    public INRestaurantGuest(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe) { super((SkipInit) null); initObject(init(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe)); }
+    public INRestaurantGuest(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "phoneNumber")
@@ -73,12 +73,5 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithNameComponents:phoneNumber:emailAddress:")
     protected native @Pointer long init(NSPersonNameComponents nameComponents, String phoneNumber, String emailAddress);
-    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:")
-    protected native @Pointer long init(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:")
-    protected native @Pointer long init(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe);
     /*</methods>*/
 }

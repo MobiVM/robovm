@@ -52,7 +52,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithRestaurant:bookingDate:partySize:bookingIdentifier:guest:status:dateStatusModified:")
     public INRestaurantReservationUserBooking(INRestaurant restaurant, NSDate bookingDate, @MachineSizedUInt long partySize, String bookingIdentifier, INRestaurantGuest guest, INRestaurantReservationUserBookingStatus status, NSDate dateStatusModified) { super((SkipInit) null); initObject(init(restaurant, bookingDate, partySize, bookingIdentifier, guest, status, dateStatusModified)); }
     @Method(selector = "initWithRestaurant:bookingDate:partySize:bookingIdentifier:")
-    public INRestaurantReservationUserBooking(INRestaurant restaurant, NSDate bookingDate, @MachineSizedUInt long partySize, String bookingIdentifier) { super((SkipInit) null); initObject(init(restaurant, bookingDate, partySize, bookingIdentifier)); }
+    public INRestaurantReservationUserBooking(INRestaurant restaurant, NSDate bookingDate, @MachineSizedUInt long partySize, String bookingIdentifier) { super(restaurant, bookingDate, partySize, bookingIdentifier); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "guest")
@@ -84,7 +84,5 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithRestaurant:bookingDate:partySize:bookingIdentifier:guest:status:dateStatusModified:")
     protected native @Pointer long init(INRestaurant restaurant, NSDate bookingDate, @MachineSizedUInt long partySize, String bookingIdentifier, INRestaurantGuest guest, INRestaurantReservationUserBookingStatus status, NSDate dateStatusModified);
-    @Method(selector = "initWithRestaurant:bookingDate:partySize:bookingIdentifier:")
-    protected native @Pointer long init(INRestaurant restaurant, NSDate bookingDate, @MachineSizedUInt long partySize, String bookingIdentifier);
     /*</methods>*/
 }

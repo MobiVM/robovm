@@ -52,11 +52,11 @@ import org.robovm.apple.dispatch.*;
     protected MKPinAnnotationView(Handle h, long handle) { super(h, handle); }
     protected MKPinAnnotationView(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithAnnotation:reuseIdentifier:")
-    public MKPinAnnotationView(MKAnnotation annotation, String reuseIdentifier) { super((SkipInit) null); initObject(init(annotation, reuseIdentifier)); }
+    public MKPinAnnotationView(MKAnnotation annotation, String reuseIdentifier) { super(annotation, reuseIdentifier); }
     @Method(selector = "initWithCoder:")
-    public MKPinAnnotationView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MKPinAnnotationView(NSCoder aDecoder) { super(aDecoder); }
     @Method(selector = "initWithFrame:")
-    public MKPinAnnotationView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public MKPinAnnotationView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -105,11 +105,5 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "purplePinColor")
     public static native UIColor getPurplePinColor();
-    @Method(selector = "initWithAnnotation:reuseIdentifier:")
-    protected native @Pointer long init(MKAnnotation annotation, String reuseIdentifier);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
     /*</methods>*/
 }

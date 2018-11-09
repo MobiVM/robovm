@@ -56,7 +56,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithCoder:")
     public MKAnnotationView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     @Method(selector = "initWithFrame:")
-    public MKAnnotationView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public MKAnnotationView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "reuseIdentifier")
@@ -187,7 +187,5 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "setDragState:animated:")
     public native void setDragState(MKAnnotationViewDragState newDragState, boolean animated);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
     /*</methods>*/
 }

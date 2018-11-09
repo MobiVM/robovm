@@ -52,7 +52,7 @@ import org.robovm.apple.dispatch.*;
     protected MKOverlayPathRenderer(Handle h, long handle) { super(h, handle); }
     protected MKOverlayPathRenderer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithOverlay:")
-    public MKOverlayPathRenderer(MKOverlay overlay) { super((SkipInit) null); initObject(init(overlay)); }
+    public MKOverlayPathRenderer(MKOverlay overlay) { super(overlay); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "fillColor")
@@ -106,7 +106,5 @@ import org.robovm.apple.dispatch.*;
     public native void strokePath(CGPath path, CGContext context);
     @Method(selector = "fillPath:inContext:")
     public native void fillPath(CGPath path, CGContext context);
-    @Method(selector = "initWithOverlay:")
-    protected native @Pointer long init(MKOverlay overlay);
     /*</methods>*/
 }

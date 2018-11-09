@@ -52,9 +52,9 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithStickerSize:")
     public MSStickerBrowserViewController(MSStickerSize stickerSize) { super((SkipInit) null); initObject(init(stickerSize)); }
     @Method(selector = "initWithNibName:bundle:")
-    public MSStickerBrowserViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public MSStickerBrowserViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public MSStickerBrowserViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MSStickerBrowserViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "stickerBrowserView")
@@ -66,10 +66,6 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "initWithStickerSize:")
     protected native @Pointer long init(MSStickerSize stickerSize);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "numberOfStickersInStickerBrowserView:")
     public native @MachineSizedSInt long numberOfStickersInStickerBrowserView(MSStickerBrowserView stickerBrowserView);
     @Method(selector = "stickerBrowserView:stickerAtIndex:")

@@ -52,9 +52,9 @@ import org.robovm.apple.dispatch.*;
     protected MKMapView(Handle h, long handle) { super(h, handle); }
     protected MKMapView(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public MKMapView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public MKMapView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public MKMapView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MKMapView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -278,10 +278,6 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "showAnnotations:animated:")
     public native void showAnnotations(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<? extends MKAnnotation> annotations, boolean animated);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /**
      * @since Available in iOS 7.0 and later.
      */

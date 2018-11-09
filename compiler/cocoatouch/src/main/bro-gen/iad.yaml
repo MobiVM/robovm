@@ -80,7 +80,10 @@ classes:
         methods:
             '-presentInView:':
                 name: present
-    ADInterstitialAdPresentationViewController: {}
+    ADInterstitialAdPresentationViewController:
+        methods:
+            '-initForInterstitialAd:':
+                name: init
 protocols:
     ADBannerViewDelegate: # DONE
         methods:

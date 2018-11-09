@@ -54,20 +54,20 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithMapView:")
     public MKUserTrackingBarButtonItem(MKMapView mapView) { super((SkipInit) null); initObject(init(mapView)); }
     @Method(selector = "initWithCoder:")
-    public MKUserTrackingBarButtonItem(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MKUserTrackingBarButtonItem(NSCoder decoder) { super(decoder); }
     @Method(selector = "initWithImage:style:target:action:")
-    public MKUserTrackingBarButtonItem(UIImage image, UIBarButtonItemStyle style, NSObject target, Selector action) { super((SkipInit) null); initObject(init(image, style, target, action)); }
+    public MKUserTrackingBarButtonItem(UIImage image, UIBarButtonItemStyle style, NSObject target, Selector action) { super(image, style, target, action); }
     /**
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "initWithImage:landscapeImagePhone:style:target:action:")
-    public MKUserTrackingBarButtonItem(UIImage image, UIImage landscapeImagePhone, UIBarButtonItemStyle style, NSObject target, Selector action) { super((SkipInit) null); initObject(init(image, landscapeImagePhone, style, target, action)); }
+    public MKUserTrackingBarButtonItem(UIImage image, UIImage landscapeImagePhone, UIBarButtonItemStyle style, NSObject target, Selector action) { super(image, landscapeImagePhone, style, target, action); }
     @Method(selector = "initWithTitle:style:target:action:")
-    public MKUserTrackingBarButtonItem(String title, UIBarButtonItemStyle style, NSObject target, Selector action) { super((SkipInit) null); initObject(init(title, style, target, action)); }
+    public MKUserTrackingBarButtonItem(String title, UIBarButtonItemStyle style, NSObject target, Selector action) { super(title, style, target, action); }
     @Method(selector = "initWithBarButtonSystemItem:target:action:")
-    public MKUserTrackingBarButtonItem(UIBarButtonSystemItem systemItem, NSObject target, Selector action) { super((SkipInit) null); initObject(init(systemItem, target, action)); }
+    public MKUserTrackingBarButtonItem(UIBarButtonSystemItem systemItem, NSObject target, Selector action) { super(systemItem, target, action); }
     @Method(selector = "initWithCustomView:")
-    public MKUserTrackingBarButtonItem(UIView customView) { super((SkipInit) null); initObject(init(customView)); }
+    public MKUserTrackingBarButtonItem(UIView customView) { super(customView); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mapView")
@@ -79,20 +79,5 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "initWithMapView:")
     protected native @Pointer long init(MKMapView mapView);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
-    @Method(selector = "initWithImage:style:target:action:")
-    protected native @Pointer long init(UIImage image, UIBarButtonItemStyle style, NSObject target, Selector action);
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @Method(selector = "initWithImage:landscapeImagePhone:style:target:action:")
-    protected native @Pointer long init(UIImage image, UIImage landscapeImagePhone, UIBarButtonItemStyle style, NSObject target, Selector action);
-    @Method(selector = "initWithTitle:style:target:action:")
-    protected native @Pointer long init(String title, UIBarButtonItemStyle style, NSObject target, Selector action);
-    @Method(selector = "initWithBarButtonSystemItem:target:action:")
-    protected native @Pointer long init(UIBarButtonSystemItem systemItem, NSObject target, Selector action);
-    @Method(selector = "initWithCustomView:")
-    protected native @Pointer long init(UIView customView);
     /*</methods>*/
 }

@@ -50,9 +50,9 @@ import org.robovm.apple.identitylookup.*;
     protected ILClassificationUIExtensionViewController(Handle h, long handle) { super(h, handle); }
     protected ILClassificationUIExtensionViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNibName:bundle:")
-    public ILClassificationUIExtensionViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public ILClassificationUIExtensionViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public ILClassificationUIExtensionViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public ILClassificationUIExtensionViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "extensionContext")
@@ -64,9 +64,5 @@ import org.robovm.apple.identitylookup.*;
     public native void prepareForClassificationRequest(ILClassificationRequest request);
     @Method(selector = "classificationResponseForRequest:")
     public native ILClassificationResponse classificationResponseForRequest(ILClassificationRequest request);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -59,9 +59,9 @@ import org.robovm.apple.avkit.*;
     @Method(selector = "initWithAdType:")
     public ADBannerView(ADAdType type) { super((SkipInit) null); initObject(init(type)); }
     @Method(selector = "initWithFrame:")
-    public ADBannerView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public ADBannerView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public ADBannerView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public ADBannerView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -94,9 +94,5 @@ import org.robovm.apple.avkit.*;
     protected native @Pointer long init(ADAdType type);
     @Method(selector = "cancelBannerViewAction")
     public native void cancelBannerViewAction();
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
