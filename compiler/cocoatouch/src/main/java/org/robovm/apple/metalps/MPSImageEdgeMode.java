@@ -45,7 +45,19 @@ public enum /*<name>*/MPSImageEdgeMode/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 9.0 and later.
      */
-    Clamp(1L);
+    Clamp(1L),
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    Mirror(2L),
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    MirrorWithEdge(3L),
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    Constant(4L);
     /*</values>*/
 
     /*<bind>*/

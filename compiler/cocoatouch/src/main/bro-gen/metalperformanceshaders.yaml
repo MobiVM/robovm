@@ -50,6 +50,7 @@ enums:
     MPSCNNWeightsQuantizationType: {}
     MPSRNNMatrixId: {}
     MPSNNRegularizationType: {} #since 12.0
+    MPSNNComparisonType: {}
 classes:
     # structs
     MPSOrigin: {}
@@ -63,6 +64,7 @@ classes:
     MPSMatrixOffset: {}
     MPSMatrixCopyOffsets: {}
     MPSImageKeypointRangeInfo: {}
+    MPSImageCoordinate: {}
 
     # classes
     MPSBinaryImageKernel: #since 9.0
@@ -1551,11 +1553,67 @@ classes:
                 trim_after_first_colon: true
     MPSRNNMatrixTrainingState: {} #since 12.0
 
-
-
-
-
-
+    MPSNNCompare: {} #since 12.1
+    MPSNNComparisonNode: {} #since 12.1
+    MPSNNPad: #since 12.1
+        methods:
+            '-initWithDevice:paddingSizeBefore:paddingSizeAfter:':
+                name: init
+            '-initWithDevice:paddingSizeBefore:paddingSizeAfter:fillValueArray:':
+                name: init
+    MPSNNPadGradient: {} #since 12.1
+    MPSNNPadGradientNode: #since 12.1
+        methods:
+            '-initWithSourceGradient:sourceImage:gradientState:':
+                name: init
+            '+nodeWithSourceGradient:sourceImage:gradientState:':
+                exclude: true
+    MPSNNPadNode: #since 12.1
+        methods:
+            '-initWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:':
+                name: init
+            '+nodeWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:':
+                exclude: true
+    MPSNNReductionColumnMaxNode: {} #since 12.1
+    MPSNNReductionColumnMeanNode: {} #since 12.1
+    MPSNNReductionColumnMinNode: {} #since 12.1
+    MPSNNReductionColumnSumNode: {} #since 12.1
+    MPSNNReductionFeatureChannelsArgumentMaxNode: {} #since 12.1
+    MPSNNReductionFeatureChannelsArgumentMinNode: {} #since 12.1
+    MPSNNReductionFeatureChannelsMaxNode: {} #since 12.1
+    MPSNNReductionFeatureChannelsMeanNode: {} #since 12.1
+    MPSNNReductionFeatureChannelsMinNode: {} #since 12.1
+    MPSNNReductionFeatureChannelsSumNode: {} #since 12.1
+    MPSNNReductionRowMaxNode: {} #since 12.1
+    MPSNNReductionRowMeanNode: {} #since 12.1
+    MPSNNReductionRowMinNode: {} #since 12.1
+    MPSNNReductionRowSumNode: {} #since 12.1
+    MPSNNReductionSpatialMeanGradientNode: #since 12.1
+        methods:
+            '-initWithSourceGradient:sourceImage:gradientState:':
+                name: init
+            '+nodeWithSourceGradient:sourceImage:gradientState:':
+                exclude: true
+    MPSNNReductionSpatialMeanNode: {} #since 12.1
+    MPSNNReshapeGradient: {} #since 12.1
+    MPSNNReshapeGradientNode: #since 12.1
+        methods:
+            '-initWithSourceGradient:sourceImage:gradientState:':
+                name: init
+            '+nodeWithSourceGradient:sourceImage:gradientState:':
+                exclude: true
+    MPSNNReshapeNode: #since 12.1
+        methods:
+            '-initWithSource:resultWidth:resultHeight:resultFeatureChannels:':
+                name: init
+            '+nodeWithSource:resultWidth:resultHeight:resultFeatureChannels:':
+                exclude: true
+    MPSNNUnaryReductionNode: #since 12.1
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
 
 protocols:
     MPSCNNBatchNormalizationDataSource: #since 11.3

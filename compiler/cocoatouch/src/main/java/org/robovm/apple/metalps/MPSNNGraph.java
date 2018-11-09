@@ -117,5 +117,15 @@ import org.robovm.apple.metal.*;
     public native NSArray<MPSImage> encodeBatch(MTLCommandBuffer commandBuffer, NSArray<NSArray<MPSImage>> sourceImages, NSArray<NSArray<? extends MPSState>> sourceStates);
     @Method(selector = "executeAsyncWithSourceImages:completionHandler:")
     public native MPSImage executeAsync(NSArray<MPSImage> sourceImages, @Block VoidBlock2<MPSImage, NSError> handler);
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    @Method(selector = "readCountForSourceImageAtIndex:")
+    public native @MachineSizedUInt long readCountForSourceImageAtIndex(@MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    @Method(selector = "readCountForSourceStateAtIndex:")
+    public native @MachineSizedUInt long readCountForSourceStateAtIndex(@MachineSizedUInt long index);
     /*</methods>*/
 }
