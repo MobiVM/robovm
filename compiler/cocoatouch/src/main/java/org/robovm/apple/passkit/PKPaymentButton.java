@@ -56,9 +56,9 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithPaymentButtonType:paymentButtonStyle:")
     public PKPaymentButton(PKPaymentButtonType type, PKPaymentButtonStyle style) { super((SkipInit) null); initObject(init(type, style)); }
     @Method(selector = "initWithFrame:")
-    public PKPaymentButton(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public PKPaymentButton(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public PKPaymentButton(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public PKPaymentButton(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -79,9 +79,5 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "initWithPaymentButtonType:paymentButtonStyle:")
     protected native @Pointer long init(PKPaymentButtonType type, PKPaymentButtonStyle style);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal org.robovm.apple.coregraphics.CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

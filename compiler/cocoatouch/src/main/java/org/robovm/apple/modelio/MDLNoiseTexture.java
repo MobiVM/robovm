@@ -53,7 +53,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initScalarNoiseWithSmoothness:name:textureDimensions:channelCount:channelEncoding:grayscale:")
     public MDLNoiseTexture(float smoothness, String name, @ByVal VectorInt2 textureDimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, boolean grayscale) { super((SkipInit) null); initObject(init(smoothness, name, textureDimensions, channelCount, channelEncoding, grayscale)); }
     @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
-    public MDLNoiseTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super((SkipInit) null); initObject(init(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube)); }
+    public MDLNoiseTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -69,7 +69,5 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "initCellularNoiseWithFrequency:name:textureDimensions:channelEncoding:")
     protected native @Pointer long initCellularNoise(float frequency, String name, @ByVal VectorInt2 textureDimensions, MDLTextureChannelEncoding channelEncoding);
-    @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
-    protected native @Pointer long init(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube);
     /*</methods>*/
 }

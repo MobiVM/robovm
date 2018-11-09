@@ -51,13 +51,7 @@ import org.robovm.apple.contacts.*;
     protected PKPaymentPass(Handle h, long handle) { super(h, handle); }
     protected PKPaymentPass(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithData:error:")
-    public PKPaymentPass(NSData data) throws NSErrorException {
-       super((SkipInit) null);
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       long handle = init(data, ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       initObject(handle);
-    }
+    public PKPaymentPass(NSData data) throws NSErrorException { super(data); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryAccountIdentifier")
@@ -73,7 +67,6 @@ import org.robovm.apple.contacts.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithData:error:")
-    private native @Pointer long init(NSData data, NSError.NSErrorPtr error);
+    
     /*</methods>*/
 }

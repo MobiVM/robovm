@@ -60,7 +60,7 @@ import org.robovm.apple.metal.*;
      */
     public SKLabelNode(NSAttributedString attributedText) { super((Handle) null, create(attributedText)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public SKLabelNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKLabelNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     public SKLabelNode(String text, String fontName) {
         this(text);
@@ -153,7 +153,5 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "labelNodeWithAttributedText:")
     protected static native @Pointer long create(NSAttributedString attributedText);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

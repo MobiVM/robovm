@@ -49,9 +49,9 @@ import org.robovm.apple.uikit.*;
     protected SKCloudServiceSetupViewController(Handle h, long handle) { super(h, handle); }
     protected SKCloudServiceSetupViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNibName:bundle:")
-    public SKCloudServiceSetupViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public SKCloudServiceSetupViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public SKCloudServiceSetupViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKCloudServiceSetupViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -63,9 +63,5 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "loadWithOptions:completionHandler:")
     public native void load(SKCloudServiceSetupOptions options, @Block VoidBlock2<Boolean, NSError> completionHandler);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

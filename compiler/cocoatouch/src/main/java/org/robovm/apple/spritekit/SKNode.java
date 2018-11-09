@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     protected SKNode(Handle h, long handle) { super(h, handle); }
     protected SKNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKNode(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     public SKNode(String filename) { super((Handle) null, create(filename)); retain(getHandle()); }
     /**
      * @since Available in iOS 12.0 and later.
@@ -193,7 +193,7 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "calculateAccumulatedFrame")
     public native @ByVal CGRect calculateAccumulatedFrame();
     /**

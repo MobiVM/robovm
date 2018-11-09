@@ -41,7 +41,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("SafariServices")/*</annotations>*/
 public enum /*<name>*/SFAuthenticationError/*</name>*/ implements NSErrorCode {
     /*<values>*/
-    SFAuthenticationErrorCanceledLogin(1L);
+    CanceledLogin(1L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(SFAuthenticationError.class); }/*</bind>*/

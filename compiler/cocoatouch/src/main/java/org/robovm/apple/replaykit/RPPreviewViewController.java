@@ -48,9 +48,9 @@ import org.robovm.apple.coremedia.*;
     protected RPPreviewViewController(Handle h, long handle) { super(h, handle); }
     protected RPPreviewViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNibName:bundle:")
-    public RPPreviewViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public RPPreviewViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public RPPreviewViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public RPPreviewViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "previewControllerDelegate")
@@ -60,9 +60,6 @@ import org.robovm.apple.coremedia.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    
     /*</methods>*/
 }

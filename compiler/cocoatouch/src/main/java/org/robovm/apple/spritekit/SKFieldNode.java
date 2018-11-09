@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     protected SKFieldNode(Handle h, long handle) { super(h, handle); }
     protected SKFieldNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKFieldNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKFieldNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "region")
@@ -131,7 +131,5 @@ import org.robovm.apple.metal.*;
     public static native SKFieldNode createMagneticField();
     @Method(selector = "customFieldWithEvaluationBlock:")
     public static native SKFieldNode createCustomField(@Block Block5<SKVector3, SKVector3, Float, Float, Double, SKVector3> block);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

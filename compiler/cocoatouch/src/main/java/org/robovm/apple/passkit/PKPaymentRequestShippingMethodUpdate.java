@@ -51,14 +51,13 @@ import org.robovm.apple.contacts.*;
     protected PKPaymentRequestShippingMethodUpdate(Handle h, long handle) { super(h, handle); }
     protected PKPaymentRequestShippingMethodUpdate(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPaymentSummaryItems:")
-    public PKPaymentRequestShippingMethodUpdate(NSArray<PKPaymentSummaryItem> paymentSummaryItems) { super((SkipInit) null); initObject(init(paymentSummaryItems)); }
+    public PKPaymentRequestShippingMethodUpdate(NSArray<PKPaymentSummaryItem> paymentSummaryItems) { super(paymentSummaryItems); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithPaymentSummaryItems:")
-    protected native @Pointer long init(NSArray<PKPaymentSummaryItem> paymentSummaryItems);
+    
     /*</methods>*/
 }

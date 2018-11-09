@@ -56,7 +56,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithName:channelEncoding:textureDimensions:turbidity:sunElevation:sunAzimuth:upperAtmosphereScattering:groundAlbedo:")
     public MDLSkyCubeTexture(String name, MDLTextureChannelEncoding channelEncoding, @ByVal VectorInt2 textureDimensions, float turbidity, float sunElevation, float sunAzimuth, float upperAtmosphereScattering, float groundAlbedo) { super((SkipInit) null); initObject(init(name, channelEncoding, textureDimensions, turbidity, sunElevation, sunAzimuth, upperAtmosphereScattering, groundAlbedo)); }
     @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
-    public MDLSkyCubeTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super((SkipInit) null); initObject(init(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube)); }
+    public MDLSkyCubeTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "turbidity")
@@ -129,7 +129,5 @@ import org.robovm.apple.coregraphics.*;
     protected native @Pointer long init(String name, MDLTextureChannelEncoding channelEncoding, @ByVal VectorInt2 textureDimensions, float turbidity, float sunElevation, float sunAzimuth, float upperAtmosphereScattering, float groundAlbedo);
     @Method(selector = "updateTexture")
     public native void updateTexture();
-    @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
-    protected native @Pointer long init(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube);
     /*</methods>*/
 }

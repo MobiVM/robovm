@@ -51,7 +51,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initByGeneratingNormalMapWithTexture:name:smoothness:contrast:")
     public MDLNormalMapTexture(MDLTexture sourceTexture, String name, float smoothness, float contrast) { super((SkipInit) null); initObject(init(sourceTexture, name, smoothness, contrast)); }
     @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
-    public MDLNormalMapTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super((SkipInit) null); initObject(init(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube)); }
+    public MDLNormalMapTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -60,7 +60,5 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     @Method(selector = "initByGeneratingNormalMapWithTexture:name:smoothness:contrast:")
     protected native @Pointer long init(MDLTexture sourceTexture, String name, float smoothness, float contrast);
-    @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
-    protected native @Pointer long init(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube);
     /*</methods>*/
 }

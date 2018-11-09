@@ -51,7 +51,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithDivisions:name:dimensions:channelCount:channelEncoding:color1:color2:")
     public MDLCheckerboardTexture(float divisions, String name, @ByVal VectorInt2 dimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, CGColor color1, CGColor color2) { super((SkipInit) null); initObject(init(divisions, name, dimensions, channelCount, channelEncoding, color1, color2)); }
     @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
-    public MDLCheckerboardTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super((SkipInit) null); initObject(init(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube)); }
+    public MDLCheckerboardTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "divisions")
@@ -71,7 +71,5 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     @Method(selector = "initWithDivisions:name:dimensions:channelCount:channelEncoding:color1:color2:")
     protected native @Pointer long init(float divisions, String name, @ByVal VectorInt2 dimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, CGColor color1, CGColor color2);
-    @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
-    protected native @Pointer long init(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube);
     /*</methods>*/
 }

@@ -57,9 +57,9 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "initWithFrame:options:")
     public SCNView(@ByVal CGRect frame, NSDictionary<NSString, ?> options) { super((SkipInit) null); initObject(init(frame, options)); }
     @Method(selector = "initWithFrame:")
-    public SCNView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public SCNView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public SCNView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SCNView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "scene")
@@ -235,10 +235,6 @@ import org.robovm.apple.avfoundation.*;
     public native void pause(NSObject sender);
     @Method(selector = "stop:")
     public native void stop(NSObject sender);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /**
      * @since Available in iOS 9.0 and later.
      */

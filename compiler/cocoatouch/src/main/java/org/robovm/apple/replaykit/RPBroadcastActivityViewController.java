@@ -50,9 +50,9 @@ import org.robovm.apple.coremedia.*;
     protected RPBroadcastActivityViewController(Handle h, long handle) { super(h, handle); }
     protected RPBroadcastActivityViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNibName:bundle:")
-    public RPBroadcastActivityViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public RPBroadcastActivityViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public RPBroadcastActivityViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public RPBroadcastActivityViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -69,9 +69,5 @@ import org.robovm.apple.coremedia.*;
      */
     @Method(selector = "loadBroadcastActivityViewControllerWithPreferredExtension:handler:")
     public static native void load(String preferredExtension, @Block VoidBlock2<RPBroadcastActivityViewController, NSError> handler);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

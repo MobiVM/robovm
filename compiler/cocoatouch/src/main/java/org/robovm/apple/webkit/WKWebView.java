@@ -55,7 +55,7 @@ import org.robovm.apple.security.*;
     @Method(selector = "initWithCoder:")
     public WKWebView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithFrame:")
-    public WKWebView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public WKWebView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "configuration")
@@ -167,7 +167,5 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "handlesURLScheme:")
     public static native boolean handlesURLScheme(String urlScheme);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
     /*</methods>*/
 }

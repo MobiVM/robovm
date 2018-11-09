@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     protected SKLightNode(Handle h, long handle) { super(h, handle); }
     protected SKLightNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKLightNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKLightNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isEnabled")
@@ -87,7 +87,6 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    
     /*</methods>*/
 }

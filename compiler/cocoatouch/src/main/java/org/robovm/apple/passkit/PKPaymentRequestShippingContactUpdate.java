@@ -53,7 +53,7 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithErrors:paymentSummaryItems:shippingMethods:")
     public PKPaymentRequestShippingContactUpdate(NSArray<NSError> errors, NSArray<PKPaymentSummaryItem> paymentSummaryItems, NSArray<PKShippingMethod> shippingMethods) { super((SkipInit) null); initObject(init(errors, paymentSummaryItems, shippingMethods)); }
     @Method(selector = "initWithPaymentSummaryItems:")
-    public PKPaymentRequestShippingContactUpdate(NSArray<PKPaymentSummaryItem> paymentSummaryItems) { super((SkipInit) null); initObject(init(paymentSummaryItems)); }
+    public PKPaymentRequestShippingContactUpdate(NSArray<PKPaymentSummaryItem> paymentSummaryItems) { super(paymentSummaryItems); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "shippingMethods")
@@ -69,7 +69,5 @@ import org.robovm.apple.contacts.*;
     /*<methods>*/
     @Method(selector = "initWithErrors:paymentSummaryItems:shippingMethods:")
     protected native @Pointer long init(NSArray<NSError> errors, NSArray<PKPaymentSummaryItem> paymentSummaryItems, NSArray<PKShippingMethod> shippingMethods);
-    @Method(selector = "initWithPaymentSummaryItems:")
-    protected native @Pointer long init(NSArray<PKPaymentSummaryItem> paymentSummaryItems);
     /*</methods>*/
 }

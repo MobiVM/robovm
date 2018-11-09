@@ -63,7 +63,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithTileSet:columns:rows:tileSize:tileGroupLayout:")
     public SKTileMapNode(SKTileSet tileSet, @MachineSizedUInt long columns, @MachineSizedUInt long rows, @ByVal CGSize tileSize, NSArray<SKTileGroup> tileGroupLayout) { super((SkipInit) null); initObject(init(tileSet, columns, rows, tileSize, tileGroupLayout)); }
     @Method(selector = "initWithCoder:")
-    public SKTileMapNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKTileMapNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "numberOfColumns")
@@ -157,7 +157,5 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long tileRowIndexFromPosition(@ByVal CGPoint position);
     @Method(selector = "centerOfTileAtColumn:row:")
     public native @ByVal CGPoint getCenterOfTile(@MachineSizedUInt long column, @MachineSizedUInt long row);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

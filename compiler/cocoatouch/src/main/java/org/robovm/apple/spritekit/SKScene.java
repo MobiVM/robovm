@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithSize:")
     public SKScene(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
     @Method(selector = "initWithCoder:")
-    public SKScene(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKScene(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "size")
@@ -151,7 +151,5 @@ import org.robovm.apple.metal.*;
     public native void willMoveFromView(SKView view);
     @Method(selector = "didChangeSize:")
     public native void didChangeSize(@ByVal CGSize oldSize);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

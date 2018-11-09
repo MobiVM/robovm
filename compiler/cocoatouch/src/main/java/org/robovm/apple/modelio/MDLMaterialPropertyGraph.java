@@ -51,7 +51,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithNodes:connections:")
     public MDLMaterialPropertyGraph(NSArray<MDLMaterialPropertyNode> nodes, NSArray<MDLMaterialPropertyConnection> connections) { super((SkipInit) null); initObject(init(nodes, connections)); }
     @Method(selector = "initWithInputs:outputs:evaluationFunction:")
-    public MDLMaterialPropertyGraph(NSArray<MDLMaterialProperty> inputs, NSArray<MDLMaterialProperty> outputs, @Block VoidBlock1<MDLMaterialPropertyNode> function) { super((SkipInit) null); initObject(init(inputs, outputs, function)); }
+    public MDLMaterialPropertyGraph(NSArray<MDLMaterialProperty> inputs, NSArray<MDLMaterialProperty> outputs, @Block VoidBlock1<MDLMaterialPropertyNode> function) { super(inputs, outputs, function); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "nodes")
@@ -65,7 +65,5 @@ import org.robovm.apple.coregraphics.*;
     protected native @Pointer long init(NSArray<MDLMaterialPropertyNode> nodes, NSArray<MDLMaterialPropertyConnection> connections);
     @Method(selector = "evaluate")
     public native void evaluate();
-    @Method(selector = "initWithInputs:outputs:evaluationFunction:")
-    protected native @Pointer long init(NSArray<MDLMaterialProperty> inputs, NSArray<MDLMaterialProperty> outputs, @Block VoidBlock1<MDLMaterialPropertyNode> function);
     /*</methods>*/
 }

@@ -55,9 +55,9 @@ import org.robovm.apple.metal.*;
     protected SKView(Handle h, long handle) { super(h, handle); }
     protected SKView(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public SKView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public SKView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
-    public SKView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isPaused")
@@ -199,9 +199,5 @@ import org.robovm.apple.metal.*;
     public native @ByVal CGPoint convertPointToScene(@ByVal CGPoint point, SKScene scene);
     @Method(selector = "convertPoint:fromScene:")
     public native @ByVal CGPoint convertPointFromScene(@ByVal CGPoint point, SKScene scene);
-    @Method(selector = "initWithFrame:")
-    protected native @Pointer long init(@ByVal CGRect frame);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

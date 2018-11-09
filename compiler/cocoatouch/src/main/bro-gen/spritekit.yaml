@@ -399,10 +399,6 @@ classes:
             'userData':
                 type: 'NSMutableDictionary<?, ?>'
         methods:
-            '-init':
-                exclude: true
-            '-init.*':
-                name: init
             '-addChild:':
                 trim_after_first_colon: true
             '-removeChildrenInArray:':
@@ -813,6 +809,12 @@ classes:
                 constructor: true
     SKTileMapNode: #since 10.0
         methods:
+            '-initWithTileSet:columns:rows:tileSize:':
+                name: init
+            '-initWithTileSet:columns:rows:tileSize:fillWithTileGroup:':
+                name: init
+            '-initWithTileSet:columns:rows:tileSize:tileGroupLayout:':
+                name: init
             '-setValue:forAttributeNamed:':
                 trim_after_first_colon: true
             '-tileDefinitionAtColumn:row:':

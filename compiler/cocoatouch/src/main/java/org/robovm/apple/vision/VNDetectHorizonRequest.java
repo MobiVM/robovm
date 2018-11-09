@@ -54,7 +54,7 @@ import org.robovm.apple.imageio.*;
     protected VNDetectHorizonRequest(Handle h, long handle) { super(h, handle); }
     protected VNDetectHorizonRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCompletionHandler:")
-    public VNDetectHorizonRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(completionHandler)); }
+    public VNDetectHorizonRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -67,7 +67,6 @@ import org.robovm.apple.imageio.*;
     @GlobalValue(symbol="VNDetectHorizonRequestRevision1", optional=true)
     public static native @MachineSizedUInt long getRevision1();
     
-    @Method(selector = "initWithCompletionHandler:")
-    protected native @Pointer long init(@Block VoidBlock2<VNRequest, NSError> completionHandler);
+    
     /*</methods>*/
 }

@@ -50,9 +50,9 @@ import org.robovm.apple.uikit.*;
     protected QLPreviewController(Handle h, long handle) { super(h, handle); }
     protected QLPreviewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNibName:bundle:")
-    public QLPreviewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public QLPreviewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public QLPreviewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public QLPreviewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dataSource")
@@ -78,9 +78,5 @@ import org.robovm.apple.uikit.*;
     public native void refreshCurrentPreviewItem();
     @Method(selector = "canPreviewItem:")
     public static native boolean canPreviewItem(QLPreviewItem item);
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

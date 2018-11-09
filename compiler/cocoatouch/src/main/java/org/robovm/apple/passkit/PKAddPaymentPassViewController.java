@@ -53,9 +53,9 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "initWithRequestConfiguration:delegate:")
     public PKAddPaymentPassViewController(PKAddPaymentPassRequestConfiguration configuration, PKAddPaymentPassViewControllerDelegate delegate) { super((SkipInit) null); initObject(init(configuration, delegate)); }
     @Method(selector = "initWithNibName:bundle:")
-    public PKAddPaymentPassViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public PKAddPaymentPassViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public PKAddPaymentPassViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public PKAddPaymentPassViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -69,9 +69,5 @@ import org.robovm.apple.contacts.*;
     protected native @Pointer long init(PKAddPaymentPassRequestConfiguration configuration, PKAddPaymentPassViewControllerDelegate delegate);
     @Method(selector = "canAddPaymentPass")
     public static native boolean canAddPaymentPass();
-    @Method(selector = "initWithNibName:bundle:")
-    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

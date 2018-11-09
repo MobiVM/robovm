@@ -55,7 +55,7 @@ import org.robovm.apple.metal.*;
     protected SKShapeNode(Handle h, long handle) { super(h, handle); }
     protected SKShapeNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKShapeNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SKShapeNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "path")
@@ -218,7 +218,5 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "shapeNodeWithSplinePoints:count:")
     public static native SKShapeNode createWithSplinePoints(CGPoint points, @MachineSizedUInt long numPoints);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }
