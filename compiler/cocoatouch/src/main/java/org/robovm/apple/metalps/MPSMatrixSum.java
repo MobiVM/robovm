@@ -52,9 +52,9 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:count:rows:columns:transpose:")
     public MPSMatrixSum(MTLDevice device, @MachineSizedUInt long count, @MachineSizedUInt long rows, @MachineSizedUInt long columns, boolean transpose) { super((SkipInit) null); initObject(init(device, count, rows, columns, transpose)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSMatrixSum(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSMatrixSum(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixSum(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSMatrixSum(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rows")
@@ -83,8 +83,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeToCommandBuffer:sourceMatrices:resultMatrix:scaleVector:offsetVector:biasVector:startIndex:")
     public native void encode(MTLCommandBuffer buffer, NSArray<MPSMatrix> sourceMatrices, MPSMatrix resultMatrix, MPSVector scaleVector, MPSVector offsetVector, MPSVector biasVector, @MachineSizedUInt long startIndex);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     /*</methods>*/
 }

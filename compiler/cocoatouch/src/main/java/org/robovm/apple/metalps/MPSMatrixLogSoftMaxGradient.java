@@ -50,22 +50,17 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixLogSoftMaxGradient(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixLogSoftMaxGradient(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixLogSoftMaxGradient(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSMatrixLogSoftMaxGradient(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:device:")
-    public MPSMatrixLogSoftMaxGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSMatrixLogSoftMaxGradient(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixLogSoftMaxGradient(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSMatrixLogSoftMaxGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithDevice:")
-    protected native @Pointer long init(MTLDevice device);
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    
     /*</methods>*/
 }

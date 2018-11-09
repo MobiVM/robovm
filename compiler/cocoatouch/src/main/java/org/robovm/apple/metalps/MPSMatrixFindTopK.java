@@ -52,9 +52,9 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:numberOfTopKValues:")
     public MPSMatrixFindTopK(MTLDevice device, @MachineSizedUInt long numberOfTopKValues) { super((SkipInit) null); initObject(init(device, numberOfTopKValues)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSMatrixFindTopK(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSMatrixFindTopK(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixFindTopK(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSMatrixFindTopK(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceRows")
@@ -81,10 +81,8 @@ import org.robovm.apple.metal.*;
     @Method(selector = "encodeToCommandBuffer:inputMatrix:resultIndexMatrix:resultValueMatrix:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix inputMatrix, MPSMatrix resultIndexMatrix, MPSMatrix resultValueMatrix);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "copyWithZone:device:")
     public native MPSMatrixFindTopK copy(NSZone zone, MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

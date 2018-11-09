@@ -50,9 +50,9 @@ import org.robovm.apple.metal.*;
     protected MPSCNNUpsamplingGradient(Handle h, long handle) { super(h, handle); }
     protected MPSCNNUpsamplingGradient(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:device:")
-    public MPSCNNUpsamplingGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSCNNUpsamplingGradient(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNUpsamplingGradient(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSCNNUpsamplingGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "scaleFactorX")
@@ -62,9 +62,6 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    
     /*</methods>*/
 }

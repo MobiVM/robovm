@@ -54,9 +54,9 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageCopyToMatrix(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithDevice:")
-    public MPSImageCopyToMatrix(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSImageCopyToMatrix(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageCopyToMatrix(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSImageCopyToMatrix(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "destinationMatrixOrigin")
@@ -83,9 +83,5 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:destinationMatrix:")
     public native void encode(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImages, MPSMatrix destinationMatrix);
-    @Method(selector = "initWithDevice:")
-    protected native @Pointer long init(MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

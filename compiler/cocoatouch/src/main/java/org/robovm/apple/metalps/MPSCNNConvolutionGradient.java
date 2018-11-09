@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNConvolutionGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNConvolutionGradient(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSCNNConvolutionGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceGradientFeatureChannels")
@@ -99,7 +99,5 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "reloadWeightsAndBiasesWithCommandBuffer:state:")
     public native void reloadWeightsAndBiases(MTLCommandBuffer commandBuffer, MPSCNNConvolutionWeightsAndBiasesState state);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

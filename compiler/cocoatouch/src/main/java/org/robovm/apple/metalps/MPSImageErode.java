@@ -50,28 +50,20 @@ import org.robovm.apple.metal.*;
     protected MPSImageErode(Handle h, long handle) { super(h, handle); }
     protected MPSImageErode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:values:")
-    public MPSImageErode(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, FloatPtr values) { super((SkipInit) null); initObject(init(device, kernelWidth, kernelHeight, values)); }
+    public MPSImageErode(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, FloatPtr values) { super(device, kernelWidth, kernelHeight, values); }
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSImageErode(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSImageErode(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageErode(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSImageErode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithDevice:kernelWidth:kernelHeight:values:")
-    protected native @Pointer long init(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, FloatPtr values);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    
     /*</methods>*/
 }

@@ -50,22 +50,17 @@ import org.robovm.apple.metal.*;
     protected MPSCNNInstanceNormalizationGradient(Handle h, long handle) { super(h, handle); }
     protected MPSCNNInstanceNormalizationGradient(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSCNNInstanceNormalizationGradient(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSCNNInstanceNormalizationGradient(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:device:")
-    public MPSCNNInstanceNormalizationGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSCNNInstanceNormalizationGradient(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNInstanceNormalizationGradient(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSCNNInstanceNormalizationGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithDevice:")
-    protected native @Pointer long init(MTLDevice device);
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    
     /*</methods>*/
 }

@@ -54,9 +54,9 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNLocalContrastNormalizationGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithDevice:")
-    public MPSCNNLocalContrastNormalizationGradient(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSCNNLocalContrastNormalizationGradient(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNLocalContrastNormalizationGradient(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSCNNLocalContrastNormalizationGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alpha")
@@ -90,9 +90,5 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight);
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "initWithDevice:")
-    protected native @Pointer long init(MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

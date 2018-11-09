@@ -50,12 +50,12 @@ import org.robovm.apple.metal.*;
     protected MPSNNOptimizer(Handle h, long handle) { super(h, handle); }
     protected MPSNNOptimizer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MPSNNOptimizer(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSNNOptimizer(NSCoder decoder) { super(decoder); }
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSNNOptimizer(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSNNOptimizer(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "learningRate")
@@ -79,12 +79,6 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    
     /*</methods>*/
 }

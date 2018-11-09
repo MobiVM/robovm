@@ -52,9 +52,9 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSCNNGradientKernel(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSCNNGradientKernel(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSCNNGradientKernel(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNGradientKernel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSCNNGradientKernel(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "kernelOffsetX")
@@ -71,7 +71,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     protected native @Pointer long init(MTLDevice device);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:")
     public native MPSImage encode(MTLCommandBuffer commandBuffer, MPSImage sourceGradient, MPSImage sourceImage, MPSState gradientState);
     @Method(selector = "encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:destinationGradient:")
@@ -80,7 +80,5 @@ import org.robovm.apple.metal.*;
     public native NSArray<MPSImage> encodeBatchGradients(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceGradients, NSArray<MPSImage> sourceImages, NSArray<? extends MPSState> gradientStates);
     @Method(selector = "encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:destinationGradients:")
     public native void encodeBatchGradients(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceGradients, NSArray<MPSImage> sourceImages, NSArray<? extends MPSState> gradientStates, NSArray<MPSImage> destinationGradients);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

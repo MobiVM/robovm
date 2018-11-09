@@ -52,11 +52,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:dataLayout:")
     public MPSMatrixCopyToImage(MTLDevice device, MPSDataLayout dataLayout) { super((SkipInit) null); initObject(init(device, dataLayout)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSMatrixCopyToImage(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSMatrixCopyToImage(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixCopyToImage(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSMatrixCopyToImage(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixCopyToImage(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSMatrixCopyToImage(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceMatrixOrigin")
@@ -75,7 +75,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:dataLayout:")
     protected native @Pointer long init(MTLDevice device, MPSDataLayout dataLayout);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:sourceMatrix:destinationImage:")
     public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSMatrix sourceMatrix, MPSImage destinationImage);
     /**
@@ -83,9 +83,5 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "encodeBatchToCommandBuffer:sourceMatrix:destinationImages:")
     public native void encodeBatchToCommandBuffer(MTLCommandBuffer commandBuffer, MPSMatrix sourceMatrix, NSArray<MPSImage> destinationImages);
-    @Method(selector = "initWithDevice:")
-    protected native @Pointer long init(MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

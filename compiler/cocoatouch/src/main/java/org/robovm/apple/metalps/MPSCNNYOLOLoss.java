@@ -52,9 +52,9 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:lossDescriptor:")
     public MPSCNNYOLOLoss(MTLDevice device, MPSCNNYOLOLossDescriptor lossDescriptor) { super((SkipInit) null); initObject(init(device, lossDescriptor)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSCNNYOLOLoss(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSCNNYOLOLoss(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNYOLOLoss(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSCNNYOLOLoss(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lossXY")
@@ -91,7 +91,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:lossDescriptor:")
     protected native @Pointer long init(MTLDevice device, MPSCNNYOLOLossDescriptor lossDescriptor);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:sourceImage:labels:destinationImage:")
     public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSImage sourceImage, MPSCNNLossLabels labels, MPSImage destinationImage);
     @Method(selector = "encodeToCommandBuffer:sourceImage:labels:")
@@ -100,7 +100,5 @@ import org.robovm.apple.metal.*;
     public native void encodeBatchToCommandBuffer(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray <MPSCNNLossLabels> labels, NSArray<MPSImage> destinationImage);
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:labels:")
     public native NSArray<MPSImage> encodeBatchToCommandBuffer(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray <MPSCNNLossLabels> labels);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -54,12 +54,12 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:beta1:beta2:epsilon:timeStep:optimizerDescriptor:")
     public MPSNNOptimizerAdam(MTLDevice device, double beta1, double beta2, float epsilon, @MachineSizedUInt long timeStep, MPSNNOptimizerDescriptor optimizerDescriptor) { super((SkipInit) null); initObject(init(device, beta1, beta2, epsilon, timeStep, optimizerDescriptor)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNOptimizerAdam(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSNNOptimizerAdam(NSCoder decoder) { super(decoder); }
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSNNOptimizerAdam(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSNNOptimizerAdam(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "beta1")
@@ -87,12 +87,5 @@ import org.robovm.apple.metal.*;
     public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationState, NSArray<MPSVector> inputMomentumVectors, NSArray<MPSVector> inputVelocityVectors, MPSCNNNormalizationGammaAndBetaState resultState);
     @Method(selector = "encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:inputVelocityVectors:resultState:")
     public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationGradientState, MPSCNNBatchNormalizationState batchNormalizationSourceState, NSArray<MPSVector> inputMomentumVectors, NSArray<MPSVector> inputVelocityVectors, MPSCNNNormalizationGammaAndBetaState resultState);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     /*</methods>*/
 }

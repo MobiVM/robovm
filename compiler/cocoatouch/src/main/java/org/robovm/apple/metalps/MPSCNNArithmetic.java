@@ -50,9 +50,9 @@ import org.robovm.apple.metal.*;
     protected MPSCNNArithmetic(Handle h, long handle) { super(h, handle); }
     protected MPSCNNArithmetic(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:device:")
-    public MPSCNNArithmetic(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSCNNArithmetic(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNArithmetic(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSCNNArithmetic(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryScale")
@@ -90,9 +90,5 @@ import org.robovm.apple.metal.*;
     public native void encode(MTLCommandBuffer commandBuffer, MPSImage primaryImage, MPSImage secondaryImage, MPSCNNArithmeticGradientState destinationState, MPSImage destinationImage);
     @Method(selector = "encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationStates:destinationImages:")
     public native void encodeBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> primaryImages, NSArray<MPSImage> secondaryImages, NSArray<MPSCNNArithmeticGradientState> destinationStates, NSArray<MPSImage> destinationImages);
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

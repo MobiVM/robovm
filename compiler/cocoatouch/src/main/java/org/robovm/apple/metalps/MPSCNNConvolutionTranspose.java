@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNConvolutionTranspose(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNConvolutionTranspose(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSCNNConvolutionTranspose(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inputFeatureChannels")
@@ -108,7 +108,5 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "encodeBatchToCommandBuffer:sourceImages:convolutionGradientStates:destinationImages:")
     public native void encodeBatchConvolutionGradient(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray<MPSCNNConvolutionGradientState> convolutionGradientState, NSArray<MPSImage> destinationImage);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -55,11 +55,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:fusedNeuronDescriptor:")
     public MPSCNNBatchNormalizationStatisticsGradient(MTLDevice device, MPSNNNeuronDescriptor fusedNeuronDescriptor) { super((SkipInit) null); initObject(init(device, fusedNeuronDescriptor)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSCNNBatchNormalizationStatisticsGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSCNNBatchNormalizationStatisticsGradient(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithDevice:")
-    public MPSCNNBatchNormalizationStatisticsGradient(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSCNNBatchNormalizationStatisticsGradient(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNBatchNormalizationStatisticsGradient(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSCNNBatchNormalizationStatisticsGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -72,12 +72,8 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:fusedNeuronDescriptor:")
     protected native @Pointer long init(MTLDevice device, MPSNNNeuronDescriptor fusedNeuronDescriptor);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:")
     public native void encodeBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceGradients, NSArray<MPSImage> sourceImages, MPSCNNBatchNormalizationState batchNormalizationState);
-    @Method(selector = "initWithDevice:")
-    protected native @Pointer long init(MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

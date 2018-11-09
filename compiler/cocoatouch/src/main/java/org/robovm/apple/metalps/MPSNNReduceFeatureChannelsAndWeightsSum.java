@@ -54,9 +54,9 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:doWeightedSumByNonZeroWeights:")
     public MPSNNReduceFeatureChannelsAndWeightsSum(MTLDevice device, boolean doWeightedSumByNonZeroWeights) { super((SkipInit) null); initObject(init(device, doWeightedSumByNonZeroWeights)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSNNReduceFeatureChannelsAndWeightsSum(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSNNReduceFeatureChannelsAndWeightsSum(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSNNReduceFeatureChannelsAndWeightsSum(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSNNReduceFeatureChannelsAndWeightsSum(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "doWeightedSumByNonZeroWeights")
@@ -68,9 +68,5 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device);
     @Method(selector = "initWithDevice:doWeightedSumByNonZeroWeights:")
     protected native @Pointer long init(MTLDevice device, boolean doWeightedSumByNonZeroWeights);
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageFindKeypoints(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSImageFindKeypoints(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSImageFindKeypoints(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "keypointRangeInfo")
@@ -68,7 +68,5 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:sourceTexture:regions:numberOfRegions:keypointCountBuffer:keypointCountBufferOffset:keypointDataBuffer:keypointDataBufferOffset:")
     public native void encode(MTLCommandBuffer commandBuffer, MTLTexture source, MTLRegion regions, @MachineSizedUInt long numberOfRegions, MTLBuffer keypointCountBuffer, @MachineSizedUInt long keypointCountBufferOffset, MTLBuffer keypointDataBuffer, @MachineSizedUInt long keypointDataBufferOffset);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -50,18 +50,15 @@ import org.robovm.apple.metal.*;
     protected MPSNNMultiplicationGradientNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNMultiplicationGradientNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:")
-    public MPSNNMultiplicationGradientNode(MPSNNImageNode sourceGradient, MPSNNImageNode sourceImage, MPSNNBinaryGradientStateNode gradientState, boolean isSecondarySourceFilter) { super((SkipInit) null); initObject(init(sourceGradient, sourceImage, gradientState, isSecondarySourceFilter)); }
+    public MPSNNMultiplicationGradientNode(MPSNNImageNode sourceGradient, MPSNNImageNode sourceImage, MPSNNBinaryGradientStateNode gradientState, boolean isSecondarySourceFilter) { super(sourceGradient, sourceImage, gradientState, isSecondarySourceFilter); }
     @Method(selector = "initWithGradientImages:forwardFilter:isSecondarySourceFilter:")
-    public MPSNNMultiplicationGradientNode(NSArray<MPSNNImageNode> gradientImages, MPSNNFilterNode filter, boolean isSecondarySourceFilter) { super((SkipInit) null); initObject(init(gradientImages, filter, isSecondarySourceFilter)); }
+    public MPSNNMultiplicationGradientNode(NSArray<MPSNNImageNode> gradientImages, MPSNNFilterNode filter, boolean isSecondarySourceFilter) { super(gradientImages, filter, isSecondarySourceFilter); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:")
-    protected native @Pointer long init(MPSNNImageNode sourceGradient, MPSNNImageNode sourceImage, MPSNNBinaryGradientStateNode gradientState, boolean isSecondarySourceFilter);
-    @Method(selector = "initWithGradientImages:forwardFilter:isSecondarySourceFilter:")
-    protected native @Pointer long init(NSArray<MPSNNImageNode> gradientImages, MPSNNFilterNode filter, boolean isSecondarySourceFilter);
+    
     /*</methods>*/
 }

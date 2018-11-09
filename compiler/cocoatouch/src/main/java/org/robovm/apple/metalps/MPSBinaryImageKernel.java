@@ -55,9 +55,9 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSBinaryImageKernel(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSBinaryImageKernel(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSBinaryImageKernel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSBinaryImageKernel(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryOffset")
@@ -89,7 +89,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:primaryTexture:inPlaceSecondaryTexture:fallbackCopyAllocator:")
     public native boolean encodePrimaryTexture(MTLCommandBuffer commandBuffer, MTLTexture primaryTexture, MTLTexture inPlaceSecondaryTexture, @Block Block3<MPSKernel, MTLCommandBuffer, MTLTexture, MTLTexture> copyAllocator);
     @Method(selector = "encodeToCommandBuffer:inPlacePrimaryTexture:secondaryTexture:fallbackCopyAllocator:")
@@ -102,7 +102,5 @@ import org.robovm.apple.metal.*;
     public native @ByVal MPSRegion primarySourceRegionForDestinationSize(@ByVal MTLSize destinationSize);
     @Method(selector = "secondarySourceRegionForDestinationSize:")
     public native @ByVal MPSRegion secondarySourceRegionForDestinationSize(@ByVal MTLSize destinationSize);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

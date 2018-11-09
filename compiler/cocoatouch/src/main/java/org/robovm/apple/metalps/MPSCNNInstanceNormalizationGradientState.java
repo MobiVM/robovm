@@ -53,9 +53,9 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.3 and later.
      */
     @Method(selector = "initWithDevice:resourceList:")
-    public MPSCNNInstanceNormalizationGradientState(MTLDevice device, MPSStateResourceList resourceList) { super((SkipInit) null); initObject(init(device, resourceList)); }
+    public MPSCNNInstanceNormalizationGradientState(MTLDevice device, MPSStateResourceList resourceList) { super(device, resourceList); }
     @Method(selector = "initWithResources:")
-    public MPSCNNInstanceNormalizationGradientState(NSArray<?> resources) { super((SkipInit) null); initObject(init(resources)); }
+    public MPSCNNInstanceNormalizationGradientState(NSArray<?> resources) { super(resources); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "instanceNormalization")
@@ -71,12 +71,6 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Method(selector = "initWithDevice:resourceList:")
-    protected native @Pointer long init(MTLDevice device, MPSStateResourceList resourceList);
-    @Method(selector = "initWithResources:")
-    protected native @Pointer long init(NSArray<?> resources);
+    
     /*</methods>*/
 }

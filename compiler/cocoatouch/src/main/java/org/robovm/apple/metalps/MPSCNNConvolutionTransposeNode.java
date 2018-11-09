@@ -55,7 +55,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithSource:convolutionGradientState:weights:")
     public MPSCNNConvolutionTransposeNode(MPSNNImageNode sourceNode, MPSCNNConvolutionGradientStateNode convolutionGradientState, MPSCNNConvolutionDataSource weights) { super((SkipInit) null); initObject(init(sourceNode, convolutionGradientState, weights)); }
     @Method(selector = "initWithSource:weights:")
-    public MPSCNNConvolutionTransposeNode(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights) { super((SkipInit) null); initObject(init(sourceNode, weights)); }
+    public MPSCNNConvolutionTransposeNode(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights) { super(sourceNode, weights); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -67,7 +67,5 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithSource:convolutionGradientState:weights:")
     protected native @Pointer long init(MPSNNImageNode sourceNode, MPSCNNConvolutionGradientStateNode convolutionGradientState, MPSCNNConvolutionDataSource weights);
-    @Method(selector = "initWithSource:weights:")
-    protected native @Pointer long init(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights);
     /*</methods>*/
 }

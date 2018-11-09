@@ -55,9 +55,9 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSUnaryImageKernel(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSUnaryImageKernel(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSUnaryImageKernel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSUnaryImageKernel(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "offset")
@@ -81,7 +81,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:inPlaceTexture:fallbackCopyAllocator:")
     public native boolean encode(MTLCommandBuffer commandBuffer, MTLTexture texture, @Block Block3<MPSKernel, MTLCommandBuffer, MTLTexture, MTLTexture> copyAllocator);
     @Method(selector = "encodeToCommandBuffer:sourceTexture:destinationTexture:")
@@ -90,7 +90,5 @@ import org.robovm.apple.metal.*;
     public native void encode(MTLCommandBuffer commandBuffer, MPSImage sourceImage, MPSImage destinationImage);
     @Method(selector = "sourceRegionForDestinationSize:")
     public native @ByVal MPSRegion sourceRegionForDestinationSize(@ByVal MTLSize destinationSize);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

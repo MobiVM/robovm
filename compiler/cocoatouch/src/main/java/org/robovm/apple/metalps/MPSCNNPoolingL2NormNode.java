@@ -50,22 +50,17 @@ import org.robovm.apple.metal.*;
     protected MPSCNNPoolingL2NormNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNPoolingL2NormNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:")
-    public MPSCNNPoolingL2NormNode(MPSNNImageNode sourceNode, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInPixelsX, @MachineSizedUInt long strideInPixelsY) { super((SkipInit) null); initObject(init(sourceNode, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY)); }
+    public MPSCNNPoolingL2NormNode(MPSNNImageNode sourceNode, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInPixelsX, @MachineSizedUInt long strideInPixelsY) { super(sourceNode, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY); }
     @Method(selector = "initWithSource:filterSize:stride:")
-    public MPSCNNPoolingL2NormNode(MPSNNImageNode sourceNode, @MachineSizedUInt long size, @MachineSizedUInt long stride) { super((SkipInit) null); initObject(init(sourceNode, size, stride)); }
+    public MPSCNNPoolingL2NormNode(MPSNNImageNode sourceNode, @MachineSizedUInt long size, @MachineSizedUInt long stride) { super(sourceNode, size, stride); }
     @Method(selector = "initWithSource:filterSize:")
-    public MPSCNNPoolingL2NormNode(MPSNNImageNode sourceNode, @MachineSizedUInt long size) { super((SkipInit) null); initObject(init(sourceNode, size)); }
+    public MPSCNNPoolingL2NormNode(MPSNNImageNode sourceNode, @MachineSizedUInt long size) { super(sourceNode, size); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:")
-    protected native @Pointer long init(MPSNNImageNode sourceNode, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInPixelsX, @MachineSizedUInt long strideInPixelsY);
-    @Method(selector = "initWithSource:filterSize:stride:")
-    protected native @Pointer long init(MPSNNImageNode sourceNode, @MachineSizedUInt long size, @MachineSizedUInt long stride);
-    @Method(selector = "initWithSource:filterSize:")
-    protected native @Pointer long init(MPSNNImageNode sourceNode, @MachineSizedUInt long size);
+    
     /*</methods>*/
 }

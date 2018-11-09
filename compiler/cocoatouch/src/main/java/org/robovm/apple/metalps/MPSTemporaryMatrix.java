@@ -51,7 +51,7 @@ import org.robovm.apple.metal.*;
     protected MPSTemporaryMatrix(SkipInit skipInit) { super(skipInit); }
     public MPSTemporaryMatrix(MTLCommandBuffer commandBuffer, MPSMatrixDescriptor matrixDescriptor) { super((Handle) null, create(commandBuffer, matrixDescriptor)); retain(getHandle()); }
     @Method(selector = "initWithDevice:descriptor:")
-    public MPSTemporaryMatrix(MTLDevice device, MPSMatrixDescriptor descriptor) { super((SkipInit) null); initObject(init(device, descriptor)); }
+    public MPSTemporaryMatrix(MTLDevice device, MPSMatrixDescriptor descriptor) { super(device, descriptor); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "readCount")
@@ -65,7 +65,5 @@ import org.robovm.apple.metal.*;
     protected static native @Pointer long create(MTLCommandBuffer commandBuffer, MPSMatrixDescriptor matrixDescriptor);
     @Method(selector = "prefetchStorageWithCommandBuffer:matrixDescriptorList:")
     public static native void createPrefetchStorage(MTLCommandBuffer commandBuffer, NSArray<MPSMatrixDescriptor> descriptorList);
-    @Method(selector = "initWithDevice:descriptor:")
-    protected native @Pointer long init(MTLDevice device, MPSMatrixDescriptor descriptor);
     /*</methods>*/
 }

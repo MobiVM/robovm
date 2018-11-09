@@ -67,8 +67,6 @@ classes:
     # classes
     MPSBinaryImageKernel: #since 9.0
         methods:
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:primaryTexture:inPlaceSecondaryTexture:fallbackCopyAllocator:':
                 name: encodePrimaryTexture
             '-encodeToCommandBuffer:inPlacePrimaryTexture:secondaryTexture:fallbackCopyAllocator:':
@@ -110,8 +108,6 @@ classes:
         methods:
             '-initWithDevice:fusedNeuronDescriptor:':
                 name: init
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:sourceGradient:sourceImage:batchNormalizationState:destinationGradient:':
                 name: encode
             '-encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:destinationGradients:':
@@ -135,15 +131,11 @@ classes:
     MPSCNNBatchNormalizationState: {} #since 11.3
     MPSCNNBatchNormalizationStatistics: #since 11.3
         methods:
-            '-initWithCoder:device:':
-                name: init
             '-encodeBatchToCommandBuffer:sourceImages:batchNormalizationState:':
                 name: encodeBatch
     MPSCNNBatchNormalizationStatisticsGradient: #since 11.3
         methods:
             '-initWithDevice:fusedNeuronDescriptor:':
-                name: init
-            '-initWithCoder:device:':
                 name: init
             '-encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:':
                 name: encodeBatch
@@ -173,8 +165,6 @@ classes:
                 exclude: true
     MPSCNNBinaryKernel: #since 11.0
         methods:
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:primaryImage:secondaryImage:destinationImage:':
                 name: encode
             '-encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationImages:':
@@ -366,8 +356,6 @@ classes:
                 exclude: true
     MPSCNNGradientKernel: #since 11.3
         methods:
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:':
                 name: encode
             '-encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:destinationGradient:':
@@ -402,8 +390,6 @@ classes:
                 exclude: true
     MPSCNNKernel: #since 10.0
         methods:
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:sourceImage:destinationImage:':
                 name: encode
             '-encodeToCommandBuffer:sourceImage:destinationState:destinationImage:':
@@ -451,10 +437,7 @@ classes:
             '+nodeWithSource:kernelSize:':
                 exclude: true
     MPSCNNLogSoftMax: {} #since 10.0
-    MPSCNNLogSoftMaxGradient: #since 11.3
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSCNNLogSoftMaxGradient: {} #since 11.3
     MPSCNNLogSoftMaxGradientNode: #since 11.3
         methods:
             '-initWithSourceGradient:sourceImage:gradientState:':
@@ -756,10 +739,7 @@ classes:
             '+nodeWithSource:filterSize:stride:':
                 exclude: true
     MPSCNNSoftMax: {} #since 10.0
-    MPSCNNSoftMaxGradient: #since 11.3
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSCNNSoftMaxGradient: {} #since 11.3
     MPSCNNSoftMaxGradientNode: #since 11.3
         methods:
             '-initWithSourceGradient:sourceImage:gradientState:':
@@ -878,10 +858,7 @@ classes:
                 name: init
     MPSImageAreaMin: {} #since 9.0
     MPSImageArithmetic: {} #since 11.0
-    MPSImageBilinearScale: #since 11.0
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSImageBilinearScale: {} #since 11.0
     MPSImageBox: #since 9.0
         methods:
             '-initWithDevice:kernelWidth:kernelHeight:':
@@ -918,10 +895,7 @@ classes:
                 name: init
     MPSImageDivide: {} #since 11.0
     MPSImageErode: {} #since 9.0
-    MPSImageEuclideanDistanceTransform: #since 11.3
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSImageEuclideanDistanceTransform: {} #since 11.3
     MPSImageFindKeypoints: #since 11.0
         methods:
             '-init.*':
@@ -961,10 +935,7 @@ classes:
                 name: encodeTransform
     MPSImageIntegral: {} #since 9.0
     MPSImageIntegralOfSquares: {} #since 9.0
-    MPSImageLanczosScale: #since 9.0
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSImageLanczosScale: {} #since 9.0
     MPSImageLaplacian: {} #since 10.0
     MPSImageMedian: #since 9.0
         methods:
@@ -986,26 +957,14 @@ classes:
     MPSImageReduceRowMin: {} #since 11.3
     MPSImageReduceRowSum: {} #since 11.3
     MPSImageReduceUnary: {} #since 11.3
-    MPSImageScale: #since 11.0
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSImageScale: {} #since 11.0
     MPSImageSobel: #since 9.0
         methods:
             '-init.*':
                 name: init
-    MPSImageStatisticsMean: #since 11.0
-        methods:
-            '-initWithCoder:device:':
-                name: init
-    MPSImageStatisticsMeanAndVariance: #since 11.0
-        methods:
-            '-initWithCoder:device:':
-                name: init
-    MPSImageStatisticsMinAndMax: #since 11.0
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSImageStatisticsMean: {} #since 11.0
+    MPSImageStatisticsMeanAndVariance: {} #since 11.0
+    MPSImageStatisticsMinAndMax: {} #since 11.0
     MPSImageSubtract: {} #since 11.0
     MPSImageTent: {} #since 9.0
     MPSImageThresholdBinary: #since 9.0
@@ -1035,6 +994,9 @@ classes:
                 name: copy
             '-initWithCoder:device:':
                 name: init
+                parameters:
+                    aDecoder:
+                        name: decoder
             '-initWithDevice:':
                 name: init
     MPSKeyedUnarchiver: #since 11.3
@@ -1077,8 +1039,6 @@ classes:
             '-encodeToCommandBuffer:copyDescriptor:rowPermuteIndices:rowPermuteOffset:columnPermuteIndices:columnPermuteOffset:':
                 #trim_after_first_colon: true
                name: encode
-            '-initWithCoder:device:':
-                name: init
     MPSMatrixCopyDescriptor: #since 11.0
         methods:
             '-initWithDevice:count:':
@@ -1122,20 +1082,12 @@ classes:
                 name: init
             '-encodeToCommandBuffer:inputMatrix:resultIndexMatrix:resultValueMatrix:':
                 name: encode
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSMatrixFullyConnected: #since 11.0
         methods:
             '-setNeuronType:parameterA:parameterB:parameterC:':
                 trim_after_first_colon: true
             '-encodeToCommandBuffer:inputMatrix:weightMatrix:biasVector:resultMatrix:':
                 name: encode
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSMatrixLogSoftMax: {} #since 11.0
     MPSMatrixMultiplication: #since 10.0
         methods:
@@ -1151,18 +1103,10 @@ classes:
                 name: setNeuronToPReLU
             '-encodeToCommandBuffer:inputMatrix:biasVector:resultMatrix:':
                 name: encode
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSMatrixSoftMax: #since 11.0
         methods:
             '-encodeToCommandBuffer:inputMatrix:resultMatrix:':
                 name: encode
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSMatrixSolveCholesky: #since 11.0
         methods:
             '-initWithDevice:upper:order:numberOfRightHandSides:':
@@ -1189,8 +1133,6 @@ classes:
                 trim_after_first_colon: true
             '-encodeToCommandBuffer:sourceMatrices:resultMatrix:scaleVector:offsetVector:biasVector:startIndex:':
                 name: encode
-            '-initWithCoder:device:':
-                name: init
     MPSMatrixUnaryKernel: {} #since 11.0
     MPSMatrixVectorMultiplication: #since 11.0
         methods:
@@ -1323,10 +1265,7 @@ classes:
     MPSNNReduceRowMin: {} #since 11.3
     MPSNNReduceRowSum: {} #since 11.3
     MPSNNReduceUnary: {} #since 11.3
-    MPSNNReshape: #since 11.3
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSNNReshape: {}  #since 11.3
     MPSNNScaleNode: #since 11.0
         methods:
             '-init.*':
@@ -1335,10 +1274,7 @@ classes:
                 exclude: true
             '+nodeWithSource:transformProvider:outputSize:':
                 exclude: true
-    MPSNNSlice: #since 11.3
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSNNSlice: {} #since 11.3
     MPSNNStateNode:  #since 11.0
         properties:
             handle:
@@ -1425,8 +1361,6 @@ classes:
                 name: createPrefetchStorage
     MPSUnaryImageKernel: #since 9.0
         methods:
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:inPlaceTexture:fallbackCopyAllocator:':
                 name: encode
             '-encodeToCommandBuffer:sourceTexture:destinationTexture:':
@@ -1459,8 +1393,6 @@ classes:
         methods:
             '-initWithDevice:lossDescriptor:':
                 name: init
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:sourceImage:labels:destinationImage:':
                 trim_after_first_colon: true
             '-encodeToCommandBuffer:sourceImage:labels:':
@@ -1487,8 +1419,6 @@ classes:
         methods:
             '-initWithDevice:histogramInfo:':
                 name: init
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:sourceTexture:minmaxTexture:histogram:histogramOffset:':
                 trim_after_first_colon: true
 
@@ -1505,25 +1435,15 @@ classes:
                 trim_after_first_colon: true
             '-encodeToCommandBuffer:inputMatrix:meanVector:varianceVector:gammaVector:betaVector:resultMatrix:':
                 trim_after_first_colon: true
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSMatrixBatchNormalizationGradient: #since 12.0
         methods:
             '-setNeuronType:parameterA:parameterB:parameterC:':
                 trim_after_first_colon: true
             '-encodeToCommandBuffer:gradientMatrix:inputMatrix:meanVector:varianceVector:gammaVector:betaVector:resultGradientForDataMatrix:resultGradientForGammaVector:resultGradientForBetaVector:':
                 trim_after_first_colon: true
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSMatrixCopyToImage: #since 12.0
         methods:
             '-initWithDevice:dataLayout:':
-                name: init
-            '-initWithCoder:device:':
                 name: init
             '-encodeToCommandBuffer:sourceMatrix:destinationImage:':
                 trim_after_first_colon: true
@@ -1535,10 +1455,6 @@ classes:
                 name: encodeGradient
             '-encodeGradientForWeightsAndBiasToCommandBuffer:gradientMatrix:inputMatrix:resultGradientForWeightMatrix:resultGradientForBiasVector:':
                 name: encodeGradient
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSMatrixLogSoftMaxGradient: {} #since 12.0
     MPSMatrixNeuronGradient: #since 12.0
         methods:
@@ -1548,23 +1464,13 @@ classes:
                 name: setNeuronToPReLU
             '-encodeToCommandBuffer:gradientMatrix:inputMatrix:biasVector:resultGradientForDataMatrix:resultGradientForBiasVector:':
                 trim_after_first_colon: true
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSMatrixSoftMaxGradient: #since 12.0
         methods:
             '-encodeToCommandBuffer:gradientMatrix:forwardOutputMatrix:resultMatrix:':
                 trim_after_first_colon: true
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSNNCropAndResizeBilinear: #since 12.0
         methods:
             '-initWithDevice:resizeWidth:resizeHeight:numberOfRegions:regions:':
-                name: init
-            '-initWithCoder:device:':
                 name: init
     MPSNNOptimizer: {} #since 12.0
     MPSNNOptimizerAdam: #since 12.0
@@ -1625,8 +1531,6 @@ classes:
         methods:
             '-initWithDevice:resizeWidth:resizeHeight:alignCorners:':
                 name: init
-            '-initWithCoder:device:':
-                name: init
     MPSRNNMatrixTrainingLayer: #since 12.0
         methods:
             '-initWithDevice:rnnDescriptor:trainableWeights:':
@@ -1645,10 +1549,6 @@ classes:
                 trim_after_first_colon: true
             '-encodeGradientSequenceToCommandBuffer:forwardSources:sourceGradients:destinationGradients:weightGradients:trainingStates:weights:':
                 trim_after_first_colon: true
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSRNNMatrixTrainingState: {} #since 12.0
 
 

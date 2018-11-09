@@ -50,18 +50,15 @@ import org.robovm.apple.metal.*;
     protected MPSNNDivisionNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNDivisionNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSources:")
-    public MPSNNDivisionNode(NSArray<MPSNNImageNode> sourceNodes) { super((SkipInit) null); initObject(init(sourceNodes)); }
+    public MPSNNDivisionNode(NSArray<MPSNNImageNode> sourceNodes) { super(sourceNodes); }
     @Method(selector = "initWithLeftSource:rightSource:")
-    public MPSNNDivisionNode(MPSNNImageNode left, MPSNNImageNode right) { super((SkipInit) null); initObject(init(left, right)); }
+    public MPSNNDivisionNode(MPSNNImageNode left, MPSNNImageNode right) { super(left, right); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSources:")
-    protected native @Pointer long init(NSArray<MPSNNImageNode> sourceNodes);
-    @Method(selector = "initWithLeftSource:rightSource:")
-    protected native @Pointer long init(MPSNNImageNode left, MPSNNImageNode right);
+    
     /*</methods>*/
 }

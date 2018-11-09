@@ -55,11 +55,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:fusedNeuronDescriptor:")
     public MPSCNNBatchNormalizationGradient(MTLDevice device, MPSNNNeuronDescriptor fusedNeuronDescriptor) { super((SkipInit) null); initObject(init(device, fusedNeuronDescriptor)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSCNNBatchNormalizationGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSCNNBatchNormalizationGradient(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithDevice:")
-    public MPSCNNBatchNormalizationGradient(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSCNNBatchNormalizationGradient(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNBatchNormalizationGradient(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSCNNBatchNormalizationGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -72,7 +72,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:fusedNeuronDescriptor:")
     protected native @Pointer long init(MTLDevice device, MPSNNNeuronDescriptor fusedNeuronDescriptor);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:sourceGradient:sourceImage:batchNormalizationState:destinationGradient:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSImage sourceGradient, MPSImage sourceImage, MPSCNNBatchNormalizationState batchNormalizationState, MPSImage destinationGradient);
     @Method(selector = "encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:destinationGradients:")
@@ -81,9 +81,5 @@ import org.robovm.apple.metal.*;
     public native MPSImage encode(MTLCommandBuffer commandBuffer, MPSImage sourceGradient, MPSImage sourceImage, MPSCNNBatchNormalizationState batchNormalizationState);
     @Method(selector = "encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:")
     public native NSArray<MPSImage> encodeBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceGradients, NSArray<MPSImage> sourceImages, MPSCNNBatchNormalizationState batchNormalizationState);
-    @Method(selector = "initWithDevice:")
-    protected native @Pointer long init(MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

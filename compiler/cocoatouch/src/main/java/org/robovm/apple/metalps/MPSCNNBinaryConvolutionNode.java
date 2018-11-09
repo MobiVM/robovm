@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:")
     public MPSCNNBinaryConvolutionNode(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights, FloatPtr outputBiasTerms, FloatPtr outputScaleTerms, FloatPtr inputBiasTerms, FloatPtr inputScaleTerms, MPSCNNBinaryConvolutionType type, MPSCNNBinaryConvolutionFlags flags) { super((SkipInit) null); initObject(init(sourceNode, weights, outputBiasTerms, outputScaleTerms, inputBiasTerms, inputScaleTerms, type, flags)); }
     @Method(selector = "initWithSource:weights:")
-    public MPSCNNBinaryConvolutionNode(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights) { super((SkipInit) null); initObject(init(sourceNode, weights)); }
+    public MPSCNNBinaryConvolutionNode(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights) { super(sourceNode, weights); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -71,7 +71,5 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:")
     protected native @Pointer long init(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights, FloatPtr outputBiasTerms, FloatPtr outputScaleTerms, FloatPtr inputBiasTerms, FloatPtr inputScaleTerms, MPSCNNBinaryConvolutionType type, MPSCNNBinaryConvolutionFlags flags);
-    @Method(selector = "initWithSource:weights:")
-    protected native @Pointer long init(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights);
     /*</methods>*/
 }

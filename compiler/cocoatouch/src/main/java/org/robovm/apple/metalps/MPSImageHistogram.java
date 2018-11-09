@@ -57,9 +57,9 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageHistogram(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithDevice:")
-    public MPSImageHistogram(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSImageHistogram(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageHistogram(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSImageHistogram(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "clipRectSource")
@@ -90,9 +90,5 @@ import org.robovm.apple.metal.*;
     public native void encode(MTLCommandBuffer commandBuffer, MTLTexture source, MTLBuffer histogram, @MachineSizedUInt long histogramOffset);
     @Method(selector = "histogramSizeForSourceFormat:")
     public native @MachineSizedUInt long histogramSizeForSourceFormat(MTLPixelFormat sourceFormat);
-    @Method(selector = "initWithDevice:")
-    protected native @Pointer long init(MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

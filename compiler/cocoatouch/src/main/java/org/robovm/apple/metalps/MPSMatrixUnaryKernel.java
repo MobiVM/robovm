@@ -50,14 +50,14 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixUnaryKernel(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixUnaryKernel(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixUnaryKernel(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSMatrixUnaryKernel(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixUnaryKernel(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSMatrixUnaryKernel(NSCoder decoder) { super(decoder); }
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSMatrixUnaryKernel(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSMatrixUnaryKernel(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceMatrixOrigin")
@@ -79,14 +79,6 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithDevice:")
-    protected native @Pointer long init(MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    
     /*</methods>*/
 }

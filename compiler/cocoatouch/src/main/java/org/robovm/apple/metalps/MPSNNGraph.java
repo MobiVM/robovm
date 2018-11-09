@@ -61,7 +61,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNNGraph(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNGraph(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSNNGraph(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceImageHandles")
@@ -117,7 +117,5 @@ import org.robovm.apple.metal.*;
     public native NSArray<MPSImage> encodeBatch(MTLCommandBuffer commandBuffer, NSArray<NSArray<MPSImage>> sourceImages, NSArray<NSArray<? extends MPSState>> sourceStates);
     @Method(selector = "executeAsyncWithSourceImages:completionHandler:")
     public native MPSImage executeAsync(NSArray<MPSImage> sourceImages, @Block VoidBlock2<MPSImage, NSError> handler);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

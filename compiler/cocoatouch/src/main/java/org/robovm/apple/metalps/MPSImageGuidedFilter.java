@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageGuidedFilter(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSImageGuidedFilter(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSImageGuidedFilter(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "kernelDiameter")
@@ -82,7 +82,5 @@ import org.robovm.apple.metal.*;
     public native void encodeRegression(MTLCommandBuffer commandBuffer, MTLTexture sourceTexture, MTLTexture guidanceTexture, MTLTexture weightsTexture, MTLTexture destinationCoefficientsTexture);
     @Method(selector = "encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTexture:destinationTexture:")
     public native void encodeReconstruction(MTLCommandBuffer commandBuffer, MTLTexture guidanceTexture, MTLTexture coefficientsTexture, MTLTexture destinationTexture);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

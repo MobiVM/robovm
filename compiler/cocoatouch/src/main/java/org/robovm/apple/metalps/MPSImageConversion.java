@@ -52,14 +52,14 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:srcAlpha:destAlpha:backgroundColor:conversionInfo:")
     public MPSImageConversion(MTLDevice device, MPSAlphaType srcAlpha, MPSAlphaType destAlpha, MachineSizedFloatPtr backgroundColor, CGColorConversionInfo conversionInfo) { super((SkipInit) null); initObject(init(device, srcAlpha, destAlpha, backgroundColor, conversionInfo)); }
     @Method(selector = "initWithDevice:")
-    public MPSImageConversion(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSImageConversion(MTLDevice device) { super(device); }
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSImageConversion(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSImageConversion(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageConversion(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSImageConversion(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceAlpha")
@@ -71,14 +71,5 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "initWithDevice:srcAlpha:destAlpha:backgroundColor:conversionInfo:")
     protected native @Pointer long init(MTLDevice device, MPSAlphaType srcAlpha, MPSAlphaType destAlpha, MachineSizedFloatPtr backgroundColor, CGColorConversionInfo conversionInfo);
-    @Method(selector = "initWithDevice:")
-    protected native @Pointer long init(MTLDevice device);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

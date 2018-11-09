@@ -54,12 +54,12 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:rows:columns:")
     public MPSMatrixVectorMultiplication(MTLDevice device, @MachineSizedUInt long rows, @MachineSizedUInt long columns) { super((SkipInit) null); initObject(init(device, rows, columns)); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixVectorMultiplication(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSMatrixVectorMultiplication(NSCoder decoder) { super(decoder); }
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSMatrixVectorMultiplication(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSMatrixVectorMultiplication(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -72,12 +72,5 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, @MachineSizedUInt long rows, @MachineSizedUInt long columns);
     @Method(selector = "encodeToCommandBuffer:inputMatrix:inputVector:resultVector:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix inputMatrix, MPSVector inputVector, MPSVector resultVector);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     /*</methods>*/
 }

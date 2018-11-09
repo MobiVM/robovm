@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNBatchNormalization(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNBatchNormalization(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public MPSCNNBatchNormalization(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "numberOfFeatureChannels")
@@ -114,7 +114,5 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "reloadMeanAndVarianceWithCommandBuffer:meanAndVarianceState:")
     public native void reloadMeanAndVariance(MTLCommandBuffer commandBuffer, MPSCNNNormalizationMeanAndVarianceState meanAndVarianceState);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

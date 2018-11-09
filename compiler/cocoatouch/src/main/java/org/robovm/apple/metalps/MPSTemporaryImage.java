@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
      */
     public MPSTemporaryImage(MTLCommandBuffer commandBuffer, MTLTextureDescriptor textureDescriptor, @MachineSizedUInt long featureChannels) { super((Handle) null, create(commandBuffer, textureDescriptor, featureChannels)); retain(getHandle()); }
     @Method(selector = "initWithParentImage:sliceRange:featureChannels:")
-    public MPSTemporaryImage(MPSImage parent, @ByVal NSRange sliceRange, @MachineSizedUInt long featureChannels) { super((SkipInit) null); initObject(init(parent, sliceRange, featureChannels)); }
+    public MPSTemporaryImage(MPSImage parent, @ByVal NSRange sliceRange, @MachineSizedUInt long featureChannels) { super(parent, sliceRange, featureChannels); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "readCount")
@@ -79,7 +79,5 @@ import org.robovm.apple.metal.*;
     protected static native @Pointer long create(MTLCommandBuffer commandBuffer, MTLTextureDescriptor textureDescriptor, @MachineSizedUInt long featureChannels);
     @Method(selector = "prefetchStorageWithCommandBuffer:imageDescriptorList:")
     public static native void createPrefetchStorage(MTLCommandBuffer commandBuffer, NSArray<MPSImageDescriptor> descriptorList);
-    @Method(selector = "initWithParentImage:sliceRange:featureChannels:")
-    protected native @Pointer long init(MPSImage parent, @ByVal NSRange sliceRange, @MachineSizedUInt long featureChannels);
     /*</methods>*/
 }

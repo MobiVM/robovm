@@ -50,36 +50,24 @@ import org.robovm.apple.metal.*;
     protected MPSRNNMatrixTrainingState(Handle h, long handle) { super(h, handle); }
     protected MPSRNNMatrixTrainingState(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:bufferSize:")
-    public MPSRNNMatrixTrainingState(MTLDevice device, @MachineSizedUInt long bufferSize) { super((SkipInit) null); initObject(init(device, bufferSize)); }
+    public MPSRNNMatrixTrainingState(MTLDevice device, @MachineSizedUInt long bufferSize) { super(device, bufferSize); }
     @Method(selector = "initWithDevice:textureDescriptor:")
-    public MPSRNNMatrixTrainingState(MTLDevice device, MTLTextureDescriptor descriptor) { super((SkipInit) null); initObject(init(device, descriptor)); }
+    public MPSRNNMatrixTrainingState(MTLDevice device, MTLTextureDescriptor descriptor) { super(device, descriptor); }
     @Method(selector = "initWithResource:")
-    public MPSRNNMatrixTrainingState(MTLResource resource) { super((SkipInit) null); initObject(init(resource)); }
+    public MPSRNNMatrixTrainingState(MTLResource resource) { super(resource); }
     /**
      * @since Available in iOS 11.3 and later.
      */
     @Method(selector = "initWithDevice:resourceList:")
-    public MPSRNNMatrixTrainingState(MTLDevice device, MPSStateResourceList resourceList) { super((SkipInit) null); initObject(init(device, resourceList)); }
+    public MPSRNNMatrixTrainingState(MTLDevice device, MPSStateResourceList resourceList) { super(device, resourceList); }
     @Method(selector = "initWithResources:")
-    public MPSRNNMatrixTrainingState(NSArray<?> resources) { super((SkipInit) null); initObject(init(resources)); }
+    public MPSRNNMatrixTrainingState(NSArray<?> resources) { super(resources); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithDevice:bufferSize:")
-    protected native @Pointer long init(MTLDevice device, @MachineSizedUInt long bufferSize);
-    @Method(selector = "initWithDevice:textureDescriptor:")
-    protected native @Pointer long init(MTLDevice device, MTLTextureDescriptor descriptor);
-    @Method(selector = "initWithResource:")
-    protected native @Pointer long init(MTLResource resource);
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Method(selector = "initWithDevice:resourceList:")
-    protected native @Pointer long init(MTLDevice device, MPSStateResourceList resourceList);
-    @Method(selector = "initWithResources:")
-    protected native @Pointer long init(NSArray<?> resources);
+    
     /*</methods>*/
 }

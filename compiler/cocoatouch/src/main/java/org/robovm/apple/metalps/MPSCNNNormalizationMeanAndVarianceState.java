@@ -52,18 +52,18 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithMean:variance:")
     public MPSCNNNormalizationMeanAndVarianceState(MTLBuffer mean, MTLBuffer variance) { super((SkipInit) null); initObject(initWithMean$variance$(mean, variance)); }
     @Method(selector = "initWithDevice:bufferSize:")
-    public MPSCNNNormalizationMeanAndVarianceState(MTLDevice device, @MachineSizedUInt long bufferSize) { super((SkipInit) null); initObject(init(device, bufferSize)); }
+    public MPSCNNNormalizationMeanAndVarianceState(MTLDevice device, @MachineSizedUInt long bufferSize) { super(device, bufferSize); }
     @Method(selector = "initWithDevice:textureDescriptor:")
-    public MPSCNNNormalizationMeanAndVarianceState(MTLDevice device, MTLTextureDescriptor descriptor) { super((SkipInit) null); initObject(init(device, descriptor)); }
+    public MPSCNNNormalizationMeanAndVarianceState(MTLDevice device, MTLTextureDescriptor descriptor) { super(device, descriptor); }
     @Method(selector = "initWithResource:")
-    public MPSCNNNormalizationMeanAndVarianceState(MTLResource resource) { super((SkipInit) null); initObject(init(resource)); }
+    public MPSCNNNormalizationMeanAndVarianceState(MTLResource resource) { super(resource); }
     /**
      * @since Available in iOS 11.3 and later.
      */
     @Method(selector = "initWithDevice:resourceList:")
-    public MPSCNNNormalizationMeanAndVarianceState(MTLDevice device, MPSStateResourceList resourceList) { super((SkipInit) null); initObject(init(device, resourceList)); }
+    public MPSCNNNormalizationMeanAndVarianceState(MTLDevice device, MPSStateResourceList resourceList) { super(device, resourceList); }
     @Method(selector = "initWithResources:")
-    public MPSCNNNormalizationMeanAndVarianceState(NSArray<?> resources) { super((SkipInit) null); initObject(init(resources)); }
+    public MPSCNNNormalizationMeanAndVarianceState(NSArray<?> resources) { super(resources); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mean")
@@ -77,18 +77,5 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long initWithMean$variance$(MTLBuffer mean, MTLBuffer variance);
     @Method(selector = "temporaryStateWithCommandBuffer:numberOfFeatureChannels:")
     public static native MPSCNNNormalizationMeanAndVarianceState temporaryStateWithCommandBuffer$numberOfFeatureChannels$(MTLCommandBuffer commandBuffer, @MachineSizedUInt long numberOfFeatureChannels);
-    @Method(selector = "initWithDevice:bufferSize:")
-    protected native @Pointer long init(MTLDevice device, @MachineSizedUInt long bufferSize);
-    @Method(selector = "initWithDevice:textureDescriptor:")
-    protected native @Pointer long init(MTLDevice device, MTLTextureDescriptor descriptor);
-    @Method(selector = "initWithResource:")
-    protected native @Pointer long init(MTLResource resource);
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Method(selector = "initWithDevice:resourceList:")
-    protected native @Pointer long init(MTLDevice device, MPSStateResourceList resourceList);
-    @Method(selector = "initWithResources:")
-    protected native @Pointer long init(NSArray<?> resources);
     /*</methods>*/
 }

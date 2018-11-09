@@ -50,18 +50,15 @@ import org.robovm.apple.metal.*;
     protected MPSNNLanczosScaleNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNLanczosScaleNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:outputSize:")
-    public MPSNNLanczosScaleNode(MPSNNImageNode sourceNode, @ByVal MTLSize size) { super((SkipInit) null); initObject(init(sourceNode, size)); }
+    public MPSNNLanczosScaleNode(MPSNNImageNode sourceNode, @ByVal MTLSize size) { super(sourceNode, size); }
     @Method(selector = "initWithSource:transformProvider:outputSize:")
-    public MPSNNLanczosScaleNode(MPSNNImageNode sourceNode, MPSImageTransformProvider transformProvider, @ByVal MTLSize size) { super((SkipInit) null); initObject(init(sourceNode, transformProvider, size)); }
+    public MPSNNLanczosScaleNode(MPSNNImageNode sourceNode, MPSImageTransformProvider transformProvider, @ByVal MTLSize size) { super(sourceNode, transformProvider, size); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSource:outputSize:")
-    protected native @Pointer long init(MPSNNImageNode sourceNode, @ByVal MTLSize size);
-    @Method(selector = "initWithSource:transformProvider:outputSize:")
-    protected native @Pointer long init(MPSNNImageNode sourceNode, MPSImageTransformProvider transformProvider, @ByVal MTLSize size);
+    
     /*</methods>*/
 }

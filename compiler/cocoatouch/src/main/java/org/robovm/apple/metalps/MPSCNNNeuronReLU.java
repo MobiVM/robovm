@@ -60,11 +60,11 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.3 and later.
      */
     @Method(selector = "initWithDevice:neuronDescriptor:")
-    public MPSCNNNeuronReLU(MTLDevice device, MPSNNNeuronDescriptor neuronDescriptor) { super((SkipInit) null); initObject(init(device, neuronDescriptor)); }
+    public MPSCNNNeuronReLU(MTLDevice device, MPSNNNeuronDescriptor neuronDescriptor) { super(device, neuronDescriptor); }
     @Method(selector = "initWithCoder:device:")
-    public MPSCNNNeuronReLU(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSCNNNeuronReLU(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNNeuronReLU(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSCNNNeuronReLU(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -78,14 +78,5 @@ import org.robovm.apple.metal.*;
     @Deprecated
     @Method(selector = "initWithDevice:a:")
     protected native @Pointer long init(MTLDevice device, float a);
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    @Method(selector = "initWithDevice:neuronDescriptor:")
-    protected native @Pointer long init(MTLDevice device, MPSNNNeuronDescriptor neuronDescriptor);
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

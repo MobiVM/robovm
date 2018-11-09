@@ -52,14 +52,14 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:transpose:order:numberOfRightHandSides:")
     public MPSMatrixSolveLU(MTLDevice device, boolean transpose, @MachineSizedUInt long order, @MachineSizedUInt long numberOfRightHandSides) { super((SkipInit) null); initObject(init(device, transpose, order, numberOfRightHandSides)); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixSolveLU(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSMatrixSolveLU(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixSolveLU(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSMatrixSolveLU(NSCoder decoder) { super(decoder); }
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSMatrixSolveLU(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSMatrixSolveLU(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -70,14 +70,5 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, boolean transpose, @MachineSizedUInt long order, @MachineSizedUInt long numberOfRightHandSides);
     @Method(selector = "encodeToCommandBuffer:sourceMatrix:rightHandSideMatrix:pivotIndices:solutionMatrix:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix sourceMatrix, MPSMatrix rightHandSideMatrix, MPSMatrix pivotIndices, MPSMatrix solutionMatrix);
-    @Method(selector = "initWithDevice:")
-    protected native @Pointer long init(MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     /*</methods>*/
 }

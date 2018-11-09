@@ -54,12 +54,12 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:decay:epsilon:optimizerDescriptor:")
     public MPSNNOptimizerRMSProp(MTLDevice device, double decay, float epsilon, MPSNNOptimizerDescriptor optimizerDescriptor) { super((SkipInit) null); initObject(init(device, decay, epsilon, optimizerDescriptor)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNOptimizerRMSProp(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSNNOptimizerRMSProp(NSCoder decoder) { super(decoder); }
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSNNOptimizerRMSProp(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSNNOptimizerRMSProp(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "decay")
@@ -81,12 +81,5 @@ import org.robovm.apple.metal.*;
     public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationState, NSArray<MPSVector> inputSumOfSquaresVectors, MPSCNNNormalizationGammaAndBetaState resultState);
     @Method(selector = "encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputSumOfSquaresVectors:resultState:")
     public native void encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationGradientState, MPSCNNBatchNormalizationState batchNormalizationSourceState, NSArray<MPSVector> inputSumOfSquaresVectors, MPSCNNNormalizationGammaAndBetaState resultState);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     /*</methods>*/
 }

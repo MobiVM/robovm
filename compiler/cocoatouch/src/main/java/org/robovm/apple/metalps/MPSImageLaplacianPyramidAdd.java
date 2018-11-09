@@ -50,36 +50,24 @@ import org.robovm.apple.metal.*;
     protected MPSImageLaplacianPyramidAdd(Handle h, long handle) { super(h, handle); }
     protected MPSImageLaplacianPyramidAdd(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSImageLaplacianPyramidAdd(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    public MPSImageLaplacianPyramidAdd(MTLDevice device) { super(device); }
     @Method(selector = "initWithDevice:centerWeight:")
-    public MPSImageLaplacianPyramidAdd(MTLDevice device, float centerWeight) { super((SkipInit) null); initObject(init(device, centerWeight)); }
+    public MPSImageLaplacianPyramidAdd(MTLDevice device, float centerWeight) { super(device, centerWeight); }
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:weights:")
-    public MPSImageLaplacianPyramidAdd(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, FloatPtr kernelWeights) { super((SkipInit) null); initObject(init(device, kernelWidth, kernelHeight, kernelWeights)); }
+    public MPSImageLaplacianPyramidAdd(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, FloatPtr kernelWeights) { super(device, kernelWidth, kernelHeight, kernelWeights); }
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSImageLaplacianPyramidAdd(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSImageLaplacianPyramidAdd(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageLaplacianPyramidAdd(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSImageLaplacianPyramidAdd(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithDevice:")
-    protected native @Pointer long init(MTLDevice device);
-    @Method(selector = "initWithDevice:centerWeight:")
-    protected native @Pointer long init(MTLDevice device, float centerWeight);
-    @Method(selector = "initWithDevice:kernelWidth:kernelHeight:weights:")
-    protected native @Pointer long init(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, FloatPtr kernelWeights);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    
     /*</methods>*/
 }

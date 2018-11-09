@@ -52,9 +52,9 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:resizeWidth:resizeHeight:alignCorners:")
     public MPSNNResizeBilinear(MTLDevice device, @MachineSizedUInt long resizeWidth, @MachineSizedUInt long resizeHeight, boolean alignCorners) { super((SkipInit) null); initObject(init(device, resizeWidth, resizeHeight, alignCorners)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSNNResizeBilinear(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSNNResizeBilinear(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNResizeBilinear(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPSNNResizeBilinear(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "resizeWidth")
@@ -69,8 +69,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:resizeWidth:resizeHeight:alignCorners:")
     protected native @Pointer long init(MTLDevice device, @MachineSizedUInt long resizeWidth, @MachineSizedUInt long resizeHeight, boolean alignCorners);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     /*</methods>*/
 }
