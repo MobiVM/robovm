@@ -56,6 +56,16 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "action")
     public native ILClassificationAction getAction();
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    @Property(selector = "userString")
+    public native String getUserString();
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    @Property(selector = "setUserString:")
+    public native void setUserString(String v);
     @Property(selector = "userInfo")
     public native NSDictionary<NSString, ?> getUserInfo();
     @Property(selector = "setUserInfo:")
