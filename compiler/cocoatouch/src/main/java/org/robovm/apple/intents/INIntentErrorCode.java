@@ -51,6 +51,7 @@ public enum /*<name>*/INIntentErrorCode/*</name>*/ implements NSErrorCode {
     InvalidIntentName(2004L),
     NoAppAvailable(2005L),
     RequestTimedOut(3001L),
+    MissingInformation(3002L),
     InvalidUserVocabularyFileLocation(4000L),
     ExtensionLaunchingTimeout(5000L),
     ExtensionBringUpFailed(5001L),
