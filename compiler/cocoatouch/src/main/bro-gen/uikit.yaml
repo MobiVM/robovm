@@ -222,9 +222,9 @@ enums:
     UIDocumentBrowserImportMode: {} #since 11.0
     UIDocumentBrowserUserInterfaceStyle: {} #since 11.0
     UIDocumentBrowserActionAvailability: {} #since 11.0
+    UIPencilPreferredAction: {} #since 12.1
 
     UIDocumentBrowserErrorCode: {nserror: true, prefix: UIDocumentBrowserError}
-
 
 categories:
     CIColor: # DONE
@@ -3721,6 +3721,7 @@ classes:
             '+passwordRulesWithDescriptor:':
                 name: create
                 constructor: true
+    UIPencilInteraction: {} #since 12.1
 
 protocols:
     NSLayoutManagerDelegate: # DONE
@@ -5242,6 +5243,8 @@ protocols:
     UIFocusItemScrollableContainer: {} #since 12.0
     UIInputViewAudioFeedback: {}
     UIUserActivityRestoring: {} #since 8.0
+    UIPencilInteractionDelegate: {} #since 12.1
+
 
 functions:
     # NSTextAlignment
