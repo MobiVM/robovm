@@ -70,12 +70,29 @@ import org.robovm.apple.corefoundation.*;
     @Deprecated
     @Property(selector = "carrierToken")
     public native NSData getCarrierToken();
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    @Property(selector = "identifier")
+    public native String getIdentifier();
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    @Property(selector = "delegate")
+    public native CTSubscriberDelegate getDelegate();
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(CTSubscriberDelegate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 12.1.
      */
+    @Deprecated
     @GlobalValue(symbol="CTSubscriberTokenRefreshed", optional=true)
     public static native NSString TokenRefreshedNotification();
     

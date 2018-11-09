@@ -61,7 +61,8 @@ classes:
             name: errorCode
             type: NSErrorCode
 
-protocols: {}
+protocols:
+    CTSubscriberDelegate: {}
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
