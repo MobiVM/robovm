@@ -254,7 +254,8 @@ public class ToolchainUtil {
             }
         }
 
-        //Prepares for incremental build - not applied at this time.
+        //Writes a text file with paths of resources that are compiled to the asset catalog.
+        //This information can be used to skip asset creation as needed.
         opts.add("--export-dependency-info");
         opts.add(config.getTmpDir().getAbsolutePath() + "/assetcatalog_dependencies");
 
