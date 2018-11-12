@@ -572,8 +572,6 @@ public class AppCompiler {
      */
     private boolean needsRecompilation(Config config) throws IOException {
         if (!config.isSmartSkipRebuild()) {
-            config.getLogger().info("Rebuilding because smartSkipRebuild is disabled. Enable it by adding " +
-                    "<smartSkipRebuild>true</smartSkipRebuild> to your robovm.xml file.");
             return true;
         }
 
