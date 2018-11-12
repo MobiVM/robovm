@@ -585,7 +585,7 @@ public class AppCompiler {
 
         //Check for newer input files compared to Main binary
         File classPathsFile = new File(config.getTmpDir(), CLASSPATHS_FILENAME);
-        File binaryFile = new File(config.getTmpDir(), "Main");
+        File binaryFile = new File(config.getTmpDir(), config.getExecutableName());
 
         if (!classPathsFile.exists()) {
             config.getLogger().info("Dependency info was not found, compilation is required.");
