@@ -231,16 +231,16 @@ public class RoboVmPlugin {
         });
     }
 
-    private static String getNowString() {
+    private static String getFormattedTimeStamp() {
         return LocalDateTime.now().format(formatter);
     }
 
     public static void logInfo(Project project, String format, Object... args) {
-        log(project, ConsoleViewContentType.SYSTEM_OUTPUT, "[INFO] " + getNowString() + format, args);
+        log(project, ConsoleViewContentType.SYSTEM_OUTPUT, "[INFO] " + getFormattedTimeStamp() + format, args);
     }
 
     public static void logError(Project project, String format, Object... args) {
-        log(project, ConsoleViewContentType.ERROR_OUTPUT, "[ERROR] " + getNowString() + format, args);
+        log(project, ConsoleViewContentType.ERROR_OUTPUT, "[ERROR] " + getFormattedTimeStamp() + format, args);
     }
 
     public static void logErrorThrowable(Project project, String s, Throwable t, boolean showBalloon) {
@@ -252,11 +252,11 @@ public class RoboVmPlugin {
     }
 
     public static void logWarn(Project project, String format, Object... args) {
-        log(project, ConsoleViewContentType.ERROR_OUTPUT, "[WARNING] " + getNowString() + format, args);
+        log(project, ConsoleViewContentType.ERROR_OUTPUT, "[WARNING] " + getFormattedTimeStamp() + format, args);
     }
 
     public static void logDebug(Project project, String format, Object... args) {
-        log(project, ConsoleViewContentType.NORMAL_OUTPUT, "[DEBUG] " + getNowString() + format, args);
+        log(project, ConsoleViewContentType.NORMAL_OUTPUT, "[DEBUG] " + getFormattedTimeStamp() + format, args);
     }
 
     private static void log(final Project project, final ConsoleViewContentType type, String format, Object... args) {
