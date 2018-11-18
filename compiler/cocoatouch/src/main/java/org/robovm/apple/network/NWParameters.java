@@ -54,6 +54,17 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 12.0 and later.
      */
+    @GlobalValue(symbol="_nw_parameters_configure_protocol_default_configuration", optional=true)
+    public static native @Block VoidBlock1<NWProtocolOptions> DEFAULT_CONFIGURATION();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="_nw_parameters_configure_protocol_disable", optional=true)
+    public static native @Block VoidBlock1<NWProtocolOptions> DISABLE();
+    
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Bridge(symbol="nw_parameters_create_secure_tcp", optional=true)
     public static native NWParameters createSecureTcp(@Block VoidBlock1<NWProtocolOptions> configure_tls, @Block VoidBlock1<NWProtocolOptions> configure_tcp);
     /**
@@ -70,7 +81,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_parameters_copy", optional=true)
-    public native NWParameters copy();
+    public native NWParameters copyParameters();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -155,12 +166,12 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_parameters_set_include_peer_to_peer", optional=true)
-    public native void set_includePeerToPeer(boolean include_peer_to_peer);
+    public native void setIncludePeerToPeer(boolean include_peer_to_peer);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_parameters_get_include_peer_to_peer", optional=true)
-    public native boolean get_includePeerToPeer();
+    public native boolean getIncludePeerToPeer();
     /**
      * @since Available in iOS 12.0 and later.
      */

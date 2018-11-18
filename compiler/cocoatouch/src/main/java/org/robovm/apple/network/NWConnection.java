@@ -54,6 +54,12 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 12.0 and later.
      */
+    @GlobalValue(symbol="_nw_connection_send_idempotent_content", optional=true)
+    public static native @Block VoidBlock1<NWError> SEND_IDEMPOTENT_CONTENT();
+    
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Bridge(symbol="nw_connection_create", optional=true)
     public static native NWConnection create(NWEndpoint endpoint, NWParameters parameters);
     /**
@@ -80,7 +86,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_connection_set_better_path_available_handler", optional=true)
-    public native void set_betterPathAvailableHandler(@Block VoidBooleanBlock handler);
+    public native void setBetterPathAvailableHandler(@Block VoidBooleanBlock handler);
     /**
      * @since Available in iOS 12.0 and later.
      */

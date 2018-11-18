@@ -60,12 +60,12 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_endpoint_create_host", optional=true)
-    public static native NWEndpoint createHost(BytePtr hostname, BytePtr port);
+    public static native NWEndpoint createHost(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String hostname, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String port);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_endpoint_get_hostname", optional=true)
-    public native BytePtr getHostname();
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getHostName();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -85,22 +85,22 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_endpoint_create_bonjour_service", optional=true)
-    public static native NWEndpoint createBonjourService(BytePtr name, BytePtr type, BytePtr domain);
+    public static native NWEndpoint createBonjourService(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String name, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String type, @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String domain);
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_endpoint_get_bonjour_service_name", optional=true)
-    public native BytePtr getBonjourServiceName();
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getBonjourServiceName();
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_endpoint_get_bonjour_service_type", optional=true)
-    public native BytePtr getBonjourServiceType();
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getBonjourServiceType();
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_endpoint_get_bonjour_service_domain", optional=true)
-    public native BytePtr getBonjourServiceDomain();
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getBonjourServiceDomain();
     
     
     /*</methods>*/

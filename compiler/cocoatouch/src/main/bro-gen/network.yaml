@@ -158,6 +158,9 @@ functions:
         class: NWAdvertiseDescriptor
         name: '#{g[0]}'
 
+    nw_content_context_get_is_final:
+        class: NWContentContext
+        name: isFinal
     nw_content_context_(.*)_(.*)_(.*)_(.*):
         class: NWContentContext
         name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
@@ -171,6 +174,9 @@ functions:
         class: NWContentContext
         name: '#{g[0]}'
 
+    nw_connection_(.*)_(.*)_(.*)_(.*)_(.*):
+        class: NWConnection
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}#{g[4].camelize}'
     nw_connection_(.*)_(.*)_(.*)_(.*):
         class: NWConnection
         name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
@@ -189,6 +195,35 @@ functions:
         exclude: true
     nw_endpoint_get_address:
         exclude: true
+    nw_endpoint_create_host:
+        class: NWEndpoint
+        name: createHost
+        parameters:
+            hostname: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            port: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+    nw_endpoint_get_hostname:
+        class: NWEndpoint
+        name: getHostName
+        return_type: '@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String'
+    nw_endpoint_create_bonjour_service:
+        class: NWEndpoint
+        name: createBonjourService
+        parameters:
+            name: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            type: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            domain: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+    nw_endpoint_get_bonjour_service_name:
+        class: NWEndpoint
+        name: getBonjourServiceName
+        return_type: '@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String'
+    nw_endpoint_get_bonjour_service_type:
+        class: NWEndpoint
+        name: getBonjourServiceType
+        return_type: '@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String'
+    nw_endpoint_get_bonjour_service_domain:
+        class: NWEndpoint
+        name: getBonjourServiceDomain
+        return_type: '@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String'
     nw_endpoint_(.*)_(.*)_(.*)_(.*):
         class: NWEndpoint
         name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
@@ -219,6 +254,16 @@ functions:
         class: NWInterface
         name: '#{g[0]}#{g[1].camelize}'
 
+    nw_parameters_copy:
+        class: NWParameters
+        name: copyParameters # otherwise it will break compiler on synthetic bridged method from NSObject
+
+    nw_parameters_(.*)_(.*)_(.*)_(.*)_(.*):
+        class: NWParameters
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}#{g[4].camelize}'
+        parameters:
+            interface:
+                name: inf
     nw_parameters_(.*)_(.*)_(.*)_(.*):
         class: NWParameters
         name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
@@ -361,22 +406,29 @@ functions:
             obj:
                 type: '@Pointer long'
 
-#    parameters:
-#        category:
-#            type: String
-#            marshaler: StringMarshalers.AsAsciiZMarshaler
-#        name:
-#            type: String
-#            marshaler: StringMarshalers.AsAsciiZMarshaler
-
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?nw_.*):
         class: FixMe
         name: 'Function__#{g[0]}'
 
 values:
+    _nw_parameters_configure_protocol_(.*):
+        class: NWParameters
+        name: '#{g[0].upcase}'
+
+    _nw_connection_(.*):
+        class: NWConnection
+        name: '#{g[0].upcase}'
+
+    _nw_content_context_(.*):
+        class: NWContentContext
+        name: '#{g[0].upcase}'
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?nw_.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+    (k?_nw_.*):
         class: FixMe
         name: 'Value__#{g[0]}'
 

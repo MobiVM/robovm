@@ -54,6 +54,22 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 12.0 and later.
      */
+    @GlobalValue(symbol="_nw_content_context_default_message", optional=true)
+    public static native NWContentContext DEFAULT_MESSAGE();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="_nw_content_context_final_send", optional=true)
+    public static native NWContentContext FINAL_SEND();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="_nw_content_context_default_stream", optional=true)
+    public static native NWContentContext DEFAULT_STREAM();
+    
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Bridge(symbol="nw_content_context_create", optional=true)
     public static native NWContentContext create(BytePtr context_identifier);
     /**
@@ -65,7 +81,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_content_context_get_is_final", optional=true)
-    public native boolean getIsFinal();
+    public native boolean isFinal();
     /**
      * @since Available in iOS 12.0 and later.
      */
