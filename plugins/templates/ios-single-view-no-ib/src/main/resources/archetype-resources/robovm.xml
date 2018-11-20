@@ -12,6 +12,6 @@
             <directory>resources</directory>
         </resource>
     </resources>
-    <!-- Set to 'true' to trigger compilation and linking depending on changes in IDEA -->
-    <smartSkipRebuild>false</smartSkipRebuild>
+    <!-- Remove comment to automatically skip compilation and linking in IDEA -->
+    <!-- <smartSkipRebuild>true</smartSkipRebuild> -->
 </config>
