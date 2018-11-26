@@ -24,7 +24,8 @@ import org.robovm.rt.bro.ptr.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class MatrixFloat4x4 
+@Vectorised
+/*<visibility>*/public/*</visibility>*/ class MatrixFloat4x4
     extends /*<extends>*/Struct<MatrixFloat4x4>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
