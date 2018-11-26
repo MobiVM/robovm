@@ -80,24 +80,25 @@ public class CallbackMethodCompilerTest {
                 CallbackMethodCompiler.createCallbackCWrapper(
                         new FunctionType(I8_PTR), "f", "f_inner"));
     }
-    @Test
-    public void testCreateCallbackCWrapperIgnoresEmptyStructAsFirstMember() {
-        assertEquals(
-                "struct f_0001 {int m1;};\n" +
-                "void f_inner(void*);\n" +
-                "void f(struct f_0001 p0) {\n" +
-                "    f_inner((void*) &p0);\n" +
-                "}\n", 
-                CallbackMethodCompiler.createCallbackCWrapper(
-                        new FunctionType(VOID, 
-                                new StructureType(new StructureType(), I32)), "f", "f_inner"));
-    }
+//    dkimitsa: empty struct is now not passed if there is no super struct, this test is not required
+//    @Test
+//    public void testCreateCallbackCWrapperIgnoresEmptyStructAsFirstMember() {
+//        assertEquals(
+//                "typedef struct {int m1;} f_0001;\n" +
+//                "void f_inner(void*);\n" +
+//                "void f(f_0001 p0) {\n" +
+//                "    f_inner((void*) &p0);\n" +
+//                "}\n",
+//                CallbackMethodCompiler.createCallbackCWrapper(
+//                        new FunctionType(VOID,
+//                                new StructureType(new StructureType(), I32)), "f", "f_inner"));
+//    }
     @Test
     public void testCreateCallbackCWrapperSmallStructByValParameter() {
         assertEquals(
-                "struct f_0001 {int m0;};\n" +
+                "typedef struct {int m0;} f_0001;\n" +
                 "void f_inner(void*);\n" +
-                "void f(struct f_0001 p0) {\n" +
+                "void f(f_0001 p0) {\n" +
                 "    f_inner((void*) &p0);\n" +
                 "}\n", 
                 CallbackMethodCompiler.createCallbackCWrapper(
@@ -107,11 +108,11 @@ public class CallbackMethodCompilerTest {
     @Test
     public void testCreateCallbackCWrapperNestedStructByValParameter() {
         assertEquals(
-                "struct f_0001_0001 {int m0;};\n" +
-                "struct f_0001_0000 {int m0;};\n" +
-                "struct f_0001 {struct f_0001_0000 m0;struct f_0001_0001 m1;};\n" +
+                "typedef struct {int m0;} f_0001_0001;\n" +
+                "typedef struct {int m0;} f_0001_0000;\n" +
+                "typedef struct {f_0001_0000 m0;f_0001_0001 m1;} f_0001;\n" +
                 "void f_inner(void*);\n" +
-                "void f(struct f_0001 p0) {\n" +
+                "void f(f_0001 p0) {\n" +
                 "    f_inner((void*) &p0);\n" +
                 "}\n",
                 CallbackMethodCompiler.createCallbackCWrapper(
@@ -123,13 +124,13 @@ public class CallbackMethodCompilerTest {
     @Test
     public void testCreateCallbackCWrapperComplexNestedStructByValParameter() {
         assertEquals(
-                "struct f_0001_0003 {void* m0;void* m1;};\n" +
-                "struct f_0001_0002 {float m0;double m1;};\n" +
-                "struct f_0001_0001 {int m0;long long m1;};\n" +
-                "struct f_0001_0000 {char m0;short m1;};\n" +
-                "struct f_0001 {struct f_0001_0000 m0;struct f_0001_0001 m1;struct f_0001_0002 m2;struct f_0001_0003 m3;};\n" +
+                "typedef struct {void* m0;void* m1;} f_0001_0003;\n" +
+                "typedef struct {float m0;double m1;} f_0001_0002;\n" +
+                "typedef struct {int m0;long long m1;} f_0001_0001;\n" +
+                "typedef struct {char m0;short m1;} f_0001_0000;\n" +
+                "typedef struct {f_0001_0000 m0;f_0001_0001 m1;f_0001_0002 m2;f_0001_0003 m3;} f_0001;\n" +
                 "void f_inner(void*);\n" +
-                "void f(struct f_0001 p0) {\n" +
+                "void f(f_0001 p0) {\n" +
                 "    f_inner((void*) &p0);\n" +
                 "}\n", 
                 CallbackMethodCompiler.createCallbackCWrapper(
@@ -144,10 +145,10 @@ public class CallbackMethodCompilerTest {
     @Test
     public void testCreateCallbackCWrapperSmallStructByValReturn() {
         assertEquals(
-                "struct f_0000 {int m0;};\n" +
+                "typedef struct {int m0;} f_0000;\n" +
                 "void* f_inner(void);\n" +
-                "struct f_0000 f(void) {\n" +
-                "    return *((struct f_0000*) f_inner());\n" +
+                "f_0000 f(void) {\n" +
+                "    return *((f_0000*) f_inner());\n" +
                 "}\n", 
                 CallbackMethodCompiler.createCallbackCWrapper(
                         new FunctionType(new StructureType(I32)), "f", "f_inner"));
@@ -155,12 +156,12 @@ public class CallbackMethodCompilerTest {
     @Test
     public void testCreateCallbackCWrapperNestedStructByValReturn() {
         assertEquals(
-                "struct f_0000_0001 {int m0;};\n" +
-                "struct f_0000_0000 {int m0;};\n" +
-                "struct f_0000 {struct f_0000_0000 m0;struct f_0000_0001 m1;};\n" +
+                "typedef struct {int m0;} f_0000_0001;\n" +
+                "typedef struct {int m0;} f_0000_0000;\n" +
+                "typedef struct {f_0000_0000 m0;f_0000_0001 m1;} f_0000;\n" +
                 "void* f_inner(void);\n" +
-                "struct f_0000 f(void) {\n" +
-                "    return *((struct f_0000*) f_inner());\n" +
+                "f_0000 f(void) {\n" +
+                "    return *((f_0000*) f_inner());\n" +
                 "}\n", 
                 CallbackMethodCompiler.createCallbackCWrapper(
                         new FunctionType(new StructureType(new StructureType(I32), new StructureType(I32))), "f", "f_inner"));
@@ -177,21 +178,21 @@ public class CallbackMethodCompilerTest {
                 new StructureType(I8_PTR, 
                         new PointerType(new StructureType(I32))));
         assertEquals(
-                "struct f_0001_0006 {void* m0;void* m1;};\n" +
-                "struct f_0001_0004 {float m0;float m1;};\n" +
-                "struct f_0001_0002 {float m0;double m1;};\n" +
-                "struct f_0001_0001 {int m0;long long m1;};\n" +
-                "struct f_0001_0000 {char m0;short m1;};\n" +
-                "struct f_0001 {struct f_0001_0000 m0;struct f_0001_0001 m1;struct f_0001_0002 m2;int m3[100];struct f_0001_0004 m4[10];int m5[5][10];struct f_0001_0006 m6;};\n" +
-                "struct f_0000_0006 {void* m0;void* m1;};\n" +
-                "struct f_0000_0004 {float m0;float m1;};\n" +
-                "struct f_0000_0002 {float m0;double m1;};\n" +
-                "struct f_0000_0001 {int m0;long long m1;};\n" +
-                "struct f_0000_0000 {char m0;short m1;};\n" +
-                "struct f_0000 {struct f_0000_0000 m0;struct f_0000_0001 m1;struct f_0000_0002 m2;int m3[100];struct f_0000_0004 m4[10];int m5[5][10];struct f_0000_0006 m6;};\n" +
+                "typedef struct {void* m0;void* m1;} f_0001_0006;\n" +
+                "typedef struct {float m0;float m1;} f_0001_0004;\n" +
+                "typedef struct {float m0;double m1;} f_0001_0002;\n" +
+                "typedef struct {int m0;long long m1;} f_0001_0001;\n" +
+                "typedef struct {char m0;short m1;} f_0001_0000;\n" +
+                "typedef struct {f_0001_0000 m0;f_0001_0001 m1;f_0001_0002 m2;int m3[100];f_0001_0004 m4[10];int m5[5][10];f_0001_0006 m6;} f_0001;\n" +
+                "typedef struct {void* m0;void* m1;} f_0000_0006;\n" +
+                "typedef struct {float m0;float m1;} f_0000_0004;\n" +
+                "typedef struct {float m0;double m1;} f_0000_0002;\n" +
+                "typedef struct {int m0;long long m1;} f_0000_0001;\n" +
+                "typedef struct {char m0;short m1;} f_0000_0000;\n" +
+                "typedef struct {f_0000_0000 m0;f_0000_0001 m1;f_0000_0002 m2;int m3[100];f_0000_0004 m4[10];int m5[5][10];f_0000_0006 m6;} f_0000;\n" +
                 "void* f_inner(void*);\n" +
-                "struct f_0000 f(struct f_0001 p0) {\n" +
-                "    return *((struct f_0000*) f_inner((void*) &p0));\n" +
+                "f_0000 f(f_0001 p0) {\n" +
+                "    return *((f_0000*) f_inner((void*) &p0));\n" +
                 "}\n", 
                 CallbackMethodCompiler.createCallbackCWrapper(
                         new FunctionType(structType, structType), "f", "f_inner"));
