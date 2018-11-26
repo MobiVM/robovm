@@ -44,7 +44,16 @@ public class DataLayout {
             if (type instanceof PrimitiveType) {
                 definition = "{" + ((PrimitiveType) type).getName() + "}";
             } else if (type instanceof StructureType) {
-                definition = ((StructureType) type).getDefinition();
+                // if it is vector of primitive (E.g. VectorFloat2) it will return
+                // <2 x float> like definition  and it will not go to
+                // LLVM types that will cause a crash later, so wrap it into struct
+                // And if it is vector of another structs (E.g. MatrixFloat2x2) it
+                // will be wrapped into struct and nothing to be done
+                StructureType st = (StructureType) type;
+                if (st.isVector() && !st.isVectorArray())
+                    definition = "{" + ((StructureType) type).getDefinition() + "}";
+                else
+                    definition = ((StructureType) type).getDefinition();
             } else {
                 definition = "{" + ((UserType) type).getDefinition() + "}";
             }
@@ -76,7 +85,7 @@ public class DataLayout {
     public int getAlignment(Type type) {
         return runTypeQuery(type, new TypeCallback<Integer>() {
             Integer doWithType(TargetMachine targetMachine, org.robovm.llvm.Type type) {
-                return (int) targetMachine.getDataLayout().getABITypeAlignment(type);
+                return targetMachine.getDataLayout().getABITypeAlignment(type);
             }
         });
     }

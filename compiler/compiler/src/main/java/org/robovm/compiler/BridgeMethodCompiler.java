@@ -213,7 +213,7 @@ public class BridgeMethodCompiler extends BroMethodCompiler {
         loSignature.append(')');
         
         for (Entry<String, String> struct : structs.entrySet()) {
-            body.append("    struct " + struct.getKey() + " " + struct.getValue() + ";\n");
+            body.append("    typedef " + struct.getValue() + " " + struct.getKey() + ";\n");
         }
         
         if (returnType instanceof StructureType) {
