@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INPlacemarkResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INPlacemarkResolutionResult() {}
+    protected INPlacemarkResolutionResult() {}
     protected INPlacemarkResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INPlacemarkResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

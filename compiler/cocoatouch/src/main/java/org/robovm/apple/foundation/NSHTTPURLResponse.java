@@ -58,6 +58,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "initWithURL:statusCode:HTTPVersion:headerFields:")
     public NSHTTPURLResponse(NSURL url, @MachineSizedSInt long statusCode, String HTTPVersion, @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> headerFields) { super((SkipInit) null); initObject(init(url, statusCode, HTTPVersion, headerFields)); }
+    @Method(selector = "initWithURL:MIMEType:expectedContentLength:textEncodingName:")
+    public NSHTTPURLResponse(NSURL URL, String MIMEType, @MachineSizedSInt long length, String name) { super(URL, MIMEType, length, name); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "statusCode")

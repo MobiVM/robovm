@@ -49,7 +49,7 @@ import org.robovm.apple.coregraphics.*;
     protected MDLSubmeshTopology(Handle h, long handle) { super(h, handle); }
     protected MDLSubmeshTopology(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSubmesh:")
-    public MDLSubmeshTopology(MDLSubmesh submesh) { super((SkipInit) null); initObject(initWithSubmesh(submesh)); }
+    public MDLSubmeshTopology(MDLSubmesh submesh) { super((SkipInit) null); initObject(init(submesh)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "faceTopology")
@@ -96,6 +96,6 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSubmesh:")
-    protected native @Pointer long initWithSubmesh(MDLSubmesh submesh);
+    protected native @Pointer long init(MDLSubmesh submesh);
     /*</methods>*/
 }

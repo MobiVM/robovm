@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNReduceFeatureChannelsAndWeightsSum/*</name>*/ 
     extends /*<extends>*/MPSNNReduceBinary/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -50,9 +50,13 @@ import org.robovm.apple.metal.*;
     protected MPSNNReduceFeatureChannelsAndWeightsSum(Handle h, long handle) { super(h, handle); }
     protected MPSNNReduceFeatureChannelsAndWeightsSum(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSNNReduceFeatureChannelsAndWeightsSum(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSNNReduceFeatureChannelsAndWeightsSum(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithDevice:doWeightedSumByNonZeroWeights:")
     public MPSNNReduceFeatureChannelsAndWeightsSum(MTLDevice device, boolean doWeightedSumByNonZeroWeights) { super((SkipInit) null); initObject(init(device, doWeightedSumByNonZeroWeights)); }
+    @Method(selector = "initWithCoder:device:")
+    public MPSNNReduceFeatureChannelsAndWeightsSum(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSNNReduceFeatureChannelsAndWeightsSum(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "doWeightedSumByNonZeroWeights")
@@ -61,7 +65,7 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "initWithDevice:doWeightedSumByNonZeroWeights:")
     protected native @Pointer long init(MTLDevice device, boolean doWeightedSumByNonZeroWeights);
     /*</methods>*/

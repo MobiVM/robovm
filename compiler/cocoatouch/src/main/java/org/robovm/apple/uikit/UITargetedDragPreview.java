@@ -90,7 +90,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithView:")
     protected native @Pointer long init(UIView view);
     @Method(selector = "retargetedPreviewWithTarget:")
-    public native UITargetedDragPreview retargetedPreviewWithTarget(UIDragPreviewTarget newTarget);
+    public native UITargetedDragPreview retargetedPreview(UIDragPreviewTarget newTarget);
     /**
      * @since Available in iOS 11.0 and later.
      */

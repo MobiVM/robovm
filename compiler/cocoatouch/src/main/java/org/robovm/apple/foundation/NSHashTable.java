@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.NSSet.SetAdapter;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSHashTable/*</name>*/ <T extends NSObject>
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding, NSFastEnumeration/*</implements>*/, Set<T> {
+    /*<implements>*/implements NSSecureCoding, NSFastEnumeration/*</implements>*/, Set<T> {
     
     public static class NSHashTablePtr<T extends NSObject> extends Ptr<NSHashTable<T>, NSHashTablePtr<T>> {}
 
@@ -151,6 +151,8 @@ import org.robovm.apple.foundation.NSSet.SetAdapter;
     public native T any();
     @Property(selector = "setRepresentation")
     public native NSSet<T> asSet();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     

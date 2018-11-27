@@ -221,7 +221,7 @@ import org.robovm.apple.dispatch.*;
     }
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use NSMetadataUbiquitousItemDownloadingStatusKey instead
      */
     @Deprecated
     public boolean isDownloaded() {

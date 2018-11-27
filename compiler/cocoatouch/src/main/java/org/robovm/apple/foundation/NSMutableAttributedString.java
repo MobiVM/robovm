@@ -121,6 +121,25 @@ import org.robovm.apple.dispatch.*;
         }
         addAttributes(attrs.getDictionary().as(NSDictionary.class), range);
     }
+
+    public void setAttributes(NSAttributedStringAttributes attrs, @ByVal NSRange range) {
+        if (attrs == null) {
+            throw new NullPointerException("attrs");
+        }
+        setAttributes(attrs.getDictionary(), range);
+    }
+    public void setAttributes(CMTextMarkupAttributes attrs, @ByVal NSRange range) {
+        if (attrs == null) {
+            throw new NullPointerException("attrs");
+        }
+        setAttributes(attrs.getDictionary().as(NSDictionary.class), range);
+    }
+    public void setAttributes(CTAttributedStringAttributes attrs, @ByVal NSRange range) {
+        if (attrs == null) {
+            throw new NullPointerException("attrs");
+        }
+        setAttributes(attrs.getDictionary().as(NSDictionary.class), range);
+    }
     
     public void removeAttribute(String name, @ByVal NSRange range) {
         if (name == null) {

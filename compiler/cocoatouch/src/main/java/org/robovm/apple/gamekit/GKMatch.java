@@ -63,7 +63,7 @@ import org.robovm.apple.uikit.*;
     public native @MachineSizedUInt long getExpectedPlayerCount();
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use players
      */
     @Deprecated
     @Property(selector = "playerIDs")
@@ -109,14 +109,14 @@ import org.robovm.apple.uikit.*;
     public native void rematch(@Block VoidBlock2<GKMatch, NSError> completionHandler);
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use chooseBestHostingPlayerWithCompletionHandler:
      */
     @Deprecated
     @Method(selector = "chooseBestHostPlayerWithCompletionHandler:")
-    public native void chooseBestHostPlayer(@Block VoidBlock1<String> completionHandler);
+    public native void chooseBestHostPlayer(@Block VoidBlock1<NSString> completionHandler);
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use sendData:toPlayers:dataMode:error:
      */
     @Deprecated
     public boolean sendDataToPlayers(NSData data, List<String> playerIDs, GKMatchSendDataMode mode) throws NSErrorException {
@@ -127,7 +127,7 @@ import org.robovm.apple.uikit.*;
     }
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use sendData:toPlayers:dataMode:error:
      */
     @Deprecated
     @Method(selector = "sendData:toPlayers:withDataMode:error:")

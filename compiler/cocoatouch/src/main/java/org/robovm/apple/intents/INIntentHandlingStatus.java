@@ -45,7 +45,11 @@ public enum /*<name>*/INIntentHandlingStatus/*</name>*/ implements ValuedEnum {
     InProgress(2L),
     Success(3L),
     Failure(4L),
-    DeferredToApplication(5L);
+    DeferredToApplication(5L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    UserConfirmationRequired(6L);
     /*</values>*/
 
     /*<bind>*/

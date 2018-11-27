@@ -52,7 +52,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithTunnelRemoteAddress:")
-    public NETunnelNetworkSettings(String address) { super((SkipInit) null); initObject(initWithTunnelRemoteAddress(address)); }
+    public NETunnelNetworkSettings(String address) { super((SkipInit) null); initObject(init(address)); }
     @Method(selector = "initWithCoder:")
     public NETunnelNetworkSettings(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -91,7 +91,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithTunnelRemoteAddress:")
-    protected native @Pointer long initWithTunnelRemoteAddress(String address);
+    protected native @Pointer long init(String address);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

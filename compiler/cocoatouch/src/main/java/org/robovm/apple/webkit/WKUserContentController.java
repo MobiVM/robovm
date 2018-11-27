@@ -41,7 +41,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WKUserContentController/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class WKUserContentControllerPtr extends Ptr<WKUserContentController, WKUserContentControllerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(WKUserContentController.class); }/*</bind>*/
@@ -56,6 +56,8 @@ import org.robovm.apple.security.*;
     /*<properties>*/
     @Property(selector = "userScripts")
     public native NSArray<WKUserScript> getUserScripts();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

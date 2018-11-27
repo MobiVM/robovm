@@ -63,13 +63,11 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "initWithImage:highlightedImage:")
     public UIImageView(UIImage image, UIImage highlightedImage) { super((SkipInit) null); initObject(init(image, highlightedImage)); }
+    @Method(selector = "initWithFrame:")
+    public UIImageView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UIImageView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UIImageView(CGRect frame) {
-        super(frame);
-    }
-    public UIImageView(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "image")
     public native UIImage getImage();

@@ -26,6 +26,12 @@ classes:
                 name: requestUserToken
             '-requestPersonalizationTokenForClientToken:withCompletionHandler:':
                 name: requestPersonalizationToken
+            '-requestCapabilitiesWithCompletionHandler:':
+                name: requestCapabilities
+            '-requestStorefrontCountryCodeWithCompletionHandler:':
+                name: requestStorefrontCountryCode
+            '-requestStorefrontIdentifierWithCompletionHandler:':
+                name: requestStorefrontIdentifier
     SKError:
         extends: NSError
         annotations: ['@StronglyLinked']
@@ -132,6 +138,8 @@ classes:
                 trim_after_first_colon: true
             '-updateStorePromotionOrder:completionHandler:':
                 trim_after_first_colon: true
+            '-fetchStorePromotionOrderWithCompletionHandler:':
+                name: fetchStorePromotionOrder
     SKAdNetwork: {} #since 11.3
     SKProductDiscount: {} #since 11.2
     SKProductSubscriptionPeriod: {} #since 11.2

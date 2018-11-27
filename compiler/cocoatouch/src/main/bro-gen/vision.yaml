@@ -27,18 +27,31 @@ classes:
         methods:
             '-initWithModel:completionHandler:':
                 name: init
+            '-initWithModel:':
+                name: init
     VNDetectBarcodesRequest: {} #since 11.0
     VNDetectFaceLandmarksRequest: {} #since 11.0
     VNDetectFaceRectanglesRequest: {} #since 11.0
     VNDetectHorizonRequest: {} #since 11.0
     VNDetectRectanglesRequest: {} #since 11.0
     VNDetectTextRectanglesRequest: {} #since 11.0
-    VNDetectedObjectObservation: {} #since 11.0
+    VNDetectedObjectObservation:  #since 11.0
+        methods:
+            '+observationWithRequestRevision:boundingBox:':
+                name: create
+                constructor: true
+            '+observationWithBoundingBox:':
+                name: create
+                constructor: true
     VNFaceLandmarkRegion: {} #since 11.0
     VNFaceLandmarkRegion2D: {} #since 11.0
     VNFaceLandmarks: {} #since 11.0
     VNFaceLandmarks2D: {} #since 11.0
-    VNFaceObservation: {} #since 11.0
+    VNFaceObservation:  #since 11.0
+        methods:
+            '+faceObservationWithRequestRevision:boundingBox:roll:yaw:':
+                name: create
+                constructor: true
     VNHomographicImageRegistrationRequest: {} #since 11.0
     VNHorizonObservation: {} #since 11.0
     VNImageAlignmentObservation: {} #since 11.0
@@ -56,7 +69,10 @@ classes:
     VNObservation: {} #since 11.0
     VNPixelBufferObservation: {} #since 11.0
     VNRectangleObservation: {} #since 11.0
-    VNRequest: {} #since 11.0
+    VNRequest: #since 11.0
+        methods:
+            '-initWithCompletionHandler:':
+                name: init
     VNSequenceRequestHandler: #since 11.0
         methods:
             '-performRequests:onCVPixelBuffer:error:':
@@ -98,16 +114,21 @@ classes:
         methods:
             '-initWithDetectedObjectObservation:completionHandler:':
                 name: init
+            '-initWithDetectedObjectObservation:':
+                name: init
     VNTrackRectangleRequest: #since 11.0
         methods:
             '-initWithRectangleObservation:completionHandler:':
                 name: init
+            '-initWithRectangleObservation:':
+                name: init
     VNTrackingRequest: {} #since 11.0
     VNTranslationalImageRegistrationRequest: {} #since 11.0
-
+    VNRecognizedObjectObservation: {} #since 12.0
 
 protocols:
     VNFaceObservationAccepting: {} #since 11.0
+    VNRequestRevisionProviding: {} #since 12.0
 
 functions:
 
@@ -164,12 +185,32 @@ values:
         name: '#{g[0]}'
         type: NSString
 
+    VNRequestRevisionUnspecified:
+        class: VNRequest
+        name: RevisionUnspecified
+
+    (VNDetectBarcodesRequest|VNDetectFaceRectanglesRequest|VNDetectFaceLandmarksRequest|VNDetectHorizonRequest|VNDetectRectanglesRequest|VNDetectTextRectanglesRequest|VNCoreMLRequest|VNTrackObjectRequest|VNTrackRectangleRequest)Revision(.*):
+        class: '#{g[0]}'
+        name: 'getRevision#{g[1]}'
+
+    VNDetectFaceRectanglesRequestRevision1:
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (VN.*):
         class: Vision
         name: 'Value__#{g[0]}'
 
 constants:
+    VNDetectBarcodesRequestRevision1:
+        class: VNDetectBarcodesRequest
+        name: Revision1
+    VNTranslationalImageRegistrationRequestRevision1:
+        class: VNTranslationalImageRegistrationRequest
+        name: Revision1
+    VNHomographicImageRegistrationRequestRevision1:
+        class: VNHomographicImageRegistrationRequest
+        name: Revision1
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (VN.*):
         class: Vision

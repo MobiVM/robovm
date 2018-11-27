@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UIDragPreviewParameters(Handle h, long handle) { super(h, handle); }
     protected UIDragPreviewParameters(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTextLineRects:")
-    public UIDragPreviewParameters(NSArray<NSValue> textLineRects) { super((SkipInit) null); initObject(initWithTextLineRects(textLineRects)); }
+    public UIDragPreviewParameters(NSArray<NSValue> textLineRects) { super((SkipInit) null); initObject(init(textLineRects)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "visiblePath")
@@ -72,6 +72,6 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithTextLineRects:")
-    protected native @Pointer long initWithTextLineRects(NSArray<NSValue> textLineRects);
+    protected native @Pointer long init(NSArray<NSValue> textLineRects);
     /*</methods>*/
 }

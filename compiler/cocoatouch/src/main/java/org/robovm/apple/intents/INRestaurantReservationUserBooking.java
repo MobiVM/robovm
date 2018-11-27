@@ -51,6 +51,8 @@ import org.robovm.apple.corelocation.*;
     protected INRestaurantReservationUserBooking(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRestaurant:bookingDate:partySize:bookingIdentifier:guest:status:dateStatusModified:")
     public INRestaurantReservationUserBooking(INRestaurant restaurant, NSDate bookingDate, @MachineSizedUInt long partySize, String bookingIdentifier, INRestaurantGuest guest, INRestaurantReservationUserBookingStatus status, NSDate dateStatusModified) { super((SkipInit) null); initObject(init(restaurant, bookingDate, partySize, bookingIdentifier, guest, status, dateStatusModified)); }
+    @Method(selector = "initWithRestaurant:bookingDate:partySize:bookingIdentifier:")
+    public INRestaurantReservationUserBooking(INRestaurant restaurant, NSDate bookingDate, @MachineSizedUInt long partySize, String bookingIdentifier) { super(restaurant, bookingDate, partySize, bookingIdentifier); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "guest")

@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVMetadataMachineReadableCodeObject.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVMetadataMachineReadableCodeObject() {}
+    protected AVMetadataMachineReadableCodeObject() {}
     protected AVMetadataMachineReadableCodeObject(Handle h, long handle) { super(h, handle); }
     protected AVMetadataMachineReadableCodeObject(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

@@ -52,6 +52,8 @@ import org.robovm.apple.metal.*;
     public CATiledLayer() {}
     protected CATiledLayer(Handle h, long handle) { super(h, handle); }
     protected CATiledLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public CATiledLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "levelsOfDetail")

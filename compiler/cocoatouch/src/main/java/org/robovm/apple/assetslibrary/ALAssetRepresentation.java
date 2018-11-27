@@ -35,7 +35,7 @@ import org.robovm.apple.imageio.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
- * @deprecated Deprecated in iOS 9.0.
+ * @deprecated Deprecated in iOS 9.0. Use PHImageRequestOptions with the PHImageManager from the Photos framework instead
  */
 @Deprecated
 /*</javadoc>*/
@@ -75,14 +75,14 @@ import org.robovm.apple.imageio.*;
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use requestImageDataForAsset:options:resultHandler: on PHImageManager for a PHAsset to request image data from the Photos framework and check the dataUTI passed to your result handler instead
      */
     @Deprecated
     @Method(selector = "UTI")
     public native String getUTI();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use requestImageForAsset:targetSize:contentMode:options:resultHandler: on PHImageManager to request a targetSize of image for a PHAsset from the Photos framework instead
      */
     @Deprecated
     @WeaklyLinked
@@ -90,21 +90,21 @@ import org.robovm.apple.imageio.*;
     public native @ByVal CGSize getDimensions();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use requestImageDataForAsset:options:resultHandler: on PHImageManager to request image data for a PHAsset from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "size")
     public native long getSize();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use requestImageDataForAsset:options:resultHandler: on PHImageManager to request image data for a PHAsset from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "getBytes:fromOffset:length:error:")
     protected native @MachineSizedUInt long getBytes(@Pointer long buffer, long offset, @MachineSizedUInt long length, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use requestImageForAsset:targetSize:contentMode:options:resultHandler: on PHImageManager to request a targetSize PHImageManagerMaximumSize for a PHAsset from the Photos framework instead
      */
     @Deprecated
     @WeaklyLinked
@@ -112,7 +112,7 @@ import org.robovm.apple.imageio.*;
     public native CGImage getFullResolutionImage();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use requestImageForAsset:targetSize:contentMode:options:resultHandler: on PHImageManager to request a targetSize of image for a PHAsset from the Photos framework instead
      */
     @Deprecated
     @WeaklyLinked
@@ -120,7 +120,7 @@ import org.robovm.apple.imageio.*;
     public native CGImage getCGImage(CGImageSourceOptions options);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use requestImageForAsset:targetSize:contentMode:options:resultHandler: on PHImageManager to request a targetSize of image for a PHAsset from the Photos framework instead
      */
     @Deprecated
     @WeaklyLinked
@@ -128,14 +128,14 @@ import org.robovm.apple.imageio.*;
     public native CGImage getFullScreenImage();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHImageRequestOptions with the PHImageManager instead
      */
     @Deprecated
     @Method(selector = "url")
     public native NSURL getUrl();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use CGImageSourceCopyPropertiesAtIndex() to retrieve metadata from an image returned by the PHImageManager from the Photos framework instead
      */
     @Deprecated
     @WeaklyLinked
@@ -143,21 +143,21 @@ import org.robovm.apple.imageio.*;
     public native CGImageProperties getMetadata();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the orientation of the UIImage returned for a PHAsset from the PHImageManager from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "orientation")
     public native ALAssetOrientation getOrientation();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use requestImageForAsset:targetSize:contentMode:options:resultHandler: on PHImageManager to request a targetSize of image for a PHAsset from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "scale")
     public native float getScale();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the Photos framework instead
      */
     @Deprecated
     @Method(selector = "filename")

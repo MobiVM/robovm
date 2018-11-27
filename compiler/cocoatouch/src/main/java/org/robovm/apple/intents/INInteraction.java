@@ -92,6 +92,9 @@ import org.robovm.apple.corelocation.*;
     public static native void deleteInteractions(NSArray<NSString> identifiers, @Block VoidBlock1<NSError> completion);
     @Method(selector = "deleteInteractionsWithGroupIdentifier:completion:")
     public static native void deleteInteractionsByGroup(String groupIdentifier, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "parameterValueForParameter:")
     public native NSObject parameterValueForParameter(INParameter parameter);
     @Method(selector = "encodeWithCoder:")

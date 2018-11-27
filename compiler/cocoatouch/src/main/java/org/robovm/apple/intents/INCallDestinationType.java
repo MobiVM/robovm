@@ -47,25 +47,25 @@ public enum /*<name>*/INCallDestinationType/*</name>*/ implements ValuedEnum {
     Redial(4L),
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use INCallDestinationTypeNormal instead
      */
     @Deprecated
     NormalDestination(1L),
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use INCallDestinationTypeEmergency instead
      */
     @Deprecated
     EmergencyDestination(2L),
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use INCallDestinationTypeVoicemail instead
      */
     @Deprecated
     VoicemailDestination(3L),
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use INCallDestinationTypeRedial instead
      */
     @Deprecated
     RedialDestination(4L);

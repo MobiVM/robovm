@@ -49,34 +49,16 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @NotImplemented("session:didAddPlayer:")
     public void didAddPlayer(GKGameSession session, GKCloudPlayer player) {}
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @NotImplemented("session:didRemovePlayer:")
     public void didRemovePlayer(GKGameSession session, GKCloudPlayer player) {}
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @NotImplemented("session:player:didChangeConnectionState:")
     public void didChangeConnectionState(GKGameSession session, GKCloudPlayer player, GKConnectionState newState) {}
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @NotImplemented("session:player:didSaveData:")
     public void didSaveData(GKGameSession session, GKCloudPlayer player, NSData data) {}
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @NotImplemented("session:didReceiveData:fromPlayer:")
     public void didReceiveData(GKGameSession session, NSData data, GKCloudPlayer player) {}
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @NotImplemented("session:didReceiveMessage:withData:fromPlayer:")
     public void didReceiveMessage(GKGameSession session, String message, NSData data, GKCloudPlayer player) {}
     /*</methods>*/

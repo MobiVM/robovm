@@ -56,6 +56,7 @@ import org.robovm.apple.avfoundation.*;
     public SCNDistanceConstraint() {}
     protected SCNDistanceConstraint(Handle h, long handle) { super(h, handle); }
     protected SCNDistanceConstraint(SkipInit skipInit) { super(skipInit); }
+    public SCNDistanceConstraint(SCNNode target) { super((Handle) null, create(target)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "target")
@@ -74,6 +75,6 @@ import org.robovm.apple.avfoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "distanceConstraintWithTarget:")
-    public static native SCNDistanceConstraint distanceConstraintWithTarget(SCNNode target);
+    protected static native @Pointer long create(SCNNode target);
     /*</methods>*/
 }

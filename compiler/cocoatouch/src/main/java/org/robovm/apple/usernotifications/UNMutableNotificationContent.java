@@ -89,6 +89,26 @@ import org.robovm.apple.foundation.*;
     public native NSDictionary<?, ?> getUserInfo();
     @Property(selector = "setUserInfo:")
     public native void setUserInfo(NSDictionary<?, ?> v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "summaryArgument")
+    public native String getSummaryArgument();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setSummaryArgument:")
+    public native void setSummaryArgument(String v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "summaryArgumentCount")
+    public native @MachineSizedUInt long getSummaryArgumentCount();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setSummaryArgumentCount:")
+    public native void setSummaryArgumentCount(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

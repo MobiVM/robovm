@@ -56,7 +56,7 @@ import org.robovm.apple.iosurface.*;
     protected CISampler(Handle h, long handle) { super(h, handle); }
     protected CISampler(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithImage:")
-    public CISampler(CIImage im) { super((SkipInit) null); initObject(initWithImage(im)); }
+    public CISampler(CIImage im) { super((SkipInit) null); initObject(init(im)); }
     @Method(selector = "initWithImage:options:")
     public CISampler(CIImage im, NSDictionary<?, ?> dict) { super((SkipInit) null); initObject(init(im, dict)); }
     /*</constructors>*/
@@ -69,10 +69,8 @@ import org.robovm.apple.iosurface.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithImage:")
-    protected native @Pointer long initWithImage(CIImage im);
+    protected native @Pointer long init(CIImage im);
     @Method(selector = "initWithImage:options:")
     protected native @Pointer long init(CIImage im, NSDictionary<?, ?> dict);
-    @Method(selector = "samplerWithImage:")
-    public static native CISampler samplerWithImage(CIImage im);
     /*</methods>*/
 }

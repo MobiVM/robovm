@@ -37,10 +37,10 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNConvolutionDescriptor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/ /*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MPSCNNConvolutionDescriptorPtr extends Ptr<MPSCNNConvolutionDescriptor, MPSCNNConvolutionDescriptorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNConvolutionDescriptor.class); }/*</bind>*/
@@ -53,7 +53,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:")
-    public MPSCNNConvolutionDescriptor(NSCoder aDecoder) { super((SkipInit) null); initObject(initWithCoder(aDecoder)); }
+    public MPSCNNConvolutionDescriptor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 11.0.
@@ -138,12 +138,12 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "encodeWithCoder:")
-    public native void encodeWithCoder(NSCoder aCoder);
+    public native void encode(NSCoder coder);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long initWithCoder(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -183,7 +183,7 @@ import org.robovm.apple.metal.*;
      */
     @Deprecated
     @Method(selector = "setNeuronToPReLUWithParametersA:")
-    public native void setNeuronToPReLUWithParametersA(NSData A);
+    public native void setNeuronToPReLU(NSData A);
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 11.0.

@@ -48,7 +48,7 @@ public final class /*<name>*/CFURLBookmarkCreationOptions/*</name>*/ extends Bit
     public static final CFURLBookmarkCreationOptions SuitableForBookmarkFile = new CFURLBookmarkCreationOptions(1024L);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. kCFURLBookmarkCreationPreferFileIDResolutionMask does nothing and has no effect on bookmark resolution
      */
     @Deprecated
     public static final CFURLBookmarkCreationOptions PreferFileIDResolutionMask = new CFURLBookmarkCreationOptions(256L);

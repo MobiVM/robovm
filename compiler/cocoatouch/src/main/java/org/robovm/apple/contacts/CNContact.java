@@ -142,6 +142,16 @@ import org.robovm.apple.foundation.*;
     public static native String getDescriptorForAllComparatorKeys();
     @Method(selector = "predicateForContactsMatchingName:")
     public static native NSPredicate getPredicateForContacts(String name);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "predicateForContactsMatchingEmailAddress:")
+    public static native NSPredicate predicateForContactsMatchingEmailAddress(String emailAddress);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "predicateForContactsMatchingPhoneNumber:")
+    public static native NSPredicate predicateForContactsMatchingPhoneNumber(CNPhoneNumber phoneNumber);
     @Method(selector = "predicateForContactsWithIdentifiers:")
     public static native NSPredicate getPredicateForContacts(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers);
     @Method(selector = "predicateForContactsInGroupWithIdentifier:")

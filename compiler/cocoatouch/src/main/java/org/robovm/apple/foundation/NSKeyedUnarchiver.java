@@ -53,6 +53,16 @@ import org.robovm.apple.dispatch.*;
     public NSKeyedUnarchiver() {}
     protected NSKeyedUnarchiver(Handle h, long handle) { super(h, handle); }
     protected NSKeyedUnarchiver(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initForReadingFromData:error:")
+    public NSKeyedUnarchiver(NSData data, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(init(data, error)); }
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use -initForReadingFromData:error: instead
+     */
+    @Deprecated
     @Method(selector = "initForReadingWithData:")
     public NSKeyedUnarchiver(NSData data) { super((SkipInit) null); initObject(init(data)); }
     /*</constructors>*/
@@ -92,6 +102,16 @@ import org.robovm.apple.dispatch.*;
     }
     
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initForReadingFromData:error:")
+    protected native @Pointer long init(NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use -initForReadingFromData:error: instead
+     */
+    @Deprecated
     @Method(selector = "initForReadingWithData:")
     protected native @Pointer long init(NSData data);
     @Method(selector = "finishDecoding")
@@ -100,11 +120,28 @@ import org.robovm.apple.dispatch.*;
     public native void setClassForClassName(Class<? extends NSObject> cls, String codedName);
     @Method(selector = "classForClassName:")
     public native Class<? extends NSObject> getClassForClassName(String codedName);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "unarchivedObjectOfClass:fromData:error:")
+    private static native NSObject unarchivedObject(Class<?> cls, NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "unarchivedObjectOfClasses:fromData:error:")
+    private static native NSObject unarchivedObject(NSSet<?> classes, NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use +unarchivedObjectOfClass:fromData:error: instead
+     */
+    @Deprecated
     @Method(selector = "unarchiveObjectWithData:")
     public static native NSObject unarchive(NSData data);
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use +unarchivedObjectOfClass:fromData:error: instead
      */
+    @Deprecated
     public static NSObject unarchiveTopLevelObject(NSData data) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSObject result = unarchiveTopLevelObject(data, ptr);
@@ -112,10 +149,17 @@ import org.robovm.apple.dispatch.*;
        return result;
     }
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use +unarchivedObjectOfClass:fromData:error: instead
      */
+    @Deprecated
     @Method(selector = "unarchiveTopLevelObjectWithData:error:")
     private static native NSObject unarchiveTopLevelObject(NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use +unarchivedObjectOfClass:fromData:error: instead
+     */
+    @Deprecated
     @Method(selector = "unarchiveObjectWithFile:")
     private static native NSObject unarchiveObject(String path);
     @Method(selector = "setClass:forClassName:")

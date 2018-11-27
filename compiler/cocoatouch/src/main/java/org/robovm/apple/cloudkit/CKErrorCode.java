@@ -56,7 +56,7 @@ public enum /*<name>*/CKErrorCode/*</name>*/ implements NSErrorCode {
     InvalidArguments(12L),
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Will not be returned
      */
     @Deprecated
     ResultsTruncated(13L),

@@ -125,22 +125,22 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMMetadataFormatDescriptionCreateWithKeys", optional=true)
-    private static native OSStatus createWithKeys0(CFAllocator allocator, CMMetadataFormatType metadataType, @org.robovm.rt.bro.annotation.Marshaler(CMMetadataFormatDescriptionKey.AsListMarshaler.class) List<CMMetadataFormatDescriptionKey> keys, CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr outDesc);
+    private static native OSStatus createWithKeys0(CFAllocator allocator, CMMetadataFormatType metadataType, @org.robovm.rt.bro.annotation.Marshaler(CMMetadataFormatDescriptionKey.AsListMarshaler.class) List<CMMetadataFormatDescriptionKey> keys, CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr formatDescriptionOut);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Bridge(symbol="CMMetadataFormatDescriptionCreateWithMetadataSpecifications", optional=true)
-    private static native OSStatus createWithMetadataSpecifications0(CFAllocator allocator, CMMetadataFormatType metadataType, @org.robovm.rt.bro.annotation.Marshaler(CMMetadataFormatDescriptionMetadataSpecification.AsListMarshaler.class) List<CMMetadataFormatDescriptionMetadataSpecification> metadataSpecifications, CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr outDesc);
+    private static native OSStatus createWithMetadataSpecifications0(CFAllocator allocator, CMMetadataFormatType metadataType, @org.robovm.rt.bro.annotation.Marshaler(CMMetadataFormatDescriptionMetadataSpecification.AsListMarshaler.class) List<CMMetadataFormatDescriptionMetadataSpecification> metadataSpecifications, CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr formatDescriptionOut);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Bridge(symbol="CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications", optional=true)
-    private static native OSStatus create0(CFAllocator allocator, CMMetadataFormatDescription srcDesc, @org.robovm.rt.bro.annotation.Marshaler(CMMetadataFormatDescriptionMetadataSpecification.AsListMarshaler.class) List<CMMetadataFormatDescriptionMetadataSpecification> metadataSpecifications, CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr outDesc);
+    private static native OSStatus create0(CFAllocator allocator, CMFormatDescription sourceDescription, @org.robovm.rt.bro.annotation.Marshaler(CMMetadataFormatDescriptionMetadataSpecification.AsListMarshaler.class) List<CMMetadataFormatDescriptionMetadataSpecification> metadataSpecifications, CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr formatDescriptionOut);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Bridge(symbol="CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions", optional=true)
-    private static native OSStatus createByMergingFormatDescriptions0(CFAllocator allocator, CMMetadataFormatDescription srcDesc1, CMMetadataFormatDescription srcDesc2, CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr outDesc);
+    private static native OSStatus createByMergingFormatDescriptions0(CFAllocator allocator, CMMetadataFormatDescription sourceDescription, CMMetadataFormatDescription otherSourceDescription, CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr formatDescriptionOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -155,16 +155,16 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 8.0 and later.
      */
     @Bridge(symbol="CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData", optional=true)
-    private static native OSStatus createFromBigEndianMetadataDescriptionData0(CFAllocator allocator, BytePtr metadataDescriptionData, @MachineSizedUInt long metadataDescriptionSize, String metadataDescriptionFlavor, CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr metadataFormatDescriptionOut);
+    private static native OSStatus createFromBigEndianMetadataDescriptionData0(CFAllocator allocator, BytePtr metadataDescriptionData, @MachineSizedUInt long size, String flavor, CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr formatDescriptionOut);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Bridge(symbol="CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer", optional=true)
-    private static native OSStatus createFromBigEndianMetadataDescriptionBlockBuffer0(CFAllocator allocator, CMBlockBuffer metadataDescriptionBlockBuffer, String metadataDescriptionFlavor, CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr metadataFormatDescriptionOut);
+    private static native OSStatus createFromBigEndianMetadataDescriptionBlockBuffer0(CFAllocator allocator, CMBlockBuffer metadataDescriptionBlockBuffer, String flavor, CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr formatDescriptionOut);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Bridge(symbol="CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer", optional=true)
-    private static native OSStatus copyAsBigEndianMetadataDescriptionBlockBuffer0(CFAllocator allocator, CMFormatDescription metadataFormatDescription, String metadataDescriptionFlavor, CMBlockBuffer.CMBlockBufferPtr metadataDescriptionBlockBufferOut);
+    private static native OSStatus copyAsBigEndianMetadataDescriptionBlockBuffer0(CFAllocator allocator, CMFormatDescription metadataFormatDescription, String flavor, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
     /*</methods>*/
 }

@@ -518,37 +518,12 @@ values:
         enum: CFSocketStreamProperty
         name: '#{g[0]}'
         type: CFString
-    kCFStreamSocketSOCKSVersion(4|5):
-        enum: CFStreamSocketSOCKSVersion
-        name: '#{g[0]}'
-        type: CFString
-    kCFStreamPropertySOCKS(.*):
-        dictionary: CFStreamSocketSOCKSProxy
-        name: '#{g[0]}'
-        type: CFString
-        methods:
-            ProxyHost:
-                name: Host
-                type: String
-            ProxyPort:
-                name: Port
-                type: int
-            Version:
-                type: CFStreamSocketSOCKSVersion
-            User:
-                type: String
-            Password:
-                type: String
     kCFStreamProperty(.*):
         enum: CFSocketStreamProperty
         name: '#{g[0]}'
         type: CFString
     kCFStreamNetworkServiceType(.*):
         enum: CFStreamNetworkServiceType
-        name: '#{g[0]}'
-        type: CFString
-    kCFStreamSocketSecurityLevel(.*):
-        enum: CFStreamSocketSecurityLevel
         name: '#{g[0]}'
         type: CFString
     kCFStreamSSL(.*):
@@ -561,6 +536,7 @@ values:
             Level:
                 name: SecurityLevel
                 type: CFStreamSocketSecurityLevel
+                hint: GlobalValueEnumeration<CFString>
             PeerName:
                 type: String
             Certificates:

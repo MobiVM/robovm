@@ -49,25 +49,34 @@ import org.robovm.apple.uikit.*;
     public MSMessagesAppViewController() {}
     protected MSMessagesAppViewController(Handle h, long handle) { super(h, handle); }
     protected MSMessagesAppViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public MSMessagesAppViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public MSMessagesAppViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "activeConversation")
     public native MSConversation getActiveConversation();
     @Property(selector = "presentationStyle")
     public native MSMessagesAppPresentationStyle getPresentationStyle();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "presentationContext")
+    public native MSMessagesAppPresentationContext getPresentationContext();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "requestPresentationStyle:")
     public native void requestPresentationStyle(MSMessagesAppPresentationStyle presentationStyle);
     @Method(selector = "willBecomeActiveWithConversation:")
-    public native void willBecomeActiveWithConversation(MSConversation conversation);
+    public native void willBecomeActive(MSConversation conversation);
     @Method(selector = "didBecomeActiveWithConversation:")
-    public native void didBecomeActiveWithConversation(MSConversation conversation);
+    public native void didBecomeActive(MSConversation conversation);
     @Method(selector = "willResignActiveWithConversation:")
-    public native void willResignActiveWithConversation(MSConversation conversation);
+    public native void willResignActive(MSConversation conversation);
     @Method(selector = "didResignActiveWithConversation:")
-    public native void didResignActiveWithConversation(MSConversation conversation);
+    public native void didResignActive(MSConversation conversation);
     /**
      * @since Available in iOS 10.0 and later.
      */

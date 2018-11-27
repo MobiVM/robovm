@@ -53,7 +53,7 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithRestaurant:")
-    public INGetAvailableRestaurantReservationBookingDefaultsIntent(INRestaurant restaurant) { super((SkipInit) null); initObject(initWithRestaurant(restaurant)); }
+    public INGetAvailableRestaurantReservationBookingDefaultsIntent(INRestaurant restaurant) { super((SkipInit) null); initObject(init(restaurant)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "restaurant")
@@ -67,6 +67,6 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithRestaurant:")
-    protected native @Pointer long initWithRestaurant(INRestaurant restaurant);
+    protected native @Pointer long init(INRestaurant restaurant);
     /*</methods>*/
 }

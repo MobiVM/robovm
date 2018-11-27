@@ -145,6 +145,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "deviceType")
     public native String getDeviceType();
+    /**
+     * @since Available in iOS 11.1 and later.
+     */
+    @Property(selector = "systemPressureState")
+    public native AVCaptureSystemPressureState getSystemPressureState();
     @Property(selector = "hasFlash")
     public native boolean hasFlash();
     /**
@@ -154,21 +159,21 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isFlashAvailable();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput's -isFlashScene instead.
      */
     @Deprecated
     @Property(selector = "isFlashActive")
     public native boolean isFlashActive();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoSettings.flashMode instead.
      */
     @Deprecated
     @Property(selector = "flashMode")
     public native AVCaptureFlashMode getFlashMode();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoSettings.flashMode instead.
      */
     @Deprecated
     @Property(selector = "setFlashMode:")
@@ -256,6 +261,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CGPoint getExposurePointOfInterest();
     @Property(selector = "setExposurePointOfInterest:")
     public native void setExposurePointOfInterest(@ByVal CGPoint v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "activeMaxExposureDuration")
+    public native @ByVal CMTime getActiveMaxExposureDuration();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setActiveMaxExposureDuration:")
+    public native void setActiveMaxExposureDuration(@ByVal CMTime v);
     @Property(selector = "isAdjustingExposure")
     public native boolean isAdjustingExposure();
     /**
@@ -410,6 +425,16 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setActiveDepthDataFormat:")
     public native void setActiveDepthDataFormat(AVCaptureDeviceFormat v);
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "activeDepthDataMinFrameDuration")
+    public native @ByVal CMTime getActiveDepthDataMinFrameDuration();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setActiveDepthDataMinFrameDuration:")
+    public native void setActiveDepthDataMinFrameDuration(@ByVal CMTime v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "minAvailableVideoZoomFactor")
@@ -484,14 +509,14 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean supportsAVCaptureSessionPreset(AVCaptureSessionPreset preset);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use AVCaptureDeviceDiscoverySession instead.
      */
     @Deprecated
     @Method(selector = "devices")
     public static native NSArray<AVCaptureDevice> getDevices();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use AVCaptureDeviceDiscoverySession instead.
      */
     @Deprecated
     @Method(selector = "devicesWithMediaType:")
@@ -507,7 +532,7 @@ import org.robovm.apple.audiotoolbox.*;
     public static native AVCaptureDevice getDefaultDevice(String deviceType, AVMediaType mediaType, AVCaptureDevicePosition position);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput's -supportedFlashModes instead.
      */
     @Deprecated
     @Method(selector = "isFlashModeSupported:")

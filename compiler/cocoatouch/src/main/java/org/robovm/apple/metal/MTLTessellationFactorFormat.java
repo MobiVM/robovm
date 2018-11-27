@@ -39,7 +39,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MTLTessellationFactorFormat/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    MTLTessellationFactorFormatHalf(0L);
+    Half(0L);
     /*</values>*/
 
     /*<bind>*/

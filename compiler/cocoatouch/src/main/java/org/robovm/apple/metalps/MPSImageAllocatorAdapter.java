@@ -52,5 +52,7 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @NotImplemented("imageForCommandBuffer:imageDescriptor:kernel:")
     public MPSImage getImage(MTLCommandBuffer cmdBuf, MPSImageDescriptor descriptor, MPSKernel kernel) { return null; }
+    @NotImplemented("imageBatchForCommandBuffer:imageDescriptor:kernel:count:")
+    public NSArray<MPSImage> getImageBatch(MTLCommandBuffer cmdBuf, MPSImageDescriptor descriptor, MPSKernel kernel, @MachineSizedUInt long count) { return null; }
     /*</methods>*/
 }

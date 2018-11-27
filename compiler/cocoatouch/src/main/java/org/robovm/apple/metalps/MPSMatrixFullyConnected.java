@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixFullyConnected/*</name>*/ 
     extends /*<extends>*/MPSMatrixBinaryKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -50,9 +50,11 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixFullyConnected(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixFullyConnected(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixFullyConnected(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSMatrixFullyConnected(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSMatrixFullyConnected(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSMatrixFullyConnected(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixFullyConnected(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceNumberOfFeatureVectors")
@@ -85,11 +87,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "neuronParameterC")
     public native float neuronParameterC();
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:inputMatrix:weightMatrix:biasVector:resultMatrix:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix inputMatrix, MPSMatrix weightMatrix, MPSVector biasVector, MPSMatrix resultMatrix);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "copyWithZone:device:")
     public native MPSMatrixFullyConnected copy(NSZone zone, MTLDevice device);
     /*</methods>*/

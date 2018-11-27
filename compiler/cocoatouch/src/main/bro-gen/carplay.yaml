@@ -1,0 +1,237 @@
+package: org.robovm.apple.carplay
+include: [foundation, uikit, coregraphics, mapkit]
+library: CarPlay
+framework: CarPlay
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/CarPlay.framework/Headers/CarPlay.h
+typedefs: {}
+    
+enums:
+    CPAlertActionStyle: {} #since 12.0
+    CPBarButtonType: {} #since 12.0
+    CPNavigationAlertDismissalContext: {} #since 12.0
+    CPTripPauseReason: {} #since 12.0
+    CPPanDirection: {} #since 12.0
+    CPManeuverDisplayStyle: {} #since 12.0
+    CPTimeRemainingColor: {} #since 12.0
+    CPTripEstimateStyle: {} #since 12.0
+    CPLimitableUserInterface: {} #since 12.0
+
+classes:
+    CPActionSheetTemplate: #since 12.0
+        methods:
+            '-initWithTitle:message:actions:':
+                name: init
+    CPAlertAction: #since 12.0
+        methods:
+            '-initWithTitle:style:handler:':
+                name: init
+    CPAlertTemplate: #since 12.0
+        methods:
+            '-initWithTitleVariants:actions:':
+                name: init
+    CPBarButton: #since 12.0
+        methods:
+            '-initWithType:handler:':
+                name: init
+    CPGridButton: #since 12.0
+        methods:
+            '-initWithTitleVariants:image:handler:':
+                name: init
+    CPGridTemplate: #since 12.0
+        methods:
+            '-initWithTitle:gridButtons:':
+                name: init
+    CPImageSet: #since 12.0
+        methods:
+            '-initWithLightContentImage:darkContentImage:':
+                name: init
+    CPInterfaceController: #since 12.0
+        methods:
+            '-setRootTemplate:animated:':
+                trim_after_first_colon: true
+            '-pushTemplate:animated:':
+                trim_after_first_colon: true
+            '-popToTemplate:animated:':
+                trim_after_first_colon: true
+            '-presentTemplate:animated:':
+                trim_after_first_colon: true
+    CPListItem: #since 12.0
+        methods:
+            '-initWithText:detailText:image:showsDisclosureIndicator:':
+                name: init
+            '-initWithText:detailText:image:':
+                name: init
+            '-initWithText:detailText:':
+                name: init
+    CPListSection: #since 12.0
+        methods:
+            '-initWithItems:header:sectionIndexTitle:':
+                name: init
+            '-initWithItems:':
+                name: init
+    CPListTemplate: #since 12.0
+        methods:
+            '-initWithTitle:sections:':
+                name: init
+    CPManeuver: {} #since 12.0
+    CPMapButton: #since 12.0
+        methods:
+            '-initWithHandler:':
+                name: init
+    CPMapTemplate: #since 12.0
+        methods:
+            '-showTripPreviews:textConfiguration:':
+                trim_after_first_colon: true
+            '-showRouteChoicesPreviewForTrip:textConfiguration:':
+                trim_after_first_colon: true
+            '-updateTravelEstimates:forTrip:':
+                trim_after_first_colon: true
+            '-updateTravelEstimates:forTrip:withTimeRemainingColor:':
+                trim_after_first_colon: true
+            '-presentNavigationAlert:animated:':
+                trim_after_first_colon: true
+            '-dismissNavigationAlertAnimated:completion:':
+                trim_after_first_colon: true
+    CPNavigationAlert: #since 12.0
+        methods:
+            '-initWithTitleVariants:subtitleVariants:imageSet:primaryAction:secondaryAction:duration:':
+                name: init
+            '-updateTitleVariants:subtitleVariants:':
+                trim_after_first_colon: true
+    CPNavigationSession: #since 12.0
+        methods:
+            '-pauseTripForReason:description:':
+                name: pauseTrip
+            '-updateTravelEstimates:forManeuver:':
+                trim_after_first_colon: true
+    CPRouteChoice: #since 12.0
+        methods:
+            '-initWithSummaryVariants:additionalInformationVariants:selectionSummaryVariants:':
+                name: init
+    CPSearchTemplate: {} #since 12.0
+    CPSessionConfiguration: #since 12.0
+        methods:
+            '-initWithDelegate:':
+                name: init
+    CPTemplate: {} #since 12.0
+    CPTravelEstimates: #since 12.0
+        methods:
+            '-initWithDistanceRemaining:timeRemaining:':
+                name: init
+    CPTrip: #since 12.0
+        methods:
+            '-initWithOrigin:destination:routeChoices:':
+                name: init
+    CPTripPreviewTextConfiguration: #since 12.0
+        methods:
+            '-initWithStartButtonTitle:additionalRoutesButtonTitle:overviewButtonTitle:':
+                name: init
+    CPVoiceControlState: #since 12.0
+        methods:
+            '-initWithIdentifier:titleVariants:image:repeats:':
+                name: init
+    CPVoiceControlTemplate: #since 12.0
+        methods:
+            '-initWithVoiceControlStates:':
+                name: init
+            '-activateVoiceControlStateWithIdentifier:':
+                name: activateVoiceControlState
+    CPWindow: {} #since 12.0
+
+protocols:
+    CPApplicationDelegate: #since 12.0
+        methods:
+            '-application:didConnectCarInterfaceController:toWindow:':
+                name: didConnectCarInterfaceController
+            '-application:didDisconnectCarInterfaceController:fromWindow:':
+                name: didDisconnectCarInterfaceController
+            '-application:didSelectNavigationAlert:':
+                name: didSelectNavigationAlert
+            '-application:didSelectManeuver:':
+                name: didSelectManeuver
+    CPBarButtonProviding: {} #since 12.0
+    CPInterfaceControllerDelegate: #since 12.0
+        methods:
+            '-templateWillAppear:animated:':
+                trim_after_first_colon: true
+            '-templateDidAppear:animated:':
+                trim_after_first_colon: true
+            '-templateWillDisappear:animated:':
+                trim_after_first_colon: true
+            '-templateDidDisappear:animated:':
+                trim_after_first_colon: true
+    CPListTemplateDelegate: #since 12.0
+        methods:
+            '-listTemplate:didSelectListItem:completionHandler:':
+                name: didSelectListItem
+    CPMapTemplateDelegate: #since 12.0
+        methods:
+            '-mapTemplate:shouldShowNotificationForManeuver:':
+                name: shouldShowNotificationForManeuver
+            '-mapTemplate:shouldUpdateNotificationForManeuver:withTravelEstimates:':
+                name: shouldUpdateNotificationForManeuver
+            '-mapTemplate:shouldShowNotificationForNavigationAlert:':
+                name: shouldShowNotificationForNavigationAlert
+            '-mapTemplate:panBeganWithDirection:':
+                name: panBegan
+            '-mapTemplate:panEndedWithDirection:':
+                name: panEnded
+            '-mapTemplate:panWithDirection:':
+                name: pan
+            '-mapTemplate:didUpdatePanGestureWithTranslation:velocity:':
+                name: didUpdatePanGesture
+            '-mapTemplate:didEndPanGestureWithVelocity:':
+                name: didEndPanGesture
+            '-mapTemplate:willShowNavigationAlert:':
+                name: willShowNavigationAlert
+            '-mapTemplate:didShowNavigationAlert:':
+                name: didShowNavigationAlert
+            '-mapTemplate:willDismissNavigationAlert:dismissalContext:':
+                name: willDismissNavigationAlert
+            '-mapTemplate:didDismissNavigationAlert:dismissalContext:':
+                name: didDismissNavigationAlert
+            '-mapTemplate:selectedPreviewForTrip:usingRouteChoice:':
+                name: selectedPreviewForTrip
+            '-mapTemplate:startedTrip:usingRouteChoice:':
+                name: startedTrip
+            '-mapTemplate:displayStyleForManeuver:':
+                name: displayStyle
+    CPSearchTemplateDelegate: #since 12.0
+        methods:
+            '-searchTemplate:updatedSearchText:completionHandler:':
+                name: updatedSearchText
+            '-searchTemplate:selectedResult:completionHandler:':
+                name: selectedResult
+    CPSessionConfigurationDelegate: #since 12.0
+        methods:
+            '-sessionConfiguration:limitedUserInterfacesChanged:':
+                name: limitedUserInterfacesChanged
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?CP.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    CPMaximumListItemImageSize:
+        class: CPListItem
+        name: getMaximumListItemImageSize
+
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?CP.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    CPNavigationAlertMinimumDuration:
+        class: CPNavigationAlert
+        name: getNavigationAlertMinimumDuration
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?CP.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

@@ -49,6 +49,10 @@ import org.robovm.apple.uikit.*;
     public CNContactPickerViewController() {}
     protected CNContactPickerViewController(Handle h, long handle) { super(h, handle); }
     protected CNContactPickerViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public CNContactPickerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public CNContactPickerViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "displayedPropertyKeys")

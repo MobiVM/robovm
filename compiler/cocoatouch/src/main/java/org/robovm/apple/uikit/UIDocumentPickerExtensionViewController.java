@@ -56,6 +56,10 @@ import org.robovm.apple.intents.*;
     public UIDocumentPickerExtensionViewController() {}
     protected UIDocumentPickerExtensionViewController(Handle h, long handle) { super(h, handle); }
     protected UIDocumentPickerExtensionViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UIDocumentPickerExtensionViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public UIDocumentPickerExtensionViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "documentPickerMode")

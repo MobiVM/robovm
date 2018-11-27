@@ -154,22 +154,22 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMBlockBufferCreateEmpty", optional=true)
-    protected static native OSStatus create0(CFAllocator structureAllocator, int subBlockCapacity, CMBlockBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr newBBufOut);
+    protected static native OSStatus create0(CFAllocator structureAllocator, int subBlockCapacity, CMBlockBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMBlockBufferCreateWithMemoryBlock", optional=true)
-    protected static native OSStatus create0(CFAllocator structureAllocator, VoidPtr memoryBlock, @MachineSizedUInt long blockLength, CFAllocator blockAllocator, CMBlockBufferCustomBlockSource customBlockSource, @MachineSizedUInt long offsetToData, @MachineSizedUInt long dataLength, CMBlockBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr newBBufOut);
+    protected static native OSStatus create0(CFAllocator structureAllocator, VoidPtr memoryBlock, @MachineSizedUInt long blockLength, CFAllocator blockAllocator, CMBlockBufferCustomBlockSource customBlockSource, @MachineSizedUInt long offsetToData, @MachineSizedUInt long dataLength, CMBlockBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMBlockBufferCreateWithBufferReference", optional=true)
-    protected static native OSStatus create0(CFAllocator structureAllocator, CMBlockBuffer targetBuffer, @MachineSizedUInt long offsetToData, @MachineSizedUInt long dataLength, CMBlockBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr newBBufOut);
+    protected static native OSStatus create0(CFAllocator structureAllocator, CMBlockBuffer bufferReference, @MachineSizedUInt long offsetToData, @MachineSizedUInt long dataLength, CMBlockBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMBlockBufferCreateContiguous", optional=true)
-    protected static native OSStatus create0(CFAllocator structureAllocator, CMBlockBuffer sourceBuffer, CFAllocator blockAllocator, CMBlockBufferCustomBlockSource customBlockSource, @MachineSizedUInt long offsetToData, @MachineSizedUInt long dataLength, CMBlockBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr newBBufOut);
+    protected static native OSStatus create0(CFAllocator structureAllocator, CMBlockBuffer sourceBuffer, CFAllocator blockAllocator, CMBlockBufferCustomBlockSource customBlockSource, @MachineSizedUInt long offsetToData, @MachineSizedUInt long dataLength, CMBlockBufferFlags flags, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -194,7 +194,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMBlockBufferAccessDataBytes", optional=true)
-    protected static native OSStatus accessDataBytes0(CMBlockBuffer theBuffer, @MachineSizedUInt long offset, @MachineSizedUInt long length, VoidPtr temporaryBlock, BytePtr.BytePtrPtr returnedPointer);
+    protected static native OSStatus accessDataBytes0(CMBlockBuffer theBuffer, @MachineSizedUInt long offset, @MachineSizedUInt long length, VoidPtr temporaryBlock, BytePtr.BytePtrPtr returnedPointerOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -214,7 +214,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMBlockBufferGetDataPointer", optional=true)
-    protected native OSStatus getDataPointer0(@MachineSizedUInt long offset, MachineSizedUIntPtr lengthAtOffset, MachineSizedUIntPtr totalLength, BytePtr.BytePtrPtr dataPointer);
+    protected native OSStatus getDataPointer0(@MachineSizedUInt long offset, MachineSizedUIntPtr lengthAtOffsetOut, MachineSizedUIntPtr totalLengthOut, BytePtr.BytePtrPtr dataPointerOut);
     /**
      * @since Available in iOS 4.0 and later.
      */

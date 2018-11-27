@@ -100,14 +100,14 @@ import org.robovm.apple.metal.*;
     public native void setPaused(boolean v);
     /**
      * @since Available in iOS 3.1 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. preferredFramesPerSecond
      */
     @Deprecated
     @Property(selector = "frameInterval")
     public native @MachineSizedSInt long getFrameInterval();
     /**
      * @since Available in iOS 3.1 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. preferredFramesPerSecond
      */
     @Deprecated
     @Property(selector = "setFrameInterval:")

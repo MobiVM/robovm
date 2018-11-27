@@ -56,8 +56,28 @@ import org.robovm.apple.fileprovider.*;
     /*<properties>*/
     @Property(selector = "userIdentity")
     public native CKUserIdentity getUserIdentity();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "role")
+    public native CKShareParticipantRole getRole();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setRole:")
+    public native void setRole(CKShareParticipantRole v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "type")
     public native CKShareParticipantType getType();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "setType:")
     public native void setType(CKShareParticipantType v);
     @Property(selector = "acceptanceStatus")

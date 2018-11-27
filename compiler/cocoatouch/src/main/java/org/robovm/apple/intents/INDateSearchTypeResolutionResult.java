@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INDateSearchTypeResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INDateSearchTypeResolutionResult() {}
+    protected INDateSearchTypeResolutionResult() {}
     protected INDateSearchTypeResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INDateSearchTypeResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
@@ -57,21 +57,7 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "successWithResolvedDateSearchType:")
     public static native INDateSearchTypeResolutionResult successWithResolvedDateSearchType(INDateSearchType resolvedDateSearchType);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "successWithResolvedValue:")
-    public static native INDateSearchTypeResolutionResult successWithResolvedValue(INDateSearchType resolvedValue);
     @Method(selector = "confirmationRequiredWithDateSearchTypeToConfirm:")
     public static native INDateSearchTypeResolutionResult confirmationRequiredWithDateSearchTypeToConfirm(INDateSearchType dateSearchTypeToConfirm);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INDateSearchTypeResolutionResult confirmationRequiredWithValueToConfirm(INDateSearchType valueToConfirm);
     /*</methods>*/
 }

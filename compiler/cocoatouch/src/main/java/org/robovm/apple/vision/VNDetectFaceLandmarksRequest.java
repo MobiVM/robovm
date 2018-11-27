@@ -53,6 +53,8 @@ import org.robovm.apple.imageio.*;
     public VNDetectFaceLandmarksRequest() {}
     protected VNDetectFaceLandmarksRequest(Handle h, long handle) { super(h, handle); }
     protected VNDetectFaceLandmarksRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCompletionHandler:")
+    public VNDetectFaceLandmarksRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inputFaceObservations")
@@ -62,6 +64,17 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="VNDetectFaceLandmarksRequestRevision1", optional=true)
+    public static native @MachineSizedUInt long getRevision1();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="VNDetectFaceLandmarksRequestRevision2", optional=true)
+    public static native @MachineSizedUInt long getRevision2();
+    
     
     /*</methods>*/
 }

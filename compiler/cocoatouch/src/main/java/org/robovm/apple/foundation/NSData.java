@@ -269,7 +269,7 @@ import org.robovm.apple.dispatch.*;
     public native NSData toBase64EncodedData(NSDataBase64EncodingOptions options);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use +dataWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead.
      */
     @Deprecated
     @Method(selector = "dataWithContentsOfMappedFile:")

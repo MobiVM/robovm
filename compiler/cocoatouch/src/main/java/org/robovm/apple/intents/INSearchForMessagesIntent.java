@@ -50,23 +50,30 @@ import org.robovm.apple.corelocation.*;
     protected INSearchForMessagesIntent(Handle h, long handle) { super(h, handle); }
     protected INSearchForMessagesIntent(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 12.0 and later.
      */
-    @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:")
-    public static  INSearchForMessagesIntent createWithSpeakableGroupNames(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<INSpeakableString> speakableGroupNames) {
-       INSearchForMessagesIntent res = new INSearchForMessagesIntent((SkipInit) null);
-       res.initObject(res.initWithSpeakableGroupNames(recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, speakableGroupNames));
-       return res;
-    }
+    @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:conversationIdentifiers:")
+    public INSearchForMessagesIntent(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<INSpeakableString> speakableGroupNames, NSArray<NSString> conversationIdentifiers) { super((SkipInit) null); initObject(init(recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, speakableGroupNames, conversationIdentifiers)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:groupNames:")
     public static  INSearchForMessagesIntent createWithGroupNames(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<NSString> groupNames) {
        INSearchForMessagesIntent res = new INSearchForMessagesIntent((SkipInit) null);
        res.initObject(res.initWithGroupNames(recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, groupNames));
+       return res;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use the designated initializer instead
+     */
+    @Deprecated
+    @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:")
+    public static  INSearchForMessagesIntent createWithSpeakableGroupNames(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<INSpeakableString> speakableGroupNames) {
+       INSearchForMessagesIntent res = new INSearchForMessagesIntent((SkipInit) null);
+       res.initObject(res.initWithSpeakableGroupNames(recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, speakableGroupNames));
        return res;
     }
     /*</constructors>*/
@@ -106,15 +113,25 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "speakableGroupNamesOperator")
     public native INConditionalOperator getSpeakableGroupNamesOperator();
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "conversationIdentifiers")
+    public native NSArray<NSString> getConversationIdentifiers();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "conversationIdentifiersOperator")
+    public native INConditionalOperator getConversationIdentifiersOperator();
+    /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use speakableGroupNames instead
      */
     @Deprecated
     @Property(selector = "groupNames")
     public native NSArray<NSString> getGroupNames();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use speakableGroupNamesOperator instead
      */
     @Deprecated
     @Property(selector = "groupNamesOperator")
@@ -123,16 +140,23 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 12.0 and later.
      */
-    @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:")
-    protected native @Pointer long initWithSpeakableGroupNames(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<INSpeakableString> speakableGroupNames);
+    @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:conversationIdentifiers:")
+    protected native @Pointer long init(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<INSpeakableString> speakableGroupNames, NSArray<NSString> conversationIdentifiers);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:groupNames:")
     protected native @Pointer long initWithGroupNames(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<NSString> groupNames);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use the designated initializer instead
+     */
+    @Deprecated
+    @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:")
+    protected native @Pointer long initWithSpeakableGroupNames(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<INSpeakableString> speakableGroupNames);
     /*</methods>*/
 }

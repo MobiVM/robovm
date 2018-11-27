@@ -139,6 +139,11 @@ import org.robovm.apple.coregraphics.*;
     @Bridge(symbol="CGImageSourceGetStatusAtIndex", optional=true)
     public native CGImageSourceStatus getStatusAtIndex(@MachineSizedUInt long index);
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="CGImageSourceGetPrimaryImageIndex", optional=true)
+    public native @MachineSizedUInt long getPrimaryImageIndex();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Bridge(symbol="CGImageSourceCopyAuxiliaryDataInfoAtIndex", optional=true)

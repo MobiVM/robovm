@@ -223,10 +223,90 @@ import org.robovm.apple.iosurface.*;
         @GlobalValue(symbol="kCIInputDisparityImageKey", optional=true)
         public static native NSString DisparityImage();
         /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputAmountKey", optional=true)
+        public static native NSString Amount();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputTimeKey", optional=true)
+        public static native NSString Time();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputTransformKey", optional=true)
+        public static native NSString Transform();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputScaleKey", optional=true)
+        public static native NSString Scale();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputAspectRatioKey", optional=true)
+        public static native NSString AspectRatio();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputCenterKey", optional=true)
+        public static native NSString Center();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputRadiusKey", optional=true)
+        public static native NSString Radius();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputAngleKey", optional=true)
+        public static native NSString Angle();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="kCIInputRefractionKey", optional=true)
         public static native NSString Refraction();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputWidthKey", optional=true)
+        public static native NSString Width();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputSharpnessKey", optional=true)
+        public static native NSString Sharpness();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputIntensityKey", optional=true)
+        public static native NSString Intensity();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputEVKey", optional=true)
+        public static native NSString EV();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputSaturationKey", optional=true)
+        public static native NSString Saturation();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputColorKey", optional=true)
+        public static native NSString Color();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputBrightnessKey", optional=true)
+        public static native NSString Brightness();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputContrastKey", optional=true)
+        public static native NSString Contrast();
         /**
          * @since Available in iOS 9.0 and later.
          */
@@ -243,155 +323,35 @@ import org.robovm.apple.iosurface.*;
         @GlobalValue(symbol="kCIInputGradientImageKey", optional=true)
         public static native NSString GradientImage();
         /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputMaskImageKey", optional=true)
+        public static native NSString MaskImage();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputMatteImageKey", optional=true)
+        public static native NSString MatteImage();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="kCIInputShadingImageKey", optional=true)
         public static native NSString ShadingImage();
         /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputTargetImageKey", optional=true)
+        public static native NSString TargetImage();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="kCIInputExtentKey", optional=true)
+        public static native NSString Extent();
+        /**
          * @since Available in iOS 6.0 and later.
          */
         @GlobalValue(symbol="kCIInputVersionKey", optional=true)
         public static native NSString Version();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputAllowDraftModeKey", optional=true)
-        public static native NSString AllowDraftMode();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputDecoderVersionKey", optional=true)
-        public static native NSString DecoderVersion();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCISupportedDecoderVersionsKey", optional=true)
-        public static native String SupportedDecoderVersions();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputBaselineExposureKey", optional=true)
-        public static native NSString BaselineExposure();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputBoostKey", optional=true)
-        public static native NSString Boost();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputBoostShadowAmountKey", optional=true)
-        public static native NSString BoostShadowAmount();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputDisableGamutMapKey", optional=true)
-        public static native NSString DisableGamutMap();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputNeutralChromaticityXKey", optional=true)
-        public static native NSString NeutralChromaticityX();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputNeutralChromaticityYKey", optional=true)
-        public static native NSString NeutralChromaticityY();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputNeutralTemperatureKey", optional=true)
-        public static native NSString NeutralTemperature();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputNeutralTintKey", optional=true)
-        public static native NSString NeutralTint();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputNeutralLocationKey", optional=true)
-        public static native NSString NeutralLocation();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputScaleFactorKey", optional=true)
-        public static native NSString ScaleFactor();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputIgnoreImageOrientationKey", optional=true)
-        public static native NSString IgnoreImageOrientation();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputImageOrientationKey", optional=true)
-        public static native NSString ImageOrientation();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputEnableSharpeningKey", optional=true)
-        public static native NSString EnableSharpening();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputEnableChromaticNoiseTrackingKey", optional=true)
-        public static native NSString EnableChromaticNoiseTracking();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputNoiseReductionAmountKey", optional=true)
-        public static native NSString NoiseReductionAmount();
-        /**
-         * @since Available in iOS 11.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputMoireAmountKey", optional=true)
-        public static native NSString MoireAmount();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputEnableVendorLensCorrectionKey", optional=true)
-        public static native NSString EnableVendorLensCorrection();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputLuminanceNoiseReductionAmountKey", optional=true)
-        public static native NSString LuminanceNoiseReductionAmount();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputColorNoiseReductionAmountKey", optional=true)
-        public static native NSString ColorNoiseReductionAmount();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputNoiseReductionSharpnessAmountKey", optional=true)
-        public static native NSString NoiseReductionSharpnessAmount();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputNoiseReductionContrastAmountKey", optional=true)
-        public static native NSString NoiseReductionContrastAmount();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputNoiseReductionDetailAmountKey", optional=true)
-        public static native NSString NoiseReductionDetailAmount();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIInputLinearSpaceFilter", optional=true)
-        public static native String LinearSpaceFilter();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIOutputNativeSizeKey", optional=true)
-        public static native String NativeSize();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCIActiveKeys", optional=true)
-        public static native String ActiveKeys();
     }
     /*</keys>*/
 }

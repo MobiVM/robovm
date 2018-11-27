@@ -76,6 +76,26 @@ import org.robovm.apple.foundation.*;
     public native HKQuantity getMaximumQuantityForSource(HKSource source);
     @Method(selector = "maximumQuantity")
     public native HKQuantity getMaximumQuantity();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "mostRecentQuantityForSource:")
+    public native HKQuantity mostRecentQuantityForSource(HKSource source);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "mostRecentQuantity")
+    public native HKQuantity mostRecentQuantity();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "mostRecentQuantityDateIntervalForSource:")
+    public native NSDateInterval mostRecentQuantityDateIntervalForSource(HKSource source);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "mostRecentQuantityDateInterval")
+    public native NSDateInterval mostRecentQuantityDateInterval();
     @Method(selector = "sumQuantityForSource:")
     public native HKQuantity getSumQuantityForSource(HKSource source);
     @Method(selector = "sumQuantity")

@@ -43,7 +43,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("AudioToolbox") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AUParameterTree/*</name>*/ 
     extends /*<extends>*/AUParameterGroup/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class AUParameterTreePtr extends Ptr<AUParameterTree, AUParameterTreePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AUParameterTree.class); }/*</bind>*/
@@ -52,6 +52,7 @@ import org.robovm.apple.uikit.*;
     public AUParameterTree() {}
     protected AUParameterTree(Handle h, long handle) { super(h, handle); }
     protected AUParameterTree(SkipInit skipInit) { super(skipInit); }
+    public AUParameterTree(NSArray<AUParameterNode> children) { super((Handle) null, create(children)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -59,9 +60,9 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "parameterWithAddress:")
-    public native AUParameter parameterWithAddress(long address);
+    public native AUParameter getParameter(long address);
     @Method(selector = "parameterWithID:scope:element:")
-    public native AUParameter parameterWithID(int paramID, int scope, int element);
+    public native AUParameter getParameter(int paramID, int scope, int element);
     @Method(selector = "createParameterWithIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:")
     public static native AUParameter createParameter(String identifier, String name, long address, float min, float max, AudioUnitParameterUnit unit, String unitName, AUParameterFlags flags, NSArray<NSString> valueStrings, NSArray<NSNumber> dependentParameters);
     @Method(selector = "createGroupWithIdentifier:name:children:")
@@ -71,6 +72,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "createGroupFromTemplate:identifier:name:addressOffset:")
     public static native AUParameterGroup createGroup(AUParameterGroup templateGroup, String identifier, String name, long addressOffset);
     @Method(selector = "createTreeWithChildren:")
-    public static native AUParameterTree createTreeWithChildren(NSArray<AUParameterNode> children);
+    protected static native @Pointer long create(NSArray<AUParameterNode> children);
     /*</methods>*/
 }

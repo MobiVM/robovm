@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixNeuron/*</name>*/ 
     extends /*<extends>*/MPSMatrixUnaryKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -50,9 +50,11 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixNeuron(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixNeuron(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSMatrixNeuron(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSMatrixNeuron(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSMatrixNeuron(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSMatrixNeuron(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixNeuron(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceNumberOfFeatureVectors")
@@ -81,13 +83,13 @@ import org.robovm.apple.metal.*;
     @Method(selector = "neuronParameterC")
     public native float neuronParameterC();
     @Method(selector = "setNeuronToPReLUWithParametersA:")
-    public native void setNeuronToPReLUWithParametersA(NSData A);
+    public native void setNeuronToPReLU(NSData A);
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:inputMatrix:biasVector:resultMatrix:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix inputMatrix, MPSVector biasVector, MPSMatrix resultMatrix);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "copyWithZone:device:")
     public native MPSMatrixNeuron copy(NSZone zone, MTLDevice device);
     /*</methods>*/

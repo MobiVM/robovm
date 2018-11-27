@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNNormalizationGammaAndBetaState/*</name>*/ 
     extends /*<extends>*/MPSState/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,12 +46,25 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNNormalizationGammaAndBetaState.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNNormalizationGammaAndBetaState() {}
+    protected MPSCNNNormalizationGammaAndBetaState() {}
     protected MPSCNNNormalizationGammaAndBetaState(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNormalizationGammaAndBetaState(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithGamma:beta:")
     public MPSCNNNormalizationGammaAndBetaState(MTLBuffer gamma, MTLBuffer beta) { super((SkipInit) null); initObject(init(gamma, beta)); }
     public MPSCNNNormalizationGammaAndBetaState(MTLCommandBuffer commandBuffer, @MachineSizedUInt long numberOfFeatureChannels) { super((Handle) null, createTemporaryState(commandBuffer, numberOfFeatureChannels)); retain(getHandle()); }
+    @Method(selector = "initWithDevice:bufferSize:")
+    public MPSCNNNormalizationGammaAndBetaState(MTLDevice device, @MachineSizedUInt long bufferSize) { super(device, bufferSize); }
+    @Method(selector = "initWithDevice:textureDescriptor:")
+    public MPSCNNNormalizationGammaAndBetaState(MTLDevice device, MTLTextureDescriptor descriptor) { super(device, descriptor); }
+    @Method(selector = "initWithResource:")
+    public MPSCNNNormalizationGammaAndBetaState(MTLResource resource) { super(resource); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:resourceList:")
+    public MPSCNNNormalizationGammaAndBetaState(MTLDevice device, MPSStateResourceList resourceList) { super(device, resourceList); }
+    @Method(selector = "initWithResources:")
+    public MPSCNNNormalizationGammaAndBetaState(NSArray<?> resources) { super(resources); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "gamma")

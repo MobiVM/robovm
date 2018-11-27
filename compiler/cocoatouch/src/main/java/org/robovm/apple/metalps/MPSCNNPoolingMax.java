@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNPoolingMax/*</name>*/ 
     extends /*<extends>*/MPSCNNPooling/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -56,6 +56,10 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     public MPSCNNPoolingMax(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
+    public MPSCNNPoolingMax(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight) { super(device, kernelWidth, kernelHeight); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNPoolingMax(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

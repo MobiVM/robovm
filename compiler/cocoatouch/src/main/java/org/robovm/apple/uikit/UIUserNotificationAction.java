@@ -42,7 +42,7 @@ import org.robovm.apple.intents.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.0 and later.
- * @deprecated Deprecated in iOS 10.0.
+ * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's UNNotificationAction
  */
 @Deprecated
 /*</javadoc>*/
@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     protected UIUserNotificationAction(Handle h, long handle) { super(h, handle); }
     protected UIUserNotificationAction(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIUserNotificationAction(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIUserNotificationAction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -115,7 +115,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

@@ -47,6 +47,8 @@ import org.robovm.apple.corelocation.*;
     /*<constructors>*/
     protected HMMutableCharacteristicEvent(Handle h, long handle) { super(h, handle); }
     protected HMMutableCharacteristicEvent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCharacteristic:triggerValue:")
+    public HMMutableCharacteristicEvent(HMCharacteristic characteristic, T triggerValue) { super(characteristic, triggerValue); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "characteristic")

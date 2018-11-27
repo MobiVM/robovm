@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNGradientState/*</name>*/ 
     extends /*<extends>*/MPSState/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,9 +46,22 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSNNGradientState.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSNNGradientState() {}
+    protected MPSNNGradientState() {}
     protected MPSNNGradientState(Handle h, long handle) { super(h, handle); }
     protected MPSNNGradientState(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:bufferSize:")
+    public MPSNNGradientState(MTLDevice device, @MachineSizedUInt long bufferSize) { super(device, bufferSize); }
+    @Method(selector = "initWithDevice:textureDescriptor:")
+    public MPSNNGradientState(MTLDevice device, MTLTextureDescriptor descriptor) { super(device, descriptor); }
+    @Method(selector = "initWithResource:")
+    public MPSNNGradientState(MTLResource resource) { super(resource); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:resourceList:")
+    public MPSNNGradientState(MTLDevice device, MPSStateResourceList resourceList) { super(device, resourceList); }
+    @Method(selector = "initWithResources:")
+    public MPSNNGradientState(NSArray<?> resources) { super(resources); }
     /*</constructors>*/
     /*<properties>*/
     

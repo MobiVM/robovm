@@ -57,7 +57,7 @@ import org.robovm.apple.uikit.*;
     public native GKPlayer getSender();
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use sender
      */
     @Deprecated
     @Property(selector = "inviter")

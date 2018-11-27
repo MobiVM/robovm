@@ -171,7 +171,11 @@ public enum /*<name>*/MTLDataType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 11.0 and later.
      */
-    RGB9E5Float(77L);
+    RGB9E5Float(77L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    IndirectCommandBuffer(80L);
     /*</values>*/
 
     /*<bind>*/

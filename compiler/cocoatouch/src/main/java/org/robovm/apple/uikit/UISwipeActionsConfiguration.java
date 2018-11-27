@@ -56,6 +56,7 @@ import org.robovm.apple.intents.*;
     public UISwipeActionsConfiguration() {}
     protected UISwipeActionsConfiguration(Handle h, long handle) { super(h, handle); }
     protected UISwipeActionsConfiguration(SkipInit skipInit) { super(skipInit); }
+    public UISwipeActionsConfiguration(NSArray<UIContextualAction> actions) { super((Handle) null, create(actions)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "actions")
@@ -68,6 +69,6 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "configurationWithActions:")
-    public static native UISwipeActionsConfiguration configurationWithActions(NSArray<UIContextualAction> actions);
+    protected static native @Pointer long create(NSArray<UIContextualAction> actions);
     /*</methods>*/
 }

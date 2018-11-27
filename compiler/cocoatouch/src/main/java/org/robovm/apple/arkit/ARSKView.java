@@ -57,6 +57,10 @@ import org.robovm.apple.imageio.*;
     public ARSKView() {}
     protected ARSKView(Handle h, long handle) { super(h, handle); }
     protected ARSKView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public ARSKView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public ARSKView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

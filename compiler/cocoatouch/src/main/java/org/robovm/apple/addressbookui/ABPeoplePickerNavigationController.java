@@ -35,7 +35,7 @@ import org.robovm.apple.addressbook.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 2.0 and later.
- * @deprecated Deprecated in iOS 9.0.
+ * @deprecated Deprecated in iOS 9.0. Use CNContactPickerViewController from ContactsUI.framework instead
  */
 @Deprecated
 /*</javadoc>*/
@@ -51,6 +51,17 @@ import org.robovm.apple.addressbook.*;
     public ABPeoplePickerNavigationController() {}
     protected ABPeoplePickerNavigationController(Handle h, long handle) { super(h, handle); }
     protected ABPeoplePickerNavigationController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    public ABPeoplePickerNavigationController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
+    @Method(selector = "initWithRootViewController:")
+    public ABPeoplePickerNavigationController(UIViewController rootViewController) { super(rootViewController); }
+    @Method(selector = "initWithNibName:bundle:")
+    public ABPeoplePickerNavigationController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public ABPeoplePickerNavigationController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "peoplePickerDelegate")

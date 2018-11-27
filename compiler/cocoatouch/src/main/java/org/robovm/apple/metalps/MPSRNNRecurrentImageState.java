@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSRNNRecurrentImageState/*</name>*/ 
     extends /*<extends>*/MPSState/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,9 +46,22 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSRNNRecurrentImageState.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSRNNRecurrentImageState() {}
+    protected MPSRNNRecurrentImageState() {}
     protected MPSRNNRecurrentImageState(Handle h, long handle) { super(h, handle); }
     protected MPSRNNRecurrentImageState(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:bufferSize:")
+    public MPSRNNRecurrentImageState(MTLDevice device, @MachineSizedUInt long bufferSize) { super(device, bufferSize); }
+    @Method(selector = "initWithDevice:textureDescriptor:")
+    public MPSRNNRecurrentImageState(MTLDevice device, MTLTextureDescriptor descriptor) { super(device, descriptor); }
+    @Method(selector = "initWithResource:")
+    public MPSRNNRecurrentImageState(MTLResource resource) { super(resource); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:resourceList:")
+    public MPSRNNRecurrentImageState(MTLDevice device, MPSStateResourceList resourceList) { super(device, resourceList); }
+    @Method(selector = "initWithResources:")
+    public MPSRNNRecurrentImageState(NSArray<?> resources) { super(resources); }
     /*</constructors>*/
     /*<properties>*/
     

@@ -56,6 +56,10 @@ import org.robovm.apple.intents.*;
     public UIInputViewController() {}
     protected UIInputViewController(Handle h, long handle) { super(h, handle); }
     protected UIInputViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UIInputViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public UIInputViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inputView")

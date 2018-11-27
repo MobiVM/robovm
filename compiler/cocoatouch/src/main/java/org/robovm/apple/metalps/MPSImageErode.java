@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageErode/*</name>*/ 
     extends /*<extends>*/MPSImageDilate/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,15 @@ import org.robovm.apple.metal.*;
     public MPSImageErode() {}
     protected MPSImageErode(Handle h, long handle) { super(h, handle); }
     protected MPSImageErode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:kernelWidth:kernelHeight:values:")
+    public MPSImageErode(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, FloatPtr values) { super(device, kernelWidth, kernelHeight, values); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSImageErode(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageErode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

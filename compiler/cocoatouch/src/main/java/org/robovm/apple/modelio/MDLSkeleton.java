@@ -56,6 +56,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<NSString> getJointPaths();
     @Property(selector = "jointBindTransforms")
     public native MDLMatrix4x4Array getJointBindTransforms();
+    @Property(selector = "jointRestTransforms")
+    public native MDLMatrix4x4Array getJointRestTransforms();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -311,21 +311,21 @@ import org.robovm.apple.intents.*;
     public native boolean isRegisteredForRemoteNotifications();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter getPendingNotificationRequestsWithCompletionHandler:]
      */
     @Deprecated
     @Property(selector = "scheduledLocalNotifications")
     public native NSArray<UILocalNotification> getScheduledLocalNotifications();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter getPendingNotificationRequestsWithCompletionHandler:]
      */
     @Deprecated
     @Property(selector = "setScheduledLocalNotifications:")
     public native void setScheduledLocalNotifications(NSArray<UILocalNotification> v);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter getNotificationSettingsWithCompletionHandler:] and -[UNUserNotificationCenter getNotificationCategoriesWithCompletionHandler:]
      */
     @Deprecated
     @Property(selector = "currentUserNotificationSettings")
@@ -352,21 +352,21 @@ import org.robovm.apple.intents.*;
     public native String getAlternateIconName();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Explicit setting of the status bar orientation is more limited in iOS 6.0 and later
      */
     @Deprecated
     @Property(selector = "setStatusBarOrientation:")
     public native void setStatusBarOrientation(UIInterfaceOrientation v);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -[UIViewController preferredStatusBarStyle]
      */
     @Deprecated
     @Property(selector = "setStatusBarStyle:")
     public native void setStatusBarStyle(UIStatusBarStyle v);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -[UIViewController prefersStatusBarHidden]
      */
     @Deprecated
     @Property(selector = "setStatusBarHidden:")
@@ -549,7 +549,7 @@ import org.robovm.apple.intents.*;
     public native void endIgnoringInteractionEvents();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Please use openURL:options:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "openURL:")
@@ -605,49 +605,49 @@ import org.robovm.apple.intents.*;
     public native void unregisterForRemoteNotifications();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use -[UIApplication registerForRemoteNotifications] and UserNotifications Framework's -[UNUserNotificationCenter requestAuthorizationWithOptions:completionHandler:]
      */
     @Deprecated
     @Method(selector = "registerForRemoteNotificationTypes:")
     public native void registerForRemoteNotificationTypes(UIRemoteNotificationType types);
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use -[UIApplication isRegisteredForRemoteNotifications] and UserNotifications Framework's -[UNUserNotificationCenter getNotificationSettingsWithCompletionHandler:] to retrieve user-enabled remote notification and user notification settings
      */
     @Deprecated
     @Method(selector = "enabledRemoteNotificationTypes")
     public native UIRemoteNotificationType getEnabledRemoteNotificationTypes();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter addNotificationRequest:withCompletionHandler:]
      */
     @Deprecated
     @Method(selector = "presentLocalNotificationNow:")
     public native void presentLocalNotificationNow(UILocalNotification notification);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter addNotificationRequest:withCompletionHandler:]
      */
     @Deprecated
     @Method(selector = "scheduleLocalNotification:")
     public native void scheduleLocalNotification(UILocalNotification notification);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter removePendingNotificationRequestsWithIdentifiers:]
      */
     @Deprecated
     @Method(selector = "cancelLocalNotification:")
     public native void cancelLocalNotification(UILocalNotification notification);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter removeAllPendingNotificationRequests]
      */
     @Deprecated
     @Method(selector = "cancelAllLocalNotifications")
     public native void cancelAllLocalNotifications();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNUserNotificationCenter requestAuthorizationWithOptions:completionHandler:] and -[UNUserNotificationCenter setNotificationCategories:]
      */
     @Deprecated
     @Method(selector = "registerUserNotificationSettings:")
@@ -664,7 +664,7 @@ import org.robovm.apple.intents.*;
     public native void endReceivingRemoteControlEvents();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Newsstand apps now behave like normal apps on SpringBoard
      */
     @Deprecated
     @Method(selector = "setNewsstandIconImage:")
@@ -696,35 +696,35 @@ import org.robovm.apple.intents.*;
     public static native void registerObjectForStateRestoration(UIStateRestoring object, String restorationIdentifier);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Explicit setting of the status bar orientation is more limited in iOS 6.0 and later
      */
     @Deprecated
     @Method(selector = "setStatusBarOrientation:animated:")
     public native void setStatusBarOrientation(UIInterfaceOrientation interfaceOrientation, boolean animated);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -[UIViewController preferredStatusBarStyle]
      */
     @Deprecated
     @Method(selector = "setStatusBarStyle:animated:")
     public native void setStatusBarStyle(UIStatusBarStyle statusBarStyle, boolean animated);
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -[UIViewController prefersStatusBarHidden]
      */
     @Deprecated
     @Method(selector = "setStatusBarHidden:withAnimation:")
     public native void setStatusBarHidden(boolean hidden, UIStatusBarAnimation animation);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Please use PushKit for VoIP applications instead of calling this method
      */
     @Deprecated
     @Method(selector = "setKeepAliveTimeout:handler:")
     public native boolean setKeepAliveTimeout(double timeout, @Block Runnable keepAliveHandler);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Please use PushKit for VoIP applications instead of calling this method
      */
     @Deprecated
     @Method(selector = "clearKeepAliveTimeout")

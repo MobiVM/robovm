@@ -52,6 +52,8 @@ import org.robovm.apple.metal.*;
     public CAReplicatorLayer() {}
     protected CAReplicatorLayer(Handle h, long handle) { super(h, handle); }
     protected CAReplicatorLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public CAReplicatorLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "instanceCount")

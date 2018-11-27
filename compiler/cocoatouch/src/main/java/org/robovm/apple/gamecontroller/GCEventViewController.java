@@ -49,6 +49,10 @@ import org.robovm.apple.uikit.*;
     public GCEventViewController() {}
     protected GCEventViewController(Handle h, long handle) { super(h, handle); }
     protected GCEventViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public GCEventViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public GCEventViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "controllerUserInteractionEnabled")

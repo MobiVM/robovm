@@ -40,9 +40,9 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/INRequestPaymentCurrencyAmountUnsupportedReason/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    AmountBelowMinimum(1L),
-    AmountAboveMaximum(2L),
-    CurrencyUnsupported(3L);
+    PaymentsAmountBelowMinimum(1L),
+    PaymentsAmountAboveMaximum(2L),
+    PaymentsCurrencyUnsupported(3L);
     /*</values>*/
 
     /*<bind>*/

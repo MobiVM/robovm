@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKCorrelationType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKCorrelationType() {}
+    protected HKCorrelationType() {}
     protected HKCorrelationType(Handle h, long handle) { super(h, handle); }
     protected HKCorrelationType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

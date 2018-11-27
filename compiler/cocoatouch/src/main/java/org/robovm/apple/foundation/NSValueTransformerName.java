@@ -109,15 +109,23 @@ import org.robovm.apple.dispatch.*;
     public static final NSValueTransformerName IsNotNil = new NSValueTransformerName("IsNotNil");
     /**
      * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
      */
+    @Deprecated
     public static final NSValueTransformerName UnarchiveFromData = new NSValueTransformerName("UnarchiveFromData");
     /**
      * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
      */
+    @Deprecated
     public static final NSValueTransformerName KeyedUnarchiveFromData = new NSValueTransformerName("KeyedUnarchiveFromData");
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final NSValueTransformerName SecureUnarchiveFromData = new NSValueTransformerName("SecureUnarchiveFromData");
     /*</constants>*/
     
-    private static /*<name>*/NSValueTransformerName/*</name>*/[] values = new /*<name>*/NSValueTransformerName/*</name>*/[] {/*<value_list>*/NegateBoolean, IsNil, IsNotNil, UnarchiveFromData, KeyedUnarchiveFromData/*</value_list>*/};
+    private static /*<name>*/NSValueTransformerName/*</name>*/[] values = new /*<name>*/NSValueTransformerName/*</name>*/[] {/*<value_list>*/NegateBoolean, IsNil, IsNotNil, UnarchiveFromData, KeyedUnarchiveFromData, SecureUnarchiveFromData/*</value_list>*/};
     
     /*<name>*/NSValueTransformerName/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -157,14 +165,23 @@ import org.robovm.apple.dispatch.*;
         public static native NSString IsNotNil();
         /**
          * @since Available in iOS 3.0 and later.
+         * @deprecated Deprecated in iOS 12.0.
          */
+        @Deprecated
         @GlobalValue(symbol="NSUnarchiveFromDataTransformerName", optional=true)
         public static native NSString UnarchiveFromData();
         /**
          * @since Available in iOS 3.0 and later.
+         * @deprecated Deprecated in iOS 12.0.
          */
+        @Deprecated
         @GlobalValue(symbol="NSKeyedUnarchiveFromDataTransformerName", optional=true)
         public static native NSString KeyedUnarchiveFromData();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="NSSecureUnarchiveFromDataTransformerName", optional=true)
+        public static native NSString SecureUnarchiveFromData();
         /*</values>*/
     }
 }

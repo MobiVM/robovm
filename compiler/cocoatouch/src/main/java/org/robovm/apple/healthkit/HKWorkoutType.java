@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKWorkoutType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKWorkoutType() {}
+    protected HKWorkoutType() {}
     protected HKWorkoutType(Handle h, long handle) { super(h, handle); }
     protected HKWorkoutType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

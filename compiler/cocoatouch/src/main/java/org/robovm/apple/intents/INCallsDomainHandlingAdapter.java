@@ -62,7 +62,7 @@ import org.robovm.apple.corelocation.*;
     public void confirmSearchCallHistory(INSearchCallHistoryIntent intent, @Block VoidBlock1<INSearchCallHistoryIntentResponse> completion) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. resolveCallTypeForSearchCallHistory:withCompletion: is deprecated. Use resolveCallTypesForSearchCallHistory:withCompletion: instead
      */
     @Deprecated
     @NotImplemented("resolveCallTypeForSearchCallHistory:withCompletion:")

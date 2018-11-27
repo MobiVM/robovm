@@ -5,6 +5,8 @@ framework: PassKit
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/PassKit.framework/Headers/PassKit.h
+private_typedefs:
+    CGRect: '@ByVal org.robovm.apple.coregraphics.CGRect'
 typedefs:
     'void (^)(PKPassLibraryAddPassesStatus)': '@Block VoidBlock1<PKPassLibraryAddPassesStatus>'
     'void (^)(PKPaymentAuthorizationStatus)': '@Block VoidBlock1<PKPaymentAuthorizationStatus>'
@@ -27,6 +29,7 @@ enums:
     PKAddPaymentPassError: {}
     PKAutomaticPassPresentationSuppressionResult: {}
     PKPaymentErrorCode: {nserror: true, prefix: PKPayment} #since 11.0
+    PKAddPaymentPassStyle: {} #since 12.0
 
 classes:
     PKPassKitError:
@@ -146,6 +149,8 @@ classes:
                 name: createPaymentContactInvalidError
             '+paymentShippingAddressInvalidErrorWithKey:localizedDescription:':
                 name: createPaymentShippingAddressInvalidError
+            '+paymentShippingAddressUnserviceableErrorWithLocalizedDescription:':
+                name: createPaymentShippingAddressUnserviceableError
             '+paymentBillingAddressInvalidErrorWithKey:localizedDescription:':
                 name: createPaymentBillingAddressInvalidError
     PKPaymentSummaryItem: # DONE
@@ -170,6 +175,12 @@ classes:
         methods:
             '+canMakePaymentsUsingNetworks:capabilities:':
                 name: canMakePayments
+            '-initWithPaymentRequest:':
+                name: init
+            '-presentWithCompletion:':
+                name: present
+            '-dismissWithCompletion:':
+                name: dismiss
     PKSuicaPassProperties: {}
     PKPaymentAuthorizationResult: #since 11.0
         methods:
@@ -181,7 +192,10 @@ classes:
             '-init.*':
                 name: init
     PKPaymentRequestShippingMethodUpdate: {} #since 11.0
-    PKPaymentRequestUpdate: {} #since 11.0
+    PKPaymentRequestUpdate: #since 11.0
+        methods:
+            '-initWithPaymentSummaryItems:':
+                name: init
     PKTransitPassProperties: {} #since 11.3
 
 protocols:

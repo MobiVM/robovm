@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIDocument/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSFilePresenter, NSProgressReporting/*</implements>*/ {
+    /*<implements>*/implements NSFilePresenter, NSProgressReporting, UIUserActivityRestoring/*</implements>*/ {
 
     public static class Notifications {
         /**

@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INTextNoteContent(Handle h, long handle) { super(h, handle); }
     protected INTextNoteContent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithText:")
-    public INTextNoteContent(String text) { super((SkipInit) null); initObject(initWithText(text)); }
+    public INTextNoteContent(String text) { super((SkipInit) null); initObject(init(text)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "text")
@@ -59,6 +59,6 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithText:")
-    protected native @Pointer long initWithText(String text);
+    protected native @Pointer long init(String text);
     /*</methods>*/
 }

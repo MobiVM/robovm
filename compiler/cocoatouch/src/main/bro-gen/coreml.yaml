@@ -6,11 +6,16 @@ clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/CoreML.framework/Headers/CoreML.h
 typedefs: {}
+private_typedefs:
+    MTLCommandBuffer : org.robovm.apple.metal.MTLCommandBuffer
 
 enums:
     MLFeatureType: {} #since 11.0
     MLMultiArrayDataType: {} #since 11.0
     MLModelError: { nserror: true }
+    MLMultiArrayShapeConstraintType: {}
+    MLImageSizeConstraintType: {} #since 12.0
+    MLComputeUnits: {} #since 12.0
 
 classes:
     MLDictionaryConstraint: {} #since 11.0
@@ -25,6 +30,27 @@ classes:
             '+featureValueWithDictionary:error:':
                 name: create
                 throws: NSErrorException
+                constructor: true
+            '+featureValueWithInt64:':
+                name: create
+                constructor: true
+            '+featureValueWithDouble:':
+                name: create
+                constructor: true
+            '+featureValueWithString:':
+                name: create
+                constructor: true
+            '+featureValueWithMultiArray:':
+                name: create
+                constructor: true
+            '+featureValueWithPixelBuffer:':
+                name: create
+                constructor: true
+            '+featureValueWithSequence:':
+                name: create
+                constructor: true
+            '+undefinedFeatureValueWithType:':
+                name: create
                 constructor: true
     MLImageConstraint: {} #since 11.0
     MLModel: #since 11.0
@@ -41,7 +67,13 @@ classes:
             '+compileModelAtURL:error:':
                 throws: NSErrorException
                 name: compileModel
-
+            '+modelWithContentsOfURL:configuration:error:':
+                name: create
+                throws: NSErrorException
+                constructor: true
+            '-predictionsFromBatch:options:error:':
+                name: getPredictionsFromBatch
+                throws: NSErrorException
     MLModelDescription: {} #since 11.0
     MLMultiArray:  #since 11.0
         methods:
@@ -57,9 +89,60 @@ classes:
                 trim_after_first_colon: true
     MLMultiArrayConstraint: {} #since 11.0
     MLPredictionOptions: {} #since 11.0
+    MLArrayBatchProvider: #since 12.0
+        methods:
+            '-initWithDictionary:error:':
+                throws: NSErrorException
+                name: init
+            '-initWithFeatureProviderArray:':
+                name: init
+    MLImageSize: {} #since 12.0
+    MLImageSizeConstraint: {} #since 12.0
+    MLModelConfiguration: {} #since 12.0
+    MLMultiArrayShapeConstraint: {} #since 12.0
+    MLSequence: #since 12.0
+        methods:
+            '+emptySequenceWithType:':
+                name: create
+                constructor: true
+            '+sequenceWithStringArray:':
+                name: create0
+                constructor: true
+            '+sequenceWithInt64Array:':
+                name: create
+    MLSequenceConstraint: {} #since 12.0
 
 protocols:
     MLFeatureProvider: {} #since 11.0
+    MLBatchProvider: {} #since 12.0
+    MLCustomLayer: #since 11.2
+        methods:
+            '-initWithParameterDictionary:error:':
+                name: init
+                throws: NSErrorException
+            '-setWeightData:error:':
+                name: setWeightData
+                throws: NSErrorException
+            '-outputShapesForInputShapes:error:':
+                name: getOutputShapes
+                throws: NSErrorException
+            '-evaluateOnCPUWithInputs:outputs:error:':
+                name: evaluateOnCPU
+                throws: NSErrorException
+            '-encodeToCommandBuffer:inputs:outputs:error:':
+                name: encodeToCommandBuffer
+                throws: NSErrorException
+    MLCustomModel: #since 12.0
+        methods:
+            '-initWithModelDescription:parameterDictionary:error:':
+                name: init
+                throws: NSErrorException
+            '-predictionFromFeatures:options:error:':
+                name: getPredictionFromFeatures
+                throws: NSErrorException
+            '-predictionsFromBatch:options:error:':
+                name: getPredictionsFromBatch
+                throws: NSErrorException
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

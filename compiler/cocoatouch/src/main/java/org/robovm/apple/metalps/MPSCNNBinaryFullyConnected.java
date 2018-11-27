@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNBinaryFullyConnected/*</name>*/ 
     extends /*<extends>*/MPSCNNBinaryConvolution/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNBinaryFullyConnected.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNBinaryFullyConnected() {}
+    public MPSCNNBinaryFullyConnected() {}
     protected MPSCNNBinaryFullyConnected(Handle h, long handle) { super(h, handle); }
     protected MPSCNNBinaryFullyConnected(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:convolutionData:scaleValue:type:flags:")
@@ -55,6 +55,8 @@ import org.robovm.apple.metal.*;
     public MPSCNNBinaryFullyConnected(MTLDevice device, MPSCNNConvolutionDataSource convolutionData, FloatPtr outputBiasTerms, FloatPtr outputScaleTerms, FloatPtr inputBiasTerms, FloatPtr inputScaleTerms, MPSCNNBinaryConvolutionType type, MPSCNNBinaryConvolutionFlags flags) { super((SkipInit) null); initObject(init(device, convolutionData, outputBiasTerms, outputScaleTerms, inputBiasTerms, inputScaleTerms, type, flags)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNBinaryFullyConnected(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNBinaryFullyConnected(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

@@ -41,7 +41,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WKProcessPool/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class WKProcessPoolPtr extends Ptr<WKProcessPool, WKProcessPoolPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(WKProcessPool.class); }/*</bind>*/
@@ -54,7 +54,8 @@ import org.robovm.apple.security.*;
     public WKProcessPool(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

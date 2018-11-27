@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INCancelWorkoutIntent(Handle h, long handle) { super(h, handle); }
     protected INCancelWorkoutIntent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithWorkoutName:")
-    public INCancelWorkoutIntent(INSpeakableString workoutName) { super((SkipInit) null); initObject(initWithWorkoutName(workoutName)); }
+    public INCancelWorkoutIntent(INSpeakableString workoutName) { super((SkipInit) null); initObject(init(workoutName)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "workoutName")
@@ -59,6 +59,6 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithWorkoutName:")
-    protected native @Pointer long initWithWorkoutName(INSpeakableString workoutName);
+    protected native @Pointer long init(INSpeakableString workoutName);
     /*</methods>*/
 }

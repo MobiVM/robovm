@@ -52,6 +52,10 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 11.0 and later.
      */
     public UNNotificationCategory(String identifier, NSArray<UNNotificationAction> actions, NSArray<NSString> intentIdentifiers, String hiddenPreviewsBodyPlaceholder, UNNotificationCategoryOptions options) { super((Handle) null, create(identifier, actions, intentIdentifiers, hiddenPreviewsBodyPlaceholder, options)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public UNNotificationCategory(String identifier, NSArray<UNNotificationAction> actions, NSArray<NSString> intentIdentifiers, String hiddenPreviewsBodyPlaceholder, String categorySummaryFormat, UNNotificationCategoryOptions options) { super((Handle) null, create(identifier, actions, intentIdentifiers, hiddenPreviewsBodyPlaceholder, categorySummaryFormat, options)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public UNNotificationCategory(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -69,6 +73,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "hiddenPreviewsBodyPlaceholder")
     public native String getHiddenPreviewsBodyPlaceholder();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "categorySummaryFormat")
+    public native String getCategorySummaryFormat();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -81,6 +90,11 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:")
     protected static native @Pointer long create(String identifier, NSArray<UNNotificationAction> actions, NSArray<NSString> intentIdentifiers, String hiddenPreviewsBodyPlaceholder, UNNotificationCategoryOptions options);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:categorySummaryFormat:options:")
+    protected static native @Pointer long create(String identifier, NSArray<UNNotificationAction> actions, NSArray<NSString> intentIdentifiers, String hiddenPreviewsBodyPlaceholder, String categorySummaryFormat, UNNotificationCategoryOptions options);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

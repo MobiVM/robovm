@@ -47,7 +47,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKTileGroupRule/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKTileGroupRulePtr extends Ptr<SKTileGroupRule, SKTileGroupRulePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKTileGroupRule.class); }/*</bind>*/
@@ -74,6 +74,8 @@ import org.robovm.apple.metal.*;
     public native String getName();
     @Property(selector = "setName:")
     public native void setName(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

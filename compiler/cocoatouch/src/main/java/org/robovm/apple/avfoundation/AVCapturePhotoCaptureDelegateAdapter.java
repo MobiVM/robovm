@@ -71,14 +71,14 @@ import org.robovm.apple.audiotoolbox.*;
     public void didFinishProcessingPhoto(AVCapturePhotoOutput output, AVCapturePhoto photo, NSError error) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -captureOutput:didFinishProcessingPhoto:error: instead.
      */
     @Deprecated
     @NotImplemented("captureOutput:didFinishProcessingPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:")
     public void didFinishProcessingPhotoSampleBuffer(AVCapturePhotoOutput output, CMSampleBuffer photoSampleBuffer, CMSampleBuffer previewPhotoSampleBuffer, AVCaptureResolvedPhotoSettings resolvedSettings, AVCaptureBracketedStillImageSettings bracketSettings, NSError error) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -captureOutput:didFinishProcessingPhoto:error: instead.
      */
     @Deprecated
     @NotImplemented("captureOutput:didFinishProcessingRawPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:")

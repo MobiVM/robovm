@@ -170,7 +170,7 @@ import org.robovm.apple.corelocation.*;
     public static final HMCharacteristicType Model = new HMCharacteristicType("Model");
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated
     public static final HMCharacteristicType SerialNumber = new HMCharacteristicType("SerialNumber");
@@ -702,7 +702,7 @@ import org.robovm.apple.corelocation.*;
         public static native NSString Model();
         /**
          * @since Available in iOS 8.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. No longer supported
          */
         @Deprecated
         @GlobalValue(symbol="HMCharacteristicTypeSerialNumber", optional=true)

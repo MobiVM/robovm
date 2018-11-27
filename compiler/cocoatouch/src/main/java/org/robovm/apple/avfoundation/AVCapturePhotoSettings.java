@@ -87,6 +87,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVCaptureFlashMode getFlashMode();
     @Property(selector = "setFlashMode:")
     public native void setFlashMode(AVCaptureFlashMode v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "isAutoRedEyeReductionEnabled")
+    public native boolean isAutoRedEyeReductionEnabled();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setAutoRedEyeReductionEnabled:")
+    public native void setAutoRedEyeReductionEnabled(boolean v);
     @Property(selector = "isAutoStillImageStabilizationEnabled")
     public native boolean isAutoStillImageStabilizationEnabled();
     @Property(selector = "setAutoStillImageStabilizationEnabled:")
@@ -156,6 +166,26 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setCameraCalibrationDataDeliveryEnabled:")
     public native void setCameraCalibrationDataDeliveryEnabled(boolean v);
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "isPortraitEffectsMatteDeliveryEnabled")
+    public native boolean isPortraitEffectsMatteDeliveryEnabled();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setPortraitEffectsMatteDeliveryEnabled:")
+    public native void setPortraitEffectsMatteDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "embedsPortraitEffectsMatteInPhoto")
+    public native boolean embedsPortraitEffectsMatteInPhoto();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setEmbedsPortraitEffectsMatteInPhoto:")
+    public native void setEmbedsPortraitEffectsMatteInPhoto(boolean v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "metadata")
@@ -204,6 +234,21 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setEmbeddedThumbnailPhotoFormat:")
     public native void setEmbeddedThumbnailPhotoFormat(NSDictionary<NSString, ?> v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "availableRawEmbeddedThumbnailPhotoCodecTypes")
+    public native NSArray<NSString> getAvailableRawEmbeddedThumbnailPhotoCodecTypes();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "rawEmbeddedThumbnailPhotoFormat")
+    public native NSDictionary<NSString, ?> getRawEmbeddedThumbnailPhotoFormat();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setRawEmbeddedThumbnailPhotoFormat:")
+    public native void setRawEmbeddedThumbnailPhotoFormat(NSDictionary<NSString, ?> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INTemperatureResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INTemperatureResolutionResult() {}
+    protected INTemperatureResolutionResult() {}
     protected INTemperatureResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INTemperatureResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

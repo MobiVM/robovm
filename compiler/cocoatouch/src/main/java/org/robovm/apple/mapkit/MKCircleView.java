@@ -58,6 +58,17 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Method(selector = "initWithCircle:")
     public MKCircleView(MKCircle circle) { super((SkipInit) null); initObject(init(circle)); }
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
+    @Method(selector = "initWithOverlay:")
+    public MKCircleView(MKOverlay overlay) { super(overlay); }
+    @Method(selector = "initWithFrame:")
+    public MKCircleView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public MKCircleView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**

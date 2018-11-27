@@ -50,11 +50,36 @@ public enum /*<name>*/ARErrorCode/*</name>*/ implements NSErrorCode {
     SensorUnavailable(101L),
     SensorFailed(102L),
     CameraUnauthorized(103L),
+    MicrophoneUnauthorized(104L),
     WorldTrackingFailed(200L),
     /**
      * @since Available in iOS 11.3 and later.
      */
-    InvalidReferenceImage(300L);
+    InvalidReferenceImage(300L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    InvalidReferenceObject(301L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    InvalidWorldMap(302L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    InvalidConfiguration(303L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    InsufficientFeatures(400L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    ObjectMergeFailed(401L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    FileIOFailed(500L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(ARErrorCode.class); }/*</bind>*/

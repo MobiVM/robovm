@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNConcatenationNode/*</name>*/ 
     extends /*<extends>*/MPSNNFilterNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,11 +46,11 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSNNConcatenationNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSNNConcatenationNode() {}
+    protected MPSNNConcatenationNode() {}
     protected MPSNNConcatenationNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNConcatenationNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSources:")
-    public MPSNNConcatenationNode(NSArray<MPSNNImageNode> sourceNodes) { super((SkipInit) null); initObject(initWithSources(sourceNodes)); }
+    public MPSNNConcatenationNode(NSArray<MPSNNImageNode> sourceNodes) { super((SkipInit) null); initObject(init(sourceNodes)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -58,8 +58,6 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSources:")
-    protected native @Pointer long initWithSources(NSArray<MPSNNImageNode> sourceNodes);
-    @Method(selector = "nodeWithSources:")
-    public static native MPSNNConcatenationNode nodeWithSources(NSArray<MPSNNImageNode> sourceNodes);
+    protected native @Pointer long init(NSArray<MPSNNImageNode> sourceNodes);
     /*</methods>*/
 }

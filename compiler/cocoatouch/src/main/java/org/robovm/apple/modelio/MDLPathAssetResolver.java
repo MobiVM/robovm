@@ -49,7 +49,7 @@ import org.robovm.apple.coregraphics.*;
     protected MDLPathAssetResolver(Handle h, long handle) { super(h, handle); }
     protected MDLPathAssetResolver(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPath:")
-    public MDLPathAssetResolver(String path) { super((SkipInit) null); initObject(initWithPath(path)); }
+    public MDLPathAssetResolver(String path) { super((SkipInit) null); initObject(init(path)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "path")
@@ -60,7 +60,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPath:")
-    protected native @Pointer long initWithPath(String path);
+    protected native @Pointer long init(String path);
     @Method(selector = "canResolveAssetNamed:")
     public native boolean canResolveAssetNamed(String name);
     @Method(selector = "resolveAssetNamed:")

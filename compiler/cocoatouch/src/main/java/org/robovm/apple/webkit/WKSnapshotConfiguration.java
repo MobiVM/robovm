@@ -53,9 +53,9 @@ import org.robovm.apple.security.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rect")
-    public native int getRect();
+    public native @ByVal CGRect getRect();
     @Property(selector = "setRect:")
-    public native void setRect(int v);
+    public native void setRect(@ByVal CGRect v);
     @Property(selector = "snapshotWidth")
     public native NSNumber getSnapshotWidth();
     @Property(selector = "setSnapshotWidth:")

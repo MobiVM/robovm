@@ -44,7 +44,7 @@ public enum /*<name>*/INRequestRideIntentResponseCode/*</name>*/ implements Valu
     Ready(1L),
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. INRequestRideIntentResponseCodeInProgress is deprecated.
      */
     @Deprecated
     InProgress(2L),

@@ -37,7 +37,8 @@ import org.robovm.apple.security.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/WKNavigationDelegate/*</name>*/ 
+@ForceLinkClass(WKNSURLAuthenticationChallenge.class) // FIXME: manually added to workaround issue #336
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/WKNavigationDelegate/*</name>*/
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/

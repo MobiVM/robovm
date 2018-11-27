@@ -52,6 +52,17 @@ import org.robovm.apple.uikit.*;
     public GKMatchmakerViewController(GKMatchRequest request) { super((SkipInit) null); initObject(init(request)); }
     @Method(selector = "initWithInvite:")
     public GKMatchmakerViewController(GKInvite invite) { super((SkipInit) null); initObject(init(invite)); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    public GKMatchmakerViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
+    @Method(selector = "initWithRootViewController:")
+    public GKMatchmakerViewController(UIViewController rootViewController) { super(rootViewController); }
+    @Method(selector = "initWithNibName:bundle:")
+    public GKMatchmakerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public GKMatchmakerViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "matchmakerDelegate")
@@ -92,7 +103,7 @@ import org.robovm.apple.uikit.*;
     public native void addPlayersToMatch(GKMatch match);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use setHostedPlayer:didConnect:
      */
     @Deprecated
     @Method(selector = "setHostedPlayer:connected:")

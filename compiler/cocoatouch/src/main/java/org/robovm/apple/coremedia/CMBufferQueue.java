@@ -407,12 +407,12 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMBufferQueueInstallTrigger", optional=true)
-    protected native OSStatus installTrigger0(FunctionPtr triggerCallback, @Pointer long triggerRefcon, CMBufferQueueTriggerCondition triggerCondition, @ByVal CMTime triggerTime, CMBufferQueueTriggerToken.CMBufferQueueTriggerTokenPtr triggerTokenOut);
+    protected native OSStatus installTrigger0(FunctionPtr callback, @Pointer long refcon, CMBufferQueueTriggerCondition condition, @ByVal CMTime time, CMBufferQueueTriggerToken.CMBufferQueueTriggerTokenPtr triggerTokenOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMBufferQueueInstallTriggerWithIntegerThreshold", optional=true)
-    protected native OSStatus installTrigger0(FunctionPtr triggerCallback, @Pointer long triggerRefcon, CMBufferQueueTriggerCondition triggerCondition, @MachineSizedSInt long triggerThreshold, CMBufferQueueTriggerToken.CMBufferQueueTriggerTokenPtr triggerTokenOut);
+    protected native OSStatus installTrigger0(FunctionPtr callback, @Pointer long refcon, CMBufferQueueTriggerCondition condition, @MachineSizedSInt long threshold, CMBufferQueueTriggerToken.CMBufferQueueTriggerTokenPtr triggerTokenOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -432,6 +432,6 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMBufferQueueSetValidationCallback", optional=true)
-    protected native OSStatus setValidationCallback0(FunctionPtr validationCallback, @Pointer long validationRefCon);
+    protected native OSStatus setValidationCallback0(FunctionPtr callback, @Pointer long refcon);
     /*</methods>*/
 }

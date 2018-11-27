@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNLocalContrastNormalizationGradient/*</name>*/ 
     extends /*<extends>*/MPSCNNGradientKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,6 +53,10 @@ import org.robovm.apple.metal.*;
     public MPSCNNLocalContrastNormalizationGradient(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight) { super((SkipInit) null); initObject(init(device, kernelWidth, kernelHeight)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNLocalContrastNormalizationGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithDevice:")
+    public MPSCNNLocalContrastNormalizationGradient(MTLDevice device) { super(device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNLocalContrastNormalizationGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alpha")
@@ -79,10 +83,6 @@ import org.robovm.apple.metal.*;
     public native float getPs();
     @Property(selector = "setPs:")
     public native void setPs(float v);
-    @Property(selector = "kernelWidth")
-    public native @MachineSizedUInt long getKernelWidth();
-    @Property(selector = "kernelHeight")
-    public native @MachineSizedUInt long getKernelHeight();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

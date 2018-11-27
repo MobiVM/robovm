@@ -34,7 +34,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 3.0 and later.
- * @deprecated Deprecated in iOS 7.0.
+ * @deprecated Deprecated in iOS 7.0. Use GKVoiceChat instead
  */
 @Deprecated
 /*</javadoc>*/
@@ -52,8 +52,18 @@ import org.robovm.apple.uikit.*;
     protected GKVoiceChatService(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
     @Property(selector = "client")
     public native GKVoiceChatClient getClient();
+    /**
+     * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
     @Property(selector = "setClient:", strongRef = true)
     public native void setClient(GKVoiceChatClient v);
     @Property(selector = "isMicrophoneMuted")

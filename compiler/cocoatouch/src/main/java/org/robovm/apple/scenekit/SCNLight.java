@@ -210,8 +210,6 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getSpotOuterAngle();
     @Property(selector = "setSpotOuterAngle:")
     public native void setSpotOuterAngle(@MachineSizedFloat double v);
-    @Property(selector = "gobo")
-    public native SCNMaterialProperty getGobo();
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -222,15 +220,17 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setIESProfileURL:")
     public native void setIESProfileURL(NSURL v);
-    @Property(selector = "categoryBitMask")
-    public native @MachineSizedUInt long getCategoryBitMask();
-    @Property(selector = "setCategoryBitMask:")
-    public native void setCategoryBitMask(@MachineSizedUInt long v);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "sphericalHarmonicsCoefficients")
     public native NSData getSphericalHarmonicsCoefficients();
+    @Property(selector = "gobo")
+    public native SCNMaterialProperty getGobo();
+    @Property(selector = "categoryBitMask")
+    public native @MachineSizedUInt long getCategoryBitMask();
+    @Property(selector = "setCategoryBitMask:")
+    public native void setCategoryBitMask(@MachineSizedUInt long v);
     @Property(selector = "animationKeys")
     public native NSArray<NSString> getAnimationKeys();
     @Property(selector = "technique")
@@ -281,28 +281,28 @@ import org.robovm.apple.avfoundation.*;
     public native CAAnimation getAnimation(String key);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
     @Method(selector = "pauseAnimationForKey:")
     public native void pauseAnimation(String key);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
     @Method(selector = "resumeAnimationForKey:")
     public native void resumeAnimation(String key);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setSpeed:] instead
      */
     @Deprecated
     @Method(selector = "setSpeed:forAnimationKey:")
     public native void setSpeed(@MachineSizedFloat double speed, String key);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer paused] instead
      */
     @Deprecated
     @Method(selector = "isAnimationForKeyPaused:")

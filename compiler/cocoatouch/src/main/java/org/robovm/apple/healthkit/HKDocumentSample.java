@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKDocumentSample.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKDocumentSample() {}
+    protected HKDocumentSample() {}
     protected HKDocumentSample(Handle h, long handle) { super(h, handle); }
     protected HKDocumentSample(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

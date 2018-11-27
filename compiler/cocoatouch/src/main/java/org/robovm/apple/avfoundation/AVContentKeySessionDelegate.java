@@ -73,8 +73,18 @@ import org.robovm.apple.audiotoolbox.*;
     void didFailWithError(AVContentKeySession session, AVContentKeyRequest keyRequest, NSError err);
     @Method(selector = "contentKeySession:shouldRetryContentKeyRequest:reason:")
     boolean shouldRetryContentKeyRequest(AVContentKeySession session, AVContentKeyRequest keyRequest, String retryReason);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "contentKeySession:contentKeyRequestDidSucceed:")
+    void contentKeyRequestDidSucceed(AVContentKeySession session, AVContentKeyRequest keyRequest);
     @Method(selector = "contentKeySessionContentProtectionSessionIdentifierDidChange:")
     void contentKeySessionContentProtectionSessionIdentifierDidChange(AVContentKeySession session);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "contentKeySessionDidGenerateExpiredSessionReport:")
+    void contentKeySessionDidGenerateExpiredSessionReport(AVContentKeySession session);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

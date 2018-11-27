@@ -59,14 +59,14 @@ import org.robovm.apple.contacts.*;
     public native PKPaymentMethod getPaymentMethod();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use paymentMethod instead
      */
     @Deprecated
     @Property(selector = "paymentInstrumentName")
     public native String getPaymentInstrumentName();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use paymentMethod instead
      */
     @Deprecated
     @Property(selector = "paymentNetwork")

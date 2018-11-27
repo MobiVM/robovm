@@ -45,7 +45,8 @@ public enum /*<name>*/CGColorSpaceModel/*</name>*/ implements ValuedEnum {
     Lab(3L),
     DeviceN(4L),
     Indexed(5L),
-    Pattern(6L);
+    Pattern(6L),
+    XYZ(7L);
     /*</values>*/
 
     private final long n;

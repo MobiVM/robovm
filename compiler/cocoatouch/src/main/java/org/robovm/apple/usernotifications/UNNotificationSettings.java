@@ -72,6 +72,16 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "showPreviewsSetting")
     public native UNShowPreviewsSetting getShowPreviewsSetting();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "criticalAlertSetting")
+    public native UNNotificationSetting getCriticalAlertSetting();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "providesAppNotificationSettings")
+    public native boolean providesAppNotificationSettings();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

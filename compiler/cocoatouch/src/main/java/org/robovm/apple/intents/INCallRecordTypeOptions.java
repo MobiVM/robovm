@@ -44,7 +44,13 @@ public final class /*<name>*/INCallRecordTypeOptions/*</name>*/ extends Bits</*<
     public static final INCallRecordTypeOptions Outgoing = new INCallRecordTypeOptions(1L);
     public static final INCallRecordTypeOptions Missed = new INCallRecordTypeOptions(2L);
     public static final INCallRecordTypeOptions Received = new INCallRecordTypeOptions(4L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     public static final INCallRecordTypeOptions Latest = new INCallRecordTypeOptions(8L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     public static final INCallRecordTypeOptions Voicemail = new INCallRecordTypeOptions(16L);
     /*</values>*/
 

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNDropoutGradientState/*</name>*/ 
     extends /*<extends>*/MPSNNGradientState/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,19 @@ import org.robovm.apple.metal.*;
     protected MPSCNNDropoutGradientState() {}
     protected MPSCNNDropoutGradientState(Handle h, long handle) { super(h, handle); }
     protected MPSCNNDropoutGradientState(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:bufferSize:")
+    public MPSCNNDropoutGradientState(MTLDevice device, @MachineSizedUInt long bufferSize) { super(device, bufferSize); }
+    @Method(selector = "initWithDevice:textureDescriptor:")
+    public MPSCNNDropoutGradientState(MTLDevice device, MTLTextureDescriptor descriptor) { super(device, descriptor); }
+    @Method(selector = "initWithResource:")
+    public MPSCNNDropoutGradientState(MTLResource resource) { super(resource); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:resourceList:")
+    public MPSCNNDropoutGradientState(MTLDevice device, MPSStateResourceList resourceList) { super(device, resourceList); }
+    @Method(selector = "initWithResources:")
+    public MPSCNNDropoutGradientState(NSArray<?> resources) { super(resources); }
     /*</constructors>*/
     /*<properties>*/
     

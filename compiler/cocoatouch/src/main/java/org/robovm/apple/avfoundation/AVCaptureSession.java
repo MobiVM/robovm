@@ -214,6 +214,11 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="AVCaptureSessionInterruptionReasonKey", optional=true)
     protected static native NSString NotificationInterruptionReasonKey();
     /**
+     * @since Available in iOS 11.1 and later.
+     */
+    @GlobalValue(symbol="AVCaptureSessionInterruptionSystemPressureStateKey", optional=true)
+    public static native String InterruptionSystemPressureStateKey();
+    /**
      * @since Available in iOS 4.0 and later.
      */
     @GlobalValue(symbol="AVCaptureSessionInterruptionEndedNotification", optional=true)

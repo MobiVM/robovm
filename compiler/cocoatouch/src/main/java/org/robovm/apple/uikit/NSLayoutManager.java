@@ -101,6 +101,16 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "hasNonContiguousLayout")
     public native boolean hasNonContiguousLayout();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "limitsLayoutForSuspiciousContents")
+    public native boolean isLimitsLayoutForSuspiciousContents();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setLimitsLayoutForSuspiciousContents:")
+    public native void setLimitsLayoutForSuspiciousContents(boolean v);
     @Property(selector = "numberOfGlyphs")
     public native @MachineSizedUInt long getNumberOfGlyphs();
     @Property(selector = "extraLineFragmentRect")

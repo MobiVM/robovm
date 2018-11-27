@@ -48,7 +48,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVVideoCompositionLayerInstruction/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
     /*<ptr>*/public static class AVVideoCompositionLayerInstructionPtr extends Ptr<AVVideoCompositionLayerInstruction, AVVideoCompositionLayerInstructionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AVVideoCompositionLayerInstruction.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
@@ -57,10 +57,14 @@ import org.robovm.apple.audiotoolbox.*;
     @Deprecated protected AVVideoCompositionLayerInstruction(long handle) { super(handle); }
     protected AVVideoCompositionLayerInstruction(Handle h, long handle) { super(h, handle); }
     protected AVVideoCompositionLayerInstruction(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public AVVideoCompositionLayerInstruction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "trackID")
     public native int getTrackID();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public AVTimeRamp<CGAffineTransform> getTransformRamp(CMTime time) {
@@ -103,5 +107,9 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "getCropRectangleRampForTime:startCropRectangle:endCropRectangle:timeRange:")
     protected native boolean getCropRectangleRamp(@ByVal CMTime time, CGRect.CGRectPtr startCropRectangle, CGRect.CGRectPtr endCropRectangle, CMTimeRange.CMTimeRangePtr timeRange);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

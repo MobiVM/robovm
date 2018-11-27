@@ -51,6 +51,7 @@ public enum /*<name>*/CNErrorCode/*</name>*/ implements NSErrorCode {
     ContainmentCycle(202L),
     ContainmentScope(203L),
     ParentRecordDoesNotExist(204L),
+    RecordIdentifierInvalid(205L),
     ValidationMultipleErrors(300L),
     ValidationTypeMismatch(301L),
     ValidationConfigurationError(302L),
@@ -61,7 +62,11 @@ public enum /*<name>*/CNErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 11.0 and later.
      */
-    VCardMalformed(700L);
+    VCardMalformed(700L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    VCardSummarizationError(701L);
     /*</values>*/
 
     /*<bind>*/

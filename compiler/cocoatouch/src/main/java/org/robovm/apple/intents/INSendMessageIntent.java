@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public INSendMessageIntent(NSArray<INPerson> recipients, String content, INSpeakableString speakableGroupName, String conversationIdentifier, String serviceName, INPerson sender) { super((SkipInit) null); initObject(init(recipients, content, speakableGroupName, conversationIdentifier, serviceName, sender)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithRecipients:content:groupName:serviceName:sender:")
@@ -83,7 +83,7 @@ import org.robovm.apple.corelocation.*;
     public native INPerson getSender();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use speakableGroupNames instead
      */
     @Deprecated
     @Property(selector = "groupName")
@@ -98,7 +98,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(NSArray<INPerson> recipients, String content, INSpeakableString speakableGroupName, String conversationIdentifier, String serviceName, INPerson sender);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithRecipients:content:groupName:serviceName:sender:")

@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
     public SKTransformNode() {}
     protected SKTransformNode(Handle h, long handle) { super(h, handle); }
     protected SKTransformNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SKTransformNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "xRotation")

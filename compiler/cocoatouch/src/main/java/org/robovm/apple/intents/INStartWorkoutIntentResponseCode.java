@@ -44,7 +44,7 @@ public enum /*<name>*/INStartWorkoutIntentResponseCode/*</name>*/ implements Val
     Ready(1L),
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. INStartWorkoutIntentResponseCodeContinueInApp is deprecated on iOS. Please use INStartWorkoutIntentResponseCodeHandleInApp instead
      */
     @Deprecated
     ContinueInApp(2L),
@@ -55,11 +55,11 @@ public enum /*<name>*/INStartWorkoutIntentResponseCode/*</name>*/ implements Val
     /**
      * @since Available in iOS 11.0 and later.
      */
-    Success(7L),
+    HandleInApp(7L),
     /**
      * @since Available in iOS 11.0 and later.
      */
-    HandleInApp(8L);
+    Success(8L);
     /*</values>*/
 
     /*<bind>*/

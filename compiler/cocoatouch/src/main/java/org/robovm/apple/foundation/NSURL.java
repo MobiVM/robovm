@@ -412,6 +412,11 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     @Method(selector = "initAbsoluteURLWithDataRepresentation:relativeToURL:")
     protected native @Pointer long initAbsoluteURL(NSData data, NSURL baseURL);
     /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Method(selector = "getFileSystemRepresentation:maxLength:")
+    public native boolean getFileSystemRepresentation(BytePtr buffer, @MachineSizedUInt long maxBufferLength);
+    /**
      * @since Available in iOS 4.0 and later.
      */
     public boolean checkResourceIsReachable() throws NSErrorException {

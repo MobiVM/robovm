@@ -48,6 +48,8 @@ import org.robovm.apple.corelocation.*;
     protected HMMutableDurationEvent() {}
     protected HMMutableDurationEvent(Handle h, long handle) { super(h, handle); }
     protected HMMutableDurationEvent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDuration:")
+    public HMMutableDurationEvent(double duration) { super(duration); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "duration")

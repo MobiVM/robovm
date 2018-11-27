@@ -74,6 +74,6 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "getConfiguredSSIDsWithCompletionHandler:")
-    public native void getConfiguredSSIDsWithCompletionHandler(@Block VoidBlock1<NSArray<NSString>> completionHandler);
+    public native void getConfiguredSSIDs(@Block VoidBlock1<NSArray<NSString>> completionHandler);
     /*</methods>*/
 }

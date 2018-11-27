@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.NSObject.SkipInit;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMapTable/*</name>*/ <K extends NSObject, V extends NSObject>
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding, NSFastEnumeration/*</implements>*/, Map<K, V> {
+    /*<implements>*/implements NSSecureCoding, NSFastEnumeration/*</implements>*/, Map<K, V> {
 
     public static class NSMapTablePtr<K extends NSObject, V extends NSObject> extends Ptr<NSMapTable<K, V>, NSMapTablePtr<K, V>> {}
     
@@ -187,6 +187,8 @@ import org.robovm.apple.foundation.NSObject.SkipInit;
     /*<properties>*/
     @Property(selector = "count")
     protected native @MachineSizedUInt long getCount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     

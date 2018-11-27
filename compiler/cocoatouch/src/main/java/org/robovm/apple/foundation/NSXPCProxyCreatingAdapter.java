@@ -59,11 +59,11 @@ import org.robovm.apple.dispatch.*;
     @NotImplemented("remoteObjectProxy")
     public NSObject remoteObjectProxy() { return null; }
     @NotImplemented("remoteObjectProxyWithErrorHandler:")
-    public NSObject remoteObjectProxyWithErrorHandler(@Block VoidBlock1<NSError> handler) { return null; }
+    public NSObject remoteObjectProxy(@Block VoidBlock1<NSError> handler) { return null; }
     /**
      * @since Available in iOS 9.0 and later.
      */
     @NotImplemented("synchronousRemoteObjectProxyWithErrorHandler:")
-    public NSObject synchronousRemoteObjectProxyWithErrorHandler(@Block VoidBlock1<NSError> handler) { return null; }
+    public NSObject synchronousRemoteObjectProxy(@Block VoidBlock1<NSError> handler) { return null; }
     /*</methods>*/
 }

@@ -38,8 +38,8 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/HKBloodGlucoseMealTime/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    reprandial(1L),
-    ostprandial(2L);
+    Preprandial(1L),
+    Postprandial(2L);
     /*</values>*/
 
     /*<bind>*/

@@ -79,6 +79,16 @@ import org.robovm.apple.uikit.*;
     public native GCControllerButtonInput getLeftTrigger();
     @Property(selector = "rightTrigger")
     public native GCControllerButtonInput getRightTrigger();
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    @Property(selector = "leftThumbstickButton")
+    public native GCControllerButtonInput getLeftThumbstickButton();
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    @Property(selector = "rightThumbstickButton")
+    public native GCControllerButtonInput getRightThumbstickButton();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

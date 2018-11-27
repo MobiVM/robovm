@@ -48,7 +48,11 @@ public enum /*<name>*/SCNGeometryPrimitiveType/*</name>*/ implements ValuedEnum 
     Triangles(0L),
     TriangleStrip(1L),
     Line(2L),
-    Point(3L);
+    Point(3L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    Polygon(4L);
     /*</values>*/
 
     /*<bind>*/

@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKActivitySummaryQuery.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKActivitySummaryQuery() {}
+    protected HKActivitySummaryQuery() {}
     protected HKActivitySummaryQuery(Handle h, long handle) { super(h, handle); }
     protected HKActivitySummaryQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPredicate:resultsHandler:")

@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     protected GKSphereObstacle(Handle h, long handle) { super(h, handle); }
     protected GKSphereObstacle(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRadius:")
-    public GKSphereObstacle(float radius) { super((SkipInit) null); initObject(initWithRadius(radius)); }
+    public GKSphereObstacle(float radius) { super((SkipInit) null); initObject(init(radius)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "radius")
@@ -66,8 +66,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithRadius:")
-    protected native @Pointer long initWithRadius(float radius);
-    @Method(selector = "obstacleWithRadius:")
-    public static native GKSphereObstacle obstacleWithRadius(float radius);
+    protected native @Pointer long init(float radius);
     /*</methods>*/
 }

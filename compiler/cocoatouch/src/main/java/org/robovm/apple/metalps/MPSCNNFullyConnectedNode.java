@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNFullyConnectedNode/*</name>*/ 
     extends /*<extends>*/MPSCNNConvolutionNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNFullyConnectedNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNFullyConnectedNode() {}
+    protected MPSCNNFullyConnectedNode() {}
     protected MPSCNNFullyConnectedNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNFullyConnectedNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:weights:")

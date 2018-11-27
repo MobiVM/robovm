@@ -57,6 +57,9 @@ import org.robovm.apple.audiotoolbox.*;
     public AVAudioUnitSampler() {}
     protected AVAudioUnitSampler(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitSampler(SkipInit skipInit) { super(skipInit); }
+    @WeaklyLinked
+    @Method(selector = "initWithAudioComponentDescription:")
+    public AVAudioUnitSampler(@ByVal AudioComponentDescription description) { super(description); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "stereoPan")

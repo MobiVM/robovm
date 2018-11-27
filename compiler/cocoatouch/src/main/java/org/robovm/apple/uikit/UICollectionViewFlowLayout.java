@@ -56,6 +56,8 @@ import org.robovm.apple.intents.*;
     public UICollectionViewFlowLayout() {}
     protected UICollectionViewFlowLayout(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewFlowLayout(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public UICollectionViewFlowLayout(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "minimumLineSpacing")

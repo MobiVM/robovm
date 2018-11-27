@@ -65,6 +65,26 @@ public final class /*<name>*/INPhotoAttributeOptions/*</name>*/ extends Bits</*<
     public static final INPhotoAttributeOptions MonoFilter = new INPhotoAttributeOptions(2097152L);
     public static final INPhotoAttributeOptions FadeFilter = new INPhotoAttributeOptions(4194304L);
     public static final INPhotoAttributeOptions ProcessFilter = new INPhotoAttributeOptions(8388608L);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final INPhotoAttributeOptions PortraitPhoto = new INPhotoAttributeOptions(16777216L);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final INPhotoAttributeOptions LivePhoto = new INPhotoAttributeOptions(33554432L);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final INPhotoAttributeOptions LoopPhoto = new INPhotoAttributeOptions(67108864L);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final INPhotoAttributeOptions BouncePhoto = new INPhotoAttributeOptions(134217728L);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final INPhotoAttributeOptions LongExposurePhoto = new INPhotoAttributeOptions(268435456L);
     /*</values>*/
 
     /*<bind>*/

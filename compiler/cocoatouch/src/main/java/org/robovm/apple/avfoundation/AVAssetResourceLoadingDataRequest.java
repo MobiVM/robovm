@@ -74,6 +74,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "respondWithData:")
-    public native void respondWithData(NSData data);
+    public native void respond(NSData data);
     /*</methods>*/
 }

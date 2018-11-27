@@ -49,7 +49,7 @@ import org.robovm.apple.coregraphics.*;
     protected MDLVertexBufferLayout(Handle h, long handle) { super(h, handle); }
     protected MDLVertexBufferLayout(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithStride:")
-    public MDLVertexBufferLayout(@MachineSizedUInt long stride) { super((SkipInit) null); initObject(initWithStride(stride)); }
+    public MDLVertexBufferLayout(@MachineSizedUInt long stride) { super((SkipInit) null); initObject(init(stride)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "stride")
@@ -60,6 +60,6 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithStride:")
-    protected native @Pointer long initWithStride(@MachineSizedUInt long stride);
+    protected native @Pointer long init(@MachineSizedUInt long stride);
     /*</methods>*/
 }

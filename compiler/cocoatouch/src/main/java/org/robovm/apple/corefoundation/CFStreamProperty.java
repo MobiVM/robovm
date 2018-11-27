@@ -97,9 +97,21 @@ import org.robovm.apple.coretext.*;
     public static final CFStreamProperty SocketNativeHandle = new CFStreamProperty("SocketNativeHandle");
     public static final CFStreamProperty SocketRemoteHostName = new CFStreamProperty("SocketRemoteHostName");
     public static final CFStreamProperty SocketRemotePortNumber = new CFStreamProperty("SocketRemotePortNumber");
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    public static final CFStreamProperty SOCKSProxy = new CFStreamProperty("SOCKSProxy");
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    public static final CFStreamProperty SocketSecurityLevel = new CFStreamProperty("SocketSecurityLevel");
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    public static final CFStreamProperty ShouldCloseNativeSocket = new CFStreamProperty("ShouldCloseNativeSocket");
     /*</constants>*/
     
-    private static /*<name>*/CFStreamProperty/*</name>*/[] values = new /*<name>*/CFStreamProperty/*</name>*/[] {/*<value_list>*/DataWritten, AppendToFile, FileCurrentOffset, SocketNativeHandle, SocketRemoteHostName, SocketRemotePortNumber/*</value_list>*/};
+    private static /*<name>*/CFStreamProperty/*</name>*/[] values = new /*<name>*/CFStreamProperty/*</name>*/[] {/*<value_list>*/DataWritten, AppendToFile, FileCurrentOffset, SocketNativeHandle, SocketRemoteHostName, SocketRemotePortNumber, SOCKSProxy, SocketSecurityLevel, ShouldCloseNativeSocket/*</value_list>*/};
     
     /*<name>*/CFStreamProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -134,6 +146,21 @@ import org.robovm.apple.coretext.*;
         public static native CFString SocketRemoteHostName();
         @GlobalValue(symbol="kCFStreamPropertySocketRemotePortNumber", optional=true)
         public static native CFString SocketRemotePortNumber();
+        /**
+         * @since Available in iOS 2.0 and later.
+         */
+        @GlobalValue(symbol="kCFStreamPropertySOCKSProxy", optional=true)
+        public static native CFString SOCKSProxy();
+        /**
+         * @since Available in iOS 2.0 and later.
+         */
+        @GlobalValue(symbol="kCFStreamPropertySocketSecurityLevel", optional=true)
+        public static native CFString SocketSecurityLevel();
+        /**
+         * @since Available in iOS 2.0 and later.
+         */
+        @GlobalValue(symbol="kCFStreamPropertyShouldCloseNativeSocket", optional=true)
+        public static native CFString ShouldCloseNativeSocket();
         /*</values>*/
     }
 }

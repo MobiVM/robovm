@@ -81,7 +81,7 @@ import org.robovm.apple.uikit.*;
     void wantsToQuitMatch(GKPlayer player, GKTurnBasedMatch match);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use didRequestMatchWithOtherPlayers
      */
     @Deprecated
     @Method(selector = "player:didRequestMatchWithPlayers:")

@@ -175,7 +175,11 @@ public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
-    IncompatibleHomeHub(92L);
+    IncompatibleHomeHub(92L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    ObjectWithSimilarNameExists(95L);
     /*</values>*/
 
     /*<bind>*/

@@ -50,7 +50,7 @@ import org.robovm.apple.uikit.*;
     protected MSMessage(Handle h, long handle) { super(h, handle); }
     protected MSMessage(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSession:")
-    public MSMessage(MSSession session) { super((SkipInit) null); initObject(initWithSession(session)); }
+    public MSMessage(MSSession session) { super((SkipInit) null); initObject(init(session)); }
     @Method(selector = "initWithCoder:")
     public MSMessage(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -94,7 +94,7 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSession:")
-    protected native @Pointer long initWithSession(MSSession session);
+    protected native @Pointer long init(MSSession session);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

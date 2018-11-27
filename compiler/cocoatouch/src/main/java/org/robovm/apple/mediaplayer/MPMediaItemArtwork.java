@@ -56,7 +56,7 @@ import org.robovm.apple.coregraphics.*;
     public MPMediaItemArtwork(@ByVal CGSize boundsSize, @Block("(@ByVal)") Block1<CGSize, UIImage> requestHandler) { super((SkipInit) null); initObject(init(boundsSize, requestHandler)); }
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use -initWithBoundsSize:requestHandler:
      */
     @Deprecated
     @Method(selector = "initWithImage:")
@@ -67,7 +67,7 @@ import org.robovm.apple.coregraphics.*;
     public native @ByVal CGRect getBounds();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. cropRect is no longer used
      */
     @Deprecated
     @Property(selector = "imageCropRect")
@@ -84,7 +84,7 @@ import org.robovm.apple.coregraphics.*;
     public native UIImage getImage(@ByVal CGSize size);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use -initWithBoundsSize:requestHandler:
      */
     @Deprecated
     @Method(selector = "initWithImage:")

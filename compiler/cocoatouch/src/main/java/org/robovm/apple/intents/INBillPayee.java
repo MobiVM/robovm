@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INBillPayee(Handle h, long handle) { super(h, handle); }
     protected INBillPayee(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNickname:number:organizationName:")
-    public INBillPayee(INSpeakableString nickname, String accountNumber, INSpeakableString organizationName) { super((SkipInit) null); initObject(init(nickname, accountNumber, organizationName)); }
+    public INBillPayee(INSpeakableString nickname, String number, INSpeakableString organizationName) { super((SkipInit) null); initObject(init(nickname, number, organizationName)); }
     @Method(selector = "initWithCoder:")
     public INBillPayee(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -67,7 +67,7 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithNickname:number:organizationName:")
-    protected native @Pointer long init(INSpeakableString nickname, String accountNumber, INSpeakableString organizationName);
+    protected native @Pointer long init(INSpeakableString nickname, String number, INSpeakableString organizationName);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

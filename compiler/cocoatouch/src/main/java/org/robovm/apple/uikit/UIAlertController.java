@@ -57,6 +57,10 @@ import org.robovm.apple.intents.*;
     protected UIAlertController(Handle h, long handle) { super(h, handle); }
     protected UIAlertController(SkipInit skipInit) { super(skipInit); }
     public UIAlertController(String title, String message, UIAlertControllerStyle preferredStyle) { super((Handle) null, create(title, message, preferredStyle)); retain(getHandle()); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UIAlertController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public UIAlertController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "actions")

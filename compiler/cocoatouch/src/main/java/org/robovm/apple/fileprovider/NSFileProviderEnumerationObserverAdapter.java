@@ -54,6 +54,6 @@ import org.robovm.apple.coregraphics.*;
     @NotImplemented("finishEnumeratingUpToPage:")
     public void finishEnumeratingUpToPage(NSData nextPage) {}
     @NotImplemented("finishEnumeratingWithError:")
-    public void finishEnumeratingWithError(NSError error) {}
+    public void finishEnumerating(NSError error) {}
     /*</methods>*/
 }

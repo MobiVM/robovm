@@ -51,10 +51,9 @@ import org.robovm.apple.dispatch.*;
     public MKOverlayPathRenderer() {}
     protected MKOverlayPathRenderer(Handle h, long handle) { super(h, handle); }
     protected MKOverlayPathRenderer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithOverlay:")
+    public MKOverlayPathRenderer(MKOverlay overlay) { super(overlay); }
     /*</constructors>*/
-    public MKOverlayPathRenderer(MKOverlay overlay) {
-    	super(overlay);
-    }
     /*<properties>*/
     @Property(selector = "fillColor")
     public native UIColor getFillColor();

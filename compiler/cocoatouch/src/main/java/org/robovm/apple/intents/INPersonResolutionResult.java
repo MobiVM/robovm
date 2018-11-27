@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INPersonResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INPersonResolutionResult() {}
+    protected INPersonResolutionResult() {}
     protected INPersonResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INPersonResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

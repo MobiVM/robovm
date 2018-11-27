@@ -5,6 +5,10 @@ framework: PhotosUI
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/PhotosUI.framework/Headers/PhotosUI.h
+
+private_typedefs:
+    CGRect: '@ByVal org.robovm.apple.coregraphics.CGRect'
+
 typedefs:
     'void (^)(PHContentEditingOutput *)': '@Block VoidBlock1<PHContentEditingOutput>'
 enums:
@@ -12,7 +16,13 @@ enums:
     PHLivePhotoViewPlaybackStyle: {}
 
 classes:
-    PHLivePhotoView: {}
+    PHLivePhotoView: #since 9.1
+        methods:
+            '-startPlaybackWithStyle:':
+                name: startPlayback
+            '+livePhotoBadgeImageWithOptions:':
+                name: createLivePhotoBadgeImage
+    PHEditingExtensionContext: {} #since 8.0
 
 protocols:
     PHLivePhotoViewDelegate:

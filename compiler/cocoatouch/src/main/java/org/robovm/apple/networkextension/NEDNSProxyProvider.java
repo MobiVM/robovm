@@ -72,7 +72,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "cancelProxyWithError:")
-    public native void cancelProxyWithError(NSError error);
+    public native void cancelProxy(NSError error);
     /**
      * @since Available in iOS 11.0 and later.
      */

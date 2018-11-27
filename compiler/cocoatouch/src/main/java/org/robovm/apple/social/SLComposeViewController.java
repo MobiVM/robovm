@@ -51,6 +51,10 @@ import org.robovm.apple.accounts.*;
     protected SLComposeViewController(Handle h, long handle) { super(h, handle); }
     protected SLComposeViewController(SkipInit skipInit) { super(skipInit); }
     public SLComposeViewController(SLServiceType serviceType) { super((Handle) null, create(serviceType)); retain(getHandle()); }
+    @Method(selector = "initWithNibName:bundle:")
+    public SLComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public SLComposeViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "serviceType")

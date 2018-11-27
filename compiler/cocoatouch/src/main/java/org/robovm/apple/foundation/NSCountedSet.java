@@ -53,6 +53,8 @@ import org.robovm.apple.dispatch.*;
     public NSCountedSet() {}
     protected NSCountedSet(Handle h, long handle) { super(h, handle); }
     protected NSCountedSet(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCapacity:")
+    public NSCountedSet(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -64,7 +66,19 @@ import org.robovm.apple.dispatch.*;
     }
     
     /*<methods>*/
+    @Method(selector = "initWithCapacity:")
+    protected native @Pointer long init(@MachineSizedUInt long numItems);
+    @Method(selector = "initWithArray:")
+    protected native @Pointer long init(NSArray<?> array);
+    @Method(selector = "initWithSet:")
+    protected native @Pointer long init(NSSet<?> set);
     @Method(selector = "countForObject:")
     protected native @MachineSizedUInt long countForObject(NSObject object);
+    @Method(selector = "objectEnumerator")
+    protected native NSEnumerator<T> objectEnumerator();
+    @Method(selector = "addObject:")
+    protected native void addObject(NSObject object);
+    @Method(selector = "removeObject:")
+    protected native void removeObject(NSObject object);
     /*</methods>*/
 }

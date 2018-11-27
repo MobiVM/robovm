@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNConvolutionTransposeNode/*</name>*/ 
     extends /*<extends>*/MPSCNNConvolutionNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNConvolutionTransposeNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNConvolutionTransposeNode() {}
+    protected MPSCNNConvolutionTransposeNode() {}
     protected MPSCNNConvolutionTransposeNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNConvolutionTransposeNode(SkipInit skipInit) { super(skipInit); }
     /**
@@ -54,6 +54,8 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithSource:convolutionGradientState:weights:")
     public MPSCNNConvolutionTransposeNode(MPSNNImageNode sourceNode, MPSCNNConvolutionGradientStateNode convolutionGradientState, MPSCNNConvolutionDataSource weights) { super((SkipInit) null); initObject(init(sourceNode, convolutionGradientState, weights)); }
+    @Method(selector = "initWithSource:weights:")
+    public MPSCNNConvolutionTransposeNode(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights) { super(sourceNode, weights); }
     /*</constructors>*/
     /*<properties>*/
     

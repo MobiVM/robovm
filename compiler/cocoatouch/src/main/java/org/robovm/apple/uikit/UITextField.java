@@ -84,13 +84,11 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public UITextField() {}
     protected UITextField(Handle h, long handle) { super(h, handle); }
     protected UITextField(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UITextField(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UITextField(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UITextField(CGRect frame) {
-        super(frame);
-    }
-    public UITextField(NSCoder decoder) {
-        super(decoder);
-    }
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -454,6 +452,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setTextContentType:")
     public native void setTextContentType(UITextContentType v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "passwordRules")
+    public native UITextInputPasswordRules getPasswordRules();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setPasswordRules:")
+    public native void setPasswordRules(UITextInputPasswordRules v);
     @Property(selector = "adjustsFontForContentSizeCategory")
     public native boolean adjustsFontForContentSizeCategory();
     @Property(selector = "setAdjustsFontForContentSizeCategory:")

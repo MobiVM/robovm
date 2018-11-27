@@ -76,6 +76,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "supportedOutputSettingsKeysForConnection:")
+    public native NSArray<NSString> supportedOutputSettingsKeysForConnection(AVCaptureConnection connection);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "outputSettingsForConnection:")

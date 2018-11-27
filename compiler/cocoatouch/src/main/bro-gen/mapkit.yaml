@@ -121,7 +121,10 @@ classes:
                 parameters:
                     completionHandler:
                         type: '@Block VoidBlock2<MKLocalSearchResponse, NSError>'
-    MKLocalSearchRequest: {} # DONE
+    MKLocalSearchRequest: #since 6.1
+        methods:
+            '-initWithCompletion:':
+                name: init
     MKLocalSearchResponse: # DONE
         properties:
             'mapItems':
@@ -478,12 +481,26 @@ classes:
     MKLocalSearchCompletion: {}
     MKLocalSearchCompleter: {}
     MKDistanceFormatter: {}
-    MKClusterAnnotation: {} #since 11.0
-    MKCompassButton: {} #since 11.0
+    MKClusterAnnotation: #since 11.0
+        methods:
+            '-initWithMemberAnnotations:':
+                name: init
+    MKCompassButton: #since 11.0
+        methods:
+            '+compassButtonWithMapView:':
+                name: create
+                constructor: true
     MKMarkerAnnotationView: {} #since 11.0
-    MKScaleView: {} #since 11.0
-    MKUserTrackingButton: {} #since 11.0
-
+    MKScaleView: #since 11.0
+        methods:
+            '+scaleViewWithMapView:':
+                name: create
+                constructor: true
+    MKUserTrackingButton: #since 11.0
+        methods:
+            '+userTrackingButtonWithMapView:':
+                name: create
+                constructor: true
 protocols:
     MKAnnotation: {} # DONE
     MKMapViewDelegate: # DONE

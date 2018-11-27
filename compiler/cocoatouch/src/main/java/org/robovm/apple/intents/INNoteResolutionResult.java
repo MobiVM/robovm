@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INNoteResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INNoteResolutionResult() {}
+    protected INNoteResolutionResult() {}
     protected INNoteResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INNoteResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

@@ -89,61 +89,61 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceYahoo
      */
     @Deprecated
     public static final ABPersonInstantMessageService Yahoo = new ABPersonInstantMessageService("Yahoo");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceJabber
      */
     @Deprecated
     public static final ABPersonInstantMessageService Jabber = new ABPersonInstantMessageService("Jabber");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceMSN
      */
     @Deprecated
     public static final ABPersonInstantMessageService MSN = new ABPersonInstantMessageService("MSN");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceICQ
      */
     @Deprecated
     public static final ABPersonInstantMessageService ICQ = new ABPersonInstantMessageService("ICQ");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceAIM
      */
     @Deprecated
     public static final ABPersonInstantMessageService AIM = new ABPersonInstantMessageService("AIM");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceQQ
      */
     @Deprecated
     public static final ABPersonInstantMessageService QQ = new ABPersonInstantMessageService("QQ");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceGoogleTalk
      */
     @Deprecated
     public static final ABPersonInstantMessageService GoogleTalk = new ABPersonInstantMessageService("GoogleTalk");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceSkype
      */
     @Deprecated
     public static final ABPersonInstantMessageService Skype = new ABPersonInstantMessageService("Skype");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceFacebook
      */
     @Deprecated
     public static final ABPersonInstantMessageService Facebook = new ABPersonInstantMessageService("Facebook");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceGaduGadu
      */
     @Deprecated
     public static final ABPersonInstantMessageService GaduGadu = new ABPersonInstantMessageService("GaduGadu");
@@ -174,70 +174,70 @@ import org.robovm.apple.corefoundation.*;
         /*<values>*/
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceYahoo
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonInstantMessageServiceYahoo", optional=true)
         public static native CFString Yahoo();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceJabber
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonInstantMessageServiceJabber", optional=true)
         public static native CFString Jabber();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceMSN
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonInstantMessageServiceMSN", optional=true)
         public static native CFString MSN();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceICQ
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonInstantMessageServiceICQ", optional=true)
         public static native CFString ICQ();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceAIM
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonInstantMessageServiceAIM", optional=true)
         public static native CFString AIM();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceQQ
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonInstantMessageServiceQQ", optional=true)
         public static native CFString QQ();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceGoogleTalk
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonInstantMessageServiceGoogleTalk", optional=true)
         public static native CFString GoogleTalk();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceSkype
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonInstantMessageServiceSkype", optional=true)
         public static native CFString Skype();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceFacebook
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonInstantMessageServiceFacebook", optional=true)
         public static native CFString Facebook();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNInstantMessageServiceGaduGadu
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonInstantMessageServiceGaduGadu", optional=true)

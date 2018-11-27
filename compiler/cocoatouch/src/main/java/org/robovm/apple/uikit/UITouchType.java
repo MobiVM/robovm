@@ -52,6 +52,10 @@ public enum /*<name>*/UITouchType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 9.1 and later.
      */
+    Pencil(2L),
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
     Stylus(2L);
     /*</values>*/
     

@@ -48,6 +48,11 @@ import org.robovm.apple.dispatch.*;
     
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "dispatchType")
+    public native MTLDispatchType getDispatchType();
     @Property(selector = "device")
     public native MTLDevice getDevice();
     @Property(selector = "label")
@@ -130,6 +135,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "setStageInRegion:")
     public native void setStageInRegion(@ByVal MTLRegion region);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "setStageInRegionWithIndirectBuffer:indirectBufferOffset:")
+    public native void setStageInRegion(MTLBuffer indirectBuffer, @MachineSizedUInt long indirectBufferOffset);
     @Method(selector = "dispatchThreadgroups:threadsPerThreadgroup:")
     public native void dispatchThreadgroups(@ByVal MTLSize threadgroupsPerGrid, @ByVal MTLSize threadsPerThreadgroup);
     /**
@@ -172,6 +182,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "useHeaps:count:")
     public native void useHeaps(MTLHeap heaps, @MachineSizedUInt long count);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "memoryBarrierWithScope:")
+    public native void memoryBarrier(MTLBarrierScope scope);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "memoryBarrierWithResources:count:")
+    public native void memoryBarrier(MTLResource resources, @MachineSizedUInt long count);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")

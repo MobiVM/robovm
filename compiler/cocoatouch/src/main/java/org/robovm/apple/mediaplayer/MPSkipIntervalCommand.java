@@ -46,7 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSkipIntervalCommand.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSkipIntervalCommand() {}
+    protected MPSkipIntervalCommand() {}
     protected MPSkipIntervalCommand(Handle h, long handle) { super(h, handle); }
     protected MPSkipIntervalCommand(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

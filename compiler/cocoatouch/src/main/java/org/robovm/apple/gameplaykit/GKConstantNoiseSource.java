@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     protected GKConstantNoiseSource(Handle h, long handle) { super(h, handle); }
     protected GKConstantNoiseSource(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithValue:")
-    public GKConstantNoiseSource(double value) { super((SkipInit) null); initObject(initWithValue(value)); }
+    public GKConstantNoiseSource(double value) { super((SkipInit) null); initObject(init(value)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "value")
@@ -62,8 +62,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithValue:")
-    protected native @Pointer long initWithValue(double value);
-    @Method(selector = "constantNoiseWithValue:")
-    public static native GKConstantNoiseSource constantNoiseWithValue(double value);
+    protected native @Pointer long init(double value);
     /*</methods>*/
 }

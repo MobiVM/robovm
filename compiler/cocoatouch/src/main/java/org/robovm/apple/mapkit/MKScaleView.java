@@ -51,6 +51,11 @@ import org.robovm.apple.dispatch.*;
     public MKScaleView() {}
     protected MKScaleView(Handle h, long handle) { super(h, handle); }
     protected MKScaleView(SkipInit skipInit) { super(skipInit); }
+    public MKScaleView(MKMapView mapView) { super((Handle) null, create(mapView)); retain(getHandle()); }
+    @Method(selector = "initWithFrame:")
+    public MKScaleView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public MKScaleView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mapView")
@@ -69,6 +74,6 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "scaleViewWithMapView:")
-    public static native MKScaleView scaleViewWithMapView(MKMapView mapView);
+    protected static native @Pointer long create(MKMapView mapView);
     /*</methods>*/
 }

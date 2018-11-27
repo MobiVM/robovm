@@ -122,6 +122,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImageAuxiliaryDataTypeDisparity", optional=true)
         public static native CFString Disparity();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageAuxiliaryDataTypePortraitEffectsMatte", optional=true)
+        public static native CFString PortraitEffectsMatte();
     }
     /*</keys>*/
 }

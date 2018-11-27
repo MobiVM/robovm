@@ -54,6 +54,8 @@ import org.robovm.apple.metal.*;
     public SKEffectNode() {}
     protected SKEffectNode(Handle h, long handle) { super(h, handle); }
     protected SKEffectNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SKEffectNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @WeaklyLinked

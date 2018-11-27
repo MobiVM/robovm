@@ -11,6 +11,7 @@ enums:
     MSMessagesAppPresentationStyle: {}
     MSMessageErrorCode: {}
     MSStickerSize: {}
+    MSMessagesAppPresentationContext: { prefix: MSMessagesAppPresentationContext}
 
 classes:
     MSConversation:
@@ -31,12 +32,21 @@ classes:
                 trim_after_first_colon: true
             '-sendAttachment:withAlternateFilename:completionHandler:':
                 trim_after_first_colon: true
-    MSMessage: {}
+    MSMessage: #since 10.0
+        methods:
+            '-initWithSession:':
+                name: init
     MSMessageLayout: {}
     MSMessagesAppViewController:
         methods:
-            '-init.*':
-                name: init
+            '-willBecomeActiveWithConversation:':
+                name: willBecomeActive
+            '-didBecomeActiveWithConversation:':
+                name: didBecomeActive
+            '-willResignActiveWithConversation:':
+                name: willResignActive
+            '-didResignActiveWithConversation:':
+                name: didResignActive
             '-will.*':
                 trim_after_first_colon: true
             '-did.*':
@@ -58,14 +68,15 @@ classes:
         methods:
             '-init.*':
                 name: init
-            '-stickerBrowserView:stickerAtIndex:':
-                name: getStickerBrowserViewStickerAtIndex
 
     MSStickerView:
         methods:
             '-init.*':
                 name: init
-    MSMessageLiveLayout: {} #since 11.0
+    MSMessageLiveLayout: #since 11.0
+        methods:
+            '-initWithAlternateLayout:':
+                name: init
 protocols:
     MSStickerBrowserViewDataSource:
         methods:

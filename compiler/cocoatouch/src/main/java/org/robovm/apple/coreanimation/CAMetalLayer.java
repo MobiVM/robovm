@@ -52,6 +52,8 @@ import org.robovm.apple.metal.*;
     public CAMetalLayer() {}
     protected CAMetalLayer(Handle h, long handle) { super(h, handle); }
     protected CAMetalLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public CAMetalLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     /*<properties>*/
     @WeaklyLinked
@@ -74,6 +76,16 @@ import org.robovm.apple.metal.*;
     public native @ByVal CGSize getDrawableSize();
     @Property(selector = "setDrawableSize:")
     public native void setDrawableSize(@ByVal CGSize v);
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @Property(selector = "maximumDrawableCount")
+    public native @MachineSizedUInt long getMaximumDrawableCount();
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @Property(selector = "setMaximumDrawableCount:")
+    public native void setMaximumDrawableCount(@MachineSizedUInt long v);
     @Property(selector = "presentsWithTransaction")
     public native boolean presentsWithTransaction();
     @Property(selector = "setPresentsWithTransaction:")

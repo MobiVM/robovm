@@ -82,6 +82,9 @@ import org.robovm.apple.audiotoolbox.*;
     public native int getSourceTrackIDForFrameTiming();
     @Property(selector = "renderSize")
     public native @ByVal CGSize getRenderSize();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
     @Property(selector = "renderScale")
     public native float getRenderScale();
     @Property(selector = "instructions")

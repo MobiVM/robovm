@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSState/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -64,6 +64,7 @@ import org.robovm.apple.metal.*;
     public MPSState(NSArray<?> resources) { super((SkipInit) null); initObject(init(resources)); }
     public MPSState(MTLCommandBuffer cmdBuf, @MachineSizedUInt long bufferSize) { super((Handle) null, create(cmdBuf, bufferSize)); retain(getHandle()); }
     public MPSState(MTLCommandBuffer cmdBuf, MTLTextureDescriptor descriptor) { super((Handle) null, create(cmdBuf, descriptor)); retain(getHandle()); }
+    public MPSState(MTLCommandBuffer cmdBuf) { super((Handle) null, create(cmdBuf)); retain(getHandle()); }
     /**
      * @since Available in iOS 11.3 and later.
      */
@@ -130,7 +131,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "temporaryStateWithCommandBuffer:textureDescriptor:")
     protected static native @Pointer long create(MTLCommandBuffer cmdBuf, MTLTextureDescriptor descriptor);
     @Method(selector = "temporaryStateWithCommandBuffer:")
-    public static native MPSState temporaryStateWithCommandBuffer(MTLCommandBuffer cmdBuf);
+    protected static native @Pointer long create(MTLCommandBuffer cmdBuf);
     /**
      * @since Available in iOS 11.3 and later.
      */

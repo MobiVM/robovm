@@ -127,7 +127,7 @@ import org.robovm.apple.intents.*;
     public static native boolean containsAttachments(NSAttributedString thiz, @ByVal NSRange range);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -initWithURL:options:documentAttributes:error: instead
      */
     @Deprecated
     public static @Pointer long initWithFileURL(NSAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
@@ -138,7 +138,7 @@ import org.robovm.apple.intents.*;
     }
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -initWithURL:options:documentAttributes:error: instead
      */
     @Deprecated
     @Method(selector = "initWithFileURL:options:documentAttributes:error:")

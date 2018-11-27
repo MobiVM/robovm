@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,26 +44,32 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 7.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/NSGlyphProperty/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/NSGlyphProperty/*</name>*/ extends Bits</*<name>*/NSGlyphProperty/*</name>*/> {
     /*<values>*/
-    Null(1L),
-    ControlCharacter(2L),
-    Elastic(4L),
-    NonBaseCharacter(8L);
+    public static final NSGlyphProperty None = new NSGlyphProperty(0L);
+    public static final NSGlyphProperty Null = new NSGlyphProperty(1L);
+    public static final NSGlyphProperty ControlCharacter = new NSGlyphProperty(2L);
+    public static final NSGlyphProperty Elastic = new NSGlyphProperty(4L);
+    public static final NSGlyphProperty NonBaseCharacter = new NSGlyphProperty(8L);
     /*</values>*/
 
-    private final long n;
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<methods>*//*</methods>*/
 
-    private /*<name>*/NSGlyphProperty/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/NSGlyphProperty/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NSGlyphProperty/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NSGlyphProperty/*</name>*/.class.getName());
+    private static final /*<name>*/NSGlyphProperty/*</name>*/[] values = _values(/*<name>*/NSGlyphProperty/*</name>*/.class);
+
+    public /*<name>*/NSGlyphProperty/*</name>*/(long value) { super(value); }
+    private /*<name>*/NSGlyphProperty/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/NSGlyphProperty/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/NSGlyphProperty/*</name>*/(value, mask);
+    }
+    protected /*<name>*/NSGlyphProperty/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/NSGlyphProperty/*</name>*/[] values() {
+        return values.clone();
     }
 }

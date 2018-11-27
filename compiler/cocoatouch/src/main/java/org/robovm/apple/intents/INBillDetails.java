@@ -55,14 +55,6 @@ import org.robovm.apple.corelocation.*;
     public INBillDetails(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "billType")
-    public native INBillType getBillType();
-    @Property(selector = "setBillType:")
-    public native void setBillType(INBillType v);
-    @Property(selector = "paymentStatus")
-    public native INPaymentStatus getPaymentStatus();
-    @Property(selector = "setPaymentStatus:")
-    public native void setPaymentStatus(INPaymentStatus v);
     @Property(selector = "billPayee")
     public native INBillPayee getBillPayee();
     @Property(selector = "setBillPayee:")
@@ -87,6 +79,14 @@ import org.robovm.apple.corelocation.*;
     public native NSDateComponents getPaymentDate();
     @Property(selector = "setPaymentDate:")
     public native void setPaymentDate(NSDateComponents v);
+    @Property(selector = "billType")
+    public native INBillType getBillType();
+    @Property(selector = "setBillType:")
+    public native void setBillType(INBillType v);
+    @Property(selector = "paymentStatus")
+    public native INPaymentStatus getPaymentStatus();
+    @Property(selector = "setPaymentStatus:")
+    public native void setPaymentStatus(INPaymentStatus v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

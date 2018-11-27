@@ -43,6 +43,18 @@ public final class /*<name>*/UNAuthorizationOptions/*</name>*/ extends Bits</*<n
     public static final UNAuthorizationOptions Sound = new UNAuthorizationOptions(2L);
     public static final UNAuthorizationOptions Alert = new UNAuthorizationOptions(4L);
     public static final UNAuthorizationOptions CarPlay = new UNAuthorizationOptions(8L);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final UNAuthorizationOptions CriticalAlert = new UNAuthorizationOptions(16L);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final UNAuthorizationOptions ProvidesAppNotificationSettings = new UNAuthorizationOptions(32L);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final UNAuthorizationOptions Provisional = new UNAuthorizationOptions(64L);
     /*</values>*/
 
     /*<bind>*/

@@ -57,6 +57,13 @@ import org.robovm.apple.audiotoolbox.*;
     public AVMutableTimedMetadataGroup() {}
     protected AVMutableTimedMetadataGroup(Handle h, long handle) { super(h, handle); }
     protected AVMutableTimedMetadataGroup(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItems:timeRange:")
+    public AVMutableTimedMetadataGroup(NSArray<AVMetadataItem> items, @ByVal CMTimeRange timeRange) { super(items, timeRange); }
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Method(selector = "initWithSampleBuffer:")
+    public AVMutableTimedMetadataGroup(CMSampleBuffer sampleBuffer) { super(sampleBuffer); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "timeRange")

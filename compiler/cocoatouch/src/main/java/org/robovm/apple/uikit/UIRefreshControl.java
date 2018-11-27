@@ -56,13 +56,11 @@ import org.robovm.apple.intents.*;
     public UIRefreshControl() {}
     protected UIRefreshControl(Handle h, long handle) { super(h, handle); }
     protected UIRefreshControl(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIRefreshControl(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UIRefreshControl(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UIRefreshControl(CGRect frame) {
-        super(frame);
-    }
-    public UIRefreshControl(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "isRefreshing")
     public native boolean isRefreshing();

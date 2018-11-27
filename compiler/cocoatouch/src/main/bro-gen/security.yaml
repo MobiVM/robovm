@@ -17,6 +17,8 @@ private_typedefs:
     '__CFArray *': NSArray<?>
     '__CFError *': NSError
     '__CFDate *': NSDate
+    dispatch_data_t: DispatchData
+
 enums:
     SSLAuthenticate: { first: kNeverAuthenticate, suffix: Authenticate }
     SSLClientCertificateState: { first: kSSLClientCertNone }
@@ -33,6 +35,7 @@ enums:
     SecRevocationPolicyFlags: { first: kSecRevocationOCSPMethod, bits: true }
     SecErrorCode: { first: errSecSuccess }
     SecKeyOperationType: {}
+    SSLCiphersuiteGroup: {prefix: kSSLCiphersuiteGroup}
 
 classes:
     __SecAccessControl:
@@ -57,6 +60,59 @@ classes:
         name: SecRandom
     SSLContext:
         extends: CFType
+
+protocols:
+    # These are os_object compatible and ARC-able wrappers around existing CoreFoundation
+    # Security types, including: SecTrustRef, SecIdentityRef, and SecCertificateRef. They allow
+    # clients to use these types in os_object-type APIs and data structures. The underlying
+    # CoreFoundation types may be extracted and used by clients as needed.
+    #
+    # Exposed as protocols
+    #
+
+    OS_sec_certificate:
+        class: true
+        name: SecArcCertificate
+        extends: SecArcObject
+        visibility: 'public final'
+    SecArcCertificate:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_sec_certificate")']
+
+    OS_sec_identity:
+        class: true
+        name: SecArcIdentity
+        extends: SecArcObject
+        visibility: 'public final'
+    SecArcIdentity:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_sec_identity")']
+
+    OS_sec_object:
+        exclude: true # it is empty
+
+    OS_sec_protocol_metadata:
+        class: true
+        name: SecArcProtocolMetadata
+        extends: SecArcObject
+        visibility: 'public final'
+    SecArcProtocolMetadata:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_sec_protocol_metadata")']
+
+    OS_sec_protocol_options:
+        class: true
+        name: SecArcProtocolOptions
+        extends: SecArcObject
+        visibility: 'public final'
+    SecArcProtocolOptions:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_sec_protocol_options")']
+
+    OS_sec_trust:
+        class: true
+        name: SecArcTrust
+        extends: SecArcObject
+        visibility: 'public final'
+    SecArcTrust:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_sec_trust")']
+
 
 functions:
     Sec(AccessControl|Certificate|Identity|Key|Policy|Trust)GetTypeID:
@@ -443,8 +499,74 @@ functions:
         class: SecErrorCode
         name: copyErrorMessageString
 
+    #
+    # ARC related protocol's functions
+    #
+    sec_trust_(.*)_(.*):
+        class: SecArcTrust
+        name: '#{g[0]}#{g[1].camelize}'
+    sec_trust_(.*):
+        class: SecArcTrust
+        name: '#{g[0]}'
+
+    sec_identity_(.*)_(.*)_(.*):
+        class: SecArcIdentity
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+    sec_identity_(.*)_(.*):
+        class: SecArcIdentity
+        name: '#{g[0]}#{g[1].camelize}'
+    sec_identity_(.*):
+        class: SecArcIdentity
+        name: '#{g[0]}'
+
+    sec_protocol_metadata_(.*)_(.*)_(.*)_(.*):
+        class: SecArcProtocolMetadata
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+    sec_protocol_metadata_(.*)_(.*)_(.*):
+        class: SecArcProtocolMetadata
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+    sec_protocol_metadata_(.*)_(.*):
+        class: SecArcProtocolMetadata
+        name: '#{g[0]}#{g[1].camelize}'
+    sec_protocol_metadata_(.*):
+        class: SecArcProtocolMetadata
+        name: '#{g[0]}'
+
+    sec_protocol_options_(.*)_(.*)_(.*)_(.*):
+        class: SecArcProtocolOptions
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+    sec_protocol_options_(.*)_(.*)_(.*):
+        class: SecArcProtocolOptions
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+    sec_protocol_options_(.*)_(.*):
+        class: SecArcProtocolOptions
+        name: '#{g[0]}#{g[1].camelize}'
+    sec_protocol_options_(.*):
+        class: SecArcProtocolOptions
+        name: '#{g[0]}'
+
+    sec_certificate_(.*)_(.*):
+        class: SecArcCertificate
+        name: '#{g[0]}#{g[1].camelize}'
+    sec_certificate_(.*):
+        class: SecArcCertificate
+        name: '#{g[0]}'
+
+    sec_(retain|release):
+        class: SecArcObject
+        visibility: private
+        name: 'secArc#{g[0].camelize}'
+        return_type: void
+        parameters:
+            obj:
+                type: '@Pointer long'
+
     Sec(.*):
-        class: Security
+        class: __FIXME__
+        name: 'Function__#{g[0]}'
+
+    sec_(.*):
+        class: __FIXME__
         name: 'Function__#{g[0]}'
 
 values:

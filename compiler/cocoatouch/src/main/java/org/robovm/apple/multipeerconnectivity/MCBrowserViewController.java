@@ -53,6 +53,10 @@ import org.robovm.apple.security.*;
     public MCBrowserViewController(String serviceType, MCSession session) { super((SkipInit) null); initObject(init(serviceType, session)); }
     @Method(selector = "initWithBrowser:session:")
     public MCBrowserViewController(MCNearbyServiceBrowser browser, MCSession session) { super((SkipInit) null); initObject(init(browser, session)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public MCBrowserViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public MCBrowserViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

@@ -57,14 +57,14 @@ import org.robovm.apple.newsstandkit.NKAssetDownload;
     protected NSURLConnection(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use NSURLSession (see NSURLSession.h)
      */
     @Deprecated
     @Method(selector = "initWithRequest:delegate:startImmediately:")
     public NSURLConnection(NSURLRequest request, NSURLConnectionDelegate delegate, boolean startImmediately) { super((SkipInit) null); initObject(init(request, delegate, startImmediately)); }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use NSURLSession (see NSURLSession.h)
      */
     @Deprecated
     @Method(selector = "initWithRequest:delegate:")
@@ -98,14 +98,14 @@ import org.robovm.apple.newsstandkit.NKAssetDownload;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use NSURLSession (see NSURLSession.h)
      */
     @Deprecated
     @Method(selector = "initWithRequest:delegate:startImmediately:")
     protected native @Pointer long init(NSURLRequest request, NSURLConnectionDelegate delegate, boolean startImmediately);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use NSURLSession (see NSURLSession.h)
      */
     @Deprecated
     @Method(selector = "initWithRequest:delegate:")
@@ -136,7 +136,7 @@ import org.robovm.apple.newsstandkit.NKAssetDownload;
     public static native boolean canHandleRequest(NSURLRequest request);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h
      */
     @Deprecated
     public static NSData sendSynchronousRequest(NSURLRequest request, NSURLResponse.NSURLResponsePtr response) throws NSErrorException {
@@ -147,14 +147,14 @@ import org.robovm.apple.newsstandkit.NKAssetDownload;
     }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h
      */
     @Deprecated
     @Method(selector = "sendSynchronousRequest:returningResponse:error:")
     private static native NSData sendSynchronousRequest(NSURLRequest request, NSURLResponse.NSURLResponsePtr response, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h
      */
     @Deprecated
     @Method(selector = "sendAsynchronousRequest:queue:completionHandler:")

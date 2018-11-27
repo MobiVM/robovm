@@ -68,7 +68,7 @@ import org.robovm.apple.imageio.*;
     @Property(selector = "trackingStateReason")
     public native ARTrackingStateReason getTrackingStateReason();
     @Property(selector = "intrinsics")
-    public native @ByVal MatrixFloat3x4 getIntrinsics();
+    public native @ByVal MatrixFloat3x3 getIntrinsics();
     @Property(selector = "imageResolution")
     public native @ByVal CGSize getImageResolution();
     @Property(selector = "projectionMatrix")
@@ -76,10 +76,15 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "projectPoint:orientation:viewportSize:")
-    public native @ByVal CGPoint projectPoint(@ByVal VectorFloat3 point, UIInterfaceOrientation orientation, @ByVal CGSize viewportSize);
     @Method(selector = "projectionMatrixForOrientation:viewportSize:zNear:zFar:")
     public native @ByVal MatrixFloat4x4 getProjectionMatrix(UIInterfaceOrientation orientation, @ByVal CGSize viewportSize, @MachineSizedFloat double zNear, @MachineSizedFloat double zFar);
+    @Method(selector = "projectPoint:orientation:viewportSize:")
+    public native @ByVal CGPoint projectPoint(@ByVal VectorFloat3 point, UIInterfaceOrientation orientation, @ByVal CGSize viewportSize);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "unprojectPoint:ontoPlaneWithTransform:orientation:viewportSize:")
+    public native @ByVal VectorFloat3 unprojectPoint(@ByVal CGPoint point, @ByVal MatrixFloat4x4 planeTransform, UIInterfaceOrientation orientation, @ByVal CGSize viewportSize);
     @Method(selector = "viewMatrixForOrientation:")
     public native @ByVal MatrixFloat4x4 viewMatrixForOrientation(UIInterfaceOrientation orientation);
     /*</methods>*/

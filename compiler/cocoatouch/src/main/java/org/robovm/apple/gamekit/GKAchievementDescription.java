@@ -76,7 +76,7 @@ import org.robovm.apple.uikit.*;
     public native boolean isReplayable();
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use loadImageWithCompletionHandler: instead
      */
     @Deprecated
     @Property(selector = "image")

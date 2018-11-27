@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     protected GKSpheresNoiseSource(Handle h, long handle) { super(h, handle); }
     protected GKSpheresNoiseSource(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrequency:")
-    public GKSpheresNoiseSource(double frequency) { super((SkipInit) null); initObject(initWithFrequency(frequency)); }
+    public GKSpheresNoiseSource(double frequency) { super((SkipInit) null); initObject(init(frequency)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "frequency")
@@ -62,8 +62,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithFrequency:")
-    protected native @Pointer long initWithFrequency(double frequency);
-    @Method(selector = "spheresNoiseWithFrequency:")
-    public static native GKSpheresNoiseSource spheresNoiseWithFrequency(double frequency);
+    protected native @Pointer long init(double frequency);
     /*</methods>*/
 }

@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "commitInsertionWithDataSourceUpdates:")
-    boolean commitInsertionWithDataSourceUpdates(@Block VoidBlock1<NSIndexPath> dataSourceUpdates);
+    boolean commitInsertion(@Block VoidBlock1<NSIndexPath> dataSourceUpdates);
     @Method(selector = "deletePlaceholder")
     boolean deletePlaceholder();
     @Method(selector = "setNeedsCellUpdate")

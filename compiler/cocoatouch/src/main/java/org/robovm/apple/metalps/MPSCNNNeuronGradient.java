@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNNeuronGradient/*</name>*/ 
     extends /*<extends>*/MPSCNNGradientKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNNeuronGradient.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNNeuronGradient() {}
+    public MPSCNNNeuronGradient() {}
     protected MPSCNNNeuronGradient(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNeuronGradient(SkipInit skipInit) { super(skipInit); }
     /**
@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
     public MPSCNNNeuronGradient(MTLDevice device, MPSNNNeuronDescriptor neuronDescriptor) { super((SkipInit) null); initObject(init(device, neuronDescriptor)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNNeuronGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNNeuronGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "neuronType")

@@ -56,10 +56,11 @@ import org.robovm.apple.avfoundation.*;
     protected SCNView(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:options:")
     public SCNView(@ByVal CGRect frame, NSDictionary<NSString, ?> options) { super((SkipInit) null); initObject(init(frame, options)); }
+    @Method(selector = "initWithFrame:")
+    public SCNView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public SCNView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public SCNView(CGRect frame) {
-    	super(frame);
-    }
     /*<properties>*/
     @Property(selector = "scene")
     public native SCNScene getScene();
@@ -247,7 +248,7 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "nodesInsideFrustumWithPointOfView:")
-    public native NSArray<SCNNode> nodesInsideFrustumWithPointOfView(SCNNode pointOfView);
+    public native NSArray<SCNNode> getNodesInsideFrustum(SCNNode pointOfView);
     @Method(selector = "projectPoint:")
     public native @ByVal SCNVector3 projectPoint(@ByVal SCNVector3 point);
     @Method(selector = "unprojectPoint:")

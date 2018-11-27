@@ -44,7 +44,7 @@ public enum /*<name>*/INGetRideStatusIntentResponseCode/*</name>*/ implements Va
     Ready(1L),
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. INGetRideStatusIntentResponseCodeInProgress is deprecated.
      */
     @Deprecated
     InProgress(2L),

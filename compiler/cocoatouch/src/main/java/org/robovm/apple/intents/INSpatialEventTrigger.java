@@ -40,7 +40,7 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INSpatialEventTrigger/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class INSpatialEventTriggerPtr extends Ptr<INSpatialEventTrigger, INSpatialEventTriggerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(INSpatialEventTrigger.class); }/*</bind>*/
@@ -51,16 +51,24 @@ import org.robovm.apple.corelocation.*;
     protected INSpatialEventTrigger(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPlacemark:event:")
     public INSpatialEventTrigger(CLPlacemark placemark, INSpatialEvent event) { super((SkipInit) null); initObject(init(placemark, event)); }
+    @Method(selector = "initWithCoder:")
+    public INSpatialEventTrigger(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "placemark")
     public native CLPlacemark getPlacemark();
     @Property(selector = "event")
     public native INSpatialEvent getEvent();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPlacemark:event:")
     protected native @Pointer long init(CLPlacemark placemark, INSpatialEvent event);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

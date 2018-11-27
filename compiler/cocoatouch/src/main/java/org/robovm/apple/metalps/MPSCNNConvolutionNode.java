@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNConvolutionNode/*</name>*/ 
     extends /*<extends>*/MPSNNFilterNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,23 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNConvolutionNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNConvolutionNode() {}
+    protected MPSCNNConvolutionNode() {}
     protected MPSCNNConvolutionNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNConvolutionNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:weights:")
     public MPSCNNConvolutionNode(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights) { super((SkipInit) null); initObject(init(sourceNode, weights)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "accumulatorPrecision")
+    public native MPSNNConvolutionAccumulatorPrecisionOption getAccumulatorPrecision();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setAccumulatorPrecision:")
+    public native void setAccumulatorPrecision(MPSNNConvolutionAccumulatorPrecisionOption v);
     /**
      * @since Available in iOS 11.3 and later.
      */

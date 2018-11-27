@@ -46,7 +46,7 @@ import org.robovm.apple.foundation.*;
     public static final int NoLimit = 0;
     /*</constants>*/
     /*<constructors>*/
-    public HKSampleQuery() {}
+    protected HKSampleQuery() {}
     protected HKSampleQuery(Handle h, long handle) { super(h, handle); }
     protected HKSampleQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSampleType:predicate:limit:sortDescriptors:resultsHandler:")

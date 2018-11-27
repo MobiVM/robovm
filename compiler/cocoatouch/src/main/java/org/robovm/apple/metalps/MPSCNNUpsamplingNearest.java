@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNUpsamplingNearest/*</name>*/ 
     extends /*<extends>*/MPSCNNUpsampling/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,6 +51,13 @@ import org.robovm.apple.metal.*;
     protected MPSCNNUpsamplingNearest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:integerScaleFactorX:integerScaleFactorY:")
     public MPSCNNUpsamplingNearest(MTLDevice device, @MachineSizedUInt long integerScaleFactorX, @MachineSizedUInt long integerScaleFactorY) { super((SkipInit) null); initObject(init(device, integerScaleFactorX, integerScaleFactorY)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNUpsamplingNearest(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNUpsamplingNearest(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

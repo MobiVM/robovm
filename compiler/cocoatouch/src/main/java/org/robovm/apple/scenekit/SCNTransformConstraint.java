@@ -61,7 +61,7 @@ import org.robovm.apple.avfoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "transformConstraintInWorldSpace:withBlock:")
-    public static native SCNTransformConstraint createTransformConstraint(boolean world, @Block Block2<SCNNode, SCNMatrix4, SCNMatrix4> block);
+    public static native SCNTransformConstraint createTransformConstraint(boolean world, @Block("(,@ByVal)") Block2<SCNNode, SCNMatrix4, SCNMatrix4> block);
     /**
      * @since Available in iOS 11.0 and later.
      */

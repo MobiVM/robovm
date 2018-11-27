@@ -49,6 +49,16 @@ import org.robovm.apple.corelocation.*;
     public INSetDefrosterSettingsInCarIntent() {}
     protected INSetDefrosterSettingsInCarIntent(Handle h, long handle) { super(h, handle); }
     protected INSetDefrosterSettingsInCarIntent(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithEnable:defroster:carName:")
+    public INSetDefrosterSettingsInCarIntent(NSNumber enable, INCarDefroster defroster, INSpeakableString carName) { super((SkipInit) null); initObject(init(enable, defroster, carName)); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithEnable:defroster:")
     public INSetDefrosterSettingsInCarIntent(NSNumber enable, INCarDefroster defroster) { super((SkipInit) null); initObject(init(enable, defroster)); }
     /*</constructors>*/
@@ -57,9 +67,24 @@ import org.robovm.apple.corelocation.*;
     public native NSNumber getEnable();
     @Property(selector = "defroster")
     public native INCarDefroster getDefroster();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "carName")
+    public native INSpeakableString getCarName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithEnable:defroster:carName:")
+    protected native @Pointer long init(NSNumber enable, INCarDefroster defroster, INSpeakableString carName);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithEnable:defroster:")
     protected native @Pointer long init(NSNumber enable, INCarDefroster defroster);
     /*</methods>*/

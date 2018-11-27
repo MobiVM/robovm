@@ -46,7 +46,7 @@ import org.robovm.apple.iosurface.*;
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIColor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CIColorPtr extends Ptr<CIColor, CIColorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CIColor.class); }/*</bind>*/
@@ -65,6 +65,8 @@ import org.robovm.apple.iosurface.*;
      */
     @Method(selector = "initWithRed:green:blue:colorSpace:")
     public CIColor(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, CGColorSpace colorSpace) { super((SkipInit) null); initObject(init(r, g, b, colorSpace)); }
+    @Method(selector = "initWithCoder:")
+    public CIColor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     
     public CIColor(double r, double g, double b, double a) {
@@ -144,6 +146,8 @@ import org.robovm.apple.iosurface.*;
      */
     @Property(selector = "clearColor")
     public static native CIColor clearColor();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -190,5 +194,9 @@ import org.robovm.apple.iosurface.*;
     protected static native @Pointer long create(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, CGColorSpace colorSpace);
     @Method(selector = "colorWithString:")
     protected static native @Pointer long create(String representation);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

@@ -54,10 +54,11 @@ import org.robovm.apple.metal.*;
     public SKView() {}
     protected SKView(Handle h, long handle) { super(h, handle); }
     protected SKView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public SKView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public SKView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public SKView(CGRect frame) {
-    	super(frame);
-    }
     /*<properties>*/
     @Property(selector = "isPaused")
     public native boolean isPaused();

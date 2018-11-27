@@ -54,7 +54,11 @@ public enum /*<name>*/HKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 9.0 and later.
      */
-    ErrorUserExitedWorkoutSession(9L);
+    ErrorUserExitedWorkoutSession(9L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    ErrorRequiredAuthorizationDenied(10L);
     /*</values>*/
 
     /*<bind>*/

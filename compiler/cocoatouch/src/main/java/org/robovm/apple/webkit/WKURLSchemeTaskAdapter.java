@@ -59,6 +59,6 @@ import org.robovm.apple.security.*;
     @NotImplemented("didFinish")
     public void didFinish() {}
     @NotImplemented("didFailWithError:")
-    public void didFailWithError(NSError error) {}
+    public void didFail(NSError error) {}
     /*</methods>*/
 }

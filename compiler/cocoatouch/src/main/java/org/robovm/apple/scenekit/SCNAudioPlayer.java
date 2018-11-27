@@ -57,9 +57,9 @@ import org.robovm.apple.avfoundation.*;
     protected SCNAudioPlayer(Handle h, long handle) { super(h, handle); }
     protected SCNAudioPlayer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:")
-    public SCNAudioPlayer(SCNAudioSource source) { super((SkipInit) null); initObject(initWithSource(source)); }
+    public SCNAudioPlayer(SCNAudioSource source) { super((SkipInit) null); initObject(init(source)); }
     @Method(selector = "initWithAVAudioNode:")
-    public SCNAudioPlayer(AVAudioNode audioNode) { super((SkipInit) null); initObject(initWithAVAudioNode(audioNode)); }
+    public SCNAudioPlayer(AVAudioNode audioNode) { super((SkipInit) null); initObject(init(audioNode)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "willStartPlayback")
@@ -78,12 +78,8 @@ import org.robovm.apple.avfoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSource:")
-    protected native @Pointer long initWithSource(SCNAudioSource source);
+    protected native @Pointer long init(SCNAudioSource source);
     @Method(selector = "initWithAVAudioNode:")
-    protected native @Pointer long initWithAVAudioNode(AVAudioNode audioNode);
-    @Method(selector = "audioPlayerWithSource:")
-    public static native SCNAudioPlayer audioPlayerWithSource(SCNAudioSource source);
-    @Method(selector = "audioPlayerWithAVAudioNode:")
-    public static native SCNAudioPlayer audioPlayerWithAVAudioNode(AVAudioNode audioNode);
+    protected native @Pointer long init(AVAudioNode audioNode);
     /*</methods>*/
 }

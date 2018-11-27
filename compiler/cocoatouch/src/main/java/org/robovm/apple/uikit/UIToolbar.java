@@ -56,13 +56,11 @@ import org.robovm.apple.intents.*;
     public UIToolbar() {}
     protected UIToolbar(Handle h, long handle) { super(h, handle); }
     protected UIToolbar(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIToolbar(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UIToolbar(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UIToolbar(CGRect frame) {
-        super(frame);
-    }
-    public UIToolbar(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "barStyle")
     public native UIBarStyle getBarStyle();

@@ -148,6 +148,11 @@ import org.robovm.apple.avfoundation.*;
         set(Keys.FlattenScene(), NSNumber.valueOf(flattensScene));
         return this;
     }
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0. No longer supported
+     */
+    @Deprecated
     public boolean usesSafeMode() {
         if (has(Keys.UseSafeMode())) {
             NSNumber val = (NSNumber) get(Keys.UseSafeMode());
@@ -155,6 +160,11 @@ import org.robovm.apple.avfoundation.*;
         }
         return false;
     }
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 11.0. No longer supported
+     */
+    @Deprecated
     public SCNSceneSourceOptions setUsesSafeMode(boolean usesSafeMode) {
         set(Keys.UseSafeMode(), NSNumber.valueOf(usesSafeMode));
         return this;
@@ -215,6 +225,11 @@ import org.robovm.apple.avfoundation.*;
         public static native NSString CheckConsistency();
         @GlobalValue(symbol="SCNSceneSourceFlattenSceneKey", optional=true)
         public static native NSString FlattenScene();
+        /**
+         * @since Available in iOS 8.0 and later.
+         * @deprecated Deprecated in iOS 11.0. No longer supported
+         */
+        @Deprecated
         @GlobalValue(symbol="SCNSceneSourceUseSafeModeKey", optional=true)
         public static native NSString UseSafeMode();
         @GlobalValue(symbol="SCNSceneSourceAssetDirectoryURLsKey", optional=true)

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNUpsamplingBilinearGradient/*</name>*/ 
     extends /*<extends>*/MPSCNNUpsamplingGradient/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,6 +51,10 @@ import org.robovm.apple.metal.*;
     protected MPSCNNUpsamplingBilinearGradient(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:integerScaleFactorX:integerScaleFactorY:")
     public MPSCNNUpsamplingBilinearGradient(MTLDevice device, @MachineSizedUInt long integerScaleFactorX, @MachineSizedUInt long integerScaleFactorY) { super((SkipInit) null); initObject(init(device, integerScaleFactorX, integerScaleFactorY)); }
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNUpsamplingBilinearGradient(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNUpsamplingBilinearGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

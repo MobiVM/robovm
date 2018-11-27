@@ -51,7 +51,7 @@ import org.robovm.apple.fileprovider.*;
     protected CKFetchShareParticipantsOperation(Handle h, long handle) { super(h, handle); }
     protected CKFetchShareParticipantsOperation(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithUserIdentityLookupInfos:")
-    public CKFetchShareParticipantsOperation(NSArray<CKUserIdentityLookupInfo> userIdentityLookupInfos) { super((SkipInit) null); initObject(initWithUserIdentityLookupInfos(userIdentityLookupInfos)); }
+    public CKFetchShareParticipantsOperation(NSArray<CKUserIdentityLookupInfo> userIdentityLookupInfos) { super((SkipInit) null); initObject(init(userIdentityLookupInfos)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "userIdentityLookupInfos")
@@ -70,6 +70,6 @@ import org.robovm.apple.fileprovider.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithUserIdentityLookupInfos:")
-    protected native @Pointer long initWithUserIdentityLookupInfos(NSArray<CKUserIdentityLookupInfo> userIdentityLookupInfos);
+    protected native @Pointer long init(NSArray<CKUserIdentityLookupInfo> userIdentityLookupInfos);
     /*</methods>*/
 }

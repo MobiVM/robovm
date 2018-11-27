@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixBinaryKernel/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,15 @@ import org.robovm.apple.metal.*;
     public MPSMatrixBinaryKernel() {}
     protected MPSMatrixBinaryKernel(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixBinaryKernel(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:")
+    public MPSMatrixBinaryKernel(MTLDevice device) { super(device); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixBinaryKernel(NSCoder decoder) { super(decoder); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSMatrixBinaryKernel(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primarySourceMatrixOrigin")

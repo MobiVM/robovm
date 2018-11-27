@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INBalanceTypeResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INBalanceTypeResolutionResult() {}
+    protected INBalanceTypeResolutionResult() {}
     protected INBalanceTypeResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INBalanceTypeResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
@@ -57,21 +57,7 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "successWithResolvedBalanceType:")
     public static native INBalanceTypeResolutionResult successWithResolvedBalanceType(INBalanceType resolvedBalanceType);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "successWithResolvedValue:")
-    public static native INBalanceTypeResolutionResult successWithResolvedValue(INBalanceType resolvedValue);
     @Method(selector = "confirmationRequiredWithBalanceTypeToConfirm:")
     public static native INBalanceTypeResolutionResult confirmationRequiredWithBalanceTypeToConfirm(INBalanceType balanceTypeToConfirm);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INBalanceTypeResolutionResult confirmationRequiredWithValueToConfirm(INBalanceType valueToConfirm);
     /*</methods>*/
 }

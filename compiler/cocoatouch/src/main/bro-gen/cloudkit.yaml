@@ -39,10 +39,9 @@ enums:
     CKShareParticipantAcceptanceStatus: {}
     CKShareParticipantPermission: {}
     CKShareParticipantType: {}
-    CKSubscriptionType: {}
     CKQuerySubscriptionOptions: { prefix: CKQuerySubscriptionOptions}
     CKOperationGroupTransferSize: {} #since 11.0
-
+    CKShareParticipantRole: {} #since 12.0
 classes:
     CKError:
         extends: NSError
@@ -96,7 +95,10 @@ classes:
                 name: fetchAllLongLivedOperationIDs
             '-fetchLongLivedOperationWithID:completionHandler:':
                 name: fetchLongLivedOperation
-
+            '-databaseWithDatabaseScope:':
+                name: getDatanase
+            '-discoverAllIdentitiesWithCompletionHandler:':
+                name: discoverAllIdentities
     CKDatabase: # DONE
         methods:
             '-addOperation:':
@@ -249,6 +251,8 @@ classes:
         methods:
             '-init.*':
                 name: init
+            '+new':
+                exclude: true
     CKOperation: # DONE
         methods:
             '-init':
@@ -441,37 +445,88 @@ classes:
     CKUserIdentityLookupInfo:
         methods:
             '-initWithEmailAddress:':
-                trim_after_first_colon: true
-                constructor: false
+                name: initWithEmailAddress
+                static_constructor_name: createWithEmailAddress
             '-initWithPhoneNumber:':
-                trim_after_first_colon: true
-                constructor: false
-            '-init.*':
+                name: initWithPhoneNumber
+                static_constructor_name: createWithPhoneNumber
+            '-initWithUserRecordID:':
                 name: init
-
-    CKAcceptSharesOperation: {}
+            '+lookupInfosWithEmails:':
+                name: lookupInfosWithEmails
+            '+lookupInfosWithPhoneNumbers:':
+                name: lookupInfosWithPhoneNumbers
+            '+lookupInfosWithRecordIDs:':
+                name: lookupInfosWithRecordIDs
+    CKAcceptSharesOperation:
+        methods:
+            '-initWithShareMetadatas:':
+                name: init
     CKDatabaseNotification: {}
     CKDiscoverAllUserIdentitiesOperation: {}
-    CKDiscoverUserIdentitiesOperation: {}
-    CKFetchDatabaseChangesOperation: {}
+    CKDiscoverUserIdentitiesOperation:
+        methods:
+            '-initWithUserIdentityLookupInfos:':
+                name: init
+    CKFetchDatabaseChangesOperation: #since 10.0
+        methods:
+            '-initWithPreviousServerChangeToken:':
+                name: init
     CKFetchRecordZoneChangesOperation:
         methods:
-            '-init.*':
+            '-initWithRecordZoneIDs:configurationsByRecordZoneID:':
+                name: init0
+                static_constructor_name: create
+            '-initWithRecordZoneIDs:optionsByRecordZoneID:':
                 name: init
     CKFetchRecordZoneChangesOptions: {}
-    CKFetchShareMetadataOperation: {}
-    CKFetchShareParticipantsOperation: {}
-    CKFetchWebAuthTokenOperation: {}
+    CKFetchShareMetadataOperation:
+        methods:
+            '-initWithShareURLs:':
+                name: init
+    CKFetchShareParticipantsOperation:
+        methods:
+            '-initWithUserIdentityLookupInfos:':
+                name: init
+    CKFetchWebAuthTokenOperation:
+        methods:
+            '-initWithAPIToken:':
+                name: init
     CKOperationConfiguration: {} #since 11.0
     CKOperationGroup: {} #since 11.0
     CKQuerySubscription: #since 10.0
         methods:
             '-init.*':
                 name: init
+    CKFetchRecordZoneChangesConfiguration: {} #since 12.0
 
 protocols:
     CKRecordValue: # DONE
         adapter: false
+    # dkimitsa: that is very special configuration for this protocol
+    # * exclude -- affects only if this protocol to be exported to java file or not. Doesn't affect it usage
+    # * introduced `skip_implements` -- this protocol will not be declated in 'implemens' sections
+    #   but all its method will be included in class (sometime this is needed like in CKRecord case
+    #   when some methods of protocol have to be protected)
+    CKRecordKeyValueSetting: #since 9.0
+        exclude: true
+        skip_adapter: true
+        skip_implements: true
+        methods:
+            '-objectForKey:':
+                name: get
+                return_type: NSObject
+            '-setObject:forKey:':
+                name: put
+                parameters:
+                    object:
+                        type: NSObject # We don't use CKRecordValue here because we don't want to make several Foundation objects implement the CKRecordValue interface.
+            '-setObject:forKeyedSubscript:':
+                name: setObjectForKeyedSubscript
+                visibility: protected # We provide overloaded methods for each allowed type
+            '-(allKeys|allTokens|changedKeys)':
+                property: true
+                return_type: List<String>
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

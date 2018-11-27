@@ -70,7 +70,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "URLForItemWithPersistentIdentifier:")
-    public native NSURL URLForItemWithPersistentIdentifier(NSString identifier);
+    public native NSURL getURLForItem(NSString identifier);
     @Method(selector = "persistentIdentifierForItemAtURL:")
     public native NSString persistentIdentifierForItemAtURL(NSURL url);
     /**
@@ -97,7 +97,7 @@ import org.robovm.apple.coregraphics.*;
     public native void itemChangedAtURL(NSURL url);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the corresponding method on NSFileProviderManager instead
      */
     @Deprecated
     @Method(selector = "writePlaceholderAtURL:withMetadata:error:")

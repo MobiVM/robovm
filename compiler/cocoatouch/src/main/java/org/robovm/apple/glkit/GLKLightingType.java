@@ -44,8 +44,8 @@ import org.robovm.apple.modelio.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/GLKLightingType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Vertex(0L),
-    Pixel(1L);
+    PerVertex(0L),
+    PerPixel(1L);
     /*</values>*/
 
     private final long n;

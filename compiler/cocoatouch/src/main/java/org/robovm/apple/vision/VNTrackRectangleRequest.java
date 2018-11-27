@@ -54,7 +54,7 @@ import org.robovm.apple.imageio.*;
     protected VNTrackRectangleRequest(Handle h, long handle) { super(h, handle); }
     protected VNTrackRectangleRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRectangleObservation:")
-    public VNTrackRectangleRequest(VNRectangleObservation observation) { super((SkipInit) null); initObject(initWithRectangleObservation(observation)); }
+    public VNTrackRectangleRequest(VNRectangleObservation observation) { super((SkipInit) null); initObject(init(observation)); }
     @Method(selector = "initWithRectangleObservation:completionHandler:")
     public VNTrackRectangleRequest(VNRectangleObservation observation, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(observation, completionHandler)); }
     /*</constructors>*/
@@ -63,8 +63,14 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="VNTrackRectangleRequestRevision1", optional=true)
+    public static native @MachineSizedUInt long getRevision1();
+    
     @Method(selector = "initWithRectangleObservation:")
-    protected native @Pointer long initWithRectangleObservation(VNRectangleObservation observation);
+    protected native @Pointer long init(VNRectangleObservation observation);
     @Method(selector = "initWithRectangleObservation:completionHandler:")
     protected native @Pointer long init(VNRectangleObservation observation, @Block VoidBlock2<VNRequest, NSError> completionHandler);
     /*</methods>*/

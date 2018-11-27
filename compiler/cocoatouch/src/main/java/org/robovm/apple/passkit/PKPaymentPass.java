@@ -50,6 +50,8 @@ import org.robovm.apple.contacts.*;
     public PKPaymentPass() {}
     protected PKPaymentPass(Handle h, long handle) { super(h, handle); }
     protected PKPaymentPass(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithData:error:")
+    public PKPaymentPass(NSData data) throws NSErrorException { super(data); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryAccountIdentifier")

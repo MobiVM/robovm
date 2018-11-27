@@ -56,13 +56,11 @@ import org.robovm.apple.intents.*;
     public UIStepper() {}
     protected UIStepper(Handle h, long handle) { super(h, handle); }
     protected UIStepper(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIStepper(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UIStepper(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UIStepper(CGRect frame) {
-        super(frame);
-    }
-    public UIStepper(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "isContinuous")
     public native boolean isContinuous();

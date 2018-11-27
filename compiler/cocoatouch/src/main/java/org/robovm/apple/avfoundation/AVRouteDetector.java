@@ -68,6 +68,12 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVRouteDetectorMultipleRoutesDetectedDidChangeNotification", optional=true)
+    public static native String MultipleRoutesDetectedDidChangeNotification();
+    
     
     /*</methods>*/
 }

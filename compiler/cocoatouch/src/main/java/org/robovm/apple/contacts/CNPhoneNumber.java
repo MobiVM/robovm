@@ -50,7 +50,7 @@ import org.robovm.apple.foundation.*;
     public CNPhoneNumber(String string) { super((SkipInit) null); initObject(init(string)); }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use phoneNumberWithStringValue:
      */
     @Deprecated
     public CNPhoneNumber() { super((Handle) null, create()); retain(getHandle()); }
@@ -69,7 +69,7 @@ import org.robovm.apple.foundation.*;
     protected native @Pointer long init(String string);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use phoneNumberWithStringValue:
      */
     @Deprecated
     @Method(selector = "new")

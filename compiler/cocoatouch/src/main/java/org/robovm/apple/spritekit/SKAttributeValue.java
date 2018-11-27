@@ -47,7 +47,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKAttributeValue/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKAttributeValuePtr extends Ptr<SKAttributeValue, SKAttributeValuePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKAttributeValue.class); }/*</bind>*/
@@ -56,6 +56,10 @@ import org.robovm.apple.metal.*;
     public SKAttributeValue() {}
     protected SKAttributeValue(Handle h, long handle) { super(h, handle); }
     protected SKAttributeValue(SkipInit skipInit) { super(skipInit); }
+    public SKAttributeValue(float value) { super((Handle) null, create(value)); retain(getHandle()); }
+    public SKAttributeValue(@ByVal VectorFloat2 value) { super((Handle) null, create(value)); retain(getHandle()); }
+    public SKAttributeValue(@ByVal VectorFloat3 value) { super((Handle) null, create(value)); retain(getHandle()); }
+    public SKAttributeValue(@ByVal VectorFloat4 value) { super((Handle) null, create(value)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public SKAttributeValue(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -76,17 +80,19 @@ import org.robovm.apple.metal.*;
     public native @ByVal VectorFloat4 getVectorFloat4Value();
     @Property(selector = "setVectorFloat4Value:")
     public native void setVectorFloat4Value(@ByVal VectorFloat4 v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "valueWithFloat:")
-    public static native SKAttributeValue valueWithFloat(float value);
+    protected static native @Pointer long create(float value);
     @Method(selector = "valueWithVectorFloat2:")
-    public static native SKAttributeValue valueWithVectorFloat2(@ByVal VectorFloat2 value);
+    protected static native @Pointer long create(@ByVal VectorFloat2 value);
     @Method(selector = "valueWithVectorFloat3:")
-    public static native SKAttributeValue valueWithVectorFloat3(@ByVal VectorFloat3 value);
+    protected static native @Pointer long create(@ByVal VectorFloat3 value);
     @Method(selector = "valueWithVectorFloat4:")
-    public static native SKAttributeValue valueWithVectorFloat4(@ByVal VectorFloat4 value);
+    protected static native @Pointer long create(@ByVal VectorFloat4 value);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

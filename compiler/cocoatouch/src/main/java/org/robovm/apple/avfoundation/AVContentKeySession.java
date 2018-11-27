@@ -54,9 +54,13 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVContentKeySession.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVContentKeySession() {}
+    protected AVContentKeySession() {}
     protected AVContentKeySession(Handle h, long handle) { super(h, handle); }
     protected AVContentKeySession(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public AVContentKeySession(String keySystem) { super((Handle) null, create(keySystem)); retain(getHandle()); }
     public AVContentKeySession(String keySystem, NSURL storageURL) { super((Handle) null, create(keySystem, storageURL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -92,7 +96,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "contentKeySessionWithKeySystem:")
-    public static native AVContentKeySession contentKeySessionWithKeySystem(String keySystem);
+    protected static native @Pointer long create(String keySystem);
     @Method(selector = "contentKeySessionWithKeySystem:storageDirectoryAtURL:")
     protected static native @Pointer long create(String keySystem, NSURL storageURL);
     @Method(selector = "addContentKeyRecipient:")

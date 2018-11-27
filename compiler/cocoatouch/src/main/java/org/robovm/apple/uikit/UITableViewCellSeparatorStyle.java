@@ -49,7 +49,7 @@ public enum /*<name>*/UITableViewCellSeparatorStyle/*</name>*/ implements Valued
     SingleLine(1L),
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use UITableViewCellSeparatorStyleSingleLine for a single line separator.
      */
     @Deprecated
     SingleLineEtched(2L);

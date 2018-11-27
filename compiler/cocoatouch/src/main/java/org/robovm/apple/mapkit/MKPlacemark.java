@@ -47,9 +47,6 @@ import org.robovm.apple.dispatch.*;
     /*<ptr>*/public static class MKPlacemarkPtr extends Ptr<MKPlacemark, MKPlacemarkPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MKPlacemark.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    public MKPlacemark(CLPlacemark placemark) {
-        super(placemark);
-    }
     /*<constructors>*/
     protected MKPlacemark(Handle h, long handle) { super(h, handle); }
     protected MKPlacemark(SkipInit skipInit) { super(skipInit); }
@@ -65,6 +62,8 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "initWithCoordinate:postalAddress:")
     public MKPlacemark(@ByVal CLLocationCoordinate2D coordinate, org.robovm.apple.contacts.CNPostalAddress postalAddress) { super((SkipInit) null); initObject(init(coordinate, postalAddress)); }
+    @Method(selector = "initWithPlacemark:")
+    public MKPlacemark(CLPlacemark placemark) { super(placemark); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "countryCode")

@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithView:parameters:")
     public UIDragPreview(UIView view, UIDragPreviewParameters parameters) { super((SkipInit) null); initObject(init(view, parameters)); }
     @Method(selector = "initWithView:")
-    public UIDragPreview(UIView view) { super((SkipInit) null); initObject(initWithView(view)); }
+    public UIDragPreview(UIView view) { super((SkipInit) null); initObject(init(view)); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -76,7 +76,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithView:parameters:")
     protected native @Pointer long init(UIView view, UIDragPreviewParameters parameters);
     @Method(selector = "initWithView:")
-    protected native @Pointer long initWithView(UIView view);
+    protected native @Pointer long init(UIView view);
     /**
      * @since Available in iOS 11.0 and later.
      */

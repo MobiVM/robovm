@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INTemporalEventTrigger(Handle h, long handle) { super(h, handle); }
     protected INTemporalEventTrigger(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDateComponentsRange:")
-    public INTemporalEventTrigger(INDateComponentsRange dateComponentsRange) { super((SkipInit) null); initObject(initWithDateComponentsRange(dateComponentsRange)); }
+    public INTemporalEventTrigger(INDateComponentsRange dateComponentsRange) { super((SkipInit) null); initObject(init(dateComponentsRange)); }
     @Method(selector = "initWithCoder:")
     public INTemporalEventTrigger(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -63,7 +63,7 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDateComponentsRange:")
-    protected native @Pointer long initWithDateComponentsRange(INDateComponentsRange dateComponentsRange);
+    protected native @Pointer long init(INDateComponentsRange dateComponentsRange);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

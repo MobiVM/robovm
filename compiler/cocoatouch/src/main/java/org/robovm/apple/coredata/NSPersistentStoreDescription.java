@@ -49,7 +49,7 @@ import org.robovm.apple.corespotlight.*;
     protected NSPersistentStoreDescription(Handle h, long handle) { super(h, handle); }
     protected NSPersistentStoreDescription(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithURL:")
-    public NSPersistentStoreDescription(NSURL url) { super((SkipInit) null); initObject(initWithURL(url)); }
+    public NSPersistentStoreDescription(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
@@ -96,8 +96,6 @@ import org.robovm.apple.corespotlight.*;
     @Method(selector = "setValue:forPragmaNamed:")
     public native void setValue(NSObject value, String name);
     @Method(selector = "initWithURL:")
-    protected native @Pointer long initWithURL(NSURL url);
-    @Method(selector = "persistentStoreDescriptionWithURL:")
-    public static native NSPersistentStoreDescription persistentStoreDescriptionWithURL(NSURL URL);
+    protected native @Pointer long init(NSURL url);
     /*</methods>*/
 }

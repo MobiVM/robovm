@@ -19,8 +19,13 @@ classes:
         methods:
             '-initWithKeyName:searchable:searchableByDefault:unique:multiValued:':
                 name: init
+            '-initWithKeyName:':
+                name: init
     CSIndexExtensionRequestHandler: {} #since 9.0
-    CSLocalizedString: {}
+    CSLocalizedString:
+        methods:
+            '-initWithLocalizedStrings:':
+                name: init
     CSPerson: #since 9.0
         methods:
             '-initWithDisplayName:handles:handleIdentifier:':
@@ -41,12 +46,20 @@ classes:
                 name: deleteSearchableItemsWithDomainIdentifiers
             '-endIndexBatchWithClientState:completionHandler:':
                 name: endIndexBatch
+            '-initWithName:':
+                name: init
+            '-deleteAllSearchableItemsWithCompletionHandler:':
+                name: deleteAllSearchableItems
+            '-fetchLastClientStateWithCompletionHandler:':
+                name: fetchLastClientState
     CSSearchableItem: #since 9.0
         methods:
             '-initWithUniqueIdentifier:domainIdentifier:attributeSet:':
                 name: init
     CSSearchableItemAttributeSet: #since 9.0
         methods:
+            '-initWithItemContentType:':
+                name: init
             '-setValue:forCustomKey:':
                 name: setValue
 protocols:

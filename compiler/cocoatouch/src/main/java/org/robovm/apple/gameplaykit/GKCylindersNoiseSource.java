@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     protected GKCylindersNoiseSource(Handle h, long handle) { super(h, handle); }
     protected GKCylindersNoiseSource(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrequency:")
-    public GKCylindersNoiseSource(double frequency) { super((SkipInit) null); initObject(initWithFrequency(frequency)); }
+    public GKCylindersNoiseSource(double frequency) { super((SkipInit) null); initObject(init(frequency)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "frequency")
@@ -62,6 +62,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithFrequency:")
-    protected native @Pointer long initWithFrequency(double frequency);
+    protected native @Pointer long init(double frequency);
     /*</methods>*/
 }

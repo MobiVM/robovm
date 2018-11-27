@@ -59,6 +59,8 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVCaptureVideoPreviewLayer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSession:")
     public AVCaptureVideoPreviewLayer(AVCaptureSession session) { super((SkipInit) null); initObject(init(session)); }
+    @Method(selector = "initWithLayer:")
+    public AVCaptureVideoPreviewLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     /**
      * @since Available in iOS 8.0 and later.

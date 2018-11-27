@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNPoolingAverageNode/*</name>*/ 
     extends /*<extends>*/MPSCNNPoolingNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,9 +46,15 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNPoolingAverageNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNPoolingAverageNode() {}
+    protected MPSCNNPoolingAverageNode() {}
     protected MPSCNNPoolingAverageNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNPoolingAverageNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:")
+    public MPSCNNPoolingAverageNode(MPSNNImageNode sourceNode, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInPixelsX, @MachineSizedUInt long strideInPixelsY) { super(sourceNode, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY); }
+    @Method(selector = "initWithSource:filterSize:stride:")
+    public MPSCNNPoolingAverageNode(MPSNNImageNode sourceNode, @MachineSizedUInt long size, @MachineSizedUInt long stride) { super(sourceNode, size, stride); }
+    @Method(selector = "initWithSource:filterSize:")
+    public MPSCNNPoolingAverageNode(MPSNNImageNode sourceNode, @MachineSizedUInt long size) { super(sourceNode, size); }
     /*</constructors>*/
     /*<properties>*/
     

@@ -44,7 +44,7 @@ public enum /*<name>*/INListRideOptionsIntentResponseCode/*</name>*/ implements 
     Ready(1L),
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. INListRideOptionsIntentResponseCodeInProgress is deprecated.
      */
     @Deprecated
     InProgress(2L),

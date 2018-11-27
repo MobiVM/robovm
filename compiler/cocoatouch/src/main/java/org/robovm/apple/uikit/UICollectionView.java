@@ -59,7 +59,9 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:collectionViewLayout:")
     public UICollectionView(@ByVal CGRect frame, UICollectionViewLayout layout) { super((SkipInit) null); initObject(init(frame, layout)); }
     @Method(selector = "initWithCoder:")
-    public UICollectionView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UICollectionView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    @Method(selector = "initWithFrame:")
+    public UICollectionView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "collectionViewLayout")
@@ -204,7 +206,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:collectionViewLayout:")
     protected native @Pointer long init(@ByVal CGRect frame, UICollectionViewLayout layout);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "registerClass:forCellWithReuseIdentifier:")
     public native void registerReusableCellClass(Class<? extends UICollectionViewCell> cellClass, String identifier);
     @Method(selector = "registerNib:forCellWithReuseIdentifier:")

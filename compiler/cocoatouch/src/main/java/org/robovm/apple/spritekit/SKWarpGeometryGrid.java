@@ -47,7 +47,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKWarpGeometryGrid/*</name>*/ 
     extends /*<extends>*/SKWarpGeometry/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKWarpGeometryGridPtr extends Ptr<SKWarpGeometryGrid, SKWarpGeometryGridPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKWarpGeometryGrid.class); }/*</bind>*/

@@ -108,9 +108,9 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "removeDomain:completionHandler:")
     public static native void removeDomain(NSFileProviderDomain domain, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "getDomainsWithCompletionHandler:")
-    public static native void getDomainsWithCompletionHandler(@Block VoidBlock2<NSArray<NSFileProviderDomain>, NSError> completionHandler);
+    public static native void getDomains(@Block VoidBlock2<NSArray<NSFileProviderDomain>, NSError> completionHandler);
     @Method(selector = "removeAllDomainsWithCompletionHandler:")
-    public static native void removeAllDomainsWithCompletionHandler(@Block VoidBlock1<NSError> completionHandler);
+    public static native void removeAllDomains(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "managerForDomain:")
     public static native NSFileProviderManager managerForDomain(NSFileProviderDomain domain);
     /*</methods>*/

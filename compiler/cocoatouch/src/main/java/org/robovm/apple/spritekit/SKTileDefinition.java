@@ -47,7 +47,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKTileDefinition/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKTileDefinitionPtr extends Ptr<SKTileDefinition, SKTileDefinitionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKTileDefinition.class); }/*</bind>*/
@@ -110,6 +110,8 @@ import org.robovm.apple.metal.*;
     public native boolean isFlipHorizontally();
     @Property(selector = "setFlipHorizontally:")
     public native void setFlipHorizontally(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

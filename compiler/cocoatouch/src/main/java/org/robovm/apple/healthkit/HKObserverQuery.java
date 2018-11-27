@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKObserverQuery.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKObserverQuery() {}
+    protected HKObserverQuery() {}
     protected HKObserverQuery(Handle h, long handle) { super(h, handle); }
     protected HKObserverQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSampleType:predicate:updateHandler:")

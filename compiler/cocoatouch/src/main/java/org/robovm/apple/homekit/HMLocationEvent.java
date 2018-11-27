@@ -60,7 +60,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(CLRegion region);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported.
      */
     @Deprecated
     @Method(selector = "updateRegion:completionHandler:")

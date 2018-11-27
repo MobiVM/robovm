@@ -39,7 +39,15 @@ public enum /*<name>*/MLModelError/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Generic(0L),
     FeatureType(1L),
-    IO(3L);
+    IO(3L),
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    CustomLayer(4L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    CustomModel(5L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MLModelError.class); }/*</bind>*/

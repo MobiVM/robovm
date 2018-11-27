@@ -52,7 +52,12 @@ public enum /*<name>*/RPRecordingErrorCode/*</name>*/ implements NSErrorCode {
     Entitlements(-5810L),
     ActivePhoneCall(-5811L),
     FailedToSave(-5812L),
-    CarPlay(-5813L);
+    CarPlay(-5813L),
+    FailedApplicationConnectionInvalid(-5814L),
+    FailedApplicationConnectionInterrupted(-5815L),
+    FailedNoMatchingApplicationContext(-5816L),
+    FailedMediaServicesFailure(-5817L),
+    VideoMixingFailure(-5818L);
     /*</values>*/
 
     /*<bind>*/

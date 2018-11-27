@@ -55,6 +55,7 @@ import org.robovm.apple.dispatch.*;
     public NSXPCInterface() {}
     protected NSXPCInterface(Handle h, long handle) { super(h, handle); }
     protected NSXPCInterface(SkipInit skipInit) { super(skipInit); }
+    public NSXPCInterface(ObjCProtocol protocol) { super((Handle) null, create(protocol)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "protocol")
@@ -73,6 +74,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "interfaceForSelector:argumentIndex:ofReply:")
     public native NSXPCInterface getInterfaceForSelector(Selector sel, @MachineSizedUInt long arg, boolean ofReply);
     @Method(selector = "interfaceWithProtocol:")
-    public static native NSXPCInterface interfaceWithProtocol(ObjCProtocol protocol);
+    protected static native @Pointer long create(ObjCProtocol protocol);
     /*</methods>*/
 }

@@ -62,21 +62,21 @@ import org.robovm.apple.dispatch.*;
     void willSendRequestForAuthenticationChallenge(NSURLConnection connection, NSURLAuthenticationChallenge challenge);
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use -connection:willSendRequestForAuthenticationChallenge: instead.
      */
     @Deprecated
     @Method(selector = "connection:canAuthenticateAgainstProtectionSpace:")
     boolean canAuthenticateAgainstProtectionSpace(NSURLConnection connection, NSURLProtectionSpace protectionSpace);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use -connection:willSendRequestForAuthenticationChallenge: instead.
      */
     @Deprecated
     @Method(selector = "connection:didReceiveAuthenticationChallenge:")
     void didReceiveAuthenticationChallenge(NSURLConnection connection, NSURLAuthenticationChallenge challenge);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use -connection:willSendRequestForAuthenticationChallenge: instead.
      */
     @Deprecated
     @Method(selector = "connection:didCancelAuthenticationChallenge:")

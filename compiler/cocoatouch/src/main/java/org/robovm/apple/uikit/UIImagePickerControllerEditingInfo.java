@@ -172,7 +172,7 @@ import org.robovm.apple.intents.*;
     }
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Replace with public API: UIImagePickerControllerPHAsset
      */
     @Deprecated
     public NSURL getReferenceURL() {
@@ -184,7 +184,7 @@ import org.robovm.apple.intents.*;
     }
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Replace with public API: UIImagePickerControllerPHAsset
      */
     @Deprecated
     public UIImagePickerControllerEditingInfo setReferenceURL(NSURL referenceURL) {
@@ -226,7 +226,7 @@ import org.robovm.apple.intents.*;
         public static native NSString MediaURL();
         /**
          * @since Available in iOS 4.1 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Replace with public API: UIImagePickerControllerPHAsset
          */
         @Deprecated
         @GlobalValue(symbol="UIImagePickerControllerReferenceURL", optional=true)

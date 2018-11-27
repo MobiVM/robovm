@@ -57,6 +57,9 @@ import org.robovm.apple.audiotoolbox.*;
     public AVAudioUnitReverb() {}
     protected AVAudioUnitReverb(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitReverb(SkipInit skipInit) { super(skipInit); }
+    @WeaklyLinked
+    @Method(selector = "initWithAudioComponentDescription:")
+    public AVAudioUnitReverb(@ByVal AudioComponentDescription audioComponentDescription) { super(audioComponentDescription); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "wetDryMix")

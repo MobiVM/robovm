@@ -47,7 +47,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass @WeaklyLinked/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKUniform/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKUniformPtr extends Ptr<SKUniform, SKUniformPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKUniform.class); }/*</bind>*/
@@ -294,6 +294,8 @@ import org.robovm.apple.metal.*;
     @Deprecated
     @Property(selector = "setFloatMatrix4Value:")
     public native void setFloatMatrix4Value(@ByVal GLKMatrix4 v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

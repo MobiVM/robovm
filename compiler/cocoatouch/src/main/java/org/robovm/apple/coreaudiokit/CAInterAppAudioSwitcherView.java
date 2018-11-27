@@ -50,6 +50,10 @@ import org.robovm.apple.uikit.*;
     public CAInterAppAudioSwitcherView() {}
     protected CAInterAppAudioSwitcherView(Handle h, long handle) { super(h, handle); }
     protected CAInterAppAudioSwitcherView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public CAInterAppAudioSwitcherView(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public CAInterAppAudioSwitcherView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isShowingAppNames")

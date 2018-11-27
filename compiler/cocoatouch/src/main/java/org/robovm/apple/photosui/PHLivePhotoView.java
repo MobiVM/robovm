@@ -49,6 +49,10 @@ import org.robovm.apple.uikit.*;
     public PHLivePhotoView() {}
     protected PHLivePhotoView(Handle h, long handle) { super(h, handle); }
     protected PHLivePhotoView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public PHLivePhotoView(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public PHLivePhotoView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -69,10 +73,10 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "startPlaybackWithStyle:")
-    public native void startPlaybackWithStyle(PHLivePhotoViewPlaybackStyle playbackStyle);
+    public native void startPlayback(PHLivePhotoViewPlaybackStyle playbackStyle);
     @Method(selector = "stopPlayback")
     public native void stopPlayback();
     @Method(selector = "livePhotoBadgeImageWithOptions:")
-    public static native UIImage livePhotoBadgeImageWithOptions(PHLivePhotoBadgeOptions badgeOptions);
+    public static native UIImage createLivePhotoBadgeImage(PHLivePhotoBadgeOptions badgeOptions);
     /*</methods>*/
 }

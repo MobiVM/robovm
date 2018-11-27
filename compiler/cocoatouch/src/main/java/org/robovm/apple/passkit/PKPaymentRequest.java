@@ -227,6 +227,6 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "paymentShippingAddressUnserviceableErrorWithLocalizedDescription:")
-    public static native NSError paymentShippingAddressUnserviceableErrorWithLocalizedDescription(String localizedDescription);
+    public static native NSError createPaymentShippingAddressUnserviceableError(String localizedDescription);
     /*</methods>*/
 }

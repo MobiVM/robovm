@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public INRequestRideIntent(CLPlacemark pickupLocation, CLPlacemark dropOffLocation, INSpeakableString rideOptionName, NSNumber partySize, INPaymentMethod paymentMethod, INDateComponentsRange scheduledPickupTime) { super((SkipInit) null); initObject(init(pickupLocation, dropOffLocation, rideOptionName, partySize, paymentMethod, scheduledPickupTime)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.3.
+     * @deprecated Deprecated in iOS 10.3. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:")
@@ -88,7 +88,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(CLPlacemark pickupLocation, CLPlacemark dropOffLocation, INSpeakableString rideOptionName, NSNumber partySize, INPaymentMethod paymentMethod, INDateComponentsRange scheduledPickupTime);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.3.
+     * @deprecated Deprecated in iOS 10.3. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithPickupLocation:dropOffLocation:rideOptionName:partySize:paymentMethod:")

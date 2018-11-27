@@ -45,6 +45,9 @@ public final class /*<name>*/INMessageAttributeOptions/*</name>*/ extends Bits</
     public static final INMessageAttributeOptions Unread = new INMessageAttributeOptions(2L);
     public static final INMessageAttributeOptions Flagged = new INMessageAttributeOptions(4L);
     public static final INMessageAttributeOptions Unflagged = new INMessageAttributeOptions(8L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     public static final INMessageAttributeOptions Played = new INMessageAttributeOptions(16L);
     /*</values>*/
 

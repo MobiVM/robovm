@@ -193,42 +193,42 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTextFormatDescriptionGetDisplayFlags", optional=true)
-    protected native OSStatus getDisplayFlags0(IntPtr outDisplayFlags);
+    protected native OSStatus getDisplayFlags0(IntPtr displayFlagsOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTextFormatDescriptionGetJustification", optional=true)
-    protected native OSStatus getJustification0(BytePtr outHorizontalJust, BytePtr outVerticalJust);
+    protected native OSStatus getJustification0(BytePtr horizontaJustificationlOut, BytePtr verticalJustificationOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
     @WeaklyLinked
     @Bridge(symbol="CMTextFormatDescriptionGetDefaultTextBox", optional=true)
-    protected native OSStatus getDefaultTextBox0(boolean originIsAtTopLeft, @MachineSizedFloat double heightOfTextTrack, CGRect.CGRectPtr outDefaultTextBox);
+    protected native OSStatus getDefaultTextBox0(boolean originIsAtTopLeft, @MachineSizedFloat double heightOfTextTrack, CGRect.CGRectPtr defaultTextBoxOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTextFormatDescriptionGetDefaultStyle", optional=true)
-    protected native OSStatus getDefaultStyle0(ShortPtr outLocalFontID, BooleanPtr outBold, BooleanPtr outItalic, BooleanPtr outUnderline, MachineSizedFloatPtr outFontSize, MachineSizedFloatPtr outColorComponents);
+    protected native OSStatus getDefaultStyle0(ShortPtr localFontIDOut, BooleanPtr boldOut, BooleanPtr italicOut, BooleanPtr underlineOut, MachineSizedFloatPtr fontSizeOut, MachineSizedFloatPtr colorComponentsOut);
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTextFormatDescriptionGetFontName", optional=true)
-    protected native OSStatus getFontName0(short localFontID, CFString.CFStringPtr outFontName);
+    protected native OSStatus getFontName0(short localFontID, CFString.CFStringPtr fontNameOut);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Bridge(symbol="CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData", optional=true)
-    private static native OSStatus createFromBigEndianTextDescriptionData0(CFAllocator allocator, BytePtr textDescriptionData, @MachineSizedUInt long textDescriptionSize, String textDescriptionFlavor, CMMediaType mediaType, CMTextFormatDescription.CMTextFormatDescriptionPtr textFormatDescriptionOut);
+    private static native OSStatus createFromBigEndianTextDescriptionData0(CFAllocator allocator, BytePtr textDescriptionData, @MachineSizedUInt long size, String flavor, CMMediaType mediaType, CMTextFormatDescription.CMTextFormatDescriptionPtr formatDescriptionOut);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Bridge(symbol="CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer", optional=true)
-    private static native OSStatus createFromBigEndianTextDescriptionBlockBuffer0(CFAllocator allocator, CMBlockBuffer textDescriptionBlockBuffer, String textDescriptionFlavor, CMMediaType mediaType, CMTextFormatDescription.CMTextFormatDescriptionPtr textFormatDescriptionOut);
+    private static native OSStatus createFromBigEndianTextDescriptionBlockBuffer0(CFAllocator allocator, CMBlockBuffer textDescriptionBlockBuffer, String flavor, CMMediaType mediaType, CMTextFormatDescription.CMTextFormatDescriptionPtr formatDescriptionOut);
     /**
      * @since Available in iOS 8.0 and later.
      */
     @Bridge(symbol="CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer", optional=true)
-    private static native OSStatus copyAsBigEndianTextDescriptionBlockBuffer0(CFAllocator allocator, CMTextFormatDescription textFormatDescription, String textDescriptionFlavor, CMBlockBuffer.CMBlockBufferPtr textDescriptionBlockBufferOut);
+    private static native OSStatus copyAsBigEndianTextDescriptionBlockBuffer0(CFAllocator allocator, CMTextFormatDescription textFormatDescription, String flavor, CMBlockBuffer.CMBlockBufferPtr blockBufferOut);
     /*</methods>*/
 }

@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public INSearchForNotebookItemsIntent(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType, String notebookItemIdentifier) { super((SkipInit) null); initObject(init(title, content, itemType, status, location, locationSearchType, dateTime, dateSearchType, notebookItemIdentifier)); }
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.2.
+     * @deprecated Deprecated in iOS 11.2. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:")
@@ -94,7 +94,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INSpeakableString title, String content, INNotebookItemType itemType, INTaskStatus status, CLPlacemark location, INLocationSearchType locationSearchType, INDateComponentsRange dateTime, INDateSearchType dateSearchType, String notebookItemIdentifier);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.2.
+     * @deprecated Deprecated in iOS 11.2. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithTitle:content:itemType:status:location:locationSearchType:dateTime:dateSearchType:")

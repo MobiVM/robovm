@@ -55,6 +55,12 @@ import org.robovm.apple.metal.*;
     protected SKLabelNode(Handle h, long handle) { super(h, handle); }
     protected SKLabelNode(SkipInit skipInit) { super(skipInit); }
     public SKLabelNode(String text) { super((Handle) null, create(text)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public SKLabelNode(NSAttributedString attributedText) { super((Handle) null, create(attributedText)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public SKLabelNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     public SKLabelNode(String text, String fontName) {
         this(text);
@@ -146,6 +152,6 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "labelNodeWithAttributedText:")
-    public static native SKLabelNode labelNodeWithAttributedText(NSAttributedString attributedText);
+    protected static native @Pointer long create(NSAttributedString attributedText);
     /*</methods>*/
 }

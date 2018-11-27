@@ -48,6 +48,10 @@ import org.robovm.apple.uikit.*;
     public SKStoreProductViewController() {}
     protected SKStoreProductViewController(Handle h, long handle) { super(h, handle); }
     protected SKStoreProductViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public SKStoreProductViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public SKStoreProductViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**

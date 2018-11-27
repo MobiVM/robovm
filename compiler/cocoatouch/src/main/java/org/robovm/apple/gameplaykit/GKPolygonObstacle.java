@@ -41,7 +41,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKPolygonObstacle/*</name>*/ 
     extends /*<extends>*/GKObstacle/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKPolygonObstaclePtr extends Ptr<GKPolygonObstacle, GKPolygonObstaclePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKPolygonObstacle.class); }/*</bind>*/
@@ -62,6 +62,8 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "vertexCount")
     public native @MachineSizedUInt long getVertexCount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

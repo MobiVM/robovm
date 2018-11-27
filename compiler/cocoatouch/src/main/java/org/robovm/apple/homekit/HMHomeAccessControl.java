@@ -38,7 +38,7 @@ import org.robovm.apple.corelocation.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HMHomeAccessControl/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/
+    extends /*<extends>*/HMAccessControl/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class HMHomeAccessControlPtr extends Ptr<HMHomeAccessControl, HMHomeAccessControlPtr> {}/*</ptr>*/

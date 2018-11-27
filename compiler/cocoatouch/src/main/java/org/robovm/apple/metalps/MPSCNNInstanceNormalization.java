@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNInstanceNormalization/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,15 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNInstanceNormalization.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNInstanceNormalization() {}
+    public MPSCNNInstanceNormalization() {}
     protected MPSCNNInstanceNormalization(Handle h, long handle) { super(h, handle); }
     protected MPSCNNInstanceNormalization(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:dataSource:")
     public MPSCNNInstanceNormalization(MTLDevice device, MPSCNNInstanceNormalizationDataSource dataSource) { super((SkipInit) null); initObject(init(device, dataSource)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNInstanceNormalization(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNInstanceNormalization(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "epsilon")
@@ -68,8 +70,18 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, MPSCNNInstanceNormalizationDataSource dataSource);
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "reloadDataSource:")
     public native void reloadDataSource(MPSCNNInstanceNormalizationDataSource dataSource);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "reloadGammaAndBetaFromDataSource")
+    public native void reloadGammaAndBetaFromDataSource();
     @Method(selector = "reloadGammaAndBetaWithCommandBuffer:gammaAndBetaState:")
     public native void reloadGammaAndBeta(MTLCommandBuffer commandBuffer, MPSCNNNormalizationGammaAndBetaState gammaAndBetaState);
     @Method(selector = "resultStateForSourceImage:sourceStates:destinationImage:")

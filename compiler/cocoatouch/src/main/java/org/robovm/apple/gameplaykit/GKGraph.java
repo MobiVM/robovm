@@ -41,7 +41,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGraph/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKGraphPtr extends Ptr<GKGraph, GKGraphPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKGraph.class); }/*</bind>*/
@@ -51,24 +51,26 @@ import org.robovm.apple.uikit.*;
     protected GKGraph(Handle h, long handle) { super(h, handle); }
     protected GKGraph(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNodes:")
-    public GKGraph(NSArray<GKGraph> nodes) { super((SkipInit) null); initObject(init(nodes)); }
+    public GKGraph(NSArray<GKGraphNode> nodes) { super((SkipInit) null); initObject(init(nodes)); }
     @Method(selector = "initWithCoder:")
     public GKGraph(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "nodes")
-    public native NSArray<GKGraph> getNodes();
+    public native NSArray<GKGraphNode> getNodes();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithNodes:")
-    protected native @Pointer long init(NSArray<GKGraph> nodes);
+    protected native @Pointer long init(NSArray<GKGraphNode> nodes);
     @Method(selector = "connectNodeToLowestCostNode:bidirectional:")
     public native void connectNodeToLowestCostNode(GKGraphNode node, boolean bidirectional);
     @Method(selector = "removeNodes:")
-    public native void removeNodes(NSArray<GKGraph> nodes);
+    public native void removeNodes(NSArray<GKGraphNode> nodes);
     @Method(selector = "addNodes:")
-    public native void addNodes(NSArray<GKGraph> nodes);
+    public native void addNodes(NSArray<GKGraphNode> nodes);
     @Method(selector = "findPathFromNode:toNode:")
     public native NSArray<GKGraphNode> findPathBetweenNodes(GKGraphNode startNode, GKGraphNode endNode);
     @Method(selector = "encodeWithCoder:")

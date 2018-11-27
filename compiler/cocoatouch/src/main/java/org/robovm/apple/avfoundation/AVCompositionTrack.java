@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCompositionTrack.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCompositionTrack() {}
+    protected AVCompositionTrack() {}
     protected AVCompositionTrack(Handle h, long handle) { super(h, handle); }
     protected AVCompositionTrack(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
@@ -65,6 +65,6 @@ import org.robovm.apple.audiotoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "segmentForTrackTime:")
-    public native AVCompositionTrackSegment segmentForTrackTime(@ByVal CMTime trackTime);
+    public native AVCompositionTrackSegment getSegment(@ByVal CMTime trackTime);
     /*</methods>*/
 }

@@ -44,6 +44,10 @@ public final class /*<name>*/HKStatisticsOptions/*</name>*/ extends Bits</*<name
     public static final HKStatisticsOptions DiscreteMin = new HKStatisticsOptions(4L);
     public static final HKStatisticsOptions DiscreteMax = new HKStatisticsOptions(8L);
     public static final HKStatisticsOptions CumulativeSum = new HKStatisticsOptions(16L);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final HKStatisticsOptions DiscreteMostRecent = new HKStatisticsOptions(32L);
     /*</values>*/
 
     /*<bind>*/

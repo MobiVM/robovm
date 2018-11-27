@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNNeuron/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNNeuron.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNNeuron() {}
+    public MPSCNNNeuron() {}
     protected MPSCNNNeuron(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNeuron(SkipInit skipInit) { super(skipInit); }
     /**
@@ -55,7 +55,9 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:neuronDescriptor:")
     public MPSCNNNeuron(MTLDevice device, MPSNNNeuronDescriptor neuronDescriptor) { super((SkipInit) null); initObject(init(device, neuronDescriptor)); }
     @Method(selector = "initWithCoder:device:")
-    public MPSCNNNeuron(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSCNNNeuron(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNNeuron(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -83,6 +85,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:neuronDescriptor:")
     protected native @Pointer long init(MTLDevice device, MPSNNNeuronDescriptor neuronDescriptor);
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     /*</methods>*/
 }

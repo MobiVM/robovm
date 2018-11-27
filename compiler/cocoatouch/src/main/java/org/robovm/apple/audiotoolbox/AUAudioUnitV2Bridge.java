@@ -49,9 +49,13 @@ import org.robovm.apple.uikit.*;
     /*<bind>*/static { ObjCRuntime.bind(AUAudioUnitV2Bridge.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AUAudioUnitV2Bridge() {}
+    protected AUAudioUnitV2Bridge() {}
     protected AUAudioUnitV2Bridge(Handle h, long handle) { super(h, handle); }
     protected AUAudioUnitV2Bridge(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithComponentDescription:options:error:")
+    public AUAudioUnitV2Bridge(@ByVal AudioComponentDescription componentDescription, AudioComponentInstantiationOptions options) throws NSErrorException { super(componentDescription, options); }
+    @Method(selector = "initWithComponentDescription:error:")
+    public AUAudioUnitV2Bridge(@ByVal AudioComponentDescription componentDescription) throws NSErrorException { super(componentDescription); }
     /*</constructors>*/
     /*<properties>*/
     

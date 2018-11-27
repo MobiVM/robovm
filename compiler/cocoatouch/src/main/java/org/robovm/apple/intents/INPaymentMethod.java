@@ -59,10 +59,10 @@ import org.robovm.apple.corelocation.*;
     public native INPaymentMethodType getType();
     @Property(selector = "name")
     public native String getName();
-    @Property(selector = "identificationHint")
-    public native String getIdentificationHint();
     @Property(selector = "icon")
     public native INImage getIcon();
+    @Property(selector = "identificationHint")
+    public native String getIdentificationHint();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

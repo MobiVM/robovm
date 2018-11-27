@@ -55,6 +55,8 @@ import org.robovm.apple.corelocation.*;
     /*<properties>*/
     @Property(selector = "userActivity")
     public native NSUserActivity getUserActivity();
+    @Property(selector = "setUserActivity:")
+    public native void setUserActivity(NSUserActivity v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

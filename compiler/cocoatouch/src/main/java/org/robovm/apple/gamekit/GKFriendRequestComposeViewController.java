@@ -50,10 +50,31 @@ import org.robovm.apple.uikit.*;
     public GKFriendRequestComposeViewController() {}
     protected GKFriendRequestComposeViewController(Handle h, long handle) { super(h, handle); }
     protected GKFriendRequestComposeViewController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    public GKFriendRequestComposeViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
+    @Method(selector = "initWithRootViewController:")
+    public GKFriendRequestComposeViewController(UIViewController rootViewController) { super(rootViewController); }
+    @Method(selector = "initWithNibName:bundle:")
+    public GKFriendRequestComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public GKFriendRequestComposeViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 4.2 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "composeViewDelegate")
     public native GKFriendRequestComposeViewControllerDelegate getComposeViewDelegate();
+    /**
+     * @since Available in iOS 4.2 and later.
+     * @deprecated Deprecated in iOS 10.0.
+     */
+    @Deprecated
     @Property(selector = "setComposeViewDelegate:", strongRef = true)
     public native void setComposeViewDelegate(GKFriendRequestComposeViewControllerDelegate v);
     /*</properties>*/
@@ -68,7 +89,7 @@ import org.robovm.apple.uikit.*;
     public native void addRecipientPlayers(NSArray<GKPlayer> players);
     /**
      * @since Available in iOS 4.2 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use addRecipientPlayers:
      */
     @Deprecated
     @Method(selector = "addRecipientsWithPlayerIDs:")

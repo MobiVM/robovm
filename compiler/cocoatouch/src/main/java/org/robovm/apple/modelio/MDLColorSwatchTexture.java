@@ -52,6 +52,8 @@ import org.robovm.apple.coregraphics.*;
     public MDLColorSwatchTexture(float colorTemperature1, float colorTemperature2, String name, @ByVal VectorInt2 textureDimensions) { super((SkipInit) null); initObject(init(colorTemperature1, colorTemperature2, name, textureDimensions)); }
     @Method(selector = "initWithColorGradientFrom:toColor:name:textureDimensions:")
     public MDLColorSwatchTexture(CGColor color1, CGColor color2, String name, @ByVal VectorInt2 textureDimensions) { super((SkipInit) null); initObject(init(color1, color2, name, textureDimensions)); }
+    @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
+    public MDLColorSwatchTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube); }
     /*</constructors>*/
     /*<properties>*/
     

@@ -41,8 +41,8 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/WKUserScriptInjectionTime/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Start(0L),
-    End(1L);
+    AtDocumentStart(0L),
+    AtDocumentEnd(1L);
     /*</values>*/
 
     /*<bind>*/

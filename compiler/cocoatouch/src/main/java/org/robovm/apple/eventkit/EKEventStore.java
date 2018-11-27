@@ -61,7 +61,7 @@ import org.robovm.apple.mapkit.*;
     /*<bind>*/static { ObjCRuntime.bind(EKEventStore.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected EKEventStore() {}
+    public EKEventStore() {}
     protected EKEventStore(Handle h, long handle) { super(h, handle); }
     protected EKEventStore(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

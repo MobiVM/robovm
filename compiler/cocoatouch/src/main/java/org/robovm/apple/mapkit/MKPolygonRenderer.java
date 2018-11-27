@@ -53,6 +53,8 @@ import org.robovm.apple.dispatch.*;
     protected MKPolygonRenderer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPolygon:")
     public MKPolygonRenderer(MKPolygon polygon) { super((SkipInit) null); initObject(init(polygon)); }
+    @Method(selector = "initWithOverlay:")
+    public MKPolygonRenderer(MKOverlay overlay) { super(overlay); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "polygon")

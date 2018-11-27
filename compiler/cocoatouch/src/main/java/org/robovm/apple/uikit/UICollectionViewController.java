@@ -61,7 +61,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithNibName:bundle:")
     public UICollectionViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
     @Method(selector = "initWithCoder:")
-    public UICollectionViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UICollectionViewController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "collectionView")
@@ -105,7 +105,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithNibName:bundle:")
     protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "collectionView:shouldHighlightItemAtIndexPath:")
     public native boolean shouldHighlightItem(UICollectionView collectionView, NSIndexPath indexPath);
     @Method(selector = "collectionView:didHighlightItemAtIndexPath:")

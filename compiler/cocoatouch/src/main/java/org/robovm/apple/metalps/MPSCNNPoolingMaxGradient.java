@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNPoolingMaxGradient/*</name>*/ 
     extends /*<extends>*/MPSCNNPoolingGradient/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,6 +53,10 @@ import org.robovm.apple.metal.*;
     public MPSCNNPoolingMaxGradient(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInPixelsX, @MachineSizedUInt long strideInPixelsY) { super((SkipInit) null); initObject(init(device, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNPoolingMaxGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
+    public MPSCNNPoolingMaxGradient(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight) { super(device, kernelWidth, kernelHeight); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNPoolingMaxGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

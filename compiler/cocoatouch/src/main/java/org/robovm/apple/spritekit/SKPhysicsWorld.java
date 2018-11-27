@@ -45,7 +45,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKPhysicsWorld/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKPhysicsWorldPtr extends Ptr<SKPhysicsWorld, SKPhysicsWorldPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKPhysicsWorld.class); }/*</bind>*/
@@ -70,6 +70,8 @@ import org.robovm.apple.metal.*;
     public native SKPhysicsContactDelegate getContactDelegate();
     @Property(selector = "setContactDelegate:", strongRef = true)
     public native void setContactDelegate(SKPhysicsContactDelegate v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -95,7 +97,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "enumerateBodiesInRect:usingBlock:")
     public native void enumerateBodiesInRect(@ByVal CGRect rect, @Block VoidBlock2<SKPhysicsBody, BooleanPtr> block);
     @Method(selector = "enumerateBodiesAlongRayStart:end:usingBlock:")
-    public native void enumerateBodiesAlongRay(@ByVal CGPoint start, @ByVal CGPoint end, @Block VoidBlock4<SKPhysicsBody, CGPoint, CGVector, BooleanPtr> block);
+    public native void enumerateBodiesAlongRay(@ByVal CGPoint start, @ByVal CGPoint end, @Block("(,@ByVal,@ByVal,)") VoidBlock4<SKPhysicsBody, CGPoint, CGVector, BooleanPtr> block);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

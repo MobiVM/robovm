@@ -1,0 +1,81 @@
+package: org.robovm.apple.authservices
+include: [foundation, uikit]
+library: AuthenticationServices
+framework: AuthenticationServices
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/AuthenticationServices.framework/Headers/AuthenticationServices.h
+typedefs: {}
+    
+enums:
+    ASCredentialIdentityStoreErrorCode: {nserror: true} #since 12.0
+    ASExtensionErrorCode: {} #since 12.0
+    ASCredentialServiceIdentifierType: {} #since 12.0
+    ASWebAuthenticationSessionErrorCode: {} #since 12.0
+
+classes:
+    ASCredentialIdentityStore: #since 12.0
+        methods:
+            '-saveCredentialIdentities:completion:':
+                trim_after_first_colon: true
+            '-removeCredentialIdentities:completion:':
+                trim_after_first_colon: true
+            '-replaceCredentialIdentitiesWithIdentities:completion:':
+                name: replaceCredentialIdentities
+            '-getCredentialIdentityStoreStateWithCompletion:':
+                name: getCredentialIdentityStoreState
+            '-removeAllCredentialIdentitiesWithCompletion:':
+                name: removeAllCredentialIdentities
+    ASCredentialIdentityStoreState: {} #since 12.0
+    ASCredentialProviderExtensionContext: #since 12.0
+        methods:
+            '-completeRequestWithSelectedCredential:completionHandler:':
+                name: completeRequest
+    ASCredentialProviderViewController:  #since 12.0
+        methods:
+            '-provideCredentialWithoutUserInteractionForIdentity:':
+                name: provideCredentialWithoutUserInteraction
+    ASCredentialServiceIdentifier: #since 12.0
+        methods:
+            '-initWithIdentifier:type:':
+                name: init
+    ASPasswordCredential: #since 12.0
+        methods:
+            '-initWithUser:password:':
+                name: init
+            '+credentialWithUser:password:':
+                exclude: true
+    ASPasswordCredentialIdentity: #since 12.0
+        methods:
+            '-initWithServiceIdentifier:user:recordIdentifier:':
+                name: init
+            '+identityWithServiceIdentifier:user:recordIdentifier:':
+                exclude: true
+    ASWebAuthenticationSession: #since 12.0
+        methods:
+            '-initWithURL:callbackURLScheme:completionHandler:':
+                name: init
+
+protocols: {}
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?ASC.*):
+        class: !!!AuthServicesFixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    ASCredentialIdentityStoreErrorDomain:
+        class: ASCredentialIdentityStoreErrorCode
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?ASC.*):
+        class: !!!AuthServicesFixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?ASC.*):
+        class: !!!AuthServicesFixMe
+        name: 'Constant__#{g[0]}'

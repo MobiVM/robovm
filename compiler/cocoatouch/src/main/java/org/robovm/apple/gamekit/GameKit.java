@@ -46,8 +46,18 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="GKGameSessionErrorDomain", optional=true)
     public static native String Value__GKGameSessionErrorDomain();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="GKGameSessionErrorDomain", optional=true)
     public static native void Value__GKGameSessionErrorDomain(String v);
     /*</methods>*/

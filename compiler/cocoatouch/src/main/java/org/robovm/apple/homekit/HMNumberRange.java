@@ -48,6 +48,7 @@ import org.robovm.apple.corelocation.*;
     protected HMNumberRange() {}
     protected HMNumberRange(Handle h, long handle) { super(h, handle); }
     protected HMNumberRange(SkipInit skipInit) { super(skipInit); }
+    public HMNumberRange(NSNumber minValue, NSNumber maxValue) { super((Handle) null, create(minValue, maxValue)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "minValue")
@@ -58,10 +59,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "numberRangeWithMinValue:maxValue:")
-    public static native HMNumberRange create(NSNumber minValue, NSNumber maxValue);
+    protected static native @Pointer long create(NSNumber minValue, NSNumber maxValue);
     @Method(selector = "numberRangeWithMinValue:")
-    public static native HMNumberRange numberRangeWithMinValue(NSNumber minValue);
+    public static native HMNumberRange createWithMinValue(NSNumber minValue);
     @Method(selector = "numberRangeWithMaxValue:")
-    public static native HMNumberRange numberRangeWithMaxValue(NSNumber maxValue);
+    public static native HMNumberRange createWithMaxValue(NSNumber maxValue);
     /*</methods>*/
 }

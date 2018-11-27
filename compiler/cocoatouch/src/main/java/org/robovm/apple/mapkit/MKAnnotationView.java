@@ -55,10 +55,9 @@ import org.robovm.apple.dispatch.*;
     public MKAnnotationView(MKAnnotation annotation, String reuseIdentifier) { super((SkipInit) null); initObject(init(annotation, reuseIdentifier)); }
     @Method(selector = "initWithCoder:")
     public MKAnnotationView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    @Method(selector = "initWithFrame:")
+    public MKAnnotationView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
-    public MKAnnotationView(CGRect frame) {
-    	super(frame);
-    }
     /*<properties>*/
     @Property(selector = "reuseIdentifier")
     public native String getReuseIdentifier();

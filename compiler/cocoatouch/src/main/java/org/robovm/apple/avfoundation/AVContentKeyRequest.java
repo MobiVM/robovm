@@ -82,8 +82,15 @@ import org.robovm.apple.audiotoolbox.*;
     public native void processContentKeyResponseError(NSError error);
     /**
      * @since Available in iOS 10.3 and later.
+     * @deprecated Deprecated in iOS 11.2. Use respondByRequestingPersistableContentKeyRequestAndReturnError: instead.
      */
+    @Deprecated
     @Method(selector = "respondByRequestingPersistableContentKeyRequest")
     public native void respondByRequestingPersistableContentKeyRequest();
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @Method(selector = "respondByRequestingPersistableContentKeyRequestAndReturnError:")
+    public native boolean respondByRequestingPersistableContentKeyRequestAndReturnError(NSError.NSErrorPtr outError);
     /*</methods>*/
 }

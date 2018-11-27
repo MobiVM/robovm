@@ -55,9 +55,7 @@ public enum /*<name>*/SCStatusCode/*</name>*/ implements ValuedEnum {
     NoLink(3004L),
     Stale(3005L),
     MaxLink(3006L),
-    ReachabilityUnknown(4001L),
-    ConnectionNoService(5001L),
-    ConnectionIgnore(5002L);
+    ReachabilityUnknown(4001L);
     /*</values>*/
 
     /*<bind>*/
