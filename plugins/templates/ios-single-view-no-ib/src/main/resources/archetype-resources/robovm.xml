@@ -12,4 +12,6 @@
             <directory>resources</directory>
         </resource>
     </resources>
+    <!-- Remove comment to automatically skip compilation and linking in IDEA -->
+    <!-- <smartSkipRebuild>true</smartSkipRebuild> -->
 </config>

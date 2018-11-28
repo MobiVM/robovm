@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 RoboVM AB
+ * Copyright (C) 2018 Daniel Thommes, NeverNull GmbH, <daniel.thommes@nevernull.io>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -172,6 +173,8 @@ public class Config {
     private StripArchivesConfig stripArchivesConfig;
     @Element(required = false, name = "treeShaker")
     private TreeShakerMode treeShakerMode;
+    @Element(required = false, name = "smartSkipRebuild")
+    private Boolean smartSkipRebuild;
 
     @Element(required = false)
     private String iosSdkVersion;
@@ -528,6 +531,10 @@ public class Config {
 
     public TreeShakerMode getTreeShakerMode() {
         return treeShakerMode == null ? TreeShakerMode.none : treeShakerMode;
+    }
+
+    public boolean isSmartSkipRebuild(){
+        return smartSkipRebuild != null && smartSkipRebuild;
     }
 
     public String getIosSdkVersion() {
@@ -1303,6 +1310,11 @@ public class Config {
             return this;
         }
 
+        public Builder smartSkipRebuild(boolean smartSkipRebuild){
+            config.smartSkipRebuild = smartSkipRebuild;
+            return this;
+        }
+
         public Builder clearForceLinkClasses() {
             if (config.forceLinkClasses != null) {
                 config.forceLinkClasses.clear();
@@ -1670,7 +1682,7 @@ public class Config {
 
         public void read(Reader reader, File wd) throws IOException {
             try {
-                Serializer serializer = createSerializer(wd);
+                Serializer serializer = createSerializer(config, wd);
                 serializer.read(config, reader);
             } catch (IOException e) {
                 throw e;
@@ -1703,7 +1715,7 @@ public class Config {
 
         public void write(Writer writer, File wd) throws IOException {
             try {
-                Serializer serializer = createSerializer(wd);
+                Serializer serializer = createSerializer(config, wd);
                 serializer.write(config, writer);
             } catch (IOException e) {
                 throw e;
@@ -1714,7 +1726,7 @@ public class Config {
             }
         }
 
-        private Serializer createSerializer(final File wd) throws Exception {
+        public static Serializer createSerializer(Config config, final File wd) throws Exception {
             RelativeFileConverter fileConverter = new RelativeFileConverter(wd);
 
             Serializer resourceSerializer = new Persister(

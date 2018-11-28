@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 RoboVM AB
+ * Copyright (C) 2018 Daniel Thommes, NeverNull GmbH, <daniel.thommes@nevernull.io>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -252,6 +253,11 @@ public class ToolchainUtil {
                 minOSVersion = v;
             }
         }
+
+        //Writes a text file with paths of resources that are compiled to the asset catalog.
+        //This information can be used to skip asset creation as needed.
+        opts.add("--export-dependency-info");
+        opts.add(config.getTmpDir().getAbsolutePath() + "/assetcatalog_dependencies");
 
         new Executor(config.getLogger(), getACTool()).args("--output-format", "human-readable-text", opts,
                 "--minimum-deployment-target", minOSVersion, "--target-device", "iphone", "--target-device", "ipad",

@@ -58,8 +58,14 @@
                     description="Create a Framework"/>
             <action id="org.robovm.idea.open-ibxcode" class="org.robovm.idea.actions.GenerateXCodeProjectAction" text="Open XCode"
                     description="Generate and open XCode project to edit xib/storyboard in Interface Builder"/>
-            <action id="org.robovm.idea.clean-cache" class="org.robovm.idea.actions.CleanRoboVmCacheAction" text="Clean cache"
+            <separator/>
+            <action id="org.robovm.idea.clean-build" class="org.robovm.idea.actions.CleanBuildFoldersAction"
+                    text="Clean Build Folders"
+                    description="Deletes all RoboVM build folders in all modules"/>
+            <action id="org.robovm.idea.clean-cache" class="org.robovm.idea.actions.CleanRoboVmCacheAction"
+                    text="Clean Global Cache"
                     description="Deletes as files in ~/.robovm/cache folder"/>
+            <separator/>
 
             <group id="org.robovm.idea.as-fixes-new" text="AS New" description="new Project/Module workaround for Android Studio" popup="true">
                 <action id="org.robovm.idea.as-fixes-new-project" class="org.robovm.idea.actions.ASNewProjectAction" text="Project..."/>
