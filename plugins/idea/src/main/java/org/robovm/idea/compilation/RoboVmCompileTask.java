@@ -107,6 +107,10 @@ public class RoboVmCompileTask implements CompileTask {
             loadConfig(context.getProject(), builder, moduleBaseDir, false);
             builder.os(OS.ios);
             builder.archs(ipaConfig.getArchs());
+
+            // remove "arm64e" which becomes a problem starting from Xcode 10.1
+            builder.stripArch("arm64e");
+
             builder.installDir(ipaConfig.getDestinationDir());
             builder.iosSignIdentity(SigningIdentity.find(SigningIdentity.list(), ipaConfig.getSigningIdentity()));
             if (ipaConfig.getProvisioningProfile() != null) {

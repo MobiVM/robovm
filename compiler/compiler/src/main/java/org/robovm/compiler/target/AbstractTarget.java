@@ -361,21 +361,8 @@ public abstract class AbstractTarget implements Target {
                                 if (isDynamicLibrary(file)) {
                                     // remove simulator archs for device builds
                                     if (config.getOs() == OS.ios && config.getArch().isArm()) {
-                                        String archs = ToolchainUtil.lipoInfo(config, file);
-                                        List<Arch> archesToRemove = new ArrayList<>();
-                                        if(archs.contains(Arch.x86.getClangName())) {
-                                            archesToRemove.add(Arch.x86);
-                                        }
-                                        if(archs.contains(Arch.x86_64.getClangName())) {
-                                            archesToRemove.add(Arch.x86_64);
-                                        }
-                                        if (!archesToRemove.isEmpty()) {
-                                            File inFile = new File(destDir, file.getName());
-                                            File tmpFile = new File(destDir, file.getName() + ".tmp");
-                                            ToolchainUtil.lipoRemoveArchs(config, inFile, tmpFile, archesToRemove.toArray(new Arch[archesToRemove.size()]));
-                                            FileUtils.copyFile(tmpFile, inFile);
-                                            tmpFile.delete();
-                                        }
+                                        File libFile = new File(destDir, file.getName());
+                                        stripExtraArches(libFile);
                                     }
 
                                     // check if this dylib depends on Swift
@@ -434,21 +421,8 @@ public abstract class AbstractTarget implements Target {
                     if (config.getOs() == OS.ios && config.getArch().isArm()) {
                         // remove simulator archs for device builds
                         if (isAppExtension(file)) {
-                            String archs = ToolchainUtil.lipoInfo(config, file);
-                            List<Arch> archesToRemove = new ArrayList<>();
-                            if (archs.contains(Arch.x86.getClangName())) {
-                                archesToRemove.add(Arch.x86);
-                            }
-                            if (archs.contains(Arch.x86_64.getClangName())) {
-                                archesToRemove.add(Arch.x86_64);
-                            }
-                            if (!archesToRemove.isEmpty()) {
-                                File inFile = new File(destDir, file.getName());
-                                File tmpFile = new File(destDir, file.getName() + ".tmp");
-                                ToolchainUtil.lipoRemoveArchs(config, inFile, tmpFile, archesToRemove.toArray(new Arch[archesToRemove.size()]));
-                                FileUtils.copyFile(tmpFile, inFile);
-                                tmpFile.delete();
-                            }
+                            File libFile = new File(destDir, file.getName());
+                            stripExtraArches(libFile);
                         }
                     }
                 }
@@ -511,8 +485,40 @@ public abstract class AbstractTarget implements Target {
 			config.getLogger().info("Copying swift lib %s from %s to %s", library, swiftDir, targetDir);
 			File swiftLibrary = new File(swiftDir, library);
 			FileUtils.copyFileToDirectory(swiftLibrary, targetDir);
-		}
+
+            // remove simulator archs for device builds
+            if (config.getOs() == OS.ios && config.getArch().isArm()) {
+                File libFile = new File(targetDir, swiftLibrary.getName());
+                stripExtraArches(libFile);
+            }
+        }
 	}
+
+    /**
+     * strips simulator and extra architecture from mach-o binary (framework, lib, appext)
+     */
+	protected void stripExtraArches(File libFile) throws IOException {
+        String archs = ToolchainUtil.lipoInfo(config, libFile);
+        List<String> archesToRemove = new ArrayList<>();
+        if(archs.contains(Arch.x86.getClangName())) {
+            archesToRemove.add(Arch.x86.getClangName());
+        }
+        if(archs.contains(Arch.x86_64.getClangName())) {
+            archesToRemove.add(Arch.x86_64.getClangName());
+        }
+        // also remove configured ones
+        for (String arch : config.getStripArchs()) {
+            if(archs.contains(arch)) {
+                archesToRemove.add(arch);
+            }
+        }
+        if (!archesToRemove.isEmpty()) {
+            File tmpFile = new File(libFile.getAbsolutePath() + ".tmp");
+            ToolchainUtil.lipoRemoveArchs(config, libFile, tmpFile, archesToRemove.toArray(new String[0]));
+            FileUtils.copyFile(tmpFile, libFile);
+            tmpFile.delete();
+        }
+    }
 
     protected boolean isDynamicLibrary(File file) throws IOException {
         String result = ToolchainUtil.file(file);
