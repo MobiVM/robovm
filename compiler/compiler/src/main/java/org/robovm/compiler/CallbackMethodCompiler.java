@@ -126,7 +126,7 @@ public class CallbackMethodCompiler extends BroMethodCompiler {
         
         StringBuilder header = new StringBuilder();
         for (Entry<String, String> struct : structs.entrySet()) {
-            header.append("struct " + struct.getKey() + " " + struct.getValue() + ";\n");
+            header.append("typedef " + struct.getValue() + " " + struct.getKey()  +";\n");
         }
         header.append(hiSignature + ";\n");
         

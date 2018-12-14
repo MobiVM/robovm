@@ -20,12 +20,14 @@ package org.robovm.apple.foundation;
 import org.robovm.rt.bro.Struct;
 import org.robovm.rt.bro.annotation.ByVal;
 import org.robovm.rt.bro.annotation.StructMember;
+import org.robovm.rt.bro.annotation.Vectorised;
 import org.robovm.rt.bro.ptr.Ptr;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
+@Vectorised
 /*<visibility>*/public/*</visibility>*/ class MatrixFloat2x2
     extends /*<extends>*/Struct<MatrixFloat2x2>/*</extends>*/
     /*<implements>*//*</implements>*/ {

@@ -25,37 +25,86 @@ import java.util.Arrays;
  */
 public class StructureType extends AggregateType {
     private final Type[] types;
-    
+    private final int ownMembersOffset; // 1 if inherit another struct, zero otherwise
+    private final boolean isVector;
+
+    public StructureType(int ownMembersOffset, Type ... types) {
+        this.types = types.clone();
+        this.ownMembersOffset = ownMembersOffset;
+        isVector = false;
+    }
+
+    public StructureType(int ownMembersOffset, boolean vector, Type ... types) {
+        this.types = types.clone();
+        this.ownMembersOffset = ownMembersOffset;
+        isVector = vector;
+    }
+
     public StructureType(Type ... types) {
         this.types = types.clone();
+        ownMembersOffset = 0;
+        isVector = false;
     }
     
     public StructureType(String alias, Type ... types) {
         super(alias);
         this.types = types.clone();
+        ownMembersOffset = 0;
+        isVector = false;
     }
 
     @Override
     public Type getTypeAt(int index) {
         return types[index];
     }
-    
+
+    public Type[] getTypes() {
+        return types;
+    }
+
     @Override
     public int getTypeCount() {
         return types.length;
     }
-    
+
+    public int getOwnMembersOffset() {
+        return ownMembersOffset;
+    }
+
+    public boolean isVector() {
+        return isVector;
+    }
+
+    /**
+     * @return true if vector consists of another vector structs (not primitives)\
+     * and will be translated into stuct of array of primitive vector
+     * example is MatrixFloat2x2
+     */
+    public boolean isVectorArray() {
+        return isVector && types[0] instanceof StructureType;
+    }
+
     @Override
     public String getDefinition() {
-        StringBuilder sb = new StringBuilder("{");
-        for (int i = 0; i < types.length; i++) {
-            if (i > 0) {
-                sb.append(", ");
+        if (isVector && types.length > 0) {
+            if (types[0] instanceof StructureType) {
+                // return as struct that contains array
+                StructureType st = (StructureType) types[0];
+                return "{ [" + types.length + " x " + st.getDefinition() + "] }";
+            } else {
+                return "<" + types.length + " x " + types[0].toString() + ">";
             }
-            sb.append(types[i].toString());
+        } else {
+            StringBuilder sb = new StringBuilder("{");
+            for (int i = 0; i < types.length; i++) {
+                if (i > 0) {
+                    sb.append(", ");
+                }
+                sb.append(types[i].toString());
+            }
+            sb.append("}");
+            return sb.toString();
         }
-        sb.append("}");
-        return sb.toString();
     }
 
     @Override
@@ -78,7 +127,7 @@ public class StructureType extends AggregateType {
             return false;
         }
         StructureType other = (StructureType) obj;
-        if (!Arrays.equals(types, other.types)) {
+        if (!Arrays.equals(types, other.types) || isVector != other.isVector) {
             return false;
         }
         return true;
