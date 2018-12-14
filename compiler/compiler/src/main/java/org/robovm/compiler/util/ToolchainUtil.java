@@ -305,12 +305,12 @@ public class ToolchainUtil {
         new Executor(config.getLogger(), getLipo()).args(inFiles, "-create", "-output", outFile).exec();
     }
     
-    public static void lipoRemoveArchs(Config config, File inFile, File outFile, Arch ... archs) throws IOException {
+    public static void lipoRemoveArchs(Config config, File inFile, File outFile, String ... archs) throws IOException {
         List<Object> args = new ArrayList<>();
         args.add(inFile);
-        for(Arch arch: archs) {
+        for(String arch: archs) {
             args.add("-remove");
-            args.add(arch.getClangName());
+            args.add(arch);
         }
         args.add("-output");
         args.add(outFile);
