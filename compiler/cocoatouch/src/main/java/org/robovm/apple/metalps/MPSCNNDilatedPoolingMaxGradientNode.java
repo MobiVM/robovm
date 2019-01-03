@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNDilatedPoolingMaxGradientNode/*</name>*/ 
     extends /*<extends>*/MPSCNNPoolingGradientNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,11 +46,13 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNDilatedPoolingMaxGradientNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNDilatedPoolingMaxGradientNode() {}
+    protected MPSCNNDilatedPoolingMaxGradientNode() {}
     protected MPSCNNDilatedPoolingMaxGradientNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNDilatedPoolingMaxGradientNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:")
     public MPSCNNDilatedPoolingMaxGradientNode(MPSNNImageNode sourceGradient, MPSNNImageNode sourceImage, MPSNNGradientStateNode gradientState, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInPixelsX, @MachineSizedUInt long strideInPixelsY, @MachineSizedUInt long dilationRateX, @MachineSizedUInt long dilationRateY) { super((SkipInit) null); initObject(init(sourceGradient, sourceImage, gradientState, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY, dilationRateX, dilationRateY)); }
+    @Method(selector = "initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:")
+    public MPSCNNDilatedPoolingMaxGradientNode(MPSNNImageNode sourceGradient, MPSNNImageNode sourceImage, MPSNNGradientStateNode gradientState, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInPixelsX, @MachineSizedUInt long strideInPixelsY, MPSNNPadding paddingPolicy) { super(sourceGradient, sourceImage, gradientState, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY, paddingPolicy); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dilationRateX")

@@ -43,7 +43,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAValueFunction/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CAValueFunctionPtr extends Ptr<CAValueFunction, CAValueFunctionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CAValueFunction.class); }/*</bind>*/
@@ -52,14 +52,22 @@ import org.robovm.apple.metal.*;
     protected CAValueFunction(Handle h, long handle) { super(h, handle); }
     protected CAValueFunction(SkipInit skipInit) { super(skipInit); }
     public CAValueFunction(CAValueFunctionName name) { super((Handle) null, create(name)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public CAValueFunction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
     public native CAValueFunctionName getName();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "functionWithName:")
     protected static native @Pointer long create(CAValueFunctionName name);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

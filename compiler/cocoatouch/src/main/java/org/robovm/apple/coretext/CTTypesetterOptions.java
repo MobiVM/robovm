@@ -134,6 +134,11 @@ import org.robovm.apple.uikit.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCTTypesetterOptionAllowUnboundedLayout", optional=true)
+        public static native CFString AllowUnboundedLayout();
+        /**
          * @since Available in iOS 3.2 and later.
          */
         @GlobalValue(symbol="kCTTypesetterOptionForcedEmbeddingLevel", optional=true)

@@ -74,10 +74,11 @@ import org.robovm.apple.coregraphics.*;
     public MPVolumeView() {}
     protected MPVolumeView(Handle h, long handle) { super(h, handle); }
     protected MPVolumeView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public MPVolumeView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public MPVolumeView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public MPVolumeView(CGRect frame) {
-    	super(frame);
-    }
     /*<properties>*/
     /**
      * @since Available in iOS 4.2 and later.

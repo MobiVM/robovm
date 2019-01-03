@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INAccountTypeResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INAccountTypeResolutionResult() {}
+    protected INAccountTypeResolutionResult() {}
     protected INAccountTypeResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INAccountTypeResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

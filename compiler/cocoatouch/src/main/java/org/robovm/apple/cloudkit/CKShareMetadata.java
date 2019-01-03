@@ -60,6 +60,16 @@ import org.robovm.apple.fileprovider.*;
     public native CKShare getShare();
     @Property(selector = "rootRecordID")
     public native CKRecordID getRootRecordID();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "participantRole")
+    public native CKShareParticipantRole getParticipantRole();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "participantType")
     public native CKShareParticipantType getParticipantType();
     @Property(selector = "participantStatus")

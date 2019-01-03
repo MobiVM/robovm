@@ -62,10 +62,6 @@ import org.robovm.apple.avfoundation.*;
     public native NSArray<SCNGeometry> getTargets();
     @Property(selector = "setTargets:")
     public native void setTargets(NSArray<SCNGeometry> v);
-    @Property(selector = "calculationMode")
-    public native SCNMorpherCalculationMode getCalculationMode();
-    @Property(selector = "setCalculationMode:")
-    public native void setCalculationMode(SCNMorpherCalculationMode v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -76,6 +72,10 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setWeights:")
     public native void setWeights(NSArray<NSNumber> v);
+    @Property(selector = "calculationMode")
+    public native SCNMorpherCalculationMode getCalculationMode();
+    @Property(selector = "setCalculationMode:")
+    public native void setCalculationMode(SCNMorpherCalculationMode v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -144,28 +144,28 @@ import org.robovm.apple.avfoundation.*;
     public native CAAnimation getAnimation(String key);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
     @Method(selector = "pauseAnimationForKey:")
     public native void pauseAnimation(String key);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
     @Method(selector = "resumeAnimationForKey:")
     public native void resumeAnimation(String key);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setSpeed:] instead
      */
     @Deprecated
     @Method(selector = "setSpeed:forAnimationKey:")
     public native void setSpeed(@MachineSizedFloat double speed, String key);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer paused] instead
      */
     @Deprecated
     @Method(selector = "isAnimationForKeyPaused:")

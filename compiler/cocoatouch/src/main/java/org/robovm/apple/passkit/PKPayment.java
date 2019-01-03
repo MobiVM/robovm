@@ -61,7 +61,7 @@ import org.robovm.apple.contacts.*;
     public native PKContact getBillingContact();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use billingContact instead
      */
     @Deprecated
     @WeaklyLinked
@@ -74,7 +74,7 @@ import org.robovm.apple.contacts.*;
     public native PKContact getShippingContact();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use shippingContact instead
      */
     @Deprecated
     @WeaklyLinked

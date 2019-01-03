@@ -51,7 +51,7 @@ import org.robovm.apple.fileprovider.*;
     protected CKAcceptSharesOperation(Handle h, long handle) { super(h, handle); }
     protected CKAcceptSharesOperation(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithShareMetadatas:")
-    public CKAcceptSharesOperation(NSArray<CKShareMetadata> shareMetadatas) { super((SkipInit) null); initObject(initWithShareMetadatas(shareMetadatas)); }
+    public CKAcceptSharesOperation(NSArray<CKShareMetadata> shareMetadatas) { super((SkipInit) null); initObject(init(shareMetadatas)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "shareMetadatas")
@@ -70,6 +70,6 @@ import org.robovm.apple.fileprovider.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithShareMetadatas:")
-    protected native @Pointer long initWithShareMetadatas(NSArray<CKShareMetadata> shareMetadatas);
+    protected native @Pointer long init(NSArray<CKShareMetadata> shareMetadatas);
     /*</methods>*/
 }

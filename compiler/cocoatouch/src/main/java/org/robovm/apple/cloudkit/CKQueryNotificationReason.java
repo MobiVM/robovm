@@ -41,9 +41,9 @@ import org.robovm.apple.fileprovider.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/CKQueryNotificationReason/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Created(1L),
-    Updated(2L),
-    Deleted(3L);
+    RecordCreated(1L),
+    RecordUpdated(2L),
+    RecordDeleted(3L);
     /*</values>*/
 
     /*<bind>*/

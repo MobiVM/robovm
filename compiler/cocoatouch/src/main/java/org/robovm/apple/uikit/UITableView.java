@@ -69,11 +69,10 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:style:")
     public UITableView(@ByVal CGRect frame, UITableViewStyle style) { super((SkipInit) null); initObject(init(frame, style)); }
     @Method(selector = "initWithCoder:")
-    public UITableView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UITableView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    @Method(selector = "initWithFrame:")
+    public UITableView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
-    public UITableView(CGRect frame) {
-        super(frame);
-    }
     /*<properties>*/
     @Property(selector = "style")
     public native UITableViewStyle getStyle();
@@ -401,7 +400,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithFrame:style:")
     protected native @Pointer long init(@ByVal CGRect frame, UITableViewStyle style);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "numberOfRowsInSection:")
     public native @MachineSizedSInt long getNumberOfRowsInSection(@MachineSizedSInt long section);
     @Method(selector = "rectForSection:")

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNBatchNormalizationGradient/*</name>*/ 
     extends /*<extends>*/MPSCNNGradientKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,12 +49,30 @@ import org.robovm.apple.metal.*;
     public MPSCNNBatchNormalizationGradient() {}
     protected MPSCNNBatchNormalizationGradient(Handle h, long handle) { super(h, handle); }
     protected MPSCNNBatchNormalizationGradient(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithDevice:fusedNeuronDescriptor:")
+    public MPSCNNBatchNormalizationGradient(MTLDevice device, MPSNNNeuronDescriptor fusedNeuronDescriptor) { super((SkipInit) null); initObject(init(device, fusedNeuronDescriptor)); }
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNBatchNormalizationGradient(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
+    @Method(selector = "initWithDevice:")
+    public MPSCNNBatchNormalizationGradient(MTLDevice device) { super(device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNBatchNormalizationGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithDevice:fusedNeuronDescriptor:")
+    protected native @Pointer long init(MTLDevice device, MPSNNNeuronDescriptor fusedNeuronDescriptor);
+    @Method(selector = "initWithCoder:device:")
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:sourceGradient:sourceImage:batchNormalizationState:destinationGradient:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSImage sourceGradient, MPSImage sourceImage, MPSCNNBatchNormalizationState batchNormalizationState, MPSImage destinationGradient);
     @Method(selector = "encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:destinationGradients:")

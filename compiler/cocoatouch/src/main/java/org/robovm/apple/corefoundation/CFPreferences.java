@@ -162,7 +162,7 @@ import org.robovm.apple.coretext.*;
     protected static native boolean synchronize(String applicationID, String userName, String hostName);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Unsupported API
      */
     @Deprecated
     @Bridge(symbol="CFPreferencesCopyApplicationList", optional=true)

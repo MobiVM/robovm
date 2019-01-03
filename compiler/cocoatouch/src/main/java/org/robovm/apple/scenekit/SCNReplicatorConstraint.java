@@ -56,6 +56,7 @@ import org.robovm.apple.avfoundation.*;
     public SCNReplicatorConstraint() {}
     protected SCNReplicatorConstraint(Handle h, long handle) { super(h, handle); }
     protected SCNReplicatorConstraint(SkipInit skipInit) { super(skipInit); }
+    public SCNReplicatorConstraint(SCNNode target) { super((Handle) null, create(target)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "target")
@@ -90,6 +91,6 @@ import org.robovm.apple.avfoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "replicatorConstraintWithTarget:")
-    public static native SCNReplicatorConstraint replicatorConstraintWithTarget(SCNNode target);
+    protected static native @Pointer long create(SCNNode target);
     /*</methods>*/
 }

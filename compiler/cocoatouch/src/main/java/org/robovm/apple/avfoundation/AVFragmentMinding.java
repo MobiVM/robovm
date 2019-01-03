@@ -53,7 +53,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "isAssociatedWithFragmentMinder")
+    boolean isAssociatedWithFragmentMinder();
     /*</properties>*/
     /*<methods>*/
     

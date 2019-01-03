@@ -39,9 +39,9 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NEHotspotConfigurationEAPTLSVersion/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    _0(0L),
-    _1(1L),
-    _2(2L);
+    Version_1_0(0L),
+    Version_1_1(1L),
+    Version_1_2(2L);
     /*</values>*/
 
     /*<bind>*/

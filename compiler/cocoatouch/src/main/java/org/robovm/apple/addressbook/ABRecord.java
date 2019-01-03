@@ -99,7 +99,7 @@ import org.robovm.apple.corefoundation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CN object's identifier
      */
     @Deprecated
     @Bridge(symbol="ABRecordGetRecordID", optional=true)
@@ -113,14 +113,14 @@ import org.robovm.apple.corefoundation.*;
     public native ABRecordType getRecordType();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CN object's properties
      */
     @Deprecated
     @Bridge(symbol="ABRecordCopyValue", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFType getValue(ABProperty property);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CN mutable object's properties
      */
     @Deprecated
     public boolean setValue(ABProperty property, CFType value) throws NSErrorException {
@@ -131,7 +131,7 @@ import org.robovm.apple.corefoundation.*;
     }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CN mutable object's properties
      */
     @Deprecated
     @Bridge(symbol="ABRecordSetValue", optional=true)
@@ -156,7 +156,7 @@ import org.robovm.apple.corefoundation.*;
     private native boolean removeValue(ABProperty property, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContactFormatter or CN object's name
      */
     @Deprecated
     @Bridge(symbol="ABRecordCopyCompositeName", optional=true)

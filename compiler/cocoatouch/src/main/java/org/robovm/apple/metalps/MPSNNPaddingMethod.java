@@ -90,6 +90,10 @@ public final class /*<name>*/MPSNNPaddingMethod/*</name>*/ extends Bits</*<name>
      */
     public static final MPSNNPaddingMethod Size_reserved = new MPSNNPaddingMethod(48L);
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final MPSNNPaddingMethod CustomWhitelistForNodeFusion = new MPSNNPaddingMethod(8192L);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     public static final MPSNNPaddingMethod Custom = new MPSNNPaddingMethod(16384L);

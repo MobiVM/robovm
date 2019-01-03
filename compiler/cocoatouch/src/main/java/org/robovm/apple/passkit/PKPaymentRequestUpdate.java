@@ -51,7 +51,7 @@ import org.robovm.apple.contacts.*;
     protected PKPaymentRequestUpdate(Handle h, long handle) { super(h, handle); }
     protected PKPaymentRequestUpdate(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPaymentSummaryItems:")
-    public PKPaymentRequestUpdate(NSArray<PKPaymentSummaryItem> paymentSummaryItems) { super((SkipInit) null); initObject(initWithPaymentSummaryItems(paymentSummaryItems)); }
+    public PKPaymentRequestUpdate(NSArray<PKPaymentSummaryItem> paymentSummaryItems) { super((SkipInit) null); initObject(init(paymentSummaryItems)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "status")
@@ -66,6 +66,6 @@ import org.robovm.apple.contacts.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPaymentSummaryItems:")
-    protected native @Pointer long initWithPaymentSummaryItems(NSArray<PKPaymentSummaryItem> paymentSummaryItems);
+    protected native @Pointer long init(NSArray<PKPaymentSummaryItem> paymentSummaryItems);
     /*</methods>*/
 }

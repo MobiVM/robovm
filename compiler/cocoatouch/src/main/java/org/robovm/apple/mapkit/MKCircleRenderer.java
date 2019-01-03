@@ -53,6 +53,8 @@ import org.robovm.apple.dispatch.*;
     protected MKCircleRenderer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCircle:")
     public MKCircleRenderer(MKCircle circle) { super((SkipInit) null); initObject(init(circle)); }
+    @Method(selector = "initWithOverlay:")
+    public MKCircleRenderer(MKOverlay overlay) { super(overlay); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "circle")

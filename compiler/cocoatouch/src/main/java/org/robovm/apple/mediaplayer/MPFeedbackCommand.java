@@ -46,7 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPFeedbackCommand.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPFeedbackCommand() {}
+    protected MPFeedbackCommand() {}
     protected MPFeedbackCommand(Handle h, long handle) { super(h, handle); }
     protected MPFeedbackCommand(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

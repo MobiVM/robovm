@@ -100,7 +100,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "publishL2CAPChannelWithEncryption:")
-    public native void publishL2CAPChannelWithEncryption(boolean encryptionRequired);
+    public native void publishL2CAPChannel(boolean encryptionRequired);
     /**
      * @since Available in iOS 11.0 and later.
      */

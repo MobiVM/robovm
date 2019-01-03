@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(CBCentral.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CBCentral() {}
+    protected CBCentral() {}
     protected CBCentral(Handle h, long handle) { super(h, handle); }
     protected CBCentral(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

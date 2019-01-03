@@ -48,7 +48,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(WKInterfaceSeparator.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public WKInterfaceSeparator() {}
+    protected WKInterfaceSeparator() {}
     protected WKInterfaceSeparator(Handle h, long handle) { super(h, handle); }
     protected WKInterfaceSeparator(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

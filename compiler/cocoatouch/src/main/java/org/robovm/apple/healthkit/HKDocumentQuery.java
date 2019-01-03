@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKDocumentQuery.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKDocumentQuery() {}
+    protected HKDocumentQuery() {}
     protected HKDocumentQuery(Handle h, long handle) { super(h, handle); }
     protected HKDocumentQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDocumentType:predicate:limit:sortDescriptors:includeDocumentData:resultsHandler:")

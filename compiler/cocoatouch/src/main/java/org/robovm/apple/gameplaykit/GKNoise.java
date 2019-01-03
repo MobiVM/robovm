@@ -82,7 +82,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "applyTurbulenceWithFrequency:power:roughness:seed:")
     public native void applyTurbulence(double frequency, double power, int roughness, int seed);
     @Method(selector = "remapValuesToCurveWithControlPoints:")
-    public native void remapValuesToCurveWithControlPoints(NSDictionary<NSNumber, NSNumber> controlPoints);
+    public native void remapValuesToCurve(NSDictionary<NSNumber, NSNumber> controlPoints);
     @Method(selector = "remapValuesToTerracesWithPeaks:terracesInverted:")
     public native void remapValuesToTerraces(NSArray<NSNumber> peakInputValues, boolean inverted);
     @Method(selector = "moveBy:")
@@ -92,15 +92,15 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "rotateBy:")
     public native void rotateBy(FunctionPtr radians);
     @Method(selector = "addWithNoise:")
-    public native void addWithNoise(GKNoise noise);
+    public native void add(GKNoise noise);
     @Method(selector = "multiplyWithNoise:")
-    public native void multiplyWithNoise(GKNoise noise);
+    public native void multiply(GKNoise noise);
     @Method(selector = "minimumWithNoise:")
-    public native void minimumWithNoise(GKNoise noise);
+    public native void minimum(GKNoise noise);
     @Method(selector = "maximumWithNoise:")
-    public native void maximumWithNoise(GKNoise noise);
+    public native void maximum(GKNoise noise);
     @Method(selector = "raiseToPowerWithNoise:")
-    public native void raiseToPowerWithNoise(GKNoise noise);
+    public native void raiseToPower(GKNoise noise);
     @Method(selector = "displaceXWithNoise:yWithNoise:zWithNoise:")
     public native void displaceX(GKNoise xDisplacementNoise, GKNoise yDisplacementNoise, GKNoise zDisplacementNoise);
     @Method(selector = "noiseWithComponentNoises:selectionNoise:")

@@ -56,6 +56,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNAnimation() {}
     protected SCNAnimation(Handle h, long handle) { super(h, handle); }
     protected SCNAnimation(SkipInit skipInit) { super(skipInit); }
+    public SCNAnimation(NSURL animationUrl) { super((Handle) null, create(animationUrl)); retain(getHandle()); }
+    public SCNAnimation(CAAnimation caAnimation) { super((Handle) null, create(caAnimation)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public SCNAnimation(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -142,11 +144,11 @@ import org.robovm.apple.avfoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "animationWithContentsOfURL:")
-    public static native SCNAnimation animationWithContentsOfURL(NSURL animationUrl);
+    protected static native @Pointer long create(NSURL animationUrl);
     @Method(selector = "animationNamed:")
     public static native SCNAnimation animationNamed(String animationName);
     @Method(selector = "animationWithCAAnimation:")
-    public static native SCNAnimation animationWithCAAnimation(CAAnimation caAnimation);
+    protected static native @Pointer long create(CAAnimation caAnimation);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

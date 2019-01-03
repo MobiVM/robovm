@@ -47,7 +47,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKConstraint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKConstraintPtr extends Ptr<SKConstraint, SKConstraintPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKConstraint.class); }/*</bind>*/
@@ -68,6 +68,8 @@ import org.robovm.apple.metal.*;
     public native SKNode getReferenceNode();
     @Property(selector = "setReferenceNode:")
     public native void setReferenceNode(SKNode v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

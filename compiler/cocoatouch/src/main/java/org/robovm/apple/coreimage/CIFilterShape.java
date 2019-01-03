@@ -56,7 +56,7 @@ import org.robovm.apple.iosurface.*;
     protected CIFilterShape(Handle h, long handle) { super(h, handle); }
     protected CIFilterShape(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRect:")
-    public CIFilterShape(@ByVal CGRect r) { super((SkipInit) null); initObject(initWithRect(r)); }
+    public CIFilterShape(@ByVal CGRect r) { super((SkipInit) null); initObject(init(r)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "extent")
@@ -65,20 +65,18 @@ import org.robovm.apple.iosurface.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithRect:")
-    protected native @Pointer long initWithRect(@ByVal CGRect r);
+    protected native @Pointer long init(@ByVal CGRect r);
     @Method(selector = "transformBy:interior:")
     public native CIFilterShape transform(@ByVal CGAffineTransform m, boolean flag);
     @Method(selector = "insetByX:Y:")
     public native CIFilterShape insetByXY(int dx, int dy);
     @Method(selector = "unionWith:")
-    public native CIFilterShape unionWith(CIFilterShape s2);
+    public native CIFilterShape union(CIFilterShape s2);
     @Method(selector = "unionWithRect:")
-    public native CIFilterShape unionWithRect(@ByVal CGRect r);
+    public native CIFilterShape union(@ByVal CGRect r);
     @Method(selector = "intersectWith:")
-    public native CIFilterShape intersectWith(CIFilterShape s2);
+    public native CIFilterShape intersect(CIFilterShape s2);
     @Method(selector = "intersectWithRect:")
-    public native CIFilterShape intersectWithRect(@ByVal CGRect r);
-    @Method(selector = "shapeWithRect:")
-    public static native CIFilterShape shapeWithRect(@ByVal CGRect r);
+    public native CIFilterShape intersect(@ByVal CGRect r);
     /*</methods>*/
 }

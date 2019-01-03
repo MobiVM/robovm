@@ -89,25 +89,25 @@ import org.robovm.apple.foundation.*;
     /*<constants>*/
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Twitter SDK instead
      */
     @Deprecated
     public static final ACAccountTypeIdentifier Twitter = new ACAccountTypeIdentifier("Twitter");
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
     public static final ACAccountTypeIdentifier Facebook = new ACAccountTypeIdentifier("Facebook");
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Sina Weibo SDK instead
      */
     @Deprecated
     public static final ACAccountTypeIdentifier SinaWeibo = new ACAccountTypeIdentifier("SinaWeibo");
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Tencent Weibo SDK instead
      */
     @Deprecated
     public static final ACAccountTypeIdentifier TencentWeibo = new ACAccountTypeIdentifier("TencentWeibo");
@@ -138,28 +138,28 @@ import org.robovm.apple.foundation.*;
         /*<values>*/
         /**
          * @since Available in iOS 5.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Twitter SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACAccountTypeIdentifierTwitter", optional=true)
         public static native NSString Twitter();
         /**
          * @since Available in iOS 6.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACAccountTypeIdentifierFacebook", optional=true)
         public static native NSString Facebook();
         /**
          * @since Available in iOS 6.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Sina Weibo SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACAccountTypeIdentifierSinaWeibo", optional=true)
         public static native NSString SinaWeibo();
         /**
          * @since Available in iOS 7.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Tencent Weibo SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACAccountTypeIdentifierTencentWeibo", optional=true)

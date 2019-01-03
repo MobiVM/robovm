@@ -39,9 +39,9 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("NetworkExtension")/*</annotations>*/
 public enum /*<name>*/NETunnelProviderError/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Invalid(1L),
-    Canceled(2L),
-    Failed(3L);
+    NetworkSettingsInvalid(1L),
+    NetworkSettingsCanceled(2L),
+    NetworkSettingsFailed(3L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(NETunnelProviderError.class); }/*</bind>*/

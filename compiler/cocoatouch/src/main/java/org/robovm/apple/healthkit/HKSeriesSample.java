@@ -42,7 +42,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKSeriesSample.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKSeriesSample() {}
+    protected HKSeriesSample() {}
     protected HKSeriesSample(Handle h, long handle) { super(h, handle); }
     protected HKSeriesSample(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

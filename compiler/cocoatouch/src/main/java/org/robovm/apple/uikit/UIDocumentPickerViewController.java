@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithDocumentTypes:inMode:")
     public UIDocumentPickerViewController(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> allowedUTIs, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(allowedUTIs, mode)); }
     @Method(selector = "initWithCoder:")
-    public UIDocumentPickerViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIDocumentPickerViewController(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     @Method(selector = "initWithURL:inMode:")
     public UIDocumentPickerViewController(NSURL url, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(url, mode)); }
     /**
@@ -67,6 +67,8 @@ import org.robovm.apple.intents.*;
      */
     @Method(selector = "initWithURLs:inMode:")
     public UIDocumentPickerViewController(NSArray<NSURL> urls, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(urls, mode)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UIDocumentPickerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -91,7 +93,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithDocumentTypes:inMode:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> allowedUTIs, UIDocumentPickerMode mode);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "initWithURL:inMode:")
     protected native @Pointer long init(NSURL url, UIDocumentPickerMode mode);
     /**

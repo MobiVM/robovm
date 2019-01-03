@@ -71,6 +71,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSDictionary<NSString, ?> getEmbeddedThumbnailPhotoFormat();
     @Property(selector = "depthData")
     public native AVDepthData getDepthData();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "portraitEffectsMatte")
+    public native AVPortraitEffectsMatte getPortraitEffectsMatte();
     @Property(selector = "metadata")
     public native NSDictionary<NSString, ?> getMetadata();
     @Property(selector = "cameraCalibrationData")
@@ -105,8 +110,15 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "fileDataRepresentation")
     public native NSData fileDataRepresentation();
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 12.0 and later.
      */
+    @Method(selector = "fileDataRepresentationWithCustomizer:")
+    public native NSData fileDataRepresentation(AVCapturePhotoFileDataRepresentationCustomizer customizer);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use fileDataRepresentationWithCustomizer: instead
+     */
+    @Deprecated
     @Method(selector = "fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:")
     public native NSData fileDataRepresentation(NSDictionary<NSString, ?> replacementMetadata, NSDictionary<NSString, ?> replacementEmbeddedThumbnailPhotoFormat, CVPixelBuffer replacementEmbeddedThumbnailPixelBuffer, AVDepthData replacementDepthData);
     /**

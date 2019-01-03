@@ -1,7 +1,7 @@
 package: org.robovm.apple.metalps
 include: [foundation, coregraphics, metal]
-library: Metal
-framework: Metal
+library: MetalPerformanceShaders
+framework: MetalPerformanceShaders
 internal_frameworks: [MPSNeuralNetwork, MPSCore, MPSImage, MPSMatrix]
 clang_args: ['-x', 'objective-c']
 headers:
@@ -45,7 +45,12 @@ enums:
     MPSCNNReductionType: {}
     MPSRNNSequenceDirection: {}
     MPSRNNBidirectionalCombineMode: {}
-
+    MPSCustomKernelIndex: {}
+    MPSImageType: {prefix: MPSImage}
+    MPSCNNWeightsQuantizationType: {}
+    MPSRNNMatrixId: {}
+    MPSNNRegularizationType: {} #since 12.0
+    MPSNNComparisonType: {}
 classes:
     # structs
     MPSOrigin: {}
@@ -59,12 +64,11 @@ classes:
     MPSMatrixOffset: {}
     MPSMatrixCopyOffsets: {}
     MPSImageKeypointRangeInfo: {}
+    MPSImageCoordinate: {}
 
     # classes
     MPSBinaryImageKernel: #since 9.0
         methods:
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:primaryTexture:inPlaceSecondaryTexture:fallbackCopyAllocator:':
                 name: encodePrimaryTexture
             '-encodeToCommandBuffer:inPlacePrimaryTexture:secondaryTexture:fallbackCopyAllocator:':
@@ -100,8 +104,12 @@ classes:
                 name: getTemporaryResult
             '-reloadGammaAndBetaWithCommandBuffer:gammaAndBetaState:':
                 name: reloadGammaAndBeta
+            '-reloadMeanAndVarianceWithCommandBuffer:meanAndVarianceState:':
+                name: reloadMeanAndVariance
     MPSCNNBatchNormalizationGradient: #since 11.3
         methods:
+            '-initWithDevice:fusedNeuronDescriptor:':
+                name: init
             '-encodeToCommandBuffer:sourceGradient:sourceImage:batchNormalizationState:destinationGradient:':
                 name: encode
             '-encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:destinationGradients:':
@@ -125,12 +133,12 @@ classes:
     MPSCNNBatchNormalizationState: {} #since 11.3
     MPSCNNBatchNormalizationStatistics: #since 11.3
         methods:
-            '-initWithCoder:device:':
-                name: init
             '-encodeBatchToCommandBuffer:sourceImages:batchNormalizationState:':
                 name: encodeBatch
     MPSCNNBatchNormalizationStatisticsGradient: #since 11.3
         methods:
+            '-initWithDevice:fusedNeuronDescriptor:':
+                name: init
             '-encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:':
                 name: encodeBatch
     MPSCNNBinaryConvolution: #since 11.0
@@ -159,8 +167,6 @@ classes:
                 exclude: true
     MPSCNNBinaryKernel: #since 11.0
         methods:
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:primaryImage:secondaryImage:destinationImage:':
                 name: encode
             '-encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationImages:':
@@ -185,7 +191,9 @@ classes:
                 name: getDestinationImageDescriptor
     MPSCNNConvolution: #since 10.0
         methods:
-            '-init.*':
+            '-initWithDevice:weights:':
+                name: init
+            '-initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:':
                 name: init
             '-resultStateForSourceImage:sourceStates:destinationImage:':
                 name: getResultState
@@ -199,12 +207,16 @@ classes:
                 name: reloadWeightsAndBiases
             '-exportWeightsAndBiasesWithCommandBuffer:resultStateCanBeTemporary:':
                 name: exportWeightsAndBiases
+            '-reloadWeightsAndBiasesWithDataSource:':
+                name: reloadWeightsAndBiases
     MPSCNNConvolutionDescriptor: #since 10.0
         methods:
             '-setBatchNormalizationParametersForInferenceWithMean:variance:gamma:beta:epsilon:':
                 name: setBatchNormalizationParameters
             '-setNeuronType:parameterA:parameterB:':
                 trim_after_first_colon: true
+            '-setNeuronToPReLUWithParametersA:':
+                name: setNeuronToPReLU
             '+cnnConvolutionDescriptorWithKernelWidth:kernelHeight:inputFeatureChannels:outputFeatureChannels:neuronFilter:':
                 constructor: true
                 name: create
@@ -318,11 +330,17 @@ classes:
     MPSCNNDropoutGradientState: {} #since 11.3
     MPSCNNDropoutNode: #since 11.3
         methods:
-            '-init.*':
+            '-initWithSource:':
+                name: init
+            '-initWithSource:keepProbability:':
+                name: init
+            '-initWithSource:keepProbability:seed:maskStrideInPixels:':
                 name: init
             '+nodeWithSource:keepProbability:':
                 exclude: true
             '+nodeWithSource:keepProbability:seed:maskStrideInPixels:':
+                exclude: true
+            '+nodeWithSource:':
                 exclude: true
     MPSCNNFullyConnected: #since 10.0
         methods:
@@ -340,8 +358,6 @@ classes:
                 exclude: true
     MPSCNNGradientKernel: #since 11.3
         methods:
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:':
                 name: encode
             '-encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:destinationGradient:':
@@ -376,8 +392,6 @@ classes:
                 exclude: true
     MPSCNNKernel: #since 10.0
         methods:
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:sourceImage:destinationImage:':
                 name: encode
             '-encodeToCommandBuffer:sourceImage:destinationState:destinationImage:':
@@ -425,20 +439,22 @@ classes:
             '+nodeWithSource:kernelSize:':
                 exclude: true
     MPSCNNLogSoftMax: {} #since 10.0
-    MPSCNNLogSoftMaxGradient: #since 11.3
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSCNNLogSoftMaxGradient: {} #since 11.3
     MPSCNNLogSoftMaxGradientNode: #since 11.3
         methods:
             '-initWithSourceGradient:sourceImage:gradientState:':
                 name: init
             '+nodeWithSourceGradient:sourceImage:gradientState:':
                 exclude: true
-    MPSCNNLogSoftMaxNode: {} #since 11.0
+    MPSCNNLogSoftMaxNode: #since 11.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNLoss: #since 11.3
         methods:
-            '-init.*':
+            '-initWithDevice:lossDescriptor:':
                 name: init
             '-encodeToCommandBuffer:sourceImage:labels:destinationImage:':
                 name: encode
@@ -475,10 +491,15 @@ classes:
                 name: init
     MPSCNNNeuron: #since 10.0
         methods:
-            '-init.*':
+            '-initWithDevice:neuronDescriptor:':
                 name: init
     MPSCNNNeuronAbsolute: {} #since 10.0
-    MPSCNNNeuronAbsoluteNode: {} #since 11.0
+    MPSCNNNeuronAbsoluteNode: #since 11.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronELU: #since 11.0
         methods:
             '-initWithDevice:a:':
@@ -489,6 +510,10 @@ classes:
                 name: init
             '+nodeWithSource:a:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronExponential: #since 11.3
         methods:
             '-initWithDevice:a:b:c:':
@@ -498,6 +523,10 @@ classes:
             '-initWithSource:a:b:c:':
                 name: init
             '+nodeWithSource:a:b:c:':
+                exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
                 exclude: true
     MPSCNNNeuronGradient: #since 11.3
         methods:
@@ -519,6 +548,10 @@ classes:
                 name: init
             '+nodeWithSource:a:b:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronLinear: #since 10.0
         methods:
             '-initWithDevice:a:b:':
@@ -528,6 +561,10 @@ classes:
             '-initWithSource:a:b:':
                 name: init
             '+nodeWithSource:a:b:':
+                exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
                 exclude: true
     MPSCNNNeuronLogarithm: #since 11.3
         methods:
@@ -539,7 +576,15 @@ classes:
                 name: init
             '+nodeWithSource:a:b:c:':
                 exclude: true
-    MPSCNNNeuronNode: {} #since 11.0
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
+    MPSCNNNeuronNode:  #since 11.0
+        methods:
+            '+nodeWithSource:descriptor:':
+                name: create
+                constgructor: true
     MPSCNNNeuronPReLU: #since 11.0
         methods:
             '-initWithDevice:a:count:':
@@ -560,6 +605,10 @@ classes:
                 name: init
             '+nodeWithSource:a:b:c:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronReLU: #since 10.0
         methods:
             '-initWithDevice:a:':
@@ -574,16 +623,27 @@ classes:
                 name: init
             '+nodeWithSource:a:b:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronReLUNode: #since 11.0
         methods:
             '-initWithSource:a:':
-                #trim_after_first_colon: true
-                name: initWithSource$a$
+                name: init
             '+nodeWithSource:a:':
-                #trim_after_first_colon: true
-                name: nodeWithSource$a$
+                exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronSigmoid: {} #since 10.0
-    MPSCNNNeuronSigmoidNode: {} #since 11.0
+    MPSCNNNeuronSigmoidNode: #since 11.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronSoftPlus: #since 11.0
         methods:
             '-initWithDevice:a:b:':
@@ -594,8 +654,17 @@ classes:
                 name: init
             '+nodeWithSource:a:b:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronSoftSign: {} #since 11.0
-    MPSCNNNeuronSoftSignNode: {} #since 11.0
+    MPSCNNNeuronSoftSignNode: #since 11.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNeuronTanH: #since 10.0
         methods:
             '-initWithDevice:a:b:':
@@ -606,6 +675,10 @@ classes:
                 name: init
             '+nodeWithSource:a:b:':
                 exclude: true
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNNormalizationGammaAndBetaState: #since 11.3
         methods:
             '-initWithGamma:beta:':
@@ -613,24 +686,31 @@ classes:
             '+temporaryStateWithCommandBuffer:numberOfFeatureChannels:':
                 constructor: true
                 name: createTemporaryState
-    MPSCNNNormalizationNode: {} #since 11.0
+    MPSCNNNormalizationNode: #since 11.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNPooling: #since 10.0
         methods:
-            '-init.*':
+            '-initWithDevice:kernelWidth:kernelHeight:':
                 name: init
-    MPSCNNPoolingAverage: #since 10.0
-        methods:
-            '-init.*':
+            '-initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:':
                 name: init
-    MPSCNNPoolingAverageGradient: #since 11.3
-        methods:
-            '-init.*':
+            '-initWithSource:':
                 name: init
+            '+nodeWithSource:':
+                exclude: true
+    MPSCNNPoolingAverage: {} #since 10.0
+    MPSCNNPoolingAverageGradient: {} #since 11.3
     MPSCNNPoolingAverageGradientNode: {} #since 11.3
     MPSCNNPoolingAverageNode: {} #since 11.0
     MPSCNNPoolingGradient: #since 11.3
         methods:
-            '-init.*':
+            '-initWithDevice:kernelWidth:kernelHeight:':
+                name: init
+            '-initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:':
                 name: init
     MPSCNNPoolingGradientNode: #since 11.3
         methods:
@@ -638,14 +718,8 @@ classes:
                 name: init
             '+nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:':
                 exclude: true
-    MPSCNNPoolingL2Norm: #since 11.0
-        methods:
-            '-init.*':
-                name: init
-    MPSCNNPoolingL2NormGradient: #since 11.3
-        methods:
-            '-init.*':
-                name: init
+    MPSCNNPoolingL2Norm: {} #since 11.0
+    MPSCNNPoolingL2NormGradient: {} #since 11.3
     MPSCNNPoolingL2NormGradientNode: {} #since 11.3
     MPSCNNPoolingL2NormNode: {} #since 11.0
     MPSCNNPoolingMax: #since 10.0
@@ -667,17 +741,19 @@ classes:
             '+nodeWithSource:filterSize:stride:':
                 exclude: true
     MPSCNNSoftMax: {} #since 10.0
-    MPSCNNSoftMaxGradient: #since 11.3
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSCNNSoftMaxGradient: {} #since 11.3
     MPSCNNSoftMaxGradientNode: #since 11.3
         methods:
             '-initWithSourceGradient:sourceImage:gradientState:':
                 name: init
             '+nodeWithSourceGradient:sourceImage:gradientState:':
                 exclude: true
-    MPSCNNSoftMaxNode: {} #since 11.0
+    MPSCNNSoftMaxNode: #since 11.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
     MPSCNNSpatialNormalization: #since 10.0
         methods:
             '-init.*':
@@ -709,6 +785,8 @@ classes:
         methods:
             '-initWithDevice:integerScaleFactorX:integerScaleFactorY:':
                 name: init
+            '-initWithDevice:integerScaleFactorX:integerScaleFactorY:alignCorners:':
+                name: init
     MPSCNNUpsamplingBilinearGradient: #since 11.3
         methods:
             '-initWithDevice:integerScaleFactorX:integerScaleFactorY:':
@@ -724,6 +802,10 @@ classes:
             '-initWithSource:integerScaleFactorX:integerScaleFactorY:':
                 name: init
             '+nodeWithSource:integerScaleFactorX:integerScaleFactorY:':
+                exclude: true
+            '-initWithSource:integerScaleFactorX:integerScaleFactorY:alignCorners:':
+                name: init
+            '+nodeWithSource:integerScaleFactorX:integerScaleFactorY:alignCorners:':
                 exclude: true
     MPSCNNUpsamplingGradient: {} #since 11.3
     MPSCNNUpsamplingNearest: #since 11.0
@@ -767,20 +849,21 @@ classes:
                 trim_after_first_colon: true
             '-writeBytes:dataLayout:imageIndex:':
                 trim_after_first_colon: true
+            '-batchRepresentationWithSubRange:':
+                name: batchRepresentation
+            '-subImageWithFeatureChannelRange:':
+                name: subImage
     MPSImageAdd: {} #since 11.0
     MPSImageAreaMax: #since 9.0
         methods:
-            '-init.*':
+            '-initWithDevice:kernelWidth:kernelHeight:':
                 name: init
     MPSImageAreaMin: {} #since 9.0
     MPSImageArithmetic: {} #since 11.0
-    MPSImageBilinearScale: #since 11.0
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSImageBilinearScale: {} #since 11.0
     MPSImageBox: #since 9.0
         methods:
-            '-init.*':
+            '-initWithDevice:kernelWidth:kernelHeight:':
                 name: init
     MPSImageConversion: #since 10.0
         methods:
@@ -796,6 +879,8 @@ classes:
                 name: init
             '-encodeToCommandBuffer:sourceImage:destinationMatrix:':
                 name: encode
+            '-encodeBatchToCommandBuffer:sourceImages:destinationMatrix:':
+                name: encode
     MPSImageDescriptor: #since 10.0
         methods:
             '+imageDescriptorWithChannelFormat:width:height:featureChannels:':
@@ -804,16 +889,15 @@ classes:
             '+imageDescriptorWithChannelFormat:width:height:featureChannels:numberOfImages:usage:':
                 constructor: true
                 name: create
+            '-copyWithZone:':
+                name: copy
     MPSImageDilate: #since 9.0
         methods:
-            '-init.*':
+            '-initWithDevice:kernelWidth:kernelHeight:values:':
                 name: init
     MPSImageDivide: {} #since 11.0
     MPSImageErode: {} #since 9.0
-    MPSImageEuclideanDistanceTransform: #since 11.3
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSImageEuclideanDistanceTransform: {} #since 11.3
     MPSImageFindKeypoints: #since 11.0
         methods:
             '-init.*':
@@ -853,10 +937,7 @@ classes:
                 name: encodeTransform
     MPSImageIntegral: {} #since 9.0
     MPSImageIntegralOfSquares: {} #since 9.0
-    MPSImageLanczosScale: #since 9.0
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSImageLanczosScale: {} #since 9.0
     MPSImageLaplacian: {} #since 10.0
     MPSImageMedian: #since 9.0
         methods:
@@ -865,7 +946,9 @@ classes:
     MPSImageMultiply: {} #since 11.0
     MPSImagePyramid: #since 10.0
         methods:
-            '-init.*':
+            '-initWithDevice:centerWeight:':
+                name: init
+            '-initWithDevice:kernelWidth:kernelHeight:weights:':
                 name: init
     MPSImageReduceColumnMax: {} #since 11.3
     MPSImageReduceColumnMean: {} #since 11.3
@@ -876,26 +959,14 @@ classes:
     MPSImageReduceRowMin: {} #since 11.3
     MPSImageReduceRowSum: {} #since 11.3
     MPSImageReduceUnary: {} #since 11.3
-    MPSImageScale: #since 11.0
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSImageScale: {} #since 11.0
     MPSImageSobel: #since 9.0
         methods:
             '-init.*':
                 name: init
-    MPSImageStatisticsMean: #since 11.0
-        methods:
-            '-initWithCoder:device:':
-                name: init
-    MPSImageStatisticsMeanAndVariance: #since 11.0
-        methods:
-            '-initWithCoder:device:':
-                name: init
-    MPSImageStatisticsMinAndMax: #since 11.0
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSImageStatisticsMean: {} #since 11.0
+    MPSImageStatisticsMeanAndVariance: {} #since 11.0
+    MPSImageStatisticsMinAndMax: {} #since 11.0
     MPSImageSubtract: {} #since 11.0
     MPSImageTent: {} #since 9.0
     MPSImageThresholdBinary: #since 9.0
@@ -925,6 +996,11 @@ classes:
                 name: copy
             '-initWithCoder:device:':
                 name: init
+                parameters:
+                    aDecoder:
+                        name: decoder
+            '-initWithDevice:':
+                name: init
     MPSKeyedUnarchiver: #since 11.3
         methods:
             '-initForReadingWithData:device:':
@@ -933,8 +1009,19 @@ classes:
                 name: unarchiveObject
             '+unarchiveTopLevelObjectWithData:device:error:':
                 name: unarchiveTopLevelObject
+                throws: NSErrorException
             '+unarchiveObjectWithFile:device:':
                 name: unarchiveObject
+            '-initForReadingFromData:device:error:':
+                static_constructor_name: create # as conflicts with '-initForReadingWithData:device:'
+                name: init
+                throws: NSErrorException
+            '+unarchivedObjectOfClasses:fromData:device:error:':
+                name: unarchiveObject
+                throws: NSErrorException
+            '+unarchivedObjectOfClass:fromData:device:error:':
+                name: unarchiveObject
+                throws: NSErrorException
     MPSLSTMDescriptor: #since 11.0
         methods:
             '+createLSTMDescriptorWithInputFeatureChannels:outputFeatureChannels:':
@@ -954,8 +1041,6 @@ classes:
             '-encodeToCommandBuffer:copyDescriptor:rowPermuteIndices:rowPermuteOffset:columnPermuteIndices:columnPermuteOffset:':
                 #trim_after_first_colon: true
                name: encode
-            '-initWithCoder:device:':
-                name: init
     MPSMatrixCopyDescriptor: #since 11.0
         methods:
             '-initWithDevice:count:':
@@ -999,20 +1084,12 @@ classes:
                 name: init
             '-encodeToCommandBuffer:inputMatrix:resultIndexMatrix:resultValueMatrix:':
                 name: encode
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSMatrixFullyConnected: #since 11.0
         methods:
             '-setNeuronType:parameterA:parameterB:parameterC:':
                 trim_after_first_colon: true
             '-encodeToCommandBuffer:inputMatrix:weightMatrix:biasVector:resultMatrix:':
                 name: encode
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSMatrixLogSoftMax: {} #since 11.0
     MPSMatrixMultiplication: #since 10.0
         methods:
@@ -1024,20 +1101,14 @@ classes:
         methods:
             '-setNeuronType:parameterA:parameterB:parameterC:':
                 trim_after_first_colon: true
+            '-setNeuronToPReLUWithParametersA:':
+                name: setNeuronToPReLU
             '-encodeToCommandBuffer:inputMatrix:biasVector:resultMatrix:':
                 name: encode
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSMatrixSoftMax: #since 11.0
         methods:
             '-encodeToCommandBuffer:inputMatrix:resultMatrix:':
                 name: encode
-            '-initWithCoder:device:':
-                name: init
-            '-copyWithZone:device:':
-                name: copy
     MPSMatrixSolveCholesky: #since 11.0
         methods:
             '-initWithDevice:upper:order:numberOfRightHandSides:':
@@ -1064,8 +1135,6 @@ classes:
                 trim_after_first_colon: true
             '-encodeToCommandBuffer:sourceMatrices:resultMatrix:scaleVector:offsetVector:biasVector:startIndex:':
                 name: encode
-            '-initWithCoder:device:':
-                name: init
     MPSMatrixUnaryKernel: {} #since 11.0
     MPSMatrixVectorMultiplication: #since 11.0
         methods:
@@ -1089,6 +1158,10 @@ classes:
                 name: init
             '+nodeWithLeftSource:rightSource:':
                 exclude: true
+            '-initWithSources:':
+                name: init
+            '+nodeWithSources:':
+                exclude: true
     MPSNNBinaryGradientState: {} #since 11.3
     MPSNNBinaryGradientStateNode: {} #since 11.3
     MPSNNConcatenationGradientNode: #since 11.3
@@ -1097,10 +1170,30 @@ classes:
                 name: init
             '+nodeWithSourceGradient:sourceImage:gradientState:':
                 exclude: true
-    MPSNNConcatenationNode: {} #since 11.0
-    MPSNNDefaultPadding: {} #since 11.0
+    MPSNNConcatenationNode: #since 11.0
+        methods:
+            '-initWithSources:':
+                name: init
+            '+nodeWithSources:':
+                exclude: true
+    MPSNNDefaultPadding: #since 11.0
+        methods:
+            '+paddingWithMethod:':
+                name: create
+                constructor: true
     MPSNNDivisionNode: {} #since 11.0
-    MPSNNFilterNode: {} #since 11.0
+    MPSNNFilterNode:  #since 11.0
+        methods:
+            '-trainingGraphWithSourceGradient:nodeHandler:':
+                name: trainingGraph
+            '-gradientFilterWithSource:':
+                name: gradientFilter
+            '-gradientFilterWithSources:':
+                name: gradientFilter
+            '-gradientFiltersWithSources:':
+                name: gradientFilters
+            '-gradientFiltersWithSource:':
+                name: gradientFilters
     MPSNNGradientFilterNode: {} #since 11.3
     MPSNNGradientState: {} #since 11.3
     MPSNNGradientStateNode: {} #since 11.3
@@ -1127,6 +1220,13 @@ classes:
         properties:
             handle:
                 name: getMpsHandle
+        methods:
+            '-initWithHandle:':
+                name: init
+            '+nodeWithHandle:':
+                exclude: true
+            '+exportedNodeWithHandle:':
+                name: createExportedNode
     MPSNNLabelsNode: {} #since 11.3
     MPSNNLanczosScaleNode: {} #since 11.0
     MPSNNMultiplicationGradientNode: {} #since 11.3
@@ -1143,6 +1243,9 @@ classes:
                 constructor: true
                 name: create
             '+cnnNeuronPReLUDescriptorWithData:noCopy:':
+                constructor: true
+                name: create
+            '+cnnNeuronDescriptorWithType:':
                 constructor: true
                 name: create
     MPSNNReduceBinary: {} #since 11.3
@@ -1164,10 +1267,7 @@ classes:
     MPSNNReduceRowMin: {} #since 11.3
     MPSNNReduceRowSum: {} #since 11.3
     MPSNNReduceUnary: {} #since 11.3
-    MPSNNReshape: #since 11.3
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSNNReshape: {}  #since 11.3
     MPSNNScaleNode: #since 11.0
         methods:
             '-init.*':
@@ -1176,10 +1276,7 @@ classes:
                 exclude: true
             '+nodeWithSource:transformProvider:outputSize:':
                 exclude: true
-    MPSNNSlice: #since 11.3
-        methods:
-            '-initWithCoder:device:':
-                name: init
+    MPSNNSlice: {} #since 11.3
     MPSNNStateNode:  #since 11.0
         properties:
             handle:
@@ -1205,6 +1302,8 @@ classes:
                 name: encodeSequence
             '-encodeBidirectionalSequenceToCommandBuffer:sourceSequence:destinationForwardMatrices:destinationBackwardMatrices:':
                 name: encodeBidirectionalSequence
+            '-encodeSequenceToCommandBuffer:sourceMatrices:sourceOffsets:destinationMatrices:destinationOffsets:recurrentInputState:recurrentOutputStates:':
+                name: encodeSequence
             '-copyWithZone:device:':
                 name: copy
     MPSRNNRecurrentImageState: {} #since 11.0
@@ -1229,6 +1328,9 @@ classes:
                 constructor: true
                 name: create
             '+temporaryStateWithCommandBuffer:resourceList:':
+                constructor: true
+                name: create
+            '+temporaryStateWithCommandBuffer:':
                 constructor: true
                 name: create
     MPSStateResourceList: {} #since 11.3
@@ -1261,8 +1363,6 @@ classes:
                 name: createPrefetchStorage
     MPSUnaryImageKernel: #since 9.0
         methods:
-            '-initWithCoder:device:':
-                name: init
             '-encodeToCommandBuffer:inPlaceTexture:fallbackCopyAllocator:':
                 name: encode
             '-encodeToCommandBuffer:sourceTexture:destinationTexture:':
@@ -1283,28 +1383,281 @@ classes:
                 name: create
             '+vectorBytesForLength:dataType:':
                 name: getVectorBytes
+    MPSCNNNormalizationMeanAndVarianceState: #since 12.0
+        methods:
+            '-initWithMean:variance:':
+                #trim_after_first_colon: true
+                name: initWithMean$variance$
+            '+temporaryStateWithCommandBuffer:numberOfFeatureChannels:':
+                #trim_after_first_colon: true
+                name: temporaryStateWithCommandBuffer$numberOfFeatureChannels$
+    MPSCNNYOLOLoss: #since 12.0
+        methods:
+            '-initWithDevice:lossDescriptor:':
+                name: init
+            '-encodeToCommandBuffer:sourceImage:labels:destinationImage:':
+                trim_after_first_colon: true
+            '-encodeToCommandBuffer:sourceImage:labels:':
+                trim_after_first_colon: true
+            '-encodeBatchToCommandBuffer:sourceImages:labels:destinationImages:':
+                trim_after_first_colon: true
+            '-encodeBatchToCommandBuffer:sourceImages:labels:':
+                trim_after_first_colon: true
+    MPSCNNYOLOLossDescriptor: #since 12.0
+        methods:
+            '+cnnLossDescriptorWithXYLossType:WHLossType:confidenceLossType:classesLossType:reductionType:anchorBoxes:numberOfAnchorBoxes:':
+                constructor: true
+                name: create
+    MPSCNNYOLOLossNode: #since 11.3
+        methods:
+            '-initWithSource:lossDescriptor:':
+                name: init
+            '+nodeWithSource:lossDescriptor:':
+                exclude: true
+    MPSImageLaplacianPyramid: {} #since 10.0
+    MPSImageLaplacianPyramidAdd: {} #since 10.0
+    MPSImageLaplacianPyramidSubtract: {} #since 10.0
+    MPSImageNormalizedHistogram: #since 9.0
+        methods:
+            '-initWithDevice:histogramInfo:':
+                name: init
+            '-encodeToCommandBuffer:sourceTexture:minmaxTexture:histogram:histogramOffset:':
+                trim_after_first_colon: true
+
+
+
+
+
+
+
+
+    MPSMatrixBatchNormalization: #since 12.0
+        methods:
+            '-setNeuronType:parameterA:parameterB:parameterC:':
+                trim_after_first_colon: true
+            '-encodeToCommandBuffer:inputMatrix:meanVector:varianceVector:gammaVector:betaVector:resultMatrix:':
+                trim_after_first_colon: true
+    MPSMatrixBatchNormalizationGradient: #since 12.0
+        methods:
+            '-setNeuronType:parameterA:parameterB:parameterC:':
+                trim_after_first_colon: true
+            '-encodeToCommandBuffer:gradientMatrix:inputMatrix:meanVector:varianceVector:gammaVector:betaVector:resultGradientForDataMatrix:resultGradientForGammaVector:resultGradientForBetaVector:':
+                trim_after_first_colon: true
+    MPSMatrixCopyToImage: #since 12.0
+        methods:
+            '-initWithDevice:dataLayout:':
+                name: init
+            '-encodeToCommandBuffer:sourceMatrix:destinationImage:':
+                trim_after_first_colon: true
+            '-encodeBatchToCommandBuffer:sourceMatrix:destinationImages:':
+                trim_after_first_colon: true
+    MPSMatrixFullyConnectedGradient: #since 12.0
+        methods:
+            '-encodeGradientForDataToCommandBuffer:gradientMatrix:weightMatrix:resultGradientForDataMatrix:':
+                name: encodeGradient
+            '-encodeGradientForWeightsAndBiasToCommandBuffer:gradientMatrix:inputMatrix:resultGradientForWeightMatrix:resultGradientForBiasVector:':
+                name: encodeGradient
+    MPSMatrixLogSoftMaxGradient: {} #since 12.0
+    MPSMatrixNeuronGradient: #since 12.0
+        methods:
+            '-setNeuronType:parameterA:parameterB:parameterC:':
+                trim_after_first_colon: true
+            '-setNeuronToPReLUWithParametersA:':
+                name: setNeuronToPReLU
+            '-encodeToCommandBuffer:gradientMatrix:inputMatrix:biasVector:resultGradientForDataMatrix:resultGradientForBiasVector:':
+                trim_after_first_colon: true
+    MPSMatrixSoftMaxGradient: #since 12.0
+        methods:
+            '-encodeToCommandBuffer:gradientMatrix:forwardOutputMatrix:resultMatrix:':
+                trim_after_first_colon: true
+    MPSNNCropAndResizeBilinear: #since 12.0
+        methods:
+            '-initWithDevice:resizeWidth:resizeHeight:numberOfRegions:regions:':
+                name: init
+    MPSNNOptimizer: {} #since 12.0
+    MPSNNOptimizerAdam: #since 12.0
+        methods:
+            '-initWithDevice:learningRate:':
+                name: init
+            '-initWithDevice:beta1:beta2:epsilon:timeStep:optimizerDescriptor:':
+                name: init
+            '-encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:inputVelocityVector:resultValuesVector:':
+                trim_after_first_colon: true
+            '-encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:inputVelocityVectors:resultState:':
+                trim_after_first_colon: true
+            '-encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:inputVelocityVectors:resultState:':
+                trim_after_first_colon: true
+            '-encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:inputVelocityVectors:resultState:':
+                trim_after_first_colon: true
+    MPSNNOptimizerDescriptor: #since 12.0
+        methods:
+            '-initWithLearningRate:gradientRescale:regularizationType:regularizationScale:':
+                name: init
+            '-initWithLearningRate:gradientRescale:applyGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:':
+                name: init
+            '+optimizerDescriptorWithLearningRate:gradientRescale:regularizationType:regularizationScale:':
+                name: optimizerDescriptor
+            '+optimizerDescriptorWithLearningRate:gradientRescale:applyGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:':
+                name: optimizerDescriptor
+    MPSNNOptimizerRMSProp: #since 12.0
+        methods:
+            '-initWithDevice:learningRate:':
+                name: init
+            '-initWithDevice:decay:epsilon:optimizerDescriptor:':
+                name: init
+            '-encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputSumOfSquaresVector:resultValuesVector:':
+                trim_after_first_colon: true
+            '-encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputSumOfSquaresVectors:resultState:':
+                trim_after_first_colon: true
+            '-encodeToCommandBuffer:batchNormalizationState:inputSumOfSquaresVectors:resultState:':
+                trim_after_first_colon: true
+            '-encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputSumOfSquaresVectors:resultState:':
+                trim_after_first_colon: true
+    MPSNNOptimizerStochasticGradientDescent: #since 12.0
+        methods:
+            '-initWithDevice:learningRate:':
+                name: init
+            '-initWithDevice:momentumScale:useNestrovMomentum:optimizerDescriptor:':
+                name: init
+            '-encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:resultValuesVector:':
+                trim_after_first_colon: true
+            '-encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:resultState:':
+                trim_after_first_colon: true
+            '-encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:resultState:':
+                trim_after_first_colon: true
+            '-encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:resultState:':
+                trim_after_first_colon: true
+    MPSNNReduceFeatureChannelsArgumentMax: {} #since 12.0
+    MPSNNReduceFeatureChannelsArgumentMin: {} #since 12.0
+    MPSNNResizeBilinear: #since 12.0
+        methods:
+            '-initWithDevice:resizeWidth:resizeHeight:alignCorners:':
+                name: init
+    MPSRNNMatrixTrainingLayer: #since 12.0
+        methods:
+            '-initWithDevice:rnnDescriptor:trainableWeights:':
+                name: init
+            '-createWeightGradientMatrices:dataType:':
+                trim_after_first_colon: true
+            '-createTemporaryWeightGradientMatrices:dataType:commandBuffer:':
+                trim_after_first_colon: true
+            '-encodeCopyWeightsToCommandBuffer:weights:matrixId:matrix:copyFromWeightsToMatrix:matrixOffset:':
+                trim_after_first_colon: true
+            '-encodeForwardSequenceToCommandBuffer:sourceMatrices:sourceOffsets:destinationMatrices:destinationOffsets:trainingStates:recurrentInputState:recurrentOutputStates:weights:':
+                trim_after_first_colon: true
+            '-encodeForwardSequenceToCommandBuffer:sourceMatrices:destinationMatrices:trainingStates:weights:':
+                trim_after_first_colon: true
+            '-encodeGradientSequenceToCommandBuffer:forwardSources:forwardSourceOffsets:sourceGradients:sourceGradientOffsets:destinationGradients:destinationOffsets:weightGradients:trainingStates:recurrentInputState:recurrentOutputStates:weights:':
+                trim_after_first_colon: true
+            '-encodeGradientSequenceToCommandBuffer:forwardSources:sourceGradients:destinationGradients:weightGradients:trainingStates:weights:':
+                trim_after_first_colon: true
+    MPSRNNMatrixTrainingState: {} #since 12.0
+
+    MPSNNCompare: {} #since 12.1
+    MPSNNComparisonNode: {} #since 12.1
+    MPSNNPad: #since 12.1
+        methods:
+            '-initWithDevice:paddingSizeBefore:paddingSizeAfter:':
+                name: init
+            '-initWithDevice:paddingSizeBefore:paddingSizeAfter:fillValueArray:':
+                name: init
+    MPSNNPadGradient: {} #since 12.1
+    MPSNNPadGradientNode: #since 12.1
+        methods:
+            '-initWithSourceGradient:sourceImage:gradientState:':
+                name: init
+            '+nodeWithSourceGradient:sourceImage:gradientState:':
+                exclude: true
+    MPSNNPadNode: #since 12.1
+        methods:
+            '-initWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:':
+                name: init
+            '+nodeWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:':
+                exclude: true
+    MPSNNReductionColumnMaxNode: {} #since 12.1
+    MPSNNReductionColumnMeanNode: {} #since 12.1
+    MPSNNReductionColumnMinNode: {} #since 12.1
+    MPSNNReductionColumnSumNode: {} #since 12.1
+    MPSNNReductionFeatureChannelsArgumentMaxNode: {} #since 12.1
+    MPSNNReductionFeatureChannelsArgumentMinNode: {} #since 12.1
+    MPSNNReductionFeatureChannelsMaxNode: {} #since 12.1
+    MPSNNReductionFeatureChannelsMeanNode: {} #since 12.1
+    MPSNNReductionFeatureChannelsMinNode: {} #since 12.1
+    MPSNNReductionFeatureChannelsSumNode: {} #since 12.1
+    MPSNNReductionRowMaxNode: {} #since 12.1
+    MPSNNReductionRowMeanNode: {} #since 12.1
+    MPSNNReductionRowMinNode: {} #since 12.1
+    MPSNNReductionRowSumNode: {} #since 12.1
+    MPSNNReductionSpatialMeanGradientNode: #since 12.1
+        methods:
+            '-initWithSourceGradient:sourceImage:gradientState:':
+                name: init
+            '+nodeWithSourceGradient:sourceImage:gradientState:':
+                exclude: true
+    MPSNNReductionSpatialMeanNode: {} #since 12.1
+    MPSNNReshapeGradient: {} #since 12.1
+    MPSNNReshapeGradientNode: #since 12.1
+        methods:
+            '-initWithSourceGradient:sourceImage:gradientState:':
+                name: init
+            '+nodeWithSourceGradient:sourceImage:gradientState:':
+                exclude: true
+    MPSNNReshapeNode: #since 12.1
+        methods:
+            '-initWithSource:resultWidth:resultHeight:resultFeatureChannels:':
+                name: init
+            '+nodeWithSource:resultWidth:resultHeight:resultFeatureChannels:':
+                exclude: true
+    MPSNNUnaryReductionNode: #since 12.1
+        methods:
+            '-initWithSource:':
+                name: init
+            '+nodeWithSource:':
+                exclude: true
 
 protocols:
     MPSCNNBatchNormalizationDataSource: #since 11.3
         methods:
             '-updateGammaAndBetaWithCommandBuffer:batchNormalizationState:':
                 name: updateGammaAndBeta
+            '-reloadMeanAndVarianceWithCommandBuffer:meanAndVarianceState:':
+                name: reloadMeanAndVariance
+            '-updateMeanAndVarianceWithCommandBuffer:batchNormalizationState:':
+                name: updateMeanAndVariance
+            '-copyWithZone:device:':
+                name: copy
+            '-updateGammaAndBetaWithBatchNormalizationState:':
+                name: updateGammaAndBeta
+            '-updateMeanAndVarianceWithBatchNormalizationState:':
+                name: updateMeanAndVariance
+            '-encodeWithCoder:':
+                name: encode
     MPSCNNConvolutionDataSource:
         methods:
             '-updateWithCommandBuffer:gradientState:sourceState:':
                 name: update
             '-updateWithGradientState:sourceState:':
                 name: update
+            '-copyWithZone:device:':
+                name: copy
     MPSCNNInstanceNormalizationDataSource: #since 11.3
         methods:
             '-updateGammaAndBetaWithCommandBuffer:instanceNormalizationStateBatch:':
                 name: updateGammaAndBeta
+            '-copyWithZone:device:':
+                name: copy
+            '-updateGammaAndBetaWithInstanceNormalizationStateBatch:':
+                name: updateGammaAndBeta
+            '-encodeWithCoder:':
+                name: encode
     MPSDeviceProvider: {}
     MPSHandle: {}
     MPSImageAllocator:
         methods:
             '-imageForCommandBuffer:imageDescriptor:kernel:':
                 name: getImage
+            '-imageBatchForCommandBuffer:imageDescriptor:kernel:count:':
+                name: getImageBatch
     MPSImageSizeEncodingState: {}
     MPSImageTransformProvider:
         methods:

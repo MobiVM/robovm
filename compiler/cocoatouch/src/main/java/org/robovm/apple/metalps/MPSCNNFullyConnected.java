@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNFullyConnected/*</name>*/ 
     extends /*<extends>*/MPSCNNConvolution/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,26 +46,28 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNFullyConnected.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNFullyConnected() {}
+    public MPSCNNFullyConnected() {}
     protected MPSCNNFullyConnected(Handle h, long handle) { super(h, handle); }
     protected MPSCNNFullyConnected(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:")
-    public MPSCNNFullyConnected(MTLDevice device, MPSCNNConvolutionDescriptor fullyConnectedDescriptor, FloatPtr kernelWeights, FloatPtr biasTerms, MPSCNNConvolutionFlags flags) { super((SkipInit) null); initObject(init(device, fullyConnectedDescriptor, kernelWeights, biasTerms, flags)); }
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithDevice:weights:")
     public MPSCNNFullyConnected(MTLDevice device, MPSCNNConvolutionDataSource weights) { super((SkipInit) null); initObject(init(device, weights)); }
     /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:")
+    public MPSCNNFullyConnected(MTLDevice device, MPSCNNConvolutionDescriptor convolutionDescriptor, FloatPtr kernelWeights, FloatPtr biasTerms, MPSCNNConvolutionFlags flags) { super((SkipInit) null); initObject(init(device, convolutionDescriptor, kernelWeights, biasTerms, flags)); }
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
     public MPSCNNFullyConnected(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNFullyConnected(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -73,17 +75,17 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithDevice:weights:")
+    protected native @Pointer long init(MTLDevice device, MPSCNNConvolutionDataSource weights);
+    /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
     @Method(selector = "initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:")
-    protected native @Pointer long init(MTLDevice device, MPSCNNConvolutionDescriptor fullyConnectedDescriptor, FloatPtr kernelWeights, FloatPtr biasTerms, MPSCNNConvolutionFlags flags);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Method(selector = "initWithDevice:weights:")
-    protected native @Pointer long init(MTLDevice device, MPSCNNConvolutionDataSource weights);
+    protected native @Pointer long init(MTLDevice device, MPSCNNConvolutionDescriptor convolutionDescriptor, FloatPtr kernelWeights, FloatPtr biasTerms, MPSCNNConvolutionFlags flags);
     /**
      * @since Available in iOS 11.0 and later.
      */

@@ -58,6 +58,17 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Method(selector = "initWithPolyline:")
     public MKPolylineView(MKPolyline polyline) { super((SkipInit) null); initObject(init(polyline)); }
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
+    @Method(selector = "initWithOverlay:")
+    public MKPolylineView(MKOverlay overlay) { super(overlay); }
+    @Method(selector = "initWithFrame:")
+    public MKPolylineView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public MKPolylineView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**

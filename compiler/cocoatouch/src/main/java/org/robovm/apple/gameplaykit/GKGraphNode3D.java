@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     protected GKGraphNode3D(Handle h, long handle) { super(h, handle); }
     protected GKGraphNode3D(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPoint:")
-    public GKGraphNode3D(@ByVal VectorFloat3 point) { super((SkipInit) null); initObject(initWithPoint(point)); }
+    public GKGraphNode3D(@ByVal VectorFloat3 point) { super((SkipInit) null); initObject(init(point)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "position")
@@ -62,6 +62,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPoint:")
-    protected native @Pointer long initWithPoint(@ByVal VectorFloat3 point);
+    protected native @Pointer long init(@ByVal VectorFloat3 point);
     /*</methods>*/
 }

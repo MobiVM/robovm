@@ -56,6 +56,8 @@ import org.robovm.apple.intents.*;
     public UIPinchGestureRecognizer() {}
     protected UIPinchGestureRecognizer(Handle h, long handle) { super(h, handle); }
     protected UIPinchGestureRecognizer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTarget:action:")
+    public UIPinchGestureRecognizer(NSObject target, Selector action) { super(target, action); }
     /*</constructors>*/
     
     public UIPinchGestureRecognizer(OnGestureListener listener) {

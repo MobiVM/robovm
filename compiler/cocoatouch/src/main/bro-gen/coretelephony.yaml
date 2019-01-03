@@ -7,6 +7,9 @@ headers:
     - /System/Library/Frameworks/CoreTelephony.framework/Headers/CTCall.h
     - /System/Library/Frameworks/CoreTelephony.framework/Headers/CTCallCenter.h
     - /System/Library/Frameworks/CoreTelephony.framework/Headers/CTCarrier.h
+    - /System/Library/Frameworks/CoreTelephony.framework/Headers/CTCellularData.h
+    - /System/Library/Frameworks/CoreTelephony.framework/Headers/CTCellularPlanProvisioning.h
+    - /System/Library/Frameworks/CoreTelephony.framework/Headers/CTCellularPlanProvisioningRequest.h
     - /System/Library/Frameworks/CoreTelephony.framework/Headers/CTSubscriber.h
     - /System/Library/Frameworks/CoreTelephony.framework/Headers/CTSubscriberInfo.h
     - /System/Library/Frameworks/CoreTelephony.framework/Headers/CTTelephonyNetworkInfo.h
@@ -14,7 +17,9 @@ typedefs: {}
     
 enums:
     CTErrorDomain: { first: kCTErrorDomainNoError }
-        
+    CTCellularDataRestrictedState: {prefix: kCTCellularData}
+    CTCellularPlanProvisioningAddPlanResult: {}
+
 classes:
     CTCall: # DONE
         properties:
@@ -41,6 +46,13 @@ classes:
                 name: currentRadioAccessTechnology
                 type: CTRadioAccessTechnology
 
+    CTCellularData: {} #since 9.0
+    CTCellularPlanProvisioning: #since 12.0
+        methods:
+            '-addPlanWith:completionHandler:':
+                name: addPlan
+    CTCellularPlanProvisioningRequest: {}
+
     # Structs
     CTError:
         domain:
@@ -49,7 +61,8 @@ classes:
             name: errorCode
             type: NSErrorCode
 
-protocols: {}
+protocols:
+    CTSubscriberDelegate: {}
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -66,12 +79,15 @@ values:
         class: CTTelephonyNetworkInfo
         name: '#{g[0]}'
         type: NSString
-        
+    CT(ServiceRadioAccessTechnologyDidChangeNotification):
+        class: CTTelephonyNetworkInfo
+        name: '#{g[0]}'
+        type: NSString
     CTRadioAccessTechnology(.*):
         enum: CTRadioAccessTechnology
         name: '#{g[0]}'
         type: NSString
-        
+
     CTCallState(.*):
         enum: CTCallState
         name: '#{g[0]}'

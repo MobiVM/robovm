@@ -185,6 +185,8 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setName:")
     public native void setName(String v);
+    @Property(selector = "setState:")
+    public native void setState(UIGestureRecognizerState v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -200,5 +202,61 @@ import org.robovm.apple.intents.*;
     public native @ByVal CGPoint getLocationInView(UIView view);
     @Method(selector = "locationOfTouch:inView:")
     public native @ByVal CGPoint getLocationOfTouch(@MachineSizedUInt long touchIndex, UIView view);
+    @Method(selector = "ignoreTouch:forEvent:")
+    protected native void ignoreTouch(UITouch touch, UIEvent event);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "ignorePress:forEvent:")
+    protected native void ignorePress(UIPress button, UIPressesEvent event);
+    @Method(selector = "reset")
+    public native void reset();
+    @Method(selector = "canPreventGestureRecognizer:")
+    public native boolean canPreventGestureRecognizer(UIGestureRecognizer preventedGestureRecognizer);
+    @Method(selector = "canBePreventedByGestureRecognizer:")
+    public native boolean canBePreventedByGestureRecognizer(UIGestureRecognizer preventingGestureRecognizer);
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Method(selector = "shouldRequireFailureOfGestureRecognizer:")
+    public native boolean shouldRequireFailureOfGestureRecognizer(UIGestureRecognizer otherGestureRecognizer);
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Method(selector = "shouldBeRequiredToFailByGestureRecognizer:")
+    public native boolean shouldBeRequiredToFailByGestureRecognizer(UIGestureRecognizer otherGestureRecognizer);
+    @Method(selector = "touchesBegan:withEvent:")
+    protected native void touchesBegan(NSSet<UITouch> touches, UIEvent event);
+    @Method(selector = "touchesMoved:withEvent:")
+    protected native void touchesMoved(NSSet<UITouch> touches, UIEvent event);
+    @Method(selector = "touchesEnded:withEvent:")
+    protected native void touchesEnded(NSSet<UITouch> touches, UIEvent event);
+    @Method(selector = "touchesCancelled:withEvent:")
+    protected native void touchesCancelled(NSSet<UITouch> touches, UIEvent event);
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @Method(selector = "touchesEstimatedPropertiesUpdated:")
+    public native void touchesEstimatedPropertiesUpdated(NSSet<UITouch> touches);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "pressesBegan:withEvent:")
+    protected native void pressesBegan(NSSet<UIPress> presses, UIPressesEvent event);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "pressesChanged:withEvent:")
+    protected native void pressesChanged(NSSet<UIPress> presses, UIPressesEvent event);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "pressesEnded:withEvent:")
+    protected native void pressesEnded(NSSet<UIPress> presses, UIPressesEvent event);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "pressesCancelled:withEvent:")
+    protected native void pressesCancelled(NSSet<UIPress> presses, UIPressesEvent event);
     /*</methods>*/
 }

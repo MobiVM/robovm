@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureMetadataInput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureMetadataInput() {}
+    protected AVCaptureMetadataInput() {}
     protected AVCaptureMetadataInput(Handle h, long handle) { super(h, handle); }
     protected AVCaptureMetadataInput(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFormatDescription:clock:")

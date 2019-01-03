@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureDeviceInput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureDeviceInput() {}
+    protected AVCaptureDeviceInput() {}
     protected AVCaptureDeviceInput(Handle h, long handle) { super(h, handle); }
     protected AVCaptureDeviceInput(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:error:")
@@ -69,6 +69,16 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*/
     @Property(selector = "device")
     public native AVCaptureDevice getDevice();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "unifiedAutoExposureDefaultsEnabled")
+    public native boolean isUnifiedAutoExposureDefaultsEnabled();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setUnifiedAutoExposureDefaultsEnabled:")
+    public native void setUnifiedAutoExposureDefaultsEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

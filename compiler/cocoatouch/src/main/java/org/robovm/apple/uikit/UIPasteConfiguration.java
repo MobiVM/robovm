@@ -57,9 +57,9 @@ import org.robovm.apple.intents.*;
     protected UIPasteConfiguration(Handle h, long handle) { super(h, handle); }
     protected UIPasteConfiguration(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithAcceptableTypeIdentifiers:")
-    public UIPasteConfiguration(NSArray<NSString> acceptableTypeIdentifiers) { super((SkipInit) null); initObject(initWithAcceptableTypeIdentifiers(acceptableTypeIdentifiers)); }
+    public UIPasteConfiguration(NSArray<NSString> acceptableTypeIdentifiers) { super((SkipInit) null); initObject(init(acceptableTypeIdentifiers)); }
     @Method(selector = "initWithTypeIdentifiersForAcceptingClass:")
-    public UIPasteConfiguration(Class<?> aClass) { super((SkipInit) null); initObject(initWithTypeIdentifiersForAcceptingClass(aClass)); }
+    public UIPasteConfiguration(Class<?> aClass) { super((SkipInit) null); initObject(init(aClass)); }
     @Method(selector = "initWithCoder:")
     public UIPasteConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -74,11 +74,11 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithAcceptableTypeIdentifiers:")
-    protected native @Pointer long initWithAcceptableTypeIdentifiers(NSArray<NSString> acceptableTypeIdentifiers);
+    protected native @Pointer long init(NSArray<NSString> acceptableTypeIdentifiers);
     @Method(selector = "addAcceptableTypeIdentifiers:")
     public native void addAcceptableTypeIdentifiers(NSArray<NSString> acceptableTypeIdentifiers);
     @Method(selector = "initWithTypeIdentifiersForAcceptingClass:")
-    protected native @Pointer long initWithTypeIdentifiersForAcceptingClass(Class<?> aClass);
+    protected native @Pointer long init(Class<?> aClass);
     @Method(selector = "addTypeIdentifiersForAcceptingClass:")
     public native void addTypeIdentifiersForAcceptingClass(Class<?> aClass);
     @Method(selector = "encodeWithCoder:")

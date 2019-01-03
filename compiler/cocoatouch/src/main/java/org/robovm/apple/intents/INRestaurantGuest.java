@@ -46,11 +46,18 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INRestaurantGuest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INRestaurantGuest() {}
+    protected INRestaurantGuest() {}
     protected INRestaurantGuest(Handle h, long handle) { super(h, handle); }
     protected INRestaurantGuest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNameComponents:phoneNumber:emailAddress:")
     public INRestaurantGuest(NSPersonNameComponents nameComponents, String phoneNumber, String emailAddress) { super((SkipInit) null); initObject(init(nameComponents, phoneNumber, emailAddress)); }
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:")
+    public INRestaurantGuest(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:")
+    public INRestaurantGuest(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "phoneNumber")

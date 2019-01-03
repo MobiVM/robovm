@@ -52,10 +52,10 @@ import org.robovm.apple.coregraphics.*;
     @NotImplemented("didUpdateItems:")
     public void didUpdateItems(NSArray<?> updatedItems) {}
     @NotImplemented("didDeleteItemsWithIdentifiers:")
-    public void didDeleteItemsWithIdentifiers(NSArray<NSString> deletedItemIdentifiers) {}
+    public void didDeleteItems(NSArray<NSString> deletedItemIdentifiers) {}
     @NotImplemented("finishEnumeratingChangesUpToSyncAnchor:moreComing:")
     public void finishEnumeratingChangesUpToSyncAnchor(NSData anchor, boolean moreComing) {}
     @NotImplemented("finishEnumeratingWithError:")
-    public void finishEnumeratingWithError(NSError error) {}
+    public void finishEnumerating(NSError error) {}
     /*</methods>*/
 }

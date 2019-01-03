@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
     protected SKScene(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSize:")
     public SKScene(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
+    @Method(selector = "initWithCoder:")
+    public SKScene(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "size")

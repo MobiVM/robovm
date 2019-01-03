@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNMultiplicationNode/*</name>*/ 
     extends /*<extends>*/MPSNNBinaryArithmeticNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,9 +46,13 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSNNMultiplicationNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSNNMultiplicationNode() {}
+    protected MPSNNMultiplicationNode() {}
     protected MPSNNMultiplicationNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNMultiplicationNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSources:")
+    public MPSNNMultiplicationNode(NSArray<MPSNNImageNode> sourceNodes) { super(sourceNodes); }
+    @Method(selector = "initWithLeftSource:rightSource:")
+    public MPSNNMultiplicationNode(MPSNNImageNode left, MPSNNImageNode right) { super(left, right); }
     /*</constructors>*/
     /*<properties>*/
     

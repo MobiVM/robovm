@@ -66,11 +66,14 @@ public enum /*<name>*/CMVideoCodecType/*</name>*/ implements ValuedEnum {
     DVCPROHD1080i50(1685481525L),
     DVCPROHD1080p30(1685481523L),
     DVCPROHD1080p25(1685481522L),
+    AppleProRes4444XQ(1634743416L),
     AppleProRes4444(1634743400L),
     AppleProRes422HQ(1634755432L),
     AppleProRes422(1634755438L),
     AppleProRes422LT(1634755443L),
-    AppleProRes422Proxy(1634755439L);
+    AppleProRes422Proxy(1634755439L),
+    AppleProResRAW(1634759278L),
+    AppleProResRAWHQ(1634759272L);
     /*</values>*/
 
     public static class AsListMarshaler {

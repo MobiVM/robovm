@@ -57,49 +57,49 @@ import org.robovm.apple.corefoundation.*;
     public native ABPropertyType getPropertyType();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use NSArray.count with the labeled value property
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueGetCount", optional=true)
     public native @MachineSizedSInt long getCount();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [[NSArray objectAtIndex:] value] with the labeled value property
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueCopyValueAtIndex", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFType getValue(@MachineSizedSInt long index);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [NSArray enumerateObjectsUsingBlock:] with the labeled value property and collect the values
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueCopyArrayOfAllValues", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.AsListMarshaler.class) List<CFType> getAllValues();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [[NSArray objectAtIndex:] label] with the labeled value property
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueCopyLabelAtIndex", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFString getLabel(@MachineSizedSInt long index);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [NSArray indexOfObjectPassingTest:] with the labeled value property and find the identifier
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueGetIndexForIdentifier", optional=true)
     public native @MachineSizedSInt long indexOf(int identifier);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [[NSArray objectAtIndex:] identifier] with the labeled value property
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueGetIdentifierAtIndex", optional=true)
     public native int getIdentifier(@MachineSizedSInt long index);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [NSArray indexOfObjectPassingTest:] with the labeled value property and find the value
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueGetFirstIndexOfValue", optional=true)

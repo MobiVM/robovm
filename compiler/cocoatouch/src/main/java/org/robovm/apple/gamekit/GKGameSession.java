@@ -34,7 +34,9 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 12.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKGameSession/*</name>*/ 
@@ -78,7 +80,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "setConnectionState:completionHandler:")
     public native void setConnectionState(GKConnectionState state, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "playersWithConnectionState:")
-    public native NSArray<GKCloudPlayer> playersWithConnectionState(GKConnectionState state);
+    public native NSArray<GKCloudPlayer> getPlayers(GKConnectionState state);
     @Method(selector = "sendData:withTransportType:completionHandler:")
     public native void sendData(NSData data, GKTransportType transport, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:")
@@ -95,25 +97,17 @@ import org.robovm.apple.uikit.*;
     public static native void removeSession(String identifier, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use GKLocalPlayer's registerListener: to register for GKLocalPlayerListener event notifications.
      */
+    @Deprecated
     @Method(selector = "addEventListener:")
     public static native void addEventListener(GKGameSessionEventListener listener);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use GKLocalPlayer's unregisterListener: or unregisterAllListeners to unregister from GKLocalPlayerListener event notifications.
      */
+    @Deprecated
     @Method(selector = "removeEventListener:")
     public static native void removeEventListener(GKGameSessionEventListener listener);
-    @Method(selector = "postSession:didAddPlayer:")
-    public static native void didAddPlayer(GKGameSession session, GKCloudPlayer player);
-    @Method(selector = "postSession:didRemovePlayer:")
-    public static native void didRemovePlayer(GKGameSession session, GKCloudPlayer player);
-    @Method(selector = "postSession:player:didChangeConnectionState:")
-    public static native void didChangeConnectionState(GKGameSession session, GKCloudPlayer player, GKConnectionState newState);
-    @Method(selector = "postSession:player:didSaveData:")
-    public static native void didSaveData(GKGameSession session, GKCloudPlayer player, NSData data);
-    @Method(selector = "postSession:didReceiveData:fromPlayer:")
-    public static native void didReceiveData(GKGameSession session, NSData data, GKCloudPlayer player);
-    @Method(selector = "postSession:didReceiveMessage:withData:fromPlayer:")
-    public static native void didReceiveMessage(GKGameSession session, String message, NSData data, GKCloudPlayer player);
     /*</methods>*/
 }

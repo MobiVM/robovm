@@ -53,6 +53,8 @@ import org.robovm.apple.dispatch.*;
     protected MKTileOverlayRenderer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTileOverlay:")
     public MKTileOverlayRenderer(MKTileOverlay overlay) { super((SkipInit) null); initObject(init(overlay)); }
+    @Method(selector = "initWithOverlay:")
+    public MKTileOverlayRenderer(MKOverlay overlay) { super(overlay); }
     /*</constructors>*/
     /*<properties>*/
     

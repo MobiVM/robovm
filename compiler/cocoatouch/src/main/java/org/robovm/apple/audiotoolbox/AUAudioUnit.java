@@ -192,6 +192,16 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setChannelMap:")
     public native void setChannelMap(NSArray<NSNumber> v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "profileChangedBlock")
+    public native @Block VoidBlock4<Byte, Byte, MIDICIProfile, Boolean> getProfileChangedBlock();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setProfileChangedBlock:")
+    public native void setProfileChangedBlock(@Block VoidBlock4<Byte, Byte, MIDICIProfile, Boolean> v);
     @Property(selector = "canPerformInput")
     public native boolean canPerformInput();
     @Property(selector = "canPerformOutput")
@@ -247,7 +257,22 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "removeRenderObserver:")
     public native void removeRenderObserver(@MachineSizedSInt long token);
     @Method(selector = "parametersForOverviewWithCount:")
-    public native NSArray<NSNumber> parametersForOverviewWithCount(@MachineSizedSInt long count);
+    public native NSArray<NSNumber> getParameters(@MachineSizedSInt long count);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "profileStateForCable:channel:")
+    public native MIDICIProfileState getProfileState(byte cable, byte channel);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "enableProfile:cable:onChannel:error:")
+    public native boolean enableProfile(MIDICIProfile profile, byte cable, byte channel, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "disableProfile:cable:onChannel:error:")
+    public native boolean disableProfile(MIDICIProfile profile, byte cable, byte channel, NSError.NSErrorPtr outError);
     @Method(selector = "instantiateWithComponentDescription:options:completionHandler:")
     public static native void instantiate(@ByVal AudioComponentDescription componentDescription, AudioComponentInstantiationOptions options, @Block VoidBlock2<AUAudioUnit, NSError> completionHandler);
     @Method(selector = "startHardwareAndReturnError:")

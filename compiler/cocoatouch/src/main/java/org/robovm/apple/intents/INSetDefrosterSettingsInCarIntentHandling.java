@@ -58,6 +58,11 @@ import org.robovm.apple.corelocation.*;
     void resolveEnableForSetDefrosterSettingsInCar(INSetDefrosterSettingsInCarIntent intent, @Block VoidBlock1<INBooleanResolutionResult> completion);
     @Method(selector = "resolveDefrosterForSetDefrosterSettingsInCar:withCompletion:")
     void resolveDefrosterForSetDefrosterSettingsInCar(INSetDefrosterSettingsInCarIntent intent, @Block VoidBlock1<INCarDefrosterResolutionResult> completion);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "resolveCarNameForSetDefrosterSettingsInCar:withCompletion:")
+    void resolveCarNameForSetDefrosterSettingsInCar(INSetDefrosterSettingsInCarIntent intent, @Block VoidBlock1<INSpeakableStringResolutionResult> completion);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

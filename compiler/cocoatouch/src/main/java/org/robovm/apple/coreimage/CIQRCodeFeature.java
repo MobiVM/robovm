@@ -46,7 +46,7 @@ import org.robovm.apple.iosurface.*;
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIQRCodeFeature/*</name>*/ 
     extends /*<extends>*/CIFeature/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CIQRCodeFeaturePtr extends Ptr<CIQRCodeFeature, CIQRCodeFeaturePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CIQRCodeFeature.class); }/*</bind>*/
@@ -55,6 +55,8 @@ import org.robovm.apple.iosurface.*;
     public CIQRCodeFeature() {}
     protected CIQRCodeFeature(Handle h, long handle) { super(h, handle); }
     protected CIQRCodeFeature(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CIQRCodeFeature(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "bounds")
@@ -74,9 +76,14 @@ import org.robovm.apple.iosurface.*;
      */
     @Property(selector = "symbolDescriptor")
     public native CIQRCodeDescriptor getSymbolDescriptor();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

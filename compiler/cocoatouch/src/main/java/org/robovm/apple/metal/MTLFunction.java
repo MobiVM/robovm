@@ -93,7 +93,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "newArgumentEncoderWithBufferIndex:")
-    public native MTLArgumentEncoder newArgumentEncoderWithBufferIndex(@MachineSizedUInt long bufferIndex);
+    public native MTLArgumentEncoder newArgumentEncoder(@MachineSizedUInt long bufferIndex);
     /**
      * @since Available in iOS 11.0 and later.
      */

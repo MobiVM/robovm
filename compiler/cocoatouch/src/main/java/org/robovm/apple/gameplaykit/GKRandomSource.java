@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     protected GKRandomSource(Handle h, long handle) { super(h, handle); }
     protected GKRandomSource(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public GKRandomSource(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public GKRandomSource(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -60,7 +60,7 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "arrayByShufflingObjectsInArray:")
     public native NSArray<?> shuffleArray(NSArray<?> array);
     @Method(selector = "sharedRandom")

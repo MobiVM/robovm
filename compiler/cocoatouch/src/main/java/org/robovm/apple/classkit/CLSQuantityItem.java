@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(CLSQuantityItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CLSQuantityItem() {}
+    protected CLSQuantityItem() {}
     protected CLSQuantityItem(Handle h, long handle) { super(h, handle); }
     protected CLSQuantityItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIdentifier:title:")

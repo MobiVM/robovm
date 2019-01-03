@@ -54,6 +54,16 @@ import org.robovm.apple.dispatch.*;
     public native int getClearStencil();
     @Property(selector = "setClearStencil:")
     public native void setClearStencil(int v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "stencilResolveFilter")
+    public native MTLMultisampleStencilResolveFilter getStencilResolveFilter();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setStencilResolveFilter:")
+    public native void setStencilResolveFilter(MTLMultisampleStencilResolveFilter v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

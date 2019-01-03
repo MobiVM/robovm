@@ -76,7 +76,7 @@ import org.robovm.apple.corelocation.*;
     public native HMUser getCurrentUser();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. No longer supported.
      */
     @Deprecated
     @Property(selector = "users")
@@ -110,7 +110,7 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "addAndSetupAccessoriesWithCompletionHandler:")
-    public native void addAndSetupAccessoriesWithCompletionHandler(@Block VoidBlock1<NSError> completion);
+    public native void addAndSetupAccessories(@Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 11.3 and later.
      */

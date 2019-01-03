@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(CLSBinaryItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CLSBinaryItem() {}
+    protected CLSBinaryItem() {}
     protected CLSBinaryItem(Handle h, long handle) { super(h, handle); }
     protected CLSBinaryItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIdentifier:title:type:")

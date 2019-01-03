@@ -59,7 +59,7 @@ import org.robovm.apple.security.*;
     @Method(selector = "didFinish")
     void didFinish();
     @Method(selector = "didFailWithError:")
-    void didFailWithError(NSError error);
+    void didFail(NSError error);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

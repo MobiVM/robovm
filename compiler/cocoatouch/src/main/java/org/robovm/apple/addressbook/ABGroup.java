@@ -88,42 +88,42 @@ import org.robovm.apple.corefoundation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [[CNMutableGroup alloc] init]
      */
     @Deprecated
     @Bridge(symbol="ABGroupCreate", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(ABRecord.NoRetainMarshaler.class) ABGroup create();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [[CNMutableGroup alloc] init] and [CNSaveRequest addGroup:toContainerWithIdentifier:]
      */
     @Deprecated
     @Bridge(symbol="ABGroupCreateInSource", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(ABRecord.NoRetainMarshaler.class) ABGroup create(ABSource source);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContactStore containersMatchingPredicate:[CNContainer predicateForContainerOfGroupWithIdentifier:] error:]
      */
     @Deprecated
     @Bridge(symbol="ABGroupCopySource", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(ABRecord.NoRetainMarshaler.class) ABSource getSource();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContactFetchRequest with predicate = [CNContact predicateForContactsInGroupWithIdentifier:]
      */
     @Deprecated
     @Bridge(symbol="ABGroupCopyArrayOfAllMembers", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(ABPerson.AsListMarshaler.class) List<ABPerson> getAllMembers();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContactFetchRequest with predicate = [CNContact predicateForContactsInGroupWithIdentifier:] and sortOrder
      */
     @Deprecated
     @Bridge(symbol="ABGroupCopyArrayOfAllMembersWithSortOrdering", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(ABPerson.AsListMarshaler.class) List<ABPerson> getAllMembers(ABPersonSortOrdering sortOrdering);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNSaveRequest addMember:toGroup:]
      */
     @Deprecated
     public boolean addMember(ABPerson person) throws NSErrorException {
@@ -134,14 +134,14 @@ import org.robovm.apple.corefoundation.*;
     }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNSaveRequest addMember:toGroup:]
      */
     @Deprecated
     @Bridge(symbol="ABGroupAddMember", optional=true)
     private native boolean addMember(ABPerson person, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNSaveRequest removeMember:fromGroup:]
      */
     @Deprecated
     public boolean removeMember(ABPerson member) throws NSErrorException {
@@ -152,7 +152,7 @@ import org.robovm.apple.corefoundation.*;
     }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNSaveRequest removeMember:fromGroup:]
      */
     @Deprecated
     @Bridge(symbol="ABGroupRemoveMember", optional=true)

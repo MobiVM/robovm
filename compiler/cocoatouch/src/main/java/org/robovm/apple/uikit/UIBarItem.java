@@ -49,7 +49,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIBarItem/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements UIAppearanceContainer/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIAppearanceContainer/*</implements>*/ {
 
     /*<ptr>*/public static class UIBarItemPtr extends Ptr<UIBarItem, UIBarItemPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIBarItem.class); }/*</bind>*/
@@ -59,7 +59,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     protected UIBarItem(Handle h, long handle) { super(h, handle); }
     protected UIBarItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public UIBarItem(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIBarItem(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isEnabled")
@@ -184,7 +184,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     }
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -195,5 +195,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Method(selector = "titleTextAttributesForState:")
     public native NSDictionary<NSString, ?> getTitleTextAttributesDictionary(UIControlState state);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

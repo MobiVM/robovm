@@ -35,24 +35,16 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
-/*<javadoc>*/
-/*</javadoc>*/
-/*<annotations>*/@Library("MetalKit") @StronglyLinked/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTKTextureLoaderError/*</name>*/ 
-    extends /*<extends>*/NSError/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/* dkimitsa: this class is manually added as there is no error code to generate on */
+
+/*<annotations>*/@Library("MetalKit")/*</annotations>*/
+public class MTKTextureLoaderError extends NSError {
 
     protected MTKTextureLoaderError(SkipInit skipInit) {
         super(skipInit);
     }
     
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(MTKTextureLoaderError.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
+    static { Bro.bind(MTKTextureLoaderError.class); }/*</bind>*/
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.

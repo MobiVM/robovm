@@ -32,7 +32,11 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 12.0. Use GKLocalPlayerListener for multiplayer event notifications.
+ */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/GKGameSessionEventListener/*</name>*/ 
@@ -47,34 +51,16 @@ import org.robovm.apple.uikit.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @Method(selector = "session:didAddPlayer:")
     void didAddPlayer(GKGameSession session, GKCloudPlayer player);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @Method(selector = "session:didRemovePlayer:")
     void didRemovePlayer(GKGameSession session, GKCloudPlayer player);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @Method(selector = "session:player:didChangeConnectionState:")
     void didChangeConnectionState(GKGameSession session, GKCloudPlayer player, GKConnectionState newState);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @Method(selector = "session:player:didSaveData:")
     void didSaveData(GKGameSession session, GKCloudPlayer player, NSData data);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @Method(selector = "session:didReceiveData:fromPlayer:")
     void didReceiveData(GKGameSession session, NSData data, GKCloudPlayer player);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @Method(selector = "session:didReceiveMessage:withData:fromPlayer:")
     void didReceiveMessage(GKGameSession session, String message, NSData data, GKCloudPlayer player);
     /*</methods>*/

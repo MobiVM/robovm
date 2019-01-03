@@ -51,6 +51,11 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "file")
     public native WCSessionFile getFile();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "progress")
+    public native NSProgress getProgress();
     @Property(selector = "isTransferring")
     public native boolean isTransferring();
     /*</properties>*/

@@ -39,11 +39,11 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NEVPNIKEv2IntegrityAlgorithm/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    _96(1L),
-    _160(2L),
-    _256(3L),
-    _384(4L),
-    _512(5L);
+    SHA96(1L),
+    SHA160(2L),
+    SHA256(3L),
+    SHA384(4L),
+    SHA512(5L);
     /*</values>*/
 
     /*<bind>*/

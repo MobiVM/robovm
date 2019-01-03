@@ -57,6 +57,9 @@ import org.robovm.apple.audiotoolbox.*;
     public AVAudioUnitVarispeed() {}
     protected AVAudioUnitVarispeed(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitVarispeed(SkipInit skipInit) { super(skipInit); }
+    @WeaklyLinked
+    @Method(selector = "initWithAudioComponentDescription:")
+    public AVAudioUnitVarispeed(@ByVal AudioComponentDescription audioComponentDescription) { super(audioComponentDescription); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rate")

@@ -50,6 +50,17 @@ import org.robovm.apple.fileprovider.*;
     public CKFetchRecordZoneChangesOperation() {}
     protected CKFetchRecordZoneChangesOperation(Handle h, long handle) { super(h, handle); }
     protected CKFetchRecordZoneChangesOperation(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithRecordZoneIDs:configurationsByRecordZoneID:")
+    public static  CKFetchRecordZoneChangesOperation create(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> configurationsByRecordZoneID) {
+       CKFetchRecordZoneChangesOperation res = new CKFetchRecordZoneChangesOperation((SkipInit) null);
+       res.initObject(res.init0(recordZoneIDs, configurationsByRecordZoneID));
+       return res;
+    }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithRecordZoneIDs:optionsByRecordZoneID:")
     public CKFetchRecordZoneChangesOperation(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions> optionsByRecordZoneID) { super((SkipInit) null); initObject(init(recordZoneIDs, optionsByRecordZoneID)); }
     /*</constructors>*/
@@ -58,10 +69,10 @@ import org.robovm.apple.fileprovider.*;
     public native NSArray<CKRecordZoneID> getRecordZoneIDs();
     @Property(selector = "setRecordZoneIDs:")
     public native void setRecordZoneIDs(NSArray<CKRecordZoneID> v);
-    @Property(selector = "optionsByRecordZoneID")
-    public native NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions> getOptionsByRecordZoneID();
-    @Property(selector = "setOptionsByRecordZoneID:")
-    public native void setOptionsByRecordZoneID(NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions> v);
+    @Property(selector = "configurationsByRecordZoneID")
+    public native NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> getConfigurationsByRecordZoneID();
+    @Property(selector = "setConfigurationsByRecordZoneID:")
+    public native void setConfigurationsByRecordZoneID(NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> v);
     @Property(selector = "fetchAllChanges")
     public native boolean isFetchAllChanges();
     @Property(selector = "setFetchAllChanges:")
@@ -86,9 +97,30 @@ import org.robovm.apple.fileprovider.*;
     public native @Block VoidBlock1<NSError> getFetchRecordZoneChangesCompletionBlock();
     @Property(selector = "setFetchRecordZoneChangesCompletionBlock:")
     public native void setFetchRecordZoneChangesCompletionBlock(@Block VoidBlock1<NSError> v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
+    @Property(selector = "optionsByRecordZoneID")
+    public native NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions> getOptionsByRecordZoneID();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
+    @Property(selector = "setOptionsByRecordZoneID:")
+    public native void setOptionsByRecordZoneID(NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithRecordZoneIDs:configurationsByRecordZoneID:")
+    protected native @Pointer long init0(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> configurationsByRecordZoneID);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithRecordZoneIDs:optionsByRecordZoneID:")
     protected native @Pointer long init(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions> optionsByRecordZoneID);
     /*</methods>*/

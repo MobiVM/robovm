@@ -103,8 +103,14 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setLocalizedReason:")
     public native void setLocalizedReason(String v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "interactionNotAllowed")
     public native boolean isInteractionNotAllowed();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setInteractionNotAllowed:")
     public native void setInteractionNotAllowed(boolean v);
     /**

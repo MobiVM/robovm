@@ -50,7 +50,7 @@ import org.robovm.apple.imageio.*;
     /*<bind>*/static { ObjCRuntime.bind(VNFaceLandmarkRegion2D.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public VNFaceLandmarkRegion2D() {}
+    protected VNFaceLandmarkRegion2D() {}
     protected VNFaceLandmarkRegion2D(Handle h, long handle) { super(h, handle); }
     protected VNFaceLandmarkRegion2D(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

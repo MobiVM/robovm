@@ -1,0 +1,62 @@
+package: org.robovm.apple.identitylookup
+include: [foundation, uikit]
+library: IdentityLookup
+framework: IdentityLookup
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/IdentityLookup.framework/Headers/IdentityLookup.h
+typedefs: {}
+    
+enums:
+    ILMessageFilterAction: {} #since 11.0
+    ILMessageFilterError: {nserror: true} #since 11.0
+    ILClassificationAction: {} #since 12.0
+
+classes:
+    ILCallClassificationRequest: {} #since 12.0
+    ILCallCommunication: {} #since 12.0
+    ILClassificationRequest: {} #since 12.0
+    ILClassificationResponse: #since 12.0
+        methods:
+            '-initWithClassificationAction:':
+                name: init
+    ILCommunication: {} #since 12.0
+    ILMessageClassificationRequest: {} #since 12.0
+    ILMessageCommunication: {} #since 12.0
+    ILMessageFilterExtension: {} #since 11.0
+    ILMessageFilterExtensionContext: #since 11.0
+        methods:
+            '-deferQueryRequestToNetworkWithCompletion:':
+                name: deferQueryRequestToNetwor
+    ILMessageFilterQueryRequest: {} #since 11.0
+    ILMessageFilterQueryResponse: {} #since 11.0
+    ILNetworkResponse: {} #since 11.0
+
+protocols:
+    ILMessageFilterQueryHandling: #since 11.0
+        methods:
+            '-handleQueryRequest:context:completion:':
+                trim_after_first_colon: true
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?IL.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    ILMessageFilterErrorDomain:
+        class: ILMessageFilterError
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?IL.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?IL.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

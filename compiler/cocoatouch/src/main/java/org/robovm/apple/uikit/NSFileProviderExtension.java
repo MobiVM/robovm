@@ -103,7 +103,7 @@ import org.robovm.apple.intents.*;
     public native void itemChanged(NSURL url);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the corresponding method on NSFileProviderManager instead
      */
     @Deprecated
     public static boolean writePlaceholder(NSURL placeholderURL, NSURLProperties metadata) throws NSErrorException {
@@ -114,7 +114,7 @@ import org.robovm.apple.intents.*;
     }
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the corresponding method on NSFileProviderManager instead
      */
     @Deprecated
     @Method(selector = "writePlaceholderAtURL:withMetadata:error:")

@@ -100,7 +100,7 @@ import org.robovm.apple.mapkit.*;
     public native String getBirthdayContactIdentifier();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use birthdayContactIdentifier instead
      */
     @Deprecated
     @Property(selector = "birthdayPersonID")
@@ -109,7 +109,7 @@ import org.robovm.apple.mapkit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "compareStartDateWithEvent:")
-    public native NSComparisonResult compareStartDateWithEvent(EKEvent other);
+    public native NSComparisonResult compareStartDate(EKEvent other);
     @Method(selector = "refresh")
     public native boolean refresh();
     @Method(selector = "eventWithEventStore:")

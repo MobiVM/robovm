@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNDilatedPoolingMaxGradient/*</name>*/ 
     extends /*<extends>*/MPSCNNPoolingGradient/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,17 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNDilatedPoolingMaxGradient.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNDilatedPoolingMaxGradient() {}
+    public MPSCNNDilatedPoolingMaxGradient() {}
     protected MPSCNNDilatedPoolingMaxGradient(Handle h, long handle) { super(h, handle); }
     protected MPSCNNDilatedPoolingMaxGradient(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:dilationRateX:dilationRateY:strideInPixelsX:strideInPixelsY:")
     public MPSCNNDilatedPoolingMaxGradient(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long dilationRateX, @MachineSizedUInt long dilationRateY, @MachineSizedUInt long strideInPixelsX, @MachineSizedUInt long strideInPixelsY) { super((SkipInit) null); initObject(init(device, kernelWidth, kernelHeight, dilationRateX, dilationRateY, strideInPixelsX, strideInPixelsY)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNDilatedPoolingMaxGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
+    public MPSCNNDilatedPoolingMaxGradient(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight) { super(device, kernelWidth, kernelHeight); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNDilatedPoolingMaxGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

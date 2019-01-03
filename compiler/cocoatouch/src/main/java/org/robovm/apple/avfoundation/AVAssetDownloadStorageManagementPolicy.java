@@ -60,7 +60,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "priority")
-    public native String getPriority();
+    public native AVAssetDownloadedAssetEvictionPriority getPriority();
     @Property(selector = "expirationDate")
     public native NSDate getExpirationDate();
     /*</properties>*/

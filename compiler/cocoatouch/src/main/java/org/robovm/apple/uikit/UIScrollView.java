@@ -47,7 +47,7 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIScrollView/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIFocusItemScrollableContainer/*</implements>*/ {
 
     /*<ptr>*/public static class UIScrollViewPtr extends Ptr<UIScrollView, UIScrollViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIScrollView.class); }/*</bind>*/
@@ -56,13 +56,11 @@ import org.robovm.apple.intents.*;
     public UIScrollView() {}
     protected UIScrollView(Handle h, long handle) { super(h, handle); }
     protected UIScrollView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIScrollView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UIScrollView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UIScrollView(CGRect frame) {
-        super(frame);
-    }
-    public UIScrollView(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "contentOffset")
     public native @ByVal CGPoint getContentOffset();
@@ -235,6 +233,8 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setRefreshControl:")
     public native void setRefreshControl(UIRefreshControl v);
+    @Property(selector = "visibleSize")
+    public native @ByVal CGSize getVisibleSize();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

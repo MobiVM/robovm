@@ -49,6 +49,16 @@ import org.robovm.apple.corelocation.*;
     public INSetSeatSettingsInCarIntent() {}
     protected INSetSeatSettingsInCarIntent(Handle h, long handle) { super(h, handle); }
     protected INSetSeatSettingsInCarIntent(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithEnableHeating:enableCooling:enableMassage:seat:level:relativeLevelSetting:carName:")
+    public INSetSeatSettingsInCarIntent(NSNumber enableHeating, NSNumber enableCooling, NSNumber enableMassage, INCarSeat seat, NSNumber level, INRelativeSetting relativeLevelSetting, INSpeakableString carName) { super((SkipInit) null); initObject(init(enableHeating, enableCooling, enableMassage, seat, level, relativeLevelSetting, carName)); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithEnableHeating:enableCooling:enableMassage:seat:level:relativeLevelSetting:")
     public INSetSeatSettingsInCarIntent(NSNumber enableHeating, NSNumber enableCooling, NSNumber enableMassage, INCarSeat seat, NSNumber level, INRelativeSetting relativeLevelSetting) { super((SkipInit) null); initObject(init(enableHeating, enableCooling, enableMassage, seat, level, relativeLevelSetting)); }
     /*</constructors>*/
@@ -65,9 +75,24 @@ import org.robovm.apple.corelocation.*;
     public native NSNumber getLevel();
     @Property(selector = "relativeLevelSetting")
     public native INRelativeSetting getRelativeLevelSetting();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "carName")
+    public native INSpeakableString getCarName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithEnableHeating:enableCooling:enableMassage:seat:level:relativeLevelSetting:carName:")
+    protected native @Pointer long init(NSNumber enableHeating, NSNumber enableCooling, NSNumber enableMassage, INCarSeat seat, NSNumber level, INRelativeSetting relativeLevelSetting, INSpeakableString carName);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithEnableHeating:enableCooling:enableMassage:seat:level:relativeLevelSetting:")
     protected native @Pointer long init(NSNumber enableHeating, NSNumber enableCooling, NSNumber enableMassage, INCarSeat seat, NSNumber level, INRelativeSetting relativeLevelSetting);
     /*</methods>*/

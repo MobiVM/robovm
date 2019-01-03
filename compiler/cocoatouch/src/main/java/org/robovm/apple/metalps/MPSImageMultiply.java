@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageMultiply/*</name>*/ 
     extends /*<extends>*/MPSImageArithmetic/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -50,7 +50,14 @@ import org.robovm.apple.metal.*;
     protected MPSImageMultiply(Handle h, long handle) { super(h, handle); }
     protected MPSImageMultiply(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSImageMultiply(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSImageMultiply(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSImageMultiply(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageMultiply(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -58,6 +65,6 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     /*</methods>*/
 }

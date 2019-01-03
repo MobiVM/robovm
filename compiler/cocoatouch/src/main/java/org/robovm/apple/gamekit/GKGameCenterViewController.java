@@ -48,6 +48,17 @@ import org.robovm.apple.uikit.*;
     public GKGameCenterViewController() {}
     protected GKGameCenterViewController(Handle h, long handle) { super(h, handle); }
     protected GKGameCenterViewController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    public GKGameCenterViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
+    @Method(selector = "initWithRootViewController:")
+    public GKGameCenterViewController(UIViewController rootViewController) { super(rootViewController); }
+    @Method(selector = "initWithNibName:bundle:")
+    public GKGameCenterViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public GKGameCenterViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "gameCenterDelegate")
@@ -80,14 +91,14 @@ import org.robovm.apple.uikit.*;
     public native void setLeaderboardIdentifier(String v);
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. GKGameCenterViewController's leaderboardCategory property is deprecated. Use leaderboardIdentifier instead.
      */
     @Deprecated
     @Property(selector = "leaderboardCategory")
     public native String getLeaderboardCategory();
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. GKGameCenterViewController's leaderboardCategory property is deprecated. Use leaderboardIdentifier instead.
      */
     @Deprecated
     @Property(selector = "setLeaderboardCategory:")

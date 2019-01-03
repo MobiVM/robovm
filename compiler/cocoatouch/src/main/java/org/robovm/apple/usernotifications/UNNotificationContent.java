@@ -71,6 +71,16 @@ import org.robovm.apple.foundation.*;
     public native String getTitle();
     @Property(selector = "userInfo")
     public native NSDictionary<?, ?> getUserInfo();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "summaryArgument")
+    public native String getSummaryArgument();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "summaryArgumentCount")
+    public native @MachineSizedUInt long getSummaryArgumentCount();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

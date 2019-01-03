@@ -49,7 +49,7 @@ import org.robovm.apple.coregraphics.*;
     protected MDLRelativeAssetResolver(Handle h, long handle) { super(h, handle); }
     protected MDLRelativeAssetResolver(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithAsset:")
-    public MDLRelativeAssetResolver(MDLAsset asset) { super((SkipInit) null); initObject(initWithAsset(asset)); }
+    public MDLRelativeAssetResolver(MDLAsset asset) { super((SkipInit) null); initObject(init(asset)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "asset")
@@ -60,7 +60,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithAsset:")
-    protected native @Pointer long initWithAsset(MDLAsset asset);
+    protected native @Pointer long init(MDLAsset asset);
     @Method(selector = "canResolveAssetNamed:")
     public native boolean canResolveAssetNamed(String name);
     @Method(selector = "resolveAssetNamed:")

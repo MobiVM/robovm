@@ -39,8 +39,8 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MTLIndexType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    _16(0L),
-    _32(1L);
+    UInt16(0L),
+    UInt32(1L);
     /*</values>*/
 
     /*<bind>*/

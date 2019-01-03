@@ -46,11 +46,11 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INSendMessageRecipientResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INSendMessageRecipientResolutionResult() {}
+    protected INSendMessageRecipientResolutionResult() {}
     protected INSendMessageRecipientResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INSendMessageRecipientResolutionResult(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPersonResolutionResult:")
-    public INSendMessageRecipientResolutionResult(INPersonResolutionResult personResolutionResult) { super((SkipInit) null); initObject(initWithPersonResolutionResult(personResolutionResult)); }
+    public INSendMessageRecipientResolutionResult(INPersonResolutionResult personResolutionResult) { super((SkipInit) null); initObject(init(personResolutionResult)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -58,7 +58,7 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPersonResolutionResult:")
-    protected native @Pointer long initWithPersonResolutionResult(INPersonResolutionResult personResolutionResult);
+    protected native @Pointer long init(INPersonResolutionResult personResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INSendMessageRecipientResolutionResult unsupportedForReason(INSendMessageRecipientUnsupportedReason reason);
     /*</methods>*/

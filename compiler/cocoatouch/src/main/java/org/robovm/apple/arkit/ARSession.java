@@ -75,7 +75,7 @@ import org.robovm.apple.imageio.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "runWithConfiguration:")
-    public native void runWithConfiguration(ARConfiguration configuration);
+    public native void run(ARConfiguration configuration);
     @Method(selector = "runWithConfiguration:options:")
     public native void run(ARConfiguration configuration, ARSessionRunOptions options);
     @Method(selector = "pause")
@@ -89,5 +89,15 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "setWorldOrigin:")
     public native void setWorldOrigin(@ByVal MatrixFloat4x4 relativeTransform);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "getCurrentWorldMapWithCompletionHandler:")
+    public native void getCurrentWorldMap(@Block VoidBlock2<ARWorldMap, NSError> completionHandler);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "createReferenceObjectWithTransform:center:extent:completionHandler:")
+    public native void createReferenceObject(@ByVal MatrixFloat4x4 transform, @ByVal VectorFloat3 center, @ByVal VectorFloat3 extent, @Block VoidBlock2<ARReferenceObject, NSError> completionHandler);
     /*</methods>*/
 }

@@ -52,7 +52,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithServers:")
-    public NEDNSSettings(NSArray<NSString> servers) { super((SkipInit) null); initObject(initWithServers(servers)); }
+    public NEDNSSettings(NSArray<NSString> servers) { super((SkipInit) null); initObject(init(servers)); }
     @Method(selector = "initWithCoder:")
     public NEDNSSettings(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -111,7 +111,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithServers:")
-    protected native @Pointer long initWithServers(NSArray<NSString> servers);
+    protected native @Pointer long init(NSArray<NSString> servers);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

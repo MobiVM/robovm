@@ -57,6 +57,7 @@ import org.robovm.apple.imageio.*;
     public ARSCNPlaneGeometry() {}
     protected ARSCNPlaneGeometry(Handle h, long handle) { super(h, handle); }
     protected ARSCNPlaneGeometry(SkipInit skipInit) { super(skipInit); }
+    public ARSCNPlaneGeometry(MTLDevice device) { super((Handle) null, create(device)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -66,6 +67,6 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "updateFromPlaneGeometry:")
     public native void updateFromPlaneGeometry(ARPlaneGeometry planeGeometry);
     @Method(selector = "planeGeometryWithDevice:")
-    public static native ARSCNPlaneGeometry planeGeometryWithDevice(MTLDevice device);
+    protected static native @Pointer long create(MTLDevice device);
     /*</methods>*/
 }

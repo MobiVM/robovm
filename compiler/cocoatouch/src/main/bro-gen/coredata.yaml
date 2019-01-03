@@ -728,6 +728,10 @@ classes:
                 name: setOption
             '-setValue:forPragmaNamed:':
                 name: setValue
+            '-initWithURL:':
+                name: init
+            '+persistentStoreDescriptionWithURL:':
+                exclude: true
     NSPropertyDescription: # DONE
         properties:
             'validationPredicates':
@@ -772,6 +776,8 @@ classes:
                 exclude: true
             '+persistentContainerWithName:managedObjectModel:':
                 exclude: true
+            '-loadPersistentStoresWithCompletionHandler:':
+                name: loadPersistentStores
     NSCoreDataCoreSpotlightDelegate: #since 11.0
         methods:
             '-initForStoreWithDescription:model:':

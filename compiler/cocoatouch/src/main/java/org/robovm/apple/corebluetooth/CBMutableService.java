@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(CBMutableService.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CBMutableService() {}
+    protected CBMutableService() {}
     protected CBMutableService(Handle h, long handle) { super(h, handle); }
     protected CBMutableService(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithType:primary:")

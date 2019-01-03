@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNNeuronSoftSign/*</name>*/ 
     extends /*<extends>*/MPSCNNNeuron/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,15 +49,34 @@ import org.robovm.apple.metal.*;
     public MPSCNNNeuronSoftSign() {}
     protected MPSCNNNeuronSoftSign(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNeuronSoftSign(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithDevice:")
-    public MPSCNNNeuronSoftSign(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSCNNNeuronSoftSign(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:neuronDescriptor:")
+    public MPSCNNNeuronSoftSign(MTLDevice device, MPSNNNeuronDescriptor neuronDescriptor) { super(device, neuronDescriptor); }
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNNeuronSoftSign(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNNeuronSoftSign(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     /*</methods>*/
 }

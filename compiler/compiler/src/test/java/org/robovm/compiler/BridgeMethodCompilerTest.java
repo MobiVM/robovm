@@ -19,10 +19,7 @@ package org.robovm.compiler;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.robovm.compiler.llvm.ArrayType;
-import org.robovm.compiler.llvm.FunctionType;
-import org.robovm.compiler.llvm.PointerType;
-import org.robovm.compiler.llvm.StructureType;
+import org.robovm.compiler.llvm.*;
 
 import static org.robovm.compiler.llvm.Type.*;
 
@@ -81,26 +78,28 @@ public class BridgeMethodCompilerTest {
                 BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
                         functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));
     }
-    @Test
-    public void testCreateBridgeCWrapperIgnoresEmptyStructAsFirstMember() {
-        FunctionType functionType = new FunctionType(VOID, 
-                new StructureType(new StructureType(), I32));
-        assertEquals(
-                "void f(void* target, void* p0) {\n" +
-                "    struct f_0001 {int m1;};\n" +
-                "    ((void (*)(struct f_0001)) target)(*((struct f_0001*)p0));\n" +
-                "}\n", 
-                BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
-                        functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));
-    }
+
+//    dkimitsa: test removed as there is no empty struct passed if there is no super struct
+//    @Test
+//    public void testCreateBridgeCWrapperIgnoresEmptyStructAsFirstMember() {
+//        FunctionType functionType = new FunctionType(VOID,
+//                new StructureType(new StructureType(), I32));
+//        assertEquals(
+//                "void f(void* target, void* p0) {\n" +
+//                "    typedef struct {int m1;} f_0001;\n" +
+//                "    ((void (*)(f_0001)) target)(*((f_0001*)p0));\n" +
+//                "}\n",
+//                BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
+//                        functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));
+//    }
     @Test
     public void testCreateBridgeCWrapperSmallStructByValParameter() {
         FunctionType functionType = new FunctionType(VOID, 
                 new StructureType(I32));
         assertEquals(
                 "void f(void* target, void* p0) {\n" +
-                "    struct f_0001 {int m0;};\n" +
-                "    ((void (*)(struct f_0001)) target)(*((struct f_0001*)p0));\n" +
+                "    typedef struct {int m0;} f_0001;\n" +
+                "    ((void (*)(f_0001)) target)(*((f_0001*)p0));\n" +
                 "}\n", 
                 BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
                         functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));
@@ -113,10 +112,10 @@ public class BridgeMethodCompilerTest {
                         new StructureType(I32)));
         assertEquals(
                 "void f(void* target, void* p0) {\n" +
-                "    struct f_0001_0001 {int m0;};\n" +
-                "    struct f_0001_0000 {int m0;};\n" +
-                "    struct f_0001 {struct f_0001_0000 m0;struct f_0001_0001 m1;};\n" +
-                "    ((void (*)(struct f_0001)) target)(*((struct f_0001*)p0));\n" +
+                "    typedef struct {int m0;} f_0001_0001;\n" +
+                "    typedef struct {int m0;} f_0001_0000;\n" +
+                "    typedef struct {f_0001_0000 m0;f_0001_0001 m1;} f_0001;\n" +
+                "    ((void (*)(f_0001)) target)(*((f_0001*)p0));\n" +
                 "}\n",
                 BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
                         functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));
@@ -132,12 +131,12 @@ public class BridgeMethodCompilerTest {
                                 new PointerType(new StructureType(I32)))));
         assertEquals(
                 "void f(void* target, void* p0) {\n" +
-                "    struct f_0001_0003 {void* m0;void* m1;};\n" +
-                "    struct f_0001_0002 {float m0;double m1;};\n" +
-                "    struct f_0001_0001 {int m0;long long m1;};\n" +
-                "    struct f_0001_0000 {char m0;short m1;};\n" +
-                "    struct f_0001 {struct f_0001_0000 m0;struct f_0001_0001 m1;struct f_0001_0002 m2;struct f_0001_0003 m3;};\n" +
-                "    ((void (*)(struct f_0001)) target)(*((struct f_0001*)p0));\n" +
+                "    typedef struct {void* m0;void* m1;} f_0001_0003;\n" +
+                "    typedef struct {float m0;double m1;} f_0001_0002;\n" +
+                "    typedef struct {int m0;long long m1;} f_0001_0001;\n" +
+                "    typedef struct {char m0;short m1;} f_0001_0000;\n" +
+                "    typedef struct {f_0001_0000 m0;f_0001_0001 m1;f_0001_0002 m2;f_0001_0003 m3;} f_0001;\n" +
+                "    ((void (*)(f_0001)) target)(*((f_0001*)p0));\n" +
                 "}\n", 
                 BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
                         functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));
@@ -147,8 +146,8 @@ public class BridgeMethodCompilerTest {
         FunctionType functionType = new FunctionType(new StructureType(I32));
         assertEquals(
                 "void f(void* target, void* ret) {\n" +
-                "    struct f_0000 {int m0;};\n" +
-                "    *((struct f_0000*)ret) = ((struct f_0000 (*)(void)) target)();\n" +
+                "    typedef struct {int m0;} f_0000;\n" +
+                "    *((f_0000*)ret) = ((f_0000 (*)(void)) target)();\n" +
                 "}\n", 
                 BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
                         functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));
@@ -158,10 +157,10 @@ public class BridgeMethodCompilerTest {
         FunctionType functionType = new FunctionType(new StructureType(new StructureType(I32), new StructureType(I32)));
         assertEquals(
                 "void f(void* target, void* ret) {\n" +
-                "    struct f_0000_0001 {int m0;};\n" +
-                "    struct f_0000_0000 {int m0;};\n" +
-                "    struct f_0000 {struct f_0000_0000 m0;struct f_0000_0001 m1;};\n" +
-                "    *((struct f_0000*)ret) = ((struct f_0000 (*)(void)) target)();\n" +
+                "    typedef struct {int m0;} f_0000_0001;\n" +
+                "    typedef struct {int m0;} f_0000_0000;\n" +
+                "    typedef struct {f_0000_0000 m0;f_0000_0001 m1;} f_0000;\n" +
+                "    *((f_0000*)ret) = ((f_0000 (*)(void)) target)();\n" +
                 "}\n", 
                 BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
                         functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));
@@ -180,19 +179,19 @@ public class BridgeMethodCompilerTest {
         FunctionType functionType = new FunctionType(structType, structType);
         assertEquals(
                 "void f(void* target, void* ret, void* p0) {\n" +
-                "    struct f_0001_0006 {void* m0;void* m1;};\n" +
-                "    struct f_0001_0004 {float m0;float m1;};\n" +
-                "    struct f_0001_0002 {float m0;double m1;};\n" +
-                "    struct f_0001_0001 {int m0;long long m1;};\n" +
-                "    struct f_0001_0000 {char m0;short m1;};\n" +
-                "    struct f_0001 {struct f_0001_0000 m0;struct f_0001_0001 m1;struct f_0001_0002 m2;int m3[100];struct f_0001_0004 m4[10];int m5[5][10];struct f_0001_0006 m6;};\n" +
-                "    struct f_0000_0006 {void* m0;void* m1;};\n" +
-                "    struct f_0000_0004 {float m0;float m1;};\n" +
-                "    struct f_0000_0002 {float m0;double m1;};\n" +
-                "    struct f_0000_0001 {int m0;long long m1;};\n" +
-                "    struct f_0000_0000 {char m0;short m1;};\n" +
-                "    struct f_0000 {struct f_0000_0000 m0;struct f_0000_0001 m1;struct f_0000_0002 m2;int m3[100];struct f_0000_0004 m4[10];int m5[5][10];struct f_0000_0006 m6;};\n" +
-                "    *((struct f_0000*)ret) = ((struct f_0000 (*)(struct f_0001)) target)(*((struct f_0001*)p0));\n" +
+                "    typedef struct {void* m0;void* m1;} f_0001_0006;\n" +
+                "    typedef struct {float m0;float m1;} f_0001_0004;\n" +
+                "    typedef struct {float m0;double m1;} f_0001_0002;\n" +
+                "    typedef struct {int m0;long long m1;} f_0001_0001;\n" +
+                "    typedef struct {char m0;short m1;} f_0001_0000;\n" +
+                "    typedef struct {f_0001_0000 m0;f_0001_0001 m1;f_0001_0002 m2;int m3[100];f_0001_0004 m4[10];int m5[5][10];f_0001_0006 m6;} f_0001;\n" +
+                "    typedef struct {void* m0;void* m1;} f_0000_0006;\n" +
+                "    typedef struct {float m0;float m1;} f_0000_0004;\n" +
+                "    typedef struct {float m0;double m1;} f_0000_0002;\n" +
+                "    typedef struct {int m0;long long m1;} f_0000_0001;\n" +
+                "    typedef struct {char m0;short m1;} f_0000_0000;\n" +
+                "    typedef struct {f_0000_0000 m0;f_0000_0001 m1;f_0000_0002 m2;int m3[100];f_0000_0004 m4[10];int m5[5][10];f_0000_0006 m6;} f_0000;\n" +
+                "    *((f_0000*)ret) = ((f_0000 (*)(f_0001)) target)(*((f_0001*)p0));\n" +
                 "}\n", 
                 BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
                         functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));
@@ -207,5 +206,33 @@ public class BridgeMethodCompilerTest {
                 "}\n", 
                 BridgeMethodCompiler.createBridgeCWrapper(hiType.getReturnType(),
                         hiType.getParameterTypes(), loType.getParameterTypes(), "f"));
+    }
+    @Test
+    public void testCreateBridgeCWrapperVectorStructByValReturn() {
+        // test for VectorFloat2
+        FunctionType functionType = new FunctionType(new StructureType(0, true, Type.FLOAT, Type.FLOAT));
+        assertEquals(
+                "void f(void* target, void* ret) {\n" +
+                        "    typedef __attribute__((__ext_vector_type__(2))) float f_0000;\n" +
+                        "    *((f_0000*)ret) = ((f_0000 (*)(void)) target)();\n" +
+                        "}\n",
+                BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
+                        functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));
+    }
+    @Test
+    public void testCreateBridgeCWrapperVectorArrayStructByValReturn() {
+        // test for MatrixFloat2x2
+        FunctionType functionType = new FunctionType(
+                new StructureType(0, true,
+                        new StructureType(0, true, Type.FLOAT, Type.FLOAT),
+                        new StructureType(0, true, Type.FLOAT, Type.FLOAT)));
+        assertEquals(
+                "void f(void* target, void* ret) {\n" +
+                        "    typedef __attribute__((__ext_vector_type__(2))) float f_0000_0000;\n" +
+                        "    typedef struct { f_0000_0000 m[2];} f_0000;\n" +
+                        "    *((f_0000*)ret) = ((f_0000 (*)(void)) target)();\n" +
+                        "}\n",
+                BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
+                        functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));
     }
 }

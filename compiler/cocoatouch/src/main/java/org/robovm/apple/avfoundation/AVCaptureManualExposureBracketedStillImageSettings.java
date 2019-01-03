@@ -54,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/static { ObjCRuntime.bind(AVCaptureManualExposureBracketedStillImageSettings.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVCaptureManualExposureBracketedStillImageSettings() {}
+    protected AVCaptureManualExposureBracketedStillImageSettings() {}
     protected AVCaptureManualExposureBracketedStillImageSettings(Handle h, long handle) { super(h, handle); }
     protected AVCaptureManualExposureBracketedStillImageSettings(SkipInit skipInit) { super(skipInit); }
     public AVCaptureManualExposureBracketedStillImageSettings(@ByVal CMTime duration, float ISO) { super((Handle) null, create(duration, ISO)); retain(getHandle()); }

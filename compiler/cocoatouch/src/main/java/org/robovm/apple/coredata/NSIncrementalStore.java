@@ -45,9 +45,11 @@ import org.robovm.apple.corespotlight.*;
     /*<bind>*/static { ObjCRuntime.bind(NSIncrementalStore.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSIncrementalStore() {}
+    protected NSIncrementalStore() {}
     protected NSIncrementalStore(Handle h, long handle) { super(h, handle); }
     protected NSIncrementalStore(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPersistentStoreCoordinator:configurationName:URL:options:")
+    public NSIncrementalStore(NSPersistentStoreCoordinator root, String name, NSURL url, NSPersistentStoreOptions options) { super(root, name, url, options); }
     /*</constructors>*/
     /*<properties>*/
     

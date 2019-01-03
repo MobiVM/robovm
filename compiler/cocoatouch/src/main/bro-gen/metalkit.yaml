@@ -11,13 +11,6 @@ typedefs: {}
 enums:
         
 classes:
-    MTKTextureLoaderError:
-        extends: NSError
-        annotations: ['@StronglyLinked']
-    MTKModelError:
-        extends: NSError
-        annotations: ['@StronglyLinked']
-
     MTKMesh: # DONE
         properties:
             'vertexBuffers':
@@ -109,9 +102,11 @@ values:
     MTKTextureLoaderErrorDomain:
         class: MTKTextureLoaderError
         name: getClassDomain
+        type: String
     MTKModelErrorDomain:
         class: MTKModelError
         name: getClassDomain
+        type: String
 
     MTKTextureLoaderErrorKey:
         exclude: true

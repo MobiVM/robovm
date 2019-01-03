@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNReduceRowMax/*</name>*/ 
     extends /*<extends>*/MPSNNReduceUnary/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -50,7 +50,14 @@ import org.robovm.apple.metal.*;
     protected MPSNNReduceRowMax(Handle h, long handle) { super(h, handle); }
     protected MPSNNReduceRowMax(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSNNReduceRowMax(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSNNReduceRowMax(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSNNReduceRowMax(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSNNReduceRowMax(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -58,6 +65,6 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     /*</methods>*/
 }

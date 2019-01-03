@@ -63,12 +63,12 @@ import org.robovm.apple.corelocation.*;
     public native INPerson getPayer();
     @Property(selector = "currencyAmount")
     public native INCurrencyAmount getCurrencyAmount();
-    @Property(selector = "paymentMethod")
-    public native INPaymentMethod getPaymentMethod();
     @Property(selector = "note")
     public native String getNote();
     @Property(selector = "status")
     public native INPaymentStatus getStatus();
+    @Property(selector = "paymentMethod")
+    public native INPaymentMethod getPaymentMethod();
     @Property(selector = "feeAmount")
     public native INCurrencyAmount getFeeAmount();
     @Property(selector = "supportsSecureCoding")

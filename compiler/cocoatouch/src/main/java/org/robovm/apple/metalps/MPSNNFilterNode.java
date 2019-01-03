@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNFilterNode/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -69,12 +69,17 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "gradientFilterWithSource:")
-    public native MPSNNGradientFilterNode gradientFilterWithSource(MPSNNImageNode gradientImage);
+    public native MPSNNGradientFilterNode gradientFilter(MPSNNImageNode gradientImage);
     @Method(selector = "gradientFilterWithSources:")
-    public native MPSNNGradientFilterNode gradientFilterWithSources(NSArray<MPSNNImageNode> gradientImages);
+    public native MPSNNGradientFilterNode gradientFilter(NSArray<MPSNNImageNode> gradientImages);
     @Method(selector = "gradientFiltersWithSources:")
-    public native NSArray<MPSNNGradientFilterNode> gradientFiltersWithSources(NSArray<MPSNNImageNode> gradientImages);
+    public native NSArray<MPSNNGradientFilterNode> gradientFilters(NSArray<MPSNNImageNode> gradientImages);
     @Method(selector = "gradientFiltersWithSource:")
-    public native NSArray<MPSNNGradientFilterNode> gradientFiltersWithSource(MPSNNImageNode gradientImage);
+    public native NSArray<MPSNNGradientFilterNode> gradientFilters(MPSNNImageNode gradientImage);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "trainingGraphWithSourceGradient:nodeHandler:")
+    public native NSArray<MPSNNFilterNode> trainingGraph(MPSNNImageNode gradientImage, @Block VoidBlock4<MPSNNFilterNode, MPSNNFilterNode, MPSNNImageNode, MPSNNImageNode> nodeHandler);
     /*</methods>*/
 }

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNUpsamplingBilinear/*</name>*/ 
     extends /*<extends>*/MPSCNNUpsampling/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,6 +51,15 @@ import org.robovm.apple.metal.*;
     protected MPSCNNUpsamplingBilinear(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:integerScaleFactorX:integerScaleFactorY:")
     public MPSCNNUpsamplingBilinear(MTLDevice device, @MachineSizedUInt long integerScaleFactorX, @MachineSizedUInt long integerScaleFactorY) { super((SkipInit) null); initObject(init(device, integerScaleFactorX, integerScaleFactorY)); }
+    @Method(selector = "initWithDevice:integerScaleFactorX:integerScaleFactorY:alignCorners:")
+    public MPSCNNUpsamplingBilinear(MTLDevice device, @MachineSizedUInt long integerScaleFactorX, @MachineSizedUInt long integerScaleFactorY, boolean alignCorners) { super((SkipInit) null); initObject(init(device, integerScaleFactorX, integerScaleFactorY, alignCorners)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNUpsamplingBilinear(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNUpsamplingBilinear(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -59,5 +68,7 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "initWithDevice:integerScaleFactorX:integerScaleFactorY:")
     protected native @Pointer long init(MTLDevice device, @MachineSizedUInt long integerScaleFactorX, @MachineSizedUInt long integerScaleFactorY);
+    @Method(selector = "initWithDevice:integerScaleFactorX:integerScaleFactorY:alignCorners:")
+    protected native @Pointer long init(MTLDevice device, @MachineSizedUInt long integerScaleFactorX, @MachineSizedUInt long integerScaleFactorY, boolean alignCorners);
     /*</methods>*/
 }

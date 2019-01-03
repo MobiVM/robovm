@@ -57,6 +57,9 @@ import org.robovm.apple.audiotoolbox.*;
     public AVAudioUnitDistortion() {}
     protected AVAudioUnitDistortion(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitDistortion(SkipInit skipInit) { super(skipInit); }
+    @WeaklyLinked
+    @Method(selector = "initWithAudioComponentDescription:")
+    public AVAudioUnitDistortion(@ByVal AudioComponentDescription audioComponentDescription) { super(audioComponentDescription); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "preGain")

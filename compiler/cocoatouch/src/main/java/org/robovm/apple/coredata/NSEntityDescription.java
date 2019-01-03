@@ -135,14 +135,14 @@ import org.robovm.apple.corespotlight.*;
     public native void setUniquenessConstraints(NSArray<NSArray<?>> v);
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSEntityDescription.indexes instead
      */
     @Deprecated
     @Property(selector = "compoundIndexes")
     public native NSArray<NSArray<?>> getCompoundIndexes();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use NSEntityDescription.indexes instead
      */
     @Deprecated
     @Property(selector = "setCompoundIndexes:")

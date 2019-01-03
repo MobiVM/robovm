@@ -48,7 +48,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioChannelLayout/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class AVAudioChannelLayoutPtr extends Ptr<AVAudioChannelLayout, AVAudioChannelLayoutPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AVAudioChannelLayout.class); }/*</bind>*/
@@ -62,6 +62,8 @@ import org.robovm.apple.audiotoolbox.*;
     @WeaklyLinked
     @Method(selector = "initWithLayout:")
     public AVAudioChannelLayout(AudioChannelLayout layout) { super((SkipInit) null); initObject(init(layout)); }
+    @Method(selector = "initWithCoder:")
+    public AVAudioChannelLayout(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "layoutTag")
@@ -71,6 +73,8 @@ import org.robovm.apple.audiotoolbox.*;
     public native AudioChannelLayout getLayout();
     @Property(selector = "channelCount")
     public native int getChannelCount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -81,5 +85,9 @@ import org.robovm.apple.audiotoolbox.*;
     protected native @Pointer long init(AudioChannelLayout layout);
     @Method(selector = "isEqual:")
     public native boolean equalsTo(AVAudioChannelLayout object);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

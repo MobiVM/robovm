@@ -49,7 +49,7 @@ import org.robovm.apple.corelocation.*;
     protected HMAccessorySetupPayload(Handle h, long handle) { super(h, handle); }
     protected HMAccessorySetupPayload(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithURL:")
-    public HMAccessorySetupPayload(NSURL setupPayloadURL) { super((SkipInit) null); initObject(initWithURL(setupPayloadURL)); }
+    public HMAccessorySetupPayload(NSURL setupPayloadURL) { super((SkipInit) null); initObject(init(setupPayloadURL)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -57,6 +57,6 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithURL:")
-    protected native @Pointer long initWithURL(NSURL setupPayloadURL);
+    protected native @Pointer long init(NSURL setupPayloadURL);
     /*</methods>*/
 }

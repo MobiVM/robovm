@@ -118,25 +118,25 @@ import org.robovm.apple.intents.*;
     public static final NSAttributedStringAttribute SpeechIPANotation = new NSAttributedStringAttribute("SpeechIPANotation");
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use NSFontAttributeName
      */
     @Deprecated
     public static final NSAttributedStringAttribute TextFont = new NSAttributedStringAttribute("TextFont");
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use NSForegroundColorAttributeName
      */
     @Deprecated
     public static final NSAttributedStringAttribute TextColor = new NSAttributedStringAttribute("TextColor");
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use NSShadowAttributeName with an NSShadow instance as the value
      */
     @Deprecated
     public static final NSAttributedStringAttribute TextShadowColor = new NSAttributedStringAttribute("TextShadowColor");
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use NSShadowAttributeName with an NSShadow instance as the value
      */
     @Deprecated
     public static final NSAttributedStringAttribute TextShadowOffset = new NSAttributedStringAttribute("TextShadowOffset");
@@ -276,28 +276,28 @@ import org.robovm.apple.intents.*;
         public static native NSString SpeechIPANotation();
         /**
          * @since Available in iOS 5.0 and later.
-         * @deprecated Deprecated in iOS 7.0.
+         * @deprecated Deprecated in iOS 7.0. Use NSFontAttributeName
          */
         @Deprecated
         @GlobalValue(symbol="UITextAttributeFont", optional=true)
         public static native NSString TextFont();
         /**
          * @since Available in iOS 5.0 and later.
-         * @deprecated Deprecated in iOS 7.0.
+         * @deprecated Deprecated in iOS 7.0. Use NSForegroundColorAttributeName
          */
         @Deprecated
         @GlobalValue(symbol="UITextAttributeTextColor", optional=true)
         public static native NSString TextColor();
         /**
          * @since Available in iOS 5.0 and later.
-         * @deprecated Deprecated in iOS 7.0.
+         * @deprecated Deprecated in iOS 7.0. Use NSShadowAttributeName with an NSShadow instance as the value
          */
         @Deprecated
         @GlobalValue(symbol="UITextAttributeTextShadowColor", optional=true)
         public static native NSString TextShadowColor();
         /**
          * @since Available in iOS 5.0 and later.
-         * @deprecated Deprecated in iOS 7.0.
+         * @deprecated Deprecated in iOS 7.0. Use NSShadowAttributeName with an NSShadow instance as the value
          */
         @Deprecated
         @GlobalValue(symbol="UITextAttributeTextShadowOffset", optional=true)

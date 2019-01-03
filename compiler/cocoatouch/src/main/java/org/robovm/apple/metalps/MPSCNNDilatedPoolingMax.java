@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNDilatedPoolingMax/*</name>*/ 
     extends /*<extends>*/MPSCNNPooling/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,6 +53,12 @@ import org.robovm.apple.metal.*;
     public MPSCNNDilatedPoolingMax(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long dilationRateX, @MachineSizedUInt long dilationRateY, @MachineSizedUInt long strideInPixelsX, @MachineSizedUInt long strideInPixelsY) { super((SkipInit) null); initObject(init(device, kernelWidth, kernelHeight, dilationRateX, dilationRateY, strideInPixelsX, strideInPixelsY)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNDilatedPoolingMax(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
+    public MPSCNNDilatedPoolingMax(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight) { super(device, kernelWidth, kernelHeight); }
+    @Method(selector = "initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:")
+    public MPSCNNDilatedPoolingMax(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInPixelsX, @MachineSizedUInt long strideInPixelsY) { super(device, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNDilatedPoolingMax(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dilationRateX")

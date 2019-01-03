@@ -61,7 +61,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     public UISearchBar(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
-    public UISearchBar(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UISearchBar(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "barStyle")
@@ -305,6 +305,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setTextContentType:")
     public native void setTextContentType(UITextContentType v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "passwordRules")
+    public native UITextInputPasswordRules getPasswordRules();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setPasswordRules:")
+    public native void setPasswordRules(UITextInputPasswordRules v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -369,7 +379,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:")
     protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     /**
      * @since Available in iOS 3.0 and later.
      */

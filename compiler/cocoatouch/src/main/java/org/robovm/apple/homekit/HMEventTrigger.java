@@ -92,14 +92,14 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(String name, NSArray<HMEvent> events, NSArray<HMEvent> endEvents, NSArray<NSDateComponents> recurrences, NSPredicate predicate);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use updateEvents:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "addEvent:completionHandler:")
     public native void addEvent(HMEvent event, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use updateEvents:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "removeEvent:completionHandler:")
@@ -128,7 +128,7 @@ import org.robovm.apple.corelocation.*;
     public native void updateExecuteOnce(boolean executeOnce, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use predicateForEvaluatingTriggerOccurringBeforeSignificantEvent: instead
      */
     @Deprecated
     @Method(selector = "predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:applyingOffset:")
@@ -140,7 +140,7 @@ import org.robovm.apple.corelocation.*;
     public static native NSPredicate predicateForEvaluatingTriggerOccurringBeforeSignificantEvent(HMSignificantTimeEvent significantEvent);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use predicateForEvaluatingTriggerOccurringAfterSignificantEvent: instead
      */
     @Deprecated
     @Method(selector = "predicateForEvaluatingTriggerOccurringAfterSignificantEvent:applyingOffset:")
@@ -172,6 +172,6 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "predicateForEvaluatingTriggerWithPresence:")
-    public static native NSPredicate predicateForEvaluatingTriggerWithPresence(HMPresenceEvent presenceEvent);
+    public static native NSPredicate getPredicateForEvaluatingTrigger(HMPresenceEvent presenceEvent);
     /*</methods>*/
 }

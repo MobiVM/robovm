@@ -79,49 +79,49 @@ import org.robovm.apple.corefoundation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [[NSMutableArray alloc] init]
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueCreateMutable", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) ABMutableMultiValue create(ABPropertyType type);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [NSArray mutableCopy]
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueCreateMutableCopy", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) ABMutableMultiValue create(ABMultiValue multiValue);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [NSMutableArray addObject:[CNLabeledValue labeledValueWithLabel:value:]]
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueAddValueAndLabel", optional=true)
     protected native boolean addValueAndLabel(CFType value, CFString label, IntPtr outIdentifier);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [NSMutableArray insertObject:[CNLabeledValue labeledValueWithLabel:value:] atIndex:]
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueInsertValueAndLabelAtIndex", optional=true)
     protected native boolean insertValueAndLabel(CFType value, CFString label, @MachineSizedSInt long index, IntPtr outIdentifier);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [NSMutableArray removeObjectAtIndex:]
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueRemoveValueAndLabelAtIndex", optional=true)
     public native boolean removeValueAndLabel(@MachineSizedSInt long index);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [NSMutableArray replaceObjectAtIndex: withObject:[CNLabeledValue labeledValueBySettingValue:]]
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueReplaceValueAtIndex", optional=true)
     public native boolean replaceValue(CFType value, @MachineSizedSInt long index);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [NSMutableArray replaceObjectAtIndex: withObject:[CNLabeledValue labeledValueBySettingLabel:]]
      */
     @Deprecated
     @Bridge(symbol="ABMultiValueReplaceLabelAtIndex", optional=true)

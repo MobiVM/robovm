@@ -50,11 +50,11 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "didUpdateItems:")
     void didUpdateItems(NSArray<?> updatedItems);
     @Method(selector = "didDeleteItemsWithIdentifiers:")
-    void didDeleteItemsWithIdentifiers(NSArray<NSString> deletedItemIdentifiers);
+    void didDeleteItems(NSArray<NSString> deletedItemIdentifiers);
     @Method(selector = "finishEnumeratingChangesUpToSyncAnchor:moreComing:")
     void finishEnumeratingChangesUpToSyncAnchor(NSData anchor, boolean moreComing);
     @Method(selector = "finishEnumeratingWithError:")
-    void finishEnumeratingWithError(NSError error);
+    void finishEnumerating(NSError error);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

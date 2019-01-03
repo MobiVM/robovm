@@ -38,15 +38,15 @@ import org.robovm.apple.coregraphics.*;
 public final class /*<name>*/NSFileProviderItemCapabilities/*</name>*/ extends Bits</*<name>*/NSFileProviderItemCapabilities/*</name>*/> {
     /*<values>*/
     public static final NSFileProviderItemCapabilities None = new NSFileProviderItemCapabilities(0L);
-    public static final NSFileProviderItemCapabilities Reading = new NSFileProviderItemCapabilities(1L);
-    public static final NSFileProviderItemCapabilities Writing = new NSFileProviderItemCapabilities(2L);
-    public static final NSFileProviderItemCapabilities Reparenting = new NSFileProviderItemCapabilities(4L);
-    public static final NSFileProviderItemCapabilities Renaming = new NSFileProviderItemCapabilities(8L);
-    public static final NSFileProviderItemCapabilities Trashing = new NSFileProviderItemCapabilities(16L);
-    public static final NSFileProviderItemCapabilities Deleting = new NSFileProviderItemCapabilities(32L);
-    public static final NSFileProviderItemCapabilities AddingSubItems = new NSFileProviderItemCapabilities(2L);
-    public static final NSFileProviderItemCapabilities ContentEnumerating = new NSFileProviderItemCapabilities(1L);
-    public static final NSFileProviderItemCapabilities All = new NSFileProviderItemCapabilities(63L);
+    public static final NSFileProviderItemCapabilities AllowsReading = new NSFileProviderItemCapabilities(1L);
+    public static final NSFileProviderItemCapabilities AllowsWriting = new NSFileProviderItemCapabilities(2L);
+    public static final NSFileProviderItemCapabilities AllowsReparenting = new NSFileProviderItemCapabilities(4L);
+    public static final NSFileProviderItemCapabilities AllowsRenaming = new NSFileProviderItemCapabilities(8L);
+    public static final NSFileProviderItemCapabilities AllowsTrashing = new NSFileProviderItemCapabilities(16L);
+    public static final NSFileProviderItemCapabilities AllowsDeleting = new NSFileProviderItemCapabilities(32L);
+    public static final NSFileProviderItemCapabilities AllowsAddingSubItems = new NSFileProviderItemCapabilities(2L);
+    public static final NSFileProviderItemCapabilities AllowsContentEnumerating = new NSFileProviderItemCapabilities(1L);
+    public static final NSFileProviderItemCapabilities AllowsAll = new NSFileProviderItemCapabilities(63L);
     /*</values>*/
 
     /*<bind>*/

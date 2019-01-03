@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UIDragInteraction(Handle h, long handle) { super(h, handle); }
     protected UIDragInteraction(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDelegate:")
-    public UIDragInteraction(UIDragInteractionDelegate delegate) { super((SkipInit) null); initObject(initWithDelegate(delegate)); }
+    public UIDragInteraction(UIDragInteractionDelegate delegate) { super((SkipInit) null); initObject(init(delegate)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -78,7 +78,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDelegate:")
-    protected native @Pointer long initWithDelegate(UIDragInteractionDelegate delegate);
+    protected native @Pointer long init(UIDragInteractionDelegate delegate);
     @Method(selector = "willMoveToView:")
     public native void willMoveToView(UIView view);
     @Method(selector = "didMoveToView:")

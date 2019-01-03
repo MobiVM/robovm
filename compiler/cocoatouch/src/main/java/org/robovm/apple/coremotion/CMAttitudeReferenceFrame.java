@@ -37,10 +37,10 @@ import org.robovm.apple.foundation.*;
 public final class /*<name>*/CMAttitudeReferenceFrame/*</name>*/ extends Bits</*<name>*/CMAttitudeReferenceFrame/*</name>*/> {
     /*<values>*/
     public static final CMAttitudeReferenceFrame None = new CMAttitudeReferenceFrame(0L);
-    public static final CMAttitudeReferenceFrame ArbitraryZVertical = new CMAttitudeReferenceFrame(1L);
-    public static final CMAttitudeReferenceFrame ArbitraryCorrectedZVertical = new CMAttitudeReferenceFrame(2L);
-    public static final CMAttitudeReferenceFrame MagneticNorthZVertical = new CMAttitudeReferenceFrame(4L);
-    public static final CMAttitudeReferenceFrame TrueNorthZVertical = new CMAttitudeReferenceFrame(8L);
+    public static final CMAttitudeReferenceFrame XArbitraryZVertical = new CMAttitudeReferenceFrame(1L);
+    public static final CMAttitudeReferenceFrame XArbitraryCorrectedZVertical = new CMAttitudeReferenceFrame(2L);
+    public static final CMAttitudeReferenceFrame XMagneticNorthZVertical = new CMAttitudeReferenceFrame(4L);
+    public static final CMAttitudeReferenceFrame XTrueNorthZVertical = new CMAttitudeReferenceFrame(8L);
     /*</values>*/
 
     /*<bind>*/

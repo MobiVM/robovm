@@ -24,7 +24,8 @@ import org.robovm.rt.bro.ptr.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class VectorFloat4 
+@Vectorised
+/*<visibility>*/public/*</visibility>*/ class VectorFloat4
     extends /*<extends>*/Struct<VectorFloat4>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 

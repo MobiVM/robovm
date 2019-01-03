@@ -162,42 +162,42 @@ import org.robovm.apple.corefoundation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use NSDateComponents.calendar
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonAlternateBirthdayCalendarIdentifierKey", optional=true)
     protected static native CFString CalendarIdentifierKey();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use NSDateComponents.era
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonAlternateBirthdayEraKey", optional=true)
     protected static native CFString EraKey();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use NSDateComponents.year
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonAlternateBirthdayYearKey", optional=true)
     protected static native CFString YearKey();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use NSDateComponents.month
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonAlternateBirthdayMonthKey", optional=true)
     protected static native CFString MonthKey();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use NSDateComponents.isLeapMonth
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonAlternateBirthdayIsLeapMonthKey", optional=true)
     protected static native CFString IsLeapMonthKey();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use NSDateComponents.day
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonAlternateBirthdayDayKey", optional=true)

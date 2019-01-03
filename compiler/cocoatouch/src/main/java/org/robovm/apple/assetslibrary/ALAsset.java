@@ -35,7 +35,7 @@ import org.robovm.apple.imageio.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
- * @deprecated Deprecated in iOS 9.0.
+ * @deprecated Deprecated in iOS 9.0. Use PHAsset from the Photos framework instead
  */
 @Deprecated
 /*</javadoc>*/
@@ -55,14 +55,14 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the PHImageRequestOptionsVersionOriginal or PHImageRequestOptionsVersionUnadjusted option in PHImageRequestOptions with the PHImageManager from the Photos framework instead
      */
     @Deprecated
     @Property(selector = "originalAsset")
     public native ALAsset getOriginalAsset();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use canPerformEditOperation: on a PHAsset from the Photos framework instead
      */
     @Deprecated
     @Property(selector = "isEditable")
@@ -144,7 +144,7 @@ import org.robovm.apple.imageio.*;
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHAsset class properties from the Photos framework instead
      */
     @Deprecated
     @GlobalValue(symbol="ALErrorInvalidProperty", optional=true)
@@ -152,28 +152,28 @@ import org.robovm.apple.imageio.*;
     
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHAsset class properties from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "valueForProperty:")
     public native NSObject getValue(ALAssetProperty property);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHImageRequestOptions with the PHImageManager from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "defaultRepresentation")
     public native ALAssetRepresentation getDefaultRepresentation();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use PHImageRequestOptions with the PHImageManager from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "representationForUTI:")
     public native ALAssetRepresentation getRepresentation(String representationUTI);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use requestImageForAsset:targetSize:contentMode:options:resultHandler: on PHImageManager to request a thumbnail sized image for a PHAsset from the Photos framework instead
      */
     @Deprecated
     @WeaklyLinked
@@ -181,7 +181,7 @@ import org.robovm.apple.imageio.*;
     public native CGImage getThumbnail();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the PHImageContentMode options to request thumbnail aspect ratio in PHImageRequestOptions with the PHImageManager
      */
     @Deprecated
     @WeaklyLinked
@@ -189,7 +189,7 @@ import org.robovm.apple.imageio.*;
     public native CGImage getAspectRatioThumbnail();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use creationRequestForAssetFromImage: on PHAssetChangeRequest from the Photos framework to create a new asset instead
      */
     @Deprecated
     @WeaklyLinked
@@ -197,14 +197,14 @@ import org.robovm.apple.imageio.*;
     public native void writeModifiedImageData(NSData imageData, CGImageProperties metadata, @Block VoidBlock2<NSURL, NSError> completionBlock);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use creationRequestForAssetFromVideoAtFileURL: on PHAssetChangeRequest from the Photos framework to create a new asset instead
      */
     @Deprecated
     @Method(selector = "writeModifiedVideoAtPathToSavedPhotosAlbum:completionBlock:")
     public native void writeModifiedVideo(NSURL videoPathURL, @Block VoidBlock2<NSURL, NSError> completionBlock);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use contentEditingOutput on a PHAssetChangeRequest from the Photos framework instead
      */
     @Deprecated
     @WeaklyLinked
@@ -212,7 +212,7 @@ import org.robovm.apple.imageio.*;
     public native void setImageData(NSData imageData, CGImageProperties metadata, @Block VoidBlock2<NSURL, NSError> completionBlock);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use contentEditingOutput on a PHAssetChangeRequest from the Photos framework instead
      */
     @Deprecated
     @Method(selector = "setVideoAtPath:completionBlock:")

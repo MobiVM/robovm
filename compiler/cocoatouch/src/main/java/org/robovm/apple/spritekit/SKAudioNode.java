@@ -47,7 +47,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKAudioNode/*</name>*/ 
     extends /*<extends>*/SKNode/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKAudioNodePtr extends Ptr<SKAudioNode, SKAudioNodePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKAudioNode.class); }/*</bind>*/

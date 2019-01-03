@@ -44,7 +44,7 @@ public enum /*<name>*/INCancelWorkoutIntentResponseCode/*</name>*/ implements Va
     Ready(1L),
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. INCancelWorkoutIntentResponseCodeContinueInApp is deprecated on iOS. Please use INCancelWorkoutIntentResponseCodeHandleInApp instead
      */
     @Deprecated
     ContinueInApp(2L),
@@ -54,11 +54,11 @@ public enum /*<name>*/INCancelWorkoutIntentResponseCode/*</name>*/ implements Va
     /**
      * @since Available in iOS 11.0 and later.
      */
-    Success(6L),
+    HandleInApp(6L),
     /**
      * @since Available in iOS 11.0 and later.
      */
-    HandleInApp(7L);
+    Success(7L);
     /*</values>*/
 
     /*<bind>*/

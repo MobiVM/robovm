@@ -113,7 +113,9 @@ import org.robovm.apple.iosurface.*;
 
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public long getMaximumTextureAge() {
         if (has(Keys.MaximumTextureAge())) {
             CFNumber val = get(Keys.MaximumTextureAge(), CFNumber.class);
@@ -123,7 +125,9 @@ import org.robovm.apple.iosurface.*;
     }
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public CVOpenGLESTextureCacheAttributes setMaximumTextureAge(long maximumTextureAge) {
         set(Keys.MaximumTextureAge(), CFNumber.valueOf(maximumTextureAge));
         return this;
@@ -136,7 +140,9 @@ import org.robovm.apple.iosurface.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 5.0 and later.
+         * @deprecated Deprecated in iOS 12.0. OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)
          */
+        @Deprecated
         @GlobalValue(symbol="kCVOpenGLESTextureCacheMaximumTextureAgeKey", optional=true)
         public static native CFString MaximumTextureAge();
     }

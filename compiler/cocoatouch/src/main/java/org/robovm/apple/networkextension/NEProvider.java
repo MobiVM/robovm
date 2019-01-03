@@ -62,7 +62,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "sleepWithCompletionHandler:")
-    public native void sleepWithCompletionHandler(@Block Runnable completionHandler);
+    public native void sleep(@Block Runnable completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -80,7 +80,9 @@ import org.robovm.apple.security.*;
     public native NWUDPSession createUDPSession(NWEndpoint remoteEndpoint, NWHostEndpoint localEndpoint);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
      */
+    @Deprecated
     @Method(selector = "displayMessage:completionHandler:")
     public native void displayMessage(String message, @Block VoidBooleanBlock completionHandler);
     /*</methods>*/

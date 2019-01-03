@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNNeuronLogarithm/*</name>*/ 
     extends /*<extends>*/MPSCNNNeuron/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,17 +46,36 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNNeuronLogarithm.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNNeuronLogarithm() {}
+    public MPSCNNNeuronLogarithm() {}
     protected MPSCNNNeuronLogarithm(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNeuronLogarithm(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithDevice:a:b:c:")
     public MPSCNNNeuronLogarithm(MTLDevice device, float a, float b, float c) { super((SkipInit) null); initObject(init(device, a, b, c)); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:neuronDescriptor:")
+    public MPSCNNNeuronLogarithm(MTLDevice device, MPSNNNeuronDescriptor neuronDescriptor) { super(device, neuronDescriptor); }
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNNeuronLogarithm(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNNeuronLogarithm(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithDevice:a:b:c:")
     protected native @Pointer long init(MTLDevice device, float a, float b, float c);
     /*</methods>*/

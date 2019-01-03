@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(UNTextInputNotificationResponse.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UNTextInputNotificationResponse() {}
+    protected UNTextInputNotificationResponse() {}
     protected UNTextInputNotificationResponse(Handle h, long handle) { super(h, handle); }
     protected UNTextInputNotificationResponse(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

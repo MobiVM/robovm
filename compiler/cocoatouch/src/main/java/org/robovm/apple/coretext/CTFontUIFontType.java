@@ -70,169 +70,169 @@ public enum /*<name>*/CTFontUIFontType/*</name>*/ implements ValuedEnum {
     UIFontControlContent(26L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     NoFontType(-1L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     UserFontType(0L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     UserFixedPitchFontType(1L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     SystemFontType(2L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     EmphasizedSystemFontType(3L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     SmallSystemFontType(4L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     SmallEmphasizedSystemFontType(5L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     MiniSystemFontType(6L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     MiniEmphasizedSystemFontType(7L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     ViewsFontType(8L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     ApplicationFontType(9L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     LabelFontType(10L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     MenuTitleFontType(11L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     MenuItemFontType(12L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     MenuItemMarkFontType(13L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     MenuItemCmdKeyFontType(14L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     WindowTitleFontType(15L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     PushButtonFontType(16L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     UtilityWindowTitleFontType(17L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     AlertHeaderFontType(18L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     SystemDetailFontType(19L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     EmphasizedSystemDetailFontType(20L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     ToolbarFontType(21L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     SmallToolbarFontType(22L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     MessageFontType(23L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     PaletteFontType(24L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     ToolTipFontType(25L),
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
     ControlContentFontType(26L);

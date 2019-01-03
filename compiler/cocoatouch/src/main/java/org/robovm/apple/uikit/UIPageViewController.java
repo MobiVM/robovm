@@ -60,6 +60,8 @@ import org.robovm.apple.intents.*;
     public UIPageViewController(UIPageViewControllerTransitionStyle style, UIPageViewControllerNavigationOrientation navigationOrientation, UIPageViewControllerOptions options) { super((SkipInit) null); initObject(init(style, navigationOrientation, options)); }
     @Method(selector = "initWithCoder:")
     public UIPageViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UIPageViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

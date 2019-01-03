@@ -168,21 +168,21 @@ import org.robovm.apple.audiotoolbox.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CMTime add(CMTime addend2) { return add(this, addend2); }
+    public CMTime add(CMTime rhs) { return add(this, rhs); }
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTimeAdd", optional=true)
-    private static native @ByVal CMTime add(@ByVal CMTime addend1, @ByVal CMTime addend2);
+    private static native @ByVal CMTime add(@ByVal CMTime lhs, @ByVal CMTime rhs);
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CMTime subtract(CMTime subtrahend) { return subtract(this, subtrahend); }
+    public CMTime subtract(CMTime rhs) { return subtract(this, rhs); }
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTimeSubtract", optional=true)
-    private static native @ByVal CMTime subtract(@ByVal CMTime minuend, @ByVal CMTime subtrahend);
+    private static native @ByVal CMTime subtract(@ByVal CMTime lhs, @ByVal CMTime rhs);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -259,7 +259,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTimeMakeFromDictionary", optional=true)
-    public static native @ByVal CMTime create(NSDictionary dict);
+    public static native @ByVal CMTime create(NSDictionary dictionaryRepresentation);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -302,6 +302,15 @@ import org.robovm.apple.audiotoolbox.*;
     @Bridge(symbol="CMTimeMapDurationFromRangeToRange", optional=true)
     private static native @ByVal CMTime mapDurationFromRangeToRange(@ByVal CMTime dur, @ByVal CMTimeRange fromRange, @ByVal CMTimeRange toRange);
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public CMTime foldIntoRange(CMTimeRange foldRange) { return foldIntoRange(this, foldRange); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="CMTimeFoldIntoRange", optional=true)
+    private static native @ByVal CMTime foldIntoRange(@ByVal CMTime time, @ByVal CMTimeRange foldRange);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Bridge(symbol="CMTimeMappingMake", optional=true)
@@ -320,7 +329,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 9.0 and later.
      */
     @Bridge(symbol="CMTimeMappingMakeFromDictionary", optional=true)
-    public static native @ByVal CMTimeMapping mappingMakeFromDictionary(NSDictionary dict);
+    public static native @ByVal CMTimeMapping mappingMakeFromDictionary(NSDictionary dictionaryRepresentation);
     /**
      * @since Available in iOS 9.0 and later.
      */

@@ -54,6 +54,8 @@ import org.robovm.apple.metal.*;
     public SKShapeNode() {}
     protected SKShapeNode(Handle h, long handle) { super(h, handle); }
     protected SKShapeNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SKShapeNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "path")

@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(UNLocationNotificationTrigger.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UNLocationNotificationTrigger() {}
+    protected UNLocationNotificationTrigger() {}
     protected UNLocationNotificationTrigger(Handle h, long handle) { super(h, handle); }
     protected UNLocationNotificationTrigger(SkipInit skipInit) { super(skipInit); }
     public UNLocationNotificationTrigger(org.robovm.apple.corelocation.CLRegion region, boolean repeats) { super((Handle) null, create(region, repeats)); retain(getHandle()); }

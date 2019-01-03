@@ -62,6 +62,8 @@ import org.robovm.apple.intents.*;
     public UIGraphicsImageRenderer(@ByVal CGSize size, UIGraphicsImageRendererFormat format) { super((SkipInit) null); initObject(init(size, format)); }
     @Method(selector = "initWithBounds:format:")
     public UIGraphicsImageRenderer(@ByVal CGRect bounds, UIGraphicsImageRendererFormat format) { super((SkipInit) null); initObject(init(bounds, format)); }
+    @Method(selector = "initWithBounds:")
+    public UIGraphicsImageRenderer(@ByVal CGRect bounds) { super(bounds); }
     /*</constructors>*/
     /*<properties>*/
     

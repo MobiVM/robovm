@@ -225,5 +225,10 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGPDFArrayGetStream", optional=true)
     private native boolean getStream(@MachineSizedUInt long index, CGPDFStream.CGPDFStreamPtr value);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="CGPDFArrayApplyBlock", optional=true)
+    public native void applyBlock(@Block("(@MachineSizedUInt,,)") Block3<Long, CGPDFObject, VoidPtr, Boolean> block, VoidPtr info);
     /*</methods>*/
 }

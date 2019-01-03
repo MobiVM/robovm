@@ -46,7 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPChangePlaybackRateCommand.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPChangePlaybackRateCommand() {}
+    protected MPChangePlaybackRateCommand() {}
     protected MPChangePlaybackRateCommand(Handle h, long handle) { super(h, handle); }
     protected MPChangePlaybackRateCommand(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

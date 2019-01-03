@@ -46,7 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPNowPlayingInfoCenter.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPNowPlayingInfoCenter() {}
+    protected MPNowPlayingInfoCenter() {}
     protected MPNowPlayingInfoCenter(Handle h, long handle) { super(h, handle); }
     protected MPNowPlayingInfoCenter(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

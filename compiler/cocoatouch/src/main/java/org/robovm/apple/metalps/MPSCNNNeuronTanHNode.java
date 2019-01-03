@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNNeuronTanHNode/*</name>*/ 
     extends /*<extends>*/MPSCNNNeuronNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,13 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNNeuronTanHNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNNeuronTanHNode() {}
+    protected MPSCNNNeuronTanHNode() {}
     protected MPSCNNNeuronTanHNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNeuronTanHNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:a:b:")
     public MPSCNNNeuronTanHNode(MPSNNImageNode sourceNode, float a, float b) { super((SkipInit) null); initObject(init(sourceNode, a, b)); }
     @Method(selector = "initWithSource:")
-    public MPSCNNNeuronTanHNode(MPSNNImageNode sourceNode) { super((SkipInit) null); initObject(initWithSource(sourceNode)); }
+    public MPSCNNNeuronTanHNode(MPSNNImageNode sourceNode) { super((SkipInit) null); initObject(init(sourceNode)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -62,8 +62,6 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithSource:a:b:")
     protected native @Pointer long init(MPSNNImageNode sourceNode, float a, float b);
     @Method(selector = "initWithSource:")
-    protected native @Pointer long initWithSource(MPSNNImageNode sourceNode);
-    @Method(selector = "nodeWithSource:")
-    public static native MPSCNNNeuronTanHNode nodeWithSource(MPSNNImageNode sourceNode);
+    protected native @Pointer long init(MPSNNImageNode sourceNode);
     /*</methods>*/
 }

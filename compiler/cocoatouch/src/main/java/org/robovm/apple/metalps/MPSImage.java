@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImage/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -95,11 +95,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithTexture:featureChannels:")
     protected native @Pointer long init(MTLTexture texture, @MachineSizedUInt long featureChannels);
     @Method(selector = "batchRepresentationWithSubRange:")
-    public native NSArray<MPSImage> batchRepresentationWithSubRange(@ByVal NSRange subRange);
+    public native NSArray<MPSImage> batchRepresentation(@ByVal NSRange subRange);
     @Method(selector = "batchRepresentation")
     public native NSArray<MPSImage> batchRepresentation();
     @Method(selector = "subImageWithFeatureChannelRange:")
-    public native MPSImage subImageWithFeatureChannelRange(@ByVal NSRange range);
+    public native MPSImage subImage(@ByVal NSRange range);
     /**
      * @since Available in iOS 11.0 and later.
      */

@@ -45,7 +45,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MDLVoxelArray.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MDLVoxelArray() {}
+    public MDLVoxelArray() {}
     protected MDLVoxelArray(Handle h, long handle) { super(h, handle); }
     protected MDLVoxelArray(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithAsset:divisions:patchRadius:")

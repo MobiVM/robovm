@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKQuantitySample.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKQuantitySample() {}
+    protected HKQuantitySample() {}
     protected HKQuantitySample(Handle h, long handle) { super(h, handle); }
     protected HKQuantitySample(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
@@ -53,6 +53,11 @@ import org.robovm.apple.foundation.*;
     public native HKQuantityType getQuantityType();
     @Property(selector = "quantity")
     public native HKQuantity getQuantity();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "count")
+    public native @MachineSizedSInt long getCount();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

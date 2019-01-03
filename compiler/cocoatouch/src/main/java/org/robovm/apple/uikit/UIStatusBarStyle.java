@@ -52,13 +52,13 @@ public enum /*<name>*/UIStatusBarStyle/*</name>*/ implements ValuedEnum {
     LightContent(1L),
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use UIStatusBarStyleLightContent
      */
     @Deprecated
     BlackTranslucent(1L),
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use UIStatusBarStyleLightContent
      */
     @Deprecated
     BlackOpaque(2L);

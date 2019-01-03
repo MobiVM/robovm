@@ -51,6 +51,12 @@ import org.robovm.apple.dispatch.*;
     public MKMarkerAnnotationView() {}
     protected MKMarkerAnnotationView(Handle h, long handle) { super(h, handle); }
     protected MKMarkerAnnotationView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAnnotation:reuseIdentifier:")
+    public MKMarkerAnnotationView(MKAnnotation annotation, String reuseIdentifier) { super(annotation, reuseIdentifier); }
+    @Method(selector = "initWithCoder:")
+    public MKMarkerAnnotationView(NSCoder aDecoder) { super(aDecoder); }
+    @Method(selector = "initWithFrame:")
+    public MKMarkerAnnotationView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "titleVisibility")

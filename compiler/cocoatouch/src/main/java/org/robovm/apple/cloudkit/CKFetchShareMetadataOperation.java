@@ -51,7 +51,7 @@ import org.robovm.apple.fileprovider.*;
     protected CKFetchShareMetadataOperation(Handle h, long handle) { super(h, handle); }
     protected CKFetchShareMetadataOperation(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithShareURLs:")
-    public CKFetchShareMetadataOperation(NSArray<NSURL> shareURLs) { super((SkipInit) null); initObject(initWithShareURLs(shareURLs)); }
+    public CKFetchShareMetadataOperation(NSArray<NSURL> shareURLs) { super((SkipInit) null); initObject(init(shareURLs)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "shareURLs")
@@ -78,6 +78,6 @@ import org.robovm.apple.fileprovider.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithShareURLs:")
-    protected native @Pointer long initWithShareURLs(NSArray<NSURL> shareURLs);
+    protected native @Pointer long init(NSArray<NSURL> shareURLs);
     /*</methods>*/
 }

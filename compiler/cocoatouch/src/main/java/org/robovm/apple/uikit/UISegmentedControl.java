@@ -62,13 +62,11 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     protected UISegmentedControl(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithItems:")
     public UISegmentedControl(NSArray<?> items) { super((SkipInit) null); initObject(init(items)); }
+    @Method(selector = "initWithFrame:")
+    public UISegmentedControl(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UISegmentedControl(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UISegmentedControl(CGRect frame) {
-        super(frame);
-    }
-    public UISegmentedControl(NSCoder decoder) {
-        super(decoder);
-    }
     public UISegmentedControl(String... items) {
         super((SkipInit) null);
         initObject(init(NSArray.fromStrings(items)));
@@ -80,14 +78,14 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /*<properties>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. The segmentedControlStyle property no longer has any effect
      */
     @Deprecated
     @Property(selector = "segmentedControlStyle")
     public native UISegmentedControlStyle getControlStyle();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. The segmentedControlStyle property no longer has any effect
      */
     @Deprecated
     @Property(selector = "setSegmentedControlStyle:")

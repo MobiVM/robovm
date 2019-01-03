@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("commitInsertionWithDataSourceUpdates:")
-    public boolean commitInsertionWithDataSourceUpdates(@Block VoidBlock1<NSIndexPath> dataSourceUpdates) { return false; }
+    public boolean commitInsertion(@Block VoidBlock1<NSIndexPath> dataSourceUpdates) { return false; }
     @NotImplemented("deletePlaceholder")
     public boolean deletePlaceholder() { return false; }
     @NotImplemented("setNeedsCellUpdate")

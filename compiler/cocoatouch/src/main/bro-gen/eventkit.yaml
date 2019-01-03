@@ -82,7 +82,7 @@ classes:
                 name: detached
         methods:
             '-compareStartDateWithEvent:':
-                trim_after_first_colon: true
+                name: compareStartDate
             '+eventWithEventStore:':
                 name: create
                 constructor: true

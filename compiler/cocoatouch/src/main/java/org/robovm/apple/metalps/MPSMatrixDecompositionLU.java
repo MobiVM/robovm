@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixDecompositionLU/*</name>*/ 
     extends /*<extends>*/MPSMatrixUnaryKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,6 +51,15 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixDecompositionLU(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:rows:columns:")
     public MPSMatrixDecompositionLU(MTLDevice device, @MachineSizedUInt long rows, @MachineSizedUInt long columns) { super((SkipInit) null); initObject(init(device, rows, columns)); }
+    @Method(selector = "initWithDevice:")
+    public MPSMatrixDecompositionLU(MTLDevice device) { super(device); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixDecompositionLU(NSCoder decoder) { super(decoder); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSMatrixDecompositionLU(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     /*</constructors>*/
     /*<properties>*/
     

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageTent/*</name>*/ 
     extends /*<extends>*/MPSImageBox/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,15 @@ import org.robovm.apple.metal.*;
     public MPSImageTent() {}
     protected MPSImageTent(Handle h, long handle) { super(h, handle); }
     protected MPSImageTent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
+    public MPSImageTent(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight) { super(device, kernelWidth, kernelHeight); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSImageTent(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageTent(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

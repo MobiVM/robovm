@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INCarAudioSourceResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INCarAudioSourceResolutionResult() {}
+    protected INCarAudioSourceResolutionResult() {}
     protected INCarAudioSourceResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INCarAudioSourceResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

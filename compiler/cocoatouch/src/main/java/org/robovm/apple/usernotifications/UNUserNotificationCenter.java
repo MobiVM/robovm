@@ -63,21 +63,21 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "setNotificationCategories:")
     public native void setNotificationCategories(NSSet<UNNotificationCategory> categories);
     @Method(selector = "getNotificationCategoriesWithCompletionHandler:")
-    public native void getNotificationCategoriesWithCompletionHandler(@Block VoidBlock1<NSSet<UNNotificationCategory>> completionHandler);
+    public native void getNotificationCategories(@Block VoidBlock1<NSSet<UNNotificationCategory>> completionHandler);
     @Method(selector = "getNotificationSettingsWithCompletionHandler:")
-    public native void getNotificationSettingsWithCompletionHandler(@Block VoidBlock1<UNNotificationSettings> completionHandler);
+    public native void getNotificationSettings(@Block VoidBlock1<UNNotificationSettings> completionHandler);
     @Method(selector = "addNotificationRequest:withCompletionHandler:")
     public native void addNotificationRequest(UNNotificationRequest request, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "getPendingNotificationRequestsWithCompletionHandler:")
-    public native void getPendingNotificationRequestsWithCompletionHandler(@Block VoidBlock1<NSArray<UNNotificationRequest>> completionHandler);
+    public native void getPendingNotificationRequests(@Block VoidBlock1<NSArray<UNNotificationRequest>> completionHandler);
     @Method(selector = "removePendingNotificationRequestsWithIdentifiers:")
-    public native void removePendingNotificationRequestsWithIdentifiers(NSArray<NSString> identifiers);
+    public native void removePendingNotificationRequests(NSArray<NSString> identifiers);
     @Method(selector = "removeAllPendingNotificationRequests")
     public native void removeAllPendingNotificationRequests();
     @Method(selector = "getDeliveredNotificationsWithCompletionHandler:")
-    public native void getDeliveredNotificationsWithCompletionHandler(@Block VoidBlock1<NSArray<UNNotification>> completionHandler);
+    public native void getDeliveredNotifications(@Block VoidBlock1<NSArray<UNNotification>> completionHandler);
     @Method(selector = "removeDeliveredNotificationsWithIdentifiers:")
-    public native void removeDeliveredNotificationsWithIdentifiers(NSArray<NSString> identifiers);
+    public native void removeDeliveredNotifications(NSArray<NSString> identifiers);
     @Method(selector = "removeAllDeliveredNotifications")
     public native void removeAllDeliveredNotifications();
     @Method(selector = "currentNotificationCenter")

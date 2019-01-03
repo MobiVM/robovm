@@ -112,21 +112,21 @@ import org.robovm.apple.audiotoolbox.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CMTimeRange union(CMTimeRange range2) { return union(this, range2); }
+    public CMTimeRange union(CMTimeRange otherRange) { return union(this, otherRange); }
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTimeRangeGetUnion", optional=true)
-    private static native @ByVal CMTimeRange union(@ByVal CMTimeRange range1, @ByVal CMTimeRange range2);
+    private static native @ByVal CMTimeRange union(@ByVal CMTimeRange range, @ByVal CMTimeRange otherRange);
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CMTimeRange intersection(CMTimeRange range2) { return intersection(this, range2); }
+    public CMTimeRange intersection(CMTimeRange otherRange) { return intersection(this, otherRange); }
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTimeRangeGetIntersection", optional=true)
-    private static native @ByVal CMTimeRange intersection(@ByVal CMTimeRange range1, @ByVal CMTimeRange range2);
+    private static native @ByVal CMTimeRange intersection(@ByVal CMTimeRange range, @ByVal CMTimeRange otherRange);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -148,12 +148,12 @@ import org.robovm.apple.audiotoolbox.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public boolean containsTimeRange(CMTimeRange range2) { return containsTimeRange(this, range2); }
+    public boolean containsTimeRange(CMTimeRange otherRange) { return containsTimeRange(this, otherRange); }
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTimeRangeContainsTimeRange", optional=true)
-    private static native boolean containsTimeRange(@ByVal CMTimeRange range1, @ByVal CMTimeRange range2);
+    private static native boolean containsTimeRange(@ByVal CMTimeRange range, @ByVal CMTimeRange otherRange);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -181,7 +181,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTimeRangeMakeFromDictionary", optional=true)
-    public static native @ByVal CMTimeRange create(NSDictionary dict);
+    public static native @ByVal CMTimeRange create(NSDictionary dictionaryRepresentation);
     /**
      * @since Available in iOS 4.0 and later.
      */

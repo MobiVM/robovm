@@ -52,6 +52,8 @@ import org.robovm.apple.contacts.*;
     protected PKPaymentRequestShippingContactUpdate(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithErrors:paymentSummaryItems:shippingMethods:")
     public PKPaymentRequestShippingContactUpdate(NSArray<NSError> errors, NSArray<PKPaymentSummaryItem> paymentSummaryItems, NSArray<PKShippingMethod> shippingMethods) { super((SkipInit) null); initObject(init(errors, paymentSummaryItems, shippingMethods)); }
+    @Method(selector = "initWithPaymentSummaryItems:")
+    public PKPaymentRequestShippingContactUpdate(NSArray<PKPaymentSummaryItem> paymentSummaryItems) { super(paymentSummaryItems); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "shippingMethods")

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageCopyToMatrix/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,6 +53,10 @@ import org.robovm.apple.metal.*;
     public MPSImageCopyToMatrix(MTLDevice device, MPSDataLayout dataLayout) { super((SkipInit) null); initObject(init(device, dataLayout)); }
     @Method(selector = "initWithCoder:device:")
     public MPSImageCopyToMatrix(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithDevice:")
+    public MPSImageCopyToMatrix(MTLDevice device) { super(device); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageCopyToMatrix(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "destinationMatrixOrigin")
@@ -74,5 +78,10 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:sourceImage:destinationMatrix:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSImage sourceImage, MPSMatrix destinationMatrix);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "encodeBatchToCommandBuffer:sourceImages:destinationMatrix:")
+    public native void encode(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImages, MPSMatrix destinationMatrix);
     /*</methods>*/
 }

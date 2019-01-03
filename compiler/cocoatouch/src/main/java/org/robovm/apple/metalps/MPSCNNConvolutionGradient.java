@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNConvolutionGradient/*</name>*/ 
     extends /*<extends>*/MPSCNNGradientKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,15 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNConvolutionGradient.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNConvolutionGradient() {}
+    public MPSCNNConvolutionGradient() {}
     protected MPSCNNConvolutionGradient(Handle h, long handle) { super(h, handle); }
     protected MPSCNNConvolutionGradient(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:weights:")
     public MPSCNNConvolutionGradient(MTLDevice device, MPSCNNConvolutionDataSource weights) { super((SkipInit) null); initObject(init(device, weights)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNConvolutionGradient(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNConvolutionGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceGradientFeatureChannels")
@@ -61,14 +63,26 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getSourceImageFeatureChannels();
     @Property(selector = "groups")
     public native @MachineSizedUInt long getGroups();
+    @Property(selector = "channelMultiplier")
+    public native @MachineSizedUInt long getChannelMultiplier();
     @Property(selector = "dataSource")
     public native MPSCNNConvolutionDataSource getDataSource();
     @Property(selector = "gradientOption")
     public native MPSCNNConvolutionGradientOption getGradientOption();
     @Property(selector = "setGradientOption:")
     public native void setGradientOption(MPSCNNConvolutionGradientOption v);
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "serializeWeightsAndBiases")
     public native boolean isSerializeWeightsAndBiases();
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "setSerializeWeightsAndBiases:")
     public native void setSerializeWeightsAndBiases(boolean v);
     /*</properties>*/
@@ -78,8 +92,8 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, MPSCNNConvolutionDataSource weights);
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
-    @Method(selector = "reloadWeightsAndBiasesWithDataSource:")
-    public native void reloadWeightsAndBiasesWithDataSource(MPSCNNConvolutionDataSource dataSource);
+    @Method(selector = "reloadWeightsAndBiasesFromDataSource")
+    public native void reloadWeightsAndBiasesFromDataSource();
     /**
      * @since Available in iOS 11.3 and later.
      */

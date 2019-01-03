@@ -75,6 +75,11 @@ import org.robovm.apple.imageio.*;
     public native ARLightEstimate getLightEstimate();
     @Property(selector = "rawFeaturePoints")
     public native ARPointCloud getRawFeaturePoints();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "worldMappingStatus")
+    public native ARWorldMappingStatus getWorldMappingStatus();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

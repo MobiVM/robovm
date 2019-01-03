@@ -46,11 +46,11 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPMusicPlayerStoreQueueDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPMusicPlayerStoreQueueDescriptor() {}
+    protected MPMusicPlayerStoreQueueDescriptor() {}
     protected MPMusicPlayerStoreQueueDescriptor(Handle h, long handle) { super(h, handle); }
     protected MPMusicPlayerStoreQueueDescriptor(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithStoreIDs:")
-    public MPMusicPlayerStoreQueueDescriptor(NSArray<NSString> storeIDs) { super((SkipInit) null); initObject(initWithStoreIDs(storeIDs)); }
+    public MPMusicPlayerStoreQueueDescriptor(NSArray<NSString> storeIDs) { super((SkipInit) null); initObject(init(storeIDs)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "storeIDs")
@@ -65,7 +65,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithStoreIDs:")
-    protected native @Pointer long initWithStoreIDs(NSArray<NSString> storeIDs);
+    protected native @Pointer long init(NSArray<NSString> storeIDs);
     @Method(selector = "setStartTime:forItemWithStoreID:")
     public native void setStartTime(double startTime, String storeID);
     @Method(selector = "setEndTime:forItemWithStoreID:")

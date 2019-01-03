@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(CBPeripheral.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CBPeripheral() {}
+    protected CBPeripheral() {}
     protected CBPeripheral(Handle h, long handle) { super(h, handle); }
     protected CBPeripheral(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

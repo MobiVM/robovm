@@ -105,7 +105,7 @@ import org.robovm.apple.coregraphics.*;
 
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
      */
     @Deprecated
     public UIImage getImage() {
@@ -117,7 +117,7 @@ import org.robovm.apple.coregraphics.*;
     }
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
      */
     @Deprecated
     public double getTime() {
@@ -129,7 +129,7 @@ import org.robovm.apple.coregraphics.*;
     }
     /**
      * @since Available in iOS 3.2 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
      */
     @Deprecated
     public NSError getError() {
@@ -147,21 +147,21 @@ import org.robovm.apple.coregraphics.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 3.2 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
          */
         @Deprecated
         @GlobalValue(symbol="MPMoviePlayerThumbnailImageKey", optional=true)
         public static native NSString Image();
         /**
          * @since Available in iOS 3.2 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
          */
         @Deprecated
         @GlobalValue(symbol="MPMoviePlayerThumbnailTimeKey", optional=true)
         public static native NSString Time();
         /**
          * @since Available in iOS 3.2 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
          */
         @Deprecated
         @GlobalValue(symbol="MPMoviePlayerThumbnailErrorKey", optional=true)

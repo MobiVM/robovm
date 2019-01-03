@@ -49,6 +49,16 @@ import org.robovm.apple.corelocation.*;
     public INSetClimateSettingsInCarIntent() {}
     protected INSetClimateSettingsInCarIntent(Handle h, long handle) { super(h, handle); }
     protected INSetClimateSettingsInCarIntent(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithEnableFan:enableAirConditioner:enableClimateControl:enableAutoMode:airCirculationMode:fanSpeedIndex:fanSpeedPercentage:relativeFanSpeedSetting:temperature:relativeTemperatureSetting:climateZone:carName:")
+    public INSetClimateSettingsInCarIntent(NSNumber enableFan, NSNumber enableAirConditioner, NSNumber enableClimateControl, NSNumber enableAutoMode, INCarAirCirculationMode airCirculationMode, NSNumber fanSpeedIndex, NSNumber fanSpeedPercentage, INRelativeSetting relativeFanSpeedSetting, NSMeasurement<NSUnitTemperature> temperature, INRelativeSetting relativeTemperatureSetting, INCarSeat climateZone, INSpeakableString carName) { super((SkipInit) null); initObject(init(enableFan, enableAirConditioner, enableClimateControl, enableAutoMode, airCirculationMode, fanSpeedIndex, fanSpeedPercentage, relativeFanSpeedSetting, temperature, relativeTemperatureSetting, climateZone, carName)); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithEnableFan:enableAirConditioner:enableClimateControl:enableAutoMode:airCirculationMode:fanSpeedIndex:fanSpeedPercentage:relativeFanSpeedSetting:temperature:relativeTemperatureSetting:climateZone:")
     public INSetClimateSettingsInCarIntent(NSNumber enableFan, NSNumber enableAirConditioner, NSNumber enableClimateControl, NSNumber enableAutoMode, INCarAirCirculationMode airCirculationMode, NSNumber fanSpeedIndex, NSNumber fanSpeedPercentage, INRelativeSetting relativeFanSpeedSetting, NSMeasurement<NSUnitTemperature> temperature, INRelativeSetting relativeTemperatureSetting, INCarSeat climateZone) { super((SkipInit) null); initObject(init(enableFan, enableAirConditioner, enableClimateControl, enableAutoMode, airCirculationMode, fanSpeedIndex, fanSpeedPercentage, relativeFanSpeedSetting, temperature, relativeTemperatureSetting, climateZone)); }
     /*</constructors>*/
@@ -75,9 +85,24 @@ import org.robovm.apple.corelocation.*;
     public native INRelativeSetting getRelativeTemperatureSetting();
     @Property(selector = "climateZone")
     public native INCarSeat getClimateZone();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "carName")
+    public native INSpeakableString getCarName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithEnableFan:enableAirConditioner:enableClimateControl:enableAutoMode:airCirculationMode:fanSpeedIndex:fanSpeedPercentage:relativeFanSpeedSetting:temperature:relativeTemperatureSetting:climateZone:carName:")
+    protected native @Pointer long init(NSNumber enableFan, NSNumber enableAirConditioner, NSNumber enableClimateControl, NSNumber enableAutoMode, INCarAirCirculationMode airCirculationMode, NSNumber fanSpeedIndex, NSNumber fanSpeedPercentage, INRelativeSetting relativeFanSpeedSetting, NSMeasurement<NSUnitTemperature> temperature, INRelativeSetting relativeTemperatureSetting, INCarSeat climateZone, INSpeakableString carName);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithEnableFan:enableAirConditioner:enableClimateControl:enableAutoMode:airCirculationMode:fanSpeedIndex:fanSpeedPercentage:relativeFanSpeedSetting:temperature:relativeTemperatureSetting:climateZone:")
     protected native @Pointer long init(NSNumber enableFan, NSNumber enableAirConditioner, NSNumber enableClimateControl, NSNumber enableAutoMode, INCarAirCirculationMode airCirculationMode, NSNumber fanSpeedIndex, NSNumber fanSpeedPercentage, INRelativeSetting relativeFanSpeedSetting, NSMeasurement<NSUnitTemperature> temperature, INRelativeSetting relativeTemperatureSetting, INCarSeat climateZone);
     /*</methods>*/

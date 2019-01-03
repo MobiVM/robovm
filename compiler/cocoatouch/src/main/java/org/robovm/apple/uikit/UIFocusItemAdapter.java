@@ -55,9 +55,15 @@ import org.robovm.apple.intents.*;
     /*<properties>*/
     @NotImplemented("canBecomeFocused")
     public boolean canBecomeFocused() { return false; }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @NotImplemented("frame")
+    public @ByVal CGRect getFrame() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @NotImplemented("didHintFocusMovement:")
+    public void didHintFocusMovement(UIFocusMovementHint hint) {}
     /*</methods>*/
 }

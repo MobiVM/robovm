@@ -45,7 +45,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKPhysicsBody/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKPhysicsBodyPtr extends Ptr<SKPhysicsBody, SKPhysicsBodyPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKPhysicsBody.class); }/*</bind>*/
@@ -158,6 +158,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedFloat double getAngularVelocity();
     @Property(selector = "setAngularVelocity:")
     public native void setAngularVelocity(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

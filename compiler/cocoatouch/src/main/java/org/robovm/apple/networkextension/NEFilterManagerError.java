@@ -39,10 +39,10 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("NetworkExtension")/*</annotations>*/
 public enum /*<name>*/NEFilterManagerError/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Invalid(1L),
-    Disabled(2L),
-    Stale(3L),
-    CannotBeRemoved(4L);
+    ConfigurationInvalid(1L),
+    ConfigurationDisabled(2L),
+    ConfigurationStale(3L),
+    ConfigurationCannotBeRemoved(4L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(NEFilterManagerError.class); }/*</bind>*/

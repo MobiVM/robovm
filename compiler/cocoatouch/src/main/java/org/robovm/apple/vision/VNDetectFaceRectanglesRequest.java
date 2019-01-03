@@ -53,12 +53,25 @@ import org.robovm.apple.imageio.*;
     public VNDetectFaceRectanglesRequest() {}
     protected VNDetectFaceRectanglesRequest(Handle h, long handle) { super(h, handle); }
     protected VNDetectFaceRectanglesRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCompletionHandler:")
+    public VNDetectFaceRectanglesRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="VNDetectFaceRectanglesRequestRevision1", optional=true)
+    public static native @MachineSizedUInt long getRevision1();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="VNDetectFaceRectanglesRequestRevision2", optional=true)
+    public static native @MachineSizedUInt long getRevision2();
+    
     
     /*</methods>*/
 }

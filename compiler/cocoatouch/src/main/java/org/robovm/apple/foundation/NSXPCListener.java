@@ -52,7 +52,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSXPCListener.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NSXPCListener() {}
+    public NSXPCListener() {}
     protected NSXPCListener(Handle h, long handle) { super(h, handle); }
     protected NSXPCListener(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

@@ -47,7 +47,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKTileGroup/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKTileGroupPtr extends Ptr<SKTileGroup, SKTileGroupPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKTileGroup.class); }/*</bind>*/
@@ -57,9 +57,9 @@ import org.robovm.apple.metal.*;
     protected SKTileGroup(Handle h, long handle) { super(h, handle); }
     protected SKTileGroup(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTileDefinition:")
-    public SKTileGroup(SKTileDefinition tileDefinition) { super((SkipInit) null); initObject(initWithTileDefinition(tileDefinition)); }
+    public SKTileGroup(SKTileDefinition tileDefinition) { super((SkipInit) null); initObject(init(tileDefinition)); }
     @Method(selector = "initWithRules:")
-    public SKTileGroup(NSArray<SKTileGroupRule> rules) { super((SkipInit) null); initObject(initWithRules(rules)); }
+    public SKTileGroup(NSArray<SKTileGroupRule> rules) { super((SkipInit) null); initObject(init(rules)); }
     @Method(selector = "initWithCoder:")
     public SKTileGroup(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -72,17 +72,15 @@ import org.robovm.apple.metal.*;
     public native String getName();
     @Property(selector = "setName:")
     public native void setName(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithTileDefinition:")
-    protected native @Pointer long initWithTileDefinition(SKTileDefinition tileDefinition);
+    protected native @Pointer long init(SKTileDefinition tileDefinition);
     @Method(selector = "initWithRules:")
-    protected native @Pointer long initWithRules(NSArray<SKTileGroupRule> rules);
-    @Method(selector = "tileGroupWithTileDefinition:")
-    public static native SKTileGroup tileGroupWithTileDefinition(SKTileDefinition tileDefinition);
-    @Method(selector = "tileGroupWithRules:")
-    public static native SKTileGroup tileGroupWithRules(NSArray<SKTileGroupRule> rules);
+    protected native @Pointer long init(NSArray<SKTileGroupRule> rules);
     @Method(selector = "emptyTileGroup")
     public static native SKTileGroup emptyTileGroup();
     @Method(selector = "encodeWithCoder:")

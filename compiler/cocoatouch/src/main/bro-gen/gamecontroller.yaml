@@ -68,6 +68,8 @@ classes:
         methods:
             '-initWithController:snapshotData:':
                 name: init
+            '-initWithSnapshotData:':
+                name: init
     GCEventViewController: {}
 
 protocols: {}

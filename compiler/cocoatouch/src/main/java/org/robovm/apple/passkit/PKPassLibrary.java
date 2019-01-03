@@ -153,7 +153,7 @@ import org.robovm.apple.contacts.*;
     public native void activatePaymentPass(PKPaymentPass paymentPass, NSData activationData, @Block VoidBlock2<Boolean, NSError> completion);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use activatePaymentPass:withActivationData:completion: instead
      */
     @Deprecated
     @Method(selector = "activatePaymentPass:withActivationCode:completion:")
@@ -180,7 +180,7 @@ import org.robovm.apple.contacts.*;
     public static native boolean isSuppressingAutomaticPassPresentation();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -[PKPassLibrary isPaymentPassActivationAvailable] instead
      */
     @Deprecated
     @Method(selector = "isPaymentPassActivationAvailable")

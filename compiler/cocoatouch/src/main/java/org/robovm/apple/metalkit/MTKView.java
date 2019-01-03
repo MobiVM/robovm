@@ -56,6 +56,8 @@ import org.robovm.apple.coreanimation.*;
     public MTKView(@ByVal CGRect frameRect, MTLDevice device) { super((SkipInit) null); initObject(init(frameRect, device)); }
     @Method(selector = "initWithCoder:")
     public MTKView(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    @Method(selector = "initWithFrame:")
+    public MTKView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

@@ -39,10 +39,10 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NEHotspotConfigurationEAPType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    TLS(13L),
-    TTLS(21L),
-    PEAP(25L),
-    FAST(43L);
+    EAPTLS(13L),
+    EAPTTLS(21L),
+    EAPPEAP(25L),
+    EAPFAST(43L);
     /*</values>*/
 
     /*<bind>*/

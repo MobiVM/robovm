@@ -64,14 +64,14 @@ import org.robovm.apple.corelocation.*;
     public native void didReceiveLocalNotification(org.robovm.apple.usernotifications.UNNotification notification, @Block VoidBlock1<WKUserNotificationInterfaceType> completionHandler);
     /**
      * @since Available in iOS 8.2 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. use didReceiveNotification:withCompletion:
      */
     @Deprecated
     @Method(selector = "didReceiveRemoteNotification:withCompletion:")
     public native void didReceiveRemoteNotification(UIRemoteNotification remoteNotification, @Block VoidBlock1<WKUserNotificationInterfaceType> completionHandler);
     /**
      * @since Available in iOS 8.2 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. use didReceiveNotification:withCompletion:
      */
     @Deprecated
     @Method(selector = "didReceiveLocalNotification:withCompletion:")

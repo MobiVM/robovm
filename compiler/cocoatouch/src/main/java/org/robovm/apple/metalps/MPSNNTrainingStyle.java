@@ -38,18 +38,19 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/MPSNNTrainingStyle/*</name>*/ extends Bits</*<name>*/MPSNNTrainingStyle/*</name>*/> {
     /*<values>*/
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
     public static final MPSNNTrainingStyle None = new MPSNNTrainingStyle(0L);
     /**
      * @since Available in iOS 11.3 and later.
      */
-    public static final MPSNNTrainingStyle CPU = new MPSNNTrainingStyle(1L);
+    public static final MPSNNTrainingStyle UpdateDeviceNone = new MPSNNTrainingStyle(0L);
     /**
      * @since Available in iOS 11.3 and later.
      */
-    public static final MPSNNTrainingStyle GPU = new MPSNNTrainingStyle(2L);
+    public static final MPSNNTrainingStyle UpdateDeviceCPU = new MPSNNTrainingStyle(1L);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    public static final MPSNNTrainingStyle UpdateDeviceGPU = new MPSNNTrainingStyle(2L);
     /*</values>*/
 
     /*<bind>*/

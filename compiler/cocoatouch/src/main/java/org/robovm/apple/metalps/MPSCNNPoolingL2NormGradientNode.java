@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNPoolingL2NormGradientNode/*</name>*/ 
     extends /*<extends>*/MPSCNNPoolingGradientNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,9 +46,11 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNPoolingL2NormGradientNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNPoolingL2NormGradientNode() {}
+    protected MPSCNNPoolingL2NormGradientNode() {}
     protected MPSCNNPoolingL2NormGradientNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNPoolingL2NormGradientNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:")
+    public MPSCNNPoolingL2NormGradientNode(MPSNNImageNode sourceGradient, MPSNNImageNode sourceImage, MPSNNGradientStateNode gradientState, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInPixelsX, @MachineSizedUInt long strideInPixelsY, MPSNNPadding paddingPolicy) { super(sourceGradient, sourceImage, gradientState, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY, paddingPolicy); }
     /*</constructors>*/
     /*<properties>*/
     

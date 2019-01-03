@@ -47,7 +47,15 @@ public enum /*<name>*/INSearchForAccountsIntentResponseCode/*</name>*/ implement
     Failure(4L),
     FailureRequiringAppLaunch(5L),
     FailureCredentialsUnverified(6L),
-    FailureAccountNotFound(7L);
+    FailureAccountNotFound(7L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    FailureTermsAndConditionsAcceptanceRequired(8L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    FailureNotEligible(9L);
     /*</values>*/
 
     /*<bind>*/

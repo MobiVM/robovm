@@ -49,6 +49,8 @@ import org.robovm.apple.corelocation.*;
     public INImage() {}
     protected INImage(Handle h, long handle) { super(h, handle); }
     protected INImage(SkipInit skipInit) { super(skipInit); }
+    public INImage(NSData imageData) { super((Handle) null, create(imageData)); retain(getHandle()); }
+    public INImage(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -65,9 +67,9 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "imageNamed:")
     public static native INImage imageNamed(String name);
     @Method(selector = "imageWithImageData:")
-    public static native INImage imageWithImageData(NSData imageData);
+    protected static native @Pointer long create(NSData imageData);
     @Method(selector = "imageWithURL:")
-    public static native INImage imageWithURL(NSURL URL);
+    protected static native @Pointer long create(NSURL URL);
     /**
      * @since Available in iOS 11.0 and later.
      */

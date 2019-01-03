@@ -337,21 +337,21 @@ import org.robovm.apple.corespotlight.*;
     public native void refreshAllObjects();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use a queue style context and -performBlockAndWait: instead
      */
     @Deprecated
     @Method(selector = "lock")
     public native void lock();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use a queue style context and -performBlockAndWait: instead
      */
     @Deprecated
     @Method(selector = "unlock")
     public native void unlock();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use a queue style context and -performBlock: instead
      */
     @Deprecated
     @Method(selector = "tryLock")

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNSubtractionGradientNode/*</name>*/ 
     extends /*<extends>*/MPSNNArithmeticGradientNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,9 +46,13 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSNNSubtractionGradientNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSNNSubtractionGradientNode() {}
+    protected MPSNNSubtractionGradientNode() {}
     protected MPSNNSubtractionGradientNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNSubtractionGradientNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:")
+    public MPSNNSubtractionGradientNode(MPSNNImageNode sourceGradient, MPSNNImageNode sourceImage, MPSNNBinaryGradientStateNode gradientState, boolean isSecondarySourceFilter) { super(sourceGradient, sourceImage, gradientState, isSecondarySourceFilter); }
+    @Method(selector = "initWithGradientImages:forwardFilter:isSecondarySourceFilter:")
+    public MPSNNSubtractionGradientNode(NSArray<MPSNNImageNode> gradientImages, MPSNNFilterNode filter, boolean isSecondarySourceFilter) { super(gradientImages, filter, isSecondarySourceFilter); }
     /*</constructors>*/
     /*<properties>*/
     

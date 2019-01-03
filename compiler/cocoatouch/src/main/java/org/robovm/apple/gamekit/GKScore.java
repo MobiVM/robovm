@@ -57,7 +57,7 @@ import org.robovm.apple.uikit.*;
     public GKScore(String identifier, GKPlayer player) { super((SkipInit) null); initObject(init(identifier, player)); }
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use initWithLeaderboardIdentifier:player:
      */
     @Deprecated
     @Method(selector = "initWithLeaderboardIdentifier:forPlayer:")
@@ -113,21 +113,21 @@ import org.robovm.apple.uikit.*;
     public native void setShouldSetDefaultLeaderboard(boolean v);
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use player
      */
     @Deprecated
     @Property(selector = "playerID")
     public native String getPlayerID();
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use leaderboardIdentifier instead
      */
     @Deprecated
     @Property(selector = "category")
     public native String getCategory();
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use leaderboardIdentifier instead
      */
     @Deprecated
     @Property(selector = "setCategory:")
@@ -151,14 +151,14 @@ import org.robovm.apple.uikit.*;
     public static native void reportScores(NSArray<GKScore> scores, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use initWithLeaderboardIdentifier:player:
      */
     @Deprecated
     @Method(selector = "initWithLeaderboardIdentifier:forPlayer:")
     protected native @Pointer long init(String identifier, String playerID);
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use +reportScores:withCompletionhandler: instead
      */
     @Deprecated
     @Method(selector = "reportScoreWithCompletionHandler:")
@@ -170,7 +170,7 @@ import org.robovm.apple.uikit.*;
     public native UIViewController getChallengeComposeController(String message, NSArray<GKPlayer> players, @Block VoidBlock3<UIViewController, Boolean, NSArray<GKPlayer>> completionHandler);
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. pass GKPlayers to challengeComposeControllerWithMessage:players:completionHandler: and present the view controller instead
      */
     @Deprecated
     @Method(selector = "issueChallengeToPlayers:message:")
@@ -182,7 +182,7 @@ import org.robovm.apple.uikit.*;
     public static native void reportScores(NSArray<GKScore> scores, NSArray<GKChallenge> challenges, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. pass GKPlayers to challengeComposeControllerWithMessage:players:
      */
     @Deprecated
     @Method(selector = "challengeComposeControllerWithPlayers:message:completionHandler:")

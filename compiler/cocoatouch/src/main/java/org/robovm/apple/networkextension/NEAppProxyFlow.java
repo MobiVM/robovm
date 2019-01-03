@@ -67,11 +67,11 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "closeReadWithError:")
-    public native void closeReadWithError(NSError error);
+    public native void closeRead(NSError error);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "closeWriteWithError:")
-    public native void closeWriteWithError(NSError error);
+    public native void closeWrite(NSError error);
     /*</methods>*/
 }

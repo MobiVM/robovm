@@ -52,6 +52,10 @@ import org.robovm.apple.coregraphics.*;
     public MDLTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super((SkipInit) null); initObject(init(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube)); }
     public MDLTexture(String name) { super((Handle) null, create(name)); retain(getHandle()); }
     public MDLTexture(String name, NSBundle bundleOrNil) { super((Handle) null, create(name, bundleOrNil)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public MDLTexture(String name, MDLAssetResolver resolver) { super((Handle) null, create(name, resolver)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dimensions")
@@ -114,6 +118,11 @@ import org.robovm.apple.coregraphics.*;
     protected static native @Pointer long create(String name);
     @Method(selector = "textureNamed:bundle:")
     protected static native @Pointer long create(String name, NSBundle bundleOrNil);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "textureNamed:assetResolver:")
+    protected static native @Pointer long create(String name, MDLAssetResolver resolver);
     @Method(selector = "textureCubeWithImagesNamed:")
     public static native MDLTexture newTextureCube(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> names);
     @Method(selector = "textureCubeWithImagesNamed:bundle:")

@@ -63,10 +63,6 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVQueuedSampleBufferRenderingStatus getStatus();
     @Property(selector = "error")
     public native NSError getError();
-    @Property(selector = "audioOutputDeviceUniqueID")
-    public native String getAudioOutputDeviceUniqueID();
-    @Property(selector = "setAudioOutputDeviceUniqueID:")
-    public native void setAudioOutputDeviceUniqueID(String v);
     @Property(selector = "audioTimePitchAlgorithm")
     public native String getAudioTimePitchAlgorithm();
     @Property(selector = "setAudioTimePitchAlgorithm:")
@@ -86,6 +82,17 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVSampleBufferAudioRendererWasFlushedAutomaticallyNotification", optional=true)
+    public static native String WasFlushedAutomaticallyNotification();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="AVSampleBufferAudioRendererFlushTimeKey", optional=true)
+    public static native String FlushTimeKey();
+    
     @Method(selector = "flushFromSourceTime:completionHandler:")
     public native void flushFromSourceTime(@ByVal CMTime time, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "enqueueSampleBuffer:")

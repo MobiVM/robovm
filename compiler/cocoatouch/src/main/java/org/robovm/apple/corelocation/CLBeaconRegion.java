@@ -56,6 +56,13 @@ import org.robovm.apple.contacts.*;
     public CLBeaconRegion(NSUUID proximityUUID, short major, String identifier) { super((SkipInit) null); initObject(init(proximityUUID, major, identifier)); }
     @Method(selector = "initWithProximityUUID:major:minor:identifier:")
     public CLBeaconRegion(NSUUID proximityUUID, short major, short minor, String identifier) { super((SkipInit) null); initObject(init(proximityUUID, major, minor, identifier)); }
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
+     */
+    @Deprecated
+    @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
+    public CLBeaconRegion(@ByVal CLLocationCoordinate2D center, double radius, String identifier) { super(center, radius, identifier); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "proximityUUID")

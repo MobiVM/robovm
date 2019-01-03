@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixSoftMax/*</name>*/ 
     extends /*<extends>*/MPSMatrixUnaryKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,12 +53,14 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithDevice:")
-    public MPSMatrixSoftMax(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSMatrixSoftMax(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSMatrixSoftMax(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSMatrixSoftMax(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixSoftMax(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceRows")
@@ -76,14 +78,14 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:inputMatrix:resultMatrix:")
     public native void encode(MTLCommandBuffer commandBuffer, MPSMatrix inputMatrix, MPSMatrix resultMatrix);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "copyWithZone:device:")
     public native MPSMatrixSoftMax copy(NSZone zone, MTLDevice device);
     /*</methods>*/

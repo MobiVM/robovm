@@ -66,10 +66,23 @@ import org.robovm.apple.metal.*;
     VectorFloat2.VectorFloat2Ptr rangesForUInt8Kernel();
     @Method(selector = "lookupTableForUInt8Kernel")
     FloatPtr lookupTableForUInt8Kernel();
+    @Method(selector = "weightsQuantizationType")
+    MPSCNNWeightsQuantizationType weightsQuantizationType();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
     @Method(selector = "updateWithCommandBuffer:gradientState:sourceState:")
     MPSCNNConvolutionWeightsAndBiasesState update(MTLCommandBuffer commandBuffer, MPSCNNConvolutionGradientState gradientState, MPSCNNConvolutionWeightsAndBiasesState sourceState);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
     @Method(selector = "updateWithGradientState:sourceState:")
     boolean update(MPSCNNConvolutionGradientState gradientState, MPSCNNConvolutionWeightsAndBiasesState sourceState);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "copyWithZone:device:")
+    MPSCNNConvolutionDataSource copy(NSZone zone, MTLDevice device);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

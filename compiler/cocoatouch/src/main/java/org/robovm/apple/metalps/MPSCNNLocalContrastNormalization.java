@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNLocalContrastNormalization/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNLocalContrastNormalization.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNLocalContrastNormalization() {}
+    public MPSCNNLocalContrastNormalization() {}
     protected MPSCNNLocalContrastNormalization(Handle h, long handle) { super(h, handle); }
     protected MPSCNNLocalContrastNormalization(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     public MPSCNNLocalContrastNormalization(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNLocalContrastNormalization(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alpha")
@@ -82,10 +84,6 @@ import org.robovm.apple.metal.*;
     public native float getPs();
     @Property(selector = "setPs:")
     public native void setPs(float v);
-    @Property(selector = "kernelWidth")
-    public native @MachineSizedUInt long getKernelWidth();
-    @Property(selector = "kernelHeight")
-    public native @MachineSizedUInt long getKernelHeight();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

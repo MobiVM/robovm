@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INCarSignalOptionsResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INCarSignalOptionsResolutionResult() {}
+    protected INCarSignalOptionsResolutionResult() {}
     protected INCarSignalOptionsResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INCarSignalOptionsResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

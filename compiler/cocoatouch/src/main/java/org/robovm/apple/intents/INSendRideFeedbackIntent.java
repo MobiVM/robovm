@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INSendRideFeedbackIntent(Handle h, long handle) { super(h, handle); }
     protected INSendRideFeedbackIntent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRideIdentifier:")
-    public INSendRideFeedbackIntent(String rideIdentifier) { super((SkipInit) null); initObject(initWithRideIdentifier(rideIdentifier)); }
+    public INSendRideFeedbackIntent(String rideIdentifier) { super((SkipInit) null); initObject(init(rideIdentifier)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rideIdentifier")
@@ -67,6 +67,6 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithRideIdentifier:")
-    protected native @Pointer long initWithRideIdentifier(String rideIdentifier);
+    protected native @Pointer long init(String rideIdentifier);
     /*</methods>*/
 }

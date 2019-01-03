@@ -56,6 +56,10 @@ import org.robovm.apple.intents.*;
     public UISplitViewController() {}
     protected UISplitViewController(Handle h, long handle) { super(h, handle); }
     protected UISplitViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UISplitViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public UISplitViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "viewControllers")

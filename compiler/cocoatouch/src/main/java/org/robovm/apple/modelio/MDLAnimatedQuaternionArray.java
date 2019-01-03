@@ -49,7 +49,7 @@ import org.robovm.apple.coregraphics.*;
     protected MDLAnimatedQuaternionArray(Handle h, long handle) { super(h, handle); }
     protected MDLAnimatedQuaternionArray(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithElementCount:")
-    public MDLAnimatedQuaternionArray(@MachineSizedUInt long arrayElementCount) { super((SkipInit) null); initObject(initWithElementCount(arrayElementCount)); }
+    public MDLAnimatedQuaternionArray(@MachineSizedUInt long arrayElementCount) { super((SkipInit) null); initObject(init(arrayElementCount)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "elementCount")
@@ -58,7 +58,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithElementCount:")
-    protected native @Pointer long initWithElementCount(@MachineSizedUInt long arrayElementCount);
+    protected native @Pointer long init(@MachineSizedUInt long arrayElementCount);
     @Method(selector = "setFloatQuaternionArray:count:atTime:")
     public native void setFloatQuaternionArray(VectorFloat4.VectorFloat4Ptr array, @MachineSizedUInt long count, double time);
     @Method(selector = "setDoubleQuaternionArray:count:atTime:")

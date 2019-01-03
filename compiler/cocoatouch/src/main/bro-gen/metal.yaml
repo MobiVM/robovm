@@ -72,6 +72,12 @@ enums:
     MTLStoreActionOptions: {prefix: MTLStoreActionOption} #since 11.0
     MTLMutability: {} #since 11.0
 
+    MTLBarrierScope: {} #since 12.0
+    MTLDispatchType: {} #since 12.0
+    MTLMultisampleStencilResolveFilter: {} #since 12.0
+    MTLPrimitiveTopologyClass: {} #since 12.0
+    MTLIndirectCommandType: {} #since 12.0
+
 classes:
     MTLAttribute: {}
     MTLFunctionConstant: {}
@@ -202,6 +208,8 @@ classes:
                 name: create2DDescriptor
             '+textureCubeDescriptorWithPixelFormat:size:mipmapped:':
                 name: createCubeDescriptor
+            '+textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:':
+                name: createBufferDescriptor
     MTLVertexAttribute: {} # DONE
     MTLVertexAttributeDescriptor: {} # DONE
     MTLVertexAttributeDescriptorArray: # DONE
@@ -222,7 +230,18 @@ classes:
             '+vertexDescriptor':
                 exclude: true
     MTLArgumentDescriptor: {} #since 11.0
-    MTLCaptureManager: {} #since 11.0
+    MTLCaptureManager: #since 11.0
+        methods:
+            '-newCaptureScopeWithDevice:':
+                name: newCaptureScope
+            '-newCaptureScopeWithCommandQueue:':
+                name: newCaptureScope
+            '-startCaptureWithDevice:':
+                name: startCapture
+            '-startCaptureWithCommandQueue:':
+                name: startCapture
+            '-startCaptureWithScope:':
+                name: startCapture
     MTLPipelineBufferDescriptor: {} #since 11.0
     MTLPipelineBufferDescriptorArray: #since 11.0
         methods:
@@ -237,7 +256,12 @@ classes:
                 trim_after_first_colon: true
     MTLTileRenderPipelineDescriptor: {} #since 11.0
     MTLType: {} #since 11.0
-
+    MTLIndirectCommandBufferDescriptor: {} #since 12.0
+    MTLSharedEventHandle: {} #since 12.0
+    MTLSharedEventListener: #since 12.0
+        methods:
+            '-initWithDispatchQueue:':
+                name: init
 protocols:
     MTLHeap:
         methods:
@@ -245,6 +269,8 @@ protocols:
                   name: newBuffer
             '-newTextureWithDescriptor:':
                   name: newTexture
+            '-maxAvailableSizeWithAlignment:':
+                name: getMaxAvailableSize
     MTLFence: {}
 
 
@@ -265,6 +291,16 @@ protocols:
                 trim_after_first_colon: true
             '-copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:':
                 name: copyFromBufferToBuffer
+            '-optimizeContentsForGPUAccess:slice:level:':
+                trim_after_first_colon: true
+            '-optimizeContentsForCPUAccess:slice:level:':
+                trim_after_first_colon: true
+            '-resetCommandsInBuffer:withRange:':
+                trim_after_first_colon: true
+            '-copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:':
+                trim_after_first_colon: true
+            '-optimizeIndirectCommandBuffer:withRange:':
+                trim_after_first_colon: true
     MTLBuffer: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -310,8 +346,14 @@ protocols:
                 name: newRenderCommandEncoder
             '-computeCommandEncoder':
                 name: newComputeCommandEncoder
+            '-computeCommandEncoderWithDispatchType:':
+                name: newComputeCommandEncoder
             '-parallelRenderCommandEncoderWithDescriptor:':
                 name: newParallelRenderCommandEncoder
+            '-encodeWaitForEvent:value:':
+                name: encodeWaitForEvent
+            '-encodeSignalEvent:value:':
+                name: encodeSignalEvent
     MTLCommandEncoder: # DONE
         methods:
             '-insertDebugSignpost:':
@@ -388,6 +430,12 @@ protocols:
                 trim_after_first_colon: true
             '-useHeaps:count:':
                 trim_after_first_colon: true
+            '-setStageInRegionWithIndirectBuffer:indirectBufferOffset:':
+                name: setStageInRegion
+            '-memoryBarrierWithResources:count:':
+                name: memoryBarrier
+            '-memoryBarrierWithScope:':
+                name: memoryBarrier
     MTLComputePipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -417,6 +465,8 @@ protocols:
                 parameters:
                     pointer:
                         type: '@Pointer long'
+                    deallocator:
+                        type: '@Block("(@Pointer,@MachineSizedUInt)") VoidBlock2<Long, Long>'
             '-newDepthStencilStateWithDescriptor:':
                 name: newDepthStencilState
             '-newTextureWithDescriptor:':
@@ -464,6 +514,16 @@ protocols:
                 name: newLibrary
             '-getDefaultSamplePositions:count:':
                 trim_after_first_colon: true
+            '-newIndirectCommandBufferWithDescriptor:maxCommandCount:options:':
+                name: newIndirectCommand
+            '-heapTextureSizeAndAlignWithDescriptor:':
+                name: heapTextureSizeAndAlign
+            '-newHeapWithDescriptor:':
+                name: newHeap
+            '-newArgumentEncoderWithArguments:':
+                name: newArgumentEncoder
+            '-newSharedEventWithHandle:':
+                name: newSharedEvent
     MTLDrawable: # DONE
         methods:
             '-presentAtTime:':
@@ -477,6 +537,8 @@ protocols:
                 type: NSArray<MTLVertexAttribute>
         methods:
             '-newArgumentEncoderWithBufferIndex:reflection:':
+                name: newArgumentEncoder
+            '-newArgumentEncoderWithBufferIndex:':
                 name: newArgumentEncoder
     MTLLibrary: # DONE
         class: true
@@ -656,7 +718,16 @@ protocols:
                 trim_after_first_colon: true
             '-useHeaps:count:':
                 trim_after_first_colon: true
-
+            '-setViewports:count:':
+                trim_after_first_colon: true
+            '-setScissorRects:count:':
+                trim_after_first_colon: true
+            '-drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:':
+                trim_after_first_colon: true
+            '-drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:':
+                trim_after_first_colon: true
+            '-executeCommandsInBuffer:withRange:':
+                trim_after_first_colon: true
     MTLRenderPipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -719,7 +790,35 @@ protocols:
                 trim_after_first_colon: true
             '-setSamplerStates:withRange:':
                 trim_after_first_colon: true
+            '-setIndirectCommandBuffer:atIndex:':
+                trim_after_first_colon: true
+            '-setIndirectCommandBuffers:withRange:':
+                trim_after_first_colon: true
     MTLCaptureScope: {} #since 11.0
+
+    MTLEvent: {} #since 12.0
+    MTLIndirectCommandBuffer: #since 12.0
+        methods:
+            '-resetWithRange:':
+                name: reset
+    MTLIndirectRenderCommand: #since 12.0
+        methods:
+            '-setVertexBuffer:offset:atIndex:':
+                trim_after_first_colon: true
+            '-setFragmentBuffer:offset:atIndex:':
+                trim_after_first_colon: true
+            '-drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:':
+                trim_after_first_colon: true
+            '-drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:':
+                trim_after_first_colon: true
+            '-drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:':
+                trim_after_first_colon: true
+            '-drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:':
+                trim_after_first_colon: true
+    MTLSharedEvent: #since 12.0
+        methods:
+            '-notifyListener:atValue:block:':
+                trim_after_first_colon: true
 
 functions:
     MTLClearColorMake:

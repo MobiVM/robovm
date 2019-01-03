@@ -42,7 +42,9 @@ import org.robovm.apple.intents.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 2.0 and later.
+ * @deprecated Deprecated in iOS 12.0. No longer supported; please adopt WKWebView.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIWebView/*</name>*/ 
@@ -56,13 +58,11 @@ import org.robovm.apple.intents.*;
     public UIWebView() {}
     protected UIWebView(Handle h, long handle) { super(h, handle); }
     protected UIWebView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIWebView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UIWebView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UIWebView(CGRect frame) {
-        super(frame);
-    }
-    public UIWebView(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "delegate")
     public native UIWebViewDelegate getDelegate();

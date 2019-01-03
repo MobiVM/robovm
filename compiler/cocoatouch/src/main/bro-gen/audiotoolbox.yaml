@@ -109,7 +109,7 @@ enums:
     AUTypeMixer: {first: kAudioUnitSubType_MultiChannelMixer}
     AUTypeGenerator: {first: kAudioUnitSubType_ScheduledSoundPlayer}
     AURenderActionFlags: {first: kAudioUnitRenderAction_PreRender, bits: true, prefix: kAudioUnitRenderAction_, kAudioOfflineUnitRenderAction_(.*): 'Offline#{g[0]}'}
-    AUErrorCode: {first: kAudioUnitErr_InvalidProperty, prefix: kAudioUnitErr_}
+    AUErrorCode: {first: kAudioUnitErr_InvalidProperty, prefix: kAudioUnitErr_, kAudioComponentErr_(.*) : '#{g[0]}'}
     AUParameterEventType: {first: kParameterEvent_Immediate, marshaler: ValuedEnum.AsUnsignedIntMarshaler}
     AUSelector: {first: kAudioUnitRange, suffix: Select, ignore: kAudioUnitRange}
     AUOutputSelector: {first: kAudioOutputUnitRange, suffix: Select, ignore: kAudioOutputUnitRange}
@@ -230,19 +230,6 @@ classes:
     MusicPlayer: {}
     MusicSequence: {}
     MusicTrack: {}
-    
-    OpaqueAudioComponentInstance: # DONE (already bound in AudioUnit)
-        exclude: true
-    AudioComponentInstance: # DONE (already bound in AudioUnit)
-        exclude: true
-    AudioComponentDescription: # DONE (already bound in AudioUnit)
-        exclude: true
-    AURenderCallbackStruct: # DONE (already bound in AudioUnit)
-        exclude: true
-    MusicDeviceNoteParams: # DONE (already bound in AudioUnit)
-        exclude: true
-    NoteParamsControlValue: # DONE (already bound in AudioUnit)
-        exclude: true
 
     # Structs
     AURecordedParameterEvent: {}
@@ -890,6 +877,14 @@ classes:
                 trim_after_first_colon: true
             '-setFormat:error:':
                 trim_after_first_colon: true
+            '-profileStateForCable:channel:':
+                name: getProfileState
+            '-enableProfile:cable:onChannel:error:':
+                trim_after_first_colon: true
+            '-disableProfile:cable:onChannel:error:':
+                trim_after_first_colon: true
+            '-parametersForOverviewWithCount:':
+                name: getParameters
     AUAudioUnitBus: #since 9.0
         methods:
             '-initWithFormat:error:':
@@ -930,18 +925,25 @@ classes:
             '-setValue:originator:atHostTime:eventType:':
                 trim_after_first_colon: true
     AUParameterGroup: {} #since 9.0
-    AUParameterNode: {} #since 9.0
+    AUParameterNode: #since 9.0
+        methods:
+            '-displayNameWithLength:':
+                name: displayName
     AUParameterTree: #since 9.0
         methods:
             '-parameterWithID:scope:element:':
-                trim_after_first_colon: true
+                name: getParameter
             '+createParameterWithIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:':
                 name: createParameter
             '+createGroupWithIdentifier:name:children:':
                 name: createGroup
             '+createGroupFromTemplate:identifier:name:addressOffset:':
                 name: createGroup
-
+            '-parameterWithAddress:':
+                name: getParameter
+            '+createTreeWithChildren:':
+                name: create
+                constructor: true
 protocols:
    AUAudioUnitFactory:
         methods:
@@ -1637,9 +1639,6 @@ functions:
         class: AudioUnitGlobals
         name: 'Function__#{g[0]}'
     (k?Audio.*):
-        class: AudioUnitGlobals
-        name: 'Function__#{g[0]}'
-    (k?Audio.*):
         class: AudioToolbox
         name: 'Function__#{g[0]}'
 
@@ -1667,11 +1666,19 @@ constants:
    
     # enums from constants
     kAudioUnitType_(.*):
-        enum: AUType
-        name: '#{g[0]}'
-
-    kAudioUnitType_(.*):
         enum: AUTypeOutput
+        name: '#{g[0]}'
+    kAudioComponentValidationParameter_(.*):
+        class: AudioComponentValidationParameter
+        name: '#{g[0]}'
+    kAudioComponentConfigurationInfo_(.*):
+        class: AudioComponentConfigurationInfo
+        name: '#{g[0]}'
+    kAudioUnitConfigurationInfo_(.*):
+        class: AUConfigurationInfo
+        name: '#{g[0]}'
+    kAudioSession_AudioRouteChangeKey_(.*):
+        class: AudioSessionAudioRouteChangeKeys
         name: '#{g[0]}'
 
     AUDIO_UNIT_VERSION:

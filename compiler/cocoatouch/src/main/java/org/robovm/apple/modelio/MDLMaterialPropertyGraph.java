@@ -50,6 +50,8 @@ import org.robovm.apple.coregraphics.*;
     protected MDLMaterialPropertyGraph(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNodes:connections:")
     public MDLMaterialPropertyGraph(NSArray<MDLMaterialPropertyNode> nodes, NSArray<MDLMaterialPropertyConnection> connections) { super((SkipInit) null); initObject(init(nodes, connections)); }
+    @Method(selector = "initWithInputs:outputs:evaluationFunction:")
+    public MDLMaterialPropertyGraph(NSArray<MDLMaterialProperty> inputs, NSArray<MDLMaterialProperty> outputs, @Block VoidBlock1<MDLMaterialPropertyNode> function) { super(inputs, outputs, function); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "nodes")

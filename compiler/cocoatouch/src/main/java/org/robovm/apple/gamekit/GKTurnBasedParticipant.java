@@ -70,7 +70,7 @@ import org.robovm.apple.uikit.*;
     public native NSDate getTimeoutDate();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use player
      */
     @Deprecated
     @Property(selector = "playerID")

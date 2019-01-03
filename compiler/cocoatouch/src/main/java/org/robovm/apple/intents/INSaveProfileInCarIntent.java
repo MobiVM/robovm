@@ -60,7 +60,7 @@ import org.robovm.apple.corelocation.*;
     }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.2.
+     * @deprecated Deprecated in iOS 10.2. Use `-initWithProfileNumber:profileName:` method instead.
      */
     @Deprecated
     @Method(selector = "initWithProfileNumber:profileLabel:")
@@ -80,7 +80,7 @@ import org.robovm.apple.corelocation.*;
     public native String getProfileName();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.2.
+     * @deprecated Deprecated in iOS 10.2. Use `profileName` property instead.
      */
     @Deprecated
     @Property(selector = "profileLabel")
@@ -95,7 +95,7 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long initWithProfileName(NSNumber profileNumber, String profileName);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.2.
+     * @deprecated Deprecated in iOS 10.2. Use `-initWithProfileNumber:profileName:` method instead.
      */
     @Deprecated
     @Method(selector = "initWithProfileNumber:profileLabel:")

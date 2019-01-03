@@ -95,8 +95,14 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CGSize getRenderSize();
     @Property(selector = "setRenderSize:")
     public native void setRenderSize(@ByVal CGSize v);
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
     @Property(selector = "renderScale")
     public native float getRenderScale();
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
     @Property(selector = "setRenderScale:")
     public native void setRenderScale(float v);
     @Property(selector = "instructions")

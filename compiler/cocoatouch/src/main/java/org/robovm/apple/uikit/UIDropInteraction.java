@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UIDropInteraction(Handle h, long handle) { super(h, handle); }
     protected UIDropInteraction(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDelegate:")
-    public UIDropInteraction(UIDropInteractionDelegate delegate) { super((SkipInit) null); initObject(initWithDelegate(delegate)); }
+    public UIDropInteraction(UIDropInteractionDelegate delegate) { super((SkipInit) null); initObject(init(delegate)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -72,7 +72,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDelegate:")
-    protected native @Pointer long initWithDelegate(UIDropInteractionDelegate delegate);
+    protected native @Pointer long init(UIDropInteractionDelegate delegate);
     @Method(selector = "willMoveToView:")
     public native void willMoveToView(UIView view);
     @Method(selector = "didMoveToView:")

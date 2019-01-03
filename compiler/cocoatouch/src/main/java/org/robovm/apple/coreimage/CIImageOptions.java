@@ -178,30 +178,10 @@ import org.robovm.apple.iosurface.*;
         @GlobalValue(symbol="kCIImageAuxiliaryDisparity", optional=true)
         public static native CFString AuxiliaryDisparity();
         /**
-         * @since Available in iOS 11.0 and later.
+         * @since Available in iOS 12.0 and later.
          */
-        @GlobalValue(symbol="kCIImageRepresentationAVDepthData", optional=true)
-        public static native CFString RepresentationAVDepthData();
-        /**
-         * @since Available in iOS 11.0 and later.
-         */
-        @GlobalValue(symbol="kCIImageRepresentationDepthImage", optional=true)
-        public static native CFString RepresentationDepthImage();
-        /**
-         * @since Available in iOS 11.0 and later.
-         */
-        @GlobalValue(symbol="kCIImageRepresentationDisparityImage", optional=true)
-        public static native CFString RepresentationDisparityImage();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="kCIImageProviderTileSize", optional=true)
-        public static native CFString ProviderTileSize();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="kCIImageProviderUserInfo", optional=true)
-        public static native CFString ProviderUserInfo();
+        @GlobalValue(symbol="kCIImageAuxiliaryPortraitEffectsMatte", optional=true)
+        public static native CFString AuxiliaryPortraitEffectsMatte();
     }
     /*</keys>*/
 }

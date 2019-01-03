@@ -52,6 +52,10 @@ import org.robovm.apple.contacts.*;
     protected PKAddPaymentPassViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRequestConfiguration:delegate:")
     public PKAddPaymentPassViewController(PKAddPaymentPassRequestConfiguration configuration, PKAddPaymentPassViewControllerDelegate delegate) { super((SkipInit) null); initObject(init(configuration, delegate)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public PKAddPaymentPassViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public PKAddPaymentPassViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

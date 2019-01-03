@@ -50,6 +50,8 @@ import org.robovm.apple.uikit.*;
     protected GKLocalPlayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "localPlayer")
+    public static native GKLocalPlayer getLocalPlayer();
     @Property(selector = "isAuthenticated")
     public native boolean isAuthenticated();
     @Property(selector = "isUnderage")
@@ -66,7 +68,7 @@ import org.robovm.apple.uikit.*;
     public native void setAuthenticateHandler(@Block VoidBlock2<UIViewController, NSError> v);
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use loadFriendPlayersWithCompletionHandler: instead
      */
     @Deprecated
     @Property(selector = "friends")
@@ -84,7 +86,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "loadRecentPlayersWithCompletionHandler:")
-    public native void loadRecentPlayersWithCompletionHandler(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
+    public native void loadRecentPlayers(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -94,14 +96,12 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "loadDefaultLeaderboardIdentifierWithCompletionHandler:")
-    public native void loadDefaultLeaderboardIdentifier(@Block VoidBlock2<String, NSError> completionHandler);
+    public native void loadDefaultLeaderboardIdentifier(@Block VoidBlock2<NSString, NSError> completionHandler);
     /**
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "generateIdentityVerificationSignatureWithCompletionHandler:")
     public native void generateIdentityVerificationSignature(@Block VoidBlock5<NSURL, NSData, NSData, Long, NSError> completionHandler);
-    @Method(selector = "localPlayer")
-    public static native GKLocalPlayer getLocalPlayer();
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -119,21 +119,21 @@ import org.robovm.apple.uikit.*;
     public native void unregisterAllListeners();
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use setDefaultLeaderboardIdentifier:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "setDefaultLeaderboardCategoryID:completionHandler:")
     public native void setDefaultLeaderboardCategoryID(String categoryID, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use loadDefaultLeaderboardIdentifierWithCompletionHandler: instead
      */
     @Deprecated
     @Method(selector = "loadDefaultLeaderboardCategoryIDWithCompletionHandler:")
-    public native void loadDefaultLeaderboardCategoryID(@Block VoidBlock2<String, NSError> completionHandler);
+    public native void loadDefaultLeaderboardCategoryID(@Block VoidBlock2<NSString, NSError> completionHandler);
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use loadRecentPlayersWithCompletionHandler: instead
      */
     @Deprecated
     @Method(selector = "loadFriendsWithCompletionHandler:")

@@ -57,6 +57,7 @@ import org.robovm.apple.audiotoolbox.*;
     public AVContentKeyResponse() {}
     protected AVContentKeyResponse(Handle h, long handle) { super(h, handle); }
     protected AVContentKeyResponse(SkipInit skipInit) { super(skipInit); }
+    public AVContentKeyResponse(NSData keyResponseData) { super((Handle) null, create(keyResponseData)); retain(getHandle()); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -68,7 +69,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "contentKeyResponseWithFairPlayStreamingKeyResponseData:")
-    public static native AVContentKeyResponse contentKeyResponseWithFairPlayStreamingKeyResponseData(NSData keyResponseData);
+    protected static native @Pointer long create(NSData keyResponseData);
     /**
      * @since Available in iOS 11.0 and later.
      */

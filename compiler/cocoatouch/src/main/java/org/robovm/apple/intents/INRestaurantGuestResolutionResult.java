@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INRestaurantGuestResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INRestaurantGuestResolutionResult() {}
+    protected INRestaurantGuestResolutionResult() {}
     protected INRestaurantGuestResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INRestaurantGuestResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

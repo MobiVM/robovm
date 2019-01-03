@@ -58,7 +58,7 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVCaptureDataOutputSynchronizer(Handle h, long handle) { super(h, handle); }
     protected AVCaptureDataOutputSynchronizer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDataOutputs:")
-    public AVCaptureDataOutputSynchronizer(NSArray<AVCaptureOutput> dataOutputs) { super((SkipInit) null); initObject(initWithDataOutputs(dataOutputs)); }
+    public AVCaptureDataOutputSynchronizer(NSArray<AVCaptureOutput> dataOutputs) { super((SkipInit) null); initObject(init(dataOutputs)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dataOutputs")
@@ -71,7 +71,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDataOutputs:")
-    protected native @Pointer long initWithDataOutputs(NSArray<AVCaptureOutput> dataOutputs);
+    protected native @Pointer long init(NSArray<AVCaptureOutput> dataOutputs);
     @Method(selector = "setDelegate:queue:")
     public native void setDelegate(AVCaptureDataOutputSynchronizerDelegate delegate, DispatchQueue delegateCallbackQueue);
     /*</methods>*/

@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(CBMutableDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CBMutableDescriptor() {}
+    protected CBMutableDescriptor() {}
     protected CBMutableDescriptor(Handle h, long handle) { super(h, handle); }
     protected CBMutableDescriptor(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithType:value:")

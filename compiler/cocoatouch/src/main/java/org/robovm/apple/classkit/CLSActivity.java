@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(CLSActivity.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CLSActivity() {}
+    protected CLSActivity() {}
     protected CLSActivity(Handle h, long handle) { super(h, handle); }
     protected CLSActivity(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INCarDefrosterResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INCarDefrosterResolutionResult() {}
+    protected INCarDefrosterResolutionResult() {}
     protected INCarDefrosterResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INCarDefrosterResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

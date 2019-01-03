@@ -56,13 +56,11 @@ import org.robovm.apple.intents.*;
     public UICollectionReusableView() {}
     protected UICollectionReusableView(Handle h, long handle) { super(h, handle); }
     protected UICollectionReusableView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UICollectionReusableView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UICollectionReusableView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UICollectionReusableView(CGRect frame) {
-        super(frame);
-    }
-    public UICollectionReusableView(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "reuseIdentifier")
     public native String getReuseIdentifier();

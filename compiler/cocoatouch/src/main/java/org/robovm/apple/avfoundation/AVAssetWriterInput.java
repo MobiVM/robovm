@@ -206,12 +206,12 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "mediaDataLocation")
-    public native String getMediaDataLocation();
+    public native AVAssetWriterInputMediaDataLocation getMediaDataLocation();
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "setMediaDataLocation:")
-    public native void setMediaDataLocation(String v);
+    public native void setMediaDataLocation(AVAssetWriterInputMediaDataLocation v);
     /**
      * @since Available in iOS 8.0 and later.
      */

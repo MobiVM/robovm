@@ -137,5 +137,20 @@ import org.robovm.apple.corelocation.*;
      */
     @GlobalValue(symbol="INWorkoutNameIdentifierExercise", optional=true)
     public static native NSString Exercise();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="INWorkoutNameIdentifierHike", optional=true)
+    public static native NSString Hike();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="INWorkoutNameIdentifierHighIntensityIntervalTraining", optional=true)
+    public static native NSString HighIntensityIntervalTraining();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="INWorkoutNameIdentifierSwim", optional=true)
+    public static native NSString Swim();
     /*</methods>*/
 }

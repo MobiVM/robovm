@@ -39,7 +39,9 @@ import org.robovm.apple.modelio.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 5.0 and later.
+ * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("GLKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GLKBaseEffect/*</name>*/ 

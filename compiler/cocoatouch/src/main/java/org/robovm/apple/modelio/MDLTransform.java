@@ -95,6 +95,11 @@ import org.robovm.apple.coregraphics.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
     @Method(selector = "initWithIdentity")
     protected native @Pointer long initWithIdentity();
     @Method(selector = "initWithTransformComponent:")

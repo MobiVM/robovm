@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSTemporaryVector/*</name>*/ 
     extends /*<extends>*/MPSVector/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -50,6 +50,11 @@ import org.robovm.apple.metal.*;
     protected MPSTemporaryVector(Handle h, long handle) { super(h, handle); }
     protected MPSTemporaryVector(SkipInit skipInit) { super(skipInit); }
     public MPSTemporaryVector(MTLCommandBuffer commandBuffer, MPSVectorDescriptor descriptor) { super((Handle) null, create(commandBuffer, descriptor)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:descriptor:")
+    public MPSTemporaryVector(MTLDevice device, MPSVectorDescriptor descriptor) { super(device, descriptor); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "readCount")

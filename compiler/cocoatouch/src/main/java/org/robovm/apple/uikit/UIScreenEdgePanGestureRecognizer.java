@@ -56,6 +56,8 @@ import org.robovm.apple.intents.*;
     public UIScreenEdgePanGestureRecognizer() {}
     protected UIScreenEdgePanGestureRecognizer(Handle h, long handle) { super(h, handle); }
     protected UIScreenEdgePanGestureRecognizer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTarget:action:")
+    public UIScreenEdgePanGestureRecognizer(NSObject target, Selector action) { super(target, action); }
     /*</constructors>*/
     
     public UIScreenEdgePanGestureRecognizer(OnGestureListener listener) {

@@ -39,7 +39,7 @@ import org.robovm.apple.corefoundation.*;
 /*<annotations>*/@Library("IOSurface") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/IOSurface/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class IOSurfacePtr extends Ptr<IOSurface, IOSurfacePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(IOSurface.class); }/*</bind>*/
@@ -51,7 +51,9 @@ import org.robovm.apple.corefoundation.*;
     protected IOSurface(Handle h, long handle) { super(h, handle); }
     protected IOSurface(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithProperties:")
-    public IOSurface(NSDictionary<?, ?> properties) { super((SkipInit) null); initObject(initWithProperties(properties)); }
+    public IOSurface(NSDictionary<?, ?> properties) { super((SkipInit) null); initObject(init(properties)); }
+    @Method(selector = "initWithCoder:")
+    public IOSurface(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "allocationSize")
@@ -84,6 +86,8 @@ import org.robovm.apple.corefoundation.*;
     public native void setLocalUseCount(int v);
     @Property(selector = "allowsPixelSizeCasting")
     public native boolean allowsPixelSizeCasting();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -329,7 +333,7 @@ import org.robovm.apple.corefoundation.*;
     public native int iOSurfaceSetPurgeable(int newState, IntPtr oldState);
     
     @Method(selector = "initWithProperties:")
-    protected native @Pointer long initWithProperties(NSDictionary<?, ?> properties);
+    protected native @Pointer long init(NSDictionary<?, ?> properties);
     @Method(selector = "lockWithOptions:seed:")
     public native int lock(IOSurfaceLockOptions options, IntPtr seed);
     @Method(selector = "unlockWithOptions:seed:")
@@ -369,5 +373,9 @@ import org.robovm.apple.corefoundation.*;
      */
     @Method(selector = "setPurgeable:oldState:")
     public native int setPurgeable(IOSurfacePurgeabilityState newState, IntPtr oldState);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

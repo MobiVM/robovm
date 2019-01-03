@@ -49,6 +49,10 @@ import org.robovm.apple.uikit.*;
     public EKEventViewController() {}
     protected EKEventViewController(Handle h, long handle) { super(h, handle); }
     protected EKEventViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public EKEventViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public EKEventViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**

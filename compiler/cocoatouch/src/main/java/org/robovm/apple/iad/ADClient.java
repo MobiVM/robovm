@@ -58,14 +58,14 @@ import org.robovm.apple.avkit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 7.1 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use requestAttributionDetailsWithBlock instead.
      */
     @Deprecated
     @Method(selector = "determineAppInstallationAttributionWithCompletionHandler:")
     public native void determineAppInstallationAttribution(@Block VoidBooleanBlock completionHandler);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use requestAttributionDetailsWithBlock instead.
      */
     @Deprecated
     @Method(selector = "lookupAdConversionDetails:")

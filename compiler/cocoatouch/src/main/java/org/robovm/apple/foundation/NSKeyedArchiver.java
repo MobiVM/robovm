@@ -53,6 +53,16 @@ import org.robovm.apple.dispatch.*;
     public NSKeyedArchiver() {}
     protected NSKeyedArchiver(Handle h, long handle) { super(h, handle); }
     protected NSKeyedArchiver(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initRequiringSecureCoding:")
+    public NSKeyedArchiver(boolean requiresSecureCoding) { super((SkipInit) null); initObject(init(requiresSecureCoding)); }
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use -initRequiringSecureCoding: instead
+     */
+    @Deprecated
     @Method(selector = "initForWritingWithMutableData:")
     public NSKeyedArchiver(NSMutableData data) { super((SkipInit) null); initObject(init(data)); }
     /*</constructors>*/
@@ -100,6 +110,16 @@ import org.robovm.apple.dispatch.*;
     @GlobalValue(symbol="NSKeyedArchiveRootObjectKey", optional=true)
     public static native String ArchiveRootObjectKey();
     
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initRequiringSecureCoding:")
+    protected native @Pointer long init(boolean requiresSecureCoding);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use -initRequiringSecureCoding: instead
+     */
+    @Deprecated
     @Method(selector = "initForWritingWithMutableData:")
     protected native @Pointer long init(NSMutableData data);
     @Method(selector = "finishEncoding")
@@ -108,8 +128,23 @@ import org.robovm.apple.dispatch.*;
     public native void setClassNameForClass(String codedName, Class<? extends NSObject> cls);
     @Method(selector = "classNameForClass:")
     public native String getClassNameForClass(Class<? extends NSObject> cls);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "archivedDataWithRootObject:requiringSecureCoding:error:")
+    public static native NSData archivedDataWithRootObject(NSObject object, boolean requiresSecureCoding, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use +archivedDataWithRootObject:requiringSecureCoding:error: instead
+     */
+    @Deprecated
     @Method(selector = "archivedDataWithRootObject:")
     public static native NSData archive(NSObject rootObject);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use +archivedDataWithRootObject:requiringSecureCoding:error: instead
+     */
+    @Deprecated
     @Method(selector = "archiveRootObject:toFile:")
     private static native boolean archiveRootObject(NSObject rootObject, String path);
     @Method(selector = "setClassName:forClass:")

@@ -54,6 +54,8 @@ classes:
                 name: supportedServiceSources
             '-fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:':
                 name: fetchThumbnails
+            '-URLForItemWithPersistentIdentifier:':
+                name: getURLForItem
     NSFileProviderManager: #since 11.0
         methods:
             '-signalEnumeratorForContainerItemIdentifier:completionHandler:':
@@ -66,13 +68,23 @@ classes:
                 trim_after_first_colon: true
             '+removeDomain:completionHandler:':
                 trim_after_first_colon: true
-
+            '+getDomainsWithCompletionHandler:':
+                name: getDomains
+            '+removeAllDomainsWithCompletionHandler:':
+                name: removeAllDomains
 protocols:
     NSFileProviderChangeObserver:
         methods:
             '-finishEnumeratingChangesUpToSyncAnchor:moreComing:':
                 name: finishEnumeratingChangesUpToSyncAnchor
-    NSFileProviderEnumerationObserver: {}
+            '-didDeleteItemsWithIdentifiers:':
+                name: didDeleteItems
+            '-finishEnumeratingWithError:':
+                name: finishEnumerating
+    NSFileProviderEnumerationObserver:
+        methods:
+            '-finishEnumeratingWithError:':
+                name: finishEnumerating
     NSFileProviderEnumerator:
         methods:
             '-enumerateItemsForObserver:startingAtPage:':
@@ -81,6 +93,8 @@ protocols:
             '-enumerateChangesForObserver:fromSyncAnchor:':
                 #trim_after_first_colon: true
                 name: fromSyncAnchor
+            '-currentSyncAnchorWithCompletionHandler:':
+                name: currentSyncAnchor
     NSFileProviderItem: {}
     NSFileProviderServiceSource: {} #since 11.0
 

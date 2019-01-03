@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithBarButtonItems:representativeItem:")
     public UIBarButtonItemGroup(NSArray<UIBarButtonItem> barButtonItems, UIBarButtonItem representativeItem) { super((SkipInit) null); initObject(init(barButtonItems, representativeItem)); }
     @Method(selector = "initWithCoder:")
-    public UIBarButtonItemGroup(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UIBarButtonItemGroup(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "barButtonItems")
@@ -78,7 +78,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithBarButtonItems:representativeItem:")
     protected native @Pointer long init(NSArray<UIBarButtonItem> barButtonItems, UIBarButtonItem representativeItem);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

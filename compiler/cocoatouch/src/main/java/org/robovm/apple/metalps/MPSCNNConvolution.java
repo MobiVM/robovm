@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNConvolution/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNConvolution.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNConvolution() {}
+    public MPSCNNConvolution() {}
     protected MPSCNNConvolution(Handle h, long handle) { super(h, handle); }
     protected MPSCNNConvolution(SkipInit skipInit) { super(skipInit); }
     /**
@@ -55,10 +55,19 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:weights:")
     public MPSCNNConvolution(MTLDevice device, MPSCNNConvolutionDataSource weights) { super((SkipInit) null); initObject(init(device, weights)); }
     /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:")
+    public MPSCNNConvolution(MTLDevice device, MPSCNNConvolutionDescriptor convolutionDescriptor, FloatPtr kernelWeights, FloatPtr biasTerms, MPSCNNConvolutionFlags flags) { super((SkipInit) null); initObject(init(device, convolutionDescriptor, kernelWeights, biasTerms, flags)); }
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSCNNConvolution(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSCNNConvolution(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNConvolution(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inputFeatureChannels")
@@ -78,14 +87,39 @@ import org.robovm.apple.metal.*;
     @Deprecated
     @Property(selector = "neuron")
     public native MPSCNNNeuron getNeuron();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "neuronType")
     public native MPSCNNNeuronType getNeuronType();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "neuronParameterA")
     public native float getNeuronParameterA();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "neuronParameterB")
     public native float getNeuronParameterB();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Property(selector = "neuronParameterC")
     public native float getNeuronParameterC();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "fusedNeuronDescriptor")
+    public native MPSNNNeuronDescriptor getFusedNeuronDescriptor();
     @Property(selector = "channelMultiplier")
     public native @MachineSizedUInt long getChannelMultiplier();
     /**
@@ -107,10 +141,17 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:weights:")
     protected native @Pointer long init(MTLDevice device, MPSCNNConvolutionDataSource weights);
     /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0.
+     */
+    @Deprecated
+    @Method(selector = "initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:")
+    protected native @Pointer long init(MTLDevice device, MPSCNNConvolutionDescriptor convolutionDescriptor, FloatPtr kernelWeights, FloatPtr biasTerms, MPSCNNConvolutionFlags flags);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     /**
      * @since Available in iOS 11.3 and later.
      */
@@ -132,10 +173,17 @@ import org.robovm.apple.metal.*;
     @Method(selector = "temporaryResultStateBatchForCommandBuffer:sourceImage:sourceStates:destinationImage:")
     public native NSArray<MPSCNNConvolutionGradientState> getTemporaryResultStateBatch(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImage, NSArray<NSArray<? extends MPSState>> sourceStates, NSArray<MPSImage> destinationImage);
     /**
-     * @since Available in iOS 11.3 and later.
+     * @since Available in iOS 12.0 and later.
      */
+    @Method(selector = "reloadWeightsAndBiasesFromDataSource")
+    public native void reloadWeightsAndBiasesFromDataSource();
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "reloadWeightsAndBiasesWithDataSource:")
-    public native void reloadWeightsAndBiasesWithDataSource(MPSCNNConvolutionDataSource dataSource);
+    public native void reloadWeightsAndBiases(MPSCNNConvolutionDataSource dataSource);
     /**
      * @since Available in iOS 11.3 and later.
      */

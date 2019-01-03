@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNNeuronReLUNode/*</name>*/ 
     extends /*<extends>*/MPSCNNNeuronNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,13 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNNeuronReLUNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNNeuronReLUNode() {}
+    protected MPSCNNNeuronReLUNode() {}
     protected MPSCNNNeuronReLUNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNeuronReLUNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:")
-    public MPSCNNNeuronReLUNode(MPSNNImageNode sourceNode) { super((SkipInit) null); initObject(initWithSource(sourceNode)); }
+    public MPSCNNNeuronReLUNode(MPSNNImageNode sourceNode) { super((SkipInit) null); initObject(init(sourceNode)); }
     @Method(selector = "initWithSource:a:")
-    public MPSCNNNeuronReLUNode(MPSNNImageNode sourceNode, float a) { super((SkipInit) null); initObject(initWithSource$a$(sourceNode, a)); }
+    public MPSCNNNeuronReLUNode(MPSNNImageNode sourceNode, float a) { super((SkipInit) null); initObject(init(sourceNode, a)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -60,12 +60,8 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSource:")
-    protected native @Pointer long initWithSource(MPSNNImageNode sourceNode);
+    protected native @Pointer long init(MPSNNImageNode sourceNode);
     @Method(selector = "initWithSource:a:")
-    protected native @Pointer long initWithSource$a$(MPSNNImageNode sourceNode, float a);
-    @Method(selector = "nodeWithSource:a:")
-    public static native MPSCNNNeuronReLUNode nodeWithSource$a$(MPSNNImageNode sourceNode, float a);
-    @Method(selector = "nodeWithSource:")
-    public static native MPSCNNNeuronReLUNode nodeWithSource(MPSNNImageNode sourceNode);
+    protected native @Pointer long init(MPSNNImageNode sourceNode, float a);
     /*</methods>*/
 }

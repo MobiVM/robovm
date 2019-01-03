@@ -41,7 +41,7 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 2.0 and later.
- * @deprecated Deprecated in iOS 8.0.
+ * @deprecated Deprecated in iOS 8.0. Not supported
  */
 @Deprecated
 /*</javadoc>*/

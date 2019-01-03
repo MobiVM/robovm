@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2015 RoboVM AB
+ * Copyright (C) 2018 Daniel Thommes, NeverNull GmbH, <daniel.thommes@nevernull.io>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -106,6 +107,10 @@ public class RoboVmCompileTask implements CompileTask {
             loadConfig(context.getProject(), builder, moduleBaseDir, false);
             builder.os(OS.ios);
             builder.archs(ipaConfig.getArchs());
+
+            // remove "arm64e" which becomes a problem starting from Xcode 10.1
+            builder.stripArch("arm64e");
+
             builder.installDir(ipaConfig.getDestinationDir());
             builder.iosSignIdentity(SigningIdentity.find(SigningIdentity.list(), ipaConfig.getSigningIdentity()));
             if (ipaConfig.getProvisioningProfile() != null) {
@@ -261,11 +266,6 @@ public class RoboVmCompileTask implements CompileTask {
             configureDebugging(builder, runConfig, module);
             configureTarget(builder, runConfig);
 
-            // clean build dir
-            RoboVmPlugin.logInfo(context.getProject(), "Cleaning output dir " + buildDir.getAbsolutePath());
-            FileUtils.deleteDirectory(buildDir);
-            buildDir.mkdirs();
-
             // Set the Home to be used, create the Config and AppCompiler
             Config.Home home = RoboVmPlugin.getRoboVmHome();
             if(home.isDev()) {
@@ -281,6 +281,14 @@ public class RoboVmCompileTask implements CompileTask {
             builder.manuallyPreparedForLaunch(true);
 
             Config config = builder.build();
+
+            // clean build dir if smartSkipRebuild is disabled
+            if(!config.isSmartSkipRebuild()){
+                RoboVmPlugin.logInfo(context.getProject(), "Cleaning output dir " + buildDir.getAbsolutePath());
+                FileUtils.deleteDirectory(buildDir);
+                buildDir.mkdirs();
+            }
+
             AppCompiler compiler = new AppCompiler(config);
             if(progress.isCanceled()) {
                 RoboVmPlugin.logInfo(context.getProject(), "Build canceled");

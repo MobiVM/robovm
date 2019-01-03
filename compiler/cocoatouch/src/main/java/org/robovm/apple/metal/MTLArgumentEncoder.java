@@ -76,6 +76,21 @@ import org.robovm.apple.dispatch.*;
     void setSamplerStates(MTLSamplerState samplers, @ByVal NSRange range);
     @Method(selector = "constantDataAtIndex:")
     VoidPtr constantDataAtIndex(@MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "setIndirectCommandBuffer:atIndex:")
+    void setIndirectCommandBuffer(MTLIndirectCommandBuffer indirectCommandBuffer, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "setIndirectCommandBuffers:withRange:")
+    void setIndirectCommandBuffers(MTLIndirectCommandBuffer buffers, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "newArgumentEncoderForBufferAtIndex:")
+    MTLArgumentEncoder newArgumentEncoderForBufferAtIndex(@MachineSizedUInt long index);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -58,6 +58,17 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Method(selector = "initWithPolygon:")
     public MKPolygonView(MKPolygon polygon) { super((SkipInit) null); initObject(init(polygon)); }
+    /**
+     * @since Available in iOS 4.0 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
+    @Method(selector = "initWithOverlay:")
+    public MKPolygonView(MKOverlay overlay) { super(overlay); }
+    @Method(selector = "initWithFrame:")
+    public MKPolygonView(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public MKPolygonView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     /**

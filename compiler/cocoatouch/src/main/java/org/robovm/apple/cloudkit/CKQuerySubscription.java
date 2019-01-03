@@ -47,7 +47,7 @@ import org.robovm.apple.fileprovider.*;
     /*<bind>*/static { ObjCRuntime.bind(CKQuerySubscription.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKQuerySubscription() {}
+    protected CKQuerySubscription() {}
     protected CKQuerySubscription(Handle h, long handle) { super(h, handle); }
     protected CKQuerySubscription(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRecordType:predicate:options:")

@@ -84,7 +84,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "addMatrixOp:inverse:")
     public native MDLTransformMatrixOp addMatrixOp(String animatedValueName, boolean inverse);
     @Method(selector = "animatedValueWithName:")
-    public native MDLAnimatedValue animatedValueWithName(String name);
+    public native MDLAnimatedValue getAnimatedValue(String name);
     @Method(selector = "float4x4AtTime:")
     public native @ByVal MatrixFloat4x4 float4x4AtTime(double time);
     @Method(selector = "double4x4AtTime:")

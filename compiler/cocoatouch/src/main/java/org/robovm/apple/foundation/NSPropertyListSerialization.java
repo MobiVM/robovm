@@ -134,14 +134,14 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     private static native NSPropertyList getPropertyListFromStream(NSInputStream stream, NSPropertyListMutabilityOptions opt, MachineSizedUIntPtr format, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use dataWithPropertyList:format:options:error: instead.
      */
     @Deprecated
     @Method(selector = "dataFromPropertyList:format:errorDescription:")
     protected static native NSData getDataFromPropertyList(NSObject plist, NSPropertyListFormat format, NSString.NSStringPtr errorString);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use propertyListWithData:options:format:error: instead.
      */
     @Deprecated
     @Method(selector = "propertyListFromData:mutabilityOption:format:errorDescription:")

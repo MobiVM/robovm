@@ -33,7 +33,7 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 7.0 and later.
- * @deprecated Deprecated in iOS 8.0.
+ * @deprecated Deprecated in iOS 8.0. Use CMPedometer instead
  */
 @Deprecated
 /*</javadoc>*/

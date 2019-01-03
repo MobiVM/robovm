@@ -51,6 +51,10 @@ import org.robovm.apple.iad.*;
     public AVPlayerViewController() {}
     protected AVPlayerViewController(Handle h, long handle) { super(h, handle); }
     protected AVPlayerViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public AVPlayerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public AVPlayerViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "player")

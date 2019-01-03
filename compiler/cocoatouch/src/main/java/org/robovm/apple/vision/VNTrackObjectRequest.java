@@ -54,7 +54,7 @@ import org.robovm.apple.imageio.*;
     protected VNTrackObjectRequest(Handle h, long handle) { super(h, handle); }
     protected VNTrackObjectRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDetectedObjectObservation:")
-    public VNTrackObjectRequest(VNDetectedObjectObservation observation) { super((SkipInit) null); initObject(initWithDetectedObjectObservation(observation)); }
+    public VNTrackObjectRequest(VNDetectedObjectObservation observation) { super((SkipInit) null); initObject(init(observation)); }
     @Method(selector = "initWithDetectedObjectObservation:completionHandler:")
     public VNTrackObjectRequest(VNDetectedObjectObservation observation, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(observation, completionHandler)); }
     /*</constructors>*/
@@ -63,8 +63,14 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="VNTrackObjectRequestRevision1", optional=true)
+    public static native @MachineSizedUInt long getRevision1();
+    
     @Method(selector = "initWithDetectedObjectObservation:")
-    protected native @Pointer long initWithDetectedObjectObservation(VNDetectedObjectObservation observation);
+    protected native @Pointer long init(VNDetectedObjectObservation observation);
     @Method(selector = "initWithDetectedObjectObservation:completionHandler:")
     protected native @Pointer long init(VNDetectedObjectObservation observation, @Block VoidBlock2<VNRequest, NSError> completionHandler);
     /*</methods>*/

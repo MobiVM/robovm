@@ -178,15 +178,30 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "outputObscuredDueToInsufficientExternalProtection")
     public native boolean outputObscuredDueToInsufficientExternalProtection();
     /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @Property(selector = "availableHDRModes")
+    public static native AVPlayerHDRMode getAvailableHDRModes();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "preventsDisplaySleepDuringVideoPlayback")
+    public native boolean isPreventsDisplaySleepDuringVideoPlayback();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setPreventsDisplaySleepDuringVideoPlayback:")
+    public native void setPreventsDisplaySleepDuringVideoPlayback(boolean v);
+    /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Allow AVPlayer to enable closed captions automatically according to user preferences by ensuring that the value of appliesMediaSelectionCriteriaAutomatically is YES.
      */
     @Deprecated
     @Property(selector = "isClosedCaptionDisplayEnabled")
     public native boolean isClosedCaptionDisplayEnabled();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Allow AVPlayer to enable closed captions automatically according to user preferences by ensuring that the value of appliesMediaSelectionCriteriaAutomatically is YES.
      */
     @Deprecated
     @Property(selector = "setClosedCaptionDisplayEnabled:")
@@ -209,6 +224,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="AVPlayerWaitingWithNoItemToPlayReason", optional=true)
     public static native NSString WaitingWithNoItemToPlayReason();
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @GlobalValue(symbol="AVPlayerAvailableHDRModesDidChangeNotification", optional=true)
+    public static native String AvailableHDRModesDidChangeNotification();
     
     @Method(selector = "initWithURL:")
     protected native @Pointer long init(NSURL URL);

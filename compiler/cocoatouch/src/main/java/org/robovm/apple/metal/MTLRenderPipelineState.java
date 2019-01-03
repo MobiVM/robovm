@@ -67,6 +67,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "imageblockSampleLength")
     public native @MachineSizedUInt long getImageblockSampleLength();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "supportIndirectCommandBuffers")
+    public native boolean isSupportIndirectCommandBuffers();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

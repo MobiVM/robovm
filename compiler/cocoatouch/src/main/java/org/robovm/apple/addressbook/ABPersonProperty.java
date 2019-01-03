@@ -106,105 +106,105 @@ import org.robovm.apple.corefoundation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.givenName
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonFirstNameProperty", optional=true)
     protected static native int FirstNameValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.familyName
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonLastNameProperty", optional=true)
     protected static native int LastNameValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.middleName
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonMiddleNameProperty", optional=true)
     protected static native int MiddleNameValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.namePrefix
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonPrefixProperty", optional=true)
     protected static native int PrefixValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.nameSuffix
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonSuffixProperty", optional=true)
     protected static native int SuffixValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.nickname
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonNicknameProperty", optional=true)
     protected static native int NicknameValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.phoneticGivenName
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonFirstNamePhoneticProperty", optional=true)
     protected static native int FirstNamePhoneticValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.phoneticFamilyName
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonLastNamePhoneticProperty", optional=true)
     protected static native int LastNamePhoneticValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.phoneticMiddleName
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonMiddleNamePhoneticProperty", optional=true)
     protected static native int MiddleNamePhoneticValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.organizationName
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonOrganizationProperty", optional=true)
     protected static native int OrganizationValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.departmentName
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonDepartmentProperty", optional=true)
     protected static native int DepartmentValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.jobTitle
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonJobTitleProperty", optional=true)
     protected static native int JobTitleValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.emailAddresses
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonEmailProperty", optional=true)
     protected static native int EmailValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.birthday
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonBirthdayProperty", optional=true)
     protected static native int BirthdayValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.note
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonNoteProperty", optional=true)
@@ -225,63 +225,63 @@ import org.robovm.apple.corefoundation.*;
     protected static native int ModificationDateValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.postalAddresses
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonAddressProperty", optional=true)
     protected static native int AddressValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.dates
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonDateProperty", optional=true)
     protected static native int DateValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.contactType
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonKindProperty", optional=true)
     protected static native int KindValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.phoneNumbers
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonPhoneProperty", optional=true)
     protected static native int PhoneValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.instantMessageAddresses
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonInstantMessageProperty", optional=true)
     protected static native int InstantMessageValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.urlAddresses
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonURLProperty", optional=true)
     protected static native int URLValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.contactRelations
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonRelatedNamesProperty", optional=true)
     protected static native int RelatedNamesValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.socialProfiles
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonSocialProfileProperty", optional=true)
     protected static native int SocialProfileValue();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContact.nonGregorianBirthday
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonAlternateBirthdayProperty", optional=true)
@@ -296,7 +296,7 @@ import org.robovm.apple.corefoundation.*;
     protected static native ABPropertyType getType(int property);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use [CNContact localizedStringForKey:]
      */
     @Deprecated
     @Bridge(symbol="ABPersonCopyLocalizedPropertyName", optional=true)

@@ -51,6 +51,10 @@ import org.robovm.apple.uikit.*;
     protected MSStickerBrowserViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithStickerSize:")
     public MSStickerBrowserViewController(MSStickerSize stickerSize) { super((SkipInit) null); initObject(init(stickerSize)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public MSStickerBrowserViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public MSStickerBrowserViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "stickerBrowserView")

@@ -45,8 +45,8 @@ import org.robovm.apple.intents.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/UIScrollViewIndexDisplayMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    utomatic(0L),
-    lwaysHidden(1L);
+    Automatic(0L),
+    AlwaysHidden(1L);
     /*</values>*/
 
     /*<bind>*/

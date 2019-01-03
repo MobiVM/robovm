@@ -70,11 +70,29 @@ categories:
                 type: NSArray<SCNAnimationEvent>
         
 classes:
-    SCNReferenceNode: {}
+    SCNReferenceNode: #since 9.0
+        methods:
+            '-initWithURL:':
+                name: init
+            '+referenceNodeWithURL:':
+                exclude: true
     SCNBillboardConstraint: {}
-    SCNAudioSource: {}
-    SCNAudioPlayer: {}
-
+    SCNAudioSource: #since 9.0
+        methods:
+            '-initWithFileNamed:':
+                name: init
+            '-initWithURL:':
+                name: init
+    SCNAudioPlayer: #since 9.0
+        methods:
+            '-initWithSource:':
+                name: init
+            '-initWithAVAudioNode:':
+                name: init
+            '+audioPlayerWithSource:':
+                exclude: true
+            '+audioPlayerWithAVAudioNode:':
+                exclude: true
     SCNError:
         extends: NSError
         annotations: ['@StronglyLinked']
@@ -155,6 +173,8 @@ classes:
     SCNConstraint: {} # DONE
     SCNIKConstraint: # DONE
         methods:
+            '-initWithChainRootNode:':
+                name: init
             '-setMaxAllowedRotationAngle:forJoint:':
                 name: setMaxAllowedRotationAngleForJoint
             '-maxAllowedRotationAngleForJoint:':
@@ -740,13 +760,33 @@ classes:
             '-stop:':
                 trim_after_first_colon: true
     SCNAccelerationConstraint: {} #since 11.0
-    SCNAnimation: {}  #since 11.0
-    SCNAnimationPlayer: {} #since 11.0
-    SCNAvoidOccluderConstraint: {} #since 11.0
+    SCNAnimation: #since 11.0
+        methods:
+            '+animationWithContentsOfURL:':
+                name: create
+                constructor: true
+            '+animationWithCAAnimation:':
+                name: create
+                constructor: true
+    SCNAnimationPlayer: #since 11.0
+        methods:
+            '-stopWithBlendOutDuration:':
+                name: stop
+            '+animationPlayerWithAnimation:':
+                name: create
+                constructor: true
+    SCNAvoidOccluderConstraint: #since 11.0
+        methods:
+            '+avoidOccluderConstraintWithTarget:':
+                name: create
+                constructor: true
     SCNCameraController: #since 11.0
         methods:
             '-translateInCameraSpaceByX:Y:Z:':
                 name: translateInCameraSpace
+                parameters:
+                    2:
+                        name: deltaZ # fixes wrong name (was deltaX)
             '-rotateByX:Y:':
                 name: rotateByXY
             '-rollBy:aroundScreenPoint:viewport:':
@@ -759,7 +799,11 @@ classes:
                 trim_after_first_colon: true
             '-endInteraction:withViewport:velocity:':
                 trim_after_first_colon: true
-    SCNDistanceConstraint: {} #since 11.0
+    SCNDistanceConstraint: #since 11.0
+        methods:
+            '+distanceConstraintWithTarget:':
+                name: create
+                constructor: true
     SCNGeometryTessellator: {} #since 11.0
     SCNPhysicsConeTwistJoint: #since 11.0
         methods:
@@ -767,9 +811,20 @@ classes:
                 name: joint
             '+jointWithBody:frame:':
                 name: joint
-    SCNReplicatorConstraint: {} #since 11.0
+    SCNReplicatorConstraint: #since 11.0
+        methods:
+            '+replicatorConstraintWithTarget:':
+                constructor: true
+                name: create
     SCNSliderConstraint: {} #since 11.0
-    SCNTimingFunction: {} #since 11.0
+    SCNTimingFunction: #since 11.0
+        methods:
+            '+functionWithTimingMode:':
+                constructor: true
+                name: create
+            '+functionWithCAMediaTimingFunction:':
+                constructor: true
+                name: create
 protocols:
     SCNBufferStream:
         skip_adapter: true
@@ -883,7 +938,8 @@ protocols:
                 trim_after_first_colon: true
             '-presentScene:withTransition:incomingPointOfView:completionHandler:':
                 trim_after_first_colon: true
-
+            '-nodesInsideFrustumWithPointOfView:':
+                name: getNodesInsideFrustum
     SCNSceneRendererDelegate: # DONE
         methods:
             '-renderer:updateAtTime:':

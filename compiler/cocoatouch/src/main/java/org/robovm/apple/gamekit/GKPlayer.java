@@ -66,7 +66,7 @@ import org.robovm.apple.uikit.*;
     public native String getGuestIdentifier();
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use -[GKLocalPlayer loadFriendPlayers...]
      */
     @Deprecated
     @Property(selector = "isFriend")

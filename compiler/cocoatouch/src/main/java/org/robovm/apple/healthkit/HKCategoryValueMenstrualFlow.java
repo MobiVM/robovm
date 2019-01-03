@@ -41,7 +41,11 @@ public enum /*<name>*/HKCategoryValueMenstrualFlow/*</name>*/ implements ValuedE
     Unspecified(1L),
     Light(2L),
     Medium(3L),
-    Heavy(4L);
+    Heavy(4L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    None(5L);
     /*</values>*/
 
     /*<bind>*/

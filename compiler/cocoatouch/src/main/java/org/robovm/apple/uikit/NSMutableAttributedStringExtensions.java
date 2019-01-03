@@ -99,7 +99,7 @@ import org.robovm.apple.intents.*;
     private static native boolean read(NSMutableAttributedString thiz, NSData data, NSAttributedStringDocumentAttributes opts, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -readFromURL:options:documentAttributes:error: instead
      */
     @Deprecated
     public static boolean readFromFileURL(NSMutableAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes opts, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
@@ -110,7 +110,7 @@ import org.robovm.apple.intents.*;
     }
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -readFromURL:options:documentAttributes:error: instead
      */
     @Deprecated
     @Method(selector = "readFromFileURL:options:documentAttributes:error:")

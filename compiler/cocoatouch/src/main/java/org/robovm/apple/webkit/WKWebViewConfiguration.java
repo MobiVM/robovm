@@ -41,7 +41,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WKWebViewConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class WKWebViewConfigurationPtr extends Ptr<WKWebViewConfiguration, WKWebViewConfigurationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(WKWebViewConfiguration.class); }/*</bind>*/
@@ -190,6 +190,8 @@ import org.robovm.apple.security.*;
     @Deprecated
     @Property(selector = "setRequiresUserActionForMediaPlayback:")
     public native void setRequiresUserActionForMediaPlayback(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

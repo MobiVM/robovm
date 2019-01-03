@@ -51,7 +51,7 @@ import org.robovm.apple.contacts.*;
     protected PKPaymentAuthorizationController(Handle h, long handle) { super(h, handle); }
     protected PKPaymentAuthorizationController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPaymentRequest:")
-    public PKPaymentAuthorizationController(PKPaymentRequest request) { super((SkipInit) null); initObject(initWithPaymentRequest(request)); }
+    public PKPaymentAuthorizationController(PKPaymentRequest request) { super((SkipInit) null); initObject(init(request)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -62,11 +62,11 @@ import org.robovm.apple.contacts.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPaymentRequest:")
-    protected native @Pointer long initWithPaymentRequest(PKPaymentRequest request);
+    protected native @Pointer long init(PKPaymentRequest request);
     @Method(selector = "presentWithCompletion:")
-    public native void presentWithCompletion(@Block VoidBooleanBlock completion);
+    public native void present(@Block VoidBooleanBlock completion);
     @Method(selector = "dismissWithCompletion:")
-    public native void dismissWithCompletion(@Block Runnable completion);
+    public native void dismiss(@Block Runnable completion);
     @Method(selector = "canMakePayments")
     public static native boolean canMakePayments();
     @Method(selector = "canMakePaymentsUsingNetworks:")

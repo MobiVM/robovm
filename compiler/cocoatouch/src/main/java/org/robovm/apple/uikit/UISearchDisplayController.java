@@ -42,7 +42,7 @@ import org.robovm.apple.intents.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 3.0 and later.
- * @deprecated Deprecated in iOS 8.0.
+ * @deprecated Deprecated in iOS 8.0. UISearchDisplayController has been replaced with UISearchController
  */
 @Deprecated
 /*</javadoc>*/

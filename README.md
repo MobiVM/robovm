@@ -1,7 +1,7 @@
 # RoboVM 
 
 
-[![Build Status](http://144.76.220.132:8080/buildStatus/icon?job=robovm-oss&.png)](http://144.76.220.132:8080/job/robovm-oss/)
+[![Build Status](https://libgdx.badlogicgames.com/jenkins/buildStatus/icon?job=robovm-oss&.png)](https://libgdx.badlogicgames.com/jenkins/job/robovm-oss/)
 
 [**Website**](http://robovm.mobidevelop.com) -
 [**Developer Guide**](https://github.com/MobiVM/robovm/wiki/Developer-Guide) -
@@ -15,7 +15,7 @@ This is a fork of the [last open-source release of RoboVM](https://github.com/ro
 
 ## Key Features
 
-**iOS 11 and XCode 9** are fully supported, for details please read [this wiki article](https://github.com/MobiVM/robovm/wiki/iOS-11-and-XCode-9-compatibility).
+**iOS 12 and XCode 10** are fully supported.
 
 **Interface Builder Integration** is also available, details in [this wiki article](https://github.com/MobiVM/robovm/wiki/Is-XCode-interface-builder-supported%3F).
 

@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(CLSScoreItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CLSScoreItem() {}
+    protected CLSScoreItem() {}
     protected CLSScoreItem(Handle h, long handle) { super(h, handle); }
     protected CLSScoreItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIdentifier:title:score:maxScore:")

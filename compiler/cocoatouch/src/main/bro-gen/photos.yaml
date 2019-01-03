@@ -457,6 +457,8 @@ classes:
                 type: '@Block VoidBlock3<Double, NSError, BooleanPtr>'
     PHLivePhotoEditingContext:
         methods:
+            '-initWithLivePhotoEditingInput:':
+                name: init
             '-prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:':
                 name: prepareLivePhotoForPlayback
             '-saveLivePhotoToOutput:options:completionHandler:':

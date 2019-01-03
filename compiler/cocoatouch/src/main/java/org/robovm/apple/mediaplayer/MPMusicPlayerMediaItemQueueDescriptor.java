@@ -46,13 +46,13 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPMusicPlayerMediaItemQueueDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPMusicPlayerMediaItemQueueDescriptor() {}
+    protected MPMusicPlayerMediaItemQueueDescriptor() {}
     protected MPMusicPlayerMediaItemQueueDescriptor(Handle h, long handle) { super(h, handle); }
     protected MPMusicPlayerMediaItemQueueDescriptor(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithQuery:")
-    public MPMusicPlayerMediaItemQueueDescriptor(MPMediaQuery query) { super((SkipInit) null); initObject(initWithQuery(query)); }
+    public MPMusicPlayerMediaItemQueueDescriptor(MPMediaQuery query) { super((SkipInit) null); initObject(init(query)); }
     @Method(selector = "initWithItemCollection:")
-    public MPMusicPlayerMediaItemQueueDescriptor(MPMediaItemCollection itemCollection) { super((SkipInit) null); initObject(initWithItemCollection(itemCollection)); }
+    public MPMusicPlayerMediaItemQueueDescriptor(MPMediaItemCollection itemCollection) { super((SkipInit) null); initObject(init(itemCollection)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "query")
@@ -67,9 +67,9 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithQuery:")
-    protected native @Pointer long initWithQuery(MPMediaQuery query);
+    protected native @Pointer long init(MPMediaQuery query);
     @Method(selector = "initWithItemCollection:")
-    protected native @Pointer long initWithItemCollection(MPMediaItemCollection itemCollection);
+    protected native @Pointer long init(MPMediaItemCollection itemCollection);
     @Method(selector = "setStartTime:forItem:")
     public native void setStartTime(double startTime, MPMediaItem mediaItem);
     @Method(selector = "setEndTime:forItem:")

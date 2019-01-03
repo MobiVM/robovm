@@ -75,33 +75,33 @@ import org.robovm.apple.coretext.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use CFCalendar or NSCalendar API instead
      */
     @Deprecated
     public boolean isValid(CFGregorianUnitFlags unitFlags) { return isValid(this, unitFlags); }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use CFCalendar or NSCalendar API instead
      */
     @Deprecated
     @Bridge(symbol="CFGregorianDateIsValid", optional=true)
     private static native boolean isValid(@ByVal CFGregorianDate gdate, CFGregorianUnitFlags unitFlags);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use CFCalendar or NSCalendar API instead
      */
     @Deprecated
     public double getAbsoluteTime(CFTimeZone tz) { return getAbsoluteTime(this, tz); }
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use CFCalendar or NSCalendar API instead
      */
     @Deprecated
     @Bridge(symbol="CFGregorianDateGetAbsoluteTime", optional=true)
     private static native double getAbsoluteTime(@ByVal CFGregorianDate gdate, CFTimeZone tz);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use CFCalendar or NSCalendar API instead
      */
     @Deprecated
     @Bridge(symbol="CFAbsoluteTimeGetGregorianDate", optional=true)

@@ -53,14 +53,14 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithNickname:number:accountType:organizationName:balance:secondaryBalance:")
-    public INPaymentAccount(INSpeakableString nickname, String accountNumber, INAccountType accountType, INSpeakableString organizationName, INBalanceAmount balance, INBalanceAmount secondaryBalance) { super((SkipInit) null); initObject(init(nickname, accountNumber, accountType, organizationName, balance, secondaryBalance)); }
+    public INPaymentAccount(INSpeakableString nickname, String number, INAccountType accountType, INSpeakableString organizationName, INBalanceAmount balance, INBalanceAmount secondaryBalance) { super((SkipInit) null); initObject(init(nickname, number, accountType, organizationName, balance, secondaryBalance)); }
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Please use 'initWithNickname:number:accountType:organizationName:balance:secondaryBalance:' instead
      */
     @Deprecated
     @Method(selector = "initWithNickname:number:accountType:organizationName:")
-    public INPaymentAccount(INSpeakableString nickname, String accountNumber, INAccountType accountType, INSpeakableString organizationName) { super((SkipInit) null); initObject(init(nickname, accountNumber, accountType, organizationName)); }
+    public INPaymentAccount(INSpeakableString nickname, String number, INAccountType accountType, INSpeakableString organizationName) { super((SkipInit) null); initObject(init(nickname, number, accountType, organizationName)); }
     @Method(selector = "initWithCoder:")
     public INPaymentAccount(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -92,14 +92,14 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithNickname:number:accountType:organizationName:balance:secondaryBalance:")
-    protected native @Pointer long init(INSpeakableString nickname, String accountNumber, INAccountType accountType, INSpeakableString organizationName, INBalanceAmount balance, INBalanceAmount secondaryBalance);
+    protected native @Pointer long init(INSpeakableString nickname, String number, INAccountType accountType, INSpeakableString organizationName, INBalanceAmount balance, INBalanceAmount secondaryBalance);
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Please use 'initWithNickname:number:accountType:organizationName:balance:secondaryBalance:' instead
      */
     @Deprecated
     @Method(selector = "initWithNickname:number:accountType:organizationName:")
-    protected native @Pointer long init(INSpeakableString nickname, String accountNumber, INAccountType accountType, INSpeakableString organizationName);
+    protected native @Pointer long init(INSpeakableString nickname, String number, INAccountType accountType, INSpeakableString organizationName);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

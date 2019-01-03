@@ -124,6 +124,9 @@ classes:
                     handler:
                         type: '@Block("(@MachineSizedSInt,,)") VoidBlock3<Long, NSDate, NSError>'
 
+    CMDyskineticSymptomResult: {} #since 12.0
+    CMTremorResult: {} #since 12.0
+
     # Structs
     CMAcceleration: {}
     CMRotationMatrix: {}

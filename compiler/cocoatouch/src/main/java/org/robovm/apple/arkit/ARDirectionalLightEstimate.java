@@ -54,7 +54,7 @@ import org.robovm.apple.imageio.*;
     /*<bind>*/static { ObjCRuntime.bind(ARDirectionalLightEstimate.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public ARDirectionalLightEstimate() {}
+    protected ARDirectionalLightEstimate() {}
     protected ARDirectionalLightEstimate(Handle h, long handle) { super(h, handle); }
     protected ARDirectionalLightEstimate(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

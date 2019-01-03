@@ -51,6 +51,11 @@ import org.robovm.apple.dispatch.*;
     public MKCompassButton() {}
     protected MKCompassButton(Handle h, long handle) { super(h, handle); }
     protected MKCompassButton(SkipInit skipInit) { super(skipInit); }
+    public MKCompassButton(MKMapView mapView) { super((Handle) null, create(mapView)); retain(getHandle()); }
+    @Method(selector = "initWithFrame:")
+    public MKCompassButton(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public MKCompassButton(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mapView")
@@ -65,6 +70,6 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "compassButtonWithMapView:")
-    public static native MKCompassButton compassButtonWithMapView(MKMapView mapView);
+    protected static native @Pointer long create(MKMapView mapView);
     /*</methods>*/
 }

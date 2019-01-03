@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INLocationSearchTypeResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INLocationSearchTypeResolutionResult() {}
+    protected INLocationSearchTypeResolutionResult() {}
     protected INLocationSearchTypeResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INLocationSearchTypeResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
@@ -57,21 +57,7 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "successWithResolvedLocationSearchType:")
     public static native INLocationSearchTypeResolutionResult successWithResolvedLocationSearchType(INLocationSearchType resolvedLocationSearchType);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "successWithResolvedValue:")
-    public static native INLocationSearchTypeResolutionResult successWithResolvedValue(INLocationSearchType resolvedValue);
     @Method(selector = "confirmationRequiredWithLocationSearchTypeToConfirm:")
     public static native INLocationSearchTypeResolutionResult confirmationRequiredWithLocationSearchTypeToConfirm(INLocationSearchType locationSearchTypeToConfirm);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INLocationSearchTypeResolutionResult confirmationRequiredWithValueToConfirm(INLocationSearchType valueToConfirm);
     /*</methods>*/
 }

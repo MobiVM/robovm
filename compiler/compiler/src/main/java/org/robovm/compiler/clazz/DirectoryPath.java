@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 RoboVM AB
+ * Copyright (C) 2018 Daniel Thommes, NeverNull GmbH, <daniel.thommes@nevernull.io>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -87,7 +88,7 @@ public class DirectoryPath extends AbstractPath {
         return hasChangedSince(file, timestamp);
     }
     
-    static class DirectoryPathClazz extends Clazz {
+    public static class DirectoryPathClazz extends Clazz {
         private final File f;
         private byte[] bytes = null;
         
@@ -103,6 +104,10 @@ public class DirectoryPath extends AbstractPath {
                 bytes = FileUtils.readFileToByteArray(f);
             }
             return bytes;
+        }
+
+        public File getClassFile(){
+            return f;
         }
         
         public long lastModified() {

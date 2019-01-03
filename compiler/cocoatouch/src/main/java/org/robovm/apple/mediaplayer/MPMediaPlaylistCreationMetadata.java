@@ -50,7 +50,7 @@ import org.robovm.apple.coregraphics.*;
     protected MPMediaPlaylistCreationMetadata(Handle h, long handle) { super(h, handle); }
     protected MPMediaPlaylistCreationMetadata(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithName:")
-    public MPMediaPlaylistCreationMetadata(String name) { super((SkipInit) null); initObject(initWithName(name)); }
+    public MPMediaPlaylistCreationMetadata(String name) { super((SkipInit) null); initObject(init(name)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -67,6 +67,6 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithName:")
-    protected native @Pointer long initWithName(String name);
+    protected native @Pointer long init(String name);
     /*</methods>*/
 }

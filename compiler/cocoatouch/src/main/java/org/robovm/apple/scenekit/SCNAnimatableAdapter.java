@@ -96,28 +96,28 @@ import org.robovm.apple.avfoundation.*;
     public CAAnimation getAnimation(String key) { return null; }
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
     @NotImplemented("pauseAnimationForKey:")
     public void pauseAnimation(String key) {}
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setPaused:] instead
      */
     @Deprecated
     @NotImplemented("resumeAnimationForKey:")
     public void resumeAnimation(String key) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer setSpeed:] instead
      */
     @Deprecated
     @NotImplemented("setSpeed:forAnimationKey:")
     public void setSpeed(@MachineSizedFloat double speed, String key) {}
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[SCNAnimationPlayer paused] instead
      */
     @Deprecated
     @NotImplemented("isAnimationForKeyPaused:")

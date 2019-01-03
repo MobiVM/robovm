@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSUnaryImageKernel/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -50,12 +50,14 @@ import org.robovm.apple.metal.*;
     protected MPSUnaryImageKernel(Handle h, long handle) { super(h, handle); }
     protected MPSUnaryImageKernel(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:")
-    public MPSUnaryImageKernel(MTLDevice device) { super((SkipInit) null); initObject(initWithDevice(device)); }
+    public MPSUnaryImageKernel(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    public MPSUnaryImageKernel(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    public MPSUnaryImageKernel(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSUnaryImageKernel(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "offset")
@@ -74,12 +76,12 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDevice:")
-    protected native @Pointer long initWithDevice(MTLDevice device);
+    protected native @Pointer long init(MTLDevice device);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:device:")
-    protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    protected native @Pointer long init(NSCoder decoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:inPlaceTexture:fallbackCopyAllocator:")
     public native boolean encode(MTLCommandBuffer commandBuffer, MTLTexture texture, @Block Block3<MPSKernel, MTLCommandBuffer, MTLTexture, MTLTexture> copyAllocator);
     @Method(selector = "encodeToCommandBuffer:sourceTexture:destinationTexture:")

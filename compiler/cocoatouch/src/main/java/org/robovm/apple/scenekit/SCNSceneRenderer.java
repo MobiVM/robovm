@@ -177,7 +177,7 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "nodesInsideFrustumWithPointOfView:")
-    NSArray<SCNNode> nodesInsideFrustumWithPointOfView(SCNNode pointOfView);
+    NSArray<SCNNode> getNodesInsideFrustum(SCNNode pointOfView);
     @Method(selector = "projectPoint:")
     @ByVal SCNVector3 projectPoint(@ByVal SCNVector3 point);
     @Method(selector = "unprojectPoint:")

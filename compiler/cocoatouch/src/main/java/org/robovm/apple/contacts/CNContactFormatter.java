@@ -41,7 +41,7 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CNContactFormatter/*</name>*/ 
     extends /*<extends>*/NSFormatter/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CNContactFormatterPtr extends Ptr<CNContactFormatter, CNContactFormatterPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CNContactFormatter.class); }/*</bind>*/
@@ -56,6 +56,8 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     public native CNContactFormatterStyle getStyle();
     @Property(selector = "setStyle:")
     public native void setStyle(CNContactFormatterStyle v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public NSAttributedString format(CNContact contact, NSAttributedStringAttributes attributes) {

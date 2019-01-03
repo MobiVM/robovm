@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     protected GKCheckerboardNoiseSource(Handle h, long handle) { super(h, handle); }
     protected GKCheckerboardNoiseSource(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSquareSize:")
-    public GKCheckerboardNoiseSource(double squareSize) { super((SkipInit) null); initObject(initWithSquareSize(squareSize)); }
+    public GKCheckerboardNoiseSource(double squareSize) { super((SkipInit) null); initObject(init(squareSize)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "squareSize")
@@ -62,6 +62,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSquareSize:")
-    protected native @Pointer long initWithSquareSize(double squareSize);
+    protected native @Pointer long init(double squareSize);
     /*</methods>*/
 }

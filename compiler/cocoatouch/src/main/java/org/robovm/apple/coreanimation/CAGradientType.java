@@ -96,9 +96,17 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 3.0 and later.
      */
     public static final CAGradientType Axial = new CAGradientType("Axial");
+    /**
+     * @since Available in iOS 3.2 and later.
+     */
+    public static final CAGradientType Radial = new CAGradientType("Radial");
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final CAGradientType Conic = new CAGradientType("Conic");
     /*</constants>*/
     
-    private static /*<name>*/CAGradientType/*</name>*/[] values = new /*<name>*/CAGradientType/*</name>*/[] {/*<value_list>*/Axial/*</value_list>*/};
+    private static /*<name>*/CAGradientType/*</name>*/[] values = new /*<name>*/CAGradientType/*</name>*/[] {/*<value_list>*/Axial, Radial, Conic/*</value_list>*/};
     
     /*<name>*/CAGradientType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -126,6 +134,16 @@ import org.robovm.apple.metal.*;
          */
         @GlobalValue(symbol="kCAGradientLayerAxial", optional=true)
         public static native NSString Axial();
+        /**
+         * @since Available in iOS 3.2 and later.
+         */
+        @GlobalValue(symbol="kCAGradientLayerRadial", optional=true)
+        public static native NSString Radial();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCAGradientLayerConic", optional=true)
+        public static native NSString Conic();
         /*</values>*/
     }
 }

@@ -46,7 +46,7 @@ import org.robovm.apple.iosurface.*;
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIBarcodeDescriptor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CIBarcodeDescriptorPtr extends Ptr<CIBarcodeDescriptor, CIBarcodeDescriptorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CIBarcodeDescriptor.class); }/*</bind>*/
@@ -55,12 +55,18 @@ import org.robovm.apple.iosurface.*;
     public CIBarcodeDescriptor() {}
     protected CIBarcodeDescriptor(Handle h, long handle) { super(h, handle); }
     protected CIBarcodeDescriptor(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CIBarcodeDescriptor(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

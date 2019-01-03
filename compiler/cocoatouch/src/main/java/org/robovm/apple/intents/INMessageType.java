@@ -58,7 +58,35 @@ public enum /*<name>*/INMessageType/*</name>*/ implements ValuedEnum {
     MediaImage(15L),
     MediaVideo(16L),
     MediaPass(17L),
-    MediaAudio(18L);
+    MediaAudio(18L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    PaymentSent(19L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    PaymentRequest(20L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    PaymentNote(21L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    Animoji(22L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    ActivitySnippet(23L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    File(24L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    Link(25L);
     /*</values>*/
 
     /*<bind>*/

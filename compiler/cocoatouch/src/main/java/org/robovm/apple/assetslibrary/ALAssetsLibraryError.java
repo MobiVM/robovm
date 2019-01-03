@@ -63,7 +63,7 @@ import org.robovm.apple.imageio.*;
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the Photos framework instead
      */
     @Deprecated
     @GlobalValue(symbol="ALAssetsLibraryErrorDomain", optional=true)

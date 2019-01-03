@@ -90,7 +90,7 @@ import org.robovm.apple.coremedia.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use microphoneEnabaled property
      */
     @Deprecated
     @Method(selector = "startRecordingWithMicrophoneEnabled:handler:")
@@ -99,7 +99,7 @@ import org.robovm.apple.coremedia.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "startRecordingWithHandler:")
-    public native void startRecordingWithHandler(@Block VoidBlock1<NSError> handler);
+    public native void startRecording(@Block VoidBlock1<NSError> handler);
     @Method(selector = "stopRecordingWithHandler:")
     public native void stopRecording(@Block VoidBlock2<RPPreviewViewController, NSError> handler);
     @Method(selector = "discardRecordingWithHandler:")
@@ -113,7 +113,7 @@ import org.robovm.apple.coremedia.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "stopCaptureWithHandler:")
-    public native void stopCaptureWithHandler(@Block VoidBlock1<NSError> handler);
+    public native void stopCapture(@Block VoidBlock1<NSError> handler);
     @Method(selector = "sharedRecorder")
     public static native RPScreenRecorder getSharedRecorder();
     /*</methods>*/

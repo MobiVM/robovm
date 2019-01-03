@@ -58,12 +58,12 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "allowVerdictWithUpdateRules:")
-    public static native NEFilterControlVerdict allowVerdictWithUpdateRules(boolean updateRules);
+    public static native NEFilterControlVerdict createAllowVerdict(boolean updateRules);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "dropVerdictWithUpdateRules:")
-    public static native NEFilterControlVerdict dropVerdictWithUpdateRules(boolean updateRules);
+    public static native NEFilterControlVerdict createDropVerdict(boolean updateRules);
     /**
      * @since Available in iOS 9.0 and later.
      */

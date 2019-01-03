@@ -51,7 +51,7 @@ import org.robovm.apple.fileprovider.*;
     protected CKFetchWebAuthTokenOperation(Handle h, long handle) { super(h, handle); }
     protected CKFetchWebAuthTokenOperation(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithAPIToken:")
-    public CKFetchWebAuthTokenOperation(String APIToken) { super((SkipInit) null); initObject(initWithAPIToken(APIToken)); }
+    public CKFetchWebAuthTokenOperation(String APIToken) { super((SkipInit) null); initObject(init(APIToken)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "APIToken")
@@ -59,13 +59,13 @@ import org.robovm.apple.fileprovider.*;
     @Property(selector = "setAPIToken:")
     public native void setAPIToken(String v);
     @Property(selector = "fetchWebAuthTokenCompletionBlock")
-    public native @Block VoidBlock2<String, NSError> getFetchWebAuthTokenCompletionBlock();
+    public native @Block VoidBlock2<NSString, NSError> getFetchWebAuthTokenCompletionBlock();
     @Property(selector = "setFetchWebAuthTokenCompletionBlock:")
-    public native void setFetchWebAuthTokenCompletionBlock(@Block VoidBlock2<String, NSError> v);
+    public native void setFetchWebAuthTokenCompletionBlock(@Block VoidBlock2<NSString, NSError> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithAPIToken:")
-    protected native @Pointer long initWithAPIToken(String APIToken);
+    protected native @Pointer long init(String APIToken);
     /*</methods>*/
 }

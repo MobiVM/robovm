@@ -108,7 +108,7 @@ import org.robovm.apple.foundation.*;
 
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Tencent Weibo SDK instead
      */
     @Deprecated
     public String getAppId() {
@@ -120,7 +120,7 @@ import org.robovm.apple.foundation.*;
     }
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Tencent Weibo SDK instead
      */
     @Deprecated
     public ACTencentWeiboOptions setAppId(String appId) {
@@ -135,7 +135,7 @@ import org.robovm.apple.foundation.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 7.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Tencent Weibo SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACTencentWeiboAppIdKey", optional=true)

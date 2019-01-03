@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 RoboVM AB
+ * Copyright (C) 2018 Daniel Thommes, NeverNull GmbH, <daniel.thommes@nevernull.io>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -140,6 +141,8 @@ public class Config {
     private ArrayList<String> roots;
     @ElementList(required = false, entry = "pattern")
     private ArrayList<String> forceLinkClasses;
+    @ElementList(required = false, entry = "entry")
+    private ArrayList<ForceLinkMethodsConfig> forceLinkMethods;
     @ElementList(required = false, entry = "lib")
     private ArrayList<Lib> libs;
     @ElementList(required = false, entry = "symbol")
@@ -168,8 +171,12 @@ public class Config {
     private String targetType;
     @Element(required = false, name = "stripArchives")
     private StripArchivesConfig stripArchivesConfig;
+    @ElementList(required = false, entry = "arch")
+    private ArrayList<String> stripArchs;
     @Element(required = false, name = "treeShaker")
     private TreeShakerMode treeShakerMode;
+    @Element(required = false, name = "smartSkipRebuild")
+    private Boolean smartSkipRebuild;
 
     @Element(required = false)
     private String iosSdkVersion;
@@ -367,6 +374,13 @@ public class Config {
        return stripArchivesConfig == null ? StripArchivesConfig.DEFAULT : stripArchivesConfig;
    }
 
+    /**
+     * @return list of architectures to be removed from embedded frameworks/app extension
+     */
+    public List<String> getStripArchs() {
+        return stripArchs == null ? Collections.<String>emptyList() : stripArchs;
+    }
+
     public DependencyGraph getDependencyGraph() {
         return dependencyGraph;
     }
@@ -387,6 +401,11 @@ public class Config {
     public List<String> getForceLinkClasses() {
         return forceLinkClasses == null ? Collections.<String> emptyList()
                 : Collections.unmodifiableList(forceLinkClasses);
+    }
+
+    public List<ForceLinkMethodsConfig> getForceLinkMethods() {
+        return forceLinkMethods == null ? Collections.<ForceLinkMethodsConfig> emptyList()
+                : Collections.unmodifiableList(forceLinkMethods);
     }
 
     public List<String> getExportedSymbols() {
@@ -521,6 +540,10 @@ public class Config {
 
     public TreeShakerMode getTreeShakerMode() {
         return treeShakerMode == null ? TreeShakerMode.none : treeShakerMode;
+    }
+
+    public boolean isSmartSkipRebuild(){
+        return smartSkipRebuild != null && smartSkipRebuild;
     }
 
     public String getIosSdkVersion() {
@@ -727,6 +750,7 @@ public class Config {
         to.exportedSymbols = mergeLists(from.exportedSymbols, to.exportedSymbols);
         to.unhideSymbols = mergeLists(from.unhideSymbols, to.unhideSymbols);
         to.forceLinkClasses = mergeLists(from.forceLinkClasses, to.forceLinkClasses);
+        to.forceLinkMethods = mergeLists(from.forceLinkMethods, to.forceLinkMethods);
         to.frameworkPaths = mergeLists(from.frameworkPaths, to.frameworkPaths);
         to.frameworks = mergeLists(from.frameworks, to.frameworks);
         to.libs = mergeLists(from.libs, to.libs);
@@ -763,6 +787,7 @@ public class Config {
         this.exportedSymbols = config.exportedSymbols;
         this.unhideSymbols = config.unhideSymbols;
         this.forceLinkClasses = config.forceLinkClasses;
+        this.forceLinkMethods = config.forceLinkMethods;
         this.frameworkPaths = config.frameworkPaths;
         this.frameworks = config.frameworks;
         this.libs = config.libs;
@@ -1164,6 +1189,18 @@ public class Config {
             return this;
         }
 
+        public void stripArch(String arch) {
+            if (config.stripArchs == null) {
+                config.stripArchs = new ArrayList<>();
+            }
+            config.stripArchs.add(arch);
+        }
+
+        public Builder stripArchs(String ... archs) {
+            config.stripArchs = new ArrayList<>(Arrays.asList(archs));
+            return this;
+        }
+
         public Builder clearClasspathEntries() {
             if (config.classpath != null) {
                 config.classpath.clear();
@@ -1291,6 +1328,11 @@ public class Config {
 
         public Builder treeShakerMode(TreeShakerMode treeShakerMode) {
             config.treeShakerMode = treeShakerMode;
+            return this;
+        }
+
+        public Builder smartSkipRebuild(boolean smartSkipRebuild){
+            config.smartSkipRebuild = smartSkipRebuild;
             return this;
         }
 
@@ -1661,7 +1703,7 @@ public class Config {
 
         public void read(Reader reader, File wd) throws IOException {
             try {
-                Serializer serializer = createSerializer(wd);
+                Serializer serializer = createSerializer(config, wd);
                 serializer.read(config, reader);
             } catch (IOException e) {
                 throw e;
@@ -1694,7 +1736,7 @@ public class Config {
 
         public void write(Writer writer, File wd) throws IOException {
             try {
-                Serializer serializer = createSerializer(wd);
+                Serializer serializer = createSerializer(config, wd);
                 serializer.write(config, writer);
             } catch (IOException e) {
                 throw e;
@@ -1705,7 +1747,7 @@ public class Config {
             }
         }
 
-        private Serializer createSerializer(final File wd) throws Exception {
+        public static Serializer createSerializer(Config config, final File wd) throws Exception {
             RelativeFileConverter fileConverter = new RelativeFileConverter(wd);
 
             Serializer resourceSerializer = new Persister(

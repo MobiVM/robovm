@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNDefaultPadding/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements MPSNNPadding/*</implements>*/ {
@@ -49,6 +49,7 @@ import org.robovm.apple.metal.*;
     public MPSNNDefaultPadding() {}
     protected MPSNNDefaultPadding(Handle h, long handle) { super(h, handle); }
     protected MPSNNDefaultPadding(SkipInit skipInit) { super(skipInit); }
+    public MPSNNDefaultPadding(MPSNNPaddingMethod method) { super((Handle) null, create(method)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public MPSNNDefaultPadding(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -61,7 +62,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "label")
     public native String label();
     @Method(selector = "paddingWithMethod:")
-    public static native MPSNNDefaultPadding paddingWithMethod(MPSNNPaddingMethod method);
+    protected static native @Pointer long create(MPSNNPaddingMethod method);
     /**
      * @since Available in iOS 11.3 and later.
      */

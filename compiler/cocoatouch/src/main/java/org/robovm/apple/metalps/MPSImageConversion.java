@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageConversion/*</name>*/ 
     extends /*<extends>*/MPSUnaryImageKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,6 +51,15 @@ import org.robovm.apple.metal.*;
     protected MPSImageConversion(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:srcAlpha:destAlpha:backgroundColor:conversionInfo:")
     public MPSImageConversion(MTLDevice device, MPSAlphaType srcAlpha, MPSAlphaType destAlpha, MachineSizedFloatPtr backgroundColor, CGColorConversionInfo conversionInfo) { super((SkipInit) null); initObject(init(device, srcAlpha, destAlpha, backgroundColor, conversionInfo)); }
+    @Method(selector = "initWithDevice:")
+    public MPSImageConversion(MTLDevice device) { super(device); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSImageConversion(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageConversion(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceAlpha")

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNGraph/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSNNGraph.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSNNGraph() {}
+    public MPSNNGraph() {}
     protected MPSNNGraph(Handle h, long handle) { super(h, handle); }
     protected MPSNNGraph(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:resultImage:resultImageIsNeeded:")
@@ -60,6 +60,8 @@ import org.robovm.apple.metal.*;
     public MPSNNGraph(MTLDevice device, MPSNNImageNode resultImage) { super((SkipInit) null); initObject(init(device, resultImage)); }
     @Method(selector = "initWithCoder:device:")
     public MPSNNGraph(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSNNGraph(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceImageHandles")
@@ -100,6 +102,8 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, MPSNNImageNode resultImage);
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
+    @Method(selector = "reloadFromDataSources")
+    public native void reloadFromDataSources();
     @Method(selector = "encodeToCommandBuffer:sourceImages:sourceStates:intermediateImages:destinationStates:")
     public native MPSImage encode(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImages, NSArray<MPSState> sourceStates, NSMutableArray<MPSImage> intermediateImages, NSMutableArray<MPSState> destinationStates);
     /**
@@ -113,5 +117,15 @@ import org.robovm.apple.metal.*;
     public native NSArray<MPSImage> encodeBatch(MTLCommandBuffer commandBuffer, NSArray<NSArray<MPSImage>> sourceImages, NSArray<NSArray<? extends MPSState>> sourceStates);
     @Method(selector = "executeAsyncWithSourceImages:completionHandler:")
     public native MPSImage executeAsync(NSArray<MPSImage> sourceImages, @Block VoidBlock2<MPSImage, NSError> handler);
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    @Method(selector = "readCountForSourceImageAtIndex:")
+    public native @MachineSizedUInt long readCountForSourceImageAtIndex(@MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    @Method(selector = "readCountForSourceStateAtIndex:")
+    public native @MachineSizedUInt long readCountForSourceStateAtIndex(@MachineSizedUInt long index);
     /*</methods>*/
 }

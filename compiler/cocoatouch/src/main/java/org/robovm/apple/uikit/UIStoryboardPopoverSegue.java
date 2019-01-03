@@ -42,7 +42,7 @@ import org.robovm.apple.intents.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 5.0 and later.
- * @deprecated Deprecated in iOS 9.0.
+ * @deprecated Deprecated in iOS 9.0. Access destinationViewController.popoverPresentationController from your segue's performHandler or override of -perform
  */
 @Deprecated
 /*</javadoc>*/
@@ -55,9 +55,11 @@ import org.robovm.apple.intents.*;
     /*<bind>*/static { ObjCRuntime.bind(UIStoryboardPopoverSegue.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UIStoryboardPopoverSegue() {}
+    protected UIStoryboardPopoverSegue() {}
     protected UIStoryboardPopoverSegue(Handle h, long handle) { super(h, handle); }
     protected UIStoryboardPopoverSegue(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithIdentifier:source:destination:")
+    public UIStoryboardPopoverSegue(String identifier, UIViewController source, UIViewController destination) { super(identifier, source, destination); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "popoverController")

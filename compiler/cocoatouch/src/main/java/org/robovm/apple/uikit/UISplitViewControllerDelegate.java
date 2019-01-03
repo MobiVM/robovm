@@ -107,28 +107,28 @@ import org.robovm.apple.intents.*;
     UIInterfaceOrientation getPreferredInterfaceOrientation(UISplitViewController splitViewController);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use splitViewController:willChangeToDisplayMode: and displayModeButtonItem instead
      */
     @Deprecated
     @Method(selector = "splitViewController:willHideViewController:withBarButtonItem:forPopoverController:")
     void willHideViewController(UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem, UIPopoverController pc);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use splitViewController:willChangeToDisplayMode: and displayModeButtonItem instead
      */
     @Deprecated
     @Method(selector = "splitViewController:willShowViewController:invalidatingBarButtonItem:")
     void willShowViewController(UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use splitViewController:willChangeToDisplayMode: instead
      */
     @Deprecated
     @Method(selector = "splitViewController:popoverController:willPresentViewController:")
     void willPresentViewController(UISplitViewController svc, UIPopoverController pc, UIViewController aViewController);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use preferredDisplayMode instead
      */
     @Deprecated
     @Method(selector = "splitViewController:shouldHideViewController:inOrientation:")

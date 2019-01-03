@@ -46,13 +46,13 @@ import org.robovm.apple.iosurface.*;
 /*<annotations>*/@Library("CoreImage") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIImage/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CIImagePtr extends Ptr<CIImage, CIImagePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CIImage.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CIImage() {}
+    public CIImage() {}
     protected CIImage(Handle h, long handle) { super(h, handle); }
     protected CIImage(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCGImage:")
@@ -67,7 +67,9 @@ import org.robovm.apple.iosurface.*;
     public CIImage(NSData data, @MachineSizedUInt long bytesPerRow, @ByVal CGSize size, int format, CGColorSpace colorSpace) { super((SkipInit) null); initObject(init(data, bytesPerRow, size, format, colorSpace)); }
     /**
      * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     @Method(selector = "initWithTexture:size:flipped:colorSpace:")
     public CIImage(int name, @ByVal CGSize size, boolean flipped, CGColorSpace colorSpace) { super((SkipInit) null); initObject(init(name, size, flipped, colorSpace)); }
     /**
@@ -110,14 +112,36 @@ import org.robovm.apple.iosurface.*;
      */
     @WeaklyLinked
     @Method(selector = "initWithCVPixelBuffer:options:")
-    public CIImage(CVPixelBuffer pixelBuffer, NSDictionary<NSString, ?> options) { super((SkipInit) null); initObject(init(pixelBuffer, options)); }
+    public CIImage(CVPixelBuffer pixelBuffer, CIImageOptions options) { super((SkipInit) null); initObject(init(pixelBuffer, options)); }
     @Method(selector = "initWithColor:")
     public CIImage(CIColor color) { super((SkipInit) null); initObject(init(color)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithDepthData:options:")
+    public CIImage(org.robovm.apple.avfoundation.AVDepthData data, NSDictionary<NSString, ?> options) { super((SkipInit) null); initObject(init(data, options)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithDepthData:")
+    public CIImage(org.robovm.apple.avfoundation.AVDepthData data) { super((SkipInit) null); initObject(init(data)); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithPortaitEffectsMatte:options:")
+    public CIImage(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte, CIImageOptions options) { super((SkipInit) null); initObject(init(matte, options)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithPortaitEffectsMatte:")
+    public CIImage(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte) { super((SkipInit) null); initObject(init(matte)); }
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithImageProvider:size::format:colorSpace:options:")
-    public CIImage(NSObject p, @MachineSizedUInt long width, @MachineSizedUInt long height, int f, CGColorSpace cs, CIImageOptions options) { super((SkipInit) null); initObject(init(p, width, height, f, cs, options)); }
+    public CIImage(NSObject p, @MachineSizedUInt long width, @MachineSizedUInt long height, int f, CGColorSpace cs, NSDictionary<NSString, ?> options) { super((SkipInit) null); initObject(init(p, width, height, f, cs, options)); }
+    @Method(selector = "initWithCoder:")
+    public CIImage(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "extent")
@@ -152,6 +176,13 @@ import org.robovm.apple.iosurface.*;
      */
     @Property(selector = "depthData")
     public native org.robovm.apple.avfoundation.AVDepthData getDepthData();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "portraitEffectsMatte")
+    public native org.robovm.apple.avfoundation.AVPortraitEffectsMatte getPortraitEffectsMatte();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -171,6 +202,17 @@ import org.robovm.apple.iosurface.*;
         initObject(i.getHandle());
     }
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCIImageProviderTileSize", optional=true)
+    public static native String getImageProviderTileSize();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @GlobalValue(symbol="kCIImageProviderUserInfo", optional=true)
+    public static native String getImageProviderUserInfo();
+    
     @Method(selector = "initWithCGImage:")
     protected native @Pointer long init(CGImage image);
     @Method(selector = "initWithCGImage:options:")
@@ -183,7 +225,9 @@ import org.robovm.apple.iosurface.*;
     protected native @Pointer long init(NSData data, @MachineSizedUInt long bytesPerRow, @ByVal CGSize size, int format, CGColorSpace colorSpace);
     /**
      * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     @Method(selector = "initWithTexture:size:flipped:colorSpace:")
     protected native @Pointer long init(int name, @ByVal CGSize size, boolean flipped, CGColorSpace colorSpace);
     /**
@@ -226,7 +270,7 @@ import org.robovm.apple.iosurface.*;
      */
     @WeaklyLinked
     @Method(selector = "initWithCVPixelBuffer:options:")
-    protected native @Pointer long init(CVPixelBuffer pixelBuffer, NSDictionary<NSString, ?> options);
+    protected native @Pointer long init(CVPixelBuffer pixelBuffer, CIImageOptions options);
     @Method(selector = "initWithColor:")
     protected native @Pointer long init(CIColor color);
     @Method(selector = "imageByApplyingTransform:")
@@ -326,6 +370,16 @@ import org.robovm.apple.iosurface.*;
     @Method(selector = "imageBySamplingNearest")
     public native CIImage newImageBySamplingNearest();
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "imageByInsertingIntermediate")
+    public native CIImage newImageByInsertingIntermediate();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "imageByInsertingIntermediate:")
+    public native CIImage newImageByInsertingIntermediate(boolean cache);
+    /**
      * @since Available in iOS 6.0 and later.
      */
     @Method(selector = "regionOfInterestForImage:inRect:")
@@ -341,11 +395,35 @@ import org.robovm.apple.iosurface.*;
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "autoAdjustmentFiltersWithOptions:")
-    public native NSArray<CIFilter> getAutoAdjustmentFilters(NSDictionary<NSString, ?> options);
+    public native NSArray<CIFilter> getAutoAdjustmentFilters(CIImageAutoAdjustmentOptions options);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithDepthData:options:")
+    protected native @Pointer long init(org.robovm.apple.avfoundation.AVDepthData data, NSDictionary<NSString, ?> options);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithDepthData:")
+    protected native @Pointer long init(org.robovm.apple.avfoundation.AVDepthData data);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithPortaitEffectsMatte:options:")
+    protected native @Pointer long init(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte, CIImageOptions options);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithPortaitEffectsMatte:")
+    protected native @Pointer long init(org.robovm.apple.avfoundation.AVPortraitEffectsMatte matte);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithImageProvider:size::format:colorSpace:options:")
-    protected native @Pointer long init(NSObject p, @MachineSizedUInt long width, @MachineSizedUInt long height, int f, CGColorSpace cs, CIImageOptions options);
+    protected native @Pointer long init(NSObject p, @MachineSizedUInt long width, @MachineSizedUInt long height, int f, CGColorSpace cs, NSDictionary<NSString, ?> options);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

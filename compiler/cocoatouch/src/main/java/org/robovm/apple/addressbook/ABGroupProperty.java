@@ -65,7 +65,7 @@ import org.robovm.apple.corefoundation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNGroup.name
      */
     @Deprecated
     @GlobalValue(symbol="kABGroupNameProperty", optional=true)

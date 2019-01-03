@@ -58,6 +58,11 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:")
     void didReceiveNotificationResponse(UNUserNotificationCenter center, UNNotificationResponse response, @Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "userNotificationCenter:openSettingsForNotification:")
+    void openSettings(UNUserNotificationCenter center, UNNotification notification);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INNoteContentTypeResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INNoteContentTypeResolutionResult() {}
+    protected INNoteContentTypeResolutionResult() {}
     protected INNoteContentTypeResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INNoteContentTypeResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
@@ -57,21 +57,7 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "successWithResolvedNoteContentType:")
     public static native INNoteContentTypeResolutionResult successWithResolvedNoteContentType(INNoteContentType resolvedNoteContentType);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "successWithResolvedValue:")
-    public static native INNoteContentTypeResolutionResult successWithResolvedValue(INNoteContentType resolvedValue);
     @Method(selector = "confirmationRequiredWithNoteContentTypeToConfirm:")
     public static native INNoteContentTypeResolutionResult confirmationRequiredWithNoteContentTypeToConfirm(INNoteContentType noteContentTypeToConfirm);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INNoteContentTypeResolutionResult confirmationRequiredWithValueToConfirm(INNoteContentType valueToConfirm);
     /*</methods>*/
 }

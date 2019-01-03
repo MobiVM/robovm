@@ -46,7 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPChangePlaybackPositionCommand.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPChangePlaybackPositionCommand() {}
+    protected MPChangePlaybackPositionCommand() {}
     protected MPChangePlaybackPositionCommand(Handle h, long handle) { super(h, handle); }
     protected MPChangePlaybackPositionCommand(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

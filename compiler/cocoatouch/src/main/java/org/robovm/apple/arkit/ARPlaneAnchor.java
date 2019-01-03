@@ -59,6 +59,11 @@ import org.robovm.apple.imageio.*;
     protected ARPlaneAnchor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "isClassificationSupported")
+    public static native boolean isClassificationSupported();
     @Property(selector = "alignment")
     public native ARPlaneAnchorAlignment getAlignment();
     @Property(selector = "center")
@@ -70,6 +75,16 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "geometry")
     public native ARPlaneGeometry getGeometry();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "classificationStatus")
+    public native ARPlaneClassificationStatus getClassificationStatus();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "classification")
+    public native ARPlaneClassification getClassification();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
