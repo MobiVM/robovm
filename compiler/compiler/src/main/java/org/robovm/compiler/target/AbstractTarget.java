@@ -507,17 +507,21 @@ public abstract class AbstractTarget implements Target {
         String info = ToolchainUtil.lipoInfo(config, libFile);
         Matcher pattern = Pattern.compile("^(Non-|Architectures in the )fat file: .+( is architecture| are): (.*)$").matcher(info);
         if (pattern.find() && pattern.groupCount() == 3) {
-            String[] archs = pattern.group(3).split(" ");
-            List<String> archesToRemove = new ArrayList<>(Arrays.asList(archs));
+            String[] libArchs = pattern.group(3).split(" ");
+            List<String> archesToRemove = new ArrayList<>(Arrays.asList(libArchs));
 
             // leave only arches we are building against
-            for (Arch a : config.getArchs()) {
+            List<Arch> archs = config.getArchs();
+            if (archs.isEmpty()) {
+                archs = config.getTarget().getDefaultArchs();
+            }
+            for (Arch a : archs) {
                 archesToRemove.remove(a.getClangName());
             }
 
-            if (archs.length - archesToRemove.size() != config.getArchs().size()) {
+            if (libArchs.length - archesToRemove.size() != archs.size()) {
                 // drop warning if there if required arch is missing
-                config.getLogger().warn("%s doesn't contain required architectures: %s", libFile.getAbsoluteFile(), config.getArchs().toString());
+                config.getLogger().warn("%s doesn't contain required architectures: %s", libFile.getAbsoluteFile(), archs.toString());
             }
 
             if (!archesToRemove.isEmpty()) {
