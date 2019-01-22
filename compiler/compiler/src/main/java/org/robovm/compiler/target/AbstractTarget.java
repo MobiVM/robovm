@@ -359,7 +359,7 @@ public abstract class AbstractTarget implements Target {
                                 copyFile(resource, file, destDir);
 
                                 if (isDynamicLibrary(file)) {
-                                    // leave only archs we compile against and remove all other, also strip bitcode if any
+                                    // remove simulator and deprecated archs, also strip bitcode if any
                                     if (config.getOs() == OS.ios && config.getArch().isArm()) {
                                         File libFile = new File(destDir, file.getName());
                                         stripExtraArches(libFile);
@@ -420,7 +420,7 @@ public abstract class AbstractTarget implements Target {
                     copyFile(resource, file, destDir);
 
                     if (config.getOs() == OS.ios && config.getArch().isArm()) {
-                        // leave only archs we compile against and remove all other, also strip bitcode if any
+                        // remove simulator and deprecated archs, also strip bitcode if any
                         if (isAppExtension(file)) {
                             File libFile = new File(destDir, file.getName());
                             stripExtraArches(libFile);
@@ -490,7 +490,7 @@ public abstract class AbstractTarget implements Target {
 
 			// don't strip if libraries goes to SwiftSupport folder
 			if (strip) {
-                // leave only archs we compile against and remove all other, also strip bitcode if any
+                // remove simulator and deprecated archs, also strip bitcode if any
                 if (config.getOs() == OS.ios && config.getArch().isArm()) {
                     File libFile = new File(targetDir, swiftLibrary.getName());
                     stripExtraArches(libFile);
@@ -504,32 +504,26 @@ public abstract class AbstractTarget implements Target {
      * removes all architectures extra architectures other than binary is build for from mach-o binary (framework, lib, appext)
      */
 	protected void stripExtraArches(File libFile) throws IOException {
-        String info = ToolchainUtil.lipoInfo(config, libFile);
-        Matcher pattern = Pattern.compile("^(Non-|Architectures in the )fat file: .+( is architecture| are): (.*)$").matcher(info);
-        if (pattern.find() && pattern.groupCount() == 3) {
-            String[] libArchs = pattern.group(3).split(" ");
-            List<String> archesToRemove = new ArrayList<>(Arrays.asList(libArchs));
+        String archs = ToolchainUtil.lipoInfo(config, libFile);
+        List<String> archesToRemove = new ArrayList<>();
 
-            // leave only arches we are building against
-            List<Arch> archs = config.getArchs();
-            if (archs.isEmpty()) {
-                archs = config.getTarget().getDefaultArchs();
-            }
-            for (Arch a : archs) {
-                archesToRemove.remove(a.getClangName());
-            }
+        // simulator ones
+        if(archs.contains(Arch.x86.getClangName())) {
+            archesToRemove.add(Arch.x86.getClangName());
+        }
+        if(archs.contains(Arch.x86_64.getClangName())) {
+            archesToRemove.add(Arch.x86_64.getClangName());
+        }
+        // also arm64e has to be removed since Xcode10.1
+        if (archs.contains("arm64e")) {
+            archesToRemove.add("arm64e");
+        }
 
-            if (libArchs.length - archesToRemove.size() != archs.size()) {
-                // drop warning if there if required arch is missing
-                config.getLogger().warn("%s doesn't contain required architectures: %s", libFile.getAbsoluteFile(), archs.toString());
-            }
-
-            if (!archesToRemove.isEmpty()) {
-                File tmpFile = new File(libFile.getAbsolutePath() + ".tmp");
-                ToolchainUtil.lipoRemoveArchs(config, libFile, tmpFile, archesToRemove.toArray(new String[0]));
-                FileUtils.copyFile(tmpFile, libFile);
-                tmpFile.delete();
-            }
+        if (!archesToRemove.isEmpty()) {
+            File tmpFile = new File(libFile.getAbsolutePath() + ".tmp");
+            ToolchainUtil.lipoRemoveArchs(config, libFile, tmpFile, archesToRemove.toArray(new String[0]));
+            FileUtils.copyFile(tmpFile, libFile);
+            tmpFile.delete();
         }
     }
 
