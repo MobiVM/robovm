@@ -171,8 +171,6 @@ public class Config {
     private String targetType;
     @Element(required = false, name = "stripArchives")
     private StripArchivesConfig stripArchivesConfig;
-    @ElementList(required = false, entry = "arch")
-    private ArrayList<String> stripArchs;
     @Element(required = false, name = "treeShaker")
     private TreeShakerMode treeShakerMode;
     @Element(required = false, name = "smartSkipRebuild")
@@ -372,13 +370,6 @@ public class Config {
     
     public StripArchivesConfig getStripArchivesConfig() {
        return stripArchivesConfig == null ? StripArchivesConfig.DEFAULT : stripArchivesConfig;
-   }
-
-    /**
-     * @return list of architectures to be removed from embedded frameworks/app extension
-     */
-    public List<String> getStripArchs() {
-        return stripArchs == null ? Collections.<String>emptyList() : stripArchs;
     }
 
     public DependencyGraph getDependencyGraph() {
@@ -1186,18 +1177,6 @@ public class Config {
             }
             config.archs.clear();
             config.archs.addAll(archs);
-            return this;
-        }
-
-        public void stripArch(String arch) {
-            if (config.stripArchs == null) {
-                config.stripArchs = new ArrayList<>();
-            }
-            config.stripArchs.add(arch);
-        }
-
-        public Builder stripArchs(String ... archs) {
-            config.stripArchs = new ArrayList<>(Arrays.asList(archs));
             return this;
         }
 

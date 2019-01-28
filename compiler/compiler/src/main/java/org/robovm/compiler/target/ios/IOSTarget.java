@@ -706,8 +706,18 @@ public class IOSTarget extends AbstractTarget {
 
             if (swiftLibs != null && swiftLibs.length > 0){
                 File swiftSupportDir = new File(tmpDir, "SwiftSupport");
-                swiftSupportDir.mkdir();
-                copySwiftLibs(Arrays.asList(swiftLibs), swiftSupportDir);
+
+                // append OS name subfolder same as XCode does
+                if (config.getOs() == OS.ios) {
+                    if (config.getArch().isArm()) {
+                        swiftSupportDir = new File(swiftSupportDir, "iphoneos");
+                    }
+                } else {
+                    swiftSupportDir = new File(swiftSupportDir, "mac");
+                }
+
+                swiftSupportDir.mkdirs();
+                copySwiftLibs(Arrays.asList(swiftLibs), swiftSupportDir, false);
             }
         }
 

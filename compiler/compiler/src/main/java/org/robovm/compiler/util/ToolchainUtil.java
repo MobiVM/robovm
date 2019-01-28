@@ -43,6 +43,7 @@ public class ToolchainUtil {
     private static String PNGCRUSH;
     private static String PLUTIL;
     private static String LIPO;
+    private static String BITCODE_STRIP;
     private static String PACKAGE_APPLICATION;
     private static String TEXTUREATLAS;
     private static String ACTOOL;
@@ -105,6 +106,13 @@ public class ToolchainUtil {
             LIPO = findXcodeCommand("lipo", "iphoneos");
         }
         return LIPO;
+    }
+
+    private static String getBitcodeStrip() throws IOException {
+        if (BITCODE_STRIP == null) {
+            BITCODE_STRIP = findXcodeCommand("bitcode_strip", "iphoneos");
+        }
+        return BITCODE_STRIP;
     }
 
     private static String getNm() throws IOException {
@@ -316,7 +324,12 @@ public class ToolchainUtil {
         args.add(outFile);
         new Executor(Logger.NULL_LOGGER, getLipo()).args(args).exec();
     }
-    
+
+
+    public static void bitcodeStrip(Config config, File inFile, File outFile) throws IOException {
+        new Executor(config.getLogger(), getBitcodeStrip()).args(inFile, "-r", "-o", outFile).exec();
+    }
+
     public static String lipoInfo(Config config, File inFile) throws IOException {
         List<Object> args = new ArrayList<>();
         args.add("-info");
