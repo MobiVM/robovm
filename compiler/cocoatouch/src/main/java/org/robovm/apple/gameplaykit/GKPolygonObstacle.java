@@ -55,9 +55,9 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     public GKPolygonObstacle(VectorFloat2[] points) {
         super((SkipInit) null);
-        VectorFloat2.VectorFloat2Ptr ptr = new VectorFloat2.VectorFloat2Ptr();
-        ptr.set(points);
-        initObject(init(ptr, points.length));
+        VectorFloat2 structArray = VectorFloat2.allocate(VectorFloat2.class, points.length);
+        structArray.update(points);
+        initObject(init(structArray, points.length));
     }
     /*<properties>*/
     @Property(selector = "vertexCount")
@@ -68,7 +68,7 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPoints:count:")
-    protected native @Pointer long init(VectorFloat2.VectorFloat2Ptr points, @MachineSizedUInt long numPoints);
+    protected native @Pointer long init(VectorFloat2 points, @MachineSizedUInt long numPoints);
     @Method(selector = "vertexAtIndex:")
     public native @ByVal VectorFloat2 getVertex(@MachineSizedUInt long index);
     @Method(selector = "encodeWithCoder:")

@@ -66,11 +66,11 @@ import org.robovm.apple.imageio.*;
     @Property(selector = "vertexCount")
     public native @MachineSizedUInt long getVertexCount();
     @Property(selector = "vertices")
-    public native VectorFloat3.VectorFloat3Ptr getVertices();
+    public native VectorFloat3 getVertices();
     @Property(selector = "textureCoordinateCount")
     public native @MachineSizedUInt long getTextureCoordinateCount();
     @Property(selector = "textureCoordinates")
-    public native VectorFloat2.VectorFloat2Ptr getTextureCoordinates();
+    public native VectorFloat2 getTextureCoordinates();
     @Property(selector = "triangleCount")
     public native @MachineSizedUInt long getTriangleCount();
     @Property(selector = "triangleIndices")

@@ -63,12 +63,12 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "double4x4AtTime:")
     public native @ByVal MatrixDouble4x4 double4x4AtTime(double time);
     @Method(selector = "resetWithFloat4x4Array:atTimes:count:")
-    public native void resetWithFloat4x4Array(MatrixFloat4x4.MatrixFloat4x4Ptr valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
+    public native void resetWithFloat4x4Array(MatrixFloat4x4 valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
     @Method(selector = "resetWithDouble4x4Array:atTimes:count:")
-    public native void resetWithDouble4x4Array(MatrixDouble4x4.MatrixDouble4x4Ptr valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
+    public native void resetWithDouble4x4Array(MatrixDouble4x4 valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
     @Method(selector = "getFloat4x4Array:maxCount:")
-    public native @MachineSizedUInt long getFloat4x4Array(MatrixFloat4x4.MatrixFloat4x4Ptr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getFloat4x4Array(MatrixFloat4x4 valuesArray, @MachineSizedUInt long maxCount);
     @Method(selector = "getDouble4x4Array:maxCount:")
-    public native @MachineSizedUInt long getDouble4x4Array(MatrixDouble4x4.MatrixDouble4x4Ptr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getDouble4x4Array(MatrixDouble4x4 valuesArray, @MachineSizedUInt long maxCount);
     /*</methods>*/
 }
