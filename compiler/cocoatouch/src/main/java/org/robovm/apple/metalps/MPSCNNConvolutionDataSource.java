@@ -63,7 +63,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "label")
     String label();
     @Method(selector = "rangesForUInt8Kernel")
-    VectorFloat2.VectorFloat2Ptr rangesForUInt8Kernel();
+    VectorFloat2 rangesForUInt8Kernel();
     @Method(selector = "lookupTableForUInt8Kernel")
     FloatPtr lookupTableForUInt8Kernel();
     @Method(selector = "weightsQuantizationType")

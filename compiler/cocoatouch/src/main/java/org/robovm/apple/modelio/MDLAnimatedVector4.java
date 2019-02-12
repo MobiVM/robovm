@@ -63,12 +63,12 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "double4AtTime:")
     public native @ByVal VectorDouble4 double4AtTime(double time);
     @Method(selector = "resetWithFloat4Array:atTimes:count:")
-    public native void resetWithFloat4Array(VectorFloat4.VectorFloat4Ptr valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
+    public native void resetWithFloat4Array(VectorFloat4 valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
     @Method(selector = "resetWithDouble4Array:atTimes:count:")
-    public native void resetWithDouble4Array(VectorDouble4.VectorDouble4Ptr valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
+    public native void resetWithDouble4Array(VectorDouble4 valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
     @Method(selector = "getFloat4Array:maxCount:")
-    public native @MachineSizedUInt long getFloat4Array(VectorFloat4.VectorFloat4Ptr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getFloat4Array(VectorFloat4 valuesArray, @MachineSizedUInt long maxCount);
     @Method(selector = "getDouble4Array:maxCount:")
-    public native @MachineSizedUInt long getDouble4Array(VectorDouble4.VectorDouble4Ptr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getDouble4Array(VectorDouble4 valuesArray, @MachineSizedUInt long maxCount);
     /*</methods>*/
 }

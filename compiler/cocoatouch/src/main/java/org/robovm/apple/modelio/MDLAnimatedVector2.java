@@ -63,11 +63,11 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "double2AtTime:")
     public native FunctionPtr double2AtTime(double time);
     @Method(selector = "resetWithFloat2Array:atTimes:count:")
-    public native void resetWithFloat2Array(VectorFloat2.VectorFloat2Ptr valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
+    public native void resetWithFloat2Array(VectorFloat2 valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
     @Method(selector = "resetWithDouble2Array:atTimes:count:")
     public native void resetWithDouble2Array(FunctionPtr.FunctionPtrPtr valuesArray, DoublePtr timesArray, @MachineSizedUInt long count);
     @Method(selector = "getFloat2Array:maxCount:")
-    public native @MachineSizedUInt long getFloat2Array(VectorFloat2.VectorFloat2Ptr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getFloat2Array(VectorFloat2 valuesArray, @MachineSizedUInt long maxCount);
     @Method(selector = "getDouble2Array:maxCount:")
     public native @MachineSizedUInt long getDouble2Array(FunctionPtr.FunctionPtrPtr valuesArray, @MachineSizedUInt long maxCount);
     /*</methods>*/

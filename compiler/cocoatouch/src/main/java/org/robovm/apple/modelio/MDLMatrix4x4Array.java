@@ -64,12 +64,12 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithElementCount:")
     protected native @Pointer long init(@MachineSizedUInt long arrayElementCount);
     @Method(selector = "setFloat4x4Array:count:")
-    public native void setFloat4x4Array(MatrixFloat4x4.MatrixFloat4x4Ptr valuesArray, @MachineSizedUInt long count);
+    public native void setFloat4x4Array(MatrixFloat4x4 valuesArray, @MachineSizedUInt long count);
     @Method(selector = "setDouble4x4Array:count:")
-    public native void setDouble4x4Array(MatrixDouble4x4.MatrixDouble4x4Ptr valuesArray, @MachineSizedUInt long count);
+    public native void setDouble4x4Array(MatrixDouble4x4 valuesArray, @MachineSizedUInt long count);
     @Method(selector = "getFloat4x4Array:maxCount:")
-    public native @MachineSizedUInt long getFloat4x4Array(MatrixFloat4x4.MatrixFloat4x4Ptr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getFloat4x4Array(MatrixFloat4x4 valuesArray, @MachineSizedUInt long maxCount);
     @Method(selector = "getDouble4x4Array:maxCount:")
-    public native @MachineSizedUInt long getDouble4x4Array(MatrixDouble4x4.MatrixDouble4x4Ptr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getDouble4x4Array(MatrixDouble4x4 valuesArray, @MachineSizedUInt long maxCount);
     /*</methods>*/
 }

@@ -64,7 +64,7 @@ import org.robovm.apple.imageio.*;
     @Property(selector = "count")
     public native @MachineSizedUInt long getCount();
     @Property(selector = "points")
-    public native VectorFloat3.VectorFloat3Ptr getPoints();
+    public native VectorFloat3 getPoints();
     @Property(selector = "identifiers")
     public native LongPtr getIdentifiers();
     @Property(selector = "supportsSecureCoding")
