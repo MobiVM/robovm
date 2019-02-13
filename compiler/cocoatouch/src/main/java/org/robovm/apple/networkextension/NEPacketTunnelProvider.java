@@ -72,7 +72,7 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "cancelTunnelWithError:")
-    public native void cancelTunnelWithError(NSError error);
+    public native void cancelTunnel(NSError error);
     /**
      * @since Available in iOS 9.0 and later.
      */

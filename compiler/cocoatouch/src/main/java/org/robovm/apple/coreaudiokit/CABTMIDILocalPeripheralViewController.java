@@ -50,6 +50,10 @@ import org.robovm.apple.uikit.*;
     public CABTMIDILocalPeripheralViewController() {}
     protected CABTMIDILocalPeripheralViewController(Handle h, long handle) { super(h, handle); }
     protected CABTMIDILocalPeripheralViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public CABTMIDILocalPeripheralViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public CABTMIDILocalPeripheralViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

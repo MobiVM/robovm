@@ -53,6 +53,8 @@ import org.robovm.apple.imageio.*;
     public VNDetectTextRectanglesRequest() {}
     protected VNDetectTextRectanglesRequest(Handle h, long handle) { super(h, handle); }
     protected VNDetectTextRectanglesRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCompletionHandler:")
+    public VNDetectTextRectanglesRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "reportCharacterBoxes")
@@ -62,6 +64,12 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="VNDetectTextRectanglesRequestRevision1", optional=true)
+    public static native @MachineSizedUInt long getRevision1();
+    
     
     /*</methods>*/
 }

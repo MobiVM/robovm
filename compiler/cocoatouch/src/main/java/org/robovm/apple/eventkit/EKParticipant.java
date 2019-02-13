@@ -78,7 +78,7 @@ import org.robovm.apple.mapkit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use contactPredicate instead
      */
     @Deprecated
     @WeaklyLinked

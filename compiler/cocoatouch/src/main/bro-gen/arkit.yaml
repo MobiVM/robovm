@@ -16,22 +16,35 @@ enums:
     ARTrackingState: {}
     ARTrackingStateReason: {}
     ARPlaneAnchorAlignment: {}
+    AREnvironmentTexturing: {}
+    ARWorldMappingStatus: {}
+    ARPlaneClassificationStatus: {}
+    ARPlaneClassification: {}
 
 classes:
-
     ARSCNDebugOptions: {} # struct
 
-    ARAnchor: {} #since 11.0
+    ARAnchor: #since 11.0
+        methods:
+            '-initWithName:transform:':
+                name: init
+            '-initWithTransform:':
+                name: init
     ARCamera: #since 11.0
         methods:
             '-projectPoint:orientation:viewportSize:':
                 trim_after_first_colon: true
             '-projectionMatrixForOrientation:viewportSize:zNear:zFar:':
                 name: getProjectionMatrix
+            '-unprojectPoint:ontoPlaneWithTransform:orientation:viewportSize:':
+                trim_after_first_colon: true
     ARConfiguration: {} #since 11.0
     ARDirectionalLightEstimate: {} #since 11.0
     ARFaceAnchor: {} #since 11.0
-    ARFaceGeometry: {} #since 11.0
+    ARFaceGeometry: #since 11.0
+        methods:
+            '-initWithBlendShapes:':
+                name: init
     ARFaceTrackingConfiguration:  #since 11.0
         skip_def_constructor: true
         methods:
@@ -59,9 +72,14 @@ classes:
             '+faceGeometryWithDevice:fillMesh:':
                 name: create
                 constructor: true
+            '+faceGeometryWithDevice:':
+                name: create
+                constructor: true
     ARSCNView: #since 11.0
         methods:
             '-hitTest:types:':
+                trim_after_first_colon: true
+            '-unprojectPoint:ontoPlaneWithTransform:':
                 trim_after_first_colon: true
     ARSKView: #since 11.0
         methods:
@@ -71,6 +89,12 @@ classes:
         methods:
             '-runWithConfiguration:options:':
                 name: run
+            '-createReferenceObjectWithTransform:center:extent:completionHandler:':
+                name: createReferenceObject
+            '-runWithConfiguration:':
+                name: run
+            '-getCurrentWorldMapWithCompletionHandler:':
+                name: getCurrentWorldMap
     ARWorldTrackingConfiguration:  #since 11.0
         skip_def_constructor: true
         methods:
@@ -87,8 +111,39 @@ classes:
                 name: init
             '+referenceImagesInGroupNamed:bundle:':
                 name: getReferenceImagesInGroup
-    ARSCNPlaneGeometry: {} #since 11.3
+    ARSCNPlaneGeometry: #since 11.3
+        methods:
+            '+planeGeometryWithDevice:':
+                name: create
+                constructor: true
     ARVideoFormat: {} #since 11.3
+    AREnvironmentProbeAnchor: #since 12.0
+        methods:
+            '-initWithTransform:extent:':
+                name: init
+            '-initWithName:transform:extent:':
+                name: init
+    ARImageTrackingConfiguration:  #since 12.0
+        methods:
+            '+new':
+                name: newConfiguration
+    ARObjectAnchor: {} #since 12.0
+    ARObjectScanningConfiguration:  #since 12.0
+        methods:
+            '+new':
+                name: newConfiguration
+    ARReferenceObject: #since 12.0
+        methods:
+            '-initWithArchiveURL:error:':
+                name: init
+            '-exportObjectToURL:previewImage:error:':
+                name: exportObject
+            '-referenceObjectByMergingObject:error:':
+                name: referenceObjectByMerging
+            '+referenceObjectsInGroupNamed:bundle:':
+                name: referenceObjectsInGroup
+    ARWorldMap: {} #since 12.0
+
 protocols:
     ARSCNViewDelegate: #since 11.0
         methods:
@@ -133,7 +188,8 @@ protocols:
             '-session:didOutputAudioSampleBuffer:':
                 name: didOutputAudioSampleBuffer
     ARTrackable: {} #since 11.0
-
+    ARAnchorCopying:  #since 12.0
+        skip_adapter: true
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (AR.*):
@@ -153,6 +209,10 @@ values:
     ARSCN(DebugOption.*):
         class: ARSCNView
         name: '#{g[0]}'
+
+    ARReferenceObjectArchiveExtension:
+        class: ARReferenceObject
+        name: getArchiveExtension
 
 
     # Make sure we don't miss any values if new ones are introduced in a later version

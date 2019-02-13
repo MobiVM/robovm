@@ -34,7 +34,9 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
+ * @deprecated Deprecated in iOS 12.0.
  */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*/@Library("SafariServices") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SFAuthenticationSession/*</name>*/ 

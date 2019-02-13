@@ -130,6 +130,16 @@ import org.robovm.apple.intents.*;
      */
     @Property(selector = "setTextContentType:")
     void setTextContentType(UITextContentType v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "passwordRules")
+    UITextInputPasswordRules getPasswordRules();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setPasswordRules:")
+    void setPasswordRules(UITextInputPasswordRules v);
     /*</properties>*/
     /*<methods>*/
     

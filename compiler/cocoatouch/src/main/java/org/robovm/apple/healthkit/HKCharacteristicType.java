@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKCharacteristicType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKCharacteristicType() {}
+    protected HKCharacteristicType() {}
     protected HKCharacteristicType(Handle h, long handle) { super(h, handle); }
     protected HKCharacteristicType(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

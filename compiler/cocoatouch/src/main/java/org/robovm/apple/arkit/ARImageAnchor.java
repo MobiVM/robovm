@@ -48,7 +48,7 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ARImageAnchor/*</name>*/ 
     extends /*<extends>*/ARAnchor/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements ARTrackable/*</implements>*/ {
 
     /*<ptr>*/public static class ARImageAnchorPtr extends Ptr<ARImageAnchor, ARImageAnchorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ARImageAnchor.class); }/*</bind>*/
@@ -61,6 +61,8 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "referenceImage")
     public native ARReferenceImage getReferenceImage();
+    @Property(selector = "isTracked")
+    public native boolean isTracked();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

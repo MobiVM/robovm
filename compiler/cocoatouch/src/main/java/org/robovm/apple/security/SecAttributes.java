@@ -840,23 +840,6 @@ import org.robovm.apple.dispatch.*;
         return this;
     }
     /**
-     * @since Available in iOS 2.0 and later.
-     */
-    public List<CFType> getItemList() {
-        if (has(Keys.UseItemList())) {
-            CFArray val = get(Keys.UseItemList(), CFArray.class);
-            return val.toList(CFType.class);
-        }
-        return null;
-    }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    public SecAttributes setItemList(List<CFType> itemList) {
-        set(Keys.UseItemList(), CFArray.create(itemList));
-        return this;
-    }
-    /**
      * @since Available in iOS 8.0 and later.
      */
     public String getOperationPrompt() {
@@ -875,7 +858,7 @@ import org.robovm.apple.dispatch.*;
     }
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use kSecUseAuthenticationUI instead.
      */
     @Deprecated
     public boolean usesNoAuthenticationUI() {
@@ -887,7 +870,7 @@ import org.robovm.apple.dispatch.*;
     }
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use kSecUseAuthenticationUI instead.
      */
     @Deprecated
     public SecAttributes setUsesNoAuthenticationUI(boolean usesNoAuthenticationUI) {
@@ -1180,18 +1163,13 @@ import org.robovm.apple.dispatch.*;
         @GlobalValue(symbol="kSecAttrPersistentReference", optional=true)
         public static native CFType PersistentReference();
         /**
-         * @since Available in iOS 2.0 and later.
-         */
-        @GlobalValue(symbol="kSecUseItemList", optional=true)
-        public static native CFType UseItemList();
-        /**
          * @since Available in iOS 8.0 and later.
          */
         @GlobalValue(symbol="kSecUseOperationPrompt", optional=true)
         public static native CFType UseOperationPrompt();
         /**
          * @since Available in iOS 8.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use kSecUseAuthenticationUI instead.
          */
         @Deprecated
         @GlobalValue(symbol="kSecUseNoAuthenticationUI", optional=true)

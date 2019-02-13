@@ -46,7 +46,7 @@ import org.robovm.apple.foundation.*;
     protected CSLocalizedString(Handle h, long handle) { super(h, handle); }
     protected CSLocalizedString(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLocalizedStrings:")
-    public CSLocalizedString(NSDictionary<?, ?> localizedStrings) { super((SkipInit) null); initObject(initWithLocalizedStrings(localizedStrings)); }
+    public CSLocalizedString(NSDictionary<?, ?> localizedStrings) { super((SkipInit) null); initObject(init(localizedStrings)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -54,7 +54,7 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithLocalizedStrings:")
-    protected native @Pointer long initWithLocalizedStrings(NSDictionary<?, ?> localizedStrings);
+    protected native @Pointer long init(NSDictionary<?, ?> localizedStrings);
     @Method(selector = "localizedString")
     public native String localizedString();
     /*</methods>*/

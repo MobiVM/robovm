@@ -49,7 +49,7 @@ import org.robovm.apple.coregraphics.*;
     protected MDLAnimatedQuaternionArray(Handle h, long handle) { super(h, handle); }
     protected MDLAnimatedQuaternionArray(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithElementCount:")
-    public MDLAnimatedQuaternionArray(@MachineSizedUInt long arrayElementCount) { super((SkipInit) null); initObject(initWithElementCount(arrayElementCount)); }
+    public MDLAnimatedQuaternionArray(@MachineSizedUInt long arrayElementCount) { super((SkipInit) null); initObject(init(arrayElementCount)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "elementCount")
@@ -58,22 +58,22 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithElementCount:")
-    protected native @Pointer long initWithElementCount(@MachineSizedUInt long arrayElementCount);
+    protected native @Pointer long init(@MachineSizedUInt long arrayElementCount);
     @Method(selector = "setFloatQuaternionArray:count:atTime:")
-    public native void setFloatQuaternionArray(VectorFloat4.VectorFloat4Ptr array, @MachineSizedUInt long count, double time);
+    public native void setFloatQuaternionArray(VectorFloat4 array, @MachineSizedUInt long count, double time);
     @Method(selector = "setDoubleQuaternionArray:count:atTime:")
-    public native void setDoubleQuaternionArray(VectorFloat4.VectorFloat4Ptr array, @MachineSizedUInt long count, double time);
+    public native void setDoubleQuaternionArray(VectorFloat4 array, @MachineSizedUInt long count, double time);
     @Method(selector = "getFloatQuaternionArray:maxCount:atTime:")
-    public native @MachineSizedUInt long getFloatQuaternionArray(VectorFloat4.VectorFloat4Ptr array, @MachineSizedUInt long maxCount, double time);
+    public native @MachineSizedUInt long getFloatQuaternionArray(VectorFloat4 array, @MachineSizedUInt long maxCount, double time);
     @Method(selector = "getDoubleQuaternionArray:maxCount:atTime:")
-    public native @MachineSizedUInt long getDoubleQuaternionArray(VectorFloat4.VectorFloat4Ptr array, @MachineSizedUInt long maxCount, double time);
+    public native @MachineSizedUInt long getDoubleQuaternionArray(VectorFloat4 array, @MachineSizedUInt long maxCount, double time);
     @Method(selector = "resetWithFloatQuaternionArray:count:atTimes:count:")
-    public native void resetWithFloatQuaternionArray(VectorFloat4.VectorFloat4Ptr valuesArray, @MachineSizedUInt long valuesCount, DoublePtr timesArray, @MachineSizedUInt long timesCount);
+    public native void resetWithFloatQuaternionArray(VectorFloat4 valuesArray, @MachineSizedUInt long valuesCount, DoublePtr timesArray, @MachineSizedUInt long timesCount);
     @Method(selector = "resetWithDoubleQuaternionArray:count:atTimes:count:")
-    public native void resetWithDoubleQuaternionArray(VectorFloat4.VectorFloat4Ptr valuesArray, @MachineSizedUInt long valuesCount, DoublePtr timesArray, @MachineSizedUInt long timesCount);
+    public native void resetWithDoubleQuaternionArray(VectorFloat4 valuesArray, @MachineSizedUInt long valuesCount, DoublePtr timesArray, @MachineSizedUInt long timesCount);
     @Method(selector = "getFloatQuaternionArray:maxCount:")
-    public native @MachineSizedUInt long getFloatQuaternionArray(VectorFloat4.VectorFloat4Ptr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getFloatQuaternionArray(VectorFloat4 valuesArray, @MachineSizedUInt long maxCount);
     @Method(selector = "getDoubleQuaternionArray:maxCount:")
-    public native @MachineSizedUInt long getDoubleQuaternionArray(VectorFloat4.VectorFloat4Ptr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getDoubleQuaternionArray(VectorFloat4 valuesArray, @MachineSizedUInt long maxCount);
     /*</methods>*/
 }

@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.*;
     protected CSSearchableItemAttributeSet(Handle h, long handle) { super(h, handle); }
     protected CSSearchableItemAttributeSet(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithItemContentType:")
-    public CSSearchableItemAttributeSet(String itemContentType) { super((SkipInit) null); initObject(initWithItemContentType(itemContentType)); }
+    public CSSearchableItemAttributeSet(String itemContentType) { super((SkipInit) null); initObject(init(itemContentType)); }
     @Method(selector = "initWithCoder:")
     public CSSearchableItemAttributeSet(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -880,7 +880,7 @@ import org.robovm.apple.foundation.*;
     public static native String MailboxArchive();
     
     @Method(selector = "initWithItemContentType:")
-    protected native @Pointer long initWithItemContentType(String itemContentType);
+    protected native @Pointer long init(String itemContentType);
     @Method(selector = "setValue:forCustomKey:")
     public native void setValue(NSSecureCoding value, CSCustomAttributeKey key);
     @Method(selector = "valueForCustomKey:")

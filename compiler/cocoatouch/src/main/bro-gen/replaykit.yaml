@@ -5,6 +5,8 @@ framework: ReplayKit
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/ReplayKit.framework/Headers/ReplayKit.h
+private_typedefs:
+    CGRect: '@ByVal org.robovm.apple.coregraphics.CGRect'
 typedefs: {}
     
 enums:
@@ -14,7 +16,12 @@ enums:
     RPCameraPosition: {}
 
 classes:
-    RPBroadcastController: {}
+    RPBroadcastController: #since 10.0
+        methods:
+            '-startBroadcastWithHandler:':
+                name: startBroadcast
+            '-finishBroadcastWithHandler:':
+                name: finishBroadcast
     RPBroadcastActivityViewController:
         methods:
             '+loadBroadcastActivityViewControllerWithHandler:':
@@ -36,6 +43,12 @@ classes:
                 parameters:
                     'sampleBuffer':
                           type: 'org.robovm.apple.coremedia.CMSampleBuffer'
+            '-broadcastStartedWithSetupInfo:':
+                name: broadcastStarted
+            '-broadcastAnnotatedWithApplicationInfo:':
+                name: broadcastAnnotated
+            '-finishBroadcastWithError:':
+                name: finish
 
     RPRecordingError: # DONE
         extends: NSError
@@ -60,6 +73,12 @@ classes:
                 exclude: true
             '-startCaptureWithHandler:completionHandler:':
                 name: startCapture
+            '-startRecordingWithHandler:':
+                name: startRecording
+            '-stopCaptureWithHandler:':
+                name: stopCapture
+    RPSystemBroadcastPickerView: {} #since 12.0
+
 protocols:
     RPBroadcastActivityViewControllerDelegate:
         skip_adapter: true
@@ -104,7 +123,15 @@ values:
     RPRecordingErrorDomain:
         class: RPRecordingError
         name: getClassDomain
-    
+
+    RPApplicationInfoBundleIdentifierKey:
+        name: getApplicationInfoBundleIdentifierKey
+        class: RPBroadcastHandler
+
+    RPVideoSampleOrientationKey:
+        name: getVideoSampleOrientationKey
+        class: RPBroadcastHandler
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?RP.*):
         class: ReplayKit

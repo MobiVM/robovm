@@ -181,6 +181,8 @@ classes:
                 name: getPredicateForEvaluatingTriggerOccurringAfterDate
             '+predicateForEvaluatingTriggerWithCharacteristic:relatedBy:toValue:':
                 name: getPredicateForEvaluatingTrigger
+            '+predicateForEvaluatingTriggerWithPresence:':
+                name: getPredicateForEvaluatingTrigger
             '-initWithName:events:endEvents:recurrences:predicate:':
                   name: init
             '-updateEvents:completionHandler:':
@@ -269,6 +271,8 @@ classes:
             '-removeTrigger:completionHandler:':
                 trim_after_first_colon: true
             '-addAndSetupAccessoriesWithPayload:completionHandler:':
+                name: addAndSetupAccessories
+            '-addAndSetupAccessoriesWithCompletionHandler:':
                 name: addAndSetupAccessories
     HMHomeAccessControl: # DONE
         skip_def_constructor: true
@@ -380,13 +384,19 @@ classes:
     HMCameraSnapshotControl: {}
     HMCameraControl: {}
     HMCameraView: {}
-    HMCalendarEvent: {} #since 11.0
+    HMCalendarEvent: #since 11.0
+        methods:
+            '-initWithFireDateComponents:':
+                name: init
     HMCharacteristicThresholdRangeEvent: #since 11.0
         methods:
             '-initWithCharacteristic:thresholdRange:':
                 #trim_after_first_colon: true
                 name: initWithCharacteristic$thresholdRange$
-    HMDurationEvent: {} #since 11.0
+    HMDurationEvent: #since 11.0
+        methods:
+            '-initWithDuration:':
+                name: init
     HMMutableCalendarEvent: {} #since 11.0
     HMMutableCharacteristicEvent: { skip_def_constructor: true } #since 11.0
     HMMutableCharacteristicThresholdRangeEvent: {} #since 11.0
@@ -398,6 +408,11 @@ classes:
         methods:
             '+numberRangeWithMinValue:maxValue:':
                 name: create
+                constructor: true
+            '+numberRangeWithMinValue:':
+                name: createWithMinValue
+            '+numberRangeWithMaxValue:':
+                name: createWithMaxValue
     HMPresenceEvent: #since 11.0
         methods:
             '-initWithPresenceEventType:presenceUserType:':
@@ -408,8 +423,10 @@ classes:
                 name: init
     HMTimeEvent: {} #since 11.0
     HMAccessControl: {} #since 11.2
-    HMAccessorySetupPayload: {} #since 11.3
-
+    HMAccessorySetupPayload: #since 11.3
+        methods:
+            '-initWithURL:':
+                name: init
 protocols:
     HMAccessoryBrowserDelegate: # DONE
         methods:

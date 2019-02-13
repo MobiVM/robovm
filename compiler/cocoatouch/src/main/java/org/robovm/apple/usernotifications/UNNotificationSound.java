@@ -51,15 +51,35 @@ import org.robovm.apple.foundation.*;
     public UNNotificationSound(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "defaultSound")
+    public static native UNNotificationSound getDefaultSound();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "defaultCriticalSound")
+    public static native UNNotificationSound getDefaultCriticalSound();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "defaultSound")
-    public static native UNNotificationSound defaultSound();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "defaultCriticalSoundWithAudioVolume:")
+    public static native UNNotificationSound getDefaultCriticalSound(float volume);
     @Method(selector = "soundNamed:")
     public static native UNNotificationSound soundNamed(String name);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "criticalSoundNamed:")
+    public static native UNNotificationSound getCriticalSound(String name);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "criticalSoundNamed:withAudioVolume:")
+    public static native UNNotificationSound getCriticalSound(String name, float volume);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

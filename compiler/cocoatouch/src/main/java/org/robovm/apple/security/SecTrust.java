@@ -273,7 +273,9 @@ import org.robovm.apple.dispatch.*;
     public native double getVerifyTime();
     /**
      * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 100000.0.
      */
+    @Deprecated
     @Bridge(symbol="SecTrustEvaluate", optional=true)
     protected native OSStatus evaluate0(IntPtr result);
     /**
@@ -282,6 +284,11 @@ import org.robovm.apple.dispatch.*;
     @WeaklyLinked
     @Bridge(symbol="SecTrustEvaluateAsync", optional=true)
     protected native OSStatus evaluateAsync0(DispatchQueue queue, @Block VoidBlock2<SecTrust, SecTrustResultType> result);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="SecTrustEvaluateWithError", optional=true)
+    public native boolean evaluateWithError(NSError error);
     /**
      * @since Available in iOS 7.0 and later.
      */

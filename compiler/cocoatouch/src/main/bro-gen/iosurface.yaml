@@ -20,7 +20,6 @@ enums:
     IOSurfacePurgeabilityState: {prefix: kIOSurfacePurgeable}
     IOSurfaceCacheMode: {prefix: kIOSurface, first: kIOSurfaceDefaultCache}
     IOSurfaceMemoryMapMode: {prefix: kIOSurfaceMap, first: kIOSurfaceMapCacheShift}
-    IOSurfaceComponentType: {prefix: kIOSurfaceComponentName}
     IOSurfaceComponentType: {prefix: kIOSurfaceComponentType}
     IOSurfaceComponentRange: {prefix: kIOSurfaceComponentRange}
     IOSurfaceSubsampling: {prefix: kIOSurfaceSubsampling}
@@ -37,7 +36,8 @@ classes:
                 name: setAttachment
             '-setPurgeable:oldState:':
                 name: setPurgeable
-
+            '-initWithProperties:':
+                name: init
 protocols:
 
 functions:

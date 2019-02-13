@@ -1,0 +1,440 @@
+package: org.robovm.apple.network
+include: [foundation, dispatch, security]
+library: Network
+framework: Network
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/Network.framework/Headers/Network.h
+
+private_typedefs:
+    dispatch_data_t: DispatchData
+    '__CFError *': NSError
+
+typedefs: {}
+    
+enums:
+    nw_endpoint_type_t: {prefix: nw_endpoint_type_, name: NWEndpointType}
+    nw_interface_type_t: {prefix: nw_interface_type_, name: NWInterfaceType}
+    nw_service_class_t: {prefix: nw_service_class_, name: NWServiceClass}
+    nw_multipath_service_t: {prefix: nw_multipath_service_, name: NWMultipathService}
+    nw_parameters_expired_dns_behavior_t: {prefix: nw_parameters_expired_dns_behavior_, name: NWParametersExpiredDnsBehavior, nw_parameters_expired_dns_behavior_default: defaultBehaviour}
+    nw_path_status_t: {prefix: nw_path_status_, name: NWPathStatus}
+    nw_error_domain_t: {prefix: nw_error_domain_, name: NWErrorDomain}
+    nw_connection_state_t: {prefix: nw_connection_state_, name: NWConnectionState}
+    nw_ip_version_t: {prefix: nw_ip_version_, name: NWIpVersion}
+    nw_ip_ecn_flag_t: {prefix: nw_ip_ecn_flag_, name: NWIpEcnFlag}
+    nw_listener_state_t: {prefix: nw_listener_state_, name: NWListenerState}
+
+classes: {}
+
+protocols:
+    OS_nw_object:
+        exclude: true
+
+    OS_nw_advertise_descriptor:
+        class: true
+        name: NWAdvertiseDescriptor
+        extends: NWObject
+        visibility: 'public final'
+    NWAdvertiseDescriptor:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_advertise_descriptor")']
+
+    OS_nw_connection:
+        class: true
+        name: NWConnection
+        extends: NWObject
+        visibility: 'public final'
+    NWConnection: # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_connection")']
+
+    OS_nw_content_context:
+        class: true
+        name: NWContentContext
+        extends: NWObject
+        visibility: 'public final'
+    NWContentContext:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_content_context")']
+
+    OS_nw_endpoint:
+        class: true
+        name: NWEndpoint
+        extends: NWObject
+        visibility: 'public final'
+    NWEndpoint:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_endpoint")']
+
+    OS_nw_error:
+        class: true
+        name: NWError
+        extends: NWObject
+        visibility: 'public final'
+    NWError:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_error")']
+
+    OS_nw_interface:
+        class: true
+        name: NWInterface
+        extends: NWObject
+        visibility: 'public final'
+    NWInterface:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_interface")']
+
+    OS_nw_listener:
+        class: true
+        name: NWListener
+        extends: NWObject
+        visibility: 'public final'
+    NWListener:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_listener")']
+
+    OS_nw_parameters:
+        class: true
+        name: NWParameters
+        extends: NWObject
+        visibility: 'public final'
+    NWParameters:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_parameters")']
+
+    OS_nw_path:
+        class: true
+        name: NWPath
+        extends: NWObject
+        visibility: 'public final'
+    NWPath:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_path")']
+
+    OS_nw_path_monitor:
+        class: true
+        name: NWPathMonitor
+        extends: NWObject
+        visibility: 'public final'
+    NWPathMonitor:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_path_monitor")']
+
+    OS_nw_protocol_definition:
+        class: true
+        name: NWProtocolDefinition
+        extends: NWObject
+        visibility: 'public final'
+    NWProtocolDefinition:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_protocol_definition")']
+
+    OS_nw_protocol_metadata:
+        class: true
+        name: NWProtocolMetadata
+        extends: NWObject
+        visibility: 'public final'
+    NWProtocolMetadata:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_protocol_metadata")']
+
+    OS_nw_protocol_options:
+        class: true
+        name: NWProtocolOptions
+        extends: NWObject
+        visibility: 'public final'
+    NWProtocolOptions:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_protocol_options")']
+
+    OS_nw_protocol_stack:
+        class: true
+        name: NWProtocolStack
+        extends: NWObject
+        visibility: 'public final'
+    NWProtocolStack:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeProtocolProxy("OS_nw_protocol_stack")']
+
+functions:
+
+    nw_advertise_descriptor_(.*)_(.*)_(.*)_(.*):
+        class: NWAdvertiseDescriptor
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+    nw_advertise_descriptor_(.*)_(.*)_(.*):
+        class: NWAdvertiseDescriptor
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+    nw_advertise_descriptor_(.*)_(.*):
+        class: NWAdvertiseDescriptor
+        name: '#{g[0]}#{g[1].camelize}'
+    nw_advertise_descriptor_(.*):
+        class: NWAdvertiseDescriptor
+        name: '#{g[0]}'
+
+    nw_content_context_get_is_final:
+        class: NWContentContext
+        name: isFinal
+    nw_content_context_(.*)_(.*)_(.*)_(.*):
+        class: NWContentContext
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+    nw_content_context_(.*)_(.*)_(.*):
+        class: NWContentContext
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+    nw_content_context_(.*)_(.*):
+        class: NWContentContext
+        name: '#{g[0]}#{g[1].camelize}'
+    nw_content_context_(.*):
+        class: NWContentContext
+        name: '#{g[0]}'
+
+    nw_connection_(.*)_(.*)_(.*)_(.*)_(.*):
+        class: NWConnection
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}#{g[4].camelize}'
+    nw_connection_(.*)_(.*)_(.*)_(.*):
+        class: NWConnection
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+    nw_connection_(.*)_(.*)_(.*):
+        class: NWConnection
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+    nw_connection_(.*)_(.*):
+        class: NWConnection
+        name: '#{g[0]}#{g[1].camelize}'
+    nw_connection_(.*):
+        class: NWConnection
+        name: '#{g[0]}'
+
+    # TODO: don't want to bother with sockaddr
+    nw_endpoint_create_address:
+        exclude: true
+    nw_endpoint_get_address:
+        exclude: true
+    nw_endpoint_create_host:
+        class: NWEndpoint
+        name: createHost
+        parameters:
+            hostname: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            port: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+    nw_endpoint_get_hostname:
+        class: NWEndpoint
+        name: getHostName
+        return_type: '@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String'
+    nw_endpoint_create_bonjour_service:
+        class: NWEndpoint
+        name: createBonjourService
+        parameters:
+            name: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            type: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            domain: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+    nw_endpoint_get_bonjour_service_name:
+        class: NWEndpoint
+        name: getBonjourServiceName
+        return_type: '@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String'
+    nw_endpoint_get_bonjour_service_type:
+        class: NWEndpoint
+        name: getBonjourServiceType
+        return_type: '@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String'
+    nw_endpoint_get_bonjour_service_domain:
+        class: NWEndpoint
+        name: getBonjourServiceDomain
+        return_type: '@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String'
+    nw_endpoint_(.*)_(.*)_(.*)_(.*):
+        class: NWEndpoint
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+    nw_endpoint_(.*)_(.*)_(.*):
+        class: NWEndpoint
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+    nw_endpoint_(.*)_(.*):
+        class: NWEndpoint
+        name: '#{g[0]}#{g[1].camelize}'
+    nw_endpoint_(.*):
+        class: NWEndpoint
+        name: '#{g[0]}'
+
+    nw_error_(.*)_(.*)_(.*)_(.*):
+        class: NWError
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+    nw_error_(.*)_(.*)_(.*):
+        class: NWError
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+    nw_error_(.*)_(.*):
+        class: NWError
+        name: '#{g[0]}#{g[1].camelize}'
+    nw_error_(.*):
+        class: NWError
+        name: '#{g[0]}'
+
+    nw_interface_(.*)_(.*):
+        class: NWInterface
+        name: '#{g[0]}#{g[1].camelize}'
+
+    nw_parameters_copy:
+        class: NWParameters
+        name: copyParameters # otherwise it will break compiler on synthetic bridged method from NSObject
+
+    nw_parameters_(.*)_(.*)_(.*)_(.*)_(.*):
+        class: NWParameters
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}#{g[4].camelize}'
+        parameters:
+            interface:
+                name: inf
+    nw_parameters_(.*)_(.*)_(.*)_(.*):
+        class: NWParameters
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+        parameters:
+            interface:
+                name: inf
+    nw_parameters_(.*)_(.*)_(.*):
+        class: NWParameters
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+        parameters:
+            interface:
+                name: inf
+    nw_parameters_(.*)_(.*):
+        class: NWParameters
+        name: '#{g[0]}#{g[1].camelize}'
+        parameters:
+            interface:
+                name: inf
+    nw_parameters_(.*):
+        class: NWParameters
+        name: '#{g[0]}'
+        parameters:
+            interface:
+                name: inf
+
+    nw_path_monitor_(.*)_(.*)_(.*)_(.*):
+        class: NWPathMonitor
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+    nw_path_monitor_(.*)_(.*)_(.*):
+        class: NWPathMonitor
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+    nw_path_monitor_(.*)_(.*):
+        class: NWPathMonitor
+        name: '#{g[0]}#{g[1].camelize}'
+    nw_path_monitor_(.*):
+        class: NWPathMonitor
+        name: '#{g[0]}'
+
+    nw_path_(.*)_(.*)_(.*)_(.*):
+        class: NWPath
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+    nw_path_(.*)_(.*)_(.*):
+        class: NWPath
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+    nw_path_(.*)_(.*):
+        class: NWPath
+        name: '#{g[0]}#{g[1].camelize}'
+    nw_path_(.*):
+        class: NWPath
+        name: '#{g[0]}'
+
+    nw_protocol_definition_(.*)_(.*):
+        class: NWProtocolDefinition
+        name: '#{g[0]}#{g[1].camelize}'
+    nw_protocol_copy_(.*)_definition:
+        class: NWProtocolDefinition
+        name: 'copy#{g[0]}Definition'
+
+    nw_protocol_metadata_(.*)_(.*):
+        class: NWProtocolMetadata
+        name: '#{g[0]}#{g[1].camelize}'
+
+    nw_protocol_options_(.*)_(.*):
+        class: NWProtocolOptions
+        name: '#{g[0]}#{g[1].camelize}'
+    nw_(.*)_options_set_(.*)_(.*)_(.*):
+        class: NWProtocolOptions
+        name: 'set#{g[0].camelize}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+    nw_(.*)_options_set_(.*)_(.*):
+        class: NWProtocolOptions
+        name: 'set#{g[0].camelize}#{g[1].camelize}#{g[2].camelize}'
+    nw_(.*)_options_set_(.*):
+        class: NWProtocolOptions
+        name: 'set#{g[0].camelize}#{g[1].camelize}'
+    nw_(.*)_create_options:
+        class: NWProtocolOptions
+        name: 'create#{g[0].camelize}Options'
+
+    nw_protocol_stack_(.*)_(.*)_(.*)_(.*):
+        class: NWProtocolStack
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+    nw_protocol_stack_(.*)_(.*)_(.*):
+        class: NWProtocolStack
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+    nw_protocol_stack_(.*)_(.*):
+        class: NWProtocolStack
+        name: '#{g[0]}#{g[1].camelize}'
+    nw_protocol_stack_(.*):
+        class: NWProtocolStack
+        name: '#{g[0]}'
+
+    nw_listener_(.*)_(.*)_(.*)_(.*)_(.*):
+        class: NWListener
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}#{g[4].camelize}'
+    nw_listener_(.*)_(.*)_(.*)_(.*):
+        class: NWListener
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}#{g[3].camelize}'
+    nw_listener_(.*)_(.*)_(.*):
+        class: NWListener
+        name: '#{g[0]}#{g[1].camelize}#{g[2].camelize}'
+    nw_listener_(.*)_(.*):
+        class: NWListener
+        name: '#{g[0]}#{g[1].camelize}'
+    nw_listener_(.*):
+        class: NWListener
+        name: '#{g[0]}'
+
+    nw_ip_metadata_get_(.*)_(.*):
+        class: NWProtocolMetadata
+        name: 'getIp#{g[0].camelize}#{g[1].camelize}'
+    nw_ip_metadata_set_(.*)_(.*):
+        class: NWProtocolMetadata
+        name: 'setIp#{g[0].camelize}#{g[1].camelize}'
+    nw_(.*)_create_metadata:
+        class: NWProtocolMetadata
+        name: 'create#{g[0].camelize}Metadata'
+
+    nw_tcp_get_available_receive_buffer:
+        class: NWProtocolMetadata
+        name: getTcpAvailableReceiveBuffer
+
+    nw_tcp_get_available_send_buffer:
+        class: NWProtocolMetadata
+        name: getTcpAvailableSendBuffer
+
+    nw_tls_copy_sec_protocol_options:
+        class: NWProtocolOptions
+        name: copySecArcProtocolOptions
+
+    nw_tls_copy_sec_protocol_metadata:
+        class: NWProtocolMetadata
+        name: copySecArcProtocolMetadata
+
+    nw_(retain|release):
+        class: NWObject
+        visibility: private
+        name: 'nwArc#{g[0].camelize}'
+        return_type: void
+        parameters:
+            obj:
+                type: '@Pointer long'
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?nw_.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    _nw_parameters_configure_protocol_(.*):
+        class: NWParameters
+        name: '#{g[0].upcase}'
+
+    _nw_connection_(.*):
+        class: NWConnection
+        name: '#{g[0].upcase}'
+
+    _nw_content_context_(.*):
+        class: NWContentContext
+        name: '#{g[0].upcase}'
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?nw_.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+    (k?_nw_.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?nw_.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

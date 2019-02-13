@@ -129,7 +129,10 @@ classes:
                 trim_after_first_colon: true
             '-addMediaItems:completionHandler:':
                 trim_after_first_colon: true
-    MPMediaPlaylistCreationMetadata: {}
+    MPMediaPlaylistCreationMetadata: #since 9.3
+        methods:
+            '-initWithName:':
+                name: init
     MPMediaPredicate: {} # DONE
     MPMediaPropertyPredicate: # DONE
         properties:
@@ -220,6 +223,12 @@ classes:
                 name: setQueue
             '-setQueueWithItemCollection:':
                 name: setQueue
+            '-setQueueWithStoreIDs:':
+                name: setQueue
+            '-setQueueWithDescriptor:':
+                name: setQueue
+            '-prepareToPlayWithCompletionHandler:':
+                name: prepareToPlay
     MPNowPlayingInfoCenter: # DONE
         properties:
             'nowPlayingInfo':
@@ -313,6 +322,10 @@ classes:
                 trim_after_first_colon: true
             '-setEndTime:forItem:':
                 trim_after_first_colon: true
+            '-initWithQuery:':
+                name: init
+            '-initWithItemCollection:':
+                name: init
     MPMusicPlayerQueueDescriptor: {}
     MPMusicPlayerStoreQueueDescriptor:
         methods:
@@ -320,13 +333,20 @@ classes:
                 trim_after_first_colon: true
             '-setEndTime:forItemWithStoreID:':
                 trim_after_first_colon: true
-    MPMusicPlayerPlayParameters: {} #since 11.0
+            '-initWithStoreIDs:':
+                name: init
+    MPMusicPlayerPlayParameters: #since 11.0
+        methods:
+            '-initWithDictionary:':
+                name: init
     MPMusicPlayerPlayParametersQueueDescriptor: #since 11.0
         methods:
             '-setStartTime:forItemWithPlayParameters:':
                 trim_after_first_colon: true
             '-setEndTime:forItemWithPlayParameters:':
                 trim_after_first_colon: true
+            '-initWithPlayParametersQueue:':
+                name: init
 protocols:
     MPMediaPickerControllerDelegate: # DONE
         methods:
@@ -339,8 +359,6 @@ protocols:
         methods:
             '-beginLoadingChildItemsAtIndexPath:completionHandler:':
                 name: beginLoadingChildItems
-            '-childItemsDisplayPlaybackProgressAtIndexPath:':
-                name: childItemsDisplayPlaybackProgress
             '-childItemsDisplayPlaybackProgressAtIndexPath:':
                 name: childItemsDisplayPlaybackProgress
             '-numberOfChildItemsAtIndexPath:':

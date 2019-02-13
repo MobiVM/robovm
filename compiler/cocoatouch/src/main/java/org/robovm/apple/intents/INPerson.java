@@ -51,25 +51,30 @@ import org.robovm.apple.corelocation.*;
     protected INPerson(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:")
     public INPerson(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier) { super((SkipInit) null); initObject(init(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier)); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:")
+    public INPerson(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe) { super((SkipInit) null); initObject(init(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe)); }
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:aliases:suggestionType:")
     public INPerson(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, NSArray<INPersonHandle> aliases, INPersonSuggestionType suggestionType) { super((SkipInit) null); initObject(init(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, aliases, suggestionType)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:nameComponents:contactIdentifier:")
     public INPerson(String handle, NSPersonNameComponents nameComponents, String contactIdentifier) { super((SkipInit) null); initObject(init(handle, nameComponents, contactIdentifier)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:displayName:contactIdentifier:")
     public INPerson(String handle, String displayName, String contactIdentifier) { super((SkipInit) null); initObject(init(handle, displayName, contactIdentifier)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:nameComponents:displayName:image:contactIdentifier:")
@@ -111,7 +116,7 @@ import org.robovm.apple.corelocation.*;
     public native boolean isMe();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use personHandle instead
      */
     @Deprecated
     @Property(selector = "handle")
@@ -128,7 +133,7 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<?> getAlternativeSpeakableMatches();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Please use vocabularyIdentifier
      */
     @Deprecated
     @Property(selector = "identifier")
@@ -138,25 +143,30 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:")
     protected native @Pointer long init(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:")
+    protected native @Pointer long init(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe);
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:aliases:suggestionType:")
     protected native @Pointer long init(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, NSArray<INPersonHandle> aliases, INPersonSuggestionType suggestionType);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:nameComponents:contactIdentifier:")
     protected native @Pointer long init(String handle, NSPersonNameComponents nameComponents, String contactIdentifier);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:displayName:contactIdentifier:")
     protected native @Pointer long init(String handle, String displayName, String contactIdentifier);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:nameComponents:displayName:image:contactIdentifier:")

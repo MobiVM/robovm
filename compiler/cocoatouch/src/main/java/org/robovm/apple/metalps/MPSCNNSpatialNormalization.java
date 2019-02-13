@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNSpatialNormalization/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNSpatialNormalization.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNSpatialNormalization() {}
+    public MPSCNNSpatialNormalization() {}
     protected MPSCNNSpatialNormalization(Handle h, long handle) { super(h, handle); }
     protected MPSCNNSpatialNormalization(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     public MPSCNNSpatialNormalization(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNSpatialNormalization(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alpha")
@@ -70,10 +72,6 @@ import org.robovm.apple.metal.*;
     public native float getDelta();
     @Property(selector = "setDelta:")
     public native void setDelta(float v);
-    @Property(selector = "kernelWidth")
-    public native @MachineSizedUInt long getKernelWidth();
-    @Property(selector = "kernelHeight")
-    public native @MachineSizedUInt long getKernelHeight();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -141,7 +141,7 @@ import org.robovm.apple.dispatch.*;
     public static final NSMetadataItemAttribute HasUnresolvedConflicts = new NSMetadataItemAttribute("HasUnresolvedConflicts");
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use NSMetadataUbiquitousItemDownloadingStatusKey instead
      */
     @Deprecated
     public static final NSMetadataItemAttribute IsDownloaded = new NSMetadataItemAttribute("IsDownloaded");
@@ -283,7 +283,7 @@ import org.robovm.apple.dispatch.*;
         public static native NSString HasUnresolvedConflicts();
         /**
          * @since Available in iOS 5.0 and later.
-         * @deprecated Deprecated in iOS 7.0.
+         * @deprecated Deprecated in iOS 7.0. Use NSMetadataUbiquitousItemDownloadingStatusKey instead
          */
         @Deprecated
         @GlobalValue(symbol="NSMetadataUbiquitousItemIsDownloadedKey", optional=true)

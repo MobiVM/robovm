@@ -45,7 +45,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKKeyframeSequence/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKKeyframeSequencePtr extends Ptr<SKKeyframeSequence, SKKeyframeSequencePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKKeyframeSequence.class); }/*</bind>*/
@@ -70,6 +70,8 @@ import org.robovm.apple.metal.*;
     public native SKRepeatMode getRepeatMode();
     @Property(selector = "setRepeatMode:")
     public native void setRepeatMode(SKRepeatMode v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

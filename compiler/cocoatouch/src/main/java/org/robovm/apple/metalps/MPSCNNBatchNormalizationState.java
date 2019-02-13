@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNBatchNormalizationState/*</name>*/ 
     extends /*<extends>*/MPSNNGradientState/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,17 @@ import org.robovm.apple.metal.*;
     protected MPSCNNBatchNormalizationState() {}
     protected MPSCNNBatchNormalizationState(Handle h, long handle) { super(h, handle); }
     protected MPSCNNBatchNormalizationState(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:bufferSize:")
+    public MPSCNNBatchNormalizationState(MTLDevice device, @MachineSizedUInt long bufferSize) { super(device, bufferSize); }
+    @Method(selector = "initWithDevice:textureDescriptor:")
+    public MPSCNNBatchNormalizationState(MTLDevice device, MTLTextureDescriptor descriptor) { super(device, descriptor); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:resourceList:")
+    public MPSCNNBatchNormalizationState(MTLDevice device, MPSStateResourceList resourceList) { super(device, resourceList); }
+    @Method(selector = "initWithResources:")
+    public MPSCNNBatchNormalizationState(NSArray<?> resources) { super(resources); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "batchNormalization")

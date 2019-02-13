@@ -52,6 +52,8 @@ import org.robovm.apple.metal.*;
     public CAEmitterLayer() {}
     protected CAEmitterLayer(Handle h, long handle) { super(h, handle); }
     protected CAEmitterLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public CAEmitterLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "emitterCells")

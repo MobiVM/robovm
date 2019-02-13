@@ -52,6 +52,8 @@ import org.robovm.apple.metal.*;
     public CAShapeLayer() {}
     protected CAShapeLayer(Handle h, long handle) { super(h, handle); }
     protected CAShapeLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public CAShapeLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "path")

@@ -43,7 +43,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAEmitterCell/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements CAMediaTiming/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, CAMediaTiming/*</implements>*/ {
 
     /*<ptr>*/public static class CAEmitterCellPtr extends Ptr<CAEmitterCell, CAEmitterCellPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CAEmitterCell.class); }/*</bind>*/
@@ -52,6 +52,8 @@ import org.robovm.apple.metal.*;
     public CAEmitterCell() {}
     protected CAEmitterCell(Handle h, long handle) { super(h, handle); }
     protected CAEmitterCell(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CAEmitterCell(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -194,6 +196,8 @@ import org.robovm.apple.metal.*;
     public native NSDictionary<?, ?> getStyle();
     @Property(selector = "setStyle:")
     public native void setStyle(NSDictionary<?, ?> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     @Property(selector = "beginTime")
     public native double getBeginTime();
     @Property(selector = "setBeginTime:")
@@ -233,5 +237,9 @@ import org.robovm.apple.metal.*;
     public native boolean shouldArchiveValue(String key);
     @Method(selector = "defaultValueForKey:")
     public static native NSObject getDefaultValue(String key);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

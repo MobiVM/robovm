@@ -68,12 +68,27 @@ import org.robovm.apple.metal.*;
     String label();
     @Method(selector = "updateGammaAndBetaWithCommandBuffer:batchNormalizationState:")
     MPSCNNNormalizationGammaAndBetaState updateGammaAndBeta(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationState);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "updateMeanAndVarianceWithCommandBuffer:batchNormalizationState:")
+    MPSCNNNormalizationMeanAndVarianceState updateMeanAndVariance(MTLCommandBuffer commandBuffer, MPSCNNBatchNormalizationState batchNormalizationState);
     @Method(selector = "updateGammaAndBetaWithBatchNormalizationState:")
-    boolean updateGammaAndBetaWithBatchNormalizationState(MPSCNNBatchNormalizationState batchNormalizationState);
+    boolean updateGammaAndBeta(MPSCNNBatchNormalizationState batchNormalizationState);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "updateMeanAndVarianceWithBatchNormalizationState:")
+    boolean updateMeanAndVariance(MPSCNNBatchNormalizationState batchNormalizationState);
     @Method(selector = "epsilon")
     float epsilon();
     @Method(selector = "encodeWithCoder:")
-    void encodeWithCoder(NSCoder aCoder);
+    void encode(NSCoder aCoder);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "copyWithZone:device:")
+    MPSCNNBatchNormalizationDataSource copy(NSZone zone, MTLDevice device);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

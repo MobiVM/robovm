@@ -467,15 +467,25 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CGColorSpaceSupportsOutput", optional=true)
     public native boolean supportsOutput();
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceCopyPropertyList", optional=true)
+    public native CFType copyPropertyList();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceCreateWithPropertyList", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createWithPropertyList(CFType plist);
+    /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated
     @Bridge(symbol="CGColorSpaceCreateWithICCProfile", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createWithICCProfile(NSData data);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. No longer supported
      */
     @Deprecated
     @Bridge(symbol="CGColorSpaceCopyICCProfile", optional=true)

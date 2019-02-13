@@ -129,9 +129,13 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final AVAudioSessionMode SpokenAudio = new AVAudioSessionMode("SpokenAudio");
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final AVAudioSessionMode VoicePrompt = new AVAudioSessionMode("VoicePrompt");
     /*</constants>*/
     
-    private static /*<name>*/AVAudioSessionMode/*</name>*/[] values = new /*<name>*/AVAudioSessionMode/*</name>*/[] {/*<value_list>*/Default, VoiceChat, GameChat, VideoRecording, Measurement, MoviePlayback, VideoChat, SpokenAudio/*</value_list>*/};
+    private static /*<name>*/AVAudioSessionMode/*</name>*/[] values = new /*<name>*/AVAudioSessionMode/*</name>*/[] {/*<value_list>*/Default, VoiceChat, GameChat, VideoRecording, Measurement, MoviePlayback, VideoChat, SpokenAudio, VoicePrompt/*</value_list>*/};
     
     /*<name>*/AVAudioSessionMode/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -194,6 +198,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVAudioSessionModeSpokenAudio", optional=true)
         public static native NSString SpokenAudio();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionModeVoicePrompt", optional=true)
+        public static native NSString VoicePrompt();
         /*</values>*/
     }
 }

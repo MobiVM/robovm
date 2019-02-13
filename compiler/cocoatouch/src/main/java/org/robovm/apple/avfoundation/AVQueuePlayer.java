@@ -59,6 +59,10 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVQueuePlayer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithItems:")
     public AVQueuePlayer(NSArray<AVPlayerItem> items) { super((SkipInit) null); initObject(init(items)); }
+    @Method(selector = "initWithURL:")
+    public AVQueuePlayer(NSURL URL) { super(URL); }
+    @Method(selector = "initWithPlayerItem:")
+    public AVQueuePlayer(AVPlayerItem item) { super(item); }
     /*</constructors>*/
     /*<properties>*/
     

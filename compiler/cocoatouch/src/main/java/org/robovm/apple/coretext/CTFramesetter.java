@@ -56,6 +56,11 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CTFramesetterGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="CTFramesetterCreateWithTypesetter", optional=true)
+    public static native CTFramesetter createWithTypesetter(CTTypesetter typesetter);
+    /**
      * @since Available in iOS 3.2 and later.
      */
     @Bridge(symbol="CTFramesetterCreateWithAttributedString", optional=true)

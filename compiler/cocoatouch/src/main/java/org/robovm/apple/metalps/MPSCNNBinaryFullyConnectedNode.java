@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNBinaryFullyConnectedNode/*</name>*/ 
     extends /*<extends>*/MPSCNNBinaryConvolutionNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNBinaryFullyConnectedNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNBinaryFullyConnectedNode() {}
+    protected MPSCNNBinaryFullyConnectedNode() {}
     protected MPSCNNBinaryFullyConnectedNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNBinaryFullyConnectedNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:weights:scaleValue:type:flags:")
@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:")
     public MPSCNNBinaryFullyConnectedNode(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights, FloatPtr outputBiasTerms, FloatPtr outputScaleTerms, FloatPtr inputBiasTerms, FloatPtr inputScaleTerms, MPSCNNBinaryConvolutionType type, MPSCNNBinaryConvolutionFlags flags) { super((SkipInit) null); initObject(init(sourceNode, weights, outputBiasTerms, outputScaleTerms, inputBiasTerms, inputScaleTerms, type, flags)); }
+    @Method(selector = "initWithSource:weights:")
+    public MPSCNNBinaryFullyConnectedNode(MPSNNImageNode sourceNode, MPSCNNConvolutionDataSource weights) { super(sourceNode, weights); }
     /*</constructors>*/
     /*<properties>*/
     

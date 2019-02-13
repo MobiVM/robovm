@@ -68,7 +68,7 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("maxAvailableSizeWithAlignment:")
-    public @MachineSizedUInt long maxAvailableSizeWithAlignment(@MachineSizedUInt long alignment) { return 0; }
+    public @MachineSizedUInt long getMaxAvailableSize(@MachineSizedUInt long alignment) { return 0; }
     @NotImplemented("newBufferWithLength:options:")
     public MTLBuffer newBuffer(@MachineSizedUInt long length, MTLResourceOptions options) { return null; }
     @NotImplemented("newTextureWithDescriptor:")

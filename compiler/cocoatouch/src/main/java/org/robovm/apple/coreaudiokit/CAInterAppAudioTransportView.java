@@ -50,6 +50,10 @@ import org.robovm.apple.uikit.*;
     public CAInterAppAudioTransportView() {}
     protected CAInterAppAudioTransportView(Handle h, long handle) { super(h, handle); }
     protected CAInterAppAudioTransportView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public CAInterAppAudioTransportView(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public CAInterAppAudioTransportView(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isEnabled")

@@ -57,13 +57,11 @@ import org.robovm.apple.intents.*;
     protected UIButton(Handle h, long handle) { super(h, handle); }
     protected UIButton(SkipInit skipInit) { super(skipInit); }
     public UIButton(UIButtonType buttonType) { super((Handle) null, create0(buttonType)); retain(getHandle()); }
+    @Method(selector = "initWithFrame:")
+    public UIButton(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UIButton(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UIButton(CGRect frame) {
-        super(frame);
-    }
-    public UIButton(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "contentEdgeInsets")
     public native @ByVal UIEdgeInsets getContentEdgeInsets();

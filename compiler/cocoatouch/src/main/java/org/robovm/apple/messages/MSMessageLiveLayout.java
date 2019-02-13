@@ -50,7 +50,7 @@ import org.robovm.apple.uikit.*;
     protected MSMessageLiveLayout(Handle h, long handle) { super(h, handle); }
     protected MSMessageLiveLayout(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithAlternateLayout:")
-    public MSMessageLiveLayout(MSMessageTemplateLayout alternateLayout) { super((SkipInit) null); initObject(initWithAlternateLayout(alternateLayout)); }
+    public MSMessageLiveLayout(MSMessageTemplateLayout alternateLayout) { super((SkipInit) null); initObject(init(alternateLayout)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alternateLayout")
@@ -59,6 +59,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithAlternateLayout:")
-    protected native @Pointer long initWithAlternateLayout(MSMessageTemplateLayout alternateLayout);
+    protected native @Pointer long init(MSMessageTemplateLayout alternateLayout);
     /*</methods>*/
 }

@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNDepthWiseConvolutionDescriptor/*</name>*/ 
     extends /*<extends>*/MPSCNNConvolutionDescriptor/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,11 @@ import org.robovm.apple.metal.*;
     public MPSCNNDepthWiseConvolutionDescriptor() {}
     protected MPSCNNDepthWiseConvolutionDescriptor(Handle h, long handle) { super(h, handle); }
     protected MPSCNNDepthWiseConvolutionDescriptor(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:")
+    public MPSCNNDepthWiseConvolutionDescriptor(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "channelMultiplier")

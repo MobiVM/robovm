@@ -66,7 +66,7 @@ import org.robovm.apple.contacts.*;
     public native void reverseGeocodeLocation(CLLocation location, NSLocale locale, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -geocodePostalAddress:completionHandler:
      */
     @Deprecated
     @WeaklyLinked

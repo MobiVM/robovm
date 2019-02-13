@@ -166,44 +166,27 @@ classes:
             '+goalToStayOnPath:maxPredictionTime:':
                 name: stayOnPath
     GKGraph: # DONE
-        properties:
-            'nodes':
-                type: NSArray<GKGraph>
         methods:
             '-initWithNodes:':
                 name: init
-                parameters:
-                    nodes:
-                        type: NSArray<GKGraph>
             '-connectNodeToLowestCostNode:bidirectional:':
                 trim_after_first_colon: true
             '-(remove|add)Nodes:':
                 trim_after_first_colon: true
-                parameters:
-                    nodes:
-                        type: NSArray<GKGraph>
             '-findPathFromNode:toNode:':
                 name: findPathBetweenNodes
-                return_type: NSArray<GKGraphNode>
             '+graphWithNodes:':
                 exclude: true
     GKGraphNode: # DONE
-        properties:
-            'connectedNodes':
-                type: NSArray<GKGraphNode>
         methods:
             '-(add|remove)ConnectionsToNodes:bidirectional:':
                 trim_after_first_colon: true
-                parameters:
-                    nodes:
-                        type: NSArray<GKGraphNode>
             '-estimatedCostToNode:':
                 name: getEstimatedCostToNode
             '-costToNode:':
                 name: getCostToNode
             '-findPath(To|From)Node:':
                 trim_after_first_colon: true
-                return_type: NSArray<GKGraphNode>
     GKGraphNode2D: # DONE
         methods:
             '-initWithPoint:':
@@ -337,8 +320,6 @@ classes:
                 name: die
     GKRandomSource: # DONE
         methods:
-            '-initWithCoder:':
-                name: init
             '-arrayByShufflingObjectsInArray:':
                 name: shuffleArray
             '+sharedRandom':
@@ -475,11 +456,15 @@ classes:
         methods:
             '+checkerboardNoiseWithSquareSize:':
                 exclude: true
+            '-initWithSquareSize:':
+                name: init
     GKCoherentNoiseSource: {}
     GKCompositeBehavior:
         methods:
             '-setWeight:forBehavior:':
                 name: setWeightforBehavior
+            '-objectAtIndexedSubscript:':
+                name: getBehaviour
             '-setObject:forKeyedSubscript:':
                 name: setObjectforKeyedSubscript
             '+behaviorWithBehaviors:':
@@ -490,10 +475,16 @@ classes:
                 constructor: true
     GKConstantNoiseSource:
         methods:
+            '-initWithValue:':
+                name: init
             '+constantNoiseWithValue':
+                exclude: true
+            '+constantNoiseWithValue:':
                 exclude: true
     GKCylindersNoiseSource:
         methods:
+            '-initWithFrequency:':
+                name: init
             '+cylindersNoiseWithFrequency:':
                 exclude: true
     GKDecisionNode:
@@ -508,6 +499,8 @@ classes:
                 trim_after_first_colon: true
     GKGraphNode3D:
         methods:
+            '-initWithPoint:':
+                name: init
             '+nodeWithPoint:':
                 exclude: true
     GKMonteCarloStrategist: {}
@@ -531,8 +524,20 @@ classes:
                 name: clamp
             '-remapValuesToTerracesWithPeaks:terracesInverted:':
                 name: remapValuesToTerraces
+            '-remapValuesToCurveWithControlPoints:':
+                name: remapValuesToCurve
             '-displaceXWithNoise:yWithNoise:zWithNoise:':
                 name: displaceX
+            '-addWithNoise:':
+                name: add
+            '-multiplyWithNoise:':
+                name: multiply
+            '-minimumWithNoise:':
+                name: minimum
+            '-maximumWithNoise:':
+                name: maximum
+            '-raiseToPowerWithNoise:':
+                name: raiseToPower
 
     GKNoiseMap:
         methods:
@@ -559,6 +564,8 @@ classes:
                 exclude: true
     GKSKNodeComponent:
         methods:
+            '-initWithNode:':
+                name: init
             '+componentWithNode:':
                 exclude: true
     GKScene:
@@ -568,16 +575,33 @@ classes:
             '+sceneWithFileNamed:rootNode:':
                 constructor: true
                 name: create
-    GKSphereObstacle: {}
-    GKSpheresNoiseSource: {}
+            '+sceneWithFileNamed:':
+                constructor: true
+                name: create
+    GKSphereObstacle: #since 10.0
+        methods:
+            '-initWithRadius:':
+                name: init
+            '+obstacleWithRadius:':
+                exclude: true
+    GKSpheresNoiseSource: #since 10.0
+        methods:
+            '-initWithFrequency:':
+                name: init
+            '+spheresNoiseWithFrequency:':
+                exclude: true
     GKVoronoiNoiseSource:
         methods:
             '-init.*':
                 name: init
             '+voronoiNoiseWithFrequency:displacement:distanceEnabled:seed:':
                 exclude: true
-    GKSCNNodeComponent: {} #since 11.0
-
+    GKSCNNodeComponent: #since 11.0
+        methods:
+            '-initWithNode:':
+                name: init
+            '+componentWithNode:':
+                exclude: true
 
 protocols:
     GKSceneRootNodeType:

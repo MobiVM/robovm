@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNBatchNormalization/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,20 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNBatchNormalization.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNBatchNormalization() {}
+    public MPSCNNBatchNormalization() {}
     protected MPSCNNBatchNormalization(Handle h, long handle) { super(h, handle); }
     protected MPSCNNBatchNormalization(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:dataSource:")
     public MPSCNNBatchNormalization(MTLDevice device, MPSCNNBatchNormalizationDataSource dataSource) { super((SkipInit) null); initObject(init(device, dataSource)); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithDevice:dataSource:fusedNeuronDescriptor:")
+    public MPSCNNBatchNormalization(MTLDevice device, MPSCNNBatchNormalizationDataSource dataSource, MPSNNNeuronDescriptor fusedNeuronDescriptor) { super((SkipInit) null); initObject(init(device, dataSource, fusedNeuronDescriptor)); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNBatchNormalization(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNBatchNormalization(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "numberOfFeatureChannels")
@@ -68,6 +75,11 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "initWithDevice:dataSource:")
     protected native @Pointer long init(MTLDevice device, MPSCNNBatchNormalizationDataSource dataSource);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithDevice:dataSource:fusedNeuronDescriptor:")
+    protected native @Pointer long init(MTLDevice device, MPSCNNBatchNormalizationDataSource dataSource, MPSNNNeuronDescriptor fusedNeuronDescriptor);
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder aDecoder, MTLDevice device);
     @Method(selector = "encodeToCommandBuffer:sourceImage:batchNormalizationState:destinationImage:")
@@ -78,9 +90,29 @@ import org.robovm.apple.metal.*;
     public native MPSCNNBatchNormalizationState getResultState(MPSImage sourceImage, NSArray<MPSState> sourceStates, MPSImage destinationImage);
     @Method(selector = "temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:")
     public native MPSCNNBatchNormalizationState getTemporaryResult(MTLCommandBuffer commandBuffer, MPSImage sourceImage, NSArray<MPSState> sourceStates, MPSImage destinationImage);
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "reloadDataSource:")
     public native void reloadDataSource(MPSCNNBatchNormalizationDataSource dataSource);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "reloadGammaAndBetaFromDataSource")
+    public native void reloadGammaAndBetaFromDataSource();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "reloadMeanAndVarianceFromDataSource")
+    public native void reloadMeanAndVarianceFromDataSource();
     @Method(selector = "reloadGammaAndBetaWithCommandBuffer:gammaAndBetaState:")
     public native void reloadGammaAndBeta(MTLCommandBuffer commandBuffer, MPSCNNNormalizationGammaAndBetaState gammaAndBetaState);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "reloadMeanAndVarianceWithCommandBuffer:meanAndVarianceState:")
+    public native void reloadMeanAndVariance(MTLCommandBuffer commandBuffer, MPSCNNNormalizationMeanAndVarianceState meanAndVarianceState);
     /*</methods>*/
 }

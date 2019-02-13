@@ -19,13 +19,15 @@ package org.robovm.apple.foundation;
 
 import org.robovm.rt.bro.Struct;
 import org.robovm.rt.bro.annotation.StructMember;
+import org.robovm.rt.bro.annotation.Vectorised;
 import org.robovm.rt.bro.ptr.Ptr;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class VectorDouble4 
+@Vectorised
+/*<visibility>*/public/*</visibility>*/ class VectorDouble4
     extends /*<extends>*/Struct<VectorDouble4>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 

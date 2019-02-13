@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSTemporaryImage/*</name>*/ 
     extends /*<extends>*/MPSImage/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -55,6 +55,8 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.3 and later.
      */
     public MPSTemporaryImage(MTLCommandBuffer commandBuffer, MTLTextureDescriptor textureDescriptor, @MachineSizedUInt long featureChannels) { super((Handle) null, create(commandBuffer, textureDescriptor, featureChannels)); retain(getHandle()); }
+    @Method(selector = "initWithParentImage:sliceRange:featureChannels:")
+    public MPSTemporaryImage(MPSImage parent, @ByVal NSRange sliceRange, @MachineSizedUInt long featureChannels) { super(parent, sliceRange, featureChannels); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "readCount")

@@ -66,6 +66,11 @@ import org.robovm.apple.corelocation.*;
     void resolveLevelForSetSeatSettingsInCar(INSetSeatSettingsInCarIntent intent, @Block VoidBlock1<INIntegerResolutionResult> completion);
     @Method(selector = "resolveRelativeLevelSettingForSetSeatSettingsInCar:withCompletion:")
     void resolveRelativeLevelSettingForSetSeatSettingsInCar(INSetSeatSettingsInCarIntent intent, @Block VoidBlock1<INRelativeSettingResolutionResult> completion);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "resolveCarNameForSetSeatSettingsInCar:withCompletion:")
+    void resolveCarNameForSetSeatSettingsInCar(INSetSeatSettingsInCarIntent intent, @Block VoidBlock1<INSpeakableStringResolutionResult> completion);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

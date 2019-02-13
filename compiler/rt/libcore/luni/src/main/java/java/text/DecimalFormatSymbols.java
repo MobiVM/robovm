@@ -98,8 +98,8 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
         try {
             currency = Currency.getInstance(locale);
             if (currency == null) {
-                // dkimitsa: for some countries there is no currecy like Antarctida AQ so pick currency
-                // directcly by no currency code
+                // dkimitsa: for some countries there is no currency like Antarctida AQ so pick currency
+                // directly by no currency code
                 currency = Currency.getInstance("XXX");
             }
             currencySymbol = currency.getSymbol(locale);

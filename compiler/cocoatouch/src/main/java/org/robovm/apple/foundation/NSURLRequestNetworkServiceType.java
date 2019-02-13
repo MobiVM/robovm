@@ -49,6 +49,7 @@ public enum /*<name>*/NSURLRequestNetworkServiceType/*</name>*/ implements Value
     Video(2L),
     Background(3L),
     Voice(4L),
+    ResponsiveData(6L),
     /**
      * @since Available in iOS 10.0 and later.
      */

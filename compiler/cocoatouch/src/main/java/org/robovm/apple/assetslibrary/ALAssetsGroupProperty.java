@@ -91,19 +91,19 @@ import org.robovm.apple.imageio.*;
     /*<constants>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the localizedTitle property on a PHAssetCollection from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetsGroupProperty Name = new ALAssetsGroupProperty("Name");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the assetCollectionType and assetCollectionSubtype properties on a PHAssetCollection from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetsGroupProperty Type = new ALAssetsGroupProperty("Type");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use the localIdentifier property on a PHAssetCollection from the Photos framework instead
      */
     @Deprecated
     public static final ALAssetsGroupProperty PersistentID = new ALAssetsGroupProperty("PersistentID");
@@ -140,21 +140,21 @@ import org.robovm.apple.imageio.*;
         /*<values>*/
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use the localizedTitle property on a PHAssetCollection from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetsGroupPropertyName", optional=true)
         public static native NSString Name();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use the assetCollectionType and assetCollectionSubtype properties on a PHAssetCollection from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetsGroupPropertyType", optional=true)
         public static native NSString Type();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. Use the localIdentifier property on a PHAssetCollection from the Photos framework instead
          */
         @Deprecated
         @GlobalValue(symbol="ALAssetsGroupPropertyPersistentID", optional=true)

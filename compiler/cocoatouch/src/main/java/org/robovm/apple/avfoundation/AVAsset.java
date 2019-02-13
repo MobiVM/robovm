@@ -228,6 +228,16 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="AVAssetDurationDidChangeNotification", optional=true)
     public static native NSString DurationDidChangeNotification();
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="AVAssetContainsFragmentsDidChangeNotification", optional=true)
+    public static native NSString ContainsFragmentsDidChangeNotification();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="AVAssetWasDefragmentedNotification", optional=true)
+    public static native NSString WasDefragmentedNotification();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @GlobalValue(symbol="AVAssetChapterMetadataGroupsDidChangeNotification", optional=true)

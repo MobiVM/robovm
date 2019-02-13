@@ -35,7 +35,7 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
- * @deprecated Deprecated in iOS 9.0.
+ * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
  */
 @Deprecated
 /*</javadoc>*/
@@ -123,35 +123,35 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataKeyName", optional=true)
     protected static native NSString Name();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataKeyInfo", optional=true)
     protected static native NSString Info();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataKeyMIMEType", optional=true)
     protected static native NSString MIMEType();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataKeyDataType", optional=true)
     protected static native NSString DataType();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataKeyLanguageCode", optional=true)

@@ -42,7 +42,7 @@ import org.robovm.apple.mapkit.*;
 /*<annotations>*/@Library("EventKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/EKRecurrenceEnd/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class EKRecurrenceEndPtr extends Ptr<EKRecurrenceEnd, EKRecurrenceEndPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(EKRecurrenceEnd.class); }/*</bind>*/
@@ -53,12 +53,16 @@ import org.robovm.apple.mapkit.*;
     protected EKRecurrenceEnd(SkipInit skipInit) { super(skipInit); }
     public EKRecurrenceEnd(NSDate endDate) { super((Handle) null, create(endDate)); retain(getHandle()); }
     public EKRecurrenceEnd(@MachineSizedUInt long occurrenceCount) { super((Handle) null, create(occurrenceCount)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public EKRecurrenceEnd(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "endDate")
     public native NSDate getEndDate();
     @Property(selector = "occurrenceCount")
     public native @MachineSizedUInt long getOccurrenceCount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -66,5 +70,9 @@ import org.robovm.apple.mapkit.*;
     protected static native @Pointer long create(NSDate endDate);
     @Method(selector = "recurrenceEndWithOccurrenceCount:")
     protected static native @Pointer long create(@MachineSizedUInt long occurrenceCount);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

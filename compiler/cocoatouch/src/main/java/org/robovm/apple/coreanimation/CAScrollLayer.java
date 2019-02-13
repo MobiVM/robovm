@@ -52,6 +52,8 @@ import org.robovm.apple.metal.*;
     public CAScrollLayer() {}
     protected CAScrollLayer(Handle h, long handle) { super(h, handle); }
     protected CAScrollLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public CAScrollLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "scrollMode")

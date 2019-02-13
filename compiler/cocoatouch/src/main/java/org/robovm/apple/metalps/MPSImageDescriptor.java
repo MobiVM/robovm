@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageDescriptor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -90,6 +90,11 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "copyWithZone:")
+    public native MPSImageDescriptor copy(NSZone zone);
     @Method(selector = "imageDescriptorWithChannelFormat:width:height:featureChannels:")
     protected static native @Pointer long create(MPSImageFeatureChannelFormat channelFormat, @MachineSizedUInt long width, @MachineSizedUInt long height, @MachineSizedUInt long featureChannels);
     @Method(selector = "imageDescriptorWithChannelFormat:width:height:featureChannels:numberOfImages:usage:")

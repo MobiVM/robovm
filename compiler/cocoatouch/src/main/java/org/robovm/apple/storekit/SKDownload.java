@@ -51,8 +51,15 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 6.0 and later.
+     * @since Available in iOS 12.0 and later.
      */
+    @Property(selector = "state")
+    public native SKDownloadState getState();
+    /**
+     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use [SKDownload state] instead
+     */
+    @Deprecated
     @Property(selector = "downloadState")
     public native SKDownloadState getDownloadState();
     /**

@@ -89,13 +89,13 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContactTypePerson
      */
     @Deprecated
     public static final ABPersonKind Person = new ABPersonKind("Person");
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNContactTypeOrganization
      */
     @Deprecated
     public static final ABPersonKind Organization = new ABPersonKind("Organization");
@@ -126,14 +126,14 @@ import org.robovm.apple.corefoundation.*;
         /*<values>*/
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNContactTypePerson
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonKindPerson", optional=true)
         public static native CFNumber Person();
         /**
          * @since Available in iOS 2.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use CNContactTypeOrganization
          */
         @Deprecated
         @GlobalValue(symbol="kABPersonKindOrganization", optional=true)

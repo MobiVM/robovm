@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
     public SKCameraNode() {}
     protected SKCameraNode(Handle h, long handle) { super(h, handle); }
     protected SKCameraNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SKCameraNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

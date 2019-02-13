@@ -66,10 +66,30 @@ import org.robovm.apple.intents.*;
     public native boolean isOpaque();
     @Property(selector = "setOpaque:")
     public native void setOpaque(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use the preferredRange property instead
+     */
+    @Deprecated
     @Property(selector = "prefersExtendedRange")
     public native boolean prefersExtendedRange();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Use the preferredRange property instead
+     */
+    @Deprecated
     @Property(selector = "setPrefersExtendedRange:")
     public native void setPrefersExtendedRange(boolean v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "preferredRange")
+    public native UIGraphicsImageRendererFormatRange getPreferredRange();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setPreferredRange:")
+    public native void setPreferredRange(UIGraphicsImageRendererFormatRange v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

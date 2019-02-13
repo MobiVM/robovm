@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNDropout/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,13 +46,15 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNDropout.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNDropout() {}
+    public MPSCNNDropout() {}
     protected MPSCNNDropout(Handle h, long handle) { super(h, handle); }
     protected MPSCNNDropout(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:device:")
     public MPSCNNDropout(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithDevice:keepProbability:seed:maskStrideInPixels:")
     public MPSCNNDropout(MTLDevice device, float keepProbability, @MachineSizedUInt long seed, @ByVal MTLSize maskStrideInPixels) { super((SkipInit) null); initObject(init(device, keepProbability, seed, maskStrideInPixels)); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNDropout(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "keepProbability")

@@ -56,11 +56,11 @@ import org.robovm.apple.corelocation.*;
     public INStartAudioCallIntent(INCallDestinationType destinationType, NSArray<INPerson> contacts) { super((SkipInit) null); initObject(init(destinationType, contacts)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithContacts:")
-    public INStartAudioCallIntent(NSArray<INPerson> contacts) { super((SkipInit) null); initObject(initWithContacts(contacts)); }
+    public INStartAudioCallIntent(NSArray<INPerson> contacts) { super((SkipInit) null); initObject(init(contacts)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -80,10 +80,10 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INCallDestinationType destinationType, NSArray<INPerson> contacts);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithContacts:")
-    protected native @Pointer long initWithContacts(NSArray<INPerson> contacts);
+    protected native @Pointer long init(NSArray<INPerson> contacts);
     /*</methods>*/
 }

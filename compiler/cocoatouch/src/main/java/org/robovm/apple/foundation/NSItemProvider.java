@@ -116,7 +116,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "registeredTypeIdentifiersWithFileOptions:")
-    public native NSArray<NSString> registeredTypeIdentifiersWithFileOptions(NSItemProviderFileOptions fileOptions);
+    public native NSArray<NSString> getRegisteredTypeIdentifiers(NSItemProviderFileOptions fileOptions);
     @Method(selector = "hasItemConformingToTypeIdentifier:")
     public native boolean hasItemConformingToTypeIdentifier(String typeIdentifier);
     /**

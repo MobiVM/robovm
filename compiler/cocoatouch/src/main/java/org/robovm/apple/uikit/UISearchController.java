@@ -58,6 +58,10 @@ import org.robovm.apple.intents.*;
     protected UISearchController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSearchResultsController:")
     public UISearchController(UIViewController searchResultsController) { super((SkipInit) null); initObject(init(searchResultsController)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UISearchController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public UISearchController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "searchResultsUpdater")

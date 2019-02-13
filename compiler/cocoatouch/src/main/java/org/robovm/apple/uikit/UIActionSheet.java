@@ -42,7 +42,7 @@ import org.robovm.apple.intents.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 2.0 and later.
- * @deprecated Deprecated in iOS 8.3.
+ * @deprecated Deprecated in iOS 8.3. UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead
  */
 @Deprecated
 /*</javadoc>*/
@@ -58,14 +58,12 @@ import org.robovm.apple.intents.*;
     public UIActionSheet() {}
     protected UIActionSheet(Handle h, long handle) { super(h, handle); }
     protected UIActionSheet(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIActionSheet(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UIActionSheet(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UIActionSheet(CGRect frame) {
-        super(frame);
-    }
-    public UIActionSheet(NSCoder decoder) {
-        super(decoder);
-    }
-    public UIActionSheet(String title, UIActionSheetDelegate delegate, String cancelButtonTitle, 
+    public UIActionSheet(String title, UIActionSheetDelegate delegate, String cancelButtonTitle,
             String destructiveButtonTitle, String ... otherButtonTitles) {
         super((SkipInit) null);
         initObject(init(title, delegate, cancelButtonTitle, destructiveButtonTitle, 0));

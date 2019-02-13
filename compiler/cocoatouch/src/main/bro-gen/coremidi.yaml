@@ -119,8 +119,31 @@ classes:
         extends: MIDIObject
     MIDIDriver:
         extends: MIDIDriverInterface
-   
-    # Structs
+
+    MIDICIProfile: #since 12.0
+        methods:
+            '-initWithData:name:':
+                name: init
+    MIDICIProfileState: #since 12.0
+        methods:
+            '-initWithEnabledProfiles:disabledProfiles:':
+                name: init
+    MIDICISession: #since 12.0
+        methods:
+            '-initWithMIDIEntity:dataReadyHandler:':
+                name: init
+            '-enableProfile:onChannel:error:':
+                trim_after_first_colon: true
+            '-disableProfile:onChannel:error:':
+                trim_after_first_colon: true
+            '-hasProperty:onChannel:responseHandler:':
+                trim_after_first_colon: true
+            '-getProperty:onChannel:responseHandler:':
+                trim_after_first_colon: true
+            '-setProperty:onChannel:responseHandler:':
+                trim_after_first_colon: true
+
+        # Structs
     MIDIPacketList:
         skip_def_constructor: true
     MIDISysexSendRequest: {}
@@ -135,7 +158,8 @@ classes:
     MIDIControlTransform: {}
     MIDIThruConnectionEndpoint: {}
     MIDIThruConnectionParams: {}
-    
+    MIDICIDeviceIdentification: {}
+
 protocols: {}
 
 functions:
@@ -444,6 +468,10 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    MIDIChannelsWholePort:
+        class: CoreMIDI
+        name: ChannelsWholePort
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (MIDI.*):
         class: CoreMIDI

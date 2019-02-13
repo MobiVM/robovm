@@ -43,7 +43,19 @@ public enum /*<name>*/INVisualCodeType/*</name>*/ implements ValuedEnum {
     Unknown(0L),
     Contact(1L),
     RequestPayment(2L),
-    SendPayment(3L);
+    SendPayment(3L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    Transit(4L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    Bus(5L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    Subway(6L);
     /*</values>*/
 
     /*<bind>*/

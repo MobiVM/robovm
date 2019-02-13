@@ -1,0 +1,35 @@
+package: org.robovm.apple.identitylookupui
+include: [foundation, uikit, identitylookup]
+library: IdentityLookupUI
+framework: IdentityLookupUI
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/IdentityLookupUI.framework/Headers/IdentityLookupUI.h
+typedefs: {}
+    
+enums: {}
+
+classes:
+    ILClassificationUIExtensionContext: {} #since 12.0
+    ILClassificationUIExtensionViewController: {} #since 12.0
+
+protocols: {}
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?IL.*):
+        class: FixMe
+        name: 'Function__#{g[0]}'
+
+values:
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?IL.*):
+        class: FixMe
+        name: 'Value__#{g[0]}'
+
+constants:
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?IL.*):
+        class: FixMe
+        name: 'Constant__#{g[0]}'

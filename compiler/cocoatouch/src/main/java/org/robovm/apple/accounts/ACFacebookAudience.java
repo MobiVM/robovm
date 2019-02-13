@@ -89,19 +89,19 @@ import org.robovm.apple.foundation.*;
     /*<constants>*/
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
     public static final ACFacebookAudience Everyone = new ACFacebookAudience("Everyone");
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
     public static final ACFacebookAudience Friends = new ACFacebookAudience("Friends");
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
      */
     @Deprecated
     public static final ACFacebookAudience OnlyMe = new ACFacebookAudience("OnlyMe");
@@ -132,21 +132,21 @@ import org.robovm.apple.foundation.*;
         /*<values>*/
         /**
          * @since Available in iOS 6.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACFacebookAudienceEveryone", optional=true)
         public static native NSString Everyone();
         /**
          * @since Available in iOS 6.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACFacebookAudienceFriends", optional=true)
         public static native NSString Friends();
         /**
          * @since Available in iOS 6.0 and later.
-         * @deprecated Deprecated in iOS 11.0.
+         * @deprecated Deprecated in iOS 11.0. Use Facebook SDK instead
          */
         @Deprecated
         @GlobalValue(symbol="ACFacebookAudienceOnlyMe", optional=true)

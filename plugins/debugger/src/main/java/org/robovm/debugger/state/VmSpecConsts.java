@@ -23,10 +23,10 @@ public class VmSpecConsts {
     // VM name as reported by JDWP
     public static final String JDWP_NAME = "RoboVM.Debugger";
 
-    // suppose 1.6 set of commands is implemented
-    // http://docs.oracle.com/javase/6/docs/platform/jpda/jdwp/jdwp-protocol.html
+    // suppose 1.5 set of commands is implemented
+    // https://docs.oracle.com/javase/1.5.0/docs/guide/jpda/jdwp/jdwp-protocol.html
     public static final int JDWP_VERSION_MAJOR = 1;
-    public static final int JDWP_VERSION_MINOR = 6;
+    public static final int JDWP_VERSION_MINOR = 5;
 
     // java VM version
     public static final String JAVA_VM_VERSION = "1.8_RoboVM";

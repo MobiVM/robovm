@@ -139,6 +139,9 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "availableCategories")
     public native @org.robovm.rt.bro.annotation.Marshaler(AVAudioSessionCategory.AsListMarshaler.class) List<AVAudioSessionCategory> getAvailableCategories();
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     @Property(selector = "category")
     public native AVAudioSessionCategory getCategory();
     /**
@@ -161,6 +164,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "mode")
     public native AVAudioSessionMode getMode();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Property(selector = "recordPermission")
+    public native AVAudioSessionRecordPermission getRecordPermission();
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -191,6 +199,9 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "preferredSampleRate")
     public native double getPreferredSampleRate();
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     @Property(selector = "preferredIOBufferDuration")
     public native double getPreferredIOBufferDuration();
     /**
@@ -317,12 +328,18 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="AVAudioSessionSilenceSecondaryAudioHintTypeKey", optional=true)
     protected static native NSString SilenceSecondaryAudioHintTypeKey();
     
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public boolean setActive(boolean active) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = setActive(active, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     @Method(selector = "setActive:error:")
     private native boolean setActive(boolean active, NSError.NSErrorPtr outError);
     /**
@@ -339,12 +356,18 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "setActive:withOptions:error:")
     private native boolean setActive(boolean active, AVAudioSessionSetActiveOptions options, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public boolean setCategory(AVAudioSessionCategory category) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = setCategory(category, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     @Method(selector = "setCategory:error:")
     private native boolean setCategory(AVAudioSessionCategory category, NSError.NSErrorPtr outError);
     /**
@@ -404,11 +427,6 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "setMode:error:")
     private native boolean setMode(AVAudioSessionMode mode, NSError.NSErrorPtr outError);
     /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @Method(selector = "recordPermission")
-    public native AVAudioSessionRecordPermission getRecordPermission();
-    /**
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "requestRecordPermission:")
@@ -441,6 +459,9 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "setPreferredInput:error:")
     private native boolean setPreferredInput(AVAudioSessionPortDescription inPort, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     @Method(selector = "sharedInstance")
     public static native AVAudioSession getSharedInstance();
     /**
@@ -457,12 +478,18 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "setPreferredSampleRate:error:")
     private native boolean setPreferredSampleRate(double sampleRate, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public boolean setPreferredIOBufferDuration(double duration) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = setPreferredIOBufferDuration(duration, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     @Method(selector = "setPreferredIOBufferDuration:error:")
     private native boolean setPreferredIOBufferDuration(double duration, NSError.NSErrorPtr outError);
     /**

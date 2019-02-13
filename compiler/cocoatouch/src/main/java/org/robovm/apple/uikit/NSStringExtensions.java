@@ -60,63 +60,63 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -sizeWithAttributes:
      */
     @Deprecated
     @Method(selector = "sizeWithFont:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -boundingRectWithSize:options:attributes:context:
      */
     @Deprecated
     @Method(selector = "sizeWithFont:forWidth:lineBreakMode:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font, @MachineSizedFloat double width, NSLineBreakMode lineBreakMode);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -drawAtPoint:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawAtPoint:withFont:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGPoint point, UIFont font);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawAtPoint:forWidth:withFont:lineBreakMode:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGPoint point, @MachineSizedFloat double width, UIFont font, NSLineBreakMode lineBreakMode);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -boundingRectWithSize:options:attributes:context:
      */
     @Deprecated
     @Method(selector = "sizeWithFont:constrainedToSize:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font, @ByVal CGSize size);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -boundingRectWithSize:options:attributes:context:
      */
     @Deprecated
     @Method(selector = "sizeWithFont:constrainedToSize:lineBreakMode:")
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font, @ByVal CGSize size, NSLineBreakMode lineBreakMode);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawInRect:withFont:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGRect rect, UIFont font);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawInRect:withFont:lineBreakMode:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGRect rect, UIFont font, NSLineBreakMode lineBreakMode);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawInRect:withFont:lineBreakMode:alignment:")
@@ -130,14 +130,14 @@ import org.robovm.apple.intents.*;
     public static native @ByVal CGSize getSize(@Pointer long thiz, UIFont font, @MachineSizedFloat double minFontSize, MachineSizedFloatPtr actualFontSize, @MachineSizedFloat double width, NSLineBreakMode lineBreakMode);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawAtPoint:forWidth:withFont:fontSize:lineBreakMode:baselineAdjustment:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGPoint point, @MachineSizedFloat double width, UIFont font, @MachineSizedFloat double fontSize, NSLineBreakMode lineBreakMode, UIBaselineAdjustment baselineAdjustment);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use -drawInRect:withAttributes:
      */
     @Deprecated
     @Method(selector = "drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:")

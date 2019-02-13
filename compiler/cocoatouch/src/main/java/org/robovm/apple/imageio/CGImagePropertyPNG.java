@@ -89,33 +89,17 @@ import org.robovm.apple.coregraphics.*;
 
     /*<constants>*/
     /**
-     * @since Available in iOS 4.0 and later.
+     * @since Available in iOS 5.0 and later.
      */
-    public static final CGImagePropertyPNG Gamma = new CGImagePropertyPNG("Gamma");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    public static final CGImagePropertyPNG InterlaceType = new CGImagePropertyPNG("InterlaceType");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    public static final CGImagePropertyPNG XPixelsPerMeter = new CGImagePropertyPNG("XPixelsPerMeter");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    public static final CGImagePropertyPNG YPixelsPerMeter = new CGImagePropertyPNG("YPixelsPerMeter");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    public static final CGImagePropertyPNG sRGBIntent = new CGImagePropertyPNG("sRGBIntent");
+    public static final CGImagePropertyPNG Author = new CGImagePropertyPNG("Author");
     /**
      * @since Available in iOS 4.0 and later.
      */
     public static final CGImagePropertyPNG Chromaticities = new CGImagePropertyPNG("Chromaticities");
     /**
-     * @since Available in iOS 5.0 and later.
+     * @since Available in iOS 12.0 and later.
      */
-    public static final CGImagePropertyPNG Author = new CGImagePropertyPNG("Author");
+    public static final CGImagePropertyPNG Comment = new CGImagePropertyPNG("Comment");
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -129,6 +113,18 @@ import org.robovm.apple.coregraphics.*;
      */
     public static final CGImagePropertyPNG Description = new CGImagePropertyPNG("Description");
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final CGImagePropertyPNG Disclaimer = new CGImagePropertyPNG("Disclaimer");
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static final CGImagePropertyPNG Gamma = new CGImagePropertyPNG("Gamma");
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static final CGImagePropertyPNG InterlaceType = new CGImagePropertyPNG("InterlaceType");
+    /**
      * @since Available in iOS 5.0 and later.
      */
     public static final CGImagePropertyPNG ModificationTime = new CGImagePropertyPNG("ModificationTime");
@@ -137,9 +133,29 @@ import org.robovm.apple.coregraphics.*;
      */
     public static final CGImagePropertyPNG Software = new CGImagePropertyPNG("Software");
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final CGImagePropertyPNG Source = new CGImagePropertyPNG("Source");
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static final CGImagePropertyPNG sRGBIntent = new CGImagePropertyPNG("sRGBIntent");
+    /**
      * @since Available in iOS 5.0 and later.
      */
     public static final CGImagePropertyPNG Title = new CGImagePropertyPNG("Title");
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final CGImagePropertyPNG Warning = new CGImagePropertyPNG("Warning");
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static final CGImagePropertyPNG XPixelsPerMeter = new CGImagePropertyPNG("XPixelsPerMeter");
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static final CGImagePropertyPNG YPixelsPerMeter = new CGImagePropertyPNG("YPixelsPerMeter");
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -158,7 +174,7 @@ import org.robovm.apple.coregraphics.*;
     public static final CGImagePropertyPNG CompressionFilter = new CGImagePropertyPNG("CompressionFilter");
     /*</constants>*/
     
-    private static /*<name>*/CGImagePropertyPNG/*</name>*/[] values = new /*<name>*/CGImagePropertyPNG/*</name>*/[] {/*<value_list>*/Gamma, InterlaceType, XPixelsPerMeter, YPixelsPerMeter, sRGBIntent, Chromaticities, Author, Copyright, CreationTime, Description, ModificationTime, Software, Title, LoopCount, DelayTime, UnclampedDelayTime, CompressionFilter/*</value_list>*/};
+    private static /*<name>*/CGImagePropertyPNG/*</name>*/[] values = new /*<name>*/CGImagePropertyPNG/*</name>*/[] {/*<value_list>*/Author, Chromaticities, Comment, Copyright, CreationTime, Description, Disclaimer, Gamma, InterlaceType, ModificationTime, Software, Source, sRGBIntent, Title, Warning, XPixelsPerMeter, YPixelsPerMeter, LoopCount, DelayTime, UnclampedDelayTime, CompressionFilter/*</value_list>*/};
     
     /*<name>*/CGImagePropertyPNG/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -182,40 +198,20 @@ import org.robovm.apple.coregraphics.*;
 
         /*<values>*/
         /**
-         * @since Available in iOS 4.0 and later.
+         * @since Available in iOS 5.0 and later.
          */
-        @GlobalValue(symbol="kCGImagePropertyPNGGamma", optional=true)
-        public static native CFString Gamma();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
-        @GlobalValue(symbol="kCGImagePropertyPNGInterlaceType", optional=true)
-        public static native CFString InterlaceType();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
-        @GlobalValue(symbol="kCGImagePropertyPNGXPixelsPerMeter", optional=true)
-        public static native CFString XPixelsPerMeter();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
-        @GlobalValue(symbol="kCGImagePropertyPNGYPixelsPerMeter", optional=true)
-        public static native CFString YPixelsPerMeter();
-        /**
-         * @since Available in iOS 4.0 and later.
-         */
-        @GlobalValue(symbol="kCGImagePropertyPNGsRGBIntent", optional=true)
-        public static native CFString sRGBIntent();
+        @GlobalValue(symbol="kCGImagePropertyPNGAuthor", optional=true)
+        public static native CFString Author();
         /**
          * @since Available in iOS 4.0 and later.
          */
         @GlobalValue(symbol="kCGImagePropertyPNGChromaticities", optional=true)
         public static native CFString Chromaticities();
         /**
-         * @since Available in iOS 5.0 and later.
+         * @since Available in iOS 12.0 and later.
          */
-        @GlobalValue(symbol="kCGImagePropertyPNGAuthor", optional=true)
-        public static native CFString Author();
+        @GlobalValue(symbol="kCGImagePropertyPNGComment", optional=true)
+        public static native CFString Comment();
         /**
          * @since Available in iOS 5.0 and later.
          */
@@ -232,6 +228,21 @@ import org.robovm.apple.coregraphics.*;
         @GlobalValue(symbol="kCGImagePropertyPNGDescription", optional=true)
         public static native CFString Description();
         /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyPNGDisclaimer", optional=true)
+        public static native CFString Disclaimer();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyPNGGamma", optional=true)
+        public static native CFString Gamma();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyPNGInterlaceType", optional=true)
+        public static native CFString InterlaceType();
+        /**
          * @since Available in iOS 5.0 and later.
          */
         @GlobalValue(symbol="kCGImagePropertyPNGModificationTime", optional=true)
@@ -242,10 +253,35 @@ import org.robovm.apple.coregraphics.*;
         @GlobalValue(symbol="kCGImagePropertyPNGSoftware", optional=true)
         public static native CFString Software();
         /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyPNGSource", optional=true)
+        public static native CFString Source();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyPNGsRGBIntent", optional=true)
+        public static native CFString sRGBIntent();
+        /**
          * @since Available in iOS 5.0 and later.
          */
         @GlobalValue(symbol="kCGImagePropertyPNGTitle", optional=true)
         public static native CFString Title();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyPNGWarning", optional=true)
+        public static native CFString Warning();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyPNGXPixelsPerMeter", optional=true)
+        public static native CFString XPixelsPerMeter();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyPNGYPixelsPerMeter", optional=true)
+        public static native CFString YPixelsPerMeter();
         /**
          * @since Available in iOS 8.0 and later.
          */

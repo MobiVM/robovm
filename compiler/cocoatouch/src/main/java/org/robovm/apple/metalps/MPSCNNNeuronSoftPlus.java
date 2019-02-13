@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNNeuronSoftPlus/*</name>*/ 
     extends /*<extends>*/MPSCNNNeuron/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,17 +46,36 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNNeuronSoftPlus.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNNeuronSoftPlus() {}
+    public MPSCNNNeuronSoftPlus() {}
     protected MPSCNNNeuronSoftPlus(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNeuronSoftPlus(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithDevice:a:b:")
     public MPSCNNNeuronSoftPlus(MTLDevice device, float a, float b) { super((SkipInit) null); initObject(init(device, a, b)); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:neuronDescriptor:")
+    public MPSCNNNeuronSoftPlus(MTLDevice device, MPSNNNeuronDescriptor neuronDescriptor) { super(device, neuronDescriptor); }
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNNeuronSoftPlus(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNNeuronSoftPlus(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithDevice:a:b:")
     protected native @Pointer long init(MTLDevice device, float a, float b);
     /*</methods>*/

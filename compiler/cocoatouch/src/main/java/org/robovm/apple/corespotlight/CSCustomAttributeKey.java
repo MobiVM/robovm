@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.*;
     protected CSCustomAttributeKey(Handle h, long handle) { super(h, handle); }
     protected CSCustomAttributeKey(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithKeyName:")
-    public CSCustomAttributeKey(String keyName) { super((SkipInit) null); initObject(initWithKeyName(keyName)); }
+    public CSCustomAttributeKey(String keyName) { super((SkipInit) null); initObject(init(keyName)); }
     @Method(selector = "initWithKeyName:searchable:searchableByDefault:unique:multiValued:")
     public CSCustomAttributeKey(String keyName, boolean searchable, boolean searchableByDefault, boolean unique, boolean multiValued) { super((SkipInit) null); initObject(init(keyName, searchable, searchableByDefault, unique, multiValued)); }
     @Method(selector = "initWithCoder:")
@@ -71,7 +71,7 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithKeyName:")
-    protected native @Pointer long initWithKeyName(String keyName);
+    protected native @Pointer long init(String keyName);
     @Method(selector = "initWithKeyName:searchable:searchableByDefault:unique:multiValued:")
     protected native @Pointer long init(String keyName, boolean searchable, boolean searchableByDefault, boolean unique, boolean multiValued);
     @Method(selector = "encodeWithCoder:")

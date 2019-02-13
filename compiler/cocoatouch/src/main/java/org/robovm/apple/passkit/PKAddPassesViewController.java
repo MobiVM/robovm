@@ -57,6 +57,10 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "initWithPasses:")
     public PKAddPassesViewController(NSArray<PKPass> passes) { super((SkipInit) null); initObject(init(passes)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public PKAddPassesViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public PKAddPassesViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

@@ -54,7 +54,7 @@ import org.robovm.apple.imageio.*;
     protected VNRequest(Handle h, long handle) { super(h, handle); }
     protected VNRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCompletionHandler:")
-    public VNRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(initWithCompletionHandler(completionHandler)); }
+    public VNRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(completionHandler)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "preferBackgroundProcessing")
@@ -69,10 +69,41 @@ import org.robovm.apple.imageio.*;
     public native NSArray<?> getResults();
     @Property(selector = "completionHandler")
     public native @Block VoidBlock2<VNRequest, NSError> getCompletionHandler();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "revision")
+    public native @MachineSizedUInt long getRevision();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setRevision:")
+    public native void setRevision(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "supportedRevisions")
+    public static native NSIndexSet getSupportedRevisions();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "defaultRevision")
+    public static native @MachineSizedUInt long getDefaultRevision();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "currentRevision")
+    public static native @MachineSizedUInt long getCurrentRevision();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="VNRequestRevisionUnspecified", optional=true)
+    public static native @MachineSizedUInt long RevisionUnspecified();
+    
     @Method(selector = "initWithCompletionHandler:")
-    protected native @Pointer long initWithCompletionHandler(@Block VoidBlock2<VNRequest, NSError> completionHandler);
+    protected native @Pointer long init(@Block VoidBlock2<VNRequest, NSError> completionHandler);
     /*</methods>*/
 }

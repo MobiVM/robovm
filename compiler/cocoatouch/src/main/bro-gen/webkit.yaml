@@ -157,6 +157,9 @@ classes:
                 name: lookUpContentRuleList
             '-removeContentRuleListForIdentifier:completionHandler:':
                 name: removeContentRuleList
+            '+storeWithURL:':
+                name: create
+                constructor: true
     WKHTTPCookieStore: #since 11.0
         methods:
             '-setCookie:completionHandler:':
@@ -218,8 +221,10 @@ protocols:
                 name: startURLSchemeTask
             '-webView:stopURLSchemeTask:':
                 name: stopURLSchemeTask
-    WKURLSchemeTask: {} #since 11.0
-
+    WKURLSchemeTask: #since 11.0
+        methods:
+            '-didFailWithError:':
+                name: didFail
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?WK.*):

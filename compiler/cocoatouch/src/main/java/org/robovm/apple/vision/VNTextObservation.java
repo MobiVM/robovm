@@ -43,7 +43,7 @@ import org.robovm.apple.imageio.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/VNTextObservation/*</name>*/ 
-    extends /*<extends>*/VNDetectedObjectObservation/*</extends>*/ 
+    extends /*<extends>*/VNRectangleObservation/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class VNTextObservationPtr extends Ptr<VNTextObservation, VNTextObservationPtr> {}/*</ptr>*/

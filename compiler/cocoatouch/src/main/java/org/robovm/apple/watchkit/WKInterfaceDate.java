@@ -48,7 +48,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(WKInterfaceDate.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public WKInterfaceDate() {}
+    protected WKInterfaceDate() {}
     protected WKInterfaceDate(Handle h, long handle) { super(h, handle); }
     protected WKInterfaceDate(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

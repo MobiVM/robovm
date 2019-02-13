@@ -116,6 +116,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setUsage:")
     public native void setUsage(MTLTextureUsage v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "allowGPUOptimizedContents")
+    public native boolean isAllowGPUOptimizedContents();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setAllowGPUOptimizedContents:")
+    public native void setAllowGPUOptimizedContents(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -123,5 +133,10 @@ import org.robovm.apple.dispatch.*;
     public static native MTLTextureDescriptor create2DDescriptor(MTLPixelFormat pixelFormat, @MachineSizedUInt long width, @MachineSizedUInt long height, boolean mipmapped);
     @Method(selector = "textureCubeDescriptorWithPixelFormat:size:mipmapped:")
     public static native MTLTextureDescriptor createCubeDescriptor(MTLPixelFormat pixelFormat, @MachineSizedUInt long size, boolean mipmapped);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:")
+    public static native MTLTextureDescriptor createBufferDescriptor(MTLPixelFormat pixelFormat, @MachineSizedUInt long width, MTLResourceOptions resourceOptions, MTLTextureUsage usage);
     /*</methods>*/
 }

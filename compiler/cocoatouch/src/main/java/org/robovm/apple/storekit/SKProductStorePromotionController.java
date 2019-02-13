@@ -68,7 +68,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "fetchStorePromotionOrderWithCompletionHandler:")
-    public native void fetchStorePromotionOrderWithCompletionHandler(@Block VoidBlock2<NSArray<SKProduct>, NSError> completionHandler);
+    public native void fetchStorePromotionOrder(@Block VoidBlock2<NSArray<SKProduct>, NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
      */

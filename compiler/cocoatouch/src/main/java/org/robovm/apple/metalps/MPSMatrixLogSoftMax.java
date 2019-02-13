@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixLogSoftMax/*</name>*/ 
     extends /*<extends>*/MPSMatrixSoftMax/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,18 @@ import org.robovm.apple.metal.*;
     public MPSMatrixLogSoftMax() {}
     protected MPSMatrixLogSoftMax(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixLogSoftMax(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithDevice:")
+    public MPSMatrixLogSoftMax(MTLDevice device) { super(device); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSMatrixLogSoftMax(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixLogSoftMax(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

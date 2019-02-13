@@ -66,7 +66,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "removeAllBehaviors")
     public native void removeAllBehaviors();
     @Method(selector = "objectAtIndexedSubscript:")
-    public native GKBehavior objectAtIndexedSubscript(@MachineSizedUInt long idx);
+    public native GKBehavior getBehaviour(@MachineSizedUInt long idx);
     @Method(selector = "setObject:forKeyedSubscript:")
     public native void setObjectforKeyedSubscript(NSNumber weight, GKBehavior behavior);
     @Method(selector = "objectForKeyedSubscript:")

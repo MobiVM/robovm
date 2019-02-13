@@ -52,14 +52,14 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListenerProtocol instead
      */
     @Deprecated
     @Property(selector = "inviteHandler")
     public native @Block VoidBlock2<GKInvite, NSArray<?>> getInviteHandler();
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListenerProtocol instead
      */
     @Deprecated
     @Property(selector = "setInviteHandler:")
@@ -111,21 +111,21 @@ import org.robovm.apple.uikit.*;
     public static native GKMatchmaker getSharedMatchmaker();
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use startBrowsingForNearbyPlayersWithHandler: instead
      */
     @Deprecated
     @Method(selector = "startBrowsingForNearbyPlayersWithReachableHandler:")
-    public native void startBrowsingForNearbyPlayers(@Block VoidBlock2<String, Boolean> reachableHandler);
+    public native void startBrowsingForNearbyPlayers(@Block VoidBlock2<NSString, Boolean> reachableHandler);
     /**
      * @since Available in iOS 6.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use cancelPendingInviteToPlayer:
      */
     @Deprecated
     @Method(selector = "cancelInviteToPlayer:")
     public native void cancelInvite(String playerID);
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use findPlayersForHostedRequest:
      */
     @Deprecated
     @Method(selector = "findPlayersForHostedMatchRequest:withCompletionHandler:")

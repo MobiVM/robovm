@@ -219,5 +219,35 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "renderOffline:toBuffer:error:")
     private native AVAudioEngineManualRenderingStatus renderOffline(int numberOfFrames, AVAudioPCMBuffer buffer, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "connectMIDI:to:format:block:")
+    public native void connectMIDI(AVAudioNode sourceNode, AVAudioNode destinationNode, AVAudioFormat format, @Block("(,,@MachineSizedSInt,)") Block4<AUEventSampleTime, Byte, Long, BytePtr, OSStatus> tapBlock);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "connectMIDI:toNodes:format:block:")
+    public native void connectMIDI(AVAudioNode sourceNode, NSArray<AVAudioNode> destinationNodes, AVAudioFormat format, @Block("(,,@MachineSizedSInt,)") Block4<AUEventSampleTime, Byte, Long, BytePtr, OSStatus> tapBlock);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "disconnectMIDI:from:")
+    public native void disconnectMIDI(AVAudioNode sourceNode, AVAudioNode destinationNode);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "disconnectMIDI:fromNodes:")
+    public native void disconnectMIDI(AVAudioNode sourceNode, NSArray<AVAudioNode> destinationNodes);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "disconnectMIDIInput:")
+    public native void disconnectMIDIInput(AVAudioNode node);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "disconnectMIDIOutput:")
+    public native void disconnectMIDIOutput(AVAudioNode node);
     /*</methods>*/
 }

@@ -110,9 +110,7 @@ classes:
     CFStreamClientContext:
         info:
             type: '@Pointer long'
-    CFStreamError:
-        domain:
-            type: CFStreamErrorDomain
+    CFStreamError: {}
     CFTreeContext:
         visibility: ''
     CFUUIDBytes: {}
@@ -1900,11 +1898,44 @@ values:
         name: '#{g[0]}'
         type: CFString
 
+    kCFStreamSocketSOCKSVersion(4|5):
+        enum: CFStreamSocketSOCKSVersion
+        name: '#{g[0]}'
+        type: CFString
+    kCFStreamProperty(SOCKSProxy):
+        enum: CFStreamProperty
+        name: '#{g[0]}'
+        type: CFString
+    kCFStreamPropertySOCKS(.*):
+        dictionary: CFStreamSocketSOCKSProxy
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            ProxyHost:
+                name: Host
+                type: String
+            ProxyPort:
+                name: Port
+                type: int
+            Version:
+                type: CFStreamSocketSOCKSVersion
+            User:
+                type: String
+            Password:
+                type: String
     # CFStream
     kCFStreamProperty(.*):
         enum: CFStreamProperty
         name: '#{g[0]}'
         type: CFString
+
+    kCFStreamSocketSecurityLevel(.*):
+        enum: CFStreamSocketSecurityLevel
+        name: '#{g[0]}'
+        type: CFString
+    kCFStreamErrorDomain(.*):
+        class: CFStreamErrorDomains # cant find better place for it
+        name: '#{g[0]}'
 
     # CFString
     kCFStringTransform(.*):

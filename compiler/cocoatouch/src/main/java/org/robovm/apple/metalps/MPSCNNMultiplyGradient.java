@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNMultiplyGradient/*</name>*/ 
     extends /*<extends>*/MPSCNNArithmeticGradient/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,6 +51,10 @@ import org.robovm.apple.metal.*;
     protected MPSCNNMultiplyGradient(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:isSecondarySourceFilter:")
     public MPSCNNMultiplyGradient(MTLDevice device, boolean isSecondarySourceFilter) { super((SkipInit) null); initObject(init(device, isSecondarySourceFilter)); }
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNMultiplyGradient(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNMultiplyGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

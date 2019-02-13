@@ -70,6 +70,17 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="AVSampleBufferRenderSynchronizerRateDidChangeNotification", optional=true)
+    public static native String RateDidChangeNotification();
+    
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "currentTime")
+    public native @ByVal CMTime currentTime();
     @Method(selector = "setRate:time:")
     public native void setRate(float rate, @ByVal CMTime time);
     @Method(selector = "addRenderer:")

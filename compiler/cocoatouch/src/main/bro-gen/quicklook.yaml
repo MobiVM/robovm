@@ -26,10 +26,14 @@ classes:
     QLThumbnailReply: #since 11.0
         methods:
             '+replyWithContextSize:drawingBlock:':
-                name: replyWithDrawing
+                name: create
+                constructor: true
             '+replyWithContextSize:currentContextDrawingBlock:':
-                name: replyWithCurrentContextDrawing
-
+                name: create
+                constructor: true
+            '+replyWithImageFileURL:':
+                name: create
+                constructor: true
 protocols:
     QLPreviewItem: # DONE
         properties:

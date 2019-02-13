@@ -34,7 +34,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 3.0 and later.
- * @deprecated Deprecated in iOS 7.0.
+ * @deprecated Deprecated in iOS 7.0. Use MCSession from the MultipeerConnectivity framework instead
  */
 @Deprecated
 /*</javadoc>*/
@@ -59,8 +59,18 @@ import org.robovm.apple.uikit.*;
     public GKSession(String sessionID, String name, GKSessionMode mode) { super((SkipInit) null); initObject(init(sessionID, name, mode)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
     @Property(selector = "delegate")
     public native GKSessionDelegate getDelegate();
+    /**
+     * @since Available in iOS 3.0 and later.
+     * @deprecated Deprecated in iOS 7.0.
+     */
+    @Deprecated
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(GKSessionDelegate v);
     @Property(selector = "sessionID")

@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     void confirmSendPayment(INSendPaymentIntent intent, @Block VoidBlock1<INSendPaymentIntentResponse> completion);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. resolvePayeeForSendPayment:withCompletion: is deprecated. Use resolvePayeeForSendPayment:completion: instead
      */
     @Deprecated
     @Method(selector = "resolvePayeeForSendPayment:withCompletion:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     void resolvePayeeForSendPayment(INSendPaymentIntent intent, @Block VoidBlock1<INSendPaymentPayeeResolutionResult> completion);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. resolveCurrencyAmountForSendPayment:withCompletion: is deprecated. Use resolveCurrencyAmountForSendPayment:completion: instead
      */
     @Deprecated
     @Method(selector = "resolveCurrencyAmountForSendPayment:withCompletion:")

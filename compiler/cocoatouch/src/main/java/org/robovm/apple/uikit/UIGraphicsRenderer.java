@@ -73,5 +73,25 @@ import org.robovm.apple.intents.*;
     protected native @Pointer long init(@ByVal CGRect bounds);
     @Method(selector = "initWithBounds:format:")
     protected native @Pointer long init(@ByVal CGRect bounds, UIGraphicsRendererFormat format);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "runDrawingActions:completionActions:error:")
+    public native boolean runDrawingActions(@Block VoidBlock1<UIGraphicsRendererContext> drawingActions, @Block VoidBlock1<UIGraphicsRendererContext> completionActions, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "rendererContextClass")
+    public static native Class<?> rendererContextClass();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "contextWithFormat:")
+    public static native CGContext createContext(UIGraphicsRendererFormat format);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "prepareCGContext:withRendererContext:")
+    public static native void prepareCGContext(CGContext context, UIGraphicsRendererContext rendererContext);
     /*</methods>*/
 }

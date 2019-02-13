@@ -54,7 +54,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "enumerateChangesForObserver:fromSyncAnchor:")
     void fromSyncAnchor(NSFileProviderChangeObserver observer, NSData syncAnchor);
     @Method(selector = "currentSyncAnchorWithCompletionHandler:")
-    void currentSyncAnchorWithCompletionHandler(@Block VoidBlock1<NSData> completionHandler);
+    void currentSyncAnchor(@Block VoidBlock1<NSData> completionHandler);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

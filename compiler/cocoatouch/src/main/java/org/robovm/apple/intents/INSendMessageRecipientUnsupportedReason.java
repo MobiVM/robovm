@@ -42,7 +42,19 @@ public enum /*<name>*/INSendMessageRecipientUnsupportedReason/*</name>*/ impleme
     /*<values>*/
     NoAccount(1L),
     Offline(2L),
-    MessagingServiceNotEnabledForRecipient(3L);
+    MessagingServiceNotEnabledForRecipient(3L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    NoValidHandle(4L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    RequestedHandleInvalid(5L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    NoHandleForLabel(6L);
     /*</values>*/
 
     /*<bind>*/

@@ -40,33 +40,25 @@ import org.robovm.apple.coregraphics.*;
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMusicPlayerPlayParameters/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MPMusicPlayerPlayParametersPtr extends Ptr<MPMusicPlayerPlayParameters, MPMusicPlayerPlayParametersPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MPMusicPlayerPlayParameters.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPMusicPlayerPlayParameters() {}
+    public MPMusicPlayerPlayParameters() {}
     protected MPMusicPlayerPlayParameters(Handle h, long handle) { super(h, handle); }
     protected MPMusicPlayerPlayParameters(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDictionary:")
-    public MPMusicPlayerPlayParameters(NSDictionary<NSString, ?> dictionary) { super((SkipInit) null); initObject(initWithDictionary(dictionary)); }
-    @Method(selector = "initWithCoder:")
-    public MPMusicPlayerPlayParameters(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public MPMusicPlayerPlayParameters(NSDictionary<NSString, ?> dictionary) { super((SkipInit) null); initObject(init(dictionary)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dictionary")
     public native NSDictionary<NSString, ?> getDictionary();
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithDictionary:")
-    protected native @Pointer long initWithDictionary(NSDictionary<NSString, ?> dictionary);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSDictionary<NSString, ?> dictionary);
     /*</methods>*/
 }

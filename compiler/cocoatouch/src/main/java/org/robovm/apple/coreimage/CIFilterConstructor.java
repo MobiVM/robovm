@@ -55,7 +55,7 @@ import org.robovm.apple.iosurface.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "filterWithName:")
-    CIFilter filterWithName(String name);
+    CIFilter createFilter(String name);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

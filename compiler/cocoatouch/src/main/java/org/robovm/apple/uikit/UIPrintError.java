@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,35 +40,56 @@ import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @StronglyLinked/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPrintError/*</name>*/ 
-    extends /*<extends>*/NSError/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    protected UIPrintError(SkipInit skipInit) {
-        super(skipInit);
-    }
-    
-    /*<ptr>*/
-    /*</ptr>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("UIKit")/*</annotations>*/
+public enum /*<name>*/UIPrintError/*</name>*/ implements NSErrorCode {
+    /*<values>*/
+    PrintingNotAvailable(1L),
+    NoContent(2L),
+    UnknownImageFormat(3L),
+    JobFailed(4L);
+    /*</values>*/
+
     /*<bind>*/static { Bro.bind(UIPrintError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
-    @Override
-    public UIPrintErrorCode getErrorCode() {
-        UIPrintErrorCode code = null;
-        try {
-            code = UIPrintErrorCode.valueOf(getCode());
-        } catch (IllegalArgumentException e) {
-            // ignore
-        }
-        return code;
-    }
     /*<methods>*/
     @GlobalValue(symbol="UIPrintErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/UIPrintError/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/UIPrintError/*</name>*/ valueOf(long n) {
+        for (/*<name>*/UIPrintError/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in "
+            + /*<name>*/UIPrintError/*</name>*/.class.getName());
+    }
+
+    // bind wrap to include it in compilation as long as nserror enum is used 
+    static { Bro.bind(NSErrorWrap.class); }
+    @StronglyLinked
+    public static class NSErrorWrap extends NSError {
+        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
+
+        @Override public NSErrorCode getErrorCode() {
+             try {
+                 return  /*<name>*/UIPrintError/*</name>*/.valueOf(getCode());
+             } catch (IllegalArgumentException e) {
+                 return null;
+             }
+         }
+
+        public static String getClassDomain() {
+            /** must be incerted in value section */
+            return /*<name>*/UIPrintError/*</name>*/.getClassDomain();
+        }
+    }
 }

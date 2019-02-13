@@ -55,6 +55,17 @@ import org.robovm.apple.coremedia.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="RPVideoSampleOrientationKey", optional=true)
+    public static native String getVideoSampleOrientationKey();
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @GlobalValue(symbol="RPApplicationInfoBundleIdentifierKey", optional=true)
+    public static native String getApplicationInfoBundleIdentifierKey();
+    
     @Method(selector = "updateServiceInfo:")
     public native void updateServiceInfo(NSDictionary<?, ?> serviceInfo);
     /**

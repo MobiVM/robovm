@@ -57,7 +57,7 @@ import org.robovm.apple.intents.*;
     protected UIDragItem(Handle h, long handle) { super(h, handle); }
     protected UIDragItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithItemProvider:")
-    public UIDragItem(NSItemProvider itemProvider) { super((SkipInit) null); initObject(initWithItemProvider(itemProvider)); }
+    public UIDragItem(NSItemProvider itemProvider) { super((SkipInit) null); initObject(init(itemProvider)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "itemProvider")
@@ -74,6 +74,6 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithItemProvider:")
-    protected native @Pointer long initWithItemProvider(NSItemProvider itemProvider);
+    protected native @Pointer long init(NSItemProvider itemProvider);
     /*</methods>*/
 }

@@ -41,7 +41,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("CoreAudioKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AUAudioUnitViewConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class AUAudioUnitViewConfigurationPtr extends Ptr<AUAudioUnitViewConfiguration, AUAudioUnitViewConfigurationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AUAudioUnitViewConfiguration.class); }/*</bind>*/
@@ -52,6 +52,8 @@ import org.robovm.apple.uikit.*;
     protected AUAudioUnitViewConfiguration(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithWidth:height:hostHasController:")
     public AUAudioUnitViewConfiguration(double width, double height, boolean hostHasController) { super((SkipInit) null); initObject(init(width, height, hostHasController)); }
+    @Method(selector = "initWithCoder:")
+    public AUAudioUnitViewConfiguration(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "width")
@@ -60,10 +62,16 @@ import org.robovm.apple.uikit.*;
     public native double getHeight();
     @Property(selector = "hostHasController")
     public native boolean isHostHasController();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithWidth:height:hostHasController:")
     protected native @Pointer long init(double width, double height, boolean hostHasController);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

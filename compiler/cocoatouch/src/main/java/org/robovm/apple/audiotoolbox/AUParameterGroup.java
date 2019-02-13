@@ -43,7 +43,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("AudioToolbox") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AUParameterGroup/*</name>*/ 
     extends /*<extends>*/AUParameterNode/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class AUParameterGroupPtr extends Ptr<AUParameterGroup, AUParameterGroupPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AUParameterGroup.class); }/*</bind>*/
@@ -52,15 +52,22 @@ import org.robovm.apple.uikit.*;
     public AUParameterGroup() {}
     protected AUParameterGroup(Handle h, long handle) { super(h, handle); }
     protected AUParameterGroup(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public AUParameterGroup(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "children")
     public native NSArray<AUParameterNode> getChildren();
     @Property(selector = "allParameters")
     public native NSArray<AUParameter> getAllParameters();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

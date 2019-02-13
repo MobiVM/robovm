@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNNeuronPReLU/*</name>*/ 
     extends /*<extends>*/MPSCNNNeuron/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,17 +46,36 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNNeuronPReLU.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNNeuronPReLU() {}
+    public MPSCNNNeuronPReLU() {}
     protected MPSCNNNeuronPReLU(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNeuronPReLU(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithDevice:a:count:")
     public MPSCNNNeuronPReLU(MTLDevice device, FloatPtr a, @MachineSizedUInt long count) { super((SkipInit) null); initObject(init(device, a, count)); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:neuronDescriptor:")
+    public MPSCNNNeuronPReLU(MTLDevice device, MPSNNNeuronDescriptor neuronDescriptor) { super(device, neuronDescriptor); }
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNNeuronPReLU(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNNeuronPReLU(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithDevice:a:count:")
     protected native @Pointer long init(MTLDevice device, FloatPtr a, @MachineSizedUInt long count);
     /*</methods>*/

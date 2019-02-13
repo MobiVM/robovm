@@ -32,7 +32,11 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 4.2 and later.
+ * @deprecated Deprecated in iOS 10.0.
+ */
+@Deprecated
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/GKFriendRequestComposeViewControllerDelegate/*</name>*/ 

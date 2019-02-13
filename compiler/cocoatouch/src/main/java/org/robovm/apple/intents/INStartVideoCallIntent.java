@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INStartVideoCallIntent(Handle h, long handle) { super(h, handle); }
     protected INStartVideoCallIntent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithContacts:")
-    public INStartVideoCallIntent(NSArray<INPerson> contacts) { super((SkipInit) null); initObject(initWithContacts(contacts)); }
+    public INStartVideoCallIntent(NSArray<INPerson> contacts) { super((SkipInit) null); initObject(init(contacts)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contacts")
@@ -59,6 +59,6 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithContacts:")
-    protected native @Pointer long initWithContacts(NSArray<INPerson> contacts);
+    protected native @Pointer long init(NSArray<INPerson> contacts);
     /*</methods>*/
 }

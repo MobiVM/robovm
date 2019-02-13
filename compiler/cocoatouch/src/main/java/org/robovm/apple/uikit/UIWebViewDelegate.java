@@ -55,12 +55,32 @@ import org.robovm.apple.intents.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. No longer supported.
+     */
+    @Deprecated
     @Method(selector = "webView:shouldStartLoadWithRequest:navigationType:")
     boolean shouldStartLoad(UIWebView webView, NSURLRequest request, UIWebViewNavigationType navigationType);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. No longer supported.
+     */
+    @Deprecated
     @Method(selector = "webViewDidStartLoad:")
     void didStartLoad(UIWebView webView);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. No longer supported.
+     */
+    @Deprecated
     @Method(selector = "webViewDidFinishLoad:")
     void didFinishLoad(UIWebView webView);
+    /**
+     * @since Available in iOS 2.0 and later.
+     * @deprecated Deprecated in iOS 12.0. No longer supported.
+     */
+    @Deprecated
     @Method(selector = "webView:didFailLoadWithError:")
     void didFailLoad(UIWebView webView, NSError error);
     /*</methods>*/

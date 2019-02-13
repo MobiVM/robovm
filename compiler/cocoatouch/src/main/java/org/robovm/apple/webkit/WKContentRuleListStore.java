@@ -50,6 +50,7 @@ import org.robovm.apple.security.*;
     public WKContentRuleListStore() {}
     protected WKContentRuleListStore(Handle h, long handle) { super(h, handle); }
     protected WKContentRuleListStore(SkipInit skipInit) { super(skipInit); }
+    public WKContentRuleListStore(NSURL url) { super((Handle) null, create(url)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -67,6 +68,6 @@ import org.robovm.apple.security.*;
     @Method(selector = "defaultStore")
     public static native WKContentRuleListStore defaultStore();
     @Method(selector = "storeWithURL:")
-    public static native WKContentRuleListStore storeWithURL(NSURL url);
+    protected static native @Pointer long create(NSURL url);
     /*</methods>*/
 }

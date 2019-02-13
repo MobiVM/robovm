@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNNeuronReLU/*</name>*/ 
     extends /*<extends>*/MPSCNNNeuron/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,17 +46,36 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNNeuronReLU.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNNeuronReLU() {}
+    public MPSCNNNeuronReLU() {}
     protected MPSCNNNeuronReLU(Handle h, long handle) { super(h, handle); }
     protected MPSCNNNeuronReLU(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithDevice:a:")
     public MPSCNNNeuronReLU(MTLDevice device, float a) { super((SkipInit) null); initObject(init(device, a)); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:neuronDescriptor:")
+    public MPSCNNNeuronReLU(MTLDevice device, MPSNNNeuronDescriptor neuronDescriptor) { super(device, neuronDescriptor); }
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNNeuronReLU(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNNeuronReLU(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 12.0.
+     */
+    @Deprecated
     @Method(selector = "initWithDevice:a:")
     protected native @Pointer long init(MTLDevice device, float a);
     /*</methods>*/

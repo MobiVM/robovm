@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNBinaryArithmeticNode/*</name>*/ 
     extends /*<extends>*/MPSNNFilterNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,11 +46,11 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSNNBinaryArithmeticNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSNNBinaryArithmeticNode() {}
+    protected MPSNNBinaryArithmeticNode() {}
     protected MPSNNBinaryArithmeticNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNBinaryArithmeticNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSources:")
-    public MPSNNBinaryArithmeticNode(NSArray<MPSNNImageNode> sourceNodes) { super((SkipInit) null); initObject(initWithSources(sourceNodes)); }
+    public MPSNNBinaryArithmeticNode(NSArray<MPSNNImageNode> sourceNodes) { super((SkipInit) null); initObject(init(sourceNodes)); }
     @Method(selector = "initWithLeftSource:rightSource:")
     public MPSNNBinaryArithmeticNode(MPSNNImageNode left, MPSNNImageNode right) { super((SkipInit) null); initObject(init(left, right)); }
     /*</constructors>*/
@@ -103,7 +103,7 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSources:")
-    protected native @Pointer long initWithSources(NSArray<MPSNNImageNode> sourceNodes);
+    protected native @Pointer long init(NSArray<MPSNNImageNode> sourceNodes);
     @Method(selector = "initWithLeftSource:rightSource:")
     protected native @Pointer long init(MPSNNImageNode left, MPSNNImageNode right);
     @Method(selector = "gradientClass")
@@ -112,8 +112,6 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.3 and later.
      */
     @Method(selector = "gradientFiltersWithSources:")
-    public native NSArray<MPSNNGradientFilterNode> gradientFiltersWithSources(NSArray<MPSNNImageNode> gradientImages);
-    @Method(selector = "nodeWithSources:")
-    public static native MPSNNBinaryArithmeticNode nodeWithSources(NSArray<MPSNNImageNode> sourceNodes);
+    public native NSArray<MPSNNGradientFilterNode> gradientFilters(NSArray<MPSNNImageNode> gradientImages);
     /*</methods>*/
 }

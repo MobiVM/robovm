@@ -209,7 +209,7 @@ import org.robovm.apple.corespotlight.*;
     public static native String CoreSpotlightExporter();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
     @GlobalValue(symbol="NSPersistentStoreDidImportUbiquitousContentChangesNotification", optional=true)
@@ -315,21 +315,21 @@ import org.robovm.apple.corespotlight.*;
     public native void performBlockAndWait(@Block Runnable block);
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use -performBlockAndWait: instead
      */
     @Deprecated
     @Method(selector = "lock")
     public native void lock();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use -performBlockAndWait: instead
      */
     @Deprecated
     @Method(selector = "unlock")
     public native void unlock();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use -performBlock: instead
      */
     @Deprecated
     @Method(selector = "tryLock")
@@ -369,7 +369,7 @@ import org.robovm.apple.corespotlight.*;
     private static native boolean setMetadataForPersistentStoreType(NSPersistentStoreMetadata metadata, String storeType, NSURL url, NSPersistentStoreOptions options, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -metadataForPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType
      */
     @Deprecated
     public static NSPersistentStoreMetadata getMetadataForPersistentStoreType(String storeType, NSURL url) throws NSErrorException {
@@ -380,14 +380,14 @@ import org.robovm.apple.corespotlight.*;
     }
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use -metadataForPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType
      */
     @Deprecated
     @Method(selector = "metadataForPersistentStoreOfType:URL:error:")
     private static native NSPersistentStoreMetadata getMetadataForPersistentStoreType(String storeType, NSURL url, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use  -setMetadata:forPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType
      */
     @Deprecated
     public static boolean setMetadataForPersistentStoreType(NSPersistentStoreMetadata metadata, String storeType, NSURL url) throws NSErrorException {
@@ -398,14 +398,14 @@ import org.robovm.apple.corespotlight.*;
     }
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use  -setMetadata:forPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType
      */
     @Deprecated
     @Method(selector = "setMetadata:forPersistentStoreOfType:URL:error:")
     private static native boolean setMetadataForPersistentStoreType(NSPersistentStoreMetadata metadata, String storeType, NSURL url, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
     public static boolean removeUbiquitousContentAndPersistentStore(NSURL storeURL, NSPersistentStoreOptions options) throws NSErrorException {
@@ -416,7 +416,7 @@ import org.robovm.apple.corespotlight.*;
     }
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
     @Method(selector = "removeUbiquitousContentAndPersistentStoreAtURL:options:error:")

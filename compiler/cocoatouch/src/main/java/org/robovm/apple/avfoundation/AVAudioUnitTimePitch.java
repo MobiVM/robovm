@@ -57,6 +57,9 @@ import org.robovm.apple.audiotoolbox.*;
     public AVAudioUnitTimePitch() {}
     protected AVAudioUnitTimePitch(Handle h, long handle) { super(h, handle); }
     protected AVAudioUnitTimePitch(SkipInit skipInit) { super(skipInit); }
+    @WeaklyLinked
+    @Method(selector = "initWithAudioComponentDescription:")
+    public AVAudioUnitTimePitch(@ByVal AudioComponentDescription audioComponentDescription) { super(audioComponentDescription); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rate")

@@ -41,7 +41,7 @@ public enum /*<name>*/NSManagedObjectContextConcurrencyType/*</name>*/ implement
     /*<values>*/
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use another NSManagedObjectContextConcurrencyType
      */
     @Deprecated
     Confinement(0L),

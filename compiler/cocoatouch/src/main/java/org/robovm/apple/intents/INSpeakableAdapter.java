@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public NSArray<?> getAlternativeSpeakableMatches() { return null; }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Please use vocabularyIdentifier
      */
     @Deprecated
     @NotImplemented("identifier")

@@ -54,6 +54,8 @@ import org.robovm.apple.uikit.*;
     public GKMeshGraph(float bufferRadius, @ByVal VectorFloat2 min, @ByVal VectorFloat2 max, Class<?> nodeClass) { super((SkipInit) null); initObject(init(bufferRadius, min, max, nodeClass)); }
     @Method(selector = "initWithBufferRadius:minCoordinate:maxCoordinate:")
     public GKMeshGraph(float bufferRadius, @ByVal VectorFloat2 min, @ByVal VectorFloat2 max) { super((SkipInit) null); initObject(init(bufferRadius, min, max)); }
+    @Method(selector = "initWithNodes:")
+    public GKMeshGraph(NSArray<GKGraphNode> nodes) { super(nodes); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "obstacles")

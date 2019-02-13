@@ -56,6 +56,8 @@ import org.robovm.apple.intents.*;
     public UIManagedDocument() {}
     protected UIManagedDocument(Handle h, long handle) { super(h, handle); }
     protected UIManagedDocument(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFileURL:")
+    public UIManagedDocument(NSURL url) { super(url); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "persistentStoreName")

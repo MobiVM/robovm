@@ -45,19 +45,19 @@ public enum /*<name>*/PKPaymentAuthorizationStatus/*</name>*/ implements ValuedE
     Failure(1L),
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentBillingAddressInvalidErrorWithKey:localizedDescription: in the errors array.
      */
     @Deprecated
     InvalidBillingPostalAddress(2L),
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentShippingAddressInvalidErrorWithKey:localizedDescription: in the errors array.
      */
     @Deprecated
     InvalidShippingPostalAddress(3L),
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentContactInvalidErrorWithContactField:localizedDescription: in the errors array.
      */
     @Deprecated
     InvalidShippingContact(4L),

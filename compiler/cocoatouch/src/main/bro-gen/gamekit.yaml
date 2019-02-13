@@ -5,31 +5,8 @@ framework: GameKit
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/GameKit.framework/Headers/GameKit.h
-typedefs:
-    'void (^)(NSError * _Nullable)': '@Block VoidBlock1<NSError>'
-    'void (^)(UIImage * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<UIImage, NSError>'
-    'void (^)(NSArray<GKPlayer *> * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<NSArray<GKPlayer>, NSError>'
-    'void (^)(NSString * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<String, NSError>'
-    'void (^)(NSURL * _Nullable, NSData * _Nullable, NSData * _Nullable, uint64_t, NSError * _Nullable)': '@Block VoidBlock5<NSURL, NSData, NSData, Long, NSError>'
-    'void (^)(UIViewController * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<UIViewController, NSError>'
-    'void (^)(NSString * _Nullable)': '@Block VoidBlock1<String>'
-    'void (^)(GKMatch * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<GKMatch, NSError>'
-    'void (^)(NSInteger, NSError * _Nullable)': '@Block("(@MachineSizedSInt,)") VoidBlock2<Long, NSError>'
-    'void (^)(NSString * _Nonnull, BOOL)': '@Block VoidBlock2<String, Boolean>'
-    'void (^)(GKInvite * _Nonnull, NSArray * _Nullable)': '@Block VoidBlock2<GKInvite, NSArray<NSString>>'
-    'void (^)(GKTurnBasedMatch * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<GKTurnBasedMatch, NSError>'
-    'void (^)(NSData * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<NSData, NSError>'
-    'void (^)(GKTurnBasedExchange * _Nonnull, NSError * _Nonnull)': '@Block VoidBlock2<GKTurnBasedExchange, NSError>'
-    'void (^)(NSString * _Nonnull, GKVoiceChatPlayerState)': '@Block VoidBlock2<String, GKVoiceChatPlayerState>'
-    'void (^)(GKSavedGame * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<GKSavedGame, NSError>'
-    'void (^)(GKPlayer * _Nullable)': '@Block VoidBlock1<GKPlayer>'
-    'void (^)(GKPlayer * _Nonnull, GKInviteRecipientResponse)': '@Block VoidBlock2<GKPlayer, GKInviteRecipientResponse>'
-    'void (^)(GKPlayer * _Nonnull, BOOL)': '@Block VoidBlock2<GKPlayer, Boolean>'
-    'void (^)(GKPlayer * _Nonnull, GKVoiceChatPlayerState)': '@Block VoidBlock2<GKPlayer, GKInviteRecipientResponse>'
-    'void (^)(NSURL * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<NSURL, NSError>'
-    'void (^)(GKGameSession * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<GKGameSession, NSError>'
-    'void (^)(NSArray<GKGameSession *> * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<NSArray<GKGameSession>, NSError>'
-    'void (^)(GKCloudPlayer * _Nullable, NSError * _Nullable)': '@Block VoidBlock2<GKCloudPlayer, NSError>'
+typedefs: {}
+
 
 enums:
     GKChallengeState: { marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
@@ -189,8 +166,6 @@ classes:
                 name: setConnectionState
             '-sendData:withTransportType:completionHandler:':
                 name: sendData
-            '-sendData:withTransportType:completionHandler:':
-                name: sendData
             '-sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:':
                 name: sendMessage
             '-clearBadgeForPlayers:completionHandler:':
@@ -215,6 +190,8 @@ classes:
                 name: didReceiveData
             '+postSession:didReceiveMessage:withData:fromPlayer:':
                 name: didReceiveMessage
+            '-playersWithConnectionState:':
+                name: getPlayers
     GKInvite: {} # DONE
     GKLeaderboard: # DONE
         properties:
@@ -271,6 +248,8 @@ classes:
                 type: 'List<String>'
                 marshaler: NSArray.AsStringListMarshaler
         methods:
+            '-loadRecentPlayersWithCompletionHandler:':
+                name: loadRecentPlayers
             '-loadFriendPlayersWithCompletionHandler:':
                 name: loadFriendPlayers
                 parameters:
@@ -383,14 +362,16 @@ classes:
                 property: true
     GKMatchmakerViewController: # DONE
         methods:
-            '-init.*':
-                name: init
             '-addPlayersToMatch:':
                 trim_after_first_colon: true
             '-setHostedPlayer:connected:':
                 trim_after_first_colon: true
             '-setHostedPlayer:didConnect:':
                 trim_after_first_colon: true
+            '-initWithMatchRequest:':
+                name: init
+            '-initWithInvite:':
+                name: init
     GKMatchRequest: # DONE
         properties:
             'recipients':
@@ -615,7 +596,7 @@ classes:
             'showExistingMatches':
                 name: showsExistingMatches
         methods:
-            '-init.*':
+            '-initWithMatchRequest:':
                 name: init
     GKTurnBasedParticipant: {} # DONE
     GKVoiceChat: # DONE

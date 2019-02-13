@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNArithmeticGradientState/*</name>*/ 
     extends /*<extends>*/MPSNNBinaryGradientState/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,19 @@ import org.robovm.apple.metal.*;
     protected MPSCNNArithmeticGradientState() {}
     protected MPSCNNArithmeticGradientState(Handle h, long handle) { super(h, handle); }
     protected MPSCNNArithmeticGradientState(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:bufferSize:")
+    public MPSCNNArithmeticGradientState(MTLDevice device, @MachineSizedUInt long bufferSize) { super(device, bufferSize); }
+    @Method(selector = "initWithDevice:textureDescriptor:")
+    public MPSCNNArithmeticGradientState(MTLDevice device, MTLTextureDescriptor descriptor) { super(device, descriptor); }
+    @Method(selector = "initWithResource:")
+    public MPSCNNArithmeticGradientState(MTLResource resource) { super(resource); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "initWithDevice:resourceList:")
+    public MPSCNNArithmeticGradientState(MTLDevice device, MPSStateResourceList resourceList) { super(device, resourceList); }
+    @Method(selector = "initWithResources:")
+    public MPSCNNArithmeticGradientState(NSArray<?> resources) { super(resources); }
     /*</constructors>*/
     /*<properties>*/
     

@@ -208,7 +208,7 @@ import org.robovm.apple.intents.*;
     /*<methods>*/
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. The Find pasteboard is no longer available.
      */
     @Deprecated
     @GlobalValue(symbol="UIPasteboardNameFind", optional=true)

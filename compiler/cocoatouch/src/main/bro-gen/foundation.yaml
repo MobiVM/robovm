@@ -85,6 +85,10 @@ typedefs:
     NSURLResourceKey: NSString
     NSAttributedStringKey: NSString
     NSFileProviderServiceName : NSString
+    NSUserActivityPersistentIdentifier: NSString # since ios12
+
+generic_typedefs:
+    'NSString *': NSString
 
 structdefs:
     vector_uint2: 'VectorInt2'
@@ -112,6 +116,7 @@ structdefs:
     matrix_float3x4: 'MatrixFloat3x4'
     matrix_float4x4: 'MatrixFloat4x4'
     simd_float4x4: 'MatrixFloat4x4'
+    simd_float3x3: 'MatrixFloat3x3'
     matrix_double4x4: 'MatrixDouble4x4'
 
 private_typedefs:
@@ -252,7 +257,7 @@ classes:
     NSKeyValueOperator: { visibility: 'public final' }
 
     NS.*Internal: { exclude: true }
-        
+
     NSCocoaError:
         extends: NSError
         annotations: ['@StronglyLinked']
@@ -359,7 +364,7 @@ classes:
                 name: getAttribute
                 parameters:
                     attrName:
-                        type: NSString    
+                        type: NSString
             '-attributesAtIndex:effectiveRange:':
                 name: getAttributesDictionary
                 return_type: 'NSDictionary<NSString, ?>'
@@ -726,9 +731,6 @@ classes:
             '-countForObject:':
                 trim_after_first_colon: true
                 visibility: protected
-
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
     NSData: # DONE
         protocols: [NSPropertyList]
         properties:
@@ -818,9 +820,9 @@ classes:
             '-initWithTypes:error:':
                 name: init
                 throws: NSErrorException
-                parameters:
-                    checkingTypes:
-                        type: NSTextCheckingType
+            '-initWithPattern:options:error:':
+                name: init
+                throws: NSErrorException
     NSDate: # DONE
         protocols: [NSPropertyList]
         properties:
@@ -885,7 +887,7 @@ classes:
             '-stringFromTimeInterval:':
                 name: format
             '-.*':
-                exclude: true 
+                exclude: true
             '+.*':
                 exclude: true
     NSDateFormatter: # DONE
@@ -969,8 +971,6 @@ classes:
                 parameters:
                     locale:
                         type: NSLocale
-            '-init.*':
-                name: init
     NSDecimalNumberHandler: # DONE
         skip_def_constructor: true
         methods:
@@ -1730,11 +1730,11 @@ classes:
             '-containsIndex:':
                 trim_after_first_colon: true
             '-containsIndexesInRange:':
-                trim_after_first_colon: true  
+                trim_after_first_colon: true
             '-containsIndexes:':
-                trim_after_first_colon: true 
+                trim_after_first_colon: true
             '-intersectsIndexesInRange:':
-                trim_after_first_colon: true 
+                trim_after_first_colon: true
             '-enumerateIndexesUsingBlock:':
                 name: enumerateIndexes
             '-enumerateIndexesWithOptions:usingBlock:':
@@ -1846,6 +1846,8 @@ classes:
                 trim_after_first_colon: true
             '-registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:':
                 trim_after_first_colon: true
+            '-registeredTypeIdentifiersWithFileOptions:':
+                name: getRegisteredTypeIdentifiers
             '-hasItemConformingToTypeIdentifier:':
                 trim_after_first_colon: true
             '-hasRepresentationConformingToTypeIdentifier:fileOptions:':
@@ -1902,6 +1904,8 @@ classes:
             '+archiveRootObject:toFile:':
                 trim_after_first_colon: true
                 visibility: private
+            '+archivedDataWithRootObject:requiringSecureCoding:error:':
+                trim_after_first_colon: true
             '+classNameForClass:':
                 name: getDefaultClassNameForClass
                 parameters:
@@ -1932,6 +1936,12 @@ classes:
                 name: unarchive
             '+unarchiveObjectWithFile:':
                 name: unarchiveObject
+                visibility: private
+            '+unarchivedObjectOfClass:fromData:error:':
+                name: unarchivedObject
+                visibility: private
+            '+unarchivedObjectOfClasses:fromData:error:':
+                name: unarchivedObject
                 visibility: private
             '+unarchiveTopLevelObjectWithData:error:':
                 throws: NSErrorException
@@ -2229,7 +2239,7 @@ classes:
                 trim_after_first_colon: true
                 parameters:
                     result:
-                        type: NSMetadataItem 
+                        type: NSMetadataItem
             '-valueOfAttribute:forResultAtIndex:':
                 name: getValueForResult
                 parameters:
@@ -2449,7 +2459,7 @@ classes:
             '-.*': {exclude: true}
     NSMutableString: # DONE
         methods:
-            '-init.*':
+            '-initWithCapacity:':
                 name: init
             '-replaceCharactersInRange:withString:':
                 name: replaceCharacters
@@ -2701,12 +2711,13 @@ classes:
                 type: 'Class<? extends NSObject>'
             'accessInstanceVariablesDirectly':
                 exclude: true
-        methods:
+        methods_private:
             '-init':
                 visibility: private
                 constructor: false
-            '-copy':
-            '-mutableCopy':
+        methods:
+            '-copy': {}
+            '-mutableCopy': {}
             '-performSelectorInBackground:withObject:':
                 name: performSelectorInBackground
                 visibility: 'public final'
@@ -3270,7 +3281,7 @@ classes:
             '-(hasPrefix|hasSuffix):':
                 trim_after_first_colon: true
             '-dataUsingEncoding:.*':
-                name: toData 
+                name: toData
             '-writeToURL:atomically:encoding:error:':
                 name: writeURL
                 throws: NSErrorException
@@ -3312,6 +3323,8 @@ classes:
         methods:
             '-rangeAtIndex:':
                 name: getRangeAt
+            '-rangeWithName:':
+                name: getRange
             '-resultByAdjustingRangesWithOffset:':
                 name: newResultByAdjustingRanges
             '+orthographyCheckingResultWithRange:orthography:':
@@ -3693,7 +3706,6 @@ classes:
             '+URL.*': {exclude: true}
             '+absoluteURLWithDataRepresentation:relativeToURL:':
                 exclude: true
-            '-getFileSystemRepresentation:maxLength:': {exclude: true}
             '-(URLBy.*?)(:.*)?':
                 name: 'new#{g[0]}'
             '-getPromisedItemResourceValue:forKey:error:':
@@ -4031,6 +4043,11 @@ classes:
                 name: addUserInfoEntries
             '-getContinuationStreamsWithCompletionHandler:':
                 name: getContinuationStreams
+            '+deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:':
+                name: deleteSavedUserActivities
+            '+deleteAllSavedUserActivitiesWithCompletionHandler:':
+                name: deleteAllSavedUserActivities
+
     NSUserDefaults: # DONE
         properties:
             'volatileDomainNames':
@@ -4153,8 +4170,6 @@ classes:
                 name: init
             '+value:withObjCType:':
                 exclude: true
-            '+valueWithBytes:objCType:':
-                visibility: protected
             '+valueWithNonretainedObject:':
                 name: valueOf
             '+valueWithPointer:':
@@ -4166,6 +4181,7 @@ classes:
             '+valueWithBytes:objCType:':
                 name: valueOf
             '-initWithBytes:objCType:':
+                scope: global
                 exclude: true
             '-isEqualToValue:':
                 name: equalsTo
@@ -4191,7 +4207,7 @@ classes:
             '+allowsReverseTransformation':
                 property: true
             '+transformedValueClass':
-                property: true 
+                property: true
                 return_type: 'Class<? extends NSObject>'
     NSXMLParser: # DONE
         properties:
@@ -4200,12 +4216,21 @@ classes:
         methods:
             '-init.*':
                 name: init
-    NSFileProviderService: {} #since 11.0
+    NSFileProviderService: #since 11.0
+        methods:
+            '-getFileProviderConnectionWithCompletionHandler:':
+                name: getFileProviderConnection
     NSXPCConnection: #since 6.0
         properties:
             'remoteObjectProxy': # FIXME: that is stupid workaround to match NSXPCProxyCreating
                 omit_prefix: true
-    NSXPCInterface: {} #since 6.0
+        methods:
+            '-initWithListenerEndpoint:':
+                name: init
+            '-remoteObjectProxyWithErrorHandler:':
+                name: remoteObjectProxy
+            '-synchronousRemoteObjectProxyWithErrorHandler:':
+                name: synchronousRemoteObjectProxy
     NSXPCListener: {} #since 6.0
     NSXPCListenerEndpoint: {} #since 6.0
     NSXPCInterface: #since 6.0
@@ -4218,6 +4243,25 @@ classes:
                 trim_after_first_colon: true
             '-interfaceForSelector:argumentIndex:ofReply:':
                 name: getInterfaceForSelector
+            '+interfaceWithProtocol:':
+                constructor: true
+                name: create
+    NSURLComponents: #since 7.0
+        methods:
+            '-initWithURL:resolvingAgainstBaseURL:':
+                name: init
+            '-initWithString:':
+                name: init
+            '+componentsWithURL:resolvingAgainstBaseURL:':
+                exclude: true
+            '+componentsWithString:':
+                exclude: true
+    NSURLQueryItem:  #since 8.0
+        methods:
+            '-initWithName:value:':
+                name: init
+            '+queryItemWithName:value:':
+                exclude: true
 
 protocols:
     NSCacheDelegate: # DONE
@@ -4642,7 +4686,11 @@ protocols:
         properties:
             '+writableTypeIdentifiersForItemProvider':
                 name: writableTypeIdentifiersForItemProvider0
-
+        methods:
+            '-remoteObjectProxyWithErrorHandler:':
+                name: remoteObjectProxy
+            '-synchronousRemoteObjectProxyWithErrorHandler:':
+                name: synchronousRemoteObjectProxy
 
 functions:
     NSAllocateObject:
@@ -4737,11 +4785,85 @@ functions:
         class: NSZone
         name: 'get#{g[0]}'
 
+    # exclude exposed low level NSTable api as it has little meaning for RoboVM
+    NSFreeHashTable:
+        exclude: true
+    NSResetHashTable:
+        exclude: true
+    NSCompareHashTables:
+        exclude: true
+    NSCopyHashTableWithZone:
+        exclude: true
+    NSHashGet:
+        exclude: true
+    NSHashInsert:
+        exclude: true
+    NSHashInsertKnownAbsent:
+        exclude: true
+    NSHashInsertIfAbsent:
+        exclude: true
+    NSHashRemove:
+        exclude: true
+    NSEnumerateHashTable:
+        exclude: true
+    NSNextHashEnumeratorItem:
+        exclude: true
+    NSEndHashTableEnumeration:
+        exclude: true
+    NSCountHashTable:
+        exclude: true
+    NSStringFromHashTable:
+        exclude: true
+    NSAllHashTableObjects:
+        exclude: true
+    NSCreateHashTableWithZone:
+        exclude: true
+    NSCreateHashTable:
+        exclude: true
+    NSFreeMapTable:
+        exclude: true
+    NSResetMapTable:
+        exclude: true
+    NSCompareMapTables:
+        exclude: true
+    NSCopyMapTableWithZone:
+        exclude: true
+    NSMapMember:
+        exclude: true
+    NSMapGet:
+        exclude: true
+    NSMapInsert:
+        exclude: true
+    NSMapInsertKnownAbsent:
+        exclude: true
+    NSMapInsertIfAbsent:
+        exclude: true
+    NSMapRemove:
+        exclude: true
+    NSEnumerateMapTable:
+        exclude: true
+    NSNextMapEnumeratorPair:
+        exclude: true
+    NSEndMapTableEnumeration:
+        exclude: true
+    NSCountMapTable:
+        exclude: true
+    NSStringFromMapTable:
+        exclude: true
+    NSAllMapTableKeys:
+        exclude: true
+    NSAllMapTableValues:
+        exclude: true
+    NSCreateMapTableWithZone:
+        exclude: true
+    NSCreateMapTable:
+        exclude: true
+
     # Make sure we don't miss any functions if new ones are introduced in a later Foundation
     (NS.*):
         name: 'Function__#{g[0]}'
 
-values: 
+values:
     NS.*Exception:
         exclude: true
     NSAssertionHandlerKey:
@@ -4777,7 +4899,7 @@ values:
     NSXMLParserErrorDomain:
         class: NSXMLParserError
         name: getClassDomain
-    
+
     NS(LocalizedDescription|UnderlyingError)Key:
         enum: NSCocoaErrorUserInfoKey
         name: '#{g[0]}'
@@ -4840,7 +4962,7 @@ values:
         name: '#{g[0]}'
         type: NSString
     NS.*Calendar: # NSCalendarIdentifier values should be used instead
-        exclude: true 
+        exclude: true
     NSCalendar(DayChangedNotification):
         class: NSCalendar
         name: '#{g[0]}'
@@ -5468,7 +5590,7 @@ values:
         class: NSURLCredentialStorage
         name: '#{g[0]}'
         type: NSString
-    
+
     # NSURLSession
     NSURLSession(TransferSizeUnknown):
         class: NSURLSession
@@ -5512,6 +5634,14 @@ values:
     NSNotFound:
         exclude: true
 
+    # exclude exposed low level NSTable globals as it has little meaning for RoboVM
+    NS(.*)HashCallBacks:
+        exclude: true
+    NS(.*)MapKeyCallBacks:
+        exclude: true
+    NS(.*)MapValueCallBacks:
+        exclude: true
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?NS.*):
         class: Foundation
@@ -5528,7 +5658,7 @@ constants:
     # ByteOrder constants depend on the host
     NS_UnknownByteOrder|NS_LittleEndian|NS_BigEndian:
         exclude: true
-    
+
     NS_ENFORCE_NSOBJECT_DESIGNATED_INITIALIZER:
         exclude: true
 
@@ -5539,16 +5669,16 @@ constants:
     NSWrapCalendarComponents: { exclude: true }
 
     # Unused
-    NSNotFound: { exclude: true } 
+    NSNotFound: { exclude: true }
     NSDecimal.*: { exclude: true }
-    
+
     NSFoundationVersionNumber(.*):
         class: FoundationVersionNumber
         name: 'Version#{g[0]}'
     NSFoundationVersion(WithFileManagerResourceForkSupport):
         class: FoundationVersionNumber
         name: 'Version#{g[0]}'
-        
+
     NS(OpenStepUnicodeReservedBase):
         class: NSCharacterSet
         name: '#{g[0]}'
@@ -5556,19 +5686,19 @@ constants:
     NS(TimeIntervalSince1970):
         class: NSDate
         name: '#{g[0]}'
-        
+
     NSDateComponentUndefined:
         class: NSDateComponents
         name: 'UndefinedComponent'
-        
+
     NSOperationQueue(DefaultMaxConcurrentOperationCount):
         class: NSOperationQueue
         name: '#{g[0]}'
-        
+
     NSUndo(CloseGroupingRunLoopOrdering):
         class: NSUndoManager
         name: '#{g[0]}'
-        
+
     NSURLResponse(UnknownLength):
         class: NSURLResponse
         name: '#{g[0]}'

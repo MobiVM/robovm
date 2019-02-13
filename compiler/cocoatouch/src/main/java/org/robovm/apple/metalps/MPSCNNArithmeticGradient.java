@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNArithmeticGradient/*</name>*/ 
     extends /*<extends>*/MPSCNNGradientKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,9 +46,13 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNArithmeticGradient.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSCNNArithmeticGradient() {}
+    public MPSCNNArithmeticGradient() {}
     protected MPSCNNArithmeticGradient(Handle h, long handle) { super(h, handle); }
     protected MPSCNNArithmeticGradient(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNArithmeticGradient(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNArithmeticGradient(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryScale")

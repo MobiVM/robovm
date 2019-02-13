@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageHistogramEqualization/*</name>*/ 
     extends /*<extends>*/MPSUnaryImageKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -56,6 +56,10 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     public MPSImageHistogramEqualization(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithDevice:")
+    public MPSImageHistogramEqualization(MTLDevice device) { super(device); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageHistogramEqualization(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "histogramInfo")

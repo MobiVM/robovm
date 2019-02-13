@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixMultiplication/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSMatrixMultiplication.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSMatrixMultiplication() {}
+    public MPSMatrixMultiplication() {}
     protected MPSMatrixMultiplication(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixMultiplication(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:transposeLeft:transposeRight:resultRows:resultColumns:interiorColumns:alpha:beta:")
@@ -56,6 +56,13 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithDevice:resultRows:resultColumns:interiorColumns:")
     public MPSMatrixMultiplication(MTLDevice device, @MachineSizedUInt long resultRows, @MachineSizedUInt long resultColumns, @MachineSizedUInt long interiorColumns) { super((SkipInit) null); initObject(init(device, resultRows, resultColumns, interiorColumns)); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixMultiplication(NSCoder decoder) { super(decoder); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSMatrixMultiplication(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "resultMatrixOrigin")

@@ -166,7 +166,18 @@ import org.robovm.apple.intents.*;
             + /*<name>*/UIContentSizeCategory/*</name>*/.class.getName());
     }
     
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="UIContentSizeCategoryIsAccessibilityCategory", optional=true)
+    public static native boolean isAccessibilityCategory(String category);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Bridge(symbol="UIContentSizeCategoryCompareToCategory", optional=true)
+    public static native NSComparisonResult compareToCategory(String lhs, String rhs);
+    /*</methods>*/
     
     /*<annotations>*/@Library("UIKit") @StronglyLinked/*</annotations>*/
     public static class Values {

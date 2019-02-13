@@ -58,16 +58,34 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @NotImplemented("speechSynthesizer:didStartSpeechUtterance:")
     public void didStartSpeechUtterance(AVSpeechSynthesizer synthesizer, AVSpeechUtterance utterance) {}
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @NotImplemented("speechSynthesizer:didFinishSpeechUtterance:")
     public void didFinishSpeechUtterance(AVSpeechSynthesizer synthesizer, AVSpeechUtterance utterance) {}
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @NotImplemented("speechSynthesizer:didPauseSpeechUtterance:")
     public void didPauseSpeechUtterance(AVSpeechSynthesizer synthesizer, AVSpeechUtterance utterance) {}
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @NotImplemented("speechSynthesizer:didContinueSpeechUtterance:")
     public void didContinueSpeechUtterance(AVSpeechSynthesizer synthesizer, AVSpeechUtterance utterance) {}
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @NotImplemented("speechSynthesizer:didCancelSpeechUtterance:")
     public void didCancelSpeechUtterance(AVSpeechSynthesizer synthesizer, AVSpeechUtterance utterance) {}
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
     @NotImplemented("speechSynthesizer:willSpeakRangeOfSpeechString:utterance:")
     public void willSpeak(AVSpeechSynthesizer synthesizer, @ByVal NSRange characterRange, AVSpeechUtterance utterance) {}
     /*</methods>*/

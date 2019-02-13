@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNLabelsNode/*</name>*/ 
     extends /*<extends>*/MPSNNStateNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSNNLabelsNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSNNLabelsNode() {}
+    protected MPSNNLabelsNode() {}
     protected MPSNNLabelsNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNLabelsNode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

@@ -50,7 +50,7 @@ import org.robovm.apple.corelocation.*;
     protected INImageNoteContent(Handle h, long handle) { super(h, handle); }
     protected INImageNoteContent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithImage:")
-    public INImageNoteContent(INImage image) { super((SkipInit) null); initObject(initWithImage(image)); }
+    public INImageNoteContent(INImage image) { super((SkipInit) null); initObject(init(image)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "image")
@@ -59,6 +59,6 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithImage:")
-    protected native @Pointer long initWithImage(INImage image);
+    protected native @Pointer long init(INImage image);
     /*</methods>*/
 }

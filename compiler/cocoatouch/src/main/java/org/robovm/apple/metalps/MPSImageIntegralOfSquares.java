@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageIntegralOfSquares/*</name>*/ 
     extends /*<extends>*/MPSUnaryImageKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,15 @@ import org.robovm.apple.metal.*;
     public MPSImageIntegralOfSquares() {}
     protected MPSImageIntegralOfSquares(Handle h, long handle) { super(h, handle); }
     protected MPSImageIntegralOfSquares(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:")
+    public MPSImageIntegralOfSquares(MTLDevice device) { super(device); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSImageIntegralOfSquares(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageIntegralOfSquares(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

@@ -57,9 +57,9 @@ import org.robovm.apple.avfoundation.*;
     protected SCNAudioSource(Handle h, long handle) { super(h, handle); }
     protected SCNAudioSource(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFileNamed:")
-    public SCNAudioSource(String name) { super((SkipInit) null); initObject(initWithFileNamed(name)); }
+    public SCNAudioSource(String name) { super((SkipInit) null); initObject(init(name)); }
     @Method(selector = "initWithURL:")
-    public SCNAudioSource(NSURL url) { super((SkipInit) null); initObject(initWithURL(url)); }
+    public SCNAudioSource(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     @Method(selector = "initWithCoder:")
     public SCNAudioSource(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -94,9 +94,9 @@ import org.robovm.apple.avfoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithFileNamed:")
-    protected native @Pointer long initWithFileNamed(String name);
+    protected native @Pointer long init(String name);
     @Method(selector = "initWithURL:")
-    protected native @Pointer long initWithURL(NSURL url);
+    protected native @Pointer long init(NSURL url);
     @Method(selector = "load")
     public native void load();
     @Method(selector = "audioSourceNamed:")

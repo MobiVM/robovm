@@ -65,12 +65,25 @@ import org.robovm.apple.metal.*;
     @NotImplemented("label")
     public String label() { return null; }
     @NotImplemented("rangesForUInt8Kernel")
-    public VectorFloat2.VectorFloat2Ptr rangesForUInt8Kernel() { return null; }
+    public VectorFloat2 rangesForUInt8Kernel() { return null; }
     @NotImplemented("lookupTableForUInt8Kernel")
     public FloatPtr lookupTableForUInt8Kernel() { return null; }
+    @NotImplemented("weightsQuantizationType")
+    public MPSCNNWeightsQuantizationType weightsQuantizationType() { return null; }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
     @NotImplemented("updateWithCommandBuffer:gradientState:sourceState:")
     public MPSCNNConvolutionWeightsAndBiasesState update(MTLCommandBuffer commandBuffer, MPSCNNConvolutionGradientState gradientState, MPSCNNConvolutionWeightsAndBiasesState sourceState) { return null; }
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
     @NotImplemented("updateWithGradientState:sourceState:")
     public boolean update(MPSCNNConvolutionGradientState gradientState, MPSCNNConvolutionWeightsAndBiasesState sourceState) { return false; }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @NotImplemented("copyWithZone:device:")
+    public MPSCNNConvolutionDataSource copy(NSZone zone, MTLDevice device) { return null; }
     /*</methods>*/
 }

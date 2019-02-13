@@ -58,27 +58,12 @@ import org.robovm.apple.coreanimation.*;
     /**
      * @since Available in iOS 10.0 and later.
      */
-    @GlobalValue(symbol="MTKTextureLoaderOriginTopLeft", optional=true)
-    public static native void TopLeft(String v);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @GlobalValue(symbol="MTKTextureLoaderOriginBottomLeft", optional=true)
     public static native String BottomLeft();
     /**
      * @since Available in iOS 10.0 and later.
      */
-    @GlobalValue(symbol="MTKTextureLoaderOriginBottomLeft", optional=true)
-    public static native void BottomLeft(String v);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @GlobalValue(symbol="MTKTextureLoaderOriginFlippedVertically", optional=true)
     public static native String FlippedVertically();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="MTKTextureLoaderOriginFlippedVertically", optional=true)
-    public static native void FlippedVertically(String v);
     /*</methods>*/
 }

@@ -100,18 +100,22 @@ import org.robovm.apple.corefoundation.*;
      */
     public static final CFStreamNetworkServiceType Background = new CFStreamNetworkServiceType("Background");
     /**
+     * @since Available in iOS 6.0 and later.
+     */
+    public static final CFStreamNetworkServiceType ResponsiveData = new CFStreamNetworkServiceType("ResponsiveData");
+    /**
      * @since Available in iOS 10.0 and later.
      */
     public static final CFStreamNetworkServiceType CallSignaling = new CFStreamNetworkServiceType("CallSignaling");
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use PushKit for VoIP control purposes
      */
     @Deprecated
     public static final CFStreamNetworkServiceType VoIP = new CFStreamNetworkServiceType("VoIP");
     /*</constants>*/
     
-    private static /*<name>*/CFStreamNetworkServiceType/*</name>*/[] values = new /*<name>*/CFStreamNetworkServiceType/*</name>*/[] {/*<value_list>*/Video, Voice, Background, CallSignaling, VoIP/*</value_list>*/};
+    private static /*<name>*/CFStreamNetworkServiceType/*</name>*/[] values = new /*<name>*/CFStreamNetworkServiceType/*</name>*/[] {/*<value_list>*/Video, Voice, Background, ResponsiveData, CallSignaling, VoIP/*</value_list>*/};
     
     /*<name>*/CFStreamNetworkServiceType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -150,13 +154,18 @@ import org.robovm.apple.corefoundation.*;
         @GlobalValue(symbol="kCFStreamNetworkServiceTypeBackground", optional=true)
         public static native CFString Background();
         /**
+         * @since Available in iOS 6.0 and later.
+         */
+        @GlobalValue(symbol="kCFStreamNetworkServiceTypeResponsiveData", optional=true)
+        public static native CFString ResponsiveData();
+        /**
          * @since Available in iOS 10.0 and later.
          */
         @GlobalValue(symbol="kCFStreamNetworkServiceTypeCallSignaling", optional=true)
         public static native CFString CallSignaling();
         /**
          * @since Available in iOS 4.0 and later.
-         * @deprecated Deprecated in iOS 9.0.
+         * @deprecated Deprecated in iOS 9.0. use PushKit for VoIP control purposes
          */
         @Deprecated
         @GlobalValue(symbol="kCFStreamNetworkServiceTypeVoIP", optional=true)

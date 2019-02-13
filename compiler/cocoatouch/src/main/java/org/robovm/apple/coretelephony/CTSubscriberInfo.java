@@ -54,6 +54,16 @@ import org.robovm.apple.corefoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.1 and later.
+     */
+    @Method(selector = "subscribers")
+    public static native NSArray<CTSubscriber> subscribers();
+    /**
+     * @since Available in iOS 6.0 and later.
+     * @deprecated Deprecated in iOS 12.1.
+     */
+    @Deprecated
     @Method(selector = "subscriber")
     public static native CTSubscriber getSubscriber();
     /*</methods>*/

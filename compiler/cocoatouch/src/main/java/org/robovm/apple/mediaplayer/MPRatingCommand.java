@@ -46,7 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPRatingCommand.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPRatingCommand() {}
+    protected MPRatingCommand() {}
     protected MPRatingCommand(Handle h, long handle) { super(h, handle); }
     protected MPRatingCommand(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

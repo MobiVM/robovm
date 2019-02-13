@@ -70,14 +70,14 @@ import org.robovm.apple.contacts.*;
     public native void setEmailAddress(String v);
     /**
      * @since Available in iOS 9.2 and later.
-     * @deprecated Deprecated in iOS 10.3.
+     * @deprecated Deprecated in iOS 10.3. Use subLocality and subAdministrativeArea on -postalAddress instead
      */
     @Deprecated
     @Property(selector = "supplementarySubLocality")
     public native String getSupplementarySubLocality();
     /**
      * @since Available in iOS 9.2 and later.
-     * @deprecated Deprecated in iOS 10.3.
+     * @deprecated Deprecated in iOS 10.3. Use subLocality and subAdministrativeArea on -postalAddress instead
      */
     @Deprecated
     @Property(selector = "setSupplementarySubLocality:")

@@ -52,9 +52,13 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSUnitElectricPotentialDifference.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSUnitElectricPotentialDifference() {}
+    protected NSUnitElectricPotentialDifference() {}
     protected NSUnitElectricPotentialDifference(Handle h, long handle) { super(h, handle); }
     protected NSUnitElectricPotentialDifference(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSymbol:converter:")
+    public NSUnitElectricPotentialDifference(String symbol, NSUnitConverter converter) { super(symbol, converter); }
+    @Method(selector = "initWithSymbol:")
+    public NSUnitElectricPotentialDifference(String symbol) { super(symbol); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "megavolts")

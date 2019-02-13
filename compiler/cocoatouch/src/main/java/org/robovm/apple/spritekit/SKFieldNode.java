@@ -56,6 +56,8 @@ import org.robovm.apple.metal.*;
     public SKFieldNode() {}
     protected SKFieldNode(Handle h, long handle) { super(h, handle); }
     protected SKFieldNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SKFieldNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "region")

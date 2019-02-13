@@ -43,7 +43,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAMediaTimingFunction/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CAMediaTimingFunctionPtr extends Ptr<CAMediaTimingFunction, CAMediaTimingFunctionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CAMediaTimingFunction.class); }/*</bind>*/
@@ -55,9 +55,12 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithControlPoints::::")
     public CAMediaTimingFunction(float c1x, float c1y, float c2x, float c2y) { super((SkipInit) null); initObject(init(c1x, c1y, c2x, c2y)); }
     public CAMediaTimingFunction(CAMediaTimingFunctionName name) { super((Handle) null, create(name)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public CAMediaTimingFunction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public float getControlPoint(@MachineSizedUInt long idx) {
@@ -72,5 +75,9 @@ import org.robovm.apple.metal.*;
     protected native void getControlPoint(@MachineSizedUInt long idx, FloatPtr ptr);
     @Method(selector = "functionWithName:")
     protected static native @Pointer long create(CAMediaTimingFunctionName name);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

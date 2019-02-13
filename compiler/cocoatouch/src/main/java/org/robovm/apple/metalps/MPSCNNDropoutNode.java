@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNDropoutNode/*</name>*/ 
     extends /*<extends>*/MPSNNFilterNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNDropoutNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNDropoutNode() {}
+    protected MPSCNNDropoutNode() {}
     protected MPSCNNDropoutNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNDropoutNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:")
@@ -72,7 +72,5 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MPSNNImageNode source, float keepProbability);
     @Method(selector = "initWithSource:keepProbability:seed:maskStrideInPixels:")
     protected native @Pointer long init(MPSNNImageNode source, float keepProbability, @MachineSizedUInt long seed, @ByVal MTLSize maskStrideInPixels);
-    @Method(selector = "nodeWithSource:")
-    public static native MPSCNNDropoutNode nodeWithSource(MPSNNImageNode source);
     /*</methods>*/
 }

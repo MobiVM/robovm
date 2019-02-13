@@ -744,42 +744,42 @@ import org.robovm.apple.uikit.*;
     public native @ByVal CGRect convertRectToUserSpace(@ByVal CGRect rect);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. No longer supported
      */
     @Deprecated
     @Bridge(symbol="CGContextSelectFont", optional=true)
     private native void selectFont(@Pointer long name, @MachineSizedFloat double size, CGTextEncoding textEncoding);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. No longer supported
      */
     @Deprecated
     @Bridge(symbol="CGContextShowText", optional=true)
     private native void showText(@Pointer long string, @MachineSizedUInt long length);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. No longer supported
      */
     @Deprecated
     @Bridge(symbol="CGContextShowTextAtPoint", optional=true)
     private native void showTextAtPoint(@MachineSizedFloat double x, @MachineSizedFloat double y, @Pointer long string, @MachineSizedUInt long length);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. No longer supported
      */
     @Deprecated
     @Bridge(symbol="CGContextShowGlyphs", optional=true)
     private native void showGlyphs(@Pointer long g, @MachineSizedUInt long count);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. No longer supported
      */
     @Deprecated
     @Bridge(symbol="CGContextShowGlyphsAtPoint", optional=true)
     private native void showGlyphsAtPoint(@MachineSizedFloat double x, @MachineSizedFloat double y, @Pointer long glyphs, @MachineSizedUInt long count);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. No longer supported
      */
     @Deprecated
     @Bridge(symbol="CGContextShowGlyphsWithAdvances", optional=true)

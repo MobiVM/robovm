@@ -49,7 +49,11 @@ public enum /*<name>*/MTLTextureType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 11.0 and later.
      */
     CubeArray(6L),
-    _3D(7L);
+    _3D(7L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    TextureBuffer(9L);
     /*</values>*/
 
     /*<bind>*/

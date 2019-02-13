@@ -63,7 +63,7 @@ import org.robovm.apple.security.*;
     @NotImplemented("webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:completionHandler:")
     public void runJavaScriptConfirmPanel(WKWebView webView, String message, WKFrameInfo frame, @Block VoidBooleanBlock completionHandler) {}
     @NotImplemented("webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:completionHandler:")
-    public void runJavaScriptTextInputPanel(WKWebView webView, String prompt, String defaultText, WKFrameInfo frame, @Block VoidBlock1<String> completionHandler) {}
+    public void runJavaScriptTextInputPanel(WKWebView webView, String prompt, String defaultText, WKFrameInfo frame, @Block VoidBlock1<NSString> completionHandler) {}
     /**
      * @since Available in iOS 10.0 and later.
      */

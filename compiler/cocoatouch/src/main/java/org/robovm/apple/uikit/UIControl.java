@@ -57,13 +57,11 @@ import org.robovm.apple.intents.*;
     @Deprecated protected UIControl(long handle) { super(handle); }
     protected UIControl(Handle h, long handle) { super(h, handle); }
     protected UIControl(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UIControl(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UIControl(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UIControl(CGRect frame) {
-        super(frame);
-    }    
-    public UIControl(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "isEnabled")
     public native boolean isEnabled();

@@ -49,7 +49,7 @@ import org.robovm.apple.coregraphics.*;
     protected MDLAnimatedScalarArray(Handle h, long handle) { super(h, handle); }
     protected MDLAnimatedScalarArray(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithElementCount:")
-    public MDLAnimatedScalarArray(@MachineSizedUInt long arrayElementCount) { super((SkipInit) null); initObject(initWithElementCount(arrayElementCount)); }
+    public MDLAnimatedScalarArray(@MachineSizedUInt long arrayElementCount) { super((SkipInit) null); initObject(init(arrayElementCount)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "elementCount")
@@ -58,7 +58,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithElementCount:")
-    protected native @Pointer long initWithElementCount(@MachineSizedUInt long arrayElementCount);
+    protected native @Pointer long init(@MachineSizedUInt long arrayElementCount);
     @Method(selector = "setFloatArray:count:atTime:")
     public native void setFloatArray(FloatPtr array, @MachineSizedUInt long count, double time);
     @Method(selector = "setDoubleArray:count:atTime:")

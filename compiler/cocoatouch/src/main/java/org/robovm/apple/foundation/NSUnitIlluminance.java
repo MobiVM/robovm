@@ -52,9 +52,13 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSUnitIlluminance.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSUnitIlluminance() {}
+    protected NSUnitIlluminance() {}
     protected NSUnitIlluminance(Handle h, long handle) { super(h, handle); }
     protected NSUnitIlluminance(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSymbol:converter:")
+    public NSUnitIlluminance(String symbol, NSUnitConverter converter) { super(symbol, converter); }
+    @Method(selector = "initWithSymbol:")
+    public NSUnitIlluminance(String symbol) { super(symbol); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lux")

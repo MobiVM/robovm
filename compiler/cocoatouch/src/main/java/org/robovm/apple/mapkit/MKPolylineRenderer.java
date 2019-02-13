@@ -53,6 +53,8 @@ import org.robovm.apple.dispatch.*;
     protected MKPolylineRenderer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPolyline:")
     public MKPolylineRenderer(MKPolyline polyline) { super((SkipInit) null); initObject(init(polyline)); }
+    @Method(selector = "initWithOverlay:")
+    public MKPolylineRenderer(MKOverlay overlay) { super(overlay); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "polyline")

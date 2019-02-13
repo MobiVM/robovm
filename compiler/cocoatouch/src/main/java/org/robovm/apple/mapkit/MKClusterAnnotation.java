@@ -52,7 +52,7 @@ import org.robovm.apple.dispatch.*;
     protected MKClusterAnnotation(Handle h, long handle) { super(h, handle); }
     protected MKClusterAnnotation(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithMemberAnnotations:")
-    public MKClusterAnnotation(NSArray<?> memberAnnotations) { super((SkipInit) null); initObject(initWithMemberAnnotations(memberAnnotations)); }
+    public MKClusterAnnotation(NSArray<?> memberAnnotations) { super((SkipInit) null); initObject(init(memberAnnotations)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "title")
@@ -73,6 +73,6 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithMemberAnnotations:")
-    protected native @Pointer long initWithMemberAnnotations(NSArray<?> memberAnnotations);
+    protected native @Pointer long init(NSArray<?> memberAnnotations);
     /*</methods>*/
 }

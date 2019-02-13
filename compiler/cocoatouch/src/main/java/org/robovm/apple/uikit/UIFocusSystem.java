@@ -58,10 +58,29 @@ import org.robovm.apple.intents.*;
     protected UIFocusSystem(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "focusedItem")
+    public native UIFocusItem getFocusedItem();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "requestFocusUpdateToEnvironment:")
+    public native void requestFocusUpdateToEnvironment(UIFocusEnvironment environment);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "updateFocusIfNeeded")
+    public native void updateFocusIfNeeded();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "focusSystemForEnvironment:")
+    public static native UIFocusSystem focusSystemForEnvironment(UIFocusEnvironment environment);
     @Method(selector = "environment:containsEnvironment:")
     public static native boolean isEnvironmentContainsEnvironment(UIFocusEnvironment environment, UIFocusEnvironment otherEnvironment);
     /*</methods>*/

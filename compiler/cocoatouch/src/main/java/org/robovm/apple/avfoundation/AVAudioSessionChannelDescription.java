@@ -59,12 +59,24 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVAudioSessionChannelDescription(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     @Property(selector = "channelName")
     public native String getChannelName();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     @Property(selector = "owningPortUID")
     public native String getOwningPortUID();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     @Property(selector = "channelNumber")
     public native @MachineSizedUInt long getChannelNumber();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     @Property(selector = "channelLabel")
     public native AudioChannelLabel getChannelLabel();
     /*</properties>*/

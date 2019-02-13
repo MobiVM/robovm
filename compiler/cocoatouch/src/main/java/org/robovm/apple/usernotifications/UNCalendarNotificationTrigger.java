@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(UNCalendarNotificationTrigger.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UNCalendarNotificationTrigger() {}
+    protected UNCalendarNotificationTrigger() {}
     protected UNCalendarNotificationTrigger(Handle h, long handle) { super(h, handle); }
     protected UNCalendarNotificationTrigger(SkipInit skipInit) { super(skipInit); }
     public UNCalendarNotificationTrigger(NSDateComponents dateComponents, boolean repeats) { super((Handle) null, create(dateComponents, repeats)); retain(getHandle()); }

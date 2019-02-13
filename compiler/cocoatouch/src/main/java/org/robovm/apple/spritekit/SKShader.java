@@ -47,7 +47,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKShader/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKShaderPtr extends Ptr<SKShader, SKShaderPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKShader.class); }/*</bind>*/
@@ -85,6 +85,8 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setAttributes:")
     public native void setAttributes(NSArray<SKAttribute> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

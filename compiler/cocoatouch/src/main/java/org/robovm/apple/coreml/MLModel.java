@@ -16,11 +16,19 @@
 package org.robovm.apple.coreml;
 
 /*<imports>*/
+import java.io.*;
+import java.nio.*;
+import java.util.*;
 import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
+import org.robovm.objc.block.*;
+import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
+import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corevideo.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,10 +56,26 @@ import org.robovm.apple.foundation.*;
        retain(getHandle());
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
     }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public MLModel(NSURL url, MLModelConfiguration configuration) throws NSErrorException {
+       this(url, configuration, new NSError.NSErrorPtr());
+    }
+    private MLModel(NSURL url, MLModelConfiguration configuration, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(url, configuration, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "modelDescription")
     public native MLModelDescription getModelDescription();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "configuration")
+    public native MLModelConfiguration getConfiguration();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -65,8 +89,27 @@ import org.robovm.apple.foundation.*;
     private native MLFeatureProvider predictionFromFeatures(MLFeatureProvider input, NSError.NSErrorPtr error);
     @Method(selector = "predictionFromFeatures:options:error:")
     public native MLFeatureProvider predictionFromFeatures(MLFeatureProvider input, MLPredictionOptions options, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public MLBatchProvider getPredictionsFromBatch(MLBatchProvider inputBatch, MLPredictionOptions options) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MLBatchProvider result = getPredictionsFromBatch(inputBatch, options, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "predictionsFromBatch:options:error:")
+    private native MLBatchProvider getPredictionsFromBatch(MLBatchProvider inputBatch, MLPredictionOptions options, NSError.NSErrorPtr error);
     @Method(selector = "modelWithContentsOfURL:error:")
     protected static native @Pointer long create(NSURL url, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "modelWithContentsOfURL:configuration:error:")
+    protected static native @Pointer long create(NSURL url, MLModelConfiguration configuration, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 11.0 and later.
      */

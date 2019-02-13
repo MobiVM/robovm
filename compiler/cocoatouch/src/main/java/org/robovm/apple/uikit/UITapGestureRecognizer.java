@@ -56,6 +56,8 @@ import org.robovm.apple.intents.*;
     public UITapGestureRecognizer() {}
     protected UITapGestureRecognizer(Handle h, long handle) { super(h, handle); }
     protected UITapGestureRecognizer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTarget:action:")
+    public UITapGestureRecognizer(NSObject target, Selector action) { super(target, action); }
     /*</constructors>*/
     
     public UITapGestureRecognizer(OnGestureListener listener) {

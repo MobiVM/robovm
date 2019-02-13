@@ -53,6 +53,10 @@ import org.robovm.apple.dispatch.*;
     public NSMutableURLRequest() {}
     protected NSMutableURLRequest(Handle h, long handle) { super(h, handle); }
     protected NSMutableURLRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithURL:")
+    public NSMutableURLRequest(NSURL URL) { super(URL); }
+    @Method(selector = "initWithURL:cachePolicy:timeoutInterval:")
+    public NSMutableURLRequest(NSURL URL, NSURLRequestCachePolicy cachePolicy, double timeoutInterval) { super(URL, cachePolicy, timeoutInterval); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "URL")

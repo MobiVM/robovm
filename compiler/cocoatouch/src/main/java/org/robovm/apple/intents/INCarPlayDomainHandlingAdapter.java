@@ -76,6 +76,11 @@ import org.robovm.apple.corelocation.*;
     public void resolveRelativeTemperatureSettingForSetClimateSettingsInCar(INSetClimateSettingsInCarIntent intent, @Block VoidBlock1<INRelativeSettingResolutionResult> completion) {}
     @NotImplemented("resolveClimateZoneForSetClimateSettingsInCar:withCompletion:")
     public void resolveClimateZoneForSetClimateSettingsInCar(INSetClimateSettingsInCarIntent intent, @Block VoidBlock1<INCarSeatResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @NotImplemented("resolveCarNameForSetClimateSettingsInCar:withCompletion:")
+    public void resolveCarNameForSetClimateSettingsInCar(INSetClimateSettingsInCarIntent intent, @Block VoidBlock1<INSpeakableStringResolutionResult> completion) {}
     @NotImplemented("handleSetDefrosterSettingsInCar:completion:")
     public void handleSetDefrosterSettingsInCar(INSetDefrosterSettingsInCarIntent intent, @Block VoidBlock1<INSetDefrosterSettingsInCarIntentResponse> completion) {}
     @NotImplemented("confirmSetDefrosterSettingsInCar:completion:")
@@ -84,6 +89,11 @@ import org.robovm.apple.corelocation.*;
     public void resolveEnableForSetDefrosterSettingsInCar(INSetDefrosterSettingsInCarIntent intent, @Block VoidBlock1<INBooleanResolutionResult> completion) {}
     @NotImplemented("resolveDefrosterForSetDefrosterSettingsInCar:withCompletion:")
     public void resolveDefrosterForSetDefrosterSettingsInCar(INSetDefrosterSettingsInCarIntent intent, @Block VoidBlock1<INCarDefrosterResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @NotImplemented("resolveCarNameForSetDefrosterSettingsInCar:withCompletion:")
+    public void resolveCarNameForSetDefrosterSettingsInCar(INSetDefrosterSettingsInCarIntent intent, @Block VoidBlock1<INSpeakableStringResolutionResult> completion) {}
     @NotImplemented("handleSetSeatSettingsInCar:completion:")
     public void handleSetSeatSettingsInCar(INSetSeatSettingsInCarIntent intent, @Block VoidBlock1<INSetSeatSettingsInCarIntentResponse> completion) {}
     @NotImplemented("confirmSetSeatSettingsInCar:completion:")
@@ -100,6 +110,11 @@ import org.robovm.apple.corelocation.*;
     public void resolveLevelForSetSeatSettingsInCar(INSetSeatSettingsInCarIntent intent, @Block VoidBlock1<INIntegerResolutionResult> completion) {}
     @NotImplemented("resolveRelativeLevelSettingForSetSeatSettingsInCar:withCompletion:")
     public void resolveRelativeLevelSettingForSetSeatSettingsInCar(INSetSeatSettingsInCarIntent intent, @Block VoidBlock1<INRelativeSettingResolutionResult> completion) {}
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @NotImplemented("resolveCarNameForSetSeatSettingsInCar:withCompletion:")
+    public void resolveCarNameForSetSeatSettingsInCar(INSetSeatSettingsInCarIntent intent, @Block VoidBlock1<INSpeakableStringResolutionResult> completion) {}
     @NotImplemented("handleSetProfileInCar:completion:")
     public void handleSetProfileInCar(INSetProfileInCarIntent intent, @Block VoidBlock1<INSetProfileInCarIntentResponse> completion) {}
     @NotImplemented("confirmSetProfileInCar:completion:")
@@ -112,8 +127,13 @@ import org.robovm.apple.corelocation.*;
     @NotImplemented("resolveProfileNameForSetProfileInCar:withCompletion:")
     public void resolveProfileNameForSetProfileInCar(INSetProfileInCarIntent intent, @Block VoidBlock1<INStringResolutionResult> completion) {}
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @NotImplemented("resolveCarNameForSetProfileInCar:withCompletion:")
+    public void resolveCarNameForSetProfileInCar(INSetProfileInCarIntent intent, @Block VoidBlock1<INSpeakableStringResolutionResult> completion) {}
+    /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. The property doesn't need to be resolved
      */
     @Deprecated
     @NotImplemented("resolveDefaultProfileForSetProfileInCar:withCompletion:")

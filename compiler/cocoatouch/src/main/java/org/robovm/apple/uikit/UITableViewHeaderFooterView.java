@@ -59,13 +59,10 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithReuseIdentifier:")
     public UITableViewHeaderFooterView(String reuseIdentifier) { super((SkipInit) null); initObject(init(reuseIdentifier)); }
     @Method(selector = "initWithCoder:")
-    public UITableViewHeaderFooterView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UITableViewHeaderFooterView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    @Method(selector = "initWithFrame:")
+    public UITableViewHeaderFooterView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
-    
-    public UITableViewHeaderFooterView(CGRect frame) {
-        super(frame);
-    }
-    
     /*<properties>*/
     @Property(selector = "textLabel")
     public native UILabel getTextLabel();
@@ -85,7 +82,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithReuseIdentifier:")
     protected native @Pointer long init(String reuseIdentifier);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "prepareForReuse")
     public native void prepareForReuse();
     /*</methods>*/

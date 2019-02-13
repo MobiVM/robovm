@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 10.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNLogSoftMax/*</name>*/ 
     extends /*<extends>*/MPSCNNKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,15 @@ import org.robovm.apple.metal.*;
     public MPSCNNLogSoftMax() {}
     protected MPSCNNLogSoftMax(Handle h, long handle) { super(h, handle); }
     protected MPSCNNLogSoftMax(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:")
+    public MPSCNNLogSoftMax(MTLDevice device) { super(device); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSCNNLogSoftMax(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSCNNLogSoftMax(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

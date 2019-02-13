@@ -43,7 +43,7 @@ public enum /*<name>*/MPSCNNConvolutionFlags/*</name>*/ implements ValuedEnum {
      * @deprecated Deprecated in iOS 11.0.
      */
     @Deprecated
-    MPSCNNConvolutionFlagsNone(0L);
+    None(0L);
     /*</values>*/
 
     /*<bind>*/

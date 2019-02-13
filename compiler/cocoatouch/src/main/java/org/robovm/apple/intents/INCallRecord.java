@@ -63,12 +63,12 @@ import org.robovm.apple.corelocation.*;
     public native INPerson getCaller();
     @Property(selector = "callRecordType")
     public native INCallRecordType getCallRecordType();
-    @Property(selector = "callCapability")
-    public native INCallCapability getCallCapability();
     @Property(selector = "callDuration")
     public native NSNumber getCallDuration();
     @Property(selector = "unseen")
     public native NSNumber getUnseen();
+    @Property(selector = "callCapability")
+    public native INCallCapability getCallCapability();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

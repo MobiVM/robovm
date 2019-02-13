@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.robovm.compiler.Annotations.Visibility;
 import org.robovm.compiler.MarshalerLookup.ArrayMarshalerMethod;
 import org.robovm.compiler.MarshalerLookup.MarshalSite;
 import org.robovm.compiler.MarshalerLookup.MarshalerMethod;
@@ -72,6 +71,7 @@ import soot.RefType;
 import soot.SootClass;
 import soot.SootMethod;
 import soot.VoidType;
+import soot.tagkit.AnnotationTag;
 
 
 /**
@@ -571,8 +571,7 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
             n = Math.max(getStructMemberOffset(method) + 1, n);
         }
         
-        Type[] result = new Type[n + 1];
-        
+
         StructureType superType = null;
         if (clazz.hasSuperclass()) {
             SootClass superclass = clazz.getSuperclass();
@@ -580,12 +579,24 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
                 superType = getStructType(superclass, false);
             }
         }
-        result[0] = superType != null ? superType : new StructureType();
-        
+
+        Type[] result;
+        int ownMembersOffset = 0;
+        if (superType != null) {
+            // if structure inherits another stuct add it as member zero
+            ownMembersOffset = 1;
+            result = new Type[n + 1];
+            result[0] = superType;
+        } else {
+            // not inherit any struct, to support vector types empty struct is not
+            // added anymore
+            result = new Type[n];
+        }
+
         for (SootMethod method : clazz.getMethods()) {
             int offset = getStructMemberOffset(method);
             if (offset != -1) {
-                if (!method.isNative() && !method.isStatic()) {
+                if (!method.isNative() || method.isStatic()) {
                     throw new IllegalArgumentException("@StructMember annotated method " 
                             + method + " must be native and not static");
                 }
@@ -638,7 +649,7 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
                 }
                 
                 type = getStructMemberType(method);
-                int index = offset + 1;
+                int index = offset + ownMembersOffset;
                 if (result[index] == null) {
                     result[index] = type;
                 } else if (type != result[index]) {
@@ -650,7 +661,7 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
             }
         }
         
-        for (int i = 1; i < result.length; i++) {
+        for (int i = ownMembersOffset; i < result.length; i++) {
             if (result[i] == null) {
                 throw new IllegalArgumentException("No @StructMember(" + i 
                         + ") defined in class " + clazz);
@@ -660,10 +671,55 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
         if (!clazz.isAbstract() && checkEmpty && n == 0 && superType == null) {
             throw new IllegalArgumentException("Struct class " + clazz + " has no @StructMember annotated methods");
         }
-        
-        return new StructureType(result);
+
+        // convert to vector if required
+        AnnotationTag vectorised = getStructVectorisedAnnotation(clazz);
+        if (vectorised != null) {
+            if (ownMembersOffset != 0) {
+                // just stuck to simple case for noe
+                throw new IllegalArgumentException("Struct class " + clazz + " cannot inherit struct when annotated @Vectorised");
+            }
+            validateVectorStruct(clazz, result);
+        }
+
+        return new StructureType(ownMembersOffset, vectorised != null, result);
     }
-    
+
+    /**
+     * Validates structure to be a vector (for SIMD like ops, annotated as @Vectorised)
+     * Following are criteria:
+     * -- all elements shall be of same type
+     * -- if element is a struct -- it shall pass same validation
+     * -- only float/double and integer primitive types are allowed
+     * @param clazz -- used just to get proper name for exception
+     * @param elements -- elements of struct
+     * @return common element of vector struct if validation passed
+     */
+    private Type validateVectorStruct(SootClass clazz, Type ...elements) {
+        // get first element and compare against it all elements has to be equal
+        Type commonType = elements[0];
+
+        for (Type type : elements) {
+            if (type instanceof StructureType) {
+                // get its common element type but don't use it, just to check if struct is valid
+                // if it fails -- it will throw an exception
+                validateVectorStruct(clazz, ((StructureType) type).getTypes());
+            } else if (type != Type.FLOAT && type != Type.DOUBLE && !(type instanceof IntegerType)) {
+                // vectors can be only of float, double or integers. And structs, but checked above
+                throw new IllegalArgumentException("Struct class " + clazz + " has not supported @StructMember to be vectorized, problem with " + type);
+            }
+
+            // all members of vector shell be same type:
+            // either primitives (will be combined in vector) or structs (will be combined into array)
+            if (!commonType.equals(type)) {
+                throw new IllegalArgumentException("Struct class " + clazz + " all elements required to be same type to be vectorized");
+            }
+        }
+
+        // passed
+        return commonType;
+    }
+
     static Type mergeStructMemberTypes(DataLayout dataLayout, Type t1, Type t2) {
         int align1 = dataLayout.getAlignment(t1);
         int align2 = dataLayout.getAlignment(t2);
@@ -706,19 +762,33 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
     }
 
     protected static String getLoType(final Type type, String base, int index, Map<String, String> structs) {
-        if (type instanceof StructureType) {
+        if (type instanceof StructureType && ((StructureType)type).isVector()) {
+            String name = String.format("%s_%04d", base, index);
             StringBuilder sb = new StringBuilder();
             StructureType st = (StructureType) type;
-            sb.append("{");
+            Type t = st.getTypeAt(0);
+            if (st.isVectorArray()) {
+                // vector of structs, such as MatrixFloat2x2
+                sb.append("struct { ")
+                        .append(getLoType(t, name, 0, structs))
+                        .append(" m[").append(st.getTypeCount()).append("];}");
+            } else {
+                // vector of primitives such as VectorFloat3
+                sb.append("__attribute__((__ext_vector_type__(")
+                        .append(st.getTypeCount())
+                        .append("))) ")
+                        .append(getLoType(t, name, 0, structs));
+            }
+
+            structs.put(name, sb.toString());
+            return name;
+        } else if (type instanceof StructureType) {
             String name = String.format("%s_%04d", base, index);
+            StringBuilder sb = new StringBuilder();
+            StructureType st = (StructureType) type;
+            sb.append("struct {");
             for (int i = 0; i < st.getTypeCount(); i++) {
                 Type t = st.getTypeAt(i);
-                if (i == 0 && t instanceof StructureType) {
-                    if (((StructureType) t).getTypeCount() == 0) {
-                        // Skip empty structs as first member
-                        continue;
-                    }
-                }
                 // Only support arrays embedded in structs
                 StringBuilder dims = new StringBuilder();
                 while (t instanceof ArrayType) {
@@ -730,7 +800,7 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
             }
             sb.append("}");
             structs.put(name, sb.toString());
-            return "struct " + name;
+            return name;
         } else {
             return getHiType(type);
         }

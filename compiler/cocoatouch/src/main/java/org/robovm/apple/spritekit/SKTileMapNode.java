@@ -47,7 +47,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKTileMapNode/*</name>*/ 
     extends /*<extends>*/SKNode/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class SKTileMapNodePtr extends Ptr<SKTileMapNode, SKTileMapNodePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKTileMapNode.class); }/*</bind>*/
@@ -62,6 +62,8 @@ import org.robovm.apple.metal.*;
     public SKTileMapNode(SKTileSet tileSet, @MachineSizedUInt long columns, @MachineSizedUInt long rows, @ByVal CGSize tileSize, SKTileGroup tileGroup) { super((SkipInit) null); initObject(init(tileSet, columns, rows, tileSize, tileGroup)); }
     @Method(selector = "initWithTileSet:columns:rows:tileSize:tileGroupLayout:")
     public SKTileMapNode(SKTileSet tileSet, @MachineSizedUInt long columns, @MachineSizedUInt long rows, @ByVal CGSize tileSize, NSArray<SKTileGroup> tileGroupLayout) { super((SkipInit) null); initObject(init(tileSet, columns, rows, tileSize, tileGroupLayout)); }
+    @Method(selector = "initWithCoder:")
+    public SKTileMapNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "numberOfColumns")
@@ -140,7 +142,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "setValue:forAttributeNamed:")
     public native void setValue(SKAttributeValue value, String key);
     @Method(selector = "fillWithTileGroup:")
-    public native void fillWithTileGroup(SKTileGroup tileGroup);
+    public native void fill(SKTileGroup tileGroup);
     @Method(selector = "tileDefinitionAtColumn:row:")
     public native SKTileDefinition getTileDefinition(@MachineSizedUInt long column, @MachineSizedUInt long row);
     @Method(selector = "tileGroupAtColumn:row:")

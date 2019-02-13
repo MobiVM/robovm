@@ -63,6 +63,6 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "getFileProviderConnectionWithCompletionHandler:")
-    public native void getFileProviderConnectionWithCompletionHandler(@Block VoidBlock2<NSXPCConnection, NSError> completionHandler);
+    public native void getFileProviderConnection(@Block VoidBlock2<NSXPCConnection, NSError> completionHandler);
     /*</methods>*/
 }

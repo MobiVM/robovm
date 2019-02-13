@@ -134,7 +134,7 @@ import org.robovm.apple.corespotlight.*;
     }
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
      */
     @Deprecated
     public NSPersistentStoreUbiquitousTransitionType getUbiquitousTransitionType() {
@@ -167,7 +167,7 @@ import org.robovm.apple.corespotlight.*;
         public static native NSString UUIDChanged();
         /**
          * @since Available in iOS 7.0 and later.
-         * @deprecated Deprecated in iOS 10.0.
+         * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
          */
         @Deprecated
         @GlobalValue(symbol="NSPersistentStoreUbiquitousTransitionTypeKey", optional=true)

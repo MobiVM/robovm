@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSNNImageNode/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSNNImageNode(Handle h, long handle) { super(h, handle); }
     protected MPSNNImageNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithHandle:")
-    public MPSNNImageNode(MPSHandle handle) { super((SkipInit) null); initObject(initWithHandle(handle)); }
+    public MPSNNImageNode(MPSHandle handle) { super((SkipInit) null); initObject(init(handle)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "handle")
@@ -79,14 +79,22 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setSynchronizeResource:")
     public native void setSynchronizeResource(boolean v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "stopGradient")
+    public native boolean isStopGradient();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setStopGradient:")
+    public native void setStopGradient(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithHandle:")
-    protected native @Pointer long initWithHandle(MPSHandle handle);
-    @Method(selector = "nodeWithHandle:")
-    public static native MPSNNImageNode nodeWithHandle(MPSHandle handle);
+    protected native @Pointer long init(MPSHandle handle);
     @Method(selector = "exportedNodeWithHandle:")
-    public static native MPSNNImageNode exportedNodeWithHandle(MPSHandle handle);
+    public static native MPSNNImageNode createExportedNode(MPSHandle handle);
     /*</methods>*/
 }

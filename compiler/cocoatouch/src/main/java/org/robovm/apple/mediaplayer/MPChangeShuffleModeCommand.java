@@ -46,7 +46,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(MPChangeShuffleModeCommand.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPChangeShuffleModeCommand() {}
+    protected MPChangeShuffleModeCommand() {}
     protected MPChangeShuffleModeCommand(Handle h, long handle) { super(h, handle); }
     protected MPChangeShuffleModeCommand(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

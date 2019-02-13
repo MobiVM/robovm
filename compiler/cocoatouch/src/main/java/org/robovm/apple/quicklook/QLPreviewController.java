@@ -49,6 +49,10 @@ import org.robovm.apple.uikit.*;
     public QLPreviewController() {}
     protected QLPreviewController(Handle h, long handle) { super(h, handle); }
     protected QLPreviewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public QLPreviewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public QLPreviewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dataSource")

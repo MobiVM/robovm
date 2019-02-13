@@ -76,6 +76,8 @@ import org.robovm.apple.audiotoolbox.*;
     public AVSampleBufferDisplayLayer() {}
     protected AVSampleBufferDisplayLayer(Handle h, long handle) { super(h, handle); }
     protected AVSampleBufferDisplayLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public AVSampleBufferDisplayLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "controlTimebase")

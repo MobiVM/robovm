@@ -224,5 +224,10 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGPDFDictionaryGetStream", optional=true)
     private native boolean getStream(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsDefaultCharsetZMarshaler.class) String key, CGPDFStream.CGPDFStreamPtr value);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Bridge(symbol="CGPDFDictionaryApplyBlock", optional=true)
+    public native void applyBlock(@Block Block3<BytePtr, CGPDFObject, VoidPtr, Boolean> block, VoidPtr info);
     /*</methods>*/
 }

@@ -44,7 +44,7 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/VNObservation/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, VNRequestRevisionProviding/*</implements>*/ {
 
     /*<ptr>*/public static class VNObservationPtr extends Ptr<VNObservation, VNObservationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(VNObservation.class); }/*</bind>*/
@@ -63,6 +63,8 @@ import org.robovm.apple.imageio.*;
     public native float getConfidence();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
+    @Property(selector = "requestRevision")
+    public native @MachineSizedUInt long getRequestRevision();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

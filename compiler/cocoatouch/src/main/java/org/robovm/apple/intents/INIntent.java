@@ -60,11 +60,33 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "intentDescription")
     public native String getIntentDescription();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "suggestedInvocationPhrase")
+    public native String getSuggestedInvocationPhrase();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setSuggestedInvocationPhrase:")
+    public native void setSuggestedInvocationPhrase(String v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "setImage:forParameterNamed:")
+    public native void setImage(INImage image, String parameterName);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "imageForParameterNamed:")
+    public native INImage imageForParameterNamed(String parameterName);
+    @Method(selector = "keyImage")
+    public native INImage keyImage();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

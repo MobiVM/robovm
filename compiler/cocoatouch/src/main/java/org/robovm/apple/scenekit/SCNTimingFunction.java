@@ -56,6 +56,8 @@ import org.robovm.apple.avfoundation.*;
     public SCNTimingFunction() {}
     protected SCNTimingFunction(Handle h, long handle) { super(h, handle); }
     protected SCNTimingFunction(SkipInit skipInit) { super(skipInit); }
+    public SCNTimingFunction(SCNActionTimingMode timingMode) { super((Handle) null, create(timingMode)); retain(getHandle()); }
+    public SCNTimingFunction(CAMediaTimingFunction caTimingFunction) { super((Handle) null, create(caTimingFunction)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public SCNTimingFunction(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
@@ -66,9 +68,9 @@ import org.robovm.apple.avfoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "functionWithTimingMode:")
-    public static native SCNTimingFunction functionWithTimingMode(SCNActionTimingMode timingMode);
+    protected static native @Pointer long create(SCNActionTimingMode timingMode);
     @Method(selector = "functionWithCAMediaTimingFunction:")
-    public static native SCNTimingFunction functionWithCAMediaTimingFunction(CAMediaTimingFunction caTimingFunction);
+    protected static native @Pointer long create(CAMediaTimingFunction caTimingFunction);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

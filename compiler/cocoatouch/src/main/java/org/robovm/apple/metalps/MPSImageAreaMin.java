@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSImageAreaMin/*</name>*/ 
     extends /*<extends>*/MPSImageAreaMax/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,6 +49,15 @@ import org.robovm.apple.metal.*;
     public MPSImageAreaMin() {}
     protected MPSImageAreaMin(Handle h, long handle) { super(h, handle); }
     protected MPSImageAreaMin(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
+    public MPSImageAreaMin(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight) { super(device, kernelWidth, kernelHeight); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSImageAreaMin(NSCoder decoder, MTLDevice device) { super(decoder, device); }
+    @Method(selector = "initWithCoder:")
+    public MPSImageAreaMin(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     

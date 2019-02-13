@@ -52,7 +52,7 @@ import org.robovm.apple.contacts.*;
     protected CLRegion(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
@@ -63,14 +63,14 @@ import org.robovm.apple.contacts.*;
     /*<properties>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Property(selector = "center")
     public native @ByVal CLLocationCoordinate2D getCenter();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Property(selector = "radius")
@@ -107,14 +107,14 @@ import org.robovm.apple.contacts.*;
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
     protected native @Pointer long init(@ByVal CLLocationCoordinate2D center, double radius, String identifier);
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
      */
     @Deprecated
     @Method(selector = "containsCoordinate:")

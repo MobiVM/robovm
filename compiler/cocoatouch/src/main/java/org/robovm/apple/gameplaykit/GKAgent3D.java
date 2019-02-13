@@ -70,6 +70,6 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "updateWithDeltaTime:")
-    public native void updateWithDeltaTime(double seconds);
+    public native void update(double seconds);
     /*</methods>*/
 }

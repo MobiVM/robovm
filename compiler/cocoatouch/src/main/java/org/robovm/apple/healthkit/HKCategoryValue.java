@@ -38,7 +38,7 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/HKCategoryValue/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    HKCategoryValueNotApplicable(0L);
+    NotApplicable(0L);
     /*</values>*/
 
     /*<bind>*/

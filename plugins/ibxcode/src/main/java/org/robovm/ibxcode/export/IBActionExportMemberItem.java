@@ -40,7 +40,15 @@ public class IBActionExportMemberItem implements  IClassExportMemberItem {
         ps.println("*/");
         ps.print("-(IBAction) ");
         ps.print(this.selector != null ? this.selector : this.name);
-        ps.println(this.argType != null ? ":(id) sender;": ";");
+        String args = null;
+        if (this.argType != null) {
+            // use native or custom class name to allow IBActions with UIStoryboardSegue
+            if (this.argType.isNative() || this.argType.isCustom())
+                args = this.argType.getExportClassName() + "*";
+            else
+                args = "id";
+        }
+        ps.println(args != null ? ":(" + args + ") sender;": ";");
         ps.println("");
     }
 

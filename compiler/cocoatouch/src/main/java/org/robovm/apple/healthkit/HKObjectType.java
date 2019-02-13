@@ -83,6 +83,11 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "activitySummaryType")
     public static native HKActivitySummaryType activitySummaryType();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "clinicalTypeForIdentifier:")
+    public static native HKClinicalType clinicalTypeForIdentifier(HKClinicalTypeIdentifier identifier);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

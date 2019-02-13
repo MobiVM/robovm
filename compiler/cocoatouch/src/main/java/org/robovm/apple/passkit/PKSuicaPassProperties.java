@@ -40,7 +40,7 @@ import org.robovm.apple.contacts.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PKSuicaPassProperties/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/
+    extends /*<extends>*/PKTransitPassProperties/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class PKSuicaPassPropertiesPtr extends Ptr<PKSuicaPassProperties, PKSuicaPassPropertiesPtr> {}/*</ptr>*/
@@ -74,7 +74,6 @@ import org.robovm.apple.contacts.*;
     public native boolean isGreenCarTicketUsed();
     @Property(selector = "isBlacklisted")
     public native boolean isBlacklisted();
-    public native NSDate getExpirationDate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

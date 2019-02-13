@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INRideDriver.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INRideDriver() {}
+    protected INRideDriver() {}
     protected INRideDriver(Handle h, long handle) { super(h, handle); }
     protected INRideDriver(SkipInit skipInit) { super(skipInit); }
     /**
@@ -54,23 +54,34 @@ import org.robovm.apple.corelocation.*;
      */
     @Method(selector = "initWithPhoneNumber:nameComponents:displayName:image:rating:")
     public INRideDriver(String phoneNumber, NSPersonNameComponents nameComponents, String displayName, INImage image, String rating) { super((SkipInit) null); initObject(init(phoneNumber, nameComponents, displayName, image, rating)); }
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:")
+    public INRideDriver(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:")
+    public INRideDriver(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.2.
+     * @deprecated Deprecated in iOS 10.2. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:rating:phoneNumber:")
-    public INRideDriver(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String rating, String phoneNumber) { super((SkipInit) null); initObject(init(personHandle, nameComponents, displayName, image, rating, phoneNumber)); }
+    public static  INRideDriver create(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String rating, String phoneNumber) {
+       INRideDriver res = new INRideDriver((SkipInit) null);
+       res.initObject(res.initWithPersonHandleNameComponentsDisplayNameImageRatingPhoneNumber(personHandle, nameComponents, displayName, image, rating, phoneNumber));
+       return res;
+    }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:displayName:image:rating:phoneNumber:")
     public INRideDriver(String handle, String displayName, INImage image, String rating, String phoneNumber) { super((SkipInit) null); initObject(init(handle, displayName, image, rating, phoneNumber)); }
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:nameComponents:image:rating:phoneNumber:")
@@ -91,21 +102,21 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(String phoneNumber, NSPersonNameComponents nameComponents, String displayName, INImage image, String rating);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.2.
+     * @deprecated Deprecated in iOS 10.2. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:rating:phoneNumber:")
-    protected native @Pointer long init(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String rating, String phoneNumber);
+    protected native @Pointer long initWithPersonHandleNameComponentsDisplayNameImageRatingPhoneNumber(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String rating, String phoneNumber);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:displayName:image:rating:phoneNumber:")
     protected native @Pointer long init(String handle, String displayName, INImage image, String rating, String phoneNumber);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use the designated initializer instead
      */
     @Deprecated
     @Method(selector = "initWithHandle:nameComponents:image:rating:phoneNumber:")

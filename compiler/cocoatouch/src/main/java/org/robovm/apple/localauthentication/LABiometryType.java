@@ -39,6 +39,15 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/LABiometryType/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    TypeNone(0L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 11.2.
+     */
+    @Deprecated
     None(0L),
     TypeTouchID(1L),
     TypeFaceID(2L);

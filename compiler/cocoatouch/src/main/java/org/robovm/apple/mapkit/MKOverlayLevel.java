@@ -42,8 +42,8 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MKOverlayLevel/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Roads(0L),
-    Labels(1L);
+    AboveRoads(0L),
+    AboveLabels(1L);
     /*</values>*/
 
     /*<bind>*/

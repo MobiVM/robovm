@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSRNNMatrixInferenceLayer/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSRNNMatrixInferenceLayer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPSRNNMatrixInferenceLayer() {}
+    public MPSRNNMatrixInferenceLayer() {}
     protected MPSRNNMatrixInferenceLayer(Handle h, long handle) { super(h, handle); }
     protected MPSRNNMatrixInferenceLayer(SkipInit skipInit) { super(skipInit); }
     /**
@@ -64,6 +64,8 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:device:")
     public MPSRNNMatrixInferenceLayer(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
+    @Method(selector = "initWithCoder:")
+    public MPSRNNMatrixInferenceLayer(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inputFeatureChannels")
@@ -97,6 +99,11 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithDevice:rnnDescriptors:")
     protected native @Pointer long init(MTLDevice device, NSArray<MPSRNNDescriptor> rnnDescriptors);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "encodeSequenceToCommandBuffer:sourceMatrices:sourceOffsets:destinationMatrices:destinationOffsets:recurrentInputState:recurrentOutputStates:")
+    public native void encodeSequence(MTLCommandBuffer commandBuffer, NSArray<MPSMatrix> sourceMatrices, MachineSizedUIntPtr sourceOffsets, NSArray<MPSMatrix> destinationMatrices, MachineSizedUIntPtr destinationOffsets, MPSRNNRecurrentMatrixState recurrentInputState, NSMutableArray<MPSRNNRecurrentMatrixState> recurrentOutputStates);
     @Method(selector = "encodeSequenceToCommandBuffer:sourceMatrices:destinationMatrices:recurrentInputState:recurrentOutputStates:")
     public native void encodeSequence(MTLCommandBuffer commandBuffer, NSArray<MPSMatrix> sourceMatrices, NSArray<MPSMatrix> destinationMatrices, MPSRNNRecurrentMatrixState recurrentInputState, NSMutableArray<MPSRNNRecurrentMatrixState> recurrentOutputStates);
     @Method(selector = "encodeBidirectionalSequenceToCommandBuffer:sourceSequence:destinationForwardMatrices:destinationBackwardMatrices:")

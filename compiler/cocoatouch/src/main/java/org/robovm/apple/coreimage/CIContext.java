@@ -68,11 +68,15 @@ import org.robovm.apple.iosurface.*;
     public CIContext() { super((Handle) null, create()); retain(getHandle()); }
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Core Image OpenGLES API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public CIContext(EAGLContext eaglContext) { super((Handle) null, create(eaglContext)); retain(getHandle()); }
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Core Image OpenGLES API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public CIContext(EAGLContext eaglContext, CIContextOptions options) { super((Handle) null, create(eaglContext, options)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
@@ -171,12 +175,16 @@ import org.robovm.apple.iosurface.*;
     protected static native @Pointer long create();
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Core Image OpenGLES API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     @Method(selector = "contextWithEAGLContext:")
     protected static native @Pointer long create(EAGLContext eaglContext);
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Core Image OpenGLES API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     @Method(selector = "contextWithEAGLContext:options:")
     protected static native @Pointer long create(EAGLContext eaglContext, CIContextOptions options);
     /**
@@ -193,42 +201,57 @@ import org.robovm.apple.iosurface.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "TIFFRepresentationOfImage:format:colorSpace:options:")
-    public native NSData tiffRepresentationOfImage(CIImage image, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options);
+    public native NSData tiffRepresentationOfImage(CIImage image, int format, CGColorSpace colorSpace, CIImageRepresentationOptions options);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "JPEGRepresentationOfImage:colorSpace:options:")
-    public native NSData jpegRepresentationOfImage(CIImage image, CGColorSpace colorSpace, NSDictionary<?, ?> options);
+    public native NSData jpegRepresentationOfImage(CIImage image, CGColorSpace colorSpace, CIImageRepresentationOptions options);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "HEIFRepresentationOfImage:format:colorSpace:options:")
-    public native NSData HEIFRepresentationOfImage(CIImage image, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options);
+    public native NSData HEIFRepresentationOfImage(CIImage image, int format, CGColorSpace colorSpace, CIImageRepresentationOptions options);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "PNGRepresentationOfImage:format:colorSpace:options:")
-    public native NSData PNGRepresentationOfImage(CIImage image, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options);
+    public native NSData PNGRepresentationOfImage(CIImage image, int format, CGColorSpace colorSpace, CIImageRepresentationOptions options);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "writeTIFFRepresentationOfImage:toURL:format:colorSpace:options:error:")
-    public native boolean writeTIFFRepresentationOfImage(CIImage image, NSURL url, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options, NSError.NSErrorPtr errorPtr);
+    public native boolean writeTIFFRepresentationOfImage(CIImage image, NSURL url, int format, CGColorSpace colorSpace, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "writePNGRepresentationOfImage:toURL:format:colorSpace:options:error:")
-    public native boolean writePNGRepresentationOfImage(CIImage image, NSURL url, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options, NSError.NSErrorPtr errorPtr);
+    public native boolean writePNGRepresentationOfImage(CIImage image, NSURL url, int format, CGColorSpace colorSpace, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "writeJPEGRepresentationOfImage:toURL:colorSpace:options:error:")
-    public native boolean writeJPEGRepresentationOfImage(CIImage image, NSURL url, CGColorSpace colorSpace, NSDictionary<?, ?> options, NSError.NSErrorPtr errorPtr);
+    public native boolean writeJPEGRepresentationOfImage(CIImage image, NSURL url, CGColorSpace colorSpace, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "writeHEIFRepresentationOfImage:toURL:format:colorSpace:options:error:")
-    public native boolean writeHEIFRepresentationOfImage(CIImage image, NSURL url, int format, CGColorSpace colorSpace, NSDictionary<?, ?> options, NSError.NSErrorPtr errorPtr);
+    public native boolean writeHEIFRepresentationOfImage(CIImage image, NSURL url, int format, CGColorSpace colorSpace, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "depthBlurEffectFilterForImageURL:options:")
+    public native CIFilter depthBlurEffectFilter(NSURL url, NSDictionary<?, ?> options);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "depthBlurEffectFilterForImageData:options:")
+    public native CIFilter depthBlurEffectFilter(NSData data, NSDictionary<?, ?> options);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:orientation:options:")
+    public native CIFilter depthBlurEffectFilter(CIImage image, CIImage disparityImage, CIImage portraitEffectsMatte, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
     /**
      * @since Available in iOS 11.0 and later.
      */

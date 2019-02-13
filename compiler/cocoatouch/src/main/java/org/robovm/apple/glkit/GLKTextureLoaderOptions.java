@@ -114,7 +114,9 @@ import org.robovm.apple.modelio.*;
 
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public boolean shouldApplyPremultiplication() {
         if (has(Keys.ApplyPremultiplication())) {
             NSNumber val = (NSNumber) get(Keys.ApplyPremultiplication());
@@ -124,14 +126,18 @@ import org.robovm.apple.modelio.*;
     }
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public GLKTextureLoaderOptions setShouldApplyPremultiplication(boolean shouldApplyPremultiplication) {
         set(Keys.ApplyPremultiplication(), NSNumber.valueOf(shouldApplyPremultiplication));
         return this;
     }
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public boolean shouldGenerateMipmaps() {
         if (has(Keys.GenerateMipmaps())) {
             NSNumber val = (NSNumber) get(Keys.GenerateMipmaps());
@@ -141,14 +147,18 @@ import org.robovm.apple.modelio.*;
     }
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public GLKTextureLoaderOptions setShouldGenerateMipmaps(boolean shouldGenerateMipmaps) {
         set(Keys.GenerateMipmaps(), NSNumber.valueOf(shouldGenerateMipmaps));
         return this;
     }
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public boolean isOriginBottomLeft() {
         if (has(Keys.OriginBottomLeft())) {
             NSNumber val = (NSNumber) get(Keys.OriginBottomLeft());
@@ -158,14 +168,13 @@ import org.robovm.apple.modelio.*;
     }
     /**
      * @since Available in iOS 5.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public GLKTextureLoaderOptions setOriginBottomLeft(boolean originBottomLeft) {
         set(Keys.OriginBottomLeft(), NSNumber.valueOf(originBottomLeft));
         return this;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public boolean shouldTreatGrayscaleAsAlpha() {
         if (has(Keys.GrayscaleAsAlpha())) {
             NSNumber val = (NSNumber) get(Keys.GrayscaleAsAlpha());
@@ -173,16 +182,15 @@ import org.robovm.apple.modelio.*;
         }
         return false;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
     public GLKTextureLoaderOptions setShouldTreatGrayscaleAsAlpha(boolean shouldTreatGrayscaleAsAlpha) {
         set(Keys.GrayscaleAsAlpha(), NSNumber.valueOf(shouldTreatGrayscaleAsAlpha));
         return this;
     }
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public boolean isSRGB() {
         if (has(Keys.SRGB())) {
             NSNumber val = (NSNumber) get(Keys.SRGB());
@@ -192,7 +200,9 @@ import org.robovm.apple.modelio.*;
     }
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
      */
+    @Deprecated
     public GLKTextureLoaderOptions setSRGB(boolean sRGB) {
         set(Keys.SRGB(), NSNumber.valueOf(sRGB));
         return this;
@@ -205,27 +215,32 @@ import org.robovm.apple.modelio.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 5.0 and later.
+         * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
          */
+        @Deprecated
         @GlobalValue(symbol="GLKTextureLoaderApplyPremultiplication", optional=true)
         public static native NSString ApplyPremultiplication();
         /**
          * @since Available in iOS 5.0 and later.
+         * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
          */
+        @Deprecated
         @GlobalValue(symbol="GLKTextureLoaderGenerateMipmaps", optional=true)
         public static native NSString GenerateMipmaps();
         /**
          * @since Available in iOS 5.0 and later.
+         * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
          */
+        @Deprecated
         @GlobalValue(symbol="GLKTextureLoaderOriginBottomLeft", optional=true)
         public static native NSString OriginBottomLeft();
-        /**
-         * @since Available in iOS 5.0 and later.
-         */
         @GlobalValue(symbol="GLKTextureLoaderGrayscaleAsAlpha", optional=true)
         public static native NSString GrayscaleAsAlpha();
         /**
          * @since Available in iOS 7.0 and later.
+         * @deprecated Deprecated in iOS 12.0. OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
          */
+        @Deprecated
         @GlobalValue(symbol="GLKTextureLoaderSRGB", optional=true)
         public static native NSString SRGB();
     }

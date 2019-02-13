@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.3 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSCNNConvolutionGradientNode/*</name>*/ 
     extends /*<extends>*/MPSNNGradientFilterNode/*</extends>*/ 
     /*<implements>*/implements MPSNNTrainableNode/*</implements>*/ {
@@ -46,7 +46,7 @@ import org.robovm.apple.metal.*;
     /*<bind>*/static { ObjCRuntime.bind(MPSCNNConvolutionGradientNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSCNNConvolutionGradientNode() {}
+    protected MPSCNNConvolutionGradientNode() {}
     protected MPSCNNConvolutionGradientNode(Handle h, long handle) { super(h, handle); }
     protected MPSCNNConvolutionGradientNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSourceGradient:sourceImage:convolutionGradientState:weights:")

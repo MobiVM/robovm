@@ -116,6 +116,10 @@ public class IBClassHierarchyData {
         return hasAnyFlag(FLAG_NATIVE_CLASS | FLAG_INHERITS_NATIVE);
     }
 
+    public boolean isCustom() {
+        return hasAnyFlag(FLAG_CUSTOM_CLASS);
+    }
+
     public boolean isUIKit() {
         return hasAnyFlag(FLAG_UIKIT_CLASS| FLAG_INHERITS_UIKIT);
     }

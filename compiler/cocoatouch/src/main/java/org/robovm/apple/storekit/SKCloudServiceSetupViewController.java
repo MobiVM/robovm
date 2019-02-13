@@ -48,6 +48,10 @@ import org.robovm.apple.uikit.*;
     public SKCloudServiceSetupViewController() {}
     protected SKCloudServiceSetupViewController(Handle h, long handle) { super(h, handle); }
     protected SKCloudServiceSetupViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithNibName:bundle:")
+    public SKCloudServiceSetupViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public SKCloudServiceSetupViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")

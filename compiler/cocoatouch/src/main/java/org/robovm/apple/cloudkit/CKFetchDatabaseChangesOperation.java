@@ -51,7 +51,7 @@ import org.robovm.apple.fileprovider.*;
     protected CKFetchDatabaseChangesOperation(Handle h, long handle) { super(h, handle); }
     protected CKFetchDatabaseChangesOperation(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPreviousServerChangeToken:")
-    public CKFetchDatabaseChangesOperation(CKServerChangeToken previousServerChangeToken) { super((SkipInit) null); initObject(initWithPreviousServerChangeToken(previousServerChangeToken)); }
+    public CKFetchDatabaseChangesOperation(CKServerChangeToken previousServerChangeToken) { super((SkipInit) null); initObject(init(previousServerChangeToken)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "previousServerChangeToken")
@@ -96,6 +96,6 @@ import org.robovm.apple.fileprovider.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPreviousServerChangeToken:")
-    protected native @Pointer long initWithPreviousServerChangeToken(CKServerChangeToken previousServerChangeToken);
+    protected native @Pointer long init(CKServerChangeToken previousServerChangeToken);
     /*</methods>*/
 }

@@ -50,7 +50,7 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use parentTexture or buffer instead
      */
     @Deprecated
     @Property(selector = "rootResource")
@@ -115,6 +115,11 @@ import org.robovm.apple.dispatch.*;
     public native MTLTextureUsage getUsage();
     @Property(selector = "isFramebufferOnly")
     public native boolean isFramebufferOnly();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "allowGPUOptimizedContents")
+    public native boolean isAllowGPUOptimizedContents();
     @Property(selector = "label")
     public native String getLabel();
     @Property(selector = "setLabel:")

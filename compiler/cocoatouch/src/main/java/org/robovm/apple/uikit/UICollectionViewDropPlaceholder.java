@@ -53,9 +53,11 @@ import org.robovm.apple.intents.*;
     /*<bind>*/static { ObjCRuntime.bind(UICollectionViewDropPlaceholder.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UICollectionViewDropPlaceholder() {}
+    protected UICollectionViewDropPlaceholder() {}
     protected UICollectionViewDropPlaceholder(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewDropPlaceholder(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithInsertionIndexPath:reuseIdentifier:")
+    public UICollectionViewDropPlaceholder(NSIndexPath insertionIndexPath, String reuseIdentifier) { super(insertionIndexPath, reuseIdentifier); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "previewParametersProvider")

@@ -52,11 +52,13 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSDimension.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSDimension() {}
+    protected NSDimension() {}
     protected NSDimension(Handle h, long handle) { super(h, handle); }
     protected NSDimension(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSymbol:converter:")
     public NSDimension(String symbol, NSUnitConverter converter) { super((SkipInit) null); initObject(init(symbol, converter)); }
+    @Method(selector = "initWithSymbol:")
+    public NSDimension(String symbol) { super(symbol); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "converter")

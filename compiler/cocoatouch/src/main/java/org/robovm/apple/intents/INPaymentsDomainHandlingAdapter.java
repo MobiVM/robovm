@@ -56,7 +56,7 @@ import org.robovm.apple.corelocation.*;
     public void confirmRequestPayment(INRequestPaymentIntent intent, @Block VoidBlock1<INRequestPaymentIntentResponse> completion) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. resolvePayerForRequestPayment:withCompletion: is deprecated. Use resolvePayerForRequestPayment:completion: instead
      */
     @Deprecated
     @NotImplemented("resolvePayerForRequestPayment:withCompletion:")
@@ -68,7 +68,7 @@ import org.robovm.apple.corelocation.*;
     public void resolvePayerForRequestPayment(INRequestPaymentIntent intent, @Block VoidBlock1<INRequestPaymentPayerResolutionResult> completion) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. resolveCurrencyAmountForRequestPayment:withCompletion: is deprecated. Use resolveCurrencyAmountForRequestPayment:completion: instead
      */
     @Deprecated
     @NotImplemented("resolveCurrencyAmountForRequestPayment:withCompletion:")

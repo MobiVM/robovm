@@ -57,12 +57,12 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "remoteObjectProxy")
     NSObject remoteObjectProxy();
     @Method(selector = "remoteObjectProxyWithErrorHandler:")
-    NSObject remoteObjectProxyWithErrorHandler(@Block VoidBlock1<NSError> handler);
+    NSObject remoteObjectProxy(@Block VoidBlock1<NSError> handler);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "synchronousRemoteObjectProxyWithErrorHandler:")
-    NSObject synchronousRemoteObjectProxyWithErrorHandler(@Block VoidBlock1<NSError> handler);
+    NSObject synchronousRemoteObjectProxy(@Block VoidBlock1<NSError> handler);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

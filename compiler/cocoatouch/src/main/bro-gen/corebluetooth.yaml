@@ -184,7 +184,9 @@ classes:
                 trim_after_first_colon: true
                 parameters:
                     centrals:
-                        type: NSArray<CBCentral> 
+                        type: NSArray<CBCentral>
+            '-publishL2CAPChannelWithEncryption:':
+                name: publishL2CAPChannel
     CBService: # DONE
         properties:
             'isPrimary':

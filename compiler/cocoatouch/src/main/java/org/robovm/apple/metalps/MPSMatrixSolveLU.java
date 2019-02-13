@@ -37,7 +37,7 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 11.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSMatrixSolveLU/*</name>*/ 
     extends /*<extends>*/MPSMatrixBinaryKernel/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,6 +51,15 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixSolveLU(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDevice:transpose:order:numberOfRightHandSides:")
     public MPSMatrixSolveLU(MTLDevice device, boolean transpose, @MachineSizedUInt long order, @MachineSizedUInt long numberOfRightHandSides) { super((SkipInit) null); initObject(init(device, transpose, order, numberOfRightHandSides)); }
+    @Method(selector = "initWithDevice:")
+    public MPSMatrixSolveLU(MTLDevice device) { super(device); }
+    @Method(selector = "initWithCoder:")
+    public MPSMatrixSolveLU(NSCoder decoder) { super(decoder); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithCoder:device:")
+    public MPSMatrixSolveLU(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     /*</constructors>*/
     /*<properties>*/
     

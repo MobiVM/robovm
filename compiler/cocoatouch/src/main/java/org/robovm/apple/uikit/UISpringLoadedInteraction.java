@@ -59,7 +59,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithInteractionBehavior:interactionEffect:activationHandler:")
     public UISpringLoadedInteraction(UISpringLoadedInteractionBehavior interactionBehavior, UISpringLoadedInteractionEffect interactionEffect, @Block VoidBlock2<UISpringLoadedInteraction, UISpringLoadedInteractionContext> handler) { super((SkipInit) null); initObject(init(interactionBehavior, interactionEffect, handler)); }
     @Method(selector = "initWithActivationHandler:")
-    public UISpringLoadedInteraction(@Block VoidBlock2<UISpringLoadedInteraction, UISpringLoadedInteractionContext> handler) { super((SkipInit) null); initObject(initWithActivationHandler(handler)); }
+    public UISpringLoadedInteraction(@Block VoidBlock2<UISpringLoadedInteraction, UISpringLoadedInteractionContext> handler) { super((SkipInit) null); initObject(init(handler)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "interactionBehavior")
@@ -74,7 +74,7 @@ import org.robovm.apple.intents.*;
     @Method(selector = "initWithInteractionBehavior:interactionEffect:activationHandler:")
     protected native @Pointer long init(UISpringLoadedInteractionBehavior interactionBehavior, UISpringLoadedInteractionEffect interactionEffect, @Block VoidBlock2<UISpringLoadedInteraction, UISpringLoadedInteractionContext> handler);
     @Method(selector = "initWithActivationHandler:")
-    protected native @Pointer long initWithActivationHandler(@Block VoidBlock2<UISpringLoadedInteraction, UISpringLoadedInteractionContext> handler);
+    protected native @Pointer long init(@Block VoidBlock2<UISpringLoadedInteraction, UISpringLoadedInteractionContext> handler);
     @Method(selector = "willMoveToView:")
     public native void willMoveToView(UIView view);
     @Method(selector = "didMoveToView:")

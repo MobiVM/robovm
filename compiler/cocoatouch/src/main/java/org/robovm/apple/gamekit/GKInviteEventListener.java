@@ -59,7 +59,7 @@ import org.robovm.apple.uikit.*;
     void didRequestMatch(GKPlayer player, NSArray<GKPlayer> recipientPlayers);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. use player:didRequestMatchWithRecipients:
      */
     @Deprecated
     @Method(selector = "player:didRequestMatchWithPlayers:")

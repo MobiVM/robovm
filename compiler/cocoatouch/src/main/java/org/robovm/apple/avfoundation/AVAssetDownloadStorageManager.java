@@ -46,7 +46,7 @@ import org.robovm.apple.audiotoolbox.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetDownloadStorageManager/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetDownloadStorageManager/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 

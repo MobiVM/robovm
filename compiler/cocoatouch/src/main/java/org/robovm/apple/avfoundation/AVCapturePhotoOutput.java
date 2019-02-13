@@ -108,6 +108,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isCameraCalibrationDataDeliverySupported();
     @Property(selector = "supportedFlashModes")
     public native NSArray<NSNumber> getSupportedFlashModes();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "isAutoRedEyeReductionSupported")
+    public native boolean isAutoRedEyeReductionSupported();
     @Property(selector = "isFlashScene")
     public native boolean isFlashScene();
     @Property(selector = "photoSettingsForSceneMonitoring")
@@ -156,6 +161,21 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setDepthDataDeliveryEnabled:")
     public native void setDepthDataDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "isPortraitEffectsMatteDeliverySupported")
+    public native boolean isPortraitEffectsMatteDeliverySupported();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "isPortraitEffectsMatteDeliveryEnabled")
+    public native boolean isPortraitEffectsMatteDeliveryEnabled();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setPortraitEffectsMatteDeliveryEnabled:")
+    public native void setPortraitEffectsMatteDeliveryEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -182,14 +202,14 @@ import org.robovm.apple.audiotoolbox.*;
     protected static native @Pointer long create();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[AVCapturePhoto fileDataRepresentation] instead.
      */
     @Deprecated
     @Method(selector = "JPEGPhotoDataRepresentationForJPEGSampleBuffer:previewPhotoSampleBuffer:")
     public static native NSData JPEGPhotoDataRepresentationForJPEGSampleBuffer(CMSampleBuffer JPEGSampleBuffer, CMSampleBuffer previewPhotoSampleBuffer);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use -[AVCapturePhoto fileDataRepresentation] instead.
      */
     @Deprecated
     @Method(selector = "DNGPhotoDataRepresentationForRawSampleBuffer:previewPhotoSampleBuffer:")

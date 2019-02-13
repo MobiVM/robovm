@@ -48,7 +48,7 @@ import org.robovm.apple.foundation.*;
     protected CSSearchableIndex(Handle h, long handle) { super(h, handle); }
     protected CSSearchableIndex(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithName:")
-    public CSSearchableIndex(String name) { super((SkipInit) null); initObject(initWithName(name)); }
+    public CSSearchableIndex(String name) { super((SkipInit) null); initObject(init(name)); }
     @Method(selector = "initWithName:protectionClass:")
     public CSSearchableIndex(String name, NSString protectionClass) { super((SkipInit) null); initObject(init(name, protectionClass)); }
     /*</constructors>*/
@@ -61,7 +61,7 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithName:")
-    protected native @Pointer long initWithName(String name);
+    protected native @Pointer long init(String name);
     @Method(selector = "initWithName:protectionClass:")
     protected native @Pointer long init(String name, NSString protectionClass);
     @Method(selector = "indexSearchableItems:completionHandler:")
@@ -71,7 +71,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "deleteSearchableItemsWithDomainIdentifiers:completionHandler:")
     public native void deleteSearchableItemsWithDomainIdentifiers(NSArray<NSString> domainIdentifiers, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "deleteAllSearchableItemsWithCompletionHandler:")
-    public native void deleteAllSearchableItemsWithCompletionHandler(@Block VoidBlock1<NSError> completionHandler);
+    public native void deleteAllSearchableItems(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "isIndexingAvailable")
     public static native boolean isIndexingAvailable();
     @Method(selector = "defaultSearchableIndex")
@@ -81,6 +81,6 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "endIndexBatchWithClientState:completionHandler:")
     public native void endIndexBatch(NSData clientState, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "fetchLastClientStateWithCompletionHandler:")
-    public native void fetchLastClientStateWithCompletionHandler(@Block VoidBlock2<NSData, NSError> completionHandler);
+    public native void fetchLastClientState(@Block VoidBlock2<NSData, NSError> completionHandler);
     /*</methods>*/
 }

@@ -56,13 +56,11 @@ import org.robovm.apple.intents.*;
     public UILabel() {}
     protected UILabel(Handle h, long handle) { super(h, handle); }
     protected UILabel(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UILabel(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UILabel(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UILabel(CGRect frame) {
-        super(frame);
-    }
-    public UILabel(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "text")
     public native String getText();

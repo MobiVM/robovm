@@ -96,7 +96,7 @@ classes:
                 exclude: true
     MDLMaterial: # DONE
         methods:
-            '-init.*':
+            '-initWithName:scatteringFunction:':
                 name: init
             '-removeProperty:':
                 trim_after_first_colon: true
@@ -108,6 +108,10 @@ classes:
                 name: getProperty
             '-objectForKeyedSubscript:':
                 exclude: true
+            '-propertiesWithSemantic:':
+                name: getProperties
+            '-resolveTexturesWithResolver:':
+                name: resolveTextures
     MDLMaterialProperty: # DONE
         methods:
             '-init.*':
@@ -121,10 +125,8 @@ classes:
                 trim_after_first_colon: true
                 constructor: false # as conflicts, a wrapper to be done
             '-init.*':
-                trim_after_first_colon: true
+                name: init
                 parameters:
-                    submeshes:
-                        type: NSMutableArray<MDLSubmesh>
                     vertexBuffers:
                         type: List<MDLMeshBuffer>
                         marshaler: NSArray.AsListMarshaler
@@ -256,7 +258,10 @@ classes:
         methods:
             '-init.*':
                 name: init
-    MDLSubmeshTopology: {} # DONE
+    MDLSubmeshTopology: #since 9.0
+        methods:
+            '-initWithSubmesh:':
+                name: init
     MDLTexture: # DONE
         methods:
             '-initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:':
@@ -312,7 +317,10 @@ classes:
             '-init.*':
                 name: init
     MDLVertexAttributeData: {} # DONE
-    MDLVertexBufferLayout: {} # DONE
+    MDLVertexBufferLayout: #since 9.0
+        methods:
+            '-initWithStride:':
+                name: init
     MDLVertexDescriptor: # DONE
         properties:
             'attributes':
@@ -383,6 +391,8 @@ classes:
                 trim_after_first_colon: true
     MDLAnimatedQuaternionArray: #since 11.0
         methods:
+            '-initWithElementCount:':
+                name: init
             '-setFloatQuaternionArray:count:atTime:':
                 trim_after_first_colon: true
             '-setDoubleQuaternionArray:count:atTime:':
@@ -415,6 +425,8 @@ classes:
                 trim_after_first_colon: true
     MDLAnimatedScalarArray: #since 11.0
         methods:
+            '-initWithElementCount:':
+                name: init
             '-setFloatArray:count:atTime:':
                 trim_after_first_colon: true
             '-setDoubleArray:count:atTime:':
@@ -465,6 +477,8 @@ classes:
                 trim_after_first_colon: true
     MDLAnimatedVector3Array: #since 11.0
         methods:
+            '-initWithElementCount:':
+                name: init
             '-setFloat3Array:count:atTime:':
                 trim_after_first_colon: true
             '-setDouble3Array:count:atTime:':
@@ -496,9 +510,14 @@ classes:
             '-getDouble4Array:maxCount:':
                 trim_after_first_colon: true
     MDLAnimationBindComponent: {} #since 11.0
-    MDLBundleAssetResolver: {} #since 11.0
+    MDLBundleAssetResolver: #since 11.0
+        methods:
+            '-initWithBundle:':
+                name: init
     MDLMatrix4x4Array: #since 11.0
         methods:
+            '-initWithElementCount:':
+                name: init
             '-setFloat4x4Array:count:':
                 trim_after_first_colon: true
             '-setDouble4x4Array:count:':
@@ -511,8 +530,14 @@ classes:
         methods:
             '-initWithName:jointPaths:':
                 name: init
-    MDLPathAssetResolver: {} #since 11.0
-    MDLRelativeAssetResolver: {} #since 11.0
+    MDLPathAssetResolver: #since 11.0
+        methods:
+            '-initWithPath:':
+                name: init
+    MDLRelativeAssetResolver: #since 11.0
+        methods:
+            '-initWithAsset:':
+                name: init
     MDLSkeleton: #since 11.0
         methods:
             '-initWithName:jointPaths:':
@@ -539,6 +564,8 @@ classes:
                 trim_after_first_colon: true
             '-addMatrixOp:inverse:':
                 trim_after_first_colon: true
+            '-animatedValueWithName:':
+                name: getAnimatedValue
     MDLTransformTranslateOp: {} #since 11.0
 
 protocols:

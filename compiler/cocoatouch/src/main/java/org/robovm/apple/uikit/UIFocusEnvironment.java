@@ -57,8 +57,18 @@ import org.robovm.apple.intents.*;
     @Property(selector = "preferredFocusEnvironments")
     @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> getPreferredFocusEnvironments();
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "parentFocusEnvironment")
+    UIFocusEnvironment getParentFocusEnvironment();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "focusItemContainer")
+    UIFocusItemContainer getFocusItemContainer();
+    /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use -preferredFocusEnvironments instead.
      */
     @Deprecated
     @Property(selector = "preferredFocusedView")

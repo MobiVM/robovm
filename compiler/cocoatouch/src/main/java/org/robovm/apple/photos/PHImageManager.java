@@ -73,7 +73,7 @@ import org.robovm.apple.imageio.*;
     public native int requestImageForAsset(PHAsset asset, @ByVal CGSize targetSize, PHImageContentMode contentMode, PHImageRequestOptions options, @Block VoidBlock2<UIImage, NSDictionary<?, ?>> resultHandler);
     @WeaklyLinked
     @Method(selector = "requestImageDataForAsset:options:resultHandler:")
-    public native int requestImageDataForAsset(PHAsset asset, PHImageRequestOptions options, @Block VoidBlock4<NSData, String, UIImageOrientation, NSDictionary<?, ?>> resultHandler);
+    public native int requestImageDataForAsset(PHAsset asset, PHImageRequestOptions options, @Block VoidBlock4<NSData, NSString, UIImageOrientation, NSDictionary<?, ?>> resultHandler);
     @Method(selector = "cancelImageRequest:")
     public native void cancelImageRequest(int requestID);
     /**

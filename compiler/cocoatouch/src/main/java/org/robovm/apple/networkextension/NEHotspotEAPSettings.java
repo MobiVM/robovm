@@ -137,8 +137,14 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "setIdentity:")
     public native boolean setIdentity(SecIdentity identity);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "setTrustedServerCertificates:")
     public native boolean setTrustedServerCertificates(NSArray<?> certificates);
     @Method(selector = "encodeWithCoder:")

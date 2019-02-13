@@ -125,6 +125,9 @@ import org.robovm.apple.coregraphics.*;
     public static final MPMediaItemProperty AlbumTrackCount = new MPMediaItemProperty("AlbumTrackCount");
     public static final MPMediaItemProperty DiscNumber = new MPMediaItemProperty("DiscNumber");
     public static final MPMediaItemProperty DiscCount = new MPMediaItemProperty("DiscCount");
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public static final MPMediaItemProperty Artwork = new MPMediaItemProperty("Artwork");
     /**
      * @since Available in iOS 7.0 and later.
@@ -260,6 +263,9 @@ import org.robovm.apple.coregraphics.*;
         public static native NSString DiscNumber();
         @GlobalValue(symbol="MPMediaItemPropertyDiscCount", optional=true)
         public static native NSString DiscCount();
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
         @GlobalValue(symbol="MPMediaItemPropertyArtwork", optional=true)
         public static native NSString Artwork();
         /**

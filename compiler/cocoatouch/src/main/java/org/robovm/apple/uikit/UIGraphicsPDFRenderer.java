@@ -58,6 +58,8 @@ import org.robovm.apple.intents.*;
     protected UIGraphicsPDFRenderer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithBounds:format:")
     public UIGraphicsPDFRenderer(@ByVal CGRect bounds, UIGraphicsPDFRendererFormat format) { super((SkipInit) null); initObject(init(bounds, format)); }
+    @Method(selector = "initWithBounds:")
+    public UIGraphicsPDFRenderer(@ByVal CGRect bounds) { super(bounds); }
     /*</constructors>*/
     /*<properties>*/
     

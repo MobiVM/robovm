@@ -45,9 +45,11 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(HMMutableSignificantTimeEvent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HMMutableSignificantTimeEvent() {}
+    protected HMMutableSignificantTimeEvent() {}
     protected HMMutableSignificantTimeEvent(Handle h, long handle) { super(h, handle); }
     protected HMMutableSignificantTimeEvent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSignificantEvent:offset:")
+    public HMMutableSignificantTimeEvent(String significantEvent, NSDateComponents offset) { super(significantEvent, offset); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "significantEvent")

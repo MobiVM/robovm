@@ -46,7 +46,7 @@ import org.robovm.apple.uikit.UIView; // manually added
     /*<bind>*/static { ObjCRuntime.bind(HMCameraView.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HMCameraView() {}
+    protected HMCameraView() {}
     protected HMCameraView(Handle h, long handle) { super(h, handle); }
     protected HMCameraView(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

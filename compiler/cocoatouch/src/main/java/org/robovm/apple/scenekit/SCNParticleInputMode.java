@@ -45,9 +45,9 @@ import org.robovm.apple.avfoundation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/SCNParticleInputMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Life(0L),
-    Distance(1L),
-    OtherProperty(2L);
+    OverLife(0L),
+    OverDistance(1L),
+    OverOtherProperty(2L);
     /*</values>*/
 
     /*<bind>*/

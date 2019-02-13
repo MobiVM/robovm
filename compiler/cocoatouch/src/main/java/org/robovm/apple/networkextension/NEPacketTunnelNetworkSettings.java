@@ -48,6 +48,11 @@ import org.robovm.apple.security.*;
     public NEPacketTunnelNetworkSettings() {}
     protected NEPacketTunnelNetworkSettings(Handle h, long handle) { super(h, handle); }
     protected NEPacketTunnelNetworkSettings(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "initWithTunnelRemoteAddress:")
+    public NEPacketTunnelNetworkSettings(String address) { super(address); }
     /*</constructors>*/
     /*<properties>*/
     /**

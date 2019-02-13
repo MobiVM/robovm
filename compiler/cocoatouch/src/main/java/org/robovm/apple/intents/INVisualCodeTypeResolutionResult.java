@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INVisualCodeTypeResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INVisualCodeTypeResolutionResult() {}
+    protected INVisualCodeTypeResolutionResult() {}
     protected INVisualCodeTypeResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INVisualCodeTypeResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
@@ -57,21 +57,7 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "successWithResolvedVisualCodeType:")
     public static native INVisualCodeTypeResolutionResult successWithResolvedVisualCodeType(INVisualCodeType resolvedVisualCodeType);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "successWithResolvedValue:")
-    public static native INVisualCodeTypeResolutionResult successWithResolvedValue(INVisualCodeType resolvedValue);
     @Method(selector = "confirmationRequiredWithVisualCodeTypeToConfirm:")
     public static native INVisualCodeTypeResolutionResult confirmationRequiredWithVisualCodeTypeToConfirm(INVisualCodeType visualCodeTypeToConfirm);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
-     */
-    @Deprecated
-    @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INVisualCodeTypeResolutionResult confirmationRequiredWithValueToConfirm(INVisualCodeType valueToConfirm);
     /*</methods>*/
 }

@@ -55,7 +55,7 @@ import org.robovm.apple.imageio.*;
     protected PHLivePhotoEditingContext(Handle h, long handle) { super(h, handle); }
     protected PHLivePhotoEditingContext(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLivePhotoEditingInput:")
-    public PHLivePhotoEditingContext(PHContentEditingInput livePhotoInput) { super((SkipInit) null); initObject(initWithLivePhotoEditingInput(livePhotoInput)); }
+    public PHLivePhotoEditingContext(PHContentEditingInput livePhotoInput) { super((SkipInit) null); initObject(init(livePhotoInput)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "fullSizeImage")
@@ -78,7 +78,7 @@ import org.robovm.apple.imageio.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithLivePhotoEditingInput:")
-    protected native @Pointer long initWithLivePhotoEditingInput(PHContentEditingInput livePhotoInput);
+    protected native @Pointer long init(PHContentEditingInput livePhotoInput);
     @Method(selector = "prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:")
     public native void prepareLivePhotoForPlayback(@ByVal CGSize targetSize, NSDictionary<NSString, ?> options, @Block VoidBlock2<PHLivePhoto, NSError> handler);
     @Method(selector = "saveLivePhotoToOutput:options:completionHandler:")

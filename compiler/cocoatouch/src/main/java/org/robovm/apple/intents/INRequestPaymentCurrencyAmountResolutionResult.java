@@ -46,11 +46,11 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INRequestPaymentCurrencyAmountResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INRequestPaymentCurrencyAmountResolutionResult() {}
+    protected INRequestPaymentCurrencyAmountResolutionResult() {}
     protected INRequestPaymentCurrencyAmountResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INRequestPaymentCurrencyAmountResolutionResult(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCurrencyAmountResolutionResult:")
-    public INRequestPaymentCurrencyAmountResolutionResult(INCurrencyAmountResolutionResult currencyAmountResolutionResult) { super((SkipInit) null); initObject(initWithCurrencyAmountResolutionResult(currencyAmountResolutionResult)); }
+    public INRequestPaymentCurrencyAmountResolutionResult(INCurrencyAmountResolutionResult currencyAmountResolutionResult) { super((SkipInit) null); initObject(init(currencyAmountResolutionResult)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -58,7 +58,7 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCurrencyAmountResolutionResult:")
-    protected native @Pointer long initWithCurrencyAmountResolutionResult(INCurrencyAmountResolutionResult currencyAmountResolutionResult);
+    protected native @Pointer long init(INCurrencyAmountResolutionResult currencyAmountResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INRequestPaymentCurrencyAmountResolutionResult unsupportedForReason(INRequestPaymentCurrencyAmountUnsupportedReason reason);
     /*</methods>*/

@@ -55,6 +55,9 @@ classes:
             '+categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:':
                 name: create
                 constructor: true
+            '+categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:categorySummaryFormat:options:':
+                name: create
+                constructor: true
     UNNotificationContent: {}
     UNNotificationRequest:
         methods:
@@ -67,7 +70,12 @@ classes:
             '-didReceiveNotificationRequest:withContentHandler:':
                 name: didReceiveNotificationRequest
     UNNotificationSettings: {}
-    UNNotificationSound: {}
+    UNNotificationSound:
+        methods:
+            '+criticalSoundNamed.*':
+                name: getCriticalSound
+            '+defaultCriticalSoundWithAudioVolume:':
+                name: getDefaultCriticalSound
     UNNotificationTrigger: {}
     UNPushNotificationTrigger: {}
     UNTextInputNotificationAction:
@@ -87,7 +95,18 @@ classes:
                 name: requestAuthorization
             '-addNotificationRequest:withCompletionHandler:':
                 name: addNotificationRequest
-
+            '-getNotificationCategoriesWithCompletionHandler:':
+                name: getNotificationCategories
+            '-getNotificationSettingsWithCompletionHandler:':
+                name: getNotificationSettings
+            '-getPendingNotificationRequestsWithCompletionHandler:':
+                name: getPendingNotificationRequests
+            '-removePendingNotificationRequestsWithIdentifiers:':
+                name: removePendingNotificationRequests
+            '-getDeliveredNotificationsWithCompletionHandler:':
+                name: getDeliveredNotifications
+            '-removeDeliveredNotificationsWithIdentifiers:':
+                name: removeDeliveredNotifications
 protocols:
     UNUserNotificationCenterDelegate:
         skip_adapter: true
@@ -96,6 +115,8 @@ protocols:
                 name: willPresentNotification
             '-userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:':
                 name: didReceiveNotificationResponse
+            '-userNotificationCenter:openSettingsForNotification:':
+                name: openSettings
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

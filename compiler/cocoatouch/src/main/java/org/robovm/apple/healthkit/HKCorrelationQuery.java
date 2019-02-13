@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(HKCorrelationQuery.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HKCorrelationQuery() {}
+    protected HKCorrelationQuery() {}
     protected HKCorrelationQuery(Handle h, long handle) { super(h, handle); }
     protected HKCorrelationQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithType:predicate:samplePredicates:completion:")

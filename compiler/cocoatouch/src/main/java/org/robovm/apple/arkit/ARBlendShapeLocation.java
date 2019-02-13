@@ -301,9 +301,13 @@ import org.robovm.apple.imageio.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final ARBlendShapeLocation NoseSneerRight = new ARBlendShapeLocation("NoseSneerRight");
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final ARBlendShapeLocation TongueOut = new ARBlendShapeLocation("TongueOut");
     /*</constants>*/
     
-    private static /*<name>*/ARBlendShapeLocation/*</name>*/[] values = new /*<name>*/ARBlendShapeLocation/*</name>*/[] {/*<value_list>*/BrowDownLeft, BrowDownRight, BrowInnerUp, BrowOuterUpLeft, BrowOuterUpRight, CheekPuff, CheekSquintLeft, CheekSquintRight, EyeBlinkLeft, EyeBlinkRight, EyeLookDownLeft, EyeLookDownRight, EyeLookInLeft, EyeLookInRight, EyeLookOutLeft, EyeLookOutRight, EyeLookUpLeft, EyeLookUpRight, EyeSquintLeft, EyeSquintRight, EyeWideLeft, EyeWideRight, JawForward, JawLeft, JawOpen, JawRight, MouthClose, MouthDimpleLeft, MouthDimpleRight, MouthFrownLeft, MouthFrownRight, MouthFunnel, MouthLeft, MouthLowerDownLeft, MouthLowerDownRight, MouthPressLeft, MouthPressRight, MouthPucker, MouthRight, MouthRollLower, MouthRollUpper, MouthShrugLower, MouthShrugUpper, MouthSmileLeft, MouthSmileRight, MouthStretchLeft, MouthStretchRight, MouthUpperUpLeft, MouthUpperUpRight, NoseSneerLeft, NoseSneerRight/*</value_list>*/};
+    private static /*<name>*/ARBlendShapeLocation/*</name>*/[] values = new /*<name>*/ARBlendShapeLocation/*</name>*/[] {/*<value_list>*/BrowDownLeft, BrowDownRight, BrowInnerUp, BrowOuterUpLeft, BrowOuterUpRight, CheekPuff, CheekSquintLeft, CheekSquintRight, EyeBlinkLeft, EyeBlinkRight, EyeLookDownLeft, EyeLookDownRight, EyeLookInLeft, EyeLookInRight, EyeLookOutLeft, EyeLookOutRight, EyeLookUpLeft, EyeLookUpRight, EyeSquintLeft, EyeSquintRight, EyeWideLeft, EyeWideRight, JawForward, JawLeft, JawOpen, JawRight, MouthClose, MouthDimpleLeft, MouthDimpleRight, MouthFrownLeft, MouthFrownRight, MouthFunnel, MouthLeft, MouthLowerDownLeft, MouthLowerDownRight, MouthPressLeft, MouthPressRight, MouthPucker, MouthRight, MouthRollLower, MouthRollUpper, MouthShrugLower, MouthShrugUpper, MouthSmileLeft, MouthSmileRight, MouthStretchLeft, MouthStretchRight, MouthUpperUpLeft, MouthUpperUpRight, NoseSneerLeft, NoseSneerRight, TongueOut/*</value_list>*/};
     
     /*<name>*/ARBlendShapeLocation/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -581,6 +585,11 @@ import org.robovm.apple.imageio.*;
          */
         @GlobalValue(symbol="ARBlendShapeLocationNoseSneerRight", optional=true)
         public static native NSString NoseSneerRight();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="ARBlendShapeLocationTongueOut", optional=true)
+        public static native NSString TongueOut();
         /*</values>*/
     }
 }

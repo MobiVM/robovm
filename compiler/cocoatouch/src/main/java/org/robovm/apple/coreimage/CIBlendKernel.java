@@ -144,7 +144,12 @@ import org.robovm.apple.iosurface.*;
     /*<methods>*/
     @Method(selector = "applyWithForeground:background:")
     public native CIImage apply(CIImage foreground, CIImage background);
+    /**
+     * @since Available in iOS 8.0 and later.
+     * @deprecated Deprecated in iOS 12.0. Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)
+     */
+    @Deprecated
     @Method(selector = "kernelWithString:")
-    public static native CIBlendKernel kernelWithString(String string);
+    public static native CIBlendKernel create(String string);
     /*</methods>*/
 }

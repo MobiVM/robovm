@@ -51,7 +51,7 @@ import org.robovm.apple.uikit.*;
     protected GKSCNNodeComponent(Handle h, long handle) { super(h, handle); }
     protected GKSCNNodeComponent(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNode:")
-    public GKSCNNodeComponent(SCNNode node) { super((SkipInit) null); initObject(initWithNode(node)); }
+    public GKSCNNodeComponent(SCNNode node) { super((SkipInit) null); initObject(init(node)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "node")
@@ -60,9 +60,7 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithNode:")
-    protected native @Pointer long initWithNode(SCNNode node);
-    @Method(selector = "componentWithNode:")
-    public static native GKSCNNodeComponent componentWithNode(SCNNode node);
+    protected native @Pointer long init(SCNNode node);
     @Method(selector = "agentWillUpdate:")
     public native void willUpdate(GKAgent agent);
     @Method(selector = "agentDidUpdate:")

@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INMessageAttributeResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INMessageAttributeResolutionResult() {}
+    protected INMessageAttributeResolutionResult() {}
     protected INMessageAttributeResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INMessageAttributeResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

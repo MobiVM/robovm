@@ -56,6 +56,8 @@ import org.robovm.apple.intents.*;
     public UIMotionEffectGroup() {}
     protected UIMotionEffectGroup(Handle h, long handle) { super(h, handle); }
     protected UIMotionEffectGroup(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public UIMotionEffectGroup(NSCoder aDecoder) { super(aDecoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "motionEffects")

@@ -43,7 +43,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.0 and later.
- * @deprecated Deprecated in iOS 10.0.
+ * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput instead.
  */
 @Deprecated
 /*</javadoc>*/
@@ -120,28 +120,28 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isCapturingStillImage();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput maxBracketedCapturePhotoCount instead.
      */
     @Deprecated
     @Property(selector = "maxBracketedCaptureStillImageCount")
     public native @MachineSizedUInt long getMaxBracketedCaptureStillImageCount();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput lensStabilizationDuringBracketedCaptureSupported instead.
      */
     @Deprecated
     @Property(selector = "isLensStabilizationDuringBracketedCaptureSupported")
     public native boolean isLensStabilizationDuringBracketedCaptureSupported();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput with AVCapturePhotoBracketSettings instead.
      */
     @Deprecated
     @Property(selector = "isLensStabilizationDuringBracketedCaptureEnabled")
     public native boolean isLensStabilizationDuringBracketedCaptureEnabled();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput with AVCapturePhotoBracketSettings instead.
      */
     @Deprecated
     @Property(selector = "setLensStabilizationDuringBracketedCaptureEnabled:")
@@ -157,14 +157,14 @@ import org.robovm.apple.audiotoolbox.*;
     public static native NSData createJPEGStillImageNSDataRepresentation(CMSampleBuffer jpegSampleBuffer);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput setPreparedPhotoSettingsArray:completionHandler: instead.
      */
     @Deprecated
     @Method(selector = "prepareToCaptureStillImageBracketFromConnection:withSettingsArray:completionHandler:")
     public native void prepareToCaptureStillImageBracket(AVCaptureConnection connection, NSArray<AVCaptureBracketedStillImageSettings> settings, @Block VoidBlock2<Boolean, NSError> handler);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput capturePhotoWithSettings:delegate: instead.
      */
     @Deprecated
     @Method(selector = "captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler:")

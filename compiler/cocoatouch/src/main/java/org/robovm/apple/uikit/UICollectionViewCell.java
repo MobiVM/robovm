@@ -56,13 +56,11 @@ import org.robovm.apple.intents.*;
     public UICollectionViewCell() {}
     protected UICollectionViewCell(Handle h, long handle) { super(h, handle); }
     protected UICollectionViewCell(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFrame:")
+    public UICollectionViewCell(@ByVal CGRect frame) { super(frame); }
+    @Method(selector = "initWithCoder:")
+    public UICollectionViewCell(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
-    public UICollectionViewCell(CGRect frame) {
-        super(frame);
-    }
-    public UICollectionViewCell(NSCoder decoder) {
-        super(decoder);
-    }
     /*<properties>*/
     @Property(selector = "contentView")
     public native UIView getContentView();

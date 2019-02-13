@@ -45,7 +45,20 @@ classes:
                 name: init
             '+attributeWithName:type:':
                 exclude: true
-    SKAttributeValue: {}
+    SKAttributeValue: #since 9.0
+        methods:
+            '+valueWithFloat:':
+                name: create
+                constructor: true
+            '+valueWithVectorFloat2:':
+                name: create
+                constructor: true
+            '+valueWithVectorFloat3:':
+                name: create
+                constructor: true
+            '+valueWithVectorFloat4:':
+                name: create
+                constructor: true
     SKTileDefinition:
         methods:
             '-init.*':
@@ -54,11 +67,24 @@ classes:
                 exclude: true
     SKTileSet:
         methods:
-            '-init.*':
+            '-initWithTileGroups:':
+                name: init
+            '-initWithTileGroups:tileSetType:':
                 name: init
             '+tileSetWithTileGroups:tileSetType:':
                 exclude: true
-    SKTileGroup: {}
+            '+tileSetWithTileGroups:':
+                exclude: true
+    SKTileGroup: #since 10.0
+        methods:
+            '-initWithTileDefinition:':
+                name: init
+            '-initWithRules:':
+                name: init
+            '+tileGroupWithTileDefinition:':
+                exclude: true
+            '+tileGroupWithRules:':
+                exclude: true
     SKTileGroupRule:
         methods:
             '-init.*':
@@ -348,6 +374,9 @@ classes:
             '+labelNodeWithText:':
                 name: create
                 constructor: true
+            '+labelNodeWithAttributedText:':
+                name: create
+                constructor: true
     SKLightNode: {} # DONE
     SKMutableTexture: # DONE
         methods:
@@ -370,13 +399,7 @@ classes:
             'userData':
                 type: 'NSMutableDictionary<?, ?>'
         methods:
-            '-init':
-                exclude: true
-            '-init.*':
-                name: init
             '-addChild:':
-                trim_after_first_colon: true
-            '-insertChild:atIndex:':
                 trim_after_first_colon: true
             '-removeChildrenInArray:':
                 name: removeChildren
@@ -387,8 +410,6 @@ classes:
                 trim_after_first_colon: true
             '-childNodeWithName:':
                 name: getChild
-            '-enumerateChildNodesWithName:usingBlock:':
-                name: enumerateChildNodes
             '-inParentHierarchy:':
                 name: isInParentHierarchy
             '-runAction:.*':
@@ -404,10 +425,6 @@ classes:
             '-nodesAtPoint:':
                 name: getNodesAtPoint
                 return_type: NSArray<SKNode>
-            '-convertPoint:fromNode:':
-                name: convertPointFromNode
-            '-convertPoint:toNode:':
-                name: convertPointToNode
             '-intersectsNode:':
                 trim_after_first_colon: true
             '-objectForKeyedSubscript:':
@@ -452,6 +469,10 @@ classes:
                 name: convertPointFromNode
             '-convertPoint:toNode:':
                 name: convertPointToNode
+            '+nodeWithFileNamed:securelyWithClasses:andError:':
+                name: create
+                constructor: true
+                throws: NSErrorException
     SKPhysicsBody: # DONE
         properties:
             'joints':
@@ -783,9 +804,16 @@ classes:
                 name: render
             '-renderWithViewport:renderCommandEncoder:renderPassDescriptor:commandQueue:':
                 name: render
+            '+rendererWithDevice:':
+                name: create
+                constructor: true
     SKTileMapNode: #since 10.0
         methods:
-            '-init.*':
+            '-initWithTileSet:columns:rows:tileSize:':
+                name: init
+            '-initWithTileSet:columns:rows:tileSize:fillWithTileGroup:':
+                name: init
+            '-initWithTileSet:columns:rows:tileSize:tileGroupLayout:':
                 name: init
             '-setValue:forAttributeNamed:':
                 trim_after_first_colon: true
@@ -805,6 +833,8 @@ classes:
                 exclude: true
             '+tileMapNodeWithTileSet:columns:rows:tileSize:tileGroupLayout:':
                 exclude: true
+            '-fillWithTileGroup:':
+                name: fill
     SKTransformNode: {} #since 11.0
 
 protocols:

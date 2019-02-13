@@ -37,6 +37,7 @@ import org.robovm.apple.spritekit.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,7 +48,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ARPointCloud/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class ARPointCloudPtr extends Ptr<ARPointCloud, ARPointCloudPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ARPointCloud.class); }/*</bind>*/
@@ -56,17 +57,24 @@ import org.robovm.apple.metal.*;
     protected ARPointCloud() {}
     protected ARPointCloud(Handle h, long handle) { super(h, handle); }
     protected ARPointCloud(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public ARPointCloud(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "count")
     public native @MachineSizedUInt long getCount();
     @Property(selector = "points")
-    public native VectorFloat3.VectorFloat3Ptr getPoints();
+    public native VectorFloat3 getPoints();
     @Property(selector = "identifiers")
     public native LongPtr getIdentifiers();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder decoder);
     /*</methods>*/
 }

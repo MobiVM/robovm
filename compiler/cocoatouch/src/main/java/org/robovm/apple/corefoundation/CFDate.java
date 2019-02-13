@@ -76,35 +76,35 @@ import org.robovm.apple.coretext.*;
     private native CFComparisonResult compareTo(CFDate otherDate, VoidPtr context);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use CFCalendar or NSCalendar API instead
      */
     @Deprecated
     @Bridge(symbol="CFAbsoluteTimeAddGregorianUnits", optional=true)
     public static native double addGregorianUnitsToAbsoluteTime(double at, CFTimeZone tz, @ByVal CFGregorianUnits units);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use CFCalendar or NSCalendar API instead
      */
     @Deprecated
     @Bridge(symbol="CFAbsoluteTimeGetDifferenceAsGregorianUnits", optional=true)
     public static native @ByVal CFGregorianUnits getAbsoluteTimeDifferenceAsGregorianUnits(double at1, double at2, CFTimeZone tz, CFGregorianUnitFlags unitFlags);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use CFCalendar or NSCalendar API instead
      */
     @Deprecated
     @Bridge(symbol="CFAbsoluteTimeGetDayOfWeek", optional=true)
     public static native int getDayOfWeekFromAbsoluteTime(double at, CFTimeZone tz);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use CFCalendar or NSCalendar API instead
      */
     @Deprecated
     @Bridge(symbol="CFAbsoluteTimeGetDayOfYear", optional=true)
     public static native int getDayOfYearFromAbsoluteTime(double at, CFTimeZone tz);
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use CFCalendar or NSCalendar API instead
      */
     @Deprecated
     @Bridge(symbol="CFAbsoluteTimeGetWeekOfYear", optional=true)

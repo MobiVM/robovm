@@ -100,6 +100,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "introductoryPrice")
     public native SKProductDiscount getIntroductoryPrice();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "subscriptionGroupIdentifier")
+    public native String getSubscriptionGroupIdentifier();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

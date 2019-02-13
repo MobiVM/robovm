@@ -90,13 +90,11 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:textContainer:")
     public UITextView(@ByVal CGRect frame, NSTextContainer textContainer) { super((SkipInit) null); initObject(init(frame, textContainer)); }
     @Method(selector = "initWithCoder:")
-    public UITextView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public UITextView(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    @Method(selector = "initWithFrame:")
+    public UITextView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
-    
-    public UITextView(CGRect frame) {
-        super(frame);
-    }
-    
+
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -455,6 +453,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setTextContentType:")
     public native void setTextContentType(UITextContentType v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "passwordRules")
+    public native UITextInputPasswordRules getPasswordRules();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "setPasswordRules:")
+    public native void setPasswordRules(UITextInputPasswordRules v);
     @Property(selector = "adjustsFontForContentSizeCategory")
     public native boolean adjustsFontForContentSizeCategory();
     @Property(selector = "setAdjustsFontForContentSizeCategory:")
@@ -505,7 +513,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @Method(selector = "initWithFrame:textContainer:")
     protected native @Pointer long init(@ByVal CGRect frame, NSTextContainer textContainer);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder aDecoder);
+    protected native @Pointer long init(NSCoder decoder);
     @Method(selector = "textInRange:")
     public native String getText(UITextRange range);
     @Method(selector = "replaceRange:withText:")

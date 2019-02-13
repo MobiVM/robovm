@@ -66,7 +66,7 @@ import org.robovm.apple.contacts.*;
     public native NSTimeZone getTimeZone();
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use @properties
      */
     @Deprecated
     @WeaklyLinked

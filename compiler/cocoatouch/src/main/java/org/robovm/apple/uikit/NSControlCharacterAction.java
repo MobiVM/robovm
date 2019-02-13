@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,28 +44,34 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 7.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/NSControlCharacterAction/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/NSControlCharacterAction/*</name>*/ extends Bits</*<name>*/NSControlCharacterAction/*</name>*/> {
     /*<values>*/
-    ZeroAdvancement(1L),
-    Whitespace(2L),
-    HorizontalTab(4L),
-    LineBreak(8L),
-    ParagraphBreak(16L),
-    ContainerBreak(32L);
+    public static final NSControlCharacterAction None = new NSControlCharacterAction(0L);
+    public static final NSControlCharacterAction ZeroAdvancement = new NSControlCharacterAction(1L);
+    public static final NSControlCharacterAction Whitespace = new NSControlCharacterAction(2L);
+    public static final NSControlCharacterAction HorizontalTab = new NSControlCharacterAction(4L);
+    public static final NSControlCharacterAction LineBreak = new NSControlCharacterAction(8L);
+    public static final NSControlCharacterAction ParagraphBreak = new NSControlCharacterAction(16L);
+    public static final NSControlCharacterAction ContainerBreak = new NSControlCharacterAction(32L);
     /*</values>*/
 
-    private final long n;
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<methods>*//*</methods>*/
 
-    private /*<name>*/NSControlCharacterAction/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/NSControlCharacterAction/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NSControlCharacterAction/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NSControlCharacterAction/*</name>*/.class.getName());
+    private static final /*<name>*/NSControlCharacterAction/*</name>*/[] values = _values(/*<name>*/NSControlCharacterAction/*</name>*/.class);
+
+    public /*<name>*/NSControlCharacterAction/*</name>*/(long value) { super(value); }
+    private /*<name>*/NSControlCharacterAction/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/NSControlCharacterAction/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/NSControlCharacterAction/*</name>*/(value, mask);
+    }
+    protected /*<name>*/NSControlCharacterAction/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/NSControlCharacterAction/*</name>*/[] values() {
+        return values.clone();
     }
 }

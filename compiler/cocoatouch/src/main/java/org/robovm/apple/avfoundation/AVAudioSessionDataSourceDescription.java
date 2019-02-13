@@ -59,8 +59,14 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVAudioSessionDataSourceDescription(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     @Property(selector = "dataSourceID")
     public native NSNumber getDataSourceID();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     @Property(selector = "dataSourceName")
     public native String getDataSourceName();
     /**

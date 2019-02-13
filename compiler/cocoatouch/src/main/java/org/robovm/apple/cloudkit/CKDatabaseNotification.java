@@ -47,7 +47,7 @@ import org.robovm.apple.fileprovider.*;
     /*<bind>*/static { ObjCRuntime.bind(CKDatabaseNotification.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKDatabaseNotification() {}
+    protected CKDatabaseNotification() {}
     protected CKDatabaseNotification(Handle h, long handle) { super(h, handle); }
     protected CKDatabaseNotification(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

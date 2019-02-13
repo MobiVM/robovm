@@ -116,15 +116,11 @@ classes:
         name: CMSampleBuffer
         extends: CFType
         implements: CMBuffer
-    CMTime:
-        extends: CFType
     CMTimebase:
         extends: CMClockOrTimebase
     OpaqueCMTimebase:
         name: CMTimebase
         extends: CMClockOrTimebase
-    CMTimeRange:
-        extends: CFType
     CMMemoryPool:
         extends: CFType
     OpaqueCMMemoryPool:
@@ -227,16 +223,10 @@ functions:
         class: CMAudioFormatDescription
         name: '#{g[0]}0'
         visibility: private
-        parameters:
-            soundDescriptionFlavor:
-                type: CMSoundDescriptionFlavor
     CMAudioFormatDescription(CopyAsBigEndianSoundDescriptionBlockBuffer):
         class: CMAudioFormatDescription
         name: '#{g[0]}0'
         visibility: private
-        parameters:
-            soundDescriptionFlavor:
-                type: CMSoundDescriptionFlavor
     CMAudioFormatDescription(GetStreamBasicDescription):
         class: CMAudioFormatDescription
         name: '#{g[0]}'
@@ -298,7 +288,7 @@ functions:
         name: '#{g[0]}0'
         visibility: protected
         parameters:
-            triggerRefcon:
+            refcon:
                 type: '@Pointer long'
     CMBufferQueue(CallForEachBuffer):
         class: CMBufferQueue
@@ -312,7 +302,7 @@ functions:
         name: '#{g[0]}0'
         visibility: protected
         parameters:
-            validationRefCon:
+            refcon:
                 type: '@Pointer long'
     CMBufferQueue(.*):
         class: CMBufferQueue
@@ -333,9 +323,9 @@ functions:
         name: '#{g[0]}0'
         visibility: protected
         parameters:
-            outClockTime:
+            clockTimeOut:
                 type: CMTime.CMTimePtr
-            outReferenceClockTime:
+            referenceClockTimeOut:
                 type: CMTime.CMTimePtr
     CMClock(.*):
         class: CMClock
@@ -399,7 +389,7 @@ functions:
         name: '#{g[0]}0'
         visibility: private
         parameters:
-            closedCaptionFormatDescriptionOut:
+            formatDescriptionOut:
                 type: CMClosedCaptionFormatDescription.CMClosedCaptionFormatDescriptionPtr
     CMClosedCaptionFormatDescription(CopyAsBigEndianClosedCaptionDescriptionBlockBuffer):
         class: CMClosedCaptionFormatDescription
@@ -504,7 +494,7 @@ functions:
             keys:
                 type: List<CMMetadataFormatDescriptionKey>
                 marshaler: CMMetadataFormatDescriptionKey.AsListMarshaler
-            outDesc:
+            formatDescriptionOut:
                 type: CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr
     CMMetadataFormatDescription(Create)WithMetadataFormatDescriptionAndMetadataSpecifications:
         class: CMMetadataFormatDescription
@@ -516,7 +506,7 @@ functions:
             metadataSpecifications:
                 type: List<CMMetadataFormatDescriptionMetadataSpecification>
                 marshaler: CMMetadataFormatDescriptionMetadataSpecification.AsListMarshaler
-            outDesc:
+            formatDescriptionOut:
                 type: CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr
     CMMetadataFormatDescription(CreateWithMetadataSpecifications):
         class: CMMetadataFormatDescription
@@ -526,18 +516,18 @@ functions:
             metadataSpecifications:
                 type: List<CMMetadataFormatDescriptionMetadataSpecification>
                 marshaler: CMMetadataFormatDescriptionMetadataSpecification.AsListMarshaler
-            outDesc:
+            formatDescriptionOut:
                 type: CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr
     CMMetadataFormatDescription(CreateByMerging)MetadataFormatDescriptions:
         class: CMMetadataFormatDescription
         name: '#{g[0]}FormatDescriptions0'
         visibility: private
         parameters:
-            srcDesc1:
+            sourceDescription:
                 type: CMMetadataFormatDescription
-            srcDesc2:
+            otherSourceDescription:
                 type: CMMetadataFormatDescription
-            outDesc:
+            formatDescriptionOut:
                 type: CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr
     CMMetadataFormatDescription(GetKey)WithLocalID:
         class: CMMetadataFormatDescription
@@ -559,7 +549,7 @@ functions:
         name: '#{g[0]}0'
         visibility: private
         parameters:
-            metadataFormatDescriptionOut:
+            formatDescriptionOut:
                 type: CMMetadataFormatDescription.CMMetadataFormatDescriptionPtr
     CMMetadataFormatDescription(CopyAsBigEndianMetadataDescriptionBlockBuffer):
         class: CMMetadataFormatDescription
@@ -589,7 +579,7 @@ functions:
         parameters:
             extensions:
                 type: CMVideoFormatDescriptionExtension
-            outDesc:
+            formatDescriptionOut:
                 type: CMMuxedFormatDescription.CMMuxedFormatDescriptionPtr
     CMMuxedFormatDescription(.*):
         class: CMMuxedFormatDescription
@@ -641,10 +631,6 @@ functions:
         class: CMSampleBuffer
         name: isDataReady
     CMSampleBuffer(SetDataFailed):
-        class: CMSampleBuffer
-        name: '#{g[0]}0'
-        visibility: protected
-    CMSampleBuffer(HasDataFailed):
         class: CMSampleBuffer
         name: '#{g[0]}0'
         visibility: protected
@@ -737,7 +723,7 @@ functions:
         parameters:
             desc:
                 type: CMTextFormatDescription
-            outDefaultTextBox:
+            defaultTextBoxOut:
                 type: CGRect.CGRectPtr
     CMTextFormatDescription(GetFontName):
         class: CMTextFormatDescription
@@ -746,7 +732,7 @@ functions:
         parameters:
             desc:
                 type: CMTextFormatDescription
-            outFontName:
+            fontNameOut:
                 type: CFString.CFStringPtr
     CMTextFormatDescription(Get.*):
         class: CMTextFormatDescription
@@ -773,7 +759,7 @@ functions:
         name: '#{g[0]}0'
         visibility: private
         parameters:
-            tcFlags:
+            flags:
                 type: CMTimeCodeFlags
             extensions:
                 type: CMTimeCodeFormatDescriptionExtension
@@ -902,13 +888,13 @@ functions:
         class: CoreMedia
         name: 'Function__#{g[0]}'
 
-values:
-    # CMAudioFormatDescription
-    kCMSoundDescriptionFlavor_(.*):
+typed_enums:
+    CMSoundDescriptionFlavor:
         enum: CMSoundDescriptionFlavor
-        name: '#{g[0]}'
+        prefix: kCMSoundDescriptionFlavor_
         type: CFString
 
+values:
     # CMFormatDescription
     kCMFormatDescriptionExtension_(OriginalCompressionSettings|SampleDescriptionExtensionAtoms|VerbatimSampleDescription|VerbatimISOSampleEntry):
         dictionary: CMFormatDescriptionExtension
@@ -1344,10 +1330,6 @@ values:
     kCMFormatDescription(ColorPrimaries_.*):
         class: CMVideoFormatDescription
         name: '#{g[0]}'
-        type: CFString
-    kCMSampleBufferLensStabilizationInfo_(.*):
-        class: CMVideoFormatDescription
-        name: 'LensStabilizationInfo#{g[0]}'
         type: CFString
     kCMFormatDescriptionFieldDetail_(.*):
         class: CMVideoFormatDescription

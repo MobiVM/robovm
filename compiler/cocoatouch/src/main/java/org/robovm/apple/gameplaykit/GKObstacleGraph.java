@@ -54,6 +54,8 @@ import org.robovm.apple.uikit.*;
     public GKObstacleGraph(NSArray<GKPolygonObstacle> obstacles, float bufferRadius) { super((SkipInit) null); initObject(init(obstacles, bufferRadius)); }
     @Method(selector = "initWithObstacles:bufferRadius:nodeClass:")
     public GKObstacleGraph(NSArray<GKPolygonObstacle> obstacles, float bufferRadius, Class<?> nodeClass) { super((SkipInit) null); initObject(init(obstacles, bufferRadius, nodeClass)); }
+    @Method(selector = "initWithNodes:")
+    public GKObstacleGraph(NSArray<GKGraphNode> nodes) { super(nodes); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "obstacles")

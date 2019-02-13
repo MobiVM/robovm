@@ -46,7 +46,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(CBMutableCharacteristic.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CBMutableCharacteristic() {}
+    protected CBMutableCharacteristic() {}
     protected CBMutableCharacteristic(Handle h, long handle) { super(h, handle); }
     protected CBMutableCharacteristic(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithType:properties:value:permissions:")

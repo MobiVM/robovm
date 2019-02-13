@@ -171,6 +171,11 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="CBConnectPeripheralOptionNotifyOnNotificationKey", optional=true)
         public static native NSString NotifyOnNotification();
+        /**
+         * @since Available in iOS 6.0 and later.
+         */
+        @GlobalValue(symbol="CBConnectPeripheralOptionStartDelayKey", optional=true)
+        public static native NSString StartDelay();
     }
     /*</keys>*/
 }

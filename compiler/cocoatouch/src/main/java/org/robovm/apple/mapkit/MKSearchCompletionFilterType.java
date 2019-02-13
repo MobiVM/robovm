@@ -42,8 +42,8 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MKSearchCompletionFilterType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    AndQueries(0L),
-    Only(1L);
+    LocationsAndQueries(0L),
+    LocationsOnly(1L);
     /*</values>*/
 
     /*<bind>*/

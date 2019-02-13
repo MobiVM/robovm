@@ -78,49 +78,49 @@ import org.robovm.apple.corefoundation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNLabelPhoneNumberMobile
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonPhoneMobileLabel", optional=true)
     protected static native CFString MobileLabel();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNLabelPhoneNumberiPhone
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonPhoneIPhoneLabel", optional=true)
     protected static native CFString IPhoneLabel();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNLabelPhoneNumberMain
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonPhoneMainLabel", optional=true)
     protected static native CFString MainLabel();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNLabelPhoneNumberHomeFax
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonPhoneHomeFAXLabel", optional=true)
     protected static native CFString HomeFAXLabel();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNLabelPhoneNumberWorkFax
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonPhoneWorkFAXLabel", optional=true)
     protected static native CFString WorkFAXLabel();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNLabelPhoneNumberOtherFax
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonPhoneOtherFAXLabel", optional=true)
     protected static native CFString OtherFAXLabel();
     /**
      * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. use CNLabelPhoneNumberPager
      */
     @Deprecated
     @GlobalValue(symbol="kABPersonPhonePagerLabel", optional=true)

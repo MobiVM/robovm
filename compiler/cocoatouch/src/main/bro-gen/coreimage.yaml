@@ -9,6 +9,7 @@ typedefs: {}
 
 private_typedefs:
     'AVDepthData *': org.robovm.apple.avfoundation.AVDepthData
+    'AVPortraitEffectsMatte *': org.robovm.apple.avfoundation.AVPortraitEffectsMatte
 
 enums:
     CIRenderDestinationAlphaMode: {prefix: CIRenderDestinationAlpha}
@@ -106,7 +107,12 @@ classes:
                 trim_after_first_colon: true
             '-startTaskToClear:error:':
                 trim_after_first_colon: true
-
+            '-depthBlurEffectFilterForImageURL:options:':
+                name: depthBlurEffectFilter
+            '-depthBlurEffectFilterForImageData:options:':
+                name: depthBlurEffectFilter
+            '-depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:orientation:options:':
+                name: depthBlurEffectFilter
     CIDetector: # DONE
         methods:
             '+detectorOfType:context:options:':
@@ -179,13 +185,6 @@ classes:
                 annotations: ['@WeaklyLinked']
             '-init.*':
                 name: init
-                parameters:
-                    d:
-                        type: CIImageOptions
-                    dict:
-                        type: CIImageOptions
-                    options:
-                        type: CIImageOptions
             '+imageWith.*':
                 exclude: true
             '+emptyImage':
@@ -197,11 +196,6 @@ classes:
                 return_type: CGImageProperties
             '-autoAdjustmentFilters.*':
                 name: getAutoAdjustmentFilters
-                return_type: NSArray<CIFilter>
-                parameters:
-                    dict:
-                        name: options
-                        type: CIImageAutoAdjustOptions
             '-regionOfInterestForImage:inRect:':
                 name: getRegionOfInterest
             '-imageTransformForOrientation:':
@@ -295,6 +289,18 @@ classes:
                 name: transform
             '-insetByX:Y:':
                 name: insetByXY
+            '-initWithRect:':
+                name: init
+            '-unionWith:':
+                name: union
+            '-unionWithRect:':
+                name: union
+            '-intersectWith:':
+                name: intersect
+            '-intersectWithRect:':
+                name: intersect
+            '+shapeWithRect:':
+                exclude: true
     CIImageAccumulator: #since 9.0
         methods:
             '-initWithExtent:format:':
@@ -337,6 +343,10 @@ classes:
                 name: init
             '-initWithBitmapData:width:height:bytesPerRow:format:':
                 name: init
+            '-initWithPixelBuffer:':
+                name: init
+            '-initWithIOSurface:':
+                name: init
     CIRenderInfo: {} #since 11.0
     CIRenderTask: {} #since 11.0
     CISampler: #since 9.0
@@ -345,9 +355,13 @@ classes:
                 name: init
             '-initWithImage:options:':
                 name: init
+            '-initWithImage:':
+                name: init
             '+samplerWithImage:keysAndValues:':
                 exclude: true
             '+samplerWithImage:options:':
+                exclude: true
+            '+samplerWithImage:':
                 exclude: true
     CITextFeature: {} #since 9.0
 
@@ -355,6 +369,9 @@ protocols:
     CIFilterConstructor:
         protocols: [NSObjectProtocol]
         skip_adapter: true
+        methods:
+            '-filterWithName:':
+                name: createFilter
     CIImageProcessorInput: {} #since 10.0
     CIImageProcessorOutput: {} #since 10.0
 
@@ -363,6 +380,49 @@ functions:
     (CI.*):
         class: CoreImage
         name: 'Function__#{g[0]}'
+
+typed_enums:
+    CIImageOption:
+        dictionary: CIImageOptions
+        type: CFString
+        prefix: kCIImage
+        methods:
+            ColorSpace:
+                type: CGColorSpace
+            Properties:
+                annotations: ['@WeaklyLinked']
+                type: CGImageProperties
+                hint: GlobalValueDictionaryWrapper<NSString>
+    CIImageRepresentationOption:
+        dictionary: CIImageRepresentationOptions
+        type: NSString
+        prefix: kCIImageRepresentation
+
+    CIImageAutoAdjustmentOption:
+        dictionary: CIImageAutoAdjustmentOptions
+        type: NSString
+        prefix: kCIImageAutoAdjust
+        methods:
+            Enhance:
+                name: appliesEnhancementFilter
+                type: boolean
+            RedEye:
+                name: appliesRedEyeFilter
+                type: boolean
+            Features:
+                type: List<CIFeature>
+            Crop:
+                name: appliesCropFilter
+                type: boolean
+            Level:
+                name: appliesAutoLevel
+                type: boolean
+
+    CIRAWFilterOption:
+        dictionary: CIRAWFilterOptions
+        type: NSString
+        prefix: kCIInput
+        suffix: Key
 
 values:
     # CIContext
@@ -425,24 +485,10 @@ values:
         exclude: true
 
     # CIFilter
-    kCIInput(Time|Transform|Scale|AspectRatio|Center|Radius|Angle|Width|Sharpness|Intensity|EV|Saturation|Color|Brightness|Contrast|MaskImage|TargetImage|Extent)Key:
-        exclude: true # not available in iOS
     kCIInput(.*)Key:
         dictionary: CIFilterInputParameters
         name: '#{g[0]}'
         type: NSString
-    kCISupportedDecoderVersionsKey:
-        dictionary: CIFilterInputParameters
-        name: 'SupportedDecoderVersions'
-    kCIInputLinearSpaceFilter:
-        dictionary: CIFilterInputParameters
-        name: 'LinearSpaceFilter'
-    kCIOutputNativeSizeKey:
-        dictionary: CIFilterInputParameters
-        name: 'NativeSize'
-    kCIActiveKeys:
-        dictionary: CIFilterInputParameters
-        name: 'ActiveKeys'
     kCI(OutputImage)Key:
         dictionary: CIFilterInputParameters
         name: '#{g[0]}'
@@ -509,38 +555,6 @@ values:
         name: '#{g[0]}'
         type: int
 
-    # CIImage
-    kCIImageAutoAdjust(.*):
-        dictionary: CIImageAutoAdjustOptions
-        name: '#{g[0]}'
-        type: CFString
-        methods:
-            Enhance:
-                name: appliesEnhancementFilter
-                type: boolean
-            RedEye:
-                name: appliesRedEyeFilter
-                type: boolean
-            Features:
-                type: List<CIFeature>
-            Crop:
-                name: appliesCropFilter
-                type: boolean
-            Level:
-                name: appliesAutoLevel
-                type: boolean
-    kCIImage(.*):
-        dictionary: CIImageOptions
-        name: '#{g[0]}'
-        type: CFString
-        methods:
-            ColorSpace:
-                type: CGColorSpace
-            Properties:
-                annotations: ['@WeaklyLinked']
-                type: CGImageProperties
-                hint: GlobalValueDictionaryWrapper<NSString>
-
     # CIUIParameterSet
     kCIUIParameterSet:
         name: 'Set'
@@ -558,6 +572,11 @@ values:
     kCISampler(.*):
         name: '#{g[0]}'
         class: CISamplerType
+
+    #CIImageProvider
+    kCIImageProvider(.*):
+        name: 'getImageProvider#{g[0]}'
+        class: CIImage
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CI.*):

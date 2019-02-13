@@ -112,7 +112,7 @@ import org.robovm.apple.imageio.*;
     public static native PHFetchResult<PHAsset> fetchAssetsWithMediaType(PHAssetMediaType mediaType, PHFetchOptions options);
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Will be removed in a future release
      */
     @Deprecated
     @Method(selector = "fetchAssetsWithALAssetURLs:options:")

@@ -53,9 +53,11 @@ import org.robovm.apple.intents.*;
     /*<bind>*/static { ObjCRuntime.bind(UITextDropProposal.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public UITextDropProposal() {}
+    protected UITextDropProposal() {}
     protected UITextDropProposal(Handle h, long handle) { super(h, handle); }
     protected UITextDropProposal(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDropOperation:")
+    public UITextDropProposal(UIDropOperation operation) { super(operation); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dropAction")

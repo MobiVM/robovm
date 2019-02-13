@@ -48,6 +48,8 @@ import org.robovm.apple.corelocation.*;
     protected HMMutableCharacteristicThresholdRangeEvent() {}
     protected HMMutableCharacteristicThresholdRangeEvent(Handle h, long handle) { super(h, handle); }
     protected HMMutableCharacteristicThresholdRangeEvent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCharacteristic:thresholdRange:")
+    public HMMutableCharacteristicThresholdRangeEvent(HMCharacteristic characteristic, HMNumberRange thresholdRange) { super(characteristic, thresholdRange); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "characteristic")

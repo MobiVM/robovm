@@ -46,11 +46,11 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INSendPaymentPayeeResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INSendPaymentPayeeResolutionResult() {}
+    protected INSendPaymentPayeeResolutionResult() {}
     protected INSendPaymentPayeeResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INSendPaymentPayeeResolutionResult(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPersonResolutionResult:")
-    public INSendPaymentPayeeResolutionResult(INPersonResolutionResult personResolutionResult) { super((SkipInit) null); initObject(initWithPersonResolutionResult(personResolutionResult)); }
+    public INSendPaymentPayeeResolutionResult(INPersonResolutionResult personResolutionResult) { super((SkipInit) null); initObject(init(personResolutionResult)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -58,7 +58,7 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPersonResolutionResult:")
-    protected native @Pointer long initWithPersonResolutionResult(INPersonResolutionResult personResolutionResult);
+    protected native @Pointer long init(INPersonResolutionResult personResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INSendPaymentPayeeResolutionResult unsupportedForReason(INSendPaymentPayeeUnsupportedReason reason);
     /*</methods>*/

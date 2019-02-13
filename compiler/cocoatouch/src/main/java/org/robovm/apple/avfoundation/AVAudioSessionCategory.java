@@ -97,14 +97,29 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public static final AVAudioSessionCategory Ambient = new AVAudioSessionCategory("Ambient");
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public static final AVAudioSessionCategory SoloAmbient = new AVAudioSessionCategory("SoloAmbient");
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public static final AVAudioSessionCategory Playback = new AVAudioSessionCategory("Playback");
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public static final AVAudioSessionCategory Record = new AVAudioSessionCategory("Record");
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     public static final AVAudioSessionCategory PlayAndRecord = new AVAudioSessionCategory("PlayAndRecord");
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. No longer supported
      */
     @Deprecated
     public static final AVAudioSessionCategory AudioProcessing = new AVAudioSessionCategory("AudioProcessing");
@@ -137,19 +152,34 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
         @GlobalValue(symbol="AVAudioSessionCategoryAmbient", optional=true)
         public static native NSString Ambient();
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
         @GlobalValue(symbol="AVAudioSessionCategorySoloAmbient", optional=true)
         public static native NSString SoloAmbient();
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
         @GlobalValue(symbol="AVAudioSessionCategoryPlayback", optional=true)
         public static native NSString Playback();
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
         @GlobalValue(symbol="AVAudioSessionCategoryRecord", optional=true)
         public static native NSString Record();
+        /**
+         * @since Available in iOS 3.0 and later.
+         */
         @GlobalValue(symbol="AVAudioSessionCategoryPlayAndRecord", optional=true)
         public static native NSString PlayAndRecord();
         /**
          * @since Available in iOS 3.0 and later.
-         * @deprecated Deprecated in iOS 10.0.
+         * @deprecated Deprecated in iOS 10.0. No longer supported
          */
         @Deprecated
         @GlobalValue(symbol="AVAudioSessionCategoryAudioProcessing", optional=true)

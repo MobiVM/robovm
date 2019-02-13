@@ -53,6 +53,10 @@ import org.robovm.apple.uikit.*;
     public EKCalendarChooser(EKCalendarChooserSelectionStyle selectionStyle, EKCalendarChooserDisplayStyle displayStyle, EKEventStore eventStore) { super((SkipInit) null); initObject(init(selectionStyle, displayStyle, eventStore)); }
     @Method(selector = "initWithSelectionStyle:displayStyle:entityType:eventStore:")
     public EKCalendarChooser(EKCalendarChooserSelectionStyle style, EKCalendarChooserDisplayStyle displayStyle, EKEntityType entityType, EKEventStore eventStore) { super((SkipInit) null); initObject(init(style, displayStyle, entityType, eventStore)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public EKCalendarChooser(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public EKCalendarChooser(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "selectionStyle")

@@ -41,7 +41,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("GameplayKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKPolygonObstacle/*</name>*/ 
     extends /*<extends>*/GKObstacle/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class GKPolygonObstaclePtr extends Ptr<GKPolygonObstacle, GKPolygonObstaclePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GKPolygonObstacle.class); }/*</bind>*/
@@ -55,18 +55,20 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     public GKPolygonObstacle(VectorFloat2[] points) {
         super((SkipInit) null);
-        VectorFloat2.VectorFloat2Ptr ptr = new VectorFloat2.VectorFloat2Ptr();
-        ptr.set(points);
-        initObject(init(ptr, points.length));
+        VectorFloat2 structArray = VectorFloat2.allocate(VectorFloat2.class, points.length);
+        structArray.update(points);
+        initObject(init(structArray, points.length));
     }
     /*<properties>*/
     @Property(selector = "vertexCount")
     public native @MachineSizedUInt long getVertexCount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPoints:count:")
-    protected native @Pointer long init(VectorFloat2.VectorFloat2Ptr points, @MachineSizedUInt long numPoints);
+    protected native @Pointer long init(VectorFloat2 points, @MachineSizedUInt long numPoints);
     @Method(selector = "vertexAtIndex:")
     public native @ByVal VectorFloat2 getVertex(@MachineSizedUInt long index);
     @Method(selector = "encodeWithCoder:")

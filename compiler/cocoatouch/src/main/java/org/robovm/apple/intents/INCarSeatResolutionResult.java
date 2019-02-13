@@ -46,7 +46,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INCarSeatResolutionResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INCarSeatResolutionResult() {}
+    protected INCarSeatResolutionResult() {}
     protected INCarSeatResolutionResult(Handle h, long handle) { super(h, handle); }
     protected INCarSeatResolutionResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

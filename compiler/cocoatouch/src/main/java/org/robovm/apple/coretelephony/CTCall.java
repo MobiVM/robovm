@@ -52,14 +52,14 @@ import org.robovm.apple.corefoundation.*;
     /*<properties>*/
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
      */
     @Deprecated
     @Property(selector = "callState")
     public native CTCallState getCallState();
     /**
      * @since Available in iOS 4.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
      */
     @Deprecated
     @Property(selector = "callID")

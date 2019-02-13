@@ -53,6 +53,12 @@ import org.robovm.apple.dispatch.*;
     public NSMutableIndexSet() {}
     protected NSMutableIndexSet(Handle h, long handle) { super(h, handle); }
     protected NSMutableIndexSet(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithIndexesInRange:")
+    public NSMutableIndexSet(@ByVal NSRange range) { super(range); }
+    @Method(selector = "initWithIndexSet:")
+    public NSMutableIndexSet(NSIndexSet indexSet) { super(indexSet); }
+    @Method(selector = "initWithIndex:")
+    public NSMutableIndexSet(@MachineSizedUInt long value) { super(value); }
     /*</constructors>*/
     /*<properties>*/
     

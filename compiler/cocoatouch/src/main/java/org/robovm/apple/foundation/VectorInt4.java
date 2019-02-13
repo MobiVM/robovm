@@ -24,7 +24,8 @@ import org.robovm.rt.bro.ptr.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class VectorInt4 
+@Vectorised
+/*<visibility>*/public/*</visibility>*/ class VectorInt4
     extends /*<extends>*/Struct<VectorInt4>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 

@@ -46,6 +46,17 @@ enums:
     HKInsulinDeliveryReason: {} #since 11.0
     HKBloodGlucoseMealTime: {} #since 11.0
     HKVO2MaxTestType: {} #since 11.0
+    HKAuthorizationRequestStatus: {} #since 12.0
+
+typed_enums:
+    HKFHIRResourceType:
+        enum: HKFHIRResourceType
+        prefix: HKFHIRResourceType
+        type: NSString
+    HKClinicalTypeIdentifier:
+        enum: HKClinicalTypeIdentifier
+        prefix: HKClinicalTypeIdentifier
+        type: NSString
 
 classes:
     HKError:
@@ -121,7 +132,19 @@ classes:
                         type: '@Block VoidBlock2<NSDictionary<HKQuantityType, HKUnit>, NSError>'
             '-startWatchAppWithWorkoutConfiguration:completion:':
                 name: startWatchApp
-
+            '-getRequestStatusForAuthorizationToShareTypes:readTypes:completion:':
+                name: getRequestStatus
+            '-handleAuthorizationForExtensionWithCompletion:':
+                name: handleAuthorizationForExtension
+            '-dateOfBirthComponentsWithError:':
+                name: getDateOfBirthComponents
+                throws: NSErrorException
+            '-fitzpatrickSkinTypeWithError:':
+                name: getFitzpatrickSkinType
+                throws: NSErrorException
+            '-wheelchairUseWithError:':
+                name: getWheelchairUse
+                throws: NSErrorException
     HKObject: # DONE
         properties:
             'metadata':
@@ -148,8 +171,6 @@ classes:
                 parameters:
                     metadata:
                         type: HKMetadata
-            '+categorySampleWithType:value:startDate:endDate:':
-                name: create
             '+categorySampleWithType:value:startDate:endDate:':
                 name: create
             '+categorySampleWithType:value:startDate:endDate:device:metadata:':
@@ -271,14 +292,14 @@ classes:
     HKQuantityType: # DONE
         methods:
             '-isCompatibleWithUnit:':
-                trim_after_first_colon: true
+                name: isCompatibleWithUnit
     HKWorkoutType: {} # DONE
     HKQuantity: # DONE
         methods:
             '-init':    
                 exclude: true
             '-isCompatibleWithUnit:':
-                trim_after_first_colon: true
+                name: isCompatibleWithUnit
             '-doubleValueForUnit:':
                 name: getDoubleValueForUnit
             '-compare:':
@@ -335,6 +356,12 @@ classes:
                 name: createPredicateForActivitySummariesBetweenDates
             '+predicateForWorkoutsWithOperatorType:totalFlightsClimbed:':
                 name: createPredicateForWorkouts
+            '+predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:':
+                name: createPredicateForClinicalRecords
+            '+predicateForActivitySummaryWithDateComponents:':
+                name: createPredicateForActivitySummary
+            '+predicateForClinicalRecordsWithFHIRResourceType:':
+                name: createPredicateForClinicalRecords
     HKAnchoredObjectQuery: # DONE
         methods:
             '-initWithType:predicate:anchor:limit:completionHandler:':
@@ -516,10 +543,44 @@ classes:
                 trim_after_first_colon: true
             '-finishRouteWithWorkout:metadata:completion:':
                 name: finishRoute
+            '-addMetadata:completion:':
+                trim_after_first_colon: true
     HKWorkoutRouteQuery: #since 11.0
         methods:
             '-initWithRoute:dataHandler:':
                 name: init
+    HKClinicalRecord: {} #since 12.0
+    HKClinicalType: {} #since 12.0
+    HKCumulativeQuantitySeriesSample: {} #since 12.0
+    HKFHIRResource: {} #since 12.0
+    HKQuantitySeriesSampleBuilder: #since 12.0
+        methods:
+            '-initWithHealthStore:quantityType:startDate:device:':
+                name: init
+            '-insertQuantity:date:error:':
+                name: insertQuantity
+            '-finishSeriesWithMetadata:completion:':
+                name: finishSeries
+    HKQuantitySeriesSampleQuery: #since 12.0
+        methods:
+            '-initWithSample:quantityHandler:':
+                name: init
+    HKWorkoutBuilder: #since 12.0
+        methods:
+            '-initWithHealthStore:configuration:device:':
+                name: init
+            '-beginCollectionWithStartDate:completion:':
+                name: beginCollection
+            '-addSamples:completion:':
+                name: addSamples
+            '-addWorkoutEvents:completion:':
+                trim_after_first_colon: true
+            '-addMetadata:completion:':
+                trim_after_first_colon: true
+            '-endCollectionWithEndDate:completion:':
+                name: endCollection
+            '-finishWorkoutWithCompletion:':
+                name: finishWorkout
 protocols:
     HKWorkoutSessionDelegate: {}
 

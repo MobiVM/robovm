@@ -51,13 +51,13 @@ import org.robovm.apple.dispatch.*;
     public MKPinAnnotationView() {}
     protected MKPinAnnotationView(Handle h, long handle) { super(h, handle); }
     protected MKPinAnnotationView(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithAnnotation:reuseIdentifier:")
+    public MKPinAnnotationView(MKAnnotation annotation, String reuseIdentifier) { super(annotation, reuseIdentifier); }
+    @Method(selector = "initWithCoder:")
+    public MKPinAnnotationView(NSCoder aDecoder) { super(aDecoder); }
+    @Method(selector = "initWithFrame:")
+    public MKPinAnnotationView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
-    public MKPinAnnotationView(MKAnnotation annotation, String reuseIdentifier) {
-    	super(annotation, reuseIdentifier);
-    }
-    public MKPinAnnotationView(CGRect frame) {
-    	super(frame);
-    }
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
@@ -75,14 +75,14 @@ import org.robovm.apple.dispatch.*;
     public native void setAnimatesDrop(boolean v);
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use pinTintColor instead
      */
     @Deprecated
     @Property(selector = "pinColor")
     public native MKPinAnnotationColor getPinColor();
     /**
      * @since Available in iOS 3.0 and later.
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use pinTintColor instead
      */
     @Deprecated
     @Property(selector = "setPinColor:")

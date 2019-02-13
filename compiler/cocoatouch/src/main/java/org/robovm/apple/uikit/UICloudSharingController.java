@@ -53,11 +53,11 @@ import org.robovm.apple.intents.*;
     /*<bind>*/static { ObjCRuntime.bind(UICloudSharingController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected UICloudSharingController() {}
+    public UICloudSharingController() {}
     protected UICloudSharingController(Handle h, long handle) { super(h, handle); }
     protected UICloudSharingController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPreparationHandler:")
-    public UICloudSharingController(@Block("(,@Block)") VoidBlock2<UICloudSharingController, VoidBlock3<CKShare, CKContainer, NSError>> preparationHandler) { super((SkipInit) null); initObject(initWithPreparationHandler(preparationHandler)); }
+    public UICloudSharingController(@Block("(,@Block)") VoidBlock2<UICloudSharingController, VoidBlock3<CKShare, CKContainer, NSError>> preparationHandler) { super((SkipInit) null); initObject(init(preparationHandler)); }
     @Method(selector = "initWithShare:container:")
     public UICloudSharingController(CKShare share, CKContainer container) { super((SkipInit) null); initObject(init(share, container)); }
     /*</constructors>*/
@@ -76,7 +76,7 @@ import org.robovm.apple.intents.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPreparationHandler:")
-    protected native @Pointer long initWithPreparationHandler(@Block("(,@Block)") VoidBlock2<UICloudSharingController, VoidBlock3<CKShare, CKContainer, NSError>> preparationHandler);
+    protected native @Pointer long init(@Block("(,@Block)") VoidBlock2<UICloudSharingController, VoidBlock3<CKShare, CKContainer, NSError>> preparationHandler);
     @Method(selector = "initWithShare:container:")
     protected native @Pointer long init(CKShare share, CKContainer container);
     @Method(selector = "activityItemSource")

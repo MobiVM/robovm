@@ -54,6 +54,8 @@ import org.robovm.apple.metal.*;
     public SKEmitterNode() {}
     protected SKEmitterNode(Handle h, long handle) { super(h, handle); }
     protected SKEmitterNode(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public SKEmitterNode(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "particleTexture")

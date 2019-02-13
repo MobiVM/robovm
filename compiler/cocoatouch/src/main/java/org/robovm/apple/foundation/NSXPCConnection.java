@@ -52,11 +52,11 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSXPCConnection.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NSXPCConnection() {}
+    public NSXPCConnection() {}
     protected NSXPCConnection(Handle h, long handle) { super(h, handle); }
     protected NSXPCConnection(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithListenerEndpoint:")
-    public NSXPCConnection(NSXPCListenerEndpoint endpoint) { super((SkipInit) null); initObject(initWithListenerEndpoint(endpoint)); }
+    public NSXPCConnection(NSXPCListenerEndpoint endpoint) { super((SkipInit) null); initObject(init(endpoint)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "serviceName")
@@ -97,14 +97,14 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithListenerEndpoint:")
-    protected native @Pointer long initWithListenerEndpoint(NSXPCListenerEndpoint endpoint);
+    protected native @Pointer long init(NSXPCListenerEndpoint endpoint);
     @Method(selector = "remoteObjectProxyWithErrorHandler:")
-    public native NSObject remoteObjectProxyWithErrorHandler(@Block VoidBlock1<NSError> handler);
+    public native NSObject remoteObjectProxy(@Block VoidBlock1<NSError> handler);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "synchronousRemoteObjectProxyWithErrorHandler:")
-    public native NSObject synchronousRemoteObjectProxyWithErrorHandler(@Block VoidBlock1<NSError> handler);
+    public native NSObject synchronousRemoteObjectProxy(@Block VoidBlock1<NSError> handler);
     @Method(selector = "resume")
     public native void resume();
     @Method(selector = "suspend")

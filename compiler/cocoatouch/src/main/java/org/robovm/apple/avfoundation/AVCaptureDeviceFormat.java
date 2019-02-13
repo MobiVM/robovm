@@ -65,31 +65,19 @@ import org.robovm.apple.audiotoolbox.*;
     public native CMFormatDescription getFormatDescription();
     @Property(selector = "videoSupportedFrameRateRanges")
     public native NSArray<AVFrameRateRange> getVideoSupportedFrameRateRanges();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "videoFieldOfView")
     public native float getVideoFieldOfView();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "isVideoBinned")
     public native boolean isVideoBinned();
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use isVideoStabilizationModeSupported: instead.
      */
     @Deprecated
     @Property(selector = "isVideoStabilizationSupported")
     public native boolean isVideoStabilizationSupported();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "videoMaxZoomFactor")
     public native @MachineSizedFloat double getVideoMaxZoomFactor();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
     @Property(selector = "videoZoomFactorUpscaleThreshold")
     public native @MachineSizedFloat double getVideoZoomFactorUpscaleThreshold();
     /**
@@ -152,6 +140,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "unsupportedCaptureOutputClasses")
     public native NSArray<?> getUnsupportedCaptureOutputClasses();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "isPortraitEffectsMatteStillImageDeliverySupported")
+    public native boolean isPortraitEffectsMatteStillImageDeliverySupported();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

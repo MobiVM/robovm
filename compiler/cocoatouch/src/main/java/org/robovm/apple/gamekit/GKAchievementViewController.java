@@ -34,7 +34,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 4.1 and later.
- * @deprecated Deprecated in iOS 7.0.
+ * @deprecated Deprecated in iOS 7.0. Use GKGameCenterViewController instead
  */
 @Deprecated
 /*</javadoc>*/
@@ -50,6 +50,17 @@ import org.robovm.apple.uikit.*;
     public GKAchievementViewController() {}
     protected GKAchievementViewController(Handle h, long handle) { super(h, handle); }
     protected GKAchievementViewController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Method(selector = "initWithNavigationBarClass:toolbarClass:")
+    public GKAchievementViewController(Class<? extends UINavigationBar> navigationBarClass, Class<? extends UIToolbar> toolbarClass) { super(navigationBarClass, toolbarClass); }
+    @Method(selector = "initWithRootViewController:")
+    public GKAchievementViewController(UIViewController rootViewController) { super(rootViewController); }
+    @Method(selector = "initWithNibName:bundle:")
+    public GKAchievementViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    @Method(selector = "initWithCoder:")
+    public GKAchievementViewController(NSCoder decoder) { super(decoder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "achievementDelegate")

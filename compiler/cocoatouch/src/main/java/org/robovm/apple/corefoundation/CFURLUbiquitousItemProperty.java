@@ -101,7 +101,7 @@ import org.robovm.apple.coretext.*;
     public static final CFURLUbiquitousItemProperty HasUnresolvedConflicts = new CFURLUbiquitousItemProperty("HasUnresolvedConflicts");
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use kCFURLUbiquitousItemDownloadingStatusKey instead
      */
     @Deprecated
     public static final CFURLUbiquitousItemProperty IsDownloaded = new CFURLUbiquitousItemProperty("IsDownloaded");
@@ -166,7 +166,7 @@ import org.robovm.apple.coretext.*;
         public static native CFString HasUnresolvedConflicts();
         /**
          * @since Available in iOS 5.0 and later.
-         * @deprecated Deprecated in iOS 7.0.
+         * @deprecated Deprecated in iOS 7.0. Use kCFURLUbiquitousItemDownloadingStatusKey instead
          */
         @Deprecated
         @GlobalValue(symbol="kCFURLUbiquitousItemIsDownloadedKey", optional=true)

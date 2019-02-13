@@ -58,7 +58,7 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithChainRootNode:")
-    public SCNIKConstraint(SCNNode chainRootNode) { super((SkipInit) null); initObject(initWithChainRootNode(chainRootNode)); }
+    public SCNIKConstraint(SCNNode chainRootNode) { super((SkipInit) null); initObject(init(chainRootNode)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "chainRootNode")
@@ -74,7 +74,7 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithChainRootNode:")
-    protected native @Pointer long initWithChainRootNode(SCNNode chainRootNode);
+    protected native @Pointer long init(SCNNode chainRootNode);
     @Method(selector = "setMaxAllowedRotationAngle:forJoint:")
     public native void setMaxAllowedRotationAngleForJoint(@MachineSizedFloat double angle, SCNNode node);
     @Method(selector = "maxAllowedRotationAngleForJoint:")

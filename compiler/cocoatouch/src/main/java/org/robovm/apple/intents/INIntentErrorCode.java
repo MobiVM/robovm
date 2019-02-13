@@ -49,10 +49,29 @@ public enum /*<name>*/INIntentErrorCode/*</name>*/ implements NSErrorCode {
     RestrictedIntentsNotSupportedByExtension(2002L),
     NoHandlerProvidedForIntent(2003L),
     InvalidIntentName(2004L),
+    NoAppAvailable(2005L),
     RequestTimedOut(3001L),
+    MissingInformation(3002L),
     InvalidUserVocabularyFileLocation(4000L),
     ExtensionLaunchingTimeout(5000L),
-    ExtensionBringUpFailed(5001L);
+    ExtensionBringUpFailed(5001L),
+    ImageGeneric(6000L),
+    ImageNoServiceAvailable(6001L),
+    ImageStorageFailed(6002L),
+    ImageLoadingFailed(6003L),
+    ImageRetrievalFailed(6004L),
+    ImageProxyLoop(6005L),
+    ImageProxyInvalid(6006L),
+    ImageProxyTimeout(6007L),
+    ImageServiceFailure(6008L),
+    ImageScalingFailed(6009L),
+    PermissionDenied(6010L),
+    VoiceShortcutCreationFailed(7000L),
+    VoiceShortcutGetFailed(7001L),
+    VoiceShortcutDeleteFailed(7002L),
+    EncodingGeneric(8000L),
+    EncodingFailed(8001L),
+    DecodingGeneric(9000L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(INIntentErrorCode.class); }/*</bind>*/

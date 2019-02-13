@@ -49,6 +49,9 @@ import org.robovm.apple.uikit.*;
     protected QLThumbnailReply() {}
     protected QLThumbnailReply(Handle h, long handle) { super(h, handle); }
     protected QLThumbnailReply(SkipInit skipInit) { super(skipInit); }
+    public QLThumbnailReply(@ByVal CGSize contextSize, @Block Block1<CGContext, Boolean> drawingBlock) { super((Handle) null, create(contextSize, drawingBlock)); retain(getHandle()); }
+    public QLThumbnailReply(@ByVal CGSize contextSize, @Block BooleanBlock drawingBlock) { super((Handle) null, create(contextSize, drawingBlock)); retain(getHandle()); }
+    public QLThumbnailReply(NSURL fileURL) { super((Handle) null, create(fileURL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -56,10 +59,10 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "replyWithContextSize:drawingBlock:")
-    public static native QLThumbnailReply replyWithDrawing(@ByVal CGSize contextSize, @Block Block1<CGContext, Boolean> drawingBlock);
+    protected static native @Pointer long create(@ByVal CGSize contextSize, @Block Block1<CGContext, Boolean> drawingBlock);
     @Method(selector = "replyWithContextSize:currentContextDrawingBlock:")
-    public static native QLThumbnailReply replyWithCurrentContextDrawing(@ByVal CGSize contextSize, @Block BooleanBlock drawingBlock);
+    protected static native @Pointer long create(@ByVal CGSize contextSize, @Block BooleanBlock drawingBlock);
     @Method(selector = "replyWithImageFileURL:")
-    public static native QLThumbnailReply replyWithImageFileURL(NSURL fileURL);
+    protected static native @Pointer long create(NSURL fileURL);
     /*</methods>*/
 }

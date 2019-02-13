@@ -47,7 +47,7 @@ import soot.VoidType;
 public class StructMemberMethodCompiler extends BroMethodCompiler {
 
     private StructureType structType;
-    
+
     public StructMemberMethodCompiler(Config config) {
         super(config);
     }
@@ -88,16 +88,33 @@ public class StructMemberMethodCompiler extends BroMethodCompiler {
         Variable handlePtr = function.newVariable(new PointerType(structType));
         function.add(new Inttoptr(handlePtr, handleI64.ref(), handlePtr.getType()));
         
-        int offset = getStructMemberOffset(method) + 1; // Add 1 since the first type in structType is the superclass type or {}.      
+        int offset = getStructMemberOffset(method) + structType.getOwnMembersOffset(); // Add offset since the first type in structType is the superclass type if any.
         Type memberType = getStructMemberType(method);
         Variable memberPtr = function.newVariable(new PointerType(memberType));
-        if (memberType != structType.getTypeAt(offset)) {
+        // perform equals call instead of type comparision as there are multiple copies of struct types
+        // being generated and this cause not required bitcast
+        if (!memberType.equals(structType.getTypeAt(offset))) {
             // Several @StructMembers of different types have this offset (union)
             Variable tmp = function.newVariable(new PointerType(structType.getTypeAt(offset)));
-            function.add(new Getelementptr(tmp, handlePtr.ref(), 0, offset));
+            if (structType.isVectorArray()) {
+                // vector array struct represent following IR object
+                // MatrixFloat2x2 for example { [2 x <2 x float>] }
+                // to get to specific vector of <2 x float> it requires extra index, as
+                // first 0 - points to first struct by pointer, e.g. ptr[0] and will return struct itself
+                // second 0 - points to first member inside struct and will return array itself
+                // third offset -- will return corresponding element of array
+                function.add(new Getelementptr(tmp, handlePtr.ref(), 0, 0, offset));
+            } else {
+                function.add(new Getelementptr(tmp, handlePtr.ref(), 0, offset));
+            }
             function.add(new Bitcast(memberPtr, tmp.ref(), memberPtr.getType()));
         } else {
-            function.add(new Getelementptr(memberPtr, handlePtr.ref(), 0, offset));
+            if (structType.isVectorArray()) {
+                // check explanation above about extra 0
+                function.add(new Getelementptr(memberPtr, handlePtr.ref(), 0, 0, offset));
+            } else {
+                function.add(new Getelementptr(memberPtr, handlePtr.ref(), 0, offset));
+            }
         }
         
         VariableRef env = function.getParameterRef(0);

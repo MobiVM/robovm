@@ -162,6 +162,11 @@ import org.robovm.apple.dispatch.*;
     protected native void setVertexSamplerStates(MTLSamplerState.MTLSamplerStatePtr samplers, FloatPtr lodMinClamps, FloatPtr lodMaxClamps, @ByVal NSRange range);
     @Method(selector = "setViewport:")
     public native void setViewport(@ByVal MTLViewport viewport);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "setViewports:count:")
+    public native void setViewports(MTLViewport viewports, @MachineSizedUInt long count);
     @Method(selector = "setFrontFacingWinding:")
     public native void setFrontFacingWinding(MTLWinding frontFacingWinding);
     @Method(selector = "setCullMode:")
@@ -175,6 +180,11 @@ import org.robovm.apple.dispatch.*;
     public native void setDepthBias(float depthBias, float slopeScale, float clamp);
     @Method(selector = "setScissorRect:")
     public native void setScissorRect(@ByVal MTLScissorRect rect);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "setScissorRects:count:")
+    public native void setScissorRects(MTLScissorRect scissorRects, @MachineSizedUInt long count);
     @Method(selector = "setTriangleFillMode:")
     public native void setTriangleFillMode(MTLTriangleFillMode fillMode);
     /**
@@ -300,10 +310,20 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:")
     public native void drawPatches(@MachineSizedUInt long numberOfPatchControlPoints, @MachineSizedUInt long patchStart, @MachineSizedUInt long patchCount, MTLBuffer patchIndexBuffer, @MachineSizedUInt long patchIndexBufferOffset, @MachineSizedUInt long instanceCount, @MachineSizedUInt long baseInstance);
     /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:")
+    public native void drawPatches(@MachineSizedUInt long numberOfPatchControlPoints, MTLBuffer patchIndexBuffer, @MachineSizedUInt long patchIndexBufferOffset, MTLBuffer indirectBuffer, @MachineSizedUInt long indirectBufferOffset);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:")
     public native void drawIndexedPatches(@MachineSizedUInt long numberOfPatchControlPoints, @MachineSizedUInt long patchStart, @MachineSizedUInt long patchCount, MTLBuffer patchIndexBuffer, @MachineSizedUInt long patchIndexBufferOffset, MTLBuffer controlPointIndexBuffer, @MachineSizedUInt long controlPointIndexBufferOffset, @MachineSizedUInt long instanceCount, @MachineSizedUInt long baseInstance);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:")
+    public native void drawIndexedPatches(@MachineSizedUInt long numberOfPatchControlPoints, MTLBuffer patchIndexBuffer, @MachineSizedUInt long patchIndexBufferOffset, MTLBuffer controlPointIndexBuffer, @MachineSizedUInt long controlPointIndexBufferOffset, MTLBuffer indirectBuffer, @MachineSizedUInt long indirectBufferOffset);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -375,6 +395,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "useHeaps:count:")
     public native void useHeaps(MTLHeap heaps, @MachineSizedUInt long count);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "executeCommandsInBuffer:withRange:")
+    public native void executeCommandsInBuffer(MTLIndirectCommandBuffer indirectCommandBuffer, @ByVal NSRange executionRange);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     @Method(selector = "insertDebugSignpost:")

@@ -52,6 +52,8 @@ import org.robovm.apple.metal.*;
     public CAGradientLayer() {}
     protected CAGradientLayer(Handle h, long handle) { super(h, handle); }
     protected CAGradientLayer(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLayer:")
+    public CAGradientLayer(CALayer layer) { super(layer); }
     /*</constructors>*/
     public void setLocations(double... locations) {
         if (locations != null && locations.length > 0) {

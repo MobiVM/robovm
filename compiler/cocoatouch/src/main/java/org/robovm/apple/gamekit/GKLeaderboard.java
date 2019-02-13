@@ -55,7 +55,7 @@ import org.robovm.apple.uikit.*;
     public GKLeaderboard(NSArray<GKPlayer> players) { super((SkipInit) null); initObject(init(players)); }
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use initWithPlayers: instead
      */
     @Deprecated
     @Method(selector = "initWithPlayerIDs:")
@@ -101,14 +101,14 @@ import org.robovm.apple.uikit.*;
     public native String getGroupIdentifier();
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use identifier instead
      */
     @Deprecated
     @Property(selector = "category")
     public native String getCategory();
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use identifier instead
      */
     @Deprecated
     @Property(selector = "setCategory:")
@@ -130,14 +130,14 @@ import org.robovm.apple.uikit.*;
     public static native void loadLeaderboards(@Block VoidBlock2<NSArray<GKLeaderboard>, NSError> completionHandler);
     /**
      * @since Available in iOS 4.1 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Use initWithPlayers: instead
      */
     @Deprecated
     @Method(selector = "initWithPlayerIDs:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs);
     /**
      * @since Available in iOS 5.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
+     * @deprecated Deprecated in iOS 7.0. Use setDefaultLeaderboardIdentifier:completionHandler: on GKLocalPlayer instead
      */
     @Deprecated
     @Method(selector = "setDefaultLeaderboard:withCompletionHandler:")

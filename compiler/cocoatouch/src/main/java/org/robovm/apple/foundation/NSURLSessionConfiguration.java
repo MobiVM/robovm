@@ -206,7 +206,7 @@ import org.robovm.apple.coreservices.CFProxy;
     public static native NSURLSessionConfiguration getBackgroundSessionConfiguration(String identifier);
     /**
      * @since Available in iOS 7.0 and later.
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Please use backgroundSessionConfigurationWithIdentifier: instead
      */
     @Deprecated
     @Method(selector = "backgroundSessionConfiguration:")

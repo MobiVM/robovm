@@ -49,7 +49,7 @@ import org.robovm.apple.coregraphics.*;
     protected MDLMatrix4x4Array(Handle h, long handle) { super(h, handle); }
     protected MDLMatrix4x4Array(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithElementCount:")
-    public MDLMatrix4x4Array(@MachineSizedUInt long arrayElementCount) { super((SkipInit) null); initObject(initWithElementCount(arrayElementCount)); }
+    public MDLMatrix4x4Array(@MachineSizedUInt long arrayElementCount) { super((SkipInit) null); initObject(init(arrayElementCount)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "elementCount")
@@ -62,14 +62,14 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "clear")
     public native void clear();
     @Method(selector = "initWithElementCount:")
-    protected native @Pointer long initWithElementCount(@MachineSizedUInt long arrayElementCount);
+    protected native @Pointer long init(@MachineSizedUInt long arrayElementCount);
     @Method(selector = "setFloat4x4Array:count:")
-    public native void setFloat4x4Array(MatrixFloat4x4.MatrixFloat4x4Ptr valuesArray, @MachineSizedUInt long count);
+    public native void setFloat4x4Array(MatrixFloat4x4 valuesArray, @MachineSizedUInt long count);
     @Method(selector = "setDouble4x4Array:count:")
-    public native void setDouble4x4Array(MatrixDouble4x4.MatrixDouble4x4Ptr valuesArray, @MachineSizedUInt long count);
+    public native void setDouble4x4Array(MatrixDouble4x4 valuesArray, @MachineSizedUInt long count);
     @Method(selector = "getFloat4x4Array:maxCount:")
-    public native @MachineSizedUInt long getFloat4x4Array(MatrixFloat4x4.MatrixFloat4x4Ptr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getFloat4x4Array(MatrixFloat4x4 valuesArray, @MachineSizedUInt long maxCount);
     @Method(selector = "getDouble4x4Array:maxCount:")
-    public native @MachineSizedUInt long getDouble4x4Array(MatrixDouble4x4.MatrixDouble4x4Ptr valuesArray, @MachineSizedUInt long maxCount);
+    public native @MachineSizedUInt long getDouble4x4Array(MatrixDouble4x4 valuesArray, @MachineSizedUInt long maxCount);
     /*</methods>*/
 }

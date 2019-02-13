@@ -123,9 +123,13 @@ import org.robovm.apple.iosurface.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final CVImageBufferTransferFunction ITU_R_2100_HLG = new CVImageBufferTransferFunction("ITU_R_2100_HLG");
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final CVImageBufferTransferFunction Linear = new CVImageBufferTransferFunction("Linear");
     /*</constants>*/
     
-    private static /*<name>*/CVImageBufferTransferFunction/*</name>*/[] values = new /*<name>*/CVImageBufferTransferFunction/*</name>*/[] {/*<value_list>*/ITU_R_709_2, SMPTE_240M_1995, UseGamma, sRGB, ITU_R_2020, SMPTE_ST_428_1, SMPTE_ST_2084_PQ, ITU_R_2100_HLG/*</value_list>*/};
+    private static /*<name>*/CVImageBufferTransferFunction/*</name>*/[] values = new /*<name>*/CVImageBufferTransferFunction/*</name>*/[] {/*<value_list>*/ITU_R_709_2, SMPTE_240M_1995, UseGamma, sRGB, ITU_R_2020, SMPTE_ST_428_1, SMPTE_ST_2084_PQ, ITU_R_2100_HLG, Linear/*</value_list>*/};
     
     /*<name>*/CVImageBufferTransferFunction/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -188,6 +192,11 @@ import org.robovm.apple.iosurface.*;
          */
         @GlobalValue(symbol="kCVImageBufferTransferFunction_ITU_R_2100_HLG", optional=true)
         public static native CFString ITU_R_2100_HLG();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferTransferFunction_Linear", optional=true)
+        public static native CFString Linear();
         /*</values>*/
     }
 }

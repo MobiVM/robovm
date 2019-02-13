@@ -60,7 +60,7 @@ import org.robovm.apple.contacts.*;
     public void didAuthorizePayment(PKPaymentAuthorizationController controller, PKPayment payment, @Block VoidBlock1<PKPaymentAuthorizationResult> completion) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use paymentAuthorizationController:didAuthorizePayment:handler: instead to provide more granular errors
      */
     @Deprecated
     @NotImplemented("paymentAuthorizationController:didAuthorizePayment:completion:")
@@ -84,21 +84,21 @@ import org.robovm.apple.contacts.*;
     public void didSelectPaymentMethod(PKPaymentAuthorizationController controller, PKPaymentMethod paymentMethod, @Block VoidBlock1<PKPaymentRequestPaymentMethodUpdate> completion) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use paymentAuthorizationController:didSelectShippingMethod:handler: instead to provide more granular errors
      */
     @Deprecated
     @NotImplemented("paymentAuthorizationController:didSelectShippingMethod:completion:")
     public void didSelectShippingMethod(PKPaymentAuthorizationController controller, PKShippingMethod shippingMethod, @Block VoidBlock2<PKPaymentAuthorizationStatus, NSArray<PKPaymentSummaryItem>> completion) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use paymentAuthorizationController:didSelectShippingContact:handler: instead to provide more granular errors
      */
     @Deprecated
     @NotImplemented("paymentAuthorizationController:didSelectShippingContact:completion:")
     public void didSelectShippingContact(PKPaymentAuthorizationController controller, PKContact contact, @Block VoidBlock3<PKPaymentAuthorizationStatus, NSArray<PKShippingMethod>, NSArray<PKPaymentSummaryItem>> completion) {}
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0.
+     * @deprecated Deprecated in iOS 11.0. Use paymentAuthorizationController:didSelectPaymentMethod:handler: instead to provide more granular errors
      */
     @Deprecated
     @NotImplemented("paymentAuthorizationController:didSelectPaymentMethod:completion:")

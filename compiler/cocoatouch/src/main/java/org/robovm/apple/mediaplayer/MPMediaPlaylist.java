@@ -49,6 +49,8 @@ import org.robovm.apple.coregraphics.*;
     public MPMediaPlaylist() {}
     protected MPMediaPlaylist(Handle h, long handle) { super(h, handle); }
     protected MPMediaPlaylist(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithItems:")
+    public MPMediaPlaylist(NSArray<MPMediaItem> items) { super(items); }
     /*</constructors>*/
     /*<properties>*/
     /**

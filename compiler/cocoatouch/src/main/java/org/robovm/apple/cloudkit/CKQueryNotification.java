@@ -47,7 +47,7 @@ import org.robovm.apple.fileprovider.*;
     /*<bind>*/static { ObjCRuntime.bind(CKQueryNotification.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKQueryNotification() {}
+    protected CKQueryNotification() {}
     protected CKQueryNotification(Handle h, long handle) { super(h, handle); }
     protected CKQueryNotification(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
@@ -60,7 +60,7 @@ import org.robovm.apple.fileprovider.*;
     public native CKRecordID getRecordID();
     /**
      * @since Available in iOS 8.0 and later.
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use databaseScope instead
      */
     @Deprecated
     @Property(selector = "isPublicDatabase")

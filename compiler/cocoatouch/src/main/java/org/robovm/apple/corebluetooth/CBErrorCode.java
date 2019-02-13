@@ -86,8 +86,18 @@ public enum /*<name>*/CBErrorCode/*</name>*/ implements NSErrorCode {
     ConnectionLimitReached(11L),
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use CBErrorUnknownDevice instead
      */
-    UnkownDevice(12L);
+    @Deprecated
+    UnkownDevice(12L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    UnknownDevice(12L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    OperationNotSupported(13L);
     /*</values>*/
 
     /*<bind>*/

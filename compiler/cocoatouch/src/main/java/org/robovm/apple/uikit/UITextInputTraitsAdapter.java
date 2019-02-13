@@ -131,6 +131,16 @@ import org.robovm.apple.intents.*;
      */
     @NotImplemented("setTextContentType:")
     public void setTextContentType(UITextContentType v) {}
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @NotImplemented("passwordRules")
+    public UITextInputPasswordRules getPasswordRules() { return null; }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @NotImplemented("setPasswordRules:")
+    public void setPasswordRules(UITextInputPasswordRules v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
