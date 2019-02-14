@@ -648,15 +648,12 @@ public class ClassCompiler {
             }
 
             // also need to add reference to @llvm.used otherwise linker will drop out this data as not used
+            // dkimitsa: always add it as array even if there is only one element as llvm.used is array of pointers
+            // and debug version of llvm will crash on assertion while validating type
             Global usedGlobal;
-            if (usedGlobalValues.size() > 1) {
-                ArrayConstant usedValuesArr = new ArrayConstant(new ArrayType(usedGlobalValues.size(), Type.I8_PTR),
-                        usedGlobalValues.toArray(new Value[usedGlobalValues.size()]));
-                usedGlobal = new Global("llvm.used", Linkage.appending, usedValuesArr, false, "llvm.metadata");
-            } else {
-                usedGlobal = new Global("llvm.used", Linkage.appending, new ConstantBitcast(debugInfoSymbolGlobal.ref(), Type.I8_PTR),
-                        false, "llvm.metadata");
-            }
+            ArrayConstant usedValuesArr = new ArrayConstant(new ArrayType(usedGlobalValues.size(), Type.I8_PTR),
+                    usedGlobalValues.toArray(new Value[usedGlobalValues.size()]));
+            usedGlobal = new Global("llvm.used", Linkage.appending, usedValuesArr, false, "llvm.metadata");
             debugInfoMb.addGlobal(usedGlobal);
 
             if (config.isDumpIntermediates()) {
