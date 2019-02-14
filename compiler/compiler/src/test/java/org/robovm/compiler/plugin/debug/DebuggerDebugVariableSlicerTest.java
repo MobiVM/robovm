@@ -89,61 +89,42 @@ public class DebuggerDebugVariableSlicerTest {
         Local l3 = new JimpleLocal("l3", ShortType.v()); l3.setIndex(2);
         Local l4 = new JimpleLocal("l4", RefType.v("java.lang.String")); l4.setIndex(3);
 
-        Map<Integer, LocalVariable> argumentVariables = new HashMap<>();
-        argumentVariables.put(0, v1);
-        argumentVariables.put(1, v2);
-
         Map<UnitVariableSlice, Integer> slicesHash = new HashMap<>();
         List<UnitVariableSlice> slices = new ArrayList<>();
 
         // try to not provide live variables -- shall return nothing
         int idx = DebuggerDebugVariableSlicer.getSliceForUnit(config, new HashMap<>(), new HashMap<>(),
-                argumentVariables, slicesHash, slices);
+                slicesHash, slices);
         assertEquals("no vars, no locals -- shall be nothing", -1, idx);
         assertEquals(0, slices.size());
 
-        // give argument local -- shall return one argument
+        // give argument local without provide variable debug info - shall return no arguments
         idx = DebuggerDebugVariableSlicer.getSliceForUnit(config, makeLocals(l2), new HashMap<>(),
-                argumentVariables, slicesHash, slices);
-        assertEquals(0, idx);
-        assertEquals(1, slices.size());
-        assertTrue(DebuggerDebugVariableSlicer.listEquals(slices.get(idx).variables, Collections.singletonList(v2)));
-        assertTrue(DebuggerDebugVariableSlicer.listEquals(slices.get(idx).locals, Collections.singletonList(l2)));
+                slicesHash, slices);
+        assertEquals("no vars information -- shall be nothing", -1, idx);
+        assertEquals(0, slices.size());
 
-        // do same call again -- should return existing
-        idx = DebuggerDebugVariableSlicer.getSliceForUnit(config, makeLocals(l2), new HashMap<>(),
-                argumentVariables, slicesHash, slices);
-        assertEquals(0, idx);
-        assertEquals(1, slices.size());
 
-        // give two locals shall return these two as new snapshot
-        idx = DebuggerDebugVariableSlicer.getSliceForUnit(config, makeLocals(l1, l2), new HashMap<>(),
-                argumentVariables, slicesHash, slices);
-        assertEquals(1, idx);
-        assertEquals(2, slices.size());
-        assertTrue(DebuggerDebugVariableSlicer.listEquals(slices.get(idx).variables, Arrays.asList(v1, v2)));
-        assertTrue(DebuggerDebugVariableSlicer.listEquals(slices.get(idx).locals, Arrays.asList(l1, l2)));
-
-        // give variable out of arguments but with locals  -- shall return only arguments local, no snapshot to be created
+        // give variable out of arguments but with locals  -- shall return nothing, no snapshot to be created
         idx = DebuggerDebugVariableSlicer.getSliceForUnit(config, makeLocals(l1, l2), makeVariables(v3),
-                argumentVariables, slicesHash, slices);
-        assertEquals(1, idx);
-        assertEquals(2, slices.size());
+                slicesHash, slices);
+        assertEquals(-1, idx);
+        assertEquals(0, slices.size());
 
         // give variable and it locals -- shall return variable and arguments
         idx = DebuggerDebugVariableSlicer.getSliceForUnit(config, makeLocals(l1, l2, l3), makeVariables(v3),
-                argumentVariables, slicesHash, slices);
-        assertEquals(2, idx);
-        assertEquals(3, slices.size());
-        assertTrue(DebuggerDebugVariableSlicer.listEquals(slices.get(idx).variables, Arrays.asList(v1, v2, v3)));
-        assertTrue(DebuggerDebugVariableSlicer.listEquals(slices.get(idx).locals, Arrays.asList(l1, l2, l3)));
+                slicesHash, slices);
+        assertEquals(0, idx);
+        assertEquals(1, slices.size());
+        assertTrue(DebuggerDebugVariableSlicer.listEquals(slices.get(idx).variables, Collections.singletonList(v3)));
+        assertTrue(DebuggerDebugVariableSlicer.listEquals(slices.get(idx).locals, Collections.singletonList(l3)));
 
         // give variable and it locals but no arguments -- shall create new snapshot
         // (not live case as argument locals shall be accessible always)
         idx = DebuggerDebugVariableSlicer.getSliceForUnit(config, makeLocals(l3, l4), makeVariables(v3, v4),
-                argumentVariables, slicesHash, slices);
-        assertEquals(3, idx);
-        assertEquals(4, slices.size());
+                slicesHash, slices);
+        assertEquals(1, idx);
+        assertEquals(2, slices.size());
         assertTrue(DebuggerDebugVariableSlicer.listEquals(slices.get(idx).variables, Arrays.asList(v3, v4)));
         assertTrue(DebuggerDebugVariableSlicer.listEquals(slices.get(idx).locals, Arrays.asList(l3, l4)));
     }

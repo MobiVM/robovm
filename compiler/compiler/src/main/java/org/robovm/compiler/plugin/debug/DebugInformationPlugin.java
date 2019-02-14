@@ -67,6 +67,7 @@ import soot.LocalVariable;
 import soot.SootMethod;
 import soot.Unit;
 import soot.jimple.IdentityStmt;
+import soot.jimple.ParameterRef;
 import soot.tagkit.GenericAttribute;
 import soot.tagkit.LineNumberTag;
 import soot.tagkit.SourceFileTag;
@@ -383,6 +384,23 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             }
         }
 
+        // find out arguments
+        // as kotlin case shows that generated code can re-use slots initially designated for
+        // parameters for local variables we can't rely on local index only, lets find argument locals using
+        // assignment from parameters
+        // RoboVM added: ignore parameters locals in split
+        Set<Local> parameterLocals = new HashSet<>();
+        for (Unit u : method.getActiveBody().getUnits()) {
+            if (u instanceof IdentityStmt && ((IdentityStmt)u).getRightOp() instanceof ParameterRef &&
+                    ((IdentityStmt)u).getLeftOpBox().getValue() instanceof Local) {
+                Local l = (Local)((IdentityStmt)u).getLeftOpBox().getValue();
+                parameterLocals.add(l);
+            }
+        }
+
+        // RoboVM adds env to each method call, and adds this to all not static method
+        // so real argument index will start from 3 in static method and 2 in not static
+        int argStartOffset = method.isStatic() ? 3 : 2;
 
         // generate variable dwarf information for all locals that inserts LLVM_DBG_DECLARE calls starting at
         // firstHooksInst
@@ -392,13 +410,9 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             Alloca alloca = e.getValue();
 
             // get arg idx as: in dwarf arg index starts from 1
-            // RoboVM adds env to each method call, and adds this to all not static method
-            // so real argument index will start from 2 in static method and 3 in not static
             int argIdx = 0;
-            if (local.getIndex() <  method.getParameterCount()) {
-                argIdx = 2 + local.getIndex();
-                if (!method.isStatic())
-                    argIdx += 1;
+            if (local.getIndex() <  method.getParameterCount() && parameterLocals.contains(local)) {
+                argIdx = argStartOffset + local.getIndex();
             }
 
             // variable start line doesn't matter as all local are being declared at top
@@ -778,7 +792,8 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         }
     }
 
-	private IntegerConstant v(int i) {
+	@SuppressWarnings("SameParameterValue")
+    private IntegerConstant v(int i) {
     	return new IntegerConstant(i);
 	}
 

@@ -49,22 +49,19 @@ public class DebuggerDebugVariableSlicer {
             return;
 
         // build map of units to visible variables
-        Map<Integer, LocalVariable> argumentVariables = new HashMap<>();
         Map<Unit, Map<Integer, LocalVariable>> variablesOfUnit = new HashMap<>();
-        mapUnitsToVariables(method, argumentVariables, variablesOfUnit);
+        mapUnitsToVariables(method, variablesOfUnit);
 
         // now compile all duplicates into slices
-        buildSlices(config, body, argumentVariables, variablesOfUnit, unitToSlice, slices);
+        buildSlices(config, body, variablesOfUnit, unitToSlice, slices);
     }
 
     /**
      * create a map of unit to variables visible at this unit
      * @param method to work with
-     * @param argumentVariables output map that will keep arguments
      * @param variablesOfUnit output map that will keep unit to variables map
      */
-    static void mapUnitsToVariables(SootMethod method, Map<Integer, LocalVariable> argumentVariables,
-                                    Map<Unit, Map<Integer, LocalVariable>> variablesOfUnit) {
+    static void mapUnitsToVariables(SootMethod method, Map<Unit, Map<Integer, LocalVariable>> variablesOfUnit) {
         Body body = method.getActiveBody();
         // build map of local index to argument no
         int parameterCount = method.getParameterCount();
@@ -78,13 +75,6 @@ public class DebuggerDebugVariableSlicer {
             // skip all technical variables that contains $ as these are source of trouble in kotlin case
             if (v.getName().contains("$"))
                 continue;
-
-            if (v.getIndex() < parameterCount) {
-                // its a parameter/argument, save it
-                argumentVariables.put(v.getIndex(), v);
-                // and skip processing as they are always visible
-                continue;
-            }
 
             Unit startUnit = v.getStartUnit();
             Unit endUnit;
@@ -105,8 +95,7 @@ public class DebuggerDebugVariableSlicer {
         }
     }
 
-    static void buildSlices(Config config, Body body, Map<Integer, LocalVariable> argumentVariables,
-                            Map<Unit, Map<Integer, LocalVariable>> variablesOfUnit,
+    static void buildSlices(Config config, Body body, Map<Unit, Map<Integer, LocalVariable>> variablesOfUnit,
                             Map<Unit, Integer> unitToVariableSlices, List<UnitVariableSlice> slices) {
         // move though units and attach to them visible variables
         Map<UnitVariableSlice, Integer> slicesHash = new HashMap<>();
@@ -123,7 +112,7 @@ public class DebuggerDebugVariableSlicer {
             Map<Integer, LocalVariable> visibleVariables = variablesOfUnit.get(u);
 
             // get a snapshot index
-            int idx = getSliceForUnit(config, visibleLocals, visibleVariables, argumentVariables, slicesHash, slices);
+            int idx = getSliceForUnit(config, visibleLocals, visibleVariables, slicesHash, slices);
             if (idx >= 0) {
                 // there is variables visible at this index
                 unitToVariableSlices.put(u, idx);
@@ -133,7 +122,6 @@ public class DebuggerDebugVariableSlicer {
 
 
     static int getSliceForUnit(Config config, Map<Integer, Local> visibleLocals, Map<Integer, LocalVariable> visibleVariables,
-                               Map<Integer, LocalVariable> argumentVariables,
                                Map<UnitVariableSlice, Integer> slicesHash, List<UnitVariableSlice> slices) {
         TreeMap<Integer, LocalVariable> confirmedVariables = new TreeMap<>();
         TreeMap<Integer, Local> confirmedLocals = new TreeMap<>();
@@ -146,8 +134,6 @@ public class DebuggerDebugVariableSlicer {
             LocalVariable variable = null;
             if (visibleVariables != null)
                 variable = visibleVariables.get(index);
-            if (variable == null)
-                variable = argumentVariables.get(index);
 
             // skip if no variable matching local at this point
             if (variable == null)
