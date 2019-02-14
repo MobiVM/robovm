@@ -331,7 +331,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                     continue;
                 startInstrumenting = true;
                 Integer lineNo = instructionToLineNo.get(instruction);
-                if (lineNo == null)
+                if (lineNo == null || hookInstructionLines.containsKey(lineNo))
                     continue;
                 hookInstructionLines.put(lineNo, instruction);
             }
