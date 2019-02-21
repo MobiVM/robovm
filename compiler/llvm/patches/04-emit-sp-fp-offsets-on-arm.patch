@@ -2,7 +2,7 @@ diff --git a/lib/CodeGen/AsmPrinter/AsmPrinter.cpp b/lib/CodeGen/AsmPrinter/AsmP
 index 97ef12c..e175480 100644
 --- a/lib/CodeGen/AsmPrinter/AsmPrinter.cpp
 +++ b/lib/CodeGen/AsmPrinter/AsmPrinter.cpp
-@@ -1018,6 +1018,28 @@ bool AsmPrinter::doFinalization(Module &M) {
+@@ -1018,6 +1018,30 @@ bool AsmPrinter::doFinalization(Module &M) {
      if (const MCSection *S = MAI->getNonexecutableStackSection(OutContext))
        OutStreamer.SwitchSection(S);
  
@@ -14,16 +14,18 @@ index 97ef12c..e175480 100644
 +      if (F.isDeclaration())
 +        continue;
 +
-+      MCSymbol *Offset = OutContext.LookupSymbol(Twine("_") + F.getName() + ".spfpoffset");
-+      if (Offset) {
++      MCSymbol *OffsetValue = OutContext.LookupSymbol(Twine("_") + F.getName() + ".spfpoffset.internal");
++      if (OffsetValue) {
 +        if (!InTextSeciton) {
 +          OutStreamer.SwitchSection(getObjFileLowering().getTextSection());
 +          OutStreamer.EmitCodeAlignment(4);
 +          InTextSeciton = true;
 +        }
++        // dkimitsa: emit new symbol without values attached to bypass crashes on asserts (e.g. shall not be used and not to be variable)
++        MCSymbol *Offset = OutContext.GetOrCreateSymbol(Twine("_") + F.getName() + ".spfpoffset");
 +        OutStreamer.EmitLabel(Offset);
 +        OutStreamer.EmitSymbolAttribute(Offset, MCSA_Global);
-+        OutStreamer.EmitIntValue(((MCConstantExpr *) Offset->getVariableValue())->getValue(), 4);
++        OutStreamer.EmitIntValue(((MCConstantExpr *) OffsetValue->getVariableValue())->getValue(), 4);
 +      }
 +    }
 +  }
@@ -50,7 +52,7 @@ index 66aa216..57fa466 100644
 +    
 +  // RoboVM change: Create a symbol which stores the sp<->fp offset and sp alignment. The symbol
 +  // is finally emitted in AsmPrinter::doFinalization().
-+  MCSymbol *Offset = MMI.getContext().GetOrCreateSymbol(Twine("_") + MF.getName() + ".spfpoffset");
++  MCSymbol *Offset = MMI.getContext().GetOrCreateSymbol(Twine("_") + MF.getName() + ".spfpoffset.internal");
 +  // Calculare the SP<->FP offset for the function. We subtract 16 to ignore fp/lr on the stack.
 +  // We divide by 4 since the offset is always at least a multiple of 4.
 +  uint32_t spFpOffset = (MFI->getStackSize() - 16) >> 2;
@@ -80,7 +82,7 @@ index 831c2eb..7ae8d19 100644
 +
 +  // RoboVM change: Create a symbol which stores the sp<->fp offset and sp alignment. The symbol
 +  // is finally emitted in AsmPrinter::doFinalization().
-+  MCSymbol *Offset = Context.GetOrCreateSymbol(Twine("_") + MF.getName() + ".spfpoffset");
++  MCSymbol *Offset = Context.GetOrCreateSymbol(Twine("_") + MF.getName() + ".spfpoffset.internal");
 +  // Calculare the SP<->FP offset for the function. We subtract 8 to ignore r7/lr on the stack.
 +  // We divide by 4 since the offset is always at least a multiple of 4.
 +  uint32_t spFpOffset = (GPRCS1Size - 8 + GPRCS2Size + DPRGapSize + DPRCSSize + NumBytes + AFI->getNumAlignedDPRCS2Regs()*8) >> 2;
