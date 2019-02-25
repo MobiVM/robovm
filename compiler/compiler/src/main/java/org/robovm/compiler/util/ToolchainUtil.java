@@ -388,11 +388,6 @@ public class ToolchainUtil {
             for (File objectsFile : objectsFiles) {
                 opts.add("-Wl,-filelist," + objectsFile.getAbsolutePath());
             }
-            /*
-             * See #123, ignore ld: warning: pointer not aligned at address [infostruct] message with Xcode 8.3
-             * unless we find a better solution
-             */
-            opts.add("-w");
         } else {
             opts.add(config.getArch().is32Bit() ? "-m32" : "-m64");
             for (File objectsFile : objectsFiles) {

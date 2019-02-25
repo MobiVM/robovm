@@ -330,7 +330,8 @@ public class IOSTarget extends AbstractTarget {
         }
         if (isDeviceArch(arch)) {
             ccArgs.add("-miphoneos-version-min=" + minVersion);
-            if (config.isDebug()) {
+            // arm64 is always PIE, ref: https://opensource.apple.com/source/ld64/ld64-274.2/src/ld/Options.cpp.auto.html
+            if (config.isDebug() && config.getArch() != Arch.arm64) {
                 ccArgs.add("-Wl,-no_pie");
             }
         } else {
