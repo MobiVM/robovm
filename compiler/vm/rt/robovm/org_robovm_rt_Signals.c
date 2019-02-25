@@ -26,3 +26,11 @@ void Java_org_robovm_rt_Signals_reinstallSavedSignals(Env* env, Class* c, jlong 
 jlong Java_org_robovm_rt_Signals_saveSignals(Env* env, Class* c) {
     return PTR_TO_LONG(rvmSaveSignals(env));
 }
+
+void Java_org_robovm_rt_Signals_reinstallSavedMachPorts(Env* env, Class* c, jlong state) {
+    rvmReinstallSavedMachPorts(env, LONG_TO_PTR(state));
+}
+
+jlong Java_org_robovm_rt_Signals_saveMachPorts(Env* env, Class* c) {
+    return PTR_TO_LONG(rvmSaveMachPorts(env));
+}
