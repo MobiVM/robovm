@@ -39,6 +39,7 @@ import org.robovm.compiler.util.Executor;
  */
 public class DeviceType implements Comparable<DeviceType> {
     public static final String PREFIX = "com.apple.CoreSimulator.SimDeviceType.";
+    public static final String IOS_VERSION_PREFIX = "com.apple.CoreSimulator.SimRuntime.iOS-";
     public static final String PREFERRED_IPHONE_SIM_NAME = "iPhone 6";
     public static final String PREFERRED_IPAD_SIM_NAME = "iPad Air";
     
@@ -120,7 +121,16 @@ public class DeviceType implements Comparable<DeviceType> {
             Iterator iter=deviceList.entrySet().iterator();
             while(iter.hasNext()){
     			Map.Entry entry=(Map.Entry)iter.next();
-    			String sdkMapKey = entry.getKey().toString().replace("iOS ","");
+    			String sdkMapKey = entry.getKey().toString();
+    			if (sdkMapKey.startsWith(IOS_VERSION_PREFIX)) {
+    			    // com.apple.CoreSimulator.SimRuntime.iOS-
+                    sdkMapKey = sdkMapKey.replace(IOS_VERSION_PREFIX, "").replace('-', '.');
+                } else if (sdkMapKey.startsWith("iOS ")) {
+                    sdkMapKey = sdkMapKey.replace("iOS ","");
+                } else {
+    			    // not iOS
+    			    continue;
+                }
     			JSONArray devices = (JSONArray) entry.getValue();
     			for (Object obj : devices) {
     				JSONObject device = (JSONObject) obj;
