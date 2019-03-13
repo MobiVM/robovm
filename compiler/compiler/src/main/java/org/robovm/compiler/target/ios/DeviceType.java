@@ -135,9 +135,17 @@ public class DeviceType implements Comparable<DeviceType> {
     			for (Object obj : devices) {
     				JSONObject device = (JSONObject) obj;
     				SDK sdk = sdkMap.get(sdkMapKey);
-    				final String deviceName = device.get("name").toString();
-    				
-    				if (!device.get("availability").toString().contains("unavailable") && sdk != null) {
+    				boolean isAvailable = false;
+    				if (sdk != null) {
+    				    if (device.containsKey("isAvailable")) {
+    				        Object o = device.get("isAvailable");
+                            isAvailable = o instanceof Boolean ? (Boolean) o : "true".equals(o.toString());
+                        } else if (device.containsKey("availability"))
+                            isAvailable = !device.get("availability").toString().contains("unavailable");
+                    }
+
+    				if (isAvailable) {
+                        final String deviceName = device.get("name").toString();
     					Set<Arch> archs = new HashSet<>();
     					archs.add(Arch.x86);
     					if (!Arrays.asList(ONLY_32BIT_DEVICES).contains(deviceName)) {
