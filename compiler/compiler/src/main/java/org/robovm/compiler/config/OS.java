@@ -23,7 +23,7 @@ import org.robovm.llvm.Target;
  *
  */
 public enum OS {
-    linux("linux", "linux"), macosx("macosx10.9.0", "10.9"), ios("ios7.0.0", "7.0");
+    linux("linux", "linux"), macosx("macosx10.9.0", "10.9"), ios("ios8.0.0", "8.0");
     
     public enum Family {linux, darwin}
 
