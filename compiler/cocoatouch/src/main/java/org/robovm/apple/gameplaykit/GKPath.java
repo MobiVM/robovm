@@ -51,20 +51,20 @@ import org.robovm.apple.uikit.*;
     protected GKPath(Handle h, long handle) { super(h, handle); }
     protected GKPath(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPoints:count:radius:cyclical:")
-    public GKPath(VectorFloat2.VectorFloat2Ptr points, @MachineSizedUInt long count, float radius, boolean cyclical) { super((SkipInit) null); initObject(init(points, count, radius, cyclical)); }
+    public GKPath(VectorFloat2 points, @MachineSizedUInt long count, float radius, boolean cyclical) { super((SkipInit) null); initObject(init(points, count, radius, cyclical)); }
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "initWithFloat3Points:count:radius:cyclical:")
-    public GKPath(VectorFloat3.VectorFloat3Ptr points, @MachineSizedUInt long count, float radius, boolean cyclical) { super((SkipInit) null); initObject(init(points, count, radius, cyclical)); }
+    public GKPath(VectorFloat3 points, @MachineSizedUInt long count, float radius, boolean cyclical) { super((SkipInit) null); initObject(init(points, count, radius, cyclical)); }
     @Method(selector = "initWithGraphNodes:radius:")
     public GKPath(NSArray<GKGraphNode2D> graphNodes, float radius) { super((SkipInit) null); initObject(init(graphNodes, radius)); }
     /*</constructors>*/
     public GKPath(VectorFloat2[] points, float radius, boolean cyclical) {
         super((SkipInit) null);
-        VectorFloat2.VectorFloat2Ptr ptr = new VectorFloat2.VectorFloat2Ptr();
-        ptr.set(points);
-        initObject(init(ptr, points.length, radius, cyclical));
+        VectorFloat2 structArray = VectorFloat2.allocate(VectorFloat2.class, points.length);
+        structArray.update(points);
+        initObject(init(structArray, points.length, radius, cyclical));
     }
     /*<properties>*/
     @Property(selector = "radius")
@@ -81,12 +81,12 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithPoints:count:radius:cyclical:")
-    protected native @Pointer long init(VectorFloat2.VectorFloat2Ptr points, @MachineSizedUInt long count, float radius, boolean cyclical);
+    protected native @Pointer long init(VectorFloat2 points, @MachineSizedUInt long count, float radius, boolean cyclical);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "initWithFloat3Points:count:radius:cyclical:")
-    protected native @Pointer long init(VectorFloat3.VectorFloat3Ptr points, @MachineSizedUInt long count, float radius, boolean cyclical);
+    protected native @Pointer long init(VectorFloat3 points, @MachineSizedUInt long count, float radius, boolean cyclical);
     @Method(selector = "initWithGraphNodes:radius:")
     protected native @Pointer long init(NSArray<GKGraphNode2D> graphNodes, float radius);
     /**

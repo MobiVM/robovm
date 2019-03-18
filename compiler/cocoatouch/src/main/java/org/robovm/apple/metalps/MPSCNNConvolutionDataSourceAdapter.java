@@ -65,7 +65,7 @@ import org.robovm.apple.metal.*;
     @NotImplemented("label")
     public String label() { return null; }
     @NotImplemented("rangesForUInt8Kernel")
-    public VectorFloat2.VectorFloat2Ptr rangesForUInt8Kernel() { return null; }
+    public VectorFloat2 rangesForUInt8Kernel() { return null; }
     @NotImplemented("lookupTableForUInt8Kernel")
     public FloatPtr lookupTableForUInt8Kernel() { return null; }
     @NotImplemented("weightsQuantizationType")

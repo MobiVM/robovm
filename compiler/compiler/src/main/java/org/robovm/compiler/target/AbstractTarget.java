@@ -359,10 +359,11 @@ public abstract class AbstractTarget implements Target {
                                 copyFile(resource, file, destDir);
 
                                 if (isDynamicLibrary(file)) {
-                                    // remove simulator archs for device builds
+                                    // remove simulator and deprecated archs, also strip bitcode if any
                                     if (config.getOs() == OS.ios && config.getArch().isArm()) {
                                         File libFile = new File(destDir, file.getName());
                                         stripExtraArches(libFile);
+                                        stripBitcode(libFile);
                                     }
 
                                     // check if this dylib depends on Swift
@@ -386,7 +387,7 @@ public abstract class AbstractTarget implements Target {
 
         // copy Swift libraries if required
         if (!swiftLibraries.isEmpty()) {
-            copySwiftLibs(swiftLibraries, frameworksDir);
+            copySwiftLibs(swiftLibraries, frameworksDir, true);
         }
     }
 
@@ -419,10 +420,11 @@ public abstract class AbstractTarget implements Target {
                     copyFile(resource, file, destDir);
 
                     if (config.getOs() == OS.ios && config.getArch().isArm()) {
-                        // remove simulator archs for device builds
+                        // remove simulator and deprecated archs, also strip bitcode if any
                         if (isAppExtension(file)) {
                             File libFile = new File(destDir, file.getName());
                             stripExtraArches(libFile);
+                            stripBitcode(libFile);
                         }
                     }
                 }
@@ -444,7 +446,7 @@ public abstract class AbstractTarget implements Target {
         }
     }
 
-	protected void copySwiftLibs(Collection<String> swiftLibraries, File targetDir) throws IOException {
+	protected void copySwiftLibs(Collection<String> swiftLibraries, File targetDir, boolean strip) throws IOException {
 		String system = null;
 		if (config.getOs() == OS.ios) {
 			if (config.getArch().isArm()) {
@@ -486,38 +488,51 @@ public abstract class AbstractTarget implements Target {
 			File swiftLibrary = new File(swiftDir, library);
 			FileUtils.copyFileToDirectory(swiftLibrary, targetDir);
 
-            // remove simulator archs for device builds
-            if (config.getOs() == OS.ios && config.getArch().isArm()) {
-                File libFile = new File(targetDir, swiftLibrary.getName());
-                stripExtraArches(libFile);
+			// don't strip if libraries goes to SwiftSupport folder
+			if (strip) {
+                // remove simulator and deprecated archs, also strip bitcode if any
+                if (config.getOs() == OS.ios && config.getArch().isArm()) {
+                    File libFile = new File(targetDir, swiftLibrary.getName());
+                    stripExtraArches(libFile);
+                    stripBitcode(libFile);
+                }
             }
         }
 	}
 
     /**
-     * strips simulator and extra architecture from mach-o binary (framework, lib, appext)
+     * removes all architectures extra architectures other than binary is build for from mach-o binary (framework, lib, appext)
      */
 	protected void stripExtraArches(File libFile) throws IOException {
         String archs = ToolchainUtil.lipoInfo(config, libFile);
         List<String> archesToRemove = new ArrayList<>();
+
+        // simulator ones
         if(archs.contains(Arch.x86.getClangName())) {
             archesToRemove.add(Arch.x86.getClangName());
         }
         if(archs.contains(Arch.x86_64.getClangName())) {
             archesToRemove.add(Arch.x86_64.getClangName());
         }
-        // also remove configured ones
-        for (String arch : config.getStripArchs()) {
-            if(archs.contains(arch)) {
-                archesToRemove.add(arch);
-            }
+        // also arm64e has to be removed since Xcode10.1
+        if (archs.contains("arm64e")) {
+            archesToRemove.add("arm64e");
         }
+
         if (!archesToRemove.isEmpty()) {
             File tmpFile = new File(libFile.getAbsolutePath() + ".tmp");
             ToolchainUtil.lipoRemoveArchs(config, libFile, tmpFile, archesToRemove.toArray(new String[0]));
             FileUtils.copyFile(tmpFile, libFile);
             tmpFile.delete();
         }
+    }
+
+    /** removes bitcode from frameworks/libraries to minimize size */
+    protected void stripBitcode(File libFile) throws IOException {
+        File tmpFile = new File(libFile.getAbsolutePath() + ".tmp");
+        ToolchainUtil.bitcodeStrip(config, libFile, tmpFile);
+        FileUtils.copyFile(tmpFile, libFile);
+        tmpFile.delete();
     }
 
     protected boolean isDynamicLibrary(File file) throws IOException {

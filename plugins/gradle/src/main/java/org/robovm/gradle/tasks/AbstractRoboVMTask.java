@@ -219,6 +219,9 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
             }
         }
 
+        if (extension.isDumpIntermediates())
+            builder.dumpIntermediates(true);
+
         builder.clearClasspathEntries();
 
         // configure the runtime classpath

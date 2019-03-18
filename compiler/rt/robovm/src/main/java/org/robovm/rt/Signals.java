@@ -44,12 +44,16 @@ public class Signals {
     }
     
     /**
-     * Saves the current signal handlers essential for RoboVM to work correctly
+     * Saves the current signal handlers mach ports essential for RoboVM to work correctly
      * then calls the specified {@link InstallSignalsCallback} and 
      * finally restores the saved signals chaining them to installed ones
      * properly.
      */
     public static void installSignals(InstallSignalsCallback callback) {
+        installSignals(callback, false);
+    }
+
+    public static void installSignals(InstallSignalsCallback callback, boolean preservePorts) {
         if (callback == null) {
             throw new NullPointerException("callback");
         }
@@ -58,16 +62,21 @@ public class Signals {
                     + ".installSignals() called twice");
         }
         long state = saveSignals();
+        long portsState = preservePorts ? saveMachPorts() : 0;
         try {
             callback.install();
         } finally {
             called = true;
             installChainingSignals();
             reinstallSavedSignals(state);
+            if (portsState != 0)
+                reinstallSavedMachPorts(portsState);
         }
     }
 
     private native static void installChainingSignals();
     private native static void reinstallSavedSignals(long state);
     private native static long saveSignals();
+    private native static void reinstallSavedMachPorts(long state);
+    private native static long saveMachPorts();
 }

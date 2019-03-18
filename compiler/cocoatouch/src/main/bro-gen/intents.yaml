@@ -6,7 +6,8 @@ clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/Intents.framework/Headers/Intents.h
 typedefs: {}
-
+private_typedefs:
+    'CNPostalAddress *': org.robovm.apple.contacts.CNPostalAddress
 enums:
     INIntentErrorCode: { nserror: true, prefix: INIntentError} #since 10.0
     INCallCapabilityOptions: {prefix: INCallCapabilityOption} #since 10.0
@@ -113,6 +114,12 @@ enums:
     INDailyRoutineSituation: {} #since 12.0
     INRelevantShortcutRole: {} #since 12.0
 
+categories:
+    NSUserActivity: {}
+    CLPlacemark:
+        methods:
+            '+placemarkWithLocation:name:postalAddress:':
+                name: getPlacemark
 classes:
     INAccountTypeResolutionResult: {} #since 11.0
     INActivateCarSignalIntent: #since 10.3

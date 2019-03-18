@@ -22,5 +22,7 @@ extern jboolean rvmRestoreThreadSignalMask(Env* env);
 extern jboolean rvmInstallChainingSignals(Env* env);
 extern jboolean rvmReinstallSavedSignals(Env* env, void* state);
 extern void* rvmSaveSignals(Env* env);
+extern jboolean rvmReinstallSavedMachPorts(Env* env, void* state);
+extern void* rvmSaveMachPorts(Env* env);
 
 #endif

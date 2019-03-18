@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:")
     public SKWarpGeometryGrid(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     @Method(selector = "initWithColumns:rows:sourcePositions:destPositions:")
-    public SKWarpGeometryGrid(@MachineSizedSInt long cols, @MachineSizedSInt long rows, VectorFloat2.VectorFloat2Ptr sourcePositions, VectorFloat2.VectorFloat2Ptr destPositions) { super((SkipInit) null); initObject(init(cols, rows, sourcePositions, destPositions)); }
+    public SKWarpGeometryGrid(@MachineSizedSInt long cols, @MachineSizedSInt long rows, VectorFloat2 sourcePositions, VectorFloat2 destPositions) { super((SkipInit) null); initObject(init(cols, rows, sourcePositions, destPositions)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "numberOfColumns")
@@ -74,20 +74,20 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "initWithColumns:rows:sourcePositions:destPositions:")
-    protected native @Pointer long init(@MachineSizedSInt long cols, @MachineSizedSInt long rows, VectorFloat2.VectorFloat2Ptr sourcePositions, VectorFloat2.VectorFloat2Ptr destPositions);
+    protected native @Pointer long init(@MachineSizedSInt long cols, @MachineSizedSInt long rows, VectorFloat2 sourcePositions, VectorFloat2 destPositions);
     @Method(selector = "sourcePositionAtIndex:")
     public native @ByVal VectorFloat2 sourcePositionAtIndex(@MachineSizedSInt long index);
     @Method(selector = "destPositionAtIndex:")
     public native @ByVal VectorFloat2 destPositionAtIndex(@MachineSizedSInt long index);
     @Method(selector = "gridByReplacingSourcePositions:")
-    public native SKWarpGeometryGrid gridByReplacingSourcePositions(VectorFloat2.VectorFloat2Ptr sourcePositions);
+    public native SKWarpGeometryGrid gridByReplacingSourcePositions(VectorFloat2 sourcePositions);
     @Method(selector = "gridByReplacingDestPositions:")
-    public native SKWarpGeometryGrid gridByReplacingDestPositions(VectorFloat2.VectorFloat2Ptr destPositions);
+    public native SKWarpGeometryGrid gridByReplacingDestPositions(VectorFloat2 destPositions);
     @Method(selector = "grid")
     public static native SKWarpGeometryGrid create();
     @Method(selector = "gridWithColumns:rows:")
     public static native SKWarpGeometryGrid create(@MachineSizedSInt long cols, @MachineSizedSInt long rows);
     @Method(selector = "gridWithColumns:rows:sourcePositions:destPositions:")
-    public static native SKWarpGeometryGrid create(@MachineSizedSInt long cols, @MachineSizedSInt long rows, VectorFloat2.VectorFloat2Ptr sourcePositions, VectorFloat2.VectorFloat2Ptr destPositions);
+    public static native SKWarpGeometryGrid create(@MachineSizedSInt long cols, @MachineSizedSInt long rows, VectorFloat2 sourcePositions, VectorFloat2 destPositions);
     /*</methods>*/
 }
