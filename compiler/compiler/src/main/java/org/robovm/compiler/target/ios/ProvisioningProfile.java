@@ -194,9 +194,15 @@ public class ProvisioningProfile implements Comparable<ProvisioningProfile> {
         List<ProvisioningProfile> result = new ArrayList<ProvisioningProfile>();
         for (File f : dir.listFiles()) {
             if (f.getName().endsWith(".mobileprovision")) {
-                ProvisioningProfile p = create(f);
-                if (p.expirationDate.after(new Date())) {
-                    result.add(p);
+                try {
+                    // it was wrapped in try-catch instead of just returning null by purpose. With idea to provide information
+                    // about corrupted file to user.
+                    ProvisioningProfile p = create(f);
+                    if (p.expirationDate.after(new Date())) {
+                        result.add(p);
+                    }
+                } catch (Exception ignored) {
+                    // TODO: here we should do something about broken profile -- either create object marked as broken or log error
                 }
             }
         }
