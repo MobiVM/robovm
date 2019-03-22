@@ -27,6 +27,7 @@
 #endif
 #include <errno.h>
 #include "private.h"
+#include <stdbool.h>
 
 #if defined(DARWIN)
 // Darwin doesn't implement sem_init(). Use Mach semaphores instead.
