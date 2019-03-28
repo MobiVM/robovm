@@ -648,6 +648,12 @@ import org.robovm.apple.audiotoolbox.*;
     @Bridge(symbol="CMSampleBufferCreate", optional=true)
     protected static native OSStatus create0(CFAllocator allocator, CMBlockBuffer dataBuffer, boolean dataReady, FunctionPtr makeDataReadyCallback, @Pointer long makeDataReadyRefcon, CMFormatDescription formatDescription, @MachineSizedSInt long numSamples, @MachineSizedSInt long numSampleTimingEntries, CMSampleTimingInfo sampleTimingArray, @MachineSizedSInt long numSampleSizeEntries, MachineSizedUIntPtr sampleSizeArray, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut);
     /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @WeaklyLinked
+    @Bridge(symbol="CMSampleBufferCreateWithMakeDataReadyHandler", optional=true)
+    protected static native OSStatus createWithMakeDataReadyHandler0(CFAllocator allocator, CMBlockBuffer dataBuffer, boolean dataReady, CMFormatDescription formatDescription, @MachineSizedSInt long numSamples, @MachineSizedSInt long numSampleTimingEntries, CMSampleTimingInfo sampleTimingArray, @MachineSizedSInt long numSampleSizeEntries, MachineSizedUIntPtr sampleSizeArray, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut, @Block Block1<CMSampleBuffer, OSStatus> makeDataReadyHandler);
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @WeaklyLinked
@@ -660,6 +666,12 @@ import org.robovm.apple.audiotoolbox.*;
     @Bridge(symbol="CMAudioSampleBufferCreateWithPacketDescriptions", optional=true)
     protected static native OSStatus createAudioSampleBuffer0(CFAllocator allocator, CMBlockBuffer dataBuffer, boolean dataReady, FunctionPtr makeDataReadyCallback, @Pointer long makeDataReadyRefcon, CMFormatDescription formatDescription, @MachineSizedSInt long numSamples, @ByVal CMTime presentationTimeStamp, AudioStreamPacketDescription packetDescriptions, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut);
     /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @WeaklyLinked
+    @Bridge(symbol="CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler", optional=true)
+    protected static native OSStatus createAudioSampleBuffer0(CFAllocator allocator, CMBlockBuffer dataBuffer, boolean dataReady, CMFormatDescription formatDescription, @MachineSizedSInt long numSamples, @ByVal CMTime presentationTimeStamp, AudioStreamPacketDescription packetDescriptions, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut, @Block Block1<CMSampleBuffer, OSStatus> makeDataReadyHandler);
+    /**
      * @since Available in iOS 8.0 and later.
      */
     @WeaklyLinked
@@ -671,6 +683,12 @@ import org.robovm.apple.audiotoolbox.*;
     @WeaklyLinked
     @Bridge(symbol="CMSampleBufferCreateForImageBuffer", optional=true)
     protected static native OSStatus createForImageBuffer0(CFAllocator allocator, CVImageBuffer imageBuffer, boolean dataReady, FunctionPtr makeDataReadyCallback, @Pointer long makeDataReadyRefcon, CMVideoFormatDescription formatDescription, CMSampleTimingInfo sampleTiming, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut);
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @WeaklyLinked
+    @Bridge(symbol="CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler", optional=true)
+    protected static native OSStatus createForImageBufferWithMakeDataReadyHandler0(CFAllocator allocator, CVImageBuffer imageBuffer, boolean dataReady, CMVideoFormatDescription formatDescription, CMSampleTimingInfo sampleTiming, CMSampleBuffer.CMSampleBufferPtr sampleBufferOut, @Block Block1<CMSampleBuffer, OSStatus> makeDataReadyHandler);
     /**
      * @since Available in iOS 8.0 and later.
      */

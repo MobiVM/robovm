@@ -304,6 +304,11 @@ import org.robovm.apple.audiotoolbox.*;
     @Bridge(symbol="CMBufferQueueCreate", optional=true)
     protected static native OSStatus create0(CFAllocator allocator, @MachineSizedSInt long capacity, CMBufferCallbacksStruct callbacks, CMBufferQueue.CMBufferQueuePtr queueOut);
     /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @Bridge(symbol="CMBufferQueueCreateWithHandlers", optional=true)
+    public static native OSStatus createWithHandlers(CFAllocator allocator, @MachineSizedSInt long capacity, CMBufferHandlers handlers, CMBufferQueue.CMBufferQueuePtr queueOut);
+    /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMBufferQueueGetTypeID", optional=true)
@@ -414,6 +419,16 @@ import org.robovm.apple.audiotoolbox.*;
     @Bridge(symbol="CMBufferQueueInstallTriggerWithIntegerThreshold", optional=true)
     protected native OSStatus installTrigger0(FunctionPtr callback, @Pointer long refcon, CMBufferQueueTriggerCondition condition, @MachineSizedSInt long threshold, CMBufferQueueTriggerToken.CMBufferQueueTriggerTokenPtr triggerTokenOut);
     /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @Bridge(symbol="CMBufferQueueInstallTriggerHandler", optional=true)
+    protected native OSStatus installTrigger0(CMBufferQueueTriggerCondition condition, @ByVal CMTime time, CMBufferQueueTriggerToken.CMBufferQueueTriggerTokenPtr triggerTokenOut, @Block VoidBlock1<CMBufferQueueTriggerToken> handler);
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @Bridge(symbol="CMBufferQueueInstallTriggerHandlerWithIntegerThreshold", optional=true)
+    protected native OSStatus installTrigger0(CMBufferQueueTriggerCondition condition, @MachineSizedSInt long threshold, CMBufferQueueTriggerToken.CMBufferQueueTriggerTokenPtr triggerTokenOut, @Block VoidBlock1<CMBufferQueueTriggerToken> handler);
+    /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMBufferQueueRemoveTrigger", optional=true)
@@ -433,5 +448,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Bridge(symbol="CMBufferQueueSetValidationCallback", optional=true)
     protected native OSStatus setValidationCallback0(FunctionPtr callback, @Pointer long refcon);
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @Bridge(symbol="CMBufferQueueSetValidationHandler", optional=true)
+    public native OSStatus setValidationHandler(@Block Block2<CMBufferQueue, CFType, OSStatus> handler);
     /*</methods>*/
 }

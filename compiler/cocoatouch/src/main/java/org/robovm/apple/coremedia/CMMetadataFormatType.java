@@ -44,7 +44,8 @@ public enum /*<name>*/CMMetadataFormatType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     ICY(1768126752L),
     ID3(1768174368L),
-    Boxed(1835360888L);
+    Boxed(1835360888L),
+    EMSG(1701671783L);
     /*</values>*/
 
     /*<bind>*/
