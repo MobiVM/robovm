@@ -10,7 +10,8 @@ typedefs:
     
 enums:
     GCControllerPlayerIndex: {}
-        
+    GCExtendedGamepadSnapshotDataVersion: {}
+    GCMicroGamepadSnapshotDataVersion: {}
 classes:
     # Structs
     GCAcceleration: {}
@@ -18,6 +19,8 @@ classes:
     GCRotationRate: {}
     GCQuaternion: {}
     GCMicroGamepadSnapShotDataV100: {}
+    GCExtendedGamepadSnapshotData: {}
+    GCMicroGamepadSnapshotData: {}
 
     GCController: # DONE
         methods:
@@ -95,6 +98,14 @@ functions:
         class: GCMicroGamepadSnapShotDataV100
         name: getData
 
+    GCExtendedGamepadSnapshotDataFromNSData:
+        class: GCExtendedGamepadSnapshot
+        name: getDataFromNSData
+
+    GCMicroGamepadSnapshotDataFromNSData:
+        class: GCMicroGamepadSnapshot
+        name: getDataFromNSData
+
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?GC.*):
         class: GameController
@@ -105,6 +116,16 @@ values:
         class: GCController
         name: '#{g[0]}'
         type: NSString
+
+
+    GCCurrentExtendedGamepadSnapshotDataVersion:
+        class: GCExtendedGamepadSnapshot
+        name: getDataVersion
+
+    GCCurrentMicroGamepadSnapshotDataVersion:
+        class: GCMicroGamepadSnapshot
+        name: getDataVersion
+
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?GC.*):

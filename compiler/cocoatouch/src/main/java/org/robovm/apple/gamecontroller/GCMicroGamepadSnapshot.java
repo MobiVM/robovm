@@ -62,6 +62,15 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @GlobalValue(symbol="GCCurrentMicroGamepadSnapshotDataVersion", optional=true)
+    public static native GCMicroGamepadSnapshotDataVersion getDataVersion();
+    
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Bridge(symbol="GCMicroGamepadSnapshotDataFromNSData", optional=true)
+    public static native boolean getDataFromNSData(GCMicroGamepadSnapshotData snapshotData, NSData data);
+    
     @Method(selector = "initWithSnapshotData:")
     protected native @Pointer long init(NSData data);
     @Method(selector = "initWithController:snapshotData:")
