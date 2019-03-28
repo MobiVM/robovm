@@ -32,37 +32,25 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.3 and later.
+ * @since Available in iOS 12.2 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/CLSBinaryValueType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    TrueFalse(0L),
-    PassFail(1L),
-    YesNo(2L),
-    /**
-     * @since Available in iOS 12.2 and later.
-     */
-    CorrectIncorrect(3L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/CLSContextProvider/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/CLSBinaryValueType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/CLSBinaryValueType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CLSBinaryValueType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CLSBinaryValueType/*</name>*/.class.getName());
-    }
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<methods>*/
+    @Method(selector = "updateDescendantsOfContext:completion:")
+    void updateDescendantsOfContext(CLSContext context, @Block VoidBlock1<NSError> completion);
+    /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }
