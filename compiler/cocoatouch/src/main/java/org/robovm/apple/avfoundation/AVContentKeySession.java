@@ -93,6 +93,16 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "makeSecureTokenForExpirationDateOfPersistableContentKey:completionHandler:")
     public native void makeSecureTokenForExpirationDateOfPersistableContentKey(NSData persistableContentKeyData, @Block VoidBlock2<NSData, NSError> handler);
     /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @Method(selector = "invalidatePersistableContentKey:options:completionHandler:")
+    public native void invalidatePersistableContentKey(NSData persistableContentKeyData, NSDictionary<NSString, ?> options, @Block VoidBlock2<NSData, NSError> handler);
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @Method(selector = "invalidateAllPersistableContentKeysForApp:options:completionHandler:")
+    public native void invalidateAllPersistableContentKeys(NSData appIdentifier, NSDictionary<NSString, ?> options, @Block VoidBlock2<NSData, NSError> handler);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "contentKeySessionWithKeySystem:")

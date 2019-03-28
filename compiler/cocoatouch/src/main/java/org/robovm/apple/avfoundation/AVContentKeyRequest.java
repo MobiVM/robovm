@@ -67,6 +67,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSObject getIdentifier();
     @Property(selector = "initializationData")
     public native NSData getInitializationData();
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @Property(selector = "options")
+    public native NSDictionary<NSString, ?> getOptions();
     @Property(selector = "canProvidePersistableContentKey")
     public native boolean canProvidePersistableContentKey();
     @Property(selector = "renewsExpiringResponseData")
