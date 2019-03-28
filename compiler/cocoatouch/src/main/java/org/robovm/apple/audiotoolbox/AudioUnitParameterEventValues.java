@@ -39,36 +39,27 @@ import org.robovm.apple.uikit.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AudioUnitParameterEvent/*</name>*/ 
-    extends /*<extends>*/Struct<AudioUnitParameterEvent>/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AudioUnitParameterEventValues/*</name>*/ 
+    extends /*<extends>*/Struct<AudioUnitParameterEventValues>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class AudioUnitParameterEventPtr extends Ptr<AudioUnitParameterEvent, AudioUnitParameterEventPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class AudioUnitParameterEventValuesPtr extends Ptr<AudioUnitParameterEventValues, AudioUnitParameterEventValuesPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AudioUnitParameterEvent() {}
-    public AudioUnitParameterEvent(int scope, int element, int parameter, AUParameterEventType eventType, AudioUnitParameterEventValues eventValues) {
-        this.setScope(scope);
-        this.setElement(element);
-        this.setParameter(parameter);
-        this.setEventType(eventType);
-        this.setEventValues(eventValues);
+    public AudioUnitParameterEventValues() {}
+    public AudioUnitParameterEventValues(AudioUnitParameterEventValuesRamp ramp, AudioUnitParameterEventValuesImmediate immediate) {
+        this.setRamp(ramp);
+        this.setImmediate(immediate);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native int getScope();
-    @StructMember(0) public native AudioUnitParameterEvent setScope(int scope);
-    @StructMember(1) public native int getElement();
-    @StructMember(1) public native AudioUnitParameterEvent setElement(int element);
-    @StructMember(2) public native int getParameter();
-    @StructMember(2) public native AudioUnitParameterEvent setParameter(int parameter);
-    @StructMember(3) public native AUParameterEventType getEventType();
-    @StructMember(3) public native AudioUnitParameterEvent setEventType(AUParameterEventType eventType);
-    @StructMember(4) public native @ByVal AudioUnitParameterEventValues getEventValues();
-    @StructMember(4) public native AudioUnitParameterEvent setEventValues(@ByVal AudioUnitParameterEventValues eventValues);
+    @StructMember(0) public native @ByVal AudioUnitParameterEventValuesRamp getRamp();
+    @StructMember(0) public native AudioUnitParameterEventValues setRamp(@ByVal AudioUnitParameterEventValuesRamp ramp);
+    @StructMember(0) public native @ByVal AudioUnitParameterEventValuesImmediate getImmediate();
+    @StructMember(0) public native AudioUnitParameterEventValues setImmediate(@ByVal AudioUnitParameterEventValuesImmediate immediate);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

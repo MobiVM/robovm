@@ -39,36 +39,27 @@ import org.robovm.apple.uikit.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AudioUnitParameterEvent/*</name>*/ 
-    extends /*<extends>*/Struct<AudioUnitParameterEvent>/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AudioUnitParameterEventValuesImmediate/*</name>*/ 
+    extends /*<extends>*/Struct<AudioUnitParameterEventValuesImmediate>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class AudioUnitParameterEventPtr extends Ptr<AudioUnitParameterEvent, AudioUnitParameterEventPtr> {}/*</ptr>*/
+    /*<ptr>*/public static class AudioUnitParameterEventValuesImmediatePtr extends Ptr<AudioUnitParameterEventValuesImmediate, AudioUnitParameterEventValuesImmediatePtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AudioUnitParameterEvent() {}
-    public AudioUnitParameterEvent(int scope, int element, int parameter, AUParameterEventType eventType, AudioUnitParameterEventValues eventValues) {
-        this.setScope(scope);
-        this.setElement(element);
-        this.setParameter(parameter);
-        this.setEventType(eventType);
-        this.setEventValues(eventValues);
+    public AudioUnitParameterEventValuesImmediate() {}
+    public AudioUnitParameterEventValuesImmediate(int bufferOffset, float value) {
+        this.setBufferOffset(bufferOffset);
+        this.setValue(value);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native int getScope();
-    @StructMember(0) public native AudioUnitParameterEvent setScope(int scope);
-    @StructMember(1) public native int getElement();
-    @StructMember(1) public native AudioUnitParameterEvent setElement(int element);
-    @StructMember(2) public native int getParameter();
-    @StructMember(2) public native AudioUnitParameterEvent setParameter(int parameter);
-    @StructMember(3) public native AUParameterEventType getEventType();
-    @StructMember(3) public native AudioUnitParameterEvent setEventType(AUParameterEventType eventType);
-    @StructMember(4) public native @ByVal AudioUnitParameterEventValues getEventValues();
-    @StructMember(4) public native AudioUnitParameterEvent setEventValues(@ByVal AudioUnitParameterEventValues eventValues);
+    @StructMember(0) public native int getBufferOffset();
+    @StructMember(0) public native AudioUnitParameterEventValuesImmediate setBufferOffset(int bufferOffset);
+    @StructMember(1) public native float getValue();
+    @StructMember(1) public native AudioUnitParameterEventValuesImmediate setValue(float value);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,21 +15,51 @@
  */
 package org.robovm.apple.audiotoolbox;
 
-import org.robovm.rt.bro.Struct;
-import org.robovm.rt.bro.annotation.ByVal;
-import org.robovm.rt.bro.annotation.StructMember;
+/*<imports>*/
+import java.io.*;
+import java.nio.*;
+import java.util.*;
+import org.robovm.objc.*;
+import org.robovm.objc.annotation.*;
+import org.robovm.objc.block.*;
+import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
+import org.robovm.rt.bro.*;
+import org.robovm.rt.bro.annotation.*;
+import org.robovm.rt.bro.ptr.*;
+import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
+import org.robovm.apple.coreaudio.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.uikit.*;
+/*</imports>*/
 
-public class AUNodeInteractionInfo extends Struct<AUNodeInteractionInfo> {
+/*<javadoc>*/
 
+/*</javadoc>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AUNodeInteractionInfo/*</name>*/ 
+    extends /*<extends>*/Struct<AUNodeInteractionInfo>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
+
+    /*<ptr>*/public static class AUNodeInteractionInfoPtr extends Ptr<AUNodeInteractionInfo, AUNodeInteractionInfoPtr> {}/*</ptr>*/
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<constructors>*/
     public AUNodeInteractionInfo() {}
     public AUNodeInteractionInfo(AUNodeConnection connection, AUNodeRenderCallback inputCallback) {
         this.setConnection(connection);
         this.setInputCallback(inputCallback);
     }
-    
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
     @StructMember(0) public native @ByVal AUNodeConnection getConnection();
     @StructMember(0) public native AUNodeInteractionInfo setConnection(@ByVal AUNodeConnection connection);
-    
     @StructMember(0) public native @ByVal AUNodeRenderCallback getInputCallback();
     @StructMember(0) public native AUNodeInteractionInfo setInputCallback(@ByVal AUNodeRenderCallback inputCallback);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }
