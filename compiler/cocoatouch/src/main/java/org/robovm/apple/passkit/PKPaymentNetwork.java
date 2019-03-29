@@ -126,6 +126,7 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 12.0 and later.
      */
     public static final PKPaymentNetwork Electron = new PKPaymentNetwork("Electron");
+    public static final PKPaymentNetwork Elo = new PKPaymentNetwork("Elo");
     /**
      * @since Available in iOS 10.3 and later.
      */
@@ -138,6 +139,7 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 10.1 and later.
      */
     public static final PKPaymentNetwork JCB = new PKPaymentNetwork("JCB");
+    public static final PKPaymentNetwork Mada = new PKPaymentNetwork("Mada");
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -168,7 +170,7 @@ import org.robovm.apple.contacts.*;
     public static final PKPaymentNetwork VPay = new PKPaymentNetwork("VPay");
     /*</constants>*/
     
-    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Discover, Eftpos, Electron, IDCredit, Interac, JCB, Maestro, MasterCard, PrivateLabel, QuicPay, Suica, Visa, VPay/*</value_list>*/};
+    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Discover, Eftpos, Electron, Elo, IDCredit, Interac, JCB, Mada, Maestro, MasterCard, PrivateLabel, QuicPay, Suica, Visa, VPay/*</value_list>*/};
     
     /*<name>*/PKPaymentNetwork/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -235,6 +237,8 @@ import org.robovm.apple.contacts.*;
          */
         @GlobalValue(symbol="PKPaymentNetworkElectron", optional=true)
         public static native NSString Electron();
+        @GlobalValue(symbol="PKPaymentNetworkElo", optional=true)
+        public static native NSString Elo();
         /**
          * @since Available in iOS 10.3 and later.
          */
@@ -250,6 +254,8 @@ import org.robovm.apple.contacts.*;
          */
         @GlobalValue(symbol="PKPaymentNetworkJCB", optional=true)
         public static native NSString JCB();
+        @GlobalValue(symbol="PKPaymentNetworkMada", optional=true)
+        public static native NSString Mada();
         /**
          * @since Available in iOS 12.0 and later.
          */

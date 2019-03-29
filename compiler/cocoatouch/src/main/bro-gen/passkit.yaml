@@ -30,6 +30,7 @@ enums:
     PKAutomaticPassPresentationSuppressionResult: {}
     PKPaymentErrorCode: {nserror: true, prefix: PKPayment} #since 11.0
     PKAddPaymentPassStyle: {} #since 12.0
+    PKDisbursementRequestSchedule: {}
 
 classes:
     PKPassKitError:
@@ -197,6 +198,14 @@ classes:
             '-initWithPaymentSummaryItems:':
                 name: init
     PKTransitPassProperties: {} #since 11.3
+    PKDisbursementAuthorizationController:
+        methods:
+            '-initWithDisbursementRequest:delegate:':
+                name: init
+            '-authorizeDisbursementWithCompletion:':
+                name: authorizeDisbursement
+    PKDisbursementRequest: {}
+    PKDisbursementVoucher: {}
 
 protocols:
     PKPaymentAuthorizationControllerDelegate:
@@ -273,7 +282,12 @@ protocols:
                 name: didSelectShippingContact
             '-paymentAuthorizationViewController:didSelectPaymentMethod:handler:':
                 name: didSelectPaymentMethod
-
+    PKDisbursementAuthorizationControllerDelegate:
+        methods:
+            '-disbursementAuthorizationController:didAuthorizeWithDisbursementVoucher:':
+                name: didAuthorize
+            '-disbursementAuthorizationControllerDidFinish:':
+                name: didFinish
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (PK.*):
