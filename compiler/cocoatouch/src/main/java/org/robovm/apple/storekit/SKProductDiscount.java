@@ -61,6 +61,11 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "priceLocale")
     public native NSLocale getPriceLocale();
     /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @Property(selector = "identifier")
+    public native String getIdentifier();
+    /**
      * @since Available in iOS 11.2 and later.
      */
     @Property(selector = "subscriptionPeriod")
@@ -75,6 +80,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "paymentMode")
     public native SKProductDiscountPaymentMode getPaymentMode();
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @Property(selector = "type")
+    public native SKProductDiscountType getType();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

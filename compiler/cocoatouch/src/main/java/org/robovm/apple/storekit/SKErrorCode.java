@@ -58,7 +58,31 @@ public enum /*<name>*/SKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 10.3 and later.
      */
-    CloudServiceRevoked(8L);
+    CloudServiceRevoked(8L),
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    PrivacyAcknowledgementRequired(9L),
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    UnauthorizedRequestData(10L),
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    InvalidOfferIdentifier(11L),
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    InvalidSignature(12L),
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    MissingOfferParams(13L),
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    InvalidOfferPrice(14L);
     /*</values>*/
 
     /*<bind>*/

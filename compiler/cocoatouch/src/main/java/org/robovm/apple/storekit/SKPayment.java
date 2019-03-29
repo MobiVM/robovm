@@ -80,6 +80,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "simulatesAskToBuyInSandbox")
     public native boolean simulatesAskToBuyInSandbox();
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @Property(selector = "paymentDiscount")
+    public native SKPaymentDiscount getPaymentDiscount();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
