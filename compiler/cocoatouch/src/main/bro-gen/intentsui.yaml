@@ -15,7 +15,9 @@ enums:
     INUIHostedViewContext: {} #since 10.0
     INUIInteractiveBehavior: {} #since 11.0
 
-categories: {}
+categories:
+    INImage: {}
+    NSExtensionContext: {}
 
 classes:
     INUIAddVoiceShortcutButton: #since 12.0
@@ -71,5 +73,4 @@ values:
 constants:
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (IN.*):
-        class: Intents
         class: FIXME!!!
