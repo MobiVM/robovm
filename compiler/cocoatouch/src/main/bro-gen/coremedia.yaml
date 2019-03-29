@@ -148,6 +148,7 @@ classes:
         add_ptr: true
     CMTimeRange: {}
     CMTimeMapping: {}
+    CMBufferHandlers: {}
 
 protocols: {}
 
