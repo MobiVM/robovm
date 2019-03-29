@@ -143,6 +143,18 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    # excluding bellow as these are part of generated enum
+    UNNotificationActionOptionNone:
+        exclude: true
+    UNAuthorizationOptionNone:
+        exclude: true
+    UNNotificationPresentationOptionNone:
+        exclude: true
+    UNNotificationCategoryOptionNone:
+        exclude: true
+
+
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?UN.*):
         class: UserNotifications
