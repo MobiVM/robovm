@@ -230,6 +230,10 @@ void* rvmSaveSignals(Env* env) {
         rvmThrowOutOfMemoryError(env);
         return NULL;
     }
+
+    // actually save
+    sigaction(BLOCKED_THREAD_SIGNAL, NULL, &state->blockedThreadSignal);
+
     return state;
 }
 
