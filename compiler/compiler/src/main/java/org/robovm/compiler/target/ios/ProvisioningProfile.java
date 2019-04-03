@@ -27,6 +27,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bouncycastle.cms.CMSSignedData;
+import org.xml.sax.SAXParseException;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -177,7 +178,13 @@ public class ProvisioningProfile implements Comparable<ProvisioningProfile> {
             in = new BufferedInputStream(new FileInputStream(file));
             CMSSignedData data = new CMSSignedData(in);
             byte[] content = (byte[]) data.getSignedContent().getContent();
-            NSDictionary dict = (NSDictionary) PropertyListParser.parse(content);
+            NSDictionary dict;
+            try {
+                dict = (NSDictionary) PropertyListParser.parse(content);
+            } catch (SAXParseException ignored) {
+                // try to parse it by dropping restricted characters
+                dict = (NSDictionary) PropertyListParser.parse(fixInvalidXmlChars(content));
+            }
             return new ProvisioningProfile(file, dict);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -194,9 +201,15 @@ public class ProvisioningProfile implements Comparable<ProvisioningProfile> {
         List<ProvisioningProfile> result = new ArrayList<ProvisioningProfile>();
         for (File f : dir.listFiles()) {
             if (f.getName().endsWith(".mobileprovision")) {
-                ProvisioningProfile p = create(f);
-                if (p.expirationDate.after(new Date())) {
-                    result.add(p);
+                try {
+                    // it was wrapped in try-catch instead of just returning null by purpose. With idea to provide information
+                    // about corrupted file to user.
+                    ProvisioningProfile p = create(f);
+                    if (p.expirationDate.after(new Date())) {
+                        result.add(p);
+                    }
+                } catch (Exception ignored) {
+                    // TODO: here we should do something about broken profile -- either create object marked as broken or log error
                 }
             }
         }
@@ -274,6 +287,27 @@ public class ProvisioningProfile implements Comparable<ProvisioningProfile> {
         }
 
         throw new Error("Shell never happen");
+    }
+
+    private static byte[] fixInvalidXmlChars(byte[] content) {
+        // this supposed to fix invalid characters that sometimes are found in xml extracted from plist.
+        // apple's parser handles them without issue but PropertyListParser will fails with SAXParserException
+        // as XML is broken, check https://www.w3.org/TR/xml11/#NT-Char for restricted char list
+        boolean broken = false;
+        String str = new String(content);
+        StringBuilder sb = new StringBuilder();
+        for (char c : str.toCharArray()) {
+            if (c >= 0x01 && c <= 0x8 || c == 0x0b || c == 0x0c || c >= 0x0e && c <= 0x1f || c >= 0x7f && c <=0x84 || c >= 0x86 && c <= 0x9f) {
+                broken = true;
+            } else {
+                sb.append(c);
+            }
+        }
+
+        if (broken)
+            return sb.toString().getBytes();
+        else
+            return content;
     }
 
     @Override
