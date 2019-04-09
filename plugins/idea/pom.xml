@@ -82,7 +82,59 @@
                             </dependency>
                         </dependencies>
                     </plugin>
-                </plugins>
+                    <plugin>
+                    <groupId>com.googlecode.addjars-maven-plugin</groupId>
+                    <artifactId>addjars-maven-plugin</artifactId>
+                    <version>1.0.5</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>add-jars</goal>
+                            </goals>
+                            <configuration>
+                                <resources>
+                                    <resource>
+                                        <directory>${idea.home}/plugins/gradle/lib</directory>
+                                        <includes>
+                                            <include>gradle.jar</include>
+                                            <include>gradle-common.jar</include>
+                                            <include>gradle-java.jar</include>
+                                        </includes>
+                                    </resource>
+                                    <resource>
+                                        <directory>${idea.home}/plugins/maven/lib</directory>
+                                        <includes>
+                                            <include>maven.jar</include>
+                                        </includes>
+                                    </resource>
+                                    <resource>
+                                        <directory>${idea.home}/plugins/android/lib</directory>
+                                        <includes>
+                                            <include>android.jar</include>
+                                            <include>android-common.jar</include>
+                                            <include>sdklib*.jar</include>
+                                            <include>layoutlib-api*.jar</include>
+                                        </includes>
+                                    </resource>
+                                    <resource>
+                                        <directory>${idea.home}/lib/ant/lib</directory>
+                                        <includes>
+                                            <include>ant.jar</include>
+                                        </includes>
+                                    </resource>
+                                    <resource>
+                                        <directory>${idea.home}/lib</directory>
+                                        <includes>
+                                            <include>slf4j-api-*.jar</include>
+                                            <include>slf4j-log4j12-*.jar</include>
+                                        </includes>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
             </build>
             <dependencies>
                 <dependency>
@@ -118,83 +170,6 @@
                             <artifactId>slf4j-api</artifactId>
                         </exclusion>
                     </exclusions>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>gradle</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/gradle/lib/gradle.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>gradle-common</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/gradle/lib/gradle-common.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>gradle-java</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/gradle/lib/gradle-java.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>maven</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/maven/lib/maven.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>android</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/android.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>android-common</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/android-common.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>android-sdklib</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/sdklib.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>android-layoutlib-api</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/layoutlib-api.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>ant</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/lib/ant/lib/ant.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>slf4j-idea-api</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/lib/slf4j-api-1.7.25.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>slf4j-idea-log4j12</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/lib/slf4j-log4j12-1.7.25.jar</systemPath>
                 </dependency>
             </dependencies>
         </profile>
