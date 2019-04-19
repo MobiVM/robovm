@@ -334,5 +334,7 @@ import org.robovm.apple.dispatch.*;
      */
     @Bridge(symbol="SecTrustSetOCSPResponse", optional=true)
     protected native OSStatus setOCSPResponse0(CFType responseData);
+    @Bridge(symbol="SecTrustSetSignedCertificateTimestamps", optional=true)
+    public native OSStatus setSignedCertificateTimestamps(NSArray<?> sctArray);
     /*</methods>*/
 }

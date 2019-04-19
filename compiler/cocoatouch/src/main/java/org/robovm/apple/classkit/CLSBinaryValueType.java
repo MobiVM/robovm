@@ -40,7 +40,11 @@ public enum /*<name>*/CLSBinaryValueType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     TrueFalse(0L),
     PassFail(1L),
-    YesNo(2L);
+    YesNo(2L),
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    CorrectIncorrect(3L);
     /*</values>*/
 
     /*<bind>*/

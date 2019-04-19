@@ -52,7 +52,10 @@ protocols:
         methods:
             '-createContextForIdentifier:parentContext:parentIdentifierPath:':
                 name: createContext
-
+    CLSContextProvider: #since 12.2
+        methods:
+            '-updateDescendantsOfContext:completion:':
+                name: updateDescendantsOfContext
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CLS.*):

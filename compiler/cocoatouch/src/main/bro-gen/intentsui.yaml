@@ -1,0 +1,76 @@
+package: org.robovm.apple.intentsui
+include: [foundation, intents, coregraphics, uikit]
+library: IntentsUI
+framework: IntentsUI
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/IntentsUI.framework/Headers/IntentsUI.h
+
+typedefs: {}
+
+private_typedefs: {}
+
+enums:
+    INUIAddVoiceShortcutButtonStyle: {} #since 12.0
+    INUIHostedViewContext: {} #since 10.0
+    INUIInteractiveBehavior: {} #since 11.0
+
+categories:
+    INImage: {}
+    NSExtensionContext: {}
+
+classes:
+    INUIAddVoiceShortcutButton: #since 12.0
+        methods:
+            '-initWithStyle:':
+                name: init
+    INUIAddVoiceShortcutViewController: #since 12.0
+        methods:
+            '-initWithShortcut:':
+                name: init
+    INUIEditVoiceShortcutViewController: #since 12.0
+        methods:
+            '-initWithVoiceShortcut:':
+                name: init
+
+protocols:
+    INUIAddVoiceShortcutButtonDelegate: #since 12.0
+        methods:
+            '-presentAddVoiceShortcutViewController:forAddVoiceShortcutButton:':
+                trim_after_first_colon: true
+            '-presentEditVoiceShortcutViewController:forAddVoiceShortcutButton:':
+                trim_after_first_colon: true
+    INUIAddVoiceShortcutViewControllerDelegate: #since 12.0
+        methods:
+            '-addVoiceShortcutViewController:didFinishWithVoiceShortcut:error:':
+                trim_after_first_colon: true
+    INUIEditVoiceShortcutViewControllerDelegate: #since 12.0
+        methods:
+            '-editVoiceShortcutViewController:didUpdateVoiceShortcut:error:':
+                trim_after_first_colon: true
+            '-editVoiceShortcutViewController:didDeleteVoiceShortcutWithIdentifier:':
+                trim_after_first_colon: true
+    INUIHostedViewControlling: #since 10.0
+        methods:
+            '-configureWithInteraction:context:completion:':
+                trim_after_first_colon: true
+            '-configureViewForParameters:ofInteraction:interactiveBehavior:context:completion:':
+                name: configureView
+    INUIHostedViewSiriProviding: {} #since 10.0
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (IN.*):
+        class: FIXME!!!
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (IN.*):
+        class: FIXME!!!
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (IN.*):
+        class: FIXME!!!

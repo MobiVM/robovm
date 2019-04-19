@@ -58,6 +58,10 @@ import org.robovm.apple.mapkit.*;
     public native CPImageSet getSymbolSet();
     @Property(selector = "setSymbolSet:")
     public native void setSymbolSet(CPImageSet v);
+    @Property(selector = "junctionImage")
+    public native UIImage getJunctionImage();
+    @Property(selector = "setJunctionImage:")
+    public native void setJunctionImage(UIImage v);
     @Property(selector = "instructionVariants")
     public native NSArray<NSString> getInstructionVariants();
     @Property(selector = "setInstructionVariants:")

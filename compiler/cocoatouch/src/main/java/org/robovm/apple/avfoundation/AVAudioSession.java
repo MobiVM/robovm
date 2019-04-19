@@ -195,6 +195,11 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "availableInputs")
     public native NSArray<AVAudioSessionPortDescription> getAvailableInputs();
     /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @Property(selector = "promptStyle")
+    public native AVAudioSessionPromptStyle getPromptStyle();
+    /**
      * @since Available in iOS 6.0 and later.
      */
     @Property(selector = "preferredSampleRate")

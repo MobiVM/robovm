@@ -66,6 +66,11 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "saveWithCompletion:")
     public native void save(@Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @Method(selector = "completeAllAssignedActivitiesMatching:")
+    public native void completeAllAssignedActivitiesMatching(NSArray<NSString> contextPath);
     @Method(selector = "contextsMatchingPredicate:completion:")
     public native void getContextsMatchingPredicate(NSPredicate predicate, @Block VoidBlock2<NSArray<CLSContext>, NSError> completion);
     @Method(selector = "contextsMatchingIdentifierPath:completion:")

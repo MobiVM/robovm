@@ -49,7 +49,8 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AURenderEventHeader() {}
-    public AURenderEventHeader(AUEventSampleTime eventSampleTime, AURenderEventType eventType, byte reserved) {
+    public AURenderEventHeader(AURenderEvent next, AUEventSampleTime eventSampleTime, AURenderEventType eventType, byte reserved) {
+        this.setNext(next);
         this.setEventSampleTime(eventSampleTime);
         this.setEventType(eventType);
         this.setReserved(reserved);
@@ -57,6 +58,8 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
+    @StructMember(0) public native AURenderEvent getNext();
+    @StructMember(0) public native AURenderEventHeader setNext(AURenderEvent next);
     @StructMember(1) public native AUEventSampleTime getEventSampleTime();
     @StructMember(1) public native AURenderEventHeader setEventSampleTime(AUEventSampleTime eventSampleTime);
     @StructMember(2) public native AURenderEventType getEventType();

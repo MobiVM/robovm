@@ -49,20 +49,17 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AUNodeInteraction() {}
-    public AUNodeInteraction(AUNodeInteractionType nodeInteractionType) {
-        this.setNodeInteractionType(nodeInteractionType);
-    }
-    /*</constructors>*/
     public AUNodeInteraction(AUNodeInteractionType nodeInteractionType, AUNodeInteractionInfo nodeInteraction) {
         this.setNodeInteractionType(nodeInteractionType);
         this.setNodeInteraction(nodeInteraction);
     }
+    /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
     @StructMember(0) public native AUNodeInteractionType getNodeInteractionType();
     @StructMember(0) public native AUNodeInteraction setNodeInteractionType(AUNodeInteractionType nodeInteractionType);
-    /*</members>*/
     @StructMember(1) public native @ByVal AUNodeInteractionInfo getNodeInteraction();
     @StructMember(1) public native AUNodeInteraction setNodeInteraction(@ByVal AUNodeInteractionInfo nodeInteraction);
+    /*</members>*/
     /*<methods>*//*</methods>*/
 }
