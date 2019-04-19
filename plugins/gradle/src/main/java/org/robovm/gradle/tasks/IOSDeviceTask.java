@@ -33,9 +33,9 @@ public class IOSDeviceTask extends AbstractRoboVMTask {
     @Override
     public void invoke() {
         try {
-            Arch arch = Arch.thumbv7;
-            if (extension.getArch() != null && extension.getArch().equals(Arch.arm64.toString())) {
-                arch = Arch.arm64;
+            Arch arch = Arch.arm64;
+            if (extension.getArch() != null && extension.getArch().equals(Arch.thumbv7.toString())) {
+                arch = Arch.thumbv7;
             }
 
             AppCompiler compiler = build(OS.ios, arch, IOSTarget.TYPE);
