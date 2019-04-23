@@ -241,6 +241,12 @@ classes:
     AURenderEventHeader: {}
     AUSamplerBankPresetData: {}
     AudioUnitParameterEvent: {}
+    AudioUnitParameterEvent$InnerStruct$1:
+        name: AudioUnitParameterEventValues
+    AudioUnitParameterEvent$InnerStruct$2:
+        name: AudioUnitParameterEventValuesRamp
+    AudioUnitParameterEvent$InnerStruct$3:
+        name: AudioUnitParameterEventValuesImmediate
     OpaqueMusicEventIterator: {}
     OpaqueMusicPlayer: {}
     OpaqueMusicSequence: {}
@@ -430,6 +436,8 @@ classes:
     AUNodeInteraction: # DONE
         nodeInteractionType:
             type: AUNodeInteractionType
+    AUNodeInteraction$InnerStruct$1:
+        name: AUNodeInteractionInfo
     AUPresetEvent: # DONE
         scope:
             type: AUScope
@@ -700,7 +708,6 @@ classes:
         componentFlags:
             type: AudioComponentFlags
     AudioComponentPlugInInterface: {}
-   # AudioUnitParameterEvent: {} TODO union
     AudioUnitParameter: # DONE
         mAudioUnit:
             name: audioUnit

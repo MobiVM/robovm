@@ -764,6 +764,10 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    MKFeatureDisplayPriority(.*):
+        class: MKFeatureDisplayPriority
+        name: '#{g[0]}'
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?MK.*):
         class: MapKit

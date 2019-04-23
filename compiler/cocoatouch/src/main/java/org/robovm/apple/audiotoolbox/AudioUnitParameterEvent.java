@@ -49,11 +49,12 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AudioUnitParameterEvent() {}
-    public AudioUnitParameterEvent(int scope, int element, int parameter, AUParameterEventType eventType) {
+    public AudioUnitParameterEvent(int scope, int element, int parameter, AUParameterEventType eventType, AudioUnitParameterEventValues eventValues) {
         this.setScope(scope);
         this.setElement(element);
         this.setParameter(parameter);
         this.setEventType(eventType);
+        this.setEventValues(eventValues);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
@@ -66,6 +67,8 @@ import org.robovm.apple.uikit.*;
     @StructMember(2) public native AudioUnitParameterEvent setParameter(int parameter);
     @StructMember(3) public native AUParameterEventType getEventType();
     @StructMember(3) public native AudioUnitParameterEvent setEventType(AUParameterEventType eventType);
+    @StructMember(4) public native @ByVal AudioUnitParameterEventValues getEventValues();
+    @StructMember(4) public native AudioUnitParameterEvent setEventValues(@ByVal AudioUnitParameterEventValues eventValues);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

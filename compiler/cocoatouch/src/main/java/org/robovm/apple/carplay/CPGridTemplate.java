@@ -66,6 +66,10 @@ import org.robovm.apple.mapkit.*;
     public native NSArray<CPBarButton> getTrailingNavigationBarButtons();
     @Property(selector = "setTrailingNavigationBarButtons:")
     public native void setTrailingNavigationBarButtons(NSArray<CPBarButton> v);
+    @Property(selector = "backButton")
+    public native CPBarButton getBackButton();
+    @Property(selector = "setBackButton:")
+    public native void setBackButton(CPBarButton v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

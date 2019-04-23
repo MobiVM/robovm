@@ -49,7 +49,8 @@ import org.robovm.apple.uikit.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AUMIDIEvent() {}
-    public AUMIDIEvent(AUEventSampleTime eventSampleTime, AURenderEventType eventType, byte reserved, short length, byte cable, ByteBuffer data) {
+    public AUMIDIEvent(AURenderEvent next, AUEventSampleTime eventSampleTime, AURenderEventType eventType, byte reserved, short length, byte cable, ByteBuffer data) {
+        this.setNext(next);
         this.setEventSampleTime(eventSampleTime);
         this.setEventType(eventType);
         this.setReserved(reserved);
@@ -60,6 +61,8 @@ import org.robovm.apple.uikit.*;
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
+    @StructMember(0) public native AURenderEvent getNext();
+    @StructMember(0) public native AUMIDIEvent setNext(AURenderEvent next);
     @StructMember(1) public native AUEventSampleTime getEventSampleTime();
     @StructMember(1) public native AUMIDIEvent setEventSampleTime(AUEventSampleTime eventSampleTime);
     @StructMember(2) public native AURenderEventType getEventType();

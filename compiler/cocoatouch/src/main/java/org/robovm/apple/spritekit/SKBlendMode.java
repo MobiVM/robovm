@@ -53,7 +53,8 @@ public enum /*<name>*/SKBlendMode/*</name>*/ implements ValuedEnum {
     Multiply(3L),
     MultiplyX2(4L),
     Screen(5L),
-    Replace(6L);
+    Replace(6L),
+    MultiplyAlpha(7L);
     /*</values>*/
 
     /*<bind>*/

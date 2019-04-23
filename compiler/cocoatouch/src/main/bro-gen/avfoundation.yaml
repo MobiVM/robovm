@@ -88,6 +88,7 @@ enums:
     AVPlayerHDRMode: {} #since 11.2
     AVCaptureSystemPressureFactors: {prefix: AVCaptureSystemPressureFactor} #since 11.1
     AVAudioSessionActivationOptions: {prefix: AVAudioSessionActivationOption}
+    AVAudioSessionPromptStyle: {}
 
 typed_enums:
     AVAssetDownloadedAssetEvictionPriority:
@@ -2489,6 +2490,10 @@ classes:
                 trim_after_first_colon: true
             '-makeSecureTokenForExpirationDateOfPersistableContentKey:completionHandler:':
                 trim_after_first_colon: true
+            '-invalidatePersistableContentKey:options:completionHandler:':
+                name: invalidatePersistableContentKey
+            '-invalidateAllPersistableContentKeysForApp:options:completionHandler:':
+                name: invalidateAllPersistableContentKeys
     AVPersistableContentKeyRequest:
         methods:
             '-persistableContentKeyFromKeyVendorResponse:options:error:':

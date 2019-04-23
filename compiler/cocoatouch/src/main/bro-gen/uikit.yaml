@@ -223,8 +223,10 @@ enums:
     UIDocumentBrowserUserInterfaceStyle: {} #since 11.0
     UIDocumentBrowserActionAvailability: {} #since 11.0
     UIPencilPreferredAction: {} #since 12.1
+    UIGuidedAccessAccessibilityFeature: {} #since 12.2
 
     UIDocumentBrowserErrorCode: {nserror: true, prefix: UIDocumentBrowserError}
+    UIGuidedAccessErrorCode: {nserror: true, prefix: UIGuidedAccessError} #since 12.2
 
 categories:
     CIColor: # DONE
@@ -5356,6 +5358,10 @@ functions:
         name: '#{g[0]}'
         class: UIContentSizeCategory
 
+    UIGuidedAccessConfigureAccessibilityFeatures:
+        class: UIGuidedAccess
+        name: configureAccessibilityFeatures
+
     # Make sure we don't miss any functions if new ones are introduced in a later UIKit
     (CG.*):
         name: 'Function__#{g[0]}'
@@ -6029,6 +6035,10 @@ values:
     UIAccessibility(.*):
         class: UIAccessibilityConstants
         name: '#{g[0]}'
+
+    UIGuidedAccessErrorDomain:
+        class: UIGuidedAccessErrorCode
+        name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later UIKit
     (NS.*):

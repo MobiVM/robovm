@@ -66,6 +66,16 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="AVContentKeySystemClearKey", optional=true)
     public static native String SystemClearKey();
     /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @GlobalValue(symbol="AVContentKeySessionServerPlaybackContextOptionProtocolVersions", optional=true)
+    public static native String SessionServerPlaybackContextOptionProtocolVersions();
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    @GlobalValue(symbol="AVContentKeySessionServerPlaybackContextOptionServerChallenge", optional=true)
+    public static native String SessionServerPlaybackContextOptionServerChallenge();
+    /**
      * @since Available in iOS 10.3 and later.
      */
     @GlobalValue(symbol="AVContentKeyRequestRetryReasonTimedOut", optional=true)

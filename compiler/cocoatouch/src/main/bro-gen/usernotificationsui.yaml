@@ -1,0 +1,42 @@
+package: org.robovm.apple.usernotificationsui
+include: [foundation, usernotifications, coregraphics, uikit]
+library: UserNotificationsUI
+framework: UserNotificationsUI
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/UserNotificationsUI.framework/Headers/UserNotificationsUI.h
+
+enums:
+    UNNotificationContentExtensionMediaPlayPauseButtonType: {} #since 10.0
+    UNNotificationContentExtensionResponseOption: {} #since 10.0
+
+classes: {}
+
+categories:
+    NSExtensionContext: {}
+
+protocols:
+    UNNotificationContentExtension: #since 10.0
+        skip_adapter: true
+        methods:
+            '-didReceiveNotificationResponse:completionHandler:':
+                name: didReceiveNotificationResponse
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?UN.*):
+        class: FIXME!!
+        name: 'Function__#{g[0]}'
+
+values:
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?UN.*):
+        class: FIXME!!
+        name: 'Value__#{g[0]}'
+
+constants:
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?UN.*):
+        class: FIXME!!
+        name: 'Constant__#{g[0]}'
