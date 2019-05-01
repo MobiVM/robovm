@@ -34,7 +34,7 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsSignedIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MIDIObjectType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Other(-1L),
