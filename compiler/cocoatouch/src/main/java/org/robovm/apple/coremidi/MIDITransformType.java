@@ -34,7 +34,7 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedShortMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MIDITransformType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     None(0L),
