@@ -7,9 +7,9 @@ headers:
     - /System/Library/Frameworks/AssetsLibrary.framework/Headers/AssetsLibrary.h
 typedefs: {}
 enums:
-    ALAssetOrientation: {first: ALAssetOrientationUp}
+    ALAssetOrientation: {}
     ALAssetsGroupType: {first: ALAssetsGroupLibrary, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
-    ALAuthorizationStatus: {first: ALAuthorizationStatusNotDetermined}
+    ALAuthorizationStatus: {}
     ALAssetsLibraryErrorCode: {first: ALAssetsLibraryUnknownError, suffix: Error}
     
 classes:
