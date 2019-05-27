@@ -10,6 +10,10 @@ typedefs:
     BOOL: boolean
     NSInteger: MachineSInt
     NSUInteger: MachineUInt
+    CFTypeID: MachineUInt
+    CFOptionFlags: MachineUInt
+    CFHashCode: MachineUInt
+    CFIndex: MachineSInt
     _NSZone: NSZone
     id: NSObject
     'id *': NSObject
@@ -155,7 +159,7 @@ enums:
     NSDecodingFailurePolicy: {}
     NSDirectoryEnumerationOptions: {}
     NSEnergyFormatterUnit: {}
-    NSEnumerationOptions: { first: NSEnumerationConcurrent, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    NSEnumerationOptions: { bits: true }
     NSExpressionType: { suffix: ExpressionType }
     NSFileCoordinatorReadingOptions: {}
     NSFileCoordinatorWritingOptions: {}
@@ -167,7 +171,6 @@ enums:
     NSFileWrapperWritingOptions: {}
     NSFormattingContext: {}
     NSFormattingUnitStyle: {}
-    NSHashTableOptions: { first: NSHashTableStrongMemory, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
     NSHTTPCookieAcceptPolicy: {}
     NSItemProviderErrorCode: { suffix: Error }
     NSISO8601DateFormatOptions: {}
@@ -179,9 +182,8 @@ enums:
     NSLengthFormatterUnit: {}
     NSLinguisticTaggerOptions: {}
     NSLocaleLanguageDirection: {}
-    NSMachPortRights: { first: NSMachPortDeallocateNone, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    NSMachPortRights: { first: NSMachPortDeallocateNone }
     NSMassFormatterUnit: {}
-    NSMapTableOptions: { first: NSMapTableStrongMemory, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
     NSMatchingFlags: {}
     NSMatchingOptions: {}
     NSMeasurementFormatterUnitOptions: {bits: true}
@@ -192,12 +194,13 @@ enums:
     NSNumberFormatterPadPosition: {}
     NSNumberFormatterRoundingMode: {}
     NSNumberFormatterStyle: { suffix: Style }
+    # attached marshaller as enum is used as NSUinteger, check [NSProcessInfo operatingSystem]
     NSOperatingSystem: { first: NSWindowsNTOperatingSystem, suffix: OperatingSystem, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
     NSOperationQueuePriority: {}
     NSPersonNameComponentsFormatterStyle: {}
     NSPersonNameComponentsFormatterOptions: {prefix: NSPersonNameComponentsFormatter}
     NSProcessInfoThermalState: {}
-    NSPointerFunctionsOptions: { first: NSPointerFunctionsStrongMemory, exclude: true, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    NSPointerFunctionsOptions: { name: NSHashTableOptions, bits: true}
     NSPostingStyle: {}
     NSPredicateOperatorType: { suffix: PredicateOperatorType }
     NSPropertyListFormat: { suffix: Format }
@@ -207,7 +210,7 @@ enums:
     NSRoundingMode: {}
     NSSearchPathDirectory: {}
     NSSearchPathDomainMask: {}
-    NSSortOptions: { first: NSSortConcurrent, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    NSSortOptions: { bits: true }
     NSStreamEvent: {}
     NSStreamStatus: {}
     NSStringCompareOptions: { suffix: Search }
@@ -220,13 +223,13 @@ enums:
     NSUbiquitousKeyValueStoreChangeReason: { first: NSUbiquitousKeyValueStoreServerChange }
     NSURLBookmarkCreationOptions: {}
     NSURLBookmarkResolutionOptions: {prefix: NSURLBookmarkResolution}
-    NSURLCacheStoragePolicy: { first: NSURLCacheStorageAllowed, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    NSURLCacheStoragePolicy: {}
     NSURLCredentialPersistence: {}
     NSURLErrorCode: { first: NSURLErrorUnknown }
     NSURLErrorCancelledReason: { first: NSURLErrorCancelledReasonUserForceQuitApplication }
     NSURLRelationship: {}
-    NSURLRequestCachePolicy: { first: NSURLRequestUseProtocolCachePolicy, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    NSURLRequestNetworkServiceType: { first: NSURLNetworkServiceTypeDefault, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    NSURLRequestCachePolicy: {}
+    NSURLRequestNetworkServiceType: {}
     NSURLSessionAuthChallengeDisposition: {}
     NSURLSessionResponseDisposition: {}
     NSURLSessionTaskState: {}
@@ -3786,7 +3789,7 @@ classes:
                 annotations: ['@WeaklyLinked']
         methods:
             '+credential.*':
-               exclude: true
+                exclude: true
             '-initWithIdentity:certificates:persistence:':
                 name: init
                 annotations: ['@WeaklyLinked']
@@ -4417,7 +4420,7 @@ protocols:
                     attrName:
                         name: attribute
                         type: NSMetadataItemAttribute
-#    NSMutableCopying: {}
+    #    NSMutableCopying: {}
     NSNetServiceBrowserDelegate: # DONE
         methods:
             '-netServiceBrowserWillSearch:':

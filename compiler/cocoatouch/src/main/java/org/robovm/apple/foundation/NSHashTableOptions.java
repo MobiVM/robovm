@@ -52,7 +52,27 @@ public final class /*<name>*/NSHashTableOptions/*</name>*/ extends Bits</*<name>
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public static final NSHashTableOptions CopyIn = new NSHashTableOptions(65536L);
+    public static final NSHashTableOptions OpaqueMemory = new NSHashTableOptions(2L);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    public static final NSHashTableOptions MallocMemory = new NSHashTableOptions(3L);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    public static final NSHashTableOptions MachVirtualMemory = new NSHashTableOptions(4L);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    public static final NSHashTableOptions WeakMemory = new NSHashTableOptions(5L);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    public static final NSHashTableOptions ObjectPersonality = new NSHashTableOptions(0L);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    public static final NSHashTableOptions OpaquePersonality = new NSHashTableOptions(256L);
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -60,7 +80,19 @@ public final class /*<name>*/NSHashTableOptions/*</name>*/ extends Bits</*<name>
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public static final NSHashTableOptions WeakMemory = new NSHashTableOptions(5L);
+    public static final NSHashTableOptions CStringPersonality = new NSHashTableOptions(768L);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    public static final NSHashTableOptions StructPersonality = new NSHashTableOptions(1024L);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    public static final NSHashTableOptions IntegerPersonality = new NSHashTableOptions(1280L);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    public static final NSHashTableOptions CopyIn = new NSHashTableOptions(65536L);
     /*</values>*/
 
     /*<bind>*/

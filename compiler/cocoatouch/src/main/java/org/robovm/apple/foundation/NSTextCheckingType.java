@@ -41,7 +41,7 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsLongMarshaler.class)/*</annotations>*/
 public final class /*<name>*/NSTextCheckingType/*</name>*/ extends Bits</*<name>*/NSTextCheckingType/*</name>*/> {
     /*<values>*/
     public static final NSTextCheckingType None = new NSTextCheckingType(0L);
