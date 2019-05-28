@@ -39,7 +39,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/CMBlockBufferFlags/*</name>*/ extends Bits</*<name>*/CMBlockBufferFlags/*</name>*/> {
     /*<values>*/
     public static final CMBlockBufferFlags None = new CMBlockBufferFlags(0L);

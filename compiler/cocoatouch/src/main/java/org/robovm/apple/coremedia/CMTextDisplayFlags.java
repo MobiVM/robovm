@@ -39,7 +39,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/CMTextDisplayFlags/*</name>*/ extends Bits</*<name>*/CMTextDisplayFlags/*</name>*/> {
     /*<values>*/
     public static final CMTextDisplayFlags None = new CMTextDisplayFlags(0L);
@@ -55,7 +55,7 @@ public final class /*<name>*/CMTextDisplayFlags/*</name>*/ extends Bits</*<name>
     public static final CMTextDisplayFlags fillTextRegion = new CMTextDisplayFlags(262144L);
     public static final CMTextDisplayFlags obeySubtitleFormatting = new CMTextDisplayFlags(536870912L);
     public static final CMTextDisplayFlags forcedSubtitlesPresent = new CMTextDisplayFlags(1073741824L);
-    public static final CMTextDisplayFlags allSubtitlesForced = new CMTextDisplayFlags(-2147483648L);
+    public static final CMTextDisplayFlags allSubtitlesForced = new CMTextDisplayFlags(2147483648L);
     /*</values>*/
 
     /*<bind>*/
