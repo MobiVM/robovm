@@ -37,7 +37,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/CTRunStatus/*</name>*/ extends Bits</*<name>*/CTRunStatus/*</name>*/> {
     /*<values>*/
     public static final CTRunStatus None = new CTRunStatus(0L);

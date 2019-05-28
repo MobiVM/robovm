@@ -37,10 +37,10 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/CTFontUIFontType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    UIFontNone(-1L),
+    UIFontNone(4294967295L),
     UIFontUser(0L),
     UIFontUserFixedPitch(1L),
     UIFontSystem(2L),
@@ -73,7 +73,7 @@ public enum /*<name>*/CTFontUIFontType/*</name>*/ implements ValuedEnum {
      * @deprecated Deprecated in iOS 9.0. Deprecated
      */
     @Deprecated
-    NoFontType(-1L),
+    NoFontType(4294967295L),
     /**
      * @since Available in iOS 3.2 and later.
      * @deprecated Deprecated in iOS 9.0. Deprecated

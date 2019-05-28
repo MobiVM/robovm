@@ -37,7 +37,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/CTFontCollectionCopyOptions/*</name>*/ extends Bits</*<name>*/CTFontCollectionCopyOptions/*</name>*/> {
     /*<values>*/
     public static final CTFontCollectionCopyOptions DefaultOptions = new CTFontCollectionCopyOptions(0L);
