@@ -38,7 +38,7 @@ import org.robovm.apple.iosurface.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/CVTimeFlags/*</name>*/ extends Bits</*<name>*/CVTimeFlags/*</name>*/> {
     /*<values>*/
     public static final CVTimeFlags None = new CVTimeFlags(0L);

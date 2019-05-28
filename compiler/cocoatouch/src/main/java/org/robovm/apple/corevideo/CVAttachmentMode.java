@@ -38,7 +38,7 @@ import org.robovm.apple.iosurface.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/CVAttachmentMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     NotPropagate(0L),
