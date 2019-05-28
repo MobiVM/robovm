@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
  */
 @Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/GKSessionMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Server(0L),

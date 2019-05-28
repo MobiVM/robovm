@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
  */
 @Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/GKSendDataMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Reliable(0L),

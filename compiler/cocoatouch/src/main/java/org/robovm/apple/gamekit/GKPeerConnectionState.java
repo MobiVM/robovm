@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
  */
 @Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/GKPeerConnectionState/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Available(0L),
