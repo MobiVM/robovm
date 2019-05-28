@@ -8,7 +8,7 @@ headers:
 typedefs: {}
     
 enums:
-    AVKitErrorCode: {first: AVKitErrorUnknown}
+    AVKitError: {name: AVKitErrorCode}
 
 classes:
     AVKitError: # DONE

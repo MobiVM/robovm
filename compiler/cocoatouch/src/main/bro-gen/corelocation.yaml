@@ -8,10 +8,10 @@ headers:
 typedefs:
     CLGeocodeCompletionHandler: '@Block VoidBlock2<NSArray<CLPlacemark>, NSError>'
 enums:
-    CLActivityType: {first: CLActivityTypeOther, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    CLAuthorizationStatus: {first: kCLAuthorizationStatusNotDetermined}
-    CLDeviceOrientation: {first: CLDeviceOrientationUnknown}
-    CLErrorCode: {first: kCLErrorLocationUnknown}
+    CLActivityType: {}
+    CLAuthorizationStatus: {}
+    CLDeviceOrientation: {}
+    CLError: {name: CLErrorCode}
     CLProximity: {}
     CLRegionState: {}
 

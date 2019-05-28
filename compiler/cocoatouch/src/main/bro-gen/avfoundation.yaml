@@ -21,11 +21,11 @@ private_typedefs:
     # and will fail on any valid track id
     CMPersistentTrackID: int
 enums:
-    AVAssetReferenceRestrictions: { first: AVAssetReferenceRestrictionForbidNone }
-    AVAssetExportSessionStatus: { first: AVAssetExportSessionStatusUnknown }
-    AVAssetImageGeneratorResult: { first: AVAssetImageGeneratorSucceeded }
-    AVAssetReaderStatus: { first: AVAssetReaderStatusUnknown }
-    AVAssetWriterStatus: { first: AVAssetWriterStatusUnknown }
+    AVAssetReferenceRestrictions: {}
+    AVAssetExportSessionStatus: {}
+    AVAssetImageGeneratorResult: {}
+    AVAssetReaderStatus: {}
+    AVAssetWriterStatus: {}
     AVAudio3DMixingRenderingAlgorithm: {}
     AVAudioCommonFormat: { suffix: Format }
     AVAudioConverterInputStatus: {}
@@ -35,14 +35,14 @@ enums:
     AVAudioPlayerNodeBufferOptions: {}
     AVAudioSessionInterruptionOptions: { prefix: AVAudioSessionInterruptionOption }
     AVAudioSessionSetActiveOptions: { prefix: AVAudioSessionSetActiveOption }
-    AVAudioSessionPortOverride: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    AVAudioSessionRouteChangeReason: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    AVAudioSessionPortOverride: {}
+    AVAudioSessionRouteChangeReason: {}
     AVAudioSessionCategoryOptions: {}
-    AVAudioSessionInterruptionType: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    AVAudioSessionInterruptionType: {}
     AVAudioSessionErrorCode: { prefix: AVAudioSessionErrorCode, AVAudioSessionErrorInsufficientPriority: InsufficientPriority }
     AVAudioSessionRecordPermission: {}
     AVAudioSessionSilenceSecondaryAudioHintType: {}
-    AVAudioQuality: { first: AVAudioQualityMin }
+    AVAudioQuality: {}
     AVAudioUnitReverbPreset: {}
     AVAudioUnitEQFilterType: {}
     AVAudioUnitDistortionPreset: {}
@@ -59,21 +59,21 @@ enums:
     AVCaptureVideoOrientation: {}
     AVCaptureVideoStabilizationMode: {}
     AVCaptureWhiteBalanceMode: {}
-    AVErrorCode: { first: AVErrorUnknown, prefix: AVError, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    AVKeyValueStatus: { first: AVKeyValueStatusUnknown }
+    AVError: {name: AVErrorCode, prefix: AVError}
+    AVKeyValueStatus: {}
     AVMusicSequenceLoadOptions: {skip_none: true}
-    AVPlayerStatus: { first: AVPlayerStatusUnknown }
-    AVPlayerActionAtItemEnd: { first: AVPlayerActionAtItemEndAdvance }
-    AVPlayerItemStatus: { first: AVPlayerItemStatusUnknown }
+    AVPlayerStatus: {}
+    AVPlayerActionAtItemEnd: {}
+    AVPlayerItemStatus: {}
     AVQueuedSampleBufferRenderingStatus: {}
     AVSampleBufferDisplayLayerQueueManagement: {}
     AVSpeechBoundary: {}
     AVSpeechSynthesisVoiceQuality: {}
     AVVideoFieldMode: {}
-    AVPlayerTimeControlStatus: {prefix: AVPlayerTimeControlStatus}
-    AVAudioSessionIOType : {prefix: AVAudioSessionIOType}
-    AVCaptureColorSpace : {prefix: AVCaptureColorSpace_}
-    AVPlayerLooperStatus : {prefix : AVPlayerLooperStatus}
+    AVPlayerTimeControlStatus: {}
+    AVAudioSessionIOType : {}
+    AVCaptureColorSpace : {}
+    AVPlayerLooperStatus : {}
     AVMusicTrackLoopCount: {}
     AVContentKeyRequestStatus: {}
     AVAudioEngineManualRenderingError: {} #since 11.0
@@ -86,7 +86,7 @@ enums:
     AVDepthDataQuality: {} #since 11.0
     AVDepthDataAccuracy: {} #since 11.0
     AVPlayerHDRMode: {} #since 11.2
-    AVCaptureSystemPressureFactors: {prefix: AVCaptureSystemPressureFactor} #since 11.1
+    AVCaptureSystemPressureFactors: {} #since 11.1
     AVAudioSessionActivationOptions: {prefix: AVAudioSessionActivationOption}
     AVAudioSessionPromptStyle: {}
 

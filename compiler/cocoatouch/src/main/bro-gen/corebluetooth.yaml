@@ -10,12 +10,12 @@ typedefs: {}
     
 enums:
     CBCentralManagerState: { exclude: true }
-    CBCharacteristicProperties: { bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
-    CBErrorCode: { first: CBErrorUnknown }
-    CBATTErrorCode: { first: CBATTErrorSuccess }
+    CBCharacteristicProperties: { bits: true}
+    CBError: { name: CBErrorCode }
+    CBATTError: { name: CBATTErrorCode }
     CBPeripheralState: {}
     CBCharacteristicWriteType: { prefix: CBCharacteristicWrite }
-    CBAttributePermissions: { bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    CBAttributePermissions: { bits: true }
     CBPeripheralManagerAuthorizationStatus: {}
     CBPeripheralManagerState: { exclude: true }
     CBPeripheralManagerConnectionLatency: {}
