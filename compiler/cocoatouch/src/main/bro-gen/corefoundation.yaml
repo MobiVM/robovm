@@ -7,8 +7,6 @@ header: /System/Library/Frameworks/CoreFoundation.framework/Headers/CoreFoundati
 typedefs:
     Boolean: boolean
     __CFByteOrder: CFByteOrder
-    SInt32: int
-    UInt32: int
     'Boolean *': BooleanPtr
     CFPlugInRef: CFPlugIn
     'void (^)(CFRunLoopObserverRef, CFRunLoopActivity)': '@Block VoidBlock2<CFRunLoopObserver, CFRunLoopActivity>'

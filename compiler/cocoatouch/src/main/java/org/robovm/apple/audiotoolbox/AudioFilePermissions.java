@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsSignedByteMarshaler.class)/*</annotations>*/
 public enum /*<name>*/AudioFilePermissions/*</name>*/ implements ValuedEnum {
     /*<values>*/
     ReadPermission(1L),

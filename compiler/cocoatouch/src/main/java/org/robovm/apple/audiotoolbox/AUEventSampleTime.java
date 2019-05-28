@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsLongMarshaler.class)/*</annotations>*/
 public enum /*<name>*/AUEventSampleTime/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Immediate(-4294967296L);
