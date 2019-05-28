@@ -34,10 +34,10 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/AudioChannelLabel/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Unknown(-1L),
+    Unknown(4294967295L),
     Unused(0L),
     UseCoordinates(100L),
     Left(1L),
@@ -121,8 +121,8 @@ public enum /*<name>*/AudioChannelLabel/*</name>*/ implements ValuedEnum {
     HOA_ACN_14(131086L),
     HOA_ACN_15(131087L),
     HOA_ACN_65024(196096L),
-    BeginReserved(-268435456L),
-    EndReserved(-2L);
+    BeginReserved(4026531840L),
+    EndReserved(4294967294L);
     /*</values>*/
 
     /*<bind>*/

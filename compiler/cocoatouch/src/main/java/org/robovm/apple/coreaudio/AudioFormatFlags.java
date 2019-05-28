@@ -45,7 +45,7 @@ public final class /*<name>*/AudioFormatFlags/*</name>*/ extends Bits</*<name>*/
     public static final AudioFormatFlags AudioFormatFlagIsAlignedHigh = new AudioFormatFlags(16L);
     public static final AudioFormatFlags AudioFormatFlagIsNonInterleaved = new AudioFormatFlags(32L);
     public static final AudioFormatFlags AudioFormatFlagIsNonMixable = new AudioFormatFlags(64L);
-    public static final AudioFormatFlags AreAllClear = new AudioFormatFlags(-2147483648L);
+    public static final AudioFormatFlags AreAllClear = new AudioFormatFlags(2147483648L);
     public static final AudioFormatFlags LinearPCMFormatFlagIsFloat = new AudioFormatFlags(1L);
     public static final AudioFormatFlags LinearPCMFormatFlagIsBigEndian = new AudioFormatFlags(2L);
     public static final AudioFormatFlags LinearPCMFormatFlagIsSignedInteger = new AudioFormatFlags(4L);
@@ -55,7 +55,7 @@ public final class /*<name>*/AudioFormatFlags/*</name>*/ extends Bits</*<name>*/
     public static final AudioFormatFlags LinearPCMFormatFlagIsNonMixable = new AudioFormatFlags(64L);
     public static final AudioFormatFlags LinearPCMSampleFractionShift = new AudioFormatFlags(7L);
     public static final AudioFormatFlags LinearPCMSampleFractionMask = new AudioFormatFlags(8064L);
-    public static final AudioFormatFlags LinearPCMAreAllClear = new AudioFormatFlags(-2147483648L);
+    public static final AudioFormatFlags LinearPCMAreAllClear = new AudioFormatFlags(2147483648L);
     public static final AudioFormatFlags AppleLossless16BitSourceData = new AudioFormatFlags(1L);
     public static final AudioFormatFlags AppleLossless20BitSourceData = new AudioFormatFlags(2L);
     public static final AudioFormatFlags AppleLossless24BitSourceData = new AudioFormatFlags(3L);
