@@ -38,7 +38,7 @@ import org.robovm.apple.corefoundation.*;
  */
 @Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/CFNetDiagnosticStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
     NoErr(0L),
