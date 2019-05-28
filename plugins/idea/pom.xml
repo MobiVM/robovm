@@ -149,34 +149,6 @@
                 </dependency>
                 <dependency>
                     <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>android</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/android.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>android-common</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/android-common.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>android-sdklib</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/sdklib.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>android-layoutlib-api</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/layoutlib-api.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
                     <artifactId>ant</artifactId>
                     <version>1.0.0</version>
                     <scope>system</scope>
