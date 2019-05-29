@@ -50,7 +50,7 @@ public enum /*<name>*/PHCollectionListSubtype/*</name>*/ implements ValuedEnum {
     RegularFolder(100L),
     SmartFolderEvents(200L),
     SmartFolderFaces(201L),
-    Any(Bro.IS_32BIT ? 0x7fffffffL : 0x7fffffffffffffffL);
+    Any(Bro.IS_32BIT ? Integer.MAX_VALUE : Long.MAX_VALUE);
     /*</values>*/
 
     /*<bind>*/

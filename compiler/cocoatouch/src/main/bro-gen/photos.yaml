@@ -495,11 +495,6 @@ values:
             Error:
                 type: NSError
 
-    # PHAssetResourceManager
-    PH(InvalidAssetResourceDataRequestID):
-        class: PHAssetResourceManager
-        name: 'get#{g[0]}'
-
     # PHImageManager
     PH(InvalidImageRequestID):
         class: PHImageManager
