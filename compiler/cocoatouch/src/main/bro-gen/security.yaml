@@ -20,18 +20,18 @@ private_typedefs:
     dispatch_data_t: DispatchData
 
 enums:
-    SSLAuthenticate: { first: kNeverAuthenticate, suffix: Authenticate }
-    SSLClientCertificateState: { first: kSSLClientCertNone }
-    SSLConnectionType: { first: kSSLStreamType, suffix: Type }
+    SSLAuthenticate: {suffix: Authenticate }
+    SSLClientCertificateState: {}
+    SSLConnectionType: {suffix: Type }
     SSLErrorCode: { first: errSSLProtocol }
-    SSLProtocol: { first: kSSLProtocolUnknown }
-    SSLProtocolSide: { first: kSSLServerSide, suffix: Side }
-    SSLSessionOption: { first: kSSLSessionOptionBreakOnServerAuth }
-    SSLSessionState: { first: kSSLIdle }
+    SSLProtocol: {}
+    SSLProtocolSide: {suffix: Side }
+    SSLSessionOption: {}
+    SSLSessionState: {}
     SSLCipherSuite: { first: SSL_NULL_WITH_NULL_NULL }
     SecAccessControlCreateFlags: { prefix: kSecAccessControl }
-    SecPadding: { first: kSecPaddingNone }
-    SecTrustResultType: { first: kSecTrustResultInvalid }
+    SecPadding: {}
+    SecTrustResultType: {}
     SecRevocationPolicyFlags: { first: kSecRevocationOCSPMethod, bits: true }
     SecErrorCode: { first: errSecSuccess }
     SecKeyOperationType: {}
