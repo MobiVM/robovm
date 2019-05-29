@@ -15,7 +15,7 @@ enums:
     GLKTextureEnvMode: {}
     GLKTextureInfoAlphaState: {}
     GLKTextureInfoOrigin: {}
-    GLKTextureLoaderErrorCode: { first: GLKTextureLoaderErrorFileOrURLNotFound }
+    GLKTextureLoaderError: { name: GLKTextureLoaderErrorCode }
     GLKTextureTarget: {}
     GLKVertexAttrib: {}
     GLKViewDrawableColorFormat: {}

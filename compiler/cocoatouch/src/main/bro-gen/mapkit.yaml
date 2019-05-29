@@ -10,15 +10,15 @@ typedefs:
     'void (^)(NSData *, NSError *)': '@Block VoidBlock2<NSData, NSError>'
     
 enums:
-    MKAnnotationViewDragState: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    MKDirectionsTransportType: { }
-    MKDistanceFormatterUnits: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    MKDistanceFormatterUnitStyle: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    MKAnnotationViewDragState: {}
+    MKDirectionsTransportType: {}
+    MKDistanceFormatterUnits: {}
+    MKDistanceFormatterUnitStyle: {}
     MKUserTrackingMode: {}
     MKOverlayLevel: {}
-    MKPinAnnotationColor: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    MKMapType: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    MKErrorCode: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    MKPinAnnotationColor: {}
+    MKMapType: {}
+    MKErrorCode: {}
     MKSearchCompletionFilterType: {}
     MKAnnotationViewCollisionMode: {} #since 11.0
     MKFeatureVisibility: {} #since 11.0
