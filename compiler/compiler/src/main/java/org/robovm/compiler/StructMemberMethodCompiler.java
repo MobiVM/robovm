@@ -29,6 +29,7 @@ import org.robovm.compiler.llvm.Function;
 import org.robovm.compiler.llvm.Getelementptr;
 import org.robovm.compiler.llvm.Inttoptr;
 import org.robovm.compiler.llvm.Load;
+import org.robovm.compiler.llvm.PackedStructureType;
 import org.robovm.compiler.llvm.PointerType;
 import org.robovm.compiler.llvm.Ret;
 import org.robovm.compiler.llvm.StructureType;
@@ -37,6 +38,7 @@ import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
 import org.robovm.compiler.llvm.VariableRef;
 
+import org.robovm.compiler.llvm.VectorStructureType;
 import soot.SootMethod;
 import soot.VoidType;
 
@@ -93,10 +95,19 @@ public class StructMemberMethodCompiler extends BroMethodCompiler {
         Variable memberPtr = function.newVariable(new PointerType(memberType));
         // perform equals call instead of type comparision as there are multiple copies of struct types
         // being generated and this cause not required bitcast
-        if (!memberType.equals(structType.getTypeAt(offset))) {
-            // Several @StructMembers of different types have this offset (union)
-            Variable tmp = function.newVariable(new PointerType(structType.getTypeAt(offset)));
-            if (structType.isVectorArray()) {
+        Type structMemberType = structType.getTypeAt(offset);
+        if (!memberType.equals(structMemberType)) {
+            // Several @StructMembers of different types have this offset (union or packed struct with allignment)
+            Variable tmp = function.newVariable(new PointerType(structMemberType));
+            if (structType instanceof PackedStructureType && structMemberType instanceof PackedStructureType) {
+                // packed struct. member is wrapped into another packed struct to maintain required align, to get the value
+                // it is required to provide extra index
+                PackedStructureType packedMember = (PackedStructureType) structMemberType;
+                if (packedMember.getTypeCount() != 2 || !packedMember.getTypeAt(0).equals(memberType)) {
+                    throw new IllegalArgumentException("Internal error: method and struct member type missmatch. " + method);
+                }
+                function.add(new Getelementptr(tmp, handlePtr.ref(), 0, 0, offset));
+            } else if (structType instanceof VectorStructureType && ((VectorStructureType) structType).isVectorArray()) {
                 // vector array struct represent following IR object
                 // MatrixFloat2x2 for example { [2 x <2 x float>] }
                 // to get to specific vector of <2 x float> it requires extra index, as
@@ -109,7 +120,7 @@ public class StructMemberMethodCompiler extends BroMethodCompiler {
             }
             function.add(new Bitcast(memberPtr, tmp.ref(), memberPtr.getType()));
         } else {
-            if (structType.isVectorArray()) {
+            if (structType instanceof VectorStructureType && ((VectorStructureType) structType).isVectorArray()) {
                 // check explanation above about extra 0
                 function.add(new Getelementptr(memberPtr, handlePtr.ref(), 0, 0, offset));
             } else {

@@ -23,17 +23,29 @@ package org.robovm.compiler.llvm;
  * @version $Id$
  */
 public class PackedStructureType extends StructureType {
-    
-    public PackedStructureType(Type ... types) {
-        super(types);
+    private final int align;
+
+    public PackedStructureType(int ownMembersOffset, int align, Type... types) {
+        super(ownMembersOffset, types);
+        this.align = align;
     }
-    
+
+    public PackedStructureType(Type ... types) {
+        this(0, 1, types);
+    }
+
+
     public PackedStructureType(String alias, Type ... types) {
         super(alias, types);
+        align = 1;
     }
 
     @Override
     public String getDefinition() {
         return "<" + super.getDefinition() + ">";
+    }
+
+    public int getAlign() {
+        return align;
     }
 }
