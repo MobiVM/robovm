@@ -677,7 +677,7 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
                 int index = offset + ownMembersOffset;
                 if (result[index] == null) {
                     result[index] = type;
-                } else if (type != result[index]) {
+                } else if (!type.equals(result[index])) {
                     // Two members mapped to the same offset (union). Pick
                     // the type with the largest alignment and pad with bytes
                     // up to the largest size.
