@@ -106,7 +106,7 @@ public class StructMemberMethodCompiler extends BroMethodCompiler {
                 if (packedMember.getTypeCount() != 2 || !packedMember.getTypeAt(0).equals(memberType)) {
                     throw new IllegalArgumentException("Internal error: method and struct member type missmatch. " + method);
                 }
-                function.add(new Getelementptr(tmp, handlePtr.ref(), 0, 0, offset));
+                function.add(new Getelementptr(tmp, handlePtr.ref(), 0, offset));
             } else if (structType instanceof VectorStructureType && ((VectorStructureType) structType).isVectorArray()) {
                 // vector array struct represent following IR object
                 // MatrixFloat2x2 for example { [2 x <2 x float>] }
