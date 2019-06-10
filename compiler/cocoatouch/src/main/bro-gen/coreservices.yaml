@@ -39,6 +39,7 @@ classes:
         name: CFHost
         extends: CFType
     CFHostClientContext:
+        annotations: ['@Packed(2)']
         visibility: ''
         info:
             type: '@Pointer long'
@@ -55,6 +56,7 @@ classes:
         name: CFNetService
         extends: CFType
     CFNetServiceClientContext:
+        annotations: ['@Packed(2)']
         visibility: ''
         info:
             type: '@Pointer long'
