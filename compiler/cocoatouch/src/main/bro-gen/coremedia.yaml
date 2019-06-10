@@ -133,8 +133,10 @@ classes:
         extends: CFType
 
     # Structs
-    CMBlockBufferCustomBlockSource: {}
+    CMBlockBufferCustomBlockSource:
+        annotations: ['@Packed(4)']
     CMBufferCallbacks:
+        annotations: ['@Packed(4)']
         name: CMBufferCallbacksStruct
         refcon:
             type: '@Pointer long'
@@ -142,12 +144,17 @@ classes:
     CMBufferQueueTriggerToken: {}
     opaqueCMBufferQueueTriggerToken:
         name: CMBufferQueueTriggerToken
-    CMVideoDimensions: {}
-    CMSampleTimingInfo: {}
+    CMVideoDimensions:
+        annotations: ['@Packed(4)']
+    CMSampleTimingInfo:
+        annotations: ['@Packed(4)']
     CMTime:
+        annotations: ['@Packed(4)']
         add_ptr: true
-    CMTimeRange: {}
-    CMTimeMapping: {}
+    CMTimeRange:
+        annotations: ['@Packed(4)']
+    CMTimeMapping:
+        annotations: ['@Packed(4)']
     CMBufferHandlers: {}
 
 protocols: {}
