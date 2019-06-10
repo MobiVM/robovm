@@ -37,7 +37,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Packed(4)/*</annotations>*/
 /*<visibility>*//*</visibility>*/ class /*<name>*/MTAudioProcessingTapCallbacksStruct/*</name>*/ 
     extends /*<extends>*/Struct<MTAudioProcessingTapCallbacksStruct>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
