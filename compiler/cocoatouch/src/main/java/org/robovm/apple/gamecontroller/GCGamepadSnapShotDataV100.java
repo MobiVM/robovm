@@ -35,7 +35,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("GameController")/*</annotations>*/
+/*<annotations>*/@Packed(1) @Library("GameController")/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCGamepadSnapShotDataV100/*</name>*/ 
     extends /*<extends>*/Struct<GCGamepadSnapShotDataV100>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
