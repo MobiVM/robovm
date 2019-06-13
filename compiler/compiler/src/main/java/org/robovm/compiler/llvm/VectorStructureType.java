@@ -25,7 +25,7 @@ package org.robovm.compiler.llvm;
 public class VectorStructureType extends StructureType {
 
     public VectorStructureType(int ownMembersOffset, Type ... types) {
-        super(ownMembersOffset, types);
+        super(ownMembersOffset, 0, types);
     }
 
     public VectorStructureType(Type ... types) {

@@ -585,6 +585,7 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
 
         Type[] result;
         int ownMembersOffset = 0;
+        int attributes = 0;
         if (superType != null) {
             // if structure inherits another struct add it as member zero
             ownMembersOffset = 1;
@@ -705,8 +706,14 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
             // packed struct, obey alignment parameter and add padding if required
             int packedStructOffset = 0;
             for (int i = ownMembersOffset; i < result.length; i++) {
+                Type item = result[i];
+                // find out if item to be aligned at boundary it needs
+                int itemAlignment = config.getDataLayout().getAlignment(item);
+                if (itemAlignment != 0 && packedStructOffset % itemAlignment != 0)
+                    attributes |= StructureType.ATTR_UNALIGNED;
+                // pad type if required (pack into packed struct with padding) to meet next member alignment
                 Type next = i + 1 < result.length ? result[i + 1] : result[0];
-                result[i] = packStructMemberTypes(config.getDataLayout(), packedAllign, packedStructOffset, result[i], next);
+                result[i] = packStructMemberTypes(config.getDataLayout(), packedAllign, packedStructOffset, item, next);
                 packedStructOffset += config.getDataLayout().getStoreSize(result[i]);
             }
         }
@@ -720,13 +727,20 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
             validateVectorStruct(clazz, result);
         }
 
+        // find out if regular structure is simple wrapper around 8, 16 or 32 int
+        // (this is needed to find out if this structure will be retured by value on arm7 cpus)
+        boolean singleIntStruct = result.length == 1 && result[0] instanceof IntegerType && ((IntegerType)result[0]).getBits() <= 32;
+        if (!singleIntStruct) {
+            attributes |= StructureType.ATTR_NOT_SINGLE_INT_STRUCT;
+        }
+
         // create corresponding version of struct
         if (vectorisedAnnotation != null)
             return new VectorStructureType(ownMembersOffset, result);
         else if (packedAnnotation != null && result.length > 1)
-            return new PackedStructureType(ownMembersOffset, packedAllign, result);
+            return new PackedStructureType(ownMembersOffset, attributes, packedAllign, result);
         else
-            return new StructureType(ownMembersOffset, result);
+            return new StructureType(ownMembersOffset, attributes, result);
     }
 
     /**

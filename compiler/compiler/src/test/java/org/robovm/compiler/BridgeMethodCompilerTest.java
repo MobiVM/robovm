@@ -239,7 +239,7 @@ public class BridgeMethodCompilerTest {
     @Test
     public void testCreateBridgeCWrapperPackedStructByVal() {
         FunctionType functionType = new FunctionType(
-                VOID, new PackedStructureType(0, 1, I32));
+                VOID, new PackedStructureType(0, 0, 1, I32));
         assertEquals(
                 "void f(void* target, void* p0) {\n" +
                         "    #pragma pack(push, 1)\n" +

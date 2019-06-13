@@ -27,6 +27,7 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.llvm.Bitcast;
 import org.robovm.compiler.llvm.Function;
 import org.robovm.compiler.llvm.Getelementptr;
+import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.Inttoptr;
 import org.robovm.compiler.llvm.Load;
 import org.robovm.compiler.llvm.PackedStructureType;
@@ -47,7 +48,7 @@ import soot.VoidType;
  *
  */
 public class StructMemberMethodCompiler extends BroMethodCompiler {
-
+    public static final String STRUCT_ATTRIBUTES_METHOD = "$attr$stretMetadata";
     private StructureType structType;
 
     public StructMemberMethodCompiler(Config config) {
@@ -67,15 +68,24 @@ public class StructMemberMethodCompiler extends BroMethodCompiler {
     protected Function doCompile(ModuleBuilder moduleBuilder, SootMethod method) {
         if ("_sizeOf".equals(method.getName()) || "sizeOf".equals(method.getName())) {
             return structSizeOf(moduleBuilder, method);
+        } else if (STRUCT_ATTRIBUTES_METHOD.equals(method.getName())) {
+            return stretMeta(moduleBuilder, method);
         } else {
             return structMember(moduleBuilder, method);
         }
     }
-    
+
     private Function structSizeOf(ModuleBuilder moduleBuilder, SootMethod method) {
         Function fn = createMethodFunction(method);
         moduleBuilder.addFunction(fn);
         fn.add(new Ret(sizeof(structType)));
+        return fn;
+    }
+
+    private Function stretMeta(ModuleBuilder moduleBuilder, SootMethod method) {
+        Function fn = createMethodFunction(method);
+        moduleBuilder.addFunction(fn);
+        fn.add(new Ret(new IntegerConstant(structType.getAttributes())));
         return fn;
     }
 

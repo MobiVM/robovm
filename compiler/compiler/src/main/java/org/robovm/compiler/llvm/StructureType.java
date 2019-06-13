@@ -27,20 +27,30 @@ public class StructureType extends AggregateType {
     protected final Type[] types;
     private final int ownMembersOffset; // 1 if inherit another struct, zero otherwise
 
-    public StructureType(int ownMembersOffset, Type ... types) {
+    // attributes, to help runtime solving stret case
+    private final int attributes; // bitmask
+    public final static int ATTR_UNALIGNED             = 1 << 0; // contains at least one field that is not aligned to its nature alignment
+    public final static int ATTR_NOT_SINGLE_INT_STRUCT = 1 << 1; // indicates that structure is not one integer field wrap (up to 32 bit one)
+
+    public StructureType(int ownMembersOffset, int flags, Type ... types) {
         this.types = types.clone();
         this.ownMembersOffset = ownMembersOffset;
+        this.attributes = flags;
+    }
+
+    public StructureType(int ownMembersOffset, int flags, String alias, Type ... types) {
+        super(alias);
+        this.types = types.clone();
+        this.ownMembersOffset = ownMembersOffset;
+        this.attributes = flags;
     }
 
     public StructureType(Type ... types) {
-        this.types = types.clone();
-        ownMembersOffset = 0;
+        this(0, 0, types);
     }
     
     public StructureType(String alias, Type ... types) {
-        super(alias);
-        this.types = types.clone();
-        ownMembersOffset = 0;
+        this(0, 0, alias, types);
     }
 
     @Override
@@ -98,5 +108,9 @@ public class StructureType extends AggregateType {
             return false;
         }
         return true;
+    }
+
+    public int getAttributes() {
+        return attributes;
     }
 }
