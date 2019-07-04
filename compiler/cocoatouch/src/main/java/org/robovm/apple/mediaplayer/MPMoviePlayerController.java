@@ -38,9 +38,8 @@ import org.robovm.rt.annotation.WeaklyLinked;
  * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MediaPlayer") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMoviePlayerController/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements MPMediaPlayback/*</implements>*/ {

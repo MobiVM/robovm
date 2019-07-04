@@ -44,9 +44,8 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 9.0 and later.
  * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/UIUserNotificationActionBehavior/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),

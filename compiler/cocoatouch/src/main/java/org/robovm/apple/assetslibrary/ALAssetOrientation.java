@@ -37,9 +37,8 @@ import org.robovm.apple.imageio.*;
  * @since Available in iOS 4.0 and later.
  * @deprecated Deprecated in iOS 9.0. Use UIImageOrientation in the Photos framework instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/ALAssetOrientation/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**

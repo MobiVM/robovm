@@ -40,9 +40,8 @@ import org.robovm.apple.metal.*;
  * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 12.0. OpenGLES is deprecated
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("QuartzCore") @NativeClass @WeaklyLinked/*</annotations>*/
+/*<annotations>*/@Library("QuartzCore") @NativeClass @Deprecated @WeaklyLinked/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAEAGLLayer/*</name>*/ 
     extends /*<extends>*/CALayer/*</extends>*/ 
     /*<implements>*/implements EAGLDrawable/*</implements>*/ {

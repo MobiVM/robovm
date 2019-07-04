@@ -37,9 +37,8 @@ import org.robovm.apple.coregraphics.*;
  * @since Available in iOS 4.3 and later.
  * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MediaPlayer") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMovieAccessLog/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

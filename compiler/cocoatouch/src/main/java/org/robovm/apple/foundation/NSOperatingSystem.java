@@ -43,9 +43,8 @@ import org.robovm.apple.dispatch.*;
  * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 8.0. Not supported
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/NSOperatingSystem/*</name>*/ implements ValuedEnum {
     /*<values>*/
     WindowsNT(1L),

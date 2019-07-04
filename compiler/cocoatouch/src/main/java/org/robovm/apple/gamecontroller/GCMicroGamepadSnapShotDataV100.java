@@ -72,7 +72,9 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated GCMicroGamepadSnapShotDataV100FromNSData has been deprecated, use GCMicroGamepadSnapshotDataFromNSData instead
      */
+    @Deprecated
     @Bridge(symbol="GCMicroGamepadSnapShotDataV100FromNSData", optional=true)
     public native boolean getData(NSData data);
     /*</methods>*/

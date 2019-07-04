@@ -36,9 +36,8 @@ import org.robovm.apple.corefoundation.*;
  * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 9.0. use CNAuthorizationStatus
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/ABAuthorizationStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
     NotDetermined(0L),

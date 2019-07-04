@@ -198,8 +198,6 @@ classes:
             'scores':
                 type: NSArray<GKScore>
         methods:
-            '-init':
-                exclude: true
             '-initWithPlayerIDs:':
                 name: init
                 parameters:

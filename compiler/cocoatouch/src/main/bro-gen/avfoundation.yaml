@@ -672,8 +672,6 @@ classes:
             'musicSequence':
                 annotations: ['@WeaklyLinked']
         methods:
-            '-init':
-                exclude: true
             '-attachNode:':
                 trim_after_first_colon: true
             '-detachNode:':

@@ -244,8 +244,6 @@ classes:
             'propertiesToGroupBy':
                 type: NSArray<NSPropertyDescription>
         methods:
-            '-init':
-                exclude: true
             '-initWithEntityName:':
                 name: init
             '+fetchRequestWithEntityName:':
@@ -370,8 +368,6 @@ classes:
             '.*Objects':
                 type: NSSet<NSManagedObject>
         methods:
-            '-init':
-                exclude: true
             '-initWithConcurrencyType:':
                 name: init
             '-performBlock:':
@@ -448,8 +444,6 @@ classes:
             'fetchRequestTemplatesByName':
                 type: 'NSDictionary<NSString, NSFetchRequest>'
         methods:
-            '-init':
-                exclude: true
             '-initWithContentsOfURL:':
                 name: init
             '-entitiesForConfiguration:':

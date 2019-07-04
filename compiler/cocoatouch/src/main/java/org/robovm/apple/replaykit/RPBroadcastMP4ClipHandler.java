@@ -37,9 +37,8 @@ import org.robovm.apple.coremedia.*;
  * @since Available in iOS 10.0 and later.
  * @deprecated Deprecated in iOS 11.0.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("ReplayKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("ReplayKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/RPBroadcastMP4ClipHandler/*</name>*/ 
     extends /*<extends>*/RPBroadcastHandler/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

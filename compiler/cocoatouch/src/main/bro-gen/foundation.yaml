@@ -305,6 +305,8 @@ classes:
             'description':
                 exclude: true
         methods:
+            '-init':
+                name: init
             '-initWithArray:':
                 name: init
                 visibility: protected
@@ -848,6 +850,7 @@ classes:
                 name: now
             '-initWithTimeIntervalSince1970:':
                 name: init
+            '-init': {}
             '-init.*': {exclude: true}
             '-timeIntervalSinceDate:':
                 name: getTimeIntervalSince
@@ -1012,6 +1015,8 @@ classes:
                 visibility: protected
                 constructor: false
                 return_type: '@Pointer long'
+            '-init':
+                name: init
             '-initWithObjects:forKeys:':
                 name: init
                 visibility: protected
@@ -2229,7 +2234,6 @@ classes:
             'groupedResults':
                 type: NSArray<NSMetadataQueryResultGroup>
         methods:
-            '-init': {exclude: true}
             '-resultAtIndex:':
                 name: getResult
                 return_type: NSMetadataItem
@@ -2283,6 +2287,7 @@ classes:
                         marshaler: StringMarshalers.AsDefaultCharsetZMarshaler
     NSMutableArray: # DONE
         methods:
+            '-init': {}
             '-initWithCapacity:':
                 name: init
             '-removeObjectAtIndex:':
@@ -2427,6 +2432,7 @@ classes:
                 name: shiftIndexes
     NSMutableOrderedSet: # DONE
         methods:
+            '-init': {}
             '-initWithCapacity:':
                 name: init
             '-removeObjectAtIndex:':
@@ -2456,6 +2462,7 @@ classes:
             '-removeAllObjects':
                 trim_after_first_colon: true
                 visibility: protected
+            '-init': {}
             '-initWithCapacity:':
                 name: init
             '+.*': {exclude: true}
@@ -2526,7 +2533,6 @@ classes:
                         type: 'NSDictionary<NSString, NSData>'
     NSNetServiceBrowser: # DONE
         methods:
-            '-init': {exclude: true}
             '-scheduleInRunLoop:forMode:':
                 trim_after_first_colon: true
             '-removeFromRunLoop:forMode:':
@@ -2554,7 +2560,6 @@ classes:
         methods:
             '+defaultCenter':
                 property: true
-            '-init': {exclude: true}
             '-addObserver:selector:name:object:':
                 trim_after_first_colon: true
                 parameters:
@@ -2719,6 +2724,7 @@ classes:
                 visibility: private
                 constructor: false
         methods:
+            '-init': {}
             '-copy': {}
             '-mutableCopy': {}
             '-performSelectorInBackground:withObject:':
@@ -2773,7 +2779,6 @@ classes:
             'cancelled':
                 name: isCancelled
         methods:
-            '-init': {exclude: true}
             '-addDependency:':
                 trim_after_first_colon: true
             '-removeDependency:':
@@ -2820,6 +2825,7 @@ classes:
             'description':
                 exclude: true
         methods:
+            '-init': {}
             '-initWithArray:':
                 name: init
                 constructor: false
@@ -3173,6 +3179,7 @@ classes:
             'description':
                 exclude: true
         methods:
+            '-init': {}
             '-initWithArray:':
                 name: init
                 constructor: false
@@ -3263,6 +3270,7 @@ classes:
                 parameters:
                     characters:
                         type: '@Pointer long'
+            '-init': {}
             '-init.*': { exclude: true }
             '-characterAtIndex:':
                 name: getCharactersAt
@@ -4038,8 +4046,6 @@ classes:
                 type: Set<String>
                 marshaler: NSSet.AsStringSetMarshaler
         methods:
-            '-init':
-                exclude: true
             '-init.*':
                 name: init
             '-addUserInfoEntriesFromDictionary:':
@@ -4129,13 +4135,16 @@ classes:
                 name: isObjectForced
             '+standardUserDefaults':
                 property: true
-            '-init.*': {exclude: true}
+            '-init': {}
+            '-init.*':
+                exclude: true
     NSUUID: # DONE
         properties:
             'UUIDString':
                 name: asString
                 omit_prefix: true
         methods:
+            '-init': {}
             '-initWithUUIDString:':
                 name: init
                 constructor: false

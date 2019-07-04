@@ -39,9 +39,8 @@ import org.robovm.apple.dispatch.*;
  * @since Available in iOS 3.0 and later.
  * @deprecated Deprecated in iOS 9.0. Use MKPinAnnotationView's pinTintColor instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MKPinAnnotationColor/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Red(0L),

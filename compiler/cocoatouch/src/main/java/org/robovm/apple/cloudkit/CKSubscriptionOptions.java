@@ -38,9 +38,8 @@ import org.robovm.apple.fileprovider.*;
  * @since Available in iOS 8.0 and later.
  * @deprecated Deprecated in iOS 10.0. Use CKQuerySubscriptionOptions instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/CKSubscriptionOptions/*</name>*/ extends Bits</*<name>*/CKSubscriptionOptions/*</name>*/> {
     /*<values>*/
     public static final CKSubscriptionOptions None = new CKSubscriptionOptions(0L);

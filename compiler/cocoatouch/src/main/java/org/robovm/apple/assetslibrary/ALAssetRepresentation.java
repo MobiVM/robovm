@@ -37,9 +37,8 @@ import org.robovm.apple.imageio.*;
  * @since Available in iOS 4.0 and later.
  * @deprecated Deprecated in iOS 9.0. Use PHImageRequestOptions with the PHImageManager from the Photos framework instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("AssetsLibrary") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("AssetsLibrary") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ALAssetRepresentation/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

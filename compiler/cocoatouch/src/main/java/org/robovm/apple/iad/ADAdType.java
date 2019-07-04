@@ -39,9 +39,8 @@ import org.robovm.apple.avkit.*;
  * @since Available in iOS 6.0 and later.
  * @deprecated Deprecated in iOS 10.0.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/ADAdType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Banner(0L),

@@ -40,9 +40,8 @@ import org.robovm.apple.uikit.*;
  * @since Available in iOS 3.0 and later.
  * @deprecated Deprecated in iOS 9.0.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 public enum /*<name>*/AUPropertyID/*</name>*/ implements ValuedEnum {
     /*<values>*/
     _3DMixerDistanceParams(3010L),

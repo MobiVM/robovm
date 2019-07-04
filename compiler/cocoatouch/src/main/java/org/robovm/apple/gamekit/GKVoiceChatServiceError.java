@@ -36,9 +36,8 @@ import org.robovm.apple.uikit.*;
  * @since Available in iOS 3.0 and later.
  * @deprecated Deprecated in iOS 7.0.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("GameKit")/*</annotations>*/
+/*<annotations>*/@Deprecated @Library("GameKit")/*</annotations>*/
 public enum /*<name>*/GKVoiceChatServiceError/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Internal(32000L),

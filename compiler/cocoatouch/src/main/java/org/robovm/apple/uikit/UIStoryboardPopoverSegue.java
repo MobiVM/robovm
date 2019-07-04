@@ -44,9 +44,8 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 5.0 and later.
  * @deprecated Deprecated in iOS 9.0. Access destinationViewController.popoverPresentationController from your segue's performHandler or override of -perform
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("UIKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIStoryboardPopoverSegue/*</name>*/ 
     extends /*<extends>*/UIStoryboardSegue/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

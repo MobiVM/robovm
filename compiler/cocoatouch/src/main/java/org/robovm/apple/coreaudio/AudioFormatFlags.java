@@ -61,7 +61,15 @@ public final class /*<name>*/AudioFormatFlags/*</name>*/ extends Bits</*<name>*/
     public static final AudioFormatFlags AppleLossless24BitSourceData = new AudioFormatFlags(3L);
     public static final AudioFormatFlags AppleLossless32BitSourceData = new AudioFormatFlags(4L);
     public static final AudioFormatFlags NativeEndian = new AudioFormatFlags(0L);
+    /**
+     * @deprecated The concept of canonical formats is deprecated
+     */
+    @Deprecated
     public static final AudioFormatFlags Canonical = new AudioFormatFlags(12L);
+    /**
+     * @deprecated The concept of canonical formats is deprecated
+     */
+    @Deprecated
     public static final AudioFormatFlags AudioUnitCanonical = new AudioFormatFlags(3116L);
     public static final AudioFormatFlags NativeFloatPacked = new AudioFormatFlags(9L);
     /*</values>*/
