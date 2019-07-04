@@ -39,7 +39,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Packed(4)/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CMTimeMapping/*</name>*/ 
     extends /*<extends>*/Struct<CMTimeMapping>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

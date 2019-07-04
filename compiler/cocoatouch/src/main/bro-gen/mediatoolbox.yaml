@@ -23,6 +23,7 @@ classes:
 
     # Structs
     MTAudioProcessingTapCallbacks:
+        annotations: ['@Packed(4)']
         name: MTAudioProcessingTapCallbacksStruct
         visibility: ''
         finalize:

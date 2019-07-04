@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Packed(4)/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AURenderEventHeader/*</name>*/ 
     extends /*<extends>*/Struct<AURenderEventHeader>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

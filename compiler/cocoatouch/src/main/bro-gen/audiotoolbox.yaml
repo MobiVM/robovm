@@ -227,12 +227,15 @@ classes:
 
     # Structs
     AURecordedParameterEvent: {}
-    AUMIDIEvent: {}
+    AUMIDIEvent:
+        annotations: ['@Packed(4)']
     AUMIDIOutputCallbackStruct: {}
     AUParameterAutomationEvent: {}
-    AUParameterEvent: {}
+    AUParameterEvent:
+        annotations: ['@Packed(4)']
     AURenderEvent: {}
-    AURenderEventHeader: {}
+    AURenderEventHeader:
+        annotations: ['@Packed(4)']
     AUSamplerBankPresetData: {}
     AudioUnitParameterEvent: {}
     AudioUnitParameterEvent$InnerStruct$1:
@@ -693,6 +696,7 @@ classes:
         extends: AudioComponentInstance
 
     AudioComponentDescription: # DONE
+        annotations: ['@Packed(4)']
         componentType:
             type: AUType
         componentSubType:

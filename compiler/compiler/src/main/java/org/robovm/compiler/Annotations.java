@@ -48,6 +48,7 @@ public class Annotations {
     public static final String CALLBACK = "Lorg/robovm/rt/bro/annotation/Callback;";
     public static final String STRUCT_MEMBER = "Lorg/robovm/rt/bro/annotation/StructMember;";
     public static final String VECTORISED = "Lorg/robovm/rt/bro/annotation/Vectorised;";
+    public static final String STRUCT_PACKED = "Lorg/robovm/rt/bro/annotation/Packed;";
     public static final String GLOBAL_VALUE = "Lorg/robovm/rt/bro/annotation/GlobalValue;";
     public static final String ARRAY = "Lorg/robovm/rt/bro/annotation/Array;";
     public static final String BASE_TYPE = "Lorg/robovm/rt/bro/annotation/BaseType;";
@@ -306,6 +307,10 @@ public class Annotations {
 
     public static AnnotationTag getStructVectorisedAnnotation(SootClass clazz) {
         return getAnnotation(clazz, VECTORISED);
+    }
+
+    public static AnnotationTag getStructPackedAnnotation(SootClass clazz) {
+        return getAnnotation(clazz, STRUCT_PACKED);
     }
     
     public static AnnotationTag getArrayAnnotation(SootMethod method) {

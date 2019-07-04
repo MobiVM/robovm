@@ -18,9 +18,12 @@ classes:
     GCEulerAngles: {}
     GCRotationRate: {}
     GCQuaternion: {}
-    GCMicroGamepadSnapShotDataV100: {}
-    GCExtendedGamepadSnapshotData: {}
-    GCMicroGamepadSnapshotData: {}
+    GCMicroGamepadSnapShotDataV100:
+        annotations: ['@Packed(1)']
+    GCExtendedGamepadSnapshotData:
+        annotations: ['@Packed(1)']
+    GCMicroGamepadSnapshotData:
+        annotations: ['@Packed(1)']
 
     GCController: # DONE
         methods:
@@ -61,7 +64,8 @@ classes:
         methods:
             '-init.*':
                 name: init
-    GCGamepadSnapShotDataV100: {} # DONE
+    GCGamepadSnapShotDataV100:
+        annotations: ['@Packed(1)']
     GCMotion: # DONE
         properties:
             'valueChangedHandler':
