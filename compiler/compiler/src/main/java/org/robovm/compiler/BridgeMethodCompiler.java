@@ -212,8 +212,9 @@ public class BridgeMethodCompiler extends BroMethodCompiler {
         }
         loSignature.append(')');
 
+        final String intend = "    ";
         for (String typedef : typedefs.values()) {
-            body.append(typedef + "\n");
+            body.append(intend + typedef.replace("\n", "\n" + intend) + "\n");
         }
         
         if (returnType instanceof StructureType) {
