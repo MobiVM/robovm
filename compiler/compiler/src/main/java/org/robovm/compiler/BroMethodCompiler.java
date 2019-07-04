@@ -841,7 +841,6 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
     }
 
     protected static String getLoType(final Type type, String base, int index, Map<String, String> typedefs) {
-        final String intend = "    ";
         if (type instanceof VectorStructureType) {
             String name = String.format("%s_%04d", base, index);
             StringBuilder sb = new StringBuilder();
@@ -849,12 +848,12 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
             Type t = st.getTypeAt(0);
             if (st.isVectorArray()) {
                 // vector of structs, such as MatrixFloat2x2
-                sb.append(intend + "typedef struct { ")
+                sb.append("typedef struct { ")
                         .append(getLoType(t, name, 0, typedefs))
                         .append(" m[").append(st.getTypeCount()).append("];}");
             } else {
                 // vector of primitives such as VectorFloat3
-                sb.append(intend + "typedef __attribute__((__ext_vector_type__(")
+                sb.append("typedef __attribute__((__ext_vector_type__(")
                         .append(st.getTypeCount())
                         .append("))) ")
                         .append(getLoType(t, name, 0, typedefs));
@@ -869,10 +868,10 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
             StructureType st = (StructureType) type;
             if (type instanceof PackedStructureType) {
                 // adding packed pragma
-                String packPragma = String.format(intend +"#pragma pack(push, %d)\n", ((PackedStructureType)st).getAlign());
+                String packPragma = String.format("#pragma pack(push, %d)\n", ((PackedStructureType)st).getAlign());
                 sb.append(packPragma);
             }
-            sb.append(intend + "typedef struct {");
+            sb.append("typedef struct {");
             for (int i = 0; i < st.getTypeCount(); i++) {
                 Type t = st.getTypeAt(i);
                 // Only support arrays embedded in structs
@@ -887,7 +886,7 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
             sb.append("} " + name + ";");
             if (type instanceof PackedStructureType) {
                 // adding packed pragma
-                sb.append("\n" + intend + "#pragma pack(pop)");
+                sb.append("\n" + "#pragma pack(pop)");
             }
             typedefs.put(name, sb.toString());
             return name;
