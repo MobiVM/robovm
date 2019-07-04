@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/AudioFileStreamSeekFlags/*</name>*/ extends Bits</*<name>*/AudioFileStreamSeekFlags/*</name>*/> {
     /*<values>*/
     public static final AudioFileStreamSeekFlags None = new AudioFileStreamSeekFlags(0L);

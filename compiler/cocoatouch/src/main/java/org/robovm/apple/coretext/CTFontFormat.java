@@ -37,7 +37,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/CTFontFormat/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unrecognized(0L),

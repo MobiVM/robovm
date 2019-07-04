@@ -37,7 +37,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/CTFontTableOptions/*</name>*/ extends Bits</*<name>*/CTFontTableOptions/*</name>*/> {
     /*<values>*/
     public static final CTFontTableOptions None = new CTFontTableOptions(0L);

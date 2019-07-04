@@ -44,9 +44,8 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 9.0. UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("UIKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIAlertView/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

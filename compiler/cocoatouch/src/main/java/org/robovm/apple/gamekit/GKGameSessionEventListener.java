@@ -36,9 +36,8 @@ import org.robovm.apple.uikit.*;
  * @since Available in iOS 10.0 and later.
  * @deprecated Deprecated in iOS 12.0. Use GKLocalPlayerListener for multiplayer event notifications.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/GKGameSessionEventListener/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 

@@ -10,22 +10,22 @@ typedefs: {}
     
 enums:
     EKErrorCode: {}
-    EKEventAvailability: { first: EKEventAvailabilityNotSupported }
-    EKEventStatus: { first: EKEventStatusNone }
-    EKSpan: { first: EKSpanThisEvent }
+    EKEventAvailability: {}
+    EKEventStatus: {}
+    EKSpan: {}
     EKAuthorizationStatus: {}
-    EKWeekday: {first: EKWeekdaySunday, ignore: 'EK(?!Weekday).*', prefix: EKWeekday}
-    EKRecurrenceFrequency: { first: EKRecurrenceFrequencyDaily }
-    EKParticipantType: { first: EKParticipantTypeUnknown }
-    EKParticipantRole: { first: EKParticipantRoleUnknown }
-    EKParticipantStatus: { first: EKParticipantStatusUnknown }
+    EKWeekday: {ignore: 'EK(?!Weekday).*', prefix: EKWeekday}
+    EKRecurrenceFrequency: {}
+    EKParticipantType: {}
+    EKParticipantRole: {}
+    EKParticipantStatus: {}
     EKParticipantScheduleStatus: {}
-    EKCalendarType: { first: EKCalendarTypeLocal }
-    EKCalendarEventAvailabilityMask: { first: EKCalendarEventAvailabilityNone, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
-    EKSourceType: { first: EKSourceTypeLocal }
-    EKEntityType: { first: EKEntityTypeEvent, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    EKEntityMask: { first: EKEntityMaskEvent, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
-    EKAlarmProximity: { first: EKAlarmProximityNone }
+    EKCalendarType: {}
+    EKCalendarEventAvailabilityMask: {bits: true}
+    EKSourceType: {}
+    EKEntityType: {}
+    EKEntityMask: {bits: true}
+    EKAlarmProximity: {}
     EKAlarmType: {}
     EKReminderPriority: {}
         

@@ -7,8 +7,6 @@ header: /System/Library/Frameworks/CoreFoundation.framework/Headers/CoreFoundati
 typedefs:
     Boolean: boolean
     __CFByteOrder: CFByteOrder
-    SInt32: int
-    UInt32: int
     'Boolean *': BooleanPtr
     CFPlugInRef: CFPlugIn
     'void (^)(CFRunLoopObserverRef, CFRunLoopActivity)': '@Block VoidBlock2<CFRunLoopObserver, CFRunLoopActivity>'
@@ -20,21 +18,21 @@ private_typedefs:
     
 enums:
     CFBundleExecutableArchitectureType: {first: kCFBundleExecutableArchitectureI386}
-    CFByteOrder: {first: CFByteOrderUnknown}
-    CFCalendarComponentsOptionFlags: {first: kCFCalendarComponentsWrap, prefix: kCFCalendarComponents, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
+    CFByteOrder: {first: CFByteOrderUnknown, type: CFIndex}
+    CFCalendarComponentsOptionFlags: {first: kCFCalendarComponentsWrap, prefix: kCFCalendarComponents, bits: true}
     CFCalendarUnit: {}
     CFCharacterSetPredefinedSet: {}
     CFComparisonResult: {}
     CFDataSearchFlags: {}
     CFDateFormatterStyle: {}
-    CFFileDescriptorCallBackType: {first: kCFFileDescriptorReadCallBack, suffix: CallBack, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
+    CFFileDescriptorCallBackType: {first: kCFFileDescriptorReadCallBack, suffix: CallBack, bits: true}
     CFFileSecurityClearOptions: {}
-    CFGregorianUnitFlags: {first: kCFGregorianUnitsYears}
+    CFGregorianUnitFlags: {}
     CFLocaleLanguageDirection: {}
     CFMessagePortErrorCode: {first: kCFMessagePortSuccess}
-    CFNotificationPostingOptions: {first: kCFNotificationDeliverImmediately, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
+    CFNotificationPostingOptions: {first: kCFNotificationDeliverImmediately, bits: true}
     CFNotificationSuspensionBehavior: {}
-    CFNumberFormatterOptionFlags: {first: kCFNumberFormatterParseIntegersOnly, prefix: kCFNumberFormatter, bits: true}
+    CFNumberFormatterOptionFlags: {prefix: kCFNumberFormatter, bits: true}
     CFNumberFormatterPadPosition: {}
     CFNumberFormatterRoundingMode: {}
     CFNumberFormatterStyle: {}
@@ -43,22 +41,22 @@ enums:
     CFPropertyListFormat: {}
     CFPropertyListMutabilityOptions: {}
     CFRunLoopActivity: {}
-    CFRunLoopExitReason: {first: kCFRunLoopRunFinished}
+    CFRunLoopRunResult: {name: CFRunLoopExitReason}
     CFSocketCallBackType: {}
     CFSocketError: {}
-    CFSocketFlags: {first: kCFSocketAutomaticallyReenableReadCallBack, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
+    CFSocketFlags: {first: kCFSocketAutomaticallyReenableReadCallBack, bits: true}
     CFStreamErrorDomain: {}
     CFStreamEventType: {}
     CFStreamStatus: {}
-    CFStringBuiltInEncodings: {type: MachineUInt}
+    CFStringBuiltInEncodings: {type: UInt32}
     CFStringCompareFlags: {}
     CFStringEncodings: {}
     CFStringNormalizationForm: {}
     CFStringTokenizerTokenType: {}
-    CFStringTokenizerUnitOptions: {first: kCFStringTokenizerUnitWord, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
+    CFStringTokenizerUnitOptions: {first: kCFStringTokenizerUnitWord, bits: true}
     CFTimeZoneNameStyle: {}
     CFURLBookmarkCreationOptions: {}
-    CFURLBookmarkResolutionOptions: {first: kCFURLBookmarkResolutionWithSecurityScope, prefix: kCFURLBookmarkResolution, ignore: kCFBookmarkResolution, bits: true }
+    CFURLBookmarkResolutionOptions: {prefix: kCFURLBookmarkResolution, ignore: kCFBookmarkResolution, bits: true }
     CFURLComponentType: {}
     CFURLEnumeratorOptions: {}
     CFURLEnumeratorResult: {}

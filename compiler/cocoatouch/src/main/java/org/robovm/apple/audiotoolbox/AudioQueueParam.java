@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/AudioQueueParam/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Volume(1L),

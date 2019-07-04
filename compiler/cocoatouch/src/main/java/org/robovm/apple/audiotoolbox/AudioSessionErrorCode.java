@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/AudioSessionErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     No(0L),

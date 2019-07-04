@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/AudioSessionCategory/*</name>*/ implements ValuedEnum {
     /*<values>*/
     AmbientSound(1634558569L),

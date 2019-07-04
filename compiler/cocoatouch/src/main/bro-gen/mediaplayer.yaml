@@ -10,22 +10,22 @@ typedefs:
     'MPRemoteCommandHandlerStatus (^)(MPRemoteCommandEvent *)': '@Block Block1<MPRemoteCommandEvent, MPRemoteCommandHandlerStatus>'
 
 enums:
-    MPMediaGrouping: {first: MPMediaGroupingTitle, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    MPMediaPlaylistAttribute: {first: MPMediaPlaylistAttributeNone, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
-    MPMediaPredicateComparison: {first: MPMediaPredicateComparisonEqualTo, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMediaGrouping: {}
+    MPMediaPlaylistAttribute: {bits: true}
+    MPMediaPredicateComparison: {}
     MPMediaType: {}
-    MPMovieControlStyle: {first: MPMovieControlStyleNone, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    MPMovieFinishReason: {first: MPMovieFinishReasonPlaybackEnded, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    MPMovieLoadState: {first: MPMovieLoadStateUnknown, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
-    MPMovieMediaTypeMask: {first: MPMovieMediaTypeMaskNone, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
-    MPMoviePlaybackState: {first: MPMoviePlaybackStateStopped, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    MPMovieRepeatMode: {first: MPMovieRepeatModeNone, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    MPMovieScalingMode: {first: MPMovieScalingModeNone, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    MPMovieSourceType: {first: MPMovieSourceTypeUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    MPMovieTimeOption: {first: MPMovieTimeOptionNearestKeyFrame, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    MPMusicPlaybackState: {first: MPMusicPlaybackStateStopped, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    MPMusicRepeatMode: {first: MPMusicRepeatModeDefault, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    MPMusicShuffleMode: {first: MPMusicShuffleModeDefault, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    MPMovieControlStyle: {}
+    MPMovieFinishReason: {}
+    MPMovieLoadState: {bits: true}
+    MPMovieMediaTypeMask: {bits: true}
+    MPMoviePlaybackState: {}
+    MPMovieRepeatMode: {}
+    MPMovieScalingMode: {}
+    MPMovieSourceType: {}
+    MPMovieTimeOption: {}
+    MPMusicPlaybackState: {}
+    MPMusicRepeatMode: {}
+    MPMusicShuffleMode: {}
     MPRemoteCommandHandlerStatus: {}
     MPSeekCommandEventType: {}
     MPMediaLibraryAuthorizationStatus: {}

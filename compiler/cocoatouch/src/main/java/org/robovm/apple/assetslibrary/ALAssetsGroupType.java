@@ -80,7 +80,7 @@ public final class /*<name>*/ALAssetsGroupType/*</name>*/ extends Bits</*<name>*
      * @deprecated Deprecated in iOS 9.0.
      */
     @Deprecated
-    public static final ALAssetsGroupType All = new ALAssetsGroupType(-1L);
+    public static final ALAssetsGroupType All = new ALAssetsGroupType(4294967295L);
     /*</values>*/
 
     /*<bind>*/

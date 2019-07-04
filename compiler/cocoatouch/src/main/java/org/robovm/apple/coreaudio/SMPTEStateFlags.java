@@ -38,6 +38,7 @@ import org.robovm.apple.corefoundation.*;
 public final class /*<name>*/SMPTEStateFlags/*</name>*/ extends Bits</*<name>*/SMPTEStateFlags/*</name>*/> {
     /*<values>*/
     public static final SMPTEStateFlags None = new SMPTEStateFlags(0L);
+    public static final SMPTEStateFlags Unknown = new SMPTEStateFlags(0L);
     public static final SMPTEStateFlags Valid = new SMPTEStateFlags(1L);
     public static final SMPTEStateFlags Running = new SMPTEStateFlags(2L);
     /*</values>*/

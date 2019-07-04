@@ -48,10 +48,10 @@ public final class /*<name>*/CTFontStylisticClass/*</name>*/ extends Bits</*<nam
     public static final CTFontStylisticClass ClassClarendonSerifs = new CTFontStylisticClass(1073741824L);
     public static final CTFontStylisticClass ClassSlabSerifs = new CTFontStylisticClass(1342177280L);
     public static final CTFontStylisticClass ClassFreeformSerifs = new CTFontStylisticClass(1879048192L);
-    public static final CTFontStylisticClass ClassSansSerif = new CTFontStylisticClass(-2147483648L);
-    public static final CTFontStylisticClass ClassOrnamentals = new CTFontStylisticClass(-1879048192L);
-    public static final CTFontStylisticClass ClassScripts = new CTFontStylisticClass(-1610612736L);
-    public static final CTFontStylisticClass ClassSymbolic = new CTFontStylisticClass(-1073741824L);
+    public static final CTFontStylisticClass ClassSansSerif = new CTFontStylisticClass(2147483648L);
+    public static final CTFontStylisticClass ClassOrnamentals = new CTFontStylisticClass(2415919104L);
+    public static final CTFontStylisticClass ClassScripts = new CTFontStylisticClass(2684354560L);
+    public static final CTFontStylisticClass ClassSymbolic = new CTFontStylisticClass(3221225472L);
     public static final CTFontStylisticClass UnknownClass = new CTFontStylisticClass(0L);
     public static final CTFontStylisticClass OldStyleSerifsClass = new CTFontStylisticClass(268435456L);
     public static final CTFontStylisticClass TransitionalSerifsClass = new CTFontStylisticClass(536870912L);
@@ -59,10 +59,10 @@ public final class /*<name>*/CTFontStylisticClass/*</name>*/ extends Bits</*<nam
     public static final CTFontStylisticClass ClarendonSerifsClass = new CTFontStylisticClass(1073741824L);
     public static final CTFontStylisticClass SlabSerifsClass = new CTFontStylisticClass(1342177280L);
     public static final CTFontStylisticClass FreeformSerifsClass = new CTFontStylisticClass(1879048192L);
-    public static final CTFontStylisticClass SansSerifClass = new CTFontStylisticClass(-2147483648L);
-    public static final CTFontStylisticClass OrnamentalsClass = new CTFontStylisticClass(-1879048192L);
-    public static final CTFontStylisticClass ScriptsClass = new CTFontStylisticClass(-1610612736L);
-    public static final CTFontStylisticClass SymbolicClass = new CTFontStylisticClass(-1073741824L);
+    public static final CTFontStylisticClass SansSerifClass = new CTFontStylisticClass(2147483648L);
+    public static final CTFontStylisticClass OrnamentalsClass = new CTFontStylisticClass(2415919104L);
+    public static final CTFontStylisticClass ScriptsClass = new CTFontStylisticClass(2684354560L);
+    public static final CTFontStylisticClass SymbolicClass = new CTFontStylisticClass(3221225472L);
     /*</values>*/
 
     /*<bind>*/

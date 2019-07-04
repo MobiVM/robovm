@@ -44,9 +44,8 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 8.0 and later.
  * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's UNAuthorizationOptions
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/UIUserNotificationType/*</name>*/ extends Bits</*<name>*/UIUserNotificationType/*</name>*/> {
     /*<values>*/
     public static final UIUserNotificationType None = new UIUserNotificationType(0L);

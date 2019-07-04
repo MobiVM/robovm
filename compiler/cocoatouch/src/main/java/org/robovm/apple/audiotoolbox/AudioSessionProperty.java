@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/AudioSessionProperty/*</name>*/ implements ValuedEnum {
     /*<values>*/
     PreferredHardwareSampleRate(1752658802L),

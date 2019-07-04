@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 public enum /*<name>*/AUErrors/*</name>*/ implements ValuedEnum {
     /*<values>*/
     IllegalInstrument(-10873L),

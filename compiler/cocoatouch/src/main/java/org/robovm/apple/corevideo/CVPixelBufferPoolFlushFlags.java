@@ -38,7 +38,7 @@ import org.robovm.apple.iosurface.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsLongMarshaler.class)/*</annotations>*/
 public final class /*<name>*/CVPixelBufferPoolFlushFlags/*</name>*/ extends Bits</*<name>*/CVPixelBufferPoolFlushFlags/*</name>*/> {
     /*<values>*/
     public static final CVPixelBufferPoolFlushFlags None = new CVPixelBufferPoolFlushFlags(0L);

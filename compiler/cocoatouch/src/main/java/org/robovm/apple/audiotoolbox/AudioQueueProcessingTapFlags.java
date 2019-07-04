@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/AudioQueueProcessingTapFlags/*</name>*/ extends Bits</*<name>*/AudioQueueProcessingTapFlags/*</name>*/> {
     /*<values>*/
     public static final AudioQueueProcessingTapFlags None = new AudioQueueProcessingTapFlags(0L);

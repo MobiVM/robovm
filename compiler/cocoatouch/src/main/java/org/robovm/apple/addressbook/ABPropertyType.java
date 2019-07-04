@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,21 +34,20 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/ABPropertyType/*</name>*/ extends Bits</*<name>*/ABPropertyType/*</name>*/> {
+/*<annotations>*//*</annotations>*/
+public enum /*<name>*/ABPropertyType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    public static final ABPropertyType None = new ABPropertyType(0L);
-    public static final ABPropertyType Invalid = new ABPropertyType(0L);
-    public static final ABPropertyType String = new ABPropertyType(1L);
-    public static final ABPropertyType Integer = new ABPropertyType(2L);
-    public static final ABPropertyType Real = new ABPropertyType(3L);
-    public static final ABPropertyType DateTime = new ABPropertyType(4L);
-    public static final ABPropertyType Dictionary = new ABPropertyType(5L);
-    public static final ABPropertyType MultiString = new ABPropertyType(257L);
-    public static final ABPropertyType MultiInteger = new ABPropertyType(258L);
-    public static final ABPropertyType MultiReal = new ABPropertyType(259L);
-    public static final ABPropertyType MultiDateTime = new ABPropertyType(260L);
-    public static final ABPropertyType MultiDictionary = new ABPropertyType(261L);
+    Invalid(0L),
+    String(1L),
+    Integer(2L),
+    Real(3L),
+    DateTime(4L),
+    Dictionary(5L),
+    MultiString(257L),
+    MultiInteger(258L),
+    MultiReal(259L),
+    MultiDateTime(260L),
+    MultiDictionary(261L);
     /*</values>*/
 
     /*<bind>*/
@@ -56,17 +55,17 @@ public final class /*<name>*/ABPropertyType/*</name>*/ extends Bits</*<name>*/AB
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/ABPropertyType/*</name>*/[] values = _values(/*<name>*/ABPropertyType/*</name>*/.class);
+    private final long n;
 
-    public /*<name>*/ABPropertyType/*</name>*/(long value) { super(value); }
-    private /*<name>*/ABPropertyType/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/ABPropertyType/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/ABPropertyType/*</name>*/(value, mask);
-    }
-    protected /*<name>*/ABPropertyType/*</name>*/[] _values() {
-        return values;
-    }
-    public static /*<name>*/ABPropertyType/*</name>*/[] values() {
-        return values.clone();
+    private /*<name>*/ABPropertyType/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/ABPropertyType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ABPropertyType/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/ABPropertyType/*</name>*/.class.getName());
     }
 }

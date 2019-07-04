@@ -36,9 +36,8 @@ import org.robovm.apple.uikit.*;
  * @since Available in iOS 10.0 and later.
  * @deprecated Deprecated in iOS 12.0.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/GKGameSessionErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unknown(1L),

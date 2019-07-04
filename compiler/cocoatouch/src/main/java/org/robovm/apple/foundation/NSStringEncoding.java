@@ -41,7 +41,7 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NSStringEncoding/*</name>*/ implements ValuedEnum {
     /*<values>*/
     ASCII(1L),

@@ -36,9 +36,8 @@ import org.robovm.apple.uikit.*;
  * @since Available in iOS 3.0 and later.
  * @deprecated Deprecated in iOS 7.0. Use GKVoiceChat instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKVoiceChatService/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

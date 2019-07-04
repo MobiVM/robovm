@@ -39,7 +39,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/CMPixelFormatType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     _32ARGB(32L),

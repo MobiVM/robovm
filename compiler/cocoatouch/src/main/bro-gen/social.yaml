@@ -20,10 +20,7 @@ classes:
                 return_type: NSArray<SLComposeSheetConfigurationItem>
             '-pushConfigurationViewController:':
                 trim_after_first_colon: true
-    SLComposeSheetConfigurationItem: # DONE
-        methods:
-            '-init':
-                exclude: true
+    SLComposeSheetConfigurationItem: {} # DONE
     SLComposeViewController: # DONE
         properties:
             'completionHandler':

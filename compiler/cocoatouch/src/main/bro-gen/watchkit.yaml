@@ -13,7 +13,7 @@ enums:
     WKMenuItemIcon: {}
     WKTextInputMode: {}
     WKInterfaceMapPinColor: {}
-    WKErrorCode: {first: WatchKitUnknownError, suffix: Error}
+    WatchKitErrorCode: {name: WKErrorCode, suffix: Error}
         
 classes:
     WKError:

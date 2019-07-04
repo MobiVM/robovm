@@ -102,12 +102,16 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated GCExtendedGamepadSnapShotDataV100FromNSData has been deprecated, use GCExtendedGamepadSnapshotDataFromNSData instead
      */
+    @Deprecated
     @Bridge(symbol="GCExtendedGamepadSnapShotDataV100FromNSData", optional=true)
     public native boolean setData(NSData data);
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated NSDataFromGCExtendedGamepadSnapShotDataV100 has been deprecated, use NSDataFromGCExtendedGamepadSnapshotData instead
      */
+    @Deprecated
     @Bridge(symbol="NSDataFromGCExtendedGamepadSnapShotDataV100", optional=true)
     public native NSData getData();
     /*</methods>*/

@@ -37,7 +37,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/CTUnderlinePattern/*</name>*/ extends Bits</*<name>*/CTUnderlinePattern/*</name>*/> {
     /*<values>*/
     public static final CTUnderlinePattern None = new CTUnderlinePattern(0L);

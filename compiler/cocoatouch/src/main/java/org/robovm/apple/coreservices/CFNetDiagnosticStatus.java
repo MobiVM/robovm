@@ -36,9 +36,8 @@ import org.robovm.apple.corefoundation.*;
  * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 11.0.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 public enum /*<name>*/CFNetDiagnosticStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
     NoErr(0L),

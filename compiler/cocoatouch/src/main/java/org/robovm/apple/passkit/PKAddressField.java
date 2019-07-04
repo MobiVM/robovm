@@ -38,9 +38,8 @@ import org.robovm.apple.contacts.*;
  * @since Available in iOS 8.0 and later.
  * @deprecated Deprecated in iOS 11.0. Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/PKAddressField/*</name>*/ extends Bits</*<name>*/PKAddressField/*</name>*/> {
     /*<values>*/
     public static final PKAddressField None = new PKAddressField(0L);

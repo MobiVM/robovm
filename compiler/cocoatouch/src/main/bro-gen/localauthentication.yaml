@@ -11,7 +11,7 @@ typedefs:
     
 enums:
     LAPolicy: {prefix: LAPolicy}
-    LAErrorCode: {first: LAErrorAuthenticationFailed}
+    LAError: {name: LAErrorCode}
     LAAccessControlOperation: {}
     LACredentialType: {prefix: LACredentialType}
     LABiometryType: {prefix: LABiometry} #since 11.0

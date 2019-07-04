@@ -36,9 +36,8 @@ import org.robovm.apple.uikit.*;
  * @since Available in iOS 9.0 and later.
  * @deprecated Deprecated in iOS 10.0.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/SFContentBlockerErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     /**

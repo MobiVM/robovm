@@ -37,9 +37,8 @@ import org.robovm.apple.coremedia.*;
  * @since Available in iOS 10.0 and later.
  * @deprecated Deprecated in iOS 11.0. No longer supported
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("ReplayKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("ReplayKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/RPBroadcastConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSCoding, NSSecureCoding/*</implements>*/ {

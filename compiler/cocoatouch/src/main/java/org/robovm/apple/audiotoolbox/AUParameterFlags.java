@@ -63,7 +63,7 @@ public final class /*<name>*/AUParameterFlags/*</name>*/ extends Bits</*<name>*/
     public static final AUParameterFlags IsGlobalMeta = new AUParameterFlags(268435456L);
     public static final AUParameterFlags IsElementMeta = new AUParameterFlags(536870912L);
     public static final AUParameterFlags IsReadable = new AUParameterFlags(1073741824L);
-    public static final AUParameterFlags IsWritable = new AUParameterFlags(-2147483648L);
+    public static final AUParameterFlags IsWritable = new AUParameterFlags(2147483648L);
     /*</values>*/
 
     /*<bind>*/

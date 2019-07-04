@@ -36,9 +36,8 @@ import org.robovm.apple.uikit.*;
  * @since Available in iOS 3.0 and later.
  * @deprecated Deprecated in iOS 7.0. Use MCSession in association with MCSessionDelegate from the MultipeerConnectivity framework instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/GKSessionDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 

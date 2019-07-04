@@ -11,7 +11,7 @@ private_typedefs:
     UIActivityType: NSString
 
 enums:
-    SSReadingListErrorCode: {first: SSReadingListErrorURLSchemeNotAllowed, prefix: SSReadingListError, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    SSReadingListErrorCode: {prefix: SSReadingListError}
     SFContentBlockerErrorCode: {}
     SFErrorCode: {}
     SFAuthenticationError: { nserror: true } #since 11.0

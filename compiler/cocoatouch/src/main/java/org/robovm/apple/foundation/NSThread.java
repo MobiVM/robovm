@@ -77,7 +77,7 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSThread.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NSThread() {}
+    protected NSThread() {}
     protected NSThread(Handle h, long handle) { super(h, handle); }
     protected NSThread(SkipInit skipInit) { super(skipInit); }
     /**

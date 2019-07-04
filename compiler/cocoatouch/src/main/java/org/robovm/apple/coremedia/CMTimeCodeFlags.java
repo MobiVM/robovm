@@ -39,7 +39,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/CMTimeCodeFlags/*</name>*/ extends Bits</*<name>*/CMTimeCodeFlags/*</name>*/> {
     /*<values>*/
     public static final CMTimeCodeFlags None = new CMTimeCodeFlags(0L);

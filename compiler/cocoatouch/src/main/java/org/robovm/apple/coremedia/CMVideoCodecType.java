@@ -39,7 +39,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/CMVideoCodecType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     _422YpCbCr8(846624121L),

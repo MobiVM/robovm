@@ -42,7 +42,7 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
 public enum /*<name>*/CTRubyAlignment/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Invalid(-1L),
+    Invalid(255L),
     Auto(0L),
     Start(1L),
     Center(2L),

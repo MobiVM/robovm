@@ -134,8 +134,6 @@ classes:
             'contentsGravity':
                 type: CAGravity
         methods:
-            '-init':
-                exclude: true
             '-initWithLayer:':
                 name: init
                 parameters:

@@ -253,10 +253,7 @@ classes:
                 name: init
             '+new':
                 exclude: true
-    CKOperation: # DONE
-        methods:
-            '-init':
-                exclude: true
+    CKOperation: {} # DONE
     CKDatabaseOperation: {} # DONE
     CKFetchRecordChangesOperation: # DONE
         properties:
@@ -322,8 +319,6 @@ classes:
             'modifyRecordsCompletionBlock':
                 type: '@Block VoidBlock3<NSArray<CKRecord>, NSArray<CKRecordID>, NSError>'
         methods:
-            '-init':
-                exclude: true
             '-initWithRecordsToSave:recordIDsToDelete:':
                 name: init
                 parameters:
@@ -340,8 +335,6 @@ classes:
             'modifyRecordZonesCompletionBlock':
                 type: '@Block VoidBlock3<NSArray<CKRecordZone>, NSArray<CKRecordZoneID>, NSError>'
         methods:
-            '-init':
-                exclude: true
             '-initWithRecordZonesToSave:recordZoneIDsToDelete:':
                 name: init
                 parameters:
@@ -372,17 +365,12 @@ classes:
                 type: List<String>
                 marshaler: NSArray.AsStringListMarshaler
         methods:
-            '-init':
-                exclude: true
             '-init.*':
                 name: init
     CKDiscoverAllContactsOperation: # DONE
         properties:
             'discoverAllContactsCompletionBlock':
                 type: '@Block VoidBlock2<NSArray<CKDiscoveredUserInfo>, NSError>'
-        methods:
-            '-init':
-                exclude: true
     CKDiscoverUserInfosOperation: # DONE
         properties:
             'emailAddresses':
@@ -393,8 +381,6 @@ classes:
             'discoverUserInfosCompletionBlock':
                 type: '@Block VoidBlock3<NSDictionary<NSString, CKDiscoveredUserInfo>, NSDictionary<CKRecordID, CKDiscoveredUserInfo>, NSError>' # TODO asStringMapMarshaler
         methods:
-            '-init':
-                exclude: true
             '-initWithEmailAddresses:userRecordIDs:':
                 name: init
                 parameters:
@@ -414,8 +400,6 @@ classes:
             'markNotificationsReadCompletionBlock':
                 type: '@Block VoidBlock2<NSArray<CKNotificationID>, NSError>'
         methods:
-            '-init':
-                exclude: true
             '-initWithNotificationIDsToMarkRead:':
                 name: init
                 parameters:

@@ -37,7 +37,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/CTFrameProgression/*</name>*/ implements ValuedEnum {
     /*<values>*/
     TopToBottom(0L),

@@ -44,9 +44,8 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 12.0. No longer supported; please adopt WKWebView.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("UIKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIWebView/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
     /*<implements>*/implements NSCoding, UIScrollViewDelegate/*</implements>*/ {

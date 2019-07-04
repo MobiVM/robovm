@@ -38,7 +38,7 @@ import org.robovm.apple.coretext.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/CFStringBuiltInEncodings/*</name>*/ implements ValuedEnum {
     /*<values>*/
     MacRoman(0L),

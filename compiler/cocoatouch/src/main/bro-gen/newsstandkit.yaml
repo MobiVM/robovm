@@ -8,7 +8,7 @@ headers:
 typedefs: {}
     
 enums:
-    NKIssueContentStatus: {first: NKIssueContentStatusNone}
+    NKIssueContentStatus: {}
     
 categories:
     NSURLConnection: {} # DONE

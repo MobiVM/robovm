@@ -44,9 +44,8 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 3.0 and later.
  * @deprecated Deprecated in iOS 8.0. UISearchDisplayController has been replaced with UISearchController
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("UIKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UISearchDisplayController/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

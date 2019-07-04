@@ -10,9 +10,9 @@ typedefs:
     'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
 
 enums:
-    SKDownloadState: {first: SKDownloadStateWaiting, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    SKPaymentTransactionState: {first: SKPaymentTransactionStatePurchasing, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    SKErrorCode: {first: SKErrorUnknown}
+    SKDownloadState: {}
+    SKPaymentTransactionState: {}
+    SKErrorCode: {}
     SKCloudServiceAuthorizationStatus: {}
     SKCloudServiceCapability: {}
     SKProductStorePromotionVisibility: {} #since 11.0

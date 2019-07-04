@@ -39,9 +39,8 @@ import org.robovm.apple.avkit.*;
  * @since Available in iOS 4.3 and later.
  * @deprecated Deprecated in iOS 10.0.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("iAd") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("iAd") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/ADInterstitialAd/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

@@ -57,7 +57,7 @@ public final class /*<name>*/UIFontDescriptorSymbolicTraits/*</name>*/ extends B
     public static final UIFontDescriptorSymbolicTraits TraitUIOptimized = new UIFontDescriptorSymbolicTraits(4096L);
     public static final UIFontDescriptorSymbolicTraits TraitTightLeading = new UIFontDescriptorSymbolicTraits(32768L);
     public static final UIFontDescriptorSymbolicTraits TraitLooseLeading = new UIFontDescriptorSymbolicTraits(65536L);
-    public static final UIFontDescriptorSymbolicTraits ClassMask = new UIFontDescriptorSymbolicTraits(-268435456L);
+    public static final UIFontDescriptorSymbolicTraits ClassMask = new UIFontDescriptorSymbolicTraits(4026531840L);
     public static final UIFontDescriptorSymbolicTraits ClassUnknown = new UIFontDescriptorSymbolicTraits(0L);
     public static final UIFontDescriptorSymbolicTraits ClassOldStyleSerifs = new UIFontDescriptorSymbolicTraits(268435456L);
     public static final UIFontDescriptorSymbolicTraits ClassTransitionalSerifs = new UIFontDescriptorSymbolicTraits(536870912L);
@@ -65,10 +65,10 @@ public final class /*<name>*/UIFontDescriptorSymbolicTraits/*</name>*/ extends B
     public static final UIFontDescriptorSymbolicTraits ClassClarendonSerifs = new UIFontDescriptorSymbolicTraits(1073741824L);
     public static final UIFontDescriptorSymbolicTraits ClassSlabSerifs = new UIFontDescriptorSymbolicTraits(1342177280L);
     public static final UIFontDescriptorSymbolicTraits ClassFreeformSerifs = new UIFontDescriptorSymbolicTraits(1879048192L);
-    public static final UIFontDescriptorSymbolicTraits ClassSansSerif = new UIFontDescriptorSymbolicTraits(-2147483648L);
-    public static final UIFontDescriptorSymbolicTraits ClassOrnamentals = new UIFontDescriptorSymbolicTraits(-1879048192L);
-    public static final UIFontDescriptorSymbolicTraits ClassScripts = new UIFontDescriptorSymbolicTraits(-1610612736L);
-    public static final UIFontDescriptorSymbolicTraits ClassSymbolic = new UIFontDescriptorSymbolicTraits(-1073741824L);
+    public static final UIFontDescriptorSymbolicTraits ClassSansSerif = new UIFontDescriptorSymbolicTraits(2147483648L);
+    public static final UIFontDescriptorSymbolicTraits ClassOrnamentals = new UIFontDescriptorSymbolicTraits(2415919104L);
+    public static final UIFontDescriptorSymbolicTraits ClassScripts = new UIFontDescriptorSymbolicTraits(2684354560L);
+    public static final UIFontDescriptorSymbolicTraits ClassSymbolic = new UIFontDescriptorSymbolicTraits(3221225472L);
     /*</values>*/
 
     private static final /*<name>*/UIFontDescriptorSymbolicTraits/*</name>*/[] values = _values(/*<name>*/UIFontDescriptorSymbolicTraits/*</name>*/.class);

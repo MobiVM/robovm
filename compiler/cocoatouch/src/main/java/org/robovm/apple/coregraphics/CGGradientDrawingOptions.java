@@ -35,7 +35,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/CGGradientDrawingOptions/*</name>*/ extends Bits</*<name>*/CGGradientDrawingOptions/*</name>*/> {
     /*<values>*/
     public static final CGGradientDrawingOptions None = new CGGradientDrawingOptions(0L);

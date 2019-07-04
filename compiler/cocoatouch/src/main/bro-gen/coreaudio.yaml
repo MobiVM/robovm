@@ -8,8 +8,8 @@ headers:
 typedefs: {}
     
 enums:
-    AudioErrorCode: {first: kAudio_UnimplementedError, prefix: kAudio_, suffix: Error}
-    AudioFormat: {first: kAudioFormatLinearPCM, prefix: kAudioFormat}
+    AudioErrorCode: {first: kAudio_UnimplementedError, suffix: Error}
+    AudioFormat: {first: kAudioFormatLinearPCM}
     AudioFormatFlags: 
         first: kAudioFormatFlagIsFloat
         bits: true
@@ -19,15 +19,14 @@ enums:
     AudioFormatFlags2: {first: kAudioFormatFlagsNativeEndian, merge_with: AudioFormatFlags}
     AudioTimeStampFlags: {first: kAudioTimeStampSampleTimeValid, bits: true}
     AudioTimeStampFlags2: {first: kAudioTimeStampSampleHostTimeValid, prefix: kAudioTimeStamp, merge_with: AudioTimeStampFlags}
-    SMPTETimeType: {first: kSMPTETimeType24, prefix: kSMPTETimeType, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler}
-    SMPTEStateFlags: {first: kSMPTETimeValid, prefix: kSMPTETime, bits: true}
-    AudioChannelLabel: {first: kAudioChannelLabel_Unknown, prefix: kAudioChannelLabel_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler}
-    AudioChannelBits: {first: kAudioChannelBit_Left, prefix: kAudioChannelBit_, bits: true}
-    AudioChannelCoordinate: {first: kAudioChannelCoordinates_LeftRight}
-    AudioChannelFlags: {first: kAudioChannelFlags_AllOff, prefix: kAudioChannelFlags_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
-    AudioChannelLayoutTag: {first: kAudioChannelLayoutTag_UseChannelDescriptions, skip_none: true, prefix: kAudioChannelLayoutTag_, bits: true}
-    SMPTETimeFlags: {prefix: kSMPTETime}
-    MPEG4ObjectID: {prefix: kMPEG4Object_}
+    SMPTETimeType: {prefix: kSMPTETimeType}
+    SMPTETimeFlags: {name: SMPTEStateFlags}
+    AudioChannelLabel: {first: kAudioChannelLabel_Unknown, prefix: kAudioChannelLabel_, marshaler: ValuedEnum.AsUnsignedIntMarshaler} # due UInt32 AudioChannelLabel
+    AudioChannelBitmap: {name: AudioChannelBits}
+    AudioChannelCoordinateIndex: {name: AudioChannelCoordinate}
+    AudioChannelFlags: {}
+    AudioChannelLayoutTag: {first: kAudioChannelLayoutTag_UseChannelDescriptions, skip_none: true, bits: true, marshaler: Bits.AsIntMarshaler} # due UInt32 AudioChannelLayoutTag
+    MPEG4ObjectID: {}
 classes:
     # Structs:
     AudioValueRange: # DONE

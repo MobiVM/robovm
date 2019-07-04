@@ -36,9 +36,8 @@ import org.robovm.apple.uikit.*;
  * @since Available in iOS 4.1 and later.
  * @deprecated Deprecated in iOS 7.0. Use GKGameCenterViewController instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKLeaderboardViewController/*</name>*/ 
     extends /*<extends>*/GKGameCenterViewController/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

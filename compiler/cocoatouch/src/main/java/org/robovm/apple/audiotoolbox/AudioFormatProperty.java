@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Library("AudioToolbox")/*</annotations>*/
+/*<annotations>*/@Library("AudioToolbox")/*</annotations>*/
 public enum /*<name>*/AudioFormatProperty/*</name>*/ implements ValuedEnum {
     /*<values>*/
     FormatInfo(1718449257L),

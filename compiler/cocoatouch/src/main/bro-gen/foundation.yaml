@@ -10,6 +10,10 @@ typedefs:
     BOOL: boolean
     NSInteger: MachineSInt
     NSUInteger: MachineUInt
+    CFTypeID: MachineUInt
+    CFOptionFlags: MachineUInt
+    CFHashCode: MachineUInt
+    CFIndex: MachineSInt
     _NSZone: NSZone
     id: NSObject
     'id *': NSObject
@@ -155,7 +159,7 @@ enums:
     NSDecodingFailurePolicy: {}
     NSDirectoryEnumerationOptions: {}
     NSEnergyFormatterUnit: {}
-    NSEnumerationOptions: { first: NSEnumerationConcurrent, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    NSEnumerationOptions: { bits: true }
     NSExpressionType: { suffix: ExpressionType }
     NSFileCoordinatorReadingOptions: {}
     NSFileCoordinatorWritingOptions: {}
@@ -167,7 +171,6 @@ enums:
     NSFileWrapperWritingOptions: {}
     NSFormattingContext: {}
     NSFormattingUnitStyle: {}
-    NSHashTableOptions: { first: NSHashTableStrongMemory, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
     NSHTTPCookieAcceptPolicy: {}
     NSItemProviderErrorCode: { suffix: Error }
     NSISO8601DateFormatOptions: {}
@@ -179,9 +182,8 @@ enums:
     NSLengthFormatterUnit: {}
     NSLinguisticTaggerOptions: {}
     NSLocaleLanguageDirection: {}
-    NSMachPortRights: { first: NSMachPortDeallocateNone, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    NSMachPortRights: { first: NSMachPortDeallocateNone }
     NSMassFormatterUnit: {}
-    NSMapTableOptions: { first: NSMapTableStrongMemory, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
     NSMatchingFlags: {}
     NSMatchingOptions: {}
     NSMeasurementFormatterUnitOptions: {bits: true}
@@ -192,12 +194,13 @@ enums:
     NSNumberFormatterPadPosition: {}
     NSNumberFormatterRoundingMode: {}
     NSNumberFormatterStyle: { suffix: Style }
+    # attached marshaller as enum is used as NSUinteger, check [NSProcessInfo operatingSystem]
     NSOperatingSystem: { first: NSWindowsNTOperatingSystem, suffix: OperatingSystem, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
     NSOperationQueuePriority: {}
     NSPersonNameComponentsFormatterStyle: {}
     NSPersonNameComponentsFormatterOptions: {prefix: NSPersonNameComponentsFormatter}
     NSProcessInfoThermalState: {}
-    NSPointerFunctionsOptions: { first: NSPointerFunctionsStrongMemory, exclude: true, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    NSPointerFunctionsOptions: { name: NSHashTableOptions, bits: true}
     NSPostingStyle: {}
     NSPredicateOperatorType: { suffix: PredicateOperatorType }
     NSPropertyListFormat: { suffix: Format }
@@ -207,7 +210,7 @@ enums:
     NSRoundingMode: {}
     NSSearchPathDirectory: {}
     NSSearchPathDomainMask: {}
-    NSSortOptions: { first: NSSortConcurrent, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    NSSortOptions: { bits: true }
     NSStreamEvent: {}
     NSStreamStatus: {}
     NSStringCompareOptions: { suffix: Search }
@@ -220,13 +223,13 @@ enums:
     NSUbiquitousKeyValueStoreChangeReason: { first: NSUbiquitousKeyValueStoreServerChange }
     NSURLBookmarkCreationOptions: {}
     NSURLBookmarkResolutionOptions: {prefix: NSURLBookmarkResolution}
-    NSURLCacheStoragePolicy: { first: NSURLCacheStorageAllowed, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    NSURLCacheStoragePolicy: {}
     NSURLCredentialPersistence: {}
     NSURLErrorCode: { first: NSURLErrorUnknown }
     NSURLErrorCancelledReason: { first: NSURLErrorCancelledReasonUserForceQuitApplication }
     NSURLRelationship: {}
-    NSURLRequestCachePolicy: { first: NSURLRequestUseProtocolCachePolicy, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    NSURLRequestNetworkServiceType: { first: NSURLNetworkServiceTypeDefault, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    NSURLRequestCachePolicy: {}
+    NSURLRequestNetworkServiceType: {}
     NSURLSessionAuthChallengeDisposition: {}
     NSURLSessionResponseDisposition: {}
     NSURLSessionTaskState: {}
@@ -302,6 +305,8 @@ classes:
             'description':
                 exclude: true
         methods:
+            '-init':
+                name: init
             '-initWithArray:':
                 name: init
                 visibility: protected
@@ -845,6 +850,7 @@ classes:
                 name: now
             '-initWithTimeIntervalSince1970:':
                 name: init
+            '-init': {}
             '-init.*': {exclude: true}
             '-timeIntervalSinceDate:':
                 name: getTimeIntervalSince
@@ -1009,6 +1015,8 @@ classes:
                 visibility: protected
                 constructor: false
                 return_type: '@Pointer long'
+            '-init':
+                name: init
             '-initWithObjects:forKeys:':
                 name: init
                 visibility: protected
@@ -2226,7 +2234,6 @@ classes:
             'groupedResults':
                 type: NSArray<NSMetadataQueryResultGroup>
         methods:
-            '-init': {exclude: true}
             '-resultAtIndex:':
                 name: getResult
                 return_type: NSMetadataItem
@@ -2280,6 +2287,7 @@ classes:
                         marshaler: StringMarshalers.AsDefaultCharsetZMarshaler
     NSMutableArray: # DONE
         methods:
+            '-init': {}
             '-initWithCapacity:':
                 name: init
             '-removeObjectAtIndex:':
@@ -2424,6 +2432,7 @@ classes:
                 name: shiftIndexes
     NSMutableOrderedSet: # DONE
         methods:
+            '-init': {}
             '-initWithCapacity:':
                 name: init
             '-removeObjectAtIndex:':
@@ -2453,6 +2462,7 @@ classes:
             '-removeAllObjects':
                 trim_after_first_colon: true
                 visibility: protected
+            '-init': {}
             '-initWithCapacity:':
                 name: init
             '+.*': {exclude: true}
@@ -2523,7 +2533,6 @@ classes:
                         type: 'NSDictionary<NSString, NSData>'
     NSNetServiceBrowser: # DONE
         methods:
-            '-init': {exclude: true}
             '-scheduleInRunLoop:forMode:':
                 trim_after_first_colon: true
             '-removeFromRunLoop:forMode:':
@@ -2551,7 +2560,6 @@ classes:
         methods:
             '+defaultCenter':
                 property: true
-            '-init': {exclude: true}
             '-addObserver:selector:name:object:':
                 trim_after_first_colon: true
                 parameters:
@@ -2716,6 +2724,7 @@ classes:
                 visibility: private
                 constructor: false
         methods:
+            '-init': {}
             '-copy': {}
             '-mutableCopy': {}
             '-performSelectorInBackground:withObject:':
@@ -2770,7 +2779,6 @@ classes:
             'cancelled':
                 name: isCancelled
         methods:
-            '-init': {exclude: true}
             '-addDependency:':
                 trim_after_first_colon: true
             '-removeDependency:':
@@ -2817,6 +2825,7 @@ classes:
             'description':
                 exclude: true
         methods:
+            '-init': {}
             '-initWithArray:':
                 name: init
                 constructor: false
@@ -3170,6 +3179,7 @@ classes:
             'description':
                 exclude: true
         methods:
+            '-init': {}
             '-initWithArray:':
                 name: init
                 constructor: false
@@ -3260,6 +3270,7 @@ classes:
                 parameters:
                     characters:
                         type: '@Pointer long'
+            '-init': {}
             '-init.*': { exclude: true }
             '-characterAtIndex:':
                 name: getCharactersAt
@@ -3786,7 +3797,7 @@ classes:
                 annotations: ['@WeaklyLinked']
         methods:
             '+credential.*':
-               exclude: true
+                exclude: true
             '-initWithIdentity:certificates:persistence:':
                 name: init
                 annotations: ['@WeaklyLinked']
@@ -4035,8 +4046,6 @@ classes:
                 type: Set<String>
                 marshaler: NSSet.AsStringSetMarshaler
         methods:
-            '-init':
-                exclude: true
             '-init.*':
                 name: init
             '-addUserInfoEntriesFromDictionary:':
@@ -4126,13 +4135,16 @@ classes:
                 name: isObjectForced
             '+standardUserDefaults':
                 property: true
-            '-init.*': {exclude: true}
+            '-init': {}
+            '-init.*':
+                exclude: true
     NSUUID: # DONE
         properties:
             'UUIDString':
                 name: asString
                 omit_prefix: true
         methods:
+            '-init': {}
             '-initWithUUIDString:':
                 name: init
                 constructor: false
@@ -4417,7 +4429,7 @@ protocols:
                     attrName:
                         name: attribute
                         type: NSMetadataItemAttribute
-#    NSMutableCopying: {}
+    #    NSMutableCopying: {}
     NSNetServiceBrowserDelegate: # DONE
         methods:
             '-netServiceBrowserWillSearch:':

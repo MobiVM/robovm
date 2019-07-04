@@ -45,9 +45,8 @@ import org.robovm.apple.audiotoolbox.*;
  * @since Available in iOS 4.0 and later.
  * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput instead.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("AVFoundation") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVCaptureStillImageOutput/*</name>*/ 
     extends /*<extends>*/AVCaptureOutput/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

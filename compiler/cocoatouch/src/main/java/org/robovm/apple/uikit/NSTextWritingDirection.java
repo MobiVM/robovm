@@ -44,9 +44,8 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 7.0 and later.
  * @deprecated Deprecated in iOS 9.0. Use NSWritingDirectionFormatType instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/NSTextWritingDirection/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Embedding(0L),

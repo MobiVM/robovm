@@ -16,7 +16,7 @@ headers:
 typedefs: {}
     
 enums:
-    CTErrorDomain: { first: kCTErrorDomainNoError }
+    CTErrorDomain: { first: kCTErrorDomainNoError, type: 'SInt32' }
     CTCellularDataRestrictedState: {prefix: kCTCellularData}
     CTCellularPlanProvisioningAddPlanResult: {}
 

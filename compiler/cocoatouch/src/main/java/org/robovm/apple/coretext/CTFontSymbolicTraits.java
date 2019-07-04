@@ -37,7 +37,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/CTFontSymbolicTraits/*</name>*/ extends Bits</*<name>*/CTFontSymbolicTraits/*</name>*/> {
     /*<values>*/
     public static final CTFontSymbolicTraits None = new CTFontSymbolicTraits(0L);
@@ -50,7 +50,7 @@ public final class /*<name>*/CTFontSymbolicTraits/*</name>*/ extends Bits</*<nam
     public static final CTFontSymbolicTraits TraitUIOptimized = new CTFontSymbolicTraits(4096L);
     public static final CTFontSymbolicTraits TraitColorGlyphs = new CTFontSymbolicTraits(8192L);
     public static final CTFontSymbolicTraits TraitComposite = new CTFontSymbolicTraits(16384L);
-    public static final CTFontSymbolicTraits TraitClassMask = new CTFontSymbolicTraits(-268435456L);
+    public static final CTFontSymbolicTraits TraitClassMask = new CTFontSymbolicTraits(4026531840L);
     public static final CTFontSymbolicTraits ItalicTrait = new CTFontSymbolicTraits(1L);
     public static final CTFontSymbolicTraits BoldTrait = new CTFontSymbolicTraits(2L);
     public static final CTFontSymbolicTraits ExpandedTrait = new CTFontSymbolicTraits(32L);
@@ -60,7 +60,7 @@ public final class /*<name>*/CTFontSymbolicTraits/*</name>*/ extends Bits</*<nam
     public static final CTFontSymbolicTraits UIOptimizedTrait = new CTFontSymbolicTraits(4096L);
     public static final CTFontSymbolicTraits ColorGlyphsTrait = new CTFontSymbolicTraits(8192L);
     public static final CTFontSymbolicTraits CompositeTrait = new CTFontSymbolicTraits(16384L);
-    public static final CTFontSymbolicTraits ClassMaskTrait = new CTFontSymbolicTraits(-268435456L);
+    public static final CTFontSymbolicTraits ClassMaskTrait = new CTFontSymbolicTraits(4026531840L);
     /*</values>*/
 
     /*<bind>*/

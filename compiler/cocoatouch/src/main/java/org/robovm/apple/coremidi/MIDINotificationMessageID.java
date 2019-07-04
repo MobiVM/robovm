@@ -34,7 +34,7 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsSignedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/MIDINotificationMessageID/*</name>*/ implements ValuedEnum {
     /*<values>*/
     SetupChanged(1L),
