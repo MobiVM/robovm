@@ -40,16 +40,19 @@ import org.robovm.apple.uikit.*;
     /*<implements>*//*</implements>*/ {
 
     public interface ReleaseDataCallback {
-        void release(IntPtr data);
+        void release(@Pointer long data);
     }
     
-    private static java.util.concurrent.atomic.AtomicLong releaseInfo = new java.util.concurrent.atomic.AtomicLong();
+    private static java.util.concurrent.atomic.AtomicLong releaseInfoGen = new java.util.concurrent.atomic.AtomicLong(1);
     private static final LongMap<ReleaseDataCallback> callbacks = new LongMap<>();
     private static final java.lang.reflect.Method cbReleaseData;
-    
+
+    /** identifier of release callback that was acreate for this context instance */
+    private long releaseInfo;
+
     static {
         try {
-            cbReleaseData = CGBitmapContext.class.getDeclaredMethod("cbReleaseData", long.class, IntPtr.class);
+            cbReleaseData = CGBitmapContext.class.getDeclaredMethod("cbReleaseData", long.class, long.class);
         } catch (Throwable e) {
             throw new Error(e);
         }
@@ -62,68 +65,157 @@ import org.robovm.apple.uikit.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     @Callback
-    private static void cbReleaseData(@Pointer long refcon, IntPtr data) {
-        ReleaseDataCallback callback = null;
+    private static void cbReleaseData(@Pointer long refcon, @Pointer long data) {
+        ReleaseDataCallback callback;
         synchronized (callbacks) {
-            callback = callbacks.get(refcon);
+            callback = callbacks.remove(refcon);
         }
-        callback.release(data);
+        if (callback != null)
+            callback.release(data);
     }
     
     /**
      * @since Available in iOS 2.0 and later.
      */
     public static CGBitmapContext create(long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo) {
-        return create((IntPtr)null, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo);
+        return create((byte[])null, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo);
     }
     /**
      * @since Available in iOS 2.0 and later.
      */
     public static CGBitmapContext create(long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGImageAlphaInfo alphaInfo) {
-        return create((IntPtr)null, width, height, bitsPerComponent, bytesPerRow, space, new CGBitmapInfo(alphaInfo.value()));
-    }
-    /**
-     * @since Available in iOS 2.0 and later.
-     */
-    public static CGBitmapContext create(byte[] data, long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo) {
-        BytePtr ptr = new BytePtr();
-        ptr.set(data);
-        return create(ptr.as(IntPtr.class), width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo);
+        return create((byte[])null, width, height, bitsPerComponent, bytesPerRow, space, alphaInfo);
     }
     /**
      * @since Available in iOS 2.0 and later.
      */
     public static CGBitmapContext create(byte[] data, long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGImageAlphaInfo alphaInfo) {
-        BytePtr ptr = new BytePtr();
-        ptr.set(data);
-        return create(ptr.as(IntPtr.class), width, height, bitsPerComponent, bytesPerRow, space, new CGBitmapInfo(alphaInfo.value()));
+        return create(data, width, height, bitsPerComponent, bytesPerRow, space, new CGBitmapInfo(alphaInfo.value()));
+    }
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    public static CGBitmapContext create(byte[] data, long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo) {
+        long ptr = data != null ? VM.getArrayValuesAddress(data) : 0;
+        return internalCreate(data, ptr, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo);
+    }
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    public static CGBitmapContext create(short[] data, long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo) {
+        long ptr = data != null ? VM.getArrayValuesAddress(data) : 0;
+        return internalCreate(data, ptr, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo);
+    }
+    /**
+     * @since Available in iOS 2.0 and later.
+     */
+    public static CGBitmapContext create(int[] data, long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo) {
+        long ptr = data != null ? VM.getArrayValuesAddress(data) : 0;
+        return internalCreate(data, ptr, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo);
+    }
+    /**
+     * @deprecated kept for compatibility only, use ones that accept arrays
+     * @since Available in iOS 4.0 and later.
+     */
+    @Deprecated
+    public static CGBitmapContext create(IntPtr data, long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo) {
+        long ptr = data != null ? data.getHandle() : 0;
+        return internalCreate(data, ptr, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo);
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public static CGBitmapContext create(long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo, ReleaseDataCallback releaseCallback) {
-        return create((IntPtr)null, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, releaseCallback);
+        return create((byte[])null, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, releaseCallback);
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public static CGBitmapContext create(byte[] data, long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo, ReleaseDataCallback releaseCallback) {
-        BytePtr ptr = new BytePtr();
-        ptr.set(data);
-        return create(ptr.as(IntPtr.class), width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, releaseCallback);
+        long ptr = data != null ? VM.getArrayValuesAddress(data) : 0;
+        return internalCreate(ptr, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, releaseCallback);
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
+    public static CGBitmapContext create(short[] data, long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo, ReleaseDataCallback releaseCallback) {
+        long ptr = data != null ? VM.getArrayValuesAddress(data) : 0;
+        return internalCreate(ptr, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, releaseCallback);
+    }
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static CGBitmapContext create(int[] data, long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo, ReleaseDataCallback releaseCallback) {
+        long ptr = data != null ? VM.getArrayValuesAddress(data) : 0;
+        return internalCreate(ptr, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, releaseCallback);
+    }
+    /**
+     * @deprecated kept for compatibility only, use ones that accept arrays
+     * @since Available in iOS 4.0 and later.
+     */
+    @Deprecated
     public static CGBitmapContext create(IntPtr data, long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo, ReleaseDataCallback releaseCallback) {
-        long releaseInfo = CGBitmapContext.releaseInfo.getAndIncrement();
-        CGBitmapContext result = create(data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, new FunctionPtr(cbReleaseData), releaseInfo);
-        if (result != null) {
+        return internalCreate(data.getHandle(), width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, releaseCallback);
+    }
+
+    /**
+     * if data is specified this method also will allocate callback to keep reference to data in it
+     */
+    private static CGBitmapContext internalCreate(Object data, @Pointer long ptr, long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo) {
+        ReleaseDataCallback releaseCallback = null;
+        if (data != null && ptr != 0) {
+            // register callback. it will be keeping data till it is not notified to be removed
+            releaseCallback = new DataHolderReleaseCallback(data);
+        }
+
+        return internalCreate(ptr, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, releaseCallback);
+    }
+
+    private static CGBitmapContext internalCreate(@Pointer long data, long width, long height, long bitsPerComponent, long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo, ReleaseDataCallback releaseCallback) {
+        CGBitmapContext result;
+        if (releaseCallback != null) {
+            long releaseInfo = CGBitmapContext.releaseInfoGen.getAndIncrement();
+            result = create(data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, new FunctionPtr(cbReleaseData), releaseInfo);
+            if (result != null) {
+                synchronized (callbacks) {
+                    result.releaseInfo = releaseInfo;
+                    callbacks.put(releaseInfo, releaseCallback);
+                }
+            }
+        } else {
+            result = create(data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo);
+        }
+
+        return result;
+    }
+
+    @Override
+    protected void dispose(boolean finalizing) {
+        super.dispose(finalizing);
+
+        // remove registered callback otherwise it might stuck in callbacks
+        if (releaseInfo > 0) {
             synchronized (callbacks) {
-                callbacks.put(releaseInfo, releaseCallback);
+                callbacks.remove(releaseInfo);
+                releaseInfo = 0;
             }
         }
-        return result;
+    }
+
+    /**
+     * release callback responsible for keeping data which was assigned to CGBitmapContext
+     */
+    private static class DataHolderReleaseCallback implements ReleaseDataCallback {
+        private Object data;
+
+        public DataHolderReleaseCallback(Object data) {
+            this.data = data;
+        }
+
+        @Override
+        public void release(long ptr) {
+            this.data = null;
+        }
     }
 
     /*<methods>*/
@@ -131,17 +223,17 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CGBitmapContextCreateWithData", optional=true)
-    private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGBitmapContext create(IntPtr data, @MachineSizedUInt long width, @MachineSizedUInt long height, @MachineSizedUInt long bitsPerComponent, @MachineSizedUInt long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo, FunctionPtr releaseCallback, @Pointer long releaseInfo);
+    private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGBitmapContext create(@Pointer long data, @MachineSizedUInt long width, @MachineSizedUInt long height, @MachineSizedUInt long bitsPerComponent, @MachineSizedUInt long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo, FunctionPtr releaseCallback, @Pointer long releaseInfo);
     /**
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="CGBitmapContextCreate", optional=true)
-    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGBitmapContext create(IntPtr data, @MachineSizedUInt long width, @MachineSizedUInt long height, @MachineSizedUInt long bitsPerComponent, @MachineSizedUInt long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo);
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGBitmapContext create(@Pointer long data, @MachineSizedUInt long width, @MachineSizedUInt long height, @MachineSizedUInt long bitsPerComponent, @MachineSizedUInt long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo);
     /**
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="CGBitmapContextGetData", optional=true)
-    public native IntPtr getData();
+    public native @Pointer long getData();
     /**
      * @since Available in iOS 2.0 and later.
      */
