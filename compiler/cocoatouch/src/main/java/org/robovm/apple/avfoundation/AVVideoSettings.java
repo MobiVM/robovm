@@ -119,20 +119,18 @@ import org.robovm.apple.audiotoolbox.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    @WeaklyLinked
-    public CMVideoCodecType getCodec() {
+    public AVVideoCodecType getCodec() {
         if (has(Keys.Codec())) {
-            NSNumber val = (NSNumber) get(Keys.Codec());
-            return CMVideoCodecType.valueOf(val.longValue());
+            NSString val = (NSString) get(Keys.Codec());
+            return AVVideoCodecType.valueOf(val);
         }
         return null;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
-    @WeaklyLinked
-    public AVVideoSettings setCodec(CMVideoCodecType codec) {
-        set(Keys.Codec(), NSNumber.valueOf(codec.value()));
+    public AVVideoSettings setCodec(AVVideoCodecType codec) {
+        set(Keys.Codec(), codec.value());
         return this;
     }
     /**

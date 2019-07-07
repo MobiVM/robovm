@@ -71,12 +71,12 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "availablePhotoFileTypes")
-    public native NSArray<?> getAvailablePhotoFileTypes();
+    public native NSArray<NSString> getAvailablePhotoFileTypes();
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "availableRawPhotoFileTypes")
-    public native NSArray<?> getAvailableRawPhotoFileTypes();
+    public native NSArray<NSString> getAvailableRawPhotoFileTypes();
     @Property(selector = "isStillImageStabilizationSupported")
     public native boolean isStillImageStabilizationSupported();
     @Property(selector = "isStillImageStabilizationScene")

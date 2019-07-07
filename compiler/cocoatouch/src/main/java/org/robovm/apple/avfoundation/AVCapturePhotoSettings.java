@@ -203,12 +203,12 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "livePhotoVideoCodecType")
-    public native NSString getLivePhotoVideoCodecType();
+    public native AVVideoCodecType getLivePhotoVideoCodecType();
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "setLivePhotoVideoCodecType:")
-    public native void setLivePhotoVideoCodecType(NSString v);
+    public native void setLivePhotoVideoCodecType(AVVideoCodecType v);
     @Property(selector = "livePhotoMovieMetadata")
     public native NSArray<AVMetadataItem> getLivePhotoMovieMetadata();
     @Property(selector = "setLivePhotoMovieMetadata:")

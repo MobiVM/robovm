@@ -14,7 +14,6 @@ typedefs:
     'void (^)(CMTime)': '@Block VoidBlock1<CMTime>'
     'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
     'void (^)(CMSampleBufferRef, AVCaptureBracketedStillImageSettings *, NSError *)': '@Block VoidBlock3<CMSampleBuffer, AVCaptureBracketedStillImageSettings, NSError>'
-    AVVideoCodecType: NSString
 private_typedefs:
     CGImagePropertyOrientation: org.robovm.apple.imageio.CGImagePropertyOrientation
     # following can't be used as Enum from CoreMedia. As it defines only invalid state
@@ -106,6 +105,9 @@ typed_enums:
     AVVideoApertureMode:
         enum: AVVideoApertureMode
         prefix: AVVideoApertureMode
+        type: NSString
+    AVVideoCodecType:
+        enum: AVVideoCodecType
         type: NSString
 
 categories:
@@ -3332,8 +3334,7 @@ values:
         type: NSString
         methods:
             Codec:
-                type: CMVideoCodecType
-                annotations: ['@WeaklyLinked']
+                type: AVVideoCodecType
             Width:
                 type: long
             Height:
