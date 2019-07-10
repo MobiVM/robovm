@@ -39,9 +39,9 @@ public class IOSDeviceMojo extends AbstractRoboVMMojo {
 
         try {
 
-            Arch arch = Arch.thumbv7;
-            if (super.arch != null && super.arch.equals(Arch.arm64.toString())) {
-                arch = Arch.arm64;
+            Arch arch = Arch.arm64;
+            if (super.arch != null && super.arch.equals(Arch.thumbv7.toString())) {
+                arch = Arch.thumbv7;
             }
 
             AppCompiler compiler = build(OS.ios, arch, IOSTarget.TYPE);
