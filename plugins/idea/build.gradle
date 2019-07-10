@@ -1,0 +1,68 @@
+plugins {
+    id 'java'
+    id "org.jetbrains.intellij" version "0.4.9"
+}
+
+ext {
+    roboVMVersion = '2.3.8-SNAPSHOT'
+}
+
+group 'com.mobidevelop.robovm'
+version "${roboVMVersion}"
+
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+configurations {
+    robovm_dist
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile ("com.mobidevelop.robovm:robovm-dist-compiler:${roboVMVersion}") {
+        exclude group: 'com.mobidevelop.robovm', module: 'robovm-rt'
+        exclude group: 'com.mobidevelop.robovm', module: 'robovm-objc'
+        exclude group: 'com.mobidevelop.robovm', module: 'robovm-cocoatouch'
+        exclude group: 'com.mobidevelop.robovm', module: 'robovm-cacerts-full'
+    }
+    compile ("com.mobidevelop.robovm:robovm-debugger:${roboVMVersion}") {
+        exclude group: 'com.mobidevelop.robovm', module: 'robovm-compiler'
+    }
+    compile ("com.mobidevelop.robovm:robovm-ibxcode:${roboVMVersion}") {
+        exclude group: 'com.mobidevelop.robovm', module: 'robovm-compiler'
+    }
+    compile ("com.mobidevelop.robovm:robovm-templater:${roboVMVersion}") {
+        exclude group: 'com.mobidevelop.robovm', module: 'robovm-templates-ios-single-view-no-ib'
+        exclude group: 'com.mobidevelop.robovm', module: 'robovm-templates-ios-framework'
+        exclude group: 'com.mobidevelop.robovm', module: 'robovm-templates-console'
+    }
+    robovm_dist "com.mobidevelop.robovm:robovm-dist:${roboVMVersion}:nocompiler@tar.gz"
+}
+
+intellij {
+    version '2018.3'   // we are compiles against this API version
+    plugins = ['maven', 'gradle']
+    updateSinceUntilBuild = false
+}
+
+publishPlugin {
+    distributionFile "org.robovm.idea-${roboVMVersion}-plugin-dist.jar"
+}
+
+task copyRoboVmDist(type: Copy) {
+    from configurations.robovm_dist
+    into "src/main/resources/"
+    rename "robovm-dist-${roboVMVersion}-nocompiler.tar.gz", "robovm-dist"
+}
+
+
+compileJava {
+    dependsOn copyRoboVmDist
+}

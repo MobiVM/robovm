@@ -4,6 +4,7 @@
     <version>${project.version}</version>
     <vendor email="robovm@mobidevelop.com" url="http://github.com/mobidevelop/robovm">mobidevelop</vendor>
 
+    <depends>org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
 
     <idea-version since-build="141.177"/>
