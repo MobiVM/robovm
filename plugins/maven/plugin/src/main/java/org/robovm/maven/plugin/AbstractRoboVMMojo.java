@@ -35,6 +35,8 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Component;
+import org.apache.maven.plugins.annotations.Execute;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.archiver.UnArchiver;
@@ -56,6 +58,7 @@ import org.robovm.compiler.target.ios.SigningIdentity;
 
 /**
  */
+@Execute(goal="compile", phase = LifecyclePhase.COMPILE)
 public abstract class AbstractRoboVMMojo extends AbstractMojo {
 
     @Component
