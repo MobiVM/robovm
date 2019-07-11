@@ -59,7 +59,7 @@ import org.robovm.apple.corevideo.*;
     @Property(selector = "predictedProbabilitiesName")
     public native String getPredictedProbabilitiesName();
     @Property(selector = "metadata")
-    public native NSDictionary<?, ?> getMetadata();
+    public native NSDictionary<NSString, ?> getMetadata();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

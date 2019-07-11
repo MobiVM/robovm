@@ -70,8 +70,8 @@ import org.robovm.apple.contacts.*;
     @Method(selector = "canMakePayments")
     public static native boolean canMakePayments();
     @Method(selector = "canMakePaymentsUsingNetworks:")
-    public static native boolean canMakePaymentsUsingNetworks(NSArray<?> supportedNetworks);
+    public static native boolean canMakePaymentsUsingNetworks(NSArray<NSString> supportedNetworks);
     @Method(selector = "canMakePaymentsUsingNetworks:capabilities:")
-    public static native boolean canMakePayments(NSArray<?> supportedNetworks, PKMerchantCapability capabilties);
+    public static native boolean canMakePayments(NSArray<NSString> supportedNetworks, PKMerchantCapability capabilties);
     /*</methods>*/
 }

@@ -58,11 +58,11 @@ import org.robovm.apple.imageio.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportedSymbologies")
-    public static native NSArray<?> getSupportedSymbologies();
+    public static native NSArray<NSString> getSupportedSymbologies();
     @Property(selector = "symbologies")
-    public native NSArray<?> getSymbologies();
+    public native NSArray<NSString> getSymbologies();
     @Property(selector = "setSymbologies:")
-    public native void setSymbologies(NSArray<?> v);
+    public native void setSymbologies(NSArray<NSString> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

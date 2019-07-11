@@ -80,12 +80,12 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "requiredBillingContactFields")
-    public native NSSet<?> getRequiredBillingContactFields();
+    public native NSSet<NSString> getRequiredBillingContactFields();
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "setRequiredBillingContactFields:")
-    public native void setRequiredBillingContactFields(NSSet<?> v);
+    public native void setRequiredBillingContactFields(NSSet<NSString> v);
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0.
@@ -114,12 +114,12 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "requiredShippingContactFields")
-    public native NSSet<?> getRequiredShippingContactFields();
+    public native NSSet<NSString> getRequiredShippingContactFields();
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "setRequiredShippingContactFields:")
-    public native void setRequiredShippingContactFields(NSSet<?> v);
+    public native void setRequiredShippingContactFields(NSSet<NSString> v);
     /**
      * @since Available in iOS 8.0 and later.
      * @deprecated Deprecated in iOS 11.0.
@@ -207,7 +207,7 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "availableNetworks")
-    public static native NSArray<?> availableNetworks();
+    public static native NSArray<NSString> availableNetworks();
     /**
      * @since Available in iOS 11.0 and later.
      */

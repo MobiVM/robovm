@@ -52,14 +52,14 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "initWithTagSchemes:")
-    public NLTagger(NSArray<?> tagSchemes) { super((SkipInit) null); initObject(init(tagSchemes)); }
+    public NLTagger(NSArray<NSString> tagSchemes) { super((SkipInit) null); initObject(init(tagSchemes)); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "tagSchemes")
-    public native NSArray<?> getTagSchemes();
+    public native NSArray<NSString> getTagSchemes();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -82,7 +82,7 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "initWithTagSchemes:")
-    protected native @Pointer long init(NSArray<?> tagSchemes);
+    protected native @Pointer long init(NSArray<NSString> tagSchemes);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -102,7 +102,7 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "tagsInRange:unit:scheme:options:tokenRanges:")
-    public native NSArray<?> getTags(@ByVal NSRange range, NLTokenUnit unit, NLTagScheme scheme, NLTaggerOptions options, NSArray.NSArrayPtr<?> tokenRanges);
+    public native NSArray<NSString> getTags(@ByVal NSRange range, NLTokenUnit unit, NLTagScheme scheme, NLTaggerOptions options, NSArray.NSArrayPtr<?> tokenRanges);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -121,6 +121,6 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "availableTagSchemesForUnit:language:")
-    public static native NSArray<?> getAvailableTagSchemes(NLTokenUnit unit, NLLanguage language);
+    public static native NSArray<NSString> getAvailableTagSchemes(NLTokenUnit unit, NLLanguage language);
     /*</methods>*/
 }
