@@ -1,4 +1,3 @@
-cmake_minimum_required(VERSION 2.8)
 
 include(ExternalProject)
 
@@ -44,8 +43,8 @@ endif()
 
 set(C_CXX_FLAGS "${C_CXX_FLAGS} -fvisibility=hidden -fdata-sections -ffunction-sections")
 if(MACOSX AND X86_64)
-  set(C_CXX_FLAGS "${C_CXX_FLAGS} -arch x86_64 -mmacosx-version-min=10.7")
-  set(LD_FLAGS "${LD_FLAGS} -arch x86_64 -mmacosx-version-min=10.7")
+  set(C_CXX_FLAGS "${C_CXX_FLAGS} -arch x86_64 -mmacosx-version-min=10.12")
+  set(LD_FLAGS "${LD_FLAGS} -arch x86_64 -mmacosx-version-min=10.12")
 elseif(LINUX AND X86)
   set(C_CXX_FLAGS "${C_CXX_FLAGS} -m32")
   set(LD_FLAGS "${LD_FLAGS} -m64")
@@ -62,9 +61,9 @@ endif()
 
 if(MACOSX)
   exec_program(xcode-select ARGS --print-path OUTPUT_VARIABLE XCODE_PATH)
-  set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk")
+  set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk")
   if(NOT IS_DIRECTORY ${SYSROOT})
-    set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk")
+    set(SYSROOT "${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk")
   endif()
   if(NOT IS_DIRECTORY ${SYSROOT})
     message(FATAL_ERROR "No supported MacOSX SDK found")

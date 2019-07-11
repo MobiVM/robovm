@@ -24,12 +24,14 @@ public class HooksCallStackEntry {
     private final long impl;
     private final int lineNumber;
     private final long fp;
+    private final long pc;
 
-    public HooksCallStackEntry(String clazzName, long impl, int lineNumber, long fp) {
+    public HooksCallStackEntry(String clazzName, long impl, int lineNumber, long fp, long pc) {
         this.clazzName = clazzName;
         this.impl = impl;
         this.lineNumber = lineNumber;
         this.fp = fp;
+        this.pc = pc;
     }
 
     public String clazzName() {
@@ -48,13 +50,18 @@ public class HooksCallStackEntry {
         return fp;
     }
 
+    public long pc() {
+        return pc;
+    }
+
     @Override
     public String toString() {
         return "HooksCallStackEntry{" +
                 "clazzName='" + clazzName + '\'' +
-                ", impl=" + impl +
+                ", impl=" + Long.toHexString(impl) +
                 ", lineNumber=" + lineNumber +
-                ", fp=" + fp +
+                ", fp=" + Long.toHexString(fp) +
+                ", pc=" + Long.toHexString(pc) +
                 '}';
     }
 }

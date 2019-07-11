@@ -21,6 +21,7 @@ import org.robovm.compiler.ModuleBuilder;
 import org.robovm.compiler.Symbols;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.OS;
 import org.robovm.compiler.llvm.Alloca;
 import org.robovm.compiler.llvm.ArrayType;
 import org.robovm.compiler.llvm.BasicBlock;
@@ -53,30 +54,39 @@ import org.robovm.compiler.llvm.debug.dwarf.DIMutableItemList;
 import org.robovm.compiler.llvm.debug.dwarf.DISubprogram;
 import org.robovm.compiler.llvm.debug.dwarf.DwarfConst;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
-import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.PluginArguments;
+import org.robovm.compiler.plugin.debug.kotlin.KotlinTools;
+import org.robovm.llvm.LineInfo;
 import org.robovm.llvm.ObjectFile;
-import org.robovm.llvm.debuginfo.DebugMethodInfo;
-import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
-import org.robovm.llvm.debuginfo.DebugVariableInfo;
+import org.robovm.llvm.Symbol;
+import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugObjectFileInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
 import soot.Local;
 import soot.LocalVariable;
 import soot.SootMethod;
 import soot.Unit;
 import soot.jimple.IdentityStmt;
+import soot.jimple.ParameterRef;
+import soot.tagkit.GenericAttribute;
 import soot.tagkit.LineNumberTag;
 import soot.tagkit.SourceFileTag;
+import soot.util.Chain;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  * provides only line number debug information for now
@@ -88,7 +98,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 	}
 
     public PluginArguments getArguments() {
-    	return new PluginArguments("debug", Collections.<PluginArgument>emptyList());
+    	return new PluginArguments("debug", Collections.emptyList());
     }
 
     @Override
@@ -145,7 +155,21 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                 // refer to 04-emit-sp-fp-offset-on-arm for details
                 mb.addGlobal(new Global("robovm.emitSpFpOffsets", Type.I8));
             }
+
         }
+
+        // kotlin uses source line remapping as it injects collections code and so on
+        LineNumberMapper lineNumberMapper = LineNumberMapper.DIRECT;
+        SourceFileTag sourceFileTag = (SourceFileTag) clazz.getSootClass().getTag("SourceFileTag");
+        if (sourceFileTag != null && sourceFileTag.getSourceFile() != null && sourceFileTag.getSourceFile().endsWith(".kt")) {
+            // kotlin, get line number mapping table from SMAP section
+            GenericAttribute smap = (GenericAttribute) clazz.getSootClass().getTag("SourceDebugExtension");
+            if (smap != null) {
+                lineNumberMapper = KotlinTools.parseSMAP(smap.getValue(), clazz.getInternalName());
+            }
+        }
+        // save mapper
+        clazz.attach(lineNumberMapper);
     }
 
     @Override
@@ -181,15 +205,6 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         diSubprogram.setFileContext(classBundle.diFileDescriptor);
         diSubprogram.setLlvmFunction(function.ref());
 
-        // build unit to line map
-        Map<Unit, Integer> unitToLine = new HashMap<>();
-        for (Unit unit : method.getActiveBody().getUnits()) {
-            LineNumberTag tag = (LineNumberTag) unit.getTag("LineNumberTag");
-            if (tag != null)
-                unitToLine.put(unit, tag.getLineNumber());
-
-        }
-
         // find out if debug information to be fetched for this method
         // skip debug information for class initializer, generated callbacks and bridge methods
         boolean includeDebuggerInfo = config.isDebug()
@@ -197,74 +212,75 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                 && !Annotations.hasBridgeAnnotation(method)
                 && classBundle.methodsBeforeCompile.contains(method.getSignature());
 
-        // maps for debugger
-        Map<Unit, Instruction> unitToInstruction = new HashMap<>();
-        Map<Integer, Alloca> varIndexToAlloca = new HashMap<>();
-        Map<Integer, Integer> varIndexToArgNo = new HashMap<>();
-        Map<Instruction, Integer> instructionToLineNo = new HashMap<>();
+        // build per-unit local snapshot map
+        DebuggerDebugVariableSlicer localsDebugInfo = null;
+        if (includeDebuggerInfo) {
+            // build local variables map
+            localsDebugInfo = new DebuggerDebugVariableSlicer(config, method);
+        }
 
-        // find line numbers
+        // maps instruction to line number -- for debugger hooks injection
+        Map<Instruction, Integer> instructionToLineNo = new HashMap<>();
+        Map<Instruction, Integer> instructionToDebugInfoIdx = new HashMap<>();
+        Map<Unit, Instruction> unitToInstruction = new HashMap<>();
+
+        // pick up created line number mapper to remap line numbers for kotlin. for pure java it provides
+        // x->x mapping
+        LineNumberMapper lineNumberMapper = clazz.getAttachment(LineNumberMapper.class);
+
+        // insert line number and additional debug information
+        // column is used as index for additional debug information, once it is compiled for each code position
+        // be possible to pick up variables list that are visible at program counter
         int methodLineNumber = Integer.MAX_VALUE;
         int methodEndLineNumber = Integer.MIN_VALUE;
         for (BasicBlock bb : function.getBasicBlocks()) {
             for (Instruction instruction : bb.getInstructions()) {
+                int lineNumber = -1;
+                int columnAsDebugInfoIdx = 0;
+
                 List<Object> units = instruction.getAttachments();
-                Integer lineNumObj = null;
                 for (Object object : units) {
                     if (!(object instanceof Unit))
                         continue;
                     Unit unit = (Unit) object;
+                    LineNumberTag tag = (LineNumberTag) unit.getTag("LineNumberTag");
+                    if (tag != null) {
+                        // map line number to another one (required for kotlin)
+                        lineNumber = lineNumberMapper.map(tag.getLineNumber());
+                        methodLineNumber = Math.min(methodLineNumber, lineNumber);
+                        methodEndLineNumber = Math.max(methodEndLineNumber, lineNumber);
+                    }
 
-                    // attach line number metadata only once
-                    if (lineNumObj == null) {
-                        lineNumObj = unitToLine.get(object);
-                        if (lineNumObj != null) {
-                            int currentLineNumber = lineNumObj;
-                            methodLineNumber = Math.min(methodLineNumber, currentLineNumber);
-                            methodEndLineNumber = Math.max(methodEndLineNumber, currentLineNumber);
-                            instruction.addMetadata((new DILineNumber(currentLineNumber, 0, diSubprogram)).get());
-                            instructionToLineNo.put(instruction, lineNumObj);
+                    // pick up local variable snaphot index for this unit. Index specifies snapshot of
+                    // variables that is visible at this unit position
+                    if (localsDebugInfo != null && localsDebugInfo.containsVariableSliceForUnit(unit)) {
+                        int idx = localsDebugInfo.getVariableSliceIndexForUnit(unit);
+                        if (idx >= 0) {
+                            // using +1 here as ZERO considered as debug information missing
+                            columnAsDebugInfoIdx = idx + 1;
                         }
                     }
 
-                    // build map for debugger
-                    if (includeDebuggerInfo) {
-                        if (!unitToInstruction.containsKey(unit))
-                            unitToInstruction.put(unit, instruction);
-                    }
+                    // save mapping of unit to instructions for debugger needs
+                    unitToInstruction.put(unit, instruction);
                 }
 
-                if (includeDebuggerInfo) {
-                    // if it is alloca -- save it to map (
-                    if (instruction instanceof Alloca) {
-                        Alloca alloca = (Alloca) instruction;
-                        // find Local
-                        for (Object o : alloca.getAttachments()) {
-                            if (!(o instanceof Local))
-                                continue;
-                            Local local = (Local) o;
-                            if (local.getVariableTableIndex() < 0)
-                                continue;
 
-                            Set<Integer> varIndexes = local.getSameSlotVariables();
-                            if (varIndexes == null)
-                                varIndexes = Collections.singleton(local.getVariableTableIndex());
-                            for (Integer varIdx : varIndexes) {
-                                if (varIndexToAlloca.containsKey(varIdx)) {
-                                    // if there is more than one index used for local then we can't
-                                    // connect it with local variable and lets invalidate this index
-                                    // with null value. corresponding Locals should be picked from ValueBox
-                                    varIndexToAlloca.put(varIdx, null);
-                                } else {
-                                    varIndexToAlloca.put(varIdx, alloca);
-                                }
-                            }
-                        }
-                    }
-                } // if (includeDebuggerInfo)
+                if (lineNumber != -1) {
+                    // there is line number for instruction
+                    // also set debug information index as column
+                    instruction.addMetadata((new DILineNumber(lineNumber, columnAsDebugInfoIdx, diSubprogram)).get());
+
+                    // save for debugger needs
+                    instructionToLineNo.put(instruction, lineNumber);
+                    if (columnAsDebugInfoIdx != 0)
+                        instructionToDebugInfoIdx.put(instruction, columnAsDebugInfoIdx);
+                }
             }
         }
 
+
+        // dwarf metadata for method
         classBundle.diMethods.add(diSubprogram);
         if (methodLineNumber == Integer.MAX_VALUE) {
             // there was no debug information for this method
@@ -275,16 +291,20 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         diSubprogram.setScopeLineNo(methodLineNumber);
         diSubprogram.setDefLineNo(methodLineNumber);
 
-        if (!includeDebuggerInfo) {
-            return;
-        }
 
         //
         //
         // debugger only part bellow
         //
         //
+        if (!includeDebuggerInfo)
+            return;
 
+        //
+        //
+        // Instrumenting breakpoints
+        //
+        //
         // make a list of instructions for instrumented hook call
         // need to skip identity instructions, otherwise there is a risk that debugger will stop before arguments are
         // being copied to locals
@@ -297,109 +317,119 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         }
 
         Instruction firstHooksInst = firstHooksUnit != null ? unitToInstruction.get(firstHooksUnit) : null;
-        if (firstHooksInst != null) {
-            // get all instruction that are subject to be instrumented after last Identity Statement
-            Map<Integer, Instruction> hookInstructionLines = new HashMap<>();
-            for (BasicBlock bb : function.getBasicBlocks()) {
-                for (Instruction instruction : bb.getInstructions()) {
-                    if (firstHooksInst != null && firstHooksInst != instruction)
+        if (firstHooksInst == null) {
+            // this means code doesn't contain anything beside identity statement which is not possible
+            return;
+        }
+
+        // get all instruction that are subject to be instrumented after last Identity Statement
+        boolean startInstrumenting = false;
+        Map<Integer, Instruction> hookInstructionLines = new HashMap<>();
+        for (BasicBlock bb : function.getBasicBlocks()) {
+            for (Instruction instruction : bb.getInstructions()) {
+                if (!startInstrumenting && firstHooksInst != instruction)
+                    continue;
+                startInstrumenting = true;
+                Integer lineNo = instructionToLineNo.get(instruction);
+                if (lineNo == null || hookInstructionLines.containsKey(lineNo))
+                    continue;
+                hookInstructionLines.put(lineNo, instruction);
+            }
+        }
+
+        // instrument hooks call, there is known line range, create global for method breakpoints
+        int arraySize = ((methodEndLineNumber - methodLineNumber + 1) + 7) / 8;
+        // global value to this array (without values as zeroinit)
+        Global bpTable = new Global(Symbols.bptableSymbol(method), Linkage.internal,
+                new ZeroInitializer(new ArrayType(arraySize, Type.I8)));
+        mb.addGlobal(bpTable);
+        // cast to byte pointer
+        ConstantBitcast bpTableRef = new ConstantBitcast(bpTable.ref(), Type.I8_PTR);
+        for (Map.Entry<Integer, Instruction> e : hookInstructionLines.entrySet()) {
+            Instruction instr = e.getValue();
+            int lineNo = e.getKey();
+            int debugInfoIdx = instructionToDebugInfoIdx.getOrDefault(instr, 0);
+
+            injectHookInstrumented(diSubprogram, lineNo, debugInfoIdx, lineNo - methodLineNumber, function, bpTableRef, instr);
+        }
+
+
+        //
+        //
+        // Processing local variables
+        //
+        //
+
+        // at this point it is required to attach debug information for locals to be able pick them latter
+        // this functionality moved to DebuggerDebugVariableSlicer class
+
+        // build local to alloca map
+        Map<Local, Alloca> localToAlloca = new HashMap<>();
+        for (BasicBlock bb : function.getBasicBlocks()) {
+            for (Instruction instruction : bb.getInstructions()) {
+                // if it is alloca -- save it to map (
+                if (!(instruction instanceof Alloca))
+                    continue;
+
+                // find Local
+                Alloca alloca = (Alloca) instruction;
+                for (Object o : alloca.getAttachments()) {
+                    if (!(o instanceof Local))
                         continue;
-                    firstHooksInst = null;
-                    Integer lineNo = instructionToLineNo.get(instruction);
-                    if (lineNo == null || hookInstructionLines.containsKey(lineNo))
+                    Local local = (Local) o;
+                    if (local.getIndex() < 0)
                         continue;
-                    hookInstructionLines.put(lineNo, instruction);
+                    localToAlloca.put(local, alloca);
                 }
             }
+        }
 
-            // instrument hooks call, there is known line range, create global for method breakpoints
-            int arraySize = ((methodEndLineNumber - methodLineNumber + 1) + 7) / 8;
-            // global value to this array (without values as zeroinit)
-            Global bpTable = new Global(Symbols.bptableSymbol(method), Linkage.internal,
-                    new ZeroInitializer(new ArrayType(arraySize, Type.I8)));
-            mb.addGlobal(bpTable);
-            // cast to byte pointer
-            ConstantBitcast bpTableRef = new ConstantBitcast(bpTable.ref(), Type.I8_PTR);
-            for (Map.Entry<Integer, Instruction> e : hookInstructionLines.entrySet()) {
-                int lineNo = e.getKey();
-                injectHookInstrumented(diSubprogram, lineNo, lineNo - methodLineNumber, function, bpTableRef, e.getValue());
+        // find out arguments
+        // as kotlin case shows that generated code can re-use slots initially designated for
+        // parameters for local variables we can't rely on local index only, lets find argument locals using
+        // assignment from parameters
+        // RoboVM added: ignore parameters locals in split
+        Set<Local> parameterLocals = new HashSet<>();
+        for (Unit u : method.getActiveBody().getUnits()) {
+            if (u instanceof IdentityStmt && ((IdentityStmt)u).getRightOp() instanceof ParameterRef &&
+                    ((IdentityStmt)u).getLeftOpBox().getValue() instanceof Local) {
+                Local l = (Local)((IdentityStmt)u).getLeftOpBox().getValue();
+                parameterLocals.add(l);
             }
         }
 
-        // build map of local index to argument no
-        int firstArgNo;
-        if (!method.isStatic()) {
-            // add map of this, as first argument, it always goes as index=0
-            varIndexToArgNo.put(0, 1);
-            // skip it in arg map
-            firstArgNo = 3;
-        } else {
-            firstArgNo = 2;
-        }
-        for (int idx = 0; idx < method.getParameterCount(); idx++) {
-            int localIdx = method.getActiveBody().getParameterLocal(idx).getVariableTableIndex();
-            varIndexToArgNo.put(localIdx, firstArgNo + idx);
-        }
+        // RoboVM adds env to each method call, and adds this to all not static method
+        // so real argument index will start from 3 in static method and 2 in not static
+        int argStartOffset = method.isStatic() ? 3 : 2;
 
-        // build local variable list
-        int variableIdx = 1;
-        List<VariableDataBundle> variables = new ArrayList<>();
+        // generate variable dwarf information for all locals that inserts LLVM_DBG_DECLARE calls starting at
+        // firstHooksInst
         DIMutableItemList<DILocalVariable> diVariableList = new DIMutableItemList<>(mb);
+        for (Map.Entry<Local, Alloca> e : localToAlloca.entrySet()) {
+            Local local = e.getKey();
+            Alloca alloca = e.getValue();
 
-        // insert variables
-        for (LocalVariable var : method.getActiveBody().getLocalVariables()) {
-            // skip local variables that attached to zero length code sequences
-            if (var.getStartUnit() == null)
-                continue;
-
-            // find corresponding local alloca
-            Alloca alloca = varIndexToAlloca.get(var.getIndex());
-            if (alloca == null) {
-                config.getLogger().error("Unable to resolve variable %s in method %s, class %s", var.getName(),
-                        method.getName(), clazz.getClassName());
-                continue;
+            // get arg idx as: in dwarf arg index starts from 1
+            int argIdx = 0;
+            if (local.getIndex() <  method.getParameterCount() && parameterLocals.contains(local)) {
+                argIdx = argStartOffset + local.getIndex();
             }
 
-            // get line number information
-            Integer lineObj = unitToLine.get(var.getStartUnit());
-            int varStartLine = lineObj != null ? lineObj : methodLineNumber;
-            int varEndLine;
-            if (var.getEndUnit() != null) {
-                lineObj = unitToLine.get(var.getEndUnit());
-                varEndLine = lineObj != null ? lineObj : methodLineNumber;
-            } else {
-                varEndLine = methodEndLineNumber;
-            }
-            if (varStartLine > varEndLine)
-                varEndLine = varStartLine;
-
-            // variable is known, remember it
-            // use special dwarf name just to be able make difference of variables with same name (e.g. there could be
-            // multiple "i" variables
-            variableIdx += 1;
-            String dwarfName = "dw" + variableIdx + "_" + var.getName();
-            VariableDataBundle variableBundle = new VariableDataBundle(var.getIndex(), var.getName(), dwarfName, var.getDescriptor(),
-                    varStartLine, varEndLine);
-            variables.add(variableBundle);
-
-            // get arg idx if it is there
-            Integer argIdxObj = varIndexToArgNo.get(var.getIndex());
-            int argIdx = argIdxObj != null ? argIdxObj : 0;
+            // variable start line doesn't matter as all local are being declared at top
+            //noinspection UnnecessaryLocalVariable
+            int varStartLine = methodLineNumber;
 
             // add llvm.dbg.declare call
-            DILocalVariable diLocalVariable = new DILocalVariable(mb, dwarfName, varStartLine, argIdx,
+            DILocalVariable diLocalVariable = new DILocalVariable(mb, local.getName(), varStartLine, argIdx,
                     classBundle.diFile, diSubprogram,
                     classBundle.dummyJavaVariableType);
 
-            // get instruction to work with
-            Instruction instr = unitToInstruction.get(var.getStartUnit());
-
-            // right after alloca
+            // insert before firstHooksInst, the order of these calls will be mess but it doesn't matter actually
             Call call = new Call(Functions.LLVM_DBG_DECLARE,
                     new MetadataValue(new VariableRef(alloca.getResult().getName(), new PointerType(alloca.getResult().getType()))),
                     diLocalVariable.get());
             call.addMetadata((new DILineNumber(varStartLine, 0, diSubprogram)).get());
-            instr.getBasicBlock().insertBefore(instr, call);
+            firstHooksInst.getBasicBlock().insertBefore(firstHooksInst, call);
 
             // save variable to the list
             diVariableList.add(diLocalVariable);
@@ -407,16 +437,9 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
 
         diSubprogram.setVariables(diVariableList);
 
-        // sort variables by index to make sure arguments pop to top
-        Collections.sort(variables, new Comparator<VariableDataBundle>() {
-            @Override
-            public int compare(VariableDataBundle o1, VariableDataBundle o2) {
-                return o1.codeIndex - o2.codeIndex;
-            }
-        });
-
         // remember method debug information
-        classBundle.methods.add(new MethodDataBundle(function.getName(), methodLineNumber, methodEndLineNumber, variables));
+        classBundle.methods.add(new MethodDataBundle(function.getName(), methodLineNumber, methodEndLineNumber,
+                localsDebugInfo));
     }
 
     @Override
@@ -429,50 +452,9 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         if (config.isDebug()) {
 
             // get debug information from objective file and write it to file cache
-            DebugObjectFileInfo debugInfo = objectFileData.getDebugInfo();
+            DwarfDebugObjectFileInfo debugInfo = objectFileData.getDebugInfo();
             if (debugInfo != null) {
-                // now it is a task to combine it with data received during compilation
-                List<DebugMethodInfo> methods = new ArrayList<>();
-                for (MethodDataBundle methodBundle :  classBundle.methods) {
-                    DebugMethodInfo dbgMethodInfo = debugInfo.methodBySignature(methodBundle.signature);
-                    if (dbgMethodInfo == null) {
-                        config.getLogger().warn("Failed to get debug information for method %s in class %s",
-                                methodBundle.signature, clazz.getClassName());
-                        continue;
-                    }
-
-                    // get variables
-                    List<DebugVariableInfo> variables = new ArrayList<>();
-                    for (VariableDataBundle variableBudnle : methodBundle.variables) {
-                        DebugVariableInfo dbgVariableInfo =  dbgMethodInfo.variableByName(variableBudnle.dwarfName);
-                        if (dbgVariableInfo == null) {
-                            config.getLogger().warn("Failed to get debug information for variable %s in method %s in class %s",
-                                    variableBudnle.name, methodBundle.signature, clazz.getClassName());
-                            continue;
-                        }
-
-                        // save variable
-                        variables.add(new DebugVariableInfo(variableBudnle.name, variableBudnle.typeSignature, dbgVariableInfo.isArgument(),
-                                variableBudnle.startLine, variableBudnle.finalLine, dbgVariableInfo.register(), dbgVariableInfo.offset()));
-                    }
-
-                    // remove class prefix from method name
-                    String methodName = dbgMethodInfo.signature();
-                    if (methodName.startsWith("[J]" + clazz.getClassName() + "."))
-                        methodName = methodName.substring(clazz.getClassName().length() + 4);
-                    // save method
-                    methods.add(new DebugMethodInfo(methodName,  variables.toArray(new DebugVariableInfo[0]),
-                            methodBundle.startLine, methodBundle.finalLine));
-                }
-
-                // dump final info to file
-                DebugObjectFileInfo finalDebugInfo = clazz.getAttachment(DebugObjectFileInfo.class);
-                if (finalDebugInfo != null)
-                    clazz.removeAttachement(finalDebugInfo);
-                finalDebugInfo = new DebugObjectFileInfo(getJdwpSourceFile(clazz), methods.toArray(new DebugMethodInfo[0]));
-
-                // save as attachment to class file
-                clazz.attach(finalDebugInfo);
+                processDebugInformation(config, clazz, debugInfo, classBundle, objectFileData);
             }
         }
 
@@ -480,8 +462,203 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         clazz.removeAttachement(classBundle);
     }
 
+    private void processDebugInformation(Config config, Clazz clazz, DwarfDebugObjectFileInfo debugInfo, ClassDataBundle classBundle,
+                                         ObjectFile objectFileData) {
+        // get symbol from object file
+        String symbolPrefix = (config.getOs().getFamily() == OS.Family.darwin ? "_" : "");
+        Map<String, Symbol> symbols = objectFileData.getSymbols().stream()
+                .filter(s -> s.getName().startsWith(symbolPrefix + Symbols.EXTERNAL_SYMBOL_PREFIX))
+                .collect(Collectors.toMap(Symbol::getName, e -> e));
+
+        // now it is a task to combine it with data received during compilation
+        List<DebuggerDebugMethodInfo.RawData> methods = new ArrayList<>();
+        for (MethodDataBundle methodBundle :  classBundle.methods) {
+            DwarfDebugMethodInfo dbgMethodInfo = debugInfo.methodBySignature(methodBundle.signature);
+            List<LineInfo> lineInfos = null;
+            Symbol symbol = symbols.get(symbolPrefix + methodBundle.signature);
+            if (symbol != null)
+                lineInfos = objectFileData.getLineInfos(symbol);
+            if (dbgMethodInfo == null || lineInfos == null) {
+                config.getLogger().warn("Failed to get debug information for method %s in class %s",
+                        methodBundle.signature, clazz.getClassName());
+                continue;
+            }
+
+            if (lineInfos.size() == 0)
+                continue;
+
+
+            DebuggerDebugMethodInfo.RawData debuggerMethodInfo = buildDebuggerMethodInfo(config, clazz, symbol, dbgMethodInfo, methodBundle, lineInfos);
+            methods.add(debuggerMethodInfo);
+        }
+
+        // dump final info to file
+        DebuggerDebugObjectFileInfo.RawData finalDebugInfo = clazz.getAttachment(DebuggerDebugObjectFileInfo.RawData.class);
+        if (finalDebugInfo != null)
+            clazz.removeAttachement(finalDebugInfo);
+        finalDebugInfo = new DebuggerDebugObjectFileInfo.RawData(getJdwpSourceFile(clazz), methods.toArray(new DebuggerDebugMethodInfo.RawData[0]));
+
+        // save as attachment to class file
+        clazz.attach(finalDebugInfo);
+    }
+
+    private DebuggerDebugMethodInfo.RawData buildDebuggerMethodInfo(Config config, Clazz clazz, Symbol symbol,
+                                                                    DwarfDebugMethodInfo dbgMethodInfo, MethodDataBundle methodBundle,
+                                                                    List<LineInfo> lineInfos) {
+        // sort line info by address an build
+        lineInfos.sort(Comparator.comparingLong(LineInfo::getAddress));
+
+        // remove duplicates if there are any in sequence
+        int last = -1;
+        Iterator<LineInfo> it = lineInfos.iterator();
+        while (it.hasNext()) {
+            LineInfo l = it.next();
+            if (l.getColumnNumber() == last)
+                it.remove();
+            else
+                last = l.getColumnNumber();
+        }
+
+        // pick up created line number mapper to remap line numbers for kotlin. for pure java it provides
+        // x->x mapping
+        LineNumberMapper lineNumberMapper = clazz.getAttachment(LineNumberMapper.class);
+
+        // process variable slices -- assign debug information to each Local
+        DebuggerDebugVariableSlicer localsDebugInfo = methodBundle.variablesInfo;
+
+        // maps snapshot index to snapshot data
+        // data is integer array where information comes in sequence of pairs: index to variable, index to alloca
+        Map<LocalVariable, DebuggerDebugVariableInfo> localVariableToDebugVariable = new HashMap<>();
+        Map<DebuggerDebugVariableInfo, Integer> usedVariables = new HashMap<>();
+        Map<DwarfDebugVariableInfo, Integer> usedAllocas = new HashMap<>();
+        TreeMap<Integer, int[]> slices = new TreeMap<>();
+        TreeMap<Integer, Integer> offsetToSlice = new TreeMap<>();
+        for (LineInfo li : lineInfos) {
+            int sliceIdx = li.getColumnNumber();
+
+            // save offset to slice info
+            int offset = (int)(li.getAddress() - symbol.getAddress());
+            offsetToSlice.put(offset, sliceIdx);
+
+            if (slices.containsKey(sliceIdx))
+                continue;
+
+            if (sliceIdx == 0) {
+                // special case -- no variables at point, create empty snapshot
+                slices.put(sliceIdx, new int[]{});
+                continue;
+            }
+
+            // process slice
+            // in Dwarf slice information is kept starting from 1, but in VO it starts from 0
+            DebuggerDebugVariableSlicer.UnitVariableSlice slice = localsDebugInfo.getVariableSlice(sliceIdx - 1);
+            Chain<Unit> units = localsDebugInfo.getMethod().getActiveBody().getUnits();
+            int[] sliceData = new int[slice.variables.size() * 2];
+            int written = 0;
+            for (int idx = 0; idx < slice.variables.size(); idx++) {
+                // get alloca for this local from Dwarf info
+                LocalVariable v = slice.variables.get(idx);
+                DebuggerDebugVariableInfo var = localVariableToDebugVariable.get(v);
+                if (var == null) {
+                    // convert to debug variable
+                    int startLine;
+                    if (v.getStartUnit() == null) {
+                        startLine = methodBundle.startLine;
+                    } else {
+                        LineNumberTag tag = (LineNumberTag) v.getStartUnit().getTag("LineNumberTag");
+                        if (tag != null)
+                            startLine = lineNumberMapper.map(tag.getLineNumber());
+                        else
+                            startLine = methodBundle.startLine;
+                    }
+                    int finalLine;
+                    if (v.getEndUnit() == null) {
+                        finalLine = methodBundle.finalLine;
+                    } else {
+                        // get previous as v.getEndUnit() is exclusive
+                        Unit endUnit = units.getPredOf(v.getEndUnit());
+                        LineNumberTag tag = null;
+                        if (endUnit != null)
+                            tag = (LineNumberTag) endUnit.getTag("LineNumberTag");
+                        if (tag != null)
+                            finalLine = lineNumberMapper.map(tag.getLineNumber());
+                        else
+                            finalLine = methodBundle.startLine;
+                    }
+
+                    var = new DebuggerDebugVariableInfo(v.getName(), v.getDescriptor(),
+                            v.getIndex() < localsDebugInfo.getMethod().getParameterCount(), startLine, finalLine);
+                    localVariableToDebugVariable.put(v, var);
+                }
+
+                // get corresponding local
+                Local local = slice.locals.get(idx);
+                DwarfDebugVariableInfo alloca = dbgMethodInfo.variableByName(local.getName());
+                if (alloca == null) {
+                    // bad: variable should be visible at this point but value in slot has wrong type
+                    if (config != null && config.getHome().isDev()) {
+                        config.getLogger().error("Alloca not found for variable " + local.getName());
+                    }
+                    continue;
+                }
+
+                // get indexes
+                int varIdx;
+                if (usedVariables.containsKey(var)) {
+                    varIdx = usedVariables.get(var);
+                } else {
+                    varIdx = usedVariables.size();
+                    usedVariables.put(var, varIdx);
+                }
+                int allocaIdx;
+                if (usedAllocas.containsKey(alloca)) {
+                    allocaIdx = usedAllocas.get(alloca);
+                } else {
+                    allocaIdx = usedAllocas.size();
+                    usedAllocas.put(alloca, allocaIdx);
+                }
+
+                // add them to slice data
+                sliceData[written++] = varIdx;
+                sliceData[written++] = allocaIdx;
+            }
+
+            // if fails to map variable size could be smaller than expected
+            if (written < sliceData.length) {
+                sliceData = Arrays.copyOf(sliceData, written);
+            }
+
+            slices.put(sliceIdx, sliceData);
+        }
+
+        // convert data to be prepared for saving into DebuggerDebugMethodInfo.RawData
+        int[][] rawSlices = slices.values().toArray(new int[0][]);
+        DwarfDebugVariableInfo[] rawAllocas = new DwarfDebugVariableInfo[usedAllocas.size()];
+        usedAllocas.forEach((alloca, idx) -> rawAllocas[idx] = alloca);
+        DebuggerDebugVariableInfo[] rawVariables = new DebuggerDebugVariableInfo[usedVariables.size()];
+        usedVariables.forEach((variable, idx) -> rawVariables[idx] = variable);
+        int[] rawOffsets = new int[offsetToSlice.size()];
+        int[] rawOffsetSliceIndexes = new int[offsetToSlice.size()];
+        int idx = 0;
+        for (Map.Entry<Integer,Integer> e : offsetToSlice.entrySet()) {
+            rawOffsets[idx] = e.getKey();
+            rawOffsetSliceIndexes[idx] = e.getValue();
+            idx += 1;
+        }
+
+        // remove class prefix from method name
+        String methodName = dbgMethodInfo.signature();
+        if (methodName.startsWith("[J]" + clazz.getClassName() + "."))
+            methodName = methodName.substring(clazz.getClassName().length() + 4);
+        //noinspection UnnecessaryLocalVariable
+        DebuggerDebugMethodInfo.RawData mi = new DebuggerDebugMethodInfo.RawData(methodName, methodBundle.startLine, methodBundle.finalLine,
+                rawVariables, rawAllocas, rawOffsets, rawOffsetSliceIndexes, rawSlices);
+        return mi;
+    }
+
     /** injects calls to _bcHookInstrumented to allow breakpoints/step by step debugging */
-    private void injectHookInstrumented(DISubprogram diSubprogram, int lineNo, int lineNumberOffset, Function function, Constant bpTableRef, Instruction instruction) {
+    private void injectHookInstrumented(DISubprogram diSubprogram, int lineNo, int debugeInfoIdx, int lineNumberOffset,
+                                        Function function, Constant bpTableRef, Instruction instruction) {
         BasicBlock block = instruction.getBasicBlock();
         // prepare a call to following function:
         // void _bcHookInstrumented(DebugEnv* debugEnv, jint lineNumber, jint lineNumberOffset, jbyte* bptable, void* pc)
@@ -498,7 +675,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         block.insertBefore(instruction, bcHookInstrumented);
 
         // attach line number metadata otherwise stack entry will have previous line number index
-        bcHookInstrumented.addMetadata((new DILineNumber(lineNo, 0, diSubprogram)).get());
+        bcHookInstrumented.addMetadata((new DILineNumber(lineNo, debugeInfoIdx, diSubprogram)).get());
     }
 
     /** Simple file name resolution to be included as Dwarf debug entry, for LineNumbers there is no need in absolute file location, just in name */
@@ -579,7 +756,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         // information for debugger
 
         // basic type definitions (required for debugger purpose)
-        // variable location information -- nobody cares (e.g. there is no debuger that relies on this data)
+        // variable location information -- nobody cares (e.g. there is no debugger that relies on this data)
         // if future it shall be fixed
         DIBaseItem dummyJavaVariableType;
 
@@ -591,24 +768,11 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
     }
 
     /**
-     * Data bundle that contains debug information about variables -- required for debugger only
+     * interface declares line number mapping if it is required (e.g. kotlin case)
      */
-    private static class VariableDataBundle {
-        final int codeIndex;
-	    final String name;
-        final String dwarfName;
-        final String typeSignature;
-        final int startLine;
-        final int finalLine;
-
-        VariableDataBundle(int codeIndex, String name, String dwarfName, String typeSignature, int startLine, int finalLine) {
-            this.codeIndex = codeIndex;
-            this.name = name;
-            this.dwarfName = dwarfName;
-            this.typeSignature = typeSignature;
-            this.startLine = startLine;
-            this.finalLine = finalLine;
-        }
+    public interface LineNumberMapper {
+        LineNumberMapper DIRECT = l -> l;
+        int map(int l);
     }
 
     /**
@@ -618,17 +782,18 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         final String signature;
         final int startLine;
         final int finalLine;
-        final List<VariableDataBundle> variables;
+        final DebuggerDebugVariableSlicer variablesInfo;
 
-        MethodDataBundle(String signature, int startLine, int finalLine, List<VariableDataBundle> variables) {
+        MethodDataBundle(String signature, int startLine, int finalLine, DebuggerDebugVariableSlicer variablesInfo) {
             this.signature = signature;
             this.startLine = startLine;
             this.finalLine = finalLine;
-            this.variables = variables;
+            this.variablesInfo = variablesInfo;
         }
     }
 
-	private IntegerConstant v(int i) {
+	@SuppressWarnings("SameParameterValue")
+    private IntegerConstant v(int i) {
     	return new IntegerConstant(i);
 	}
 

@@ -38,6 +38,11 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
     private final DbgLogger log;
 
     /**
+     * reference to process this debug session is working on. in case of debugger crash will terminate process as well
+     */
+    private final Process process;
+
+    /**
      * config debugger was started with
      */
     private final DebuggerConfig config;
@@ -63,7 +68,7 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
     private final HooksChannel hooksChannel;
 
 
-    public Debugger(DebuggerConfig config) {
+    public Debugger(Process process, DebuggerConfig config) {
         // setup logger
         File logFile = config.logDir() != null ? new File(config.logDir(), "debugger"+System.currentTimeMillis() + ".log") : null;
         DbgLogger.setup(logFile, config.logToConsole());
@@ -72,6 +77,7 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
         this.log = DbgLogger.get(this.getClass().getSimpleName());
 
         // save references
+        this.process = process;
         this.config = config;
         this.state = new VmDebuggerState(config.appfile(), config.arch());
         this.delegates = new AllDelegates(this, state);
@@ -90,13 +96,13 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
         this.hooksChannel.start();
     }
 
-    private volatile boolean shutingDown;
+    private volatile boolean shuttingDown;
     public void shutdown() {
         // only one shutdown is allowed
         synchronized (this) {
-            if (shutingDown)
+            if (shuttingDown)
                 return;
-            shutingDown = true;
+            shuttingDown = true;
         }
 
         delegates.shutdown();
@@ -108,6 +114,10 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
         // if it is standalone run -- terminate app
         if (config.isStandalone())
             System.exit(-1);
+
+        // destroy process, otherwise it will stuck as running in Idea
+        if (process != null && process.isAlive())
+            process.destroy();
     }
 
     @Override
@@ -141,7 +151,7 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
 
     public static void main(String[] argv) throws InterruptedException {
         DebuggerConfig config = DebuggerConfig.fromCommandLine(argv);
-        Debugger debugger = new Debugger(config);
+        Debugger debugger = new Debugger(null, config);
         debugger.start();
 
         // as all threads are daemon now

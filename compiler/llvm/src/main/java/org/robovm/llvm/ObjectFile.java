@@ -24,9 +24,9 @@ import org.robovm.llvm.binding.MemoryBufferRefOut;
 import org.robovm.llvm.binding.ObjectFileRef;
 import org.robovm.llvm.binding.StringOut;
 import org.robovm.llvm.binding.SymbolIteratorRef;
-import org.robovm.llvm.debuginfo.DebugMethodInfo;
-import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
-import org.robovm.llvm.debuginfo.DebugVariableInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugMethodInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugObjectFileInfo;
+import org.robovm.llvm.debuginfo.DwarfDebugVariableInfo;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -86,9 +86,10 @@ public class ObjectFile implements AutoCloseable {
         if (size > 0) {
             LongArray values = out.getValue();
             for (int i = 0; i < size; i++) {
-                long address = values.get(i * 2);
-                long lineNumber = values.get(i * 2 + 1);
-                result.add(new LineInfo(address, (int) lineNumber));
+                long address = values.get(i * 3);
+                long lineNumber = values.get(i * 3 + 1);
+                long columnNumber = values.get(i * 3 + 2);
+                result.add(new LineInfo(address, (int) lineNumber, (int) columnNumber));
             }
             values.delete();
         }
@@ -101,7 +102,7 @@ public class ObjectFile implements AutoCloseable {
      * Currently it includes method and variable names
      * @return debug information received from object file or null otherwise
      */
-    public DebugObjectFileInfo getDebugInfo() {
+    public DwarfDebugObjectFileInfo getDebugInfo() {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         LLVM.DumpDwarfDebugData(getRef(), os);
         if (os.size() == 0)
@@ -111,7 +112,7 @@ public class ObjectFile implements AutoCloseable {
         buffer.order(ByteOrder.LITTLE_ENDIAN);
 
         // read data
-        List<DebugMethodInfo> methods = new ArrayList<>();
+        List<DwarfDebugMethodInfo> methods = new ArrayList<>();
         while (buffer.hasRemaining()) {
             // read method name
             int strLen = buffer.getInt();
@@ -128,7 +129,7 @@ public class ObjectFile implements AutoCloseable {
             if (methodName == null) // should not happen
                 break;
 
-            List<DebugVariableInfo> variables = new ArrayList<>();
+            List<DwarfDebugVariableInfo> variables = new ArrayList<>();
             // read local variables
             while (buffer.hasRemaining()) {
                 strLen = buffer.getInt();
@@ -151,13 +152,13 @@ public class ObjectFile implements AutoCloseable {
                 int offset = buffer.getInt();
 
                 // create variable struct
-                variables.add(new DebugVariableInfo(variableName, (flags & 1) == 1, reg, offset));
+                variables.add(new DwarfDebugVariableInfo(variableName, (flags & 1) == 1, reg, offset));
             }
 
-            methods.add(new DebugMethodInfo(methodName, variables.toArray(new DebugVariableInfo[0])));
+            methods.add(new DwarfDebugMethodInfo(methodName, variables.toArray(new DwarfDebugVariableInfo[0])));
         }
 
-        return new DebugObjectFileInfo(null, methods.toArray(new DebugMethodInfo[0]));
+        return new DwarfDebugObjectFileInfo(null, methods.toArray(new DwarfDebugMethodInfo[0]));
     }
 
     public synchronized void dispose() {

@@ -133,7 +133,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
             return;
 
         // create and start the debugger
-        debugger = new Debugger(debuggerConfig);
+        debugger = new Debugger(process, debuggerConfig);
         debugger.start();
     }
 

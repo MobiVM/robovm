@@ -30,12 +30,15 @@ public class VmStackTrace implements RefIdHolder.IRefIdObject {
     private final MethodInfo methodInfo;
     private final int lineNumber;
     private final long fp;
+    // PC offset from method impl start
+    private final long pcoffset;
 
-    public VmStackTrace(ClassInfo classInfo, MethodInfo methodInfo, int lineNumber, long fp) {
+    public VmStackTrace(ClassInfo classInfo, MethodInfo methodInfo, int lineNumber, long fp, long pcoffset) {
         this.classInfo = classInfo;
         this.methodInfo = methodInfo;
         this.lineNumber = lineNumber;
         this.fp = fp;
+        this.pcoffset = pcoffset;
     }
 
     public ClassInfo classInfo() {
@@ -52,6 +55,10 @@ public class VmStackTrace implements RefIdHolder.IRefIdObject {
 
     public long fp() {
         return fp;
+    }
+
+    public long pcoffset() {
+        return pcoffset;
     }
 
     @Override

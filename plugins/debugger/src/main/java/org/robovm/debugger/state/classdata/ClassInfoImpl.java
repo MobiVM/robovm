@@ -15,14 +15,13 @@
  */
 package org.robovm.debugger.state.classdata;
 
-import org.robovm.compiler.plugin.debug.DebugInformationTools;
+import org.robovm.compiler.plugin.debug.DebuggerDebugMethodInfo;
+import org.robovm.compiler.plugin.debug.DebuggerDebugObjectFileInfo;
 import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.state.refid.RefIdHolder;
 import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.ByteBufferMemoryReader;
 import org.robovm.debugger.utils.macho.MachOConsts;
-import org.robovm.llvm.debuginfo.DebugMethodInfo;
-import org.robovm.llvm.debuginfo.DebugObjectFileInfo;
 
 import java.nio.ByteBuffer;
 
@@ -74,7 +73,7 @@ public class ClassInfoImpl extends ClassInfo {
     private MethodInfo[] methods;
 
     // debug information for class
-    private DebugObjectFileInfo debugInfo;
+    private DebuggerDebugObjectFileInfo debugInfo;
 
     // out of header position
     private long endOfHeaderPos;
@@ -180,7 +179,7 @@ public class ClassInfoImpl extends ClassInfo {
         endOfHeaderPos = 0;
     }
 
-    private DebugObjectFileInfo readDebugInfo(ClassInfoLoader loader) {
+    private DebuggerDebugObjectFileInfo readDebugInfo(ClassInfoLoader loader) {
         String debugInfoSymbol = "[j]" + className.replace('/', '.') + "[debuginfo]";
         // get pointer to pointer symbol
         long addr = loader.appFileLoader.resolveSymbol(debugInfoSymbol);
@@ -192,7 +191,7 @@ public class ClassInfoImpl extends ClassInfo {
         // read value
         loader.reader.setAddress(addr);
         ByteBuffer buffer = loader.reader.sliceToByteBuffer();
-        return DebugInformationTools.readDebugInfo(buffer);
+        return DebuggerDebugObjectFileInfo.readDebugInfo(buffer);
     }
 
     private void readFields(ByteBufferMemoryReader reader, int fieldCount, RefIdHolder<FieldInfo> fieldRefIdHolder) {
@@ -222,7 +221,7 @@ public class ClassInfoImpl extends ClassInfo {
             }
 
             if (!methodInfo.isNative()) {
-                DebugMethodInfo methodDebugInfo = null;
+                DebuggerDebugMethodInfo methodDebugInfo = null;
                 long bpTableAddr = -1;
                 int spFpOffset = -1;
                 int spFpAlign = -1;

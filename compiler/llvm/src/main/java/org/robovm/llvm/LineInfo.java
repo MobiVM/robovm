@@ -22,10 +22,12 @@ package org.robovm.llvm;
 public class LineInfo {
     private final long address;
     private final int lineNumber;
+    private final int columnNumber;
 
-    LineInfo(long address, int lineNumber) {
+    LineInfo(long address, int lineNumber, int columnNumber) {
         this.address = address;
         this.lineNumber = lineNumber;
+        this.columnNumber = columnNumber;
     }
 
     public long getAddress() {
@@ -36,8 +38,12 @@ public class LineInfo {
         return lineNumber;
     }
 
+    public int getColumnNumber() {
+        return columnNumber;
+    }
+
     @Override
     public String toString() {
-        return String.format("LineInfo [address=%s, lineNumber=%s]", address, lineNumber);
+        return String.format("LineInfo [address=%s, lineNumber=%s, columnNumber=%s]", address, lineNumber, columnNumber);
     }
 }
