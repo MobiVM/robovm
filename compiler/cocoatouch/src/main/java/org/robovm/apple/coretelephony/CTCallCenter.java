@@ -36,9 +36,8 @@ import org.robovm.apple.corefoundation.*;
  * @since Available in iOS 4.0 and later.
  * @deprecated Deprecated in iOS 10.0. Replaced by CXCallObserver from CallKit.framework
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreTelephony") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreTelephony") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CTCallCenter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

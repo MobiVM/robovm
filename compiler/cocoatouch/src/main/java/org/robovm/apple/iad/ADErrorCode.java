@@ -39,10 +39,9 @@ import org.robovm.apple.avkit.*;
  * @since Available in iOS 4.0 and later.
  * @deprecated Deprecated in iOS 10.0.
  */
-@Deprecated
 /*</javadoc>*/
 @ForceLinkClass(ADError.class)
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/ADErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Unknown(0L),

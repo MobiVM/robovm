@@ -34,7 +34,7 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/AudioChannelLayoutTag/*</name>*/ extends Bits</*<name>*/AudioChannelLayoutTag/*</name>*/> {
     /*<values>*/
     public static final AudioChannelLayoutTag UseChannelDescriptions = new AudioChannelLayoutTag(0L);
@@ -165,9 +165,9 @@ public final class /*<name>*/AudioChannelLayoutTag/*</name>*/ extends Bits</*<na
     public static final AudioChannelLayoutTag HOA_ACN_SN3D = new AudioChannelLayoutTag(12451840L);
     public static final AudioChannelLayoutTag HOA_ACN_N3D = new AudioChannelLayoutTag(12517376L);
     public static final AudioChannelLayoutTag DiscreteInOrder = new AudioChannelLayoutTag(9633792L);
-    public static final AudioChannelLayoutTag BeginReserved = new AudioChannelLayoutTag(-268435456L);
-    public static final AudioChannelLayoutTag EndReserved = new AudioChannelLayoutTag(-65537L);
-    public static final AudioChannelLayoutTag Unknown = new AudioChannelLayoutTag(-65536L);
+    public static final AudioChannelLayoutTag BeginReserved = new AudioChannelLayoutTag(4026531840L);
+    public static final AudioChannelLayoutTag EndReserved = new AudioChannelLayoutTag(4294901759L);
+    public static final AudioChannelLayoutTag Unknown = new AudioChannelLayoutTag(4294901760L);
     /*</values>*/
 
     /*<bind>*/

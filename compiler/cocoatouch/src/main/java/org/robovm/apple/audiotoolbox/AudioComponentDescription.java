@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Packed(4)/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AudioComponentDescription/*</name>*/ 
     extends /*<extends>*/Struct<AudioComponentDescription>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

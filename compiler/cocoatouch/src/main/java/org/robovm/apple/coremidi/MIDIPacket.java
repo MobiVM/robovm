@@ -34,7 +34,7 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Packed(4)/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDIPacket/*</name>*/ 
     extends /*<extends>*/Struct<MIDIPacket>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

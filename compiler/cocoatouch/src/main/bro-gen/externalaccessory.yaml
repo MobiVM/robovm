@@ -9,7 +9,7 @@ headers:
 typedefs: {}
     
 enums:
-    EABluetoothAccessoryPickerErrorCode: { first: EABluetoothAccessoryPickerAlreadyConnected, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    EABluetoothAccessoryPickerErrorCode: {}
     EAWiFiUnconfiguredAccessoryProperties: {}
     EAWiFiUnconfiguredAccessoryBrowserState: {}
     EAWiFiUnconfiguredAccessoryConfigurationStatus: {}

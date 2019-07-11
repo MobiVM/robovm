@@ -44,9 +44,8 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 8.0 and later.
  * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/UIUserNotificationActionContext/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),

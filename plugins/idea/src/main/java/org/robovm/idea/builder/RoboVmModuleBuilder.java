@@ -204,7 +204,7 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                     }
                 }
             } else if (buildSystem == BuildSystem.Maven) {
-                String template = IOUtils.toString(RoboVmModuleBuilder.class.getResource("/pom.xml"), "UTF-8");
+                String template = IOUtils.toString(RoboVmModuleBuilder.class.getResource("/template_pom.xml"), "UTF-8");
                 template = template.replaceAll(ROBOVM_VERSION_PLACEHOLDER, Version.getVersion());
                 template = template.replaceAll(PACKAGE_NAME_PLACEHOLDER, packageName);
                 template = template.replaceAll(APP_NAME_PLACEHOLDER, appName);

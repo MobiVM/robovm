@@ -37,9 +37,8 @@ import org.robovm.apple.addressbook.*;
  * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 9.0. Use +[CNContactViewController viewControllerForNewContact:] from ContactsUI.framework instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("AddressBookUI") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("AddressBookUI") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ABNewPersonViewController/*</name>*/ 
     extends /*<extends>*/UIViewController/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

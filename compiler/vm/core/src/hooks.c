@@ -275,6 +275,11 @@ void _rvmHookThreadStarting(Env* env, Object* threadObj, Thread* thread) {
 
 void _rvmHookThreadDetaching(Env* env, Object* threadObj, Thread* thread, Object* throwable) {
     DEBUGF("Thread %p detaching, threadObj: %p, thread: %p, throwable: %p", rvmRTGetThreadId(env, threadObj), threadObj, thread, throwable);
+    // once got notified that thread is detaching -- ignore any future exceptions or instrumented breakpoints
+    // as JDWP side considers this thread as dead and will fail to lookup it
+    DebugEnv* debugEnv = (DebugEnv*)env;
+    debugEnv->ignoreExceptions = TRUE;
+    debugEnv->ignoreInstrumented = TRUE;
     rvmLockMutex(&writeMutex);
     ChannelError error = { 0 };
     writeChannelByte(clientSocket, EVT_THREAD_DETTACHED, &error);

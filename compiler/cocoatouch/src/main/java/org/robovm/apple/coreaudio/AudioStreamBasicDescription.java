@@ -41,9 +41,8 @@ import org.robovm.apple.corefoundation.*;
 
     /*<ptr>*/public static class AudioStreamBasicDescriptionPtr extends Ptr<AudioStreamBasicDescription, AudioStreamBasicDescriptionPtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(AudioStreamBasicDescription.class); }/*</bind>*/
-    /*<constants>*/
+    /*<constants>*//*</constants>*/
     public static final double AnyRate = 0.0;
-    /*</constants>*/
     /*<constructors>*/
     public AudioStreamBasicDescription() {}
     public AudioStreamBasicDescription(double sampleRate, AudioFormat format, AudioFormatFlags formatFlags, int bytesPerPacket, int framesPerPacket, int bytesPerFrame, int channelsPerFrame, int bitsPerChannel) {

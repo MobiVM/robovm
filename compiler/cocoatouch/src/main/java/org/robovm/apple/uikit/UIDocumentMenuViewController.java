@@ -44,9 +44,8 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 8.0 and later.
  * @deprecated Deprecated in iOS 11.0. UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("UIKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIDocumentMenuViewController/*</name>*/ 
     extends /*<extends>*/UIViewController/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

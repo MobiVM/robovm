@@ -20,7 +20,7 @@ enums:
     NSLayoutFormatOptions: {}
     NSLayoutRelation: {}
     NSLineBreakMode: {}
-    NSStringDrawingOptions: { bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    NSStringDrawingOptions: { bits: true}
     NSTextAlignment: {}
     NSTextLayoutOrientation: {}
     NSTextStorageEditActions: {}
@@ -96,7 +96,7 @@ enums:
     UIKeyboardType: {}
     UIKeyModifierFlags: {}
     UILayoutConstraintAxis: {}
-    UILineBreakMode: {first: UILineBreakModeWordWrap, exclude: true}
+    UILineBreakMode: {exclude: true}
     UIMenuControllerArrowDirection: {}
     UIModalPresentationStyle: {}
     UIModalTransitionStyle: {}
@@ -110,7 +110,7 @@ enums:
     UIPressPhase: {}
     UIPressType: {}
     UIPreviewActionStyle: {}
-    UIPrintError: {nserror: true, first: UIPrintingNotAvailableError, suffix: Error, UIPrintingNotAvailableError: PrintingNotAvailableError}
+    UIPrintErrorCode: {name: UIPrintError, nserror: true, first: UIPrintingNotAvailableError, suffix: Error, UIPrintingNotAvailableError: PrintingNotAvailableError}
     UIPrinterCutterBehavior: {}
     UIPrinterJobTypes: {skip_none: true}
     UIPrintInfoDuplex: {}

@@ -8,7 +8,7 @@ headers:
     - /System/Library/Frameworks/OpenGLES.framework/Headers/EAGLDrawable.h
 typedefs: {}
 enums:
-    EAGLRenderingAPI: {first: kEAGLRenderingAPIOpenGLES1, type: MachineUInt, prefix: kEAGLRenderingAPI}
+    EAGLRenderingAPI: {prefix: kEAGLRenderingAPI}
 
 classes:
     EAGLContext: # DONE

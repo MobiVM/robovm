@@ -210,7 +210,7 @@ public class BridgeMethodCompilerTest {
     @Test
     public void testCreateBridgeCWrapperVectorStructByValReturn() {
         // test for VectorFloat2
-        FunctionType functionType = new FunctionType(new StructureType(0, true, Type.FLOAT, Type.FLOAT));
+        FunctionType functionType = new FunctionType(new VectorStructureType(0, Type.FLOAT, Type.FLOAT));
         assertEquals(
                 "void f(void* target, void* ret) {\n" +
                         "    typedef __attribute__((__ext_vector_type__(2))) float f_0000;\n" +
@@ -223,14 +223,29 @@ public class BridgeMethodCompilerTest {
     public void testCreateBridgeCWrapperVectorArrayStructByValReturn() {
         // test for MatrixFloat2x2
         FunctionType functionType = new FunctionType(
-                new StructureType(0, true,
-                        new StructureType(0, true, Type.FLOAT, Type.FLOAT),
-                        new StructureType(0, true, Type.FLOAT, Type.FLOAT)));
+                new VectorStructureType(0,
+                        new VectorStructureType(0, Type.FLOAT, Type.FLOAT),
+                        new VectorStructureType(0, Type.FLOAT, Type.FLOAT)));
         assertEquals(
                 "void f(void* target, void* ret) {\n" +
                         "    typedef __attribute__((__ext_vector_type__(2))) float f_0000_0000;\n" +
                         "    typedef struct { f_0000_0000 m[2];} f_0000;\n" +
                         "    *((f_0000*)ret) = ((f_0000 (*)(void)) target)();\n" +
+                        "}\n",
+                BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
+                        functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));
+    }
+
+    @Test
+    public void testCreateBridgeCWrapperPackedStructByVal() {
+        FunctionType functionType = new FunctionType(
+                VOID, new PackedStructureType(0, 0, 1, I32));
+        assertEquals(
+                "void f(void* target, void* p0) {\n" +
+                        "    #pragma pack(push, 1)\n" +
+                        "    typedef struct {int m0;} f_0001;\n" +
+                        "    #pragma pack(pop)\n" +
+                        "    ((void (*)(f_0001)) target)(*((f_0001*)p0));\n" +
                         "}\n",
                 BridgeMethodCompiler.createBridgeCWrapper(functionType.getReturnType(),
                         functionType.getParameterTypes(), functionType.getParameterTypes(), "f"));

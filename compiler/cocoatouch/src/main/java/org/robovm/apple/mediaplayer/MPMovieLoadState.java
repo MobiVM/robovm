@@ -37,9 +37,8 @@ import org.robovm.apple.coregraphics.*;
  * @since Available in iOS 3.2 and later.
  * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/MPMovieLoadState/*</name>*/ extends Bits</*<name>*/MPMovieLoadState/*</name>*/> {
     /*<values>*/
     public static final MPMovieLoadState None = new MPMovieLoadState(0L);

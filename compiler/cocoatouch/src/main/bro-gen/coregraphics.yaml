@@ -22,10 +22,10 @@ enums:
     CGBlendMode: {}
     CGColorRenderingIntent: {}
     CGColorSpaceModel: {}
-    CGErrorCode: {first: kCGErrorSuccess}
+    CGError: {name: CGErrorCode}
     CGFontPostScriptFormat: {}
-    CGGradientDrawingOptions: {first: kCGGradientDrawsBeforeStartLocation, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler}
-    CGImageAlphaInfo: {type: MachineUInt}
+    CGGradientDrawingOptions: {bits: true}
+    CGImageAlphaInfo: {}
     CGInterpolationQuality: {}
     CGLineCap: {}
     CGLineJoin: {}
@@ -35,12 +35,12 @@ enums:
     CGPDFBox: {}
     CGPDFDataFormat: {}
     CGPDFObjectType: {}
-    CGRectEdge: {prefix: CGRect, suffix: Edge, type: MachineUInt}
+    CGRectEdge: {prefix: CGRect, suffix: Edge}
     CGTextDrawingMode: {}
     CGTextEncoding: {}
     CGColorConversionInfoTransformType: {}
     CGPDFAccessPermissions: {}
-    CGImagePixelFormatInfo: {prefix: kCGImagePixelFormat} #since 12.0
+    CGImagePixelFormatInfo: {} #since 12.0
     CGImageByteOrderInfo: {prefix: kCGImage} #since 2.0
 
 classes:
@@ -142,7 +142,7 @@ functions:
         return_marshaler: CFType.NoRetainMarshaler
         parameters:
             data:
-                type: IntPtr
+                type: '@Pointer long'
             bitmapInfo:
                 type: CGBitmapInfo
             releaseInfo:
@@ -150,18 +150,17 @@ functions:
     CGBitmapContext(Create):
         class: CGBitmapContext
         name: '#{g[0]}'
-        static: true
         return_type: CGBitmapContext
         return_marshaler: CFType.NoRetainMarshaler
         parameters:
             data:
-                type: IntPtr
+                type: '@Pointer long'
             bitmapInfo:
                 type: CGBitmapInfo
     CGBitmapContext(GetData):
         class: CGBitmapContext
         name: '#{g[0]}'
-        return_type: IntPtr
+        return_type: '@Pointer long'
         parameters:
             context:
                 type: CGBitmapContext

@@ -37,9 +37,8 @@ import org.robovm.apple.coregraphics.*;
  * @since Available in iOS 3.2 and later.
  * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MPMoviePlaybackState/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Stopped(0L),

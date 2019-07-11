@@ -25,13 +25,12 @@ enums:
     MTLResourceOptions: {skip_none: true, ignore: '(MTLResourceOptionCPUCacheModeDefault|MTLResourceOptionCPUCacheModeWriteCombined)'}
     MTLFunctionType: {}
     MTLLanguageVersion: {prefix: MTLLanguage}
-    MTLLibraryErrorCode: {first: MTLLibraryErrorUnsupported}
-    MTLRenderPipelineErrorCode: {first: MTLRenderPipelineErrorInternal}
+    MTLLibraryError: {name: MTLLibraryErrorCode}
     MTLFeatureSet: {}
     MTLPipelineOption: {}
     MTLTextureType: {}
     MTLCommandBufferStatus: {}
-    MTLCommandBufferErrorCode: {first: MTLCommandBufferErrorNone}
+    MTLCommandBufferError: {name: MTLCommandBufferErrorCode}
     MTLCompareFunction: {}
     MTLStencilOperation: {}
     MTLLoadAction: {}

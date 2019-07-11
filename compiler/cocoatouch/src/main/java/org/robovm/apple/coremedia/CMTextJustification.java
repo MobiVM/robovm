@@ -39,7 +39,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsSignedByteMarshaler.class)/*</annotations>*/
 public enum /*<name>*/CMTextJustification/*</name>*/ implements ValuedEnum {
     /*<values>*/
     LeftTop(0L),

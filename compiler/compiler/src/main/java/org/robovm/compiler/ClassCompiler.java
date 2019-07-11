@@ -131,6 +131,7 @@ import java.util.regex.Pattern;
 
 import static org.robovm.compiler.Annotations.*;
 import static org.robovm.compiler.Functions.*;
+import static org.robovm.compiler.StructMemberMethodCompiler.STRUCT_ATTRIBUTES_METHOD;
 import static org.robovm.compiler.Types.*;
 import static org.robovm.compiler.llvm.Type.*;
 
@@ -821,6 +822,10 @@ public class ClassCompiler {
             sootClass.addMethod(_sizeOf);
             SootMethod sizeOf = new SootMethod("sizeOf", Collections.EMPTY_LIST, IntType.v(), Modifier.PUBLIC | Modifier.STATIC | Modifier.NATIVE);
             sootClass.addMethod(sizeOf);
+
+            // method that will provide meta flags for runtime to help finding out if stret is required
+            SootMethod stretMeta = new SootMethod(STRUCT_ATTRIBUTES_METHOD, Collections.EMPTY_LIST, IntType.v(), Modifier.PUBLIC | Modifier.STATIC | Modifier.NATIVE);
+            sootClass.addMethod(stretMeta);
         }
         
         mb.addInclude(getClass().getClassLoader().getResource(String.format("header-%s-%s.ll", config.getOs().getFamily(), config.getArch())));
@@ -861,7 +866,7 @@ public class ClassCompiler {
             } else if (hasGlobalValueAnnotation(method)) {
                 function = globalValueMethod(method);
             } else if (isStruct(sootClass) && ("_sizeOf".equals(name) 
-                        || "sizeOf".equals(name) || hasStructMemberAnnotation(method))) {
+                        || "sizeOf".equals(name) || STRUCT_ATTRIBUTES_METHOD.equals(name) || hasStructMemberAnnotation(method))) {
                 function = structMember(method);
             } else if (method.isNative()) {
                 function = nativeMethod(method);

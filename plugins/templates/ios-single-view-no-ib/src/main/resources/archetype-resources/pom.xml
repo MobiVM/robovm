@@ -10,8 +10,8 @@
     <packaging>jar</packaging>
 
     <properties>
-        <robovm.version>1.14.0</robovm.version>
-        <robovm.maven.version>1.14.0</robovm.maven.version>
+        <robovm.version>2.3.7</robovm.version>
+        <robovm.maven.version>2.3.7</robovm.maven.version>
     </properties>
 
     <version>${version}</version>
@@ -23,12 +23,12 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.1</version>
                     <configuration>
-                        <source>1.7</source>
-                        <target>1.7</target>
+                        <source>1.8</source>
+                        <target>1.8</target>
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>org.robovm</groupId>
+                    <groupId>com.mobidevelop.robovm</groupId>
                     <artifactId>robovm-maven-plugin</artifactId>
                     <version>${robovm.maven.version}</version>
                 </plugin>
@@ -38,12 +38,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.robovm</groupId>
+            <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-rt</artifactId>
             <version>${robovm.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.robovm</groupId>
+            <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-cocoatouch</artifactId>
             <version>${robovm.version}</version>
         </dependency>

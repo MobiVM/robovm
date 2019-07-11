@@ -38,9 +38,8 @@ import org.robovm.apple.fileprovider.*;
  * @since Available in iOS 10.0 and later.
  * @deprecated Deprecated in iOS 12.0.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/CKShareParticipantType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unknown(0L),

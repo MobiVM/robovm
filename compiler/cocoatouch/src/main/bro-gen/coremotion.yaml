@@ -9,8 +9,8 @@ headers:
 typedefs: {}
     
 enums:
-    CMAttitudeReferenceFrame: { first: CMAttitudeReferenceFrameXArbitraryZVertical, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
-    CMMagneticFieldCalibrationAccuracy: { first: CMMagneticFieldCalibrationAccuracyUncalibrated }
+    CMAttitudeReferenceFrame: { bits: true }
+    CMMagneticFieldCalibrationAccuracy: { }
     CMErrorCode: { first: CMErrorNULL }
     CMMotionActivityConfidence: {}
     CMPedometerEventType: {}

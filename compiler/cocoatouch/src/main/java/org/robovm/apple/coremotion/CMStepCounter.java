@@ -35,9 +35,8 @@ import org.robovm.apple.foundation.*;
  * @since Available in iOS 7.0 and later.
  * @deprecated Deprecated in iOS 8.0. Use CMPedometer instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreMotion") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreMotion") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CMStepCounter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

@@ -39,12 +39,12 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/CMClosedCaptionFormatType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    _CEA608(1664495672L),
-    _CEA708(1664561208L),
-    _ATSC(1635017571L);
+    CEA608(1664495672L),
+    CEA708(1664561208L),
+    ATSC(1635017571L);
     /*</values>*/
 
     /*<bind>*/

@@ -48,6 +48,7 @@ import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.IntegerType;
 import org.robovm.compiler.llvm.Inttoptr;
 import org.robovm.compiler.llvm.Load;
+import org.robovm.compiler.llvm.PackedStructureType;
 import org.robovm.compiler.llvm.PointerType;
 import org.robovm.compiler.llvm.PrimitiveType;
 import org.robovm.compiler.llvm.Ptrtoint;
@@ -58,6 +59,7 @@ import org.robovm.compiler.llvm.Trunc;
 import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.llvm.Variable;
+import org.robovm.compiler.llvm.VectorStructureType;
 import org.robovm.compiler.llvm.Zext;
 import org.robovm.compiler.trampoline.Invokestatic;
 import org.robovm.compiler.trampoline.LdcClass;
@@ -71,6 +73,7 @@ import soot.RefType;
 import soot.SootClass;
 import soot.SootMethod;
 import soot.VoidType;
+import soot.tagkit.AnnotationIntElem;
 import soot.tagkit.AnnotationTag;
 
 
@@ -570,7 +573,7 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
         for (SootMethod method : clazz.getMethods()) {
             n = Math.max(getStructMemberOffset(method) + 1, n);
         }
-        
+
 
         StructureType superType = null;
         if (clazz.hasSuperclass()) {
@@ -582,8 +585,9 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
 
         Type[] result;
         int ownMembersOffset = 0;
+        int attributes = 0;
         if (superType != null) {
-            // if structure inherits another stuct add it as member zero
+            // if structure inherits another struct add it as member zero
             ownMembersOffset = 1;
             result = new Type[n + 1];
             result[0] = superType;
@@ -592,6 +596,28 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
             // added anymore
             result = new Type[n];
         }
+
+        // check for vector/packed annotations
+        AnnotationTag vectorisedAnnotation = getStructVectorisedAnnotation(clazz);
+        AnnotationTag packedAnnotation = getStructPackedAnnotation(clazz);
+        if (vectorisedAnnotation != null && packedAnnotation != null) {
+            throw new IllegalArgumentException("Struct class " + clazz + " cannot have both @Packed and @Vectorized same time");
+        }
+
+        // initial vector validation
+        if (vectorisedAnnotation != null && ownMembersOffset != 0) {
+            throw new IllegalArgumentException("Struct class " + clazz + " cannot inherit struct when annotated @Vectorised");
+        }
+
+        // initial packed struct validation
+        int packedAllign = 0;
+        if (packedAnnotation != null) {
+            packedAllign = ((AnnotationIntElem) packedAnnotation.getElemAt(0)).getValue();
+            if (packedAllign != 1 && packedAllign != 2 && packedAllign != 4) {
+                throw new IllegalArgumentException("Struct class " + clazz + " has wrong @Packed annotation. Only 1,2,4 are allowed");
+            }
+        }
+
 
         for (SootMethod method : clazz.getMethods()) {
             int offset = getStructMemberOffset(method);
@@ -652,10 +678,17 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
                 int index = offset + ownMembersOffset;
                 if (result[index] == null) {
                     result[index] = type;
-                } else if (type != result[index]) {
+                } else if (!type.equals(result[index])) {
                     // Two members mapped to the same offset (union). Pick
                     // the type with the largest alignment and pad with bytes
                     // up to the largest size.
+
+                    // unions are not allowed in vectors and packed structs
+                    if (vectorisedAnnotation != null)
+                        throw new IllegalArgumentException("Duplicate @StructMember(" + index + ") in @Vectorised structs (union in vector is not supported");
+                    if (packedAnnotation != null)
+                        throw new IllegalArgumentException("Duplicate @StructMember(" + index + ") in @Packed structs (union in packed structs is not supported");
+
                     result[index] = mergeStructMemberTypes(config.getDataLayout(), type, result[index]);
                 }
             }
@@ -668,21 +701,46 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
             }
         }
 
+        // fix alignment in packed struct
+        if (packedAnnotation != null && packedAllign != 1 && result.length > 1) {
+            // packed struct, obey alignment parameter and add padding if required
+            int packedStructOffset = 0;
+            for (int i = ownMembersOffset; i < result.length; i++) {
+                Type item = result[i];
+                // find out if item to be aligned at boundary it needs
+                int itemAlignment = config.getDataLayout().getAlignment(item);
+                if (itemAlignment != 0 && packedStructOffset % itemAlignment != 0)
+                    attributes |= StructureType.ATTR_UNALIGNED;
+                // pad type if required (pack into packed struct with padding) to meet next member alignment
+                Type next = i + 1 < result.length ? result[i + 1] : result[0];
+                result[i] = packStructMemberTypes(config.getDataLayout(), packedAllign, packedStructOffset, item, next);
+                packedStructOffset += config.getDataLayout().getStoreSize(result[i]);
+            }
+        }
+
         if (!clazz.isAbstract() && checkEmpty && n == 0 && superType == null) {
             throw new IllegalArgumentException("Struct class " + clazz + " has no @StructMember annotated methods");
         }
 
-        // convert to vector if required
-        AnnotationTag vectorised = getStructVectorisedAnnotation(clazz);
-        if (vectorised != null) {
-            if (ownMembersOffset != 0) {
-                // just stuck to simple case for noe
-                throw new IllegalArgumentException("Struct class " + clazz + " cannot inherit struct when annotated @Vectorised");
-            }
+        if (vectorisedAnnotation != null) {
+            // validate vector
             validateVectorStruct(clazz, result);
         }
 
-        return new StructureType(ownMembersOffset, vectorised != null, result);
+        // find out if regular structure is simple wrapper around 8, 16 or 32 int
+        // (this is needed to find out if this structure will be retured by value on arm7 cpus)
+        boolean singleIntStruct = result.length == 1 && result[0] instanceof IntegerType && ((IntegerType)result[0]).getBits() <= 32;
+        if (!singleIntStruct) {
+            attributes |= StructureType.ATTR_NOT_SINGLE_INT_STRUCT;
+        }
+
+        // create corresponding version of struct
+        if (vectorisedAnnotation != null)
+            return new VectorStructureType(ownMembersOffset, result);
+        else if (packedAnnotation != null && result.length > 1)
+            return new PackedStructureType(ownMembersOffset, attributes, packedAllign, result);
+        else
+            return new StructureType(ownMembersOffset, attributes, result);
     }
 
     /**
@@ -735,7 +793,28 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
             return result;
         }
     }
-    
+
+    /**
+     * finds out if for given member we have to add padding as another packed struct make provide
+     * proper alignment of next field
+     * @param memberStructOffs -- offset from start of structure, member will start at
+     */
+    static Type packStructMemberTypes(DataLayout dataLayout, int packAlign, int memberStructOffs, Type memberType, Type nextMemberType) {
+        int memberSize = dataLayout.getStoreSize(memberType);
+
+        // if packed structure member is aligned by own align or pack pragma align, what is smaller
+        int nextMemberAlign = Math.min(packAlign, dataLayout.getAlignment(nextMemberType));
+
+        // check if next member gets proper alignment, otherwise add padding
+        int pad = (nextMemberAlign - (memberStructOffs + memberSize) % nextMemberAlign) % nextMemberAlign;
+        if (pad > 0) {
+            // add padding for alignment
+            return new PackedStructureType(memberType, pad == 1 ? I8 : new ArrayType(pad, I8));
+        } else {
+            return memberType;
+        }
+    }
+
     protected static String getHiType(Type type) {
         if (type == Type.VOID) {
             return "void";
@@ -761,32 +840,38 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
         throw new IllegalArgumentException("Cannot convert type " + type + " to C type");
     }
 
-    protected static String getLoType(final Type type, String base, int index, Map<String, String> structs) {
-        if (type instanceof StructureType && ((StructureType)type).isVector()) {
+    protected static String getLoType(final Type type, String base, int index, Map<String, String> typedefs) {
+        if (type instanceof VectorStructureType) {
             String name = String.format("%s_%04d", base, index);
             StringBuilder sb = new StringBuilder();
-            StructureType st = (StructureType) type;
+            VectorStructureType st = (VectorStructureType) type;
             Type t = st.getTypeAt(0);
             if (st.isVectorArray()) {
                 // vector of structs, such as MatrixFloat2x2
-                sb.append("struct { ")
-                        .append(getLoType(t, name, 0, structs))
+                sb.append("typedef struct { ")
+                        .append(getLoType(t, name, 0, typedefs))
                         .append(" m[").append(st.getTypeCount()).append("];}");
             } else {
                 // vector of primitives such as VectorFloat3
-                sb.append("__attribute__((__ext_vector_type__(")
+                sb.append("typedef __attribute__((__ext_vector_type__(")
                         .append(st.getTypeCount())
                         .append("))) ")
-                        .append(getLoType(t, name, 0, structs));
+                        .append(getLoType(t, name, 0, typedefs));
             }
 
-            structs.put(name, sb.toString());
+            sb.append(" "  + name + ";");
+            typedefs.put(name, sb.toString());
             return name;
         } else if (type instanceof StructureType) {
             String name = String.format("%s_%04d", base, index);
             StringBuilder sb = new StringBuilder();
             StructureType st = (StructureType) type;
-            sb.append("struct {");
+            if (type instanceof PackedStructureType) {
+                // adding packed pragma
+                String packPragma = String.format("#pragma pack(push, %d)\n", ((PackedStructureType)st).getAlign());
+                sb.append(packPragma);
+            }
+            sb.append("typedef struct {");
             for (int i = 0; i < st.getTypeCount(); i++) {
                 Type t = st.getTypeAt(i);
                 // Only support arrays embedded in structs
@@ -796,10 +881,14 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
                     dims.append('[').append(at.getSize()).append(']');
                     t = ((ArrayType) t).getElementType();
                 }
-                sb.append(getLoType(t, name, i, structs)).append(" m" + i).append(dims).append(";");
+                sb.append(getLoType(t, name, i, typedefs)).append(" m" + i).append(dims).append(";");
             }
-            sb.append("}");
-            structs.put(name, sb.toString());
+            sb.append("} " + name + ";");
+            if (type instanceof PackedStructureType) {
+                // adding packed pragma
+                sb.append("\n" + "#pragma pack(pop)");
+            }
+            typedefs.put(name, sb.toString());
             return name;
         } else {
             return getHiType(type);

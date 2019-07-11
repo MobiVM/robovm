@@ -9,8 +9,8 @@ typedefs:
     'void (^)(NSDate *, NSDate *)': '@Block VoidBlock2<NSDate, NSDate>'
 
 enums:
-    ADErrorCode: {first: ADErrorUnknown}
-    ADClientErrorCode: {first: ADClientErrorUnknown}
+    ADError: {name: ADErrorCode}
+    ADClientError: {name: ADClientErrorCode}
     ADAdType: {}
     ADInterstitialPresentationPolicy: {}
 

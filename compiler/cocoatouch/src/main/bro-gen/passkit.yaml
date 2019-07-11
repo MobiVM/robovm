@@ -13,8 +13,8 @@ typedefs:
     'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
     
 enums:
-    PKPassKitErrorCode: {first: PKUnknownError, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    PKPassLibraryAddPassesStatus: {first: PKPassLibraryDidAddPasses, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    PKPassKitErrorCode: {}
+    PKPassLibraryAddPassesStatus: {}
     PKPassType: {}
     PKPaymentAuthorizationStatus: {}
     PKPaymentButtonStyle: {}

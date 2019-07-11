@@ -4,7 +4,7 @@
     <groupId>com.mobidevelop.robovm</groupId>
     <artifactId>org.robovm.idea</artifactId>
     <name>RoboVM plugin for Intellij IDEA</name>
-    <version>2.3.7-SNAPSHOT</version>
+    <version>2.3.8-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -146,34 +146,6 @@
                     <version>1.0.0</version>
                     <scope>system</scope>
                     <systemPath>${idea.home}/plugins/maven/lib/maven.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>android</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/android.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>android-common</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/android-common.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>android-sdklib</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/sdklib.jar</systemPath>
-                </dependency>
-                <dependency>
-                    <groupId>org.jetbrains.plugin</groupId>
-                    <artifactId>android-layoutlib-api</artifactId>
-                    <version>1.0.0</version>
-                    <scope>system</scope>
-                    <systemPath>${idea.home}/plugins/android/lib/layoutlib-api.jar</systemPath>
                 </dependency>
                 <dependency>
                     <groupId>org.jetbrains.plugin</groupId>

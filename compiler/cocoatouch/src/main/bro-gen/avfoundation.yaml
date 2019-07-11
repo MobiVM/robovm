@@ -14,18 +14,17 @@ typedefs:
     'void (^)(CMTime)': '@Block VoidBlock1<CMTime>'
     'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
     'void (^)(CMSampleBufferRef, AVCaptureBracketedStillImageSettings *, NSError *)': '@Block VoidBlock3<CMSampleBuffer, AVCaptureBracketedStillImageSettings, NSError>'
-    AVVideoCodecType: NSString
 private_typedefs:
     CGImagePropertyOrientation: org.robovm.apple.imageio.CGImagePropertyOrientation
     # following can't be used as Enum from CoreMedia. As it defines only invalid state
     # and will fail on any valid track id
     CMPersistentTrackID: int
 enums:
-    AVAssetReferenceRestrictions: { first: AVAssetReferenceRestrictionForbidNone }
-    AVAssetExportSessionStatus: { first: AVAssetExportSessionStatusUnknown }
-    AVAssetImageGeneratorResult: { first: AVAssetImageGeneratorSucceeded }
-    AVAssetReaderStatus: { first: AVAssetReaderStatusUnknown }
-    AVAssetWriterStatus: { first: AVAssetWriterStatusUnknown }
+    AVAssetReferenceRestrictions: {}
+    AVAssetExportSessionStatus: {}
+    AVAssetImageGeneratorResult: {}
+    AVAssetReaderStatus: {}
+    AVAssetWriterStatus: {}
     AVAudio3DMixingRenderingAlgorithm: {}
     AVAudioCommonFormat: { suffix: Format }
     AVAudioConverterInputStatus: {}
@@ -35,14 +34,14 @@ enums:
     AVAudioPlayerNodeBufferOptions: {}
     AVAudioSessionInterruptionOptions: { prefix: AVAudioSessionInterruptionOption }
     AVAudioSessionSetActiveOptions: { prefix: AVAudioSessionSetActiveOption }
-    AVAudioSessionPortOverride: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    AVAudioSessionRouteChangeReason: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    AVAudioSessionPortOverride: {}
+    AVAudioSessionRouteChangeReason: {}
     AVAudioSessionCategoryOptions: {}
-    AVAudioSessionInterruptionType: { marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    AVAudioSessionInterruptionType: {}
     AVAudioSessionErrorCode: { prefix: AVAudioSessionErrorCode, AVAudioSessionErrorInsufficientPriority: InsufficientPriority }
     AVAudioSessionRecordPermission: {}
     AVAudioSessionSilenceSecondaryAudioHintType: {}
-    AVAudioQuality: { first: AVAudioQualityMin }
+    AVAudioQuality: {}
     AVAudioUnitReverbPreset: {}
     AVAudioUnitEQFilterType: {}
     AVAudioUnitDistortionPreset: {}
@@ -59,21 +58,21 @@ enums:
     AVCaptureVideoOrientation: {}
     AVCaptureVideoStabilizationMode: {}
     AVCaptureWhiteBalanceMode: {}
-    AVErrorCode: { first: AVErrorUnknown, prefix: AVError, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    AVKeyValueStatus: { first: AVKeyValueStatusUnknown }
+    AVError: {name: AVErrorCode, prefix: AVError}
+    AVKeyValueStatus: {}
     AVMusicSequenceLoadOptions: {skip_none: true}
-    AVPlayerStatus: { first: AVPlayerStatusUnknown }
-    AVPlayerActionAtItemEnd: { first: AVPlayerActionAtItemEndAdvance }
-    AVPlayerItemStatus: { first: AVPlayerItemStatusUnknown }
+    AVPlayerStatus: {}
+    AVPlayerActionAtItemEnd: {}
+    AVPlayerItemStatus: {}
     AVQueuedSampleBufferRenderingStatus: {}
     AVSampleBufferDisplayLayerQueueManagement: {}
     AVSpeechBoundary: {}
     AVSpeechSynthesisVoiceQuality: {}
     AVVideoFieldMode: {}
-    AVPlayerTimeControlStatus: {prefix: AVPlayerTimeControlStatus}
-    AVAudioSessionIOType : {prefix: AVAudioSessionIOType}
-    AVCaptureColorSpace : {prefix: AVCaptureColorSpace_}
-    AVPlayerLooperStatus : {prefix : AVPlayerLooperStatus}
+    AVPlayerTimeControlStatus: {}
+    AVAudioSessionIOType : {}
+    AVCaptureColorSpace : {}
+    AVPlayerLooperStatus : {}
     AVMusicTrackLoopCount: {}
     AVContentKeyRequestStatus: {}
     AVAudioEngineManualRenderingError: {} #since 11.0
@@ -86,7 +85,7 @@ enums:
     AVDepthDataQuality: {} #since 11.0
     AVDepthDataAccuracy: {} #since 11.0
     AVPlayerHDRMode: {} #since 11.2
-    AVCaptureSystemPressureFactors: {prefix: AVCaptureSystemPressureFactor} #since 11.1
+    AVCaptureSystemPressureFactors: {} #since 11.1
     AVAudioSessionActivationOptions: {prefix: AVAudioSessionActivationOption}
     AVAudioSessionPromptStyle: {}
 
@@ -106,6 +105,9 @@ typed_enums:
     AVVideoApertureMode:
         enum: AVVideoApertureMode
         prefix: AVVideoApertureMode
+        type: NSString
+    AVVideoCodecType:
+        enum: AVVideoCodecType
         type: NSString
 
 categories:
@@ -672,8 +674,6 @@ classes:
             'musicSequence':
                 annotations: ['@WeaklyLinked']
         methods:
-            '-init':
-                exclude: true
             '-attachNode:':
                 trim_after_first_colon: true
             '-detachNode:':
@@ -3334,8 +3334,7 @@ values:
         type: NSString
         methods:
             Codec:
-                type: CMVideoCodecType
-                annotations: ['@WeaklyLinked']
+                type: AVVideoCodecType
             Width:
                 type: long
             Height:

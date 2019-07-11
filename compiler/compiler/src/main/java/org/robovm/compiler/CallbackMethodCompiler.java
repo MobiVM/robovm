@@ -77,7 +77,7 @@ public class CallbackMethodCompiler extends BroMethodCompiler {
         // We order structs by name in reverse order. The names are constructed
         // such that nested structs get names which are naturally ordered after
         // their parent struct.
-        Map<String, String> structs = new TreeMap<String, String>(Collections.reverseOrder());
+        Map<String, String> typedefs = new TreeMap<String, String>(Collections.reverseOrder());
         
         StringBuilder hiSignature = new StringBuilder();
         hiSignature
@@ -87,7 +87,7 @@ public class CallbackMethodCompiler extends BroMethodCompiler {
             .append('(');
 
         StringBuilder loSignature = new StringBuilder();
-        String loReturnType = getLoType(functionType.getReturnType(), name, 0, structs);
+        String loReturnType = getLoType(functionType.getReturnType(), name, 0, typedefs);
         loSignature
             .append(loReturnType)
             .append(' ')
@@ -108,7 +108,7 @@ public class CallbackMethodCompiler extends BroMethodCompiler {
             String hiParamType = getHiType(functionType.getParameterTypes()[i]);
             hiSignature.append(hiParamType);
 
-            String loParamType = getLoType(functionType.getParameterTypes()[i], name, i + 1, structs);
+            String loParamType = getLoType(functionType.getParameterTypes()[i], name, i + 1, typedefs);
             loSignature.append(loParamType).append(' ').append(arg);
 
             if (functionType.getParameterTypes()[i] instanceof StructureType) {
@@ -125,8 +125,8 @@ public class CallbackMethodCompiler extends BroMethodCompiler {
         loSignature.append(')');
         
         StringBuilder header = new StringBuilder();
-        for (Entry<String, String> struct : structs.entrySet()) {
-            header.append("typedef " + struct.getValue() + " " + struct.getKey()  +";\n");
+        for (String typedef : typedefs.values()) {
+            header.append(typedef + "\n");
         }
         header.append(hiSignature + ";\n");
         

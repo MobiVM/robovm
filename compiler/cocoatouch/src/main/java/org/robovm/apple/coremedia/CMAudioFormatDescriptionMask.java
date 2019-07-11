@@ -39,7 +39,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/CMAudioFormatDescriptionMask/*</name>*/ extends Bits</*<name>*/CMAudioFormatDescriptionMask/*</name>*/> {
     /*<values>*/
     public static final CMAudioFormatDescriptionMask None = new CMAudioFormatDescriptionMask(0L);

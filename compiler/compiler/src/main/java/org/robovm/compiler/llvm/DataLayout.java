@@ -43,17 +43,19 @@ public class DataLayout {
             String definition;
             if (type instanceof PrimitiveType) {
                 definition = "{" + ((PrimitiveType) type).getName() + "}";
-            } else if (type instanceof StructureType) {
+            } else if (type instanceof VectorStructureType) {
                 // if it is vector of primitive (E.g. VectorFloat2) it will return
                 // <2 x float> like definition  and it will not go to
                 // LLVM types that will cause a crash later, so wrap it into struct
                 // And if it is vector of another structs (E.g. MatrixFloat2x2) it
                 // will be wrapped into struct and nothing to be done
-                StructureType st = (StructureType) type;
-                if (st.isVector() && !st.isVectorArray())
+                VectorStructureType st = (VectorStructureType) type;
+                if (!st.isVectorArray())
                     definition = "{" + ((StructureType) type).getDefinition() + "}";
                 else
                     definition = ((StructureType) type).getDefinition();
+            } else if (type instanceof StructureType) {
+                definition = ((StructureType) type).getDefinition();
             } else {
                 definition = "{" + ((UserType) type).getDefinition() + "}";
             }

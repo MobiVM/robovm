@@ -72,7 +72,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="My App"/>
+          <text value="MyApp"/>
         </properties>
       </component>
       <component id="38f5a" class="javax.swing.JTextField" binding="appId">

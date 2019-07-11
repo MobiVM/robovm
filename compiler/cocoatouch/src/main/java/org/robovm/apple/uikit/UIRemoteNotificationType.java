@@ -44,9 +44,8 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 3.0 and later.
  * @deprecated Deprecated in iOS 8.0. Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/UIRemoteNotificationType/*</name>*/ extends Bits</*<name>*/UIRemoteNotificationType/*</name>*/> {
     /*<values>*/
     public static final UIRemoteNotificationType None = new UIRemoteNotificationType(0L);

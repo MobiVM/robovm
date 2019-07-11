@@ -36,9 +36,8 @@ import org.robovm.apple.uikit.*;
  * @since Available in iOS 3.0 and later.
  * @deprecated Deprecated in iOS 7.0.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 public enum /*<name>*/GKPeerConnectionState/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Available(0L),

@@ -2,15 +2,15 @@ package: org.robovm.apple.mediatoolbox
 include: [foundation.yaml, corefoundation.yaml, coremedia.yaml, coreaudio.yaml, audiotoolbox.yaml]
 library: MediaToolbox
 framework: MediaToolbox
-clang_args: ['-x', 'objective-c']
+clang_args: ['-x', 'objective-c', '-DCOREMEDIA_USE_DERIVED_ENUMS_FOR_CONSTANTS=1']
 headers:
     - /System/Library/Frameworks/MediaToolbox.framework/Headers/MediaToolbox.h
 typedefs:
     MTAudioProcessingTapRef: MTAudioProcessingTap
 
 enums:
-    MTAudioProcessingTapCreationFlags: { first: kMTAudioProcessingTapCreationFlag_PreEffects, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
-    MTAudioProcessingTapFlags: { first: kMTAudioProcessingTapFlag_StartOfStream, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    MTAudioProcessingTapCreationFlags: { first: kMTAudioProcessingTapCreationFlag_PreEffects, bits: true}
+    MTAudioProcessingTapFlags: { first: kMTAudioProcessingTapFlag_StartOfStream, bits: true}
 
 classes:
     # Opaque Types
@@ -23,6 +23,7 @@ classes:
 
     # Structs
     MTAudioProcessingTapCallbacks:
+        annotations: ['@Packed(4)']
         name: MTAudioProcessingTapCallbacksStruct
         visibility: ''
         finalize:

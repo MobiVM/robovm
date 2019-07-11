@@ -38,7 +38,7 @@ import org.robovm.apple.iosurface.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsLongMarshaler.class)/*</annotations>*/
 public final class /*<name>*/CVPixelBufferLockFlags/*</name>*/ extends Bits</*<name>*/CVPixelBufferLockFlags/*</name>*/> {
     /*<values>*/
     public static final CVPixelBufferLockFlags None = new CVPixelBufferLockFlags(0L);

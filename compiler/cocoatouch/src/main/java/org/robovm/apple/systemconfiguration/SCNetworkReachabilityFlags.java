@@ -35,7 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/SCNetworkReachabilityFlags/*</name>*/ extends Bits</*<name>*/SCNetworkReachabilityFlags/*</name>*/> {
     /*<values>*/
     public static final SCNetworkReachabilityFlags None = new SCNetworkReachabilityFlags(0L);

@@ -44,9 +44,8 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 7.0. The segmentedControlStyle property no longer has any effect
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/UISegmentedControlStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Plain(0L),

@@ -9,10 +9,10 @@ headers:
 typedefs: {}
     
 enums:
-    EKCalendarChooserSelectionStyle: { first: EKCalendarChooserSelectionStyleSingle }
-    EKCalendarChooserDisplayStyle: { first: EKCalendarChooserDisplayAllCalendars }
-    EKEventEditViewAction: { first: EKEventEditViewActionCanceled, ignore: Cancelled }
-    EKEventViewAction: { first: EKEventViewActionDone }
+    EKCalendarChooserSelectionStyle: {  }
+    EKCalendarChooserDisplayStyle: {}
+    EKEventEditViewAction: { ignore: Cancelled }
+    EKEventViewAction: {}
         
 classes:
     EKCalendarChooser: # DONE

@@ -44,9 +44,8 @@ import org.robovm.apple.intents.*;
  * @since Available in iOS 4.0 and later.
  * @deprecated Deprecated in iOS 10.0. Use UserNotifications Framework's UNNotificationRequest
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("UIKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UILocalNotification/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSCoding/*</implements>*/ {

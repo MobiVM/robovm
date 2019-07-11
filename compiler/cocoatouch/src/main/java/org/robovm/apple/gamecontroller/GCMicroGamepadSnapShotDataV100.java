@@ -35,7 +35,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Library("GameController")/*</annotations>*/
+/*<annotations>*/@Packed(1) @Library("GameController")/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCMicroGamepadSnapShotDataV100/*</name>*/ 
     extends /*<extends>*/Struct<GCMicroGamepadSnapShotDataV100>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -72,7 +72,9 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 7.0 and later.
+     * @deprecated GCMicroGamepadSnapShotDataV100FromNSData has been deprecated, use GCMicroGamepadSnapshotDataFromNSData instead
      */
+    @Deprecated
     @Bridge(symbol="GCMicroGamepadSnapShotDataV100FromNSData", optional=true)
     public native boolean getData(NSData data);
     /*</methods>*/

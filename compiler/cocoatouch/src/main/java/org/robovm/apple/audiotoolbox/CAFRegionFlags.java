@@ -38,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public final class /*<name>*/CAFRegionFlags/*</name>*/ extends Bits</*<name>*/CAFRegionFlags/*</name>*/> {
     /*<values>*/
     public static final CAFRegionFlags None = new CAFRegionFlags(0L);

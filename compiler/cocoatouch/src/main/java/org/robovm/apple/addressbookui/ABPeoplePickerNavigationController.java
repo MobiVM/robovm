@@ -37,9 +37,8 @@ import org.robovm.apple.addressbook.*;
  * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 9.0. Use CNContactPickerViewController from ContactsUI.framework instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Library("AddressBookUI") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("AddressBookUI") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ABPeoplePickerNavigationController/*</name>*/ 
     extends /*<extends>*/UINavigationController/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

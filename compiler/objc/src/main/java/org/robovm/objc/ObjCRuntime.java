@@ -37,8 +37,9 @@ import org.robovm.rt.bro.ptr.BytePtr;
 @Library("objc")
 public class ObjCRuntime {
 
-    private static final Map<Class<?>, Integer> structSizes = new HashMap<Class<?>, Integer>();
-    
+    private static final Map<Class<?>, Integer> structSizes = new HashMap<>();
+    private static final Map<Class<?>, Integer> structAttributes = new HashMap<>();
+
     static {
         Bro.bind(ObjCRuntime.class);
     }
@@ -107,10 +108,23 @@ public class ObjCRuntime {
                 if (structSize > 16) {
                     return true;
                 }
+
+                // System V Application Binary Interface AMD64 Architecture Processor Supplement.
+                // 3.2.3: If it contains un- aligned fields, it has class MEMORY
+                int attr = getStructAttributes(returnType);
+                if ((attr & ATTR_UNALIGNED) != 0) {
+                    return true;
+                }
             } else if (Bro.IS_ARM && Bro.IS_32BIT) {
                 if (structSize > 4) {
                     // On ARM stret has to be used for structs
                     // larger than 4 bytes
+                    return true;
+                }
+
+                // only Integer like structures are returned in r0.
+                int attr = getStructAttributes(returnType);
+                if ((attr & ATTR_NOT_SINGLE_INT_STRUCT) != 0) {
                     return true;
                 }
             } else if (Bro.IS_ARM && Bro.IS_64BIT) {
@@ -136,8 +150,24 @@ public class ObjCRuntime {
         }
         return size;
     }
-    
-    
+
+    final static int ATTR_UNALIGNED                    = 1 << 0; // contains at least one field that is not aligned to its nature alignment
+    public final static int ATTR_NOT_SINGLE_INT_STRUCT = 1 << 1; // indicates that structure is not one integer field wrap (up to 32 bit one)
+    static synchronized int getStructAttributes(Class<?> cls) {
+        Integer attr = structAttributes.get(cls);
+        if (attr == null) {
+            try {
+                Method stretMetadata = cls.getMethod("$attr$stretMetadata");
+                // assume method might be missing, but its not likely when cache is wiped on update
+                attr = stretMetadata != null ? (Integer) stretMetadata.invoke(null) : 0;
+            } catch (Exception e) {
+                throw new Error(e);
+            }
+            structAttributes.put(cls, attr);
+        }
+        return attr;
+    }
+
     /* selector */
     
     @Bridge

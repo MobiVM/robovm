@@ -153,7 +153,7 @@ public class BridgeMethodCompiler extends BroMethodCompiler {
         // We order structs by name in reverse order. The names are constructed
         // such that nested structs get names which are naturally ordered after
         // their parent struct.
-        Map<String, String> structs = new TreeMap<String, String>(Collections.reverseOrder());
+        Map<String, String> typedefs = new TreeMap<String, String>(Collections.reverseOrder());
         
         String hiReturnType = returnType instanceof StructureType 
                 ? "void" : getHiType(returnType);
@@ -169,7 +169,7 @@ public class BridgeMethodCompiler extends BroMethodCompiler {
         }
 
         StringBuilder loSignature = new StringBuilder();
-        String loReturnType = getLoType(returnType, name, 0, structs);
+        String loReturnType = getLoType(returnType, name, 0, typedefs);
         loSignature
             .append(loReturnType)
             .append(' ')
@@ -189,7 +189,7 @@ public class BridgeMethodCompiler extends BroMethodCompiler {
             hiSignature.append(hiParamType).append(' ').append(arg);
 
             if (i < loParameterTypes.length) {
-                String loParamType = getLoType(hiParameterTypes[i], name, i + 1, structs);
+                String loParamType = getLoType(hiParameterTypes[i], name, i + 1, typedefs);
                 if (i > 0) {
                     loSignature.append(", ");
                 }
@@ -211,9 +211,10 @@ public class BridgeMethodCompiler extends BroMethodCompiler {
             loSignature.append(", ...");
         }
         loSignature.append(')');
-        
-        for (Entry<String, String> struct : structs.entrySet()) {
-            body.append("    typedef " + struct.getValue() + " " + struct.getKey() + ";\n");
+
+        final String intend = "    ";
+        for (String typedef : typedefs.values()) {
+            body.append(intend + typedef.replace("\n", "\n" + intend) + "\n");
         }
         
         if (returnType instanceof StructureType) {

@@ -40,9 +40,8 @@ import org.robovm.apple.coretext.*;
  * @since Available in iOS 2.0 and later.
  * @deprecated Deprecated in iOS 7.0. Use CFError codes instead
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/CFURLError/*</name>*/ implements ValuedEnum {
     /*<values>*/
     UnknownError(-10L),

@@ -5,16 +5,12 @@
   <parent>
     <groupId>com.mobidevelop.robovm</groupId>
     <artifactId>org.robovm.eclipse.parent</artifactId>
-    <version>2.3.7-SNAPSHOT</version>
+    <version>2.3.8-SNAPSHOT</version>
   </parent>
 
   <artifactId>org.robovm.eclipse.ui</artifactId>
   <name>RoboVM for Eclipse Core and UI</name>
   <packaging>eclipse-plugin</packaging>
-
-  <properties>
-    <robovm.version>2.3.6-SNAPSHOT</robovm.version>
-  </properties>
 
   <dependencyManagement>
     <dependencies>
@@ -26,19 +22,19 @@
       <dependency>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-dist-compiler</artifactId>
-        <version>${robovm.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-dist</artifactId>
-        <version>${robovm.version}</version>
+        <version>${project.version}</version>
         <classifier>nocompiler</classifier>
         <type>tar.gz</type>
       </dependency>
       <dependency>
       	<groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-debugger</artifactId>
-            <version>${robovm.version}</version>
+            <version>${project.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.mobidevelop.robovm</groupId>
@@ -49,12 +45,12 @@
       <dependency>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-templater</artifactId>
-        <version>${robovm.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-ibxcode</artifactId>
-        <version>${robovm.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.bcel</groupId> <!-- required for ibxcode -->

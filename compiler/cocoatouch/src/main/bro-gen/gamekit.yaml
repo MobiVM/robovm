@@ -9,26 +9,26 @@ typedefs: {}
 
 
 enums:
-    GKChallengeState: { marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    GKGameCenterViewControllerState: { marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    GKLeaderboardTimeScope: { first: GKLeaderboardTimeScopeToday, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKLeaderboardPlayerScope: { first: GKLeaderboardPlayerScopeGlobal, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKMatchSendDataMode: { first: GKMatchSendDataReliable, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKPlayerConnectionState: { first: GKPlayerStateUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKPhotoSize: { first: GKPhotoSizeSmall, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKSendDataMode: { first: GKSendDataReliable, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
+    GKChallengeState: {}
+    GKGameCenterViewControllerState: {}
+    GKLeaderboardTimeScope: {}
+    GKLeaderboardPlayerScope: {}
+    GKMatchSendDataMode: {}
+    GKPlayerConnectionState: {}
+    GKPhotoSize: {}
+    GKSendDataMode: {}
     GKInviteRecipientResponse: {prefix: GKInviteRecipientResponse, ignore: 'GKInviteeResponse.*'}
-    GKSessionMode: { first: GKSessionModeServer, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKMatchType: { first: GKMatchTypePeerToPeer, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    GKPeerConnectionState: { first: GKPeerStateAvailable, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKPeerPickerConnectionType: { first: GKPeerPickerConnectionTypeOnline, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    GKTurnBasedExchangeStatus: { first: GKTurnBasedExchangeStatusUnknown, marshaler: ValuedEnum.AsSignedByteMarshaler }
-    GKTurnBasedMatchStatus: { first: GKTurnBasedMatchStatusUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKTurnBasedParticipantStatus: { first: GKTurnBasedParticipantStatusUnknown, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKTurnBasedMatchOutcome: { first: GKTurnBasedMatchOutcomeNone, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKVoiceChatPlayerState: { first: GKVoiceChatPlayerConnected, marshaler: ValuedEnum.AsMachineSizedSIntMarshaler }
-    GKConnectionState: {marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
-    GKTransportType: {marshaler: ValuedEnum.AsMachineSizedSIntMarshaler}
+    GKSessionMode: { first: GKSessionModeServer }
+    GKMatchType: {}
+    GKPeerConnectionState: {}
+    GKPeerPickerConnectionType: {}
+    GKTurnBasedExchangeStatus: {}
+    GKTurnBasedMatchStatus: {}
+    GKTurnBasedParticipantStatus: {}
+    GKTurnBasedMatchOutcome: {}
+    GKVoiceChatPlayerState: {}
+    GKConnectionState: {}
+    GKTransportType: {}
     GKGameSessionErrorCode: { }
     GKErrorCode: { nserror: true }
     GKSessionError: { nserror: true, suffix: Error }
@@ -198,8 +198,6 @@ classes:
             'scores':
                 type: NSArray<GKScore>
         methods:
-            '-init':
-                exclude: true
             '-initWithPlayerIDs:':
                 name: init
                 parameters:

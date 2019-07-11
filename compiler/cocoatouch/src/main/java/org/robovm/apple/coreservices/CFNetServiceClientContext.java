@@ -34,7 +34,7 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Packed(2)/*</annotations>*/
 /*<visibility>*//*</visibility>*/ class /*<name>*/CFNetServiceClientContext/*</name>*/ 
     extends /*<extends>*/Struct<CFNetServiceClientContext>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

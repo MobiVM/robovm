@@ -18,7 +18,10 @@ private_typedefs:
     
 enums:
     SCStatusCode: { first: kSCStatusOK }
-    SCNetworkReachabilityFlags: { first: kSCNetworkReachabilityFlagsTransientConnection, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    SCNetworkReachabilityFlags: { bits: true }
+    SCNetworkConnectionFlags: { bits: true, first: kSCNetworkFlagsTransientConnection, type: uint32_t}
+    SCNetworkConnectionStatus: {}
+
         
 classes:
     __SCNetworkReachability:

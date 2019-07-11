@@ -58,6 +58,7 @@ public enum /*<name>*/MPSDataType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 10.0 and later.
      */
     SignedBit(536870912L),
+    @Deprecated
     IntBit(536870912L),
     /**
      * @since Available in iOS 10.0 and later.

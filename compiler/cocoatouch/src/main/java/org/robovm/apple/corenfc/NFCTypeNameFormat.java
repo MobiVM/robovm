@@ -34,7 +34,7 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NFCTypeNameFormat/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Empty(0L),

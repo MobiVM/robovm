@@ -9,17 +9,17 @@ typedefs:
     'void (^)(NSPersistentStoreDescription * _Nonnull, NSError * _Nullable)': '@Block VoidBlock2<NSPersistentStoreDescription, NSError>'
 
 enums:
-    NSAttributeType: {first: NSUndefinedAttributeType, suffix: AttributeType, type: MachineUInt}
+    NSAttributeType: {suffix: AttributeType}
     NSCoreDataErrorCode: {first: NSManagedObjectValidationError, suffix: Error}
-    NSDeleteRule: {first: NSNoActionDeleteRule, suffix: DeleteRule, type: MachineUInt}
-    NSEntityMappingType: {first: NSUndefinedEntityMappingType, suffix: EntityMappingType, type: MachineUInt}
-    NSFetchedResultsChangeType: {first: NSFetchedResultsChangeInsert, type: MachineUInt}
-    NSFetchRequestResultType: {first: NSManagedObjectResultType, skip_none: true, suffix: ResultType, type: MachineUInt}
-    NSManagedObjectContextConcurrencyType: {first: NSConfinementConcurrencyType, suffix: ConcurrencyType, type: MachineUInt}
-    NSMergePolicyType: {first: NSErrorMergePolicyType, suffix: MergePolicyType, type: MachineUInt}
-    NSPersistentStoreRequestType: {first: NSFetchRequestType, suffix: RequestType, type: MachineUInt}
+    NSDeleteRule: {suffix: DeleteRule}
+    NSEntityMappingType: {suffix: EntityMappingType}
+    NSFetchedResultsChangeType: {}
+    NSFetchRequestResultType: {skip_none: true, suffix: ResultType}
+    NSManagedObjectContextConcurrencyType: {suffix: ConcurrencyType}
+    NSMergePolicyType: {suffix: MergePolicyType}
+    NSPersistentStoreRequestType: {suffix: RequestType}
     NSPersistentStoreUbiquitousTransitionType: {}
-    NSSnapshotEventType: {first: NSSnapshotEventUndoInsertion, type: MachineUInt, bits: true}
+    NSSnapshotEventType: {bits: true}
     NSBatchDeleteRequestResultType: {}
     NSBatchUpdateRequestResultType: {}
     NSBatchUpdateRequestType: {}
@@ -30,7 +30,6 @@ enums:
     NSPersistentHistoryResultType: {} #since 11.0
     NSPersistentHistoryChangeType: {} #since 11.0
 
-    Ignored: {first: NSFetchRequestExpressionType, exclude: true}
 classes:
     NSSQLiteError:
         extends: NSError
@@ -245,8 +244,6 @@ classes:
             'propertiesToGroupBy':
                 type: NSArray<NSPropertyDescription>
         methods:
-            '-init':
-                exclude: true
             '-initWithEntityName:':
                 name: init
             '+fetchRequestWithEntityName:':
@@ -371,8 +368,6 @@ classes:
             '.*Objects':
                 type: NSSet<NSManagedObject>
         methods:
-            '-init':
-                exclude: true
             '-initWithConcurrencyType:':
                 name: init
             '-performBlock:':
@@ -449,8 +444,6 @@ classes:
             'fetchRequestTemplatesByName':
                 type: 'NSDictionary<NSString, NSFetchRequest>'
         methods:
-            '-init':
-                exclude: true
             '-initWithContentsOfURL:':
                 name: init
             '-entitiesForConfiguration:':

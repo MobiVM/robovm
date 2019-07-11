@@ -23,10 +23,10 @@ private_typedefs:
 enums:
     ABAddressBookErrorCode: { first: kABOperationNotPermittedByStoreError, suffix: Error }
     ABAuthorizationStatus: {}
-    ABRecordType: { first: kABPersonType, prefix: kAB, suffix: Type, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    ABPropertyType: { first: kABInvalidPropertyType, bits: true, suffix: PropertyType, marshaler: Bits.AsMachineSizedIntMarshaler }
-    ABPersonSortOrdering: { first: kABPersonSortByFirstName, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    ABPersonCompositeNameFormat: { first: kABPersonCompositeNameFormatFirstNameFirst, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    ABRecordType: { first: kABPersonType, prefix: kAB, suffix: Type}
+    ABPropertyType: { first: kABInvalidPropertyType, suffix: PropertyType}
+    ABPersonSortOrdering: { first: kABPersonSortByFirstName}
+    ABPersonCompositeNameFormat: { first: kABPersonCompositeNameFormatFirstNameFirst}
     ABPersonImageFormat: { first: kABPersonImageFormatThumbnail }
     ABSourceType: { first: kABSourceTypeLocal, bits: true, skip_none: true }
     

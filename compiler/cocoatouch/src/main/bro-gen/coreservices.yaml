@@ -8,6 +8,7 @@ headers:
     - /System/Library/Frameworks/CFNetwork.framework/Headers/CFNetworkDefs.h
 typedefs:
     'CFStreamError *': CFStreamError.CFStreamErrorPtr
+    CFNetDiagnosticStatus: CFNetDiagnosticStatus
 private_typedefs:
     '__CFString *': String
     '__CFString **': NSString.NSStringPtr
@@ -22,23 +23,24 @@ private_typedefs:
     
 enums:
     CFHostInfoType: {}
-    CFNetDiagnosticStatus: { first: kCFNetDiagnosticNoErr }
+    CFNetDiagnosticStatusValues: { name: CFNetDiagnosticStatus }
     CFNetServicesError: {}
     CFNetServiceMonitorType: { prefix: kCFNetServiceMonitor }
-    CFNetServiceOptions: { first: kCFNetServiceFlagNoAutoRename, prefix: kCFNetServiceFlag, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
-    CFNetServiceBrowserFlags: { first: kCFNetServiceFlagMoreComing, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
+    CFNetServiceRegisterFlags: { name: CFNetServiceOptions, prefix: kCFNetServiceFlag, bits: true }
+    CFNetServiceBrowserFlags: { bits: true }
     CFNetworkErrors: {}
     CFStreamErrorCodeType: { first: kCFStreamErrorSOCKSSubDomainNone }
-    CFHTTPStreamError: { first: kCFStreamErrorHTTPParseFailure }
+    CFStreamErrorHTTP: { name: CFHTTPStreamError }
     CFSocketStreamError: { first: kCFStreamErrorSOCKS5BadResponseAddr, prefix: kCFStreamError }
     CFSocketStreamError2: { first: kCFStreamErrorSOCKS4RequestFailed, prefix: kCFStreamError, merge_with: CFSocketStreamError }
-    CFHTTPAuthenticationError: { first: kCFStreamErrorHTTPAuthenticationTypeUnsupported }
+    CFStreamErrorHTTPAuthentication: { name: CFHTTPAuthenticationError }
 
 classes:
     __CFHost:
         name: CFHost
         extends: CFType
     CFHostClientContext:
+        annotations: ['@Packed(2)']
         visibility: ''
         info:
             type: '@Pointer long'
@@ -55,6 +57,7 @@ classes:
         name: CFNetService
         extends: CFType
     CFNetServiceClientContext:
+        annotations: ['@Packed(2)']
         visibility: ''
         info:
             type: '@Pointer long'

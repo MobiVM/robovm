@@ -2,7 +2,7 @@ package: org.robovm.apple.coremedia
 include: [foundation.yaml, corefoundation.yaml, dispatch.yaml, coreaudio.yaml, coregraphics.yaml, corevideo.yaml, audiotoolbox.yaml]
 library: CoreMedia
 framework: CoreMedia
-clang_args: ['-x', 'objective-c']
+clang_args: ['-x', 'objective-c', '-DCOREMEDIA_USE_DERIVED_ENUMS_FOR_CONSTANTS=1']
 headers:
     - /System/Library/Frameworks/CoreMedia.framework/Headers/CoreMedia.h
     - /System/Library/Frameworks/CoreMedia.framework/Headers/CMBase.h
@@ -23,35 +23,35 @@ private_typedefs:
     '__CFRunLoop *': NSRunLoop
 
 enums:
-    CMAttachmentMode: { first: kCMAttachmentMode_ShouldNotPropagate, prefix: kCMAttachmentMode_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    CMClockErrorCode: { first: kCMClockError_MissingRequiredParameter, prefix: kCMClockError_ }
-    CMTimebaseErrorCode: { first: kCMTimebaseError_MissingRequiredParameter, prefix: kCMTimebaseError_ }
-    CMSyncErrorCode: { first: kCMSyncError_MissingRequiredParameter, prefix: kCMSyncError_ }
-    CMBlockBufferErrorCode: { first: kCMBlockBufferNoErr, prefix: kCMBlockBuffer, suffix: Err }
-    CMBlockBufferFlags: { first: kCMBlockBufferAssureMemoryNowFlag, prefix: kCMBlockBuffer, suffix: Flag, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
-    CMBufferQueueErrorCode: { first: kCMBufferQueueError_AllocationFailed, prefix: kCMBufferQueueError_ }
+    CMAttachmentMode: { first: kCMAttachmentMode_ShouldNotPropagate, prefix: kCMAttachmentMode_}
+    CMClockErrorCode: { first: kCMClockError_MissingRequiredParameter}
+    CMTimebaseErrorCode: { first: kCMTimebaseError_MissingRequiredParameter}
+    CMSyncErrorCode: { first: kCMSyncError_MissingRequiredParameter}
+    CMBlockBufferErrorCode: { first: kCMBlockBufferNoErr, suffix: Err }
+    CMBlockBufferFlags: { first: kCMBlockBufferAssureMemoryNowFlag, suffix: Flag, bits: true}
+    CMBufferQueueErrorCode: { first: kCMBufferQueueError_AllocationFailed}
     CMBufferQueueTriggerCondition: { first: kCMBufferQueueTrigger_WhenDurationBecomesLessThan, prefix: kCMBufferQueueTrigger_ }
-    CMFormatDescriptionErrorCode: { first: kCMFormatDescriptionError_InvalidParameter, prefix: kCMFormatDescriptionError_ }
-    CMMediaType: { first: kCMMediaType_Video, prefix: kCMMediaType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    CMAudioCodecType: { first: kCMAudioCodecType_AAC_LCProtected, prefix: kCMAudioCodecType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    CMAudioFormatDescriptionMask: { first: kCMAudioFormatDescriptionMask_StreamBasicDescription, prefix: kCMAudioFormatDescriptionMask_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
-    CMPixelFormatType: { first: kCMPixelFormat_32ARGB, prefix: kCMPixelFormat_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    CMVideoCodecType: { first: kCMVideoCodecType_422YpCbCr8, prefix: kCMVideoCodecType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    CMMPEG2VideoProfile: { first: kCMMPEG2VideoProfile_HDV_720p30, prefix: kCMMPEG2VideoProfile_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    CMMuxedStreamType: { first: kCMMuxedStreamType_MPEG1System, prefix: kCMMuxedStreamType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    CMClosedCaptionFormatType: { first: kCMClosedCaptionFormatType_CEA608, prefix: kCMClosedCaptionFormatType, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    CMTextFormatType: { first: kCMTextFormatType_QTText, prefix: kCMTextFormatType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    CMTextDisplayFlags: { first: kCMTextDisplayFlag_scrollIn, prefix: kCMTextDisplayFlag_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
-    CMTextJustification: { first: kCMTextJustification_left_top, prefix: kCMTextJustification_, kCMTextJustification_left_top: LeftTop, kCMTextJustification_centered: Centered, kCMTextJustification_bottom_right: BottomRight }
-    CMSubtitleFormatType: { first: kCMSubtitleFormatType_3GText, prefix: kCMSubtitleFormatType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    CMTimeCodeFormatType: { first: kCMTimeCodeFormatType_TimeCode32, prefix: kCMTimeCodeFormatType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    CMTimeCodeFlags: { first: kCMTimeCodeFlag_DropFrame, prefix: kCMTimeCodeFlag_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
-    CMMetadataFormatType: { first: kCMMetadataFormatType_ICY, prefix: kCMMetadataFormatType_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
-    CMSampleBufferErrorCode: { first: kCMSampleBufferError_AllocationFailed, prefix: kCMSampleBufferError_ }
-    CMSampleBufferFlags: { first: kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment, prefix: kCMSampleBufferFlag_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
-    CMSimpleQueueErrorCode: { first: kCMSimpleQueueError_AllocationFailed, prefix: kCMSimpleQueueError_ }
-    CMTimeFlags: { first: kCMTimeFlags_Valid, prefix: kCMTimeFlags_, bits: true, marshaler: Bits.AsMachineSizedIntMarshaler }
-    CMTimeRoundingMethod: { first: kCMTimeRoundingMethod_RoundHalfAwayFromZero, prefix: kCMTimeRoundingMethod_, marshaler: ValuedEnum.AsMachineSizedUIntMarshaler }
+    CMFormatDescriptionErrorCode: { first: kCMFormatDescriptionError_InvalidParameter}
+    CMMediaType: { first: kCMMediaType_Video }
+    CMAudioCodecType: { first: kCMAudioCodecType_AAC_LCProtected, prefix: kCMAudioCodecType_ }
+    CMAudioFormatDescriptionMask: { first: kCMAudioFormatDescriptionMask_StreamBasicDescription, prefix: kCMAudioFormatDescriptionMask_, bits: true }
+    CMPixelFormatType: { first: kCMPixelFormat_32ARGB }
+    CMVideoCodecType: { first: kCMVideoCodecType_422YpCbCr8 }
+    CMMPEG2VideoProfile: { first: kCMMPEG2VideoProfile_HDV_720p30}
+    CMMuxedStreamType: { first: kCMMuxedStreamType_MPEG1System}
+    CMClosedCaptionFormatType: { first: kCMClosedCaptionFormatType_CEA608 }
+    CMTextFormatType: { first: kCMTextFormatType_QTText }
+    CMTextDisplayFlags: { first: kCMTextDisplayFlag_scrollIn, bits: true }
+    CMTextJustification: { first: kCMTextJustification_left_top, kCMTextJustification_left_top: LeftTop, kCMTextJustification_centered: Centered, kCMTextJustification_bottom_right: BottomRight }
+    CMSubtitleFormatType: { first: kCMSubtitleFormatType_3GText }
+    CMTimeCodeFormatType: { first: kCMTimeCodeFormatType_TimeCode32 }
+    CMTimeCodeFlags: { first: kCMTimeCodeFlag_DropFrame, bits: true }
+    CMMetadataFormatType: { first: kCMMetadataFormatType_ICY }
+    CMSampleBufferErrorCode: { first: kCMSampleBufferError_AllocationFailed }
+    CMSampleBufferFlags: { first: kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment, prefix: kCMSampleBufferFlag_,bits: true}
+    CMSimpleQueueErrorCode: { first: kCMSimpleQueueError_AllocationFailed }
+    CMTimeFlags: { first: kCMTimeFlags_Valid, bits: true }
+    CMTimeRoundingMethod: { first: kCMTimeRoundingMethod_RoundHalfAwayFromZero }
     CMFormatDescriptionBridgeErrorCode: { first: kCMFormatDescriptionBridgeError_InvalidParameter }
     CMMetadataIdentifierErrorCode: { first: kCMMetadataIdentifierError_AllocationFailed }
     CMMetadataDataTypeRegistryErrorCode: { first: kCMMetadataDataTypeRegistryError_AllocationFailed }
@@ -133,8 +133,10 @@ classes:
         extends: CFType
 
     # Structs
-    CMBlockBufferCustomBlockSource: {}
+    CMBlockBufferCustomBlockSource:
+        annotations: ['@Packed(4)']
     CMBufferCallbacks:
+        annotations: ['@Packed(4)']
         name: CMBufferCallbacksStruct
         refcon:
             type: '@Pointer long'
@@ -142,12 +144,17 @@ classes:
     CMBufferQueueTriggerToken: {}
     opaqueCMBufferQueueTriggerToken:
         name: CMBufferQueueTriggerToken
-    CMVideoDimensions: {}
-    CMSampleTimingInfo: {}
+    CMVideoDimensions:
+        annotations: ['@Packed(4)']
+    CMSampleTimingInfo:
+        annotations: ['@Packed(4)']
     CMTime:
+        annotations: ['@Packed(4)']
         add_ptr: true
-    CMTimeRange: {}
-    CMTimeMapping: {}
+    CMTimeRange:
+        annotations: ['@Packed(4)']
+    CMTimeMapping:
+        annotations: ['@Packed(4)']
     CMBufferHandlers: {}
 
 protocols: {}

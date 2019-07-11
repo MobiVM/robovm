@@ -24,33 +24,33 @@ import java.util.Arrays;
  * @version $Id$
  */
 public class StructureType extends AggregateType {
-    private final Type[] types;
+    protected final Type[] types;
     private final int ownMembersOffset; // 1 if inherit another struct, zero otherwise
-    private final boolean isVector;
 
-    public StructureType(int ownMembersOffset, Type ... types) {
+    // attributes, to help runtime solving stret case
+    private final int attributes; // bitmask
+    public final static int ATTR_UNALIGNED             = 1 << 0; // contains at least one field that is not aligned to its nature alignment
+    public final static int ATTR_NOT_SINGLE_INT_STRUCT = 1 << 1; // indicates that structure is not one integer field wrap (up to 32 bit one)
+
+    public StructureType(int ownMembersOffset, int flags, Type ... types) {
         this.types = types.clone();
         this.ownMembersOffset = ownMembersOffset;
-        isVector = false;
+        this.attributes = flags;
     }
 
-    public StructureType(int ownMembersOffset, boolean vector, Type ... types) {
+    public StructureType(int ownMembersOffset, int flags, String alias, Type ... types) {
+        super(alias);
         this.types = types.clone();
         this.ownMembersOffset = ownMembersOffset;
-        isVector = vector;
+        this.attributes = flags;
     }
 
     public StructureType(Type ... types) {
-        this.types = types.clone();
-        ownMembersOffset = 0;
-        isVector = false;
+        this(0, 0, types);
     }
     
     public StructureType(String alias, Type ... types) {
-        super(alias);
-        this.types = types.clone();
-        ownMembersOffset = 0;
-        isVector = false;
+        this(0, 0, alias, types);
     }
 
     @Override
@@ -71,40 +71,17 @@ public class StructureType extends AggregateType {
         return ownMembersOffset;
     }
 
-    public boolean isVector() {
-        return isVector;
-    }
-
-    /**
-     * @return true if vector consists of another vector structs (not primitives)\
-     * and will be translated into stuct of array of primitive vector
-     * example is MatrixFloat2x2
-     */
-    public boolean isVectorArray() {
-        return isVector && types[0] instanceof StructureType;
-    }
-
     @Override
     public String getDefinition() {
-        if (isVector && types.length > 0) {
-            if (types[0] instanceof StructureType) {
-                // return as struct that contains array
-                StructureType st = (StructureType) types[0];
-                return "{ [" + types.length + " x " + st.getDefinition() + "] }";
-            } else {
-                return "<" + types.length + " x " + types[0].toString() + ">";
+        StringBuilder sb = new StringBuilder("{");
+        for (int i = 0; i < types.length; i++) {
+            if (i > 0) {
+                sb.append(", ");
             }
-        } else {
-            StringBuilder sb = new StringBuilder("{");
-            for (int i = 0; i < types.length; i++) {
-                if (i > 0) {
-                    sb.append(", ");
-                }
-                sb.append(types[i].toString());
-            }
-            sb.append("}");
-            return sb.toString();
+            sb.append(types[i].toString());
         }
+        sb.append("}");
+        return sb.toString();
     }
 
     @Override
@@ -127,9 +104,13 @@ public class StructureType extends AggregateType {
             return false;
         }
         StructureType other = (StructureType) obj;
-        if (!Arrays.equals(types, other.types) || isVector != other.isVector) {
+        if (!Arrays.equals(types, other.types)) {
             return false;
         }
         return true;
+    }
+
+    public int getAttributes() {
+        return attributes;
     }
 }

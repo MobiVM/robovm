@@ -12,7 +12,7 @@ private_typedefs:
     'AVPortraitEffectsMatte *': org.robovm.apple.avfoundation.AVPortraitEffectsMatte
 
 enums:
-    CIRenderDestinationAlphaMode: {prefix: CIRenderDestinationAlpha}
+    CIRenderDestinationAlphaMode: {}
     CIQRCodeErrorCorrectionLevel: {}
     CIDataMatrixCodeECCVersion: {}
 

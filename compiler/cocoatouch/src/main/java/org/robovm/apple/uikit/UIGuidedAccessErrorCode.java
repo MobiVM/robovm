@@ -48,7 +48,7 @@ import org.robovm.apple.intents.*;
 public enum /*<name>*/UIGuidedAccessErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     PermissionDenied(0L),
-    Failed(Bro.IS_32BIT ? 0x7fffffffL : 0x7fffffffffffffffL);
+    Failed(Bro.IS_32BIT ? Integer.MAX_VALUE : Long.MAX_VALUE);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(UIGuidedAccessErrorCode.class); }/*</bind>*/

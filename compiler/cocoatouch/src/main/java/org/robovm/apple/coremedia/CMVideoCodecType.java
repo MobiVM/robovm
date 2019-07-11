@@ -39,7 +39,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 public enum /*<name>*/CMVideoCodecType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     _422YpCbCr8(846624121L),
@@ -115,11 +115,14 @@ public enum /*<name>*/CMVideoCodecType/*</name>*/ implements ValuedEnum {
     
     public String asFourCharCode() {
         byte[] b = new byte[8];
+        int write_idx = 8;
         long value = value();
-        for (int i = 0; i < 8; ++i) {
-            b[i] = (byte)(value >> (8 - i - 1 << 3));
+        while (value != 0) {
+            write_idx -= 1;
+            b[write_idx] = (byte) (value & 0xFF);
+            value >>= 8;
         }
-        return new String(b);
+        return new String(b, write_idx, 8 - write_idx);
     }
     
     public static /*<name>*/CMVideoCodecType/*</name>*/ valueOf(long n) {

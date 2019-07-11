@@ -36,9 +36,8 @@ import org.robovm.apple.corespotlight.*;
  * @since Available in iOS 7.0 and later.
  * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
  */
-@Deprecated
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/NSPersistentStoreUbiquitousTransitionType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     AccountAdded(1L),
