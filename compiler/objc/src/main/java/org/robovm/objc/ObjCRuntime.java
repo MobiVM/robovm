@@ -158,8 +158,7 @@ public class ObjCRuntime {
         if (attr == null) {
             try {
                 Method stretMetadata = cls.getMethod("$attr$stretMetadata");
-                // assume method might be missing, but its not likely when cache is wiped on update
-                attr = stretMetadata != null ? (Integer) stretMetadata.invoke(null) : 0;
+                attr = (Integer) stretMetadata.invoke(null);
             } catch (Exception e) {
                 throw new Error(e);
             }
