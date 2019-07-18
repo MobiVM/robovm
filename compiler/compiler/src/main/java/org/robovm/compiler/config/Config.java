@@ -651,7 +651,7 @@ public class Config {
     }
 
     public File getCacheDir(Path path) {
-        File srcRoot = path.getFile().getParentFile();
+        File srcRoot = path.getFile().getAbsoluteFile().getParentFile();
         String name = path.getFile().getName();
         try {
             return new File(makeFileRelativeTo(osArchCacheDir, srcRoot.getCanonicalFile()), name);
@@ -1891,15 +1891,15 @@ public class Config {
 
         @Override
         public void write(OutputNode node, File value) throws Exception {
-            String path = value.getAbsolutePath();
-            if (path.equals(wdPrefix)) {
+            String path = value.isAbsolute() ? value.getAbsolutePath() : value.getPath();
+            if (path.isEmpty() || path.equals(wdPrefix)) {
                 if ("directory".equals(node.getName())) {
                     // Skip
                     node.remove();
                 } else {
                     node.setValue("");
                 }
-            } else if (path.startsWith(wdPrefix) && path.charAt(wdPrefix.length()) == File.separatorChar) {
+            } else if (value.isAbsolute() && path.startsWith(wdPrefix) && path.charAt(wdPrefix.length()) == File.separatorChar) {
                 node.setValue(path.substring(wdPrefix.length() + 1));
             } else {
                 node.setValue(path);
