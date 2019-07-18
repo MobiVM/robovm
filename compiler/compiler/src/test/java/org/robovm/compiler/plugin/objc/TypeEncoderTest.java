@@ -18,10 +18,12 @@ package org.robovm.compiler.plugin.objc;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.nio.ByteBuffer;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.robovm.compiler.ClassPathUtils;
 import org.robovm.rt.bro.Struct;
 import org.robovm.rt.bro.annotation.Array;
 import org.robovm.rt.bro.annotation.ByVal;
@@ -48,8 +50,8 @@ public class TypeEncoderTest {
         Options.v().set_include_all(true);
         Options.v().set_print_tags_in_output(true);
         Options.v().set_allow_phantom_refs(true);
-        Options.v().set_soot_classpath(System.getProperty("sun.boot.class.path") +
-                ":" + System.getProperty("java.class.path"));
+        Options.v().set_soot_classpath(ClassPathUtils.getBcPath() +
+                File.pathSeparator + System.getProperty("java.class.path"));
         Scene.v().loadNecessaryClasses();
     }
 

@@ -35,6 +35,8 @@ import soot.Scene;
 import soot.SootClass;
 import soot.options.Options;
 
+import java.io.File;
+
 /**
  * Tests {@link Types}.
  */
@@ -47,8 +49,8 @@ public class TypesTest {
         Options.v().set_include_all(true);
         Options.v().set_print_tags_in_output(true);
         Options.v().set_allow_phantom_refs(true);
-        Options.v().set_soot_classpath(System.getProperty("sun.boot.class.path") + 
-                ":" + System.getProperty("java.class.path"));
+        Options.v().set_soot_classpath(ClassPathUtils.getBcPath() +
+                File.pathSeparator + System.getProperty("java.class.path"));
         Scene.v().loadNecessaryClasses();
     }
     

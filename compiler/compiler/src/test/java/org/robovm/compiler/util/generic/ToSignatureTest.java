@@ -18,12 +18,14 @@ package org.robovm.compiler.util.generic;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import org.robovm.compiler.ClassPathUtils;
 import soot.Scene;
 import soot.SootClass;
 import soot.SootMethod;
@@ -56,8 +58,8 @@ public class ToSignatureTest {
         Options.v().set_include_all(true);
         Options.v().set_print_tags_in_output(true);
         Options.v().set_allow_phantom_refs(true);
-        Options.v().set_soot_classpath(System.getProperty("sun.boot.class.path") + 
-                ":" + System.getProperty("java.class.path"));
+        Options.v().set_soot_classpath(ClassPathUtils.getBcPath() +
+                File.pathSeparator + System.getProperty("java.class.path"));
         Scene.v().loadNecessaryClasses();
     }
 
