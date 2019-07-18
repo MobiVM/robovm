@@ -81,7 +81,7 @@ public class GsonTest {
             }
         }
         
-        assertArrayEquals(expected.getStackTrace(), actual.getStackTrace());
+        assertThrowableStackTreesEqual(expected.getStackTrace(), actual.getStackTrace());
         
         Throwable cause1 = expected.getCause();
         Throwable cause2 = actual.getCause();
@@ -95,7 +95,20 @@ public class GsonTest {
             assertThrowablesEqual(cause1, cause2, undeserializable);
         }
     }
-    
+
+    private void assertThrowableStackTreesEqual(StackTraceElement[] expected, StackTraceElement[] actual) {
+        // can't compare using assertArrayEquals as it will fails on StackTraceElement.equals due different class loaders
+        assertEquals(expected.length, actual.length);
+        for (int idx = 0; idx < expected.length; idx++) {
+            StackTraceElement e = expected[idx];
+            StackTraceElement a = actual[idx];
+            assertEquals(e.getClassName(), a.getClassName());
+            assertEquals(e.getMethodName(), a.getMethodName());
+            assertEquals(e.getLineNumber(), a.getLineNumber());
+        }
+
+    }
+
     @SuppressWarnings("serial")
     public static class NonDeserializableException extends Exception {
     }
