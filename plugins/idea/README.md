@@ -16,5 +16,11 @@ An IDEA plugin not based on the Gradle, but fully integrated with the compiler &
 * Optionally import the robovm-compiler, robovm-debug-XXX projects as modules. IDEA will resolve the dependencies to those modules so you can debug and code hotswap the compiler and debugger!
 * Create a new run configuration, using the Plugin run config type. Set the module. Happy coding.
 
-### Packaging
+### Packaging with maven 
 Simply do `mvn clean package -Pdeployment` in the root dir. You'll end up with a zip in the `target/` folder to which you can point Intellij IDEA.
+
+### Gradle configuration
+Was added as recommendation to not use it for new designs and as one that provides simple way for building plugin even without Idea installed. 
+
+### Packaging with gradle 
+Simply do `gradlew clean buildPlugin` in the root dir. You'll end up with a zip in the `build/distributions` folder to which you can point Intellij IDEA.
