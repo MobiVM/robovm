@@ -30,7 +30,6 @@
     <dependency>
       <groupId>com.mobidevelop.robovm</groupId>
       <artifactId>robovm-objc</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -47,6 +46,14 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <maxmemory>2g</maxmemory>
+          <!-- docs for RT: no lint, no bootclass and api 8 -->
+          <doclint>none</doclint>
+          <source>8</source>
+          <bootclasspath></bootclasspath>
+          <detectJavaApiLink>false</detectJavaApiLink>
+        </configuration>
       </plugin>
     </plugins>
   </build>
